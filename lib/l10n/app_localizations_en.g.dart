@@ -34,7 +34,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get error_required => 'Required';
 
   @override
-  String get error_password_requirements => 'Requirements:\n• 12 characters\n• 1 lower case\n• 1 upper case\n• 1 number\n• 1 special character (!@#\$&%*^\"\'`<>+=-;:~,._;/\\|()[]{})';
+  String get error_password_requirements =>
+      'Requirements:\n• 12 characters\n• 1 lower case\n• 1 upper case\n• 1 number\n• 1 special character (!@#\$&%*^\"\'`<>+=-;:~,._;/\\|()[]{})';
 
   @override
   String get error_password_do_not_match => 'Passwords do not match';
@@ -304,7 +305,8 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get dialog_permanently_delete_body_single => 'Do you really want to permanently delete this note? You will not be able to restore it.';
+  String get dialog_permanently_delete_body_single =>
+      'Do you really want to permanently delete this note? You will not be able to restore it.';
 
   @override
   String get dialog_restore => 'Restore';
@@ -328,7 +330,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dialog_empty_bin => 'Empty the bin';
 
   @override
-  String get dialog_empty_bin_body => 'Do you really want to permanently empty the bin? You will not be able to restore the notes it contains.';
+  String get dialog_empty_bin_body =>
+      'Do you really want to permanently empty the bin? You will not be able to restore the notes it contains.';
 
   @override
   String get dialog_add_collaborator => 'Add a collaborator';
@@ -397,10 +400,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirmations_description_none => 'Never ask for a confirmation';
 
   @override
-  String get confirmations_description_irreversible => 'Only ask for a confirmation for actions that are not reversible (such as permanently deleting notes from the bin)';
+  String get confirmations_description_irreversible =>
+      'Only ask for a confirmation for actions that are not reversible (such as permanently deleting notes from the bin)';
 
   @override
-  String get confirmations_description_all => 'Always ask for a confirmation for all important actions even if they can be reversed (such as deleting or restoring a note)';
+  String get confirmations_description_all =>
+      'Always ask for a confirmation for all important actions even if they can be reversed (such as deleting or restoring a note)';
 
   @override
   String get dismiss_pin => 'Pin';
@@ -427,10 +432,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get collaborators_guest => 'Guest';
 
   @override
-  String get collaborators_owner_description => 'You are the owner of this note.\n\nYou can add or remove collaborators. If you delete this note, all collaborators will loose access to it. They will gain access back if you restore it.\n\nLimitations:\n- You cannot remove yourself from the collaborators.\n- The pinned state is shared among every collaborator.';
+  String get collaborators_owner_description =>
+      'You are the owner of this note.\n\nYou can add or remove collaborators. If you delete this note, all collaborators will loose access to it. They will gain access back if you restore it.\n\nLimitations:\n- You cannot remove yourself from the collaborators.\n- The pinned state is shared among every collaborator.';
 
   @override
-  String get collaborators_guest_description => 'You were invited as a collaborator to this note.\n\nYou cannot add or remove collaborators, only the owner can.\n\nLimitations:\n- You cannot remove yourself from the collaborators.\n- The pinned state is shared among every collaborator.';
+  String get collaborators_guest_description =>
+      'You were invited as a collaborator to this note.\n\nYou cannot add or remove collaborators, only the owner can.\n\nLimitations:\n- You cannot remove yourself from the collaborators.\n- The pinned state is shared among every collaborator.';
 
   @override
   String get about_last_edited => 'Last edited';

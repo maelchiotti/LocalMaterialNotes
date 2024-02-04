@@ -13,8 +13,7 @@ String _$currentNoteHash() => r'3820bcba7cfe8a1bd751d7fce008658a598e4b8f';
 final currentNoteProvider = NotifierProvider<CurrentNote, Note?>.internal(
   CurrentNote.new,
   name: r'currentNoteProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$currentNoteHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$currentNoteHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

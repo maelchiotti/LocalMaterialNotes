@@ -76,34 +76,34 @@ class _BackAppBarState extends ConsumerState<BackMenuAppBar> {
       actions: note == null
           ? null
           : [
-        if (!note.deleted)
-          IconButton(
-            icon: const Icon(Icons.checklist),
-            tooltip: localizations.tooltip_toggle_checkbox,
-            onPressed: _toggleChecklist,
-          ),
-        PopupMenuButton<MenuOption>(
-          itemBuilder: (context) {
-            return (note.deleted
-                ? [
-              MenuOption.restore.popupMenuItem(),
-              MenuOption.deletePermanently.popupMenuItem(),
-            ]
-                : [
-              MenuOption.togglePin.popupMenuItem(note.pinned),
-              MenuOption.share.popupMenuItem(),
-              MenuOption.delete.popupMenuItem(),
-            ])
-              ..addAll(
-                [
-                  MenuOption.about.popupMenuItem(),
-                ],
-              );
-          },
-          onSelected: _onMenuOptionSelected,
-        ),
-        Padding(padding: Paddings.custom.appBarActionsEnd),
-      ],
+              if (!note.deleted)
+                IconButton(
+                  icon: const Icon(Icons.checklist),
+                  tooltip: localizations.tooltip_toggle_checkbox,
+                  onPressed: _toggleChecklist,
+                ),
+              PopupMenuButton<MenuOption>(
+                itemBuilder: (context) {
+                  return (note.deleted
+                      ? [
+                          MenuOption.restore.popupMenuItem(),
+                          MenuOption.deletePermanently.popupMenuItem(),
+                        ]
+                      : [
+                          MenuOption.togglePin.popupMenuItem(note.pinned),
+                          MenuOption.share.popupMenuItem(),
+                          MenuOption.delete.popupMenuItem(),
+                        ])
+                    ..addAll(
+                      [
+                        MenuOption.about.popupMenuItem(),
+                      ],
+                    );
+                },
+                onSelected: _onMenuOptionSelected,
+              ),
+              Padding(padding: Paddings.custom.appBarActionsEnd),
+            ],
     );
   }
 }

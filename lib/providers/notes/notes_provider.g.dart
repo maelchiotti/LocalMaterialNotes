@@ -10,12 +10,10 @@ String _$notesHash() => r'b8e744a80700bcb1d12839e0860e7fe6dbf9252b';
 
 /// See also [Notes].
 @ProviderFor(Notes)
-final notesProvider =
-    AutoDisposeAsyncNotifierProvider<Notes, List<Note>>.internal(
+final notesProvider = AutoDisposeAsyncNotifierProvider<Notes, List<Note>>.internal(
   Notes.new,
   name: r'notesProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$notesHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$notesHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

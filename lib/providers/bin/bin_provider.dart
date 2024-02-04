@@ -48,12 +48,11 @@ class Bin extends _$Bin with BaseProvider {
 
   Future<bool> permanentlyDelete(Note noteToPermanentlyDelete) async {
     try {
-      await  databaseManager.delete(noteToPermanentlyDelete.id);
+      await databaseManager.delete(noteToPermanentlyDelete.id);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
-
 
     await get();
 

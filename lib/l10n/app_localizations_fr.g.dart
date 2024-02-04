@@ -34,7 +34,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get error_required => 'Requis';
 
   @override
-  String get error_password_requirements => 'Requis:\n• 12 caractères\n• 1 minuscule\n• 1 majuscule\n• 1 nombre\n• 1 caractère spécial (!@#\$&%*^\"\'`<>+=-;:~,._;/\\|()[]{})';
+  String get error_password_requirements =>
+      'Requis:\n• 12 caractères\n• 1 minuscule\n• 1 majuscule\n• 1 nombre\n• 1 caractère spécial (!@#\$&%*^\"\'`<>+=-;:~,._;/\\|()[]{})';
 
   @override
   String get error_password_do_not_match => 'Les mots de passe ne correspondent pas';
@@ -279,7 +280,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get dialog_delete_body_single => 'Voulez-vous vraiment supprimer cette note ? Vous pouvez la restaurer depuis la corbeille.';
+  String get dialog_delete_body_single =>
+      'Voulez-vous vraiment supprimer cette note ? Vous pouvez la restaurer depuis la corbeille.';
 
   @override
   String get dialog_permanently_delete => 'Supprimer définitivement';
@@ -304,7 +306,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get dialog_permanently_delete_body_single => 'Voulez-vous vraiment supprimer définitivement cette note ? Vous ne pourrez pas la restaurer.';
+  String get dialog_permanently_delete_body_single =>
+      'Voulez-vous vraiment supprimer définitivement cette note ? Vous ne pourrez pas la restaurer.';
 
   @override
   String get dialog_restore => 'Restaurer';
@@ -328,7 +331,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get dialog_empty_bin => 'Vider la corbeille';
 
   @override
-  String get dialog_empty_bin_body => 'Voulez-vous vraiment vider définitivement la corbeille ? Vous ne pourrez pas restaurer les notes qu\'elle contient.';
+  String get dialog_empty_bin_body =>
+      'Voulez-vous vraiment vider définitivement la corbeille ? Vous ne pourrez pas restaurer les notes qu\'elle contient.';
 
   @override
   String get dialog_add_collaborator => 'Ajouter un collaborateur';
@@ -397,10 +401,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get confirmations_description_none => 'Ne jamais demander de confirmation';
 
   @override
-  String get confirmations_description_irreversible => 'Ne demander de confirmation que pour les actions qui ne sont pas réversibles (comme supprimer définitivement des notes de la corbeille)';
+  String get confirmations_description_irreversible =>
+      'Ne demander de confirmation que pour les actions qui ne sont pas réversibles (comme supprimer définitivement des notes de la corbeille)';
 
   @override
-  String get confirmations_description_all => 'Toujours demander une confirmation pour les actions importantes même si elles peuvent être annulées (comme supprimer ou restaurer une note)';
+  String get confirmations_description_all =>
+      'Toujours demander une confirmation pour les actions importantes même si elles peuvent être annulées (comme supprimer ou restaurer une note)';
 
   @override
   String get dismiss_pin => 'Épingler';
@@ -427,10 +433,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get collaborators_guest => 'Invité';
 
   @override
-  String get collaborators_owner_description => 'Vous êtes le propriétaire de cette note.\n\nVous pouvez ajouter ou retirer des collaborateurs. Si vous supprimez cette note, tous les collaborateurs en perdront l\'accès. Ils le regagneront si vous la restaurez.\n\nLimitations:\n- Vous ne pouvez pas vous retirer vous-mêmes des collaborateurs.\n- L\'état d\'épingle est partagé entre tous les collaborateurs.';
+  String get collaborators_owner_description =>
+      'Vous êtes le propriétaire de cette note.\n\nVous pouvez ajouter ou retirer des collaborateurs. Si vous supprimez cette note, tous les collaborateurs en perdront l\'accès. Ils le regagneront si vous la restaurez.\n\nLimitations:\n- Vous ne pouvez pas vous retirer vous-mêmes des collaborateurs.\n- L\'état d\'épingle est partagé entre tous les collaborateurs.';
 
   @override
-  String get collaborators_guest_description => 'Vous avez été invité en tant que collaborateur sur cette note.\n\nVous ne pouvez pas ajouter ni retirer des collaborateurs, seul le propriétaire le peut.\n\nLimitations:\n- Vous ne pouvez pas vous retirer vous-mêmes des collaborateurs.\n- L\'état d\'épingle est partagé entre tous les collaborateurs.';
+  String get collaborators_guest_description =>
+      'Vous avez été invité en tant que collaborateur sur cette note.\n\nVous ne pouvez pas ajouter ni retirer des collaborateurs, seul le propriétaire le peut.\n\nLimitations:\n- Vous ne pouvez pas vous retirer vous-mêmes des collaborateurs.\n- L\'état d\'épingle est partagé entre tous les collaborateurs.';
 
   @override
   String get about_last_edited => 'Dernière modification';

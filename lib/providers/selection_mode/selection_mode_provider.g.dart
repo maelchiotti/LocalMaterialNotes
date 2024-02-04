@@ -13,9 +13,7 @@ String _$selectionModeHash() => r'ee4c15832eab0b67a50069888fbe232ed711b98f';
 final selectionModeProvider = NotifierProvider<SelectionMode, bool>.internal(
   SelectionMode.new,
   name: r'selectionModeProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$selectionModeHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$selectionModeHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
