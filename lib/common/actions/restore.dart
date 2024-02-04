@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:localmaterialnotes/common/dialogs/confirmation_dialog.dart';
+import 'package:localmaterialnotes/models/note/note.dart';
+import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
+import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
+import 'package:localmaterialnotes/utils/constants/constants.dart';
+
+Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async {
+  if (note == null) return false;
+
+  if (await showConfirmationDialog(
+    false,
+    context,
+    localizations.dialog_restore,
+    localizations.dialog_restore_body_single,
+    localizations.dialog_restore,
+  )) {
+    ref.read(currentNoteProvider.notifier).reset();
+    await ref.read(binProvider.notifier).restore(note);
+
+    if (context.mounted && context.canPop()) {
+      context.pop();
+    }
+
+    return true;
+  }
+
+  return false;
+}
+
+Future<void> restoreNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
+  if (await showConfirmationDialog(
+    false,
+    context,
+    localizations.dialog_restore,
+    localizations.dialog_restore_body(notes.length),
+    localizations.dialog_restore,
+  )) {
+    for (final note in notes.where((note) => note.selected)) {
+      await ref.read(binProvider.notifier).restore(note);
+    }
+  }
+}

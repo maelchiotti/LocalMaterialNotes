@@ -1,0 +1,7 @@
+include: package:lint/strict.yaml
+
+analyzer:
+  exclude:
+    - '**.g.dart'
+  plugins:
+    - custom_lint
