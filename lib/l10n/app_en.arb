@@ -46,6 +46,8 @@
   "settings_github_description": "Take a look at the source code",
   "settings_licence": "License",
   "settings_licence_description": "AGPL-3.0",
+  "settings_issue": "Report a bug",
+  "settings_issue_description": "Report a bug by creating an issue on GitHub",
   "shortcut_bold": "Bold",
   "shortcut_italic": "Italic",
   "shortcut_underline": "Underline",

@@ -155,10 +155,14 @@ class Interactions {
   }
 
   void openGitHub(_) {
-    launchUrlString('https://github.com/maelchiotti/MaterialNotes');
+    launchUrlString('https://github.com/maelchiotti/LocalMaterialNotes');
   }
 
   void openLicense(_) {
-    launchUrlString('https://github.com/maelchiotti/MaterialNotes/blob/main/LICENSE');
+    launchUrlString('https://github.com/maelchiotti/LocalMaterialNotes/blob/main/LICENSE');
+  }
+
+  void openIssues(_) {
+    launchUrlString('https://github.com/maelchiotti/LocalMaterialNotes/issues');
   }
 }

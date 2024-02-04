@@ -45,6 +45,8 @@
   "settings_github": "GitHub",
   "settings_github_description": "Jeter un coup d''œil au code source",
   "settings_licence": "License",
+  "settings_issue": "Signaler un bug",
+  "settings_issue_description": "Signaler un bug en créant une issue sur GitHub",
   "shortcut_bold": "Gras",
   "shortcut_italic": "Italique",
   "shortcut_underline": "Souligné",

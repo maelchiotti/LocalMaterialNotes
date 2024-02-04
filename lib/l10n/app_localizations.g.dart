@@ -372,6 +372,18 @@ abstract class AppLocalizations {
   /// **'AGPL-3.0'**
   String get settings_licence_description;
 
+  /// No description provided for @settings_issue.
+  ///
+  /// In en, this message translates to:
+  /// **'Report a bug'**
+  String get settings_issue;
+
+  /// No description provided for @settings_issue_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Report a bug by creating an issue on GitHub'**
+  String get settings_issue_description;
+
   /// No description provided for @shortcut_bold.
   ///
   /// In en, this message translates to:

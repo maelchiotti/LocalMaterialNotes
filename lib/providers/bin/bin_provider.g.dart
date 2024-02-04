@@ -13,8 +13,7 @@ String _$binHash() => r'2c3a9b4540ccfaf9e5b0ac3b6ec3659742b7a8e0';
 final binProvider = AutoDisposeAsyncNotifierProvider<Bin, List<Note>>.internal(
   Bin.new,
   name: r'binProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$binHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$binHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

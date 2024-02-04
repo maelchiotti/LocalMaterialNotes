@@ -153,6 +153,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
+  String get settings_issue => 'Signaler un bug';
+
+  @override
+  String get settings_issue_description => 'Signaler un bug en créant une issue sur GitHub';
+
+  @override
   String get shortcut_bold => 'Gras';
 
   @override

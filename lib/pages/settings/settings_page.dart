@@ -110,6 +110,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               value: Text(localizations.settings_licence_description),
               onPressed: interactions.openLicense,
             ),
+            SettingsTile(
+              leading: const Icon(Icons.bug_report),
+              title: Text(localizations.settings_issue),
+              value: Text(localizations.settings_issue_description),
+              onPressed: interactions.openIssues,
+            ),
           ],
         ),
       ],
