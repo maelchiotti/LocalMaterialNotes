@@ -20,8 +20,6 @@ Simple, local, material design notes.
 - Write text notes (title + content)
 - Add checklists along the normal text
 - Use the quick action from your home screen to quickly add a note
-- Share text from other applications to add it directly to a note
-- Share your notes as text
 
 ### Organize
 
@@ -29,6 +27,12 @@ Simple, local, material design notes.
 - Sort your notes by date or title, in ascending or descending order
 - Pin your notes
 - Recover your deleted notes from the bin
+
+### Share & backup
+
+- Share text from other applications to add it directly to a note
+- Share your notes as text
+- Export your notes as JSON and import them back
 
 ### Customize
 

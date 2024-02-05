@@ -4,14 +4,19 @@ import 'package:equatable/equatable.dart';
 import 'package:fleather/fleather.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 part 'note.g.dart';
 
 // ignore_for_file: must_be_immutable
 
+const uuid = Uuid();
+
+@JsonSerializable()
 @Collection(inheritance: false)
 class Note extends Equatable {
-  Id id = Isar.autoIncrement;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  String? id;
   @Index()
   late bool deleted;
   @Index()
@@ -25,6 +30,7 @@ class Note extends Equatable {
   late bool selected = false;
 
   Note({
+    this.id,
     required this.deleted,
     required this.pinned,
     required this.createdTime,
@@ -34,6 +40,7 @@ class Note extends Equatable {
   });
 
   factory Note.empty() => Note(
+        id: uuid.v4(),
         deleted: false,
         pinned: false,
         createdTime: DateTime.now(),
@@ -43,6 +50,7 @@ class Note extends Equatable {
       );
 
   factory Note.content(String content) => Note(
+        id: uuid.v4(),
         deleted: false,
         pinned: false,
         createdTime: DateTime.now(),
@@ -50,6 +58,26 @@ class Note extends Equatable {
         title: '',
         content: content,
       );
+
+  // Manually setting the ID for imports
+  factory Note.fromJson(Map<String, dynamic> json) => _$NoteFromJson(json)..id = uuid.v4();
+
+  Map<String, dynamic> toJson() => _$NoteToJson(this);
+
+  Id get isarId {
+    var hash = 0xcbf29ce484222325;
+
+    var i = 0;
+    while (i < id!.length) {
+      final codeUnit = id!.codeUnitAt(i++);
+      hash ^= codeUnit >> 8;
+      hash *= 0x100000001b3;
+      hash ^= codeUnit & 0xFF;
+      hash *= 0x100000001b3;
+    }
+
+    return hash;
+  }
 
   @ignore
   String get plainText {

@@ -4,6 +4,10 @@ import 'package:intl/intl.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 
 extension DateTimeExtensions on DateTime {
+  String get filename {
+    return DateFormat('dd-MM-yyyy_HH-mm-ss').format(this);
+  }
+
   String get yMMMMd_at_Hm {
     final localeName = localizations.localeName;
 
