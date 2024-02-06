@@ -3,8 +3,6 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/go_router_extension.dart';
 
 enum RouterRoute {
-  login('/login'),
-  signup('/signup'),
   notes('/notes'),
   editor('editor', '/notes/editor'),
   bin('/bin'),
