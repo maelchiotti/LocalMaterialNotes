@@ -7,7 +7,6 @@ import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/l10n/app_localizations.g.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/locale_manager.dart';
-import 'package:localmaterialnotes/utils/platform_manager.dart';
 import 'package:localmaterialnotes/utils/share_manager.dart';
 import 'package:localmaterialnotes/utils/theme_manager.dart';
 
@@ -23,17 +22,13 @@ class _AppState extends ConsumerState<App> {
   void initState() {
     super.initState();
 
-    if (kIsAndroidApp) {
-      readSharedData(ref);
-      _stream = listenSharedData(ref);
-    }
+    readSharedData(ref);
+    _stream = listenSharedData(ref);
   }
 
   @override
   void dispose() {
-    if (kIsAndroidApp) {
-      _stream.cancel();
-    }
+    _stream.cancel();
 
     super.dispose();
   }

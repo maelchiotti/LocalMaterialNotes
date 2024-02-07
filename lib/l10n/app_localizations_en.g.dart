@@ -41,6 +41,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get error_password_do_not_match => 'Passwords do not match';
 
   @override
+  String get error_access_external_storage_required =>
+      'Please grant access to external storage or save the file to the internal storage.';
+
+  @override
   String get login_email => 'Email';
 
   @override
@@ -136,6 +140,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_shortcuts_description => 'Show all shortcuts available in the text editor';
+
+  @override
+  String get settings_backup => 'Backup';
+
+  @override
+  String get settings_export => 'Export';
+
+  @override
+  String get settings_export_description => 'Export notes to a JSON file (bin included)';
+
+  @override
+  String get settings_export_success => 'The notes were successfully exported.';
+
+  @override
+  String settings_export_fail(Object error) {
+    return 'The export failed: $error.';
+  }
+
+  @override
+  String get settings_import => 'Import';
+
+  @override
+  String get settings_import_description => 'Import notes from a JSON file';
+
+  @override
+  String get settings_import_success => 'The notes were successfully imported.';
+
+  @override
+  String settings_import_fail(Object error) {
+    return 'The import failed: $error.';
+  }
 
   @override
   String get settings_about => 'About';

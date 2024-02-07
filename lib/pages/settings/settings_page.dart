@@ -5,7 +5,7 @@ import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/pages/settings/interactions.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
-import 'package:localmaterialnotes/utils/package_info_manager.dart';
+import 'package:localmaterialnotes/utils/info_manager.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 import 'package:localmaterialnotes/utils/theme_manager.dart';
 import 'package:simple_icons/simple_icons.dart';
@@ -90,12 +90,29 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           ],
         ),
         SettingsSection(
+          title: Text(localizations.settings_backup),
+          tiles: [
+            SettingsTile.navigation(
+              leading: const Icon(Icons.file_download),
+              title: Text(localizations.settings_export),
+              value: Text(localizations.settings_export_description),
+              onPressed: interactions.backup,
+            ),
+            SettingsTile.navigation(
+              leading: const Icon(Icons.file_upload),
+              title: Text(localizations.settings_import),
+              value: Text(localizations.settings_import_description),
+              onPressed: interactions.restore,
+            ),
+          ],
+        ),
+        SettingsSection(
           title: Text(localizations.settings_about),
           tiles: [
             SettingsTile(
               leading: const Icon(Icons.info),
               title: Text(localizations.app_name),
-              value: Text(PackageInfoManager().version),
+              value: Text(InfoManager().appVersion),
               onPressed: interactions.showAbout,
             ),
             SettingsTile(

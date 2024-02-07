@@ -156,6 +156,12 @@ abstract class AppLocalizations {
   /// **'Passwords do not match'**
   String get error_password_do_not_match;
 
+  /// No description provided for @error_access_external_storage_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please grant access to external storage or save the file to the internal storage.'**
+  String get error_access_external_storage_required;
+
   /// No description provided for @login_email.
   ///
   /// In en, this message translates to:
@@ -341,6 +347,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show all shortcuts available in the text editor'**
   String get settings_shortcuts_description;
+
+  /// No description provided for @settings_backup.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup'**
+  String get settings_backup;
+
+  /// No description provided for @settings_export.
+  ///
+  /// In en, this message translates to:
+  /// **'Export'**
+  String get settings_export;
+
+  /// No description provided for @settings_export_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Export notes to a JSON file (bin included)'**
+  String get settings_export_description;
+
+  /// No description provided for @settings_export_success.
+  ///
+  /// In en, this message translates to:
+  /// **'The notes were successfully exported.'**
+  String get settings_export_success;
+
+  /// No description provided for @settings_export_fail.
+  ///
+  /// In en, this message translates to:
+  /// **'The export failed: {error}.'**
+  String settings_export_fail(Object error);
+
+  /// No description provided for @settings_import.
+  ///
+  /// In en, this message translates to:
+  /// **'Import'**
+  String get settings_import;
+
+  /// No description provided for @settings_import_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Import notes from a JSON file'**
+  String get settings_import_description;
+
+  /// No description provided for @settings_import_success.
+  ///
+  /// In en, this message translates to:
+  /// **'The notes were successfully imported.'**
+  String get settings_import_success;
+
+  /// No description provided for @settings_import_fail.
+  ///
+  /// In en, this message translates to:
+  /// **'The import failed: {error}.'**
+  String settings_import_fail(Object error);
 
   /// No description provided for @settings_about.
   ///

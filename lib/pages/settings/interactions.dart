@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:locale_names/locale_names.dart';
@@ -6,12 +8,14 @@ import 'package:localmaterialnotes/pages/settings/shortcut.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
+import 'package:localmaterialnotes/utils/database_manager.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
+import 'package:localmaterialnotes/utils/info_manager.dart';
 import 'package:localmaterialnotes/utils/locale_manager.dart';
-import 'package:localmaterialnotes/utils/package_info_manager.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
+import 'package:localmaterialnotes/utils/snack_bar_manager.dart';
 import 'package:localmaterialnotes/utils/theme_manager.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -140,11 +144,35 @@ class Interactions {
     );
   }
 
+  Future<void> backup(BuildContext context) async {
+    try {
+      await DatabaseManager().export();
+    } catch (exception, stackTrace) {
+      log(exception.toString(), stackTrace: stackTrace);
+      SnackBarManager.info(localizations.settings_export_fail(exception.toString())).show();
+      return;
+    }
+
+    SnackBarManager.info(localizations.settings_export_success).show();
+  }
+
+  Future<void> restore(BuildContext context) async {
+    try {
+      await DatabaseManager().import();
+    } catch (exception, stackTrace) {
+      log(exception.toString(), stackTrace: stackTrace);
+      SnackBarManager.info(localizations.settings_import_fail(exception.toString())).show();
+      return;
+    }
+
+    SnackBarManager.info(localizations.settings_import_success).show();
+  }
+
   Future<void> showAbout(BuildContext context) async {
     showAboutDialog(
       context: context,
       applicationName: localizations.app_name,
-      applicationVersion: PackageInfoManager().version,
+      applicationVersion: InfoManager().appVersion,
       applicationIcon: Image.asset(
         Asset.icon.path,
         width: Sizes.size64.size,

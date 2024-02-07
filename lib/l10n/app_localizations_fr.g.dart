@@ -41,6 +41,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get error_password_do_not_match => 'Les mots de passe ne correspondent pas';
 
   @override
+  String get error_access_external_storage_required =>
+      'Veuillez autoriser l\'accès au stockage externe où sauvegarder le fichier sur le stockage interne.';
+
+  @override
   String get login_email => 'Email';
 
   @override
@@ -136,6 +140,37 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_shortcuts_description => 'Lister tous les raccourcis disponibles dans l\'éditeur de texte';
+
+  @override
+  String get settings_backup => 'Sauvegarde';
+
+  @override
+  String get settings_export => 'Export';
+
+  @override
+  String get settings_export_description => 'Exporter les notes dans un fichier (corbeille incluse)';
+
+  @override
+  String get settings_export_success => 'Les notes ont bien été exportées.';
+
+  @override
+  String settings_export_fail(Object error) {
+    return 'L\'export a échoué : $error.\n\nVeuillez vérifier que vous n\'avez pas choisi d\'exporter sur un support de stockage externe car l\'applicaiton n\'a pas cette autoristation.';
+  }
+
+  @override
+  String get settings_import => 'Import';
+
+  @override
+  String get settings_import_description => 'Importer les notes depuis un fichier';
+
+  @override
+  String get settings_import_success => 'Les notes ont bien été importées.';
+
+  @override
+  String settings_import_fail(Object error) {
+    return 'L\'import a échoué: $error.';
+  }
 
   @override
   String get settings_about => 'À propos';
