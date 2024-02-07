@@ -60,14 +60,12 @@ final router = GoRouter(
   routes: [
     ShellRoute(
       builder: (context, state, child) {
-        return SafeArea(
-          child: Scaffold(
-            key: drawerKey,
-            appBar: _getAppBar(context),
-            drawer: const SideNavigation(),
-            body: child,
-            floatingActionButton: _getFloatingActionButton(context),
-          ),
+        return Scaffold(
+          key: drawerKey,
+          appBar: _getAppBar(context),
+          drawer: const SideNavigation(),
+          body: child,
+          floatingActionButton: _getFloatingActionButton(context),
         );
       },
       routes: [
