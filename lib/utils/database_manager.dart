@@ -86,19 +86,7 @@ class DatabaseManager {
 
     if (exportDirectory == null) return;
 
-    // External storage requires permissions
-    if (!exportDirectory.startsWith('/storage/emulated')) {
-      // Android 13 or above
-      if (InfoManager().androidVersion > 33) {
-        if (!await Permission.manageExternalStorage.request().isGranted) {
-          throw Exception(localizations.error_access_external_storage_required);
-        }
-      } else {
-        if (!await Permission.storage.request().isGranted) {
-          throw Exception(localizations.error_access_external_storage_required);
-        }
-      }
-    }
+    await _checkPermissions(exportDirectory);
 
     final timestamp = DateTime.timestamp();
     final exportFile = File('$exportDirectory/materialnotes_export_${timestamp.filename}.json');
@@ -118,23 +106,29 @@ class DatabaseManager {
 
     final importFilePath = filePickerResult.paths.first!;
 
-    // External storage requires permissions
-    if (!importFilePath.startsWith('/storage/emulated')) {
-      // Android 13 or above
-      if (InfoManager().androidVersion > 33) {
-        if (!await Permission.manageExternalStorage.request().isGranted) {
-          throw Exception(localizations.error_access_external_storage_required);
-        }
-      } else {
-        if (!await Permission.storage.request().isGranted) {
-          throw Exception(localizations.error_access_external_storage_required);
-        }
-      }
-    }
+    await _checkPermissions(importFilePath);
 
     final importFile = File(importFilePath);
     final notesJson = jsonDecode(await importFile.readAsString()) as List;
     final notes = notesJson.map((e) => Note.fromJson(e as Map<String, dynamic>)).toList();
+
     await addAll(notes);
+  }
+
+  Future<void> _checkPermissions(String filepath) async {
+    // External storage requires permissions
+    if (!filepath.startsWith('/storage/emulated')) {
+      if (InfoManager().androidVersion > 33) {
+        // Android 13 or above
+        if (!(await Permission.manageExternalStorage.request()).isGranted) {
+          throw Exception(localizations.error_access_external_storage_required);
+        }
+      } else {
+        // Android 12 or below
+        if (!(await Permission.storage.request()).isGranted) {
+          throw Exception(localizations.error_access_external_storage_required);
+        }
+      }
+    }
   }
 }
