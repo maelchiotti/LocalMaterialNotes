@@ -13,6 +13,12 @@
 
 Simple, local, material design notes.
 
+<div style="display: flex">
+  <img src="assets/screenshots/notes.jpg" width="30%">
+  <img src="assets/screenshots/editor.jpg" width="30%">
+  <img src="assets/screenshots/bin.jpg" width="30%">
+</div>
+
 ## Features
 
 ### Take notes
@@ -39,6 +45,10 @@ Simple, local, material design notes.
 - Choose your theme (light, dark or black)
 - Choose if you want your theme to be dynamic (use colors from your system, if supported)
 - Choose your language (see the [supported ones](#supported-languages))
+
+## Screenshots
+
+See more screenshots [here](https://github.com/maelchiotti/LocalMaterialNotes/tree/main/assets/screenshots).
 
 ## Supported languages
 

@@ -69,6 +69,7 @@ class _EditorState extends ConsumerState<EditorPage> {
           TextField(
             readOnly: widget.readOnly,
             autofocus: widget.autofocus,
+            textCapitalization: TextCapitalization.sentences,
             textInputAction: TextInputAction.next,
             style: Theme.of(context).textTheme.titleLarge,
             decoration: InputDecoration.collapsed(
