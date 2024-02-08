@@ -14,9 +14,9 @@
 Simple, local, material design notes.
 
 <div style="display: flex">
-  <img src="assets/screenshots/notes.jpg" width="30%">
-  <img src="assets/screenshots/editor.jpg" width="30%">
-  <img src="assets/screenshots/bin.jpg" width="30%">
+  <img src="assets/screenshots/notes.jpg" width="33%">
+  <img src="assets/screenshots/editor.jpg" width="33%">
+  <img src="assets/screenshots/bin.jpg" width="33%">
 </div>
 
 ## Features
