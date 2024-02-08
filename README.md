@@ -13,15 +13,11 @@
 
 Simple, local, material design notes.
 
-<div style="display: flex">
-  <img src="assets/screenshots/notes.jpg" width="30%">
-  <img src="assets/screenshots/editor.jpg" width="30%">
-  <img src="assets/screenshots/bin.jpg" width="30%">
+<div align="center">
+  <img alt="Screenshot of the notes list" src="assets/screenshots/notes.jpg" width="30%">
+  <img alt="Screenshots of the note editor" src="assets/screenshots/editor.jpg" width="30%">
+  <img alt="Screenshot of the bin" src="assets/screenshots/bin.jpg" width="30%">
 </div>
-
-<img src="assets/screenshots/notes.jpg" width="266">
-<img src="assets/screenshots/editor.jpg" width="266">
-<img src="assets/screenshots/bin.jpg" width="266">
 
 ## Features
 
