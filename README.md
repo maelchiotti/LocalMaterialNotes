@@ -48,7 +48,7 @@ Simple, local, material design notes.
 
 ## Screenshots
 
-See more screenshots [here](https://github.com/maelchiotti/LocalMaterialNotes/tree/main/assets/screenshots).
+See more screenshots [here](assets/screenshots).
 
 ## Supported languages
 
