@@ -5,7 +5,6 @@ import 'package:fleather/fleather.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:uuid/uuid.dart';
 
 part 'note.g.dart';
 
