@@ -3,7 +3,7 @@ description: Simple, local, material design notes
 repository: https://github.com/maelchiotti/LocalMaterialNotes
 documentation: https://github.com/maelchiotti/LocalMaterialNotes/wiki
 
-version: 1.0.0
+version: 1.0.1
 publish_to: none
 
 environment:
@@ -27,6 +27,7 @@ dependencies:
   flutter_settings_ui: ^3.0.0
   go_router: ^13.1.0
   intl: ^0.18.1
+  is_first_run: ^1.0.0
   isar: ^3.1.0+1
   isar_flutter_libs: ^3.1.0+1
   json_annotation: ^4.8.1

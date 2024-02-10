@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
@@ -20,24 +21,38 @@ class DatabaseManager {
 
   DatabaseManager._internal();
 
-  String databaseName = 'materialnotes';
-  late String databaseDirectory;
-  late Isar database;
+  final _databaseName = 'materialnotes';
+  late String _databaseDirectory;
+  late Isar _database;
+
+  final _welcomeNote = Note(
+    id: uuid.v4(),
+    deleted: false,
+    pinned: true,
+    createdTime: DateTime.now(),
+    editedTime: DateTime.now(),
+    title: 'Welcome to Material Notes',
+    content: '[{"insert":"Simple, local, material design notes\\n\\n"}]',
+  );
 
   Future<void> init() async {
-    databaseDirectory = (await getApplicationDocumentsDirectory()).path;
-    database = await Isar.open(
+    _databaseDirectory = (await getApplicationDocumentsDirectory()).path;
+    _database = await Isar.open(
       [NoteSchema],
-      name: databaseName,
-      directory: databaseDirectory,
+      name: _databaseName,
+      directory: _databaseDirectory,
     );
+
+    if (await IsFirstRun.isFirstCall()) {
+      await add(_welcomeNote);
+    }
   }
 
   Future<List<Note>> getAll({bool deleted = false}) async {
     final sortMethod = SortMethod.methodFromPreferences();
     final sortAscending = SortMethod.ascendingFromPreferences;
 
-    final sortedByPinned = database.notes.where().deletedEqualTo(deleted).sortByPinnedDesc();
+    final sortedByPinned = _database.notes.where().deletedEqualTo(deleted).sortByPinnedDesc();
 
     switch (sortMethod) {
       case SortMethod.date:
@@ -54,14 +69,14 @@ class DatabaseManager {
   }
 
   Future<void> add(Note note) async {
-    await database.writeTxn(() async {
-      await database.notes.put(note);
+    await _database.writeTxn(() async {
+      await _database.notes.put(note);
     });
   }
 
   Future<void> addAll(List<Note> notes) async {
-    await database.writeTxn(() async {
-      await database.notes.putAll(notes);
+    await _database.writeTxn(() async {
+      await _database.notes.putAll(notes);
     });
   }
 
@@ -70,14 +85,14 @@ class DatabaseManager {
   }
 
   Future<void> delete(Id id) async {
-    await database.writeTxn(() async {
-      await database.notes.delete(id);
+    await _database.writeTxn(() async {
+      await _database.notes.delete(id);
     });
   }
 
   Future<void> deleteAll() async {
-    await database.writeTxn(() async {
-      await database.notes.where().deletedEqualTo(true).deleteAll();
+    await _database.writeTxn(() async {
+      await _database.notes.where().deletedEqualTo(true).deleteAll();
     });
   }
 
@@ -91,7 +106,7 @@ class DatabaseManager {
     final timestamp = DateTime.timestamp();
     final exportFile = File('$exportDirectory/materialnotes_export_${timestamp.filename}.json');
 
-    final notes = await database.notes.where().findAll();
+    final notes = await _database.notes.where().findAll();
     final notesJson = jsonEncode(notes);
     await exportFile.writeAsString(notesJson);
   }

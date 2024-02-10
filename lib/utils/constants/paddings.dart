@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localmaterialnotes/utils/constants/constants.dart';
 
 enum Paddings {
   custom(0),
@@ -26,23 +27,13 @@ enum Paddings {
 
   EdgeInsets get bottom => EdgeInsets.only(bottom: _padding);
 
-  EdgeInsets get fab => const EdgeInsets.only(bottom: kFloatingActionButtonMargin + 64);
+  EdgeInsets get bottomSystemUi => EdgeInsets.only(bottom: MediaQuery.of(navigatorKey.currentContext!).padding.bottom);
 
-  EdgeInsets get miniFab => const EdgeInsets.only(bottom: kFloatingActionButtonMargin + 48);
+  EdgeInsets get fab => const EdgeInsets.only(bottom: kFloatingActionButtonMargin + 64);
 
   EdgeInsets get page => const EdgeInsets.all(16);
 
   EdgeInsets get pageButBottom => const EdgeInsets.only(top: 16, left: 16, right: 16);
-
-  EdgeInsets get pageHorizontal => const EdgeInsets.symmetric(horizontal: 16);
-
-  EdgeInsets get pageVertical => const EdgeInsets.symmetric(vertical: 16);
-
-  EdgeInsets get drawer => const EdgeInsets.all(8);
-
-  EdgeInsets get editorDesktop => const EdgeInsets.all(16);
-
-  EdgeInsets get editorMobile => const EdgeInsets.all(4);
 
   EdgeInsets get appBarActionsEnd => const EdgeInsets.only(right: 8);
 

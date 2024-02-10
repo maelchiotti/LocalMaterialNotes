@@ -4,13 +4,11 @@ import 'package:equatable/equatable.dart';
 import 'package:fleather/fleather.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:uuid/uuid.dart';
+import 'package:localmaterialnotes/utils/constants/constants.dart';
 
 part 'note.g.dart';
 
 // ignore_for_file: must_be_immutable
-
-const uuid = Uuid();
 
 @JsonSerializable()
 @Collection(inheritance: false)

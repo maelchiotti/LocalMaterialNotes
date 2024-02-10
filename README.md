@@ -13,6 +13,12 @@
 
 Simple, local, material design notes.
 
+<div align="center">
+  <img alt="Screenshot of the notes list" src="assets/screenshots/notes.jpg" width="30%">
+  <img alt="Screenshots of the note editor" src="assets/screenshots/editor.jpg" width="30%">
+  <img alt="Screenshot of the bin" src="assets/screenshots/bin.jpg" width="30%">
+</div>
+
 ## Features
 
 ### Take notes
@@ -39,6 +45,10 @@ Simple, local, material design notes.
 - Choose your theme (light, dark or black)
 - Choose if you want your theme to be dynamic (use colors from your system, if supported)
 - Choose your language (see the [supported ones](#supported-languages))
+
+## Screenshots
+
+See more screenshots [here](assets/screenshots).
 
 ## Supported languages
 

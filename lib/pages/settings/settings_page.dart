@@ -4,6 +4,7 @@ import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/pages/settings/interactions.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
+import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/info_manager.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
@@ -24,6 +25,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   Widget build(BuildContext context) {
     return SettingsList(
       platform: DevicePlatform.android,
+      contentPadding: Paddings.custom.bottomSystemUi,
       lightTheme: SettingsThemeData(
         settingsListBackground: Theme.of(context).colorScheme.background,
       ),
