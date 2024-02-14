@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:localmaterialnotes/common/routing/router.dart';
+import 'package:localmaterialnotes/common/routing/editor_parameters.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
@@ -14,12 +14,11 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) asy
   await ref.read(notesProvider.notifier).add(note);
 
   if (context.mounted) {
-    context.push(
-      RouterRoute.editor.fullPath!,
-      extra: EditorParameters.from({
-        'readonly': false,
-        'autofocus': true,
-      }),
-    );
+    final route = RouterRoute.editor.fullPath!;
+
+    // If the editor is already opened with another note, replace the route with the new editor
+    RouterRoute.isEditor
+        ? context.pushReplacement(route, extra: editorParametersNewNote)
+        : context.push(route, extra: editorParametersNewNote);
   }
 }

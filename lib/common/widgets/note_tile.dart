@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/actions/delete.dart';
 import 'package:localmaterialnotes/common/actions/pin.dart';
 import 'package:localmaterialnotes/common/actions/restore.dart';
-import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
@@ -14,6 +13,8 @@ import 'package:localmaterialnotes/providers/selection_mode/selection_mode_provi
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
+
+import '../routing/editor_parameters.dart';
 
 class NoteTile extends ConsumerStatefulWidget {
   const NoteTile(this.note) : searchView = false;

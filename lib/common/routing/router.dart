@@ -11,7 +11,7 @@ import 'package:localmaterialnotes/pages/notes/notes_page.dart';
 import 'package:localmaterialnotes/pages/settings/settings_page.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 
-typedef EditorParameters = Map<String, bool>?;
+import 'editor_parameters.dart';
 
 CustomTransitionPage _getCustomTransitionPage<T>(GoRouterState state, Widget child) {
   return CustomTransitionPage<T>(
