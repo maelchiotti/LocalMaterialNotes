@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/common/dialogs/confirmation_dialog.dart';
 import 'package:localmaterialnotes/l10n/app_localizations.g.dart';
@@ -118,16 +119,32 @@ class Interactions {
   }
 
   Future<void> toggleLock(BuildContext context, bool value) async {
-    if (!value ||
-        await showConfirmationDialog(
-          context,
-          localizations.settings_disclaimer,
-          localizations.settings_lock_disclaimer_description,
-          localizations.button_ok,
-        )) {
-      PreferencesManager().set<bool>(PreferenceKey.lock.name, value);
+    if (!value) {
+      PreferencesManager().set<bool>(PreferenceKey.lock.name, false);
 
-      if (context.mounted) {
+      AppLock.of(context)!.disable();
+    } else {
+      final localeAuthentication = LocalAuthentication();
+      if (!await localeAuthentication.isDeviceSupported()) {
+        if (!context.mounted) return;
+
+        SnackBarManager.info(localizations.authentication_require_credentials).show();
+
+        return;
+      }
+
+      if (!context.mounted) return;
+
+      if (await showConfirmationDialog(
+        context,
+        localizations.settings_disclaimer,
+        localizations.settings_lock_disclaimer_description,
+        localizations.button_ok,
+      )) {
+        PreferencesManager().set<bool>(PreferenceKey.lock.name, true);
+
+        if (!context.mounted) return;
+
         AppLock.of(context)!.setEnabled(value);
       }
     }

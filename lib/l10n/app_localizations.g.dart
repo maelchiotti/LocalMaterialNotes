@@ -960,6 +960,18 @@ abstract class AppLocalizations {
   /// **'Authenticate'**
   String get authentication_authenticate;
 
+  /// No description provided for @authentication_require_credentials.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature uses the device authentication capabilities, and requires at least one credential method to be available (biometrics, PIN, password...). Please configure them in the system settings.'**
+  String get authentication_require_credentials;
+
+  /// No description provided for @authentication_error.
+  ///
+  /// In en, this message translates to:
+  /// **'The authentication failed: {error}.'**
+  String authentication_error(Object error);
+
   /// No description provided for @time_at.
   ///
   /// In en, this message translates to:

@@ -144,5 +144,7 @@
   "authentication_authentication_required": "Authentication is required",
   "authentication_authentication_required_for_app": "Authentication is required for {appName}",
   "authentication_authenticate": "Authenticate",
+  "authentication_require_credentials": "This feature uses the device authentication capabilities, and requires at least one credential method to be available (biometrics, PIN, password...). Please configure them in the system settings.",
+  "authentication_error": "The authentication failed: {error}.",
   "time_at": "at"
 }

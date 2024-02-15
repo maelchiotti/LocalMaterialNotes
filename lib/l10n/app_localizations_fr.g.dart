@@ -505,5 +505,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get authentication_authenticate => 'S\'authentifier';
 
   @override
+  String get authentication_require_credentials =>
+      'Cette fonctionnalité utilise les capacités d\'authentification de l\'appareil, et nécessite qu\'au moins une méthode d\'autentification soit disponible (biométrie, PIN, mot de passe...). Veuillez les configurer dans les paramètres système.';
+
+  @override
+  String authentication_error(Object error) {
+    return 'L\'authentification a échoué : $error.';
+  }
+
+  @override
   String get time_at => 'à';
 }

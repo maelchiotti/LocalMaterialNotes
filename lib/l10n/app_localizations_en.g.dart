@@ -504,5 +504,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authentication_authenticate => 'Authenticate';
 
   @override
+  String get authentication_require_credentials =>
+      'This feature uses the device authentication capabilities, and requires at least one credential method to be available (biometrics, PIN, password...). Please configure them in the system settings.';
+
+  @override
+  String authentication_error(Object error) {
+    return 'The authentication failed: $error.';
+  }
+
+  @override
   String get time_at => 'at';
 }
