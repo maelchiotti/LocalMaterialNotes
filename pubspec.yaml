@@ -3,7 +3,7 @@ description: Simple, local, material design notes
 repository: https://github.com/maelchiotti/LocalMaterialNotes
 documentation: https://github.com/maelchiotti/LocalMaterialNotes/wiki
 
-version: 1.0.1
+version: 1.1.0
 publish_to: none
 
 environment:
