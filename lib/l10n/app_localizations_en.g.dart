@@ -10,6 +10,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_name => 'Material Notes';
 
   @override
+  String get app_tagline => 'Simple, local, material design notes';
+
+  @override
+  String app_about(Object appName) {
+    return '$appName is a simple text-based note-taking application. It fully embraces Material Design. It stores your notes locally and doesn\'t have any internet permissions.';
+  }
+
+  @override
   String get navigation_notes => 'Notes';
 
   @override
@@ -72,6 +80,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signup_confirm_email => 'Please confirm your email before signing in.';
 
   @override
+  String get settings_disclaimer => 'Disclaimer';
+
+  @override
   String get settings_account => 'Account';
 
   @override
@@ -127,9 +138,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_language => 'Language';
 
   @override
-  String get settings_language_restart => 'Please restart the app for the changes to take effect.';
-
-  @override
   String get settings_behavior => 'Behavior';
 
   @override
@@ -140,6 +148,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_shortcuts_description => 'Show all shortcuts available in the text editor';
+
+  @override
+  String get settings_security => 'Security';
+
+  @override
+  String get settings_lock_app => 'Authentication on launch';
+
+  @override
+  String get settings_lock_app_description =>
+      'Require an authentication on launch using the device authentication capabilities';
+
+  @override
+  String get settings_lock_disclaimer_description =>
+      'The notes are stored as plain text and are not encrypted. Please do not store any sensitive information in them, as this lock feature cannot fully prevent someone from accessing the notes.';
+
+  @override
+  String get settings_lock_latency => 'Background delay';
+
+  @override
+  String get settings_lock_latency_description =>
+      'Delay in minutes after which the application will lock itself when put it the background, requiring to authenticate again the next time it will be launched';
 
   @override
   String get settings_backup => 'Backup';
@@ -242,16 +271,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hint_title => 'Title';
 
   @override
-  String get hint_collaborator_email => 'collaborator@example.com';
-
-  @override
   String get tooltip_fab_add_note => 'Add a note';
 
   @override
   String get tooltip_fab_empty_bin => 'Empty the bin';
-
-  @override
-  String get tooltip_fab_add_collaborator => 'Add a collaborator';
 
   @override
   String get tooltip_sort => 'Sort the notes';
@@ -279,6 +302,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tooltip_toggle_pins => 'Toggle pins';
+
+  @override
+  String get button_ok => 'Ok';
 
   @override
   String get button_close => 'Close';
@@ -375,15 +401,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Do you really want to permanently empty the bin? You will not be able to restore the notes it contains.';
 
   @override
-  String get dialog_add_collaborator => 'Add a collaborator';
-
-  @override
-  String get dialog_remove_collaborator => 'Remove this collaborator';
-
-  @override
-  String get dialog_remove_collaborator_body => 'Do you really want to remove this collaborator?';
-
-  @override
   String get sort_date => 'Date';
 
   @override
@@ -399,9 +416,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get placeholder_bin => 'The bin is empty';
 
   @override
-  String get placeholder_collaborators => 'No collaborators';
-
-  @override
   String get menu_pin => 'Pin';
 
   @override
@@ -409,9 +423,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get menu_unpin => 'Unpin';
-
-  @override
-  String get menu_collaborate => 'Collaborate';
 
   @override
   String get menu_delete => 'Delete';
@@ -449,6 +460,12 @@ class AppLocalizationsEn extends AppLocalizations {
       'Always ask for a confirmation for all important actions even if they can be reversed (such as deleting or restoring a note)';
 
   @override
+  String get lock_latency_immediately => 'Immediately';
+
+  @override
+  String get lock_latency_never => 'Never';
+
+  @override
   String get dismiss_pin => 'Pin';
 
   @override
@@ -464,23 +481,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dismiss_restore => 'Restore';
 
   @override
-  String get collaborators_collaborators => 'Collaborators';
-
-  @override
-  String get collaborators_owner => 'Owner';
-
-  @override
-  String get collaborators_guest => 'Guest';
-
-  @override
-  String get collaborators_owner_description =>
-      'You are the owner of this note.\n\nYou can add or remove collaborators. If you delete this note, all collaborators will loose access to it. They will gain access back if you restore it.\n\nLimitations:\n- You cannot remove yourself from the collaborators.\n- The pinned state is shared among every collaborator.';
-
-  @override
-  String get collaborators_guest_description =>
-      'You were invited as a collaborator to this note.\n\nYou cannot add or remove collaborators, only the owner can.\n\nLimitations:\n- You cannot remove yourself from the collaborators.\n- The pinned state is shared among every collaborator.';
-
-  @override
   String get about_last_edited => 'Last edited';
 
   @override
@@ -491,6 +491,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get about_characters => 'Characters';
+
+  @override
+  String get authentication_authentication_required => 'Authentication is required';
+
+  @override
+  String authentication_authentication_required_for_app(Object appName) {
+    return 'Authentication is required for $appName';
+  }
+
+  @override
+  String get authentication_authenticate => 'Authenticate';
 
   @override
   String get time_at => 'at';

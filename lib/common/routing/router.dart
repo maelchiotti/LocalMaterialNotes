@@ -4,14 +4,13 @@ import 'package:localmaterialnotes/common/fabs/fab_add_note.dart';
 import 'package:localmaterialnotes/common/fabs/fab_empty_bin.dart';
 import 'package:localmaterialnotes/common/navigation/side_navigation.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
+import 'package:localmaterialnotes/common/routing/editor_parameters.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/pages/bin/bin_page.dart';
 import 'package:localmaterialnotes/pages/editor/editor_page.dart';
 import 'package:localmaterialnotes/pages/notes/notes_page.dart';
 import 'package:localmaterialnotes/pages/settings/settings_page.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
-
-import 'editor_parameters.dart';
 
 CustomTransitionPage _getCustomTransitionPage<T>(GoRouterState state, Widget child) {
   return CustomTransitionPage<T>(

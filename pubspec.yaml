@@ -19,6 +19,7 @@ dependencies:
   fleather: ^1.14.1
   flutter:
     sdk: flutter
+  flutter_app_lock: ^4.1.1+1
   flutter_hooks: ^0.20.4
   flutter_localizations:
     sdk: flutter
@@ -31,6 +32,7 @@ dependencies:
   isar: ^3.1.0+1
   isar_flutter_libs: ^3.1.0+1
   json_annotation: ^4.8.1
+  local_auth: ^2.1.8
   locale_names: ^1.1.1
   package_info_plus: ^5.0.1
   path: ^1.8.3
@@ -38,6 +40,7 @@ dependencies:
   permission_handler: ^11.2.0
   quick_actions: ^1.0.7
   receive_sharing_intent: ^1.6.7
+  restart_app: ^1.2.1
   riverpod_annotation: ^2.3.4
   share_plus: ^7.2.2
   shared_preferences: ^2.2.2
