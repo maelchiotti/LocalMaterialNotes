@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/actions/delete.dart';
 import 'package:localmaterialnotes/common/actions/pin.dart';
 import 'package:localmaterialnotes/common/actions/restore.dart';
-import 'package:localmaterialnotes/common/routing/editor_parameters.dart';
+import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
@@ -51,10 +51,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
       context.push(
         RouterRoute.editor.fullPath!,
-        extra: EditorParameters.from({
-          'readonly': widget.note.deleted,
-          'autofocus': false,
-        }),
+        extra: EditorParameters.from({'readonly': widget.note.deleted, 'autofocus': false}),
       );
 
       if (widget.searchView) context.pop();
