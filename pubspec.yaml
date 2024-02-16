@@ -20,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_app_lock: ^4.1.1+1
-  flutter_hooks: ^0.20.4
+  flutter_hooks: ^0.20.5
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.3.10
@@ -37,7 +37,7 @@ dependencies:
   package_info_plus: ^5.0.1
   path: ^1.8.3
   path_provider: ^2.1.2
-  permission_handler: ^11.2.0
+  permission_handler: ^11.3.0
   quick_actions: ^1.0.7
   receive_sharing_intent: ^1.6.7
   restart_app: ^1.2.1
