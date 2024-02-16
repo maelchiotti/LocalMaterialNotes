@@ -1,7 +1,7 @@
 {
   "app_name": "Material Notes",
   "app_tagline": "Notes simples, locales, en material design",
-  "app_about": "{appName} est une application de prise de notes textuelles simple. Elle adopte complètement le Material Design. Elle stocke vos notes localement et n''a aucune permission internet.",
+  "app_about": "{appName} est une application de prise de notes textuelles, qui vise la simplicité. Elle adopte le style Material Design. Elle stocke les notes localement et n''a aucune permission internet, vous êtes donc le seul à pouvoir accéder aux notes.",
   "navigation_notes": "Notes",
   "navigation_bin": "Corbeille",
   "navigation_settings": "Paramètres",

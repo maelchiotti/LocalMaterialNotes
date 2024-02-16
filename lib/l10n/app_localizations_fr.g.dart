@@ -14,7 +14,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String app_about(Object appName) {
-    return '$appName est une application de prise de notes textuelles simple. Elle adopte complètement le Material Design. Elle stocke vos notes localement et n\'a aucune permission internet.';
+    return '$appName est une application de prise de notes textuelles, qui vise la simplicité. Elle adopte le style Material Design. Elle stocke les notes localement et n\'a aucune permission internet, vous êtes donc le seul à pouvoir accéder aux notes.';
   }
 
   @override

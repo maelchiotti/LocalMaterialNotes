@@ -1,7 +1,7 @@
 {
   "app_name": "Material Notes",
   "app_tagline": "Simple, local, material design notes",
-  "app_about": "{appName} is a simple text-based note-taking application. It fully embraces Material Design. It stores your notes locally and doesn''t have any internet permissions.",
+  "app_about": "{appName} is a text-based note-taking application, aimed at simplicity. It embraces Material Design. It stores the notes locally and doesn''t have any internet permissions, so you are the only one that can access the notes.",
   "navigation_notes": "Notes",
   "navigation_bin": "Bin",
   "navigation_settings": "Settings",

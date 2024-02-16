@@ -105,7 +105,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_about.
   ///
   /// In en, this message translates to:
-  /// **'{appName} is a simple text-based note-taking application. It fully embraces Material Design. It stores your notes locally and doesn\'\'t have any internet permissions.'**
+  /// **'{appName} is a text-based note-taking application, aimed at simplicity. It embraces Material Design. It stores the notes locally and doesn\'\'t have any internet permissions, so you are the only one that can access the notes.'**
   String app_about(Object appName);
 
   /// No description provided for @navigation_notes.

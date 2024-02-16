@@ -14,7 +14,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String app_about(Object appName) {
-    return '$appName is a simple text-based note-taking application. It fully embraces Material Design. It stores your notes locally and doesn\'t have any internet permissions.';
+    return '$appName is a text-based note-taking application, aimed at simplicity. It embraces Material Design. It stores the notes locally and doesn\'t have any internet permissions, so you are the only one that can access the notes.';
   }
 
   @override
