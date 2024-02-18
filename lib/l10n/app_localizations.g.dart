@@ -168,11 +168,17 @@ abstract class AppLocalizations {
   /// **'Passwords do not match'**
   String get error_password_do_not_match;
 
-  /// No description provided for @error_access_external_storage_required.
+  /// No description provided for @error_permission.
   ///
   /// In en, this message translates to:
-  /// **'Please grant access to external storage or save the file to the internal storage.'**
-  String get error_access_external_storage_required;
+  /// **'Failed to get permission to write the file.'**
+  String get error_permission;
+
+  /// No description provided for @error_read_file.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to read the file.'**
+  String get error_read_file;
 
   /// No description provided for @login_email.
   ///

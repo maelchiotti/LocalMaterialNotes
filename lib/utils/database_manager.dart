@@ -1,18 +1,15 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:ui';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
-import 'package:localmaterialnotes/utils/info_manager.dart';
 import 'package:localmaterialnotes/utils/locale_manager.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:shared_storage/shared_storage.dart' as saf;
 
 class DatabaseManager {
   static final DatabaseManager _singleton = DatabaseManager._internal();
@@ -89,54 +86,38 @@ class DatabaseManager {
   }
 
   Future<void> export() async {
-    final exportDirectory = await FilePicker.platform.getDirectoryPath();
+    final exportDirectory = await saf.openDocumentTree();
 
-    if (exportDirectory == null) return;
-
-    await _checkPermissions(exportDirectory);
+    if (exportDirectory == null) throw Exception(localizations.error_permission);
 
     final timestamp = DateTime.timestamp();
-    final exportFile = File('$exportDirectory/materialnotes_export_${timestamp.filename}.json');
-
     final notes = await _database.notes.where().findAll();
     final notesJson = jsonEncode(notes);
-    await exportFile.writeAsString(notesJson);
+
+    await saf.createFileAsString(
+      exportDirectory,
+      mimeType: 'application/json',
+      displayName: 'materialnotes_export_${timestamp.filename}.json',
+      content: notesJson,
+    );
   }
 
   Future<void> import() async {
-    final filePickerResult = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['json'],
+    final importFiles = await saf.openDocument(
+      grantWritePermission: false,
+      mimeType: 'application/json',
     );
 
-    if (filePickerResult == null || filePickerResult.count == 0) return;
+    if (importFiles == null || importFiles.isEmpty) throw Exception(localizations.error_permission);
 
-    final importFilePath = filePickerResult.paths.first!;
+    final importData = await saf.getDocumentContentAsString(importFiles.first);
 
-    await _checkPermissions(importFilePath);
+    if (importData == null) throw Exception(localizations.error_read_file);
 
-    final importFile = File(importFilePath);
-    final notesJson = jsonDecode(await importFile.readAsString()) as List;
+    final notesJson = jsonDecode(importData) as List;
     final notes = notesJson.map((e) => Note.fromJson(e as Map<String, dynamic>)).toList();
 
     await addAll(notes);
-  }
-
-  Future<void> _checkPermissions(String filepath) async {
-    // External storage requires permissions
-    if (!filepath.startsWith('/storage/emulated')) {
-      if (InfoManager().androidVersion > 33) {
-        // Android 13 or above
-        if (!(await Permission.manageExternalStorage.request()).isGranted) {
-          throw Exception(localizations.error_access_external_storage_required);
-        }
-      } else {
-        // Android 12 or below
-        if (!(await Permission.storage.request()).isGranted) {
-          throw Exception(localizations.error_access_external_storage_required);
-        }
-      }
-    }
   }
 
   Note get _welcomeNote {
