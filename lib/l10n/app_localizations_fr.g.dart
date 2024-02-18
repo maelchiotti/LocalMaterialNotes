@@ -49,8 +49,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get error_password_do_not_match => 'Les mots de passe ne correspondent pas';
 
   @override
-  String get error_access_external_storage_required =>
-      'Veuillez autoriser l\'accès au stockage externe où sauvegarder le fichier sur le stockage interne.';
+  String get error_permission => 'Échec lors de la demande de permission pour écrire le fichier.';
+
+  @override
+  String get error_read_file => 'Échec lors de la lecture du fichier.';
 
   @override
   String get login_email => 'Email';

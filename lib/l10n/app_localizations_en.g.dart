@@ -49,8 +49,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get error_password_do_not_match => 'Passwords do not match';
 
   @override
-  String get error_access_external_storage_required =>
-      'Please grant access to external storage or save the file to the internal storage.';
+  String get error_permission => 'Failed to get permission to write the file.';
+
+  @override
+  String get error_read_file => 'Failed to read the file.';
 
   @override
   String get login_email => 'Email';
