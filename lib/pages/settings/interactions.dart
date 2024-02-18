@@ -1,22 +1,27 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_app_lock/flutter_app_lock.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:locale_names/locale_names.dart';
+import 'package:localmaterialnotes/common/dialogs/confirmation_dialog.dart';
 import 'package:localmaterialnotes/l10n/app_localizations.g.dart';
 import 'package:localmaterialnotes/pages/settings/shortcut.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
+import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
 import 'package:localmaterialnotes/utils/database_manager.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/info_manager.dart';
 import 'package:localmaterialnotes/utils/locale_manager.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
+import 'package:localmaterialnotes/utils/preferences/lock_latency.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 import 'package:localmaterialnotes/utils/snack_bar_manager.dart';
 import 'package:localmaterialnotes/utils/theme_manager.dart';
+import 'package:restart_app/restart_app.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class Interactions {
@@ -32,19 +37,19 @@ class Interactions {
               leading: const Icon(Icons.smartphone),
               selected: ThemeManager().themeMode == ThemeMode.system,
               title: Text(localizations.settings_theme_system),
-              onTap: () => context.pop(ThemeMode.system),
+              onTap: () => Navigator.of(context).pop(ThemeMode.system),
             ),
             ListTile(
               leading: const Icon(Icons.light_mode),
               selected: ThemeManager().themeMode == ThemeMode.light,
               title: Text(localizations.settings_theme_light),
-              onTap: () => context.pop(ThemeMode.light),
+              onTap: () => Navigator.of(context).pop(ThemeMode.light),
             ),
             ListTile(
               leading: const Icon(Icons.dark_mode),
               selected: ThemeManager().themeMode == ThemeMode.dark,
               title: Text(localizations.settings_theme_dark),
-              onTap: () => context.pop(ThemeMode.dark),
+              onTap: () => Navigator.of(context).pop(ThemeMode.dark),
             ),
           ],
         );
@@ -56,16 +61,12 @@ class Interactions {
     });
   }
 
-  void toggleDynamicTheming(bool? value) {
-    if (value == null) return;
-
+  void toggleDynamicTheming(bool value) {
     PreferencesManager().set<bool>(PreferenceKey.dynamicTheming.name, value);
     dynamicThemingNotifier.value = value;
   }
 
-  void toggleBlackTheming(bool? value) {
-    if (value == null) return;
-
+  void toggleBlackTheming(bool value) {
     PreferencesManager().set<bool>(PreferenceKey.blackTheming.name, value);
     blackThemingNotifier.value = value;
   }
@@ -81,15 +82,16 @@ class Interactions {
             return ListTile(
               selected: locale == Localizations.localeOf(context),
               title: Text(locale.nativeDisplayLanguage.capitalized),
-              onTap: () => context.pop(locale),
+              onTap: () => Navigator.of(context).pop(locale),
             );
           }).toList(),
         );
       },
-    ).then((locale) {
+    ).then((locale) async {
       if (locale == null) return;
 
       LocaleManager().setLocale(locale);
+      await Restart.restartApp();
     });
   }
 
@@ -104,7 +106,7 @@ class Interactions {
             return ListTile(
               title: Text(confirmationsValue.title),
               selected: Confirmations.fromPreferences() == confirmationsValue,
-              onTap: () => context.pop(confirmationsValue),
+              onTap: () => Navigator.of(context).pop(confirmationsValue),
             );
           }).toList(),
         );
@@ -113,6 +115,61 @@ class Interactions {
       if (confirmationsValue == null) return;
 
       PreferencesManager().set<String>(PreferenceKey.confirmations.name, confirmationsValue.name);
+    });
+  }
+
+  Future<void> toggleLock(BuildContext context, bool value) async {
+    if (!value) {
+      PreferencesManager().set<bool>(PreferenceKey.lock.name, false);
+
+      AppLock.of(context)!.disable();
+    } else {
+      final localeAuthentication = LocalAuthentication();
+      if (!await localeAuthentication.isDeviceSupported()) {
+        if (!context.mounted) return;
+
+        SnackBarManager.info(localizations.authentication_require_credentials).show();
+
+        return;
+      }
+
+      if (!context.mounted) return;
+
+      if (await showConfirmationDialog(
+        context,
+        localizations.settings_disclaimer,
+        localizations.settings_lock_disclaimer_description,
+        localizations.button_ok,
+      )) {
+        PreferencesManager().set<bool>(PreferenceKey.lock.name, true);
+
+        if (!context.mounted) return;
+
+        AppLock.of(context)!.setEnabled(value);
+      }
+    }
+  }
+
+  Future<void> selectLockLatency(BuildContext context) async {
+    await showAdaptiveDialog<LockLatency>(
+      context: context,
+      builder: (context) {
+        return SimpleDialog(
+          clipBehavior: Clip.hardEdge,
+          title: Text(localizations.settings_lock_latency),
+          children: LockLatency.values.map((lockLatencyValue) {
+            return ListTile(
+              title: Text(lockLatencyValue.label),
+              selected: LockLatency.fromPreferences() == lockLatencyValue,
+              onTap: () => Navigator.of(context).pop(lockLatencyValue),
+            );
+          }).toList(),
+        );
+      },
+    ).then((lockLatencyValue) {
+      if (lockLatencyValue == null) return;
+
+      PreferencesManager().set<String>(PreferenceKey.lockLatency.name, lockLatencyValue.name);
     });
   }
 
@@ -175,10 +232,20 @@ class Interactions {
       applicationVersion: InfoManager().appVersion,
       applicationIcon: Image.asset(
         Asset.icon.path,
+        filterQuality: FilterQuality.medium,
+        fit: BoxFit.fitWidth,
         width: Sizes.size64.size,
-        height: Sizes.size64.size,
       ),
       applicationLegalese: localizations.settings_licence_description,
+      children: [
+        Padding(padding: Paddings.padding16.vertical),
+        Text(
+          localizations.app_tagline,
+          style: Theme.of(context).textTheme.titleSmall,
+        ),
+        Padding(padding: Paddings.padding8.vertical),
+        Text(localizations.app_about(localizations.app_name)),
+      ],
     );
   }
 

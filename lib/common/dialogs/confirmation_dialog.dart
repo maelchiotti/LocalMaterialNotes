@@ -3,16 +3,18 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 
 Future<bool> showConfirmationDialog(
-  bool irreversible,
   BuildContext context,
   String title,
   String body,
-  String confirmText,
-) async {
-  final confirmationsSetting = Confirmations.fromPreferences();
-  if (confirmationsSetting == Confirmations.none ||
-      (confirmationsSetting == Confirmations.irreversible && !irreversible)) {
-    return true;
+  String confirmText, {
+  bool? irreversible,
+}) async {
+  if (irreversible != null) {
+    final confirmationsSetting = Confirmations.fromPreferences();
+    if (confirmationsSetting == Confirmations.none ||
+        (confirmationsSetting == Confirmations.irreversible && !irreversible)) {
+      return true;
+    }
   }
 
   return await showAdaptiveDialog<bool>(

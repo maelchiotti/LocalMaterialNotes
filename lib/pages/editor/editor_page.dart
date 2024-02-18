@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/placeholders/loading_placeholder.dart';
+import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
 import 'package:localmaterialnotes/providers/editor_controller/editor_controller_provider.dart';
@@ -14,13 +15,12 @@ import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class EditorPage extends ConsumerStatefulWidget {
-  const EditorPage({
-    this.readOnly = false,
-    this.autofocus = false,
-  });
+  EditorPage(EditorParameters editorParameters)
+      : _readOnly = editorParameters?['readonly'] ?? false,
+        _autofocus = editorParameters?['autofocus'] ?? false;
 
-  final bool readOnly;
-  final bool autofocus;
+  final bool _readOnly;
+  final bool _autofocus;
 
   @override
   ConsumerState<EditorPage> createState() => _EditorState();
@@ -67,8 +67,8 @@ class _EditorState extends ConsumerState<EditorPage> {
       child: Column(
         children: [
           TextField(
-            readOnly: widget.readOnly,
-            autofocus: widget.autofocus,
+            readOnly: widget._readOnly,
+            autofocus: widget._autofocus,
             textCapitalization: TextCapitalization.sentences,
             textInputAction: TextInputAction.next,
             style: Theme.of(context).textTheme.titleLarge,
@@ -83,7 +83,7 @@ class _EditorState extends ConsumerState<EditorPage> {
             child: FleatherEditor(
               controller: fleatherController,
               focusNode: fleatherFocusNode,
-              readOnly: widget.readOnly,
+              readOnly: widget._readOnly,
               expands: true,
               onLaunchUrl: _launchUrl,
               spellCheckConfiguration: SpellCheckConfiguration(

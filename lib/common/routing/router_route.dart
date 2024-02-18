@@ -44,4 +44,6 @@ enum RouterRoute {
   }
 
   static bool get isBin => RouterRoute.currentRoute == RouterRoute.bin;
+
+  static bool get isEditor => RouterRoute.currentRoute == RouterRoute.editor;
 }

@@ -12,20 +12,16 @@ enum SortMethod {
   const SortMethod(this.name);
 
   factory SortMethod.methodFromPreferences() {
-    final method =
-        PreferencesManager().get<String>(PreferenceKey.sortMethod) ?? PreferenceKey.sortMethod.defaultValue! as String;
+    final methodPreference = PreferencesManager().get<String>(PreferenceKey.sortMethod);
 
-    if (method == SortMethod.date.name) {
-      return SortMethod.date;
-    } else if (method == SortMethod.title.name) {
-      return SortMethod.title;
-    } else {
-      return SortMethod.date;
-    }
+    return methodPreference != null
+        ? SortMethod.values.byName(methodPreference)
+        : PreferenceKey.sortMethod.defaultValue! as SortMethod;
   }
 
   static bool get ascendingFromPreferences {
-    return PreferencesManager().get<bool>(PreferenceKey.sortAscending) ??
-        PreferenceKey.sortAscending.defaultValue! as bool;
+    final ascendingPreference = PreferencesManager().get<bool>(PreferenceKey.sortAscending);
+
+    return ascendingPreference ?? PreferenceKey.sortAscending.defaultValue! as bool;
   }
 }
