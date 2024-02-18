@@ -8,8 +8,8 @@ class SnackBarManager {
 
   final String text;
 
-  void show() {
-    ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(
+  void show({BuildContext? context}) {
+    ScaffoldMessenger.of(context ?? navigatorKey.currentContext!).showSnackBar(
       SnackBar(
         content: Text(text),
       ),

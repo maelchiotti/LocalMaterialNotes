@@ -10,6 +10,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_name => 'Material Notes';
 
   @override
+  String get app_tagline => 'Notes simples, locales, en material design';
+
+  @override
+  String app_about(Object appName) {
+    return '$appName est une application de prise de notes textuelles, qui vise la simplicité. Elle adopte le style Material Design. Elle stocke les notes localement et n\'a aucune permission internet, vous êtes donc le seul à pouvoir accéder aux notes.';
+  }
+
+  @override
   String get navigation_notes => 'Notes';
 
   @override
@@ -72,6 +80,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get signup_confirm_email => 'Merci de confirmer votre email avant de vous connecter.';
 
   @override
+  String get settings_disclaimer => 'Avertissement';
+
+  @override
   String get settings_account => 'Compte';
 
   @override
@@ -127,9 +138,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_language => 'Langue';
 
   @override
-  String get settings_language_restart => 'Merci de recharger l\'application pour que les changements prennent effet.';
-
-  @override
   String get settings_behavior => 'Comportement';
 
   @override
@@ -140,6 +148,27 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_shortcuts_description => 'Lister tous les raccourcis disponibles dans l\'éditeur de texte';
+
+  @override
+  String get settings_security => 'Sécurité';
+
+  @override
+  String get settings_lock_app => 'Authentification au démarrage';
+
+  @override
+  String get settings_lock_app_description =>
+      'Demander une authentification lors du démarrage en utilisant les capacités de l\'appareil';
+
+  @override
+  String get settings_lock_disclaimer_description =>
+      'Les notes sont stockées en texte brut et ne sont pas chiffrées. Veuillez ne pas y stocker d\'informations sensibles, car cette fonctionnalité d\'authentification ne peut pas complètement empêcher quelqu\'un d\'accéder aux notes.';
+
+  @override
+  String get settings_lock_latency => 'Délai en arrière-plan';
+
+  @override
+  String get settings_lock_latency_description =>
+      'Délai en minutes après lequel l\'application se verrouillera quand elle est mise en arrière-plan, nécessitant de s\'authentifier à nouveau la prochaine fois qu\'elle sera lancée';
 
   @override
   String get settings_backup => 'Sauvegarde';
@@ -155,7 +184,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String settings_export_fail(Object error) {
-    return 'L\'export a échoué : $error.\n\nVeuillez vérifier que vous n\'avez pas choisi d\'exporter sur un support de stockage externe car l\'applicaiton n\'a pas cette autoristation.';
+    return 'L\'export a échoué : $error.';
   }
 
   @override
@@ -242,16 +271,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get hint_title => 'Titre';
 
   @override
-  String get hint_collaborator_email => 'collaborateur@exemple.com';
-
-  @override
   String get tooltip_fab_add_note => 'Ajouter une note';
 
   @override
   String get tooltip_fab_empty_bin => 'Vider la corbeille';
-
-  @override
-  String get tooltip_fab_add_collaborator => 'Ajouter un collaborateur';
 
   @override
   String get tooltip_sort => 'Trier les notes';
@@ -279,6 +302,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tooltip_toggle_pins => 'Basculer les épingles';
+
+  @override
+  String get button_ok => 'Ok';
 
   @override
   String get button_close => 'Fermer';
@@ -376,15 +402,6 @@ class AppLocalizationsFr extends AppLocalizations {
       'Voulez-vous vraiment vider définitivement la corbeille ? Vous ne pourrez pas restaurer les notes qu\'elle contient.';
 
   @override
-  String get dialog_add_collaborator => 'Ajouter un collaborateur';
-
-  @override
-  String get dialog_remove_collaborator => 'Retirer ce collaborateur';
-
-  @override
-  String get dialog_remove_collaborator_body => 'Voulez-vous vraiment retirer ce collaborateur ?';
-
-  @override
   String get sort_date => 'Date';
 
   @override
@@ -400,9 +417,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get placeholder_bin => 'La corbeille est vide';
 
   @override
-  String get placeholder_collaborators => 'Pas de collaborateurs';
-
-  @override
   String get menu_pin => 'Épingler';
 
   @override
@@ -410,9 +424,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get menu_unpin => 'Désépingler';
-
-  @override
-  String get menu_collaborate => 'Collaborer';
 
   @override
   String get menu_delete => 'Supprimer';
@@ -450,6 +461,12 @@ class AppLocalizationsFr extends AppLocalizations {
       'Toujours demander une confirmation pour les actions importantes même si elles peuvent être annulées (comme supprimer ou restaurer une note)';
 
   @override
+  String get lock_latency_immediately => 'Immédiatement';
+
+  @override
+  String get lock_latency_never => 'Jamais';
+
+  @override
   String get dismiss_pin => 'Épingler';
 
   @override
@@ -465,23 +482,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get dismiss_restore => 'Restaurer';
 
   @override
-  String get collaborators_collaborators => 'Collaborateurs';
-
-  @override
-  String get collaborators_owner => 'Propriétaire';
-
-  @override
-  String get collaborators_guest => 'Invité';
-
-  @override
-  String get collaborators_owner_description =>
-      'Vous êtes le propriétaire de cette note.\n\nVous pouvez ajouter ou retirer des collaborateurs. Si vous supprimez cette note, tous les collaborateurs en perdront l\'accès. Ils le regagneront si vous la restaurez.\n\nLimitations:\n- Vous ne pouvez pas vous retirer vous-mêmes des collaborateurs.\n- L\'état d\'épingle est partagé entre tous les collaborateurs.';
-
-  @override
-  String get collaborators_guest_description =>
-      'Vous avez été invité en tant que collaborateur sur cette note.\n\nVous ne pouvez pas ajouter ni retirer des collaborateurs, seul le propriétaire le peut.\n\nLimitations:\n- Vous ne pouvez pas vous retirer vous-mêmes des collaborateurs.\n- L\'état d\'épingle est partagé entre tous les collaborateurs.';
-
-  @override
   String get about_last_edited => 'Dernière modification';
 
   @override
@@ -492,6 +492,26 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get about_characters => 'Caractères';
+
+  @override
+  String get authentication_authentication_required => 'Une authentification est requise';
+
+  @override
+  String authentication_authentication_required_for_app(Object appName) {
+    return 'Une authentification est requise pour $appName';
+  }
+
+  @override
+  String get authentication_authenticate => 'S\'authentifier';
+
+  @override
+  String get authentication_require_credentials =>
+      'Cette fonctionnalité utilise les capacités d\'authentification de l\'appareil, et nécessite qu\'au moins une méthode d\'autentification soit disponible (biométrie, PIN, mot de passe...). Veuillez les configurer dans les paramètres système.';
+
+  @override
+  String authentication_error(Object error) {
+    return 'L\'authentification a échoué : $error.';
+  }
 
   @override
   String get time_at => 'à';

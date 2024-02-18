@@ -96,6 +96,18 @@ abstract class AppLocalizations {
   /// **'Material Notes'**
   String get app_name;
 
+  /// No description provided for @app_tagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple, local, material design notes'**
+  String get app_tagline;
+
+  /// No description provided for @app_about.
+  ///
+  /// In en, this message translates to:
+  /// **'{appName} is a text-based note-taking application, aimed at simplicity. It embraces Material Design. It stores the notes locally and doesn\'\'t have any internet permissions, so you are the only one that can access the notes.'**
+  String app_about(Object appName);
+
   /// No description provided for @navigation_notes.
   ///
   /// In en, this message translates to:
@@ -216,6 +228,12 @@ abstract class AppLocalizations {
   /// **'Please confirm your email before signing in.'**
   String get signup_confirm_email;
 
+  /// No description provided for @settings_disclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Disclaimer'**
+  String get settings_disclaimer;
+
   /// No description provided for @settings_account.
   ///
   /// In en, this message translates to:
@@ -318,12 +336,6 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get settings_language;
 
-  /// No description provided for @settings_language_restart.
-  ///
-  /// In en, this message translates to:
-  /// **'Please restart the app for the changes to take effect.'**
-  String get settings_language_restart;
-
   /// No description provided for @settings_behavior.
   ///
   /// In en, this message translates to:
@@ -347,6 +359,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show all shortcuts available in the text editor'**
   String get settings_shortcuts_description;
+
+  /// No description provided for @settings_security.
+  ///
+  /// In en, this message translates to:
+  /// **'Security'**
+  String get settings_security;
+
+  /// No description provided for @settings_lock_app.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication on launch'**
+  String get settings_lock_app;
+
+  /// No description provided for @settings_lock_app_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Require an authentication on launch using the device authentication capabilities'**
+  String get settings_lock_app_description;
+
+  /// No description provided for @settings_lock_disclaimer_description.
+  ///
+  /// In en, this message translates to:
+  /// **'The notes are stored as plain text and are not encrypted. Please do not store any sensitive information in them, as this lock feature cannot fully prevent someone from accessing the notes.'**
+  String get settings_lock_disclaimer_description;
+
+  /// No description provided for @settings_lock_latency.
+  ///
+  /// In en, this message translates to:
+  /// **'Background delay'**
+  String get settings_lock_latency;
+
+  /// No description provided for @settings_lock_latency_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Delay in minutes after which the application will lock itself when put it the background, requiring to authenticate again the next time it will be launched'**
+  String get settings_lock_latency_description;
 
   /// No description provided for @settings_backup.
   ///
@@ -540,12 +588,6 @@ abstract class AppLocalizations {
   /// **'Title'**
   String get hint_title;
 
-  /// No description provided for @hint_collaborator_email.
-  ///
-  /// In en, this message translates to:
-  /// **'collaborator@example.com'**
-  String get hint_collaborator_email;
-
   /// No description provided for @tooltip_fab_add_note.
   ///
   /// In en, this message translates to:
@@ -557,12 +599,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Empty the bin'**
   String get tooltip_fab_empty_bin;
-
-  /// No description provided for @tooltip_fab_add_collaborator.
-  ///
-  /// In en, this message translates to:
-  /// **'Add a collaborator'**
-  String get tooltip_fab_add_collaborator;
 
   /// No description provided for @tooltip_sort.
   ///
@@ -617,6 +653,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Toggle pins'**
   String get tooltip_toggle_pins;
+
+  /// No description provided for @button_ok.
+  ///
+  /// In en, this message translates to:
+  /// **'Ok'**
+  String get button_ok;
 
   /// No description provided for @button_close.
   ///
@@ -720,24 +762,6 @@ abstract class AppLocalizations {
   /// **'Do you really want to permanently empty the bin? You will not be able to restore the notes it contains.'**
   String get dialog_empty_bin_body;
 
-  /// No description provided for @dialog_add_collaborator.
-  ///
-  /// In en, this message translates to:
-  /// **'Add a collaborator'**
-  String get dialog_add_collaborator;
-
-  /// No description provided for @dialog_remove_collaborator.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove this collaborator'**
-  String get dialog_remove_collaborator;
-
-  /// No description provided for @dialog_remove_collaborator_body.
-  ///
-  /// In en, this message translates to:
-  /// **'Do you really want to remove this collaborator?'**
-  String get dialog_remove_collaborator_body;
-
   /// No description provided for @sort_date.
   ///
   /// In en, this message translates to:
@@ -768,12 +792,6 @@ abstract class AppLocalizations {
   /// **'The bin is empty'**
   String get placeholder_bin;
 
-  /// No description provided for @placeholder_collaborators.
-  ///
-  /// In en, this message translates to:
-  /// **'No collaborators'**
-  String get placeholder_collaborators;
-
   /// No description provided for @menu_pin.
   ///
   /// In en, this message translates to:
@@ -791,12 +809,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unpin'**
   String get menu_unpin;
-
-  /// No description provided for @menu_collaborate.
-  ///
-  /// In en, this message translates to:
-  /// **'Collaborate'**
-  String get menu_collaborate;
 
   /// No description provided for @menu_delete.
   ///
@@ -864,6 +876,18 @@ abstract class AppLocalizations {
   /// **'Always ask for a confirmation for all important actions even if they can be reversed (such as deleting or restoring a note)'**
   String get confirmations_description_all;
 
+  /// No description provided for @lock_latency_immediately.
+  ///
+  /// In en, this message translates to:
+  /// **'Immediately'**
+  String get lock_latency_immediately;
+
+  /// No description provided for @lock_latency_never.
+  ///
+  /// In en, this message translates to:
+  /// **'Never'**
+  String get lock_latency_never;
+
   /// No description provided for @dismiss_pin.
   ///
   /// In en, this message translates to:
@@ -894,36 +918,6 @@ abstract class AppLocalizations {
   /// **'Restore'**
   String get dismiss_restore;
 
-  /// No description provided for @collaborators_collaborators.
-  ///
-  /// In en, this message translates to:
-  /// **'Collaborators'**
-  String get collaborators_collaborators;
-
-  /// No description provided for @collaborators_owner.
-  ///
-  /// In en, this message translates to:
-  /// **'Owner'**
-  String get collaborators_owner;
-
-  /// No description provided for @collaborators_guest.
-  ///
-  /// In en, this message translates to:
-  /// **'Guest'**
-  String get collaborators_guest;
-
-  /// No description provided for @collaborators_owner_description.
-  ///
-  /// In en, this message translates to:
-  /// **'You are the owner of this note.\n\nYou can add or remove collaborators. If you delete this note, all collaborators will loose access to it. They will gain access back if you restore it.\n\nLimitations:\n- You cannot remove yourself from the collaborators.\n- The pinned state is shared among every collaborator.'**
-  String get collaborators_owner_description;
-
-  /// No description provided for @collaborators_guest_description.
-  ///
-  /// In en, this message translates to:
-  /// **'You were invited as a collaborator to this note.\n\nYou cannot add or remove collaborators, only the owner can.\n\nLimitations:\n- You cannot remove yourself from the collaborators.\n- The pinned state is shared among every collaborator.'**
-  String get collaborators_guest_description;
-
   /// No description provided for @about_last_edited.
   ///
   /// In en, this message translates to:
@@ -947,6 +941,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Characters'**
   String get about_characters;
+
+  /// No description provided for @authentication_authentication_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication is required'**
+  String get authentication_authentication_required;
+
+  /// No description provided for @authentication_authentication_required_for_app.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication is required for {appName}'**
+  String authentication_authentication_required_for_app(Object appName);
+
+  /// No description provided for @authentication_authenticate.
+  ///
+  /// In en, this message translates to:
+  /// **'Authenticate'**
+  String get authentication_authenticate;
+
+  /// No description provided for @authentication_require_credentials.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature uses the device authentication capabilities, and requires at least one credential method to be available (biometrics, PIN, password...). Please configure them in the system settings.'**
+  String get authentication_require_credentials;
+
+  /// No description provided for @authentication_error.
+  ///
+  /// In en, this message translates to:
+  /// **'The authentication failed: {error}.'**
+  String authentication_error(Object error);
 
   /// No description provided for @time_at.
   ///

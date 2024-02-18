@@ -13,22 +13,6 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 
 typedef EditorParameters = Map<String, bool>?;
 
-CustomTransitionPage _getCustomTransitionPage<T>(GoRouterState state, Widget child) {
-  return CustomTransitionPage<T>(
-    key: state.pageKey,
-    child: child,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      return FadeTransition(opacity: animation, child: child);
-    },
-  );
-}
-
-Page<dynamic> Function(BuildContext, GoRouterState) _defaultPageBuilder<T>(Widget child) {
-  return (BuildContext context, GoRouterState state) {
-    return _getCustomTransitionPage(state, child);
-  };
-}
-
 PreferredSizeWidget? _getAppBar(BuildContext context) {
   switch (RouterRoute.currentRoute) {
     case RouterRoute.notes:
@@ -71,31 +55,21 @@ final router = GoRouter(
       routes: [
         GoRoute(
           path: RouterRoute.notes.path,
-          pageBuilder: _defaultPageBuilder(const NotesPage()),
+          builder: (context, state) => const NotesPage(),
           routes: [
             GoRoute(
               path: RouterRoute.editor.path,
-              pageBuilder: (context, state) {
-                final parameters = state.extra as EditorParameters;
-
-                return _getCustomTransitionPage(
-                  state,
-                  EditorPage(
-                    readOnly: parameters?['readonly'] ?? false,
-                    autofocus: parameters?['autofocus'] ?? false,
-                  ),
-                );
-              },
+              builder: (context, state) => EditorPage(state.extra as EditorParameters),
             ),
           ],
         ),
         GoRoute(
           path: RouterRoute.bin.path,
-          pageBuilder: _defaultPageBuilder(const BinPage()),
+          builder: (context, state) => const BinPage(),
         ),
         GoRoute(
           path: RouterRoute.settings.path,
-          pageBuilder: _defaultPageBuilder(const SettingsPage()),
+          builder: (context, state) => const SettingsPage(),
         ),
       ],
     ),

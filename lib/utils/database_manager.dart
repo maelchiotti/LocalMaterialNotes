@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:is_first_run/is_first_run.dart';
@@ -8,6 +9,7 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
 import 'package:localmaterialnotes/utils/info_manager.dart';
+import 'package:localmaterialnotes/utils/locale_manager.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -24,16 +26,6 @@ class DatabaseManager {
   final _databaseName = 'materialnotes';
   late String _databaseDirectory;
   late Isar _database;
-
-  final _welcomeNote = Note(
-    id: uuid.v4(),
-    deleted: false,
-    pinned: true,
-    createdTime: DateTime.now(),
-    editedTime: DateTime.now(),
-    title: 'Welcome to Material Notes',
-    content: '[{"insert":"Simple, local, material design notes\\n\\n"}]',
-  );
 
   Future<void> init() async {
     _databaseDirectory = (await getApplicationDocumentsDirectory()).path;
@@ -145,5 +137,32 @@ class DatabaseManager {
         }
       }
     }
+  }
+
+  Note get _welcomeNote {
+    final locale = LocaleManager().locale;
+
+    final String title;
+    final String content;
+
+    if (locale == const Locale('en')) {
+      title = 'Welcome to Material Notes!';
+      content = 'Simple, local, material design notes';
+    } else if (locale == const Locale('fr')) {
+      title = 'Bienvenue dans Material Notes !';
+      content = 'Notes simples, locales, en material design';
+    } else {
+      throw Exception('Missing welcome note for locale: $locale');
+    }
+
+    return Note(
+      id: uuid.v4(),
+      deleted: false,
+      pinned: true,
+      createdTime: DateTime.now(),
+      editedTime: DateTime.now(),
+      title: title,
+      content: '[{"insert":"$content\\n\\n"}]',
+    );
   }
 }

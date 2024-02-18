@@ -13,11 +13,11 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
   if (note == null) return false;
 
   if (await showConfirmationDialog(
-    false,
     context,
     localizations.dialog_delete,
     localizations.dialog_delete_body_single,
     localizations.dialog_delete,
+    irreversible: false,
   )) {
     ref.read(currentNoteProvider.notifier).reset();
     await ref.read(notesProvider.notifier).delete(note);
@@ -34,11 +34,11 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
 
 Future<void> deleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   if (await showConfirmationDialog(
-    false,
     context,
     localizations.dialog_delete,
     localizations.dialog_delete_body(notes.length),
     localizations.dialog_delete,
+    irreversible: false,
   )) {
     for (final note in notes) {
       await ref.read(notesProvider.notifier).delete(note);
@@ -50,11 +50,11 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
   if (note == null) return false;
 
   if (await showConfirmationDialog(
-    true,
     context,
     localizations.dialog_permanently_delete,
     localizations.dialog_permanently_delete_body_single,
     localizations.dialog_permanently_delete,
+    irreversible: true,
   )) {
     ref.read(currentNoteProvider.notifier).reset();
     await ref.read(binProvider.notifier).permanentlyDelete(note);
@@ -71,11 +71,11 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
 
 Future<void> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   if (await showConfirmationDialog(
-    true,
     context,
     localizations.dialog_permanently_delete,
     localizations.dialog_permanently_delete_body(notes.length),
     localizations.dialog_permanently_delete,
+    irreversible: true,
   )) {
     for (final note in notes) {
       await ref.read(binProvider.notifier).permanentlyDelete(note);
@@ -85,11 +85,11 @@ Future<void> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, List<No
 
 Future<void> emptyBin(BuildContext context, WidgetRef ref) async {
   if (await showConfirmationDialog(
-    true,
     context,
     localizations.dialog_empty_bin,
     localizations.dialog_empty_bin_body,
     localizations.dialog_empty_bin,
+    irreversible: true,
   )) {
     await ref.read(binProvider.notifier).empty();
 

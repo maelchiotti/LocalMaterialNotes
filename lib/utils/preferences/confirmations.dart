@@ -13,18 +13,11 @@ enum Confirmations {
   const Confirmations(this.name);
 
   factory Confirmations.fromPreferences() {
-    final method = PreferencesManager().get<String>(PreferenceKey.confirmations) ??
-        PreferenceKey.confirmations.defaultValue! as String;
+    final confirmationPreference = PreferencesManager().get<String>(PreferenceKey.confirmations);
 
-    if (method == Confirmations.none.name) {
-      return Confirmations.none;
-    } else if (method == Confirmations.irreversible.name) {
-      return Confirmations.irreversible;
-    } else if (method == Confirmations.all.name) {
-      return Confirmations.all;
-    } else {
-      return Confirmations.irreversible;
-    }
+    return confirmationPreference != null
+        ? Confirmations.values.byName(confirmationPreference)
+        : PreferenceKey.confirmations.defaultValue! as Confirmations;
   }
 
   String get title {

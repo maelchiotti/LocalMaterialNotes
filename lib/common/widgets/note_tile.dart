@@ -51,10 +51,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
       context.push(
         RouterRoute.editor.fullPath!,
-        extra: EditorParameters.from({
-          'readonly': widget.note.deleted,
-          'autofocus': false,
-        }),
+        extra: EditorParameters.from({'readonly': widget.note.deleted, 'autofocus': false}),
       );
 
       if (widget.searchView) context.pop();
