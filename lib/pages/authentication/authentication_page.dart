@@ -30,20 +30,20 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
     } on PlatformException catch (exception, stackTrace) {
       if (exception.code != 'NotAvailable') log(exception.toString(), stackTrace: stackTrace);
 
-      if (!context.mounted) return;
+      if (!mounted) return;
 
       SnackBarManager.info(localizations.authentication_require_credentials).show(context: context);
     } on Exception catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
 
-      if (!context.mounted) return;
+      if (!mounted) return;
 
       SnackBarManager.info(localizations.authentication_error(exception.toString())).show(context: context);
     }
 
     if (!authenticated) return;
 
-    if (!context.mounted) return;
+    if (!mounted) return;
 
     AppLock.of(context)!.didUnlock();
   }
