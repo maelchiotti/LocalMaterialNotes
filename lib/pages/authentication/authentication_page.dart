@@ -70,7 +70,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    Asset.icon.path,
+                    Asset.icons.path,
                     filterQuality: FilterQuality.medium,
                     fit: BoxFit.fitWidth,
                     width: Sizes.size128.size,

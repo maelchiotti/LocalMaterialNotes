@@ -49,7 +49,7 @@ Simple, local, material design notes.
 ### Customize
 
 - Choose your theme (light, dark or black)
-- Choose if you want your theme to be dynamic (use colors from your system, if supported)
+- Choose if you want your theme to be dynamic (use colors from your background)
 - Choose your language (see the [supported ones](#supported-languages))
 
 ## Screenshots
