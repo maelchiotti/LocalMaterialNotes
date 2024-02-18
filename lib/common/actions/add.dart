@@ -13,13 +13,13 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) asy
   ref.read(currentNoteProvider.notifier).set(note);
   await ref.read(notesProvider.notifier).add(note);
 
-  if (context.mounted) {
-    final route = RouterRoute.editor.fullPath!;
-    final editorParameters = EditorParameters.from({'readonly': false, 'autofocus': true});
+  if (!context.mounted) return;
 
-    // If the editor is already opened with another note, replace the route with the new editor
-    RouterRoute.isEditor
-        ? context.pushReplacement(route, extra: editorParameters)
-        : context.push(route, extra: editorParameters);
-  }
+  final route = RouterRoute.editor.fullPath!;
+  final editorParameters = EditorParameters.from({'readonly': false, 'autofocus': true});
+
+  // If the editor is already opened with another note, replace the route with the new editor
+  RouterRoute.isEditor
+      ? context.pushReplacement(route, extra: editorParameters)
+      : context.push(route, extra: editorParameters);
 }
