@@ -41,16 +41,16 @@ Simple, local, material design notes.
 - Share your notes as text
 - Export your notes as JSON and import them back
 
+### Protect
+
+- Lock the application using your device authentication capabilities
+- Never worry about how your data is handled as the application doesn't have any internet permissions
+
 ### Customize
 
 - Choose your theme (light, dark or black)
 - Choose if you want your theme to be dynamic (use colors from your system, if supported)
 - Choose your language (see the [supported ones](#supported-languages))
-
-### Protect
-
-- Lock the application using your device authentication capabilities
-- Never worry about how your data is handled as the application doesn't have any internet permissions
 
 ## Screenshots
 
