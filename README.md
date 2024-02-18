@@ -14,9 +14,10 @@
 Simple, local, material design notes.
 
 <div align="center">
-  <img alt="Screenshot of the notes list" src="assets/screenshots/notes.jpg" width="30%">
-  <img alt="Screenshots of the note editor" src="assets/screenshots/editor.jpg" width="30%">
-  <img alt="Screenshot of the bin" src="assets/screenshots/bin.jpg" width="30%">
+  <img alt="Screenshot of the notes list" src="assets/screenshots/v1.1.0_notes.jpg" width="24%">
+  <img alt="Screenshots of the note editor" src="assets/screenshots/v1.1.0_editor.jpg" width="24%">
+  <img alt="Screenshot of the bin" src="assets/screenshots/v1.1.0_bin.jpg" width="24%">
+  <img alt="Screenshot of the settings" src="assets/screenshots/v1.1.0_settings_1.jpg" width="24%">
 </div>
 
 ## Features
@@ -45,6 +46,11 @@ Simple, local, material design notes.
 - Choose your theme (light, dark or black)
 - Choose if you want your theme to be dynamic (use colors from your system, if supported)
 - Choose your language (see the [supported ones](#supported-languages))
+
+### Protect
+
+- Lock the application using your device authentication capabilities
+- Never worry about how your data is handled as the application doesn't have any internet permissions
 
 ## Screenshots
 
