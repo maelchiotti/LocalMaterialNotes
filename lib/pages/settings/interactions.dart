@@ -231,7 +231,7 @@ class Interactions {
       applicationName: localizations.app_name,
       applicationVersion: InfoManager().appVersion,
       applicationIcon: Image.asset(
-        Asset.icon.path,
+        Asset.icons.path,
         filterQuality: FilterQuality.medium,
         fit: BoxFit.fitWidth,
         width: Sizes.size64.size,
