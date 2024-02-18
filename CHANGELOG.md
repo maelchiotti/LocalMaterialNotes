@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Revert to using default page transitions
 - Automatically restart the app when changing the language
+- Use the Storage Access Framework to handle file I/O and thus remove storage permissions
 
 ### Fixed
 
