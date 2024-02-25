@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
