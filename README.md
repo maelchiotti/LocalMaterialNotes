@@ -67,7 +67,7 @@ See more screenshots [here](assets/screenshots).
 
 ## Credits
 
-- [Material Design Icon](https://github.com/google/material-design-icons) for the [notes](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:notes:) icon used for the logo.
+- [Material Design Icons](https://github.com/google/material-design-icons) for the [notes](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:notes:) icon used for the logo.
 
 ---
 
