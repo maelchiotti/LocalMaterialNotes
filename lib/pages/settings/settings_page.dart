@@ -58,6 +58,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               onToggle: interactions.toggleDynamicTheming,
             ),
             SettingsTile.switchTile(
+              enabled: ThemeManager().brightness == Brightness.dark,
               leading: const Icon(Icons.nightlight),
               title: Text(localizations.settings_black_theming),
               description: Text(localizations.settings_black_theming_description),

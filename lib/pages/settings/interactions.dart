@@ -146,6 +146,8 @@ class Interactions {
         if (!context.mounted) return;
 
         AppLock.of(context)!.setEnabled(value);
+
+        if (value) await Restart.restartApp();
       }
     }
   }

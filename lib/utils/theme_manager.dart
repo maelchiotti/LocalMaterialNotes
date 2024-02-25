@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
@@ -45,6 +47,10 @@ class ThemeManager {
   bool get useBlackTheming {
     return PreferencesManager().get<bool>(PreferenceKey.blackTheming) ??
         PreferenceKey.blackTheming.defaultValue! as bool;
+  }
+
+  Brightness get brightness {
+    return Theme.of(navigatorKey.currentContext!).brightness;
   }
 
   ThemeMode get themeMode {
