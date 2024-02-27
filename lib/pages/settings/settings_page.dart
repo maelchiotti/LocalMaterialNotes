@@ -8,6 +8,7 @@ import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/info_manager.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
+import 'package:localmaterialnotes/utils/preferences/lock_latency.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 import 'package:localmaterialnotes/utils/theme_manager.dart';
@@ -113,7 +114,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               enabled: lockValue,
               leading: const Icon(Icons.lock_clock),
               title: Text(localizations.settings_lock_latency),
-              value: Text(localizations.settings_lock_latency_description),
+              value:
+                  Text('${LockLatency.fromPreferences().label} | ${localizations.settings_lock_latency_description}'),
               onPressed: (context) async {
                 await interactions.selectLockLatency(context);
                 setState(() {});
