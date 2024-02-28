@@ -14,41 +14,14 @@ class SideNavigation extends StatefulWidget {
 }
 
 class _SideNavigationState extends State<SideNavigation> {
-  late int index;
-
-  @override
-  void initState() {
-    super.initState();
-
-    switch (RouterRoute.currentRoute) {
-      case RouterRoute.notes:
-      case RouterRoute.editor:
-        index = 0;
-      case RouterRoute.bin:
-        index = 1;
-      case RouterRoute.settings:
-        index = 2;
-      default:
-        throw Exception();
-    }
-  }
+  int index = RouterRoute.currentDrawerIndex;
 
   void _navigate(int newIndex) {
     setState(() {
       index = newIndex;
     });
 
-    switch (index) {
-      case 0:
-        context.go(RouterRoute.notes.path);
-      case 1:
-        context.go(RouterRoute.bin.path);
-      case 2:
-        context.go(RouterRoute.settings.path);
-      default:
-        throw Exception();
-    }
-
+    context.go(RouterRoute.getRouteFromIndex(index).path);
     context.pop();
   }
 
