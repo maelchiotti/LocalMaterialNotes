@@ -146,12 +146,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_confirmations => 'Afficher les dialogues de confirmation';
 
   @override
-  String get settings_shortcuts => 'Raccourcis';
-
-  @override
-  String get settings_shortcuts_description => 'Lister tous les raccourcis disponibles dans l\'éditeur de texte';
-
-  @override
   String get settings_security => 'Sécurité';
 
   @override
@@ -223,21 +217,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_issue_description => 'Signaler un bug en créant une issue sur GitHub';
-
-  @override
-  String get shortcut_bold => 'Gras';
-
-  @override
-  String get shortcut_italic => 'Italique';
-
-  @override
-  String get shortcut_underline => 'Souligné';
-
-  @override
-  String get shortcut_undo => 'Annuler';
-
-  @override
-  String get shortcut_redo => 'Rétablir';
 
   @override
   String get action_add_note => 'Ajouter une note';

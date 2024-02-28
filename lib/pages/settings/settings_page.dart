@@ -89,12 +89,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 setState(() {});
               },
             ),
-            SettingsTile.navigation(
-              leading: const Icon(Icons.keyboard),
-              title: Text(localizations.settings_shortcuts),
-              value: Text(localizations.settings_shortcuts_description),
-              onPressed: interactions.showShortcuts,
-            ),
           ],
         ),
         SettingsSection(

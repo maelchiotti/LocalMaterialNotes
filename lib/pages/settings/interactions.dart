@@ -6,7 +6,6 @@ import 'package:local_auth/local_auth.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/common/dialogs/confirmation_dialog.dart';
 import 'package:localmaterialnotes/l10n/app_localizations.g.dart';
-import 'package:localmaterialnotes/pages/settings/shortcut.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
@@ -173,34 +172,6 @@ class Interactions {
 
       PreferencesManager().set<String>(PreferenceKey.lockLatency.name, lockLatencyValue.name);
     });
-  }
-
-  Future<void> showShortcuts(BuildContext context) async {
-    await showAdaptiveDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog.adaptive(
-          clipBehavior: Clip.hardEdge,
-          title: Text(localizations.settings_shortcuts),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: Shortcut.values.map((shortcut) {
-                return ListTile(
-                  title: Text(shortcut.title),
-                  trailing: Text(shortcut.keys),
-                );
-              }).toList(),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(localizations.button_close),
-            ),
-          ],
-        );
-      },
-    );
   }
 
   Future<void> backup(BuildContext context) async {

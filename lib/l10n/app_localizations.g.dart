@@ -354,18 +354,6 @@ abstract class AppLocalizations {
   /// **'Show confirmation dialogs'**
   String get settings_confirmations;
 
-  /// No description provided for @settings_shortcuts.
-  ///
-  /// In en, this message translates to:
-  /// **'Shortcuts'**
-  String get settings_shortcuts;
-
-  /// No description provided for @settings_shortcuts_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Show all shortcuts available in the text editor'**
-  String get settings_shortcuts_description;
-
   /// No description provided for @settings_security.
   ///
   /// In en, this message translates to:
@@ -497,36 +485,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Report a bug by creating an issue on GitHub'**
   String get settings_issue_description;
-
-  /// No description provided for @shortcut_bold.
-  ///
-  /// In en, this message translates to:
-  /// **'Bold'**
-  String get shortcut_bold;
-
-  /// No description provided for @shortcut_italic.
-  ///
-  /// In en, this message translates to:
-  /// **'Italic'**
-  String get shortcut_italic;
-
-  /// No description provided for @shortcut_underline.
-  ///
-  /// In en, this message translates to:
-  /// **'Underline'**
-  String get shortcut_underline;
-
-  /// No description provided for @shortcut_undo.
-  ///
-  /// In en, this message translates to:
-  /// **'Undo'**
-  String get shortcut_undo;
-
-  /// No description provided for @shortcut_redo.
-  ///
-  /// In en, this message translates to:
-  /// **'Redo'**
-  String get shortcut_redo;
 
   /// No description provided for @action_add_note.
   ///
