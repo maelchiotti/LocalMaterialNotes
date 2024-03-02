@@ -7,6 +7,7 @@ enum PreferenceKey {
   theme,
   dynamicTheming(true),
   blackTheming(false),
+  separator(false),
   confirmations(Confirmations.irreversible),
 
   // Notes

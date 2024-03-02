@@ -6,6 +6,9 @@ import 'package:localmaterialnotes/common/placeholders/loading_placeholder.dart'
 import 'package:localmaterialnotes/common/widgets/note_tile.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
+import 'package:localmaterialnotes/utils/constants/separators.dart';
+import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
+import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 
 class BinPage extends ConsumerStatefulWidget {
   const BinPage();
@@ -21,13 +24,27 @@ class _BinPageState extends ConsumerState<BinPage> {
       data: (notes) {
         if (notes.isEmpty) return EmptyPlaceholder.bin();
 
-        return ListView.builder(
-          padding: Paddings.custom.fab,
-          itemCount: notes.length,
-          itemBuilder: (context, index) {
-            return NoteTile(notes[index]);
-          },
-        );
+        final useSeparators =
+            PreferencesManager().get<bool>(PreferenceKey.separator) ?? PreferenceKey.separator.defaultValue! as bool;
+
+        return useSeparators
+            ? ListView.separated(
+                padding: Paddings.custom.fab,
+                itemCount: notes.length,
+                itemBuilder: (context, index) {
+                  return NoteTile(notes[index]);
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return Separator.divider1indent8.horizontal;
+                },
+              )
+            : ListView.builder(
+                padding: Paddings.custom.fab,
+                itemCount: notes.length,
+                itemBuilder: (context, index) {
+                  return NoteTile(notes[index]);
+                },
+              );
       },
       error: (error, stackTrace) {
         return const ErrorPlaceholder();

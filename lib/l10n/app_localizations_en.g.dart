@@ -66,6 +66,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_language => 'Language';
 
   @override
+  String get settings_separator => 'Show the separators';
+
+  @override
+  String get settings_separator_description => 'Show a separator between notes to differentiate them easily';
+
+  @override
   String get settings_behavior => 'Behavior';
 
   @override
@@ -297,17 +303,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get confirmations_title_all => 'Always';
-
-  @override
-  String get confirmations_description_none => 'Never ask for a confirmation';
-
-  @override
-  String get confirmations_description_irreversible =>
-      'Only ask for a confirmation for actions that are not reversible (such as permanently deleting notes from the bin)';
-
-  @override
-  String get confirmations_description_all =>
-      'Always ask for a confirmation for all important actions even if they can be reversed (such as deleting or restoring a note)';
 
   @override
   String get dismiss_pin => 'Pin';

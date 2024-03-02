@@ -8,6 +8,8 @@ import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/info_manager.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
+import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
+import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 import 'package:localmaterialnotes/utils/theme_manager.dart';
 import 'package:simple_icons/simple_icons.dart';
 
@@ -20,6 +22,9 @@ class SettingsPage extends ConsumerStatefulWidget {
 
 class _SettingsPageState extends ConsumerState<SettingsPage> {
   final interactions = Interactions();
+
+  bool useSeparators =
+      PreferencesManager().get<bool>(PreferenceKey.separator) ?? PreferenceKey.separator.defaultValue! as bool;
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +87,18 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               onPressed: (context) async {
                 await interactions.selectConfirmations(context);
                 setState(() {});
+              },
+            ),
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.safety_divider),
+              title: Text(localizations.settings_separator),
+              description: Text(localizations.settings_separator_description),
+              initialValue: useSeparators,
+              onToggle: (toggled) {
+                interactions.toggleSeparator(toggled);
+                setState(() {
+                  useSeparators = toggled;
+                });
               },
             ),
           ],

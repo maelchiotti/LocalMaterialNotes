@@ -90,6 +90,10 @@ class Interactions {
     });
   }
 
+  void toggleSeparator(bool value) {
+    PreferencesManager().set<bool>(PreferenceKey.separator.name, value);
+  }
+
   Future<void> selectConfirmations(BuildContext context) async {
     await showAdaptiveDialog<Confirmations>(
       context: context,

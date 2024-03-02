@@ -204,6 +204,18 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get settings_language;
 
+  /// No description provided for @settings_separator.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the separators'**
+  String get settings_separator;
+
+  /// No description provided for @settings_separator_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Show a separator between notes to differentiate them easily'**
+  String get settings_separator_description;
+
   /// No description provided for @settings_behavior.
   ///
   /// In en, this message translates to:
@@ -575,24 +587,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Always'**
   String get confirmations_title_all;
-
-  /// No description provided for @confirmations_description_none.
-  ///
-  /// In en, this message translates to:
-  /// **'Never ask for a confirmation'**
-  String get confirmations_description_none;
-
-  /// No description provided for @confirmations_description_irreversible.
-  ///
-  /// In en, this message translates to:
-  /// **'Only ask for a confirmation for actions that are not reversible (such as permanently deleting notes from the bin)'**
-  String get confirmations_description_irreversible;
-
-  /// No description provided for @confirmations_description_all.
-  ///
-  /// In en, this message translates to:
-  /// **'Always ask for a confirmation for all important actions even if they can be reversed (such as deleting or restoring a note)'**
-  String get confirmations_description_all;
 
   /// No description provided for @dismiss_pin.
   ///

@@ -66,6 +66,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_language => 'Langue';
 
   @override
+  String get settings_separator => 'Afficher les séparateurs';
+
+  @override
+  String get settings_separator_description =>
+      'Afficher un séparateur entre les notes pour les différencier plus facilement';
+
+  @override
   String get settings_behavior => 'Comportement';
 
   @override
@@ -298,17 +305,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get confirmations_title_all => 'Toujours';
-
-  @override
-  String get confirmations_description_none => 'Ne jamais demander de confirmation';
-
-  @override
-  String get confirmations_description_irreversible =>
-      'Ne demander de confirmation que pour les actions qui ne sont pas réversibles (comme supprimer définitivement des notes de la corbeille)';
-
-  @override
-  String get confirmations_description_all =>
-      'Toujours demander une confirmation pour les actions importantes même si elles peuvent être annulées (comme supprimer ou restaurer une note)';
 
   @override
   String get dismiss_pin => 'Épingler';
