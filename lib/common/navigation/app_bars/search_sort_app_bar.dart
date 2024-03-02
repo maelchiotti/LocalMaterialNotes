@@ -104,6 +104,7 @@ class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
                   trailing: Checkbox(
                     value: sortAscending,
                     onChanged: (ascending) {
+                      // Circumvent the normal PopupMenuButton behavior to use the second parameter or _sort
                       _sort(ascending: ascending);
                       context.pop();
                     },
