@@ -132,42 +132,6 @@ abstract class AppLocalizations {
   /// **'Error'**
   String get error_error;
 
-  /// No description provided for @error_wrong_email_password.
-  ///
-  /// In en, this message translates to:
-  /// **'Wrong username or password.'**
-  String get error_wrong_email_password;
-
-  /// No description provided for @error_confirm_email.
-  ///
-  /// In en, this message translates to:
-  /// **'Please confirm your email and then try again.'**
-  String get error_confirm_email;
-
-  /// No description provided for @error_invalid_email.
-  ///
-  /// In en, this message translates to:
-  /// **'Invalid email'**
-  String get error_invalid_email;
-
-  /// No description provided for @error_required.
-  ///
-  /// In en, this message translates to:
-  /// **'Required'**
-  String get error_required;
-
-  /// No description provided for @error_password_requirements.
-  ///
-  /// In en, this message translates to:
-  /// **'Requirements:\n• 12 characters\n• 1 lower case\n• 1 upper case\n• 1 number\n• 1 special character (!@#\$&%*^\"\'\'`<>+=-;:~,._;/\\|()[]\'{}\')'**
-  String get error_password_requirements;
-
-  /// No description provided for @error_password_do_not_match.
-  ///
-  /// In en, this message translates to:
-  /// **'Passwords do not match'**
-  String get error_password_do_not_match;
-
   /// No description provided for @error_permission.
   ///
   /// In en, this message translates to:
@@ -179,108 +143,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to read the file.'**
   String get error_read_file;
-
-  /// No description provided for @login_email.
-  ///
-  /// In en, this message translates to:
-  /// **'Email'**
-  String get login_email;
-
-  /// No description provided for @login_password.
-  ///
-  /// In en, this message translates to:
-  /// **'Password'**
-  String get login_password;
-
-  /// No description provided for @login_log_in.
-  ///
-  /// In en, this message translates to:
-  /// **'Log in'**
-  String get login_log_in;
-
-  /// No description provided for @login_log_out.
-  ///
-  /// In en, this message translates to:
-  /// **'Log out'**
-  String get login_log_out;
-
-  /// No description provided for @signup_sign_up.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign up'**
-  String get signup_sign_up;
-
-  /// No description provided for @signup_email.
-  ///
-  /// In en, this message translates to:
-  /// **'Email'**
-  String get signup_email;
-
-  /// No description provided for @signup_password.
-  ///
-  /// In en, this message translates to:
-  /// **'Password'**
-  String get signup_password;
-
-  /// No description provided for @signup_password_confirmation.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm your password'**
-  String get signup_password_confirmation;
-
-  /// No description provided for @signup_confirm_email.
-  ///
-  /// In en, this message translates to:
-  /// **'Please confirm your email before signing in.'**
-  String get signup_confirm_email;
-
-  /// No description provided for @settings_disclaimer.
-  ///
-  /// In en, this message translates to:
-  /// **'Disclaimer'**
-  String get settings_disclaimer;
-
-  /// No description provided for @settings_account.
-  ///
-  /// In en, this message translates to:
-  /// **'Account'**
-  String get settings_account;
-
-  /// No description provided for @settings_user.
-  ///
-  /// In en, this message translates to:
-  /// **'User'**
-  String get settings_user;
-
-  /// No description provided for @settings_log_out.
-  ///
-  /// In en, this message translates to:
-  /// **'Log out'**
-  String get settings_log_out;
-
-  /// No description provided for @settings_log_out_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Log out of {appName}'**
-  String settings_log_out_description(Object appName);
-
-  /// No description provided for @settings_change_password.
-  ///
-  /// In en, this message translates to:
-  /// **'Change my password'**
-  String get settings_change_password;
-
-  /// No description provided for @settings_change_password_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Change my password for {appName}'**
-  String settings_change_password_description(Object appName);
-
-  /// No description provided for @settings_change_password_success.
-  ///
-  /// In en, this message translates to:
-  /// **'Your password has been changed, please log back in.'**
-  String get settings_change_password_success;
 
   /// No description provided for @settings_appearance.
   ///
@@ -353,42 +215,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show confirmation dialogs'**
   String get settings_confirmations;
-
-  /// No description provided for @settings_security.
-  ///
-  /// In en, this message translates to:
-  /// **'Security'**
-  String get settings_security;
-
-  /// No description provided for @settings_lock_app.
-  ///
-  /// In en, this message translates to:
-  /// **'Authentication on launch'**
-  String get settings_lock_app;
-
-  /// No description provided for @settings_lock_app_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Require an authentication on launch using the device authentication capabilities'**
-  String get settings_lock_app_description;
-
-  /// No description provided for @settings_lock_disclaimer_description.
-  ///
-  /// In en, this message translates to:
-  /// **'The notes are stored as plain text and are not encrypted. Please do not store any sensitive information in them, as this lock feature cannot fully prevent someone from accessing the notes.'**
-  String get settings_lock_disclaimer_description;
-
-  /// No description provided for @settings_lock_latency.
-  ///
-  /// In en, this message translates to:
-  /// **'Background delay'**
-  String get settings_lock_latency;
-
-  /// No description provided for @settings_lock_latency_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Delay in minutes after which the application will lock itself when put it the background, requiring to authenticate again the next time it will be launched'**
-  String get settings_lock_latency_description;
 
   /// No description provided for @settings_backup.
   ///
@@ -492,60 +318,6 @@ abstract class AppLocalizations {
   /// **'Add a note'**
   String get action_add_note;
 
-  /// No description provided for @label_old_password.
-  ///
-  /// In en, this message translates to:
-  /// **'Old password'**
-  String get label_old_password;
-
-  /// No description provided for @label_new_password.
-  ///
-  /// In en, this message translates to:
-  /// **'New password'**
-  String get label_new_password;
-
-  /// No description provided for @label_new_password_confirmation.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm new password'**
-  String get label_new_password_confirmation;
-
-  /// No description provided for @hint_email.
-  ///
-  /// In en, this message translates to:
-  /// **'Email'**
-  String get hint_email;
-
-  /// No description provided for @hint_password.
-  ///
-  /// In en, this message translates to:
-  /// **'Password'**
-  String get hint_password;
-
-  /// No description provided for @hint_password_confirmation.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm password'**
-  String get hint_password_confirmation;
-
-  /// No description provided for @hint_old_password.
-  ///
-  /// In en, this message translates to:
-  /// **'myOldPassword'**
-  String get hint_old_password;
-
-  /// No description provided for @hint_new_password.
-  ///
-  /// In en, this message translates to:
-  /// **'myNewPassword'**
-  String get hint_new_password;
-
-  /// No description provided for @hint_new_password_confirmation.
-  ///
-  /// In en, this message translates to:
-  /// **'myNewPassword'**
-  String get hint_new_password_confirmation;
-
   /// No description provided for @hint_title.
   ///
   /// In en, this message translates to:
@@ -636,29 +408,11 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get button_cancel;
 
-  /// No description provided for @button_refresh.
-  ///
-  /// In en, this message translates to:
-  /// **'Refresh'**
-  String get button_refresh;
-
   /// No description provided for @button_add.
   ///
   /// In en, this message translates to:
   /// **'Add'**
   String get button_add;
-
-  /// No description provided for @dialog_log_out.
-  ///
-  /// In en, this message translates to:
-  /// **'Log out'**
-  String get dialog_log_out;
-
-  /// No description provided for @dialog_log_out_body.
-  ///
-  /// In en, this message translates to:
-  /// **'Do you really want to log out?'**
-  String get dialog_log_out_body;
 
   /// No description provided for @dialog_delete.
   ///
@@ -840,18 +594,6 @@ abstract class AppLocalizations {
   /// **'Always ask for a confirmation for all important actions even if they can be reversed (such as deleting or restoring a note)'**
   String get confirmations_description_all;
 
-  /// No description provided for @lock_latency_immediately.
-  ///
-  /// In en, this message translates to:
-  /// **'Immediately'**
-  String get lock_latency_immediately;
-
-  /// No description provided for @lock_latency_never.
-  ///
-  /// In en, this message translates to:
-  /// **'Never'**
-  String get lock_latency_never;
-
   /// No description provided for @dismiss_pin.
   ///
   /// In en, this message translates to:
@@ -905,36 +647,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Characters'**
   String get about_characters;
-
-  /// No description provided for @authentication_authentication_required.
-  ///
-  /// In en, this message translates to:
-  /// **'Authentication is required'**
-  String get authentication_authentication_required;
-
-  /// No description provided for @authentication_authentication_required_for_app.
-  ///
-  /// In en, this message translates to:
-  /// **'Authentication is required for {appName}'**
-  String authentication_authentication_required_for_app(Object appName);
-
-  /// No description provided for @authentication_authenticate.
-  ///
-  /// In en, this message translates to:
-  /// **'Authenticate'**
-  String get authentication_authenticate;
-
-  /// No description provided for @authentication_require_credentials.
-  ///
-  /// In en, this message translates to:
-  /// **'This feature uses the device authentication capabilities, and requires at least one credential method to be available (biometrics, PIN, password...). Please configure them in the system settings.'**
-  String get authentication_require_credentials;
-
-  /// No description provided for @authentication_error.
-  ///
-  /// In en, this message translates to:
-  /// **'The authentication failed: {error}.'**
-  String authentication_error(Object error);
 
   /// No description provided for @time_at.
   ///

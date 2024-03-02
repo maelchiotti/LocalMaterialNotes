@@ -8,9 +8,6 @@ import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/info_manager.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
-import 'package:localmaterialnotes/utils/preferences/lock_latency.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 import 'package:localmaterialnotes/utils/theme_manager.dart';
 import 'package:simple_icons/simple_icons.dart';
 
@@ -26,8 +23,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final lockValue = PreferencesManager().get<bool>(PreferenceKey.lock) ?? PreferenceKey.lock.defaultValue! as bool;
-
     return SettingsList(
       platform: DevicePlatform.android,
       contentPadding: Paddings.custom.bottomSystemUi,
@@ -86,32 +81,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               value: Text(Confirmations.fromPreferences().title),
               onPressed: (context) async {
                 await interactions.selectConfirmations(context);
-                setState(() {});
-              },
-            ),
-          ],
-        ),
-        SettingsSection(
-          title: Text(localizations.settings_security),
-          tiles: [
-            SettingsTile.switchTile(
-              leading: const Icon(Icons.lock),
-              title: Text(localizations.settings_lock_app),
-              description: Text(localizations.settings_lock_app_description),
-              initialValue: lockValue,
-              onToggle: (value) async {
-                await interactions.toggleLock(context, value);
-                setState(() {});
-              },
-            ),
-            SettingsTile.navigation(
-              enabled: lockValue,
-              leading: const Icon(Icons.lock_clock),
-              title: Text(localizations.settings_lock_latency),
-              value:
-                  Text('${LockLatency.fromPreferences().label} | ${localizations.settings_lock_latency_description}'),
-              onPressed: (context) async {
-                await interactions.selectLockLatency(context);
                 setState(() {});
               },
             ),

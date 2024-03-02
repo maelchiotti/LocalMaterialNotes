@@ -30,84 +30,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get error_error => 'Error';
 
   @override
-  String get error_wrong_email_password => 'Wrong username or password.';
-
-  @override
-  String get error_confirm_email => 'Please confirm your email and then try again.';
-
-  @override
-  String get error_invalid_email => 'Invalid email';
-
-  @override
-  String get error_required => 'Required';
-
-  @override
-  String get error_password_requirements =>
-      'Requirements:\n• 12 characters\n• 1 lower case\n• 1 upper case\n• 1 number\n• 1 special character (!@#\$&%*^\"\'`<>+=-;:~,._;/\\|()[]{})';
-
-  @override
-  String get error_password_do_not_match => 'Passwords do not match';
-
-  @override
   String get error_permission => 'Failed to get permission to write the file.';
 
   @override
   String get error_read_file => 'Failed to read the file.';
-
-  @override
-  String get login_email => 'Email';
-
-  @override
-  String get login_password => 'Password';
-
-  @override
-  String get login_log_in => 'Log in';
-
-  @override
-  String get login_log_out => 'Log out';
-
-  @override
-  String get signup_sign_up => 'Sign up';
-
-  @override
-  String get signup_email => 'Email';
-
-  @override
-  String get signup_password => 'Password';
-
-  @override
-  String get signup_password_confirmation => 'Confirm your password';
-
-  @override
-  String get signup_confirm_email => 'Please confirm your email before signing in.';
-
-  @override
-  String get settings_disclaimer => 'Disclaimer';
-
-  @override
-  String get settings_account => 'Account';
-
-  @override
-  String get settings_user => 'User';
-
-  @override
-  String get settings_log_out => 'Log out';
-
-  @override
-  String settings_log_out_description(Object appName) {
-    return 'Log out of $appName';
-  }
-
-  @override
-  String get settings_change_password => 'Change my password';
-
-  @override
-  String settings_change_password_description(Object appName) {
-    return 'Change my password for $appName';
-  }
-
-  @override
-  String get settings_change_password_success => 'Your password has been changed, please log back in.';
 
   @override
   String get settings_appearance => 'Appearance';
@@ -144,27 +70,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_confirmations => 'Show confirmation dialogs';
-
-  @override
-  String get settings_security => 'Security';
-
-  @override
-  String get settings_lock_app => 'Authentication on launch';
-
-  @override
-  String get settings_lock_app_description =>
-      'Require an authentication on launch using the device authentication capabilities';
-
-  @override
-  String get settings_lock_disclaimer_description =>
-      'The notes are stored as plain text and are not encrypted. Please do not store any sensitive information in them, as this lock feature cannot fully prevent someone from accessing the notes.';
-
-  @override
-  String get settings_lock_latency => 'Background delay';
-
-  @override
-  String get settings_lock_latency_description =>
-      'Delay in minutes after which the application will lock itself when put it the background, requiring to authenticate again the next time it will be launched';
 
   @override
   String get settings_backup => 'Backup';
@@ -222,33 +127,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get action_add_note => 'Add a note';
 
   @override
-  String get label_old_password => 'Old password';
-
-  @override
-  String get label_new_password => 'New password';
-
-  @override
-  String get label_new_password_confirmation => 'Confirm new password';
-
-  @override
-  String get hint_email => 'Email';
-
-  @override
-  String get hint_password => 'Password';
-
-  @override
-  String get hint_password_confirmation => 'Confirm password';
-
-  @override
-  String get hint_old_password => 'myOldPassword';
-
-  @override
-  String get hint_new_password => 'myNewPassword';
-
-  @override
-  String get hint_new_password_confirmation => 'myNewPassword';
-
-  @override
   String get hint_title => 'Title';
 
   @override
@@ -294,16 +172,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get button_cancel => 'Cancel';
 
   @override
-  String get button_refresh => 'Refresh';
-
-  @override
   String get button_add => 'Add';
-
-  @override
-  String get dialog_log_out => 'Log out';
-
-  @override
-  String get dialog_log_out_body => 'Do you really want to log out?';
 
   @override
   String get dialog_delete => 'Delete';
@@ -441,12 +310,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Always ask for a confirmation for all important actions even if they can be reversed (such as deleting or restoring a note)';
 
   @override
-  String get lock_latency_immediately => 'Immediately';
-
-  @override
-  String get lock_latency_never => 'Never';
-
-  @override
   String get dismiss_pin => 'Pin';
 
   @override
@@ -472,26 +335,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get about_characters => 'Characters';
-
-  @override
-  String get authentication_authentication_required => 'Authentication is required';
-
-  @override
-  String authentication_authentication_required_for_app(Object appName) {
-    return 'Authentication is required for $appName';
-  }
-
-  @override
-  String get authentication_authenticate => 'Authenticate';
-
-  @override
-  String get authentication_require_credentials =>
-      'This feature uses the device authentication capabilities, and requires at least one credential method to be available (biometrics, PIN, password...). Please configure them in the system settings.';
-
-  @override
-  String authentication_error(Object error) {
-    return 'The authentication failed: $error.';
-  }
 
   @override
   String get time_at => 'at';
