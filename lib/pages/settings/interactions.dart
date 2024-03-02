@@ -117,9 +117,21 @@ class Interactions {
     });
   }
 
-  Future<void> backup(BuildContext context) async {
+  Future<void> backupAsJson(BuildContext context) async {
     try {
-      await DatabaseManager().export();
+      await DatabaseManager().exportAsJson();
+    } catch (exception, stackTrace) {
+      log(exception.toString(), stackTrace: stackTrace);
+      SnackBarManager.info(localizations.settings_export_fail(exception.toString())).show();
+      return;
+    }
+
+    SnackBarManager.info(localizations.settings_export_success).show();
+  }
+
+  Future<void> backupAsMarkdown(BuildContext context) async {
+    try {
+      await DatabaseManager().exportAsMarkdown();
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       SnackBarManager.info(localizations.settings_export_fail(exception.toString())).show();

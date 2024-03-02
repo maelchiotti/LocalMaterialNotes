@@ -234,17 +234,29 @@ abstract class AppLocalizations {
   /// **'Backup'**
   String get settings_backup;
 
-  /// No description provided for @settings_export.
+  /// No description provided for @settings_export_json.
   ///
   /// In en, this message translates to:
-  /// **'Export'**
-  String get settings_export;
+  /// **'Export as JSON'**
+  String get settings_export_json;
 
-  /// No description provided for @settings_export_description.
+  /// No description provided for @settings_export_markdown.
   ///
   /// In en, this message translates to:
-  /// **'Export notes to a JSON file (bin included)'**
-  String get settings_export_description;
+  /// **'Export as Markdown'**
+  String get settings_export_markdown;
+
+  /// No description provided for @settings_export_json_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Export notes to a JSON file (bin included) that can be imported back'**
+  String get settings_export_json_description;
+
+  /// No description provided for @settings_export_markdown_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Export notes to a Markdown file (bin included)'**
+  String get settings_export_markdown_description;
 
   /// No description provided for @settings_export_success.
   ///

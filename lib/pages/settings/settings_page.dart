@@ -107,10 +107,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           title: Text(localizations.settings_backup),
           tiles: [
             SettingsTile.navigation(
-              leading: const Icon(Icons.file_download),
-              title: Text(localizations.settings_export),
-              value: Text(localizations.settings_export_description),
-              onPressed: interactions.backup,
+              leading: const Icon(SimpleIcons.json),
+              title: Text(localizations.settings_export_json),
+              value: Text(localizations.settings_export_json_description),
+              onPressed: interactions.backupAsJson,
+            ),
+            SettingsTile.navigation(
+              leading: const Icon(SimpleIcons.markdown),
+              title: Text(localizations.settings_export_markdown),
+              value: Text(localizations.settings_export_markdown_description),
+              onPressed: interactions.backupAsMarkdown,
             ),
             SettingsTile.navigation(
               leading: const Icon(Icons.file_upload),

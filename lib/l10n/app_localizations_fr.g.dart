@@ -82,10 +82,17 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_backup => 'Sauvegarde';
 
   @override
-  String get settings_export => 'Export';
+  String get settings_export_json => 'Exporter en JSON';
 
   @override
-  String get settings_export_description => 'Exporter les notes dans un fichier (corbeille incluse)';
+  String get settings_export_markdown => 'Exporter en Markdown';
+
+  @override
+  String get settings_export_json_description =>
+      'Exporter les notes dans un fichier JSON (corbeille incluse) qui peut être réimporté';
+
+  @override
+  String get settings_export_markdown_description => 'Exporter les notes dans un fichier Markdown (corbeille incluse)';
 
   @override
   String get settings_export_success => 'Les notes ont bien été exportées.';

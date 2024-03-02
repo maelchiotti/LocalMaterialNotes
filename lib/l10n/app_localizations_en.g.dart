@@ -81,10 +81,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_backup => 'Backup';
 
   @override
-  String get settings_export => 'Export';
+  String get settings_export_json => 'Export as JSON';
 
   @override
-  String get settings_export_description => 'Export notes to a JSON file (bin included)';
+  String get settings_export_markdown => 'Export as Markdown';
+
+  @override
+  String get settings_export_json_description => 'Export notes to a JSON file (bin included) that can be imported back';
+
+  @override
+  String get settings_export_markdown_description => 'Export notes to a Markdown file (bin included)';
 
   @override
   String get settings_export_success => 'The notes were successfully exported.';
