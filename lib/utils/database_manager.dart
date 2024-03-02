@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:is_first_run/is_first_run.dart';
@@ -112,11 +113,11 @@ class DatabaseManager {
 
     final timestamp = DateTime.timestamp();
 
-    await saf.createFileAsString(
+    await saf.createFile(
       exportDirectory,
       mimeType: mimeType,
       displayName: 'materialnotes_export_${timestamp.filename}.$extension',
-      content: notesAsString,
+      bytes: Uint8List.fromList(utf8.encode(notesAsString)), // Encode as UTF-8 to support checked/unchecked emojis
     );
   }
 
