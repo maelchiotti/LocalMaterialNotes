@@ -14,10 +14,10 @@
 Simple, local, material design notes.
 
 <div align="center">
-  <img alt="Screenshot of the notes list" src="assets/screenshots/v1.1.0_notes.jpg" width="24%">
-  <img alt="Screenshots of the note editor" src="assets/screenshots/v1.1.0_editor.jpg" width="24%">
-  <img alt="Screenshot of the bin" src="assets/screenshots/v1.1.0_bin.jpg" width="24%">
-  <img alt="Screenshot of the settings" src="assets/screenshots/v1.1.0_settings_1.jpg" width="24%">
+  <img alt="Screenshot of the notes list" src="assets/screenshots/latest_notes.jpg" width="24%">
+  <img alt="Screenshots of the note editor" src="assets/screenshots/latest_editor.jpg" width="24%">
+  <img alt="Screenshot of the bin" src="assets/screenshots/latest_bin.jpg" width="24%">
+  <img alt="Screenshot of the settings" src="assets/screenshots/latest_settings_1.jpg" width="24%">
 </div>
 
 ## Features
