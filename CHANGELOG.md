@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.1.1 - 2024-03-03
+
+### Added
+
+- Export notes as Markdown
+- Show a separator between the notes (toggleable)
+
+### Removed
+
+- Remove the app lock feature (most recent Android devices have a more stable, built-in identical functionality)
+
+### Fixed
+
+- Disable the black theme setting tile while in light theme
+- Automatically sort in descending order when sorting by date, and in ascending order when sorting by title (the order can still be manually changed afterwards)
+
 ## 1.1.0 - 2024-02-18
 
 ### Added
