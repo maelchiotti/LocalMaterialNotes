@@ -1,5 +1,4 @@
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
-import 'package:localmaterialnotes/utils/preferences/lock_latency.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 
 enum PreferenceKey {
@@ -8,9 +7,8 @@ enum PreferenceKey {
   theme,
   dynamicTheming(true),
   blackTheming(false),
+  separator(false),
   confirmations(Confirmations.irreversible),
-  lock(false),
-  lockLatency(LockLatency.five),
 
   // Notes
   sortMethod(SortMethod.date),

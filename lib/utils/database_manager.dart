@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:is_first_run/is_first_run.dart';
@@ -37,11 +38,13 @@ class DatabaseManager {
     }
   }
 
-  Future<List<Note>> getAll({bool deleted = false}) async {
+  Future<List<Note>> getAll({bool? deleted}) async {
     final sortMethod = SortMethod.methodFromPreferences();
     final sortAscending = SortMethod.ascendingFromPreferences;
 
-    final sortedByPinned = _database.notes.where().deletedEqualTo(deleted).sortByPinnedDesc();
+    final sortedByPinned = deleted == null
+        ? _database.notes.where().sortByPinnedDesc()
+        : _database.notes.where().deletedEqualTo(deleted).sortByPinnedDesc();
 
     switch (sortMethod) {
       case SortMethod.date:
@@ -85,20 +88,36 @@ class DatabaseManager {
     });
   }
 
-  Future<void> export() async {
+  Future<void> exportAsJson() async {
+    final notes = await getAll();
+    final notesAsJson = jsonEncode(notes);
+
+    await _export('application/json', 'json', notesAsJson);
+  }
+
+  Future<void> exportAsMarkdown() async {
+    final notes = await getAll();
+    final StringBuffer notesAsMarkdown = StringBuffer('# Material Notes\n\n');
+    for (final note in notes) {
+      notesAsMarkdown
+          .writeln('## ${note.title}${note.contentDisplay.isNotEmpty ? '\n\n' : ''}${note.contentDisplay}\n');
+    }
+
+    await _export('text/markdown', 'md', notesAsMarkdown.toString().trim());
+  }
+
+  Future<void> _export(String mimeType, String extension, String notesAsString) async {
     final exportDirectory = await saf.openDocumentTree();
 
     if (exportDirectory == null) throw Exception(localizations.error_permission);
 
     final timestamp = DateTime.timestamp();
-    final notes = await _database.notes.where().findAll();
-    final notesJson = jsonEncode(notes);
 
-    await saf.createFileAsString(
+    await saf.createFile(
       exportDirectory,
-      mimeType: 'application/json',
-      displayName: 'materialnotes_export_${timestamp.filename}.json',
-      content: notesJson,
+      mimeType: mimeType,
+      displayName: 'materialnotes_export_${timestamp.filename}.$extension',
+      bytes: Uint8List.fromList(utf8.encode(notesAsString)), // Encode as UTF-8 to support checked/unchecked emojis
     );
   }
 
@@ -120,6 +139,7 @@ class DatabaseManager {
     await addAll(notes);
   }
 
+  /// Hardcode the welcome note translations here because no context is available when it's used
   Note get _welcomeNote {
     final locale = LocaleManager().locale;
 

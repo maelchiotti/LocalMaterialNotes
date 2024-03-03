@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 enum Separator {
-  divider1(1, 1, 0, 0),
+  divider1indent8(1, 1, 8, 8),
   divider1indent16(1, 1, 16, 16),
-  divider2(2, 2, 0, 0),
-  divider2indent16(2, 2, 16, 16),
   ;
 
   final double _size;

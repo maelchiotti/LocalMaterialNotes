@@ -32,17 +32,4 @@ enum Confirmations {
         throw Exception();
     }
   }
-
-  String get description {
-    switch (this) {
-      case Confirmations.none:
-        return localizations.confirmations_description_none;
-      case Confirmations.irreversible:
-        return localizations.confirmations_description_irreversible;
-      case Confirmations.all:
-        return localizations.confirmations_description_all;
-      default:
-        throw Exception();
-    }
-  }
 }

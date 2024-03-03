@@ -1,12 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app_lock/flutter_app_lock.dart';
-import 'package:local_auth/local_auth.dart';
 import 'package:locale_names/locale_names.dart';
-import 'package:localmaterialnotes/common/dialogs/confirmation_dialog.dart';
 import 'package:localmaterialnotes/l10n/app_localizations.g.dart';
-import 'package:localmaterialnotes/pages/settings/shortcut.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
@@ -16,7 +12,6 @@ import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/info_manager.dart';
 import 'package:localmaterialnotes/utils/locale_manager.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
-import 'package:localmaterialnotes/utils/preferences/lock_latency.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 import 'package:localmaterialnotes/utils/snack_bar_manager.dart';
@@ -95,6 +90,10 @@ class Interactions {
     });
   }
 
+  void toggleSeparator(bool value) {
+    PreferencesManager().set<bool>(PreferenceKey.separator.name, value);
+  }
+
   Future<void> selectConfirmations(BuildContext context) async {
     await showAdaptiveDialog<Confirmations>(
       context: context,
@@ -118,92 +117,21 @@ class Interactions {
     });
   }
 
-  Future<void> toggleLock(BuildContext context, bool value) async {
-    if (!value) {
-      PreferencesManager().set<bool>(PreferenceKey.lock.name, false);
-
-      AppLock.of(context)!.disable();
-    } else {
-      final localeAuthentication = LocalAuthentication();
-      if (!await localeAuthentication.isDeviceSupported()) {
-        if (!context.mounted) return;
-
-        SnackBarManager.info(localizations.authentication_require_credentials).show();
-
-        return;
-      }
-
-      if (!context.mounted) return;
-
-      if (await showConfirmationDialog(
-        context,
-        localizations.settings_disclaimer,
-        localizations.settings_lock_disclaimer_description,
-        localizations.button_ok,
-      )) {
-        PreferencesManager().set<bool>(PreferenceKey.lock.name, true);
-
-        if (!context.mounted) return;
-
-        AppLock.of(context)!.setEnabled(value);
-      }
-    }
-  }
-
-  Future<void> selectLockLatency(BuildContext context) async {
-    await showAdaptiveDialog<LockLatency>(
-      context: context,
-      builder: (context) {
-        return SimpleDialog(
-          clipBehavior: Clip.hardEdge,
-          title: Text(localizations.settings_lock_latency),
-          children: LockLatency.values.map((lockLatencyValue) {
-            return ListTile(
-              title: Text(lockLatencyValue.label),
-              selected: LockLatency.fromPreferences() == lockLatencyValue,
-              onTap: () => Navigator.of(context).pop(lockLatencyValue),
-            );
-          }).toList(),
-        );
-      },
-    ).then((lockLatencyValue) {
-      if (lockLatencyValue == null) return;
-
-      PreferencesManager().set<String>(PreferenceKey.lockLatency.name, lockLatencyValue.name);
-    });
-  }
-
-  Future<void> showShortcuts(BuildContext context) async {
-    await showAdaptiveDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog.adaptive(
-          clipBehavior: Clip.hardEdge,
-          title: Text(localizations.settings_shortcuts),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: Shortcut.values.map((shortcut) {
-                return ListTile(
-                  title: Text(shortcut.title),
-                  trailing: Text(shortcut.keys),
-                );
-              }).toList(),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(localizations.button_close),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Future<void> backup(BuildContext context) async {
+  Future<void> backupAsJson(BuildContext context) async {
     try {
-      await DatabaseManager().export();
+      await DatabaseManager().exportAsJson();
+    } catch (exception, stackTrace) {
+      log(exception.toString(), stackTrace: stackTrace);
+      SnackBarManager.info(localizations.settings_export_fail(exception.toString())).show();
+      return;
+    }
+
+    SnackBarManager.info(localizations.settings_export_success).show();
+  }
+
+  Future<void> backupAsMarkdown(BuildContext context) async {
+    try {
+      await DatabaseManager().exportAsMarkdown();
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       SnackBarManager.info(localizations.settings_export_fail(exception.toString())).show();

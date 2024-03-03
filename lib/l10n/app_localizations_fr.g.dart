@@ -30,84 +30,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get error_error => 'Erreur';
 
   @override
-  String get error_wrong_email_password => 'Mauvais email ou mot de passe.';
-
-  @override
-  String get error_confirm_email => 'Merci de confirmer votre email et de réessayer.';
-
-  @override
-  String get error_invalid_email => 'Email invalide';
-
-  @override
-  String get error_required => 'Requis';
-
-  @override
-  String get error_password_requirements =>
-      'Requis:\n• 12 caractères\n• 1 minuscule\n• 1 majuscule\n• 1 nombre\n• 1 caractère spécial (!@#\$&%*^\"\'`<>+=-;:~,._;/\\|()[]{})';
-
-  @override
-  String get error_password_do_not_match => 'Les mots de passe ne correspondent pas';
-
-  @override
   String get error_permission => 'Échec lors de la demande de permission pour écrire le fichier.';
 
   @override
   String get error_read_file => 'Échec lors de la lecture du fichier.';
-
-  @override
-  String get login_email => 'Email';
-
-  @override
-  String get login_password => 'Mot de passe';
-
-  @override
-  String get login_log_in => 'Se connecter';
-
-  @override
-  String get login_log_out => 'Se déconnecter';
-
-  @override
-  String get signup_sign_up => 'S\'inscrire';
-
-  @override
-  String get signup_email => 'Email';
-
-  @override
-  String get signup_password => 'Mot de passe';
-
-  @override
-  String get signup_password_confirmation => 'Confirmer mot de passe';
-
-  @override
-  String get signup_confirm_email => 'Merci de confirmer votre email avant de vous connecter.';
-
-  @override
-  String get settings_disclaimer => 'Avertissement';
-
-  @override
-  String get settings_account => 'Compte';
-
-  @override
-  String get settings_user => 'Utilisateur';
-
-  @override
-  String get settings_log_out => 'Se déconnecter';
-
-  @override
-  String settings_log_out_description(Object appName) {
-    return 'Se déconnecter de $appName';
-  }
-
-  @override
-  String get settings_change_password => 'Changer mon mot de passe';
-
-  @override
-  String settings_change_password_description(Object appName) {
-    return 'Changer mon mot de passe pour $appName';
-  }
-
-  @override
-  String get settings_change_password_success => 'Votre mot de passe a été changé, veuillez vous reconnecter.';
 
   @override
   String get settings_appearance => 'Apparence';
@@ -140,46 +66,33 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_language => 'Langue';
 
   @override
+  String get settings_separator => 'Afficher les séparateurs';
+
+  @override
+  String get settings_separator_description =>
+      'Afficher un séparateur entre les notes pour les différencier plus facilement';
+
+  @override
   String get settings_behavior => 'Comportement';
 
   @override
   String get settings_confirmations => 'Afficher les dialogues de confirmation';
 
   @override
-  String get settings_shortcuts => 'Raccourcis';
-
-  @override
-  String get settings_shortcuts_description => 'Lister tous les raccourcis disponibles dans l\'éditeur de texte';
-
-  @override
-  String get settings_security => 'Sécurité';
-
-  @override
-  String get settings_lock_app => 'Authentification au démarrage';
-
-  @override
-  String get settings_lock_app_description =>
-      'Demander une authentification lors du démarrage en utilisant les capacités de l\'appareil';
-
-  @override
-  String get settings_lock_disclaimer_description =>
-      'Les notes sont stockées en texte brut et ne sont pas chiffrées. Veuillez ne pas y stocker d\'informations sensibles, car cette fonctionnalité d\'authentification ne peut pas complètement empêcher quelqu\'un d\'accéder aux notes.';
-
-  @override
-  String get settings_lock_latency => 'Délai en arrière-plan';
-
-  @override
-  String get settings_lock_latency_description =>
-      'Délai en minutes après lequel l\'application se verrouillera quand elle est mise en arrière-plan, nécessitant de s\'authentifier à nouveau la prochaine fois qu\'elle sera lancée';
-
-  @override
   String get settings_backup => 'Sauvegarde';
 
   @override
-  String get settings_export => 'Export';
+  String get settings_export_json => 'Exporter en JSON';
 
   @override
-  String get settings_export_description => 'Exporter les notes dans un fichier (corbeille incluse)';
+  String get settings_export_markdown => 'Exporter en Markdown';
+
+  @override
+  String get settings_export_json_description =>
+      'Exporter les notes dans un fichier JSON (corbeille incluse) qui peut être réimporté';
+
+  @override
+  String get settings_export_markdown_description => 'Exporter les notes dans un fichier Markdown (corbeille incluse)';
 
   @override
   String get settings_export_success => 'Les notes ont bien été exportées.';
@@ -200,7 +113,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String settings_import_fail(Object error) {
-    return 'L\'import a échoué: $error.';
+    return 'L\'import a échoué : $error.';
   }
 
   @override
@@ -225,49 +138,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_issue_description => 'Signaler un bug en créant une issue sur GitHub';
 
   @override
-  String get shortcut_bold => 'Gras';
-
-  @override
-  String get shortcut_italic => 'Italique';
-
-  @override
-  String get shortcut_underline => 'Souligné';
-
-  @override
-  String get shortcut_undo => 'Annuler';
-
-  @override
-  String get shortcut_redo => 'Rétablir';
-
-  @override
   String get action_add_note => 'Ajouter une note';
-
-  @override
-  String get label_old_password => 'Ancien mot de passe';
-
-  @override
-  String get label_new_password => 'Nouveau mot de passe';
-
-  @override
-  String get label_new_password_confirmation => 'Confirmer nouveau mot de passe';
-
-  @override
-  String get hint_email => 'Email';
-
-  @override
-  String get hint_password => 'Mot de passe';
-
-  @override
-  String get hint_password_confirmation => 'Confirmer mot de passe';
-
-  @override
-  String get hint_old_password => 'monAncienMotDePasse';
-
-  @override
-  String get hint_new_password => 'monNouveauMotDePasse';
-
-  @override
-  String get hint_new_password_confirmation => 'monNouveauMotDePasse';
 
   @override
   String get hint_title => 'Titre';
@@ -315,16 +186,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get button_cancel => 'Annuler';
 
   @override
-  String get button_refresh => 'Rafraîchir';
-
-  @override
   String get button_add => 'Ajouter';
-
-  @override
-  String get dialog_log_out => 'Se déconnecter';
-
-  @override
-  String get dialog_log_out_body => 'Voulez-vous vraiment vous déconnecter ?';
 
   @override
   String get dialog_delete => 'Supprimer';
@@ -452,23 +314,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get confirmations_title_all => 'Toujours';
 
   @override
-  String get confirmations_description_none => 'Ne jamais demander de confirmation';
-
-  @override
-  String get confirmations_description_irreversible =>
-      'Ne demander de confirmation que pour les actions qui ne sont pas réversibles (comme supprimer définitivement des notes de la corbeille)';
-
-  @override
-  String get confirmations_description_all =>
-      'Toujours demander une confirmation pour les actions importantes même si elles peuvent être annulées (comme supprimer ou restaurer une note)';
-
-  @override
-  String get lock_latency_immediately => 'Immédiatement';
-
-  @override
-  String get lock_latency_never => 'Jamais';
-
-  @override
   String get dismiss_pin => 'Épingler';
 
   @override
@@ -494,26 +339,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get about_characters => 'Caractères';
-
-  @override
-  String get authentication_authentication_required => 'Une authentification est requise';
-
-  @override
-  String authentication_authentication_required_for_app(Object appName) {
-    return 'Une authentification est requise pour $appName';
-  }
-
-  @override
-  String get authentication_authenticate => 'S\'authentifier';
-
-  @override
-  String get authentication_require_credentials =>
-      'Cette fonctionnalité utilise les capacités d\'authentification de l\'appareil, et nécessite qu\'au moins une méthode d\'autentification soit disponible (biométrie, PIN, mot de passe...). Veuillez les configurer dans les paramètres système.';
-
-  @override
-  String authentication_error(Object error) {
-    return 'L\'authentification a échoué : $error.';
-  }
 
   @override
   String get time_at => 'à';

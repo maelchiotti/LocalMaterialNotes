@@ -47,6 +47,10 @@ class ThemeManager {
         PreferenceKey.blackTheming.defaultValue! as bool;
   }
 
+  Brightness get brightness {
+    return Theme.of(navigatorKey.currentContext!).brightness;
+  }
+
   ThemeMode get themeMode {
     final themeModePreference = PreferencesManager().get<int>(PreferenceKey.theme);
 

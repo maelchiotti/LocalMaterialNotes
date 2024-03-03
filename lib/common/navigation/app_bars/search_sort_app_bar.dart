@@ -36,16 +36,21 @@ class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
     }).toList();
   }
 
-  void _sort(SortMethod sort) {
-    if (sort == SortMethod.ascending) {
-      PreferencesManager().set<bool>(PreferenceKey.sortAscending.name, !sortAscending);
+  void _sort({SortMethod? method, bool? ascending}) {
+    if (method != null) {
+      final forceAscending = method == SortMethod.title;
+
+      PreferencesManager().set<String>(PreferenceKey.sortMethod.name, method.name);
+      PreferencesManager().set<bool>(PreferenceKey.sortAscending.name, forceAscending);
+
       setState(() {
-        sortAscending = !sortAscending;
+        sortMethod = method;
+        sortAscending = forceAscending;
       });
-    } else {
-      PreferencesManager().set<String>(PreferenceKey.sortMethod.name, sort.name);
+    } else if (ascending != null) {
+      PreferencesManager().set<bool>(PreferenceKey.sortAscending.name, ascending);
       setState(() {
-        sortMethod = sort;
+        sortAscending = ascending;
       });
     }
 
@@ -98,8 +103,9 @@ class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
                   title: Text(localizations.sort_ascending),
                   trailing: Checkbox(
                     value: sortAscending,
-                    onChanged: (_) {
-                      _sort(SortMethod.ascending);
+                    onChanged: (ascending) {
+                      // Circumvent the normal PopupMenuButton behavior to use the second parameter or _sort
+                      _sort(ascending: ascending);
                       context.pop();
                     },
                   ),
@@ -107,7 +113,7 @@ class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
               ),
             ];
           },
-          onSelected: (sort) => _sort(sort),
+          onSelected: (sort) => _sort(method: sort),
         ),
         ref.watch(provider).when(
           data: (notes) {

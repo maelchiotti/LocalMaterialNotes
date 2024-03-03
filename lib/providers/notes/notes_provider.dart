@@ -19,7 +19,7 @@ class Notes extends _$Notes with BaseProvider {
     List<Note> notes = [];
 
     try {
-      notes = await databaseManager.getAll();
+      notes = await databaseManager.getAll(deleted: false);
     } on Exception catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
     }

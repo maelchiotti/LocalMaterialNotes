@@ -23,10 +23,11 @@ class SettingsPage extends ConsumerStatefulWidget {
 class _SettingsPageState extends ConsumerState<SettingsPage> {
   final interactions = Interactions();
 
+  bool useSeparators =
+      PreferencesManager().get<bool>(PreferenceKey.separator) ?? PreferenceKey.separator.defaultValue! as bool;
+
   @override
   Widget build(BuildContext context) {
-    final lockValue = PreferencesManager().get<bool>(PreferenceKey.lock) ?? PreferenceKey.lock.defaultValue! as bool;
-
     return SettingsList(
       platform: DevicePlatform.android,
       contentPadding: Paddings.custom.bottomSystemUi,
@@ -40,6 +41,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         SettingsSection(
           title: Text(localizations.settings_appearance),
           tiles: [
+            SettingsTile.navigation(
+              leading: const Icon(Icons.language),
+              title: Text(localizations.settings_language),
+              value: Text(Localizations.localeOf(context).nativeDisplayLanguage.capitalized),
+              onPressed: interactions.selectLanguage,
+            ),
             SettingsTile.navigation(
               leading: const Icon(Icons.palette),
               title: Text(localizations.settings_theme),
@@ -58,6 +65,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               onToggle: interactions.toggleDynamicTheming,
             ),
             SettingsTile.switchTile(
+              enabled: ThemeManager().brightness == Brightness.dark,
               leading: const Icon(Icons.nightlight),
               title: Text(localizations.settings_black_theming),
               description: Text(localizations.settings_black_theming_description),
@@ -66,12 +74,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 interactions.toggleBlackTheming(toggled);
                 setState(() {});
               },
-            ),
-            SettingsTile.navigation(
-              leading: const Icon(Icons.language),
-              title: Text(localizations.settings_language),
-              value: Text(Localizations.localeOf(context).nativeDisplayLanguage.capitalized),
-              onPressed: interactions.selectLanguage,
             ),
           ],
         ),
@@ -87,35 +89,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 setState(() {});
               },
             ),
-            SettingsTile.navigation(
-              leading: const Icon(Icons.keyboard),
-              title: Text(localizations.settings_shortcuts),
-              value: Text(localizations.settings_shortcuts_description),
-              onPressed: interactions.showShortcuts,
-            ),
-          ],
-        ),
-        SettingsSection(
-          title: Text(localizations.settings_security),
-          tiles: [
             SettingsTile.switchTile(
-              leading: const Icon(Icons.lock),
-              title: Text(localizations.settings_lock_app),
-              description: Text(localizations.settings_lock_app_description),
-              initialValue: lockValue,
-              onToggle: (value) async {
-                await interactions.toggleLock(context, value);
-                setState(() {});
-              },
-            ),
-            SettingsTile.navigation(
-              enabled: lockValue,
-              leading: const Icon(Icons.lock_clock),
-              title: Text(localizations.settings_lock_latency),
-              value: Text(localizations.settings_lock_latency_description),
-              onPressed: (context) async {
-                await interactions.selectLockLatency(context);
-                setState(() {});
+              leading: const Icon(Icons.safety_divider),
+              title: Text(localizations.settings_separator),
+              description: Text(localizations.settings_separator_description),
+              initialValue: useSeparators,
+              onToggle: (toggled) {
+                interactions.toggleSeparator(toggled);
+                setState(() {
+                  useSeparators = toggled;
+                });
               },
             ),
           ],
@@ -124,10 +107,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           title: Text(localizations.settings_backup),
           tiles: [
             SettingsTile.navigation(
-              leading: const Icon(Icons.file_download),
-              title: Text(localizations.settings_export),
-              value: Text(localizations.settings_export_description),
-              onPressed: interactions.backup,
+              leading: const Icon(SimpleIcons.json),
+              title: Text(localizations.settings_export_json),
+              value: Text(localizations.settings_export_json_description),
+              onPressed: interactions.backupAsJson,
+            ),
+            SettingsTile.navigation(
+              leading: const Icon(SimpleIcons.markdown),
+              title: Text(localizations.settings_export_markdown),
+              value: Text(localizations.settings_export_markdown_description),
+              onPressed: interactions.backupAsMarkdown,
             ),
             SettingsTile.navigation(
               leading: const Icon(Icons.file_upload),

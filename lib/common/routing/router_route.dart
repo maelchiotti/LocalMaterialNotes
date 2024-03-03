@@ -1,49 +1,67 @@
+import 'package:collection/collection.dart';
 import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/go_router_extension.dart';
 
 enum RouterRoute {
-  notes('/notes'),
-  editor('editor', '/notes/editor'),
-  bin('/bin'),
-  settings('/settings'),
+  notes('/notes', drawerIndex: 0),
+  editor('editor', fullPath: '/notes/editor'),
+  bin('/bin', drawerIndex: 1),
+  settings('/settings', drawerIndex: 2),
   ;
 
   final String path;
   final String? fullPath;
+  final int? drawerIndex;
 
-  const RouterRoute(this.path, [this.fullPath]);
+  const RouterRoute(this.path, {this.fullPath, this.drawerIndex});
 
   String get title {
     switch (this) {
-      case RouterRoute.notes:
+      case notes:
         return localizations.navigation_notes;
-      case RouterRoute.bin:
+      case bin:
         return localizations.navigation_bin;
-      case RouterRoute.settings:
+      case settings:
         return localizations.navigation_settings;
       default:
         throw Exception('Unexpected route: $this');
     }
   }
 
+  static int get currentDrawerIndex {
+    final drawerIndex = currentRoute.drawerIndex;
+
+    if (drawerIndex == null) throw Exception('No current drawer index');
+
+    return drawerIndex;
+  }
+
+  static RouterRoute getRouteFromIndex(int index) {
+    final route = values.firstWhereOrNull((route) => route.drawerIndex == index);
+
+    if (route == null) throw Exception('No route for index: $index');
+
+    return route;
+  }
+
   static RouterRoute get currentRoute {
     final location = GoRouter.of(navigatorKey.currentContext!).location();
 
-    if (location == RouterRoute.notes.path) {
-      return RouterRoute.notes;
-    } else if (location.contains(RouterRoute.editor.path)) {
-      return RouterRoute.editor;
-    } else if (location == RouterRoute.bin.path) {
-      return RouterRoute.bin;
-    } else if (location == RouterRoute.settings.path) {
-      return RouterRoute.settings;
+    if (location == notes.path) {
+      return notes;
+    } else if (location.contains(editor.path)) {
+      return editor;
+    } else if (location == bin.path) {
+      return bin;
+    } else if (location == settings.path) {
+      return settings;
     } else {
-      return RouterRoute.notes;
+      return notes;
     }
   }
 
-  static bool get isBin => RouterRoute.currentRoute == RouterRoute.bin;
+  static bool get isBin => currentRoute == bin;
 
-  static bool get isEditor => RouterRoute.currentRoute == RouterRoute.editor;
+  static bool get isEditor => currentRoute == editor;
 }
