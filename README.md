@@ -40,17 +40,17 @@ Simple, local, material design notes.
 - Share text from other applications to add it directly to a note
 - Share your notes as text
 - Export your notes as JSON and import them back
+- Export your notes as Markdown
 
 ### Protect
 
-- Lock the application using your device authentication capabilities
-- Never worry about how your data is handled as the application doesn't have any internet permissions
+- Never worry about how your data is handled, as it never leaves your device because the application doesn't have any internet permissions
 
 ### Customize
 
+- Choose your language (see the [supported ones](#supported-languages))
 - Choose your theme (light, dark or black)
 - Choose if you want your theme to be dynamic (use colors from your background)
-- Choose your language (see the [supported ones](#supported-languages))
 
 ## Screenshots
 
@@ -67,7 +67,7 @@ See more screenshots [here](assets/screenshots).
 
 ## Credits
 
-- [Material Design Icons](https://github.com/google/material-design-icons) for the [notes](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:notes:) icon used for the logo.
+- [Material Design Icons](https://github.com/google/material-design-icons) for the [notes](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:notes) icon used for the logo.
 
 ---
 
