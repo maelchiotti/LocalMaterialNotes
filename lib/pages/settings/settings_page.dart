@@ -42,6 +42,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           title: Text(localizations.settings_appearance),
           tiles: [
             SettingsTile.navigation(
+              leading: const Icon(Icons.language),
+              title: Text(localizations.settings_language),
+              value: Text(Localizations.localeOf(context).nativeDisplayLanguage.capitalized),
+              onPressed: interactions.selectLanguage,
+            ),
+            SettingsTile.navigation(
               leading: const Icon(Icons.palette),
               title: Text(localizations.settings_theme),
               value: Text(ThemeManager().themeModeName),
@@ -68,12 +74,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 interactions.toggleBlackTheming(toggled);
                 setState(() {});
               },
-            ),
-            SettingsTile.navigation(
-              leading: const Icon(Icons.language),
-              title: Text(localizations.settings_language),
-              value: Text(Localizations.localeOf(context).nativeDisplayLanguage.capitalized),
-              onPressed: interactions.selectLanguage,
             ),
           ],
         ),
