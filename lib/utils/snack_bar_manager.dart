@@ -11,6 +11,7 @@ class SnackBarManager {
   void show({BuildContext? context}) {
     ScaffoldMessenger.of(context ?? navigatorKey.currentContext!).showSnackBar(
       SnackBar(
+        behavior: SnackBarBehavior.floating,
         content: Text(text),
       ),
     );
