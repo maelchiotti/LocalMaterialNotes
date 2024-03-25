@@ -17,7 +17,7 @@ import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 import 'package:localmaterialnotes/utils/snack_bar_manager.dart';
 import 'package:localmaterialnotes/utils/theme_manager.dart';
 import 'package:restart_app/restart_app.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Interactions {
   Future<void> selectTheme(BuildContext context) async {
@@ -178,14 +178,32 @@ class Interactions {
   }
 
   void openGitHub(_) {
-    launchUrlString('https://github.com/maelchiotti/LocalMaterialNotes');
+    launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'github.com',
+        path: 'maelchiotti/LocalMaterialNotes',
+      ),
+    );
   }
 
   void openLicense(_) {
-    launchUrlString('https://github.com/maelchiotti/LocalMaterialNotes/blob/main/LICENSE');
+    launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'github.com',
+        path: 'maelchiotti/LocalMaterialNotes/blob/main/LICENSE',
+      ),
+    );
   }
 
   void openIssues(_) {
-    launchUrlString('https://github.com/maelchiotti/LocalMaterialNotes/issues');
+    launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'github.com',
+        path: 'maelchiotti/LocalMaterialNotes/issues',
+      ),
+    );
   }
 }
