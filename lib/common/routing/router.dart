@@ -27,6 +27,12 @@ PreferredSizeWidget? _getAppBar(BuildContext context) {
   }
 }
 
+Widget? _getDrawer() {
+  if (RouterRoute.currentRoute.drawerIndex == null) return null;
+
+  return const SideNavigation();
+}
+
 Widget? _getFloatingActionButton(BuildContext context) {
   switch (RouterRoute.currentRoute) {
     case RouterRoute.notes:
@@ -47,7 +53,7 @@ final router = GoRouter(
         return Scaffold(
           key: drawerKey,
           appBar: _getAppBar(context),
-          drawer: const SideNavigation(),
+          drawer: _getDrawer(),
           body: child,
           floatingActionButton: _getFloatingActionButton(context),
         );
