@@ -341,10 +341,10 @@ packages:
     dependency: "direct main"
     description:
       name: fleather
-      sha256: "4e5260e136c4d371bffd870148a838671599f08b564fd831112a9e664bd909e9"
+      sha256: dbff159100d700a7f27fbcc97ffb5a0bcbf4aed3e6aa932b48133aa4040fb79b
       url: "https://pub.dev"
     source: hosted
-    version: "1.14.1"
+    version: "1.14.2"
   flutter:
     dependency: "direct main"
     description: flutter

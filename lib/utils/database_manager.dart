@@ -117,7 +117,7 @@ class DatabaseManager {
       exportDirectory,
       mimeType: mimeType,
       displayName: 'materialnotes_export_${timestamp.filename}.$extension',
-      bytes: Uint8List.fromList(utf8.encode(notesAsString)), // Encode as UTF-8 to support checked/unchecked emojis
+      bytes: Uint8List.fromList(utf8.encode(notesAsString)),
     );
   }
 
@@ -129,11 +129,12 @@ class DatabaseManager {
 
     if (importFiles == null || importFiles.isEmpty) throw Exception(localizations.error_permission);
 
-    final importData = await saf.getDocumentContentAsString(importFiles.first);
+    final importedData = await saf.getDocumentContent(importFiles.first);
 
-    if (importData == null) throw Exception(localizations.error_read_file);
+    if (importedData == null) throw Exception(localizations.error_read_file);
 
-    final notesJson = jsonDecode(importData) as List;
+    final importedString = utf8.decode(importedData);
+    final notesJson = jsonDecode(importedString) as List;
     final notes = notesJson.map((e) => Note.fromJson(e as Map<String, dynamic>)).toList();
 
     await addAll(notes);

@@ -103,10 +103,10 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get settings_import => 'Import';
+  String get settings_import => 'Importer';
 
   @override
-  String get settings_import_description => 'Importer les notes depuis un fichier';
+  String get settings_import_description => 'Importer les notes depuis un fichier JSON';
 
   @override
   String get settings_import_success => 'Les notes ont bien été importées.';

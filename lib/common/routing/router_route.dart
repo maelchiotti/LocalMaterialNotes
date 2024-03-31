@@ -57,7 +57,7 @@ enum RouterRoute {
     } else if (location == settings.path) {
       return settings;
     } else {
-      return notes;
+      throw Exception('Unexpected route: $location');
     }
   }
 

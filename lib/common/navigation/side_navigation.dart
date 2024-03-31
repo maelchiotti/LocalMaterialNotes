@@ -14,14 +14,14 @@ class SideNavigation extends StatefulWidget {
 }
 
 class _SideNavigationState extends State<SideNavigation> {
-  int index = RouterRoute.currentDrawerIndex;
+  int _index = RouterRoute.currentDrawerIndex;
 
   void _navigate(int newIndex) {
     setState(() {
-      index = newIndex;
+      _index = newIndex;
     });
 
-    context.go(RouterRoute.getRouteFromIndex(index).path);
+    context.go(RouterRoute.getRouteFromIndex(_index).path);
     context.pop();
   }
 
@@ -29,7 +29,7 @@ class _SideNavigationState extends State<SideNavigation> {
   Widget build(BuildContext context) {
     return NavigationDrawer(
       onDestinationSelected: _navigate,
-      selectedIndex: index,
+      selectedIndex: _index,
       children: <Widget>[
         DrawerHeader(
           child: Column(

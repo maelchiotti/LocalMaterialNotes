@@ -17,9 +17,35 @@ import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 import 'package:localmaterialnotes/utils/snack_bar_manager.dart';
 import 'package:localmaterialnotes/utils/theme_manager.dart';
 import 'package:restart_app/restart_app.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Interactions {
+  Future<void> selectLanguage(BuildContext context) async {
+    await showAdaptiveDialog<Locale>(
+      context: context,
+      builder: (context) {
+        return SimpleDialog(
+          clipBehavior: Clip.hardEdge,
+          title: Text(localizations.settings_language),
+          children: AppLocalizations.supportedLocales.map((locale) {
+            return RadioListTile<Locale>(
+              value: locale,
+              groupValue: Localizations.localeOf(context),
+              title: Text(locale.nativeDisplayLanguage.capitalized),
+              selected: Localizations.localeOf(context) == locale,
+              onChanged: (locale) => Navigator.of(context).pop(locale),
+            );
+          }).toList(),
+        );
+      },
+    ).then((locale) async {
+      if (locale == null) return;
+
+      LocaleManager().setLocale(locale);
+      await Restart.restartApp();
+    });
+  }
+
   Future<void> selectTheme(BuildContext context) async {
     await showAdaptiveDialog<ThemeMode>(
       context: context,
@@ -28,23 +54,26 @@ class Interactions {
           clipBehavior: Clip.hardEdge,
           title: Text(localizations.settings_theme),
           children: [
-            ListTile(
-              leading: const Icon(Icons.smartphone),
-              selected: ThemeManager().themeMode == ThemeMode.system,
+            RadioListTile<ThemeMode>(
+              value: ThemeMode.system,
+              groupValue: ThemeManager().themeMode,
               title: Text(localizations.settings_theme_system),
-              onTap: () => Navigator.of(context).pop(ThemeMode.system),
+              selected: ThemeManager().themeMode == ThemeMode.system,
+              onChanged: (locale) => Navigator.of(context).pop(locale),
             ),
-            ListTile(
-              leading: const Icon(Icons.light_mode),
-              selected: ThemeManager().themeMode == ThemeMode.light,
+            RadioListTile<ThemeMode>(
+              value: ThemeMode.light,
+              groupValue: ThemeManager().themeMode,
               title: Text(localizations.settings_theme_light),
-              onTap: () => Navigator.of(context).pop(ThemeMode.light),
+              selected: ThemeManager().themeMode == ThemeMode.light,
+              onChanged: (locale) => Navigator.of(context).pop(locale),
             ),
-            ListTile(
-              leading: const Icon(Icons.dark_mode),
-              selected: ThemeManager().themeMode == ThemeMode.dark,
+            RadioListTile<ThemeMode>(
+              value: ThemeMode.dark,
+              groupValue: ThemeManager().themeMode,
               title: Text(localizations.settings_theme_dark),
-              onTap: () => Navigator.of(context).pop(ThemeMode.dark),
+              selected: ThemeManager().themeMode == ThemeMode.dark,
+              onChanged: (locale) => Navigator.of(context).pop(locale),
             ),
           ],
         );
@@ -66,30 +95,6 @@ class Interactions {
     blackThemingNotifier.value = value;
   }
 
-  Future<void> selectLanguage(BuildContext context) async {
-    await showAdaptiveDialog<Locale>(
-      context: context,
-      builder: (context) {
-        return SimpleDialog(
-          clipBehavior: Clip.hardEdge,
-          title: Text(localizations.settings_language),
-          children: AppLocalizations.supportedLocales.map((locale) {
-            return ListTile(
-              selected: locale == Localizations.localeOf(context),
-              title: Text(locale.nativeDisplayLanguage.capitalized),
-              onTap: () => Navigator.of(context).pop(locale),
-            );
-          }).toList(),
-        );
-      },
-    ).then((locale) async {
-      if (locale == null) return;
-
-      LocaleManager().setLocale(locale);
-      await Restart.restartApp();
-    });
-  }
-
   void toggleSeparator(bool value) {
     PreferencesManager().set<bool>(PreferenceKey.separator.name, value);
   }
@@ -102,10 +107,12 @@ class Interactions {
           clipBehavior: Clip.hardEdge,
           title: Text(localizations.settings_confirmations),
           children: Confirmations.values.map((confirmationsValue) {
-            return ListTile(
+            return RadioListTile<Confirmations>(
+              value: confirmationsValue,
+              groupValue: Confirmations.fromPreferences(),
               title: Text(confirmationsValue.title),
               selected: Confirmations.fromPreferences() == confirmationsValue,
-              onTap: () => Navigator.of(context).pop(confirmationsValue),
+              onChanged: (locale) => Navigator.of(context).pop(locale),
             );
           }).toList(),
         );
@@ -178,14 +185,32 @@ class Interactions {
   }
 
   void openGitHub(_) {
-    launchUrlString('https://github.com/maelchiotti/LocalMaterialNotes');
+    launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'github.com',
+        path: 'maelchiotti/LocalMaterialNotes',
+      ),
+    );
   }
 
   void openLicense(_) {
-    launchUrlString('https://github.com/maelchiotti/LocalMaterialNotes/blob/main/LICENSE');
+    launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'github.com',
+        path: 'maelchiotti/LocalMaterialNotes/blob/main/LICENSE',
+      ),
+    );
   }
 
   void openIssues(_) {
-    launchUrlString('https://github.com/maelchiotti/LocalMaterialNotes/issues');
+    launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'github.com',
+        path: 'maelchiotti/LocalMaterialNotes/issues',
+      ),
+    );
   }
 }
