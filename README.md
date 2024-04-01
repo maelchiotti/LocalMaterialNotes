@@ -68,13 +68,11 @@ See more screenshots [here](assets/screenshots).
 - English: 100%
 - French: 100%
 
-## Alternatives
-
-- [Simplenote](https://simplenote.com) for simple text notes that are synchronized over your devices and available on several platforms. Also provides extra features such as tags, history and collaboration.
-
 ## Credits
 
 - [Material Design Icons](https://github.com/google/material-design-icons) for the [notes](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:notes) icon used for the logo.
+- [Material Files](https://github.com/zhanghai/MaterialFiles) for the general design inspiration, and especially the logo and its color.
+- [Simplenote](https://simplenote.com) for the general layout of the app and its basic features.
 
 ---
 
