@@ -21,10 +21,10 @@ Simple, local, material design notes.
 </div>
 
 <div align="center">
-  <img alt="Screenshot of the notes list" src="assets/screenshots/latest_notes_selection.jpg" width="24%">
-  <img alt="Screenshots of the note editor" src="assets/screenshots/latest_search.jpg" width="24%">
-  <img alt="Screenshot of the bin" src="assets/screenshots/latest_theme_dynamic_dark.jpg" width="24%">
-  <img alt="Screenshot of the settings" src="assets/screenshots/latest_theme_dynamic_light.jpg" width="24%">
+  <img alt="Screenshot of the notes list in selection mode" src="assets/screenshots/latest_notes_selection.jpg" width="24%">
+  <img alt="Screenshots of the search feature" src="assets/screenshots/latest_search.jpg" width="24%">
+  <img alt="Screenshot of the notes list in the dark mode with dynamic theming" src="assets/screenshots/latest_theme_dynamic_dark.jpg" width="24%">
+  <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="assets/screenshots/latest_theme_dynamic_light.jpg" width="24%">
 </div>
 
 ## Features
