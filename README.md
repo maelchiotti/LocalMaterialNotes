@@ -7,6 +7,9 @@
 [![Releases](https://img.shields.io/github/v/release/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/releases)
 [![Issues](https://img.shields.io/github/issues/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/issues)
 
+[<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="256">](https://play.google.com/store/apps/details?id=com.maelchiotti.localmaterialnotes)
+[<img alt="Get it on GitHub" src="https://raw.githubusercontent.com/Kunzisoft/Github-badge/main/get-it-on-github.png" width="256">](https://github.com/maelchiotti/LocalMaterialNotes/releases/latest)
+
 </div>
 
 # Local Material Notes
