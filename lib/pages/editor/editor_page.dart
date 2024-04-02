@@ -67,7 +67,6 @@ class _EditorState extends ConsumerState<EditorPage> {
       child: Column(
         children: [
           TextField(
-            autofocus: widget._autofocus,
             readOnly: widget._readOnly,
             textCapitalization: TextCapitalization.sentences,
             textInputAction: TextInputAction.next,
@@ -83,6 +82,7 @@ class _EditorState extends ConsumerState<EditorPage> {
             child: FleatherField(
               controller: fleatherController,
               focusNode: fleatherFocusNode,
+              autofocus: widget._autofocus,
               readOnly: widget._readOnly,
               expands: true,
               decoration: InputDecoration.collapsed(
