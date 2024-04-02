@@ -67,8 +67,8 @@ class _EditorState extends ConsumerState<EditorPage> {
       child: Column(
         children: [
           TextField(
-            readOnly: widget._readOnly,
             autofocus: widget._autofocus,
+            readOnly: widget._readOnly,
             textCapitalization: TextCapitalization.sentences,
             textInputAction: TextInputAction.next,
             style: Theme.of(context).textTheme.titleLarge,
@@ -80,11 +80,14 @@ class _EditorState extends ConsumerState<EditorPage> {
           ),
           Padding(padding: Paddings.padding8.vertical),
           Expanded(
-            child: FleatherEditor(
+            child: FleatherField(
               controller: fleatherController,
               focusNode: fleatherFocusNode,
               readOnly: widget._readOnly,
               expands: true,
+              decoration: InputDecoration.collapsed(
+                hintText: localizations.hint_note,
+              ),
               onLaunchUrl: _launchUrl,
               spellCheckConfiguration: SpellCheckConfiguration(
                 spellCheckService: DefaultSpellCheckService(),
