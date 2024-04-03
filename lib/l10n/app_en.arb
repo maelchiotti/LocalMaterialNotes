@@ -42,6 +42,7 @@
   "settings_issue_description": "Report a bug by creating an issue on GitHub",
   "action_add_note": "Add a note",
   "hint_title": "Title",
+  "hint_note": "Note",
   "tooltip_fab_add_note": "Add a note",
   "tooltip_fab_empty_bin": "Empty the bin",
   "tooltip_sort": "Sort the notes",

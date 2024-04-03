@@ -142,6 +142,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hint_title => 'Title';
 
   @override
+  String get hint_note => 'Note';
+
+  @override
   String get tooltip_fab_add_note => 'Add a note';
 
   @override

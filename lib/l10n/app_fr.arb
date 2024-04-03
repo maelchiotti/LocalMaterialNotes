@@ -42,6 +42,7 @@
   "action_add_note": "Ajouter une note",
   "settings_licence_description": "AGPL-3.0",
   "hint_title": "Titre",
+  "hint_note": "Note",
   "tooltip_fab_add_note": "Ajouter une note",
   "tooltip_fab_empty_bin": "Vider la corbeille",
   "tooltip_sort": "Trier les notes",

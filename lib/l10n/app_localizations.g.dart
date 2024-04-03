@@ -348,6 +348,12 @@ abstract class AppLocalizations {
   /// **'Title'**
   String get hint_title;
 
+  /// No description provided for @hint_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get hint_note;
+
   /// No description provided for @tooltip_fab_add_note.
   ///
   /// In en, this message translates to:
