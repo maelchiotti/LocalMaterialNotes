@@ -30,8 +30,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get error_error => 'Erreur';
 
   @override
-  String get error_permission =>
-      'Échec lors de la demande de permission pour écrire le fichier.';
+  String get error_permission => 'Échec lors de la demande de permission pour écrire le fichier.';
 
   @override
   String get error_read_file => 'Échec lors de la lecture du fichier.';
@@ -55,15 +54,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_dynamic_theming => 'Thème dynamique';
 
   @override
-  String get settings_dynamic_theming_description =>
-      'Génère des couleurs depuis votre système';
+  String get settings_dynamic_theming_description => 'Génère des couleurs depuis votre système';
 
   @override
   String get settings_black_theming => 'Thème noir';
 
   @override
-  String get settings_black_theming_description =>
-      'Utilise un fond noir pour le thème sombre';
+  String get settings_black_theming_description => 'Utilise un fond noir pour le thème sombre';
 
   @override
   String get settings_language => 'Langue';
@@ -95,8 +92,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Exporter les notes dans un fichier JSON (corbeille incluse) qui peut être réimporté';
 
   @override
-  String get settings_export_markdown_description =>
-      'Exporter les notes dans un fichier Markdown (corbeille incluse)';
+  String get settings_export_markdown_description => 'Exporter les notes dans un fichier Markdown (corbeille incluse)';
 
   @override
   String get settings_export_success => 'Les notes ont bien été exportées.';
@@ -110,8 +106,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_import => 'Importer';
 
   @override
-  String get settings_import_description =>
-      'Importer les notes depuis un fichier JSON';
+  String get settings_import_description => 'Importer les notes depuis un fichier JSON';
 
   @override
   String get settings_import_success => 'Les notes ont bien été importées.';
@@ -128,8 +123,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_github => 'GitHub';
 
   @override
-  String get settings_github_description =>
-      'Jeter un coup d\'œil au code source';
+  String get settings_github_description => 'Jeter un coup d\'œil au code source';
 
   @override
   String get settings_licence => 'License';
@@ -141,8 +135,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_issue => 'Signaler un bug';
 
   @override
-  String get settings_issue_description =>
-      'Signaler un bug en créant une issue sur GitHub';
+  String get settings_issue_description => 'Signaler un bug en créant une issue sur GitHub';
 
   @override
   String get action_add_note => 'Ajouter une note';
@@ -266,8 +259,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get dialog_restore_body_single =>
-      'Voulez-vous vraiment restaurer cette note ?';
+  String get dialog_restore_body_single => 'Voulez-vous vraiment restaurer cette note ?';
 
   @override
   String get dialog_empty_bin => 'Vider la corbeille';
@@ -319,8 +311,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get confirmations_title_none => 'Jamais';
 
   @override
-  String get confirmations_title_irreversible =>
-      'Actions irréversibles uniquement';
+  String get confirmations_title_irreversible => 'Actions irréversibles uniquement';
 
   @override
   String get confirmations_title_all => 'Toujours';
