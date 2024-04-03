@@ -30,24 +30,29 @@ class _NotesPageState extends ConsumerState<NotesPage> {
         final useSeparators =
             PreferencesManager().get<bool>(PreferenceKey.separator) ?? PreferenceKey.separator.defaultValue! as bool;
 
-        return useSeparators
-            ? ListView.separated(
-                padding: Paddings.custom.fab,
-                itemCount: notes.length,
-                itemBuilder: (context, index) {
-                  return NoteTile(notes[index]);
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return Separator.divider1indent8.horizontal;
-                },
-              )
-            : ListView.builder(
-                padding: Paddings.custom.fab,
-                itemCount: notes.length,
-                itemBuilder: (context, index) {
-                  return NoteTile(notes[index]);
-                },
-              );
+        // Wrap with Material to fix the tile background color not updating in real time
+        // when the tile is selected and the view is scrolled
+        // see: https://github.com/flutter/flutter/issues/86584
+        return Material(
+          child: useSeparators
+              ? ListView.separated(
+                  padding: Paddings.custom.fab,
+                  itemCount: notes.length,
+                  itemBuilder: (context, index) {
+                    return NoteTile(notes[index]);
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Separator.divider1indent8.horizontal;
+                  },
+                )
+              : ListView.builder(
+                  padding: Paddings.custom.fab,
+                  itemCount: notes.length,
+                  itemBuilder: (context, index) {
+                    return NoteTile(notes[index]);
+                  },
+                ),
+        );
       },
       error: (error, stackTrace) {
         return const ErrorPlaceholder();
