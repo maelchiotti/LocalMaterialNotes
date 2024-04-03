@@ -39,7 +39,7 @@ class Notes extends _$Notes with BaseProvider {
     editedNote.editedTime = DateTime.now();
 
     try {
-      if (editedNote.title.isEmpty && editedNote.isContentEmpty) {
+      if (editedNote.isEmpty) {
         await databaseManager.delete(editedNote.isarId);
       } else {
         await databaseManager.edit(editedNote);

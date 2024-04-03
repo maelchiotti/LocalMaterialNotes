@@ -123,8 +123,8 @@ class Note extends Equatable {
     return ParchmentDocument.fromJson(jsonDecode(content) as List);
   }
 
-  bool get isContentEmpty {
-    return content == _emptyContent;
+  bool get isEmpty {
+    return title.isEmpty && content == _emptyContent;
   }
 
   bool containsText(String search) {
