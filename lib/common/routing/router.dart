@@ -65,7 +65,11 @@ final router = GoRouter(
           routes: [
             GoRoute(
               path: RouterRoute.editor.path,
-              builder: (context, state) => EditorPage(state.extra as EditorParameters),
+              pageBuilder: (context, state) {
+                return NoTransitionPage(
+                  child: EditorPage(state.extra as EditorParameters),
+                );
+              },
             ),
           ],
         ),
