@@ -48,7 +48,11 @@ dependencies:
 dev_dependencies:
   build_runner: ^2.4.8
   custom_lint: ^0.5.11
-  flutter_launcher_icons: ^0.13.1
+  # TODO: replace when the monochrome feature is released on pub.dev
+  flutter_launcher_icons:
+    git:
+      url: https://github.com/fluttercommunity/flutter_launcher_icons
+      ref: master
   flutter_test:
     sdk: flutter
   isar_generator: ^3.1.0+1
