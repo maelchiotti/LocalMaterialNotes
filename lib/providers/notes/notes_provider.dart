@@ -33,28 +33,17 @@ class Notes extends _$Notes with BaseProvider {
     await get();
   }
 
-  Future<bool> add(Note newNote) async {
-    state = const AsyncLoading();
-
-    try {
-      await databaseManager.add(newNote);
-    } on Exception catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
-      return false;
-    }
-
-    await get();
-
-    return true;
-  }
-
   Future<bool> edit(Note editedNote) async {
     state = const AsyncLoading();
 
     editedNote.editedTime = DateTime.now();
 
     try {
-      await databaseManager.edit(editedNote);
+      if (editedNote.title.isEmpty && editedNote.isContentEmpty) {
+        await databaseManager.delete(editedNote.isarId);
+      } else {
+        await databaseManager.edit(editedNote);
+      }
     } on Exception catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
