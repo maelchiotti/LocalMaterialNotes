@@ -73,11 +73,6 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
   @override
   Widget build(BuildContext context) {
-    Color? backgroundColor;
-    if (widget.note.selected) {
-      backgroundColor = Theme.of(context).colorScheme.surfaceVariant;
-    }
-
     final isTitleEmpty = widget.note.title.isEmpty;
 
     return Dismissible(
@@ -147,7 +142,8 @@ class _NoteTileState extends ConsumerState<NoteTile> {
       confirmDismiss: _dismiss,
       child: ListTile(
         contentPadding: Paddings.padding16.horizontal.add(Paddings.padding8.vertical),
-        tileColor: !widget.searchView ? backgroundColor : null,
+        selected: widget.note.selected,
+        selectedTileColor: Theme.of(context).colorScheme.surfaceVariant,
         title: Row(
           children: [
             Expanded(
