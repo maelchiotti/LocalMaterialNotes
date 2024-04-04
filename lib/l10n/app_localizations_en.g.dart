@@ -126,9 +126,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_issue_description => 'Report a bug by creating an issue on GitHub';
 
   @override
-  String get action_add_note => 'Add a note';
-
-  @override
   String get hint_title => 'Title';
 
   @override

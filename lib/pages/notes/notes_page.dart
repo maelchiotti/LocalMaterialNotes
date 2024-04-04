@@ -9,7 +9,6 @@ import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/separators.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
-import 'package:localmaterialnotes/utils/quick_actions_manager.dart';
 
 class NotesPage extends ConsumerStatefulWidget {
   const NotesPage();
@@ -21,8 +20,6 @@ class NotesPage extends ConsumerStatefulWidget {
 class _NotesPageState extends ConsumerState<NotesPage> {
   @override
   Widget build(BuildContext context) {
-    QuickActionsManager().init(context, ref);
-
     return ref.watch(notesProvider).when(
       data: (notes) {
         if (notes.isEmpty) return EmptyPlaceholder.notes();

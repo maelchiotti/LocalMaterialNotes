@@ -324,12 +324,6 @@ abstract class AppLocalizations {
   /// **'Report a bug by creating an issue on GitHub'**
   String get settings_issue_description;
 
-  /// No description provided for @action_add_note.
-  ///
-  /// In en, this message translates to:
-  /// **'Add a note'**
-  String get action_add_note;
-
   /// No description provided for @hint_title.
   ///
   /// In en, this message translates to:

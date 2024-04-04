@@ -10,6 +10,7 @@ environment:
   sdk: ">=3.3.1 <4.0.0"
 
 dependencies:
+  after_layout: ^1.2.0
   collection: ^1.18.0
   cupertino_icons: ^1.0.6
   device_info_plus: ^10.0.1
