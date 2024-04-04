@@ -8,7 +8,6 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
 
 Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) async {
-  unselectAll(ref);
   exitSelectionMode(ref);
 
   final note = content == null ? Note.empty() : Note.content(content);
@@ -17,11 +16,11 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) asy
 
   if (!context.mounted) return;
 
-  final route = RouterRoute.editor.fullPath!;
+  final editorRoute = RouterRoute.editor.fullPath!;
   final editorParameters = EditorParameters.from({'readonly': false, 'autofocus': true});
 
   // If the editor is already opened with another note, replace the route with the new editor
   RouterRoute.isEditor
-      ? context.pushReplacement(route, extra: editorParameters)
-      : context.push(route, extra: editorParameters);
+      ? context.pushReplacement(editorRoute, extra: editorParameters)
+      : context.push(editorRoute, extra: editorParameters);
 }

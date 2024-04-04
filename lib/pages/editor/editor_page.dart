@@ -29,7 +29,6 @@ class EditorPage extends ConsumerStatefulWidget {
 class _EditorState extends ConsumerState<EditorPage> {
   final titleController = TextEditingController();
   late FleatherController fleatherController;
-  final fleatherFocusNode = FocusNode();
 
   void _synchronizeTitle(Note note, String? newTitle) {
     if (newTitle == null) return;
@@ -81,7 +80,6 @@ class _EditorState extends ConsumerState<EditorPage> {
           Expanded(
             child: FleatherField(
               controller: fleatherController,
-              focusNode: fleatherFocusNode,
               autofocus: widget._autofocus,
               readOnly: widget._readOnly,
               expands: true,

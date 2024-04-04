@@ -98,11 +98,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_export_success => 'Les notes ont bien été exportées.';
 
   @override
-  String settings_export_fail(Object error) {
-    return 'L\'export a échoué : $error.';
-  }
-
-  @override
   String get settings_import => 'Importer';
 
   @override
@@ -110,11 +105,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_import_success => 'Les notes ont bien été importées.';
-
-  @override
-  String settings_import_fail(Object error) {
-    return 'L\'import a échoué : $error.';
-  }
 
   @override
   String get settings_about => 'À propos';
@@ -136,9 +126,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_issue_description => 'Signaler un bug en créant une issue sur GitHub';
-
-  @override
-  String get action_add_note => 'Ajouter une note';
 
   @override
   String get hint_title => 'Titre';

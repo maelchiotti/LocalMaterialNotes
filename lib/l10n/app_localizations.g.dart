@@ -264,12 +264,6 @@ abstract class AppLocalizations {
   /// **'The notes were successfully exported.'**
   String get settings_export_success;
 
-  /// No description provided for @settings_export_fail.
-  ///
-  /// In en, this message translates to:
-  /// **'The export failed: {error}.'**
-  String settings_export_fail(Object error);
-
   /// No description provided for @settings_import.
   ///
   /// In en, this message translates to:
@@ -287,12 +281,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The notes were successfully imported.'**
   String get settings_import_success;
-
-  /// No description provided for @settings_import_fail.
-  ///
-  /// In en, this message translates to:
-  /// **'The import failed: {error}.'**
-  String settings_import_fail(Object error);
 
   /// No description provided for @settings_about.
   ///
@@ -335,12 +323,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Report a bug by creating an issue on GitHub'**
   String get settings_issue_description;
-
-  /// No description provided for @action_add_note.
-  ///
-  /// In en, this message translates to:
-  /// **'Add a note'**
-  String get action_add_note;
 
   /// No description provided for @hint_title.
   ///
