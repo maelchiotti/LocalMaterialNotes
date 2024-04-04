@@ -20,7 +20,7 @@ class QuickActionsManager {
       ShortcutItem(
         type: 'add_note',
         localizedTitle: _actionAddNoteTitle,
-        icon: 'launcher_icon',
+        icon: 'ic_launcher',
       ),
     ]);
   }
