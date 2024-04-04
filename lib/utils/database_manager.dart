@@ -88,14 +88,14 @@ class DatabaseManager {
     });
   }
 
-  Future<void> exportAsJson() async {
+  Future<bool> exportAsJson() async {
     final notes = await getAll();
     final notesAsJson = jsonEncode(notes);
 
-    await _export('application/json', 'json', notesAsJson);
+    return await _export('application/json', 'json', notesAsJson);
   }
 
-  Future<void> exportAsMarkdown() async {
+  Future<bool> exportAsMarkdown() async {
     final notes = await getAll();
     final StringBuffer notesAsMarkdown = StringBuffer('# Material Notes\n\n');
     for (final note in notes) {
@@ -103,13 +103,13 @@ class DatabaseManager {
           .writeln('## ${note.title}${note.contentDisplay.isNotEmpty ? '\n\n' : ''}${note.contentDisplay}\n');
     }
 
-    await _export('text/markdown', 'md', notesAsMarkdown.toString().trim());
+    return await _export('text/markdown', 'md', notesAsMarkdown.toString().trim());
   }
 
-  Future<void> _export(String mimeType, String extension, String notesAsString) async {
+  Future<bool> _export(String mimeType, String extension, String notesAsString) async {
     final exportDirectory = await saf.openDocumentTree();
 
-    if (exportDirectory == null) throw Exception(localizations.error_permission);
+    if (exportDirectory == null) return false;
 
     final timestamp = DateTime.timestamp();
 
@@ -119,15 +119,17 @@ class DatabaseManager {
       displayName: 'materialnotes_export_${timestamp.filename}.$extension',
       bytes: Uint8List.fromList(utf8.encode(notesAsString)),
     );
+
+    return true;
   }
 
-  Future<void> import() async {
+  Future<bool> import() async {
     final importFiles = await saf.openDocument(
       grantWritePermission: false,
       mimeType: 'application/json',
     );
 
-    if (importFiles == null || importFiles.isEmpty) throw Exception(localizations.error_permission);
+    if (importFiles == null || importFiles.isEmpty) return false;
 
     final importedData = await saf.getDocumentContent(importFiles.first);
 
@@ -138,6 +140,8 @@ class DatabaseManager {
     final notes = notesJson.map((e) => Note.fromJson(e as Map<String, dynamic>)).toList();
 
     await addAll(notes);
+
+    return true;
   }
 
   /// Hardcode the welcome note translations here because no context is available when it's used

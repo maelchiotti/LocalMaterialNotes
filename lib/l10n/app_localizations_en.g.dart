@@ -96,11 +96,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_export_success => 'The notes were successfully exported.';
 
   @override
-  String settings_export_fail(Object error) {
-    return 'The export failed: $error.';
-  }
-
-  @override
   String get settings_import => 'Import';
 
   @override
@@ -108,11 +103,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_import_success => 'The notes were successfully imported.';
-
-  @override
-  String settings_import_fail(Object error) {
-    return 'The import failed: $error.';
-  }
 
   @override
   String get settings_about => 'About';
