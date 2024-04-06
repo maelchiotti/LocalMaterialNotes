@@ -26,7 +26,7 @@
   "settings_export_json": "JSON olarak dışa aktar",
   "settings_export_markdown": "Markdown olarak dışa aktar",
   "settings_export_json_description": "Notları daha sonra kurtarabilmek için bir JSON dosyasına (çöp kutusu dahil) aktarın",
-  "settings_export_markdown_description": ""Notları daha sonra kurtarabilmek için bir markdown dosyasına (çöp kutusu dahil) aktarın",
+  "settings_export_markdown_description": "Notları daha sonra kurtarabilmek için bir markdown dosyasına (çöp kutusu dahil) aktarın",
   "settings_export_success": "Dışa aktarma başarılı",
   "settings_export_fail": "Dışa aktarma başarısız: {hata}.",
   "settings_import": "İçe aktar",
