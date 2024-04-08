@@ -54,13 +54,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_dynamic_theming => 'Dynamic theming';
 
   @override
-  String get settings_dynamic_theming_description => 'Generate colors from your system';
+  String get settings_dynamic_theming_description =>
+      'Generate colors from your system';
 
   @override
   String get settings_black_theming => 'Black theming';
 
   @override
-  String get settings_black_theming_description => 'Use a black background in dark mode';
+  String get settings_black_theming_description =>
+      'Use a black background in dark mode';
 
   @override
   String get settings_language => 'Language';
@@ -69,7 +71,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_separator => 'Show the separators';
 
   @override
-  String get settings_separator_description => 'Show a separator between notes to differentiate them easily';
+  String get settings_separator_description =>
+      'Show a separator between notes to differentiate them easily';
 
   @override
   String get settings_behavior => 'Behavior';
@@ -87,10 +90,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_export_markdown => 'Export as Markdown';
 
   @override
-  String get settings_export_json_description => 'Export notes to a JSON file (bin included) that can be imported back';
+  String get settings_export_json_description =>
+      'Export notes to a JSON file (bin included) that can be imported back';
 
   @override
-  String get settings_export_markdown_description => 'Export notes to a Markdown file (bin included)';
+  String get settings_export_markdown_description =>
+      'Export notes to a Markdown file (bin included)';
 
   @override
   String get settings_export_success => 'The notes were successfully exported.';
@@ -123,7 +128,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_issue => 'Report a bug';
 
   @override
-  String get settings_issue_description => 'Report a bug by creating an issue on GitHub';
+  String get settings_issue_description =>
+      'Report a bug by creating an issue on GitHub';
 
   @override
   String get hint_title => 'Title';
@@ -199,7 +205,8 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get dialog_delete_body_single => 'Do you really want to delete this note? You can restore it from the bin.';
+  String get dialog_delete_body_single =>
+      'Do you really want to delete this note? You can restore it from the bin.';
 
   @override
   String get dialog_permanently_delete => 'Delete permanently';
@@ -243,7 +250,8 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get dialog_restore_body_single => 'Do you really want to restore this note?';
+  String get dialog_restore_body_single =>
+      'Do you really want to restore this note?';
 
   @override
   String get dialog_empty_bin => 'Empty the bin';
