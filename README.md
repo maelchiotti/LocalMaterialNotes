@@ -68,8 +68,9 @@ See more screenshots [here](assets/screenshots).
 
 ## Supported languages
 
-- English: 100%
-- French: 100%
+- English
+- French
+- Turkish
 
 ## Credits
 
