@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'dart:typed_data';
-import 'dart:ui';
 
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
+import 'package:localmaterialnotes/l10n/harcoded_localizations.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
-import 'package:localmaterialnotes/utils/locale_manager.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_storage/shared_storage.dart' as saf;
@@ -34,7 +33,7 @@ class DatabaseManager {
     );
 
     if (await IsFirstRun.isFirstCall()) {
-      await add(_welcomeNote);
+      await add(welcomeNote);
     }
   }
 
@@ -148,33 +147,5 @@ class DatabaseManager {
     await addAll(notes);
 
     return true;
-  }
-
-  /// Hardcode the welcome note translations here because no context is available when it's used
-  Note get _welcomeNote {
-    final locale = LocaleManager().locale;
-
-    final String title;
-    final String content;
-
-    if (locale == const Locale('en')) {
-      title = 'Welcome to Material Notes!';
-      content = 'Simple, local, material design notes';
-    } else if (locale == const Locale('fr')) {
-      title = 'Bienvenue dans Material Notes !';
-      content = 'Notes simples, locales, en material design';
-    } else {
-      throw Exception('Missing welcome note for locale: $locale');
-    }
-
-    return Note(
-      id: uuid.v4(),
-      deleted: false,
-      pinned: true,
-      createdTime: DateTime.now(),
-      editedTime: DateTime.now(),
-      title: title,
-      content: '[{"insert":"$content\\n\\n"}]',
-    );
   }
 }
