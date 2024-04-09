@@ -28,7 +28,7 @@ class EditorPage extends ConsumerStatefulWidget {
 
 class _EditorState extends ConsumerState<EditorPage> {
   final titleController = TextEditingController();
-  late FleatherController fleatherController;
+  FleatherController? fleatherController;
 
   void _synchronizeTitle(Note note, String? newTitle) {
     if (newTitle == null) {
@@ -39,7 +39,11 @@ class _EditorState extends ConsumerState<EditorPage> {
   }
 
   void _synchronizeContent(Note note) {
-    note.content = jsonEncode(fleatherController.document.toDelta().toJson());
+    if (fleatherController == null) {
+      return;
+    }
+
+    note.content = jsonEncode(fleatherController!.document.toDelta().toJson());
     ref.read(notesProvider.notifier).edit(note);
   }
 
@@ -60,12 +64,15 @@ class _EditorState extends ConsumerState<EditorPage> {
     }
 
     titleController.text = note.title;
-    fleatherController = FleatherController(document: note.document);
-    fleatherController.addListener(() => _synchronizeContent(note));
 
-    Future(() {
-      ref.read(editorControllerProvider.notifier).set(fleatherController);
-    });
+    if (fleatherController == null) {
+      fleatherController = FleatherController(document: note.document);
+      fleatherController!.addListener(() => _synchronizeContent(note));
+
+      Future(() {
+        ref.read(editorControllerProvider.notifier).set(fleatherController!);
+      });
+    }
 
     return Padding(
       padding: Paddings.custom.pageButBottom,
@@ -85,7 +92,7 @@ class _EditorState extends ConsumerState<EditorPage> {
           Padding(padding: Paddings.padding8.vertical),
           Expanded(
             child: FleatherField(
-              controller: fleatherController,
+              controller: fleatherController!,
               autofocus: widget._autofocus,
               readOnly: widget._readOnly,
               expands: true,
