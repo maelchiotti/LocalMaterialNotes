@@ -28,7 +28,9 @@ PreferredSizeWidget? _getAppBar(BuildContext context) {
 }
 
 Widget? _getDrawer() {
-  if (RouterRoute.currentRoute.drawerIndex == null) return null;
+  if (RouterRoute.currentRoute.drawerIndex == null) {
+    return null;
+  }
 
   return const SideNavigation();
 }

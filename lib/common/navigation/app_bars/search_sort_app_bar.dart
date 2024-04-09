@@ -27,7 +27,9 @@ class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
   bool sortAscending = SortMethod.ascendingFromPreferences;
 
   List<NoteTile> _filterNotes(String? search, List<Note> notes) {
-    if (search == null || search.isEmpty) return [];
+    if (search == null || search.isEmpty) {
+      return [];
+    }
 
     return notes.where((note) {
       return note.containsText(search);
@@ -117,7 +119,9 @@ class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
         ),
         ref.watch(provider).when(
           data: (notes) {
-            if (notes.isEmpty) return searchButtonPlaceholder;
+            if (notes.isEmpty) {
+              return searchButtonPlaceholder;
+            }
 
             return SearchAnchor(
               viewHintText: localizations.tooltip_search,

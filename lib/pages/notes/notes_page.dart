@@ -22,7 +22,9 @@ class _NotesPageState extends ConsumerState<NotesPage> {
   Widget build(BuildContext context) {
     return ref.watch(notesProvider).when(
       data: (notes) {
-        if (notes.isEmpty) return EmptyPlaceholder.notes();
+        if (notes.isEmpty) {
+          return EmptyPlaceholder.notes();
+        }
 
         final useSeparators =
             PreferencesManager().get<bool>(PreferenceKey.separator) ?? PreferenceKey.separator.defaultValue! as bool;

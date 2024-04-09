@@ -39,7 +39,9 @@ class Interactions {
         );
       },
     ).then((locale) async {
-      if (locale == null) return;
+      if (locale == null) {
+        return;
+      }
 
       LocaleManager().setLocale(locale);
       await Restart.restartApp();
@@ -79,7 +81,9 @@ class Interactions {
         );
       },
     ).then((themeMode) {
-      if (themeMode == null) return;
+      if (themeMode == null) {
+        return;
+      }
 
       ThemeManager().setThemeMode(themeMode);
     });
@@ -118,7 +122,9 @@ class Interactions {
         );
       },
     ).then((confirmationsValue) {
-      if (confirmationsValue == null) return;
+      if (confirmationsValue == null) {
+        return;
+      }
 
       PreferencesManager().set<String>(PreferenceKey.confirmations.name, confirmationsValue.name);
     });

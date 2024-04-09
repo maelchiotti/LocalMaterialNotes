@@ -22,7 +22,9 @@ class _BinPageState extends ConsumerState<BinPage> {
   Widget build(BuildContext context) {
     return ref.watch(binProvider).when(
       data: (notes) {
-        if (notes.isEmpty) return EmptyPlaceholder.bin();
+        if (notes.isEmpty) {
+          return EmptyPlaceholder.bin();
+        }
 
         final useSeparators =
             PreferencesManager().get<bool>(PreferenceKey.separator) ?? PreferenceKey.separator.defaultValue! as bool;

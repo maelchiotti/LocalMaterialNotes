@@ -14,7 +14,9 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) asy
 
   ref.read(currentNoteProvider.notifier).set(note);
 
-  if (!context.mounted) return;
+  if (!context.mounted) {
+    return;
+  }
 
   final editorRoute = RouterRoute.editor.fullPath!;
   final editorParameters = EditorParameters.from({'readonly': false, 'autofocus': true});

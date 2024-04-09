@@ -10,7 +10,9 @@ import 'package:localmaterialnotes/providers/selection_mode/selection_mode_provi
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 
 Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
-  if (note == null) return false;
+  if (note == null) {
+    return false;
+  }
 
   if (await showConfirmationDialog(
     context,
@@ -47,7 +49,9 @@ Future<void> deleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) 
 }
 
 Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? note) async {
-  if (note == null) return false;
+  if (note == null) {
+    return false;
+  }
 
   if (await showConfirmationDialog(
     context,
