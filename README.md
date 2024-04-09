@@ -72,7 +72,7 @@ See more screenshots [here](assets/screenshots).
 - French
 - Turkish
 
-To improve or add a language, please see [CONTRIBUTING.md](CONTRIBUTING.md).
+To improve or add support for a language, please see [CONTRIBUTING.md](CONTRIBUTING.md#localization).
 
 ## Credits
 

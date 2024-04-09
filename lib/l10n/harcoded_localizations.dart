@@ -10,7 +10,7 @@ import 'package:localmaterialnotes/utils/locale_manager.dart';
 /// App name.
 const _appName = 'Material Notes';
 
-/// List of supported localizations.
+/// All supported localizations.
 enum SupportedLocalizations {
   english(Locale('en')),
   french(Locale('fr')),
