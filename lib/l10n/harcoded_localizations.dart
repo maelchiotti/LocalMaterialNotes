@@ -28,9 +28,11 @@ String get actionAddNoteTitle {
 
   final locale = LocaleManager().locale;
 
+  print(locale);
+
   final String title;
 
-  if (locale == SupportedLocalizations.french.locale) {
+  if (locale == SupportedLocalizations.english.locale) {
     title = englishDefault;
   } else if (locale == SupportedLocalizations.french.locale) {
     title = 'Ajouter une note';
@@ -40,6 +42,8 @@ String get actionAddNoteTitle {
     log('Missing add note quick action string for locale: $locale');
     title = englishDefault;
   }
+
+  print(title);
 
   return title;
 }
@@ -54,7 +58,7 @@ Note get welcomeNote {
   final String title;
   final String content;
 
-  if (locale == SupportedLocalizations.french.locale) {
+  if (locale == SupportedLocalizations.english.locale) {
     title = englishDefaultTitle;
     content = englishDefaultContent;
   } else if (locale == SupportedLocalizations.french.locale) {
