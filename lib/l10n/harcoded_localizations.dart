@@ -28,8 +28,6 @@ String get actionAddNoteTitle {
 
   final locale = LocaleManager().locale;
 
-  print(locale);
-
   final String title;
 
   if (locale == SupportedLocalizations.english.locale) {
@@ -42,8 +40,6 @@ String get actionAddNoteTitle {
     log('Missing add note quick action string for locale: $locale');
     title = englishDefault;
   }
-
-  print(title);
 
   return title;
 }
