@@ -31,7 +31,9 @@ class _EditorState extends ConsumerState<EditorPage> {
   late FleatherController fleatherController;
 
   void _synchronizeTitle(Note note, String? newTitle) {
-    if (newTitle == null) return;
+    if (newTitle == null) {
+      return;
+    }
 
     ref.read(notesProvider.notifier).edit(note..title = newTitle);
   }
@@ -42,7 +44,9 @@ class _EditorState extends ConsumerState<EditorPage> {
   }
 
   void _launchUrl(String? url) {
-    if (url == null) return;
+    if (url == null) {
+      return;
+    }
 
     launchUrlString(url);
   }
@@ -51,7 +55,9 @@ class _EditorState extends ConsumerState<EditorPage> {
   Widget build(BuildContext context) {
     final note = ref.watch(currentNoteProvider);
 
-    if (note == null) return const LoadingPlaceholder();
+    if (note == null) {
+      return const LoadingPlaceholder();
+    }
 
     titleController.text = note.title;
     fleatherController = FleatherController(document: note.document);

@@ -8,7 +8,9 @@ import 'package:localmaterialnotes/providers/current_note/current_note_provider.
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 
 Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async {
-  if (note == null) return false;
+  if (note == null) {
+    return false;
+  }
 
   if (await showConfirmationDialog(
     context,

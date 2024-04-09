@@ -12,7 +12,9 @@ class AboutSheet extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final note = ref.watch(currentNoteProvider);
 
-    if (note == null) return const ErrorPlaceholder();
+    if (note == null) {
+      return const ErrorPlaceholder();
+    }
 
     return ListView(
       shrinkWrap: true,

@@ -21,7 +21,9 @@ class EmptyPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (icon == null || text == null) return Container();
+    if (icon == null || text == null) {
+      return Container();
+    }
 
     return Center(
       child: Padding(

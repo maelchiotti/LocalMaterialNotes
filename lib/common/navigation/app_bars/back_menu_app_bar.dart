@@ -25,7 +25,9 @@ class _BackAppBarState extends ConsumerState<BackMenuAppBar> {
   Future<void> _onMenuOptionSelected(MenuOption menuOption) async {
     final note = ref.read(currentNoteProvider);
 
-    if (note == null) return;
+    if (note == null) {
+      return;
+    }
 
     switch (menuOption) {
       case MenuOption.togglePin:
@@ -53,7 +55,9 @@ class _BackAppBarState extends ConsumerState<BackMenuAppBar> {
   void _toggleChecklist() {
     final editorController = ref.read(editorControllerProvider);
 
-    if (editorController == null) return;
+    if (editorController == null) {
+      return;
+    }
 
     final isToggled = editorController.getSelectionStyle().containsSame(ParchmentAttribute.block.checkList);
     editorController.formatSelection(

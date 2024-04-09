@@ -109,7 +109,9 @@ class DatabaseManager {
   Future<bool> _export(String mimeType, String extension, String notesAsString) async {
     final exportDirectory = await saf.openDocumentTree();
 
-    if (exportDirectory == null) return false;
+    if (exportDirectory == null) {
+      return false;
+    }
 
     final timestamp = DateTime.timestamp();
 
@@ -129,11 +131,15 @@ class DatabaseManager {
       mimeType: 'application/json',
     );
 
-    if (importFiles == null || importFiles.isEmpty) return false;
+    if (importFiles == null || importFiles.isEmpty) {
+      return false;
+    }
 
     final importedData = await saf.getDocumentContent(importFiles.first);
 
-    if (importedData == null) throw Exception(localizations.error_read_file);
+    if (importedData == null) {
+      throw Exception(localizations.error_read_file);
+    }
 
     final importedString = utf8.decode(importedData);
     final notesJson = jsonDecode(importedString) as List;
