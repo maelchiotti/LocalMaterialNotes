@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/actions/add.dart';
-import 'package:localmaterialnotes/utils/locale_manager.dart';
+import 'package:localmaterialnotes/l10n/hardcoded_localizations.dart';
 import 'package:quick_actions/quick_actions.dart';
 
 class QuickActionsManager {
@@ -19,26 +19,9 @@ class QuickActionsManager {
     quickActions.setShortcutItems([
       ShortcutItem(
         type: 'add_note',
-        localizedTitle: _actionAddNoteTitle,
+        localizedTitle: actionAddNoteTitle,
         icon: 'ic_launcher',
       ),
     ]);
-  }
-
-  /// Hardcode the action title translations here because no context is available when it's used
-  String get _actionAddNoteTitle {
-    final locale = LocaleManager().locale;
-
-    final String title;
-
-    if (locale == const Locale('en')) {
-      title = 'Add a note';
-    } else if (locale == const Locale('fr')) {
-      title = 'Ajouter une note';
-    } else {
-      throw Exception('Missing title of add note action for locale: $locale');
-    }
-
-    return title;
   }
 }

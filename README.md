@@ -68,14 +68,25 @@ See more screenshots [here](assets/screenshots).
 
 ## Supported languages
 
-- English: 100%
-- French: 100%
+- English
+- French
+- Turkish
+
+To improve or add support for a language, please see [CONTRIBUTING.md](CONTRIBUTING.md#localization).
 
 ## Credits
 
 - [Material Design Icons](https://github.com/google/material-design-icons) for the [notes](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:notes) icon used for the logo.
 - [Material Files](https://github.com/zhanghai/MaterialFiles) for the general design inspiration, and especially the logo and its color.
 - [Simplenote](https://simplenote.com) for the general layout of the app and its basic features.
+
+### Localization
+
+- Turkish: [xe1st](https://github.com/xe1st).
+
+## Contributing
+
+Please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 

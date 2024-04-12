@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_web_plugins/url_strategy.dart'; // ignore: depend_on_referenced_packages
 import 'package:localmaterialnotes/app.dart';
 import 'package:localmaterialnotes/utils/database_manager.dart';
 import 'package:localmaterialnotes/utils/info_manager.dart';
@@ -25,8 +24,6 @@ Future<void> main() async {
   await InfoManager().init();
   await ThemeManager().init();
   await DatabaseManager().init();
-
-  usePathUrlStrategy();
 
   FlutterNativeSplash.remove();
 
