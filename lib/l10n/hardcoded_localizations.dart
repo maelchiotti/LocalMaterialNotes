@@ -61,7 +61,7 @@ Note get welcomeNote {
     title = 'Bienvenue dans $_appName !';
     content = 'Notes simples, locales, en material design';
   } else if (locale == SupportedLocalizations.turkish.locale) {
-    title = '';
+    title = "$_appName'a hoşgeldin!";
     content = 'Basit, çevrimdışı, materyal tasarımlı notlar';
   } else {
     log('Missing welcome note strings for locale: $locale');

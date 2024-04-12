@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
-import 'package:localmaterialnotes/l10n/harcoded_localizations.dart';
+import 'package:localmaterialnotes/l10n/hardcoded_localizations.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
