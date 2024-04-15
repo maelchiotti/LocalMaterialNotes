@@ -330,5 +330,5 @@ class AppLocalizationsTr extends AppLocalizations {
   String get about_characters => 'Karakter';
 
   @override
-  String get time_at => '';
+  String get time_at => 'saat';
 }
