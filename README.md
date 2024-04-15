@@ -7,6 +7,9 @@
 [![Releases](https://img.shields.io/github/v/release/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/releases)
 [![Issues](https://img.shields.io/github/issues/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/issues)
 
+[<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="256">](https://play.google.com/store/apps/details?id=com.maelchiotti.localmaterialnotes)
+[<img alt="Get it on GitHub" src="https://raw.githubusercontent.com/Kunzisoft/Github-badge/main/get-it-on-github.png" width="256">](https://github.com/maelchiotti/LocalMaterialNotes/releases/latest)
+
 </div>
 
 # Local Material Notes
@@ -21,10 +24,10 @@ Simple, local, material design notes.
 </div>
 
 <div align="center">
-  <img alt="Screenshot of the notes list" src="assets/screenshots/latest_notes_selection.jpg" width="24%">
-  <img alt="Screenshots of the note editor" src="assets/screenshots/latest_search.jpg" width="24%">
-  <img alt="Screenshot of the bin" src="assets/screenshots/latest_theme_dynamic_dark.jpg" width="24%">
-  <img alt="Screenshot of the settings" src="assets/screenshots/latest_theme_dynamic_light.jpg" width="24%">
+  <img alt="Screenshot of the notes list in selection mode" src="assets/screenshots/latest_notes_selection.jpg" width="24%">
+  <img alt="Screenshots of the search feature" src="assets/screenshots/latest_search.jpg" width="24%">
+  <img alt="Screenshot of the notes list in the dark mode with dynamic theming" src="assets/screenshots/latest_theme_dynamic_dark.jpg" width="24%">
+  <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="assets/screenshots/latest_theme_dynamic_light.jpg" width="24%">
 </div>
 
 ## Features
@@ -65,16 +68,25 @@ See more screenshots [here](assets/screenshots).
 
 ## Supported languages
 
-- English: 100%
-- French: 100%
+- English
+- French
+- Turkish
 
-## Alternatives
-
-- [Simplenote](https://simplenote.com) for simple text notes that are synchronized over your devices and available on several platforms. Also provides extra features such as tags, history and collaboration.
+To improve or add support for a language, please see [CONTRIBUTING.md](CONTRIBUTING.md#localization).
 
 ## Credits
 
 - [Material Design Icons](https://github.com/google/material-design-icons) for the [notes](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:notes) icon used for the logo.
+- [Material Files](https://github.com/zhanghai/MaterialFiles) for the general design inspiration, and especially the logo and its color.
+- [Simplenote](https://simplenote.com) for the general layout of the app and its basic features.
+
+### Localization
+
+- Turkish: [xe1st](https://github.com/xe1st).
+
+## Contributing
+
+Please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 

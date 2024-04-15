@@ -32,7 +32,9 @@ enum RouterRoute {
   static int get currentDrawerIndex {
     final drawerIndex = currentRoute.drawerIndex;
 
-    if (drawerIndex == null) throw Exception('No current drawer index');
+    if (drawerIndex == null) {
+      throw Exception('No current drawer index');
+    }
 
     return drawerIndex;
   }
@@ -40,7 +42,9 @@ enum RouterRoute {
   static RouterRoute getRouteFromIndex(int index) {
     final route = values.firstWhereOrNull((route) => route.drawerIndex == index);
 
-    if (route == null) throw Exception('No route for index: $index');
+    if (route == null) {
+      throw Exception('No route for index: $index');
+    }
 
     return route;
   }

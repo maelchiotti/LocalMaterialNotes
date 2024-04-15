@@ -28,22 +28,29 @@ class EditorPage extends ConsumerStatefulWidget {
 
 class _EditorState extends ConsumerState<EditorPage> {
   final titleController = TextEditingController();
-  late FleatherController fleatherController;
-  final fleatherFocusNode = FocusNode();
+  FleatherController? fleatherController;
 
   void _synchronizeTitle(Note note, String? newTitle) {
-    if (newTitle == null) return;
+    if (newTitle == null) {
+      return;
+    }
 
     ref.read(notesProvider.notifier).edit(note..title = newTitle);
   }
 
   void _synchronizeContent(Note note) {
-    note.content = jsonEncode(fleatherController.document.toDelta().toJson());
+    if (fleatherController == null) {
+      return;
+    }
+
+    note.content = jsonEncode(fleatherController!.document.toDelta().toJson());
     ref.read(notesProvider.notifier).edit(note);
   }
 
   void _launchUrl(String? url) {
-    if (url == null) return;
+    if (url == null) {
+      return;
+    }
 
     launchUrlString(url);
   }
@@ -52,15 +59,20 @@ class _EditorState extends ConsumerState<EditorPage> {
   Widget build(BuildContext context) {
     final note = ref.watch(currentNoteProvider);
 
-    if (note == null) return const LoadingPlaceholder();
+    if (note == null) {
+      return const LoadingPlaceholder();
+    }
 
     titleController.text = note.title;
-    fleatherController = FleatherController(document: note.document);
-    fleatherController.addListener(() => _synchronizeContent(note));
 
-    Future(() {
-      ref.read(editorControllerProvider.notifier).set(fleatherController);
-    });
+    if (fleatherController == null) {
+      fleatherController = FleatherController(document: note.document);
+      fleatherController!.addListener(() => _synchronizeContent(note));
+
+      Future(() {
+        ref.read(editorControllerProvider.notifier).set(fleatherController!);
+      });
+    }
 
     return Padding(
       padding: Paddings.custom.pageButBottom,
@@ -68,7 +80,6 @@ class _EditorState extends ConsumerState<EditorPage> {
         children: [
           TextField(
             readOnly: widget._readOnly,
-            autofocus: widget._autofocus,
             textCapitalization: TextCapitalization.sentences,
             textInputAction: TextInputAction.next,
             style: Theme.of(context).textTheme.titleLarge,
@@ -80,11 +91,14 @@ class _EditorState extends ConsumerState<EditorPage> {
           ),
           Padding(padding: Paddings.padding8.vertical),
           Expanded(
-            child: FleatherEditor(
-              controller: fleatherController,
-              focusNode: fleatherFocusNode,
+            child: FleatherField(
+              controller: fleatherController!,
+              autofocus: widget._autofocus,
               readOnly: widget._readOnly,
               expands: true,
+              decoration: InputDecoration.collapsed(
+                hintText: localizations.hint_note,
+              ),
               onLaunchUrl: _launchUrl,
               spellCheckConfiguration: SpellCheckConfiguration(
                 spellCheckService: DefaultSpellCheckService(),

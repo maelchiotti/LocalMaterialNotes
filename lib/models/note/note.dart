@@ -13,6 +13,8 @@ part 'note.g.dart';
 @JsonSerializable()
 @Collection(inheritance: false)
 class Note extends Equatable {
+  static const String _emptyContent = '[{"insert":"\\n"}]';
+
   @JsonKey(includeFromJson: false, includeToJson: false)
   String? id;
   @Index()
@@ -44,7 +46,7 @@ class Note extends Equatable {
         createdTime: DateTime.now(),
         editedTime: DateTime.now(),
         title: '',
-        content: '[{"insert":"\\n"}]',
+        content: _emptyContent,
       );
 
   factory Note.content(String content) => Note(
@@ -119,6 +121,10 @@ class Note extends Equatable {
   @ignore
   ParchmentDocument get document {
     return ParchmentDocument.fromJson(jsonDecode(content) as List);
+  }
+
+  bool get isEmpty {
+    return title.isEmpty && content == _emptyContent;
   }
 
   bool containsText(String search) {

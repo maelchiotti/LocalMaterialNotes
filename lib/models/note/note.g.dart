@@ -42,13 +42,18 @@ const NoteSchema = CollectionSchema(
       name: r'id',
       type: IsarType.string,
     ),
-    r'pinned': PropertySchema(
+    r'isEmpty': PropertySchema(
       id: 5,
+      name: r'isEmpty',
+      type: IsarType.bool,
+    ),
+    r'pinned': PropertySchema(
+      id: 6,
       name: r'pinned',
       type: IsarType.bool,
     ),
     r'title': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'title',
       type: IsarType.string,
     )
@@ -122,8 +127,9 @@ void _noteSerialize(
   writer.writeBool(offsets[2], object.deleted);
   writer.writeDateTime(offsets[3], object.editedTime);
   writer.writeString(offsets[4], object.id);
-  writer.writeBool(offsets[5], object.pinned);
-  writer.writeString(offsets[6], object.title);
+  writer.writeBool(offsets[5], object.isEmpty);
+  writer.writeBool(offsets[6], object.pinned);
+  writer.writeString(offsets[7], object.title);
 }
 
 Note _noteDeserialize(
@@ -138,8 +144,8 @@ Note _noteDeserialize(
     deleted: reader.readBool(offsets[2]),
     editedTime: reader.readDateTime(offsets[3]),
     id: reader.readStringOrNull(offsets[4]),
-    pinned: reader.readBool(offsets[5]),
-    title: reader.readString(offsets[6]),
+    pinned: reader.readBool(offsets[6]),
+    title: reader.readString(offsets[7]),
   );
   return object;
 }
@@ -164,6 +170,8 @@ P _noteDeserializeProp<P>(
     case 5:
       return (reader.readBool(offset)) as P;
     case 6:
+      return (reader.readBool(offset)) as P;
+    case 7:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -737,6 +745,15 @@ extension NoteQueryFilter on QueryBuilder<Note, Note, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Note, Note, QAfterFilterCondition> isEmptyEqualTo(bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'isEmpty',
+        value: value,
+      ));
+    });
+  }
+
   QueryBuilder<Note, Note, QAfterFilterCondition> isarIdEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -990,6 +1007,18 @@ extension NoteQuerySortBy on QueryBuilder<Note, Note, QSortBy> {
     });
   }
 
+  QueryBuilder<Note, Note, QAfterSortBy> sortByIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isEmpty', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Note, Note, QAfterSortBy> sortByIsEmptyDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isEmpty', Sort.desc);
+    });
+  }
+
   QueryBuilder<Note, Note, QAfterSortBy> sortByPinned() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'pinned', Sort.asc);
@@ -1076,6 +1105,18 @@ extension NoteQuerySortThenBy on QueryBuilder<Note, Note, QSortThenBy> {
     });
   }
 
+  QueryBuilder<Note, Note, QAfterSortBy> thenByIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isEmpty', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Note, Note, QAfterSortBy> thenByIsEmptyDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isEmpty', Sort.desc);
+    });
+  }
+
   QueryBuilder<Note, Note, QAfterSortBy> thenByIsarId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isarId', Sort.asc);
@@ -1144,6 +1185,12 @@ extension NoteQueryWhereDistinct on QueryBuilder<Note, Note, QDistinct> {
     });
   }
 
+  QueryBuilder<Note, Note, QDistinct> distinctByIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'isEmpty');
+    });
+  }
+
   QueryBuilder<Note, Note, QDistinct> distinctByPinned() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'pinned');
@@ -1191,6 +1238,12 @@ extension NoteQueryProperty on QueryBuilder<Note, Note, QQueryProperty> {
   QueryBuilder<Note, String?, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
+    });
+  }
+
+  QueryBuilder<Note, bool, QQueryOperations> isEmptyProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'isEmpty');
     });
   }
 

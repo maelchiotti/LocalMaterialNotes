@@ -11,6 +11,8 @@ enum Paddings {
   padding64(64),
   ;
 
+  double get bottomSystemUiPadding => MediaQuery.of(navigatorKey.currentContext!).padding.bottom;
+
   EdgeInsets get zero => EdgeInsets.zero;
 
   EdgeInsets get all => EdgeInsets.all(_padding);
@@ -27,9 +29,9 @@ enum Paddings {
 
   EdgeInsets get bottom => EdgeInsets.only(bottom: _padding);
 
-  EdgeInsets get bottomSystemUi => EdgeInsets.only(bottom: MediaQuery.of(navigatorKey.currentContext!).padding.bottom);
+  EdgeInsets get bottomSystemUi => EdgeInsets.only(bottom: bottomSystemUiPadding);
 
-  EdgeInsets get fab => const EdgeInsets.only(bottom: kFloatingActionButtonMargin + 64);
+  EdgeInsets get fab => EdgeInsets.only(bottom: bottomSystemUiPadding + kFloatingActionButtonMargin + 64);
 
   EdgeInsets get page => const EdgeInsets.all(16);
 

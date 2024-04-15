@@ -39,7 +39,9 @@ class Interactions {
         );
       },
     ).then((locale) async {
-      if (locale == null) return;
+      if (locale == null) {
+        return;
+      }
 
       LocaleManager().setLocale(locale);
       await Restart.restartApp();
@@ -79,7 +81,9 @@ class Interactions {
         );
       },
     ).then((themeMode) {
-      if (themeMode == null) return;
+      if (themeMode == null) {
+        return;
+      }
 
       ThemeManager().setThemeMode(themeMode);
     });
@@ -118,7 +122,9 @@ class Interactions {
         );
       },
     ).then((confirmationsValue) {
-      if (confirmationsValue == null) return;
+      if (confirmationsValue == null) {
+        return;
+      }
 
       PreferencesManager().set<String>(PreferenceKey.confirmations.name, confirmationsValue.name);
     });
@@ -126,38 +132,38 @@ class Interactions {
 
   Future<void> backupAsJson(BuildContext context) async {
     try {
-      await DatabaseManager().exportAsJson();
+      if (await DatabaseManager().exportAsJson()) {
+        SnackBarManager.info(localizations.settings_export_success).show();
+      }
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
-      SnackBarManager.info(localizations.settings_export_fail(exception.toString())).show();
-      return;
-    }
 
-    SnackBarManager.info(localizations.settings_export_success).show();
+      SnackBarManager.info(exception.toString()).show();
+    }
   }
 
   Future<void> backupAsMarkdown(BuildContext context) async {
     try {
-      await DatabaseManager().exportAsMarkdown();
+      if (await DatabaseManager().exportAsMarkdown()) {
+        SnackBarManager.info(localizations.settings_export_success).show();
+      }
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
-      SnackBarManager.info(localizations.settings_export_fail(exception.toString())).show();
-      return;
-    }
 
-    SnackBarManager.info(localizations.settings_export_success).show();
+      SnackBarManager.info(exception.toString()).show();
+    }
   }
 
   Future<void> restore(BuildContext context) async {
     try {
-      await DatabaseManager().import();
+      if (await DatabaseManager().import()) {
+        SnackBarManager.info(localizations.settings_import_success).show();
+      }
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
-      SnackBarManager.info(localizations.settings_import_fail(exception.toString())).show();
-      return;
-    }
 
-    SnackBarManager.info(localizations.settings_import_success).show();
+      SnackBarManager.info(exception.toString()).show();
+    }
   }
 
   Future<void> showAbout(BuildContext context) async {
