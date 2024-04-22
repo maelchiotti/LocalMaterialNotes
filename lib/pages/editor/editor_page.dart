@@ -103,7 +103,7 @@ class _EditorState extends ConsumerState<EditorPage> {
               spellCheckConfiguration: SpellCheckConfiguration(
                 spellCheckService: DefaultSpellCheckService(),
               ),
-              padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.bottom),
+              padding: Paddings.custom.bottomSystemUi,
             ),
           ),
         ],
