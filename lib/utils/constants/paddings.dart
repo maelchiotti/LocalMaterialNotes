@@ -11,33 +11,35 @@ enum Paddings {
   padding64(64),
   ;
 
-  double get bottomSystemUiPadding => MediaQuery.of(navigatorKey.currentContext!).padding.bottom;
+  double get _bottomSystemUiPadding => MediaQuery.of(navigatorKey.currentContext!).viewPadding.bottom;
 
-  EdgeInsets get zero => EdgeInsets.zero;
+  EdgeInsetsDirectional get zero => EdgeInsetsDirectional.zero;
 
-  EdgeInsets get all => EdgeInsets.all(_padding);
+  EdgeInsetsDirectional get all => EdgeInsetsDirectional.all(_padding);
 
-  EdgeInsets get horizontal => EdgeInsets.symmetric(horizontal: _padding);
+  EdgeInsetsDirectional get horizontal => EdgeInsetsDirectional.symmetric(horizontal: _padding);
 
-  EdgeInsets get vertical => EdgeInsets.symmetric(vertical: _padding);
+  EdgeInsetsDirectional get vertical => EdgeInsetsDirectional.symmetric(vertical: _padding);
 
-  EdgeInsets get left => EdgeInsets.only(left: _padding);
+  EdgeInsetsDirectional get left => EdgeInsetsDirectional.only(start: _padding);
 
-  EdgeInsets get right => EdgeInsets.only(right: _padding);
+  EdgeInsetsDirectional get right => EdgeInsetsDirectional.only(end: _padding);
 
-  EdgeInsets get top => EdgeInsets.only(top: _padding);
+  EdgeInsetsDirectional get top => EdgeInsetsDirectional.only(top: _padding);
 
-  EdgeInsets get bottom => EdgeInsets.only(bottom: _padding);
+  EdgeInsetsDirectional get bottom => EdgeInsetsDirectional.only(bottom: _padding);
 
-  EdgeInsets get bottomSystemUi => EdgeInsets.only(bottom: bottomSystemUiPadding);
+  EdgeInsetsDirectional get bottomSystemUi => EdgeInsetsDirectional.only(bottom: _bottomSystemUiPadding);
 
-  EdgeInsets get fab => EdgeInsets.only(bottom: bottomSystemUiPadding + kFloatingActionButtonMargin + 64);
+  EdgeInsetsDirectional get fab => EdgeInsetsDirectional.only(
+        bottom: _bottomSystemUiPadding + kFloatingActionButtonMargin + 64,
+      );
 
-  EdgeInsets get page => const EdgeInsets.all(16);
+  EdgeInsetsDirectional get page => const EdgeInsetsDirectional.all(16);
 
-  EdgeInsets get pageButBottom => const EdgeInsets.only(top: 16, left: 16, right: 16);
+  EdgeInsetsDirectional get pageButBottom => const EdgeInsetsDirectional.only(top: 16, start: 16, end: 16);
 
-  EdgeInsets get appBarActionsEnd => const EdgeInsets.only(right: 8);
+  EdgeInsetsDirectional get appBarActionsEnd => const EdgeInsetsDirectional.only(end: 8);
 
   final double _padding;
 
