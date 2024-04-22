@@ -7,8 +7,9 @@
 [![Releases](https://img.shields.io/github/v/release/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/releases)
 [![Issues](https://img.shields.io/github/issues/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/issues)
 
-[<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="256">](https://play.google.com/store/apps/details?id=com.maelchiotti.localmaterialnotes)
-[<img alt="Get it on GitHub" src="https://raw.githubusercontent.com/Kunzisoft/Github-badge/main/get-it-on-github.png" width="256">](https://github.com/maelchiotti/LocalMaterialNotes/releases/latest)
+[<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="32%">](https://play.google.com/store/apps/details?id=com.maelchiotti.localmaterialnotes)
+[<img alt="Get it on Obtainium" src="docs/badges/obtainium.png" width="32%">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/maelchiotti/LocalMaterialNotes)
+[<img alt="Get it on GitHub" src="docs/badges/github.png" width="32%">](https://github.com/maelchiotti/LocalMaterialNotes/releases/latest)
 
 </div>
 
@@ -17,17 +18,17 @@
 Simple, local, material design notes.
 
 <div align="center">
-  <img alt="Screenshot of the notes list" src="assets/screenshots/latest_notes.jpg" width="24%">
-  <img alt="Screenshots of the note editor" src="assets/screenshots/latest_editor.jpg" width="24%">
-  <img alt="Screenshot of the bin" src="assets/screenshots/latest_bin.jpg" width="24%">
-  <img alt="Screenshot of the settings" src="assets/screenshots/latest_settings_1.jpg" width="24%">
+  <img alt="Screenshot of the notes list" src="docs/screenshots/latest_notes.jpg" width="24%">
+  <img alt="Screenshots of the note editor" src="docs/screenshots/latest_editor.jpg" width="24%">
+  <img alt="Screenshot of the bin" src="docs/screenshots/latest_bin.jpg" width="24%">
+  <img alt="Screenshot of the settings" src="docs/screenshots/latest_settings_1.jpg" width="24%">
 </div>
 
 <div align="center">
-  <img alt="Screenshot of the notes list in selection mode" src="assets/screenshots/latest_notes_selection.jpg" width="24%">
-  <img alt="Screenshots of the search feature" src="assets/screenshots/latest_search.jpg" width="24%">
-  <img alt="Screenshot of the notes list in the dark mode with dynamic theming" src="assets/screenshots/latest_theme_dynamic_dark.jpg" width="24%">
-  <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="assets/screenshots/latest_theme_dynamic_light.jpg" width="24%">
+  <img alt="Screenshot of the notes list in selection mode" src="docs/screenshots/latest_notes_selection.jpg" width="24%">
+  <img alt="Screenshots of the search feature" src="docs/screenshots/latest_search.jpg" width="24%">
+  <img alt="Screenshot of the notes list in the dark mode with dynamic theming" src="docs/screenshots/latest_theme_dynamic_dark.jpg" width="24%">
+  <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="docs/screenshots/latest_theme_dynamic_light.jpg" width="24%">
 </div>
 
 ## Features
