@@ -88,10 +88,3 @@ To improve or add support for a language, please see [CONTRIBUTING.md](CONTRIBUT
 ## Contributing
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md).
-
----
-
-## Enhancements
-
-- Highlight search terms in the title/content of the list tiles in the search view: [Highlightable](https://pub.dev/packages/highlightable) could work great for this, but if the text to highlight isn't in the first 3 lines then it is not shown.
-- Better search: Improve the search to be more effective than the current `contains()`.
