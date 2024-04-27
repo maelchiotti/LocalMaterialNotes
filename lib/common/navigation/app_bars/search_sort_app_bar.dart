@@ -22,7 +22,7 @@ class SearchSortAppBar extends ConsumerStatefulWidget {
 
 class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
   final searchController = SearchController();
-  
+
   final provider = RouterRoute.currentRoute == RouterRoute.notes ? notesProvider : binProvider;
 
   SortMethod sortMethod = SortMethod.methodFromPreferences();
