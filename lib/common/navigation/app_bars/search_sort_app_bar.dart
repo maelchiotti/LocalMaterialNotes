@@ -34,7 +34,7 @@ class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
     }
 
     return notes.where((note) {
-      return note.containsText(search);
+      return note.matchesSearch(search);
     }).map((note) {
       return NoteTile.searchView(note);
     }).toList();
