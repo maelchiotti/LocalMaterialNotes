@@ -21,6 +21,8 @@ class SearchSortAppBar extends ConsumerStatefulWidget {
 }
 
 class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
+  final searchController = SearchController();
+  
   final provider = RouterRoute.currentRoute == RouterRoute.notes ? notesProvider : binProvider;
 
   SortMethod sortMethod = SortMethod.methodFromPreferences();
@@ -125,6 +127,7 @@ class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
 
             return SearchAnchor(
               viewHintText: localizations.tooltip_search,
+              searchController: searchController,
               builder: (context, controller) {
                 return IconButton(
                   onPressed: () => controller.openView(),
