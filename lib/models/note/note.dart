@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 import 'package:fleather/fleather.dart';
+import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
@@ -127,10 +128,15 @@ class Note extends Equatable {
     return title.isEmpty && content == _emptyContent;
   }
 
-  bool containsText(String search) {
+  bool matchesSearch(String search) {
     final searchCleaned = search.toLowerCase().trim();
 
-    return title.toLowerCase().contains(searchCleaned) || plainText.toLowerCase().contains(searchCleaned);
+    final titleContains = title.toLowerCase().contains(searchCleaned);
+    final contentContains = title.toLowerCase().contains(searchCleaned);
+
+    final titleMatches = weightedRatio(plainText, searchCleaned) >= 50;
+
+    return titleContains || contentContains || titleMatches;
   }
 
   @override
