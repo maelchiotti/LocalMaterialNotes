@@ -46,20 +46,30 @@ class Bin extends _$Bin with BaseProvider {
     return true;
   }
 
-  Future<bool> permanentlyDelete(Note noteToPermanentlyDelete) async {
+  /// Permanently deletes the [note].
+  ///
+  /// [getNotes] should be set to `false` when this function is called successively on several notes. Then [get()]
+  /// should be called manually.
+  Future<bool> permanentlyDelete(Note note, {bool getNotes = true}) async {
     try {
-      await databaseManager.delete(noteToPermanentlyDelete.isarId);
+      await databaseManager.delete(note.isarId);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
 
-    await get();
+    if (getNotes) {
+      await get();
+    }
 
     return true;
   }
 
-  Future<bool> restore(Note noteToRestore) async {
+  /// Restores the [note].
+  ///
+  /// [getNotes] should be set to `false` when this function is called successively on several notes. Then [get()]
+  /// should be called manually.
+  Future<bool> restore(Note noteToRestore, {bool getNotes = true}) async {
     state = const AsyncLoading();
 
     noteToRestore.deleted = false;
@@ -71,7 +81,9 @@ class Bin extends _$Bin with BaseProvider {
       return false;
     }
 
-    await get();
+    if (getNotes) {
+      await get();
+    }
 
     return true;
   }

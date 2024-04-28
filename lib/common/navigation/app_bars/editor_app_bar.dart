@@ -12,6 +12,7 @@ import 'package:localmaterialnotes/providers/current_note/current_note_provider.
 import 'package:localmaterialnotes/providers/editor_controller/editor_controller_provider.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
+import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:share_plus/share_plus.dart';
 
 class EditorAppBar extends ConsumerStatefulWidget {
@@ -23,6 +24,9 @@ class EditorAppBar extends ConsumerStatefulWidget {
 
 class _BackAppBarState extends ConsumerState<EditorAppBar> {
   Future<void> _onMenuOptionSelected(MenuOption menuOption) async {
+    // Manually close the keyboard
+    FocusManager.instance.primaryFocus?.unfocus();
+
     final note = ref.read(currentNoteProvider);
 
     if (note == null) {
@@ -52,6 +56,26 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     }
   }
 
+  void _undo() {
+    final editorController = ref.read(editorControllerProvider);
+
+    if (editorController == null || !editorController.canUndo) {
+      return;
+    }
+
+    editorController.undo();
+  }
+
+  void _redo() {
+    final editorController = ref.read(editorControllerProvider);
+
+    if (editorController == null || !editorController.canRedo) {
+      return;
+    }
+
+    editorController.redo();
+  }
+
   void _toggleChecklist() {
     final editorController = ref.read(editorControllerProvider);
 
@@ -73,6 +97,9 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
   Widget build(BuildContext context) {
     final note = ref.read(currentNoteProvider);
 
+    final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
+    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
+
     return AppBar(
       leading: BackButton(
         onPressed: () => backFromEditor(context, ref),
@@ -80,12 +107,26 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       actions: note == null
           ? null
           : [
-              if (!note.deleted)
-                IconButton(
-                  icon: const Icon(Icons.checklist),
-                  tooltip: localizations.tooltip_toggle_checkbox,
-                  onPressed: _toggleChecklist,
-                ),
+              if (!note.deleted) ...[
+                if (showUndoRedoButtons)
+                  IconButton(
+                    icon: const Icon(Icons.undo),
+                    tooltip: localizations.tooltip_toggle_checkbox,
+                    onPressed: _undo,
+                  ),
+                if (showUndoRedoButtons)
+                  IconButton(
+                    icon: const Icon(Icons.redo),
+                    tooltip: localizations.tooltip_toggle_checkbox,
+                    onPressed: _redo,
+                  ),
+                if (showChecklistButton)
+                  IconButton(
+                    icon: const Icon(Icons.checklist),
+                    tooltip: localizations.tooltip_toggle_checkbox,
+                    onPressed: _toggleChecklist,
+                  ),
+              ],
               PopupMenuButton<MenuOption>(
                 itemBuilder: (context) {
                   return (note.deleted

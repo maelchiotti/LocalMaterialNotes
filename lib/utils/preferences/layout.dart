@@ -10,11 +10,9 @@ enum Layout {
 
   const Layout(this.name);
 
-  factory Layout.fromPreferences() {
-    final layoutPreference = PreferencesManager().get<String>(PreferenceKey.layout);
+  factory Layout.fromPreference() {
+    final preference = PreferencesManager().get<String>(PreferenceKey.layout);
 
-    return layoutPreference != null
-        ? Layout.values.byName(layoutPreference)
-        : PreferenceKey.layout.defaultValue! as Layout;
+    return preference != null ? Layout.values.byName(preference) : PreferenceKey.layout.defaultValue as Layout;
   }
 }

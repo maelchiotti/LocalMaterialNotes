@@ -12,14 +12,14 @@ environment:
 dependencies:
   after_layout: ^1.2.0
   collection: ^1.18.0
-  cupertino_icons: ^1.0.6
   device_info_plus: ^10.0.1
   dynamic_color: ^1.7.0
   equatable: ^2.0.5
-  fleather: ^1.14.3
+  fleather: ^1.14.4
   flutter:
     sdk: flutter
   flutter_hooks: ^0.20.5
+  flutter_keyboard_visibility: ^6.0.0
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.4.0
@@ -32,13 +32,13 @@ dependencies:
   is_first_run: ^1.0.0
   isar: ^3.1.0+1
   isar_flutter_libs: ^3.1.0+1
-  json_annotation: ^4.8.1
+  json_annotation: ^4.9.0
   locale_names: ^1.1.1
   package_info_plus: ^6.0.0
   path: ^1.9.0
   path_provider: ^2.1.2
   quick_actions: ^1.0.7
-  receive_sharing_intent: ^1.6.8
+  receive_sharing_intent: ^1.7.0
   restart_app: ^1.2.1
   riverpod_annotation: ^2.3.5
   share_plus: ^8.0.2

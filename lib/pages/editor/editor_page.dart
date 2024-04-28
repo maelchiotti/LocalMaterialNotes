@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/common/routing/router.dart';
@@ -12,6 +13,7 @@ import 'package:localmaterialnotes/providers/editor_controller/editor_controller
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
+import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class EditorPage extends ConsumerStatefulWidget {
@@ -30,12 +32,21 @@ class _EditorState extends ConsumerState<EditorPage> {
   final titleController = TextEditingController();
   FleatherController? fleatherController;
 
+  bool fleatherFieldHasFocus = false;
+
+  void _fleatherFieldFocusChanged(bool hasFocus) {
+    setState(() {
+      fleatherFieldHasFocus = hasFocus;
+    });
+  }
+
   void _synchronizeTitle(Note note, String? newTitle) {
     if (newTitle == null) {
       return;
     }
 
-    ref.read(notesProvider.notifier).edit(note..title = newTitle);
+    note.title = newTitle;
+    ref.read(notesProvider.notifier).edit(note);
   }
 
   void _synchronizeContent(Note note) {
@@ -63,6 +74,8 @@ class _EditorState extends ConsumerState<EditorPage> {
       return const LoadingPlaceholder();
     }
 
+    final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
+
     titleController.text = note.title;
 
     if (fleatherController == null) {
@@ -74,40 +87,57 @@ class _EditorState extends ConsumerState<EditorPage> {
       });
     }
 
-    return Padding(
-      padding: Paddings.custom.pageButBottom,
-      child: Column(
-        children: [
-          TextField(
-            readOnly: widget._readOnly,
-            textCapitalization: TextCapitalization.sentences,
-            textInputAction: TextInputAction.next,
-            style: Theme.of(context).textTheme.titleLarge,
-            decoration: InputDecoration.collapsed(
-              hintText: localizations.hint_title,
+    return Column(
+      children: [
+        Expanded(
+          child: Padding(
+            padding: Paddings.custom.pageButBottom,
+            child: Column(
+              children: [
+                TextField(
+                  readOnly: widget._readOnly,
+                  textCapitalization: TextCapitalization.sentences,
+                  textInputAction: TextInputAction.next,
+                  style: Theme.of(context).textTheme.titleLarge,
+                  decoration: InputDecoration.collapsed(
+                    hintText: localizations.hint_title,
+                  ),
+                  controller: titleController,
+                  onChanged: (text) => _synchronizeTitle(note, text),
+                ),
+                Padding(padding: Paddings.padding8.vertical),
+                Expanded(
+                  child: Focus(
+                    onFocusChange: _fleatherFieldFocusChanged,
+                    child: FleatherField(
+                      controller: fleatherController!,
+                      autofocus: widget._autofocus,
+                      readOnly: widget._readOnly,
+                      expands: true,
+                      decoration: InputDecoration.collapsed(
+                        hintText: localizations.hint_note,
+                      ),
+                      onLaunchUrl: _launchUrl,
+                      spellCheckConfiguration: SpellCheckConfiguration(
+                        spellCheckService: DefaultSpellCheckService(),
+                      ),
+                      padding: Paddings.custom.bottomSystemUi,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            controller: titleController,
-            onChanged: (text) => _synchronizeTitle(note, text),
           ),
-          Padding(padding: Paddings.padding8.vertical),
-          Expanded(
-            child: FleatherField(
-              controller: fleatherController!,
-              autofocus: widget._autofocus,
-              readOnly: widget._readOnly,
-              expands: true,
-              decoration: InputDecoration.collapsed(
-                hintText: localizations.hint_note,
-              ),
-              onLaunchUrl: _launchUrl,
-              spellCheckConfiguration: SpellCheckConfiguration(
-                spellCheckService: DefaultSpellCheckService(),
-              ),
-              padding: Paddings.custom.bottomSystemUi,
-            ),
+        ),
+        if (showToolbar && fleatherFieldHasFocus && KeyboardVisibilityProvider.isKeyboardVisible(context))
+          FleatherToolbar.basic(
+            controller: fleatherController!,
+            padding: Paddings.custom.zero,
+            hideDirection: true,
+            hideHeadingStyle: true,
+            hideUndoRedo: true,
           ),
-        ],
-      ),
+      ],
     );
   }
 }

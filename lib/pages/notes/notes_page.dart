@@ -12,7 +12,6 @@ import 'package:localmaterialnotes/utils/constants/separators.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
 import 'package:localmaterialnotes/utils/preferences/layout.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 
 class NotesPage extends ConsumerStatefulWidget {
   const NotesPage();
@@ -30,9 +29,8 @@ class _NotesPageState extends ConsumerState<NotesPage> {
           return EmptyPlaceholder.notes();
         }
 
-        final useSeparators =
-            PreferencesManager().get<bool>(PreferenceKey.separator) ?? PreferenceKey.separator.defaultValue! as bool;
-        final layout = ref.watch(layoutStateProvider) ?? Layout.fromPreferences();
+        final layout = ref.watch(layoutStateProvider) ?? Layout.fromPreference();
+        final useSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
 
         // Use at least 2 columns for the grid view
         final columnsCount = MediaQuery.of(context).size.width ~/ Sizes.custom.gridLayoutColumnWidth;

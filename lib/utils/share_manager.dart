@@ -8,16 +8,16 @@ import 'package:parchment_delta/parchment_delta.dart'; // ignore: depend_on_refe
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 StreamSubscription listenSharedData(WidgetRef ref) {
-  return ReceiveSharingIntent.getMediaStream().listen((data) {
+  return ReceiveSharingIntent.instance.getMediaStream().listen((data) {
     _processSharedData(ref, data);
   });
 }
 
 void readSharedData(WidgetRef ref) {
-  ReceiveSharingIntent.getInitialMedia().then((data) {
+  ReceiveSharingIntent.instance.getInitialMedia().then((data) {
     _processSharedData(ref, data);
 
-    ReceiveSharingIntent.reset();
+    ReceiveSharingIntent.instance.reset();
   });
 }
 

@@ -12,14 +12,6 @@ enum Confirmations {
 
   const Confirmations(this.name);
 
-  factory Confirmations.fromPreferences() {
-    final confirmationPreference = PreferencesManager().get<String>(PreferenceKey.confirmations);
-
-    return confirmationPreference != null
-        ? Confirmations.values.byName(confirmationPreference)
-        : PreferenceKey.confirmations.defaultValue! as Confirmations;
-  }
-
   String get title {
     switch (this) {
       case Confirmations.none:
@@ -31,5 +23,13 @@ enum Confirmations {
       default:
         throw Exception();
     }
+  }
+
+  factory Confirmations.fromPreference() {
+    final preference = PreferencesManager().get<String>(PreferenceKey.confirmations);
+
+    return preference != null
+        ? Confirmations.values.byName(preference)
+        : PreferenceKey.confirmations.defaultValue as Confirmations;
   }
 }

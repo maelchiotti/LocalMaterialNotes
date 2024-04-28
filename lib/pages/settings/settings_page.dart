@@ -9,7 +9,6 @@ import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/info_manager.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 import 'package:localmaterialnotes/utils/theme_manager.dart';
 import 'package:simple_icons/simple_icons.dart';
 
@@ -23,8 +22,11 @@ class SettingsPage extends ConsumerStatefulWidget {
 class _SettingsPageState extends ConsumerState<SettingsPage> {
   final interactions = Interactions();
 
-  bool useSeparators =
-      PreferencesManager().get<bool>(PreferenceKey.separator) ?? PreferenceKey.separator.defaultValue! as bool;
+  bool showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
+  bool showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
+  bool showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
+
+  bool showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
 
   @override
   Widget build(BuildContext context) {
@@ -78,12 +80,53 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           ],
         ),
         SettingsSection(
+          title: Text(localizations.settings_editor),
+          tiles: [
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.undo),
+              title: Text(localizations.settings_show_undo_redo_buttons),
+              description: Text(localizations.settings_show_undo_redo_buttons_description),
+              initialValue: showUndoRedoButtons,
+              onToggle: (toggled) {
+                interactions.toggleShowUndoRedoButtons(toggled);
+                setState(() {
+                  showUndoRedoButtons = toggled;
+                });
+              },
+            ),
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.checklist),
+              title: Text(localizations.settings_show_checklist_button),
+              description: Text(localizations.settings_show_checklist_button_description),
+              initialValue: showChecklistButton,
+              onToggle: (toggled) {
+                interactions.toggleShowChecklistButton(toggled);
+                setState(() {
+                  showChecklistButton = toggled;
+                });
+              },
+            ),
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.format_paint),
+              title: Text(localizations.settings_show_toolbar),
+              description: Text(localizations.settings_show_toolbar_description),
+              initialValue: showToolbar,
+              onToggle: (toggled) {
+                interactions.toggleShowToolbar(toggled);
+                setState(() {
+                  showToolbar = toggled;
+                });
+              },
+            ),
+          ],
+        ),
+        SettingsSection(
           title: Text(localizations.settings_behavior),
           tiles: [
             SettingsTile.navigation(
               leading: const Icon(Icons.warning),
               title: Text(localizations.settings_confirmations),
-              value: Text(Confirmations.fromPreferences().title),
+              value: Text(Confirmations.fromPreference().title),
               onPressed: (context) async {
                 await interactions.selectConfirmations(context);
                 setState(() {});
@@ -91,13 +134,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             ),
             SettingsTile.switchTile(
               leading: const Icon(Icons.safety_divider),
-              title: Text(localizations.settings_separator),
-              description: Text(localizations.settings_separator_description),
-              initialValue: useSeparators,
+              title: Text(localizations.settings_show_separators),
+              description: Text(localizations.settings_show_separators_description),
+              initialValue: showSeparators,
               onToggle: (toggled) {
-                interactions.toggleSeparator(toggled);
+                interactions.toggleShowSeparators(toggled);
                 setState(() {
-                  useSeparators = toggled;
+                  showSeparators = toggled;
                 });
               },
             ),

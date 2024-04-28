@@ -9,7 +9,7 @@ part 'layout_provider.g.dart';
 class LayoutState extends _$LayoutState {
   @override
   Raw<Layout>? build() {
-    return Layout.fromPreferences();
+    return Layout.fromPreference();
   }
 
   void set(Layout layout) {

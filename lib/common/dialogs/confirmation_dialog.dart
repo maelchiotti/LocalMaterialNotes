@@ -10,11 +10,10 @@ Future<bool> showConfirmationDialog(
   bool? irreversible,
 }) async {
   if (irreversible != null) {
-    final confirmationsSetting = Confirmations.fromPreferences();
-    if (confirmationsSetting == Confirmations.none ||
-        (confirmationsSetting == Confirmations.irreversible && !irreversible)) {
-      return true;
-    }
+    final confirmationsPreference = Confirmations.fromPreference();
+
+    return confirmationsPreference == Confirmations.none ||
+        (confirmationsPreference == Confirmations.irreversible && !irreversible);
   }
 
   return await showAdaptiveDialog<bool>(

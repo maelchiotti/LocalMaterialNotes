@@ -15,6 +15,8 @@ Future<bool> togglePinNote(BuildContext context, WidgetRef ref, Note? note) asyn
 
 Future<void> togglePinNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   for (final note in notes) {
-    await ref.read(notesProvider.notifier).togglePin(note);
+    await ref.read(notesProvider.notifier).togglePin(note, getNotes: false);
   }
+
+  await ref.read(notesProvider.notifier).get();
 }

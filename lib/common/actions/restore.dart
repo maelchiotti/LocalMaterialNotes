@@ -41,7 +41,9 @@ Future<void> restoreNotes(BuildContext context, WidgetRef ref, List<Note> notes)
     irreversible: false,
   )) {
     for (final note in notes.where((note) => note.selected)) {
-      await ref.read(binProvider.notifier).restore(note);
+      await ref.read(binProvider.notifier).restore(note, getNotes: false);
     }
+
+    await ref.read(binProvider.notifier).get();
   }
 }

@@ -12,7 +12,6 @@ import 'package:localmaterialnotes/utils/constants/separators.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
 import 'package:localmaterialnotes/utils/preferences/layout.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 
 class BinPage extends ConsumerStatefulWidget {
   const BinPage();
@@ -30,10 +29,12 @@ class _BinPageState extends ConsumerState<BinPage> {
           return EmptyPlaceholder.bin();
         }
 
-        final useSeparators =
-            PreferencesManager().get<bool>(PreferenceKey.separator) ?? PreferenceKey.separator.defaultValue! as bool;
-        final layout = ref.watch(layoutStateProvider) ?? Layout.fromPreferences();
-        final crossAxisCount = MediaQuery.of(context).size.width ~/ Sizes.custom.gridLayoutColumnWidth;
+        final layout = ref.watch(layoutStateProvider) ?? Layout.fromPreference();
+        final useSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
+
+        // Use at least 2 columns for the grid view
+        final columnsCount = MediaQuery.of(context).size.width ~/ Sizes.custom.gridLayoutColumnWidth;
+        final crossAxisCount = columnsCount > 2 ? columnsCount : 2;
 
         // Wrap with Material to fix the tile background color not updating in real time
         // when the tile is selected and the view is scrolled
