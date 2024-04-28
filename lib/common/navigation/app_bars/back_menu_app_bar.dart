@@ -23,6 +23,9 @@ class BackMenuAppBar extends ConsumerStatefulWidget {
 
 class _BackAppBarState extends ConsumerState<BackMenuAppBar> {
   Future<void> _onMenuOptionSelected(MenuOption menuOption) async {
+    // Manually close the keyboard
+    FocusManager.instance.primaryFocus?.unfocus();
+
     final note = ref.read(currentNoteProvider);
 
     if (note == null) {

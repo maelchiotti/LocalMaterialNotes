@@ -12,14 +12,14 @@ environment:
 dependencies:
   after_layout: ^1.2.0
   collection: ^1.18.0
-  cupertino_icons: ^1.0.6
   device_info_plus: ^10.0.1
   dynamic_color: ^1.7.0
   equatable: ^2.0.5
-  fleather: ^1.14.3
+  fleather: ^1.14.4
   flutter:
     sdk: flutter
   flutter_hooks: ^0.20.5
+  flutter_keyboard_visibility: ^6.0.0
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.4.0
