@@ -9,11 +9,13 @@ import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
+import 'package:localmaterialnotes/providers/layout/layout_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/selection_mode/selection_mode_provider.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
+import 'package:localmaterialnotes/utils/preferences/layout.dart';
 
 class NoteTile extends ConsumerStatefulWidget {
   const NoteTile(this.note) : searchView = false;
@@ -75,110 +77,115 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
   @override
   Widget build(BuildContext context) {
+    final layout = ref.watch(layoutStateProvider) ?? Layout.fromPreferences();
     final isTitleEmpty = widget.note.title.isEmpty;
 
-    return Dismissible(
-      key: Key(widget.note.id.toString()),
-      background: widget.note.deleted
-          ? ColoredBox(
-              color: Colors.red,
-              child: Row(
-                children: [
-                  Padding(padding: Paddings.padding8.horizontal),
-                  const Icon(Icons.delete_forever),
-                  Padding(padding: Paddings.padding4.horizontal),
-                  Text(
-                    localizations.dismiss_permanently_delete,
-                    style: Theme.of(context).textTheme.titleMedium,
+    final tile = ListTile(
+      contentPadding: Paddings.padding16.horizontal.add(Paddings.padding8.vertical),
+      selected: widget.note.selected,
+      selectedTileColor: Theme.of(context).colorScheme.surfaceVariant,
+      title: Row(
+        children: [
+          Expanded(
+            child: Text(
+              isTitleEmpty ? localizations.notes_untitled : widget.note.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontStyle: isTitleEmpty ? FontStyle.italic : null,
                   ),
-                ],
-              ),
-            )
-          : ColoredBox(
-              color: Colors.red,
-              child: Row(
-                children: [
-                  Padding(padding: Paddings.padding8.horizontal),
-                  const Icon(Icons.delete),
-                  Padding(padding: Paddings.padding4.horizontal),
-                  Text(
-                    localizations.dismiss_delete,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ],
-              ),
             ),
-      secondaryBackground: widget.note.deleted
-          ? ColoredBox(
-              color: Colors.blue,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const Icon(Icons.restore_from_trash),
-                  Padding(padding: Paddings.padding4.horizontal),
-                  Text(
-                    localizations.dismiss_restore,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  Padding(padding: Paddings.padding8.horizontal),
-                ],
-              ),
-            )
-          : ColoredBox(
-              color: Colors.blue,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Icon(
-                    widget.note.pinned ? Icons.push_pin_outlined : Icons.push_pin,
-                  ),
-                  Padding(padding: Paddings.padding4.horizontal),
-                  Text(
-                    widget.note.pinned ? localizations.dismiss_unpin : localizations.dismiss_pin,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  Padding(padding: Paddings.padding8.horizontal),
-                ],
-              ),
+          ),
+          Padding(padding: Paddings.padding4.horizontal),
+          if (widget.note.pinned && !widget.note.deleted)
+            Icon(
+              Icons.push_pin,
+              size: Sizes.size16.size,
             ),
-      confirmDismiss: _dismiss,
-      child: ListTile(
-        contentPadding: Paddings.padding16.horizontal.add(Paddings.padding8.vertical),
-        selected: widget.note.selected,
-        selectedTileColor: Theme.of(context).colorScheme.surfaceVariant,
-        title: Row(
-          children: [
-            Expanded(
-              child: Text(
-                isTitleEmpty ? localizations.notes_untitled : widget.note.title,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontStyle: isTitleEmpty ? FontStyle.italic : null,
-                    ),
-              ),
-            ),
-            Padding(padding: Paddings.padding4.horizontal),
-            if (widget.note.pinned && !widget.note.deleted)
-              Icon(
-                Icons.push_pin,
-                size: Sizes.size16.size,
-              ),
-          ],
-        ),
-        subtitle: widget.note.contentDisplay.isNotEmpty
-            ? Text(
-                widget.note.contentDisplay,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
-                    ),
-              )
-            : null,
-        onTap: _openOrSelect,
-        onLongPress: widget.searchView ? null : _enterSelectionMode,
+        ],
       ),
+      subtitle: widget.note.contentDisplay.isNotEmpty
+          ? Text(
+              widget.note.contentDisplay,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
+                  ),
+            )
+          : null,
+      onTap: _openOrSelect,
+      onLongPress: widget.searchView ? null : _enterSelectionMode,
     );
+
+    return layout == Layout.list
+        ? Dismissible(
+            key: Key(widget.note.id.toString()),
+            background: widget.note.deleted
+                ? ColoredBox(
+                    color: Colors.red,
+                    child: Row(
+                      children: [
+                        Padding(padding: Paddings.padding8.horizontal),
+                        const Icon(Icons.delete_forever),
+                        Padding(padding: Paddings.padding4.horizontal),
+                        Text(
+                          localizations.dismiss_permanently_delete,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      ],
+                    ),
+                  )
+                : ColoredBox(
+                    color: Colors.red,
+                    child: Row(
+                      children: [
+                        Padding(padding: Paddings.padding8.horizontal),
+                        const Icon(Icons.delete),
+                        Padding(padding: Paddings.padding4.horizontal),
+                        Text(
+                          localizations.dismiss_delete,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      ],
+                    ),
+                  ),
+            secondaryBackground: widget.note.deleted
+                ? ColoredBox(
+                    color: Colors.blue,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const Icon(Icons.restore_from_trash),
+                        Padding(padding: Paddings.padding4.horizontal),
+                        Text(
+                          localizations.dismiss_restore,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        Padding(padding: Paddings.padding8.horizontal),
+                      ],
+                    ),
+                  )
+                : ColoredBox(
+                    color: Colors.blue,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(
+                          widget.note.pinned ? Icons.push_pin_outlined : Icons.push_pin,
+                        ),
+                        Padding(padding: Paddings.padding4.horizontal),
+                        Text(
+                          widget.note.pinned ? localizations.dismiss_unpin : localizations.dismiss_pin,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        Padding(padding: Paddings.padding8.horizontal),
+                      ],
+                    ),
+                  ),
+            confirmDismiss: _dismiss,
+            child: tile,
+          )
+        : tile;
   }
 }

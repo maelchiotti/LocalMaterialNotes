@@ -6,38 +6,42 @@ import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/common/widgets/note_tile.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
+import 'package:localmaterialnotes/providers/layout/layout_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
+import 'package:localmaterialnotes/utils/preferences/layout.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 
-class SearchSortAppBar extends ConsumerStatefulWidget {
-  const SearchSortAppBar({super.key});
+class NotesAppBar extends ConsumerStatefulWidget {
+  const NotesAppBar({super.key});
 
   @override
-  ConsumerState<SearchSortAppBar> createState() => _SearchAppBarState();
+  ConsumerState<NotesAppBar> createState() => _SearchAppBarState();
 }
 
-class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
+class _SearchAppBarState extends ConsumerState<NotesAppBar> {
   final searchController = SearchController();
 
   final provider = RouterRoute.currentRoute == RouterRoute.notes ? notesProvider : binProvider;
 
+  late Layout layout;
   SortMethod sortMethod = SortMethod.methodFromPreferences();
   bool sortAscending = SortMethod.ascendingFromPreferences;
 
-  List<NoteTile> _filterNotes(String? search, List<Note> notes) {
-    if (search == null || search.isEmpty) {
-      return [];
-    }
+  @override
+  void initState() {
+    super.initState();
+  }
 
-    return notes.where((note) {
-      return note.matchesSearch(search);
-    }).map((note) {
-      return NoteTile.searchView(note);
-    }).toList();
+  void _toggleLayout() {
+    final newLayout = layout == Layout.list ? Layout.grid : Layout.list;
+
+    PreferencesManager().set<String>(PreferenceKey.layout.name, newLayout.name);
+
+    ref.read(layoutStateProvider.notifier).set(newLayout);
   }
 
   void _sort({SortMethod? method, bool? ascending}) {
@@ -53,6 +57,7 @@ class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
       });
     } else if (ascending != null) {
       PreferencesManager().set<bool>(PreferenceKey.sortAscending.name, ascending);
+
       setState(() {
         sortAscending = ascending;
       });
@@ -65,8 +70,22 @@ class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
     }
   }
 
+  List<NoteTile> _filterNotes(String? search, List<Note> notes) {
+    if (search == null || search.isEmpty) {
+      return [];
+    }
+
+    return notes.where((note) {
+      return note.matchesSearch(search);
+    }).map((note) {
+      return NoteTile.searchView(note);
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
+    layout = ref.watch(layoutStateProvider) ?? Layout.fromPreferences();
+
     final searchButtonPlaceholder = IconButton(
       onPressed: null,
       icon: const Icon(Icons.search),
@@ -79,6 +98,11 @@ class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
       ),
       title: Text(RouterRoute.currentRoute.title),
       actions: [
+        IconButton(
+          onPressed: _toggleLayout,
+          tooltip: layout == Layout.list ? localizations.tooltip_layout_grid : localizations.tooltip_layout_list,
+          icon: Icon(layout == Layout.list ? Icons.grid_view : Icons.view_list_outlined),
+        ),
         PopupMenuButton<SortMethod>(
           icon: const Icon(Icons.sort),
           tooltip: localizations.tooltip_sort,

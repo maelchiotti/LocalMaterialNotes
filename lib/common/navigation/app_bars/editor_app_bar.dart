@@ -14,14 +14,14 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:share_plus/share_plus.dart';
 
-class BackMenuAppBar extends ConsumerStatefulWidget {
-  const BackMenuAppBar();
+class EditorAppBar extends ConsumerStatefulWidget {
+  const EditorAppBar();
 
   @override
-  ConsumerState<BackMenuAppBar> createState() => _BackAppBarState();
+  ConsumerState<EditorAppBar> createState() => _BackAppBarState();
 }
 
-class _BackAppBarState extends ConsumerState<BackMenuAppBar> {
+class _BackAppBarState extends ConsumerState<EditorAppBar> {
   Future<void> _onMenuOptionSelected(MenuOption menuOption) async {
     final note = ref.read(currentNoteProvider);
 

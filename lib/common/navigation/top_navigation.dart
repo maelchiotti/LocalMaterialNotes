@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/back_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/back_menu_app_bar.dart';
+import 'package:localmaterialnotes/common/navigation/app_bars/editor_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/empty_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/search_sort_app_bar.dart';
+import 'package:localmaterialnotes/common/navigation/app_bars/notes_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/selection_app_bar.dart';
 import 'package:localmaterialnotes/providers/selection_mode/selection_mode_provider.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
@@ -49,9 +49,9 @@ class TopNavigation extends ConsumerWidget implements PreferredSizeWidget {
       case TopNavigationStyle.back:
         return const BackAppBar();
       case TopNavigationStyle.backMenu:
-        return const BackMenuAppBar();
+        return const EditorAppBar();
       case TopNavigationStyle.searchSort:
-        return SearchSortAppBar(key: super.key);
+        return NotesAppBar(key: super.key);
     }
   }
 }

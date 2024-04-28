@@ -1,1 +1,6 @@
-{}
+{
+  "tr": [
+    "tooltip_layout_list",
+    "tooltip_layout_grid"
+  ]
+}

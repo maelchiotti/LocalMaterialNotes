@@ -140,6 +140,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get tooltip_fab_empty_bin => 'Çöp kutusunu boşalt';
 
   @override
+  String get tooltip_layout_list => 'List view';
+
+  @override
+  String get tooltip_layout_grid => 'Grid view';
+
+  @override
   String get tooltip_sort => 'Notları sırala';
 
   @override
