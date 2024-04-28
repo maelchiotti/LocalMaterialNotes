@@ -13,7 +13,6 @@ import 'package:localmaterialnotes/providers/editor_controller/editor_controller
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 import 'package:share_plus/share_plus.dart';
 
 class EditorAppBar extends ConsumerStatefulWidget {
@@ -98,10 +97,8 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
   Widget build(BuildContext context) {
     final note = ref.read(currentNoteProvider);
 
-    final showUndoRedoButtons = PreferencesManager().get<bool>(PreferenceKey.showUndoRedoButtons) ??
-        PreferenceKey.showUndoRedoButtons.defaultValue! as bool;
-    final showChecklistButton = PreferencesManager().get<bool>(PreferenceKey.showChecklistButton) ??
-        PreferenceKey.showChecklistButton.defaultValue! as bool;
+    final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
+    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
 
     return AppBar(
       leading: BackButton(

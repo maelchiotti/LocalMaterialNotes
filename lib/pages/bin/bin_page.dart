@@ -12,7 +12,6 @@ import 'package:localmaterialnotes/utils/constants/separators.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
 import 'package:localmaterialnotes/utils/preferences/layout.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 
 class BinPage extends ConsumerStatefulWidget {
   const BinPage();
@@ -30,8 +29,6 @@ class _BinPageState extends ConsumerState<BinPage> {
           return EmptyPlaceholder.bin();
         }
 
-        final useSeparators = PreferenceKey.showSeparators;
-
         final layout = ref.watch(layoutStateProvider) ?? Layout.fromPreferences();
         final crossAxisCount = MediaQuery.of(context).size.width ~/ Sizes.custom.gridLayoutColumnWidth;
 
@@ -40,7 +37,7 @@ class _BinPageState extends ConsumerState<BinPage> {
         // see: https://github.com/flutter/flutter/issues/86584
         return Material(
           child: layout == Layout.list
-              ? useSeparators
+              ? PreferenceKey.showSeparators.getPreferenceOrDefault<bool>()
                   ? ListView.separated(
                       padding: Paddings.custom.fab,
                       itemCount: notes.length,

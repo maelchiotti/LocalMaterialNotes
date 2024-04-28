@@ -28,8 +28,8 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
   final provider = RouterRoute.currentRoute == RouterRoute.notes ? notesProvider : binProvider;
 
   late Layout layout;
-  SortMethod sortMethod = SortMethod.methodFromPreferences();
-  bool sortAscending = SortMethod.ascendingFromPreferences;
+  SortMethod sortMethod = PreferenceKey.sortMethod.getPreferenceOrDefault<SortMethod>();
+  bool sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
   @override
   void initState() {
