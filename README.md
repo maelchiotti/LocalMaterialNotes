@@ -37,6 +37,8 @@ Simple, local, material design notes.
 
 - Write text notes (title + content)
 - Add checklists along the normal text
+- Take advantage of the advanced formatting options
+- Undo and redo your changes while editing
 - Use the quick action from your home screen to quickly add a note
 
 ### Organize
@@ -62,6 +64,7 @@ Simple, local, material design notes.
 - Choose your language (see the [supported ones](#supported-languages))
 - Choose your theme (light, dark or black)
 - Choose if you want your theme to be dynamic (use colors from your background)
+- Choose if you want to enable the advanced formatting options or keep your notes simple
 
 ## Screenshots
 
@@ -69,9 +72,11 @@ See more screenshots [here](assets/screenshots).
 
 ## Supported languages
 
-- English
-- French
-- Turkish
+| Language | Support |       Details       |
+|:--------:|:-------:|:-------------------:|
+| English  |   🟢    |   Fully supported   |
+|  French  |   🟢    |   Fully supported   |
+| Turkish  |   🟡    | Partially supported |
 
 To improve or add support for a language, please see [CONTRIBUTING.md](CONTRIBUTING.md#localization).
 
