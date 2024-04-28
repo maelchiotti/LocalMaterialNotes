@@ -38,13 +38,11 @@ class ThemeManager {
   }
 
   bool get useDynamicTheming {
-    return PreferencesManager().get<bool>(PreferenceKey.dynamicTheming) ??
-        PreferenceKey.dynamicTheming.defaultValue! as bool;
+    return PreferenceKey.dynamicTheming.getPreferenceOrDefault<bool>();
   }
 
   bool get useBlackTheming {
-    return PreferencesManager().get<bool>(PreferenceKey.blackTheming) ??
-        PreferenceKey.blackTheming.defaultValue! as bool;
+    return PreferenceKey.blackTheming.getPreferenceOrDefault<bool>();
   }
 
   Brightness get brightness {
@@ -52,34 +50,30 @@ class ThemeManager {
   }
 
   ThemeMode get themeMode {
-    final themeModePreference = PreferencesManager().get<int>(PreferenceKey.theme);
+    final themeModePreference = PreferenceKey.theme.getPreferenceOrDefault<int>();
 
-    if (themeModePreference != null) {
-      switch (themeModePreference) {
-        case 0:
-          return ThemeMode.system;
-        case 1:
-          return ThemeMode.light;
-        case 2:
-          return ThemeMode.dark;
-      }
+    switch (themeModePreference) {
+      case 0:
+        return ThemeMode.system;
+      case 1:
+        return ThemeMode.light;
+      case 2:
+        return ThemeMode.dark;
     }
 
     return ThemeMode.system;
   }
 
   String get themeModeName {
-    final themeModePreference = PreferencesManager().get<int>(PreferenceKey.theme);
+    final themeModePreference = PreferenceKey.theme.getPreferenceOrDefault<int>();
 
-    if (themeModePreference != null) {
-      switch (themeModePreference) {
-        case 0:
-          return localizations.settings_theme_system;
-        case 1:
-          return localizations.settings_theme_light;
-        case 2:
-          return localizations.settings_theme_dark;
-      }
+    switch (themeModePreference) {
+      case 0:
+        return localizations.settings_theme_system;
+      case 1:
+        return localizations.settings_theme_light;
+      case 2:
+        return localizations.settings_theme_dark;
     }
 
     return localizations.settings_theme_system;

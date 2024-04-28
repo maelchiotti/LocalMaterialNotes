@@ -116,6 +116,8 @@ class Interactions {
   }
 
   Future<void> selectConfirmations(BuildContext context) async {
+    final confirmationsPreference = PreferenceKey.confirmations.getPreferenceOrDefault<Confirmations>();
+
     await showAdaptiveDialog<Confirmations>(
       context: context,
       builder: (context) {
@@ -125,9 +127,9 @@ class Interactions {
           children: Confirmations.values.map((confirmationsValue) {
             return RadioListTile<Confirmations>(
               value: confirmationsValue,
-              groupValue: Confirmations.fromPreferences(),
+              groupValue: confirmationsPreference,
               title: Text(confirmationsValue.title),
-              selected: Confirmations.fromPreferences() == confirmationsValue,
+              selected: confirmationsPreference == confirmationsValue,
               onChanged: (locale) => Navigator.of(context).pop(locale),
             );
           }).toList(),

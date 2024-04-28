@@ -25,8 +25,8 @@ class _SearchAppBarState extends ConsumerState<SearchSortAppBar> {
 
   final provider = RouterRoute.currentRoute == RouterRoute.notes ? notesProvider : binProvider;
 
-  SortMethod sortMethod = SortMethod.methodFromPreferences();
-  bool sortAscending = SortMethod.ascendingFromPreferences;
+  SortMethod sortMethod = PreferenceKey.sortMethod.getPreferenceOrDefault<SortMethod>();
+  bool sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
   List<NoteTile> _filterNotes(String? search, List<Note> notes) {
     if (search == null || search.isEmpty) {

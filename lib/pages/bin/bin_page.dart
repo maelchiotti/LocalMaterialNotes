@@ -8,7 +8,6 @@ import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/separators.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 
 class BinPage extends ConsumerStatefulWidget {
   const BinPage();
@@ -26,14 +25,11 @@ class _BinPageState extends ConsumerState<BinPage> {
           return EmptyPlaceholder.bin();
         }
 
-        final useSeparators = PreferencesManager().get<bool>(PreferenceKey.showSeparators) ??
-            PreferenceKey.showSeparators.defaultValue! as bool;
-
         // Wrap with Material to fix the tile background color not updating in real time
         // when the tile is selected and the view is scrolled
         // see: https://github.com/flutter/flutter/issues/86584
         return Material(
-          child: useSeparators
+          child: PreferenceKey.showSeparators.getPreferenceOrDefault<bool>()
               ? ListView.separated(
                   padding: Paddings.custom.fab,
                   itemCount: notes.length,

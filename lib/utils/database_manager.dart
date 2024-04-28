@@ -7,6 +7,7 @@ import 'package:localmaterialnotes/l10n/hardcoded_localizations.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
+import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_storage/shared_storage.dart' as saf;
@@ -38,8 +39,8 @@ class DatabaseManager {
   }
 
   Future<List<Note>> getAll({bool? deleted}) async {
-    final sortMethod = SortMethod.methodFromPreferences();
-    final sortAscending = SortMethod.ascendingFromPreferences;
+    final sortMethod = PreferenceKey.sortMethod.getPreferenceOrDefault<SortMethod>();
+    final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
     final sortedByPinned = deleted == null
         ? _database.notes.where().sortByPinnedDesc()

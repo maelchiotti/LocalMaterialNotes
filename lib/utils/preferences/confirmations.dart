@@ -1,6 +1,4 @@
 import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 
 enum Confirmations {
   none('none'),
@@ -11,14 +9,6 @@ enum Confirmations {
   final String name;
 
   const Confirmations(this.name);
-
-  factory Confirmations.fromPreferences() {
-    final confirmationPreference = PreferencesManager().get<String>(PreferenceKey.confirmations);
-
-    return confirmationPreference != null
-        ? Confirmations.values.byName(confirmationPreference)
-        : PreferenceKey.confirmations.defaultValue! as Confirmations;
-  }
 
   String get title {
     switch (this) {

@@ -14,7 +14,6 @@ import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class EditorPage extends ConsumerStatefulWidget {
@@ -75,8 +74,7 @@ class _EditorState extends ConsumerState<EditorPage> {
       return const LoadingPlaceholder();
     }
 
-    final showToolbar =
-        PreferencesManager().get<bool>(PreferenceKey.showToolbar) ?? PreferenceKey.showToolbar.defaultValue! as bool;
+    final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
 
     titleController.text = note.title;
 

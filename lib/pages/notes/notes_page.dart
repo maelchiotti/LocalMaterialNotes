@@ -8,7 +8,6 @@ import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/separators.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 
 class NotesPage extends ConsumerStatefulWidget {
   const NotesPage();
@@ -26,8 +25,7 @@ class _NotesPageState extends ConsumerState<NotesPage> {
           return EmptyPlaceholder.notes();
         }
 
-        final useSeparators = PreferencesManager().get<bool>(PreferenceKey.showSeparators) ??
-            PreferenceKey.showSeparators.defaultValue! as bool;
+        final useSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
 
         // Wrap with Material to fix the tile background color not updating in real time
         // when the tile is selected and the view is scrolled

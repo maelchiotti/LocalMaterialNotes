@@ -6,13 +6,11 @@ import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 
 class LocaleManager {
-  final _defaultLocale = const Locale('en');
-
   Locale get locale {
-    final preferredLocaleLanguageCode = PreferencesManager().get<String>(PreferenceKey.locale);
+    final localePreferenceLanguageCode = PreferencesManager().get<String>(PreferenceKey.locale);
 
-    if (preferredLocaleLanguageCode != null) {
-      return Locale(preferredLocaleLanguageCode);
+    if (localePreferenceLanguageCode != null) {
+      return Locale(localePreferenceLanguageCode);
     } else {
       final deviceLocaleLanguage = Platform.localeName.split('_').first;
       for (final locale in AppLocalizations.supportedLocales) {
@@ -21,7 +19,7 @@ class LocaleManager {
         }
       }
 
-      return _defaultLocale;
+      return Locale(PreferenceKey.locale.defaultValue as String);
     }
   }
 
