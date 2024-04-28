@@ -23,8 +23,15 @@ class SettingsPage extends ConsumerStatefulWidget {
 class _SettingsPageState extends ConsumerState<SettingsPage> {
   final interactions = Interactions();
 
-  bool useSeparators =
-      PreferencesManager().get<bool>(PreferenceKey.separator) ?? PreferenceKey.separator.defaultValue! as bool;
+  bool showUndoRedoButtons = PreferencesManager().get<bool>(PreferenceKey.showUndoRedoButtons) ??
+      PreferenceKey.showUndoRedoButtons.defaultValue! as bool;
+  bool showChecklistButton = PreferencesManager().get<bool>(PreferenceKey.showChecklistButton) ??
+      PreferenceKey.showChecklistButton.defaultValue! as bool;
+  bool showToolbar =
+      PreferencesManager().get<bool>(PreferenceKey.showToolbar) ?? PreferenceKey.showToolbar.defaultValue! as bool;
+
+  bool showSeparators = PreferencesManager().get<bool>(PreferenceKey.showSeparators) ??
+      PreferenceKey.showSeparators.defaultValue! as bool;
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +85,47 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           ],
         ),
         SettingsSection(
+          title: Text(localizations.settings_editor),
+          tiles: [
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.undo),
+              title: Text(localizations.settings_show_undo_redo_buttons),
+              description: Text(localizations.settings_show_undo_redo_buttons_description),
+              initialValue: showUndoRedoButtons,
+              onToggle: (toggled) {
+                interactions.toggleShowUndoRedoButtons(toggled);
+                setState(() {
+                  showUndoRedoButtons = toggled;
+                });
+              },
+            ),
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.checklist),
+              title: Text(localizations.settings_show_checklist_button),
+              description: Text(localizations.settings_show_checklist_button_description),
+              initialValue: showChecklistButton,
+              onToggle: (toggled) {
+                interactions.toggleShowChecklistButton(toggled);
+                setState(() {
+                  showChecklistButton = toggled;
+                });
+              },
+            ),
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.format_paint),
+              title: Text(localizations.settings_show_toolbar),
+              description: Text(localizations.settings_show_toolbar_description),
+              initialValue: showToolbar,
+              onToggle: (toggled) {
+                interactions.toggleShowToolbar(toggled);
+                setState(() {
+                  showToolbar = toggled;
+                });
+              },
+            ),
+          ],
+        ),
+        SettingsSection(
           title: Text(localizations.settings_behavior),
           tiles: [
             SettingsTile.navigation(
@@ -91,13 +139,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             ),
             SettingsTile.switchTile(
               leading: const Icon(Icons.safety_divider),
-              title: Text(localizations.settings_separator),
-              description: Text(localizations.settings_separator_description),
-              initialValue: useSeparators,
+              title: Text(localizations.settings_show_separators),
+              description: Text(localizations.settings_show_separators_description),
+              initialValue: showSeparators,
               onToggle: (toggled) {
-                interactions.toggleSeparator(toggled);
+                interactions.toggleShowSeparators(toggled);
                 setState(() {
-                  useSeparators = toggled;
+                  showSeparators = toggled;
                 });
               },
             ),

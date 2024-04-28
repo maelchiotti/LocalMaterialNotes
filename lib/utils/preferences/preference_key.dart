@@ -2,12 +2,19 @@ import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 
 enum PreferenceKey {
-  // Settings
+  // Appearance
   locale,
   theme,
   dynamicTheming(true),
   blackTheming(false),
-  separator(false),
+
+  // Editor
+  showUndoRedoButtons(true),
+  showChecklistButton(true),
+  showToolbar(true),
+
+  // Behavior
+  showSeparators(false),
   confirmations(Confirmations.irreversible),
 
   // Notes

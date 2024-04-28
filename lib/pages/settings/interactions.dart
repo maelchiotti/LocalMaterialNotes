@@ -89,18 +89,30 @@ class Interactions {
     });
   }
 
-  void toggleDynamicTheming(bool value) {
-    PreferencesManager().set<bool>(PreferenceKey.dynamicTheming.name, value);
-    dynamicThemingNotifier.value = value;
+  void toggleDynamicTheming(bool toggled) {
+    PreferencesManager().set<bool>(PreferenceKey.dynamicTheming.name, toggled);
+    dynamicThemingNotifier.value = toggled;
   }
 
-  void toggleBlackTheming(bool value) {
-    PreferencesManager().set<bool>(PreferenceKey.blackTheming.name, value);
-    blackThemingNotifier.value = value;
+  void toggleBlackTheming(bool toggled) {
+    PreferencesManager().set<bool>(PreferenceKey.blackTheming.name, toggled);
+    blackThemingNotifier.value = toggled;
   }
 
-  void toggleSeparator(bool value) {
-    PreferencesManager().set<bool>(PreferenceKey.separator.name, value);
+  void toggleShowUndoRedoButtons(bool toggled) {
+    PreferencesManager().set<bool>(PreferenceKey.showUndoRedoButtons.name, toggled);
+  }
+
+  void toggleShowChecklistButton(bool toggled) {
+    PreferencesManager().set<bool>(PreferenceKey.showChecklistButton.name, toggled);
+  }
+
+  void toggleShowToolbar(bool toggled) {
+    PreferencesManager().set<bool>(PreferenceKey.showToolbar.name, toggled);
+  }
+
+  void toggleShowSeparators(bool toggled) {
+    PreferencesManager().set<bool>(PreferenceKey.showSeparators.name, toggled);
   }
 
   Future<void> selectConfirmations(BuildContext context) async {

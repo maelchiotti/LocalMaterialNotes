@@ -26,8 +26,8 @@ class _BinPageState extends ConsumerState<BinPage> {
           return EmptyPlaceholder.bin();
         }
 
-        final useSeparators =
-            PreferencesManager().get<bool>(PreferenceKey.separator) ?? PreferenceKey.separator.defaultValue! as bool;
+        final useSeparators = PreferencesManager().get<bool>(PreferenceKey.showSeparators) ??
+            PreferenceKey.showSeparators.defaultValue! as bool;
 
         // Wrap with Material to fix the tile background color not updating in real time
         // when the tile is selected and the view is scrolled
