@@ -43,7 +43,7 @@ Future<void> deleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) 
     irreversible: false,
   )) {
     for (final note in notes) {
-      await ref.read(notesProvider.notifier).delete(note);
+      await ref.read(notesProvider.notifier).delete(note, getNotes: false);
     }
   }
 }
@@ -82,8 +82,10 @@ Future<void> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, List<No
     irreversible: true,
   )) {
     for (final note in notes) {
-      await ref.read(binProvider.notifier).permanentlyDelete(note);
+      await ref.read(binProvider.notifier).permanentlyDelete(note, getNotes: false);
     }
+
+    await ref.read(binProvider.notifier).get();
   }
 }
 

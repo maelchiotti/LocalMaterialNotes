@@ -31,7 +31,7 @@ dependencies:
   is_first_run: ^1.0.0
   isar: ^3.1.0+1
   isar_flutter_libs: ^3.1.0+1
-  json_annotation: ^4.8.1
+  json_annotation: ^4.9.0
   locale_names: ^1.1.1
   package_info_plus: ^6.0.0
   path: ^1.9.0
