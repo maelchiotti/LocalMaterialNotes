@@ -27,6 +27,9 @@ enum PreferenceKey {
 
   const PreferenceKey(this.defaultValue);
 
+  /// Get the preference or, if not set by the user, the default value.
+  ///
+  /// [T] is required and should match the type of the [PreferenceKey].
   T getPreferenceOrDefault<T>() {
     if (T == dynamic) {
       throw ArgumentError('The type T is required.');
