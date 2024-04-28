@@ -55,6 +55,26 @@ class _BackAppBarState extends ConsumerState<BackMenuAppBar> {
     }
   }
 
+  void _undo() {
+    final editorController = ref.read(editorControllerProvider);
+
+    if (editorController == null || !editorController.canUndo) {
+      return;
+    }
+
+    editorController.undo();
+  }
+
+  void _redo() {
+    final editorController = ref.read(editorControllerProvider);
+
+    if (editorController == null || !editorController.canRedo) {
+      return;
+    }
+
+    editorController.redo();
+  }
+
   void _toggleChecklist() {
     final editorController = ref.read(editorControllerProvider);
 
@@ -83,12 +103,23 @@ class _BackAppBarState extends ConsumerState<BackMenuAppBar> {
       actions: note == null
           ? null
           : [
-              if (!note.deleted)
+              if (!note.deleted) ...[
+                IconButton(
+                  icon: const Icon(Icons.undo),
+                  tooltip: localizations.tooltip_toggle_checkbox,
+                  onPressed: _undo,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.redo),
+                  tooltip: localizations.tooltip_toggle_checkbox,
+                  onPressed: _redo,
+                ),
                 IconButton(
                   icon: const Icon(Icons.checklist),
                   tooltip: localizations.tooltip_toggle_checkbox,
                   onPressed: _toggleChecklist,
                 ),
+              ],
               PopupMenuButton<MenuOption>(
                 itemBuilder: (context) {
                   return (note.deleted
