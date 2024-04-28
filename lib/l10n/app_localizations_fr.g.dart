@@ -140,6 +140,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tooltip_fab_empty_bin => 'Vider la corbeille';
 
   @override
+  String get tooltip_layout_list => 'Vue en liste';
+
+  @override
+  String get tooltip_layout_grid => 'Vue en grille';
+
+  @override
   String get tooltip_sort => 'Trier les notes';
 
   @override
