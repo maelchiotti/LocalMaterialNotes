@@ -28,7 +28,7 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
   final provider = RouterRoute.currentRoute == RouterRoute.notes ? notesProvider : binProvider;
 
   late Layout layout;
-  SortMethod sortMethod = PreferenceKey.sortMethod.getPreferenceOrDefault<SortMethod>();
+  SortMethod sortMethod = SortMethod.fromPreference();
   bool sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
   @override
@@ -84,7 +84,7 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    layout = ref.watch(layoutStateProvider) ?? PreferenceKey.layout.getPreferenceOrDefault<Layout>();
+    layout = ref.watch(layoutStateProvider) ?? Layout.fromPreference();
 
     final searchButtonPlaceholder = IconButton(
       onPressed: null,

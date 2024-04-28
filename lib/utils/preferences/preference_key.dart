@@ -34,6 +34,10 @@ enum PreferenceKey {
       throw ArgumentError('The type T is required.');
     }
 
+    if (T != bool && T != int && T != double && T != String && T != List<String>) {
+      throw ArgumentError('The type T should be a native type (bool, int, double, String or List<String>), not $T.');
+    }
+
     return PreferencesManager().get<T>(this) ?? defaultValue as T;
   }
 }

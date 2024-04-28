@@ -15,7 +15,6 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
 import 'package:localmaterialnotes/utils/preferences/layout.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
 class NoteTile extends ConsumerStatefulWidget {
   const NoteTile(this.note) : searchView = false;
@@ -77,7 +76,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
   @override
   Widget build(BuildContext context) {
-    final layout = PreferenceKey.layout.getPreferenceOrDefault<Layout>();
+    final layout = Layout.fromPreference();
     final isTitleEmpty = widget.note.title.isEmpty;
 
     final tile = ListTile(

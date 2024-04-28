@@ -29,7 +29,7 @@ class _BinPageState extends ConsumerState<BinPage> {
           return EmptyPlaceholder.bin();
         }
 
-        final layout = ref.watch(layoutStateProvider) ?? PreferenceKey.layout.getPreferenceOrDefault<Layout>();
+        final layout = ref.watch(layoutStateProvider) ?? Layout.fromPreference();
         final useSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
 
         // Use at least 2 columns for the grid view

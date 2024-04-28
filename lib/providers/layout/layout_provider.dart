@@ -1,5 +1,4 @@
 import 'package:localmaterialnotes/utils/preferences/layout.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'layout_provider.g.dart';
@@ -10,7 +9,7 @@ part 'layout_provider.g.dart';
 class LayoutState extends _$LayoutState {
   @override
   Raw<Layout>? build() {
-    return PreferenceKey.layout.getPreferenceOrDefault<Layout>();
+    return Layout.fromPreference();
   }
 
   void set(Layout layout) {

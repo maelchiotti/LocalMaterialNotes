@@ -1,4 +1,6 @@
 import 'package:localmaterialnotes/utils/constants/constants.dart';
+import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
+import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 
 enum Confirmations {
   none('none'),
@@ -21,5 +23,13 @@ enum Confirmations {
       default:
         throw Exception();
     }
+  }
+
+  factory Confirmations.fromPreference() {
+    final preference = PreferencesManager().get<String>(PreferenceKey.confirmations);
+
+    return preference != null
+        ? Confirmations.values.byName(preference)
+        : PreferenceKey.confirmations.defaultValue as Confirmations;
   }
 }

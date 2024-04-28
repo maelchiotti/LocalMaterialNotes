@@ -126,7 +126,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             SettingsTile.navigation(
               leading: const Icon(Icons.warning),
               title: Text(localizations.settings_confirmations),
-              value: Text(PreferenceKey.confirmations.getPreferenceOrDefault<Confirmations>().title),
+              value: Text(Confirmations.fromPreference().title),
               onPressed: (context) async {
                 await interactions.selectConfirmations(context);
                 setState(() {});

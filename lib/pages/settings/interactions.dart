@@ -116,7 +116,7 @@ class Interactions {
   }
 
   Future<void> selectConfirmations(BuildContext context) async {
-    final confirmationsPreference = PreferenceKey.confirmations.getPreferenceOrDefault<Confirmations>();
+    final confirmationsPreference = Confirmations.fromPreference();
 
     await showAdaptiveDialog<Confirmations>(
       context: context,

@@ -39,7 +39,7 @@ class DatabaseManager {
   }
 
   Future<List<Note>> getAll({bool? deleted}) async {
-    final sortMethod = PreferenceKey.sortMethod.getPreferenceOrDefault<SortMethod>();
+    final sortMethod = SortMethod.fromPreference();
     final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
     final sortedByPinned = deleted == null

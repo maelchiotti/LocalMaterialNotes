@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
 Future<bool> showConfirmationDialog(
   BuildContext context,
@@ -11,7 +10,7 @@ Future<bool> showConfirmationDialog(
   bool? irreversible,
 }) async {
   if (irreversible != null) {
-    final confirmationsPreference = PreferenceKey.confirmations.getPreferenceOrDefault<Confirmations>();
+    final confirmationsPreference = Confirmations.fromPreference();
 
     return confirmationsPreference == Confirmations.none ||
         (confirmationsPreference == Confirmations.irreversible && !irreversible);
