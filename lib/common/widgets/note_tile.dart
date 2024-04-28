@@ -9,13 +9,13 @@ import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
-import 'package:localmaterialnotes/providers/layout/layout_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/selection_mode/selection_mode_provider.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
 import 'package:localmaterialnotes/utils/preferences/layout.dart';
+import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
 class NoteTile extends ConsumerStatefulWidget {
   const NoteTile(this.note) : searchView = false;
@@ -77,7 +77,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
   @override
   Widget build(BuildContext context) {
-    final layout = ref.watch(layoutStateProvider) ?? Layout.fromPreferences();
+    final layout = PreferenceKey.layout.getPreferenceOrDefault<Layout>();
     final isTitleEmpty = widget.note.title.isEmpty;
 
     final tile = ListTile(

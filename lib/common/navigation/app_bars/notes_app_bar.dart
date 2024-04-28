@@ -84,7 +84,7 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    layout = ref.watch(layoutStateProvider) ?? Layout.fromPreferences();
+    layout = ref.watch(layoutStateProvider) ?? PreferenceKey.layout.getPreferenceOrDefault<Layout>();
 
     final searchButtonPlaceholder = IconButton(
       onPressed: null,

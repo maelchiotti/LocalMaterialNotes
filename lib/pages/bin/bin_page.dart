@@ -29,15 +29,19 @@ class _BinPageState extends ConsumerState<BinPage> {
           return EmptyPlaceholder.bin();
         }
 
-        final layout = ref.watch(layoutStateProvider) ?? Layout.fromPreferences();
-        final crossAxisCount = MediaQuery.of(context).size.width ~/ Sizes.custom.gridLayoutColumnWidth;
+        final layout = ref.watch(layoutStateProvider) ?? PreferenceKey.layout.getPreferenceOrDefault<Layout>();
+        final useSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
+
+        // Use at least 2 columns for the grid view
+        final columnsCount = MediaQuery.of(context).size.width ~/ Sizes.custom.gridLayoutColumnWidth;
+        final crossAxisCount = columnsCount > 2 ? columnsCount : 2;
 
         // Wrap with Material to fix the tile background color not updating in real time
         // when the tile is selected and the view is scrolled
         // see: https://github.com/flutter/flutter/issues/86584
         return Material(
           child: layout == Layout.list
-              ? PreferenceKey.showSeparators.getPreferenceOrDefault<bool>()
+              ? useSeparators
                   ? ListView.separated(
                       padding: Paddings.custom.fab,
                       itemCount: notes.length,

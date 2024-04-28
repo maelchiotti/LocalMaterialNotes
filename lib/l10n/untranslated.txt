@@ -1,13 +1,13 @@
 {
   "tr": [
-      "tooltip_layout_list",
-      "tooltip_layout_grid"
     "settings_editor",
     "settings_show_undo_redo_buttons",
     "settings_show_undo_redo_buttons_description",
     "settings_show_checklist_button",
     "settings_show_checklist_button_description",
     "settings_show_toolbar",
-    "settings_show_toolbar_description"
+    "settings_show_toolbar_description",
+    "tooltip_layout_list",
+    "tooltip_layout_grid"
   ]
 }
