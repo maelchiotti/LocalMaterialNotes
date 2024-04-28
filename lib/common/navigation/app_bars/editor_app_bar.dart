@@ -15,14 +15,14 @@ import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:share_plus/share_plus.dart';
 
-class BackMenuAppBar extends ConsumerStatefulWidget {
-  const BackMenuAppBar();
+class EditorAppBar extends ConsumerStatefulWidget {
+  const EditorAppBar();
 
   @override
-  ConsumerState<BackMenuAppBar> createState() => _BackAppBarState();
+  ConsumerState<EditorAppBar> createState() => _BackAppBarState();
 }
 
-class _BackAppBarState extends ConsumerState<BackMenuAppBar> {
+class _BackAppBarState extends ConsumerState<EditorAppBar> {
   Future<void> _onMenuOptionSelected(MenuOption menuOption) async {
     // Manually close the keyboard
     FocusManager.instance.primaryFocus?.unfocus();

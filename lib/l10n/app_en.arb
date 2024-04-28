@@ -49,6 +49,8 @@
   "hint_note": "Note",
   "tooltip_fab_add_note": "Add a note",
   "tooltip_fab_empty_bin": "Empty the bin",
+  "tooltip_layout_list": "List view",
+  "tooltip_layout_grid": "Grid view",
   "tooltip_sort": "Sort the notes",
   "tooltip_search": "Search the notes",
   "tooltip_toggle_checkbox": "Toggle checkbox",

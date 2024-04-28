@@ -45,6 +45,7 @@ Simple, local, material design notes.
 
 - Search though your notes
 - Sort your notes by date or title, in ascending or descending order
+- Display your notes in a list or a grid view
 - Pin your notes
 - Recover your deleted notes from the bin
 

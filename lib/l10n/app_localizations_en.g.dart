@@ -159,6 +159,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tooltip_fab_empty_bin => 'Empty the bin';
 
   @override
+  String get tooltip_layout_list => 'List view';
+
+  @override
+  String get tooltip_layout_grid => 'Grid view';
+
+  @override
   String get tooltip_sort => 'Sort the notes';
 
   @override

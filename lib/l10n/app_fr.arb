@@ -49,6 +49,8 @@
   "hint_note": "Note",
   "tooltip_fab_add_note": "Ajouter une note",
   "tooltip_fab_empty_bin": "Vider la corbeille",
+  "tooltip_layout_list": "Vue en liste",
+  "tooltip_layout_grid": "Vue en grille",
   "tooltip_sort": "Trier les notes",
   "tooltip_search": "Rechercher parmi les notes",
   "tooltip_toggle_checkbox": "Basculer la case à cocher",

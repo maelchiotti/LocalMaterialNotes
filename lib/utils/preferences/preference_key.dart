@@ -1,40 +1,25 @@
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
+import 'package:localmaterialnotes/utils/preferences/layout.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 
 enum PreferenceKey {
   // Appearance
-  locale('en'),
-  theme(0),
+  locale,
+  theme,
   dynamicTheming(true),
   blackTheming(false),
 
-  // Editor
-  showUndoRedoButtons(true),
-  showChecklistButton(true),
-  showToolbar(true),
-
   // Behavior
-  showSeparators(false),
+  separator(false),
   confirmations(Confirmations.irreversible),
 
   // Notes
   sortMethod(SortMethod.date),
   sortAscending(false),
+  layout(Layout.list),
   ;
 
-  final Object defaultValue;
+  final Object? defaultValue;
 
-  const PreferenceKey(this.defaultValue);
-
-  /// Get the preference or, if not set by the user, the default value.
-  ///
-  /// [T] is required and should match the type of the [PreferenceKey].
-  T getPreferenceOrDefault<T>() {
-    if (T == dynamic) {
-      throw ArgumentError('The type T is required.');
-    }
-
-    return PreferencesManager().get<T>(this) ?? defaultValue as T;
-  }
+  const PreferenceKey([this.defaultValue]);
 }

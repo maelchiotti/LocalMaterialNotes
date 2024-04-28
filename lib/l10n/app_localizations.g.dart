@@ -391,6 +391,18 @@ abstract class AppLocalizations {
   /// **'Empty the bin'**
   String get tooltip_fab_empty_bin;
 
+  /// No description provided for @tooltip_layout_list.
+  ///
+  /// In en, this message translates to:
+  /// **'List view'**
+  String get tooltip_layout_list;
+
+  /// No description provided for @tooltip_layout_grid.
+  ///
+  /// In en, this message translates to:
+  /// **'Grid view'**
+  String get tooltip_layout_grid;
+
   /// No description provided for @tooltip_sort.
   ///
   /// In en, this message translates to:

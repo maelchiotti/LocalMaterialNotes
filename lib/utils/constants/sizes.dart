@@ -23,5 +23,7 @@ enum Sizes {
 
   double get searchBar => 48;
 
+  int get gridLayoutColumnWidth => 384;
+
   const Sizes(this.size);
 }
