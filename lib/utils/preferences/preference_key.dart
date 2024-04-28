@@ -9,8 +9,13 @@ enum PreferenceKey {
   dynamicTheming(true),
   blackTheming(false),
 
+  // Editor
+  showUndoRedoButtons(true),
+  showChecklistButton(true),
+  showToolbar(true),
+
   // Behavior
-  separator(false),
+  showSeparators(false),
   confirmations(Confirmations.irreversible),
 
   // Notes

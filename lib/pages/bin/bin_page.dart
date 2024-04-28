@@ -30,8 +30,8 @@ class _BinPageState extends ConsumerState<BinPage> {
           return EmptyPlaceholder.bin();
         }
 
-        final useSeparators =
-            PreferencesManager().get<bool>(PreferenceKey.separator) ?? PreferenceKey.separator.defaultValue! as bool;
+        final useSeparators = PreferenceKey.showSeparators;
+
         final layout = ref.watch(layoutStateProvider) ?? Layout.fromPreferences();
         final crossAxisCount = MediaQuery.of(context).size.width ~/ Sizes.custom.gridLayoutColumnWidth;
 

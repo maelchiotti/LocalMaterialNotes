@@ -30,9 +30,7 @@ class _NotesPageState extends ConsumerState<NotesPage> {
           return EmptyPlaceholder.notes();
         }
 
-        final useSeparators =
-            PreferencesManager().get<bool>(PreferenceKey.separator) ?? PreferenceKey.separator.defaultValue! as bool;
-        final layout = ref.watch(layoutStateProvider) ?? Layout.fromPreferences();
+        final useSeparators = PreferenceKey.showSeparators;
 
         // Use at least 2 columns for the grid view
         final columnsCount = MediaQuery.of(context).size.width ~/ Sizes.custom.gridLayoutColumnWidth;

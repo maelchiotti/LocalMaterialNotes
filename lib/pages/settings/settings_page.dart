@@ -9,6 +9,7 @@ import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/info_manager.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
+import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 import 'package:localmaterialnotes/utils/theme_manager.dart';
 import 'package:simple_icons/simple_icons.dart';
 
@@ -22,11 +23,15 @@ class SettingsPage extends ConsumerStatefulWidget {
 class _SettingsPageState extends ConsumerState<SettingsPage> {
   final interactions = Interactions();
 
-  bool showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
-  bool showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
-  bool showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
+  bool showUndoRedoButtons = PreferencesManager().get<bool>(PreferenceKey.showUndoRedoButtons) ??
+      PreferenceKey.showUndoRedoButtons.defaultValue! as bool;
+  bool showChecklistButton = PreferencesManager().get<bool>(PreferenceKey.showChecklistButton) ??
+      PreferenceKey.showChecklistButton.defaultValue! as bool;
+  bool showToolbar =
+      PreferencesManager().get<bool>(PreferenceKey.showToolbar) ?? PreferenceKey.showToolbar.defaultValue! as bool;
 
-  bool showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
+  bool showSeparators = PreferencesManager().get<bool>(PreferenceKey.showSeparators) ??
+      PreferenceKey.showSeparators.defaultValue! as bool;
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +131,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             SettingsTile.navigation(
               leading: const Icon(Icons.warning),
               title: Text(localizations.settings_confirmations),
-              value: Text(PreferenceKey.confirmations.getPreferenceOrDefault<Confirmations>().title),
+              value: Text(Confirmations.fromPreferences().title),
               onPressed: (context) async {
                 await interactions.selectConfirmations(context);
                 setState(() {});
