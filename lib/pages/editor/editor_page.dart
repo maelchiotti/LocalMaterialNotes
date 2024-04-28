@@ -133,8 +133,11 @@ class _EditorState extends ConsumerState<EditorPage> {
           FleatherToolbar.basic(
             controller: fleatherController!,
             padding: Paddings.custom.zero,
+            hideForegroundColor: true,
+            hideBackgroundColor: true,
             hideDirection: true,
             hideHeadingStyle: true,
+            hideListChecks: true,
             hideUndoRedo: true,
           ),
       ],
