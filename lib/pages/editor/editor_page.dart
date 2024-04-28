@@ -13,7 +13,6 @@ import 'package:localmaterialnotes/providers/editor_controller/editor_controller
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class EditorPage extends ConsumerStatefulWidget {
@@ -74,8 +73,6 @@ class _EditorState extends ConsumerState<EditorPage> {
       return const LoadingPlaceholder();
     }
 
-    final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
-
     titleController.text = note.title;
 
     if (fleatherController == null) {
@@ -129,15 +126,10 @@ class _EditorState extends ConsumerState<EditorPage> {
             ),
           ),
         ),
-        if (showToolbar && fleatherFieldHasFocus && KeyboardVisibilityProvider.isKeyboardVisible(context))
+        if (fleatherFieldHasFocus && KeyboardVisibilityProvider.isKeyboardVisible(context))
           FleatherToolbar.basic(
             controller: fleatherController!,
             padding: Paddings.custom.zero,
-            hideForegroundColor: true,
-            hideBackgroundColor: true,
-            hideDirection: true,
-            hideHeadingStyle: true,
-            hideListChecks: true,
             hideUndoRedo: true,
           ),
       ],
