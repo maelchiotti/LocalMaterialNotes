@@ -124,6 +124,7 @@ class Note extends Equatable {
     return ParchmentDocument.fromJson(jsonDecode(content) as List);
   }
 
+  @ignore
   bool get isEmpty {
     return title.isEmpty && content == _emptyContent;
   }

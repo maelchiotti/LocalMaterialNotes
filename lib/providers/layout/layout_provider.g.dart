@@ -6,7 +6,7 @@ part of 'layout_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$layoutStateHash() => r'f2b37984b7cf97dd995c4891088f16bdbbd2db56';
+String _$layoutStateHash() => r'8b990b1d966c7acf39f878724ea773403b1205d8';
 
 /// See also [LayoutState].
 @ProviderFor(LayoutState)
