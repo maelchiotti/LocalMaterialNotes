@@ -318,9 +318,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get menu_about => 'Hakkında';
 
   @override
-  String get notes_untitled => 'Başlıksız not';
-
-  @override
   String get confirmations_title_none => 'Asla';
 
   @override

@@ -619,12 +619,6 @@ abstract class AppLocalizations {
   /// **'About'**
   String get menu_about;
 
-  /// No description provided for @notes_untitled.
-  ///
-  /// In en, this message translates to:
-  /// **'Untitled note'**
-  String get notes_untitled;
-
   /// No description provided for @confirmations_title_none.
   ///
   /// In en, this message translates to:

@@ -316,9 +316,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get menu_about => 'About';
 
   @override
-  String get notes_untitled => 'Untitled note';
-
-  @override
   String get confirmations_title_none => 'Never';
 
   @override

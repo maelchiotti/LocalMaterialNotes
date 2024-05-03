@@ -125,8 +125,18 @@ class Note extends Equatable {
   }
 
   @ignore
+  bool get isTitleEmpty {
+    return title.isEmpty;
+  }
+
+  @ignore
+  bool get isContentEmpty {
+    return content == _emptyContent;
+  }
+
+  @ignore
   bool get isEmpty {
-    return title.isEmpty && content == _emptyContent;
+    return isTitleEmpty && isContentEmpty;
   }
 
   bool matchesSearch(String search) {

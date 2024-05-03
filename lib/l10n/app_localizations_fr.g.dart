@@ -322,9 +322,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get menu_about => 'À propos';
 
   @override
-  String get notes_untitled => 'Note sans titre';
-
-  @override
   String get confirmations_title_none => 'Jamais';
 
   @override

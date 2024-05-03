@@ -77,44 +77,52 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   @override
   Widget build(BuildContext context) {
     final layout = Layout.fromPreference();
-    final isTitleEmpty = widget.note.title.isEmpty;
 
-    final tile = ListTile(
-      contentPadding: Paddings.padding16.horizontal.add(Paddings.padding8.vertical),
-      selected: widget.note.selected,
-      selectedTileColor: Theme.of(context).colorScheme.surfaceVariant,
-      title: Row(
-        children: [
-          Expanded(
-            child: Text(
-              isTitleEmpty ? localizations.notes_untitled : widget.note.title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontStyle: isTitleEmpty ? FontStyle.italic : null,
-                  ),
-            ),
-          ),
-          Padding(padding: Paddings.padding4.horizontal),
-          if (widget.note.pinned && !widget.note.deleted)
-            Icon(
-              Icons.push_pin,
-              size: Sizes.size16.size,
-            ),
-        ],
-      ),
-      subtitle: widget.note.contentDisplay.isNotEmpty
-          ? Text(
-              widget.note.contentDisplay,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
-                  ),
-            )
-          : null,
+    // Create a custom ListTile because the default one doesn't allow not displaying a title
+    final tile = InkWell(
       onTap: _openOrSelect,
       onLongPress: widget.searchView ? null : _enterSelectionMode,
+      child: Container(
+        color: widget.note.selected ? Theme.of(context).colorScheme.surfaceVariant : null,
+        child: Padding(
+          padding: Paddings.padding16.horizontal.add(Paddings.padding16.vertical),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Title
+                    if (!widget.note.isTitleEmpty)
+                      Text(
+                        widget.note.title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    // Subtitle
+                    if (!widget.note.isContentEmpty)
+                      Text(
+                        widget.note.contentDisplay,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
+                            ),
+                      ),
+                  ],
+                ),
+              ),
+              // Trailing
+              if (widget.note.pinned && !widget.note.deleted)
+                Icon(
+                  Icons.push_pin,
+                  size: Sizes.size16.size,
+                ),
+            ],
+          ),
+        ),
+      ),
     );
 
     return layout == Layout.list

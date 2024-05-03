@@ -87,7 +87,6 @@
   "menu_restore": "Restore",
   "menu_delete_permanently": "Delete permanently",
   "menu_about": "About",
-  "notes_untitled": "Untitled note",
   "confirmations_title_none": "Never",
   "confirmations_title_irreversible": "Irreversible actions only",
   "confirmations_title_all": "Always",
