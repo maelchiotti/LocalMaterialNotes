@@ -7,6 +7,8 @@ final themeModeNotifier = ValueNotifier(ThemeManager().themeMode);
 final dynamicThemingNotifier = ValueNotifier(ThemeManager().useDynamicTheming);
 final blackThemingNotifier = ValueNotifier(ThemeManager().useBlackTheming);
 
+final fleatherFieldHasFocusNotifier = ValueNotifier(false);
+
 final navigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Root navigator key');
 final drawerKey = GlobalKey<ScaffoldState>(debugLabel: 'Drawer key');
 
