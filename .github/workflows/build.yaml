@@ -5,7 +5,7 @@ on: pull_request
 jobs:
   build_android:
     name: Android
-    environment: release
+    environment: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
