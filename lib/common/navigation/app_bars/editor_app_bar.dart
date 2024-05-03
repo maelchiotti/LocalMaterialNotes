@@ -100,55 +100,60 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
     final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
 
-    return AppBar(
-      leading: BackButton(
-        onPressed: () => backFromEditor(context, ref),
-      ),
-      actions: note == null
-          ? null
-          : [
-              if (!note.deleted) ...[
-                if (showUndoRedoButtons)
-                  IconButton(
-                    icon: const Icon(Icons.undo),
-                    tooltip: localizations.tooltip_toggle_checkbox,
-                    onPressed: _undo,
+    return ValueListenableBuilder(
+      valueListenable: fleatherFieldHasFocusNotifier,
+      builder: (_, hasFocus, ___) {
+        return AppBar(
+          leading: BackButton(
+            onPressed: () => backFromEditor(context, ref),
+          ),
+          actions: note == null
+              ? null
+              : [
+                  if (!note.deleted) ...[
+                    if (showUndoRedoButtons)
+                      IconButton(
+                        icon: const Icon(Icons.undo),
+                        tooltip: localizations.tooltip_toggle_checkbox,
+                        onPressed: hasFocus ? _undo : null,
+                      ),
+                    if (showUndoRedoButtons)
+                      IconButton(
+                        icon: const Icon(Icons.redo),
+                        tooltip: localizations.tooltip_toggle_checkbox,
+                        onPressed: hasFocus ? _redo : null,
+                      ),
+                    if (showChecklistButton)
+                      IconButton(
+                        icon: const Icon(Icons.checklist),
+                        tooltip: localizations.tooltip_toggle_checkbox,
+                        onPressed: hasFocus ? _toggleChecklist : null,
+                      ),
+                  ],
+                  PopupMenuButton<MenuOption>(
+                    itemBuilder: (context) {
+                      return (note.deleted
+                          ? [
+                              MenuOption.restore.popupMenuItem(),
+                              MenuOption.deletePermanently.popupMenuItem(),
+                            ]
+                          : [
+                              MenuOption.togglePin.popupMenuItem(note.pinned),
+                              MenuOption.share.popupMenuItem(),
+                              MenuOption.delete.popupMenuItem(),
+                            ])
+                        ..addAll(
+                          [
+                            MenuOption.about.popupMenuItem(),
+                          ],
+                        );
+                    },
+                    onSelected: _onMenuOptionSelected,
                   ),
-                if (showUndoRedoButtons)
-                  IconButton(
-                    icon: const Icon(Icons.redo),
-                    tooltip: localizations.tooltip_toggle_checkbox,
-                    onPressed: _redo,
-                  ),
-                if (showChecklistButton)
-                  IconButton(
-                    icon: const Icon(Icons.checklist),
-                    tooltip: localizations.tooltip_toggle_checkbox,
-                    onPressed: _toggleChecklist,
-                  ),
-              ],
-              PopupMenuButton<MenuOption>(
-                itemBuilder: (context) {
-                  return (note.deleted
-                      ? [
-                          MenuOption.restore.popupMenuItem(),
-                          MenuOption.deletePermanently.popupMenuItem(),
-                        ]
-                      : [
-                          MenuOption.togglePin.popupMenuItem(note.pinned),
-                          MenuOption.share.popupMenuItem(),
-                          MenuOption.delete.popupMenuItem(),
-                        ])
-                    ..addAll(
-                      [
-                        MenuOption.about.popupMenuItem(),
-                      ],
-                    );
-                },
-                onSelected: _onMenuOptionSelected,
-              ),
-              Padding(padding: Paddings.custom.appBarActionsEnd),
-            ],
+                  Padding(padding: Paddings.custom.appBarActionsEnd),
+                ],
+        );
+      },
     );
   }
 }

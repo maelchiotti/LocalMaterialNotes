@@ -34,12 +34,6 @@ class _EditorState extends ConsumerState<EditorPage> {
 
   bool fleatherFieldHasFocus = false;
 
-  void _fleatherFieldFocusChanged(bool hasFocus) {
-    setState(() {
-      fleatherFieldHasFocus = hasFocus;
-    });
-  }
-
   void _synchronizeTitle(Note note, String? newTitle) {
     if (newTitle == null) {
       return;
@@ -108,7 +102,7 @@ class _EditorState extends ConsumerState<EditorPage> {
                 Padding(padding: Paddings.padding8.vertical),
                 Expanded(
                   child: Focus(
-                    onFocusChange: _fleatherFieldFocusChanged,
+                    onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,
                     child: FleatherField(
                       controller: fleatherController!,
                       autofocus: widget._autofocus,
@@ -129,14 +123,20 @@ class _EditorState extends ConsumerState<EditorPage> {
             ),
           ),
         ),
-        if (showToolbar && fleatherFieldHasFocus && KeyboardVisibilityProvider.isKeyboardVisible(context))
-          FleatherToolbar.basic(
-            controller: fleatherController!,
-            padding: Paddings.custom.zero,
-            hideDirection: true,
-            hideHeadingStyle: true,
-            hideUndoRedo: true,
-          ),
+        ValueListenableBuilder(
+          valueListenable: fleatherFieldHasFocusNotifier,
+          builder: (_, hasFocus, ___) {
+            return showToolbar && hasFocus && KeyboardVisibilityProvider.isKeyboardVisible(context)
+                ? FleatherToolbar.basic(
+                    controller: fleatherController!,
+                    padding: Paddings.custom.zero,
+                    hideDirection: true,
+                    hideHeadingStyle: true,
+                    hideUndoRedo: true,
+                  )
+                : Container();
+          },
+        ),
       ],
     );
   }
