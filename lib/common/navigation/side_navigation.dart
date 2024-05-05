@@ -29,7 +29,7 @@ class _SideNavigationState extends State<SideNavigation> {
         context.go(newRoute.path);
     }
 
-    context.pop();
+    Navigator.of(context).pop();
   }
 
   @override
