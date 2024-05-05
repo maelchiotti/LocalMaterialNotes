@@ -41,6 +41,8 @@ enum Paddings {
 
   EdgeInsetsDirectional get appBarActionsEnd => const EdgeInsetsDirectional.only(end: 8);
 
+  EdgeInsetsDirectional get editorWithToolbar => const EdgeInsetsDirectional.only(bottom: 64);
+
   final double _padding;
 
   const Paddings(this._padding);
