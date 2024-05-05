@@ -61,7 +61,10 @@ class Notes extends _$Notes with BaseProvider {
   Future<bool> togglePin(Note note) async {
     note.pinned = !note.pinned;
 
-    return await edit(note);
+    final edited = await edit(note);
+    await get();
+
+    return edited;
   }
 
   Future<bool> delete(Note note) async {
