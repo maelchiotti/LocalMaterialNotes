@@ -33,11 +33,7 @@ class Notes extends _$Notes with BaseProvider {
     await get();
   }
 
-  /// Saves the [editedNote].
-  ///
-  /// [getNotes] should be set to `false` when this function is called successively on several notes. Then [get()]
-  /// should be called manually.
-  Future<bool> edit(Note editedNote, [bool getNotes = true]) async {
+  Future<bool> edit(Note editedNote) async {
     state = const AsyncLoading();
 
     editedNote.editedTime = DateTime.now();
@@ -53,32 +49,26 @@ class Notes extends _$Notes with BaseProvider {
       return false;
     }
 
-    if (getNotes) {
-      await get();
+    final newNotes = (state.value ?? []).where((note) => note.id != editedNote.id).toList();
+    if (!editedNote.deleted) {
+      newNotes.add(editedNote);
     }
+    state = AsyncData(newNotes);
 
     return true;
   }
 
-  /// Toggles the pin status of the [note].
-  ///
-  /// [getNotes] should be set to `false` when this function is called successively on several notes. Then [get()]
-  /// should be called manually.
-  Future<bool> togglePin(Note note, {bool getNotes = true}) async {
+  Future<bool> togglePin(Note note) async {
     note.pinned = !note.pinned;
 
-    return await edit(note, getNotes);
+    return await edit(note);
   }
 
-  /// Deletes the [note].
-  ///
-  /// [getNotes] should be set to `false` when this function is called successively on several notes. Then [get()]
-  /// should be called manually.
-  Future<bool> delete(Note note, {bool getNotes = true}) async {
+  Future<bool> delete(Note note) async {
     note.pinned = false;
     note.deleted = true;
 
-    return await edit(note, getNotes);
+    return await edit(note);
   }
 
   void select(Note noteToSelect) {
