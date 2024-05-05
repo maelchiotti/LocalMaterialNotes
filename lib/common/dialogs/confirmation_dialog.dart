@@ -2,22 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 
-Future<bool> showConfirmationDialog(
-  BuildContext context,
+Future<bool> _showConfirmationDialog(
   String title,
   String body,
-  String confirmText, {
-  bool? irreversible,
-}) async {
-  if (irreversible != null) {
-    final confirmationsPreference = Confirmations.fromPreference();
-
-    return confirmationsPreference == Confirmations.none ||
-        (confirmationsPreference == Confirmations.irreversible && !irreversible);
-  }
-
+  String confirmText,
+) async {
   return await showAdaptiveDialog<bool>(
-        context: context,
+        context: navigatorKey.currentContext!,
         builder: (context) {
           return AlertDialog(
             title: Text(title),
@@ -46,4 +37,26 @@ Future<bool> showConfirmationDialog(
         },
       ) ??
       false;
+}
+
+Future<bool> askForConfirmation(
+  String title,
+  String body,
+  String confirmText, {
+  bool? irreversible,
+}) async {
+  final confirmationsPreference = Confirmations.fromPreference();
+
+  switch (confirmationsPreference) {
+    case Confirmations.none:
+      return true;
+    case Confirmations.irreversible:
+      if (irreversible != null && irreversible) {
+        return _showConfirmationDialog(title, body, confirmText);
+      }
+    case Confirmations.all:
+      return _showConfirmationDialog(title, body, confirmText);
+  }
+
+  return false;
 }

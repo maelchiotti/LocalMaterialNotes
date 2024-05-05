@@ -14,8 +14,7 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
     return false;
   }
 
-  if (await showConfirmationDialog(
-    context,
+  if (await askForConfirmation(
     localizations.dialog_delete,
     localizations.dialog_delete_body_single,
     localizations.dialog_delete,
@@ -34,16 +33,15 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
   return false;
 }
 
-Future<void> deleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
-  if (await showConfirmationDialog(
-    context,
+Future<void> deleteNotes(WidgetRef ref, List<Note> notes) async {
+  if (await askForConfirmation(
     localizations.dialog_delete,
     localizations.dialog_delete_body(notes.length),
     localizations.dialog_delete,
     irreversible: false,
   )) {
     for (final note in notes) {
-      await ref.read(notesProvider.notifier).delete(note, getNotes: false);
+      await ref.read(notesProvider.notifier).delete(note);
     }
   }
 }
@@ -53,14 +51,14 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
     return false;
   }
 
-  if (await showConfirmationDialog(
-    context,
+  if (await askForConfirmation(
     localizations.dialog_permanently_delete,
     localizations.dialog_permanently_delete_body_single,
     localizations.dialog_permanently_delete,
     irreversible: true,
   )) {
     ref.read(currentNoteProvider.notifier).reset();
+
     await ref.read(binProvider.notifier).permanentlyDelete(note);
 
     if (context.mounted && context.canPop()) {
@@ -73,32 +71,28 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
   return false;
 }
 
-Future<void> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
-  if (await showConfirmationDialog(
-    context,
+Future<void> permanentlyDeleteNotes(WidgetRef ref, List<Note> notes) async {
+  if (await askForConfirmation(
     localizations.dialog_permanently_delete,
     localizations.dialog_permanently_delete_body(notes.length),
     localizations.dialog_permanently_delete,
     irreversible: true,
   )) {
     for (final note in notes) {
-      await ref.read(binProvider.notifier).permanentlyDelete(note, getNotes: false);
+      await ref.read(binProvider.notifier).permanentlyDelete(note);
     }
-
-    await ref.read(binProvider.notifier).get();
   }
 }
 
-Future<void> emptyBin(BuildContext context, WidgetRef ref) async {
-  if (await showConfirmationDialog(
-    context,
+Future<void> emptyBin(WidgetRef ref) async {
+  if (await askForConfirmation(
     localizations.dialog_empty_bin,
     localizations.dialog_empty_bin_body,
     localizations.dialog_empty_bin,
     irreversible: true,
   )) {
-    await ref.read(binProvider.notifier).empty();
-
     ref.read(selectionModeProvider.notifier).exitSelectionMode();
+
+    await ref.read(binProvider.notifier).empty();
   }
 }

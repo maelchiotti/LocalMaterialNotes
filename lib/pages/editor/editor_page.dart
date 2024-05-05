@@ -40,6 +40,7 @@ class _EditorState extends ConsumerState<EditorPage> {
     }
 
     note.title = newTitle;
+
     ref.read(notesProvider.notifier).edit(note);
   }
 
@@ -49,6 +50,7 @@ class _EditorState extends ConsumerState<EditorPage> {
     }
 
     note.content = jsonEncode(fleatherController!.document.toDelta().toJson());
+
     ref.read(notesProvider.notifier).edit(note);
   }
 

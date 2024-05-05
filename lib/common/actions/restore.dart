@@ -12,14 +12,14 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async 
     return false;
   }
 
-  if (await showConfirmationDialog(
-    context,
+  if (await askForConfirmation(
     localizations.dialog_restore,
     localizations.dialog_restore_body_single,
     localizations.dialog_restore,
     irreversible: false,
   )) {
     ref.read(currentNoteProvider.notifier).reset();
+
     await ref.read(binProvider.notifier).restore(note);
 
     if (context.mounted && context.canPop()) {
@@ -32,18 +32,15 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async 
   return false;
 }
 
-Future<void> restoreNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
-  if (await showConfirmationDialog(
-    context,
+Future<void> restoreNotes(WidgetRef ref, List<Note> notes) async {
+  if (await askForConfirmation(
     localizations.dialog_restore,
     localizations.dialog_restore_body(notes.length),
     localizations.dialog_restore,
     irreversible: false,
   )) {
     for (final note in notes.where((note) => note.selected)) {
-      await ref.read(binProvider.notifier).restore(note, getNotes: false);
+      await ref.read(binProvider.notifier).restore(note);
     }
-
-    await ref.read(binProvider.notifier).get();
   }
 }
