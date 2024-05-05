@@ -43,7 +43,7 @@ Future<bool> askForConfirmation(
   String title,
   String body,
   String confirmText, {
-  bool? irreversible,
+  bool irreversible = false,
 }) async {
   final confirmationsPreference = Confirmations.fromPreference();
 
@@ -51,12 +51,12 @@ Future<bool> askForConfirmation(
     case Confirmations.none:
       return true;
     case Confirmations.irreversible:
-      if (irreversible != null && irreversible) {
+      if (irreversible) {
         return _showConfirmationDialog(title, body, confirmText);
+      } else {
+        return true;
       }
     case Confirmations.all:
       return _showConfirmationDialog(title, body, confirmText);
   }
-
-  return false;
 }

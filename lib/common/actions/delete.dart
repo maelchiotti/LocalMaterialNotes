@@ -18,7 +18,6 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
     localizations.dialog_delete,
     localizations.dialog_delete_body_single,
     localizations.dialog_delete,
-    irreversible: false,
   )) {
     ref.read(currentNoteProvider.notifier).reset();
     await ref.read(notesProvider.notifier).delete(note);
@@ -38,7 +37,6 @@ Future<void> deleteNotes(WidgetRef ref, List<Note> notes) async {
     localizations.dialog_delete,
     localizations.dialog_delete_body(notes.length),
     localizations.dialog_delete,
-    irreversible: false,
   )) {
     for (final note in notes) {
       await ref.read(notesProvider.notifier).delete(note);

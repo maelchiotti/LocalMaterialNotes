@@ -16,7 +16,6 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async 
     localizations.dialog_restore,
     localizations.dialog_restore_body_single,
     localizations.dialog_restore,
-    irreversible: false,
   )) {
     ref.read(currentNoteProvider.notifier).reset();
 
@@ -37,7 +36,6 @@ Future<void> restoreNotes(WidgetRef ref, List<Note> notes) async {
     localizations.dialog_restore,
     localizations.dialog_restore_body(notes.length),
     localizations.dialog_restore,
-    irreversible: false,
   )) {
     for (final note in notes.where((note) => note.selected)) {
       await ref.read(binProvider.notifier).restore(note);
