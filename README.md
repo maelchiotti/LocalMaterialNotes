@@ -69,7 +69,7 @@ Simple, local, material design notes.
 
 ## Screenshots
 
-See more screenshots [here](assets/screenshots).
+See more screenshots [here](docs/screenshots).
 
 ## Supported languages
 

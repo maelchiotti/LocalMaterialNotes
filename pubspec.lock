@@ -42,13 +42,13 @@ packages:
     source: hosted
     version: "2.0.2"
   archive:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: archive
-      sha256: "0763b45fa9294197a2885c8567927e2830ade852e5c896fd4ab7e0e348d0f373"
+      sha256: ecf4273855368121b1caed0d10d4513c7241dfc813f7d3c8933b36622ae9b265
       url: "https://pub.dev"
     source: hosted
-    version: "3.5.0"
+    version: "3.5.1"
   args:
     dependency: transitive
     description:
@@ -341,10 +341,10 @@ packages:
     dependency: "direct main"
     description:
       name: fleather
-      sha256: "6e907746c3d7ea5bc3b62c1c2dcca850d1475e1dd2494f14f06811b757ef6231"
+      sha256: f4555f9d103597646a33eb42e5507bd4c10c4036ea5132988d7e6f258144f032
       url: "https://pub.dev"
     source: hosted
-    version: "1.14.4"
+    version: "1.14.5+1"
   flutter:
     dependency: "direct main"
     description: flutter

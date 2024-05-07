@@ -19,7 +19,7 @@ import 'package:localmaterialnotes/utils/theme_manager.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Interactions {
+class SettingsActions {
   Future<void> selectLanguage(BuildContext context) async {
     await showAdaptiveDialog<Locale>(
       context: context,

@@ -11,11 +11,12 @@ environment:
 
 dependencies:
   after_layout: ^1.2.0
+  archive: ^3.5.1
   collection: ^1.18.0
   device_info_plus: ^10.0.1
   dynamic_color: ^1.7.0
   equatable: ^2.0.5
-  fleather: ^1.14.4
+  fleather: ^1.14.5+1
   flutter:
     sdk: flutter
   flutter_hooks: ^0.20.5
