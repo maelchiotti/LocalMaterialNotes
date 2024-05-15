@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:locale_names/locale_names.dart';
-import 'package:localmaterialnotes/pages/settings/interactions.dart';
+import 'package:localmaterialnotes/pages/settings/settings_actions.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
@@ -20,7 +20,7 @@ class SettingsPage extends ConsumerStatefulWidget {
 }
 
 class _SettingsPageState extends ConsumerState<SettingsPage> {
-  final interactions = Interactions();
+  final interactions = SettingsActions();
 
   bool showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
   bool showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
@@ -34,10 +34,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       platform: DevicePlatform.android,
       contentPadding: Paddings.custom.bottomSystemUi,
       lightTheme: SettingsThemeData(
-        settingsListBackground: Theme.of(context).colorScheme.background,
+        settingsListBackground: Theme.of(context).colorScheme.surface,
       ),
       darkTheme: SettingsThemeData(
-        settingsListBackground: Theme.of(context).colorScheme.background,
+        settingsListBackground: Theme.of(context).colorScheme.surface,
       ),
       sections: [
         SettingsSection(

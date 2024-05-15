@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:archive/archive.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
 import 'package:localmaterialnotes/l10n/hardcoded_localizations.dart';
@@ -88,41 +89,67 @@ class DatabaseManager {
     });
   }
 
-  Future<bool> exportAsJson() async {
-    final notes = await getAll();
-    final notesAsJson = jsonEncode(notes);
+  Future<Uri?> _getDirectory() async {
+    final directory = await saf.openDocumentTree();
 
-    return await _export('application/json', 'json', notesAsJson);
-  }
-
-  Future<bool> exportAsMarkdown() async {
-    final notes = await getAll();
-    final StringBuffer notesAsMarkdown = StringBuffer('# Material Notes\n\n');
-    for (final note in notes) {
-      notesAsMarkdown
-          .writeln('## ${note.title}${note.contentDisplay.isNotEmpty ? '\n\n' : ''}${note.contentDisplay}\n');
+    if (directory == null) {
+      return null;
     }
 
-    return await _export('text/markdown', 'md', notesAsMarkdown.toString().trim());
+    return directory;
   }
 
-  Future<bool> _export(String mimeType, String extension, String notesAsString) async {
-    final exportDirectory = await saf.openDocumentTree();
-
-    if (exportDirectory == null) {
-      return false;
-    }
-
+  Future<bool> _export(Uri directory, String mimeType, String extension, Uint8List bytes) async {
     final timestamp = DateTime.timestamp();
+    final filename = 'materialnotes_export_${timestamp.filename}';
 
     await saf.createFile(
-      exportDirectory,
+      directory,
       mimeType: mimeType,
-      displayName: 'materialnotes_export_${timestamp.filename}.$extension',
-      bytes: Uint8List.fromList(utf8.encode(notesAsString)),
+      displayName: filename,
+      bytes: bytes,
     );
 
     return true;
+  }
+
+  Future<bool> exportAsJson() async {
+    final directory = await _getDirectory();
+
+    if (directory == null) {
+      return false;
+    }
+
+    final notes = await getAll();
+    final notesAsJson = jsonEncode(notes);
+
+    return await _export(directory, 'application/json', 'json', Uint8List.fromList(utf8.encode(notesAsJson)));
+  }
+
+  Future<bool> exportAsMarkdown() async {
+    final directory = await _getDirectory();
+
+    if (directory == null) {
+      return false;
+    }
+
+    final notes = await getAll();
+    final archive = Archive();
+
+    for (final note in notes) {
+      final bytes = Uint8List.fromList(utf8.encode(note.markdown));
+      final filename = '${note.title} (${note.createdTime.filename}).md';
+
+      archive.addFile(ArchiveFile(filename, bytes.length, bytes));
+    }
+
+    final encodedArchive = ZipEncoder().encode(archive);
+
+    if (encodedArchive == null) {
+      return false;
+    }
+
+    return await _export(directory, 'application/zip', 'zip', Uint8List.fromList(encodedArchive));
   }
 
   Future<bool> import() async {

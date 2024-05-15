@@ -32,7 +32,6 @@ class ThemeManager {
     return ColorScheme.fromSeed(
       brightness: Brightness.dark,
       seedColor: _customPrimaryColor,
-      background: useBlackTheming ? Colors.black : null,
       surface: useBlackTheming ? Colors.black : null,
     );
   }
@@ -109,7 +108,8 @@ class ThemeManager {
     return ThemeData(
       useMaterial3: true,
       colorScheme: darkDynamicColorScheme?.copyWith(
-            background: useBlackTheming ? Colors.black : null,
+            // TODO: remove when dynamic_color is updated (cf. https://github.com/material-foundation/flutter-packages/issues/574 and https://github.com/material-foundation/flutter-packages/issues/582)
+            background: useBlackTheming ? Colors.black : null, // ignore: deprecated_member_use
             surface: useBlackTheming ? Colors.black : null,
           ) ??
           _customDarkColorScheme,

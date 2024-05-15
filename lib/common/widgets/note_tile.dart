@@ -83,7 +83,9 @@ class _NoteTileState extends ConsumerState<NoteTile> {
       onTap: _openOrSelect,
       onLongPress: widget.searchView ? null : _enterSelectionMode,
       child: Container(
-        color: widget.note.selected ? Theme.of(context).colorScheme.surfaceVariant : null,
+        // TODO: change when dynamic_color is updated (cf. https://github.com/material-foundation/flutter-packages/issues/574 and https://github.com/material-foundation/flutter-packages/issues/582)
+        color:
+            widget.note.selected ? Theme.of(context).colorScheme.surfaceVariant : null, // ignore: deprecated_member_use
         child: Padding(
           padding: Paddings.padding16.horizontal.add(Paddings.padding16.vertical),
           child: Row(
@@ -103,7 +105,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                     // Subtitle
                     if (!widget.note.isContentEmpty)
                       Text(
-                        widget.note.contentDisplay,
+                        widget.note.contentPreview,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(

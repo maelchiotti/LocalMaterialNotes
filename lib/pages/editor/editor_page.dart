@@ -8,12 +8,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
+import 'package:localmaterialnotes/pages/editor/editor_toolbar.dart';
 import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
 import 'package:localmaterialnotes/providers/editor_controller/editor_controller_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
-import 'package:localmaterialnotes/utils/constants/radiuses.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -84,82 +84,56 @@ class _EditorState extends ConsumerState<EditorPage> {
       });
     }
 
-    return Stack(
-      alignment: AlignmentDirectional.bottomCenter,
+    return Column(
       children: [
-        Padding(
-          padding: Paddings.custom.pageButBottom,
-          child: Column(
-            children: [
-              TextField(
-                readOnly: widget._readOnly,
-                textCapitalization: TextCapitalization.sentences,
-                textInputAction: TextInputAction.next,
-                style: Theme.of(context).textTheme.titleLarge,
-                decoration: InputDecoration.collapsed(
-                  hintText: localizations.hint_title,
+        Expanded(
+          child: Padding(
+            padding: Paddings.custom.pageButBottom,
+            child: Column(
+              children: [
+                TextField(
+                  readOnly: widget._readOnly,
+                  textCapitalization: TextCapitalization.sentences,
+                  textInputAction: TextInputAction.next,
+                  style: Theme.of(context).textTheme.titleLarge,
+                  decoration: InputDecoration.collapsed(
+                    hintText: localizations.hint_title,
+                  ),
+                  controller: titleController,
+                  onChanged: (text) => _synchronizeTitle(note, text),
                 ),
-                controller: titleController,
-                onChanged: (text) => _synchronizeTitle(note, text),
-              ),
-              Padding(padding: Paddings.padding8.vertical),
-              Expanded(
-                child: Focus(
-                  onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,
-                  child: ValueListenableBuilder(
-                    valueListenable: fleatherFieldHasFocusNotifier,
-                    builder: (_, hasFocus, ___) {
-                      EdgeInsetsGeometry fleatherFieldPadding;
-                      if (showToolbar) {
-                        fleatherFieldPadding =
-                            hasFocus ? Paddings.custom.editorWithToolbar : Paddings.custom.bottomSystemUi;
-                      } else {
-                        fleatherFieldPadding = hasFocus ? Paddings.custom.zero : Paddings.custom.bottomSystemUi;
-                      }
-
-                      return FleatherField(
-                        controller: fleatherController!,
-                        autofocus: widget._autofocus,
-                        readOnly: widget._readOnly,
-                        expands: true,
-                        decoration: InputDecoration.collapsed(
-                          hintText: localizations.hint_note,
-                        ),
-                        onLaunchUrl: _launchUrl,
-                        spellCheckConfiguration: SpellCheckConfiguration(
-                          spellCheckService: DefaultSpellCheckService(),
-                        ),
-                        padding: fleatherFieldPadding,
-                      );
-                    },
+                Padding(padding: Paddings.padding8.vertical),
+                Expanded(
+                  child: Focus(
+                    onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,
+                    child: FleatherField(
+                      controller: fleatherController!,
+                      autofocus: widget._autofocus,
+                      readOnly: widget._readOnly,
+                      expands: true,
+                      decoration: InputDecoration.collapsed(
+                        hintText: localizations.hint_note,
+                      ),
+                      onLaunchUrl: _launchUrl,
+                      spellCheckConfiguration: SpellCheckConfiguration(
+                        spellCheckService: DefaultSpellCheckService(),
+                      ),
+                      padding: Paddings.custom.bottomSystemUi,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         ValueListenableBuilder(
           valueListenable: fleatherFieldHasFocusNotifier,
           builder: (_, hasFocus, ___) {
             return showToolbar && hasFocus && KeyboardVisibilityProvider.isKeyboardVisible(context)
-                ? Padding(
-                    padding: Paddings.padding8.horizontal.add(Paddings.padding8.bottom),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surface,
-                        border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
-                        borderRadius: Radiuses.radius8.circular,
-                      ),
-                      child: FleatherToolbar.basic(
-                        controller: fleatherController!,
-                        hideBackgroundColor: true,
-                        hideForegroundColor: true,
-                        hideDirection: true,
-                        hideHeadingStyle: true,
-                        hideListChecks: true,
-                        hideUndoRedo: true,
-                      ),
-                    ),
+                ? ColoredBox(
+                    // TODO: change when dynamic_color is updated (cf. https://github.com/material-foundation/flutter-packages/issues/574 and https://github.com/material-foundation/flutter-packages/issues/582)
+                    color: Theme.of(context).colorScheme.surfaceVariant, // ignore: deprecated_member_use
+                    child: EditorToolbar(fleatherController!),
                   )
                 : Container();
           },
