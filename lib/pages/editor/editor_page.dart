@@ -131,7 +131,8 @@ class _EditorState extends ConsumerState<EditorPage> {
           builder: (_, hasFocus, ___) {
             return showToolbar && hasFocus && KeyboardVisibilityProvider.isKeyboardVisible(context)
                 ? ColoredBox(
-                    color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                    // TODO: change when dynamic_color is updated (cf. https://github.com/material-foundation/flutter-packages/issues/574 and https://github.com/material-foundation/flutter-packages/issues/582)
+                    color: Theme.of(context).colorScheme.surfaceVariant,
                     child: EditorToolbar(fleatherController!),
                   )
                 : Container();
