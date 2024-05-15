@@ -103,7 +103,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                     // Subtitle
-                    if (!widget.note.isContentEmpty)
+                    if (!widget.note.isContentEmpty && !widget.note.isContentPreviewEmpty)
                       Text(
                         widget.note.contentPreview,
                         maxLines: 3,

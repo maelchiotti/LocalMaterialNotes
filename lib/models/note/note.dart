@@ -147,6 +147,11 @@ class Note extends Equatable {
   }
 
   @ignore
+  bool get isContentPreviewEmpty {
+    return contentPreview.isEmpty;
+  }
+
+  @ignore
   bool get isEmpty {
     return isTitleEmpty && isContentEmpty;
   }
