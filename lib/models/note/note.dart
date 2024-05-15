@@ -94,6 +94,14 @@ class Note extends Equatable {
 
       for (var i = 0; i < operations.length; i++) {
         final operation = operations[i];
+
+        // Skip horizontal rules
+        if (operation.data is Map &&
+            (operation.data as Map).containsKey('_type') &&
+            (operation.data as Map)['_type'] == 'hr') {
+          continue;
+        }
+
         final nextOperation = i == operations.length - 1 ? null : operations[i + 1];
 
         final checklist = nextOperation != null &&
@@ -103,7 +111,6 @@ class Note extends Equatable {
 
         if (checklist) {
           final checked = nextOperation.attributes!.containsKey('checked');
-
           content += '${checked ? '✅' : '⬜'} ${operation.value}';
         } else {
           content += operation.value.toString();
