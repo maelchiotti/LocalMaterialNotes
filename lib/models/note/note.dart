@@ -86,7 +86,7 @@ class Note extends Equatable {
   }
 
   @ignore
-  String get contentDisplay {
+  String get contentPreview {
     var content = '';
 
     for (final child in document.root.children) {
@@ -95,6 +95,8 @@ class Note extends Equatable {
       for (var i = 0; i < operations.length; i++) {
         final operation = operations[i];
         final nextOperation = i == operations.length - 1 ? null : operations[i + 1];
+
+        print(nextOperation);
 
         final checklist = nextOperation != null &&
             nextOperation.attributes != null &&
@@ -121,7 +123,7 @@ class Note extends Equatable {
 
   @ignore
   String get shareText {
-    return '$title\n\n$contentDisplay';
+    return '$title\n\n$contentPreview';
   }
 
   @ignore

@@ -29,11 +29,11 @@ class AboutSheet extends ConsumerWidget {
         ),
         ListTile(
           title: Text(localizations.about_words),
-          trailing: Text(RegExp(r'[\w-]+').allMatches(note.contentDisplay).length.toString()),
+          trailing: Text(RegExp(r'[\w-]+').allMatches(note.contentPreview).length.toString()),
         ),
         ListTile(
           title: Text(localizations.about_characters),
-          trailing: Text(note.contentDisplay.length.toString()),
+          trailing: Text(note.contentPreview.length.toString()),
         ),
       ],
     );

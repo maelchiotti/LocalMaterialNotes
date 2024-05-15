@@ -32,7 +32,6 @@ class ThemeManager {
     return ColorScheme.fromSeed(
       brightness: Brightness.dark,
       seedColor: _customPrimaryColor,
-      background: useBlackTheming ? Colors.black : null,
       surface: useBlackTheming ? Colors.black : null,
     );
   }
@@ -109,7 +108,6 @@ class ThemeManager {
     return ThemeData(
       useMaterial3: true,
       colorScheme: darkDynamicColorScheme?.copyWith(
-            background: useBlackTheming ? Colors.black : null,
             surface: useBlackTheming ? Colors.black : null,
           ) ??
           _customDarkColorScheme,

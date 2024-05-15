@@ -34,10 +34,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       platform: DevicePlatform.android,
       contentPadding: Paddings.custom.bottomSystemUi,
       lightTheme: SettingsThemeData(
-        settingsListBackground: Theme.of(context).colorScheme.background,
+        settingsListBackground: Theme.of(context).colorScheme.surface,
       ),
       darkTheme: SettingsThemeData(
-        settingsListBackground: Theme.of(context).colorScheme.background,
+        settingsListBackground: Theme.of(context).colorScheme.surface,
       ),
       sections: [
         SettingsSection(
