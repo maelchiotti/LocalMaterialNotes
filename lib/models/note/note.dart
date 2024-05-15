@@ -96,8 +96,6 @@ class Note extends Equatable {
         final operation = operations[i];
         final nextOperation = i == operations.length - 1 ? null : operations[i + 1];
 
-        print(nextOperation);
-
         final checklist = nextOperation != null &&
             nextOperation.attributes != null &&
             nextOperation.attributes!.containsKey('block') &&

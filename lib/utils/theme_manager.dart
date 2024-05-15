@@ -109,7 +109,7 @@ class ThemeManager {
       useMaterial3: true,
       colorScheme: darkDynamicColorScheme?.copyWith(
             // TODO: remove when dynamic_color is updated (cf. https://github.com/material-foundation/flutter-packages/issues/574 and https://github.com/material-foundation/flutter-packages/issues/582)
-            background: useBlackTheming ? Colors.black : null,
+            background: useBlackTheming ? Colors.black : null, // ignore: deprecated_member_use
             surface: useBlackTheming ? Colors.black : null,
           ) ??
           _customDarkColorScheme,
