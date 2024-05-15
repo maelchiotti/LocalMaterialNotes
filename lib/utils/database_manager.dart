@@ -10,7 +10,6 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
-import 'package:parchment/codecs.dart'; // ignore: depend_on_referenced_packages
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_storage/shared_storage.dart' as saf;
 
@@ -134,13 +133,11 @@ class DatabaseManager {
       return false;
     }
 
-    const parchmentMarkdownCodec = ParchmentMarkdownCodec();
     final notes = await getAll();
     final archive = Archive();
 
     for (final note in notes) {
-      final markdown = parchmentMarkdownCodec.encode(note.document);
-      final bytes = Uint8List.fromList(utf8.encode(markdown));
+      final bytes = Uint8List.fromList(utf8.encode(note.markdown));
       final filename = '${note.title} (${note.createdTime.filename}).md';
 
       archive.addFile(ArchiveFile(filename, bytes.length, bytes));

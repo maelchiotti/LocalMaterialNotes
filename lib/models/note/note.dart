@@ -115,6 +115,11 @@ class Note extends Equatable {
   }
 
   @ignore
+  String get markdown {
+    return parchmentMarkdownCodec.encode(document);
+  }
+
+  @ignore
   String get shareText {
     return '$title\n\n$contentDisplay';
   }
