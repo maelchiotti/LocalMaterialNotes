@@ -46,6 +46,11 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
+
     defaultConfig {
         applicationId "com.maelchiotti.localmaterialnotes"
         minSdkVersion flutter.minSdkVersion
