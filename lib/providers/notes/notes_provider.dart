@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/base_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -14,8 +15,6 @@ class Notes extends _$Notes with BaseProvider {
   }
 
   Future<List<Note>> get() async {
-    state = const AsyncLoading();
-
     List<Note> notes = [];
 
     try {
@@ -29,13 +28,13 @@ class Notes extends _$Notes with BaseProvider {
     return notes;
   }
 
-  Future<void> sort() async {
-    await get();
+  void sort() {
+    final sortedNotes = (state.value ?? []).sorted((note, otherNote) => note.compareTo(otherNote));
+
+    state = AsyncData(sortedNotes);
   }
 
   Future<bool> edit(Note editedNote) async {
-    state = const AsyncLoading();
-
     editedNote.editedTime = DateTime.now();
 
     try {
@@ -49,11 +48,18 @@ class Notes extends _$Notes with BaseProvider {
       return false;
     }
 
+    // Keep all other notes
     final newNotes = (state.value ?? []).where((note) => note.id != editedNote.id).toList();
+
+    // Add the edited note if it was not deleted
     if (!editedNote.deleted) {
       newNotes.add(editedNote);
     }
-    state = AsyncData(newNotes);
+
+    // Sort all the notes
+    final sortedNotes = newNotes.sorted((note, otherNote) => note.compareTo(otherNote));
+
+    state = AsyncData(sortedNotes);
 
     return true;
   }
@@ -61,10 +67,7 @@ class Notes extends _$Notes with BaseProvider {
   Future<bool> togglePin(Note note) async {
     note.pinned = !note.pinned;
 
-    final edited = await edit(note);
-    await get();
-
-    return edited;
+    return await edit(note);
   }
 
   Future<bool> delete(Note note) async {

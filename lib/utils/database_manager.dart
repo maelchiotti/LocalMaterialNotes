@@ -89,6 +89,10 @@ class DatabaseManager {
     });
   }
 
+  Future<bool> isBinEmpty() async {
+    return await _database.notes.where().deletedEqualTo(true).isEmpty();
+  }
+
   Future<Uri?> _getDirectory() async {
     final directory = await saf.openDocumentTree();
 

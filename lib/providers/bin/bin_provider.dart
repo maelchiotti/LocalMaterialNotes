@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/base_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -14,8 +15,6 @@ class Bin extends _$Bin with BaseProvider {
   }
 
   Future<List<Note>> get() async {
-    state = const AsyncLoading();
-
     List<Note> notes = [];
 
     try {
@@ -30,7 +29,9 @@ class Bin extends _$Bin with BaseProvider {
   }
 
   Future<void> sort() async {
-    await get();
+    final sortedNotes = (state.value ?? []).sorted((note, otherNote) => note.compareTo(otherNote));
+
+    state = AsyncData(sortedNotes);
   }
 
   Future<bool> empty() async {
@@ -41,33 +42,41 @@ class Bin extends _$Bin with BaseProvider {
       return false;
     }
 
-    await get();
+    state = const AsyncData([]);
 
     return true;
   }
 
-  Future<bool> permanentlyDelete(Note note) async {
+  Future<bool> permanentlyDelete(Note permanentlyDeletedNote) async {
     try {
-      await databaseManager.delete(note.isarId);
+      await databaseManager.delete(permanentlyDeletedNote.isarId);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
 
+    // Keep all other notes
+    final newNotes = (state.value ?? []).where((note) => note.id != permanentlyDeletedNote.id).toList();
+
+    state = AsyncData(newNotes);
+
     return true;
   }
 
-  Future<bool> restore(Note noteToRestore) async {
-    state = const AsyncLoading();
-
-    noteToRestore.deleted = false;
+  Future<bool> restore(Note restoredNote) async {
+    restoredNote.deleted = false;
 
     try {
-      await databaseManager.edit(noteToRestore);
+      await databaseManager.edit(restoredNote);
     } on Exception catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
+
+    // Keep all other notes
+    final newNotes = (state.value ?? []).where((note) => note.id != restoredNote.id).toList();
+
+    state = AsyncData(newNotes);
 
     return true;
   }

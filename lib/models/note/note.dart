@@ -6,6 +6,8 @@ import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
+import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
+import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 
 part 'note.g.dart';
 
@@ -165,6 +167,28 @@ class Note extends Equatable {
     final titleMatches = weightedRatio(plainText, searchCleaned) >= 50;
 
     return titleContains || contentContains || titleMatches;
+  }
+
+  int compareTo(Note otherNote) {
+    final sortMethod = SortMethod.fromPreference();
+    final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
+
+    if (pinned && !otherNote.pinned) {
+      return -1;
+    } else if (!pinned && otherNote.pinned) {
+      return 1;
+    } else {
+      switch (sortMethod) {
+        case SortMethod.date:
+          return sortAscending
+              ? createdTime.compareTo(otherNote.createdTime)
+              : otherNote.createdTime.compareTo(createdTime);
+        case SortMethod.title:
+          return sortAscending ? title.compareTo(otherNote.title) : otherNote.title.compareTo(title);
+        default:
+          throw Exception();
+      }
+    }
   }
 
   @override
