@@ -28,6 +28,22 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+// Overwrite the version code
+ext.abiCodes = ['arm64-v8a': 2, 'armeabi-v7a': 1, x86_64: 3]
+android.applicationVariants.all { variant ->
+    variant.outputs.each { output ->
+        def baseAbiVersionCode = project.ext.abiCodes.get(output.getFilter(com.android.build.OutputFile.ABI))
+
+        if (baseAbiVersionCode == null) {
+            // Fat build using the pattern 'versionCode * 10'
+            output.versionCodeOverride = variant.versionCode * 10
+        } else {
+            // ABI build using the pattern 'versionCode * 10 + ABI'
+            output.versionCodeOverride = variant.versionCode * 10 + baseAbiVersionCode
+        }
+    }
+}
+
 android {
     namespace "com.maelchiotti.localmaterialnotes"
     compileSdkVersion 34
