@@ -7,10 +7,10 @@
 [![Releases](https://img.shields.io/github/v/release/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/releases)
 [![Issues](https://img.shields.io/github/issues/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/issues)
 
-[<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="220px">](https://play.google.com/store/apps/details?id=com.maelchiotti.localmaterialnotes)
-[<img alt="Get it on IzzyOnDroid" src="docs/badges/izzy_on_droid.png" width="220px">](https://apt.izzysoft.de/packages/com.maelchiotti.localmaterialnotes)
-[<img alt="Get it on Obtainium" src="docs/badges/obtainium.png" width="220px">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/maelchiotti/LocalMaterialNotes)
-[<img alt="Get it on GitHub" src="docs/badges/github.png" width="220px">](https://github.com/maelchiotti/LocalMaterialNotes/releases/latest)
+[<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="210px">](https://play.google.com/store/apps/details?id=com.maelchiotti.localmaterialnotes)
+[<img alt="Get it on IzzyOnDroid" src="docs/badges/izzy_on_droid.png" width="210px">](https://apt.izzysoft.de/packages/com.maelchiotti.localmaterialnotes)
+[<img alt="Get it on Obtainium" src="docs/badges/obtainium.png" width="210px">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/maelchiotti/LocalMaterialNotes)
+[<img alt="Get it on GitHub" src="docs/badges/github.png" width="210px">](https://github.com/maelchiotti/LocalMaterialNotes/releases/latest)
 
 </div>
 
