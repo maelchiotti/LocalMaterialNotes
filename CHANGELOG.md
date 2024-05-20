@@ -4,6 +4,36 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.3.0 - 2024-05-20
+
+### Added
+
+- Release to IzzyOnDroid
+- Grid view
+- Advanced text formatting
+- Undo/redo while editing
+- Setting to toggle advanced text formatting
+- Setting to toggle undo/redo button
+- Setting to toggle checklists button
+
+### Removed
+
+- "Untitled note" label
+
+### Changed
+
+- Improve the search precision
+- Improve markdown export (support advanced text formatting and export each note to a separate file)
+- Going back from the settings goes back to the previous page (if any)
+
+### Fixed
+
+- Hide note preview if empty
+- Providers not updating correctly
+- Notes not sorted after being updated
+- Support RTL for paddings
+- Many small issues
+
 ## 1.2.0 - 2024-04-15
 
 ### Added
