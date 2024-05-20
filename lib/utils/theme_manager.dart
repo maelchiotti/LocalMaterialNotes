@@ -4,8 +4,6 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
 
-const _customPrimaryColor = Color(0xFF2278e9);
-
 class ThemeManager {
   static final ThemeManager _singleton = ThemeManager._internal();
 
@@ -15,25 +13,13 @@ class ThemeManager {
 
   ThemeManager._internal();
 
+  final _customPrimaryColor = const Color(0xFF2278e9);
+
   late final bool isDynamicThemingAvailable;
 
   Future<void> init() async {
     isDynamicThemingAvailable =
         await DynamicColorPlugin.getCorePalette() != null || await DynamicColorPlugin.getAccentColor() != null;
-  }
-
-  ColorScheme get _customLightColorScheme {
-    return ColorScheme.fromSeed(
-      seedColor: _customPrimaryColor,
-    );
-  }
-
-  ColorScheme get _customDarkColorScheme {
-    return ColorScheme.fromSeed(
-      brightness: Brightness.dark,
-      seedColor: _customPrimaryColor,
-      surface: useBlackTheming ? Colors.black : null,
-    );
   }
 
   bool get useDynamicTheming {
@@ -78,6 +64,49 @@ class ThemeManager {
     return localizations.settings_theme_system;
   }
 
+  ThemeData getLightTheme(ColorScheme? lightDynamicColorScheme) {
+    final colorScheme = useDynamicTheming && lightDynamicColorScheme != null
+        ? lightDynamicColorScheme
+        : ColorScheme.fromSeed(
+            seedColor: _customPrimaryColor,
+          );
+
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: colorScheme,
+    );
+  }
+
+  ThemeData getDarkTheme(ColorScheme? darkDynamicColorScheme) {
+    final ColorScheme colorScheme;
+
+    if (useDynamicTheming && darkDynamicColorScheme != null) {
+      colorScheme = useBlackTheming
+          ? darkDynamicColorScheme.copyWith(
+              // TODO: check if this is still needed to make the background of the pages black
+              background: Colors.black, // ignore: deprecated_member_use
+              surface: Colors.black,
+            )
+          : darkDynamicColorScheme;
+    } else {
+      colorScheme = useBlackTheming
+          ? ColorScheme.fromSeed(
+              brightness: Brightness.dark,
+              seedColor: _customPrimaryColor,
+              surface: Colors.black,
+            )
+          : ColorScheme.fromSeed(
+              brightness: Brightness.dark,
+              seedColor: _customPrimaryColor,
+            );
+    }
+
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: colorScheme,
+    );
+  }
+
   void setThemeMode(ThemeMode? themeMode) {
     if (themeMode == null) {
       return;
@@ -95,38 +124,5 @@ class ThemeManager {
     PreferencesManager().set<int>(PreferenceKey.theme.name, value);
 
     themeModeNotifier.value = themeMode;
-  }
-
-  ThemeData getLightDynamicTheme([ColorScheme? lightDynamicColorScheme]) {
-    return ThemeData(
-      useMaterial3: true,
-      colorScheme: lightDynamicColorScheme != null ? lightDynamicColorScheme.harmonized() : _customLightColorScheme,
-    );
-  }
-
-  ThemeData getDarkDynamicTheme([ColorScheme? darkDynamicColorScheme]) {
-    return ThemeData(
-      useMaterial3: true,
-      colorScheme: darkDynamicColorScheme?.copyWith(
-            // TODO: remove when dynamic_color is updated (cf. https://github.com/material-foundation/flutter-packages/issues/574 and https://github.com/material-foundation/flutter-packages/issues/582)
-            background: useBlackTheming ? Colors.black : null, // ignore: deprecated_member_use
-            surface: useBlackTheming ? Colors.black : null,
-          ) ??
-          _customDarkColorScheme,
-    );
-  }
-
-  ThemeData get getLightCustomTheme {
-    return ThemeData(
-      useMaterial3: true,
-      colorScheme: _customLightColorScheme,
-    );
-  }
-
-  ThemeData get getDarkCustomTheme {
-    return ThemeData(
-      useMaterial3: true,
-      colorScheme: _customDarkColorScheme,
-    );
   }
 }

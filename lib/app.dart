@@ -43,7 +43,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
   @override
   Widget build(BuildContext context) {
     return DynamicColorBuilder(
-      builder: (lightDynamic, darkDynamic) {
+      builder: (lightDynamicColorScheme, darkDynamicColorScheme) {
         return ValueListenableBuilder(
           valueListenable: dynamicThemingNotifier,
           builder: (_, __, ___) {
@@ -53,20 +53,12 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
                 return ValueListenableBuilder(
                   valueListenable: themeModeNotifier,
                   builder: (_, themeMode, ___) {
-                    final useDynamicTheming = ThemeManager().useDynamicTheming;
-
                     return MaterialApp.router(
                       title: 'Material Notes',
-                      theme: useDynamicTheming
-                          ? ThemeManager().getLightDynamicTheme(lightDynamic)
-                          : ThemeManager().getLightCustomTheme,
-                      darkTheme: useDynamicTheming
-                          ? ThemeManager().getDarkDynamicTheme(darkDynamic)
-                          : ThemeManager().getDarkCustomTheme,
+                      theme: ThemeManager().getLightTheme(lightDynamicColorScheme),
+                      darkTheme: ThemeManager().getDarkTheme(darkDynamicColorScheme),
                       themeMode: themeMode,
-                      localizationsDelegates: const [
-                        ...AppLocalizations.localizationsDelegates,
-                      ],
+                      localizationsDelegates: AppLocalizations.localizationsDelegates,
                       supportedLocales: AppLocalizations.supportedLocales,
                       locale: LocaleManager().locale,
                       routerConfig: router,
