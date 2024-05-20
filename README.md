@@ -36,9 +36,8 @@ Simple, local, material design notes.
 
 ### Take notes
 
-- Write text notes (title + content)
-- Add checklists along the normal text
-- Take advantage of the advanced formatting options
+- Write text notes (title and content)
+- Take advantage of the advanced formatting options, including checklists
 - Undo and redo your changes while editing
 - Use the quick action from your home screen to quickly add a note
 
@@ -59,14 +58,14 @@ Simple, local, material design notes.
 
 ### Protect
 
-- Never worry about how your data is handled, as it never leaves your device because the application doesn't have any internet permissions
+- Never worry about how your data is handled,: it cannot leave your device as the application doesn't have any internet permissions
 
 ### Customize
 
 - Choose your language (see the [supported ones](#supported-languages))
 - Choose your theme (light, dark or black)
 - Choose if you want your theme to be dynamic (use colors from your background)
-- Choose if you want to enable the advanced formatting options or keep your notes simple
+- Choose if you want to enable the advanced formatting, only the checklists or keep your notes basic
 
 ## Screenshots
 
