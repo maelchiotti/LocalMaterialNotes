@@ -73,11 +73,11 @@ See more screenshots [here](docs/screenshots).
 
 ## Supported languages
 
-| Language | Support |       Details       |
-|:--------:|:-------:|:-------------------:|
-| English  |   🟢    |   Fully supported   |
-|  French  |   🟢    |   Fully supported   |
-| Turkish  |   🟡    | Partially supported |
+| Language | Support |     Details      |
+|:--------:|:-------:|:----------------:|
+| English  |   🟢    | Fully supported  |
+|  French  |   🟢    | Fully supported  |
+| Turkish  |   🟡    | Mostly supported |
 
 To improve or add support for a language, please see [CONTRIBUTING.md](CONTRIBUTING.md#localization).
 
