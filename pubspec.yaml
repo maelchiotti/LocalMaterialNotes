@@ -3,11 +3,11 @@ description: Simple, local, material design notes
 repository: https://github.com/maelchiotti/LocalMaterialNotes
 documentation: https://github.com/maelchiotti/LocalMaterialNotes/wiki
 
-version: 1.2.0+6
+version: 1.3.0+7
 publish_to: none
 
 environment:
-  sdk: ">=3.3.1 <4.0.0"
+  sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
   after_layout: ^1.2.0
