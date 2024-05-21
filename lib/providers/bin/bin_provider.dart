@@ -18,7 +18,7 @@ class Bin extends _$Bin with BaseProvider {
     List<Note> notes = [];
 
     try {
-      notes = await databaseManager.getAll(deleted: true);
+      notes = await databaseUtils.getAll(deleted: true);
     } on Exception catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
     }
@@ -36,7 +36,7 @@ class Bin extends _$Bin with BaseProvider {
 
   Future<bool> empty() async {
     try {
-      await databaseManager.deleteAll();
+      await databaseUtils.deleteAll();
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
@@ -49,7 +49,7 @@ class Bin extends _$Bin with BaseProvider {
 
   Future<bool> permanentlyDelete(Note permanentlyDeletedNote) async {
     try {
-      await databaseManager.delete(permanentlyDeletedNote.isarId);
+      await databaseUtils.delete(permanentlyDeletedNote.isarId);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
@@ -67,7 +67,7 @@ class Bin extends _$Bin with BaseProvider {
     restoredNote.deleted = false;
 
     try {
-      await databaseManager.edit(restoredNote);
+      await databaseUtils.edit(restoredNote);
     } on Exception catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;

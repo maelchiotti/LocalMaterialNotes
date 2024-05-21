@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/l10n/app_localizations.g.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
+import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
-class LocaleManager {
+class LocaleUtils {
   Locale get locale {
-    final localePreferenceLanguageCode = PreferencesManager().get<String>(PreferenceKey.locale);
+    final localePreferenceLanguageCode = PreferencesUtils().get<String>(PreferenceKey.locale);
 
     if (localePreferenceLanguageCode != null) {
       return Locale(localePreferenceLanguageCode);
@@ -28,6 +28,6 @@ class LocaleManager {
       return;
     }
 
-    PreferencesManager().set(PreferenceKey.locale.name, locale.languageCode);
+    PreferencesUtils().set(PreferenceKey.locale.name, locale.languageCode);
   }
 }

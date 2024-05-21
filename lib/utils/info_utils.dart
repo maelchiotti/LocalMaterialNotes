@@ -1,14 +1,14 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-class InfoManager {
-  static final InfoManager _singleton = InfoManager._internal();
+class InfoUtils {
+  static final InfoUtils _singleton = InfoUtils._internal();
 
-  factory InfoManager() {
+  factory InfoUtils() {
     return _singleton;
   }
 
-  InfoManager._internal();
+  InfoUtils._internal();
 
   late final PackageInfo _packageInfo;
   late final AndroidDeviceInfo _androidDeviceInfo;

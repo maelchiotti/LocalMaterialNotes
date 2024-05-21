@@ -13,14 +13,14 @@ import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_storage/shared_storage.dart' as saf;
 
-class DatabaseManager {
-  static final DatabaseManager _singleton = DatabaseManager._internal();
+class DatabaseUtils {
+  static final DatabaseUtils _singleton = DatabaseUtils._internal();
 
-  factory DatabaseManager() {
+  factory DatabaseUtils() {
     return _singleton;
   }
 
-  DatabaseManager._internal();
+  DatabaseUtils._internal();
 
   final _databaseName = 'materialnotes';
   late String _databaseDirectory;

@@ -7,15 +7,15 @@ import 'package:localmaterialnotes/utils/asset.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
-import 'package:localmaterialnotes/utils/database_manager.dart';
+import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
-import 'package:localmaterialnotes/utils/info_manager.dart';
-import 'package:localmaterialnotes/utils/locale_manager.dart';
+import 'package:localmaterialnotes/utils/info_utils.dart';
+import 'package:localmaterialnotes/utils/locale_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
-import 'package:localmaterialnotes/utils/snack_bar_manager.dart';
-import 'package:localmaterialnotes/utils/theme_manager.dart';
+import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
+import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
+import 'package:localmaterialnotes/utils/theme_utils.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -43,7 +43,7 @@ class SettingsActions {
         return;
       }
 
-      LocaleManager().setLocale(locale);
+      LocaleUtils().setLocale(locale);
       await Restart.restartApp();
     });
   }
@@ -58,23 +58,23 @@ class SettingsActions {
           children: [
             RadioListTile<ThemeMode>(
               value: ThemeMode.system,
-              groupValue: ThemeManager().themeMode,
+              groupValue: ThemeUtils().themeMode,
               title: Text(localizations.settings_theme_system),
-              selected: ThemeManager().themeMode == ThemeMode.system,
+              selected: ThemeUtils().themeMode == ThemeMode.system,
               onChanged: (locale) => Navigator.of(context).pop(locale),
             ),
             RadioListTile<ThemeMode>(
               value: ThemeMode.light,
-              groupValue: ThemeManager().themeMode,
+              groupValue: ThemeUtils().themeMode,
               title: Text(localizations.settings_theme_light),
-              selected: ThemeManager().themeMode == ThemeMode.light,
+              selected: ThemeUtils().themeMode == ThemeMode.light,
               onChanged: (locale) => Navigator.of(context).pop(locale),
             ),
             RadioListTile<ThemeMode>(
               value: ThemeMode.dark,
-              groupValue: ThemeManager().themeMode,
+              groupValue: ThemeUtils().themeMode,
               title: Text(localizations.settings_theme_dark),
-              selected: ThemeManager().themeMode == ThemeMode.dark,
+              selected: ThemeUtils().themeMode == ThemeMode.dark,
               onChanged: (locale) => Navigator.of(context).pop(locale),
             ),
           ],
@@ -85,34 +85,34 @@ class SettingsActions {
         return;
       }
 
-      ThemeManager().setThemeMode(themeMode);
+      ThemeUtils().setThemeMode(themeMode);
     });
   }
 
   void toggleDynamicTheming(bool toggled) {
-    PreferencesManager().set<bool>(PreferenceKey.dynamicTheming.name, toggled);
+    PreferencesUtils().set<bool>(PreferenceKey.dynamicTheming.name, toggled);
     dynamicThemingNotifier.value = toggled;
   }
 
   void toggleBlackTheming(bool toggled) {
-    PreferencesManager().set<bool>(PreferenceKey.blackTheming.name, toggled);
+    PreferencesUtils().set<bool>(PreferenceKey.blackTheming.name, toggled);
     blackThemingNotifier.value = toggled;
   }
 
   void toggleShowUndoRedoButtons(bool toggled) {
-    PreferencesManager().set<bool>(PreferenceKey.showUndoRedoButtons.name, toggled);
+    PreferencesUtils().set<bool>(PreferenceKey.showUndoRedoButtons.name, toggled);
   }
 
   void toggleShowChecklistButton(bool toggled) {
-    PreferencesManager().set<bool>(PreferenceKey.showChecklistButton.name, toggled);
+    PreferencesUtils().set<bool>(PreferenceKey.showChecklistButton.name, toggled);
   }
 
   void toggleShowToolbar(bool toggled) {
-    PreferencesManager().set<bool>(PreferenceKey.showToolbar.name, toggled);
+    PreferencesUtils().set<bool>(PreferenceKey.showToolbar.name, toggled);
   }
 
   void toggleShowSeparators(bool toggled) {
-    PreferencesManager().set<bool>(PreferenceKey.showSeparators.name, toggled);
+    PreferencesUtils().set<bool>(PreferenceKey.showSeparators.name, toggled);
   }
 
   Future<void> selectConfirmations(BuildContext context) async {
@@ -140,43 +140,43 @@ class SettingsActions {
         return;
       }
 
-      PreferencesManager().set<String>(PreferenceKey.confirmations.name, confirmationsValue.name);
+      PreferencesUtils().set<String>(PreferenceKey.confirmations.name, confirmationsValue.name);
     });
   }
 
   Future<void> backupAsJson(BuildContext context) async {
     try {
-      if (await DatabaseManager().exportAsJson()) {
-        SnackBarManager.info(localizations.settings_export_success).show();
+      if (await DatabaseUtils().exportAsJson()) {
+        SnackBarUtils.info(localizations.settings_export_success).show();
       }
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
 
-      SnackBarManager.info(exception.toString()).show();
+      SnackBarUtils.info(exception.toString()).show();
     }
   }
 
   Future<void> backupAsMarkdown(BuildContext context) async {
     try {
-      if (await DatabaseManager().exportAsMarkdown()) {
-        SnackBarManager.info(localizations.settings_export_success).show();
+      if (await DatabaseUtils().exportAsMarkdown()) {
+        SnackBarUtils.info(localizations.settings_export_success).show();
       }
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
 
-      SnackBarManager.info(exception.toString()).show();
+      SnackBarUtils.info(exception.toString()).show();
     }
   }
 
   Future<void> restore(BuildContext context) async {
     try {
-      if (await DatabaseManager().import()) {
-        SnackBarManager.info(localizations.settings_import_success).show();
+      if (await DatabaseUtils().import()) {
+        SnackBarUtils.info(localizations.settings_import_success).show();
       }
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
 
-      SnackBarManager.info(exception.toString()).show();
+      SnackBarUtils.info(exception.toString()).show();
     }
   }
 
@@ -184,7 +184,7 @@ class SettingsActions {
     showAboutDialog(
       context: context,
       applicationName: localizations.app_name,
-      applicationVersion: InfoManager().appVersion,
+      applicationVersion: InfoUtils().appVersion,
       applicationIcon: Image.asset(
         Asset.icons.path,
         filterQuality: FilterQuality.medium,

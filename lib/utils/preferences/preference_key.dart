@@ -1,6 +1,6 @@
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 import 'package:localmaterialnotes/utils/preferences/layout.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
+import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 
 enum PreferenceKey {
@@ -38,6 +38,6 @@ enum PreferenceKey {
       throw ArgumentError('The type T should be a native type (bool, int, double, String or List<String>), not $T.');
     }
 
-    return PreferencesManager().get<T>(this) ?? defaultValue as T;
+    return PreferencesUtils().get<T>(this) ?? defaultValue as T;
   }
 }
