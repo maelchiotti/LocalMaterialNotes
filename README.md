@@ -19,17 +19,17 @@
 Simple, local, material design notes.
 
 <div align="center">
-  <img alt="Screenshot of the notes list" src="docs/screenshots/latest_notes.jpg" width="24%">
-  <img alt="Screenshots of the note editor" src="docs/screenshots/latest_editor.jpg" width="24%">
-  <img alt="Screenshot of the bin" src="docs/screenshots/latest_bin.jpg" width="24%">
-  <img alt="Screenshot of the settings" src="docs/screenshots/latest_settings_1.jpg" width="24%">
+  <img alt="Screenshot of the notes list" src="docs/screenshots/notes.jpg" width="24%">
+  <img alt="Screenshots of the note editor" src="docs/screenshots/editor_advanced.jpg" width="24%">
+  <img alt="Screenshot of the bin" src="docs/screenshots/bin.jpg" width="24%">
+  <img alt="Screenshot of the settings" src="docs/screenshots/settings.jpg" width="24%">
 </div>
 
 <div align="center">
-  <img alt="Screenshot of the notes list in selection mode" src="docs/screenshots/latest_notes_selection.jpg" width="24%">
-  <img alt="Screenshots of the search feature" src="docs/screenshots/latest_search.jpg" width="24%">
-  <img alt="Screenshot of the notes list in the dark mode with dynamic theming" src="docs/screenshots/latest_theme_dynamic_dark.jpg" width="24%">
-  <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="docs/screenshots/latest_theme_dynamic_light.jpg" width="24%">
+  <img alt="Screenshot of the notes list in selection mode" src="docs/screenshots/notes_selection.jpg" width="24%">
+  <img alt="Screenshots of the search feature" src="docs/screenshots/search.jpg" width="24%">
+  <img alt="Screenshot of the notes list in the dark mode with dynamic theming" src="docs/screenshots/black_dynamic_theming.jpg" width="24%">
+  <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="docs/screenshots/light_dynamic_theming.jpg" width="24%">
 </div>
 
 ## Features
