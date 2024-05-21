@@ -165,7 +165,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               leading: const Icon(Icons.file_upload),
               title: Text(localizations.settings_import),
               value: Text(localizations.settings_import_description),
-              onPressed: interactions.restore,
+              onPressed: (context) => interactions.import(context, ref),
             ),
           ],
         ),
