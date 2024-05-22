@@ -11,16 +11,17 @@ import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sanitize_filename/sanitize_filename.dart';
 import 'package:shared_storage/shared_storage.dart' as saf;
 
-class DatabaseManager {
-  static final DatabaseManager _singleton = DatabaseManager._internal();
+class DatabaseUtils {
+  static final DatabaseUtils _singleton = DatabaseUtils._internal();
 
-  factory DatabaseManager() {
+  factory DatabaseUtils() {
     return _singleton;
   }
 
-  DatabaseManager._internal();
+  DatabaseUtils._internal();
 
   final _databaseName = 'materialnotes';
   late String _databaseDirectory;
@@ -142,7 +143,7 @@ class DatabaseManager {
 
     for (final note in notes) {
       final bytes = Uint8List.fromList(utf8.encode(note.markdown));
-      final filename = '${note.title} (${note.createdTime.filename}).md';
+      final filename = sanitizeFilename('${note.title} (${note.createdTime.filename}).md');
 
       archive.addFile(ArchiveFile(filename, bytes.length, bytes));
     }

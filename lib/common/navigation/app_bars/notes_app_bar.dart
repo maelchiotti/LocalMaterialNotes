@@ -12,7 +12,7 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/preferences/layout.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
+import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 
 class NotesAppBar extends ConsumerStatefulWidget {
@@ -39,7 +39,7 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
   void _toggleLayout() {
     final newLayout = layout == Layout.list ? Layout.grid : Layout.list;
 
-    PreferencesManager().set<String>(PreferenceKey.layout.name, newLayout.name);
+    PreferencesUtils().set<String>(PreferenceKey.layout.name, newLayout.name);
 
     ref.read(layoutStateProvider.notifier).set(newLayout);
   }
@@ -48,15 +48,15 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
     if (method != null) {
       final forceAscending = method == SortMethod.title;
 
-      PreferencesManager().set<String>(PreferenceKey.sortMethod.name, method.name);
-      PreferencesManager().set<bool>(PreferenceKey.sortAscending.name, forceAscending);
+      PreferencesUtils().set<String>(PreferenceKey.sortMethod.name, method.name);
+      PreferencesUtils().set<bool>(PreferenceKey.sortAscending.name, forceAscending);
 
       setState(() {
         sortMethod = method;
         sortAscending = forceAscending;
       });
     } else if (ascending != null) {
-      PreferencesManager().set<bool>(PreferenceKey.sortAscending.name, ascending);
+      PreferencesUtils().set<bool>(PreferenceKey.sortAscending.name, ascending);
 
       setState(() {
         sortAscending = ascending;

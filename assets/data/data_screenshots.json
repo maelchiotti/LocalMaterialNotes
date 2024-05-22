@@ -1,50 +1,50 @@
 [
-    {
-        "deleted": false,
-        "pinned": true,
-        "created_time": "2024-02-08T19:38:47.174208",
-        "edited_time": "2024-02-08T19:52:18.551315",
-        "title": "Welcome to Material Notes",
-        "content": "[{\"insert\":\"Simple, local, material design notes\\n\\n\"}]"
-    },
-    {
-        "deleted": false,
-        "pinned": false,
-        "created_time": "2024-02-08T19:42:36.799343",
-        "edited_time": "2024-02-08T19:48:24.809869",
-        "title": "Share & backup",
-        "content": "[{\"insert\":\"Share text to create a note\\nShare notes as text\\nBackup notes as JSON\\n\"}]"
-    },
-    {
-        "deleted": true,
-        "pinned": false,
-        "created_time": "2024-02-08T19:51:24.586171",
-        "edited_time": "2024-02-08T19:51:44.551382",
-        "title": "Recover notes from the bin !",
-        "content": "[{\"insert\":\"\\n\"}]"
-    },
-    {
-        "deleted": false,
-        "pinned": false,
-        "created_time": "2024-02-08T19:43:32.194535",
-        "edited_time": "2024-02-08T19:48:20.806446",
-        "title": "Customize",
-        "content": "[{\"insert\":\"Choose your theme (including black)\\nUse a dynamic theme\\nChoose your language\\n\"}]"
-    },
-    {
-        "deleted": false,
-        "pinned": false,
-        "created_time": "2024-02-08T19:39:47.595979",
-        "edited_time": "2024-02-08T19:48:56.383382",
-        "title": "Take notes",
-        "content": "[{\"insert\":\"Write text notes (title + content)\"},{\"insert\":\"\\n\",\"attributes\":{\"block\":\"cl\",\"checked\":true}},{\"insert\":\"Add checklists\"},{\"insert\":\"\\n\",\"attributes\":{\"block\":\"cl\"}},{\"insert\":\"Use quick action to add from your homescreen\"},{\"insert\":\"\\n\",\"attributes\":{\"block\":\"cl\",\"checked\":true}}]"
-    },
-    {
-        "deleted": false,
-        "pinned": false,
-        "created_time": "2024-02-08T19:41:27.742611",
-        "edited_time": "2024-02-08T19:48:30.195413",
-        "title": "Organize",
-        "content": "[{\"insert\":\"Search\\nPin & recover from the bin\\nSort (date or title, ascending or descending)\\n\"}]"
-    }
+  {
+    "deleted": false,
+    "pinned": true,
+    "created_time": "2024-02-08T19:38:47.174208",
+    "edited_time": "2024-05-21T15:08:35.958111",
+    "title": "Welcome to Material Notes",
+    "content": "[{\"insert\":\"Simple\",\"attributes\":{\"b\":true}},{\"insert\":\", \"},{\"insert\":\"local\",\"attributes\":{\"i\":true}},{\"insert\":\", material design notes\\n\"}]"
+  },
+  {
+    "deleted": false,
+    "pinned": false,
+    "created_time": "2024-02-08T19:39:47.595979",
+    "edited_time": "2024-05-21T15:08:31.275047",
+    "title": "Take notes",
+    "content": "[{\"insert\":\"Write text notes (title and content)\"},{\"insert\":\"\\n\",\"attributes\":{\"block\":\"cl\",\"checked\":true}},{\"insert\":\"Use formatting options and undo/redo\"},{\"insert\":\"\\n\",\"attributes\":{\"block\":\"cl\"}},{\"insert\":\"Use quick action to add from your homescreen\"},{\"insert\":\"\\n\",\"attributes\":{\"block\":\"cl\",\"checked\":true}}]"
+  },
+  {
+    "deleted": false,
+    "pinned": false,
+    "created_time": "2024-02-08T19:41:27.742611",
+    "edited_time": "2024-05-21T15:02:20.664230",
+    "title": "Organize",
+    "content": "[{\"insert\":\"Search & sort\\nPin & recover from the bin\\nDisplay in a list or a grid\\n\"}]"
+  },
+  {
+    "deleted": false,
+    "pinned": false,
+    "created_time": "2024-02-08T19:42:36.799343",
+    "edited_time": "2024-05-21T15:02:14.696364",
+    "title": "Share & backup",
+    "content": "[{\"insert\":\"Create a note from shared text\\nShare notes as text and export as Markdown\\nBackup notes as JSON\\n\"}]"
+  },
+  {
+    "deleted": false,
+    "pinned": false,
+    "created_time": "2024-02-08T19:43:32.194535",
+    "edited_time": "2024-05-21T15:02:09.581009",
+    "title": "Customize",
+    "content": "[{\"insert\":\"Choose your language\\nChoose your theme (including black and dynamic)\\nHide features you don't need\\n\"}]"
+  },
+  {
+    "deleted": true,
+    "pinned": false,
+    "created_time": "2024-02-08T19:51:24.586171",
+    "edited_time": "2024-02-08T19:51:44.551382",
+    "title": "Recover notes from the bin !",
+    "content": "[{\"insert\":\"\\n\"}]"
+  }
 ]

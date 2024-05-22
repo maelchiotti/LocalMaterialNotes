@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/locale_manager.dart';
+import 'package:localmaterialnotes/utils/locale_utils.dart';
 
 // All strings here are hardcoded because they are needed when no context is available, while AppLocalizations needs one
 
@@ -26,7 +26,7 @@ enum SupportedLocalizations {
 String get actionAddNoteTitle {
   const englishDefault = 'Add a note';
 
-  final locale = LocaleManager().locale;
+  final locale = LocaleUtils().locale;
 
   final String title;
 
@@ -49,7 +49,7 @@ Note get welcomeNote {
   const englishDefaultTitle = 'Welcome to $_appName!';
   const englishDefaultContent = 'Simple, local, material design notes';
 
-  final locale = LocaleManager().locale;
+  final locale = LocaleUtils().locale;
 
   final String title;
   final String content;

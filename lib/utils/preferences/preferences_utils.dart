@@ -1,14 +1,14 @@
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class PreferencesManager {
-  static final PreferencesManager _singleton = PreferencesManager._internal();
+class PreferencesUtils {
+  static final PreferencesUtils _singleton = PreferencesUtils._internal();
 
-  factory PreferencesManager() {
+  factory PreferencesUtils() {
     return _singleton;
   }
 
-  PreferencesManager._internal();
+  PreferencesUtils._internal();
 
   late final SharedPreferences _preferences;
 

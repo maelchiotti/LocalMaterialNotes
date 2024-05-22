@@ -18,7 +18,7 @@ class Notes extends _$Notes with BaseProvider {
     List<Note> notes = [];
 
     try {
-      notes = await databaseManager.getAll(deleted: false);
+      notes = await databaseUtils.getAll(deleted: false);
     } on Exception catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
     }
@@ -39,9 +39,9 @@ class Notes extends _$Notes with BaseProvider {
 
     try {
       if (editedNote.isEmpty) {
-        await databaseManager.delete(editedNote.isarId);
+        await databaseUtils.delete(editedNote.isarId);
       } else {
-        await databaseManager.edit(editedNote);
+        await databaseUtils.edit(editedNote);
       }
     } on Exception catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);

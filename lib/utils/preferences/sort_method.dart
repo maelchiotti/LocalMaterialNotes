@@ -1,5 +1,5 @@
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
+import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
 enum SortMethod {
   date('date'),
@@ -12,7 +12,7 @@ enum SortMethod {
   const SortMethod(this.name);
 
   factory SortMethod.fromPreference() {
-    final preference = PreferencesManager().get<String>(PreferenceKey.sortMethod);
+    final preference = PreferencesUtils().get<String>(PreferenceKey.sortMethod);
 
     return preference != null
         ? SortMethod.values.byName(preference)

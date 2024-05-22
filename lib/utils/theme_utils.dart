@@ -2,16 +2,16 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
+import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
-class ThemeManager {
-  static final ThemeManager _singleton = ThemeManager._internal();
+class ThemeUtils {
+  static final ThemeUtils _singleton = ThemeUtils._internal();
 
-  factory ThemeManager() {
+  factory ThemeUtils() {
     return _singleton;
   }
 
-  ThemeManager._internal();
+  ThemeUtils._internal();
 
   final _customPrimaryColor = const Color(0xFF2278e9);
 
@@ -121,7 +121,7 @@ class ThemeManager {
       case ThemeMode.dark:
         value = 2;
     }
-    PreferencesManager().set<int>(PreferenceKey.theme.name, value);
+    PreferencesUtils().set<int>(PreferenceKey.theme.name, value);
 
     themeModeNotifier.value = themeMode;
   }

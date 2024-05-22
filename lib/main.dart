@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/app.dart';
-import 'package:localmaterialnotes/utils/database_manager.dart';
-import 'package:localmaterialnotes/utils/info_manager.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
-import 'package:localmaterialnotes/utils/theme_manager.dart';
+import 'package:localmaterialnotes/utils/database_utils.dart';
+import 'package:localmaterialnotes/utils/info_utils.dart';
+import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
+import 'package:localmaterialnotes/utils/theme_utils.dart';
 
 Future<void> main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -20,10 +20,10 @@ Future<void> main() async {
 
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  await PreferencesManager().init();
-  await InfoManager().init();
-  await ThemeManager().init();
-  await DatabaseManager().init();
+  await PreferencesUtils().init();
+  await InfoUtils().init();
+  await ThemeUtils().init();
+  await DatabaseUtils().init();
 
   FlutterNativeSplash.remove();
 
