@@ -58,7 +58,7 @@ Simple, local, material design notes.
 
 ### Protect
 
-- Never worry about how your data is handled,: it cannot leave your device as the application doesn't have any internet permissions
+- Never worry about how your data is handled: it cannot leave your device as the application doesn't have any internet permissions
 
 ### Customize
 
