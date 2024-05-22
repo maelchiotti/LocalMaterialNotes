@@ -966,6 +966,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
+  sanitize_filename:
+    dependency: "direct main"
+    description:
+      name: sanitize_filename
+      sha256: "92fc3859d86ca4d087305a52c6823a2f323fa0935b1d8d17e05e00f80b027b03"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.5"
   share_plus:
     dependency: "direct main"
     description:

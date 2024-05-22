@@ -43,6 +43,7 @@ dependencies:
   receive_sharing_intent: ^1.8.0
   restart_app: ^1.2.1
   riverpod_annotation: ^2.3.5
+  sanitize_filename: ^1.0.5
   share_plus: ^9.0.0
   shared_preferences: ^2.2.3
   shared_storage: ^0.8.1
