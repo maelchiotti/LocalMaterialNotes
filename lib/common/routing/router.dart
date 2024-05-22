@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/fabs/fab_add_note.dart';
 import 'package:localmaterialnotes/common/fabs/fab_empty_bin.dart';
@@ -56,7 +57,7 @@ final router = GoRouter(
           key: drawerKey,
           appBar: _getAppBar(context),
           drawer: _getDrawer(),
-          body: child,
+          body: KeyboardVisibilityProvider(child: child),
           floatingActionButton: _getFloatingActionButton(context),
         );
       },

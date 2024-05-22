@@ -39,6 +39,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_appearance => 'Appearance';
 
   @override
+  String get settings_language => 'Language';
+
+  @override
   String get settings_theme => 'Theme';
 
   @override
@@ -63,13 +66,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_black_theming_description => 'Use a black background in dark mode';
 
   @override
-  String get settings_language => 'Language';
+  String get settings_editor => 'Editor';
 
   @override
-  String get settings_separator => 'Show the separators';
+  String get settings_show_undo_redo_buttons => 'Undo/redo buttons';
 
   @override
-  String get settings_separator_description => 'Show a separator between notes to differentiate them easily';
+  String get settings_show_undo_redo_buttons_description => 'Show the buttons to undo and redo changes in the editor';
+
+  @override
+  String get settings_show_checklist_button => 'Checklist button';
+
+  @override
+  String get settings_show_checklist_button_description => 'Show the button to toggle checklists in the editor';
+
+  @override
+  String get settings_show_toolbar => 'Editor toolbar';
+
+  @override
+  String get settings_show_toolbar_description => 'Show the editor toolbar to enable advanced text formatting';
+
+  @override
+  String get settings_show_separators => 'Show the separators';
+
+  @override
+  String get settings_show_separators_description => 'Show a separator between notes to differentiate them easily';
 
   @override
   String get settings_behavior => 'Behavior';
@@ -136,6 +157,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tooltip_fab_empty_bin => 'Empty the bin';
+
+  @override
+  String get tooltip_layout_list => 'List view';
+
+  @override
+  String get tooltip_layout_grid => 'Grid view';
 
   @override
   String get tooltip_sort => 'Sort the notes';
@@ -287,9 +314,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get menu_about => 'About';
-
-  @override
-  String get notes_untitled => 'Untitled note';
 
   @override
   String get confirmations_title_none => 'Never';

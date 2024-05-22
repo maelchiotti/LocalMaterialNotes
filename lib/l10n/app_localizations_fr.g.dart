@@ -39,6 +39,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_appearance => 'Apparence';
 
   @override
+  String get settings_language => 'Langue';
+
+  @override
   String get settings_theme => 'Thème';
 
   @override
@@ -63,13 +66,34 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_black_theming_description => 'Utilise un fond noir pour le thème sombre';
 
   @override
-  String get settings_language => 'Langue';
+  String get settings_editor => 'Éditeur';
 
   @override
-  String get settings_separator => 'Afficher les séparateurs';
+  String get settings_show_undo_redo_buttons => 'Boutons annuler/rétablir';
 
   @override
-  String get settings_separator_description =>
+  String get settings_show_undo_redo_buttons_description =>
+      'Afficher les boutons pour annuler et rétablir les modifications dans l\'éditeur';
+
+  @override
+  String get settings_show_checklist_button => 'Bouton case à cocher';
+
+  @override
+  String get settings_show_checklist_button_description =>
+      'Afficher le bouton pour basculer les cases à cocher dans l\'éditeur';
+
+  @override
+  String get settings_show_toolbar => 'Barre d\'outils de l\'éditeur';
+
+  @override
+  String get settings_show_toolbar_description =>
+      'Afficher la barre d\'outils de l\'éditeur pour permettre le formatage textuel avancé';
+
+  @override
+  String get settings_show_separators => 'Afficher les séparateurs';
+
+  @override
+  String get settings_show_separators_description =>
       'Afficher un séparateur entre les notes pour les différencier plus facilement';
 
   @override
@@ -138,6 +162,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tooltip_fab_empty_bin => 'Vider la corbeille';
+
+  @override
+  String get tooltip_layout_list => 'Vue en liste';
+
+  @override
+  String get tooltip_layout_grid => 'Vue en grille';
 
   @override
   String get tooltip_sort => 'Trier les notes';
@@ -290,9 +320,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get menu_about => 'À propos';
-
-  @override
-  String get notes_untitled => 'Note sans titre';
 
   @override
   String get confirmations_title_none => 'Jamais';

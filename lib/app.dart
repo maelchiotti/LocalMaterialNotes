@@ -7,10 +7,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/l10n/app_localizations.g.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/locale_manager.dart';
-import 'package:localmaterialnotes/utils/quick_actions_manager.dart';
-import 'package:localmaterialnotes/utils/share_manager.dart';
-import 'package:localmaterialnotes/utils/theme_manager.dart';
+import 'package:localmaterialnotes/utils/locale_utils.dart';
+import 'package:localmaterialnotes/utils/quick_actions_utils.dart';
+import 'package:localmaterialnotes/utils/share_utils.dart';
+import 'package:localmaterialnotes/utils/theme_utils.dart';
 
 class App extends ConsumerStatefulWidget {
   @override
@@ -30,7 +30,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
 
   @override
   void afterFirstLayout(BuildContext context) {
-    QuickActionsManager().init(navigatorKey.currentContext!, ref);
+    QuickActionsUtils().init(navigatorKey.currentContext!, ref);
   }
 
   @override
@@ -43,7 +43,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
   @override
   Widget build(BuildContext context) {
     return DynamicColorBuilder(
-      builder: (lightDynamic, darkDynamic) {
+      builder: (lightDynamicColorScheme, darkDynamicColorScheme) {
         return ValueListenableBuilder(
           valueListenable: dynamicThemingNotifier,
           builder: (_, __, ___) {
@@ -53,22 +53,14 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
                 return ValueListenableBuilder(
                   valueListenable: themeModeNotifier,
                   builder: (_, themeMode, ___) {
-                    final useDynamicTheming = ThemeManager().useDynamicTheming;
-
                     return MaterialApp.router(
                       title: 'Material Notes',
-                      theme: useDynamicTheming
-                          ? ThemeManager().getLightDynamicTheme(lightDynamic)
-                          : ThemeManager().getLightCustomTheme,
-                      darkTheme: useDynamicTheming
-                          ? ThemeManager().getDarkDynamicTheme(darkDynamic)
-                          : ThemeManager().getDarkCustomTheme,
+                      theme: ThemeUtils().getLightTheme(lightDynamicColorScheme),
+                      darkTheme: ThemeUtils().getDarkTheme(darkDynamicColorScheme),
                       themeMode: themeMode,
-                      localizationsDelegates: const [
-                        ...AppLocalizations.localizationsDelegates,
-                      ],
+                      localizationsDelegates: AppLocalizations.localizationsDelegates,
                       supportedLocales: AppLocalizations.supportedLocales,
-                      locale: LocaleManager().locale,
+                      locale: LocaleUtils().locale,
                       routerConfig: router,
                       debugShowCheckedModeBanner: false,
                     );

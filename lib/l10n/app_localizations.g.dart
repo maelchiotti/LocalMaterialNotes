@@ -151,6 +151,12 @@ abstract class AppLocalizations {
   /// **'Appearance'**
   String get settings_appearance;
 
+  /// No description provided for @settings_language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get settings_language;
+
   /// No description provided for @settings_theme.
   ///
   /// In en, this message translates to:
@@ -199,23 +205,59 @@ abstract class AppLocalizations {
   /// **'Use a black background in dark mode'**
   String get settings_black_theming_description;
 
-  /// No description provided for @settings_language.
+  /// No description provided for @settings_editor.
   ///
   /// In en, this message translates to:
-  /// **'Language'**
-  String get settings_language;
+  /// **'Editor'**
+  String get settings_editor;
 
-  /// No description provided for @settings_separator.
+  /// No description provided for @settings_show_undo_redo_buttons.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo/redo buttons'**
+  String get settings_show_undo_redo_buttons;
+
+  /// No description provided for @settings_show_undo_redo_buttons_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the buttons to undo and redo changes in the editor'**
+  String get settings_show_undo_redo_buttons_description;
+
+  /// No description provided for @settings_show_checklist_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Checklist button'**
+  String get settings_show_checklist_button;
+
+  /// No description provided for @settings_show_checklist_button_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the button to toggle checklists in the editor'**
+  String get settings_show_checklist_button_description;
+
+  /// No description provided for @settings_show_toolbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Editor toolbar'**
+  String get settings_show_toolbar;
+
+  /// No description provided for @settings_show_toolbar_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the editor toolbar to enable advanced text formatting'**
+  String get settings_show_toolbar_description;
+
+  /// No description provided for @settings_show_separators.
   ///
   /// In en, this message translates to:
   /// **'Show the separators'**
-  String get settings_separator;
+  String get settings_show_separators;
 
-  /// No description provided for @settings_separator_description.
+  /// No description provided for @settings_show_separators_description.
   ///
   /// In en, this message translates to:
   /// **'Show a separator between notes to differentiate them easily'**
-  String get settings_separator_description;
+  String get settings_show_separators_description;
 
   /// No description provided for @settings_behavior.
   ///
@@ -348,6 +390,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Empty the bin'**
   String get tooltip_fab_empty_bin;
+
+  /// No description provided for @tooltip_layout_list.
+  ///
+  /// In en, this message translates to:
+  /// **'List view'**
+  String get tooltip_layout_list;
+
+  /// No description provided for @tooltip_layout_grid.
+  ///
+  /// In en, this message translates to:
+  /// **'Grid view'**
+  String get tooltip_layout_grid;
 
   /// No description provided for @tooltip_sort.
   ///
@@ -564,12 +618,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'About'**
   String get menu_about;
-
-  /// No description provided for @notes_untitled.
-  ///
-  /// In en, this message translates to:
-  /// **'Untitled note'**
-  String get notes_untitled;
 
   /// No description provided for @confirmations_title_none.
   ///

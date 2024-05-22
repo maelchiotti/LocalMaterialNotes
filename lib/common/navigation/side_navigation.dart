@@ -21,8 +21,15 @@ class _SideNavigationState extends State<SideNavigation> {
       _index = newIndex;
     });
 
-    context.go(RouterRoute.getRouteFromIndex(_index).path);
-    context.pop();
+    final newRoute = RouterRoute.getRouteFromIndex(_index);
+    switch (newRoute) {
+      case RouterRoute.settings:
+        context.push(newRoute.path);
+      default:
+        context.go(newRoute.path);
+    }
+
+    Navigator.of(context).pop();
   }
 
   @override

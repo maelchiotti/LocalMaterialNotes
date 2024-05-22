@@ -1,5 +1,5 @@
-import 'package:localmaterialnotes/utils/database_manager.dart';
+import 'package:localmaterialnotes/utils/database_utils.dart';
 
 mixin BaseProvider {
-  late final databaseManager = DatabaseManager();
+  late final databaseUtils = DatabaseUtils();
 }

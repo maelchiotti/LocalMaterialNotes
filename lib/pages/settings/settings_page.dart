@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:locale_names/locale_names.dart';
-import 'package:localmaterialnotes/pages/settings/interactions.dart';
+import 'package:localmaterialnotes/pages/settings/settings_actions.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
-import 'package:localmaterialnotes/utils/info_manager.dart';
+import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_manager.dart';
-import 'package:localmaterialnotes/utils/theme_manager.dart';
+import 'package:localmaterialnotes/utils/theme_utils.dart';
 import 'package:simple_icons/simple_icons.dart';
 
 class SettingsPage extends ConsumerStatefulWidget {
@@ -21,10 +20,13 @@ class SettingsPage extends ConsumerStatefulWidget {
 }
 
 class _SettingsPageState extends ConsumerState<SettingsPage> {
-  final interactions = Interactions();
+  final interactions = SettingsActions();
 
-  bool useSeparators =
-      PreferencesManager().get<bool>(PreferenceKey.separator) ?? PreferenceKey.separator.defaultValue! as bool;
+  bool showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
+  bool showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
+  bool showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
+
+  bool showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +34,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       platform: DevicePlatform.android,
       contentPadding: Paddings.custom.bottomSystemUi,
       lightTheme: SettingsThemeData(
-        settingsListBackground: Theme.of(context).colorScheme.background,
+        settingsListBackground: Theme.of(context).colorScheme.surface,
       ),
       darkTheme: SettingsThemeData(
-        settingsListBackground: Theme.of(context).colorScheme.background,
+        settingsListBackground: Theme.of(context).colorScheme.surface,
       ),
       sections: [
         SettingsSection(
@@ -50,29 +52,70 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             SettingsTile.navigation(
               leading: const Icon(Icons.palette),
               title: Text(localizations.settings_theme),
-              value: Text(ThemeManager().themeModeName),
+              value: Text(ThemeUtils().themeModeName),
               onPressed: (context) async {
                 await interactions.selectTheme(context);
                 setState(() {});
               },
             ),
             SettingsTile.switchTile(
-              enabled: ThemeManager().isDynamicThemingAvailable,
+              enabled: ThemeUtils().isDynamicThemingAvailable,
               leading: const Icon(Icons.bolt),
               title: Text(localizations.settings_dynamic_theming),
               description: Text(localizations.settings_dynamic_theming_description),
-              initialValue: ThemeManager().useDynamicTheming,
+              initialValue: ThemeUtils().useDynamicTheming,
               onToggle: interactions.toggleDynamicTheming,
             ),
             SettingsTile.switchTile(
-              enabled: ThemeManager().brightness == Brightness.dark,
+              enabled: ThemeUtils().brightness == Brightness.dark,
               leading: const Icon(Icons.nightlight),
               title: Text(localizations.settings_black_theming),
               description: Text(localizations.settings_black_theming_description),
-              initialValue: ThemeManager().useBlackTheming,
+              initialValue: ThemeUtils().useBlackTheming,
               onToggle: (toggled) {
                 interactions.toggleBlackTheming(toggled);
                 setState(() {});
+              },
+            ),
+          ],
+        ),
+        SettingsSection(
+          title: Text(localizations.settings_editor),
+          tiles: [
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.undo),
+              title: Text(localizations.settings_show_undo_redo_buttons),
+              description: Text(localizations.settings_show_undo_redo_buttons_description),
+              initialValue: showUndoRedoButtons,
+              onToggle: (toggled) {
+                interactions.toggleShowUndoRedoButtons(toggled);
+                setState(() {
+                  showUndoRedoButtons = toggled;
+                });
+              },
+            ),
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.checklist),
+              title: Text(localizations.settings_show_checklist_button),
+              description: Text(localizations.settings_show_checklist_button_description),
+              initialValue: showChecklistButton,
+              onToggle: (toggled) {
+                interactions.toggleShowChecklistButton(toggled);
+                setState(() {
+                  showChecklistButton = toggled;
+                });
+              },
+            ),
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.format_paint),
+              title: Text(localizations.settings_show_toolbar),
+              description: Text(localizations.settings_show_toolbar_description),
+              initialValue: showToolbar,
+              onToggle: (toggled) {
+                interactions.toggleShowToolbar(toggled);
+                setState(() {
+                  showToolbar = toggled;
+                });
               },
             ),
           ],
@@ -83,7 +126,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             SettingsTile.navigation(
               leading: const Icon(Icons.warning),
               title: Text(localizations.settings_confirmations),
-              value: Text(Confirmations.fromPreferences().title),
+              value: Text(Confirmations.fromPreference().title),
               onPressed: (context) async {
                 await interactions.selectConfirmations(context);
                 setState(() {});
@@ -91,13 +134,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             ),
             SettingsTile.switchTile(
               leading: const Icon(Icons.safety_divider),
-              title: Text(localizations.settings_separator),
-              description: Text(localizations.settings_separator_description),
-              initialValue: useSeparators,
+              title: Text(localizations.settings_show_separators),
+              description: Text(localizations.settings_show_separators_description),
+              initialValue: showSeparators,
               onToggle: (toggled) {
-                interactions.toggleSeparator(toggled);
+                interactions.toggleShowSeparators(toggled);
                 setState(() {
-                  useSeparators = toggled;
+                  showSeparators = toggled;
                 });
               },
             ),
@@ -122,7 +165,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               leading: const Icon(Icons.file_upload),
               title: Text(localizations.settings_import),
               value: Text(localizations.settings_import_description),
-              onPressed: interactions.restore,
+              onPressed: (context) => interactions.import(context, ref),
             ),
           ],
         ),
@@ -132,7 +175,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             SettingsTile(
               leading: const Icon(Icons.info),
               title: Text(localizations.app_name),
-              value: Text(InfoManager().appVersion),
+              value: Text(InfoUtils().appVersion),
               onPressed: interactions.showAbout,
             ),
             SettingsTile(

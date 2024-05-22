@@ -39,6 +39,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_appearance => 'Görünüş';
 
   @override
+  String get settings_language => 'Dil';
+
+  @override
   String get settings_theme => 'Tema';
 
   @override
@@ -63,13 +66,31 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_black_theming_description => 'Koyu modda siyah arkaplan kullanın';
 
   @override
-  String get settings_language => 'Dil';
+  String get settings_editor => 'Editor';
 
   @override
-  String get settings_separator => 'Ayırıcıları göster';
+  String get settings_show_undo_redo_buttons => 'Undo/redo buttons';
 
   @override
-  String get settings_separator_description => 'Notları kolayca ayırt etmek için aralarında bir ayırıcı gösterin';
+  String get settings_show_undo_redo_buttons_description => 'Show the buttons to undo and redo changes in the editor';
+
+  @override
+  String get settings_show_checklist_button => 'Checklist button';
+
+  @override
+  String get settings_show_checklist_button_description => 'Show the button to toggle checklists in the editor';
+
+  @override
+  String get settings_show_toolbar => 'Editor toolbar';
+
+  @override
+  String get settings_show_toolbar_description => 'Show the editor toolbar to enable advanced text formatting';
+
+  @override
+  String get settings_show_separators => 'Ayırıcıları göster';
+
+  @override
+  String get settings_show_separators_description => 'Notları kolayca ayırt etmek için aralarında bir ayırıcı gösterin';
 
   @override
   String get settings_behavior => 'Davranış';
@@ -138,6 +159,12 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get tooltip_fab_empty_bin => 'Çöp kutusunu boşalt';
+
+  @override
+  String get tooltip_layout_list => 'List view';
+
+  @override
+  String get tooltip_layout_grid => 'Grid view';
 
   @override
   String get tooltip_sort => 'Notları sırala';
@@ -291,9 +318,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get menu_about => 'Hakkında';
 
   @override
-  String get notes_untitled => 'Başlıksız not';
-
-  @override
   String get confirmations_title_none => 'Asla';
 
   @override
@@ -330,5 +354,5 @@ class AppLocalizationsTr extends AppLocalizations {
   String get about_characters => 'Karakter';
 
   @override
-  String get time_at => '';
+  String get time_at => 'saat';
 }

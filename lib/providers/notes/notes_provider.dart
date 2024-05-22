@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/base_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -14,12 +15,10 @@ class Notes extends _$Notes with BaseProvider {
   }
 
   Future<List<Note>> get() async {
-    state = const AsyncLoading();
-
     List<Note> notes = [];
 
     try {
-      notes = await databaseManager.getAll(deleted: false);
+      notes = await databaseUtils.getAll(deleted: false);
     } on Exception catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
     }
@@ -29,42 +28,53 @@ class Notes extends _$Notes with BaseProvider {
     return notes;
   }
 
-  Future<void> sort() async {
-    await get();
+  void sort() {
+    final sortedNotes = (state.value ?? []).sorted((note, otherNote) => note.compareTo(otherNote));
+
+    state = AsyncData(sortedNotes);
   }
 
   Future<bool> edit(Note editedNote) async {
-    state = const AsyncLoading();
-
     editedNote.editedTime = DateTime.now();
 
     try {
       if (editedNote.isEmpty) {
-        await databaseManager.delete(editedNote.isarId);
+        await databaseUtils.delete(editedNote.isarId);
       } else {
-        await databaseManager.edit(editedNote);
+        await databaseUtils.edit(editedNote);
       }
     } on Exception catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
 
-    await get();
+    // Keep all other notes
+    final newNotes = (state.value ?? []).where((note) => note.id != editedNote.id).toList();
+
+    // Add the edited note if it was not deleted
+    if (!editedNote.deleted) {
+      newNotes.add(editedNote);
+    }
+
+    // Sort all the notes
+    final sortedNotes = newNotes.sorted((note, otherNote) => note.compareTo(otherNote));
+
+    state = AsyncData(sortedNotes);
 
     return true;
   }
 
-  Future<bool> togglePin(Note noteToPin) async {
-    noteToPin.pinned = !noteToPin.pinned;
+  Future<bool> togglePin(Note note) async {
+    note.pinned = !note.pinned;
 
-    return await edit(noteToPin);
+    return await edit(note);
   }
 
-  Future<bool> delete(Note noteToDelete) async {
-    noteToDelete.pinned = false;
-    noteToDelete.deleted = true;
+  Future<bool> delete(Note note) async {
+    note.pinned = false;
+    note.deleted = true;
 
-    return await edit(noteToDelete);
+    return await edit(note);
   }
 
   void select(Note noteToSelect) {

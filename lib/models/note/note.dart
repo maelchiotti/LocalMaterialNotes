@@ -2,9 +2,12 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 import 'package:fleather/fleather.dart';
+import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
+import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
+import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 
 part 'note.g.dart';
 
@@ -85,7 +88,7 @@ class Note extends Equatable {
   }
 
   @ignore
-  String get contentDisplay {
+  String get contentPreview {
     var content = '';
 
     for (final child in document.root.children) {
@@ -93,6 +96,14 @@ class Note extends Equatable {
 
       for (var i = 0; i < operations.length; i++) {
         final operation = operations[i];
+
+        // Skip horizontal rules
+        if (operation.data is Map &&
+            (operation.data as Map).containsKey('_type') &&
+            (operation.data as Map)['_type'] == 'hr') {
+          continue;
+        }
+
         final nextOperation = i == operations.length - 1 ? null : operations[i + 1];
 
         final checklist = nextOperation != null &&
@@ -102,7 +113,6 @@ class Note extends Equatable {
 
         if (checklist) {
           final checked = nextOperation.attributes!.containsKey('checked');
-
           content += '${checked ? '✅' : '⬜'} ${operation.value}';
         } else {
           content += operation.value.toString();
@@ -114,8 +124,13 @@ class Note extends Equatable {
   }
 
   @ignore
+  String get markdown {
+    return parchmentMarkdownCodec.encode(document);
+  }
+
+  @ignore
   String get shareText {
-    return '$title\n\n$contentDisplay';
+    return '$title\n\n$contentPreview';
   }
 
   @ignore
@@ -123,14 +138,57 @@ class Note extends Equatable {
     return ParchmentDocument.fromJson(jsonDecode(content) as List);
   }
 
-  bool get isEmpty {
-    return title.isEmpty && content == _emptyContent;
+  @ignore
+  bool get isTitleEmpty {
+    return title.isEmpty;
   }
 
-  bool containsText(String search) {
+  @ignore
+  bool get isContentEmpty {
+    return content == _emptyContent;
+  }
+
+  @ignore
+  bool get isContentPreviewEmpty {
+    return contentPreview.isEmpty;
+  }
+
+  @ignore
+  bool get isEmpty {
+    return isTitleEmpty && isContentEmpty;
+  }
+
+  bool matchesSearch(String search) {
     final searchCleaned = search.toLowerCase().trim();
 
-    return title.toLowerCase().contains(searchCleaned) || plainText.toLowerCase().contains(searchCleaned);
+    final titleContains = title.toLowerCase().contains(searchCleaned);
+    final contentContains = title.toLowerCase().contains(searchCleaned);
+
+    final titleMatches = weightedRatio(plainText, searchCleaned) >= 50;
+
+    return titleContains || contentContains || titleMatches;
+  }
+
+  int compareTo(Note otherNote) {
+    final sortMethod = SortMethod.fromPreference();
+    final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
+
+    if (pinned && !otherNote.pinned) {
+      return -1;
+    } else if (!pinned && otherNote.pinned) {
+      return 1;
+    } else {
+      switch (sortMethod) {
+        case SortMethod.date:
+          return sortAscending
+              ? createdTime.compareTo(otherNote.createdTime)
+              : otherNote.createdTime.compareTo(createdTime);
+        case SortMethod.title:
+          return sortAscending ? title.compareTo(otherNote.title) : otherNote.title.compareTo(title);
+        default:
+          throw Exception();
+      }
+    }
   }
 
   @override

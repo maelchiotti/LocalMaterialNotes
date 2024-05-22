@@ -9,12 +9,14 @@ class FabEmptyBin extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final deletedNotesCount = ref.watch(binProvider).value?.length ?? 0;
+    final deletedNotesCount = ref.watch(binProvider).value?.length;
 
-    return FloatingActionButton(
-      tooltip: localizations.tooltip_fab_empty_bin,
-      onPressed: deletedNotesCount > 0 ? () => emptyBin(context, ref) : null,
-      child: const Icon(Icons.delete_forever),
-    );
+    return deletedNotesCount != null && deletedNotesCount != 0
+        ? FloatingActionButton(
+            tooltip: localizations.tooltip_fab_empty_bin,
+            onPressed: () => emptyBin(ref),
+            child: const Icon(Icons.delete_forever),
+          )
+        : Container();
   }
 }

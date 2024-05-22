@@ -7,8 +7,10 @@
 [![Releases](https://img.shields.io/github/v/release/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/releases)
 [![Issues](https://img.shields.io/github/issues/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/issues)
 
-[<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="256">](https://play.google.com/store/apps/details?id=com.maelchiotti.localmaterialnotes)
-[<img alt="Get it on GitHub" src="https://raw.githubusercontent.com/Kunzisoft/Github-badge/main/get-it-on-github.png" width="256">](https://github.com/maelchiotti/LocalMaterialNotes/releases/latest)
+[<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200px">](https://play.google.com/store/apps/details?id=com.maelchiotti.localmaterialnotes)
+[<img alt="Get it on IzzyOnDroid" src="docs/badges/izzy_on_droid.png" width="200px">](https://apt.izzysoft.de/packages/com.maelchiotti.localmaterialnotes)
+[<img alt="Get it on Obtainium" src="docs/badges/obtainium.png" width="200px">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/maelchiotti/LocalMaterialNotes)
+[<img alt="Get it on GitHub" src="docs/badges/github.png" width="200px">](https://github.com/maelchiotti/LocalMaterialNotes/releases/latest)
 
 </div>
 
@@ -17,31 +19,33 @@
 Simple, local, material design notes.
 
 <div align="center">
-  <img alt="Screenshot of the notes list" src="assets/screenshots/latest_notes.jpg" width="24%">
-  <img alt="Screenshots of the note editor" src="assets/screenshots/latest_editor.jpg" width="24%">
-  <img alt="Screenshot of the bin" src="assets/screenshots/latest_bin.jpg" width="24%">
-  <img alt="Screenshot of the settings" src="assets/screenshots/latest_settings_1.jpg" width="24%">
+  <img alt="Screenshot of the notes list" src="docs/screenshots/notes.jpg" width="24%">
+  <img alt="Screenshots of the note editor" src="docs/screenshots/editor_advanced.jpg" width="24%">
+  <img alt="Screenshot of the bin" src="docs/screenshots/bin.jpg" width="24%">
+  <img alt="Screenshot of the settings" src="docs/screenshots/settings.jpg" width="24%">
 </div>
 
 <div align="center">
-  <img alt="Screenshot of the notes list in selection mode" src="assets/screenshots/latest_notes_selection.jpg" width="24%">
-  <img alt="Screenshots of the search feature" src="assets/screenshots/latest_search.jpg" width="24%">
-  <img alt="Screenshot of the notes list in the dark mode with dynamic theming" src="assets/screenshots/latest_theme_dynamic_dark.jpg" width="24%">
-  <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="assets/screenshots/latest_theme_dynamic_light.jpg" width="24%">
+  <img alt="Screenshot of the notes list in selection mode" src="docs/screenshots/notes_selection.jpg" width="24%">
+  <img alt="Screenshots of the search feature" src="docs/screenshots/search.jpg" width="24%">
+  <img alt="Screenshot of the notes list in the dark mode with dynamic theming" src="docs/screenshots/black_dynamic_theming.jpg" width="24%">
+  <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="docs/screenshots/light_dynamic_theming.jpg" width="24%">
 </div>
 
 ## Features
 
 ### Take notes
 
-- Write text notes (title + content)
-- Add checklists along the normal text
+- Write text notes (title and content)
+- Take advantage of the advanced formatting options, including checklists
+- Undo and redo your changes while editing
 - Use the quick action from your home screen to quickly add a note
 
 ### Organize
 
 - Search though your notes
 - Sort your notes by date or title, in ascending or descending order
+- Display your notes in a list or a grid view
 - Pin your notes
 - Recover your deleted notes from the bin
 
@@ -54,23 +58,26 @@ Simple, local, material design notes.
 
 ### Protect
 
-- Never worry about how your data is handled, as it never leaves your device because the application doesn't have any internet permissions
+- Never worry about how your data is handled: it cannot leave your device as the application doesn't have any internet permissions
 
 ### Customize
 
 - Choose your language (see the [supported ones](#supported-languages))
 - Choose your theme (light, dark or black)
 - Choose if you want your theme to be dynamic (use colors from your background)
+- Choose if you want to enable the advanced formatting, only the checklists or keep your notes basic
 
 ## Screenshots
 
-See more screenshots [here](assets/screenshots).
+See more screenshots [here](docs/screenshots).
 
 ## Supported languages
 
-- English
-- French
-- Turkish
+| Language | Support |     Details      |
+|:--------:|:-------:|:----------------:|
+| English  |   🟢    | Fully supported  |
+|  French  |   🟢    | Fully supported  |
+| Turkish  |   🟡    | Mostly supported |
 
 To improve or add support for a language, please see [CONTRIBUTING.md](CONTRIBUTING.md#localization).
 
@@ -87,10 +94,3 @@ To improve or add support for a language, please see [CONTRIBUTING.md](CONTRIBUT
 ## Contributing
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md).
-
----
-
-## Enhancements
-
-- Highlight search terms in the title/content of the list tiles in the search view: [Highlightable](https://pub.dev/packages/highlightable) could work great for this, but if the text to highlight isn't in the first 3 lines then it is not shown.
-- Better search: Improve the search to be more effective than the current `contains()`.
