@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Advanced text formatting
 - Undo/redo while editing
 - Setting to toggle advanced text formatting
-- Setting to toggle undo/redo button
+- Setting to toggle undo/redo buttons
 - Setting to toggle checklists button
 
 ### Removed
