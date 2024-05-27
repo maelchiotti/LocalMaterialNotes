@@ -2,6 +2,8 @@
 
 ## Localization
 
+> If you are not familiar with Flutter or even coding, you can just translate the strings from the files listed below and provide them to me in a new [issue](https://github.com/maelchiotti/LocalMaterialNotes/issues), I will do the rest.
+
 In order to improve or add support for a language, please follow these steps:
 
 1. Localize the strings found in two different places:
@@ -10,3 +12,4 @@ In order to improve or add support for a language, please follow these steps:
 2. Generate localized strings with the `flutter gen-l10n` command. Check that the [`unstranslated.txt`](lib/l10n/untranslated.txt) file is empty for your language, otherwise it will indicate which strings you did not translate.
 3. Add or update your language in the [Supported languages](README.md#supported-languages) section of the README (the table should be sorted alphabetically on the language name).
 4. If it's your first time contributing to localizations, add yourself to the [Localization credits](README.md#localization) section of the README.
+5. Make a pull request targeting the [dev](https://github.com/maelchiotti/LocalMaterialNotes/tree/dev) branch.
