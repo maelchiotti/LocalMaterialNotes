@@ -14,3 +14,5 @@ key.properties
 
 # fastlane
 localmaterialnotes_fastlane-supply_key.json
+fastlane/README.md
+fastlane/report.xml
