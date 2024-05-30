@@ -1,0 +1,20 @@
+AJOUTÉ
+- Publication sur IzzyOnDroid
+- Vue en grille
+- Formatage avancé
+- Annuler/refaire pendant l'édition
+- Paramètre pour basculer formatage avancé, annuler/rétablir et checklists
+
+SUPPRIMÉ
+- Titre "Note sans titre"
+
+MODIFIÉ
+- Amélioration de la recherche
+- Amélioration de l'export markdown
+- Retour depuis les paramètres renvoie à la page précédente
+
+CORRIGÉ
+- Cacher aperçu de la note si vide
+- Notes non triées après une mises à jour
+- Support du RTL des espacements
+- Problèmes divers
