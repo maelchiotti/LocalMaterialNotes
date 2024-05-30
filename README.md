@@ -77,6 +77,7 @@ See more screenshots [here](docs/screenshots).
 |:--------:|:-------:|:----------------:|
 | English  |   🟢    | Fully supported  |
 |  French  |   🟢    | Fully supported  |
+| Spanish  |   🟢    | Fully supported  |
 | Turkish  |   🟡    | Mostly supported |
 
 To improve or add support for a language, please see [CONTRIBUTING.md](CONTRIBUTING.md#localization).
@@ -89,6 +90,7 @@ To improve or add support for a language, please see [CONTRIBUTING.md](CONTRIBUT
 
 ### Localization
 
+- Spanish: [newmanls](https://github.com/newmanls).
 - Turkish: [xe1st](https://github.com/xe1st).
 
 ## Contributing
