@@ -46,3 +46,6 @@ app.*.map.json
 # Distribution
 *.iss
 /dist/
+
+# l10n
+lib/l10n/untranslated.txt
