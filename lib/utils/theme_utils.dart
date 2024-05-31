@@ -18,8 +18,7 @@ class ThemeUtils {
   late final bool isDynamicThemingAvailable;
 
   Future<void> init() async {
-    isDynamicThemingAvailable =
-        await DynamicColorPlugin.getCorePalette() != null || await DynamicColorPlugin.getAccentColor() != null;
+    isDynamicThemingAvailable = await DynamicColorPlugin.getCorePalette() != null;
   }
 
   bool get useDynamicTheming {
