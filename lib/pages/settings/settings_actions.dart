@@ -23,6 +23,10 @@ import 'package:restart_app/restart_app.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsActions {
+  void toggleBooleanSetting(PreferenceKey preferenceKey, bool toggled) {
+    PreferencesUtils().set<bool>(preferenceKey.name, toggled);
+  }
+
   Future<void> selectLanguage(BuildContext context) async {
     await showAdaptiveDialog<Locale>(
       context: context,
@@ -100,22 +104,6 @@ class SettingsActions {
   void toggleBlackTheming(bool toggled) {
     PreferencesUtils().set<bool>(PreferenceKey.blackTheming.name, toggled);
     blackThemingNotifier.value = toggled;
-  }
-
-  void toggleShowUndoRedoButtons(bool toggled) {
-    PreferencesUtils().set<bool>(PreferenceKey.showUndoRedoButtons.name, toggled);
-  }
-
-  void toggleShowChecklistButton(bool toggled) {
-    PreferencesUtils().set<bool>(PreferenceKey.showChecklistButton.name, toggled);
-  }
-
-  void toggleShowToolbar(bool toggled) {
-    PreferencesUtils().set<bool>(PreferenceKey.showToolbar.name, toggled);
-  }
-
-  void toggleShowSeparators(bool toggled) {
-    PreferencesUtils().set<bool>(PreferenceKey.showSeparators.name, toggled);
   }
 
   Future<void> selectConfirmations(BuildContext context) async {

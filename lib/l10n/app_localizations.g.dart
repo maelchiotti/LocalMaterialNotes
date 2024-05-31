@@ -260,6 +260,18 @@ abstract class AppLocalizations {
   /// **'Show a separator between notes to differentiate them easily'**
   String get settings_show_separators_description;
 
+  /// No description provided for @settings_show_tiles_background.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the tiles background'**
+  String get settings_show_tiles_background;
+
+  /// No description provided for @settings_show_tiles_background_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the background of the notes tiles to differentiate them easily'**
+  String get settings_show_tiles_background_description;
+
   /// No description provided for @settings_behavior.
   ///
   /// In en, this message translates to:
