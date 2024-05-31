@@ -54,7 +54,7 @@ dev_dependencies:
   build_runner: ^2.4.10
   custom_lint: ^0.5.11
   # TODO: replace when the monochrome feature is released on pub.dev
-  #  (cf. https://github.com/fluttercommunity/flutter_launcher_icons/issues/555)
+  # (cf. https://github.com/fluttercommunity/flutter_launcher_icons/issues/555)
   flutter_launcher_icons:
     git:
       url: https://github.com/fluttercommunity/flutter_launcher_icons

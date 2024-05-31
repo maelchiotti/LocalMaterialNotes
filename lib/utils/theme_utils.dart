@@ -82,7 +82,8 @@ class ThemeUtils {
     if (useDynamicTheming && darkDynamicColorScheme != null) {
       colorScheme = useBlackTheming
           ? darkDynamicColorScheme.copyWith(
-              // TODO: check if this is still needed to make the background of the pages black
+              // TODO: remove when dynamic_colors is updated
+              // cf. https://github.com/material-foundation/flutter-packages/issues/582
               background: Colors.black, // ignore: deprecated_member_use
               surface: Colors.black,
             )
