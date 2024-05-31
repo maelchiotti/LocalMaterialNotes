@@ -191,6 +191,7 @@ class SettingsActions {
   Future<void> showAbout(BuildContext context) async {
     showAboutDialog(
       context: context,
+      useRootNavigator: false,
       applicationName: localizations.app_name,
       applicationVersion: InfoUtils().appVersion,
       applicationIcon: Image.asset(
