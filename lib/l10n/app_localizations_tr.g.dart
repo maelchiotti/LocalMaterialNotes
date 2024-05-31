@@ -57,15 +57,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_dynamic_theming => 'Dinamik tema';
 
   @override
-  String get settings_dynamic_theming_description =>
-      'Sisteminizdeki rengi baz alın';
+  String get settings_dynamic_theming_description => 'Sisteminizdeki rengi baz alın';
 
   @override
   String get settings_black_theming => 'Siyah tema';
 
   @override
-  String get settings_black_theming_description =>
-      'Koyu modda siyah arkaplan kullanın';
+  String get settings_black_theming_description => 'Koyu modda siyah arkaplan kullanın';
 
   @override
   String get settings_editor => 'Editor';
@@ -74,29 +72,25 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_show_undo_redo_buttons => 'Undo/redo buttons';
 
   @override
-  String get settings_show_undo_redo_buttons_description =>
-      'Show the buttons to undo and redo changes in the editor';
+  String get settings_show_undo_redo_buttons_description => 'Show the buttons to undo and redo changes in the editor';
 
   @override
   String get settings_show_checklist_button => 'Checklist button';
 
   @override
-  String get settings_show_checklist_button_description =>
-      'Show the button to toggle checklists in the editor';
+  String get settings_show_checklist_button_description => 'Show the button to toggle checklists in the editor';
 
   @override
   String get settings_show_toolbar => 'Editor toolbar';
 
   @override
-  String get settings_show_toolbar_description =>
-      'Show the editor toolbar to enable advanced text formatting';
+  String get settings_show_toolbar_description => 'Show the editor toolbar to enable advanced text formatting';
 
   @override
   String get settings_show_separators => 'Ayırıcıları göster';
 
   @override
-  String get settings_show_separators_description =>
-      'Notları kolayca ayırt etmek için aralarında bir ayırıcı gösterin';
+  String get settings_show_separators_description => 'Notları kolayca ayırt etmek için aralarında bir ayırıcı gösterin';
 
   @override
   String get settings_behavior => 'Davranış';
@@ -152,8 +146,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_issue => 'Hata bildir';
 
   @override
-  String get settings_issue_description =>
-      'GitHub\'da bir issue oluşturarak bir hata bildirin';
+  String get settings_issue_description => 'GitHub\'da bir issue oluşturarak bir hata bildirin';
 
   @override
   String get hint_title => 'Başlık';
@@ -235,8 +228,7 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get dialog_delete_body_single =>
-      'Bu notu gerçekten silmek istiyor musunuz?Çöp kutusundan kurtarabilirsiniz.';
+  String get dialog_delete_body_single => 'Bu notu gerçekten silmek istiyor musunuz?Çöp kutusundan kurtarabilirsiniz.';
 
   @override
   String get dialog_permanently_delete => 'Kalıcı sil';
@@ -280,8 +272,7 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get dialog_restore_body_single =>
-      'Bu notu gerçekten kurtarmak istiyor musunuz?';
+  String get dialog_restore_body_single => 'Bu notu gerçekten kurtarmak istiyor musunuz?';
 
   @override
   String get dialog_empty_bin => 'Çöp kutusunu boşalt';
@@ -330,8 +321,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get confirmations_title_none => 'Asla';
 
   @override
-  String get confirmations_title_irreversible =>
-      'Sadece geri alınamaz eylemler';
+  String get confirmations_title_irreversible => 'Sadece geri alınamaz eylemler';
 
   @override
   String get confirmations_title_all => 'Her zaman';

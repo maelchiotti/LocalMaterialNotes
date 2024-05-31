@@ -46,7 +46,7 @@ android.applicationVariants.all { variant ->
 
 android {
     namespace "com.maelchiotti.localmaterialnotes"
-    compileSdkVersion 34
+    compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
     compileOptions {

@@ -1,5 +1,5 @@
 enum Asset {
-  icons('icons/icon.png'),
+  icon('icons/icon.png'),
   ;
 
   final _basePath = 'assets';

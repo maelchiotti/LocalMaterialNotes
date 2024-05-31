@@ -194,7 +194,7 @@ class SettingsActions {
       applicationName: localizations.app_name,
       applicationVersion: InfoUtils().appVersion,
       applicationIcon: Image.asset(
-        Asset.icons.path,
+        Asset.icon.path,
         filterQuality: FilterQuality.medium,
         fit: BoxFit.fitWidth,
         width: Sizes.size64.size,

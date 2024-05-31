@@ -30,8 +30,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get error_error => 'Error';
 
   @override
-  String get error_permission =>
-      'Fallo al obtener permisos para guardar el archivo.';
+  String get error_permission => 'Fallo al obtener permisos para guardar el archivo.';
 
   @override
   String get error_read_file => 'Fallo al leer el archivo.';
@@ -58,15 +57,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_dynamic_theming => 'Tema dinámico';
 
   @override
-  String get settings_dynamic_theming_description =>
-      'Generar colores a partir del sistema';
+  String get settings_dynamic_theming_description => 'Generar colores a partir del sistema';
 
   @override
   String get settings_black_theming => 'Negro puro';
 
   @override
-  String get settings_black_theming_description =>
-      'Fondo negro puro para el tema oscuro';
+  String get settings_black_theming_description => 'Fondo negro puro para el tema oscuro';
 
   @override
   String get settings_editor => 'Editor';
@@ -79,8 +76,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Mostrar los botones para deshacer y rehacer cambios en el editor';
 
   @override
-  String get settings_show_checklist_button =>
-      'Botón de casilla de verificación';
+  String get settings_show_checklist_button => 'Botón de casilla de verificación';
 
   @override
   String get settings_show_checklist_button_description =>
@@ -97,8 +93,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_show_separators => 'Mostrar separadores';
 
   @override
-  String get settings_show_separators_description =>
-      'Mostrar un separador entre notas para diferenciarlas fácilmente';
+  String get settings_show_separators_description => 'Mostrar un separador entre notas para diferenciarlas fácilmente';
 
   @override
   String get settings_behavior => 'Comportamiento';
@@ -120,23 +115,19 @@ class AppLocalizationsEs extends AppLocalizations {
       'Exportar notas a un archivo JSON (incluyendo la papelera) que pueda ser importado de vuelta';
 
   @override
-  String get settings_export_markdown_description =>
-      'Exportar notas a un archivo Markdown (incluyendo la papelera)';
+  String get settings_export_markdown_description => 'Exportar notas a un archivo Markdown (incluyendo la papelera)';
 
   @override
-  String get settings_export_success =>
-      'Las notas fueron exportadas exitosamente.';
+  String get settings_export_success => 'Las notas fueron exportadas exitosamente.';
 
   @override
   String get settings_import => 'Importar';
 
   @override
-  String get settings_import_description =>
-      'Importar notas desde un archivo JSON';
+  String get settings_import_description => 'Importar notas desde un archivo JSON';
 
   @override
-  String get settings_import_success =>
-      'Las notas fueron importadas exitosamente.';
+  String get settings_import_success => 'Las notas fueron importadas exitosamente.';
 
   @override
   String get settings_about => 'Acerca de';
@@ -157,8 +148,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_issue => 'Reportar un bug';
 
   @override
-  String get settings_issue_description =>
-      'Reportar un bug creando un issue en GitHub';
+  String get settings_issue_description => 'Reportar un bug creando un issue en GitHub';
 
   @override
   String get hint_title => 'Título';
@@ -285,8 +275,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get dialog_restore_body_single =>
-      '¿Realmente quieres restaurar esta nota?';
+  String get dialog_restore_body_single => '¿Realmente quieres restaurar esta nota?';
 
   @override
   String get dialog_empty_bin => 'Vaciar la papelera';
