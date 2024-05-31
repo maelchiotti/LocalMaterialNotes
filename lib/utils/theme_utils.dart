@@ -64,11 +64,22 @@ class ThemeUtils {
   }
 
   ThemeData getLightTheme(ColorScheme? lightDynamicColorScheme) {
-    final colorScheme = useDynamicTheming && lightDynamicColorScheme != null
-        ? lightDynamicColorScheme
-        : ColorScheme.fromSeed(
-            seedColor: _customPrimaryColor,
-          );
+    final ColorScheme colorScheme;
+    if (useDynamicTheming && lightDynamicColorScheme != null) {
+      // TODO: remove when dynamic_colors is updated to support new roles
+      // cf. https://github.com/material-foundation/flutter-packages/issues/582
+      final temporaryColorScheme = ColorScheme.fromSeed(
+        seedColor: lightDynamicColorScheme.primary,
+      );
+
+      colorScheme = lightDynamicColorScheme.copyWith(
+        surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
+      );
+    } else {
+      colorScheme = ColorScheme.fromSeed(
+        seedColor: _customPrimaryColor,
+      );
+    }
 
     return ThemeData(
       useMaterial3: true,
@@ -80,14 +91,24 @@ class ThemeUtils {
     final ColorScheme colorScheme;
 
     if (useDynamicTheming && darkDynamicColorScheme != null) {
+      // TODO: remove when dynamic_colors is updated to support new roles
+      // cf. https://github.com/material-foundation/flutter-packages/issues/582
+      final temporaryColorScheme = ColorScheme.fromSeed(
+        brightness: Brightness.dark,
+        seedColor: darkDynamicColorScheme.primary,
+      );
+
       colorScheme = useBlackTheming
           ? darkDynamicColorScheme.copyWith(
-              // TODO: remove when dynamic_colors is updated
+              // TODO: remove when dynamic_colors is updated to support new roles
               // cf. https://github.com/material-foundation/flutter-packages/issues/582
               background: Colors.black, // ignore: deprecated_member_use
+              surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
               surface: Colors.black,
             )
-          : darkDynamicColorScheme;
+          : darkDynamicColorScheme.copyWith(
+              surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
+            );
     } else {
       colorScheme = useBlackTheming
           ? ColorScheme.fromSeed(
