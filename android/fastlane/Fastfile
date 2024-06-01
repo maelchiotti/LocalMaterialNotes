@@ -8,8 +8,8 @@ platform :android do
         sh("flutter build appbundle --release")
     end
 
-    desc "Deploy - Release"
-    lane :deploy_release do
+    desc "Deploy - Production"
+    lane :deploy_production do
         build_aab
 
         supply(
