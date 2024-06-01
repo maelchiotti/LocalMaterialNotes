@@ -93,6 +93,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_show_separators_description => 'Show a separator between notes to differentiate them easily';
 
   @override
+  String get settings_show_tiles_background => 'Show the tiles background';
+
+  @override
+  String get settings_show_tiles_background_description =>
+      'Show the background of the notes tiles to differentiate them easily';
+
+  @override
   String get settings_behavior => 'Behavior';
 
   @override

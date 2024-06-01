@@ -17,6 +17,7 @@ enum PreferenceKey {
 
   // Behavior
   showSeparators(false),
+  showTilesBackground(false),
   confirmations(Confirmations.irreversible),
 
   // Notes

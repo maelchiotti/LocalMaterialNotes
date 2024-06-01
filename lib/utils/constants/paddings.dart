@@ -13,8 +13,6 @@ enum Paddings {
 
   double get _bottomSystemUiPadding => MediaQuery.of(navigatorKey.currentContext!).viewPadding.bottom;
 
-  EdgeInsetsDirectional get zero => EdgeInsetsDirectional.zero;
-
   EdgeInsetsDirectional get all => EdgeInsetsDirectional.all(_padding);
 
   EdgeInsetsDirectional get horizontal => EdgeInsetsDirectional.symmetric(horizontal: _padding);
@@ -42,6 +40,10 @@ enum Paddings {
   EdgeInsetsDirectional get appBarActionsEnd => const EdgeInsetsDirectional.only(end: 8);
 
   EdgeInsetsDirectional get editorWithToolbar => const EdgeInsetsDirectional.only(bottom: 64);
+
+  EdgeInsetsDirectional get notesWithBackground => fab + const EdgeInsetsDirectional.symmetric(horizontal: 8);
+
+  EdgeInsetsDirectional get notesListViewWithBackgroundSeparation => const EdgeInsetsDirectional.symmetric(vertical: 4);
 
   final double _padding;
 

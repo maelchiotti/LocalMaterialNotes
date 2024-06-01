@@ -27,6 +27,8 @@
   "settings_show_toolbar_description": "Show the editor toolbar to enable advanced text formatting",
   "settings_show_separators": "Show the separators",
   "settings_show_separators_description": "Show a separator between notes to differentiate them easily",
+  "settings_show_tiles_background": "Show the tiles background",
+  "settings_show_tiles_background_description": "Show the background of the notes tiles to differentiate them easily",
   "settings_behavior": "Behavior",
   "settings_confirmations": "Show confirmation dialogs",
   "settings_backup": "Backup",

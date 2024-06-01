@@ -1,4 +1,9 @@
 {
+  "es": [
+    "settings_show_tiles_background",
+    "settings_show_tiles_background_description"
+  ],
+
   "tr": [
     "settings_editor",
     "settings_show_undo_redo_buttons",
@@ -7,6 +12,8 @@
     "settings_show_checklist_button_description",
     "settings_show_toolbar",
     "settings_show_toolbar_description",
+    "settings_show_tiles_background",
+    "settings_show_tiles_background_description",
     "tooltip_layout_list",
     "tooltip_layout_grid"
   ]

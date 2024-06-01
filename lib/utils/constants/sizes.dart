@@ -27,5 +27,7 @@ enum Sizes {
 
   double get editorToolbarHeight => 48;
 
+  double get notesGridViewSpacing => 8;
+
   const Sizes(this.size);
 }

@@ -97,6 +97,13 @@ class AppLocalizationsFr extends AppLocalizations {
       'Afficher un séparateur entre les notes pour les différencier plus facilement';
 
   @override
+  String get settings_show_tiles_background => 'Afficher l\'arrière plan des tuiles';
+
+  @override
+  String get settings_show_tiles_background_description =>
+      'Afficher l\'arrière plan des tuiles des notes pour les différencier plus facilement';
+
+  @override
   String get settings_behavior => 'Comportement';
 
   @override

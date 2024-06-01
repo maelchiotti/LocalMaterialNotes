@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/pages/settings/settings_actions.dart';
+import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
@@ -27,6 +28,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   bool showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
 
   bool showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
+  bool showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +90,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               description: Text(localizations.settings_show_undo_redo_buttons_description),
               initialValue: showUndoRedoButtons,
               onToggle: (toggled) {
-                interactions.toggleShowUndoRedoButtons(toggled);
+                interactions.toggleBooleanSetting(PreferenceKey.showUndoRedoButtons, toggled);
                 setState(() {
                   showUndoRedoButtons = toggled;
                 });
@@ -100,7 +102,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               description: Text(localizations.settings_show_checklist_button_description),
               initialValue: showChecklistButton,
               onToggle: (toggled) {
-                interactions.toggleShowChecklistButton(toggled);
+                interactions.toggleBooleanSetting(PreferenceKey.showChecklistButton, toggled);
                 setState(() {
                   showChecklistButton = toggled;
                 });
@@ -112,7 +114,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               description: Text(localizations.settings_show_toolbar_description),
               initialValue: showToolbar,
               onToggle: (toggled) {
-                interactions.toggleShowToolbar(toggled);
+                interactions.toggleBooleanSetting(PreferenceKey.showToolbar, toggled);
                 setState(() {
                   showToolbar = toggled;
                 });
@@ -138,10 +140,24 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               description: Text(localizations.settings_show_separators_description),
               initialValue: showSeparators,
               onToggle: (toggled) {
-                interactions.toggleShowSeparators(toggled);
+                interactions.toggleBooleanSetting(PreferenceKey.showSeparators, toggled);
                 setState(() {
                   showSeparators = toggled;
                 });
+                ref.invalidate(notesProvider); // Refresh the notes and bin pages
+              },
+            ),
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.gradient),
+              title: Text(localizations.settings_show_tiles_background),
+              description: Text(localizations.settings_show_tiles_background_description),
+              initialValue: showTilesBackground,
+              onToggle: (toggled) {
+                interactions.toggleBooleanSetting(PreferenceKey.showTilesBackground, toggled);
+                setState(() {
+                  showTilesBackground = toggled;
+                });
+                ref.invalidate(notesProvider); // Refresh the notes and bin pages
               },
             ),
           ],

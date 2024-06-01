@@ -31,42 +31,38 @@ class _NotesPageState extends ConsumerState<NotesPage> {
 
         final layout = ref.watch(layoutStateProvider) ?? Layout.fromPreference();
         final useSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
+        final showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();
 
         // Use at least 2 columns for the grid view
         final columnsCount = MediaQuery.of(context).size.width ~/ Sizes.custom.gridLayoutColumnWidth;
         final crossAxisCount = columnsCount > 2 ? columnsCount : 2;
 
-        // Wrap with Material to fix the tile background color not updating in real time
-        // when the tile is selected and the view is scrolled
-        // see: https://github.com/flutter/flutter/issues/86584
-        return Material(
-          child: layout == Layout.list
-              ? useSeparators
-                  ? ListView.separated(
-                      padding: Paddings.custom.fab,
-                      itemCount: notes.length,
-                      itemBuilder: (context, index) {
-                        return NoteTile(notes[index]);
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return Separator.divider1indent8.horizontal;
-                      },
-                    )
-                  : ListView.builder(
-                      padding: Paddings.custom.fab,
-                      itemCount: notes.length,
-                      itemBuilder: (context, index) {
-                        return NoteTile(notes[index]);
-                      },
-                    )
-              : AlignedGridView.count(
-                  crossAxisCount: crossAxisCount,
-                  itemCount: notes.length,
-                  itemBuilder: (context, index) {
-                    return NoteTile(notes[index]);
-                  },
-                ),
-        );
+        return layout == Layout.list
+            ? ListView.separated(
+                padding: showTilesBackground ? Paddings.custom.notesWithBackground : Paddings.custom.fab,
+                itemCount: notes.length,
+                itemBuilder: (context, index) {
+                  return NoteTile(notes[index]);
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: showTilesBackground
+                        ? Paddings.custom.notesListViewWithBackgroundSeparation
+                        : EdgeInsetsDirectional.zero,
+                    child: useSeparators ? Separator.divider1indent8.horizontal : null,
+                  );
+                },
+              )
+            : AlignedGridView.count(
+                padding: Paddings.custom.notesWithBackground,
+                mainAxisSpacing: Sizes.custom.notesGridViewSpacing,
+                crossAxisSpacing: Sizes.custom.notesGridViewSpacing,
+                crossAxisCount: crossAxisCount,
+                itemCount: notes.length,
+                itemBuilder: (context, index) {
+                  return NoteTile(notes[index]);
+                },
+              );
       },
       error: (error, stackTrace) {
         return const ErrorPlaceholder();
