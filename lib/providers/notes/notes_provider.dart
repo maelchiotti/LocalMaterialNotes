@@ -39,17 +39,17 @@ class Notes extends _$Notes with BaseProvider {
 
     try {
       if (editedNote.isEmpty) {
-        await databaseUtils.delete(editedNote.isarId);
+        await databaseUtils.delete(editedNote);
       } else {
-        await databaseUtils.edit(editedNote);
+        await databaseUtils.put(editedNote);
       }
     } on Exception catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
 
-    // Keep all other notes
-    final newNotes = (state.value ?? []).where((note) => note.id != editedNote.id).toList();
+    // Keep all the notes that were not edited
+    final newNotes = (state.value ?? []).where((note) => note != editedNote).toList();
 
     // Add the edited note if it was not deleted
     if (!editedNote.deleted) {
@@ -70,11 +70,58 @@ class Notes extends _$Notes with BaseProvider {
     return await edit(note);
   }
 
+  Future<bool> togglePinAll(List<Note> notes) async {
+    for (final note in notes) {
+      note.pinned = !note.pinned;
+    }
+
+    try {
+      await databaseUtils.putAll(notes);
+    } on Exception catch (exception, stackTrace) {
+      log(exception.toString(), stackTrace: stackTrace);
+      return false;
+    }
+
+    // Keep all the notes for which the pin was not toggled
+    final newNotes = (state.value ?? []).where((note) => !notes.contains(note)).toList();
+
+    // Add all the notes for which the pin was toggled
+    newNotes.addAll(notes);
+
+    // Sort all the notes
+    final sortedNotes = newNotes.sorted((note, otherNote) => note.compareTo(otherNote));
+
+    state = AsyncData(sortedNotes);
+
+    return true;
+  }
+
   Future<bool> delete(Note note) async {
     note.pinned = false;
     note.deleted = true;
 
     return await edit(note);
+  }
+
+  Future<bool> deleteAll(List<Note> notes) async {
+    for (final note in notes) {
+      note.pinned = false;
+      note.deleted = true;
+    }
+
+    try {
+      await databaseUtils.putAll(notes);
+    } on Exception catch (exception, stackTrace) {
+      log(exception.toString(), stackTrace: stackTrace);
+      return false;
+    }
+
+    // Keep all the notes that were not deleted
+    final newNotes = (state.value ?? []).where((note) => !notes.contains(note)).toList();
+
+    state = AsyncData(newNotes);
+
+    return true;
   }
 
   void select(Note noteToSelect) {
