@@ -51,8 +51,8 @@ class Notes extends _$Notes with BaseProvider {
     // Keep all the notes that were not edited
     final newNotes = (state.value ?? []).where((note) => note != editedNote).toList();
 
-    // Add the edited note if it was not deleted
-    if (!editedNote.deleted) {
+    // Add the edited note if it was not deleted and it is not empty
+    if (!editedNote.deleted && !editedNote.isEmpty) {
       newNotes.add(editedNote);
     }
 
