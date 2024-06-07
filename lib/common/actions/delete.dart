@@ -38,9 +38,7 @@ Future<void> deleteNotes(WidgetRef ref, List<Note> notes) async {
     localizations.dialog_delete_body(notes.length),
     localizations.dialog_delete,
   )) {
-    for (final note in notes) {
-      await ref.read(notesProvider.notifier).delete(note);
-    }
+    await ref.read(notesProvider.notifier).deleteAll(notes);
   }
 }
 
@@ -76,9 +74,7 @@ Future<void> permanentlyDeleteNotes(WidgetRef ref, List<Note> notes) async {
     localizations.dialog_permanently_delete,
     irreversible: true,
   )) {
-    for (final note in notes) {
-      await ref.read(binProvider.notifier).permanentlyDelete(note);
-    }
+    await ref.read(binProvider.notifier).permanentlyDeleteAll(notes);
   }
 }
 

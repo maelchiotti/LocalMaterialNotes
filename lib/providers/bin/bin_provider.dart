@@ -36,7 +36,7 @@ class Bin extends _$Bin with BaseProvider {
 
   Future<bool> empty() async {
     try {
-      await databaseUtils.deleteAll();
+      await databaseUtils.emptyBin();
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
@@ -49,14 +49,34 @@ class Bin extends _$Bin with BaseProvider {
 
   Future<bool> permanentlyDelete(Note permanentlyDeletedNote) async {
     try {
-      await databaseUtils.delete(permanentlyDeletedNote.isarId);
+      await databaseUtils.delete(permanentlyDeletedNote);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
 
-    // Keep all other notes
-    final newNotes = (state.value ?? []).where((note) => note.id != permanentlyDeletedNote.id).toList();
+    // Keep all the notes that were not permanently deleted
+    final newNotes = (state.value ?? []).where((note) => note != permanentlyDeletedNote).toList();
+
+    state = AsyncData(newNotes);
+
+    return true;
+  }
+
+  Future<bool> permanentlyDeleteAll(List<Note> notes) async {
+    for (final note in notes) {
+      note.deleted = false;
+    }
+
+    try {
+      await databaseUtils.deleteAll(notes);
+    } on Exception catch (exception, stackTrace) {
+      log(exception.toString(), stackTrace: stackTrace);
+      return false;
+    }
+
+    // Keep all the notes that were not permanently deleted
+    final newNotes = (state.value ?? []).where((note) => !notes.contains(note)).toList();
 
     state = AsyncData(newNotes);
 
@@ -67,14 +87,34 @@ class Bin extends _$Bin with BaseProvider {
     restoredNote.deleted = false;
 
     try {
-      await databaseUtils.edit(restoredNote);
+      await databaseUtils.put(restoredNote);
     } on Exception catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
 
-    // Keep all other notes
-    final newNotes = (state.value ?? []).where((note) => note.id != restoredNote.id).toList();
+    // Keep all the notes that were not restored
+    final newNotes = (state.value ?? []).where((note) => note != restoredNote).toList();
+
+    state = AsyncData(newNotes);
+
+    return true;
+  }
+
+  Future<bool> restoreAll(List<Note> notes) async {
+    for (final note in notes) {
+      note.deleted = false;
+    }
+
+    try {
+      await databaseUtils.putAll(notes);
+    } on Exception catch (exception, stackTrace) {
+      log(exception.toString(), stackTrace: stackTrace);
+      return false;
+    }
+
+    // Keep all the notes that were not restored
+    final newNotes = (state.value ?? []).where((note) => !notes.contains(note)).toList();
 
     state = AsyncData(newNotes);
 

@@ -6,7 +6,7 @@ part of 'bin_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$binHash() => r'77fb1ea0bf90c45dc647073375daad6780162982';
+String _$binHash() => r'318b346690c8597f9e87779f915ecf3a9bf62f6a';
 
 /// See also [Bin].
 @ProviderFor(Bin)

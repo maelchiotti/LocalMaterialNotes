@@ -73,6 +73,9 @@ class ThemeUtils {
       );
 
       colorScheme = lightDynamicColorScheme.copyWith(
+        surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
+        surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
+        surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
         surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
       );
     } else {
@@ -102,11 +105,18 @@ class ThemeUtils {
           ? darkDynamicColorScheme.copyWith(
               // TODO: remove when dynamic_colors is updated to support new roles
               // cf. https://github.com/material-foundation/flutter-packages/issues/582
-              background: Colors.black, // ignore: deprecated_member_use
-              surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
+              // ignore: deprecated_member_use
+              background: Colors.black,
               surface: Colors.black,
+              surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
+              surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
+              surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
+              surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
             )
           : darkDynamicColorScheme.copyWith(
+              surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
+              surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
+              surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
               surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
             );
     } else {
@@ -114,6 +124,9 @@ class ThemeUtils {
           ? ColorScheme.fromSeed(
               brightness: Brightness.dark,
               seedColor: _customPrimaryColor,
+              // TODO: remove when not required anymore, can't figure out why it's needed since it's not an issue of dynamic_colors
+              // ignore: deprecated_member_use
+              background: Colors.black,
               surface: Colors.black,
             )
           : ColorScheme.fromSeed(

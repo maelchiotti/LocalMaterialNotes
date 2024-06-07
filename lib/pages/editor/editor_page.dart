@@ -131,7 +131,7 @@ class _EditorState extends ConsumerState<EditorPage> {
           builder: (_, hasFocus, ___) {
             return showToolbar && hasFocus && KeyboardVisibilityProvider.isKeyboardVisible(context)
                 ? ColoredBox(
-                    color: Theme.of(context).colorScheme.secondaryContainer,
+                    color: Theme.of(context).colorScheme.surfaceContainerHigh,
                     child: EditorToolbar(fleatherController!),
                   )
                 : Container();
