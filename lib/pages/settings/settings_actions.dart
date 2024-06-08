@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:locale_names/locale_names.dart';
@@ -51,7 +52,11 @@ class SettingsActions {
       }
 
       LocaleUtils().setLocale(locale);
-      await Restart.restartApp();
+
+      // The Restart package crashes the app if used in debug mode
+      if (!kDebugMode) {
+        await Restart.restartApp();
+      }
     });
   }
 
