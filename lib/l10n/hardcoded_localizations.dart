@@ -27,7 +27,7 @@ enum SupportedLocalizations {
 String get actionAddNoteTitle {
   const englishDefault = 'Add a note';
 
-  final locale = LocaleUtils().locale;
+  final locale = LocaleUtils().appLocale;
 
   final String title;
 
@@ -52,7 +52,7 @@ Note get welcomeNote {
   const englishDefaultTitle = 'Welcome to $_appName!';
   const englishDefaultContent = 'Simple, local, material design notes';
 
-  final locale = LocaleUtils().locale;
+  final locale = LocaleUtils().appLocale;
 
   final String title;
   final String content;
