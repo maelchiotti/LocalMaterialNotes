@@ -6,28 +6,23 @@ import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
 class LocaleUtils {
-  Locale get locale {
+  Locale get deviceLocale {
+    return Locale(Platform.localeName.split('_').first);
+  }
+
+  Locale get appLocale {
     final localePreferenceLanguageCode = PreferencesUtils().get<String>(PreferenceKey.locale);
 
     if (localePreferenceLanguageCode != null) {
       return Locale(localePreferenceLanguageCode);
     } else {
-      final deviceLocaleLanguage = Platform.localeName.split('_').first;
-      for (final locale in AppLocalizations.supportedLocales) {
-        if (deviceLocaleLanguage == locale.languageCode) {
-          return locale;
-        }
-      }
-
-      return Locale(PreferenceKey.locale.defaultValue as String);
+      return AppLocalizations.supportedLocales.contains(deviceLocale)
+          ? deviceLocale
+          : Locale(PreferenceKey.locale.defaultValue as String);
     }
   }
 
-  void setLocale(Locale? locale) {
-    if (locale == null) {
-      return;
-    }
-
+  void setLocale(Locale locale) {
     PreferencesUtils().set(PreferenceKey.locale.name, locale.languageCode);
   }
 }
