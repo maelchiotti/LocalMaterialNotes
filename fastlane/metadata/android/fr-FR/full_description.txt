@@ -1,0 +1,27 @@
+<b>Prenez des notes</b>
+- Rédigez des notes textuelles (titre et contenu)
+- Tirez parti des options de formatage avancées, y compris les checklists
+- Annulez et rétablissez vos modifications pendant l'édition
+- Utilisez l'action rapide de votre écran d'accueil pour ajouter rapidement une note.
+
+<b>Organisez</b>
+- Recherchez dans vos notes
+- Triez vos notes par date ou par titre, par ordre croissant ou décroissant
+- Affichez vos notes sous forme de liste ou de grille
+- Épinglez vos notes
+- Récupérez vos notes supprimées de la corbeille
+
+<b>Partagez & sauvegardez</b>
+- Partagez du texte à partir d'autres applications pour l'ajouter directement à une note
+- Partagez vos notes sous forme de texte
+- Exportez vos notes au format JSON et importez-les à nouveau
+- Exportez vos notes au format Markdown
+
+<b>Protégez</b>
+- Ne vous inquiétez pas de la façon dont vos données sont traitées : elles ne peuvent pas quitter votre appareil car l'application n'a pas d'autorisations Internet
+
+<b>Personnalisez</b>
+- Choisissez votre langue
+- Choisissez votre thème (clair, foncé ou noir)
+- Choisissez si vous voulez que votre thème soit dynamique (utilise les couleurs de votre arrière-plan)
+- Choisissez si vous voulez activer le formatage avancé, seulement les checklists ou garder vos notes basiques

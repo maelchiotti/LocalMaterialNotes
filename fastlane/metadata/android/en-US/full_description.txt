@@ -1,0 +1,27 @@
+<b>Take notes</b>
+- Write text notes (title and content)
+- Take advantage of the advanced formatting options, including checklists
+- Undo and redo your changes while editing
+- Use the quick action from your home screen to quickly add a note
+
+<b>Organize</b>
+- Search though your notes
+- Sort your notes by date or title, in ascending or descending order
+- Display your notes in a list or a grid view
+- Pin your notes
+- Recover your deleted notes from the bin
+
+<b>Share & backup</b>
+- Share text from other applications to add it directly to a note
+- Share your notes as text
+- Export your notes as JSON and import them back
+- Export your notes as Markdown
+
+<b>Protect</b>
+- Never worry about how your data is handled: it cannot leave your device as the application doesn't have any internet permissions
+
+<b>Customize</b>
+- Choose your language
+- Choose your theme (light, dark or black)
+- Choose if you want your theme to be dynamic (use colors from your background)
+- Choose if you want to enable the advanced formatting, only the checklists or keep your notes basic
