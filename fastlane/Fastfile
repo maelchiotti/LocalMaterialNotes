@@ -8,6 +8,7 @@ platform :android do
         sh("flutter build appbundle --release")
     end
 
+    # bundle exec fastlane deploy_production
     desc "Deploy - Production"
     lane :deploy_production do
         build_aab
@@ -20,6 +21,7 @@ platform :android do
         )
     end
 
+    # bundle exec fastlane deploy_internal
     desc "Deploy - Internal"
     lane :deploy_internal do
         build_aab

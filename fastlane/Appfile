@@ -1,2 +1,2 @@
-json_key_file("localmaterialnotes_fastlane-supply_key.json")
+json_key_file("fastlane/localmaterialnotes_fastlane-supply_key.json")
 package_name("com.maelchiotti.localmaterialnotes")
