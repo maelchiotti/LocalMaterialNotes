@@ -1,0 +1,27 @@
+<b>Not alın</b>
+- Metin notları yazın (başlık ve içerik)
+- Kontrol listeleri de dahil olmak üzere gelişmiş biçimlendirme seçeneklerinden yararlanın
+- Düzenleme sırasında değişikliklerinizi geri alma ve yineleme
+- Hızlı bir şekilde not eklemek için ana ekranınızdaki hızlı eylemi kullanın
+
+<b>Organize Et</b>
+- Notlarınızda arama yapın
+- Notlarınızı tarihe veya başlığa göre, artan veya azalan sırada sıralayın
+- Notlarınızı bir liste veya ızgara görünümünde görüntüleyin
+- Notlarınızı sabitleyin
+- Silinen notlarınızı çöp kutusundan kurtarın
+
+<b>Paylaş ve yedekle</b>
+- Doğrudan bir nota eklemek için diğer uygulamalardan metin paylaşın
+- Notlarınızı metin olarak paylaşın
+- Notlarınızı JSON olarak dışa aktarın ve geri alın
+- Notlarınızı Markdown olarak dışa aktarın
+
+<b>Koruyun</b>
+- Verilerinizin nasıl işlendiği konusunda asla endişelenmeyin: uygulama herhangi bir internet iznine sahip olmadığı için cihazınızdan ayrılamaz
+
+<b>Özelleştirme</b>
+- Dilinizi seçin
+- Temanızı seçin (açık, koyu veya siyah)
+- Temanızın dinamik olmasını isteyip istemediğinizi seçin (arka planınızdaki renkleri kullanın)
+- Gelişmiş biçimlendirmeyi, yalnızca kontrol listelerini etkinleştirmek veya notlarınızı basit tutmak isteyip istemediğinizi seçin

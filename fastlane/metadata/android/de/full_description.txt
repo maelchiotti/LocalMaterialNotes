@@ -1,0 +1,27 @@
+<b>Notizen machen</b>
+- Verfassen von Textnotizen (Titel und Inhalt)
+- Nutzen Sie die erweiterten Formatierungsoptionen, einschließlich Checklisten
+- Rückgängig machen und Wiederherstellen von Änderungen während der Bearbeitung
+- Verwenden Sie die Schnellaktion auf Ihrem Startbildschirm, um schnell eine Notiz hinzuzufügen
+
+<b>Organisieren Sie</b>
+- Durchsuchen Sie Ihre Notizen
+- Sortieren Sie Ihre Notizen nach Datum oder Titel, in aufsteigender oder absteigender Reihenfolge
+- Anzeige Ihrer Notizen in einer Liste oder einem Raster
+- Anheften von Notizen
+- Wiederherstellen gelöschter Notizen aus dem Papierkorb
+
+<b>Freigeben & Sichern</b>
+- Teilen Sie Text aus anderen Anwendungen, um ihn direkt in eine Notiz einzufügen
+- Teilen Sie Ihre Notizen als Text
+- Exportieren Sie Ihre Notizen als JSON und importieren Sie sie wieder
+- Exportieren Sie Ihre Notizen als Markdown
+
+<b>Schützen Sie</b>
+- Machen Sie sich keine Gedanken darüber, wie Ihre Daten gehandhabt werden: Sie können Ihr Gerät nicht verlassen, da die Anwendung keine Internetberechtigungen hat.
+
+<b>Anpassen von</b>
+- Wählen Sie Ihre Sprache
+- Wählen Sie Ihr Thema (hell, dunkel oder schwarz)
+- Legen Sie fest, ob Ihr Thema dynamisch sein soll (verwenden Sie die Farben Ihres Hintergrunds)
+- Wählen Sie, ob Sie die erweiterte Formatierung, nur die Checklisten oder nur die einfachen Notizen aktivieren möchten
