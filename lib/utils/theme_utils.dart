@@ -18,8 +18,7 @@ class ThemeUtils {
   late final bool isDynamicThemingAvailable;
 
   Future<void> init() async {
-    isDynamicThemingAvailable =
-        await DynamicColorPlugin.getCorePalette() != null || await DynamicColorPlugin.getAccentColor() != null;
+    isDynamicThemingAvailable = await DynamicColorPlugin.getCorePalette() != null;
   }
 
   bool get useDynamicTheming {
@@ -65,11 +64,25 @@ class ThemeUtils {
   }
 
   ThemeData getLightTheme(ColorScheme? lightDynamicColorScheme) {
-    final colorScheme = useDynamicTheming && lightDynamicColorScheme != null
-        ? lightDynamicColorScheme
-        : ColorScheme.fromSeed(
-            seedColor: _customPrimaryColor,
-          );
+    final ColorScheme colorScheme;
+    if (useDynamicTheming && lightDynamicColorScheme != null) {
+      // TODO: remove when dynamic_colors is updated to support new roles
+      // cf. https://github.com/material-foundation/flutter-packages/issues/582
+      final temporaryColorScheme = ColorScheme.fromSeed(
+        seedColor: lightDynamicColorScheme.primary,
+      );
+
+      colorScheme = lightDynamicColorScheme.copyWith(
+        surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
+        surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
+        surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
+        surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
+      );
+    } else {
+      colorScheme = ColorScheme.fromSeed(
+        seedColor: _customPrimaryColor,
+      );
+    }
 
     return ThemeData(
       useMaterial3: true,
@@ -81,18 +94,39 @@ class ThemeUtils {
     final ColorScheme colorScheme;
 
     if (useDynamicTheming && darkDynamicColorScheme != null) {
+      // TODO: remove when dynamic_colors is updated to support new roles
+      // cf. https://github.com/material-foundation/flutter-packages/issues/582
+      final temporaryColorScheme = ColorScheme.fromSeed(
+        brightness: Brightness.dark,
+        seedColor: darkDynamicColorScheme.primary,
+      );
+
       colorScheme = useBlackTheming
           ? darkDynamicColorScheme.copyWith(
-              // TODO: check if this is still needed to make the background of the pages black
-              background: Colors.black, // ignore: deprecated_member_use
+              // TODO: remove when dynamic_colors is updated to support new roles
+              // cf. https://github.com/material-foundation/flutter-packages/issues/582
+              // ignore: deprecated_member_use
+              background: Colors.black,
               surface: Colors.black,
+              surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
+              surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
+              surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
+              surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
             )
-          : darkDynamicColorScheme;
+          : darkDynamicColorScheme.copyWith(
+              surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
+              surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
+              surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
+              surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
+            );
     } else {
       colorScheme = useBlackTheming
           ? ColorScheme.fromSeed(
               brightness: Brightness.dark,
               seedColor: _customPrimaryColor,
+              // TODO: remove when not required anymore, can't figure out why it's needed since it's not an issue of dynamic_colors
+              // ignore: deprecated_member_use
+              background: Colors.black,
               surface: Colors.black,
             )
           : ColorScheme.fromSeed(

@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
+import 'package:localmaterialnotes/pages/editor/editor_field.dart';
 import 'package:localmaterialnotes/pages/editor/editor_toolbar.dart';
 import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
 import 'package:localmaterialnotes/providers/editor_controller/editor_controller_provider.dart';
@@ -15,7 +15,6 @@ import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class EditorPage extends ConsumerStatefulWidget {
   EditorPage(EditorParameters editorParameters)
@@ -53,14 +52,6 @@ class _EditorState extends ConsumerState<EditorPage> {
     note.content = jsonEncode(fleatherController!.document.toDelta().toJson());
 
     ref.read(notesProvider.notifier).edit(note);
-  }
-
-  void _launchUrl(String? url) {
-    if (url == null) {
-      return;
-    }
-
-    launchUrlString(url);
   }
 
   @override
@@ -106,19 +97,10 @@ class _EditorState extends ConsumerState<EditorPage> {
                 Expanded(
                   child: Focus(
                     onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,
-                    child: FleatherField(
-                      controller: fleatherController!,
-                      autofocus: widget._autofocus,
+                    child: EditorField(
+                      fleatherController: fleatherController!,
                       readOnly: widget._readOnly,
-                      expands: true,
-                      decoration: InputDecoration.collapsed(
-                        hintText: localizations.hint_note,
-                      ),
-                      onLaunchUrl: _launchUrl,
-                      spellCheckConfiguration: SpellCheckConfiguration(
-                        spellCheckService: DefaultSpellCheckService(),
-                      ),
-                      padding: Paddings.custom.bottomSystemUi,
+                      autofocus: widget._autofocus,
                     ),
                   ),
                 ),
@@ -131,7 +113,7 @@ class _EditorState extends ConsumerState<EditorPage> {
           builder: (_, hasFocus, ___) {
             return showToolbar && hasFocus && KeyboardVisibilityProvider.isKeyboardVisible(context)
                 ? ColoredBox(
-                    color: Theme.of(context).colorScheme.secondaryContainer,
+                    color: Theme.of(context).colorScheme.surfaceContainerHigh,
                     child: EditorToolbar(fleatherController!),
                   )
                 : Container();

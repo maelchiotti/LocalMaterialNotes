@@ -1,0 +1,36 @@
+update_fastlane
+
+default_platform(:android)
+
+platform :android do
+    desc "Build AAB"
+    lane :build_aab do
+        sh("flutter build appbundle --release")
+    end
+
+    # bundle exec fastlane deploy_production
+    desc "Deploy - Production"
+    lane :deploy_production do
+        build_aab
+
+        supply(
+            track: 'production',
+            package_name: 'com.maelchiotti.localmaterialnotes',
+            aab: 'build\app\outputs\bundle\release\app-release.aab',
+            skip_upload_apk: true
+        )
+    end
+
+    # bundle exec fastlane deploy_internal
+    desc "Deploy - Internal"
+    lane :deploy_internal do
+        build_aab
+
+        supply(
+            track: 'internal',
+            package_name: 'com.maelchiotti.localmaterialnotes',
+            aab: 'build\app\outputs\bundle\release\app-release.aab',
+            skip_upload_apk: true
+        )
+    end
+end

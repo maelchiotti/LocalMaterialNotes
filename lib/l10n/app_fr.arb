@@ -27,6 +27,8 @@
   "settings_show_toolbar_description": "Afficher la barre d''outils de l''éditeur pour permettre le formatage textuel avancé",
   "settings_show_separators": "Afficher les séparateurs",
   "settings_show_separators_description": "Afficher un séparateur entre les notes pour les différencier plus facilement",
+  "settings_show_tiles_background": "Afficher l''arrière plan des tuiles",
+  "settings_show_tiles_background_description": "Afficher l''arrière plan des tuiles des notes pour les différencier plus facilement",
   "settings_behavior": "Comportement",
   "settings_confirmations": "Afficher les dialogues de confirmation",
   "settings_backup": "Sauvegarde",

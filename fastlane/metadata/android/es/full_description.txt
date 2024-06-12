@@ -1,0 +1,27 @@
+<b>Tomar notas</b>
+- Escriba notas de texto (título y contenido)
+- Aproveche las opciones avanzadas de formato, incluidas las listas de comprobación
+- Deshacer y rehacer los cambios durante la edición
+- Utiliza la acción rápida de la pantalla de inicio para añadir rápidamente una nota
+
+<b>Organiza</b>
+- Busca en tus notas
+- Ordena tus notas por fecha o título, en orden ascendente o descendente
+- Visualiza tus notas en una lista o en una cuadrícula
+- Anclar tus notas
+- Recupera tus notas borradas de la papelera
+
+<b>Compartir y hacer copias de seguridad</b>
+- Comparte texto desde otras aplicaciones para añadirlo directamente a una nota
+- Comparte tus notas como texto
+- Exporta tus notas como JSON e impórtalas de nuevo
+- Exporta tus notas como Markdown
+
+<b>Protege</b>
+- No te preocupes por el tratamiento de tus datos: no pueden salir de tu dispositivo, ya que la aplicación no tiene permisos de Internet
+
+<b>Personaliza</b>
+- Elige tu idioma
+- Elige tu tema (claro, oscuro o negro)
+- Elige si quieres que tu tema sea dinámico (usa los colores de tu fondo)
+- Elige si quieres activar el formato avanzado, sólo las listas de control o mantener tus notas básicas

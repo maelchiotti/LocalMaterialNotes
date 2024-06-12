@@ -93,6 +93,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_show_separators_description => 'Notları kolayca ayırt etmek için aralarında bir ayırıcı gösterin';
 
   @override
+  String get settings_show_tiles_background => 'Show the tiles background';
+
+  @override
+  String get settings_show_tiles_background_description =>
+      'Show the background of the notes tiles to differentiate them easily';
+
+  @override
   String get settings_behavior => 'Davranış';
 
   @override

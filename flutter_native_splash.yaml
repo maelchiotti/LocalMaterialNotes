@@ -1,18 +1,18 @@
 # dart run flutter_native_splash:create
 flutter_native_splash:
-  image: "assets/logos/icon.png"
+  image: "assets/icons/icon.png"
   color: "#ffffff"
   icon_background_color: "#ffffff"
 
-  image_dark: "assets/logos/icon.png"
+  image_dark: "assets/icons/icon.png"
   color_dark: "#000000"
   icon_background_color_dark: "#000000"
 
   android_12:
-    image: "assets/logos/icon_android_12.png"
+    image: "assets/icons/icon_android_12.png"
     color: "#ffffff"
 
-    image_dark: "assets/logos/icon_android_12.png"
+    image_dark: "assets/icons/icon_android_12.png"
     color_dark: "#000000"
     icon_background_color_dark: "#000000"
 

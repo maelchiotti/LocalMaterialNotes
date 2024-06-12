@@ -14,6 +14,7 @@ const _appName = 'Material Notes';
 enum SupportedLocalizations {
   english(Locale('en')),
   french(Locale('fr')),
+  spanish(Locale('es')),
   turkish(Locale('tr')),
   ;
 
@@ -26,7 +27,7 @@ enum SupportedLocalizations {
 String get actionAddNoteTitle {
   const englishDefault = 'Add a note';
 
-  final locale = LocaleUtils().locale;
+  final locale = LocaleUtils().appLocale;
 
   final String title;
 
@@ -34,6 +35,8 @@ String get actionAddNoteTitle {
     title = englishDefault;
   } else if (locale == SupportedLocalizations.french.locale) {
     title = 'Ajouter une note';
+  } else if (locale == SupportedLocalizations.spanish.locale) {
+    title = 'Agregar una nota';
   } else if (locale == SupportedLocalizations.turkish.locale) {
     title = 'Not ekle';
   } else {
@@ -49,7 +52,7 @@ Note get welcomeNote {
   const englishDefaultTitle = 'Welcome to $_appName!';
   const englishDefaultContent = 'Simple, local, material design notes';
 
-  final locale = LocaleUtils().locale;
+  final locale = LocaleUtils().appLocale;
 
   final String title;
   final String content;
@@ -60,6 +63,9 @@ Note get welcomeNote {
   } else if (locale == SupportedLocalizations.french.locale) {
     title = 'Bienvenue dans $_appName !';
     content = 'Notes simples, locales, en material design';
+  } else if (locale == SupportedLocalizations.spanish.locale) {
+    title = 'Bienvenido a $_appName !';
+    content = 'Notas simples, locales, en Material Design';
   } else if (locale == SupportedLocalizations.turkish.locale) {
     title = "$_appName'a hoşgeldin!";
     content = 'Basit, çevrimdışı, materyal tasarımlı notlar';

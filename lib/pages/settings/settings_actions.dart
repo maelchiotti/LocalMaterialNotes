@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:locale_names/locale_names.dart';
@@ -23,6 +24,10 @@ import 'package:restart_app/restart_app.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsActions {
+  void toggleBooleanSetting(PreferenceKey preferenceKey, bool toggled) {
+    PreferencesUtils().set<bool>(preferenceKey.name, toggled);
+  }
+
   Future<void> selectLanguage(BuildContext context) async {
     await showAdaptiveDialog<Locale>(
       context: context,
@@ -47,7 +52,11 @@ class SettingsActions {
       }
 
       LocaleUtils().setLocale(locale);
-      await Restart.restartApp();
+
+      // The Restart package crashes the app if used in debug mode
+      if (!kDebugMode) {
+        await Restart.restartApp();
+      }
     });
   }
 
@@ -100,22 +109,6 @@ class SettingsActions {
   void toggleBlackTheming(bool toggled) {
     PreferencesUtils().set<bool>(PreferenceKey.blackTheming.name, toggled);
     blackThemingNotifier.value = toggled;
-  }
-
-  void toggleShowUndoRedoButtons(bool toggled) {
-    PreferencesUtils().set<bool>(PreferenceKey.showUndoRedoButtons.name, toggled);
-  }
-
-  void toggleShowChecklistButton(bool toggled) {
-    PreferencesUtils().set<bool>(PreferenceKey.showChecklistButton.name, toggled);
-  }
-
-  void toggleShowToolbar(bool toggled) {
-    PreferencesUtils().set<bool>(PreferenceKey.showToolbar.name, toggled);
-  }
-
-  void toggleShowSeparators(bool toggled) {
-    PreferencesUtils().set<bool>(PreferenceKey.showSeparators.name, toggled);
   }
 
   Future<void> selectConfirmations(BuildContext context) async {
@@ -191,10 +184,11 @@ class SettingsActions {
   Future<void> showAbout(BuildContext context) async {
     showAboutDialog(
       context: context,
+      useRootNavigator: false,
       applicationName: localizations.app_name,
       applicationVersion: InfoUtils().appVersion,
       applicationIcon: Image.asset(
-        Asset.icons.path,
+        Asset.icon.path,
         filterQuality: FilterQuality.medium,
         fit: BoxFit.fitWidth,
         width: Sizes.size64.size,

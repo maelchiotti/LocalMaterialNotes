@@ -36,7 +36,7 @@ class DatabaseUtils {
     );
 
     if (await IsFirstRun.isFirstCall()) {
-      await add(welcomeNote);
+      await put(welcomeNote);
     }
   }
 
@@ -62,29 +62,31 @@ class DatabaseUtils {
     }
   }
 
-  Future<void> add(Note note) async {
+  Future<void> put(Note note) async {
     await _database.writeTxn(() async {
       await _database.notes.put(note);
     });
   }
 
-  Future<void> addAll(List<Note> notes) async {
+  Future<void> putAll(List<Note> notes) async {
     await _database.writeTxn(() async {
       await _database.notes.putAll(notes);
     });
   }
 
-  Future<void> edit(Note note) async {
-    await add(note);
-  }
-
-  Future<void> delete(Id id) async {
+  Future<void> delete(Note note) async {
     await _database.writeTxn(() async {
-      await _database.notes.delete(id);
+      await _database.notes.delete(note.isarId);
     });
   }
 
-  Future<void> deleteAll() async {
+  Future<void> deleteAll(List<Note> notes) async {
+    await _database.writeTxn(() async {
+      await _database.notes.deleteAll(notes.map((note) => note.isarId).toList());
+    });
+  }
+
+  Future<void> emptyBin() async {
     await _database.writeTxn(() async {
       await _database.notes.where().deletedEqualTo(true).deleteAll();
     });
@@ -177,7 +179,7 @@ class DatabaseUtils {
     final notesJson = jsonDecode(importedString) as List;
     final notes = notesJson.map((e) => Note.fromJson(e as Map<String, dynamic>)).toList();
 
-    await addAll(notes);
+    await putAll(notes);
 
     return true;
   }

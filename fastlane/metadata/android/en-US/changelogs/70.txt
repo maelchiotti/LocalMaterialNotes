@@ -1,0 +1,20 @@
+ADDED
+- Release to IzzyOnDroid
+- Grid view
+- Advanced text formatting
+- Undo/redo while editing
+- Setting to toggle advanced text formatting, undo/redo and checklists
+
+REMOVED
+- "Untitled note" label
+
+CHANGED
+- Improve the search precision
+- Improve markdown export
+- Going back from the settings goes back to the previous page
+
+FIXED
+- Hide note preview if empty
+- Notes not sorted after being updated
+- Support RTL for paddings
+- Many small issues

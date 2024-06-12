@@ -46,3 +46,11 @@ app.*.map.json
 # Distribution
 *.iss
 /dist/
+
+# l10n
+lib/l10n/untranslated.txt
+
+# fastlane
+fastlane/localmaterialnotes_fastlane-supply_key.json
+fastlane/README.md
+fastlane/report.xml
