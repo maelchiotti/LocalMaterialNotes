@@ -19,17 +19,17 @@
 Simple, local, material design notes.
 
 <div align="center">
-  <img alt="Screenshot of the notes list" src="docs/screenshots/notes.jpg" width="24%">
-  <img alt="Screenshots of the note editor" src="docs/screenshots/editor_advanced.jpg" width="24%">
-  <img alt="Screenshot of the bin" src="docs/screenshots/bin.jpg" width="24%">
-  <img alt="Screenshot of the settings" src="docs/screenshots/settings.jpg" width="24%">
+  <img alt="Screenshot of the notes list" src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_en-US.jpeg" width="24%">
+  <img alt="Screenshots of the note editor" src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_en-US.jpeg" width="24%">
+  <img alt="Screenshot of the bin" src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_en-US.jpeg" width="24%">
+  <img alt="Screenshot of the settings" src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_en-US.jpeg" width="24%">
 </div>
 
 <div align="center">
-  <img alt="Screenshot of the notes list in selection mode" src="docs/screenshots/notes_selection.jpg" width="24%">
-  <img alt="Screenshots of the search feature" src="docs/screenshots/search.jpg" width="24%">
-  <img alt="Screenshot of the notes list in the dark mode with dynamic theming" src="docs/screenshots/black_dynamic_theming.jpg" width="24%">
-  <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="docs/screenshots/light_dynamic_theming.jpg" width="24%">
+  <img alt="Screenshot of the notes list in selection mode" src="fastlane/metadata/android/en-US/images/phoneScreenshots/5_en-US.jpeg" width="24%">
+  <img alt="Screenshots of the search feature" src="fastlane/metadata/android/en-US/images/phoneScreenshots/6_en-US.jpeg" width="24%">
+  <img alt="Screenshot of the notes list in the dark mode with dynamic theming" src="fastlane/metadata/android/en-US/images/phoneScreenshots/7_en-US.jpeg" width="24%">
+  <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="fastlane/metadata/android/en-US/images/phoneScreenshots/8_en-US.jpeg" width="24%">
 </div>
 
 ## Features
@@ -66,10 +66,6 @@ Simple, local, material design notes.
 - Choose your theme (light, dark or black)
 - Choose if you want your theme to be dynamic (use colors from your background)
 - Choose if you want to enable the advanced formatting, only the checklists or keep your notes basic
-
-## Screenshots
-
-See more screenshots [here](docs/screenshots).
 
 ## Supported languages
 
