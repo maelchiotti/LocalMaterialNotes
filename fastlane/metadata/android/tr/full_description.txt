@@ -1,27 +1,54 @@
-<b>Not alın</b>
-- Metin notları yazın (başlık ve içerik)
-- Kontrol listeleri de dahil olmak üzere gelişmiş biçimlendirme seçeneklerinden yararlanın
-- Düzenleme sırasında değişikliklerinizi geri alma ve yineleme
-- Hızlı bir şekilde not eklemek için ana ekranınızdaki hızlı eylemi kullanın
+<p>
+    <b>Material Notes</b> basitliği hedefleyen metin tabanlı bir not alma uygulamasıdır. Materyal Tasarımı benimser.
+    Notları yerel olarak saklar ve internet izni yoktur, böylece notlara erişebilen tek kişi sizsiniz.
+</p>
 
-<b>Organize Et</b>
-- Notlarınızda arama yapın
-- Notlarınızı tarihe veya başlığa göre, artan veya azalan sırada sıralayın
-- Notlarınızı bir liste veya ızgara görünümünde görüntüleyin
-- Notlarınızı sabitleyin
-- Silinen notlarınızı çöp kutusundan kurtarın
+<p>
+    <b>Not alın</b>
+</p>
+<ul>
+    <li>Metin notları yazın (başlık ve içerik)</li>
+    <li>Kontrol listeleri de dahil olmak üzere gelişmiş biçimlendirme seçeneklerinden yararlanın</li>
+    <li>Düzenleme sırasında değişikliklerinizi geri alma ve yineleme</li>
+    <li>Hızlı bir şekilde not eklemek için ana ekranınızdaki hızlı eylemi kullanın</li>
+</ul>
 
-<b>Paylaş ve yedekle</b>
-- Doğrudan bir nota eklemek için diğer uygulamalardan metin paylaşın
-- Notlarınızı metin olarak paylaşın
-- Notlarınızı JSON olarak dışa aktarın ve geri alın
-- Notlarınızı Markdown olarak dışa aktarın
+<p>
+    <b>Organize Et</b>
+</p>
+<ul>
+    <li>Notlarınızda arama yapın</li>
+    <li>Notlarınızı tarihe veya başlığa göre, artan veya azalan sırada sıralayın</li>
+    <li>Notlarınızı bir liste veya ızgara görünümünde görüntüleyin</li>
+    <li>Notlarınızı sabitleyin</li>
+    <li>Silinen notlarınızı çöp kutusundan kurtarın</li>
+</ul>
 
-<b>Koruyun</b>
-- Verilerinizin nasıl işlendiği konusunda asla endişelenmeyin: uygulama herhangi bir internet iznine sahip olmadığı için cihazınızdan ayrılamaz
+<p>
+    <b>Paylaş ve yedekle</b>
+</p>
+<ul>
+    <li>Doğrudan bir nota eklemek için diğer uygulamalardan metin paylaşın</li>
+    <li>Notlarınızı metin olarak paylaşın</li>
+    <li>Notlarınızı JSON olarak dışa aktarın ve geri alın</li>
+    <li>Notlarınızı Markdown olarak dışa aktarın</li>
+</ul>
 
-<b>Özelleştirme</b>
-- Dilinizi seçin
-- Temanızı seçin (açık, koyu veya siyah)
-- Temanızın dinamik olmasını isteyip istemediğinizi seçin (arka planınızdaki renkleri kullanın)
-- Gelişmiş biçimlendirmeyi, yalnızca kontrol listelerini etkinleştirmek veya notlarınızı basit tutmak isteyip istemediğinizi seçin
+<p>
+    <b>Koruyun</b>
+</p>
+<ul>
+    <li>Verilerinizin nasıl işlendiği konusunda asla endişelenmeyin: uygulama herhangi bir internet iznine sahip
+        olmadığı için cihazınızdan ayrılamaz</li>
+</ul>
+
+<p>
+    <b>Özelleştirme</b>
+</p>
+<ul>
+    <li>Dilinizi seçin</li>
+    <li>Temanızı seçin (açık, koyu veya siyah)</li>
+    <li>Temanızın dinamik olmasını isteyip istemediğinizi seçin (arka planınızdaki renkleri kullanın)</li>
+    <li>Gelişmiş biçimlendirmeyi, yalnızca kontrol listelerini etkinleştirmek veya notlarınızı basit tutmak isteyip
+        istemediğinizi seçin</li>
+</ul>
