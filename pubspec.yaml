@@ -11,6 +11,7 @@ environment:
 dependencies:
   after_layout: ^1.2.0
   archive: ^3.6.0
+  back_button_interceptor: ^7.0.3
   collection: ^1.18.0
   device_info_plus: ^10.1.0
   dynamic_color: ^1.7.0
