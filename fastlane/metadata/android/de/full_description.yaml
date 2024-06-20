@@ -1,0 +1,55 @@
+full_description: |
+    <p>
+        <b>Material Notes</b> ist eine Anwendung zur Erstellung von Textnotizen, die auf Einfachheit ausgerichtet ist.
+        Sie verwendet das Material Design. Sie speichert die Notizen lokal und hat keine Internetberechtigung,
+        sodass nur Sie auf die Notizen zugreifen können.
+    </p>
+
+    <p>
+        <b>Notizen machen</b>
+    </p>
+    <ul>
+        <li>Verfassen von Textnotizen (Titel und Inhalt)</li>
+        <li>Nutzen Sie die erweiterten Formatierungsoptionen, einschließlich Checklisten</li>
+        <li>Rückgängig machen und Wiederherstellen von Änderungen während der Bearbeitung</li>
+        <li>Verwenden Sie die Schnellaktion auf Ihrem Startbildschirm, um schnell eine Notiz hinzuzufügen</li>
+    </ul>
+
+    <p>
+        <b>Organisieren Sie</b>
+    </p>
+    <ul>
+        <li>Durchsuchen Sie Ihre Notizen</li>
+        <li>Sortieren Sie Ihre Notizen nach Datum oder Titel, in aufsteigender oder absteigender Reihenfolge</li>
+        <li>Anzeige Ihrer Notizen in einer Liste oder einem Raster</li>
+        <li>Anheften von Notizen</li>
+        <li>Wiederherstellen gelöschter Notizen aus dem Papierkorb</li>
+    </ul>
+
+    <p>
+        <b>Freigeben & Sichern</b>
+    </p>
+    <ul>
+        <li>Teilen Sie Text aus anderen Anwendungen, um ihn direkt in eine Notiz einzufügen</li>
+        <li>Teilen Sie Ihre Notizen als Text</li>
+        <li>Exportieren Sie Ihre Notizen als JSON und importieren Sie sie wieder</li>
+        <li>Exportieren Sie Ihre Notizen als Markdown</li>
+    </ul>
+
+    <p>
+        <b>Schützen Sie</b>
+    </p>
+    <ul>
+        <li>Machen Sie sich keine Gedanken darüber, wie Ihre Daten gehandhabt werden:
+        Sie können Ihr Gerät nicht verlassen, da die Anwendung keine Internetberechtigungen hat.</li>
+    </ul>
+
+    <p>
+        <b>Anpassen von</b>
+    </p>
+    <ul>
+        <li>Wählen Sie Ihre Sprache</li>
+        <li>Wählen Sie Ihr Thema (hell, dunkel oder schwarz)</li>
+        <li>Legen Sie fest, ob Ihr Thema dynamisch sein soll (verwenden Sie die Farben Ihres Hintergrunds)</li>
+        <li>Wählen Sie, ob Sie die erweiterte Formatierung, nur die Checklisten oder nur die einfachen Notizen aktivieren möchten</li>
+    </ul>
