@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -33,6 +34,30 @@ class _EditorState extends ConsumerState<EditorPage> {
   FleatherController? fleatherController;
 
   bool fleatherFieldHasFocus = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    BackButtonInterceptor.add(_interceptor);
+  }
+
+  @override
+  void dispose() {
+    BackButtonInterceptor.remove(_interceptor);
+
+    super.dispose();
+  }
+
+  bool _interceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+    if (!Navigator.canPop(navigatorKey.currentContext!)) {
+      return false;
+    }
+
+    Navigator.pop(navigatorKey.currentContext!);
+
+    return true;
+  }
 
   void _synchronizeTitle(Note note, String? newTitle) {
     if (newTitle == null) {
