@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/actions/add.dart';
-import 'package:localmaterialnotes/l10n/hardcoded_localizations.dart';
+import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:quick_actions/quick_actions.dart';
 
 class QuickActionsUtils {
@@ -19,7 +19,7 @@ class QuickActionsUtils {
     quickActions.setShortcutItems([
       ShortcutItem(
         type: 'add_note',
-        localizedTitle: actionAddNoteTitle,
+        localizedTitle: hardcodedLocalizations.actionAddNoteTitle,
         icon: 'ic_launcher',
       ),
     ]);
