@@ -16,7 +16,7 @@ dependencies:
   device_info_plus: ^10.1.0
   dynamic_color: ^1.7.0
   equatable: ^2.0.5
-  fleather: ^1.14.5+1
+  fleather: ^1.16.0
   flutter:
     sdk: flutter
   flutter_hooks: ^0.20.5
