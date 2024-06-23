@@ -62,6 +62,16 @@ class Note extends Equatable {
         content: content,
       );
 
+  factory Note.welcome() => Note(
+        id: uuid.v4(),
+        deleted: false,
+        pinned: true,
+        createdTime: DateTime.now(),
+        editedTime: DateTime.now(),
+        title: hardcodedLocalizations.welcomeNoteTitle,
+        content: '[{"insert":"${hardcodedLocalizations.welcomeNoteContent}\\n"}]',
+      );
+
   // Manually setting the ID for imports
   factory Note.fromJson(Map<String, dynamic> json) => _$NoteFromJson(json)..id = uuid.v4();
 

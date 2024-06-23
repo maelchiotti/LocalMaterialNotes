@@ -18,7 +18,7 @@ import 'app_localizations_tr.g.dart';
 /// `supportedLocales` list. For example:
 ///
 /// ```dart
-/// import 'l10n/app_localizations.g.dart';
+/// import 'app_localizations/app_localizations.g.dart';
 ///
 /// return MaterialApp(
 ///   localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -709,6 +709,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'at'**
   String get time_at;
+
+  /// No description provided for @action_add_note_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a note'**
+  String get action_add_note_title;
+
+  /// No description provided for @welcome_note_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Material Notes!'**
+  String get welcome_note_title;
+
+  /// No description provided for @welcome_note_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple, local, material design notes'**
+  String get welcome_note_content;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

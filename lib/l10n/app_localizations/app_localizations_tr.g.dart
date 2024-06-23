@@ -362,4 +362,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get time_at => 'saat';
+
+  @override
+  String get action_add_note_title => 'Not ekle';
+
+  @override
+  String get welcome_note_title => 'Material Notes\'a hoşgeldin!';
+
+  @override
+  String get welcome_note_content => 'Basit, çevrimdışı, materyal tasarımlı notlar';
 }

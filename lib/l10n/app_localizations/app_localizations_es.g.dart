@@ -365,4 +365,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get time_at => 'el';
+
+  @override
+  String get action_add_note_title => 'Agregar una nota';
+
+  @override
+  String get welcome_note_title => 'Bienvenido a Material Notes !';
+
+  @override
+  String get welcome_note_content => 'Notas simples, locales, en Material Design';
 }

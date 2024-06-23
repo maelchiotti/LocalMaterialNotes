@@ -1,7 +1,11 @@
+format: true
+use-escaping: true
+synthetic-package: false
+
 arb-dir: lib/l10n
 template-arb-file: app_en.arb
-synthetic-package: false
-use-escaping: true
-format: true
+
+output-dir: lib/l10n/app_localizations
 output-localization-file: app_localizations.g.dart
+
 untranslated-messages-file: lib/l10n/untranslated.txt
