@@ -10,4 +10,4 @@ Logged in with your Crowdin account, open the [Crowdin project](https://crowdin.
 
 ### Add a new language
 
-Create an [issue](https://github.com/maelchiotti/LocalMaterialNotes/issues) mentionning which language you would like to be added.
+Create an [issue](https://github.com/maelchiotti/LocalMaterialNotes/issues) mentioning which language you would like to be added.
