@@ -101,5 +101,8 @@
   "about_created": "Création",
   "about_words": "Mots",
   "about_characters": "Caractères",
-  "time_at": "à"
+  "time_at": "à",
+  "action_add_note_title": "Ajouter une note",
+  "welcome_note_title": "Bienvenue dans Material Notes !",
+  "welcome_note_content": "Notes simples, locales, en material design"
 }

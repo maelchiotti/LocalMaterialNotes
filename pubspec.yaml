@@ -72,4 +72,3 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/
-    - lib/l10n/hardcoded_localizations.yaml

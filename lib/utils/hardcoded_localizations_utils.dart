@@ -1,32 +1,27 @@
-import 'package:flutter/services.dart';
+import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
+import 'package:localmaterialnotes/l10n/app_localizations/app_localizations_en.g.dart';
+import 'package:localmaterialnotes/l10n/app_localizations/app_localizations_es.g.dart';
+import 'package:localmaterialnotes/l10n/app_localizations/app_localizations_fr.g.dart';
+import 'package:localmaterialnotes/l10n/app_localizations/app_localizations_tr.g.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
-import 'package:yaml/yaml.dart';
 
 class HardcodedLocalizationsUtils {
-  static final HardcodedLocalizationsUtils _singleton = HardcodedLocalizationsUtils._internal();
+  final _appLocalizationsList = [
+    AppLocalizationsEn(),
+    AppLocalizationsEs(),
+    AppLocalizationsFr(),
+    AppLocalizationsTr(),
+  ];
 
-  factory HardcodedLocalizationsUtils() {
-    return _singleton;
+  AppLocalizations get _appLocalizations {
+    return _appLocalizationsList.firstWhere((appLocalizations) {
+      return appLocalizations.localeName == LocaleUtils().appLocale.languageCode;
+    });
   }
 
-  HardcodedLocalizationsUtils._internal();
+  String get actionAddNoteTitle => _appLocalizations.action_add_note_title;
 
-  late final YamlMap hardcodedLocalizations;
+  String get welcomeNoteTitle => _appLocalizations.welcome_note_title;
 
-  Future<void> init() async {
-    final yaml = await rootBundle.loadString("lib/l10n/hardcoded_localizations.yaml");
-    hardcodedLocalizations = loadYaml(yaml) as YamlMap;
-  }
-
-  String _getHardcodedLocalization(String key) {
-    final locale = LocaleUtils().appLocale;
-
-    return (hardcodedLocalizations[key] as YamlMap)[locale.languageCode] as String;
-  }
-
-  String get actionAddNoteTitle => _getHardcodedLocalization('actionAddNoteTitle');
-
-  String get welcomeNoteTitle => _getHardcodedLocalization('welcomeNoteTitle');
-
-  String get welcomeNoteContent => _getHardcodedLocalization('welcomeNoteContent');
+  String get welcomeNoteContent => _appLocalizations.welcome_note_content;
 }

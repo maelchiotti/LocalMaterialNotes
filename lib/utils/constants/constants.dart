@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/l10n/app_localizations.g.dart';
+import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/utils/hardcoded_localizations_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
 import 'package:parchment/codecs.dart'; // ignore: depend_on_referenced_packages
