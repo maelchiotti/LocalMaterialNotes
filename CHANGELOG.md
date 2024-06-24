@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.4.0 - 2024-06-24
+
+### Added
+
+- Spanish localization
+- Toggleable background for notes tiles
+
+### Changed
+
+- Drastically improved the speed of editing/deleting multiple notes
+- Use a less vibrant color for the editor toolbar
+
+### Fixed
+
+- Going back from the licences list doesn't close the page
+- Going back from the editor page while the menu is open goes back to the notes list instead of closing the menu
+- Empty note still shown until the notes list is refreshed
+- Devices using a system RTL language not having the app use the RTL layout
+- Slightly wrong icon size on the splash screen for Android 12+ devices
+
 ## 1.3.0 - 2024-05-22
 
 ### Added
@@ -24,7 +44,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Improve the search precision
 - Improve markdown export (support advanced text formatting and export each note to a separate file)
-- Going back from the settings goes back to the previous page (if any)
+- Going back from the settings closes the application instead of going back to the previous page (if any)
 
 ### Fixed
 
