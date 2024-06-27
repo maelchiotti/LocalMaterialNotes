@@ -366,4 +366,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get time_at => 'à';
+
+  @override
+  String get action_add_note_title => 'Ajouter une note';
+
+  @override
+  String get welcome_note_title => 'Bienvenue dans Material Notes !';
+
+  @override
+  String get welcome_note_content => 'Notes simples, locales, en material design';
 }

@@ -90,5 +90,8 @@
   "about_created": "Oluşturma tarihi",
   "about_words": "Kelime",
   "about_characters": "Karakter",
-  "time_at": "saat"
+  "time_at": "saat",
+  "action_add_note_title": "Not ekle",
+  "welcome_note_title": "Material Notes''a hoşgeldin!",
+  "welcome_note_content": "Basit, çevrimdışı, materyal tasarımlı notlar"
 }

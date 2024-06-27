@@ -360,4 +360,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get time_at => 'at';
+
+  @override
+  String get action_add_note_title => 'Add a note';
+
+  @override
+  String get welcome_note_title => 'Welcome to Material Notes!';
+
+  @override
+  String get welcome_note_content => 'Simple, local, material design notes';
 }
