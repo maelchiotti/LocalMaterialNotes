@@ -8,10 +8,7 @@
 [![Issues](https://img.shields.io/github/issues/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/issues)
 
 [<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200px">](https://play.google.com/store/apps/details?id=com.maelchiotti.localmaterialnotes)
-<br />
 [<img alt="Get it on IzzyOnDroid" src="docs/badges/izzy_on_droid.png" width="200px">](https://apt.izzysoft.de/packages/com.maelchiotti.localmaterialnotes)
-[<img alt="Get it on IzzyOnDroid" src="docs/badges/izzy_on_droid.png" width="200px">](https://apt.izzysoft.de/packages/com.maelchiotti.localmaterialnotes)
-<br />
 [<img alt="Get it on Obtainium" src="docs/badges/obtainium.png" width="200px">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/maelchiotti/LocalMaterialNotes)
 [<img alt="Get it on GitHub" src="docs/badges/github.png" width="200px">](https://github.com/maelchiotti/LocalMaterialNotes/releases/latest)
 
@@ -22,17 +19,17 @@
 Simple, local, material design notes.
 
 <div align="center">
-  <img alt="Screenshot of the notes list" src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_en-US.jpeg" width="24%">
-  <img alt="Screenshots of the note editor" src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_en-US.jpeg" width="24%">
-  <img alt="Screenshot of the bin" src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_en-US.jpeg" width="24%">
-  <img alt="Screenshot of the settings" src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_en-US.jpeg" width="24%">
+  <img alt="Screenshot of the notes list" src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_en-US.jpg" width="24%">
+  <img alt="Screenshots of the note editor" src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_en-US.jpg" width="24%">
+  <img alt="Screenshot of the bin" src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_en-US.jpg" width="24%">
+  <img alt="Screenshot of the settings" src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_en-US.jpg" width="24%">
 </div>
 
 <div align="center">
-  <img alt="Screenshot of the notes list in selection mode" src="fastlane/metadata/android/en-US/images/phoneScreenshots/5_en-US.jpeg" width="24%">
-  <img alt="Screenshots of the search feature" src="fastlane/metadata/android/en-US/images/phoneScreenshots/6_en-US.jpeg" width="24%">
-  <img alt="Screenshot of the notes list in the dark mode with dynamic theming" src="fastlane/metadata/android/en-US/images/phoneScreenshots/7_en-US.jpeg" width="24%">
-  <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="fastlane/metadata/android/en-US/images/phoneScreenshots/8_en-US.jpeg" width="24%">
+  <img alt="Screenshot of the notes list in selection mode" src="fastlane/metadata/android/en-US/images/phoneScreenshots/5_en-US.jpg" width="24%">
+  <img alt="Screenshots of the search feature" src="fastlane/metadata/android/en-US/images/phoneScreenshots/6_en-US.jpg" width="24%">
+  <img alt="Screenshot of the notes list in the dark mode with dynamic theming" src="fastlane/metadata/android/en-US/images/phoneScreenshots/7_en-US.jpg" width="24%">
+  <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="fastlane/metadata/android/en-US/images/phoneScreenshots/8_en-US.jpg" width="24%">
 </div>
 
 ## Features
