@@ -92,7 +92,7 @@ All the supported languages are listed here alphabetically. You can see more det
 ### Localization
 
 - All of the [Crowdin project members](https://crowdin.com/project/localmaterialnotes/reports/top-members).
-- [newmanls](https://github.com/newmanls) for the spanish localization
+- [newmanls](https://github.com/newmanls) for the spanish localization.
 - [xe1st](https://github.com/xe1st) for the turkish localization.
 
 ### Assets
