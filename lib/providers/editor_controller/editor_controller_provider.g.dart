@@ -10,7 +10,7 @@ String _$editorControllerHash() => r'daa52f679eec2218957f51064145f708efcbad46';
 
 /// See also [EditorController].
 @ProviderFor(EditorController)
-final editorControllerProvider = NotifierProvider<EditorController, FleatherController?>.internal(
+final editorControllerProvider = NotifierProvider<EditorController, Raw<FleatherController>?>.internal(
   EditorController.new,
   name: r'editorControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$editorControllerHash,
@@ -18,6 +18,6 @@ final editorControllerProvider = NotifierProvider<EditorController, FleatherCont
   allTransitiveDependencies: null,
 );
 
-typedef _$EditorController = Notifier<FleatherController?>;
+typedef _$EditorController = Notifier<Raw<FleatherController>?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
