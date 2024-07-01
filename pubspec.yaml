@@ -19,6 +19,7 @@ dependencies:
   fleather: ^1.16.0
   flutter:
     sdk: flutter
+  flutter_displaymode: ^0.6.0
   flutter_hooks: ^0.20.5
   flutter_keyboard_visibility: ^6.0.0
   flutter_localizations:
