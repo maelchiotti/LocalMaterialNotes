@@ -1,0 +1,14 @@
+ADDED
+- Spanish localization
+- Toggleable background for notes tiles
+
+CHANGED
+- Improved speed of editing/deleting multiple notes
+- Use less vibrant color for editor toolbar
+
+FIXED
+- Going back from licences list doesn't close page
+- Going back from editor page while menu is open goes back to notes list
+- Empty note still shown until notes list refreshed
+- Devices with RTL language not having app use RTL layout
+- Wrong icon size on splash screen

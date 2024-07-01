@@ -143,8 +143,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     );
 
     return ClipRRect(
-      borderRadius: showTilesBackground ? Radiuses.radius16.circular : BorderRadius.zero,
-      clipBehavior: showTilesBackground ? Clip.antiAlias : Clip.none,
+      borderRadius: layout == Layout.grid || showTilesBackground ? Radiuses.radius16.circular : BorderRadius.zero,
       child: layout == Layout.list
           ? Dismissible(
               key: Key(widget.note.id.toString()),
