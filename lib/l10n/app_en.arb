@@ -33,6 +33,7 @@
   "settings_confirmations": "Show confirmation dialogs",
   "settings_backup": "Backup",
   "settings_export_json": "Export as JSON",
+  "settings_auto_export": "Automatically export the notes as JSON",
   "settings_export_markdown": "Export as Markdown",
   "settings_export_json_description": "Export notes to a JSON file (bin included) that can be imported back",
   "settings_export_markdown_description": "Export notes to a Markdown file (bin included)",

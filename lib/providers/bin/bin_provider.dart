@@ -19,7 +19,7 @@ class Bin extends _$Bin with BaseProvider {
 
     try {
       notes = await databaseUtils.getAll(deleted: true);
-    } on Exception catch (exception, stackTrace) {
+    } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
     }
 
@@ -70,7 +70,7 @@ class Bin extends _$Bin with BaseProvider {
 
     try {
       await databaseUtils.deleteAll(notes);
-    } on Exception catch (exception, stackTrace) {
+    } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
@@ -88,7 +88,7 @@ class Bin extends _$Bin with BaseProvider {
 
     try {
       await databaseUtils.put(restoredNote);
-    } on Exception catch (exception, stackTrace) {
+    } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
@@ -108,7 +108,7 @@ class Bin extends _$Bin with BaseProvider {
 
     try {
       await databaseUtils.putAll(notes);
-    } on Exception catch (exception, stackTrace) {
+    } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }

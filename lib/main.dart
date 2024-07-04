@@ -4,6 +4,7 @@ import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/app.dart';
+import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
@@ -28,12 +29,14 @@ Future<void> main() async {
   // cf. https://github.com/flutter/flutter/issues/35162
   await FlutterDisplayMode.setHighRefreshRate();
 
-  await PreferencesUtils().init();
-  await InfoUtils().init();
-  await ThemeUtils().init();
-  await DatabaseUtils().init();
+  await PreferencesUtils().ensureInitialized();
+  await InfoUtils().ensureInitialized();
+  await ThemeUtils().ensureInitialized();
+  await DatabaseUtils().ensureInitialized();
 
   FlutterNativeSplash.remove();
+
+  await AutoExportUtils().ensureInitialized();
 
   runApp(
     ProviderScope(

@@ -19,7 +19,7 @@ class Notes extends _$Notes with BaseProvider {
 
     try {
       notes = await databaseUtils.getAll(deleted: false);
-    } on Exception catch (exception, stackTrace) {
+    } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
     }
 
@@ -43,7 +43,7 @@ class Notes extends _$Notes with BaseProvider {
       } else {
         await databaseUtils.put(editedNote);
       }
-    } on Exception catch (exception, stackTrace) {
+    } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
@@ -77,7 +77,7 @@ class Notes extends _$Notes with BaseProvider {
 
     try {
       await databaseUtils.putAll(notes);
-    } on Exception catch (exception, stackTrace) {
+    } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
@@ -111,7 +111,7 @@ class Notes extends _$Notes with BaseProvider {
 
     try {
       await databaseUtils.putAll(notes);
-    } on Exception catch (exception, stackTrace) {
+    } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
