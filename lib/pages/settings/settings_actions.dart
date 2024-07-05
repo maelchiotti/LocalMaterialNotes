@@ -8,6 +8,7 @@ import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.da
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
+import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
@@ -15,6 +16,7 @@ import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
+import 'package:localmaterialnotes/utils/preferences/auto_export_frequency.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
@@ -140,7 +142,7 @@ class SettingsActions {
     });
   }
 
-  Future<void> backupAsJson(BuildContext context) async {
+  Future<void> exportAsJson(BuildContext context) async {
     try {
       if (await DatabaseUtils().exportAsJson()) {
         SnackBarUtils.info(localizations.settings_export_success).show();
@@ -152,7 +154,7 @@ class SettingsActions {
     }
   }
 
-  Future<void> backupAsMarkdown(BuildContext context) async {
+  Future<void> exportAsMarkdown(BuildContext context) async {
     try {
       if (await DatabaseUtils().exportAsMarkdown()) {
         SnackBarUtils.info(localizations.settings_export_success).show();
@@ -162,6 +164,39 @@ class SettingsActions {
 
       SnackBarUtils.info(exception.toString()).show();
     }
+  }
+
+  Future<void> autoExportAsJson(BuildContext context) async {
+    await showAdaptiveDialog<AutoExportFrequency>(
+      context: context,
+      builder: (context) {
+        return SimpleDialog(
+          clipBehavior: Clip.hardEdge,
+          title: Text(localizations.settings_auto_export),
+          children: AutoExportFrequency.values.map((autoExportFrequency) {
+            return RadioListTile<AutoExportFrequency>(
+              value: autoExportFrequency,
+              groupValue: AutoExportFrequency.fromPreference(),
+              title: Text(autoExportFrequency.title),
+              selected: AutoExportFrequency.fromPreference() == autoExportFrequency,
+              onChanged: (autoExportFrequency) => Navigator.of(context).pop(autoExportFrequency),
+            );
+          }).toList(),
+        );
+      },
+    ).then((autoExportFrequency) async {
+      if (autoExportFrequency == null) {
+        return;
+      }
+
+      if (autoExportFrequency == AutoExportFrequency.disabled) {
+        AutoExportUtils().cancel();
+      } else {
+        AutoExportUtils().register(autoExportFrequency.duration!);
+      }
+
+      PreferencesUtils().set<String>(PreferenceKey.autoExportFrequency.name, autoExportFrequency.name);
+    });
   }
 
   Future<void> import(BuildContext context, WidgetRef ref) async {

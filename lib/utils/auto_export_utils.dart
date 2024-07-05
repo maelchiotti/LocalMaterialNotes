@@ -19,7 +19,7 @@ class AutoExportUtils {
 
   AutoExportUtils._internal();
 
-  late Workmanager workManager;
+  late Uri? autoExportDirectory;
 
   final _uniqueName = 'material_notes_task_auto_backup';
   final _taskName = 'Material Notes | Auto backup';
@@ -27,28 +27,23 @@ class AutoExportUtils {
   final _downloadDirectoryPath = '/storage/emulated/0/Download';
   final _intermediateDirectories = ['Material Notes', 'backups'];
 
-  Future<Uri?> get _autoExportDirectory async {
-    final downloadsDirectory = Directory(_downloadDirectoryPath);
+  Future<void> ensureInitialized() async {
+    await _setAutoExportDirectory();
 
-    if (!downloadsDirectory.existsSync()) {
-      final externalStorageDirectory = await getExternalStorageDirectory();
-
-      return externalStorageDirectory?.uri;
-    }
-
-    return downloadsDirectory.uri;
+    Workmanager().initialize(
+      autoExportCallbackDispatcher,
+      isInDebugMode: kDebugMode,
+    );
   }
 
-  Future<bool> get hasAutoExportDirectory async {
-    return await _autoExportDirectory != null;
-  }
+  bool get hasAutoExportDirectory => autoExportDirectory != null;
 
   Future<File?> get getAutoExportFile async {
-    if (!(await hasAutoExportDirectory)) {
+    if (!hasAutoExportDirectory) {
       return null;
     }
 
-    final downloadDirectory = (await _autoExportDirectory)!;
+    final downloadDirectory = autoExportDirectory!;
 
     return getExportFile(
       downloadDirectory,
@@ -57,11 +52,16 @@ class AutoExportUtils {
     );
   }
 
-  Future<void> ensureInitialized() async {
-    Workmanager().initialize(
-      autoExportCallbackDispatcher,
-      isInDebugMode: kDebugMode,
-    );
+  Future<void> _setAutoExportDirectory() async {
+    final downloadsDirectory = Directory(_downloadDirectoryPath);
+
+    if (!downloadsDirectory.existsSync()) {
+      final externalStorageDirectory = await getExternalStorageDirectory();
+
+      autoExportDirectory = externalStorageDirectory?.uri;
+    }
+
+    autoExportDirectory = downloadsDirectory.uri;
   }
 
   void register(Duration duration) {

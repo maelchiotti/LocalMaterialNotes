@@ -284,6 +284,12 @@ abstract class AppLocalizations {
   /// **'Show confirmation dialogs'**
   String get settings_confirmations;
 
+  /// No description provided for @settings_confirmations_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the confirmation dialogs for actions such as pining and deleting notes'**
+  String get settings_confirmations_description;
+
   /// No description provided for @settings_backup.
   ///
   /// In en, this message translates to:
@@ -296,23 +302,83 @@ abstract class AppLocalizations {
   /// **'Export as JSON'**
   String get settings_export_json;
 
+  /// No description provided for @settings_export_json_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Export the notes to a JSON file (bin included) that can be imported back'**
+  String get settings_export_json_description;
+
   /// No description provided for @settings_export_markdown.
   ///
   /// In en, this message translates to:
   /// **'Export as Markdown'**
   String get settings_export_markdown;
 
-  /// No description provided for @settings_export_json_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Export notes to a JSON file (bin included) that can be imported back'**
-  String get settings_export_json_description;
-
   /// No description provided for @settings_export_markdown_description.
   ///
   /// In en, this message translates to:
   /// **'Export notes to a Markdown file (bin included)'**
   String get settings_export_markdown_description;
+
+  /// No description provided for @settings_auto_export.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto export'**
+  String get settings_auto_export;
+
+  /// No description provided for @settings_auto_export_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically export the notes to a JSON file (bin included) that can be imported back'**
+  String get settings_auto_export_description;
+
+  /// No description provided for @settings_auto_export_directory.
+  ///
+  /// In en, this message translates to:
+  /// **'Exports can be found in {directory}'**
+  String settings_auto_export_directory(Object directory);
+
+  /// No description provided for @settings_auto_export_unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto exports are not available on your device'**
+  String get settings_auto_export_unavailable;
+
+  /// No description provided for @settings_auto_export_disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get settings_auto_export_disabled;
+
+  /// No description provided for @settings_auto_export_day.
+  ///
+  /// In en, this message translates to:
+  /// **'Every day'**
+  String get settings_auto_export_day;
+
+  /// No description provided for @settings_auto_export_three_days.
+  ///
+  /// In en, this message translates to:
+  /// **'Every 3 days'**
+  String get settings_auto_export_three_days;
+
+  /// No description provided for @settings_auto_export_week.
+  ///
+  /// In en, this message translates to:
+  /// **'Every week'**
+  String get settings_auto_export_week;
+
+  /// No description provided for @settings_auto_export_two_weeks.
+  ///
+  /// In en, this message translates to:
+  /// **'Every 2 weeks'**
+  String get settings_auto_export_two_weeks;
+
+  /// No description provided for @settings_auto_export_month.
+  ///
+  /// In en, this message translates to:
+  /// **'Every month'**
+  String get settings_auto_export_month;
 
   /// No description provided for @settings_export_success.
   ///

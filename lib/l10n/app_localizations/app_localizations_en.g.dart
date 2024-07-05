@@ -106,19 +106,57 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_confirmations => 'Show confirmation dialogs';
 
   @override
+  String get settings_confirmations_description =>
+      'Show the confirmation dialogs for actions such as pining and deleting notes';
+
+  @override
   String get settings_backup => 'Backup';
 
   @override
   String get settings_export_json => 'Export as JSON';
 
   @override
+  String get settings_export_json_description =>
+      'Export the notes to a JSON file (bin included) that can be imported back';
+
+  @override
   String get settings_export_markdown => 'Export as Markdown';
 
   @override
-  String get settings_export_json_description => 'Export notes to a JSON file (bin included) that can be imported back';
+  String get settings_export_markdown_description => 'Export notes to a Markdown file (bin included)';
 
   @override
-  String get settings_export_markdown_description => 'Export notes to a Markdown file (bin included)';
+  String get settings_auto_export => 'Auto export';
+
+  @override
+  String get settings_auto_export_description =>
+      'Automatically export the notes to a JSON file (bin included) that can be imported back';
+
+  @override
+  String settings_auto_export_directory(Object directory) {
+    return 'Exports can be found in $directory';
+  }
+
+  @override
+  String get settings_auto_export_unavailable => 'Auto exports are not available on your device';
+
+  @override
+  String get settings_auto_export_disabled => 'Disabled';
+
+  @override
+  String get settings_auto_export_day => 'Every day';
+
+  @override
+  String get settings_auto_export_three_days => 'Every 3 days';
+
+  @override
+  String get settings_auto_export_week => 'Every week';
+
+  @override
+  String get settings_auto_export_two_weeks => 'Every 2 weeks';
+
+  @override
+  String get settings_auto_export_month => 'Every month';
 
   @override
   String get settings_export_success => 'The notes were successfully exported.';

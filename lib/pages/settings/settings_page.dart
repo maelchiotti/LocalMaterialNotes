@@ -4,10 +4,12 @@ import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/pages/settings/settings_actions.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
+import 'package:localmaterialnotes/utils/preferences/auto_export_frequency.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
@@ -128,7 +130,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             SettingsTile.navigation(
               leading: const Icon(Icons.warning),
               title: Text(localizations.settings_confirmations),
-              value: Text(Confirmations.fromPreference().title),
+              value: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    Confirmations.fromPreference().title,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  Text(localizations.settings_confirmations_description),
+                ],
+              ),
               onPressed: (context) async {
                 await interactions.selectConfirmations(context);
                 setState(() {});
@@ -169,13 +180,36 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               leading: const Icon(SimpleIcons.json),
               title: Text(localizations.settings_export_json),
               value: Text(localizations.settings_export_json_description),
-              onPressed: interactions.backupAsJson,
+              onPressed: interactions.exportAsJson,
             ),
             SettingsTile.navigation(
               leading: const Icon(SimpleIcons.markdown),
               title: Text(localizations.settings_export_markdown),
               value: Text(localizations.settings_export_markdown_description),
-              onPressed: interactions.backupAsMarkdown,
+              onPressed: interactions.exportAsMarkdown,
+            ),
+            SettingsTile.navigation(
+              leading: const Icon(Icons.settings_backup_restore),
+              title: Text(localizations.settings_auto_export),
+              value: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AutoExportFrequency.fromPreference().title,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  Text(localizations.settings_auto_export_description),
+                  Text(
+                    AutoExportUtils().hasAutoExportDirectory
+                        ? localizations.settings_auto_export_directory(AutoExportUtils().autoExportDirectory!.path)
+                        : localizations.settings_auto_export_unavailable,
+                  ),
+                ],
+              ),
+              onPressed: (context) async {
+                await interactions.autoExportAsJson(context);
+                setState(() {});
+              },
             ),
             SettingsTile.navigation(
               leading: const Icon(Icons.file_upload),
