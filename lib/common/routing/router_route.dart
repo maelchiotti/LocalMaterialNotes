@@ -50,7 +50,7 @@ enum RouterRoute {
   }
 
   static RouterRoute get currentRoute {
-    final location = GoRouter.of(navigatorKey.currentContext!).location();
+    final location = GoRouter.of(navigatorKey.currentContext!).location;
 
     if (location == notes.path) {
       return notes;
