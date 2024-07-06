@@ -42,7 +42,6 @@
   "settings_auto_export_value": "Every {frequency, select, 1{day} 7{week} 14{two weeks} 21{two weeks} 30{month} other{{frequency} days}}",
   "settings_auto_export_disabled": "Disabled",
   "settings_auto_export_directory": "Exports can be found in {directory}",
-  "settings_auto_export_unavailable": "Auto exports are not available on your device",
   "settings_auto_export_dialog_content_disabled": "Auto export will be disabled.",
   "settings_auto_export_dialog_content_enabled": "Auto export will be performed every {frequency, select, 1{day} 7{week} 14{two weeks} 21{two weeks} 30{month} other{{frequency} days}}. Set the frequency to 0 to disable it.",
   "settings_export_success": "The notes were successfully exported.",

@@ -160,9 +160,6 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get settings_auto_export_unavailable => 'Auto exports are not available on your device';
-
-  @override
   String get settings_auto_export_dialog_content_disabled => 'Auto export will be disabled.';
 
   @override

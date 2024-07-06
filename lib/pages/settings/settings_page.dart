@@ -202,11 +202,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   Text(localizations.settings_auto_export_description),
-                  Text(
-                    AutoExportUtils().hasAutoExportDirectory
-                        ? localizations.settings_auto_export_directory(AutoExportUtils().autoExportDirectory!.path)
-                        : localizations.settings_auto_export_unavailable,
-                  ),
+                  Text(localizations.settings_auto_export_directory(AutoExportUtils().autoExportDirectory.path)),
                 ],
               ),
               onPressed: (context) async {

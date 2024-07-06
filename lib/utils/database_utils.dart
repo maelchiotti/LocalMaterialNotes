@@ -147,12 +147,6 @@ class DatabaseUtils {
 
     final file = await AutoExportUtils().getAutoExportFile;
 
-    if (file == null) {
-      log('Failed to open the file for the auto JSON export.');
-
-      return false;
-    }
-
     return await writeStringToFile(file, notesAsJson);
   }
 

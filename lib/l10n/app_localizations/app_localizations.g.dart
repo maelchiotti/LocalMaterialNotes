@@ -350,12 +350,6 @@ abstract class AppLocalizations {
   /// **'Exports can be found in {directory}'**
   String settings_auto_export_directory(Object directory);
 
-  /// No description provided for @settings_auto_export_unavailable.
-  ///
-  /// In en, this message translates to:
-  /// **'Auto exports are not available on your device'**
-  String get settings_auto_export_unavailable;
-
   /// No description provided for @settings_auto_export_dialog_content_disabled.
   ///
   /// In en, this message translates to:
