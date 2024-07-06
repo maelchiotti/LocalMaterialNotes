@@ -223,7 +223,7 @@ class Note extends Equatable {
         case SortMethod.title:
           return sortAscending ? title.compareTo(otherNote.title) : otherNote.title.compareTo(title);
         default:
-          throw Exception();
+          throw Exception('The sort method is not valid: $sortMethod');
       }
     }
   }

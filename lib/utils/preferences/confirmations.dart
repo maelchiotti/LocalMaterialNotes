@@ -28,8 +28,6 @@ enum Confirmations {
         return localizations.confirmations_title_irreversible;
       case all:
         return localizations.confirmations_title_all;
-      default:
-        throw Exception();
     }
   }
 }

@@ -25,6 +25,10 @@ enum PreferenceKey {
   autoExportFrequency(0.0),
   lastAutoExportDate(''),
 
+  // Security
+  encryptionPassword(''),
+  encryptionInitVector(''),
+
   // Notes
   sortMethod(SortMethod.date),
   sortAscending(false),

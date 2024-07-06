@@ -60,7 +60,7 @@ class DatabaseUtils {
             ? await sortedByPinned.thenByTitle().findAll()
             : await sortedByPinned.thenByTitleDesc().findAll();
       default:
-        throw Exception();
+        throw Exception('The sort methode is not set: $sortMethod');
     }
   }
 
