@@ -134,6 +134,25 @@ class AppLocalizationsTr extends AppLocalizations {
       'Automatically export the notes to a JSON file (bin included) that can be imported back';
 
   @override
+  String settings_auto_export_value(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        '7': 'week',
+        '14': 'two weeks',
+        '21': 'two weeks',
+        '30': 'month',
+        'other': '$frequency days',
+      },
+    );
+    return 'Every $_temp0';
+  }
+
+  @override
+  String get settings_auto_export_disabled => 'Disabled';
+
+  @override
   String settings_auto_export_directory(Object directory) {
     return 'Exports can be found in $directory';
   }
@@ -142,22 +161,23 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_auto_export_unavailable => 'Auto exports are not available on your device';
 
   @override
-  String get settings_auto_export_disabled => 'Disabled';
+  String get settings_auto_export_dialog_content_disabled => 'Auto export will be disabled.';
 
   @override
-  String get settings_auto_export_day => 'Every day';
-
-  @override
-  String get settings_auto_export_three_days => 'Every 3 days';
-
-  @override
-  String get settings_auto_export_week => 'Every week';
-
-  @override
-  String get settings_auto_export_two_weeks => 'Every 2 weeks';
-
-  @override
-  String get settings_auto_export_month => 'Every month';
+  String settings_auto_export_dialog_content_enabled(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        '7': 'week',
+        '14': 'two weeks',
+        '21': 'two weeks',
+        '30': 'month',
+        'other': '$frequency days',
+      },
+    );
+    return 'Auto export will be performed every $_temp0. Set the frequency to 0 to disable it.';
+  }
 
   @override
   String get settings_export_success => 'Dışa aktarma başarılı';

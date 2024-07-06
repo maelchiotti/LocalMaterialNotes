@@ -9,7 +9,6 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
-import 'package:localmaterialnotes/utils/preferences/auto_export_frequency.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
@@ -195,7 +194,11 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    AutoExportFrequency.fromPreference().title,
+                    PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>() == 0
+                        ? localizations.settings_auto_export_disabled
+                        : localizations.settings_auto_export_value(
+                            PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>().toInt().toString(),
+                          ),
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   Text(localizations.settings_auto_export_description),

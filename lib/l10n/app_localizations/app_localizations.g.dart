@@ -332,6 +332,18 @@ abstract class AppLocalizations {
   /// **'Automatically export the notes to a JSON file (bin included) that can be imported back'**
   String get settings_auto_export_description;
 
+  /// No description provided for @settings_auto_export_value.
+  ///
+  /// In en, this message translates to:
+  /// **'Every {frequency, select, 1{day} 7{week} 14{two weeks} 21{two weeks} 30{month} other{{frequency} days}}'**
+  String settings_auto_export_value(String frequency);
+
+  /// No description provided for @settings_auto_export_disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get settings_auto_export_disabled;
+
   /// No description provided for @settings_auto_export_directory.
   ///
   /// In en, this message translates to:
@@ -344,41 +356,17 @@ abstract class AppLocalizations {
   /// **'Auto exports are not available on your device'**
   String get settings_auto_export_unavailable;
 
-  /// No description provided for @settings_auto_export_disabled.
+  /// No description provided for @settings_auto_export_dialog_content_disabled.
   ///
   /// In en, this message translates to:
-  /// **'Disabled'**
-  String get settings_auto_export_disabled;
+  /// **'Auto export will be disabled.'**
+  String get settings_auto_export_dialog_content_disabled;
 
-  /// No description provided for @settings_auto_export_day.
+  /// No description provided for @settings_auto_export_dialog_content_enabled.
   ///
   /// In en, this message translates to:
-  /// **'Every day'**
-  String get settings_auto_export_day;
-
-  /// No description provided for @settings_auto_export_three_days.
-  ///
-  /// In en, this message translates to:
-  /// **'Every 3 days'**
-  String get settings_auto_export_three_days;
-
-  /// No description provided for @settings_auto_export_week.
-  ///
-  /// In en, this message translates to:
-  /// **'Every week'**
-  String get settings_auto_export_week;
-
-  /// No description provided for @settings_auto_export_two_weeks.
-  ///
-  /// In en, this message translates to:
-  /// **'Every 2 weeks'**
-  String get settings_auto_export_two_weeks;
-
-  /// No description provided for @settings_auto_export_month.
-  ///
-  /// In en, this message translates to:
-  /// **'Every month'**
-  String get settings_auto_export_month;
+  /// **'Auto export will be performed every {frequency, select, 1{day} 7{week} 14{two weeks} 21{two weeks} 30{month} other{{frequency} days}}. Set the frequency to 0 to disable it.'**
+  String settings_auto_export_dialog_content_enabled(String frequency);
 
   /// No description provided for @settings_export_success.
   ///

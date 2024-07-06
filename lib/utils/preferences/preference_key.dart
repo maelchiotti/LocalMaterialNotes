@@ -1,4 +1,3 @@
-import 'package:localmaterialnotes/utils/preferences/auto_export_frequency.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 import 'package:localmaterialnotes/utils/preferences/layout.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
@@ -22,7 +21,8 @@ enum PreferenceKey {
   confirmations(Confirmations.irreversible),
 
   // Backup
-  autoExportFrequency(AutoExportFrequency.disabled),
+  autoExportFrequency(0.0),
+  lastAutoExportDate(''),
 
   // Notes
   sortMethod(SortMethod.date),
