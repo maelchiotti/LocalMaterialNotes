@@ -73,7 +73,6 @@ class AutoExportUtils {
       constraints: Constraints(
         networkType: NetworkType.not_required,
         requiresBatteryNotLow: true,
-        requiresCharging: true,
         requiresDeviceIdle: true,
       ),
     );
