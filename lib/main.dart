@@ -33,10 +33,9 @@ Future<void> main() async {
   await InfoUtils().ensureInitialized();
   await ThemeUtils().ensureInitialized();
   await DatabaseUtils().ensureInitialized();
+  await AutoExportUtils().ensureInitialized();
 
   FlutterNativeSplash.remove();
-
-  await AutoExportUtils().ensureInitialized();
 
   runApp(
     ProviderScope(
