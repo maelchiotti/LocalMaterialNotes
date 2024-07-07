@@ -1,35 +1,62 @@
 import 'package:encrypt/encrypt.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
+/// Utilities for AES encryption and decryption of strings based on a user provided passphrase.
 class EncryptionUtils {
-  Future<Encrypter> get encrypter async {
-    final password = await PreferencesUtils().getSecure(PreferenceKey.encryptionPassword);
+  /// Generates a random initialization vector.
+  IV get generateIv {
+    return IV.fromSecureRandom(16);
+  }
 
-    if (password == null || password.isEmpty) {
-      throw Exception('The password for the encryption is not set');
+  /// Generates a key based on the user provided [passphrase].
+  ///
+  /// The [passphrase] must be exactly 32 characters long.
+  Key generateKey(String passphrase) {
+    if (passphrase.length != 32) {
+      throw Exception(
+        'The passphrase for AES encryption and decryption must be exactly 32 characters long, not ${passphrase.length}',
+      );
     }
 
-    final key = Key.fromUtf8(password);
-
-    return Encrypter(AES(key));
+    return Key.fromUtf8(passphrase);
   }
 
-  Future<IV> get initVector async {
-    final initVectorBase64 = await PreferencesUtils().getSecure(PreferenceKey.encryptionInitVector);
+  /// Returns the encrypter to perform AES CBC encryption and decryption based on the user provided [passphrase].
+  Encrypter getEncrypter(String passphrase) {
+    final key = generateKey(passphrase);
 
-    if (initVectorBase64 == null || initVectorBase64.isEmpty) {
-      throw Exception('The initialization vector for the encryption is not set');
-    }
-
-    return IV.fromBase64(initVectorBase64);
+    return Encrypter(AES(key, mode: AESMode.cbc));
   }
 
-  Future<String> encrypt(String text) async {
-    return (await encrypter).encrypt(text, iv: await initVector).base64;
+  /// Extracts the initialization vector and the cipher from the [encryptedText].
+  ///
+  /// The initialization vector is stored in the first 24 characters of the [encryptedText].
+  /// The rest of the [encryptedText] corresponds to the cipher.
+  (IV, String) extractIvAndCipher(String encryptedText) {
+    final ivBase64 = encryptedText.substring(0, 24);
+    final iv = IV.fromBase64(ivBase64);
+
+    final cipherBase64 = encryptedText.substring(24);
+
+    return (iv, cipherBase64);
   }
 
-  Future<String> decrypt(String text) async {
-    return (await encrypter).decrypt64(text, iv: await initVector);
+  /// Encrypts the [text] with the user provided [password].
+  String encrypt(String password, String text) {
+    final encrypter = getEncrypter(password);
+
+    final iv = generateIv;
+    final cipher = encrypter.encrypt(text, iv: iv);
+
+    final initVectorAndEncryptedText = iv.base64 + cipher.base64;
+
+    return initVectorAndEncryptedText;
+  }
+
+  /// Decrypts the [text] with the user provided [password].
+  String decrypt(String password, String text) {
+    final encrypter = getEncrypter(password);
+    final ivAndCipher = extractIvAndCipher(text);
+
+    return encrypter.decrypt64(ivAndCipher.$2, iv: ivAndCipher.$1);
   }
 }
