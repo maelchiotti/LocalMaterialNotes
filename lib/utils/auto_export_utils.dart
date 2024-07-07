@@ -4,8 +4,12 @@ import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
+/// Utilities for the auto export functionality.
+///
+/// This class is a singleton.
 class AutoExportUtils {
   static final AutoExportUtils _singleton = AutoExportUtils._internal();
 
@@ -15,10 +19,20 @@ class AutoExportUtils {
 
   AutoExportUtils._internal();
 
-  late Uri autoExportDirectory;
+  /// Root directory where auto exports are located.
+  late Uri _autoExportDirectory;
 
   final _downloadDirectoryPath = '/storage/emulated/0/Download';
   final _intermediateDirectories = ['Material Notes', 'backups'];
+
+  /// Precise directory where auto exports are located.
+  ///
+  /// It's a combination of [_autoExportDirectory] and [_intermediateDirectories].
+  Uri get backupsDirectory {
+    final backupsDirectoryPath = joinAll([_autoExportDirectory.path, ..._intermediateDirectories]);
+
+    return Uri.directory(backupsDirectoryPath);
+  }
 
   Future<void> ensureInitialized() async {
     await _setAutoExportDirectory();
@@ -26,11 +40,11 @@ class AutoExportUtils {
     await _performAutoExportIfNeeded();
   }
 
+  /// Returns the JSON file in which to write the exported data.
   Future<File> get getAutoExportFile async {
     return getExportFile(
-      autoExportDirectory,
+      backupsDirectory,
       'json',
-      intermediateDirectories: _intermediateDirectories,
     );
   }
 
@@ -44,10 +58,10 @@ class AutoExportUtils {
     if (!downloadsDirectory.existsSync()) {
       final externalStorageDirectory = await getApplicationDocumentsDirectory();
 
-      autoExportDirectory = externalStorageDirectory.uri;
+      _autoExportDirectory = externalStorageDirectory.uri;
     }
 
-    autoExportDirectory = downloadsDirectory.uri;
+    _autoExportDirectory = downloadsDirectory.uri;
   }
 
   /// Perform an auto export of the database if it is needed.

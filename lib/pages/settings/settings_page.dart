@@ -8,6 +8,7 @@ import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
+import 'package:localmaterialnotes/utils/extensions/uri_extension.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
@@ -202,7 +203,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   Text(localizations.settings_auto_export_description),
-                  Text(localizations.settings_auto_export_directory(AutoExportUtils().autoExportDirectory.path)),
+                  Text(
+                    localizations.settings_auto_export_directory(AutoExportUtils().backupsDirectory.toDecodedString),
+                  ),
                 ],
               ),
               onPressed: (context) async {
