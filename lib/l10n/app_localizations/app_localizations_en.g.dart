@@ -106,19 +106,68 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_confirmations => 'Show confirmation dialogs';
 
   @override
+  String get settings_confirmations_description =>
+      'Show the confirmation dialogs for actions such as pining and deleting notes';
+
+  @override
   String get settings_backup => 'Backup';
 
   @override
   String get settings_export_json => 'Export as JSON';
 
   @override
+  String get settings_export_json_description =>
+      'Export the notes to a JSON file (bin included) that can be imported back';
+
+  @override
   String get settings_export_markdown => 'Export as Markdown';
 
   @override
-  String get settings_export_json_description => 'Export notes to a JSON file (bin included) that can be imported back';
+  String get settings_export_markdown_description => 'Export notes to a Markdown file (bin included)';
 
   @override
-  String get settings_export_markdown_description => 'Export notes to a Markdown file (bin included)';
+  String get settings_auto_export => 'Auto export';
+
+  @override
+  String get settings_auto_export_description =>
+      'Automatically export the notes to a JSON file (bin included) that can be imported back';
+
+  @override
+  String settings_auto_export_value(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        '30': 'month',
+        'other': '$frequency days',
+      },
+    );
+    return 'Every $_temp0';
+  }
+
+  @override
+  String get settings_auto_export_disabled => 'Disabled';
+
+  @override
+  String settings_auto_export_directory(Object directory) {
+    return 'Exports can be found in $directory';
+  }
+
+  @override
+  String get settings_auto_export_dialog_content_disabled => 'Auto export will be disabled.';
+
+  @override
+  String settings_auto_export_dialog_content_enabled(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        '30': 'month',
+        'other': '$frequency days',
+      },
+    );
+    return 'Auto export will be performed every $_temp0. Set the frequency to 0 to disable it.';
+  }
 
   @override
   String get settings_export_success => 'The notes were successfully exported.';

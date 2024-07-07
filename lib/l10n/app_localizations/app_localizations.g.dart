@@ -284,6 +284,12 @@ abstract class AppLocalizations {
   /// **'Show confirmation dialogs'**
   String get settings_confirmations;
 
+  /// No description provided for @settings_confirmations_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the confirmation dialogs for actions such as pining and deleting notes'**
+  String get settings_confirmations_description;
+
   /// No description provided for @settings_backup.
   ///
   /// In en, this message translates to:
@@ -296,23 +302,65 @@ abstract class AppLocalizations {
   /// **'Export as JSON'**
   String get settings_export_json;
 
+  /// No description provided for @settings_export_json_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Export the notes to a JSON file (bin included) that can be imported back'**
+  String get settings_export_json_description;
+
   /// No description provided for @settings_export_markdown.
   ///
   /// In en, this message translates to:
   /// **'Export as Markdown'**
   String get settings_export_markdown;
 
-  /// No description provided for @settings_export_json_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Export notes to a JSON file (bin included) that can be imported back'**
-  String get settings_export_json_description;
-
   /// No description provided for @settings_export_markdown_description.
   ///
   /// In en, this message translates to:
   /// **'Export notes to a Markdown file (bin included)'**
   String get settings_export_markdown_description;
+
+  /// No description provided for @settings_auto_export.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto export'**
+  String get settings_auto_export;
+
+  /// No description provided for @settings_auto_export_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically export the notes to a JSON file (bin included) that can be imported back'**
+  String get settings_auto_export_description;
+
+  /// No description provided for @settings_auto_export_value.
+  ///
+  /// In en, this message translates to:
+  /// **'Every {frequency, select, 1{day} 30{month} other{{frequency} days}}'**
+  String settings_auto_export_value(String frequency);
+
+  /// No description provided for @settings_auto_export_disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get settings_auto_export_disabled;
+
+  /// No description provided for @settings_auto_export_directory.
+  ///
+  /// In en, this message translates to:
+  /// **'Exports can be found in {directory}'**
+  String settings_auto_export_directory(Object directory);
+
+  /// No description provided for @settings_auto_export_dialog_content_disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto export will be disabled.'**
+  String get settings_auto_export_dialog_content_disabled;
+
+  /// No description provided for @settings_auto_export_dialog_content_enabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto export will be performed every {frequency, select, 1{day} 30{month} other{{frequency} days}}. Set the frequency to 0 to disable it.'**
+  String settings_auto_export_dialog_content_enabled(String frequency);
 
   /// No description provided for @settings_export_success.
   ///

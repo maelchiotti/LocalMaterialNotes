@@ -12,7 +12,7 @@ class PreferencesUtils {
 
   late final SharedPreferences _preferences;
 
-  Future<void> init() async {
+  Future<void> ensureInitialized() async {
     _preferences = await SharedPreferences.getInstance();
   }
 

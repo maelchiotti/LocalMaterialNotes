@@ -1,17 +1,20 @@
 import 'dart:convert';
+import 'dart:developer';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
+import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
+import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sanitize_filename/sanitize_filename.dart';
-import 'package:shared_storage/shared_storage.dart' as saf;
 
 class DatabaseUtils {
   static final DatabaseUtils _singleton = DatabaseUtils._internal();
@@ -26,7 +29,7 @@ class DatabaseUtils {
   late String _databaseDirectory;
   late Isar _database;
 
-  Future<void> init() async {
+  Future<void> ensureInitialized() async {
     _databaseDirectory = (await getApplicationDocumentsDirectory()).path;
     _database = await Isar.open(
       [NoteSchema],
@@ -95,47 +98,25 @@ class DatabaseUtils {
     return await _database.notes.where().deletedEqualTo(true).isEmpty();
   }
 
-  Future<Uri?> _getDirectory() async {
-    final directory = await saf.openDocumentTree();
-
-    if (directory == null) {
-      return null;
-    }
-
-    return directory;
-  }
-
-  Future<bool> _export(Uri directory, String mimeType, String extension, Uint8List bytes) async {
-    final timestamp = DateTime.timestamp();
-    final filename = 'materialnotes_export_${timestamp.filename}';
-
-    await saf.createFile(
-      directory,
-      mimeType: mimeType,
-      displayName: filename,
-      bytes: bytes,
-    );
-
-    return true;
-  }
-
   Future<bool> exportAsJson() async {
-    final directory = await _getDirectory();
+    final exportDirectory = await pickDirectory();
 
-    if (directory == null) {
+    if (exportDirectory == null) {
       return false;
     }
 
     final notes = await getAll();
     final notesAsJson = jsonEncode(notes);
 
-    return await _export(directory, 'application/json', 'json', Uint8List.fromList(utf8.encode(notesAsJson)));
+    final file = getExportFile(exportDirectory, 'json');
+
+    return await writeStringToFile(file, notesAsJson);
   }
 
   Future<bool> exportAsMarkdown() async {
-    final directory = await _getDirectory();
+    final exportDirectory = await pickDirectory();
 
-    if (directory == null) {
+    if (exportDirectory == null) {
       return false;
     }
 
@@ -155,28 +136,43 @@ class DatabaseUtils {
       return false;
     }
 
-    return await _export(directory, 'application/zip', 'zip', Uint8List.fromList(encodedArchive));
+    final file = getExportFile(exportDirectory, 'zip');
+
+    return await writeBytesToFile(file, encodedArchive);
+  }
+
+  Future<bool> autoExportAsJson() async {
+    final notes = await getAll();
+    final notesAsJson = jsonEncode(notes);
+
+    final file = await AutoExportUtils().getAutoExportFile;
+
+    return await writeStringToFile(file, notesAsJson);
   }
 
   Future<bool> import() async {
-    final importFiles = await saf.openDocument(
-      grantWritePermission: false,
-      mimeType: 'application/json',
+    final importPlatformFile = await pickSingleFile(
+      FileType.custom,
+      ['json'],
     );
 
-    if (importFiles == null || importFiles.isEmpty) {
+    if (importPlatformFile == null || importPlatformFile.path == null) {
       return false;
     }
 
-    final importedData = await saf.getDocumentContent(importFiles.first);
+    if (importPlatformFile.path == null) {
+      log('Failed to pick the file for the JSON import.');
 
-    if (importedData == null) {
-      throw Exception(localizations.error_read_file);
+      return false;
     }
 
-    final importedString = utf8.decode(importedData);
+    final importFile = File(importPlatformFile.path!);
+    final importedString = importFile.readAsStringSync();
+
     final notesJson = jsonDecode(importedString) as List;
-    final notes = notesJson.map((e) => Note.fromJson(e as Map<String, dynamic>)).toList();
+    final notes = notesJson.map((e) {
+      return Note.fromJson(e as Map<String, dynamic>);
+    }).toList();
 
     await putAll(notes);
 

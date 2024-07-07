@@ -13,7 +13,7 @@ class InfoUtils {
   late final PackageInfo _packageInfo;
   late final AndroidDeviceInfo _androidDeviceInfo;
 
-  Future<void> init() async {
+  Future<void> ensureInitialized() async {
     _packageInfo = await PackageInfo.fromPlatform();
     _androidDeviceInfo = await DeviceInfoPlugin().androidInfo;
   }

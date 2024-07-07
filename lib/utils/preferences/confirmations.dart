@@ -12,24 +12,24 @@ enum Confirmations {
 
   const Confirmations(this.name);
 
-  String get title {
-    switch (this) {
-      case Confirmations.none:
-        return localizations.confirmations_title_none;
-      case Confirmations.irreversible:
-        return localizations.confirmations_title_irreversible;
-      case Confirmations.all:
-        return localizations.confirmations_title_all;
-      default:
-        throw Exception();
-    }
-  }
-
   factory Confirmations.fromPreference() {
     final preference = PreferencesUtils().get<String>(PreferenceKey.confirmations);
 
     return preference != null
         ? Confirmations.values.byName(preference)
         : PreferenceKey.confirmations.defaultValue as Confirmations;
+  }
+
+  String get title {
+    switch (this) {
+      case none:
+        return localizations.confirmations_title_none;
+      case irreversible:
+        return localizations.confirmations_title_irreversible;
+      case all:
+        return localizations.confirmations_title_all;
+      default:
+        throw Exception();
+    }
   }
 }

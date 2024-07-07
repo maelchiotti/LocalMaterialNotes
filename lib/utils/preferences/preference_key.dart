@@ -20,6 +20,10 @@ enum PreferenceKey {
   showTilesBackground(false),
   confirmations(Confirmations.irreversible),
 
+  // Backup
+  autoExportFrequency(0.0),
+  lastAutoExportDate(''),
+
   // Notes
   sortMethod(SortMethod.date),
   sortAscending(false),
