@@ -190,18 +190,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           title: Text(localizations.settings_backup),
           tiles: [
             SettingsTile.navigation(
-              leading: const Icon(SimpleIcons.json),
-              title: Text(localizations.settings_export_json),
-              value: Text(localizations.settings_export_json_description),
-              onPressed: interactions.exportAsJson,
-            ),
-            SettingsTile.navigation(
-              leading: const Icon(SimpleIcons.markdown),
-              title: Text(localizations.settings_export_markdown),
-              value: Text(localizations.settings_export_markdown_description),
-              onPressed: interactions.exportAsMarkdown,
-            ),
-            SettingsTile.navigation(
               leading: const Icon(Icons.settings_backup_restore),
               title: Text(localizations.settings_auto_export),
               value: Column(
@@ -211,6 +199,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>() == 0
                         ? localizations.settings_auto_export_disabled
                         : localizations.settings_auto_export_value(
+                            PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>().toString(),
                             PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>().toInt().toString(),
                           ),
                     style: Theme.of(context).textTheme.titleSmall,
@@ -225,6 +214,18 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 await interactions.autoExportAsJson(context);
                 setState(() {});
               },
+            ),
+            SettingsTile.navigation(
+              leading: const Icon(SimpleIcons.json),
+              title: Text(localizations.settings_export_json),
+              value: Text(localizations.settings_export_json_description),
+              onPressed: interactions.exportAsJson,
+            ),
+            SettingsTile.navigation(
+              leading: const Icon(SimpleIcons.markdown),
+              title: Text(localizations.settings_export_markdown),
+              value: Text(localizations.settings_export_markdown_description),
+              onPressed: interactions.exportAsMarkdown,
             ),
             SettingsTile.navigation(
               leading: const Icon(Icons.file_upload),

@@ -40,9 +40,9 @@ class EncryptionUtils {
     return (iv, cipherBase64);
   }
 
-  /// Encrypts the [text] with the user provided [password].
-  String encrypt(String password, String text) {
-    final encrypter = getEncrypter(password);
+  /// Encrypts the [text] with the user provided [passphrase].
+  String encrypt(String passphrase, String text) {
+    final encrypter = getEncrypter(passphrase);
 
     final iv = generateIv;
     final cipher = encrypter.encrypt(text, iv: iv);
@@ -52,9 +52,9 @@ class EncryptionUtils {
     return initVectorAndEncryptedText;
   }
 
-  /// Decrypts the [text] with the user provided [password].
-  String decrypt(String password, String text) {
-    final encrypter = getEncrypter(password);
+  /// Decrypts the [text] with the user provided [passphrase].
+  String decrypt(String passphrase, String text) {
+    final encrypter = getEncrypter(passphrase);
     final ivAndCipher = extractIvAndCipher(text);
 
     return encrypter.decrypt64(ivAndCipher.$2, iv: ivAndCipher.$1);

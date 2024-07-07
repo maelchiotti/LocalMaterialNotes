@@ -5,23 +5,23 @@ import 'package:file_picker/file_picker.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
 import 'package:path/path.dart';
 
-File getExportFile(Uri directoryUri, String extension) {
+File getExportFile(String directory, String extension) {
   final timestamp = DateTime.timestamp();
   final fileName = 'materialnotes_export_${timestamp.filename}.$extension';
-  final filePath = join(directoryUri.path, fileName);
+  final filePath = join(directory, fileName);
   final fileUri = Uri.file(filePath);
 
   return File.fromUri(fileUri)..createSync(recursive: true);
 }
 
-Future<Uri?> pickDirectory() async {
-  final directoryPath = await FilePicker.platform.getDirectoryPath();
+Future<String?> pickDirectory() async {
+  final directory = await FilePicker.platform.getDirectoryPath();
 
-  if (directoryPath == null) {
+  if (directory == null) {
     return null;
   }
 
-  return Uri.directory(directoryPath);
+  return directory;
 }
 
 Future<PlatformFile?> pickSingleFile(FileType type, List<String> allowedExtensions) async {

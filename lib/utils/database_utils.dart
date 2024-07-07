@@ -9,6 +9,7 @@ import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
+import 'package:localmaterialnotes/utils/encryption_utils.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
@@ -98,7 +99,7 @@ class DatabaseUtils {
     return await _database.notes.where().deletedEqualTo(true).isEmpty();
   }
 
-  Future<bool> exportAsJson() async {
+  Future<bool> exportAsJson({bool encrypt = false, String passphrase = ''}) async {
     final exportDirectory = await pickDirectory();
 
     if (exportDirectory == null) {
@@ -106,11 +107,23 @@ class DatabaseUtils {
     }
 
     final notes = await getAll();
+
+    if (encrypt && passphrase.isNotEmpty) {
+      for (final note in notes) {
+        note.title = EncryptionUtils().encrypt(passphrase, note.title);
+        note.content = EncryptionUtils().encrypt(passphrase, note.content);
+      }
+    }
+
     final notesAsJson = jsonEncode(notes);
+    final exportData = {
+      'encrypted': encrypt,
+      'notes': notesAsJson,
+    };
 
     final file = getExportFile(exportDirectory, 'json');
 
-    return await writeStringToFile(file, notesAsJson);
+    return await writeStringToFile(file, exportData.toString());
   }
 
   Future<bool> exportAsMarkdown() async {

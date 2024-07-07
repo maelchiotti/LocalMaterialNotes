@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
-import 'package:localmaterialnotes/pages/settings/auto_export_frequency_dialog.dart';
+import 'package:localmaterialnotes/pages/settings/auto_export_dialog.dart';
+import 'package:localmaterialnotes/pages/settings/export_as_json_dialog.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
@@ -148,16 +149,52 @@ class SettingsActions {
     toggled ? await FlagSecure.set() : await FlagSecure.unset();
   }
 
-  Future<void> exportAsJson(BuildContext context) async {
-    try {
-      if (await DatabaseUtils().exportAsJson()) {
-        SnackBarUtils.info(localizations.settings_export_success).show();
+  Future<void> autoExportAsJson(BuildContext context) async {
+    await showAdaptiveDialog<(double, bool, String)>(
+      context: context,
+      builder: (context) => AutoExportDialog(),
+    ).then((autoExportSettings) async {
+      if (autoExportSettings == null) {
+        return;
       }
-    } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
 
-      SnackBarUtils.info(exception.toString()).show();
-    }
+      final frequency = autoExportSettings.$1;
+      PreferencesUtils().set<double>(PreferenceKey.autoExportFrequency.name, frequency);
+
+      final encrypt = autoExportSettings.$2;
+      final passphrase = autoExportSettings.$3;
+      if (encrypt) {
+        PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption.name, true);
+        PreferencesUtils().setSecure(PreferenceKey.autoExportPassphrase, passphrase);
+      } else {
+        PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption.name, false);
+        PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassphrase);
+      }
+    });
+  }
+
+  Future<void> exportAsJson(BuildContext context) async {
+    await showAdaptiveDialog<(bool, String)>(
+      context: context,
+      builder: (context) => ExportAsJsonDialog(),
+    ).then((shouldEncrypt) async {
+      if (shouldEncrypt == null) {
+        return;
+      }
+
+      final encrypt = shouldEncrypt.$1;
+      final passphrase = shouldEncrypt.$2;
+
+      try {
+        if (await DatabaseUtils().exportAsJson(encrypt: encrypt, passphrase: passphrase)) {
+          SnackBarUtils.info(localizations.settings_export_success).show();
+        }
+      } catch (exception, stackTrace) {
+        log(exception.toString(), stackTrace: stackTrace);
+
+        SnackBarUtils.info(exception.toString()).show();
+      }
+    });
   }
 
   Future<void> exportAsMarkdown(BuildContext context) async {
@@ -170,19 +207,6 @@ class SettingsActions {
 
       SnackBarUtils.info(exception.toString()).show();
     }
-  }
-
-  Future<void> autoExportAsJson(BuildContext context) async {
-    await showAdaptiveDialog<double>(
-      context: context,
-      builder: (context) => AutoExportFrequencyDialog(),
-    ).then((autoExportFrequency) async {
-      if (autoExportFrequency == null) {
-        return;
-      }
-
-      PreferencesUtils().set<double>(PreferenceKey.autoExportFrequency.name, autoExportFrequency);
-    });
   }
 
   Future<void> import(BuildContext context, WidgetRef ref) async {

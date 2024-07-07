@@ -120,27 +120,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_backup => 'Backup';
 
   @override
-  String get settings_export_json => 'Export as JSON';
-
-  @override
-  String get settings_export_json_description =>
-      'Export the notes to a JSON file (bin included) that can be imported back';
-
-  @override
-  String get settings_export_markdown => 'Export as Markdown';
-
-  @override
-  String get settings_export_markdown_description => 'Export notes to a Markdown file (bin included)';
-
-  @override
-  String get settings_auto_export => 'Auto export';
+  String get settings_auto_export => 'Auto export as JSON';
 
   @override
   String get settings_auto_export_description =>
       'Automatically export the notes to a JSON file (bin included) that can be imported back';
 
   @override
-  String settings_auto_export_value(String frequency) {
+  String settings_auto_export_value(String encrypt, String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
@@ -149,7 +136,15 @@ class AppLocalizationsEn extends AppLocalizations {
         'other': '$frequency days',
       },
     );
-    return 'Every $_temp0';
+    String _temp1 = intl.Intl.selectLogic(
+      encrypt,
+      {
+        'true': 'encrypted',
+        'false': 'not encrypted',
+        'other': '',
+      },
+    );
+    return 'Every $_temp0, $_temp1';
   }
 
   @override
@@ -161,10 +156,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get settings_auto_export_dialog_content_disabled => 'Auto export will be disabled.';
+  String get settings_auto_export_dialog_description_disabled => 'Auto export will be disabled.';
 
   @override
-  String settings_auto_export_dialog_content_enabled(String frequency) {
+  String settings_auto_export_dialog_description_enabled(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
@@ -177,7 +172,33 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String settings_auto_export_dialog_slider_label(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        '30': 'month',
+        'other': '$frequency days',
+      },
+    );
+    return 'Every $_temp0';
+  }
+
+  @override
   String get settings_export_success => 'The notes were successfully exported.';
+
+  @override
+  String get settings_export_json => 'Export as JSON';
+
+  @override
+  String get settings_export_json_description =>
+      'Immediately export the notes to a JSON file (bin included) that can be imported back';
+
+  @override
+  String get settings_export_markdown => 'Export as Markdown';
+
+  @override
+  String get settings_export_markdown_description => 'Immediately export the notes to a Markdown file (bin included)';
 
   @override
   String get settings_import => 'Import';
@@ -341,6 +362,19 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get dialog_empty_bin_body =>
       'Do you really want to permanently empty the bin? You will not be able to restore the notes it contains.';
+
+  @override
+  String get dialog_export_encryption_switch => 'Encrypt the JSON export';
+
+  @override
+  String get dialog_export_encryption_description =>
+      'The title and the content of the notes will be encrypted using your passphrase. It should be randomly generated, exactly 32 characters long, strong (at least 1 lowercase, 1 uppercase, 1 number and 1 special character) and securely stored.';
+
+  @override
+  String get dialog_export_encryption_passphrase_hint => 'Passphrase';
+
+  @override
+  String get dialog_export_encryption_passphrase_invalid => 'Invalid';
 
   @override
   String get sort_date => 'Date';

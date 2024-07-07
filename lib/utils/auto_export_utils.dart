@@ -43,7 +43,7 @@ class AutoExportUtils {
   /// Returns the JSON file in which to write the exported data.
   Future<File> get getAutoExportFile async {
     return getExportFile(
-      backupsDirectory,
+      backupsDirectory.path,
       'json',
     );
   }
