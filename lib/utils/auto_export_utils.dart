@@ -23,14 +23,17 @@ class AutoExportUtils {
   /// Root directory where auto exports are located.
   late Uri _autoExportDirectory;
 
+  /// Path to the default download directory on Android devices.
   final _downloadDirectoryPath = '/storage/emulated/0/Download';
-  final _intermediateDirectories = ['Material Notes', 'backups'];
+
+  /// Subdirectories to add after the export path.
+  final subDirectories = ['Material Notes', 'backups'];
 
   /// Precise directory where auto exports are located.
   ///
-  /// It's a combination of [_autoExportDirectory] and [_intermediateDirectories].
+  /// It's a combination of [_autoExportDirectory] and [subDirectories].
   Uri get backupsDirectory {
-    final backupsDirectoryPath = joinAll([_autoExportDirectory.path, ..._intermediateDirectories]);
+    final backupsDirectoryPath = joinAll([_autoExportDirectory.path, ...subDirectories]);
 
     return Uri.directory(backupsDirectoryPath);
   }
@@ -96,12 +99,14 @@ class AutoExportUtils {
 
   /// Performs an auto export of the database if it is needed.
   Future<void> performAutoExportIfNeeded() async {
-    print(_shouldPerformAutoExport());
     if (!_shouldPerformAutoExport()) {
       return;
     }
 
-    DatabaseUtils().autoExportAsJson();
+    final encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
+    final passphrase = PreferenceKey.autoExportPassphrase.getPreferenceOrDefault<String>();
+
+    DatabaseUtils().autoExportAsJson(encrypt, passphrase);
 
     PreferencesUtils().set<String>(
       PreferenceKey.lastAutoExportDate.name,

@@ -6,6 +6,7 @@ import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
+import 'package:localmaterialnotes/utils/encryption_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 
@@ -95,6 +96,12 @@ class Note extends Equatable {
   factory Note.fromJson(Map<String, dynamic> json) => _$NoteFromJson(json);
 
   Map<String, dynamic> toJson() => _$NoteToJson(this);
+
+  Note encrypted(String passphrase) {
+    return this
+      ..title = EncryptionUtils().encrypt(passphrase, title)
+      ..content = EncryptionUtils().encrypt(passphrase, content);
+  }
 
   /// Note content as plain text.
   @ignore

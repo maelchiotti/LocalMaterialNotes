@@ -42,8 +42,6 @@ Future<void> main() async {
 
   FlutterNativeSplash.remove();
 
-  await PreferencesUtils().clear();
-
   runApp(
     ProviderScope(
       child: App(),
