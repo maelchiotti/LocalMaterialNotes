@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/pages/settings/passphrase_form.dart';
+import 'package:localmaterialnotes/common/widgets/encrypt_passphrase_form.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
 class AutoExportDialog extends StatefulWidget {
+  const AutoExportDialog({super.key});
+
   @override
   State<AutoExportDialog> createState() => _AutoExportDialogState();
 }
@@ -13,7 +15,7 @@ class _AutoExportDialogState extends State<AutoExportDialog> {
   double _frequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>();
 
   bool _encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
-  String _passphrase = '';
+  String? _passphrase;
 
   late bool ok;
 
@@ -21,14 +23,14 @@ class _AutoExportDialogState extends State<AutoExportDialog> {
   void initState() {
     super.initState();
 
-    ok = !_encrypt || (_encrypt && _passphrase.isNotEmpty);
+    ok = !_encrypt || (_encrypt && _passphrase != null && _passphrase!.isNotEmpty);
   }
 
-  void _onChanged(bool encrypt, String passphrase) {
+  void _onChanged(bool encrypt, String? passphrase) {
     setState(() {
       _encrypt = encrypt;
       _passphrase = passphrase;
-      ok = !_encrypt || (_encrypt && _passphrase.isNotEmpty);
+      ok = !_encrypt || (_encrypt && _passphrase != null && _passphrase!.isNotEmpty);
     });
   }
 
@@ -71,7 +73,8 @@ class _AutoExportDialogState extends State<AutoExportDialog> {
               },
             ),
             Padding(padding: Paddings.padding8.vertical),
-            PassphraseForm(
+            EncryptionPassphraseForm(
+              secondaryDescription: localizations.dialog_export_encryption_secondary_description_auto,
               onChanged: _onChanged,
               onEditingComplete: _pop,
             ),

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/pages/settings/settings_actions.dart';
+import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
@@ -169,6 +170,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   showSeparators = toggled;
                 });
                 ref.invalidate(notesProvider); // Refresh the notes and bin pages
+                ref.invalidate(binProvider); // Refresh the notes and bin pages
               },
             ),
             SettingsTile.switchTile(
@@ -182,6 +184,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   showTilesBackground = toggled;
                 });
                 ref.invalidate(notesProvider); // Refresh the notes and bin pages
+                ref.invalidate(binProvider); // Refresh the notes and bin pages
               },
             ),
           ],

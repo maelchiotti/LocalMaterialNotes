@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/pages/settings/passphrase_form.dart';
+import 'package:localmaterialnotes/common/widgets/passphrase_field.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
+import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 
-class ExportAsJsonDialog extends StatefulWidget {
+class ImportDialog extends StatefulWidget {
+  const ImportDialog({
+    super.key,
+    required this.title,
+  });
+
+  final String title;
+
   @override
-  State<ExportAsJsonDialog> createState() => _ExportAsJsonDialogState();
+  State<ImportDialog> createState() => _ImportDialogState();
 }
 
-class _ExportAsJsonDialogState extends State<ExportAsJsonDialog> {
-  bool _encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
-  String _passphrase = '';
+class _ImportDialogState extends State<ImportDialog> {
+  String? _passphrase;
 
   late bool ok;
 
@@ -18,14 +24,13 @@ class _ExportAsJsonDialogState extends State<ExportAsJsonDialog> {
   void initState() {
     super.initState();
 
-    ok = !_encrypt || (_encrypt && _passphrase.isNotEmpty);
+    ok = _passphrase?.isStrongPassword ?? false;
   }
 
-  void _onChanged(bool encrypt, String passphrase) {
+  void _onChanged(String? passphrase) {
     setState(() {
-      _encrypt = encrypt;
       _passphrase = passphrase;
-      ok = !_encrypt || (_encrypt && _passphrase.isNotEmpty);
+      ok = _passphrase?.isStrongPassword ?? false;
     });
   }
 
@@ -36,15 +41,17 @@ class _ExportAsJsonDialogState extends State<ExportAsJsonDialog> {
       return;
     }
 
-    Navigator.pop(context, (_encrypt, _passphrase));
+    Navigator.pop(context, _passphrase);
   }
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog.adaptive(
-      title: Text(localizations.settings_export_json),
+      title: Text(widget.title),
       content: SingleChildScrollView(
-        child: PassphraseForm(
+        child: PassphraseField(
+          description: localizations.dialog_import_encryption_passphrase_description,
+          secondaryDescription: localizations.dialog_export_encryption_description,
           onChanged: _onChanged,
           onEditingComplete: _pop,
         ),

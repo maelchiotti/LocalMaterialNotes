@@ -5,9 +5,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:locale_names/locale_names.dart';
+import 'package:localmaterialnotes/common/dialogs/auto_export_dialog.dart';
+import 'package:localmaterialnotes/common/dialogs/manual_export_dialog.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
-import 'package:localmaterialnotes/pages/settings/auto_export_dialog.dart';
-import 'package:localmaterialnotes/pages/settings/export_as_json_dialog.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
@@ -153,7 +153,7 @@ class SettingsActions {
   Future<void> autoExportAsJson(BuildContext context) async {
     await showAdaptiveDialog<(double, bool, String)>(
       context: context,
-      builder: (context) => AutoExportDialog(),
+      builder: (context) => const AutoExportDialog(),
     ).then((autoExportSettings) async {
       if (autoExportSettings == null) {
         return;
@@ -179,7 +179,7 @@ class SettingsActions {
   Future<void> exportAsJson(BuildContext context) async {
     await showAdaptiveDialog<(bool, String)>(
       context: context,
-      builder: (context) => ExportAsJsonDialog(),
+      builder: (context) => const ManualExportDialog(),
     ).then((shouldEncrypt) async {
       if (shouldEncrypt == null) {
         return;
@@ -214,7 +214,7 @@ class SettingsActions {
 
   Future<void> import(BuildContext context, WidgetRef ref) async {
     try {
-      final imported = await DatabaseUtils().import();
+      final imported = await DatabaseUtils().import(context);
 
       if (imported) {
         await ref.read(notesProvider.notifier).get();

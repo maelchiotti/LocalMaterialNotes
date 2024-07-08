@@ -638,6 +638,18 @@ abstract class AppLocalizations {
   /// **'The title and the content of the notes will be encrypted using your passphrase. It should be randomly generated, exactly 32 characters long, strong (at least 1 lowercase, 1 uppercase, 1 number and 1 special character) and securely stored.'**
   String get dialog_export_encryption_description;
 
+  /// No description provided for @dialog_export_encryption_secondary_description_auto.
+  ///
+  /// In en, this message translates to:
+  /// **'This passphrase will be used for all future auto exports.'**
+  String get dialog_export_encryption_secondary_description_auto;
+
+  /// No description provided for @dialog_export_encryption_secondary_description_manual.
+  ///
+  /// In en, this message translates to:
+  /// **'This passphrase will only be used for this export.'**
+  String get dialog_export_encryption_secondary_description_manual;
+
   /// No description provided for @dialog_export_encryption_passphrase_hint.
   ///
   /// In en, this message translates to:
@@ -649,6 +661,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invalid'**
   String get dialog_export_encryption_passphrase_invalid;
+
+  /// No description provided for @dialog_import_encryption_passphrase_description.
+  ///
+  /// In en, this message translates to:
+  /// **'This export is encrypted. To import it, you need to provide the passphrase used to encrypt it.'**
+  String get dialog_import_encryption_passphrase_description;
+
+  /// No description provided for @dialog_import_encryption_passphrase_error.
+  ///
+  /// In en, this message translates to:
+  /// **'the decrypting of the export failed. Please check that you provided the same passphrase used for encrypting the export.'**
+  String get dialog_import_encryption_passphrase_error;
 
   /// No description provided for @sort_date.
   ///

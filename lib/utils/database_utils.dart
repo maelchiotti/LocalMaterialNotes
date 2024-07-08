@@ -5,14 +5,18 @@ import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
+import 'package:localmaterialnotes/common/dialogs/import_dialog.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
+import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
+import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sanitize_filename/sanitize_filename.dart';
 
@@ -112,14 +116,14 @@ class DatabaseUtils {
     }
 
     final notesAsJson = jsonEncode(notes);
-    final exportData = {
+    final exportDataAsJson = jsonEncode({
       'encrypted': encrypt,
       'notes': notesAsJson,
-    };
+    });
 
     final file = getExportFile(exportDirectory, 'json');
 
-    return await writeStringToFile(file, exportData.toString());
+    return await writeStringToFile(file, exportDataAsJson);
   }
 
   Future<bool> exportAsMarkdown() async {
@@ -157,14 +161,17 @@ class DatabaseUtils {
       notes = notes.map((note) => note.encrypted(passphrase)).toList();
     }
 
-    final notesAsJson = jsonEncode(notes);
+    final exportDataAsJson = jsonEncode({
+      'encrypted': encrypt,
+      'notes': notes,
+    });
 
     final file = await AutoExportUtils().getAutoExportFile;
 
-    return await writeStringToFile(file, notesAsJson);
+    return await writeStringToFile(file, exportDataAsJson);
   }
 
-  Future<bool> import() async {
+  Future<bool> import(BuildContext context) async {
     final importPlatformFile = await pickSingleFile(
       FileType.custom,
       ['json'],
@@ -183,10 +190,57 @@ class DatabaseUtils {
     final importFile = File(importPlatformFile.path!);
     final importedString = importFile.readAsStringSync();
 
-    final notesJson = jsonDecode(importedString) as List;
-    final notes = notesJson.map((e) {
-      return Note.fromJson(e as Map<String, dynamic>);
-    }).toList();
+    final importedJson = jsonDecode(importedString);
+
+    List<Note>? notes;
+    if (importedJson is List) {
+      // Old export format that just contains the notes list
+      notes = importedJson.map((noteAsJson) {
+        return Note.fromJson(noteAsJson as Map<String, dynamic>);
+      }).toList();
+    } else if (importedJson is Map) {
+      // New export format that also contains the 'encrypted' field
+      final encrypted = importedJson['encrypted'] as bool;
+
+      if (encrypted && context.mounted) {
+        final passphrase = await showAdaptiveDialog<String>(
+          context: context,
+          builder: (context) => ImportDialog(title: localizations.settings_import),
+        );
+
+        if (passphrase == null) {
+          return false;
+        }
+
+        final notesAsJsonEncrypted = jsonDecode(importedJson['notes'] as String) as List;
+        try {
+          notes = notesAsJsonEncrypted.map((noteAsJsonEncrypted) {
+            return Note.fromJsonEncrypted(
+              noteAsJsonEncrypted as Map<String, dynamic>,
+              passphrase,
+            );
+          }).toList();
+        } catch (exception, stackTrace) {
+          log(exception.toString(), stackTrace: stackTrace);
+
+          SnackBarUtils.error(
+            localizations.dialog_import_encryption_passphrase_error,
+            duration: const Duration(seconds: 8),
+          ).show();
+
+          return false;
+        }
+      } else {
+        final notesAsJson = jsonDecode(importedJson['notes'] as String) as List;
+        notes = notesAsJson.map((noteAsJson) {
+          return Note.fromJson(noteAsJson as Map<String, dynamic>);
+        }).toList();
+      }
+    }
+
+    if (notes == null) {
+      return false;
+    }
 
     await putAll(notes);
 
