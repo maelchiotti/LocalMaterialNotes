@@ -12,6 +12,6 @@ class BinPage extends ConsumerStatefulWidget {
 class _BinPageState extends ConsumerState<BinPage> {
   @override
   Widget build(BuildContext context) {
-    return NotesList();
+    return const NotesList.bin();
   }
 }

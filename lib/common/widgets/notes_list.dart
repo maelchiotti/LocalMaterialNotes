@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:localmaterialnotes/common/placeholders/empty_placeholder.dart';
 import 'package:localmaterialnotes/common/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/common/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
@@ -16,6 +15,12 @@ import 'package:localmaterialnotes/utils/preferences/layout.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
 class NotesList extends ConsumerStatefulWidget {
+  const NotesList.notes() : route = RouterRoute.notes;
+
+  const NotesList.bin() : route = RouterRoute.bin;
+
+  final RouterRoute route;
+
   @override
   ConsumerState<NotesList> createState() => _NotesListState();
 }
@@ -23,14 +28,12 @@ class NotesList extends ConsumerStatefulWidget {
 class _NotesListState extends ConsumerState<NotesList> {
   @override
   Widget build(BuildContext context) {
-    final isNotes = RouterRoute.currentRoute == RouterRoute.notes;
+    final isNotes = widget.route == RouterRoute.notes;
     final provider = isNotes ? notesProvider : binProvider;
 
     return ref.watch(provider).when(
       data: (notes) {
-        if (notes.isEmpty) {
-          return isNotes ? EmptyPlaceholder.notes() : EmptyPlaceholder.bin();
-        }
+        if (notes.isEmpty) {}
 
         final layout = ref.watch(layoutStateProvider) ?? Layout.fromPreference();
         final useSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
