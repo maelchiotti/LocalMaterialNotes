@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:localmaterialnotes/utils/database_utils.dart';
+import 'package:localmaterialnotes/utils/extensions/uri_extension.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
@@ -37,13 +38,13 @@ class AutoExportUtils {
   Future<void> ensureInitialized() async {
     await _setAutoExportDirectory();
 
-    await _performAutoExportIfNeeded();
+    await performAutoExportIfNeeded();
   }
 
   /// Returns the JSON file in which to write the exported data.
   Future<File> get getAutoExportFile async {
     return getExportFile(
-      backupsDirectory.path,
+      backupsDirectory.toDecodedString,
       'json',
     );
   }
@@ -64,32 +65,47 @@ class AutoExportUtils {
     _autoExportDirectory = downloadsDirectory.uri;
   }
 
-  /// Perform an auto export of the database if it is needed.
+  /// Checks if an auto export should be performed.
   ///
-  /// An auto export is needed if it is enabled, and if the time difference between now and the last auto export
-  /// is greater than the auto export frequency chosen by the user.
-  Future<void> _performAutoExportIfNeeded() async {
+  /// An auto export should be performed if it is enabled and either if:
+  /// - no auto export has been performed yet
+  /// - or the time difference between now and the last auto export is greater than the auto export frequency
+  ///   chosen by the user
+  bool _shouldPerformAutoExport() {
     final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>();
 
     // Auto export is disabled
     if (autoExportFrequency == 0) {
-      return;
+      return false;
     }
 
-    final now = DateTime.now();
+    final lastAutoExportDate = DateTime.tryParse(PreferenceKey.lastAutoExportDate.getPreferenceOrDefault());
 
-    // If the last auto export date is null, set it to a very long time ago to force the export now
-    final lastAutoExportDate = DateTime.tryParse(PreferenceKey.lastAutoExportDate.getPreferenceOrDefault()) ??
-        now.subtract(const Duration(days: 365));
-    final durationSinceLastAutoExport = now.difference(lastAutoExportDate);
+    // If the last auto export date is null, perform the auto first auto export now
+    if (lastAutoExportDate == null) {
+      return true;
+    }
+
+    final durationSinceLastAutoExport = DateTime.now().difference(lastAutoExportDate);
     final autoExportFrequencyDuration = Duration(days: autoExportFrequency.toInt());
 
     // If no auto export has been done for longer than the defined auto export frequency,
     // then perform an auto export now
-    if (durationSinceLastAutoExport > autoExportFrequencyDuration) {
-      DatabaseUtils().autoExportAsJson();
+    return durationSinceLastAutoExport > autoExportFrequencyDuration;
+  }
 
-      PreferencesUtils().set<String>(PreferenceKey.lastAutoExportDate.name, now.toIso8601String());
+  /// Performs an auto export of the database if it is needed.
+  Future<void> performAutoExportIfNeeded() async {
+    print(_shouldPerformAutoExport());
+    if (!_shouldPerformAutoExport()) {
+      return;
     }
+
+    DatabaseUtils().autoExportAsJson();
+
+    PreferencesUtils().set<String>(
+      PreferenceKey.lastAutoExportDate.name,
+      DateTime.now().toIso8601String(),
+    );
   }
 }

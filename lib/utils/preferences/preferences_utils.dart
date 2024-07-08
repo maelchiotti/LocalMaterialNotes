@@ -47,6 +47,10 @@ class PreferencesUtils {
     return _preferences.get(preferenceKey.name) as T?;
   }
 
+  Future<void> clear() async {
+    await _preferences.clear();
+  }
+
   void setSecure(PreferenceKey preferenceKey, String value) {
     _secureStorage.write(key: preferenceKey.name, value: value);
   }

@@ -11,6 +11,7 @@ import 'package:localmaterialnotes/pages/settings/export_as_json_dialog.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
+import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
@@ -162,14 +163,16 @@ class SettingsActions {
       PreferencesUtils().set<double>(PreferenceKey.autoExportFrequency.name, frequency);
 
       final encrypt = autoExportSettings.$2;
-      final passphrase = autoExportSettings.$3;
+      PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption.name, encrypt);
+
       if (encrypt) {
-        PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption.name, true);
+        final passphrase = autoExportSettings.$3;
         PreferencesUtils().setSecure(PreferenceKey.autoExportPassphrase, passphrase);
       } else {
-        PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption.name, false);
         PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassphrase);
       }
+
+      AutoExportUtils().performAutoExportIfNeeded();
     });
   }
 
