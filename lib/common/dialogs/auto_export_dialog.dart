@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/widgets/encrypt_passphrase_form.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
+import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
 class AutoExportDialog extends StatefulWidget {
@@ -23,14 +24,25 @@ class _AutoExportDialogState extends State<AutoExportDialog> {
   void initState() {
     super.initState();
 
-    ok = !_encrypt || (_encrypt && _passphrase != null && _passphrase!.isNotEmpty);
+    _updateOk();
+  }
+
+  void _updateOk() {
+    ok = _frequency == 0.0 || !_encrypt || (_encrypt && (_passphrase?.isStrongPassword ?? false));
+  }
+
+  void _onFrequencyChanged(double value) {
+    setState(() {
+      _frequency = value;
+      _updateOk();
+    });
   }
 
   void _onChanged(bool encrypt, String? passphrase) {
     setState(() {
       _encrypt = encrypt;
       _passphrase = passphrase;
-      ok = !_encrypt || (_encrypt && _passphrase != null && _passphrase!.isNotEmpty);
+      _updateOk();
     });
   }
 
@@ -66,18 +78,16 @@ class _AutoExportDialogState extends State<AutoExportDialog> {
               label: _frequency == 0
                   ? localizations.settings_auto_export_disabled
                   : localizations.settings_auto_export_dialog_slider_label(_frequency.toInt().toString()),
-              onChanged: (value) {
-                setState(() {
-                  _frequency = value;
-                });
-              },
+              onChanged: _onFrequencyChanged,
             ),
-            Padding(padding: Paddings.padding8.vertical),
-            EncryptionPassphraseForm(
-              secondaryDescription: localizations.dialog_export_encryption_secondary_description_auto,
-              onChanged: _onChanged,
-              onEditingComplete: _pop,
-            ),
+            if (_frequency != 0.0) ...[
+              Padding(padding: Paddings.padding8.vertical),
+              EncryptionPassphraseForm(
+                secondaryDescription: localizations.dialog_export_encryption_secondary_description_auto,
+                onChanged: _onChanged,
+                onEditingComplete: _pop,
+              ),
+            ],
           ],
         ),
       ),

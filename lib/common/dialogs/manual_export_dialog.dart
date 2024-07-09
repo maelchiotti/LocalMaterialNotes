@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/widgets/encrypt_passphrase_form.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
+import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
 class ManualExportDialog extends StatefulWidget {
@@ -22,14 +23,18 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
   void initState() {
     super.initState();
 
-    ok = !_encrypt || (_encrypt && _passphrase != null && _passphrase!.isNotEmpty);
+    _updateOk();
+  }
+
+  void _updateOk() {
+    ok = !_encrypt || (_encrypt && (_passphrase?.isStrongPassword ?? false));
   }
 
   void _onChanged(bool encrypt, String? passphrase) {
     setState(() {
       _encrypt = encrypt;
       _passphrase = passphrase;
-      ok = !_encrypt || (_encrypt && _passphrase != null && _passphrase!.isNotEmpty);
+      _updateOk();
     });
   }
 

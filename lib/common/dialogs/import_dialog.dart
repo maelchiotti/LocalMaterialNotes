@@ -24,13 +24,17 @@ class _ImportDialogState extends State<ImportDialog> {
   void initState() {
     super.initState();
 
+    _updateOk();
+  }
+
+  void _updateOk() {
     ok = _passphrase?.isStrongPassword ?? false;
   }
 
   void _onChanged(String? passphrase) {
     setState(() {
       _passphrase = passphrase;
-      ok = _passphrase?.isStrongPassword ?? false;
+      _updateOk();
     });
   }
 
