@@ -74,7 +74,7 @@ class _AutoExportDialogState extends State<AutoExportDialog> {
             Slider(
               value: _frequency,
               max: 30.0,
-              divisions: 30,
+              divisions: 10,
               label: _frequency == 0
                   ? localizations.settings_auto_export_disabled
                   : localizations.settings_auto_export_dialog_slider_label(_frequency.toInt().toString()),

@@ -162,16 +162,27 @@ class SettingsActions {
       final frequency = autoExportSettings.$1;
       PreferencesUtils().set<double>(PreferenceKey.autoExportFrequency.name, frequency);
 
+      // If the auto export was disabled, just remove the encryption and passphrase settings
+      if (frequency == 0.0) {
+        await PreferencesUtils().remove(PreferenceKey.autoExportEncryption);
+        await PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassphrase);
+
+        return;
+      }
+
       final encrypt = autoExportSettings.$2;
       PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption.name, encrypt);
 
+      // If the encryption was enabled, set the passphrase. If not, make sure to delete it
+      // (even though it might not have been set previously)
       if (encrypt) {
         final passphrase = autoExportSettings.$3!;
         PreferencesUtils().setSecure(PreferenceKey.autoExportPassphrase, passphrase);
       } else {
-        PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassphrase);
+        await PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassphrase);
       }
 
+      // No need to await this, it can be performed in the background
       AutoExportUtils().performAutoExportIfNeeded();
     });
   }

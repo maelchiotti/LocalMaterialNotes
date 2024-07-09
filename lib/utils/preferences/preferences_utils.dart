@@ -47,6 +47,10 @@ class PreferencesUtils {
     return _preferences.get(preferenceKey.name) as T?;
   }
 
+  Future<void> remove(PreferenceKey preferenceKey) async {
+    await _preferences.remove(preferenceKey.name);
+  }
+
   Future<void> clear() async {
     await _preferences.clear();
   }
