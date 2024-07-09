@@ -151,7 +151,7 @@ class SettingsActions {
   }
 
   Future<void> autoExportAsJson(BuildContext context) async {
-    await showAdaptiveDialog<(double, bool, String)>(
+    await showAdaptiveDialog<(double, bool, String?)>(
       context: context,
       builder: (context) => const AutoExportDialog(),
     ).then((autoExportSettings) async {
@@ -166,7 +166,7 @@ class SettingsActions {
       PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption.name, encrypt);
 
       if (encrypt) {
-        final passphrase = autoExportSettings.$3;
+        final passphrase = autoExportSettings.$3!;
         PreferencesUtils().setSecure(PreferenceKey.autoExportPassphrase, passphrase);
       } else {
         PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassphrase);

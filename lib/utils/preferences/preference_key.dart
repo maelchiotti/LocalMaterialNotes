@@ -48,4 +48,8 @@ enum PreferenceKey {
 
     return PreferencesUtils().get<T>(this) ?? defaultValue as T;
   }
+
+  Future<String> getPreferenceOrDefaultSecure() async {
+    return await PreferencesUtils().getSecure(this) ?? defaultValue as String;
+  }
 }

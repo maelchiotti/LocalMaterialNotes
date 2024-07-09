@@ -104,7 +104,7 @@ class AutoExportUtils {
     }
 
     final encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
-    final passphrase = PreferenceKey.autoExportPassphrase.getPreferenceOrDefault<String>();
+    final passphrase = await PreferenceKey.autoExportPassphrase.getPreferenceOrDefaultSecure();
 
     DatabaseUtils().autoExportAsJson(encrypt, passphrase);
 
