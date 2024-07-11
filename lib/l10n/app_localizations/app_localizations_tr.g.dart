@@ -127,8 +127,15 @@ class AppLocalizationsTr extends AppLocalizations {
       'Automatically export the notes to a JSON file (bin included) that can be imported back';
 
   @override
-  String settings_auto_export_value(String encrypt, Object frequency) {
+  String settings_auto_export_value(String encrypt, String frequency) {
     String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        'other': '$frequency days',
+      },
+    );
+    String _temp1 = intl.Intl.selectLogic(
       encrypt,
       {
         'true': 'encrypted',
@@ -136,7 +143,7 @@ class AppLocalizationsTr extends AppLocalizations {
         'other': '',
       },
     );
-    return 'Every $frequency days, $_temp0';
+    return 'Every $_temp0, $_temp1';
   }
 
   @override
@@ -151,13 +158,27 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_auto_export_dialog_description_disabled => 'Auto export will be disabled.';
 
   @override
-  String settings_auto_export_dialog_description_enabled(Object frequency) {
-    return 'Auto export will be performed every $frequency days. Set the frequency to 0 to disable it.';
+  String settings_auto_export_dialog_description_enabled(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        'other': '$frequency days',
+      },
+    );
+    return 'Auto export will be performed every $_temp0. Set the frequency to 0 to disable it.';
   }
 
   @override
-  String settings_auto_export_dialog_slider_label(Object frequency) {
-    return 'Every $frequency days';
+  String settings_auto_export_dialog_slider_label(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        'other': '$frequency days',
+      },
+    );
+    return 'Every $_temp0';
   }
 
   @override
