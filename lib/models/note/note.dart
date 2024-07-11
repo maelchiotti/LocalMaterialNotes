@@ -95,19 +95,34 @@ class Note extends Equatable {
 
   factory Note.fromJson(Map<String, dynamic> json) => _$NoteFromJson(json);
 
-  factory Note.fromJsonEncrypted(Map<String, dynamic> json, String passphrase) {
+  factory Note.fromJsonEncrypted(Map<String, dynamic> json, String password) {
     return _$NoteFromJson(json)
       ..id = uuid.v4() // Manually setting the ID for imports
-      ..title = EncryptionUtils().decrypt(passphrase, json['title'] as String)
-      ..content = EncryptionUtils().decrypt(passphrase, json['content'] as String);
+      ..title = EncryptionUtils().decrypt(password, json['title'] as String)
+      ..content = EncryptionUtils().decrypt(password, json['content'] as String);
   }
 
   Map<String, dynamic> toJson() => _$NoteToJson(this);
 
-  Note encrypted(String passphrase) {
+  Id get isarId {
+    var hash = 0xcbf29ce484222325;
+
+    var i = 0;
+    while (i < id!.length) {
+      final codeUnit = id!.codeUnitAt(i++);
+      hash ^= codeUnit >> 8;
+      hash *= 0x100000001b3;
+      hash ^= codeUnit & 0xFF;
+      hash *= 0x100000001b3;
+    }
+
+    return hash;
+  }
+
+  Note encrypted(String password) {
     return this
-      ..title = EncryptionUtils().encrypt(passphrase, title)
-      ..content = EncryptionUtils().encrypt(passphrase, content);
+      ..title = EncryptionUtils().encrypt(password, title)
+      ..content = EncryptionUtils().encrypt(password, content);
   }
 
   /// Note content as plain text.

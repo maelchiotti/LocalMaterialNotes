@@ -102,7 +102,7 @@ class DatabaseUtils {
     return await _database.notes.where().deletedEqualTo(true).isEmpty();
   }
 
-  Future<bool> exportAsJson(bool encrypt, String passphrase) async {
+  Future<bool> exportAsJson(bool encrypt, String password) async {
     final exportDirectory = await pickDirectory();
 
     if (exportDirectory == null) {
@@ -111,8 +111,8 @@ class DatabaseUtils {
 
     var notes = await getAll();
 
-    if (encrypt && passphrase.isNotEmpty) {
-      notes = notes.map((note) => note.encrypted(passphrase)).toList();
+    if (encrypt && password.isNotEmpty) {
+      notes = notes.map((note) => note.encrypted(password)).toList();
     }
 
     final notesAsJson = jsonEncode(notes);
@@ -154,11 +154,11 @@ class DatabaseUtils {
     return await writeBytesToFile(file, encodedArchive);
   }
 
-  Future<bool> autoExportAsJson(bool encrypt, String passphrase) async {
+  Future<bool> autoExportAsJson(bool encrypt, String password) async {
     var notes = await getAll();
 
-    if (encrypt && passphrase.isNotEmpty) {
-      notes = notes.map((note) => note.encrypted(passphrase)).toList();
+    if (encrypt && password.isNotEmpty) {
+      notes = notes.map((note) => note.encrypted(password)).toList();
     }
 
     final exportDataAsJson = jsonEncode({
@@ -203,12 +203,12 @@ class DatabaseUtils {
       final encrypted = importedJson['encrypted'] as bool;
 
       if (encrypted && context.mounted) {
-        final passphrase = await showAdaptiveDialog<String>(
+        final password = await showAdaptiveDialog<String>(
           context: context,
           builder: (context) => ImportDialog(title: localizations.settings_import),
         );
 
-        if (passphrase == null) {
+        if (password == null) {
           return false;
         }
 
@@ -217,14 +217,14 @@ class DatabaseUtils {
           notes = notesAsJsonEncrypted.map((noteAsJsonEncrypted) {
             return Note.fromJsonEncrypted(
               noteAsJsonEncrypted as Map<String, dynamic>,
-              passphrase,
+              password,
             );
           }).toList();
         } catch (exception, stackTrace) {
           log(exception.toString(), stackTrace: stackTrace);
 
           SnackBarUtils.error(
-            localizations.dialog_import_encryption_passphrase_error,
+            localizations.dialog_import_encryption_password_error,
             duration: const Duration(seconds: 8),
           ).show();
 

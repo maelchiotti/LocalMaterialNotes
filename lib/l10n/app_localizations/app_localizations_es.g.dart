@@ -369,29 +369,15 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get dialog_export_encryption_description =>
-      'The title and the content of the notes will be encrypted using your passphrase. It should be randomly generated, exactly 32 characters long, strong (at least 1 lowercase, 1 uppercase, 1 number and 1 special character) and securely stored.';
+      'The title and the content of the notes will be encrypted using your password. It should be randomly generated, exactly 32 characters long, strong (at least 1 lowercase, 1 uppercase, 1 number and 1 special character) and securely stored.';
 
   @override
   String get dialog_export_encryption_secondary_description_auto =>
-      'This passphrase will be used for all future auto exports.';
+      'This password will be used for all future auto exports.';
 
   @override
   String get dialog_export_encryption_secondary_description_manual =>
-      'This passphrase will only be used for this export.';
-
-  @override
-  String get dialog_export_encryption_passphrase_hint => 'Passphrase';
-
-  @override
-  String get dialog_export_encryption_passphrase_invalid => 'Invalid';
-
-  @override
-  String get dialog_import_encryption_passphrase_description =>
-      'This export is encrypted. To import it, you need to provide the passphrase used to encrypt it.';
-
-  @override
-  String get dialog_import_encryption_passphrase_error =>
-      'the decrypting of the export failed. Please check that you provided the same passphrase used for encrypting the export.';
+      'This password will only be used for this export.';
 
   @override
   String get sort_date => 'Fecha';
@@ -476,4 +462,18 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Notas simples, locales, en Material Design';
+
+  @override
+  String get dialog_export_encryption_password_hint => 'Password';
+
+  @override
+  String get dialog_export_encryption_password_invalid => 'Invalid';
+
+  @override
+  String get dialog_import_encryption_password_description =>
+      'This export is encrypted. To import it, you need to provide the password used to encrypt it.';
+
+  @override
+  String get dialog_import_encryption_password_error =>
+      'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.';
 }

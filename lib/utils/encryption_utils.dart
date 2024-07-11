@@ -1,28 +1,28 @@
 import 'package:encrypt/encrypt.dart';
 
-/// Utilities for AES encryption and decryption of strings based on a user provided passphrase.
+/// Utilities for AES encryption and decryption of strings based on a user provided password.
 class EncryptionUtils {
   /// Generates a random initialization vector.
   IV get generateIv {
     return IV.fromSecureRandom(16);
   }
 
-  /// Generates a key based on the user provided [passphrase].
+  /// Generates a key based on the user provided [password].
   ///
-  /// The [passphrase] must be exactly 32 characters long.
-  Key generateKey(String passphrase) {
-    if (passphrase.length != 32) {
+  /// The [password] must be exactly 32 characters long.
+  Key generateKey(String password) {
+    if (password.length != 32) {
       throw Exception(
-        'The passphrase for AES encryption and decryption must be exactly 32 characters long, not ${passphrase.length}',
+        'The password for AES encryption and decryption must be exactly 32 characters long, not ${password.length}',
       );
     }
 
-    return Key.fromUtf8(passphrase);
+    return Key.fromUtf8(password);
   }
 
-  /// Returns the encrypter to perform AES CBC encryption and decryption based on the user provided [passphrase].
-  Encrypter getEncrypter(String passphrase) {
-    final key = generateKey(passphrase);
+  /// Returns the encrypter to perform AES CBC encryption and decryption based on the user provided [password].
+  Encrypter getEncrypter(String password) {
+    final key = generateKey(password);
 
     return Encrypter(AES(key, mode: AESMode.cbc));
   }
@@ -40,9 +40,9 @@ class EncryptionUtils {
     return (iv, cipherBase64);
   }
 
-  /// Encrypts the [text] with the user provided [passphrase].
-  String encrypt(String passphrase, String text) {
-    final encrypter = getEncrypter(passphrase);
+  /// Encrypts the [text] with the user provided [password].
+  String encrypt(String password, String text) {
+    final encrypter = getEncrypter(password);
 
     final iv = generateIv;
     final cipher = encrypter.encrypt(text, iv: iv);
@@ -52,9 +52,9 @@ class EncryptionUtils {
     return initVectorAndEncryptedText;
   }
 
-  /// Decrypts the [text] with the user provided [passphrase].
-  String decrypt(String passphrase, String text) {
-    final encrypter = getEncrypter(passphrase);
+  /// Decrypts the [text] with the user provided [password].
+  String decrypt(String password, String text) {
+    final encrypter = getEncrypter(password);
     final ivAndCipher = extractIvAndCipher(text);
 
     return encrypter.decrypt64(ivAndCipher.$2, iv: ivAndCipher.$1);

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/widgets/passphrase_field.dart';
+import 'package:localmaterialnotes/common/widgets/password_field.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
-class EncryptionPassphraseForm extends StatefulWidget {
-  const EncryptionPassphraseForm({
+class EncryptionPasswordForm extends StatefulWidget {
+  const EncryptionPasswordForm({
     super.key,
     required this.secondaryDescription,
     required this.onChanged,
@@ -18,10 +18,10 @@ class EncryptionPassphraseForm extends StatefulWidget {
   final Function() onEditingComplete;
 
   @override
-  State<EncryptionPassphraseForm> createState() => _EncryptionPassphraseFormState();
+  State<EncryptionPasswordForm> createState() => _EncryptionPasswordFormState();
 }
 
-class _EncryptionPassphraseFormState extends State<EncryptionPassphraseForm> {
+class _EncryptionPasswordFormState extends State<EncryptionPasswordForm> {
   bool _encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
 
   void _toggleEncrypt(_) {
@@ -32,8 +32,8 @@ class _EncryptionPassphraseFormState extends State<EncryptionPassphraseForm> {
     _onChanged(null);
   }
 
-  void _onChanged(String? passphrase) {
-    widget.onChanged(_encrypt, passphrase);
+  void _onChanged(String? password) {
+    widget.onChanged(_encrypt, password);
   }
 
   void _onEditingComplete() {
@@ -59,7 +59,7 @@ class _EncryptionPassphraseFormState extends State<EncryptionPassphraseForm> {
         ),
         if (_encrypt) ...[
           Padding(padding: Paddings.padding8.vertical),
-          PassphraseField(
+          PasswordField(
             description: localizations.dialog_export_encryption_description,
             secondaryDescription: widget.secondaryDescription,
             onChanged: _onChanged,

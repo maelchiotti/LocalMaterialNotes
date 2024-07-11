@@ -3,8 +3,8 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 
-class PassphraseField extends StatefulWidget {
-  const PassphraseField({
+class PasswordField extends StatefulWidget {
+  const PasswordField({
     super.key,
     this.description,
     this.secondaryDescription,
@@ -19,28 +19,28 @@ class PassphraseField extends StatefulWidget {
   final Function() onEditingComplete;
 
   @override
-  State<PassphraseField> createState() => _PassphraseFieldState();
+  State<PasswordField> createState() => _PasswordFieldState();
 }
 
-class _PassphraseFieldState extends State<PassphraseField> {
-  bool _obscurePassphrase = true;
+class _PasswordFieldState extends State<PasswordField> {
+  bool _obscurePassword = true;
 
   final _formKey = GlobalKey<FormState>();
-  final _passphraseController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   void _toggleObscurePassword() {
     setState(() {
-      _obscurePassphrase = !_obscurePassphrase;
+      _obscurePassword = !_obscurePassword;
     });
   }
 
-  String? _validatePassphrase(String? value) {
+  String? _validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return null;
     }
 
     if (!(value.length == 32) || !value.isStrongPassword) {
-      return localizations.dialog_export_encryption_passphrase_invalid;
+      return localizations.dialog_export_encryption_password_invalid;
     }
 
     return null;
@@ -53,7 +53,7 @@ class _PassphraseFieldState extends State<PassphraseField> {
       return;
     }
 
-    widget.onChanged(_passphraseController.text);
+    widget.onChanged(_passwordController.text);
   }
 
   void _onEditingComplete() {
@@ -80,22 +80,22 @@ class _PassphraseFieldState extends State<PassphraseField> {
           ],
           AutofillGroup(
             child: TextFormField(
-              controller: _passphraseController,
+              controller: _passwordController,
               keyboardType: TextInputType.visiblePassword,
               textInputAction: TextInputAction.done,
               autofillHints: const [AutofillHints.password],
               decoration: InputDecoration(
                 suffixIcon: IconButton(
-                  icon: Icon(_obscurePassphrase ? Icons.visibility : Icons.visibility_off),
+                  icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
                   onPressed: _toggleObscurePassword,
                 ),
-                hintText: localizations.dialog_export_encryption_passphrase_hint,
+                hintText: localizations.dialog_export_encryption_password_hint,
               ),
-              obscureText: _obscurePassphrase,
+              obscureText: _obscurePassword,
               autocorrect: false,
               enableSuggestions: false,
               maxLength: 32,
-              validator: _validatePassphrase,
+              validator: _validatePassword,
               onChanged: (_) => _onChanged(),
               onEditingComplete: _onEditingComplete,
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/widgets/encrypt_passphrase_form.dart';
+import 'package:localmaterialnotes/common/widgets/encrypt_password_form.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
@@ -14,7 +14,7 @@ class AutoExportDialog extends StatefulWidget {
 
 class _AutoExportDialogState extends State<AutoExportDialog> {
   bool _encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
-  String? _passphrase;
+  String? _password;
 
   late bool ok;
   late int _frequencyIndex;
@@ -39,7 +39,7 @@ class _AutoExportDialogState extends State<AutoExportDialog> {
   }
 
   void _updateOk() {
-    ok = _frequencyValue == 0.0 || !_encrypt || (_encrypt && (_passphrase?.isStrongPassword ?? false));
+    ok = _frequencyValue == 0.0 || !_encrypt || (_encrypt && (_password?.isStrongPassword ?? false));
   }
 
   void _onFrequencyChanged(double value) {
@@ -49,10 +49,10 @@ class _AutoExportDialogState extends State<AutoExportDialog> {
     });
   }
 
-  void _onChanged(bool encrypt, String? passphrase) {
+  void _onChanged(bool encrypt, String? password) {
     setState(() {
       _encrypt = encrypt;
-      _passphrase = passphrase;
+      _password = password;
       _updateOk();
     });
   }
@@ -64,7 +64,7 @@ class _AutoExportDialogState extends State<AutoExportDialog> {
       return;
     }
 
-    Navigator.pop(context, (_frequencyValue, _encrypt, _passphrase));
+    Navigator.pop(context, (_frequencyValue, _encrypt, _password));
   }
 
   @override
@@ -93,7 +93,7 @@ class _AutoExportDialogState extends State<AutoExportDialog> {
             ),
             if (_frequencyValue != 0.0) ...[
               Padding(padding: Paddings.padding8.vertical),
-              EncryptionPassphraseForm(
+              EncryptionPasswordForm(
                 secondaryDescription: localizations.dialog_export_encryption_secondary_description_auto,
                 onChanged: _onChanged,
                 onEditingComplete: _pop,

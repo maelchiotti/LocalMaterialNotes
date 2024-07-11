@@ -162,11 +162,11 @@ class SettingsActions {
       final frequency = autoExportSettings.$1;
       PreferencesUtils().set<double>(PreferenceKey.autoExportFrequency.name, frequency);
 
-      // If the auto export was disabled, just remove the encryption, last export date and passphrase settings
+      // If the auto export was disabled, just remove the encryption, last export date and password settings
       if (frequency == 0.0) {
         await PreferencesUtils().remove(PreferenceKey.autoExportEncryption);
         await PreferencesUtils().remove(PreferenceKey.lastAutoExportDate);
-        await PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassphrase);
+        await PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassword);
 
         return;
       }
@@ -174,13 +174,13 @@ class SettingsActions {
       final encrypt = autoExportSettings.$2;
       PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption.name, encrypt);
 
-      // If the encryption was enabled, set the passphrase. If not, make sure to delete it
+      // If the encryption was enabled, set the password. If not, make sure to delete it
       // (even though it might not have been set previously)
       if (encrypt) {
-        final passphrase = autoExportSettings.$3!;
-        PreferencesUtils().setSecure(PreferenceKey.autoExportPassphrase, passphrase);
+        final password = autoExportSettings.$3!;
+        PreferencesUtils().setSecure(PreferenceKey.autoExportPassword, password);
       } else {
-        await PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassphrase);
+        await PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassword);
       }
 
       // No need to await this, it can be performed in the background
@@ -198,10 +198,10 @@ class SettingsActions {
       }
 
       final encrypt = shouldEncrypt.$1;
-      final passphrase = shouldEncrypt.$2;
+      final password = shouldEncrypt.$2;
 
       try {
-        if (await DatabaseUtils().exportAsJson(encrypt, passphrase)) {
+        if (await DatabaseUtils().exportAsJson(encrypt, password)) {
           SnackBarUtils.info(localizations.settings_export_success).show();
         }
       } catch (exception, stackTrace) {

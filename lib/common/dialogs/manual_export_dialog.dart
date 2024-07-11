@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/widgets/encrypt_passphrase_form.dart';
+import 'package:localmaterialnotes/common/widgets/encrypt_password_form.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
@@ -15,7 +15,7 @@ class ManualExportDialog extends StatefulWidget {
 
 class _ManualExportDialogState extends State<ManualExportDialog> {
   bool _encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
-  String? _passphrase;
+  String? _password;
 
   late bool ok;
 
@@ -27,13 +27,13 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
   }
 
   void _updateOk() {
-    ok = !_encrypt || (_encrypt && (_passphrase?.isStrongPassword ?? false));
+    ok = !_encrypt || (_encrypt && (_password?.isStrongPassword ?? false));
   }
 
-  void _onChanged(bool encrypt, String? passphrase) {
+  void _onChanged(bool encrypt, String? password) {
     setState(() {
       _encrypt = encrypt;
-      _passphrase = passphrase;
+      _password = password;
       _updateOk();
     });
   }
@@ -45,7 +45,7 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
       return;
     }
 
-    Navigator.pop(context, (_encrypt, _passphrase));
+    Navigator.pop(context, (_encrypt, _password));
   }
 
   @override
@@ -53,7 +53,7 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
     return AlertDialog.adaptive(
       title: Text(localizations.settings_export_json),
       content: SingleChildScrollView(
-        child: EncryptionPassphraseForm(
+        child: EncryptionPasswordForm(
           secondaryDescription: localizations.dialog_export_encryption_secondary_description_manual,
           onChanged: _onChanged,
           onEditingComplete: _pop,

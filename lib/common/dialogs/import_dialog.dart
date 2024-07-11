@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/widgets/passphrase_field.dart';
+import 'package:localmaterialnotes/common/widgets/password_field.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 
@@ -16,7 +16,7 @@ class ImportDialog extends StatefulWidget {
 }
 
 class _ImportDialogState extends State<ImportDialog> {
-  String? _passphrase;
+  String? _password;
 
   late bool ok;
 
@@ -28,12 +28,12 @@ class _ImportDialogState extends State<ImportDialog> {
   }
 
   void _updateOk() {
-    ok = _passphrase?.isStrongPassword ?? false;
+    ok = _password?.isStrongPassword ?? false;
   }
 
-  void _onChanged(String? passphrase) {
+  void _onChanged(String? password) {
     setState(() {
-      _passphrase = passphrase;
+      _password = password;
       _updateOk();
     });
   }
@@ -45,7 +45,7 @@ class _ImportDialogState extends State<ImportDialog> {
       return;
     }
 
-    Navigator.pop(context, _passphrase);
+    Navigator.pop(context, _password);
   }
 
   @override
@@ -53,8 +53,8 @@ class _ImportDialogState extends State<ImportDialog> {
     return AlertDialog.adaptive(
       title: Text(widget.title),
       content: SingleChildScrollView(
-        child: PassphraseField(
-          description: localizations.dialog_import_encryption_passphrase_description,
+        child: PasswordField(
+          description: localizations.dialog_import_encryption_password_description,
           secondaryDescription: localizations.dialog_export_encryption_description,
           onChanged: _onChanged,
           onEditingComplete: _pop,
