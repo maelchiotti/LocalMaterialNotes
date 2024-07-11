@@ -100,7 +100,7 @@
   "sort_title": "Title",
   "sort_ascending": "Ascending",
   "placeholder_notes": "No notes",
-  "placeholder_bin": "The bin is empty",
+  "placeholder_bin": "No deleted notes",
   "menu_pin": "Pin",
   "menu_share": "Share",
   "menu_unpin": "Unpin",
