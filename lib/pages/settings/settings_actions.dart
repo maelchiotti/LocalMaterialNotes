@@ -162,9 +162,10 @@ class SettingsActions {
       final frequency = autoExportSettings.$1;
       PreferencesUtils().set<double>(PreferenceKey.autoExportFrequency.name, frequency);
 
-      // If the auto export was disabled, just remove the encryption and passphrase settings
+      // If the auto export was disabled, just remove the encryption, last export date and passphrase settings
       if (frequency == 0.0) {
         await PreferencesUtils().remove(PreferenceKey.autoExportEncryption);
+        await PreferencesUtils().remove(PreferenceKey.lastAutoExportDate);
         await PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassphrase);
 
         return;
