@@ -1,7 +1,8 @@
 <div align="center">
 
-![Platforms](https://img.shields.io/badge/Platforms-Android-blue)
+![Platforms](https://img.shields.io/badge/Platforms-Android-green)
 [![Style](https://img.shields.io/badge/Style-lint-blue)](https://pub.dev/packages/lint)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196)](https://conventionalcommits.org)
 
 [![License](https://img.shields.io/github/license/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/blob/main/LICENSE)
 [![Releases](https://img.shields.io/github/v/release/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/releases)
