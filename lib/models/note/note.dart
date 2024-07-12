@@ -98,7 +98,7 @@ class Note extends Equatable {
   factory Note.fromJsonEncrypted(Map<String, dynamic> json, String password) {
     return _$NoteFromJson(json)
       ..id = uuid.v4() // Manually setting the ID for imports
-      ..title = EncryptionUtils().decrypt(password, json['title'] as String)
+      ..title = (json['title'] as String).isEmpty ? '' : EncryptionUtils().decrypt(password, json['title'] as String)
       ..content = EncryptionUtils().decrypt(password, json['content'] as String);
   }
 
@@ -121,7 +121,7 @@ class Note extends Equatable {
 
   Note encrypted(String password) {
     return this
-      ..title = EncryptionUtils().encrypt(password, title)
+      ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
       ..content = EncryptionUtils().encrypt(password, content);
   }
 

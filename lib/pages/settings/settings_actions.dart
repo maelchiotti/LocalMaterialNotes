@@ -202,7 +202,7 @@ class SettingsActions {
       try {
         final password = shouldEncrypt.$2;
 
-        if (await DatabaseUtils().exportAsJson(encrypt, password)) {
+        if (await DatabaseUtils().manuallyExportAsJson(encrypt, password)) {
           SnackBarUtils.info(localizations.settings_export_success).show();
         }
       } catch (exception, stackTrace) {

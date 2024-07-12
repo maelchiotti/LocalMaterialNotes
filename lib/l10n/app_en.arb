@@ -51,6 +51,7 @@
   "settings_import": "Import",
   "settings_import_description": "Import notes from a JSON file",
   "settings_import_success": "The notes were successfully imported.",
+  "settings_import_incompatible_prior_v1_5_0": "Exports made in versions prior to v1.5.0 are not compatible anymore. Please see the pinned issue on GitHub for an easy fix.",
   "settings_about": "About",
   "settings_github": "GitHub",
   "settings_github_description": "Take a look at the source code",
