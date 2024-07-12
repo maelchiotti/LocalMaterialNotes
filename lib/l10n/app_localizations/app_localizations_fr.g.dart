@@ -136,6 +136,9 @@ class AppLocalizationsFr extends AppLocalizations {
       frequency,
       {
         '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
         'other': '$frequency days',
       },
     );
@@ -167,6 +170,9 @@ class AppLocalizationsFr extends AppLocalizations {
       frequency,
       {
         '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
         'other': '$frequency days',
       },
     );
@@ -179,6 +185,9 @@ class AppLocalizationsFr extends AppLocalizations {
       frequency,
       {
         '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
         'other': '$frequency days',
       },
     );

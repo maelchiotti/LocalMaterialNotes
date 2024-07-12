@@ -323,7 +323,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_auto_export_value.
   ///
   /// In en, this message translates to:
-  /// **'Every {frequency, select, 1{day} other{{frequency} days}}, {encrypt, select, true{encrypted} false{not encrypted} other{}}'**
+  /// **'Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}, {encrypt, select, true{encrypted} false{not encrypted} other{}}'**
   String settings_auto_export_value(String encrypt, String frequency);
 
   /// No description provided for @settings_auto_export_disabled.
@@ -347,13 +347,13 @@ abstract class AppLocalizations {
   /// No description provided for @settings_auto_export_dialog_description_enabled.
   ///
   /// In en, this message translates to:
-  /// **'Auto export will be performed every {frequency, select, 1{day} other{{frequency} days}}. Set the frequency to 0 to disable it.'**
+  /// **'Auto export will be performed every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}. Set the frequency to 0 to disable it.'**
   String settings_auto_export_dialog_description_enabled(String frequency);
 
   /// No description provided for @settings_auto_export_dialog_slider_label.
   ///
   /// In en, this message translates to:
-  /// **'Every {frequency, select, 1{day} other{{frequency} days}}'**
+  /// **'Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}'**
   String settings_auto_export_dialog_slider_label(String frequency);
 
   /// No description provided for @settings_export_success.
