@@ -102,7 +102,7 @@ class DatabaseUtils {
     return await _database.notes.where().deletedEqualTo(true).isEmpty();
   }
 
-  Future<bool> exportAsJson(bool encrypt, String password) async {
+  Future<bool> exportAsJson(bool encrypt, String? password) async {
     final exportDirectory = await pickDirectory();
 
     if (exportDirectory == null) {
@@ -111,7 +111,7 @@ class DatabaseUtils {
 
     var notes = await getAll();
 
-    if (encrypt && password.isNotEmpty) {
+    if (encrypt && password != null && password.isNotEmpty) {
       notes = notes.map((note) => note.encrypted(password)).toList();
     }
 

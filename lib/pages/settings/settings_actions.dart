@@ -189,7 +189,7 @@ class SettingsActions {
   }
 
   Future<void> exportAsJson(BuildContext context) async {
-    await showAdaptiveDialog<(bool, String)>(
+    await showAdaptiveDialog<(bool, String?)?>(
       context: context,
       builder: (context) => const ManualExportDialog(),
     ).then((shouldEncrypt) async {
@@ -198,9 +198,10 @@ class SettingsActions {
       }
 
       final encrypt = shouldEncrypt.$1;
-      final password = shouldEncrypt.$2;
 
       try {
+        final password = shouldEncrypt.$2;
+
         if (await DatabaseUtils().exportAsJson(encrypt, password)) {
           SnackBarUtils.info(localizations.settings_export_success).show();
         }
