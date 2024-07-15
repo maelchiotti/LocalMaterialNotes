@@ -13,24 +13,45 @@ part 'note.g.dart';
 
 // ignore_for_file: must_be_immutable
 
+/// Rich text note with title, content and metadata.
 @JsonSerializable()
 @Collection(inheritance: false)
 class Note extends Equatable {
+  /// Empty content in fleather data representation.
   static const String _emptyContent = '[{"insert":"\\n"}]';
 
+  /// Id of the note.
+  ///
+  /// It's excluded from the JSON because it's fully managed by Isar.
   @JsonKey(includeFromJson: false, includeToJson: false)
   Id id = Isar.autoIncrement;
-  @Index()
-  late bool deleted;
-  @Index()
-  late bool pinned;
-  late DateTime createdTime;
-  late DateTime editedTime;
-  late String title;
-  late String content;
+
+  /// Whether the note is selected.
+  ///
+  /// It's excluded from the JSON because it's only needed temporarily during multi-selection.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @ignore
   late bool selected = false;
+
+  /// Whether the note is deleted.
+  @Index()
+  late bool deleted;
+
+  /// Whether the note is pinned.
+  @Index()
+  late bool pinned;
+
+  /// Date of creation.
+  late DateTime createdTime;
+
+  /// Last date of edition.
+  late DateTime editedTime;
+
+  /// Title (simple text).
+  late String title;
+
+  /// Content (rich text in the fleather representation).
+  late String content;
 
   Note({
     required this.deleted,
@@ -41,6 +62,7 @@ class Note extends Equatable {
     required this.content,
   });
 
+  /// Note with empty title and content.
   factory Note.empty() => Note(
         deleted: false,
         pinned: false,
@@ -50,6 +72,7 @@ class Note extends Equatable {
         content: _emptyContent,
       );
 
+  /// Note with the provided [content].
   factory Note.content(String content) => Note(
         deleted: false,
         pinned: false,
@@ -59,6 +82,7 @@ class Note extends Equatable {
         content: content,
       );
 
+  /// Welcome note (localized).
   factory Note.welcome() => Note(
         deleted: false,
         pinned: true,
@@ -72,11 +96,16 @@ class Note extends Equatable {
 
   Map<String, dynamic> toJson() => _$NoteToJson(this);
 
+  /// Note content as plain text.
   @ignore
   String get plainText {
     return document.toPlainText();
   }
 
+  /// Note content for the preview of the notes tiles.
+  ///
+  /// Formats the following rich text elements:
+  ///   - Checkboxes TODO: only partially, see https://github.com/maelchiotti/LocalMaterialNotes/issues/121
   @ignore
   String get contentPreview {
     var content = '';
@@ -113,41 +142,56 @@ class Note extends Equatable {
     return content.trim();
   }
 
+  /// Note content as markdown.
   @ignore
   String get markdown {
     return parchmentMarkdownCodec.encode(document);
   }
 
+  /// Note title and content to be shared as a single text.
+  ///
+  /// Uses the [contentPreview] for the content.
   @ignore
   String get shareText {
     return '$title\n\n$contentPreview';
   }
 
+  /// Document containing the fleather content representation.
   @ignore
   ParchmentDocument get document {
     return ParchmentDocument.fromJson(jsonDecode(content) as List);
   }
 
+  /// Whether the title is empty.
   @ignore
   bool get isTitleEmpty {
     return title.isEmpty;
   }
 
+  /// Whether the content is empty.
   @ignore
   bool get isContentEmpty {
     return content == _emptyContent;
   }
 
+  /// Whether the preview of the content is empty.
   @ignore
   bool get isContentPreviewEmpty {
     return contentPreview.isEmpty;
   }
 
+  /// Whether the note is empty.
+  ///
+  /// Checks both the title and the content.
   @ignore
   bool get isEmpty {
     return isTitleEmpty && isContentEmpty;
   }
 
+  /// Returns whether the [search] matches the note.
+  ///
+  /// Checks if the [search] is directly present in the title and the content,
+  /// but also uses fuzzy search in the title. This cannot be done on the content for performance reasons.
   bool matchesSearch(String search) {
     final searchCleaned = search.toLowerCase().trim();
 
@@ -159,6 +203,9 @@ class Note extends Equatable {
     return titleContains || contentContains || titleMatches;
   }
 
+  /// Notes are sorted according to:
+  ///   1. Their pin state.
+  ///   2. The sort method chosen by the user.
   int compareTo(Note otherNote) {
     final sortMethod = SortMethod.fromPreference();
     final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
