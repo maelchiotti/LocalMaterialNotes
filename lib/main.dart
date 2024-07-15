@@ -35,7 +35,9 @@ Future<void> main() async {
   await InfoUtils().ensureInitialized();
   await ThemeUtils().ensureInitialized();
   await DatabaseUtils().ensureInitialized();
-  await AutoExportUtils().ensureInitialized();
+
+  // No need to await this, it can be performed in the background
+  AutoExportUtils().ensureInitialized();
 
   // Set FLAG_SECURE if needed
   await setFlagSecureIfNeeded();
