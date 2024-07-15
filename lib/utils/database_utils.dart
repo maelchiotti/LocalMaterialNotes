@@ -4,7 +4,6 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
@@ -165,23 +164,13 @@ class DatabaseUtils {
   }
 
   Future<bool> import(BuildContext context) async {
-    final importPlatformFile = await pickSingleFile(
-      FileType.custom,
-      ['json'],
-    );
+    final importPlatformFile = await pickSingleFile(typeGroupJson);
 
-    if (importPlatformFile == null || importPlatformFile.path == null) {
+    if (importPlatformFile == null) {
       return false;
     }
 
-    if (importPlatformFile.path == null) {
-      log('Failed to pick the file for the JSON import.');
-
-      return false;
-    }
-
-    final importFile = File(importPlatformFile.path!);
-    final importedString = importFile.readAsStringSync();
+    final importedString = await importPlatformFile.readAsString();
     var importedJson = jsonDecode(importedString);
 
     // Old incompatible export format that just contains the notes list

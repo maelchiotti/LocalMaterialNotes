@@ -1,9 +1,14 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:file_picker/file_picker.dart';
+import 'package:file_selector/file_selector.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
 import 'package:path/path.dart';
+
+const typeGroupJson = XTypeGroup(
+  label: 'JSON',
+  extensions: <String>['json'],
+);
 
 File getExportFile(String directory, String extension) {
   final timestamp = DateTime.timestamp();
@@ -15,7 +20,7 @@ File getExportFile(String directory, String extension) {
 }
 
 Future<String?> pickDirectory() async {
-  final directory = await FilePicker.platform.getDirectoryPath();
+  final directory = await getDirectoryPath();
 
   if (directory == null) {
     return null;
@@ -24,13 +29,8 @@ Future<String?> pickDirectory() async {
   return directory;
 }
 
-Future<PlatformFile?> pickSingleFile(FileType type, List<String> allowedExtensions) async {
-  final filePickerResult = await FilePicker.platform.pickFiles(
-    type: type,
-    allowedExtensions: allowedExtensions,
-  );
-
-  return filePickerResult?.files.single;
+Future<XFile?> pickSingleFile(XTypeGroup typeGroup) async {
+  return await openFile(acceptedTypeGroups: [typeGroup]);
 }
 
 Future<bool> writeStringToFile(File file, String contents) async {
