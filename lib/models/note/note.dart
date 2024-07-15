@@ -19,7 +19,7 @@ class Note extends Equatable {
   static const String _emptyContent = '[{"insert":"\\n"}]';
 
   @JsonKey(includeFromJson: false, includeToJson: false)
-  String? id;
+  Id id = Isar.autoIncrement;
   @Index()
   late bool deleted;
   @Index()
@@ -33,7 +33,6 @@ class Note extends Equatable {
   late bool selected = false;
 
   Note({
-    this.id,
     required this.deleted,
     required this.pinned,
     required this.createdTime,
@@ -43,7 +42,6 @@ class Note extends Equatable {
   });
 
   factory Note.empty() => Note(
-        id: uuid.v4(),
         deleted: false,
         pinned: false,
         createdTime: DateTime.now(),
@@ -53,7 +51,6 @@ class Note extends Equatable {
       );
 
   factory Note.content(String content) => Note(
-        id: uuid.v4(),
         deleted: false,
         pinned: false,
         createdTime: DateTime.now(),
@@ -63,7 +60,6 @@ class Note extends Equatable {
       );
 
   factory Note.welcome() => Note(
-        id: uuid.v4(),
         deleted: false,
         pinned: true,
         createdTime: DateTime.now(),
@@ -72,25 +68,9 @@ class Note extends Equatable {
         content: '[{"insert":"${hardcodedLocalizations.welcomeNoteContent}\\n"}]',
       );
 
-  // Manually setting the ID for imports
-  factory Note.fromJson(Map<String, dynamic> json) => _$NoteFromJson(json)..id = uuid.v4();
+  factory Note.fromJson(Map<String, dynamic> json) => _$NoteFromJson(json);
 
   Map<String, dynamic> toJson() => _$NoteToJson(this);
-
-  Id get isarId {
-    var hash = 0xcbf29ce484222325;
-
-    var i = 0;
-    while (i < id!.length) {
-      final codeUnit = id!.codeUnitAt(i++);
-      hash ^= codeUnit >> 8;
-      hash *= 0x100000001b3;
-      hash ^= codeUnit & 0xFF;
-      hash *= 0x100000001b3;
-    }
-
-    return hash;
-  }
 
   @ignore
   String get plainText {

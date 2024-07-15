@@ -78,13 +78,13 @@ class DatabaseUtils {
 
   Future<void> delete(Note note) async {
     await _database.writeTxn(() async {
-      await _database.notes.delete(note.isarId);
+      await _database.notes.delete(note.id);
     });
   }
 
   Future<void> deleteAll(List<Note> notes) async {
     await _database.writeTxn(() async {
-      await _database.notes.deleteAll(notes.map((note) => note.isarId).toList());
+      await _database.notes.deleteAll(notes.map((note) => note.id).toList());
     });
   }
 

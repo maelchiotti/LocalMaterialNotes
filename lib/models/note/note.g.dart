@@ -37,18 +37,13 @@ const NoteSchema = CollectionSchema(
       name: r'editedTime',
       type: IsarType.dateTime,
     ),
-    r'id': PropertySchema(
-      id: 4,
-      name: r'id',
-      type: IsarType.string,
-    ),
     r'pinned': PropertySchema(
-      id: 5,
+      id: 4,
       name: r'pinned',
       type: IsarType.bool,
     ),
     r'title': PropertySchema(
-      id: 6,
+      id: 5,
       name: r'title',
       type: IsarType.string,
     )
@@ -57,7 +52,7 @@ const NoteSchema = CollectionSchema(
   serialize: _noteSerialize,
   deserialize: _noteDeserialize,
   deserializeProp: _noteDeserializeProp,
-  idName: r'isarId',
+  idName: r'id',
   indexes: {
     r'deleted': IndexSchema(
       id: 2416515181749931262,
@@ -101,12 +96,6 @@ int _noteEstimateSize(
 ) {
   var bytesCount = offsets.last;
   bytesCount += 3 + object.content.length * 3;
-  {
-    final value = object.id;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
   bytesCount += 3 + object.title.length * 3;
   return bytesCount;
 }
@@ -121,9 +110,8 @@ void _noteSerialize(
   writer.writeDateTime(offsets[1], object.createdTime);
   writer.writeBool(offsets[2], object.deleted);
   writer.writeDateTime(offsets[3], object.editedTime);
-  writer.writeString(offsets[4], object.id);
-  writer.writeBool(offsets[5], object.pinned);
-  writer.writeString(offsets[6], object.title);
+  writer.writeBool(offsets[4], object.pinned);
+  writer.writeString(offsets[5], object.title);
 }
 
 Note _noteDeserialize(
@@ -137,10 +125,10 @@ Note _noteDeserialize(
     createdTime: reader.readDateTime(offsets[1]),
     deleted: reader.readBool(offsets[2]),
     editedTime: reader.readDateTime(offsets[3]),
-    id: reader.readStringOrNull(offsets[4]),
-    pinned: reader.readBool(offsets[5]),
-    title: reader.readString(offsets[6]),
+    pinned: reader.readBool(offsets[4]),
+    title: reader.readString(offsets[5]),
   );
+  object.id = id;
   return object;
 }
 
@@ -160,10 +148,8 @@ P _noteDeserializeProp<P>(
     case 3:
       return (reader.readDateTime(offset)) as P;
     case 4:
-      return (reader.readStringOrNull(offset)) as P;
-    case 5:
       return (reader.readBool(offset)) as P;
-    case 6:
+    case 5:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -171,17 +157,19 @@ P _noteDeserializeProp<P>(
 }
 
 Id _noteGetId(Note object) {
-  return object.isarId;
+  return object.id;
 }
 
 List<IsarLinkBase<dynamic>> _noteGetLinks(Note object) {
   return [];
 }
 
-void _noteAttach(IsarCollection<dynamic> col, Id id, Note object) {}
+void _noteAttach(IsarCollection<dynamic> col, Id id, Note object) {
+  object.id = id;
+}
 
 extension NoteQueryWhereSort on QueryBuilder<Note, Note, QWhere> {
-  QueryBuilder<Note, Note, QAfterWhere> anyIsarId() {
+  QueryBuilder<Note, Note, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
     });
@@ -205,64 +193,64 @@ extension NoteQueryWhereSort on QueryBuilder<Note, Note, QWhere> {
 }
 
 extension NoteQueryWhere on QueryBuilder<Note, Note, QWhereClause> {
-  QueryBuilder<Note, Note, QAfterWhereClause> isarIdEqualTo(Id isarId) {
+  QueryBuilder<Note, Note, QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
-        lower: isarId,
-        upper: isarId,
+        lower: id,
+        upper: id,
       ));
     });
   }
 
-  QueryBuilder<Note, Note, QAfterWhereClause> isarIdNotEqualTo(Id isarId) {
+  QueryBuilder<Note, Note, QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
             .addWhereClause(
-              IdWhereClause.lessThan(upper: isarId, includeUpper: false),
+              IdWhereClause.lessThan(upper: id, includeUpper: false),
             )
             .addWhereClause(
-              IdWhereClause.greaterThan(lower: isarId, includeLower: false),
+              IdWhereClause.greaterThan(lower: id, includeLower: false),
             );
       } else {
         return query
             .addWhereClause(
-              IdWhereClause.greaterThan(lower: isarId, includeLower: false),
+              IdWhereClause.greaterThan(lower: id, includeLower: false),
             )
             .addWhereClause(
-              IdWhereClause.lessThan(upper: isarId, includeUpper: false),
+              IdWhereClause.lessThan(upper: id, includeUpper: false),
             );
       }
     });
   }
 
-  QueryBuilder<Note, Note, QAfterWhereClause> isarIdGreaterThan(Id isarId, {bool include = false}) {
+  QueryBuilder<Note, Note, QAfterWhereClause> idGreaterThan(Id id, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
-        IdWhereClause.greaterThan(lower: isarId, includeLower: include),
+        IdWhereClause.greaterThan(lower: id, includeLower: include),
       );
     });
   }
 
-  QueryBuilder<Note, Note, QAfterWhereClause> isarIdLessThan(Id isarId, {bool include = false}) {
+  QueryBuilder<Note, Note, QAfterWhereClause> idLessThan(Id id, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
-        IdWhereClause.lessThan(upper: isarId, includeUpper: include),
+        IdWhereClause.lessThan(upper: id, includeUpper: include),
       );
     });
   }
 
-  QueryBuilder<Note, Note, QAfterWhereClause> isarIdBetween(
-    Id lowerIsarId,
-    Id upperIsarId, {
+  QueryBuilder<Note, Note, QAfterWhereClause> idBetween(
+    Id lowerId,
+    Id upperId, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
-        lower: lowerIsarId,
+        lower: lowerId,
         includeLower: includeLower,
-        upper: upperIsarId,
+        upper: upperId,
         includeUpper: includeUpper,
       ));
     });
@@ -595,184 +583,42 @@ extension NoteQueryFilter on QueryBuilder<Note, Note, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Note, Note, QAfterFilterCondition> idIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'id',
-      ));
-    });
-  }
-
-  QueryBuilder<Note, Note, QAfterFilterCondition> idIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'id',
-      ));
-    });
-  }
-
-  QueryBuilder<Note, Note, QAfterFilterCondition> idEqualTo(
-    String? value, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<Note, Note, QAfterFilterCondition> idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<Note, Note, QAfterFilterCondition> idGreaterThan(
-    String? value, {
+    Id value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
         property: r'id',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<Note, Note, QAfterFilterCondition> idLessThan(
-    String? value, {
+    Id value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
         property: r'id',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<Note, Note, QAfterFilterCondition> idBetween(
-    String? lower,
-    String? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'id',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Note, Note, QAfterFilterCondition> idStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'id',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Note, Note, QAfterFilterCondition> idEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'id',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Note, Note, QAfterFilterCondition> idContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'id',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Note, Note, QAfterFilterCondition> idMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'id',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Note, Note, QAfterFilterCondition> idIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'id',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<Note, Note, QAfterFilterCondition> idIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'id',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<Note, Note, QAfterFilterCondition> isarIdEqualTo(Id value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'isarId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<Note, Note, QAfterFilterCondition> isarIdGreaterThan(
-    Id value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'isarId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<Note, Note, QAfterFilterCondition> isarIdLessThan(
-    Id value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'isarId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<Note, Note, QAfterFilterCondition> isarIdBetween(
     Id lower,
     Id upper, {
     bool includeLower = true,
@@ -780,7 +626,7 @@ extension NoteQueryFilter on QueryBuilder<Note, Note, QFilterCondition> {
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'isarId',
+        property: r'id',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -978,18 +824,6 @@ extension NoteQuerySortBy on QueryBuilder<Note, Note, QSortBy> {
     });
   }
 
-  QueryBuilder<Note, Note, QAfterSortBy> sortById() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'id', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Note, Note, QAfterSortBy> sortByIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'id', Sort.desc);
-    });
-  }
-
   QueryBuilder<Note, Note, QAfterSortBy> sortByPinned() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'pinned', Sort.asc);
@@ -1076,18 +910,6 @@ extension NoteQuerySortThenBy on QueryBuilder<Note, Note, QSortThenBy> {
     });
   }
 
-  QueryBuilder<Note, Note, QAfterSortBy> thenByIsarId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isarId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Note, Note, QAfterSortBy> thenByIsarIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isarId', Sort.desc);
-    });
-  }
-
   QueryBuilder<Note, Note, QAfterSortBy> thenByPinned() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'pinned', Sort.asc);
@@ -1138,12 +960,6 @@ extension NoteQueryWhereDistinct on QueryBuilder<Note, Note, QDistinct> {
     });
   }
 
-  QueryBuilder<Note, Note, QDistinct> distinctById({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'id', caseSensitive: caseSensitive);
-    });
-  }
-
   QueryBuilder<Note, Note, QDistinct> distinctByPinned() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'pinned');
@@ -1158,9 +974,9 @@ extension NoteQueryWhereDistinct on QueryBuilder<Note, Note, QDistinct> {
 }
 
 extension NoteQueryProperty on QueryBuilder<Note, Note, QQueryProperty> {
-  QueryBuilder<Note, int, QQueryOperations> isarIdProperty() {
+  QueryBuilder<Note, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'isarId');
+      return query.addPropertyName(r'id');
     });
   }
 
@@ -1185,12 +1001,6 @@ extension NoteQueryProperty on QueryBuilder<Note, Note, QQueryProperty> {
   QueryBuilder<Note, DateTime, QQueryOperations> editedTimeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'editedTime');
-    });
-  }
-
-  QueryBuilder<Note, String?, QQueryOperations> idProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'id');
     });
   }
 
