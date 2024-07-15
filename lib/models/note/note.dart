@@ -31,27 +31,27 @@ class Note extends Equatable {
   /// It's excluded from the JSON because it's only needed temporarily during multi-selection.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @ignore
-  late bool selected = false;
+  bool selected = false;
 
   /// Whether the note is deleted.
   @Index()
-  late bool deleted;
+  bool deleted;
 
   /// Whether the note is pinned.
   @Index()
-  late bool pinned;
+  bool pinned;
 
   /// Date of creation.
-  late DateTime createdTime;
+  DateTime createdTime;
 
   /// Last date of edition.
-  late DateTime editedTime;
+  DateTime editedTime;
 
   /// Title (simple text).
-  late String title;
+  String title;
 
   /// Content (rich text in the fleather representation).
-  late String content;
+  String content;
 
   Note({
     required this.deleted,
