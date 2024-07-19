@@ -32,6 +32,8 @@
   "settings_behavior": "Behavior",
   "settings_confirmations": "Show confirmation dialogs",
   "settings_confirmations_description": "Show the confirmation dialogs for actions such as pining and deleting notes",
+  "settings_flag_secure": "Set the app as secure",
+  "settings_flag_secure_description": "Hide the app from the recent apps and prevent screenshots from being made.",
   "settings_backup": "Backup",
   "settings_export_json": "Export as JSON",
   "settings_export_json_description": "Export the notes to a JSON file (bin included) that can be imported back",

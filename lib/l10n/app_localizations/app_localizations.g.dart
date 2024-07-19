@@ -290,6 +290,18 @@ abstract class AppLocalizations {
   /// **'Show the confirmation dialogs for actions such as pining and deleting notes'**
   String get settings_confirmations_description;
 
+  /// No description provided for @settings_flag_secure.
+  ///
+  /// In en, this message translates to:
+  /// **'Set the app as secure'**
+  String get settings_flag_secure;
+
+  /// No description provided for @settings_flag_secure_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide the app from the recent apps and prevent screenshots from being made.'**
+  String get settings_flag_secure_description;
+
   /// No description provided for @settings_backup.
   ///
   /// In en, this message translates to:
