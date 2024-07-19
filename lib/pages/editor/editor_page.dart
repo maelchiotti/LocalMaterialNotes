@@ -136,7 +136,7 @@ class _EditorState extends ConsumerState<EditorPage> {
         ),
         ValueListenableBuilder(
           valueListenable: fleatherFieldHasFocusNotifier,
-          builder: (_, hasFocus, ___) {
+          builder: (context, hasFocus, child) {
             return showToolbar && hasFocus && KeyboardVisibilityProvider.isKeyboardVisible(context)
                 ? ColoredBox(
                     color: Theme.of(context).colorScheme.surfaceContainerHigh,

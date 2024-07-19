@@ -6,8 +6,8 @@ import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/common/widgets/note_tile.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/providers/layout/layout_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/preferences/layout.dart';
@@ -27,7 +27,6 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
 
   final provider = RouterRoute.currentRoute == RouterRoute.notes ? notesProvider : binProvider;
 
-  late Layout layout;
   SortMethod sortMethod = SortMethod.fromPreference();
   bool sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
@@ -37,11 +36,11 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
   }
 
   void _toggleLayout() {
-    final newLayout = layout == Layout.list ? Layout.grid : Layout.list;
+    final newLayout = layoutNotifier.value == Layout.list ? Layout.grid : Layout.list;
 
     PreferencesUtils().set<String>(PreferenceKey.layout.name, newLayout.name);
 
-    ref.read(layoutStateProvider.notifier).set(newLayout);
+    layoutNotifier.value = newLayout;
   }
 
   void _sort({SortMethod? method, bool? ascending}) {
@@ -84,8 +83,6 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    layout = ref.watch(layoutStateProvider) ?? Layout.fromPreference();
-
     final searchButtonPlaceholder = IconButton(
       onPressed: null,
       icon: const Icon(Icons.search),
@@ -100,8 +97,10 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
       actions: [
         IconButton(
           onPressed: _toggleLayout,
-          tooltip: layout == Layout.list ? localizations.tooltip_layout_grid : localizations.tooltip_layout_list,
-          icon: Icon(layout == Layout.list ? Icons.grid_view : Icons.view_list_outlined),
+          tooltip: layoutNotifier.value == Layout.list
+              ? localizations.tooltip_layout_grid
+              : localizations.tooltip_layout_list,
+          icon: Icon(layoutNotifier.value == Layout.list ? Icons.grid_view : Icons.view_list_outlined),
         ),
         PopupMenuButton<SortMethod>(
           icon: const Icon(Icons.sort),

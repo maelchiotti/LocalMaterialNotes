@@ -103,7 +103,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
     return ValueListenableBuilder(
       valueListenable: fleatherFieldHasFocusNotifier,
-      builder: (_, hasFocus, ___) {
+      builder: (context, hasFocus, child) {
         return AppBar(
           leading: BackButton(
             onPressed: () => backFromEditor(context, ref),

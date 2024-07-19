@@ -48,13 +48,13 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
       builder: (lightDynamicColorScheme, darkDynamicColorScheme) {
         return ValueListenableBuilder(
           valueListenable: dynamicThemingNotifier,
-          builder: (_, __, ___) {
+          builder: (context, dynamicTheming, child) {
             return ValueListenableBuilder(
               valueListenable: blackThemingNotifier,
-              builder: (_, __, ___) {
+              builder: (context, blackTheming, child) {
                 return ValueListenableBuilder(
                   valueListenable: themeModeNotifier,
-                  builder: (_, themeMode, ___) {
+                  builder: (context, themeMode, child) {
                     return MaterialApp.router(
                       title: 'Material Notes',
                       builder: (context, child) {
