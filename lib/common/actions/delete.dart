@@ -6,7 +6,7 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/providers/selection_mode/selection_mode_provider.dart';
+import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 
 Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
@@ -85,7 +85,7 @@ Future<void> emptyBin(WidgetRef ref) async {
     localizations.dialog_empty_bin,
     irreversible: true,
   )) {
-    ref.read(selectionModeProvider.notifier).exitSelectionMode();
+    isSelectionModeNotifier.value = false;
 
     await ref.read(binProvider.notifier).empty();
   }
