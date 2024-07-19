@@ -6,6 +6,7 @@ import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
+import 'package:localmaterialnotes/utils/encryption_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 
@@ -92,9 +93,25 @@ class Note extends Equatable {
         content: '[{"insert":"${hardcodedLocalizations.welcomeNoteContent}\\n"}]',
       );
 
+  /// Note from [json] data.
   factory Note.fromJson(Map<String, dynamic> json) => _$NoteFromJson(json);
 
+  /// Note from [json] data, encrypted with [password].
+  factory Note.fromJsonEncrypted(Map<String, dynamic> json, String password) {
+    return _$NoteFromJson(json)
+      ..title = (json['title'] as String).isEmpty ? '' : EncryptionUtils().decrypt(password, json['title'] as String)
+      ..content = EncryptionUtils().decrypt(password, json['content'] as String);
+  }
+
+  /// Note to JSON.
   Map<String, dynamic> toJson() => _$NoteToJson(this);
+
+  /// Returns this note with the [title] and the [content] encrypted with the [password].
+  Note encrypted(String password) {
+    return this
+      ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
+      ..content = EncryptionUtils().encrypt(password, content);
+  }
 
   /// Note content as plain text.
   @ignore
@@ -105,7 +122,10 @@ class Note extends Equatable {
   /// Note content for the preview of the notes tiles.
   ///
   /// Formats the following rich text elements:
-  ///   - Checkboxes TODO: only partially, see https://github.com/maelchiotti/LocalMaterialNotes/issues/121
+  ///   - Checkboxes (TODO: only partially, see https://github.com/maelchiotti/LocalMaterialNotes/issues/121)
+  ///
+  /// Skips the following rich text elements:
+  ///   - Horizontal rules
   @ignore
   String get contentPreview {
     var content = '';
@@ -223,7 +243,7 @@ class Note extends Equatable {
         case SortMethod.title:
           return sortAscending ? title.compareTo(otherNote.title) : otherNote.title.compareTo(title);
         default:
-          throw Exception();
+          throw Exception('The sort method is not valid: $sortMethod');
       }
     }
   }

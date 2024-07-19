@@ -17,6 +17,13 @@ class _SideNavigationState extends State<SideNavigation> {
   int _index = RouterRoute.currentDrawerIndex;
 
   void _navigate(int newIndex) {
+    // If the new route is the same as the current one, just close the drawer
+    if (_index == newIndex) {
+      Navigator.of(context).pop();
+
+      return;
+    }
+
     setState(() {
       _index = newIndex;
     });

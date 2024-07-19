@@ -16,6 +16,12 @@ import 'package:localmaterialnotes/utils/preferences/layout.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
 class NotesList extends ConsumerStatefulWidget {
+  const NotesList.notes() : route = RouterRoute.notes;
+
+  const NotesList.bin() : route = RouterRoute.bin;
+
+  final RouterRoute route;
+
   @override
   ConsumerState<NotesList> createState() => _NotesListState();
 }
@@ -23,7 +29,7 @@ class NotesList extends ConsumerStatefulWidget {
 class _NotesListState extends ConsumerState<NotesList> {
   @override
   Widget build(BuildContext context) {
-    final isNotes = RouterRoute.currentRoute == RouterRoute.notes;
+    final isNotes = widget.route == RouterRoute.notes;
     final provider = isNotes ? notesProvider : binProvider;
 
     return ref.watch(provider).when(

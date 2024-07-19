@@ -120,6 +120,80 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_backup => 'Yedekleme';
 
   @override
+  String get settings_auto_export => 'Auto export as JSON';
+
+  @override
+  String get settings_auto_export_description =>
+      'Automatically export the notes to a JSON file (bin included) that can be imported back';
+
+  @override
+  String settings_auto_export_value(String encrypt, String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
+        'other': '$frequency days',
+      },
+    );
+    String _temp1 = intl.Intl.selectLogic(
+      encrypt,
+      {
+        'true': 'encrypted',
+        'false': 'not encrypted',
+        'other': '',
+      },
+    );
+    return 'Every $_temp0, $_temp1';
+  }
+
+  @override
+  String get settings_auto_export_disabled => 'Disabled';
+
+  @override
+  String settings_auto_export_directory(Object directory) {
+    return 'Exports can be found in $directory';
+  }
+
+  @override
+  String get settings_auto_export_dialog_description_disabled => 'Auto export will be disabled.';
+
+  @override
+  String settings_auto_export_dialog_description_enabled(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
+        'other': '$frequency days',
+      },
+    );
+    return 'Auto export will be performed every $_temp0. Set the frequency to 0 to disable it.';
+  }
+
+  @override
+  String settings_auto_export_dialog_slider_label(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
+        'other': '$frequency days',
+      },
+    );
+    return 'Every $_temp0';
+  }
+
+  @override
+  String get settings_export_success => 'Dışa aktarma başarılı';
+
+  @override
   String get settings_export_json => 'JSON olarak dışa aktar';
 
   @override
@@ -134,53 +208,6 @@ class AppLocalizationsTr extends AppLocalizations {
       'Notları daha sonra kurtarabilmek için bir markdown dosyasına (çöp kutusu dahil) aktarın';
 
   @override
-  String get settings_auto_export => 'Auto export';
-
-  @override
-  String get settings_auto_export_description =>
-      'Automatically export the notes to a JSON file (bin included) that can be imported back';
-
-  @override
-  String settings_auto_export_value(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'day',
-        '30': 'month',
-        'other': '$frequency days',
-      },
-    );
-    return 'Every $_temp0';
-  }
-
-  @override
-  String get settings_auto_export_disabled => 'Disabled';
-
-  @override
-  String settings_auto_export_directory(Object directory) {
-    return 'Exports can be found in $directory';
-  }
-
-  @override
-  String get settings_auto_export_dialog_content_disabled => 'Auto export will be disabled.';
-
-  @override
-  String settings_auto_export_dialog_content_enabled(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'day',
-        '30': 'month',
-        'other': '$frequency days',
-      },
-    );
-    return 'Auto export will be performed every $_temp0. Set the frequency to 0 to disable it.';
-  }
-
-  @override
-  String get settings_export_success => 'Dışa aktarma başarılı';
-
-  @override
   String get settings_import => 'İçe aktar';
 
   @override
@@ -188,6 +215,10 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_import_success => 'İçe aktarma başarılı.';
+
+  @override
+  String get settings_import_incompatible_prior_v1_5_0 =>
+      'Exports made in versions prior to v1.5.0 are not compatible anymore. Please see the pinned issue on GitHub for an easy fix.';
 
   @override
   String get settings_about => 'Hakkında';
@@ -344,6 +375,21 @@ class AppLocalizationsTr extends AppLocalizations {
       'Çöp kutusunu gerçekten kalıcı olarak boşaltmak istiyor musunuz? İçerdiği notları kurtaramazsınız';
 
   @override
+  String get dialog_export_encryption_switch => 'Encrypt the JSON export';
+
+  @override
+  String get dialog_export_encryption_description =>
+      'The title and the content of the notes will be encrypted using your password. It should be randomly generated, exactly 32 characters long, strong (at least 1 lowercase, 1 uppercase, 1 number and 1 special character) and securely stored.';
+
+  @override
+  String get dialog_export_encryption_secondary_description_auto =>
+      'This password will be used for all future auto exports.';
+
+  @override
+  String get dialog_export_encryption_secondary_description_manual =>
+      'This password will only be used for this export.';
+
+  @override
   String get sort_date => 'Tarih';
 
   @override
@@ -426,4 +472,18 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Basit, çevrimdışı, materyal tasarımlı notlar';
+
+  @override
+  String get dialog_export_encryption_password_hint => 'Password';
+
+  @override
+  String get dialog_export_encryption_password_invalid => 'Invalid';
+
+  @override
+  String get dialog_import_encryption_password_description =>
+      'This export is encrypted. To import it, you need to provide the password used to encrypt it.';
+
+  @override
+  String get dialog_import_encryption_password_error =>
+      'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.';
 }

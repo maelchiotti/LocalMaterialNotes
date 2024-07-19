@@ -4,15 +4,19 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
+import 'package:localmaterialnotes/pages/settings/dialogs/import_dialog.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
+import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
+import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
+import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sanitize_filename/sanitize_filename.dart';
 
@@ -60,7 +64,7 @@ class DatabaseUtils {
             ? await sortedByPinned.thenByTitle().findAll()
             : await sortedByPinned.thenByTitleDesc().findAll();
       default:
-        throw Exception();
+        throw Exception('The sort methode is not set: $sortMethod');
     }
   }
 
@@ -94,23 +98,41 @@ class DatabaseUtils {
     });
   }
 
-  Future<bool> isBinEmpty() async {
-    return await _database.notes.where().deletedEqualTo(true).isEmpty();
+  Future<bool> _exportAsJson(bool encrypt, String? password, File file) async {
+    var notes = await getAll();
+
+    if (encrypt && password != null && password.isNotEmpty) {
+      notes = notes.map((note) => note.encrypted(password)).toList();
+    }
+
+    final version = InfoUtils().appVersion;
+
+    final exportData = {
+      'version': version,
+      'encrypted': encrypt,
+      'notes': notes,
+    };
+    final exportDataAsJson = jsonEncode(exportData);
+
+    return await writeStringToFile(file, exportDataAsJson);
   }
 
-  Future<bool> exportAsJson() async {
+  Future<bool> autoExportAsJson(bool encrypt, String password) async {
+    final file = await AutoExportUtils().getAutoExportFile;
+
+    return await _exportAsJson(encrypt, password, file);
+  }
+
+  Future<bool> manuallyExportAsJson(bool encrypt, String? password) async {
     final exportDirectory = await pickDirectory();
 
     if (exportDirectory == null) {
       return false;
     }
 
-    final notes = await getAll();
-    final notesAsJson = jsonEncode(notes);
-
     final file = getExportFile(exportDirectory, 'json');
 
-    return await writeStringToFile(file, notesAsJson);
+    return await _exportAsJson(encrypt, password, file);
   }
 
   Future<bool> exportAsMarkdown() async {
@@ -141,38 +163,64 @@ class DatabaseUtils {
     return await writeBytesToFile(file, encodedArchive);
   }
 
-  Future<bool> autoExportAsJson() async {
-    final notes = await getAll();
-    final notesAsJson = jsonEncode(notes);
+  Future<bool> import(BuildContext context) async {
+    final importPlatformFile = await pickSingleFile(typeGroupJson);
 
-    final file = await AutoExportUtils().getAutoExportFile;
-
-    return await writeStringToFile(file, notesAsJson);
-  }
-
-  Future<bool> import() async {
-    final importPlatformFile = await pickSingleFile(
-      FileType.custom,
-      ['json'],
-    );
-
-    if (importPlatformFile == null || importPlatformFile.path == null) {
+    if (importPlatformFile == null) {
       return false;
     }
 
-    if (importPlatformFile.path == null) {
-      log('Failed to pick the file for the JSON import.');
+    final importedString = await importPlatformFile.readAsString();
+    var importedJson = jsonDecode(importedString);
+
+    // Old incompatible export format that just contains the notes list
+    if (importedJson is List) {
+      SnackBarUtils.error(
+        localizations.settings_import_incompatible_prior_v1_5_0,
+        duration: const Duration(seconds: 8),
+      ).show();
 
       return false;
     }
 
-    final importFile = File(importPlatformFile.path!);
-    final importedString = importFile.readAsStringSync();
+    importedJson = importedJson as Map<String, dynamic>;
 
-    final notesJson = jsonDecode(importedString) as List;
-    final notes = notesJson.map((e) {
-      return Note.fromJson(e as Map<String, dynamic>);
-    }).toList();
+    List<Note>? notes;
+    final encrypted = importedJson['encrypted'] as bool;
+    final notesAsJson = importedJson['notes'] as List;
+
+    if (encrypted && context.mounted) {
+      final password = await showAdaptiveDialog<String>(
+        context: context,
+        builder: (context) => ImportDialog(title: localizations.settings_import),
+      );
+
+      if (password == null) {
+        return false;
+      }
+
+      try {
+        notes = notesAsJson.map((noteAsJsonEncrypted) {
+          return Note.fromJsonEncrypted(
+            noteAsJsonEncrypted as Map<String, dynamic>,
+            password,
+          );
+        }).toList();
+      } catch (exception, stackTrace) {
+        log(exception.toString(), stackTrace: stackTrace);
+
+        SnackBarUtils.error(
+          localizations.dialog_import_encryption_password_error,
+          duration: const Duration(seconds: 8),
+        ).show();
+
+        return false;
+      }
+    } else {
+      notes = notesAsJson.map((noteAsJson) {
+        return Note.fromJson(noteAsJson as Map<String, dynamic>);
+      }).toList();
+    }
 
     await putAll(notes);
 

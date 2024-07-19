@@ -1,36 +1,36 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:file_picker/file_picker.dart';
+import 'package:file_selector/file_selector.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
 import 'package:path/path.dart';
 
-File getExportFile(Uri directoryUri, String extension) {
+const typeGroupJson = XTypeGroup(
+  label: 'JSON',
+  extensions: <String>['json'],
+);
+
+File getExportFile(String directory, String extension) {
   final timestamp = DateTime.timestamp();
   final fileName = 'materialnotes_export_${timestamp.filename}.$extension';
-  final filePath = join(directoryUri.path, fileName);
+  final filePath = join(directory, fileName);
   final fileUri = Uri.file(filePath);
 
   return File.fromUri(fileUri)..createSync(recursive: true);
 }
 
-Future<Uri?> pickDirectory() async {
-  final directoryPath = await FilePicker.platform.getDirectoryPath();
+Future<String?> pickDirectory() async {
+  final directory = await getDirectoryPath();
 
-  if (directoryPath == null) {
+  if (directory == null) {
     return null;
   }
 
-  return Uri.directory(directoryPath);
+  return directory;
 }
 
-Future<PlatformFile?> pickSingleFile(FileType type, List<String> allowedExtensions) async {
-  final filePickerResult = await FilePicker.platform.pickFiles(
-    type: type,
-    allowedExtensions: allowedExtensions,
-  );
-
-  return filePickerResult?.files.single;
+Future<XFile?> pickSingleFile(XTypeGroup typeGroup) async {
+  return await openFile(acceptedTypeGroups: [typeGroup]);
 }
 
 Future<bool> writeStringToFile(File file, String contents) async {

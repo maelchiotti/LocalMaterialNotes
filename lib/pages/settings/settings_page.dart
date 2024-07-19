@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/pages/settings/settings_actions.dart';
+import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
@@ -169,6 +170,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   showSeparators = toggled;
                 });
                 ref.invalidate(notesProvider); // Refresh the notes and bin pages
+                ref.invalidate(binProvider); // Refresh the notes and bin pages
               },
             ),
             SettingsTile.switchTile(
@@ -182,6 +184,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   showTilesBackground = toggled;
                 });
                 ref.invalidate(notesProvider); // Refresh the notes and bin pages
+                ref.invalidate(binProvider); // Refresh the notes and bin pages
               },
             ),
           ],
@@ -189,18 +192,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         SettingsSection(
           title: Text(localizations.settings_backup),
           tiles: [
-            SettingsTile.navigation(
-              leading: const Icon(SimpleIcons.json),
-              title: Text(localizations.settings_export_json),
-              value: Text(localizations.settings_export_json_description),
-              onPressed: interactions.exportAsJson,
-            ),
-            SettingsTile.navigation(
-              leading: const Icon(SimpleIcons.markdown),
-              title: Text(localizations.settings_export_markdown),
-              value: Text(localizations.settings_export_markdown_description),
-              onPressed: interactions.exportAsMarkdown,
-            ),
             SettingsTile.navigation(
               leading: const Icon(Icons.settings_backup_restore),
               title: Text(localizations.settings_auto_export),
@@ -211,6 +202,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>() == 0
                         ? localizations.settings_auto_export_disabled
                         : localizations.settings_auto_export_value(
+                            PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>().toString(),
                             PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>().toInt().toString(),
                           ),
                     style: Theme.of(context).textTheme.titleSmall,
@@ -225,6 +217,18 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 await interactions.autoExportAsJson(context);
                 setState(() {});
               },
+            ),
+            SettingsTile.navigation(
+              leading: const Icon(SimpleIcons.json),
+              title: Text(localizations.settings_export_json),
+              value: Text(localizations.settings_export_json_description),
+              onPressed: interactions.exportAsJson,
+            ),
+            SettingsTile.navigation(
+              leading: const Icon(SimpleIcons.markdown),
+              title: Text(localizations.settings_export_markdown),
+              value: Text(localizations.settings_export_markdown_description),
+              onPressed: interactions.exportAsMarkdown,
             ),
             SettingsTile.navigation(
               leading: const Icon(Icons.file_upload),

@@ -1,3 +1,4 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,9 +12,13 @@ class PreferencesUtils {
   PreferencesUtils._internal();
 
   late final SharedPreferences _preferences;
+  late final FlutterSecureStorage _secureStorage;
 
   Future<void> ensureInitialized() async {
     _preferences = await SharedPreferences.getInstance();
+    _secureStorage = const FlutterSecureStorage(
+      aOptions: AndroidOptions(encryptedSharedPreferences: true),
+    );
   }
 
   void set<T>(String key, T value) {
@@ -40,5 +45,25 @@ class PreferencesUtils {
     }
 
     return _preferences.get(preferenceKey.name) as T?;
+  }
+
+  Future<void> remove(PreferenceKey preferenceKey) async {
+    await _preferences.remove(preferenceKey.name);
+  }
+
+  Future<void> clear() async {
+    await _preferences.clear();
+  }
+
+  void setSecure(PreferenceKey preferenceKey, String value) {
+    _secureStorage.write(key: preferenceKey.name, value: value);
+  }
+
+  Future<String?> getSecure(PreferenceKey preferenceKey) async {
+    return await _secureStorage.read(key: preferenceKey.name);
+  }
+
+  Future<void> deleteSecure(PreferenceKey preferenceKey) async {
+    await _secureStorage.delete(key: preferenceKey.name);
   }
 }
