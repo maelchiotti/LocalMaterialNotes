@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_dialog.dart';
+import 'package:localmaterialnotes/pages/settings/dialogs/manual_export_dialog.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
@@ -25,8 +26,6 @@ import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'dialogs/manual_export_dialog.dart';
 
 class SettingsActions {
   void toggleBooleanSetting(PreferenceKey preferenceKey, bool toggled) {
