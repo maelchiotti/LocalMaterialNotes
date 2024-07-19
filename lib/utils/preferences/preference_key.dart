@@ -16,9 +16,10 @@ enum PreferenceKey {
   showToolbar(true),
 
   // Behavior
+  confirmations(Confirmations.irreversible),
+  flagSecure(false),
   showSeparators(false),
   showTilesBackground(false),
-  confirmations(Confirmations.irreversible),
 
   // Backup
   autoExportFrequency(0.0),

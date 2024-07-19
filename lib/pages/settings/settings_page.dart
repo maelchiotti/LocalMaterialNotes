@@ -29,6 +29,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   bool showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
   bool showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
 
+  bool flagSecure = PreferenceKey.flagSecure.getPreferenceOrDefault<bool>();
   bool showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
   bool showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();
 
@@ -143,6 +144,18 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               onPressed: (context) async {
                 await interactions.selectConfirmations(context);
                 setState(() {});
+              },
+            ),
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.security),
+              title: Text(localizations.settings_flag_secure),
+              description: Text(localizations.settings_flag_secure_description),
+              initialValue: flagSecure,
+              onToggle: (toggled) async {
+                await interactions.setFlagSecure(toggled);
+                setState(() {
+                  flagSecure = toggled;
+                });
               },
             ),
             SettingsTile.switchTile(

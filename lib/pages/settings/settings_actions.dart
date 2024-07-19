@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -139,6 +140,12 @@ class SettingsActions {
 
       PreferencesUtils().set<String>(PreferenceKey.confirmations.name, confirmationsValue.name);
     });
+  }
+
+  Future<void> setFlagSecure(bool toggled) async {
+    toggleBooleanSetting(PreferenceKey.flagSecure, toggled);
+
+    toggled ? await FlagSecure.set() : await FlagSecure.unset();
   }
 
   Future<void> exportAsJson(BuildContext context) async {

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/app.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
+import 'package:localmaterialnotes/utils/flag_secure_utils.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
@@ -29,11 +30,15 @@ Future<void> main() async {
   // cf. https://github.com/flutter/flutter/issues/35162
   await FlutterDisplayMode.setHighRefreshRate();
 
+  // Initialize all the utilities
   await PreferencesUtils().ensureInitialized();
   await InfoUtils().ensureInitialized();
   await ThemeUtils().ensureInitialized();
   await DatabaseUtils().ensureInitialized();
   await AutoExportUtils().ensureInitialized();
+
+  // Set FLAG_SECURE if needed
+  await setFlagSecureIfNeeded();
 
   FlutterNativeSplash.remove();
 

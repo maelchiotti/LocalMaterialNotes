@@ -17,6 +17,7 @@ dependencies:
   dynamic_color: ^1.7.0
   equatable: ^2.0.5
   file_picker: ^8.0.6
+  flag_secure: ^2.0.0
   fleather: ^1.16.0
   flutter:
     sdk: flutter

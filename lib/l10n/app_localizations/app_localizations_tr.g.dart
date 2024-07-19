@@ -110,6 +110,13 @@ class AppLocalizationsTr extends AppLocalizations {
       'Show the confirmation dialogs for actions such as pining and deleting notes';
 
   @override
+  String get settings_flag_secure => 'Set the app as secure';
+
+  @override
+  String get settings_flag_secure_description =>
+      'Hide the app from the recent apps and prevent screenshots from being made.';
+
+  @override
   String get settings_backup => 'Yedekleme';
 
   @override
