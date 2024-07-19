@@ -2,13 +2,13 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/base_provider.dart';
+import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'bin_provider.g.dart';
 
 @riverpod
-class Bin extends _$Bin with BaseProvider {
+class Bin extends _$Bin {
   @override
   FutureOr<List<Note>> build() {
     return get();
@@ -18,7 +18,7 @@ class Bin extends _$Bin with BaseProvider {
     List<Note> notes = [];
 
     try {
-      notes = await databaseUtils.getAll(deleted: true);
+      notes = await DatabaseUtils().getAll(deleted: true);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
     }
@@ -36,7 +36,7 @@ class Bin extends _$Bin with BaseProvider {
 
   Future<bool> empty() async {
     try {
-      await databaseUtils.emptyBin();
+      await DatabaseUtils().emptyBin();
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
@@ -49,7 +49,7 @@ class Bin extends _$Bin with BaseProvider {
 
   Future<bool> permanentlyDelete(Note permanentlyDeletedNote) async {
     try {
-      await databaseUtils.delete(permanentlyDeletedNote);
+      await DatabaseUtils().delete(permanentlyDeletedNote);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
@@ -69,7 +69,7 @@ class Bin extends _$Bin with BaseProvider {
     }
 
     try {
-      await databaseUtils.deleteAll(notes);
+      await DatabaseUtils().deleteAll(notes);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
@@ -87,7 +87,7 @@ class Bin extends _$Bin with BaseProvider {
     restoredNote.deleted = false;
 
     try {
-      await databaseUtils.put(restoredNote);
+      await DatabaseUtils().put(restoredNote);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
@@ -107,7 +107,7 @@ class Bin extends _$Bin with BaseProvider {
     }
 
     try {
-      await databaseUtils.putAll(notes);
+      await DatabaseUtils().putAll(notes);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
