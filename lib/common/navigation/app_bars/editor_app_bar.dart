@@ -9,7 +9,6 @@ import 'package:localmaterialnotes/common/navigation/app_bars/menu_options.dart'
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/editor/about_sheet.dart';
 import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
-import 'package:localmaterialnotes/providers/editor_controller/editor_controller_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
@@ -58,7 +57,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
   }
 
   void _undo() {
-    final editorController = ref.read(editorControllerProvider);
+    final editorController = fleatherControllerNotifier.value;
 
     if (editorController == null || !editorController.canUndo) {
       return;
@@ -68,7 +67,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
   }
 
   void _redo() {
-    final editorController = ref.read(editorControllerProvider);
+    final editorController = fleatherControllerNotifier.value;
 
     if (editorController == null || !editorController.canRedo) {
       return;
@@ -78,7 +77,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
   }
 
   void _toggleChecklist() {
-    final editorController = ref.read(editorControllerProvider);
+    final editorController = fleatherControllerNotifier.value;
 
     if (editorController == null) {
       return;
@@ -97,6 +96,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
   @override
   Widget build(BuildContext context) {
     final note = ref.read(currentNoteProvider);
+    final editorController = fleatherControllerNotifier.value;
 
     final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
     final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
@@ -113,16 +113,28 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
               : [
                   if (!note.deleted) ...[
                     if (showUndoRedoButtons)
-                      IconButton(
-                        icon: const Icon(Icons.undo),
-                        tooltip: localizations.tooltip_toggle_checkbox,
-                        onPressed: hasFocus ? _undo : null,
+                      ValueListenableBuilder(
+                        valueListenable: fleatherControllerCanUndoNotifier,
+                        builder: (context, canUndo, child) {
+                          return IconButton(
+                            icon: const Icon(Icons.undo),
+                            tooltip: localizations.tooltip_toggle_checkbox,
+                            onPressed: hasFocus && canUndo && editorController != null && editorController.canUndo
+                                ? _undo
+                                : null,
+                          );
+                        },
                       ),
                     if (showUndoRedoButtons)
-                      IconButton(
-                        icon: const Icon(Icons.redo),
-                        tooltip: localizations.tooltip_toggle_checkbox,
-                        onPressed: hasFocus ? _redo : null,
+                      ValueListenableBuilder(
+                        valueListenable: fleatherControllerCanRedoNotifier,
+                        builder: (context, canRedo, child) {
+                          return IconButton(
+                            icon: const Icon(Icons.redo),
+                            tooltip: localizations.tooltip_toggle_checkbox,
+                            onPressed: hasFocus && canRedo ? _redo : null,
+                          );
+                        },
                       ),
                     if (showChecklistButton)
                       IconButton(
