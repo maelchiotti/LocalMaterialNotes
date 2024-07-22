@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/dialogs/confirmation_dialog.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
@@ -19,7 +18,8 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
     localizations.dialog_delete_body_single,
     localizations.dialog_delete,
   )) {
-    ref.read(currentNoteProvider.notifier).reset();
+    currentNoteNotifier.value = null;
+
     await ref.read(notesProvider.notifier).delete(note);
 
     if (context.mounted && context.canPop()) {
@@ -53,7 +53,7 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
     localizations.dialog_permanently_delete,
     irreversible: true,
   )) {
-    ref.read(currentNoteProvider.notifier).reset();
+    currentNoteNotifier.value = null;
 
     await ref.read(binProvider.notifier).permanentlyDelete(note);
 

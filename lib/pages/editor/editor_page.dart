@@ -10,7 +10,6 @@ import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/editor/editor_field.dart';
 import 'package:localmaterialnotes/pages/editor/editor_toolbar.dart';
-import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
@@ -83,7 +82,7 @@ class _EditorState extends ConsumerState<EditorPage> {
 
   @override
   Widget build(BuildContext context) {
-    final note = ref.watch(currentNoteProvider);
+    final note = currentNoteNotifier.value;
 
     if (note == null) {
       return const LoadingPlaceholder();

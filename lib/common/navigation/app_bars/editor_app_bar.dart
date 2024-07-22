@@ -8,7 +8,6 @@ import 'package:localmaterialnotes/common/actions/restore.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/menu_options.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/editor/about_sheet.dart';
-import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
@@ -27,7 +26,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     // Manually close the keyboard
     FocusManager.instance.primaryFocus?.unfocus();
 
-    final note = ref.read(currentNoteProvider);
+    final note = currentNoteNotifier.value;
 
     if (note == null) {
       return;
@@ -95,7 +94,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    final note = ref.read(currentNoteProvider);
+    final note = currentNoteNotifier.value;
     final editorController = fleatherControllerNotifier.value;
 
     final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
