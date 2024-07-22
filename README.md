@@ -17,7 +17,7 @@
 
 </div>
 
-# Local Material Notes
+# Material Notes
 
 Simple, local, material design notes.
 
