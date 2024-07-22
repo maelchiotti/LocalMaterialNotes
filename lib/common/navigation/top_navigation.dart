@@ -5,7 +5,7 @@ import 'package:localmaterialnotes/common/navigation/app_bars/editor_app_bar.dar
 import 'package:localmaterialnotes/common/navigation/app_bars/empty_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/notes_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/selection_app_bar.dart';
-import 'package:localmaterialnotes/providers/selection_mode/selection_mode_provider.dart';
+import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
 
 enum TopNavigationStyle {
@@ -39,19 +39,24 @@ class TopNavigation extends ConsumerWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (ref.watch(selectionModeProvider)) {
-      return const SelectionAppBar();
-    }
+    return ValueListenableBuilder(
+      valueListenable: isSelectionModeNotifier,
+      builder: (BuildContext context, isSelectionMode, Widget? child) {
+        if (isSelectionMode) {
+          return const SelectionAppBar();
+        }
 
-    switch (topNavigationStyle) {
-      case TopNavigationStyle.empty:
-        return const EmptyAppBar();
-      case TopNavigationStyle.back:
-        return const BackAppBar();
-      case TopNavigationStyle.backMenu:
-        return const EditorAppBar();
-      case TopNavigationStyle.searchSort:
-        return NotesAppBar(key: super.key);
-    }
+        switch (topNavigationStyle) {
+          case TopNavigationStyle.empty:
+            return const EmptyAppBar();
+          case TopNavigationStyle.back:
+            return const BackAppBar();
+          case TopNavigationStyle.backMenu:
+            return const EditorAppBar();
+          case TopNavigationStyle.searchSort:
+            return NotesAppBar(key: super.key);
+        }
+      },
+    );
   }
 }

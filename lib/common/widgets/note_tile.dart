@@ -8,9 +8,8 @@ import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/providers/selection_mode/selection_mode_provider.dart';
+import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/radiuses.dart';
@@ -33,14 +32,15 @@ class NoteTile extends ConsumerStatefulWidget {
 
 class _NoteTileState extends ConsumerState<NoteTile> {
   void _enterSelectionMode() {
-    ref.read(selectionModeProvider.notifier).enterSelectionMode();
+    isSelectionModeNotifier.value = true;
+
     widget.note.deleted
         ? ref.read(binProvider.notifier).select(widget.note)
         : ref.read(notesProvider.notifier).select(widget.note);
   }
 
   void _openOrSelect() {
-    if (ref.watch(selectionModeProvider)) {
+    if (isSelectionModeNotifier.value) {
       if (widget.note.deleted) {
         widget.note.selected
             ? ref.read(binProvider.notifier).unselect(widget.note)
@@ -51,7 +51,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
             : ref.read(notesProvider.notifier).select(widget.note);
       }
     } else {
-      ref.read(currentNoteProvider.notifier).set(widget.note);
+      currentNoteNotifier.value = widget.note;
 
       context.push(
         RouterRoute.editor.fullPath!,

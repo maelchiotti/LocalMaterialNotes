@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/placeholders/error_placeholder.dart';
-import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
+import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
 
@@ -10,7 +10,7 @@ class AboutSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final note = ref.watch(currentNoteProvider);
+    final note = currentNoteNotifier.value;
 
     if (note == null) {
       return const ErrorPlaceholder();

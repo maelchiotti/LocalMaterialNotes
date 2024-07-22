@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/dialogs/confirmation_dialog.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
+import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 
 Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async {
@@ -17,7 +17,7 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async 
     localizations.dialog_restore_body_single,
     localizations.dialog_restore,
   )) {
-    ref.read(currentNoteProvider.notifier).reset();
+    currentNoteNotifier.value = null;
 
     await ref.read(binProvider.notifier).restore(note);
 

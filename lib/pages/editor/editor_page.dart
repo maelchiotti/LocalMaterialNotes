@@ -10,9 +10,8 @@ import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/editor/editor_field.dart';
 import 'package:localmaterialnotes/pages/editor/editor_toolbar.dart';
-import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
-import 'package:localmaterialnotes/providers/editor_controller/editor_controller_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
@@ -31,9 +30,6 @@ class EditorPage extends ConsumerStatefulWidget {
 
 class _EditorState extends ConsumerState<EditorPage> {
   final titleController = TextEditingController();
-  FleatherController? fleatherController;
-
-  bool fleatherFieldHasFocus = false;
 
   @override
   void initState() {
@@ -70,35 +66,35 @@ class _EditorState extends ConsumerState<EditorPage> {
   }
 
   void _synchronizeContent(Note note) {
-    if (fleatherController == null) {
+    final editorController = fleatherControllerNotifier.value;
+
+    if (editorController == null) {
       return;
     }
 
-    note.content = jsonEncode(fleatherController!.document.toDelta().toJson());
+    fleatherControllerCanUndoNotifier.value = editorController.canUndo;
+    fleatherControllerCanRedoNotifier.value = editorController.canRedo;
+
+    note.content = jsonEncode(editorController.document.toDelta().toJson());
 
     ref.read(notesProvider.notifier).edit(note);
   }
 
   @override
   Widget build(BuildContext context) {
-    final note = ref.watch(currentNoteProvider);
+    final note = currentNoteNotifier.value;
 
     if (note == null) {
       return const LoadingPlaceholder();
     }
 
-    final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
+    final editorController = fleatherControllerNotifier.value ??= FleatherController(
+      document: note.document,
+    )..addListener(() => _synchronizeContent(note));
 
     titleController.text = note.title;
 
-    if (fleatherController == null) {
-      fleatherController = FleatherController(document: note.document);
-      fleatherController!.addListener(() => _synchronizeContent(note));
-
-      Future(() {
-        ref.read(editorControllerProvider.notifier).set(fleatherController!);
-      });
-    }
+    final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
 
     return Column(
       children: [
@@ -123,7 +119,7 @@ class _EditorState extends ConsumerState<EditorPage> {
                   child: Focus(
                     onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,
                     child: EditorField(
-                      fleatherController: fleatherController!,
+                      fleatherController: editorController,
                       readOnly: widget._readOnly,
                       autofocus: widget._autofocus,
                     ),
@@ -135,11 +131,11 @@ class _EditorState extends ConsumerState<EditorPage> {
         ),
         ValueListenableBuilder(
           valueListenable: fleatherFieldHasFocusNotifier,
-          builder: (_, hasFocus, ___) {
+          builder: (context, hasFocus, child) {
             return showToolbar && hasFocus && KeyboardVisibilityProvider.isKeyboardVisible(context)
                 ? ColoredBox(
                     color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                    child: EditorToolbar(fleatherController!),
+                    child: EditorToolbar(editorController),
                   )
                 : Container();
           },
