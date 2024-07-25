@@ -7,12 +7,14 @@ publish_to: none
 
 environment:
   sdk: ">=3.4.3 <4.0.0"
+  flutter: ^3.22.2
 
 dependencies:
   after_layout: ^1.2.0
   archive: ^3.6.1
   back_button_interceptor: ^7.0.3
   collection: ^1.18.0
+  cupertino_icons: ^1.0.8
   device_info_plus: ^10.1.0
   dynamic_color: ^1.7.0
   encrypt: ^5.0.3

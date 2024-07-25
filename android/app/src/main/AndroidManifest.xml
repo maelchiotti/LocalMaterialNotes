@@ -3,9 +3,9 @@
     <application
         android:label="Material Notes"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
-        android:enableOnBackInvokedCallback="false"
-        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:enableOnBackInvokedCallback="true"
+        android:allowBackup="false">
         <activity
             android:name=".MainActivity"
             android:exported="true"
