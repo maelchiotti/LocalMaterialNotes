@@ -57,7 +57,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_dynamic_theming => 'Dynamic theming';
 
   @override
-  String get settings_dynamic_theming_description => 'Generate colors from your system';
+  String get settings_dynamic_theming_description => 'Generate colors from the system';
 
   @override
   String get settings_black_theming => 'Black theming';
@@ -87,13 +87,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_show_toolbar_description => 'Show the editor toolbar to enable advanced text formatting';
 
   @override
-  String get settings_show_separators => 'Show the separators';
+  String get settings_show_separators => 'Separators';
 
   @override
-  String get settings_show_separators_description => 'Show a separator between notes to differentiate them easily';
+  String get settings_show_separators_description =>
+      'Show a separator between the notes tiles to differentiate them easily';
 
   @override
-  String get settings_show_tiles_background => 'Show the tiles background';
+  String get settings_show_tiles_background => 'Tiles background';
 
   @override
   String get settings_show_tiles_background_description =>
@@ -103,18 +104,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_behavior => 'Behavior';
 
   @override
-  String get settings_confirmations => 'Show confirmation dialogs';
+  String get settings_confirmations => 'Confirmation dialogs';
 
   @override
   String get settings_confirmations_description =>
       'Show the confirmation dialogs for actions such as pining and deleting notes';
 
   @override
-  String get settings_flag_secure => 'Set the app as secure';
+  String get settings_flag_secure => 'Make app secure';
 
   @override
   String get settings_flag_secure_description =>
-      'Hide the app from the recent apps and prevent screenshots from being made.';
+      'Hide the app from the recent apps and prevent screenshots from being made';
 
   @override
   String get settings_backup => 'Backup';
