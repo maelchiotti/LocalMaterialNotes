@@ -96,7 +96,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_show_separators_description => 'Mostrar un separador entre notas para diferenciarlas fácilmente';
 
   @override
-  String get settings_show_tiles_background => 'Show the tiles background';
+  String get settings_show_tiles_background => 'Tiles background';
 
   @override
   String get settings_show_tiles_background_description =>
@@ -113,11 +113,11 @@ class AppLocalizationsEs extends AppLocalizations {
       'Show the confirmation dialogs for actions such as pining and deleting notes';
 
   @override
-  String get settings_flag_secure => 'Set the app as secure';
+  String get settings_flag_secure => 'Make app secure';
 
   @override
   String get settings_flag_secure_description =>
-      'Hide the app from the recent apps and prevent screenshots from being made.';
+      'Hide the app from the recent apps and prevent screenshots from being made';
 
   @override
   String get settings_backup => 'Respaldo';

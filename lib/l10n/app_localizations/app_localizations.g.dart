@@ -191,7 +191,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_dynamic_theming_description.
   ///
   /// In en, this message translates to:
-  /// **'Generate colors from your system'**
+  /// **'Generate colors from the system'**
   String get settings_dynamic_theming_description;
 
   /// No description provided for @settings_black_theming.
@@ -251,19 +251,19 @@ abstract class AppLocalizations {
   /// No description provided for @settings_show_separators.
   ///
   /// In en, this message translates to:
-  /// **'Show the separators'**
+  /// **'Separators'**
   String get settings_show_separators;
 
   /// No description provided for @settings_show_separators_description.
   ///
   /// In en, this message translates to:
-  /// **'Show a separator between notes to differentiate them easily'**
+  /// **'Show a separator between the notes tiles to differentiate them easily'**
   String get settings_show_separators_description;
 
   /// No description provided for @settings_show_tiles_background.
   ///
   /// In en, this message translates to:
-  /// **'Show the tiles background'**
+  /// **'Tiles background'**
   String get settings_show_tiles_background;
 
   /// No description provided for @settings_show_tiles_background_description.
@@ -281,7 +281,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_confirmations.
   ///
   /// In en, this message translates to:
-  /// **'Show confirmation dialogs'**
+  /// **'Confirmation dialogs'**
   String get settings_confirmations;
 
   /// No description provided for @settings_confirmations_description.
@@ -293,13 +293,13 @@ abstract class AppLocalizations {
   /// No description provided for @settings_flag_secure.
   ///
   /// In en, this message translates to:
-  /// **'Set the app as secure'**
+  /// **'Make app secure'**
   String get settings_flag_secure;
 
   /// No description provided for @settings_flag_secure_description.
   ///
   /// In en, this message translates to:
-  /// **'Hide the app from the recent apps and prevent screenshots from being made.'**
+  /// **'Hide the app from the recent apps and prevent screenshots from being made'**
   String get settings_flag_secure_description;
 
   /// No description provided for @settings_backup.

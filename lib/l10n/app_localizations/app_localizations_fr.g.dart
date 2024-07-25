@@ -57,13 +57,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_dynamic_theming => 'Thème dynamique';
 
   @override
-  String get settings_dynamic_theming_description => 'Génère des couleurs depuis votre système';
+  String get settings_dynamic_theming_description => 'Générer les couleurs depuis le système';
 
   @override
   String get settings_black_theming => 'Thème noir';
 
   @override
-  String get settings_black_theming_description => 'Utilise un fond noir pour le thème sombre';
+  String get settings_black_theming_description => 'Utiliser un fond noir pour le thème sombre';
 
   @override
   String get settings_editor => 'Éditeur';
@@ -90,14 +90,14 @@ class AppLocalizationsFr extends AppLocalizations {
       'Afficher la barre d\'outils de l\'éditeur pour permettre le formatage textuel avancé';
 
   @override
-  String get settings_show_separators => 'Afficher les séparateurs';
+  String get settings_show_separators => 'Séparateurs';
 
   @override
   String get settings_show_separators_description =>
-      'Afficher un séparateur entre les notes pour les différencier plus facilement';
+      'Afficher un séparateur entre les tuiles des notes pour les différencier plus facilement';
 
   @override
-  String get settings_show_tiles_background => 'Afficher l\'arrière plan des tuiles';
+  String get settings_show_tiles_background => 'Arrière plan des tuiles';
 
   @override
   String get settings_show_tiles_background_description =>
@@ -107,18 +107,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_behavior => 'Comportement';
 
   @override
-  String get settings_confirmations => 'Afficher les dialogues de confirmation';
+  String get settings_confirmations => 'Dialogues de confirmation';
 
   @override
   String get settings_confirmations_description =>
       'Show the confirmation dialogs for actions such as pining and deleting notes';
 
   @override
-  String get settings_flag_secure => 'Set the app as secure';
+  String get settings_flag_secure => 'Make app secure';
 
   @override
   String get settings_flag_secure_description =>
-      'Hide the app from the recent apps and prevent screenshots from being made.';
+      'Hide the app from the recent apps and prevent screenshots from being made';
 
   @override
   String get settings_backup => 'Sauvegarde';
