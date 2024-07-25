@@ -12,11 +12,16 @@ import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
 import 'package:restart_app/restart_app.dart';
 
+/// Settings related to the appearance of the application.
 class AppearanceSection extends AbstractSettingsSection {
   const AppearanceSection(this.updateState, {super.key});
 
+  /// Triggers an update of the screen.
   final Function() updateState;
 
+  /// Asks the user to select the language of the application.
+  ///
+  /// Restarts the application if the language is changed.
   Future<void> _selectLanguage(BuildContext context) async {
     await showAdaptiveDialog<Locale>(
       context: context,
@@ -49,6 +54,7 @@ class AppearanceSection extends AbstractSettingsSection {
     });
   }
 
+  /// Asks the user to select the theme of the application.
   Future<void> _selectTheme(BuildContext context) async {
     await showAdaptiveDialog<ThemeMode>(
       context: context,
@@ -90,6 +96,7 @@ class AppearanceSection extends AbstractSettingsSection {
     });
   }
 
+  /// Toggles the dynamic theming.
   void _toggleDynamicTheming(bool toggled) {
     PreferencesUtils().set<bool>(PreferenceKey.dynamicTheming.name, toggled);
 
@@ -98,6 +105,7 @@ class AppearanceSection extends AbstractSettingsSection {
     updateState();
   }
 
+  /// Toggles the black theming.
   void _toggleBlackTheming(bool toggled) {
     PreferencesUtils().set<bool>(PreferenceKey.blackTheming.name, toggled);
 

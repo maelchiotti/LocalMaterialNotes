@@ -16,13 +16,16 @@ import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:simple_icons/simple_icons.dart';
 
+/// Settings related to backup of the notes.
 class BackupSection extends AbstractSettingsSection {
   const BackupSection(this.ref, this.updateState, {super.key});
 
   final WidgetRef ref;
 
+  /// Triggers an update of the screen.
   final Function() updateState;
 
+  /// Asks the user to configure the auto export as JSON.
   Future<void> autoExportAsJson(BuildContext context) async {
     await showAdaptiveDialog<(double, bool, String?)>(
       context: context,
@@ -63,6 +66,7 @@ class BackupSection extends AbstractSettingsSection {
     updateState();
   }
 
+  /// Asks the user to configure the immediate export as JSON.
   Future<void> exportAsJson(BuildContext context) async {
     await showAdaptiveDialog<(bool, String?)?>(
       context: context,
@@ -88,6 +92,7 @@ class BackupSection extends AbstractSettingsSection {
     });
   }
 
+  /// Asks the user to configure the immediate export as Markdown.
   Future<void> exportAsMarkdown(BuildContext context) async {
     try {
       if (await DatabaseUtils().exportAsMarkdown()) {
@@ -100,6 +105,7 @@ class BackupSection extends AbstractSettingsSection {
     }
   }
 
+  /// Asks the user to choose a JSON file to import in the application.
   Future<void> import(BuildContext context) async {
     try {
       final imported = await DatabaseUtils().import(context);

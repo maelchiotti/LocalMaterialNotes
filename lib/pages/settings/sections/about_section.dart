@@ -8,9 +8,11 @@ import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// Settings providing information about the application.
 class AboutSection extends AbstractSettingsSection {
   const AboutSection({super.key});
 
+  /// Shows the about dialog.
   Future<void> _showAbout(BuildContext context) async {
     showAboutDialog(
       context: context,
@@ -36,6 +38,7 @@ class AboutSection extends AbstractSettingsSection {
     );
   }
 
+  /// Opens the application's GitHub repository.
   void _openGitHub(_) {
     launchUrl(
       Uri(
@@ -46,6 +49,7 @@ class AboutSection extends AbstractSettingsSection {
     );
   }
 
+  /// Opens the application's license file.
   void _openLicense(_) {
     launchUrl(
       Uri(
@@ -56,6 +60,7 @@ class AboutSection extends AbstractSettingsSection {
     );
   }
 
+  /// Opens the application's GitHub issues.
   void _openIssues(_) {
     launchUrl(
       Uri(

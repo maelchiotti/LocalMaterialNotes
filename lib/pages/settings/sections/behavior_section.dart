@@ -6,11 +6,14 @@ import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
+/// Settings related to the behavior of the application.
 class BehaviorSection extends AbstractSettingsSection {
   const BehaviorSection(this.updateState, {super.key});
 
+  /// Triggers an update of the screen.
   final Function() updateState;
 
+  /// Asks the user to choose which confirmations should be shown.
   Future<void> _selectConfirmations(BuildContext context) async {
     final confirmationsPreference = Confirmations.fromPreference();
 
@@ -42,6 +45,7 @@ class BehaviorSection extends AbstractSettingsSection {
     });
   }
 
+  /// Toggles Android's `FLAG_SECURE` to hide the app from the recent apps and prevent screenshots.
   Future<void> _setFlagSecure(bool toggled) async {
     PreferencesUtils().set<bool>(PreferenceKey.flagSecure.name, toggled);
 
@@ -50,12 +54,14 @@ class BehaviorSection extends AbstractSettingsSection {
     updateState();
   }
 
+  /// Toggles the setting to show the separators between the notes tiles.
   void _toggleShowSeparators(bool toggled) {
     PreferencesUtils().set<bool>(PreferenceKey.showSeparators.name, toggled);
 
     updateState();
   }
 
+  /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTilesBackground(bool toggled) {
     PreferencesUtils().set<bool>(PreferenceKey.showTilesBackground.name, toggled);
 

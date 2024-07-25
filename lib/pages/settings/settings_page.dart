@@ -8,6 +8,7 @@ import 'package:localmaterialnotes/pages/settings/sections/behavior_section.dart
 import 'package:localmaterialnotes/pages/settings/sections/editor_section.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 
+/// Page for the settings of the application.
 class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage();
 
@@ -16,10 +17,9 @@ class SettingsPage extends ConsumerStatefulWidget {
 }
 
 class _SettingsPageState extends ConsumerState<SettingsPage> {
+  /// Updates the screen to update the settings tile that was changed.
   void _updateState() {
-    setState(() {
-      // Update the settings screen to update the tile that was changed.
-    });
+    setState(() {});
   }
 
   @override
