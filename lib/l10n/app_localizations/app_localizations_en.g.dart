@@ -72,13 +72,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_show_undo_redo_buttons => 'Undo/redo buttons';
 
   @override
-  String get settings_show_undo_redo_buttons_description => 'Show the buttons to undo and redo changes in the editor';
+  String get settings_show_undo_redo_buttons_description =>
+      'Show the buttons to undo and redo changes in the editor app bar';
 
   @override
   String get settings_show_checklist_button => 'Checklist button';
 
   @override
-  String get settings_show_checklist_button_description => 'Show the button to toggle checklists in the editor';
+  String get settings_show_checklist_button_description =>
+      'Show the button to toggle checklists in the editor app bar, hiding it from the editor toolbar if enabled';
 
   @override
   String get settings_show_toolbar => 'Editor toolbar';
