@@ -290,6 +290,30 @@ abstract class AppLocalizations {
   /// **'Show the confirmation dialogs for actions such as pining and deleting notes'**
   String get settings_confirmations_description;
 
+  /// No description provided for @settings_swipe_action_right.
+  ///
+  /// In en, this message translates to:
+  /// **'Right swipe action'**
+  String get settings_swipe_action_right;
+
+  /// No description provided for @settings_swipe_action_right_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Action to trigger when a right swipe is performed on the notes tiles'**
+  String get settings_swipe_action_right_description;
+
+  /// No description provided for @settings_swipe_action_left.
+  ///
+  /// In en, this message translates to:
+  /// **'Left swipe action'**
+  String get settings_swipe_action_left;
+
+  /// No description provided for @settings_swipe_action_left_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Action to trigger when a left swipe is performed on the notes tiles'**
+  String get settings_swipe_action_left_description;
+
   /// No description provided for @settings_flag_secure.
   ///
   /// In en, this message translates to:
@@ -745,6 +769,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Always'**
   String get confirmations_title_all;
+
+  /// No description provided for @swipe_action_disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get swipe_action_disabled;
+
+  /// No description provided for @swipe_action_delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get swipe_action_delete;
+
+  /// No description provided for @swipe_action_pin.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin'**
+  String get swipe_action_pin;
 
   /// No description provided for @dismiss_pin.
   ///

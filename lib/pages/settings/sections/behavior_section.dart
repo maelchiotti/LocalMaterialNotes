@@ -142,7 +142,7 @@ class BehaviorSection extends AbstractSettingsSection {
         ),
         SettingsTile.navigation(
           leading: const Icon(Icons.swipe_right),
-          title: Text(localizations.settings_confirmations),
+          title: Text(localizations.settings_swipe_action_right),
           value: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -150,14 +150,14 @@ class BehaviorSection extends AbstractSettingsSection {
                 swipeRightAction.title,
                 style: Theme.of(context).textTheme.titleSmall,
               ),
-              Text(localizations.settings_confirmations_description),
+              Text(localizations.settings_swipe_action_right_description),
             ],
           ),
           onPressed: (context) => _selectSwipeAction(context, SwipeDirection.right),
         ),
         SettingsTile.navigation(
           leading: const Icon(Icons.swipe_left),
-          title: Text(localizations.settings_confirmations),
+          title: Text(localizations.settings_swipe_action_left),
           value: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -165,7 +165,7 @@ class BehaviorSection extends AbstractSettingsSection {
                 swipeLeftAction.title,
                 style: Theme.of(context).textTheme.titleSmall,
               ),
-              Text(localizations.settings_confirmations_description),
+              Text(localizations.settings_swipe_action_left_description),
             ],
           ),
           onPressed: (context) => _selectSwipeAction(context, SwipeDirection.left),

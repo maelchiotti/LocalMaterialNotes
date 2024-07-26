@@ -113,6 +113,20 @@ class AppLocalizationsEs extends AppLocalizations {
       'Show the confirmation dialogs for actions such as pining and deleting notes';
 
   @override
+  String get settings_swipe_action_right => 'Right swipe action';
+
+  @override
+  String get settings_swipe_action_right_description =>
+      'Action to trigger when a right swipe is performed on the notes tiles';
+
+  @override
+  String get settings_swipe_action_left => 'Left swipe action';
+
+  @override
+  String get settings_swipe_action_left_description =>
+      'Action to trigger when a left swipe is performed on the notes tiles';
+
+  @override
   String get settings_flag_secure => 'Make app secure';
 
   @override
@@ -436,6 +450,15 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get confirmations_title_all => 'Siempre';
+
+  @override
+  String get swipe_action_disabled => 'Disabled';
+
+  @override
+  String get swipe_action_delete => 'Delete';
+
+  @override
+  String get swipe_action_pin => 'Pin';
 
   @override
   String get dismiss_pin => 'Fijar';

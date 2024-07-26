@@ -3,7 +3,7 @@ import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
 enum SwipeAction {
-  none,
+  disabled,
   delete,
   pin,
   ;
@@ -26,12 +26,12 @@ enum SwipeAction {
 
   String get title {
     switch (this) {
-      case none:
-        return localizations.confirmations_title_none;
+      case disabled:
+        return localizations.swipe_action_disabled;
       case delete:
-        return localizations.confirmations_title_irreversible;
+        return localizations.swipe_action_delete;
       case pin:
-        return localizations.confirmations_title_all;
+        return localizations.swipe_action_pin;
     }
   }
 }
