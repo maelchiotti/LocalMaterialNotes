@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
+import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class EditorToolbar extends ConsumerStatefulWidget {
@@ -36,16 +37,14 @@ class _EditorToolbarState extends ConsumerState<EditorToolbar> {
   }
 
   void _insertRule() {
-    final controller = widget.fleatherController;
-
-    final index = controller.selection.baseOffset;
-    final length = controller.selection.extentOffset - index;
-    final newSelection = controller.selection.copyWith(
+    final index = widget.fleatherController.selection.baseOffset;
+    final length = widget.fleatherController.selection.extentOffset - index;
+    final newSelection = widget.fleatherController.selection.copyWith(
       baseOffset: index + 2,
       extentOffset: index + 2,
     );
 
-    controller.replaceText(index, length, BlockEmbed.horizontalRule, selection: newSelection);
+    widget.fleatherController.replaceText(index, length, BlockEmbed.horizontalRule, selection: newSelection);
   }
 
   @override
@@ -69,6 +68,13 @@ class _EditorToolbarState extends ConsumerState<EditorToolbar> {
         controller: widget.fleatherController,
         childBuilder: _buttonBuilder,
       ),
+      if (!PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>())
+        ToggleStyleButton(
+          attribute: ParchmentAttribute.block.checkList,
+          icon: Icons.checklist,
+          controller: widget.fleatherController,
+          childBuilder: _buttonBuilder,
+        ),
       ToggleStyleButton(
         attribute: ParchmentAttribute.block.bulletList,
         icon: Icons.format_list_bulleted,
