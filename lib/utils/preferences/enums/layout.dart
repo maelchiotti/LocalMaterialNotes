@@ -2,13 +2,9 @@ import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
 enum Layout {
-  list('list'),
-  grid('grid'),
+  list,
+  grid,
   ;
-
-  final String name;
-
-  const Layout(this.name);
 
   factory Layout.fromPreference() {
     final preference = PreferencesUtils().get<String>(PreferenceKey.layout);

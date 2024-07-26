@@ -12,7 +12,7 @@ import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/separators.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
-import 'package:localmaterialnotes/utils/preferences/layout.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
 class NotesList extends ConsumerStatefulWidget {

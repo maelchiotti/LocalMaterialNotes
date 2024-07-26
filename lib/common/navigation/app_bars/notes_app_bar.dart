@@ -10,10 +10,10 @@ import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
-import 'package:localmaterialnotes/utils/preferences/layout.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/layout.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/sort_method.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
-import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 
 class NotesAppBar extends ConsumerStatefulWidget {
   const NotesAppBar({super.key});

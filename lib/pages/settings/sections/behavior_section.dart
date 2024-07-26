@@ -2,7 +2,9 @@ import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/confirmations.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/swipe_action.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/swipe_direction.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
@@ -29,17 +31,60 @@ class BehaviorSection extends AbstractSettingsSection {
               groupValue: confirmationsPreference,
               title: Text(confirmationsValue.title),
               selected: confirmationsPreference == confirmationsValue,
-              onChanged: (locale) => Navigator.of(context).pop(locale),
+              onChanged: (confirmations) => Navigator.of(context).pop(confirmations),
             );
           }).toList(),
         );
       },
-    ).then((confirmationsValue) {
-      if (confirmationsValue == null) {
+    ).then((confirmations) {
+      if (confirmations == null) {
         return;
       }
 
-      PreferencesUtils().set<String>(PreferenceKey.confirmations.name, confirmationsValue.name);
+      PreferencesUtils().set<String>(PreferenceKey.confirmations.name, confirmations.name);
+
+      updateState();
+    });
+  }
+
+  /// Asks the user to choose which action should be triggered when swiping the notes tiles in the [swipeDirection].
+  Future<void> _selectSwipeAction(BuildContext context, SwipeDirection swipeDirection) async {
+    SwipeAction swipeActionPreference;
+    switch (swipeDirection) {
+      case SwipeDirection.right:
+        swipeActionPreference = SwipeAction.rightFromPreference();
+      case SwipeDirection.left:
+        swipeActionPreference = SwipeAction.leftFromPreference();
+    }
+
+    await showAdaptiveDialog<SwipeAction>(
+      context: context,
+      builder: (context) {
+        return SimpleDialog(
+          clipBehavior: Clip.hardEdge,
+          title: Text(localizations.settings_confirmations),
+          children: SwipeAction.values.map((swipeAction) {
+            return RadioListTile<SwipeAction>(
+              value: swipeAction,
+              groupValue: swipeActionPreference,
+              title: Text(swipeAction.title),
+              selected: swipeActionPreference == swipeAction,
+              onChanged: (swipeAction) => Navigator.of(context).pop(swipeAction),
+            );
+          }).toList(),
+        );
+      },
+    ).then((swipeAction) {
+      if (swipeAction == null) {
+        return;
+      }
+
+      switch (swipeDirection) {
+        case SwipeDirection.right:
+          PreferencesUtils().set<String>(PreferenceKey.swipeRightAction.name, swipeAction.name);
+        case SwipeDirection.left:
+          PreferencesUtils().set<String>(PreferenceKey.swipeLeftAction.name, swipeAction.name);
+      }
 
       updateState();
     });
@@ -70,6 +115,9 @@ class BehaviorSection extends AbstractSettingsSection {
 
   @override
   Widget build(BuildContext context) {
+    final confirmations = Confirmations.fromPreference();
+    final swipeRightAction = SwipeAction.rightFromPreference();
+    final swipeLeftAction = SwipeAction.leftFromPreference();
     final flagSecure = PreferenceKey.flagSecure.getPreferenceOrDefault<bool>();
     final showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
     final showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();
@@ -84,13 +132,43 @@ class BehaviorSection extends AbstractSettingsSection {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                Confirmations.fromPreference().title,
+                confirmations.title,
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               Text(localizations.settings_confirmations_description),
             ],
           ),
           onPressed: _selectConfirmations,
+        ),
+        SettingsTile.navigation(
+          leading: const Icon(Icons.swipe_right),
+          title: Text(localizations.settings_confirmations),
+          value: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                swipeRightAction.title,
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              Text(localizations.settings_confirmations_description),
+            ],
+          ),
+          onPressed: (context) => _selectSwipeAction(context, SwipeDirection.right),
+        ),
+        SettingsTile.navigation(
+          leading: const Icon(Icons.swipe_left),
+          title: Text(localizations.settings_confirmations),
+          value: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                swipeLeftAction.title,
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              Text(localizations.settings_confirmations_description),
+            ],
+          ),
+          onPressed: (context) => _selectSwipeAction(context, SwipeDirection.left),
         ),
         SettingsTile.switchTile(
           leading: const Icon(Icons.security),

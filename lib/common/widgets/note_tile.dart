@@ -14,7 +14,7 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/radiuses.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
-import 'package:localmaterialnotes/utils/preferences/layout.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
 /// Creates a custom `ListTile` because the default one doesn't allow not displaying a title.

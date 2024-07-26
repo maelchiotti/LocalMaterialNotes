@@ -1,7 +1,8 @@
-import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
-import 'package:localmaterialnotes/utils/preferences/layout.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/confirmations.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/layout.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/sort_method.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
-import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 
 enum PreferenceKey {
   // Appearance
@@ -17,6 +18,8 @@ enum PreferenceKey {
 
   // Behavior
   confirmations(Confirmations.irreversible),
+  swipeRightAction(SwipeAction.delete),
+  swipeLeftAction(SwipeAction.pin),
   flagSecure(false),
   showSeparators(false),
   showTilesBackground(false),

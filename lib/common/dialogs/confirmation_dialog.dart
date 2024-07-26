@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/confirmations.dart';
 
 Future<bool> _showConfirmationDialog(
   String title,
