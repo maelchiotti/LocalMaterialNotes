@@ -221,7 +221,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_show_undo_redo_buttons_description.
   ///
   /// In en, this message translates to:
-  /// **'Show the buttons to undo and redo changes in the editor app bar'**
+  /// **'Show the buttons to undo and redo changes in the editor\'\'s app bar'**
   String get settings_show_undo_redo_buttons_description;
 
   /// No description provided for @settings_show_checklist_button.
@@ -233,7 +233,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_show_checklist_button_description.
   ///
   /// In en, this message translates to:
-  /// **'Show the button to toggle checklists in the editor app bar, hiding it from the editor toolbar if enabled'**
+  /// **'Show the button to toggle checklists in the editor\'\'s app bar, hiding it from the editor\'\'s toolbar if enabled'**
   String get settings_show_checklist_button_description;
 
   /// No description provided for @settings_show_toolbar.
@@ -245,7 +245,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_show_toolbar_description.
   ///
   /// In en, this message translates to:
-  /// **'Show the editor toolbar to enable advanced text formatting'**
+  /// **'Show the editor\'\'s toolbar to enable advanced text formatting'**
   String get settings_show_toolbar_description;
 
   /// No description provided for @settings_show_separators.
