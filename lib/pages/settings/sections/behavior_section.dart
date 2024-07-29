@@ -1,6 +1,7 @@
 import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
+import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/preferences/enums/confirmations.dart';
 import 'package:localmaterialnotes/utils/preferences/enums/swipe_action.dart';
@@ -52,9 +53,9 @@ class BehaviorSection extends AbstractSettingsSection {
     SwipeAction swipeActionPreference;
     switch (swipeDirection) {
       case SwipeDirection.right:
-        swipeActionPreference = SwipeAction.rightFromPreference();
+        swipeActionPreference = swipeActionsNotifier.value.$1;
       case SwipeDirection.left:
-        swipeActionPreference = SwipeAction.leftFromPreference();
+        swipeActionPreference = swipeActionsNotifier.value.$2;
     }
 
     await showAdaptiveDialog<SwipeAction>(
@@ -82,8 +83,10 @@ class BehaviorSection extends AbstractSettingsSection {
       switch (swipeDirection) {
         case SwipeDirection.right:
           PreferencesUtils().set<String>(PreferenceKey.swipeRightAction.name, swipeAction.name);
+          swipeActionsNotifier.value = (swipeAction, swipeActionsNotifier.value.$2);
         case SwipeDirection.left:
           PreferencesUtils().set<String>(PreferenceKey.swipeLeftAction.name, swipeAction.name);
+          swipeActionsNotifier.value = (swipeActionsNotifier.value.$1, swipeAction);
       }
 
       updateState();
@@ -116,8 +119,8 @@ class BehaviorSection extends AbstractSettingsSection {
   @override
   Widget build(BuildContext context) {
     final confirmations = Confirmations.fromPreference();
-    final swipeRightAction = SwipeAction.rightFromPreference();
-    final swipeLeftAction = SwipeAction.leftFromPreference();
+    final swipeRightAction = swipeActionsNotifier.value.$1;
+    final swipeLeftAction = swipeActionsNotifier.value.$2;
     final flagSecure = PreferenceKey.flagSecure.getPreferenceOrDefault<bool>();
     final showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
     final showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();

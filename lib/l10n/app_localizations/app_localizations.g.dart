@@ -806,18 +806,6 @@ abstract class AppLocalizations {
   /// **'Delete'**
   String get dismiss_delete;
 
-  /// No description provided for @dismiss_permanently_delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Permanently delete'**
-  String get dismiss_permanently_delete;
-
-  /// No description provided for @dismiss_restore.
-  ///
-  /// In en, this message translates to:
-  /// **'Restore'**
-  String get dismiss_restore;
-
   /// No description provided for @about_last_edited.
   ///
   /// In en, this message translates to:

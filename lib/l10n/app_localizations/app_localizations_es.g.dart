@@ -470,12 +470,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get dismiss_delete => 'Eliminar';
 
   @override
-  String get dismiss_permanently_delete => 'Eliminar permanentemente';
-
-  @override
-  String get dismiss_restore => 'Restaurar';
-
-  @override
   String get about_last_edited => 'Última edición';
 
   @override

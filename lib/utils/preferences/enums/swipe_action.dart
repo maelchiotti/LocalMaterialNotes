@@ -24,6 +24,14 @@ enum SwipeAction {
         : PreferenceKey.swipeLeftAction.defaultValue as SwipeAction;
   }
 
+  bool get isEnabled {
+    return this != disabled;
+  }
+
+  bool get isDisabled {
+    return this == disabled;
+  }
+
   String get title {
     switch (this) {
       case disabled:

@@ -469,12 +469,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get dismiss_delete => 'Sil';
 
   @override
-  String get dismiss_permanently_delete => 'Kalıcı sil';
-
-  @override
-  String get dismiss_restore => 'Kurtar';
-
-  @override
   String get about_last_edited => 'Son düzenleme';
 
   @override
