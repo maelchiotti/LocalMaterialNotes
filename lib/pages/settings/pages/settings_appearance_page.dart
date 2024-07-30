@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
+import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
@@ -13,12 +14,14 @@ import 'package:localmaterialnotes/utils/theme_utils.dart';
 import 'package:restart_app/restart_app.dart';
 
 /// Settings related to the appearance of the application.
-class AppearanceSection extends AbstractSettingsSection {
-  const AppearanceSection(this.updateState, {super.key});
+class SettingsAppearancePage extends StatefulWidget {
+  const SettingsAppearancePage({super.key});
 
-  /// Triggers an update of the screen.
-  final Function() updateState;
+  @override
+  State<SettingsAppearancePage> createState() => _SettingsAppearancePageState();
+}
 
+class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Asks the user to select the language of the application.
   ///
   /// Restarts the application if the language is changed.
@@ -98,56 +101,96 @@ class AppearanceSection extends AbstractSettingsSection {
 
   /// Toggles the dynamic theming.
   void _toggleDynamicTheming(bool toggled) {
-    PreferencesUtils().set<bool>(PreferenceKey.dynamicTheming.name, toggled);
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.dynamicTheming.name, toggled);
 
-    dynamicThemingNotifier.value = toggled;
-
-    updateState();
+      dynamicThemingNotifier.value = toggled;
+    });
   }
 
   /// Toggles the black theming.
   void _toggleBlackTheming(bool toggled) {
-    PreferencesUtils().set<bool>(PreferenceKey.blackTheming.name, toggled);
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.blackTheming.name, toggled);
 
-    blackThemingNotifier.value = toggled;
+      blackThemingNotifier.value = toggled;
+    });
+  }
 
-    updateState();
+  /// Toggles the setting to show the separators between the notes tiles.
+  void _toggleShowSeparators(bool toggled) {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.showSeparators.name, toggled);
+    });
+  }
+
+  /// Toggles the setting to show background of the notes tiles.
+  void _toggleShowTilesBackground(bool toggled) {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.showTilesBackground.name, toggled);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final locale = LocaleUtils().appLocale.nativeDisplayLanguage.capitalized;
 
-    return SettingsSection(
-      title: Text(localizations.settings_appearance),
-      tiles: [
-        SettingsTile.navigation(
-          leading: const Icon(Icons.language),
-          title: Text(localizations.settings_language),
-          value: Text(locale),
-          onPressed: _selectLanguage,
+    final showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
+    final showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();
+
+    return CustomSettingsList(
+      sections: [
+        SettingsSection(
+          title: Text(localizations.settings_appearance_application),
+          tiles: [
+            SettingsTile.navigation(
+              leading: const Icon(Icons.language),
+              title: Text(localizations.settings_language),
+              value: Text(locale),
+              onPressed: _selectLanguage,
+            ),
+            SettingsTile.navigation(
+              leading: const Icon(Icons.palette),
+              title: Text(localizations.settings_theme),
+              value: Text(ThemeUtils().themeModeName),
+              onPressed: _selectTheme,
+            ),
+            SettingsTile.switchTile(
+              enabled: ThemeUtils().isDynamicThemingAvailable,
+              leading: const Icon(Icons.bolt),
+              title: Text(localizations.settings_dynamic_theming),
+              description: Text(localizations.settings_dynamic_theming_description),
+              initialValue: ThemeUtils().useDynamicTheming,
+              onToggle: _toggleDynamicTheming,
+            ),
+            SettingsTile.switchTile(
+              enabled: ThemeUtils().brightness == Brightness.dark,
+              leading: const Icon(Icons.nightlight),
+              title: Text(localizations.settings_black_theming),
+              description: Text(localizations.settings_black_theming_description),
+              initialValue: ThemeUtils().useBlackTheming,
+              onToggle: _toggleBlackTheming,
+            ),
+          ],
         ),
-        SettingsTile.navigation(
-          leading: const Icon(Icons.palette),
-          title: Text(localizations.settings_theme),
-          value: Text(ThemeUtils().themeModeName),
-          onPressed: _selectTheme,
-        ),
-        SettingsTile.switchTile(
-          enabled: ThemeUtils().isDynamicThemingAvailable,
-          leading: const Icon(Icons.bolt),
-          title: Text(localizations.settings_dynamic_theming),
-          description: Text(localizations.settings_dynamic_theming_description),
-          initialValue: ThemeUtils().useDynamicTheming,
-          onToggle: _toggleDynamicTheming,
-        ),
-        SettingsTile.switchTile(
-          enabled: ThemeUtils().brightness == Brightness.dark,
-          leading: const Icon(Icons.nightlight),
-          title: Text(localizations.settings_black_theming),
-          description: Text(localizations.settings_black_theming_description),
-          initialValue: ThemeUtils().useBlackTheming,
-          onToggle: _toggleBlackTheming,
+        SettingsSection(
+          title: Text(localizations.settings_appearance_notes_tiles),
+          tiles: [
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.safety_divider),
+              title: Text(localizations.settings_show_separators),
+              description: Text(localizations.settings_show_separators_description),
+              initialValue: showSeparators,
+              onToggle: _toggleShowSeparators,
+            ),
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.gradient),
+              title: Text(localizations.settings_show_tiles_background),
+              description: Text(localizations.settings_show_tiles_background_description),
+              initialValue: showTilesBackground,
+              onToggle: _toggleShowTilesBackground,
+            ),
+          ],
         ),
       ],
     );

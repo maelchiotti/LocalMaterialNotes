@@ -19,7 +19,7 @@ enum Sizes {
 
   double get infinity => double.infinity;
 
-  double get searchAppBar => 8;
+  double get selectionAppBar => 8;
 
   double get searchBar => 48;
 

@@ -18,15 +18,6 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get navigation_notes => 'Notas';
-
-  @override
-  String get navigation_bin => 'Papelera';
-
-  @override
-  String get navigation_settings => 'Ajustes';
-
-  @override
   String get error_error => 'Error';
 
   @override
@@ -36,7 +27,52 @@ class AppLocalizationsEs extends AppLocalizations {
   String get error_read_file => 'Fallo al leer el archivo.';
 
   @override
+  String get navigation_notes => 'Notas';
+
+  @override
+  String get navigation_bin => 'Papelera';
+
+  @override
+  String get navigation_settings => 'Ajustes';
+
+  @override
+  String get navigation_settings_appearance => 'Appearance';
+
+  @override
+  String get navigation_settings_behavior => 'Behavior';
+
+  @override
+  String get navigation_settings_editor => 'Editor';
+
+  @override
+  String get navigation_settings_backup => 'Backup';
+
+  @override
+  String get navigation_settings_about => 'About';
+
+  @override
+  String get button_ok => 'Aceptar';
+
+  @override
+  String get button_close => 'Cerrar';
+
+  @override
+  String get button_cancel => 'Cancelar';
+
+  @override
+  String get button_add => 'Agregar';
+
+  @override
   String get settings_appearance => 'Apariencia';
+
+  @override
+  String get settings_appearance_description => 'Language, theme, notes tiles';
+
+  @override
+  String get settings_appearance_application => 'Application';
+
+  @override
+  String get settings_appearance_notes_tiles => 'Notes tiles';
 
   @override
   String get settings_language => 'Idioma';
@@ -66,37 +102,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_black_theming_description => 'Fondo negro puro para el tema oscuro';
 
   @override
-  String get settings_editor => 'Editor';
-
-  @override
-  String get settings_show_undo_redo_buttons => 'Botones deshacer/rehacer';
-
-  @override
-  String get settings_show_undo_redo_buttons_description =>
-      'Mostrar los botones para deshacer y rehacer cambios en el editor';
-
-  @override
-  String get settings_show_checklist_button => 'Botón de casilla de verificación';
-
-  @override
-  String get settings_show_checklist_button_description =>
-      'Mostrar el botón para alternar casillas de verificación en el editor';
-
-  @override
-  String get settings_show_toolbar => 'Barra de herramientas del editor';
-
-  @override
-  String get settings_show_toolbar_description =>
-      'Mostrar la barra de herramientas del editor para habilitar el formateado avanzado del texto.';
-
-  @override
   String get settings_show_separators => 'Mostrar separadores';
 
   @override
   String get settings_show_separators_description => 'Mostrar un separador entre notas para diferenciarlas fácilmente';
 
   @override
-  String get settings_show_tiles_background => 'Tiles background';
+  String get settings_show_tiles_background => 'Background';
 
   @override
   String get settings_show_tiles_background_description =>
@@ -104,6 +116,15 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settings_behavior => 'Comportamiento';
+
+  @override
+  String get settings_behavior_application => 'Application';
+
+  @override
+  String get settings_behavior_description => 'Confirmations, swipe actions';
+
+  @override
+  String get settings_behavior_swipe_actions => 'Swipe actions';
 
   @override
   String get settings_confirmations => 'Mostrar diálogos de confirmación';
@@ -134,7 +155,43 @@ class AppLocalizationsEs extends AppLocalizations {
       'Hide the app from the recent apps and prevent screenshots from being made';
 
   @override
+  String get settings_editor => 'Editor';
+
+  @override
+  String get settings_editor_description => 'Buttons, toolbar';
+
+  @override
+  String get settings_show_undo_redo_buttons => 'Botones deshacer/rehacer';
+
+  @override
+  String get settings_show_undo_redo_buttons_description =>
+      'Mostrar los botones para deshacer y rehacer cambios en el editor';
+
+  @override
+  String get settings_show_checklist_button => 'Botón de casilla de verificación';
+
+  @override
+  String get settings_show_checklist_button_description =>
+      'Mostrar el botón para alternar casillas de verificación en el editor';
+
+  @override
+  String get settings_show_toolbar => 'Barra de herramientas del editor';
+
+  @override
+  String get settings_show_toolbar_description =>
+      'Mostrar la barra de herramientas del editor para habilitar el formateado avanzado del texto.';
+
+  @override
   String get settings_backup => 'Respaldo';
+
+  @override
+  String get settings_backup_description => 'Export, import';
+
+  @override
+  String get settings_backup_export => 'Export';
+
+  @override
+  String get settings_backup_import => 'Import';
 
   @override
   String get settings_auto_export => 'Auto export as JSON';
@@ -240,6 +297,24 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_about => 'Acerca de';
 
   @override
+  String get settings_about_application => 'Application';
+
+  @override
+  String get settings_about_links => 'Links';
+
+  @override
+  String get settings_about_description => 'Information, GitHub, license, help';
+
+  @override
+  String get settings_build_mode => 'Build mode';
+
+  @override
+  String get settings_build_mode_release => 'Release';
+
+  @override
+  String get settings_build_mode_debug => 'Debug';
+
+  @override
   String get settings_github => 'GitHub';
 
   @override
@@ -256,6 +331,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settings_issue_description => 'Reportar un bug creando un issue en GitHub';
+
+  @override
+  String get settings_get_in_touch => 'Get in touch';
+
+  @override
+  String get settings_get_in_touch_description => 'Get in touch with the developer via mail at contact@maelchiotti.dev';
 
   @override
   String get hint_title => 'Título';
@@ -301,18 +382,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get tooltip_toggle_pins => 'Alternar fijado';
-
-  @override
-  String get button_ok => 'Aceptar';
-
-  @override
-  String get button_close => 'Cerrar';
-
-  @override
-  String get button_cancel => 'Cancelar';
-
-  @override
-  String get button_add => 'Agregar';
 
   @override
   String get dialog_delete => 'Eliminar';
@@ -407,6 +476,20 @@ class AppLocalizationsEs extends AppLocalizations {
       'This password will only be used for this export.';
 
   @override
+  String get dialog_export_encryption_password_hint => 'Password';
+
+  @override
+  String get dialog_export_encryption_password_invalid => 'Invalid';
+
+  @override
+  String get dialog_import_encryption_password_description =>
+      'This export is encrypted. To import it, you need to provide the password used to encrypt it.';
+
+  @override
+  String get dialog_import_encryption_password_error =>
+      'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.';
+
+  @override
   String get sort_date => 'Fecha';
 
   @override
@@ -492,18 +575,4 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Notas simples, locales, en Material Design';
-
-  @override
-  String get dialog_export_encryption_password_hint => 'Password';
-
-  @override
-  String get dialog_export_encryption_password_invalid => 'Invalid';
-
-  @override
-  String get dialog_import_encryption_password_description =>
-      'This export is encrypted. To import it, you need to provide the password used to encrypt it.';
-
-  @override
-  String get dialog_import_encryption_password_error =>
-      'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.';
 }

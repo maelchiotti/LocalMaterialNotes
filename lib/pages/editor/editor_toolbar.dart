@@ -107,7 +107,7 @@ class _EditorToolbarState extends ConsumerState<EditorToolbar> {
       ),
       /* TODO Add the link button
        * Right now it requires to copy too much code
-       * (cf. https://github.com/fleather-editor/fleather/issues/353)
+       * See https://github.com/fleather-editor/fleather/issues/353
       IconButton(
         visualDensity: VisualDensity.compact,
         icon: const Icon(Icons.link),

@@ -17,8 +17,8 @@ Future<void> main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   // Display the application behind the system's notifications bar and navigation bar
-  // cf. https://github.com/flutter/flutter/issues/40974
-  // cf. https://github.com/flutter/flutter/issues/34678
+  // See https://github.com/flutter/flutter/issues/40974
+  // See https://github.com/flutter/flutter/issues/34678
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -27,7 +27,7 @@ Future<void> main() async {
   );
 
   // Set the application refresh rate
-  // cf. https://github.com/flutter/flutter/issues/35162
+  // See https://github.com/flutter/flutter/issues/35162
   await FlutterDisplayMode.setHighRefreshRate();
 
   // Initialize all the utilities

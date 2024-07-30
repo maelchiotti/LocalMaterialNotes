@@ -18,15 +18,6 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get navigation_notes => 'Notlar';
-
-  @override
-  String get navigation_bin => 'Çöp Kutusu';
-
-  @override
-  String get navigation_settings => 'Ayarlar';
-
-  @override
   String get error_error => 'Hata';
 
   @override
@@ -36,7 +27,52 @@ class AppLocalizationsTr extends AppLocalizations {
   String get error_read_file => 'Dosyayı okuma izni alınamadı.';
 
   @override
+  String get navigation_notes => 'Notlar';
+
+  @override
+  String get navigation_bin => 'Çöp Kutusu';
+
+  @override
+  String get navigation_settings => 'Ayarlar';
+
+  @override
+  String get navigation_settings_appearance => 'Appearance';
+
+  @override
+  String get navigation_settings_behavior => 'Behavior';
+
+  @override
+  String get navigation_settings_editor => 'Editor';
+
+  @override
+  String get navigation_settings_backup => 'Backup';
+
+  @override
+  String get navigation_settings_about => 'About';
+
+  @override
+  String get button_ok => 'Tamam';
+
+  @override
+  String get button_close => 'Kapat';
+
+  @override
+  String get button_cancel => 'İptal et';
+
+  @override
+  String get button_add => 'Ekle';
+
+  @override
   String get settings_appearance => 'Görünüş';
+
+  @override
+  String get settings_appearance_description => 'Language, theme, notes tiles';
+
+  @override
+  String get settings_appearance_application => 'Application';
+
+  @override
+  String get settings_appearance_notes_tiles => 'Notes tiles';
 
   @override
   String get settings_language => 'Dil';
@@ -66,36 +102,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_black_theming_description => 'Koyu modda siyah arkaplan kullanın';
 
   @override
-  String get settings_editor => 'Editor';
-
-  @override
-  String get settings_show_undo_redo_buttons => 'Undo/redo buttons';
-
-  @override
-  String get settings_show_undo_redo_buttons_description =>
-      'Show the buttons to undo and redo changes in the editor\'s app bar';
-
-  @override
-  String get settings_show_checklist_button => 'Checklist button';
-
-  @override
-  String get settings_show_checklist_button_description =>
-      'Show the button to toggle checklists in the editor\'s app bar, hiding it from the editor\'s toolbar if enabled';
-
-  @override
-  String get settings_show_toolbar => 'Editor toolbar';
-
-  @override
-  String get settings_show_toolbar_description => 'Show the editor\'s toolbar to enable advanced text formatting';
-
-  @override
   String get settings_show_separators => 'Ayırıcıları göster';
 
   @override
   String get settings_show_separators_description => 'Notları kolayca ayırt etmek için aralarında bir ayırıcı gösterin';
 
   @override
-  String get settings_show_tiles_background => 'Tiles background';
+  String get settings_show_tiles_background => 'Background';
 
   @override
   String get settings_show_tiles_background_description =>
@@ -103,6 +116,15 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_behavior => 'Davranış';
+
+  @override
+  String get settings_behavior_application => 'Application';
+
+  @override
+  String get settings_behavior_description => 'Confirmations, swipe actions';
+
+  @override
+  String get settings_behavior_swipe_actions => 'Swipe actions';
 
   @override
   String get settings_confirmations => 'Onay diyaloglarını göster';
@@ -133,7 +155,42 @@ class AppLocalizationsTr extends AppLocalizations {
       'Hide the app from the recent apps and prevent screenshots from being made';
 
   @override
+  String get settings_editor => 'Editor';
+
+  @override
+  String get settings_editor_description => 'Buttons, toolbar';
+
+  @override
+  String get settings_show_undo_redo_buttons => 'Undo/redo buttons';
+
+  @override
+  String get settings_show_undo_redo_buttons_description =>
+      'Show the buttons to undo and redo changes in the editor\'s app bar';
+
+  @override
+  String get settings_show_checklist_button => 'Checklist button';
+
+  @override
+  String get settings_show_checklist_button_description =>
+      'Show the button to toggle checklists in the editor\'s app bar, hiding it from the editor\'s toolbar if enabled';
+
+  @override
+  String get settings_show_toolbar => 'Editor toolbar';
+
+  @override
+  String get settings_show_toolbar_description => 'Show the editor\'s toolbar to enable advanced text formatting';
+
+  @override
   String get settings_backup => 'Yedekleme';
+
+  @override
+  String get settings_backup_description => 'Export, import';
+
+  @override
+  String get settings_backup_export => 'Export';
+
+  @override
+  String get settings_backup_import => 'Import';
 
   @override
   String get settings_auto_export => 'Auto export as JSON';
@@ -240,6 +297,24 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_about => 'Hakkında';
 
   @override
+  String get settings_about_application => 'Application';
+
+  @override
+  String get settings_about_links => 'Links';
+
+  @override
+  String get settings_about_description => 'Information, GitHub, license, help';
+
+  @override
+  String get settings_build_mode => 'Build mode';
+
+  @override
+  String get settings_build_mode_release => 'Release';
+
+  @override
+  String get settings_build_mode_debug => 'Debug';
+
+  @override
   String get settings_github => 'GitHub';
 
   @override
@@ -256,6 +331,12 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_issue_description => 'GitHub\'da bir issue oluşturarak bir hata bildirin';
+
+  @override
+  String get settings_get_in_touch => 'Get in touch';
+
+  @override
+  String get settings_get_in_touch_description => 'Get in touch with the developer via mail at contact@maelchiotti.dev';
 
   @override
   String get hint_title => 'Başlık';
@@ -301,18 +382,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get tooltip_toggle_pins => 'Sabitlemeyi aç/kapat';
-
-  @override
-  String get button_ok => 'Tamam';
-
-  @override
-  String get button_close => 'Kapat';
-
-  @override
-  String get button_cancel => 'İptal et';
-
-  @override
-  String get button_add => 'Ekle';
 
   @override
   String get dialog_delete => 'Sil';
@@ -406,6 +475,20 @@ class AppLocalizationsTr extends AppLocalizations {
       'This password will only be used for this export.';
 
   @override
+  String get dialog_export_encryption_password_hint => 'Password';
+
+  @override
+  String get dialog_export_encryption_password_invalid => 'Invalid';
+
+  @override
+  String get dialog_import_encryption_password_description =>
+      'This export is encrypted. To import it, you need to provide the password used to encrypt it.';
+
+  @override
+  String get dialog_import_encryption_password_error =>
+      'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.';
+
+  @override
   String get sort_date => 'Tarih';
 
   @override
@@ -491,18 +574,4 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Basit, çevrimdışı, materyal tasarımlı notlar';
-
-  @override
-  String get dialog_export_encryption_password_hint => 'Password';
-
-  @override
-  String get dialog_export_encryption_password_invalid => 'Invalid';
-
-  @override
-  String get dialog_import_encryption_password_description =>
-      'This export is encrypted. To import it, you need to provide the password used to encrypt it.';
-
-  @override
-  String get dialog_import_encryption_password_error =>
-      'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.';
 }
