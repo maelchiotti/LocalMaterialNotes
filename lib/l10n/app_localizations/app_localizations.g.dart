@@ -599,7 +599,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_about_description.
   ///
   /// In en, this message translates to:
-  /// **'Information, GitHub, license, help'**
+  /// **'Information, help, GitHub, license'**
   String get settings_about_description;
 
   /// No description provided for @settings_build_mode.

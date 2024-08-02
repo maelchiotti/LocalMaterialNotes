@@ -83,7 +83,7 @@
   "settings_about_application": "Application",
   "settings_about_links": "Links",
   "settings_about_help": "Help",
-  "settings_about_description": "Information, GitHub, license, help",
+  "settings_about_description": "Information, help, GitHub, license",
   "settings_build_mode": "Build mode",
   "settings_build_mode_release": "Release",
   "settings_build_mode_debug": "Debug",

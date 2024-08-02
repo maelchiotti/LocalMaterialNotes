@@ -318,7 +318,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_about_help => 'Help';
 
   @override
-  String get settings_about_description => 'Information, GitHub, license, help';
+  String get settings_about_description => 'Information, help, GitHub, license';
 
   @override
   String get settings_build_mode => 'Build mode';
