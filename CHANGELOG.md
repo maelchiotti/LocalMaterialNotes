@@ -4,6 +4,36 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.5.0 - 2024-08-02
+
+### Added
+
+- Auto JSON backup
+- JSON backup encryption
+- Settings to customize the swipe actions
+- Setting to hide the app from recent apps and prevent screenshots
+- Setting to show the checklist button in the toolbar if not shown in the app bar
+- Enable high refresh rate
+- Russian localization
+- Show localizations completion as a percentage
+
+## Changed
+
+- New settings page layout that divides settings into separate pages
+- Disable undo/redo buttons in the editor's app bar if they can't be used
+
+### Fixed
+
+- Notes tiles: use rounded corners when background is not shown, use correct background color in list view
+- Keyboard opening when toggling a checkbox
+- Keyboard popping back up after using the back gesture
+- Strings inconsistencies
+
+### Removed
+
+- Swipe actions in the bin
+- Compatibility with exports made before v1.5.0
+
 ## 1.4.0 - 2024-06-27
 
 ### Added
