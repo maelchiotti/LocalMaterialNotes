@@ -47,6 +47,7 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
     return CustomSettingsList(
       sections: [
         SettingsSection(
+          title: Text(localizations.settings_editor_formatting),
           tiles: [
             SettingsTile.switchTile(
               leading: const Icon(Icons.undo),

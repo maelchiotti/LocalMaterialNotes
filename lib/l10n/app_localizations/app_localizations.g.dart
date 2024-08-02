@@ -380,6 +380,12 @@ abstract class AppLocalizations {
   /// **'Editor'**
   String get settings_editor;
 
+  /// No description provided for @settings_editor_formatting.
+  ///
+  /// In en, this message translates to:
+  /// **'Formatting'**
+  String get settings_editor_formatting;
+
   /// No description provided for @settings_editor_description.
   ///
   /// In en, this message translates to:
@@ -413,7 +419,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_show_toolbar.
   ///
   /// In en, this message translates to:
-  /// **'Editor toolbar'**
+  /// **'Toolbar'**
   String get settings_show_toolbar;
 
   /// No description provided for @settings_show_toolbar_description.
@@ -566,6 +572,12 @@ abstract class AppLocalizations {
   /// **'Links'**
   String get settings_about_links;
 
+  /// No description provided for @settings_about_help.
+  ///
+  /// In en, this message translates to:
+  /// **'Help'**
+  String get settings_about_help;
+
   /// No description provided for @settings_about_description.
   ///
   /// In en, this message translates to:
@@ -614,28 +626,40 @@ abstract class AppLocalizations {
   /// **'AGPL-3.0'**
   String get settings_licence_description;
 
-  /// No description provided for @settings_issue.
+  /// No description provided for @settings_github_issues.
   ///
   /// In en, this message translates to:
   /// **'Report a bug'**
-  String get settings_issue;
+  String get settings_github_issues;
 
-  /// No description provided for @settings_issue_description.
+  /// No description provided for @settings_github_issues_description.
   ///
   /// In en, this message translates to:
-  /// **'Report a bug by creating an issue on GitHub'**
-  String get settings_issue_description;
+  /// **'Report a bug by creating a GitHub issue'**
+  String get settings_github_issues_description;
+
+  /// No description provided for @settings_github_discussions.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask a question'**
+  String get settings_github_discussions;
+
+  /// No description provided for @settings_github_discussions_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask a question on GitHub discussions'**
+  String get settings_github_discussions_description;
 
   /// No description provided for @settings_get_in_touch.
   ///
   /// In en, this message translates to:
-  /// **'Get in touch'**
+  /// **'Contact the developer'**
   String get settings_get_in_touch;
 
   /// No description provided for @settings_get_in_touch_description.
   ///
   /// In en, this message translates to:
-  /// **'Get in touch with the developer via mail at contact@maelchiotti.dev'**
+  /// **'Contact the developer via mail at contact@maelchiotti.dev'**
   String get settings_get_in_touch_description;
 
   /// No description provided for @hint_title.

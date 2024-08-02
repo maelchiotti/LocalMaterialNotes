@@ -45,35 +45,24 @@ class SettingsAboutPage extends StatelessWidget {
     );
   }
 
-  /// Opens the application's GitHub repository.
-  void _openGitHub(_) {
-    launchUrl(
-      Uri(
-        scheme: 'https',
-        host: 'github.com',
-        path: 'maelchiotti/LocalMaterialNotes',
-      ),
-    );
-  }
-
-  /// Opens the application's license file.
-  void _openLicense(_) {
-    launchUrl(
-      Uri(
-        scheme: 'https',
-        host: 'github.com',
-        path: 'maelchiotti/LocalMaterialNotes/blob/main/LICENSE',
-      ),
-    );
-  }
-
   /// Opens the application's GitHub issues.
-  void _openIssues(_) {
+  void _openGitHubIssues(_) {
     launchUrl(
       Uri(
         scheme: 'https',
         host: 'github.com',
         path: 'maelchiotti/LocalMaterialNotes/issues',
+      ),
+    );
+  }
+
+  /// Opens the application's GitHub discussions.
+  void _openGitHubDiscussions(_) {
+    launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'github.com',
+        path: 'maelchiotti/LocalMaterialNotes/discussions',
       ),
     );
   }
@@ -96,6 +85,28 @@ class SettingsAboutPage extends StatelessWidget {
     );
   }
 
+  /// Opens the application's GitHub repository.
+  void _openGitHub(_) {
+    launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'github.com',
+        path: 'maelchiotti/LocalMaterialNotes',
+      ),
+    );
+  }
+
+  /// Opens the application's license file.
+  void _openLicense(_) {
+    launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'github.com',
+        path: 'maelchiotti/LocalMaterialNotes/blob/main/LICENSE',
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final appVersion = InfoUtils().appVersion;
@@ -108,14 +119,36 @@ class SettingsAboutPage extends StatelessWidget {
             SettingsTile(
               leading: const Icon(Icons.info),
               title: Text(localizations.app_name),
-              value: Text(appVersion),
+              value: Text('v$appVersion'),
               onPressed: _showAbout,
             ),
             SettingsTile(
               leading: const Icon(Icons.build),
               title: Text(localizations.settings_build_mode),
               value: Text(InfoUtils().buildMode),
-              onPressed: _showAbout,
+            ),
+          ],
+        ),
+        SettingsSection(
+          title: Text(localizations.settings_about_help),
+          tiles: [
+            SettingsTile(
+              leading: const Icon(Icons.bug_report),
+              title: Text(localizations.settings_github_issues),
+              value: Text(localizations.settings_github_issues_description),
+              onPressed: _openGitHubIssues,
+            ),
+            SettingsTile(
+              leading: const Icon(Icons.forum),
+              title: Text(localizations.settings_github_discussions),
+              value: Text(localizations.settings_github_discussions_description),
+              onPressed: _openGitHubDiscussions,
+            ),
+            SettingsTile(
+              leading: const Icon(Icons.mail),
+              title: Text(localizations.settings_get_in_touch),
+              value: Text(localizations.settings_get_in_touch_description),
+              onPressed: _sendMail,
             ),
           ],
         ),
@@ -133,18 +166,6 @@ class SettingsAboutPage extends StatelessWidget {
               title: Text(localizations.settings_licence),
               value: Text(localizations.settings_licence_description),
               onPressed: _openLicense,
-            ),
-            SettingsTile(
-              leading: const Icon(Icons.bug_report),
-              title: Text(localizations.settings_issue),
-              value: Text(localizations.settings_issue_description),
-              onPressed: _openIssues,
-            ),
-            SettingsTile(
-              leading: const Icon(Icons.mail),
-              title: Text(localizations.settings_get_in_touch),
-              value: Text(localizations.settings_get_in_touch_description),
-              onPressed: _sendMail,
             ),
           ],
         ),

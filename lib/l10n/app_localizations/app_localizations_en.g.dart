@@ -159,6 +159,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_editor => 'Editor';
 
   @override
+  String get settings_editor_formatting => 'Formatting';
+
+  @override
   String get settings_editor_description => 'Buttons, toolbar';
 
   @override
@@ -176,7 +179,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Show the button to toggle checklists in the editor\'s app bar, hiding it from the editor\'s toolbar if enabled';
 
   @override
-  String get settings_show_toolbar => 'Editor toolbar';
+  String get settings_show_toolbar => 'Toolbar';
 
   @override
   String get settings_show_toolbar_description => 'Show the editor\'s toolbar to enable advanced text formatting';
@@ -303,6 +306,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_about_links => 'Links';
 
   @override
+  String get settings_about_help => 'Help';
+
+  @override
   String get settings_about_description => 'Information, GitHub, license, help';
 
   @override
@@ -327,16 +333,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
-  String get settings_issue => 'Report a bug';
+  String get settings_github_issues => 'Report a bug';
 
   @override
-  String get settings_issue_description => 'Report a bug by creating an issue on GitHub';
+  String get settings_github_issues_description => 'Report a bug by creating a GitHub issue';
 
   @override
-  String get settings_get_in_touch => 'Get in touch';
+  String get settings_github_discussions => 'Ask a question';
 
   @override
-  String get settings_get_in_touch_description => 'Get in touch with the developer via mail at contact@maelchiotti.dev';
+  String get settings_github_discussions_description => 'Ask a question on GitHub discussions';
+
+  @override
+  String get settings_get_in_touch => 'Contact the developer';
+
+  @override
+  String get settings_get_in_touch_description => 'Contact the developer via mail at contact@maelchiotti.dev';
 
   @override
   String get hint_title => 'Title';

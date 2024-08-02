@@ -12,14 +12,18 @@ class CustomSettingsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return SettingsList(
       platform: DevicePlatform.android,
       contentPadding: Paddings.custom.bottomSystemUi,
       lightTheme: SettingsThemeData(
-        settingsListBackground: Theme.of(context).colorScheme.surface,
+        settingsListBackground: theme.colorScheme.surface,
+        titleTextColor: theme.textTheme.bodyMedium?.color,
       ),
       darkTheme: SettingsThemeData(
-        settingsListBackground: Theme.of(context).colorScheme.surface,
+        settingsListBackground: theme.colorScheme.surface,
+        titleTextColor: theme.textTheme.bodyMedium?.color,
       ),
       sections: sections,
     );
