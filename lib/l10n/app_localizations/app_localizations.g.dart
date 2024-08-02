@@ -395,7 +395,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_editor_description.
   ///
   /// In en, this message translates to:
-  /// **'Buttons, toolbar'**
+  /// **'Buttons, toolbar, spacing'**
   String get settings_editor_description;
 
   /// No description provided for @settings_show_undo_redo_buttons.

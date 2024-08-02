@@ -165,7 +165,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_editor_appearance => 'Appearance';
 
   @override
-  String get settings_editor_description => 'Buttons, toolbar';
+  String get settings_editor_description => 'Buttons, toolbar, spacing';
 
   @override
   String get settings_show_undo_redo_buttons => 'Undo/redo buttons';

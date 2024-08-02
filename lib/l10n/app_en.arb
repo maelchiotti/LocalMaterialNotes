@@ -49,7 +49,7 @@
   "settings_editor": "Editor",
   "settings_editor_formatting": "Formatting",
   "settings_editor_appearance": "Appearance",
-  "settings_editor_description": "Buttons, toolbar",
+  "settings_editor_description": "Buttons, toolbar, spacing",
   "settings_show_undo_redo_buttons": "Undo/redo buttons",
   "settings_show_undo_redo_buttons_description": "Show the buttons to undo and redo changes in the editor''s app bar",
   "settings_show_checklist_button": "Checklist button",
