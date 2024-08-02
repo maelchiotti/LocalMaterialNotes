@@ -17,7 +17,6 @@ import 'package:localmaterialnotes/utils/constants/sizes.dart';
 import 'package:localmaterialnotes/utils/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/utils/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/utils/preferences/enums/swipe_direction.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
 /// List tile that displays the main info about a note.
 ///
@@ -40,6 +39,37 @@ class NoteTile extends ConsumerStatefulWidget {
 }
 
 class _NoteTileState extends ConsumerState<NoteTile> {
+  /// Returns the background color of the note tile.
+  ///
+  /// The background color depends on:
+  ///   - Whether the note is selected.
+  ///   - Whether the [showTilesBackground] setting is enabled.
+  ///
+  /// If neither are `true`, then `null` is returned.
+  Color? _backgroundColor(bool showTilesBackground) {
+    // The tile has a background color only if it is selected,
+    // or if the setting to show the background of the tiles is enabled
+
+    if (widget.note.selected) {
+      return Theme.of(context).colorScheme.secondaryContainer;
+    } else if (showTilesBackground) {
+      return Theme.of(context).colorScheme.surfaceContainerHighest;
+    } else {
+      return null;
+    }
+  }
+
+  /// Returns the border radius of the note tile.
+  ///
+  /// The border radius depends on:
+  ///   - Whether the layout is [Layout.grid].
+  ///   - Whether the [showTilesBackground] setting is enabled.
+  ///
+  /// If neither are `true`, then [BorderRadius.zero] is returned.
+  BorderRadius _borderRadius(Layout layout, bool showTilesBackground) {
+    return layout == Layout.grid || showTilesBackground ? Radiuses.radius16.circular : BorderRadius.zero;
+  }
+
   /// Returns the [DismissDirection] of the note tile, depending on the [rightSwipeAction] and the [leftSwipeAction].
   ///
   /// There are 4 possible outputs:
@@ -183,96 +213,91 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
   @override
   Widget build(BuildContext context) {
-    final layout = Layout.fromPreference();
+    return ValueListenableBuilder(
+      valueListenable: layoutNotifier,
+      builder: (BuildContext context, layout, Widget? child) {
+        return ValueListenableBuilder(
+          valueListenable: showTilesBackgroundNotifier,
+          builder: (BuildContext context, showTilesBackground, Widget? child) {
+            return ValueListenableBuilder(
+              valueListenable: swipeActionsNotifier,
+              builder: (BuildContext context, swipeActions, Widget? child) {
+                final rightSwipeAction = swipeActions.$1;
+                final leftSwipeAction = swipeActions.$2;
 
-    final showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();
+                final direction = _dismissDirection(rightSwipeAction, leftSwipeAction);
 
-    // The tile has a background color only if it is selected,
-    // or if the setting to show the background of the tiles is enabled
-    Color? color;
-    if (widget.note.selected) {
-      color = Theme.of(context).colorScheme.secondaryContainer;
-    } else if (showTilesBackground) {
-      color = Theme.of(context).colorScheme.surfaceContainerHighest;
-    }
+                final dismissibleWidgets = _dismissibleWidgets(direction, rightSwipeAction, leftSwipeAction);
+                final dismissibleMainWidget = dismissibleWidgets.$1;
+                final dismissibleSecondaryWidget = dismissibleWidgets.$2;
 
-    // Wrap with Material to fix the tile background color not updating in real time
-    // when the tile is selected and the view is scrolled
-    // See https://github.com/flutter/flutter/issues/86584
-    final tile = Material(
-      child: Ink(
-        color: color,
-        child: InkWell(
-          onTap: _openOrSelect,
-          onLongPress: widget.searchView ? null : _enterSelectionMode,
-          child: Padding(
-            padding: Paddings.padding16.all,
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Title
-                      if (!widget.note.isTitleEmpty)
-                        Text(
-                          widget.note.title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.titleMedium,
+                return ClipRRect(
+                  borderRadius: _borderRadius(layout, showTilesBackground),
+                  child: Dismissible(
+                    key: Key(widget.note.id.toString()),
+                    direction: direction,
+                    background: dismissibleMainWidget,
+                    secondaryBackground: dismissibleSecondaryWidget,
+                    confirmDismiss: (dismissDirection) => _dismiss(dismissDirection, rightSwipeAction, leftSwipeAction),
+
+                    // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
+                    // See https://github.com/flutter/flutter/issues/86584
+                    child: Material(
+                      child: Ink(
+                        color: _backgroundColor(showTilesBackground),
+                        child: InkWell(
+                          onTap: _openOrSelect,
+                          onLongPress: widget.searchView ? null : _enterSelectionMode,
+                          child: Padding(
+                            padding: Paddings.padding16.all,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      // Title
+                                      if (!widget.note.isTitleEmpty)
+                                        Text(
+                                          widget.note.title,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: Theme.of(context).textTheme.titleMedium,
+                                        ),
+                                      // Subtitle
+                                      if (!widget.note.isContentEmpty && !widget.note.isContentPreviewEmpty)
+                                        Text(
+                                          widget.note.contentPreview,
+                                          maxLines: 3,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                                color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
+                                              ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                                // Trailing
+                                if (widget.note.pinned && !widget.note.deleted) ...[
+                                  Padding(padding: Paddings.padding2.horizontal),
+                                  Icon(
+                                    Icons.push_pin,
+                                    size: Sizes.size16.size,
+                                  ),
+                                ],
+                              ],
+                            ),
+                          ),
                         ),
-                      // Subtitle
-                      if (!widget.note.isContentEmpty && !widget.note.isContentPreviewEmpty)
-                        Text(
-                          widget.note.contentPreview,
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
-                              ),
-                        ),
-                    ],
+                      ),
+                    ),
                   ),
-                ),
-                // Trailing
-                if (widget.note.pinned && !widget.note.deleted) ...[
-                  Padding(padding: Paddings.padding2.horizontal),
-                  Icon(
-                    Icons.push_pin,
-                    size: Sizes.size16.size,
-                  ),
-                ],
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-
-    return ClipRRect(
-      borderRadius: layout == Layout.grid || showTilesBackground ? Radiuses.radius16.circular : BorderRadius.zero,
-      child: ValueListenableBuilder(
-        valueListenable: swipeActionsNotifier,
-        builder: (context, swipeActions, child) {
-          final rightSwipeAction = swipeActions.$1;
-          final leftSwipeAction = swipeActions.$2;
-
-          final direction = _dismissDirection(rightSwipeAction, leftSwipeAction);
-
-          final dismissibleWidgets = _dismissibleWidgets(direction, rightSwipeAction, leftSwipeAction);
-          final dismissibleMainWidget = dismissibleWidgets.$1;
-          final dismissibleSecondaryWidget = dismissibleWidgets.$2;
-
-          return Dismissible(
-            key: Key(widget.note.id.toString()),
-            direction: direction,
-            background: dismissibleMainWidget,
-            secondaryBackground: dismissibleSecondaryWidget,
-            confirmDismiss: (dismissDirection) => _dismiss(dismissDirection, rightSwipeAction, leftSwipeAction),
-            child: tile,
-          );
-        },
-      ),
+                );
+              },
+            );
+          },
+        );
+      },
     );
   }
 }

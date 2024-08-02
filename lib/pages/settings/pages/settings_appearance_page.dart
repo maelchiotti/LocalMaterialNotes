@@ -103,25 +103,18 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   void _toggleDynamicTheming(bool toggled) {
     setState(() {
       PreferencesUtils().set<bool>(PreferenceKey.dynamicTheming.name, toggled);
-
-      dynamicThemingNotifier.value = toggled;
     });
+
+    dynamicThemingNotifier.value = toggled;
   }
 
   /// Toggles the black theming.
   void _toggleBlackTheming(bool toggled) {
     setState(() {
       PreferencesUtils().set<bool>(PreferenceKey.blackTheming.name, toggled);
-
-      blackThemingNotifier.value = toggled;
     });
-  }
 
-  /// Toggles the setting to show the separators between the notes tiles.
-  void _toggleShowSeparators(bool toggled) {
-    setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showSeparators.name, toggled);
-    });
+    blackThemingNotifier.value = toggled;
   }
 
   /// Toggles the setting to show background of the notes tiles.
@@ -129,6 +122,17 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     setState(() {
       PreferencesUtils().set<bool>(PreferenceKey.showTilesBackground.name, toggled);
     });
+
+    showTilesBackgroundNotifier.value = toggled;
+  }
+
+  /// Toggles the setting to show the separators between the notes tiles.
+  void _toggleShowSeparators(bool toggled) {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.showSeparators.name, toggled);
+    });
+
+    showSeparatorsNotifier.value = toggled;
   }
 
   @override
