@@ -72,6 +72,8 @@ class SettingsAboutPage extends StatelessWidget {
     final appVersion = InfoUtils().appVersion;
     final buildMode = InfoUtils().buildMode;
     final androidVersion = InfoUtils().androidVersion;
+    final brand = InfoUtils().brand;
+    final model = InfoUtils().model;
 
     launchUrl(
       Uri(
@@ -79,7 +81,7 @@ class SettingsAboutPage extends StatelessWidget {
         path: 'contact@maelchiotti.dev',
         query: _encodeQueryParameters({
           'subject': '[Material Notes] ',
-          'body': '\n\n\n----------\nv$appVersion\n$buildMode mode\nAndroid $androidVersion',
+          'body': '\n\n\n----------\nv$appVersion\n$buildMode mode\nAndroid $androidVersion\n$brand $model',
         }),
       ),
     );

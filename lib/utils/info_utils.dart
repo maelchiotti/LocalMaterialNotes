@@ -24,6 +24,10 @@ class InfoUtils {
 
   int get androidVersion => _androidDeviceInfo.version.sdkInt;
 
+  String get brand => _androidDeviceInfo.brand;
+
+  String get model => _androidDeviceInfo.model;
+
   String get buildMode =>
       kReleaseMode ? localizations.settings_build_mode_release : localizations.settings_build_mode_debug;
 }
