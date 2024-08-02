@@ -251,30 +251,28 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
     return ClipRRect(
       borderRadius: layout == Layout.grid || showTilesBackground ? Radiuses.radius16.circular : BorderRadius.zero,
-      child: layout == Layout.list
-          ? ValueListenableBuilder(
-              valueListenable: swipeActionsNotifier,
-              builder: (context, swipeActions, child) {
-                final rightSwipeAction = swipeActions.$1;
-                final leftSwipeAction = swipeActions.$2;
+      child: ValueListenableBuilder(
+        valueListenable: swipeActionsNotifier,
+        builder: (context, swipeActions, child) {
+          final rightSwipeAction = swipeActions.$1;
+          final leftSwipeAction = swipeActions.$2;
 
-                final direction = _dismissDirection(rightSwipeAction, leftSwipeAction);
+          final direction = _dismissDirection(rightSwipeAction, leftSwipeAction);
 
-                final dismissibleWidgets = _dismissibleWidgets(direction, rightSwipeAction, leftSwipeAction);
-                final dismissibleMainWidget = dismissibleWidgets.$1;
-                final dismissibleSecondaryWidget = dismissibleWidgets.$2;
+          final dismissibleWidgets = _dismissibleWidgets(direction, rightSwipeAction, leftSwipeAction);
+          final dismissibleMainWidget = dismissibleWidgets.$1;
+          final dismissibleSecondaryWidget = dismissibleWidgets.$2;
 
-                return Dismissible(
-                  key: Key(widget.note.id.toString()),
-                  direction: direction,
-                  background: dismissibleMainWidget,
-                  secondaryBackground: dismissibleSecondaryWidget,
-                  confirmDismiss: (dismissDirection) => _dismiss(dismissDirection, rightSwipeAction, leftSwipeAction),
-                  child: tile,
-                );
-              },
-            )
-          : tile,
+          return Dismissible(
+            key: Key(widget.note.id.toString()),
+            direction: direction,
+            background: dismissibleMainWidget,
+            secondaryBackground: dismissibleSecondaryWidget,
+            confirmDismiss: (dismissDirection) => _dismiss(dismissDirection, rightSwipeAction, leftSwipeAction),
+            child: tile,
+          );
+        },
+      ),
     );
   }
 }

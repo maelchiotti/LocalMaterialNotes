@@ -13,19 +13,22 @@ class DismissibleDeleteWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const icon = Icon(Icons.delete);
+    final text = Text(
+      localizations.dismiss_delete,
+      style: Theme.of(context).textTheme.titleMedium,
+    );
+
     return ColoredBox(
       color: Colors.red,
       child: Padding(
-        padding: Paddings.padding8.horizontal,
+        padding: Paddings.padding16.horizontal,
         child: Row(
           mainAxisAlignment: swipeDirection == SwipeDirection.right ? MainAxisAlignment.start : MainAxisAlignment.end,
           children: [
-            const Icon(Icons.delete),
+            if (swipeDirection == SwipeDirection.right) icon else text,
             Padding(padding: Paddings.padding4.horizontal),
-            Text(
-              localizations.dismiss_delete,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
+            if (swipeDirection == SwipeDirection.right) text else icon,
           ],
         ),
       ),

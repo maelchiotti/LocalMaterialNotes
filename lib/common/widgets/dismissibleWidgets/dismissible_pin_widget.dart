@@ -16,19 +16,22 @@ class DismissiblePinWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final icon = Icon(note.pinned ? Icons.push_pin_outlined : Icons.push_pin);
+    final text = Text(
+      note.pinned ? localizations.dismiss_unpin : localizations.dismiss_pin,
+      style: Theme.of(context).textTheme.titleMedium,
+    );
+
     return ColoredBox(
       color: Colors.blue,
       child: Padding(
-        padding: Paddings.padding8.horizontal,
+        padding: Paddings.padding16.horizontal,
         child: Row(
           mainAxisAlignment: swipeDirection == SwipeDirection.right ? MainAxisAlignment.start : MainAxisAlignment.end,
           children: [
-            Icon(note.pinned ? Icons.push_pin_outlined : Icons.push_pin),
+            if (swipeDirection == SwipeDirection.right) icon else text,
             Padding(padding: Paddings.padding4.horizontal),
-            Text(
-              note.pinned ? localizations.dismiss_unpin : localizations.dismiss_pin,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
+            if (swipeDirection == SwipeDirection.right) text else icon,
           ],
         ),
       ),
