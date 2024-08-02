@@ -48,9 +48,6 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   ///
   /// If none are `true`, then `null` is returned.
   Color? _backgroundColor(bool showTilesBackground) {
-    // The tile has a background color only if it is selected,
-    // or if the setting to show the background of the tiles is enabled
-
     if (widget.searchView) {
       return Theme.of(context).colorScheme.surfaceContainerHigh;
     } else if (widget.note.selected) {
