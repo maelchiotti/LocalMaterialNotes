@@ -30,10 +30,6 @@ class ThemeUtils {
     return PreferenceKey.blackTheming.getPreferenceOrDefault<bool>();
   }
 
-  Brightness get brightness {
-    return Theme.of(navigatorKey.currentContext!).brightness;
-  }
-
   ThemeMode get themeMode {
     final themeModePreference = PreferenceKey.theme.getPreferenceOrDefault<int>();
 

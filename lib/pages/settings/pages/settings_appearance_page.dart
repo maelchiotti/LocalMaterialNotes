@@ -138,6 +138,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   @override
   Widget build(BuildContext context) {
     final locale = LocaleUtils().appLocale.nativeDisplayLanguage.capitalized;
+    final showUseBlackTheming = Theme.of(context).colorScheme.brightness == Brightness.dark;
 
     final showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
     final showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();
@@ -168,7 +169,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
               onToggle: _toggleDynamicTheming,
             ),
             SettingsTile.switchTile(
-              enabled: ThemeUtils().brightness == Brightness.dark,
+              enabled: showUseBlackTheming,
               leading: const Icon(Icons.nightlight),
               title: Text(localizations.settings_black_theming),
               description: Text(localizations.settings_black_theming_description),
