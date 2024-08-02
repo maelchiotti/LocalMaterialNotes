@@ -27,12 +27,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Notes tiles: use rounded corners when background is not shown, use correct background color in list view
 - Keyboard opening when toggling a checkbox
 - Keyboard popping back up after using the back gesture
+- App closing when going back while the selection mode is active instead of exiting it
 - Strings inconsistencies
 
 ### Removed
 
 - Swipe actions in the bin
-- Compatibility with exports made before v1.5.0
 
 ## 1.4.0 - 2024-06-27
 
