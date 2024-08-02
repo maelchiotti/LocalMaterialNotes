@@ -93,7 +93,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_dynamic_theming => 'Dinamik tema';
 
   @override
-  String get settings_dynamic_theming_description => 'Sisteminizdeki rengi baz alın';
+  String get settings_dynamic_theming_description => 'Generate colors from the system';
 
   @override
   String get settings_black_theming => 'Siyah tema';
@@ -102,10 +102,11 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_black_theming_description => 'Koyu modda siyah arkaplan kullanın';
 
   @override
-  String get settings_show_separators => 'Ayırıcıları göster';
+  String get settings_show_separators => 'Separators';
 
   @override
-  String get settings_show_separators_description => 'Notları kolayca ayırt etmek için aralarında bir ayırıcı gösterin';
+  String get settings_show_separators_description =>
+      'Show a separator between the notes tiles to differentiate them easily';
 
   @override
   String get settings_show_tiles_background => 'Background';
@@ -127,7 +128,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_behavior_swipe_actions => 'Swipe actions';
 
   @override
-  String get settings_confirmations => 'Onay diyaloglarını göster';
+  String get settings_confirmations => 'Confirmation dialogs';
 
   @override
   String get settings_confirmations_description =>
@@ -148,7 +149,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'Action to trigger when a left swipe is performed on the notes tiles';
 
   @override
-  String get settings_flag_secure => 'Make app secure';
+  String get settings_flag_secure => 'Flag the app as secure';
 
   @override
   String get settings_flag_secure_description =>
@@ -283,14 +284,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_export_json_description =>
-      'Notları daha sonra kurtarabilmek için bir JSON dosyasına (çöp kutusu dahil) aktarın';
+      'Immediately export the notes to a JSON file (bin included) that can be imported back';
 
   @override
   String get settings_export_markdown => 'Markdown olarak dışa aktar';
 
   @override
-  String get settings_export_markdown_description =>
-      'Notları daha sonra kurtarabilmek için bir markdown dosyasına (çöp kutusu dahil) aktarın';
+  String get settings_export_markdown_description => 'Immediately export the notes to a Markdown file (bin included)';
 
   @override
   String get settings_import => 'İçe aktar';
@@ -522,7 +522,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get placeholder_notes => 'Not yok';
 
   @override
-  String get placeholder_bin => 'Çöp kutusu boş';
+  String get placeholder_bin => 'No deleted notes';
 
   @override
   String get menu_pin => 'Sabitle';

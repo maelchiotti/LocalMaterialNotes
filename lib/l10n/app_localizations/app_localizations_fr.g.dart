@@ -36,19 +36,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get navigation_settings => 'Paramètres';
 
   @override
-  String get navigation_settings_appearance => 'Appearance';
+  String get navigation_settings_appearance => 'Apparence';
 
   @override
-  String get navigation_settings_behavior => 'Behavior';
+  String get navigation_settings_behavior => 'Comportement';
 
   @override
-  String get navigation_settings_editor => 'Editor';
+  String get navigation_settings_editor => 'Éditeur';
 
   @override
-  String get navigation_settings_backup => 'Backup';
+  String get navigation_settings_backup => 'Sauvegarde';
 
   @override
-  String get navigation_settings_about => 'About';
+  String get navigation_settings_about => 'À propos';
 
   @override
   String get button_ok => 'Ok';
@@ -66,13 +66,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_appearance => 'Apparence';
 
   @override
-  String get settings_appearance_description => 'Language, theme, notes tiles';
+  String get settings_appearance_description => 'Langue, thème, tuiles de notes';
 
   @override
   String get settings_appearance_application => 'Application';
 
   @override
-  String get settings_appearance_notes_tiles => 'Notes tiles';
+  String get settings_appearance_notes_tiles => 'Tuiles de notes';
 
   @override
   String get settings_language => 'Langue';
@@ -93,23 +93,23 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_dynamic_theming => 'Thème dynamique';
 
   @override
-  String get settings_dynamic_theming_description => 'Générer les couleurs depuis le système';
+  String get settings_dynamic_theming_description => 'Générer des couleurs depuis le système';
 
   @override
   String get settings_black_theming => 'Thème noir';
 
   @override
-  String get settings_black_theming_description => 'Utiliser un fond noir pour le thème sombre';
+  String get settings_black_theming_description => 'Utilise un fond noir pour le thème sombre';
 
   @override
   String get settings_show_separators => 'Séparateurs';
 
   @override
   String get settings_show_separators_description =>
-      'Afficher un séparateur entre les tuiles des notes pour les différencier plus facilement';
+      'Afficher un séparateur entre les tuiles de notes pour les différencier facilement';
 
   @override
-  String get settings_show_tiles_background => 'Arrière plan des tuiles';
+  String get settings_show_tiles_background => 'Fond';
 
   @override
   String get settings_show_tiles_background_description =>
@@ -122,144 +122,144 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_behavior_application => 'Application';
 
   @override
-  String get settings_behavior_description => 'Confirmations, swipe actions';
+  String get settings_behavior_description => 'Confirmations, actions de balayage';
 
   @override
-  String get settings_behavior_swipe_actions => 'Swipe actions';
+  String get settings_behavior_swipe_actions => 'Actions de balayage';
 
   @override
   String get settings_confirmations => 'Dialogues de confirmation';
 
   @override
   String get settings_confirmations_description =>
-      'Show the confirmation dialogs for actions such as pining and deleting notes';
+      'Afficher les dialogues de confirmation pour les actions telles qu\'épingler ou supprimer les notes';
 
   @override
-  String get settings_swipe_action_right => 'Right swipe action';
+  String get settings_swipe_action_right => 'Action de balayage à droite';
 
   @override
   String get settings_swipe_action_right_description =>
-      'Action to trigger when a right swipe is performed on the notes tiles';
+      'Action à déclencher lorsqu\'un balayage vers la droite est effectué sur les tuiles de notes';
 
   @override
-  String get settings_swipe_action_left => 'Left swipe action';
+  String get settings_swipe_action_left => 'Action de balayage à gauche';
 
   @override
   String get settings_swipe_action_left_description =>
-      'Action to trigger when a left swipe is performed on the notes tiles';
+      'Action à déclencher lorsqu\'un balayage vers la gauche est effectué sur les tuiles de notes';
 
   @override
-  String get settings_flag_secure => 'Make app secure';
+  String get settings_flag_secure => 'Marquer l\'application comme sécurisée';
 
   @override
   String get settings_flag_secure_description =>
-      'Hide the app from the recent apps and prevent screenshots from being made';
+      'Masquer lapplication des applications récentes et empêcher la réalisation de captures décran';
 
   @override
   String get settings_editor => 'Éditeur';
 
   @override
-  String get settings_editor_formatting => 'Formatting';
+  String get settings_editor_formatting => 'Mise en forme';
 
   @override
-  String get settings_editor_appearance => 'Appearance';
+  String get settings_editor_appearance => 'Apparence';
 
   @override
-  String get settings_editor_description => 'Buttons, toolbar, spacing';
+  String get settings_editor_description => 'Boutons, barre d\'outils, espacement';
 
   @override
   String get settings_show_undo_redo_buttons => 'Boutons annuler/rétablir';
 
   @override
   String get settings_show_undo_redo_buttons_description =>
-      'Afficher les boutons pour annuler et rétablir les modifications dans l\'éditeur';
+      'Afficher les boutons pour annuler et refaire les modifications dans la barre d\'application de l\'éditeur';
 
   @override
   String get settings_show_checklist_button => 'Bouton case à cocher';
 
   @override
   String get settings_show_checklist_button_description =>
-      'Afficher le bouton pour basculer les cases à cocher dans l\'éditeur';
+      'Afficher le bouton pour activer/désactiver les cases à cocher dans la barre d\'application de l\'éditeur, en le cachant de la barre d\'outils de l\'éditeur si activée';
 
   @override
-  String get settings_show_toolbar => 'Barre d\'outils de l\'éditeur';
+  String get settings_show_toolbar => 'Barre d\'outils';
 
   @override
   String get settings_show_toolbar_description =>
-      'Afficher la barre d\'outils de l\'éditeur pour permettre le formatage textuel avancé';
+      'Afficher la barre d\'outils de l\'éditeur pour permettre la mise en forme textuelle avancée';
 
   @override
-  String get settings_use_paragraph_spacing => 'Paragraph spacing';
+  String get settings_use_paragraph_spacing => 'Espacement entre les paragraphes';
 
   @override
-  String get settings_use_paragraph_spacing_description => 'Use spacing between paragraphs';
+  String get settings_use_paragraph_spacing_description => 'Utiliser l\'espacement entre les paragraphes';
 
   @override
   String get settings_backup => 'Sauvegarde';
 
   @override
-  String get settings_backup_description => 'Export, import';
+  String get settings_backup_description => 'Exportation, importation';
 
   @override
-  String get settings_backup_export => 'Export';
+  String get settings_backup_export => 'Exporter';
 
   @override
-  String get settings_backup_import => 'Import';
+  String get settings_backup_import => 'Importer';
 
   @override
-  String get settings_auto_export => 'Auto export as JSON';
+  String get settings_auto_export => 'Export automatique en JSON';
 
   @override
   String get settings_auto_export_description =>
-      'Automatically export the notes to a JSON file (bin included) that can be imported back';
+      'Exporter les notes automatiquement dans un fichier JSON (corbeille incluse) qui peut être réimporté';
 
   @override
   String settings_auto_export_value(String encrypt, String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
+        '1': 'jour',
+        '7': 'semaine',
+        '14': '2 semaines',
+        '30': 'mois',
+        'other': '$frequency jours',
       },
     );
     String _temp1 = intl.Intl.selectLogic(
       encrypt,
       {
-        'true': 'encrypted',
-        'false': 'not encrypted',
+        'true': 'chiffré',
+        'false': 'non chiffré',
         'other': '',
       },
     );
-    return 'Every $_temp0, $_temp1';
+    return 'Tous les $_temp0, $_temp1';
   }
 
   @override
-  String get settings_auto_export_disabled => 'Disabled';
+  String get settings_auto_export_disabled => 'Désactivé';
 
   @override
   String settings_auto_export_directory(Object directory) {
-    return 'Exports can be found in $directory';
+    return 'Les exports peuvent être trouvés dans $directory';
   }
 
   @override
-  String get settings_auto_export_dialog_description_disabled => 'Auto export will be disabled.';
+  String get settings_auto_export_dialog_description_disabled => 'L\'export automatique sera désactivé.';
 
   @override
   String settings_auto_export_dialog_description_enabled(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
+        '1': 'jour',
+        '7': 'semaine',
+        '14': '2 semaines',
+        '30': 'mois',
+        'other': '$frequency jours',
       },
     );
-    return 'Auto export will be performed every $_temp0. Set the frequency to 0 to disable it.';
+    return 'L\'exportation automatique sera effectuée tous les $_temp0. Mettez la fréquence à 0 pour la désactiver.';
   }
 
   @override
@@ -285,13 +285,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_export_json_description =>
-      'Exporter les notes dans un fichier JSON (corbeille incluse) qui peut être réimporté';
+      'Exporter immédiatement les notes vers un fichier JSON (corbeille incluse) qui peut être réimporté';
 
   @override
   String get settings_export_markdown => 'Exporter en Markdown';
 
   @override
-  String get settings_export_markdown_description => 'Exporter les notes dans un fichier Markdown (corbeille incluse)';
+  String get settings_export_markdown_description =>
+      'Exporter immédiatement les notes vers un fichier Markdown (corbeille incluse)';
 
   @override
   String get settings_import => 'Importer';
@@ -304,7 +305,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_import_incompatible_prior_v1_5_0 =>
-      'Exports made in versions prior to v1.5.0 are not compatible anymore. Please see the pinned issue on GitHub for an easy fix.';
+      'Les exportations effectuées dans des versions antérieures à la version 1.5.0 ne sont plus compatibles. Veuillez consulter l\'issue GitHub épinglée pour une correction simple.';
 
   @override
   String get settings_about => 'À propos';
@@ -313,19 +314,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_about_application => 'Application';
 
   @override
-  String get settings_about_links => 'Links';
+  String get settings_about_links => 'Liens';
 
   @override
-  String get settings_about_help => 'Help';
+  String get settings_about_help => 'Aide';
 
   @override
-  String get settings_about_description => 'Information, help, GitHub, license';
+  String get settings_about_description => 'Informations, aide, GitHub, licence';
 
   @override
   String get settings_build_mode => 'Build mode';
 
   @override
-  String get settings_build_mode_release => 'Release';
+  String get settings_build_mode_release => 'Production';
 
   @override
   String get settings_build_mode_debug => 'Debug';
@@ -343,22 +344,22 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
-  String get settings_github_issues => 'Report a bug';
+  String get settings_github_issues => 'Signaler un bug';
 
   @override
-  String get settings_github_issues_description => 'Report a bug by creating a GitHub issue';
+  String get settings_github_issues_description => 'Signaler un bug en créant une issue GitHub';
 
   @override
-  String get settings_github_discussions => 'Ask a question';
+  String get settings_github_discussions => 'Poser une question';
 
   @override
-  String get settings_github_discussions_description => 'Ask a question on GitHub discussions';
+  String get settings_github_discussions_description => 'Poser une question dans les discussions GitHub';
 
   @override
-  String get settings_get_in_touch => 'Contact the developer';
+  String get settings_get_in_touch => 'Contacter le développeur';
 
   @override
-  String get settings_get_in_touch_description => 'Contact the developer via mail at contact@maelchiotti.dev';
+  String get settings_get_in_touch_description => 'Contacter le développeur par mail à contact@maelchiotti.dev';
 
   @override
   String get hint_title => 'Titre';
@@ -483,33 +484,33 @@ class AppLocalizationsFr extends AppLocalizations {
       'Voulez-vous vraiment vider définitivement la corbeille ? Vous ne pourrez pas restaurer les notes qu\'elle contient.';
 
   @override
-  String get dialog_export_encryption_switch => 'Encrypt the JSON export';
+  String get dialog_export_encryption_switch => 'Chiffrer l\'export JSON';
 
   @override
   String get dialog_export_encryption_description =>
-      'The title and the content of the notes will be encrypted using your password. It should be randomly generated, exactly 32 characters long, strong (at least 1 lowercase, 1 uppercase, 1 number and 1 special character) and securely stored.';
+      'Le titre et le contenu des notes seront chiffrés à laide de votre mot de passe. Il devrait être généré de façon aléatoire, dexactement 32 caractères de long, fort (au moins 1 minuscule, 1 majuscule, 1 chiffre et 1 caractère spécial) et stocké de manière sécurisée.';
 
   @override
   String get dialog_export_encryption_secondary_description_auto =>
-      'This password will be used for all future auto exports.';
+      'Ce mot de passe sera utilisé pour tous les futurs exports automatiques.';
 
   @override
   String get dialog_export_encryption_secondary_description_manual =>
-      'This password will only be used for this export.';
+      'Ce mot de passe ne sera utilisé que pour cet export.';
 
   @override
-  String get dialog_export_encryption_password_hint => 'Password';
+  String get dialog_export_encryption_password_hint => 'Mot de passe';
 
   @override
-  String get dialog_export_encryption_password_invalid => 'Invalid';
+  String get dialog_export_encryption_password_invalid => 'Invalide';
 
   @override
   String get dialog_import_encryption_password_description =>
-      'This export is encrypted. To import it, you need to provide the password used to encrypt it.';
+      'Cet export est chiffré. Pour l\'importer, vous devez fournir le mot de passe utilisé pour le chiffrer.';
 
   @override
   String get dialog_import_encryption_password_error =>
-      'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.';
+      'le déchiffrement de lexport a échoué. Veuillez vérifier que vous avez fourni le même mot de passe que celui que vous avez utilisé pour chiffrer lexport.';
 
   @override
   String get sort_date => 'Date';
@@ -524,7 +525,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get placeholder_notes => 'Pas de notes';
 
   @override
-  String get placeholder_bin => 'La corbeille est vide';
+  String get placeholder_bin => 'Aucune note supprimée';
 
   @override
   String get menu_pin => 'Épingler';
@@ -557,13 +558,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get confirmations_title_all => 'Toujours';
 
   @override
-  String get swipe_action_disabled => 'Disabled';
+  String get swipe_action_disabled => 'Désactivé';
 
   @override
-  String get swipe_action_delete => 'Delete';
+  String get swipe_action_delete => 'Supprimer';
 
   @override
-  String get swipe_action_pin => 'Pin';
+  String get swipe_action_pin => 'Épingler';
 
   @override
   String get dismiss_pin => 'Épingler';

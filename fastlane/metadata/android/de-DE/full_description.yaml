@@ -4,7 +4,7 @@ full_description: |
       Sie verwendet das Material Design. Sie speichert die Notizen lokal und hat keine Internetberechtigung,
       sodass nur Sie auf die Notizen zugreifen können.
   </p>
-  
+
   <p>
       <b>Notizen machen</b>
   </p>
@@ -14,7 +14,7 @@ full_description: |
       <li>Rückgängig machen und Wiederherstellen von Änderungen während der Bearbeitung</li>
       <li>Verwenden Sie die Schnellaktion auf Ihrem Startbildschirm, um schnell eine Notiz hinzuzufügen</li>
   </ul>
-  
+
   <p>
       <b>Organisieren Sie</b>
   </p>
@@ -25,7 +25,7 @@ full_description: |
       <li>Anheften von Notizen</li>
       <li>Wiederherstellen gelöschter Notizen aus dem Papierkorb</li>
   </ul>
-  
+
   <p>
       <b>Freigeben & Sichern</b>
   </p>
@@ -35,7 +35,7 @@ full_description: |
       <li>Exportieren Sie Ihre Notizen als JSON und importieren Sie sie wieder</li>
       <li>Exportieren Sie Ihre Notizen als Markdown</li>
   </ul>
-  
+
   <p>
       <b>Schützen Sie</b>
   </p>
@@ -43,7 +43,7 @@ full_description: |
       <li>Machen Sie sich keine Gedanken darüber, wie Ihre Daten gehandhabt werden:
       Sie können Ihr Gerät nicht verlassen, da die Anwendung keine Internetberechtigungen hat.</li>
   </ul>
-  
+
   <p>
       <b>Anpassen von</b>
   </p>

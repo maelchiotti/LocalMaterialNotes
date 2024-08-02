@@ -3,7 +3,7 @@ full_description: |
       <b>Material Notes</b> basitliği hedefleyen metin tabanlı bir not alma uygulamasıdır. Materyal Tasarımı benimser.
       Notları yerel olarak saklar ve internet izni yoktur, böylece notlara erişebilen tek kişi sizsiniz.
   </p>
-  
+
   <p>
       <b>Not alın</b>
   </p>
@@ -13,7 +13,7 @@ full_description: |
       <li>Düzenleme sırasında değişikliklerinizi geri alma ve yineleme</li>
       <li>Hızlı bir şekilde not eklemek için ana ekranınızdaki hızlı eylemi kullanın</li>
   </ul>
-  
+
   <p>
       <b>Organize Et</b>
   </p>
@@ -24,7 +24,7 @@ full_description: |
       <li>Notlarınızı sabitleyin</li>
       <li>Silinen notlarınızı çöp kutusundan kurtarın</li>
   </ul>
-  
+
   <p>
       <b>Paylaş ve yedekle</b>
   </p>
@@ -34,7 +34,7 @@ full_description: |
       <li>Notlarınızı JSON olarak dışa aktarın ve geri alın</li>
       <li>Notlarınızı Markdown olarak dışa aktarın</li>
   </ul>
-  
+
   <p>
       <b>Koruyun</b>
   </p>
@@ -42,7 +42,7 @@ full_description: |
       <li>Verilerinizin nasıl işlendiği konusunda asla endişelenmeyin:
       uygulama herhangi bir internet iznine sahip olmadığı için cihazınızdan ayrılamaz</li>
   </ul>
-  
+
   <p>
       <b>Özelleştirme</b>
   </p>

@@ -2,38 +2,38 @@ import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations.g.dart';
 
-/// The translations for Spanish Castilian (`es`).
-class AppLocalizationsEs extends AppLocalizations {
-  AppLocalizationsEs([String locale = 'es']) : super(locale);
+/// The translations for Russian (`ru`).
+class AppLocalizationsRu extends AppLocalizations {
+  AppLocalizationsRu([String locale = 'ru']) : super(locale);
 
   @override
   String get app_name => 'Material Notes';
 
   @override
-  String get app_tagline => 'Notas simples, locales, en Material Design';
+  String get app_tagline => 'Простые, локальные заметки в стиле material design';
 
   @override
   String app_about(Object appName) {
-    return '$appName es una aplicación de toma de notas basadas en texto, orientada a la simplicidad, diseñada adoptando Material Design. $appName almacena las notas localmente y no requiere ningún permiso de internet, siendo tú el único que puede acceder a las notas.';
+    return '$appName – это приложение для создания простых текстовых заметок. Приложение выполнено в стиле Material Design. Оно хранит заметки локально на устройстве и работает без подключения к Интернету, поэтому только вы имеете доступ к заметкам.';
   }
 
   @override
-  String get error_error => 'Error';
+  String get error_error => 'Ошибка';
 
   @override
-  String get error_permission => 'Fallo al obtener permisos para guardar el archivo.';
+  String get error_permission => 'Не удалось получить разрешение на запись файла.';
 
   @override
-  String get error_read_file => 'Fallo al leer el archivo.';
+  String get error_read_file => 'Не удалось прочитать файл.';
 
   @override
-  String get navigation_notes => 'Notas';
+  String get navigation_notes => 'Заметки';
 
   @override
-  String get navigation_bin => 'Papelera';
+  String get navigation_bin => 'Корзина';
 
   @override
-  String get navigation_settings => 'Ajustes';
+  String get navigation_settings => 'Настройки';
 
   @override
   String get navigation_settings_appearance => 'Appearance';
@@ -51,19 +51,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get navigation_settings_about => 'About';
 
   @override
-  String get button_ok => 'Aceptar';
+  String get button_ok => 'Оk';
 
   @override
-  String get button_close => 'Cerrar';
+  String get button_close => 'Закрыть';
 
   @override
-  String get button_cancel => 'Cancelar';
+  String get button_cancel => 'Отмена';
 
   @override
-  String get button_add => 'Agregar';
+  String get button_add => 'Добавить';
 
   @override
-  String get settings_appearance => 'Apariencia';
+  String get settings_appearance => 'Персонализация';
 
   @override
   String get settings_appearance_description => 'Language, theme, notes tiles';
@@ -75,31 +75,31 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_appearance_notes_tiles => 'Notes tiles';
 
   @override
-  String get settings_language => 'Idioma';
+  String get settings_language => 'Язык';
 
   @override
-  String get settings_theme => 'Tema';
+  String get settings_theme => 'Тема оформления';
 
   @override
-  String get settings_theme_system => 'Sistema';
+  String get settings_theme_system => 'По умолчанию';
 
   @override
-  String get settings_theme_light => 'Claro';
+  String get settings_theme_light => 'Светлая';
 
   @override
-  String get settings_theme_dark => 'Oscuro';
+  String get settings_theme_dark => 'Тёмная';
 
   @override
-  String get settings_dynamic_theming => 'Tema dinámico';
+  String get settings_dynamic_theming => 'Динамические цвета';
 
   @override
   String get settings_dynamic_theming_description => 'Generate colors from the system';
 
   @override
-  String get settings_black_theming => 'Negro puro';
+  String get settings_black_theming => 'Натуральный чёрный';
 
   @override
-  String get settings_black_theming_description => 'Fondo negro puro para el tema oscuro';
+  String get settings_black_theming_description => 'Использовать чёрный фон при тёмном режиме';
 
   @override
   String get settings_show_separators => 'Separators';
@@ -112,11 +112,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_show_tiles_background => 'Background';
 
   @override
-  String get settings_show_tiles_background_description =>
-      'Show the background of the notes tiles to differentiate them easily';
+  String get settings_show_tiles_background_description => 'Показывать фон у карточек с заметками';
 
   @override
-  String get settings_behavior => 'Comportamiento';
+  String get settings_behavior => 'Поведение';
 
   @override
   String get settings_behavior_application => 'Application';
@@ -132,7 +131,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settings_confirmations_description =>
-      'Show the confirmation dialogs for actions such as pining and deleting notes';
+      'Показать диалоги подтверждения при закреплении или удалении заметок';
 
   @override
   String get settings_swipe_action_right => 'Right swipe action';
@@ -156,7 +155,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Hide the app from the recent apps and prevent screenshots from being made';
 
   @override
-  String get settings_editor => 'Editor';
+  String get settings_editor => 'Редактор';
 
   @override
   String get settings_editor_formatting => 'Formatting';
@@ -168,14 +167,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_editor_description => 'Buttons, toolbar, spacing';
 
   @override
-  String get settings_show_undo_redo_buttons => 'Botones deshacer/rehacer';
+  String get settings_show_undo_redo_buttons => 'Кнопки отмены/повтора';
 
   @override
   String get settings_show_undo_redo_buttons_description =>
       'Show the buttons to undo and redo changes in the editor\'s app bar';
 
   @override
-  String get settings_show_checklist_button => 'Botón de casilla de verificación';
+  String get settings_show_checklist_button => 'Кнопка для переключения списков';
 
   @override
   String get settings_show_checklist_button_description =>
@@ -194,7 +193,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_use_paragraph_spacing_description => 'Use spacing between paragraphs';
 
   @override
-  String get settings_backup => 'Respaldo';
+  String get settings_backup => 'Резервное копирование';
 
   @override
   String get settings_backup_description => 'Export, import';
@@ -210,7 +209,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settings_auto_export_description =>
-      'Automatically export the notes to a JSON file (bin included) that can be imported back';
+      'Автоматически экспортировать заметки в формате JSON (включая заметки из корзины)';
 
   @override
   String settings_auto_export_value(String encrypt, String frequency) {
@@ -236,11 +235,11 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get settings_auto_export_disabled => 'Disabled';
+  String get settings_auto_export_disabled => 'Отключено';
 
   @override
   String settings_auto_export_directory(Object directory) {
-    return 'Exports can be found in $directory';
+    return 'Экспортированные заметки находятся в $directory';
   }
 
   @override
@@ -277,36 +276,36 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get settings_export_success => 'Las notas fueron exportadas exitosamente.';
+  String get settings_export_success => 'Заметки были успешно экспортированы.';
 
   @override
-  String get settings_export_json => 'Exportar a JSON';
+  String get settings_export_json => 'Экспортировать в формате JSON';
 
   @override
   String get settings_export_json_description =>
       'Immediately export the notes to a JSON file (bin included) that can be imported back';
 
   @override
-  String get settings_export_markdown => 'Exportar a Markdown';
+  String get settings_export_markdown => 'Экспортировать в формате Markdown';
 
   @override
   String get settings_export_markdown_description => 'Immediately export the notes to a Markdown file (bin included)';
 
   @override
-  String get settings_import => 'Importar';
+  String get settings_import => 'Импорт заметок';
 
   @override
-  String get settings_import_description => 'Importar notas desde un archivo JSON';
+  String get settings_import_description => 'Импортировать заметки из JSON–файла';
 
   @override
-  String get settings_import_success => 'Las notas fueron importadas exitosamente.';
+  String get settings_import_success => 'Заметки были успешно импортированы.';
 
   @override
   String get settings_import_incompatible_prior_v1_5_0 =>
       'Exports made in versions prior to v1.5.0 are not compatible anymore. Please see the pinned issue on GitHub for an easy fix.';
 
   @override
-  String get settings_about => 'Acerca de';
+  String get settings_about => 'О приложении';
 
   @override
   String get settings_about_application => 'Application';
@@ -333,10 +332,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_github => 'GitHub';
 
   @override
-  String get settings_github_description => 'Da un vistazo al código fuente';
+  String get settings_github_description => 'Ознакомьтесь с исходным кодом приложения';
 
   @override
-  String get settings_licence => 'Licencia';
+  String get settings_licence => 'Лицензия';
 
   @override
   String get settings_licence_description => 'AGPL-3.0';
@@ -360,200 +359,201 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_get_in_touch_description => 'Contact the developer via mail at contact@maelchiotti.dev';
 
   @override
-  String get hint_title => 'Título';
+  String get hint_title => 'Заголовок';
 
   @override
-  String get hint_note => 'Nota';
+  String get hint_note => 'Заметка';
 
   @override
-  String get tooltip_fab_add_note => 'Agregar una nota';
+  String get tooltip_fab_add_note => 'Добавить заметку';
 
   @override
-  String get tooltip_fab_empty_bin => 'Vaciar la papelera';
+  String get tooltip_fab_empty_bin => 'Очистить корзину';
 
   @override
-  String get tooltip_layout_list => 'Vista en lista';
+  String get tooltip_layout_list => 'Список';
 
   @override
-  String get tooltip_layout_grid => 'Vista en cuadrícula';
+  String get tooltip_layout_grid => 'Сетка';
 
   @override
-  String get tooltip_sort => 'Ordenar las notas';
+  String get tooltip_sort => 'Сортировать заметки';
 
   @override
-  String get tooltip_search => 'Buscar entre las notas';
+  String get tooltip_search => 'Поиск заметок';
 
   @override
-  String get tooltip_toggle_checkbox => 'Alternar casilla';
+  String get tooltip_toggle_checkbox => 'Переключить флажок';
 
   @override
-  String get tooltip_select_all => 'Seleccionar todo';
+  String get tooltip_select_all => 'Выбрать все';
 
   @override
-  String get tooltip_unselect_all => 'Deseleccionar todo';
+  String get tooltip_unselect_all => 'Отменить выбор';
 
   @override
-  String get tooltip_delete => 'Eliminar';
+  String get tooltip_delete => 'Удалить';
 
   @override
-  String get tooltip_permanently_delete => 'Eliminar permanentemente';
+  String get tooltip_permanently_delete => 'Удалить навсегда';
 
   @override
-  String get tooltip_restore => 'Restaurar';
+  String get tooltip_restore => 'Восстановить';
 
   @override
-  String get tooltip_toggle_pins => 'Alternar fijado';
+  String get tooltip_toggle_pins => 'Закрепить/Открепить';
 
   @override
-  String get dialog_delete => 'Eliminar';
+  String get dialog_delete => 'Удалить';
 
   @override
   String dialog_delete_body(num count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'notas',
-      one: 'nota',
-      zero: '',
+      other: 'заметки',
+      many: 'заметок',
+      few: 'заметки',
+      one: 'заметку',
     );
     String _temp1 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'las',
-      one: 'la',
-      zero: '',
+      other: 'их',
+      one: 'её',
     );
-    return '¿Realmente quieres eliminar $count $_temp0? Puedes restaurar$_temp1 desde la papelera.';
+    return 'Вы действительно хотите удалить $count $_temp0? Вы можете восстановить $_temp1 из корзины.';
   }
 
   @override
   String get dialog_delete_body_single =>
-      '¿Realmente quierers eliminar esta nota? Puedes restaurarla desde la papelera.';
+      'Вы действительно хотите поместить эту заметку в корзину? Вы можете восстановить её из корзины.';
 
   @override
-  String get dialog_permanently_delete => 'Eliminar permanentemente';
+  String get dialog_permanently_delete => 'Удалить';
 
   @override
   String dialog_permanently_delete_body(num count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'notas',
-      one: 'nota',
-      zero: '',
+      other: 'заметки',
+      many: 'заметок',
+      few: 'заметки',
+      one: 'заметку',
     );
     String _temp1 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'las',
-      one: 'la',
-      zero: '',
+      other: 'их',
+      one: 'её',
     );
-    return '¿Realmente quieres eliminar permanentemente $count $_temp0? No podrás restaurar$_temp1.';
+    return 'Вы действительно хотите навсегда удалить $count $_temp0? Вы не сможете $_temp1 восстановить.';
   }
 
   @override
   String get dialog_permanently_delete_body_single =>
-      '¿Realmente quieres eliminar permanentemente esta nota? No podrás restaurarla.';
+      'Вы действительно хотите навсегда удалить эту заметку? Заметка будет безвозвратно удалена.';
 
   @override
-  String get dialog_restore => 'Restaurar';
+  String get dialog_restore => 'Восстановить';
 
   @override
   String dialog_restore_body(num count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'notas',
-      one: 'nota',
-      zero: '',
+      other: 'заметки',
+      many: 'заметок',
+      few: 'заметки',
+      one: 'заметку',
     );
-    return '¿Realmente quieres restaurar $count $_temp0?';
+    return 'Вы действительно хотите восстановить $count $_temp0?';
   }
 
   @override
-  String get dialog_restore_body_single => '¿Realmente quieres restaurar esta nota?';
+  String get dialog_restore_body_single => 'Вы действительно хотите восстановить эту заметку?';
 
   @override
-  String get dialog_empty_bin => 'Vaciar la papelera';
+  String get dialog_empty_bin => 'Очистить корзину';
 
   @override
   String get dialog_empty_bin_body =>
-      '¿Realmente quieres restaurar la papelera? No podrás restaurar las notas en ella.';
+      'Вы действительно хотите отчистить корзину? Все заметки будут безвозвратно удалены.';
 
   @override
   String get dialog_export_encryption_switch => 'Encrypt the JSON export';
 
   @override
   String get dialog_export_encryption_description =>
-      'The title and the content of the notes will be encrypted using your password. It should be randomly generated, exactly 32 characters long, strong (at least 1 lowercase, 1 uppercase, 1 number and 1 special character) and securely stored.';
+      'Заметки будут зашифрованы паролем. Пароль должен быть сгенерирован случайным образом, длиной в 32 символа (должен содержать минимум 1 строчную букву, 1 заглавную букву, 1 цифру и 1 специальный символ) и храниться в надежном месте.';
 
   @override
   String get dialog_export_encryption_secondary_description_auto =>
-      'This password will be used for all future auto exports.';
+      'Этот пароль будет использован для всех автоматических экспортов заметок.';
 
   @override
   String get dialog_export_encryption_secondary_description_manual =>
-      'This password will only be used for this export.';
+      'Этот пароль будет использоваться только для экспорта текущих заметок.';
 
   @override
-  String get dialog_export_encryption_password_hint => 'Password';
+  String get dialog_export_encryption_password_hint => 'Пароль';
 
   @override
   String get dialog_export_encryption_password_invalid => 'Invalid';
 
   @override
   String get dialog_import_encryption_password_description =>
-      'This export is encrypted. To import it, you need to provide the password used to encrypt it.';
+      'Данные зашифрованы. Чтобы импортировать данные, нужно ввести пароль.';
 
   @override
   String get dialog_import_encryption_password_error =>
-      'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.';
+      'не удалось расшифровать данные. Убедитесь, что вы ввели правильный пароль.';
 
   @override
-  String get sort_date => 'Fecha';
+  String get sort_date => 'По дате';
 
   @override
-  String get sort_title => 'Título';
+  String get sort_title => 'По заголовку';
 
   @override
-  String get sort_ascending => 'Ascendente';
+  String get sort_ascending => 'В порядке возрастания';
 
   @override
-  String get placeholder_notes => 'No hay notas';
+  String get placeholder_notes => 'Нет заметок';
 
   @override
-  String get placeholder_bin => 'No deleted notes';
+  String get placeholder_bin => 'Нет удаленных заметок';
 
   @override
-  String get menu_pin => 'Fijar';
+  String get menu_pin => 'Закрепить';
 
   @override
-  String get menu_share => 'Compartir';
+  String get menu_share => 'Поделиться';
 
   @override
-  String get menu_unpin => 'Desfijar';
+  String get menu_unpin => 'Открепить';
 
   @override
-  String get menu_delete => 'Eliminar';
+  String get menu_delete => 'Удалить';
 
   @override
-  String get menu_restore => 'Restaurar';
+  String get menu_restore => 'Восстановить';
 
   @override
-  String get menu_delete_permanently => 'Eliminar permanentemente';
+  String get menu_delete_permanently => 'Удалить навсегда';
 
   @override
-  String get menu_about => 'Acerca de';
+  String get menu_about => 'О приложении';
 
   @override
-  String get confirmations_title_none => 'Nunca';
+  String get confirmations_title_none => 'Никогда';
 
   @override
-  String get confirmations_title_irreversible => 'Sólo acciones irreversibles';
+  String get confirmations_title_irreversible => 'Только необратимые действия';
 
   @override
-  String get confirmations_title_all => 'Siempre';
+  String get confirmations_title_all => 'Всегда';
 
   @override
   String get swipe_action_disabled => 'Disabled';
@@ -565,35 +565,35 @@ class AppLocalizationsEs extends AppLocalizations {
   String get swipe_action_pin => 'Pin';
 
   @override
-  String get dismiss_pin => 'Fijar';
+  String get dismiss_pin => 'Закрепить';
 
   @override
-  String get dismiss_unpin => 'Desfijar';
+  String get dismiss_unpin => 'Открепить';
 
   @override
-  String get dismiss_delete => 'Eliminar';
+  String get dismiss_delete => 'Удалить';
 
   @override
-  String get about_last_edited => 'Última edición';
+  String get about_last_edited => 'Изменено';
 
   @override
-  String get about_created => 'Creación';
+  String get about_created => 'Создано';
 
   @override
-  String get about_words => 'Palabras';
+  String get about_words => 'Количество слов';
 
   @override
-  String get about_characters => 'Caracteres';
+  String get about_characters => 'Количество символов';
 
   @override
-  String get time_at => 'el';
+  String get time_at => 'в';
 
   @override
-  String get action_add_note_title => 'Agregar una nota';
+  String get action_add_note_title => 'Добавить заметку';
 
   @override
-  String get welcome_note_title => 'Bienvenido a Material Notes !';
+  String get welcome_note_title => 'Добро пожаловать в Material Notes!';
 
   @override
-  String get welcome_note_content => 'Notas simples, locales, en Material Design';
+  String get welcome_note_content => 'Простые, локальные заметки в стиле Material Design';
 }

@@ -44,7 +44,7 @@
   "settings_swipe_action_right_description": "Action to trigger when a right swipe is performed on the notes tiles",
   "settings_swipe_action_left": "Left swipe action",
   "settings_swipe_action_left_description": "Action to trigger when a left swipe is performed on the notes tiles",
-  "settings_flag_secure": "Make app secure",
+  "settings_flag_secure": "Flag the app as secure",
   "settings_flag_secure_description": "Hide the app from the recent apps and prevent screenshots from being made",
   "settings_editor": "Editor",
   "settings_editor_formatting": "Formatting",

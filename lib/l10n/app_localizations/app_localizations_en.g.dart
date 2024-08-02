@@ -149,7 +149,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Action to trigger when a left swipe is performed on the notes tiles';
 
   @override
-  String get settings_flag_secure => 'Make app secure';
+  String get settings_flag_secure => 'Flag the app as secure';
 
   @override
   String get settings_flag_secure_description =>

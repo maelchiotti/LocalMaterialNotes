@@ -3,7 +3,7 @@ full_description: |
       <b>Material Notes</b> es una aplicación de toma de notas basadas en texto, orientada a la simplicidad, diseñada adoptando Material Design.
       Material Notes almacena las notas localmente y no requiere ningún permiso de internet, siendo tú el único que puede acceder a las notas.
   </p>
-  
+
   <p>
       <b>Tomar notas</b>
   </p>
@@ -13,7 +13,7 @@ full_description: |
       <li>Deshacer y rehacer los cambios durante la edición</li>
       <li>Utiliza la acción rápida de la pantalla de inicio para añadir rápidamente una nota</li>
   </ul>
-  
+
   <p>
       <b>Organiza</b>
   </p>
@@ -24,7 +24,7 @@ full_description: |
       <li>Anclar tus notas</li>
       <li>Recupera tus notas borradas de la papelera</li>
   </ul>
-  
+
   <p>
       <b>Compartir y hacer copias de seguridad</b>
   </p>
@@ -34,7 +34,7 @@ full_description: |
       <li>Exporta tus notas como JSON e impórtalas de nuevo</li>
       <li>Exporta tus notas como Markdown</li>
   </ul>
-  
+
   <p>
       <b>Protege</b>
   </p>
@@ -42,7 +42,7 @@ full_description: |
       <li>No te preocupes por el tratamiento de tus datos: no pueden salir de tu dispositivo,
       ya que la aplicación no tiene permisos de Internet</li>
   </ul>
-  
+
   <p>
       <b>Personaliza</b>
   </p>
