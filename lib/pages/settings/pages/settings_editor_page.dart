@@ -38,11 +38,20 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
     });
   }
 
+  /// Toggles the setting to use spacing between the paragraphs.
+  void _toggleUseParagraphSpacing(bool toggled) {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.useParagraphsSpacing.name, toggled);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final bool showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
     final bool showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
     final bool showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
+
+    final bool useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault<bool>();
 
     return CustomSettingsList(
       sections: [
@@ -69,6 +78,18 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
               description: Text(localizations.settings_show_toolbar_description),
               initialValue: showToolbar,
               onToggle: _toggleShowToolbar,
+            ),
+          ],
+        ),
+        SettingsSection(
+          title: Text(localizations.settings_editor_appearance),
+          tiles: [
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.format_line_spacing),
+              title: Text(localizations.settings_use_paragraph_spacing),
+              description: Text(localizations.settings_use_paragraph_spacing_description),
+              initialValue: useParagraphsSpacing,
+              onToggle: _toggleUseParagraphSpacing,
             ),
           ],
         ),

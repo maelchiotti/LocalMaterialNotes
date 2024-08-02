@@ -161,7 +161,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_editor_formatting => 'Formatting';
 
   @override
-  String get settings_editor_description => 'Buttons, toolbar';
+  String get settings_editor_appearance => 'Appearance';
+
+  @override
+  String get settings_editor_description => 'Buttons, toolbar, spacing';
 
   @override
   String get settings_show_undo_redo_buttons => 'Undo/redo buttons';
@@ -182,6 +185,12 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_show_toolbar_description => 'Show the editor\'s toolbar to enable advanced text formatting';
+
+  @override
+  String get settings_use_paragraph_spacing => 'Paragraph spacing';
+
+  @override
+  String get settings_use_paragraph_spacing_description => 'Use spacing between paragraphs';
 
   @override
   String get settings_backup => 'Yedekleme';
@@ -309,7 +318,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_about_help => 'Help';
 
   @override
-  String get settings_about_description => 'Information, GitHub, license, help';
+  String get settings_about_description => 'Information, help, GitHub, license';
 
   @override
   String get settings_build_mode => 'Build mode';

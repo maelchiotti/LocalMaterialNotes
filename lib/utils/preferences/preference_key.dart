@@ -10,19 +10,20 @@ enum PreferenceKey {
   theme(0),
   dynamicTheming(true),
   blackTheming(false),
+  showSeparators(false),
+  showTilesBackground(false),
+
+  // Behavior
+  flagSecure(false),
+  confirmations(Confirmations.irreversible),
+  swipeRightAction(SwipeAction.delete),
+  swipeLeftAction(SwipeAction.pin),
 
   // Editor
   showUndoRedoButtons(true),
   showChecklistButton(true),
   showToolbar(true),
-
-  // Behavior
-  confirmations(Confirmations.irreversible),
-  swipeRightAction(SwipeAction.delete),
-  swipeLeftAction(SwipeAction.pin),
-  flagSecure(false),
-  showSeparators(false),
-  showTilesBackground(false),
+  useParagraphsSpacing(true),
 
   // Backup
   autoExportFrequency(0.0),
