@@ -42,15 +42,18 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   /// Returns the background color of the note tile.
   ///
   /// The background color depends on:
+  ///   - Whether the tile is shown in the search view.
   ///   - Whether the note is selected.
   ///   - Whether the [showTilesBackground] setting is enabled.
   ///
-  /// If neither are `true`, then `null` is returned.
+  /// If none are `true`, then `null` is returned.
   Color? _backgroundColor(bool showTilesBackground) {
     // The tile has a background color only if it is selected,
     // or if the setting to show the background of the tiles is enabled
 
-    if (widget.note.selected) {
+    if (widget.searchView) {
+      return Theme.of(context).colorScheme.surfaceContainerHigh;
+    } else if (widget.note.selected) {
       return Theme.of(context).colorScheme.secondaryContainer;
     } else if (showTilesBackground) {
       return Theme.of(context).colorScheme.surfaceContainerHighest;
@@ -213,6 +216,69 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
   @override
   Widget build(BuildContext context) {
+    // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
+    // See https://github.com/flutter/flutter/issues/86584
+    final tile = ValueListenableBuilder(
+      valueListenable: showTilesBackgroundNotifier,
+      builder: (BuildContext context, showTilesBackground, Widget? child) {
+        print(_backgroundColor(showTilesBackground));
+        return Material(
+          child: Ink(
+            color: _backgroundColor(showTilesBackground),
+            child: InkWell(
+              onTap: _openOrSelect,
+              onLongPress: widget.searchView ? null : _enterSelectionMode,
+              child: Padding(
+                padding: Paddings.padding16.all,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Title
+                          if (!widget.note.isTitleEmpty)
+                            Text(
+                              widget.note.title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                          // Subtitle
+                          if (!widget.note.isContentEmpty && !widget.note.isContentPreviewEmpty)
+                            Text(
+                              widget.note.contentPreview,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
+                                  ),
+                            ),
+                        ],
+                      ),
+                    ),
+                    // Trailing
+                    if (widget.note.pinned && !widget.note.deleted) ...[
+                      Padding(padding: Paddings.padding2.horizontal),
+                      Icon(
+                        Icons.push_pin,
+                        size: Sizes.size16.size,
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+
+    // In search view, just return the plain tile, without the ClipRRect or the Dismissible widgets
+    if (widget.searchView) {
+      return tile;
+    }
+
     return ValueListenableBuilder(
       valueListenable: layoutNotifier,
       builder: (BuildContext context, layout, Widget? child) {
@@ -239,58 +305,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                     background: dismissibleMainWidget,
                     secondaryBackground: dismissibleSecondaryWidget,
                     confirmDismiss: (dismissDirection) => _dismiss(dismissDirection, rightSwipeAction, leftSwipeAction),
-
-                    // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
-                    // See https://github.com/flutter/flutter/issues/86584
-                    child: Material(
-                      child: Ink(
-                        color: _backgroundColor(showTilesBackground),
-                        child: InkWell(
-                          onTap: _openOrSelect,
-                          onLongPress: widget.searchView ? null : _enterSelectionMode,
-                          child: Padding(
-                            padding: Paddings.padding16.all,
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      // Title
-                                      if (!widget.note.isTitleEmpty)
-                                        Text(
-                                          widget.note.title,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.titleMedium,
-                                        ),
-                                      // Subtitle
-                                      if (!widget.note.isContentEmpty && !widget.note.isContentPreviewEmpty)
-                                        Text(
-                                          widget.note.contentPreview,
-                                          maxLines: 3,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
-                                              ),
-                                        ),
-                                    ],
-                                  ),
-                                ),
-                                // Trailing
-                                if (widget.note.pinned && !widget.note.deleted) ...[
-                                  Padding(padding: Paddings.padding2.horizontal),
-                                  Icon(
-                                    Icons.push_pin,
-                                    size: Sizes.size16.size,
-                                  ),
-                                ],
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: tile,
                   ),
                 );
               },
