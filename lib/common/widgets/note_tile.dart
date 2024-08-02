@@ -78,7 +78,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   ///   - left only : [DismissDirection.endToStart]
   ///   - none : [DismissDirection.none]
   DismissDirection _dismissDirection(SwipeAction rightSwipeAction, SwipeAction leftSwipeAction) {
-    // If the note is deleted, no swipe action are available
+    // If the note is deleted, no swipe actions are available
     if (widget.note.deleted) {
       return DismissDirection.none;
     }
