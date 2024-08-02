@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/manual_export_dialog.dart';
+import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
@@ -17,14 +18,14 @@ import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:simple_icons/simple_icons.dart';
 
 /// Settings related to backup of the notes.
-class BackupSection extends AbstractSettingsSection {
-  const BackupSection(this.ref, this.updateState, {super.key});
+class SettingsBackupPage extends ConsumerStatefulWidget {
+  const SettingsBackupPage({super.key});
 
-  final WidgetRef ref;
+  @override
+  ConsumerState<SettingsBackupPage> createState() => _SettingsBackupPageState();
+}
 
-  /// Triggers an update of the screen.
-  final Function() updateState;
-
+class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   /// Asks the user to configure the auto export as JSON.
   Future<void> autoExportAsJson(BuildContext context) async {
     await showAdaptiveDialog<(double, bool, String?)>(
@@ -59,11 +60,11 @@ class BackupSection extends AbstractSettingsSection {
         await PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassword);
       }
 
+      setState(() {});
+
       // No need to await this, it can be performed in the background
       AutoExportUtils().performAutoExportIfNeeded();
     });
-
-    updateState();
   }
 
   /// Asks the user to configure the immediate export as JSON.
@@ -129,47 +130,56 @@ class BackupSection extends AbstractSettingsSection {
     final autoExportEncryption = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
     final autoExportDirectory = AutoExportUtils().backupsDirectory.toDecodedString;
 
-    return SettingsSection(
-      title: Text(localizations.settings_backup),
-      tiles: [
-        SettingsTile.navigation(
-          leading: const Icon(Icons.settings_backup_restore),
-          title: Text(localizations.settings_auto_export),
-          value: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                autoExportFrequency == 0
-                    ? localizations.settings_auto_export_disabled
-                    : localizations.settings_auto_export_value(
-                        autoExportEncryption.toString(),
-                        autoExportFrequency.toInt().toString(),
-                      ),
-                style: Theme.of(context).textTheme.titleSmall,
+    return CustomSettingsList(
+      sections: [
+        SettingsSection(
+          title: Text(localizations.settings_backup_export),
+          tiles: [
+            SettingsTile.navigation(
+              leading: const Icon(Icons.settings_backup_restore),
+              title: Text(localizations.settings_auto_export),
+              value: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    autoExportFrequency == 0
+                        ? localizations.settings_auto_export_disabled
+                        : localizations.settings_auto_export_value(
+                            autoExportEncryption.toString(),
+                            autoExportFrequency.toInt().toString(),
+                          ),
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  Text(localizations.settings_auto_export_description),
+                  Text(localizations.settings_auto_export_directory(autoExportDirectory)),
+                ],
               ),
-              Text(localizations.settings_auto_export_description),
-              Text(localizations.settings_auto_export_directory(autoExportDirectory)),
-            ],
-          ),
-          onPressed: autoExportAsJson,
+              onPressed: autoExportAsJson,
+            ),
+            SettingsTile.navigation(
+              leading: const Icon(SimpleIcons.json),
+              title: Text(localizations.settings_export_json),
+              value: Text(localizations.settings_export_json_description),
+              onPressed: exportAsJson,
+            ),
+            SettingsTile.navigation(
+              leading: const Icon(SimpleIcons.markdown),
+              title: Text(localizations.settings_export_markdown),
+              value: Text(localizations.settings_export_markdown_description),
+              onPressed: exportAsMarkdown,
+            ),
+          ],
         ),
-        SettingsTile.navigation(
-          leading: const Icon(SimpleIcons.json),
-          title: Text(localizations.settings_export_json),
-          value: Text(localizations.settings_export_json_description),
-          onPressed: exportAsJson,
-        ),
-        SettingsTile.navigation(
-          leading: const Icon(SimpleIcons.markdown),
-          title: Text(localizations.settings_export_markdown),
-          value: Text(localizations.settings_export_markdown_description),
-          onPressed: exportAsMarkdown,
-        ),
-        SettingsTile.navigation(
-          leading: const Icon(Icons.file_upload),
-          title: Text(localizations.settings_import),
-          value: Text(localizations.settings_import_description),
-          onPressed: import,
+        SettingsSection(
+          title: Text(localizations.settings_backup_import),
+          tiles: [
+            SettingsTile.navigation(
+              leading: const Icon(Icons.file_upload),
+              title: Text(localizations.settings_import),
+              value: Text(localizations.settings_import_description),
+              onPressed: import,
+            ),
+          ],
         ),
       ],
     );

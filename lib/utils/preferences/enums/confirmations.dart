@@ -3,14 +3,10 @@ import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
 enum Confirmations {
-  none('none'),
-  irreversible('irreversible'),
-  all('all'),
+  none,
+  irreversible,
+  all,
   ;
-
-  final String name;
-
-  const Confirmations(this.name);
 
   factory Confirmations.fromPreference() {
     final preference = PreferencesUtils().get<String>(PreferenceKey.confirmations);

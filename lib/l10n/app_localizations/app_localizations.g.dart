@@ -110,24 +110,6 @@ abstract class AppLocalizations {
   /// **'{appName} is a text-based note-taking application, aimed at simplicity. It embraces Material Design. It stores the notes locally and doesn\'\'t have any internet permissions, so you are the only one that can access the notes.'**
   String app_about(Object appName);
 
-  /// No description provided for @navigation_notes.
-  ///
-  /// In en, this message translates to:
-  /// **'Notes'**
-  String get navigation_notes;
-
-  /// No description provided for @navigation_bin.
-  ///
-  /// In en, this message translates to:
-  /// **'Bin'**
-  String get navigation_bin;
-
-  /// No description provided for @navigation_settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Settings'**
-  String get navigation_settings;
-
   /// No description provided for @error_error.
   ///
   /// In en, this message translates to:
@@ -146,11 +128,101 @@ abstract class AppLocalizations {
   /// **'Failed to read the file.'**
   String get error_read_file;
 
+  /// No description provided for @navigation_notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get navigation_notes;
+
+  /// No description provided for @navigation_bin.
+  ///
+  /// In en, this message translates to:
+  /// **'Bin'**
+  String get navigation_bin;
+
+  /// No description provided for @navigation_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get navigation_settings;
+
+  /// No description provided for @navigation_settings_appearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get navigation_settings_appearance;
+
+  /// No description provided for @navigation_settings_behavior.
+  ///
+  /// In en, this message translates to:
+  /// **'Behavior'**
+  String get navigation_settings_behavior;
+
+  /// No description provided for @navigation_settings_editor.
+  ///
+  /// In en, this message translates to:
+  /// **'Editor'**
+  String get navigation_settings_editor;
+
+  /// No description provided for @navigation_settings_backup.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup'**
+  String get navigation_settings_backup;
+
+  /// No description provided for @navigation_settings_about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get navigation_settings_about;
+
+  /// No description provided for @button_ok.
+  ///
+  /// In en, this message translates to:
+  /// **'Ok'**
+  String get button_ok;
+
+  /// No description provided for @button_close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get button_close;
+
+  /// No description provided for @button_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get button_cancel;
+
+  /// No description provided for @button_add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get button_add;
+
   /// No description provided for @settings_appearance.
   ///
   /// In en, this message translates to:
   /// **'Appearance'**
   String get settings_appearance;
+
+  /// No description provided for @settings_appearance_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Language, theme, notes tiles'**
+  String get settings_appearance_description;
+
+  /// No description provided for @settings_appearance_application.
+  ///
+  /// In en, this message translates to:
+  /// **'Application'**
+  String get settings_appearance_application;
+
+  /// No description provided for @settings_appearance_notes_tiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes tiles'**
+  String get settings_appearance_notes_tiles;
 
   /// No description provided for @settings_language.
   ///
@@ -206,11 +278,119 @@ abstract class AppLocalizations {
   /// **'Use a black background in dark mode'**
   String get settings_black_theming_description;
 
+  /// No description provided for @settings_show_separators.
+  ///
+  /// In en, this message translates to:
+  /// **'Separators'**
+  String get settings_show_separators;
+
+  /// No description provided for @settings_show_separators_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Show a separator between the notes tiles to differentiate them easily'**
+  String get settings_show_separators_description;
+
+  /// No description provided for @settings_show_tiles_background.
+  ///
+  /// In en, this message translates to:
+  /// **'Background'**
+  String get settings_show_tiles_background;
+
+  /// No description provided for @settings_show_tiles_background_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the background of the notes tiles to differentiate them easily'**
+  String get settings_show_tiles_background_description;
+
+  /// No description provided for @settings_behavior.
+  ///
+  /// In en, this message translates to:
+  /// **'Behavior'**
+  String get settings_behavior;
+
+  /// No description provided for @settings_behavior_application.
+  ///
+  /// In en, this message translates to:
+  /// **'Application'**
+  String get settings_behavior_application;
+
+  /// No description provided for @settings_behavior_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmations, swipe actions'**
+  String get settings_behavior_description;
+
+  /// No description provided for @settings_behavior_swipe_actions.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe actions'**
+  String get settings_behavior_swipe_actions;
+
+  /// No description provided for @settings_confirmations.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmation dialogs'**
+  String get settings_confirmations;
+
+  /// No description provided for @settings_confirmations_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the confirmation dialogs for actions such as pining and deleting notes'**
+  String get settings_confirmations_description;
+
+  /// No description provided for @settings_swipe_action_right.
+  ///
+  /// In en, this message translates to:
+  /// **'Right swipe action'**
+  String get settings_swipe_action_right;
+
+  /// No description provided for @settings_swipe_action_right_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Action to trigger when a right swipe is performed on the notes tiles'**
+  String get settings_swipe_action_right_description;
+
+  /// No description provided for @settings_swipe_action_left.
+  ///
+  /// In en, this message translates to:
+  /// **'Left swipe action'**
+  String get settings_swipe_action_left;
+
+  /// No description provided for @settings_swipe_action_left_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Action to trigger when a left swipe is performed on the notes tiles'**
+  String get settings_swipe_action_left_description;
+
+  /// No description provided for @settings_flag_secure.
+  ///
+  /// In en, this message translates to:
+  /// **'Make app secure'**
+  String get settings_flag_secure;
+
+  /// No description provided for @settings_flag_secure_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide the app from the recent apps and prevent screenshots from being made'**
+  String get settings_flag_secure_description;
+
   /// No description provided for @settings_editor.
   ///
   /// In en, this message translates to:
   /// **'Editor'**
   String get settings_editor;
+
+  /// No description provided for @settings_editor_formatting.
+  ///
+  /// In en, this message translates to:
+  /// **'Formatting'**
+  String get settings_editor_formatting;
+
+  /// No description provided for @settings_editor_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Buttons, toolbar'**
+  String get settings_editor_description;
 
   /// No description provided for @settings_show_undo_redo_buttons.
   ///
@@ -239,7 +419,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_show_toolbar.
   ///
   /// In en, this message translates to:
-  /// **'Editor toolbar'**
+  /// **'Toolbar'**
   String get settings_show_toolbar;
 
   /// No description provided for @settings_show_toolbar_description.
@@ -248,65 +428,29 @@ abstract class AppLocalizations {
   /// **'Show the editor\'\'s toolbar to enable advanced text formatting'**
   String get settings_show_toolbar_description;
 
-  /// No description provided for @settings_show_separators.
-  ///
-  /// In en, this message translates to:
-  /// **'Separators'**
-  String get settings_show_separators;
-
-  /// No description provided for @settings_show_separators_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Show a separator between the notes tiles to differentiate them easily'**
-  String get settings_show_separators_description;
-
-  /// No description provided for @settings_show_tiles_background.
-  ///
-  /// In en, this message translates to:
-  /// **'Tiles background'**
-  String get settings_show_tiles_background;
-
-  /// No description provided for @settings_show_tiles_background_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Show the background of the notes tiles to differentiate them easily'**
-  String get settings_show_tiles_background_description;
-
-  /// No description provided for @settings_behavior.
-  ///
-  /// In en, this message translates to:
-  /// **'Behavior'**
-  String get settings_behavior;
-
-  /// No description provided for @settings_confirmations.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirmation dialogs'**
-  String get settings_confirmations;
-
-  /// No description provided for @settings_confirmations_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Show the confirmation dialogs for actions such as pining and deleting notes'**
-  String get settings_confirmations_description;
-
-  /// No description provided for @settings_flag_secure.
-  ///
-  /// In en, this message translates to:
-  /// **'Make app secure'**
-  String get settings_flag_secure;
-
-  /// No description provided for @settings_flag_secure_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Hide the app from the recent apps and prevent screenshots from being made'**
-  String get settings_flag_secure_description;
-
   /// No description provided for @settings_backup.
   ///
   /// In en, this message translates to:
   /// **'Backup'**
   String get settings_backup;
+
+  /// No description provided for @settings_backup_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Export, import'**
+  String get settings_backup_description;
+
+  /// No description provided for @settings_backup_export.
+  ///
+  /// In en, this message translates to:
+  /// **'Export'**
+  String get settings_backup_export;
+
+  /// No description provided for @settings_backup_import.
+  ///
+  /// In en, this message translates to:
+  /// **'Import'**
+  String get settings_backup_import;
 
   /// No description provided for @settings_auto_export.
   ///
@@ -416,6 +560,48 @@ abstract class AppLocalizations {
   /// **'About'**
   String get settings_about;
 
+  /// No description provided for @settings_about_application.
+  ///
+  /// In en, this message translates to:
+  /// **'Application'**
+  String get settings_about_application;
+
+  /// No description provided for @settings_about_links.
+  ///
+  /// In en, this message translates to:
+  /// **'Links'**
+  String get settings_about_links;
+
+  /// No description provided for @settings_about_help.
+  ///
+  /// In en, this message translates to:
+  /// **'Help'**
+  String get settings_about_help;
+
+  /// No description provided for @settings_about_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Information, GitHub, license, help'**
+  String get settings_about_description;
+
+  /// No description provided for @settings_build_mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Build mode'**
+  String get settings_build_mode;
+
+  /// No description provided for @settings_build_mode_release.
+  ///
+  /// In en, this message translates to:
+  /// **'Release'**
+  String get settings_build_mode_release;
+
+  /// No description provided for @settings_build_mode_debug.
+  ///
+  /// In en, this message translates to:
+  /// **'Debug'**
+  String get settings_build_mode_debug;
+
   /// No description provided for @settings_github.
   ///
   /// In en, this message translates to:
@@ -440,17 +626,41 @@ abstract class AppLocalizations {
   /// **'AGPL-3.0'**
   String get settings_licence_description;
 
-  /// No description provided for @settings_issue.
+  /// No description provided for @settings_github_issues.
   ///
   /// In en, this message translates to:
   /// **'Report a bug'**
-  String get settings_issue;
+  String get settings_github_issues;
 
-  /// No description provided for @settings_issue_description.
+  /// No description provided for @settings_github_issues_description.
   ///
   /// In en, this message translates to:
-  /// **'Report a bug by creating an issue on GitHub'**
-  String get settings_issue_description;
+  /// **'Report a bug by creating a GitHub issue'**
+  String get settings_github_issues_description;
+
+  /// No description provided for @settings_github_discussions.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask a question'**
+  String get settings_github_discussions;
+
+  /// No description provided for @settings_github_discussions_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask a question on GitHub discussions'**
+  String get settings_github_discussions_description;
+
+  /// No description provided for @settings_get_in_touch.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact the developer'**
+  String get settings_get_in_touch;
+
+  /// No description provided for @settings_get_in_touch_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact the developer via mail at contact@maelchiotti.dev'**
+  String get settings_get_in_touch_description;
 
   /// No description provided for @hint_title.
   ///
@@ -542,30 +752,6 @@ abstract class AppLocalizations {
   /// **'Toggle pins'**
   String get tooltip_toggle_pins;
 
-  /// No description provided for @button_ok.
-  ///
-  /// In en, this message translates to:
-  /// **'Ok'**
-  String get button_ok;
-
-  /// No description provided for @button_close.
-  ///
-  /// In en, this message translates to:
-  /// **'Close'**
-  String get button_close;
-
-  /// No description provided for @button_cancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get button_cancel;
-
-  /// No description provided for @button_add.
-  ///
-  /// In en, this message translates to:
-  /// **'Add'**
-  String get button_add;
-
   /// No description provided for @dialog_delete.
   ///
   /// In en, this message translates to:
@@ -655,6 +841,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This password will only be used for this export.'**
   String get dialog_export_encryption_secondary_description_manual;
+
+  /// No description provided for @dialog_export_encryption_password_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get dialog_export_encryption_password_hint;
+
+  /// No description provided for @dialog_export_encryption_password_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid'**
+  String get dialog_export_encryption_password_invalid;
+
+  /// No description provided for @dialog_import_encryption_password_description.
+  ///
+  /// In en, this message translates to:
+  /// **'This export is encrypted. To import it, you need to provide the password used to encrypt it.'**
+  String get dialog_import_encryption_password_description;
+
+  /// No description provided for @dialog_import_encryption_password_error.
+  ///
+  /// In en, this message translates to:
+  /// **'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.'**
+  String get dialog_import_encryption_password_error;
 
   /// No description provided for @sort_date.
   ///
@@ -746,6 +956,24 @@ abstract class AppLocalizations {
   /// **'Always'**
   String get confirmations_title_all;
 
+  /// No description provided for @swipe_action_disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get swipe_action_disabled;
+
+  /// No description provided for @swipe_action_delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get swipe_action_delete;
+
+  /// No description provided for @swipe_action_pin.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin'**
+  String get swipe_action_pin;
+
   /// No description provided for @dismiss_pin.
   ///
   /// In en, this message translates to:
@@ -763,18 +991,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete'**
   String get dismiss_delete;
-
-  /// No description provided for @dismiss_permanently_delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Permanently delete'**
-  String get dismiss_permanently_delete;
-
-  /// No description provided for @dismiss_restore.
-  ///
-  /// In en, this message translates to:
-  /// **'Restore'**
-  String get dismiss_restore;
 
   /// No description provided for @about_last_edited.
   ///
@@ -823,30 +1039,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Simple, local, material design notes'**
   String get welcome_note_content;
-
-  /// No description provided for @dialog_export_encryption_password_hint.
-  ///
-  /// In en, this message translates to:
-  /// **'Password'**
-  String get dialog_export_encryption_password_hint;
-
-  /// No description provided for @dialog_export_encryption_password_invalid.
-  ///
-  /// In en, this message translates to:
-  /// **'Invalid'**
-  String get dialog_export_encryption_password_invalid;
-
-  /// No description provided for @dialog_import_encryption_password_description.
-  ///
-  /// In en, this message translates to:
-  /// **'This export is encrypted. To import it, you need to provide the password used to encrypt it.'**
-  String get dialog_import_encryption_password_description;
-
-  /// No description provided for @dialog_import_encryption_password_error.
-  ///
-  /// In en, this message translates to:
-  /// **'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.'**
-  String get dialog_import_encryption_password_error;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

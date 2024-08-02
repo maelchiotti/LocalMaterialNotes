@@ -18,15 +18,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get navigation_notes => 'Notes';
-
-  @override
-  String get navigation_bin => 'Bin';
-
-  @override
-  String get navigation_settings => 'Settings';
-
-  @override
   String get error_error => 'Error';
 
   @override
@@ -36,7 +27,52 @@ class AppLocalizationsEn extends AppLocalizations {
   String get error_read_file => 'Failed to read the file.';
 
   @override
+  String get navigation_notes => 'Notes';
+
+  @override
+  String get navigation_bin => 'Bin';
+
+  @override
+  String get navigation_settings => 'Settings';
+
+  @override
+  String get navigation_settings_appearance => 'Appearance';
+
+  @override
+  String get navigation_settings_behavior => 'Behavior';
+
+  @override
+  String get navigation_settings_editor => 'Editor';
+
+  @override
+  String get navigation_settings_backup => 'Backup';
+
+  @override
+  String get navigation_settings_about => 'About';
+
+  @override
+  String get button_ok => 'Ok';
+
+  @override
+  String get button_close => 'Close';
+
+  @override
+  String get button_cancel => 'Cancel';
+
+  @override
+  String get button_add => 'Add';
+
+  @override
   String get settings_appearance => 'Appearance';
+
+  @override
+  String get settings_appearance_description => 'Language, theme, notes tiles';
+
+  @override
+  String get settings_appearance_application => 'Application';
+
+  @override
+  String get settings_appearance_notes_tiles => 'Notes tiles';
 
   @override
   String get settings_language => 'Language';
@@ -66,7 +102,67 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_black_theming_description => 'Use a black background in dark mode';
 
   @override
+  String get settings_show_separators => 'Separators';
+
+  @override
+  String get settings_show_separators_description =>
+      'Show a separator between the notes tiles to differentiate them easily';
+
+  @override
+  String get settings_show_tiles_background => 'Background';
+
+  @override
+  String get settings_show_tiles_background_description =>
+      'Show the background of the notes tiles to differentiate them easily';
+
+  @override
+  String get settings_behavior => 'Behavior';
+
+  @override
+  String get settings_behavior_application => 'Application';
+
+  @override
+  String get settings_behavior_description => 'Confirmations, swipe actions';
+
+  @override
+  String get settings_behavior_swipe_actions => 'Swipe actions';
+
+  @override
+  String get settings_confirmations => 'Confirmation dialogs';
+
+  @override
+  String get settings_confirmations_description =>
+      'Show the confirmation dialogs for actions such as pining and deleting notes';
+
+  @override
+  String get settings_swipe_action_right => 'Right swipe action';
+
+  @override
+  String get settings_swipe_action_right_description =>
+      'Action to trigger when a right swipe is performed on the notes tiles';
+
+  @override
+  String get settings_swipe_action_left => 'Left swipe action';
+
+  @override
+  String get settings_swipe_action_left_description =>
+      'Action to trigger when a left swipe is performed on the notes tiles';
+
+  @override
+  String get settings_flag_secure => 'Make app secure';
+
+  @override
+  String get settings_flag_secure_description =>
+      'Hide the app from the recent apps and prevent screenshots from being made';
+
+  @override
   String get settings_editor => 'Editor';
+
+  @override
+  String get settings_editor_formatting => 'Formatting';
+
+  @override
+  String get settings_editor_description => 'Buttons, toolbar';
 
   @override
   String get settings_show_undo_redo_buttons => 'Undo/redo buttons';
@@ -83,44 +179,22 @@ class AppLocalizationsEn extends AppLocalizations {
       'Show the button to toggle checklists in the editor\'s app bar, hiding it from the editor\'s toolbar if enabled';
 
   @override
-  String get settings_show_toolbar => 'Editor toolbar';
+  String get settings_show_toolbar => 'Toolbar';
 
   @override
   String get settings_show_toolbar_description => 'Show the editor\'s toolbar to enable advanced text formatting';
 
   @override
-  String get settings_show_separators => 'Separators';
-
-  @override
-  String get settings_show_separators_description =>
-      'Show a separator between the notes tiles to differentiate them easily';
-
-  @override
-  String get settings_show_tiles_background => 'Tiles background';
-
-  @override
-  String get settings_show_tiles_background_description =>
-      'Show the background of the notes tiles to differentiate them easily';
-
-  @override
-  String get settings_behavior => 'Behavior';
-
-  @override
-  String get settings_confirmations => 'Confirmation dialogs';
-
-  @override
-  String get settings_confirmations_description =>
-      'Show the confirmation dialogs for actions such as pining and deleting notes';
-
-  @override
-  String get settings_flag_secure => 'Make app secure';
-
-  @override
-  String get settings_flag_secure_description =>
-      'Hide the app from the recent apps and prevent screenshots from being made';
-
-  @override
   String get settings_backup => 'Backup';
+
+  @override
+  String get settings_backup_description => 'Export, import';
+
+  @override
+  String get settings_backup_export => 'Export';
+
+  @override
+  String get settings_backup_import => 'Import';
 
   @override
   String get settings_auto_export => 'Auto export as JSON';
@@ -226,6 +300,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_about => 'About';
 
   @override
+  String get settings_about_application => 'Application';
+
+  @override
+  String get settings_about_links => 'Links';
+
+  @override
+  String get settings_about_help => 'Help';
+
+  @override
+  String get settings_about_description => 'Information, GitHub, license, help';
+
+  @override
+  String get settings_build_mode => 'Build mode';
+
+  @override
+  String get settings_build_mode_release => 'Release';
+
+  @override
+  String get settings_build_mode_debug => 'Debug';
+
+  @override
   String get settings_github => 'GitHub';
 
   @override
@@ -238,10 +333,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
-  String get settings_issue => 'Report a bug';
+  String get settings_github_issues => 'Report a bug';
 
   @override
-  String get settings_issue_description => 'Report a bug by creating an issue on GitHub';
+  String get settings_github_issues_description => 'Report a bug by creating a GitHub issue';
+
+  @override
+  String get settings_github_discussions => 'Ask a question';
+
+  @override
+  String get settings_github_discussions_description => 'Ask a question on GitHub discussions';
+
+  @override
+  String get settings_get_in_touch => 'Contact the developer';
+
+  @override
+  String get settings_get_in_touch_description => 'Contact the developer via mail at contact@maelchiotti.dev';
 
   @override
   String get hint_title => 'Title';
@@ -287,18 +394,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tooltip_toggle_pins => 'Toggle pins';
-
-  @override
-  String get button_ok => 'Ok';
-
-  @override
-  String get button_close => 'Close';
-
-  @override
-  String get button_cancel => 'Cancel';
-
-  @override
-  String get button_add => 'Add';
 
   @override
   String get dialog_delete => 'Delete';
@@ -392,6 +487,20 @@ class AppLocalizationsEn extends AppLocalizations {
       'This password will only be used for this export.';
 
   @override
+  String get dialog_export_encryption_password_hint => 'Password';
+
+  @override
+  String get dialog_export_encryption_password_invalid => 'Invalid';
+
+  @override
+  String get dialog_import_encryption_password_description =>
+      'This export is encrypted. To import it, you need to provide the password used to encrypt it.';
+
+  @override
+  String get dialog_import_encryption_password_error =>
+      'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.';
+
+  @override
   String get sort_date => 'Date';
 
   @override
@@ -437,6 +546,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirmations_title_all => 'Always';
 
   @override
+  String get swipe_action_disabled => 'Disabled';
+
+  @override
+  String get swipe_action_delete => 'Delete';
+
+  @override
+  String get swipe_action_pin => 'Pin';
+
+  @override
   String get dismiss_pin => 'Pin';
 
   @override
@@ -444,12 +562,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dismiss_delete => 'Delete';
-
-  @override
-  String get dismiss_permanently_delete => 'Permanently delete';
-
-  @override
-  String get dismiss_restore => 'Restore';
 
   @override
   String get about_last_edited => 'Last edited';
@@ -474,18 +586,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Simple, local, material design notes';
-
-  @override
-  String get dialog_export_encryption_password_hint => 'Password';
-
-  @override
-  String get dialog_export_encryption_password_invalid => 'Invalid';
-
-  @override
-  String get dialog_import_encryption_password_description =>
-      'This export is encrypted. To import it, you need to provide the password used to encrypt it.';
-
-  @override
-  String get dialog_import_encryption_password_error =>
-      'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.';
 }
