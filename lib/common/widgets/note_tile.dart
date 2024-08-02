@@ -216,12 +216,11 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
   @override
   Widget build(BuildContext context) {
-    // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
-    // See https://github.com/flutter/flutter/issues/86584
     final tile = ValueListenableBuilder(
       valueListenable: showTilesBackgroundNotifier,
       builder: (BuildContext context, showTilesBackground, Widget? child) {
-        print(_backgroundColor(showTilesBackground));
+        // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
+        // See https://github.com/flutter/flutter/issues/86584
         return Material(
           child: Ink(
             color: _backgroundColor(showTilesBackground),
