@@ -386,6 +386,12 @@ abstract class AppLocalizations {
   /// **'Formatting'**
   String get settings_editor_formatting;
 
+  /// No description provided for @settings_editor_appearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get settings_editor_appearance;
+
   /// No description provided for @settings_editor_description.
   ///
   /// In en, this message translates to:
@@ -427,6 +433,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show the editor\'\'s toolbar to enable advanced text formatting'**
   String get settings_show_toolbar_description;
+
+  /// No description provided for @settings_use_paragraph_spacing.
+  ///
+  /// In en, this message translates to:
+  /// **'Paragraph spacing'**
+  String get settings_use_paragraph_spacing;
+
+  /// No description provided for @settings_use_paragraph_spacing_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Use spacing between paragraphs'**
+  String get settings_use_paragraph_spacing_description;
 
   /// No description provided for @settings_backup.
   ///

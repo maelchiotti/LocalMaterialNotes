@@ -161,6 +161,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_editor_formatting => 'Formatting';
 
   @override
+  String get settings_editor_appearance => 'Appearance';
+
+  @override
   String get settings_editor_description => 'Buttons, toolbar';
 
   @override
@@ -182,6 +185,12 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_show_toolbar_description => 'Show the editor\'s toolbar to enable advanced text formatting';
+
+  @override
+  String get settings_use_paragraph_spacing => 'Paragraph spacing';
+
+  @override
+  String get settings_use_paragraph_spacing_description => 'Use spacing between paragraphs';
 
   @override
   String get settings_backup => 'Yedekleme';

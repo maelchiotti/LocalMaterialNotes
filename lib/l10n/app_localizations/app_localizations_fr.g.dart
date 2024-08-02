@@ -162,6 +162,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_editor_formatting => 'Formatting';
 
   @override
+  String get settings_editor_appearance => 'Appearance';
+
+  @override
   String get settings_editor_description => 'Buttons, toolbar';
 
   @override
@@ -184,6 +187,12 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get settings_show_toolbar_description =>
       'Afficher la barre d\'outils de l\'éditeur pour permettre le formatage textuel avancé';
+
+  @override
+  String get settings_use_paragraph_spacing => 'Paragraph spacing';
+
+  @override
+  String get settings_use_paragraph_spacing_description => 'Use spacing between paragraphs';
 
   @override
   String get settings_backup => 'Sauvegarde';
