@@ -14,8 +14,7 @@ FIXED
 - Notes tiles issues
 - Keyboard opening when toggling a checkbox
 - Keyboard popping back up after using the back gesture
-- Strings inconsistencies
+- Exit selection mode on back action
 
 REMOVED
 - Swipe actions in the bin
-- Compatibility with exports made before v1.5.0

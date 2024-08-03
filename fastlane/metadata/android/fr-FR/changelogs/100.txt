@@ -1,0 +1,19 @@
+AJOUTÉ
+- Sauvegarde auto en JSON
+- Chiffrage de la sauvegarde JSON
+- Personnaliser les balayages
+- Masquer dans applications récentes et empêcher captures
+- Afficher bouton cases à cocher dans barre d'outils
+- Activer taux de rafraîchissement élevé
+- Traduction en russe
+
+MODIFIÉ
+- Nouvelle disposition des paramètres
+
+CORRIGÉ
+- Problèmes des tuiles
+- Ouverture du clavier involontaires (cases à cocher, retour)
+- Quitter mode sélection après retour
+
+SUPPRIMÉ
+- Actions de balayage dans la corbeille
