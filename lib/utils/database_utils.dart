@@ -173,53 +173,52 @@ class DatabaseUtils {
     final importedString = await importPlatformFile.readAsString();
     var importedJson = jsonDecode(importedString);
 
-    // Old incompatible export format that just contains the notes list
-    if (importedJson is List) {
-      SnackBarUtils.error(
-        localizations.settings_import_incompatible_prior_v1_5_0,
-        duration: const Duration(seconds: 8),
-      ).show();
-
-      return false;
-    }
-
-    importedJson = importedJson as Map<String, dynamic>;
-
     List<Note>? notes;
-    final encrypted = importedJson['encrypted'] as bool;
-    final notesAsJson = importedJson['notes'] as List;
 
-    if (encrypted && context.mounted) {
-      final password = await showAdaptiveDialog<String>(
-        context: context,
-        builder: (context) => ImportDialog(title: localizations.settings_import),
-      );
-
-      if (password == null) {
-        return false;
-      }
-
-      try {
-        notes = notesAsJson.map((noteAsJsonEncrypted) {
-          return Note.fromJsonEncrypted(
-            noteAsJsonEncrypted as Map<String, dynamic>,
-            password,
-          );
-        }).toList();
-      } catch (exception, stackTrace) {
-        log(exception.toString(), stackTrace: stackTrace);
-
-        SnackBarUtils.error(
-          localizations.dialog_import_encryption_password_error,
-          duration: const Duration(seconds: 8),
-        ).show();
-
-        return false;
-      }
-    } else {
-      notes = notesAsJson.map((noteAsJson) {
+    // If the imported JSON is just a list, then it's the old export format (before v1.5.0) that just contains
+    // the notes list. Otherwise, it's the new export format (after v1.5.0) that contains other data.
+    if (importedJson is List) {
+      notes = importedJson.map((noteAsJson) {
         return Note.fromJson(noteAsJson as Map<String, dynamic>);
       }).toList();
+    } else {
+      importedJson = importedJson as Map<String, dynamic>;
+
+      final encrypted = importedJson['encrypted'] as bool;
+      final notesAsJson = importedJson['notes'] as List;
+
+      if (encrypted && context.mounted) {
+        final password = await showAdaptiveDialog<String>(
+          context: context,
+          builder: (context) => ImportDialog(title: localizations.settings_import),
+        );
+
+        if (password == null) {
+          return false;
+        }
+
+        try {
+          notes = notesAsJson.map((noteAsJsonEncrypted) {
+            return Note.fromJsonEncrypted(
+              noteAsJsonEncrypted as Map<String, dynamic>,
+              password,
+            );
+          }).toList();
+        } catch (exception, stackTrace) {
+          log(exception.toString(), stackTrace: stackTrace);
+
+          SnackBarUtils.error(
+            localizations.dialog_import_encryption_password_error,
+            duration: const Duration(seconds: 8),
+          ).show();
+
+          return false;
+        }
+      } else {
+        notes = notesAsJson.map((noteAsJson) {
+          return Note.fromJson(noteAsJson as Map<String, dynamic>);
+        }).toList();
+      }
     }
 
     await putAll(notes);

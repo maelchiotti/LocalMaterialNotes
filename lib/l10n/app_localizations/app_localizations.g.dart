@@ -573,12 +573,6 @@ abstract class AppLocalizations {
   /// **'The notes were successfully imported.'**
   String get settings_import_success;
 
-  /// No description provided for @settings_import_incompatible_prior_v1_5_0.
-  ///
-  /// In en, this message translates to:
-  /// **'Exports made in versions prior to v1.5.0 are not compatible anymore. Please see the pinned issue on GitHub for an easy fix.'**
-  String get settings_import_incompatible_prior_v1_5_0;
-
   /// No description provided for @settings_about.
   ///
   /// In en, this message translates to:

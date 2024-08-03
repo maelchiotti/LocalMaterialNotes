@@ -301,10 +301,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_import_success => 'Заметки были успешно импортированы.';
 
   @override
-  String get settings_import_incompatible_prior_v1_5_0 =>
-      'Exports made in versions prior to v1.5.0 are not compatible anymore. Please see the pinned issue on GitHub for an easy fix.';
-
-  @override
   String get settings_about => 'О приложении';
 
   @override

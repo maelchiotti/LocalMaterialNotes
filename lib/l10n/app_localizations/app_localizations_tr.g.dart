@@ -302,10 +302,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_import_success => 'İçe aktarma başarılı.';
 
   @override
-  String get settings_import_incompatible_prior_v1_5_0 =>
-      'Exports made in versions prior to v1.5.0 are not compatible anymore. Please see the pinned issue on GitHub for an easy fix.';
-
-  @override
   String get settings_about => 'Hakkında';
 
   @override

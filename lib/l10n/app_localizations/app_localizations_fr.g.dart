@@ -304,10 +304,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_import_success => 'Les notes ont bien été importées.';
 
   @override
-  String get settings_import_incompatible_prior_v1_5_0 =>
-      'Les exportations effectuées dans des versions antérieures à la version 1.5.0 ne sont plus compatibles. Veuillez consulter l\'issue GitHub épinglée pour une correction simple.';
-
-  @override
   String get settings_about => 'À propos';
 
   @override
