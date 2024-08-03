@@ -25,7 +25,9 @@ enum Sizes {
 
   int get gridLayoutColumnWidth => 384;
 
-  double get editorToolbarHeight => 48;
+  double get editorToolbarButtonHeight => 42;
+
+  double get editorToolbarButtonWidth => 42;
 
   double get notesGridViewSpacing => 8;
 
