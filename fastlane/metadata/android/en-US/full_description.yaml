@@ -31,7 +31,7 @@ full_description: |
   <ul>
       <li>Share text from other applications to add it directly to a note</li>
       <li>Share your notes as text</li>
-      <li>Export your notes as JSON and import them back</li>
+      <li>Export your notes as JSON, manually or automatically, and import them back</li>
       <li>Export your notes as Markdown</li>
   </ul>
 
@@ -41,6 +41,7 @@ full_description: |
   <ul>
       <li>Never worry about how your data is handled: it cannot leave your device
       as the application doesn't have any internet permissions</li>
+      <li>Encrypt your JSON exports</li>
   </ul>
 
   <p>
