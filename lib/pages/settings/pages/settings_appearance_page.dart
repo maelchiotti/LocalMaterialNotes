@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
+import 'package:localmaterialnotes/l10n/localization_completion.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
@@ -37,6 +38,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
               value: locale,
               groupValue: Localizations.localeOf(context),
               title: Text(locale.nativeDisplayLanguage.capitalized),
+              subtitle: Text(LocalizationCompletion.getFormattedPercentage(locale)),
               selected: Localizations.localeOf(context) == locale,
               onChanged: (locale) => Navigator.of(context).pop(locale),
             );
