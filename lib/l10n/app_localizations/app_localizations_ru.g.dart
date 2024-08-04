@@ -36,19 +36,19 @@ class AppLocalizationsRu extends AppLocalizations {
   String get navigation_settings => 'Настройки';
 
   @override
-  String get navigation_settings_appearance => 'Appearance';
+  String get navigation_settings_appearance => 'Персонализация';
 
   @override
-  String get navigation_settings_behavior => 'Behavior';
+  String get navigation_settings_behavior => 'Поведение';
 
   @override
-  String get navigation_settings_editor => 'Editor';
+  String get navigation_settings_editor => 'Редактор';
 
   @override
-  String get navigation_settings_backup => 'Backup';
+  String get navigation_settings_backup => 'Резервное копирование';
 
   @override
-  String get navigation_settings_about => 'About';
+  String get navigation_settings_about => 'О приложении';
 
   @override
   String get button_ok => 'Оk';
@@ -66,13 +66,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_appearance => 'Персонализация';
 
   @override
-  String get settings_appearance_description => 'Language, theme, notes tiles';
+  String get settings_appearance_description => 'Язык, тема, стили заметок';
 
   @override
-  String get settings_appearance_application => 'Application';
+  String get settings_appearance_application => 'Приложение';
 
   @override
-  String get settings_appearance_notes_tiles => 'Notes tiles';
+  String get settings_appearance_notes_tiles => 'Стиль заметок';
 
   @override
   String get settings_language => 'Язык';
@@ -93,7 +93,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_dynamic_theming => 'Динамические цвета';
 
   @override
-  String get settings_dynamic_theming_description => 'Generate colors from the system';
+  String get settings_dynamic_theming_description => 'Использовать цвет, установленный в системе';
 
   @override
   String get settings_black_theming => 'Натуральный чёрный';
@@ -102,14 +102,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_black_theming_description => 'Использовать чёрный фон при тёмном режиме';
 
   @override
-  String get settings_show_separators => 'Separators';
+  String get settings_show_separators => 'Разделители';
 
   @override
-  String get settings_show_separators_description =>
-      'Show a separator between the notes tiles to differentiate them easily';
+  String get settings_show_separators_description => 'Показывать разделитель между заметками';
 
   @override
-  String get settings_show_tiles_background => 'Background';
+  String get settings_show_tiles_background => 'Фон';
 
   @override
   String get settings_show_tiles_background_description => 'Показывать фон у карточек с заметками';
@@ -118,94 +117,93 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_behavior => 'Поведение';
 
   @override
-  String get settings_behavior_application => 'Application';
+  String get settings_behavior_application => 'Приложение';
 
   @override
-  String get settings_behavior_description => 'Confirmations, swipe actions';
+  String get settings_behavior_description => 'Подтверждения, действия свайпа';
 
   @override
-  String get settings_behavior_swipe_actions => 'Swipe actions';
+  String get settings_behavior_swipe_actions => 'Действия при свайпе';
 
   @override
-  String get settings_confirmations => 'Confirmation dialogs';
+  String get settings_confirmations => 'Диалоги подтверждения';
 
   @override
   String get settings_confirmations_description =>
       'Показать диалоги подтверждения при закреплении или удалении заметок';
 
   @override
-  String get settings_swipe_action_right => 'Right swipe action';
+  String get settings_swipe_action_right => 'Действие при свайпе вправо';
 
   @override
   String get settings_swipe_action_right_description =>
-      'Action to trigger when a right swipe is performed on the notes tiles';
+      'Действие, которое будет выполняться при свайпе вправо по заметке';
 
   @override
-  String get settings_swipe_action_left => 'Left swipe action';
+  String get settings_swipe_action_left => 'Действие при свайпе влево';
 
   @override
   String get settings_swipe_action_left_description =>
-      'Action to trigger when a left swipe is performed on the notes tiles';
+      'Действие, которое будет выполняться при свайпе влево по заметке';
 
   @override
-  String get settings_flag_secure => 'Flag the app as secure';
+  String get settings_flag_secure => 'Помечать приложение как защищённое';
 
   @override
   String get settings_flag_secure_description =>
-      'Hide the app from the recent apps and prevent screenshots from being made';
+      'Скрывать приложение из недавних приложений и предотвращать создание скриншотов';
 
   @override
   String get settings_editor => 'Редактор';
 
   @override
-  String get settings_editor_formatting => 'Formatting';
+  String get settings_editor_formatting => 'Форматирование';
 
   @override
-  String get settings_editor_appearance => 'Appearance';
+  String get settings_editor_appearance => 'Персонализация';
 
   @override
-  String get settings_editor_description => 'Buttons, toolbar, spacing';
+  String get settings_editor_description => 'Кнопки, панель инструментов, интервал';
 
   @override
   String get settings_show_undo_redo_buttons => 'Кнопки отмены/повтора';
 
   @override
-  String get settings_show_undo_redo_buttons_description =>
-      'Show the buttons to undo and redo changes in the editor\'s app bar';
+  String get settings_show_undo_redo_buttons_description => 'Показывать кнопки отмены/повтора изменений в редакторе';
 
   @override
   String get settings_show_checklist_button => 'Кнопка для переключения списков';
 
   @override
   String get settings_show_checklist_button_description =>
-      'Show the button to toggle checklists in the editor\'s app bar, hiding it from the editor\'s toolbar if enabled';
+      'Показать кнопку для переключения чек-листов в панели приложений редактора, скрывая его из панели инструментов редактора, если включено';
 
   @override
-  String get settings_show_toolbar => 'Toolbar';
+  String get settings_show_toolbar => 'Панель инструментов';
 
   @override
-  String get settings_show_toolbar_description => 'Show the editor\'s toolbar to enable advanced text formatting';
+  String get settings_show_toolbar_description => 'Показать панель инструментов для расширенного форматирования текста';
 
   @override
-  String get settings_use_paragraph_spacing => 'Paragraph spacing';
+  String get settings_use_paragraph_spacing => 'Интервал между параграфами';
 
   @override
-  String get settings_use_paragraph_spacing_description => 'Use spacing between paragraphs';
+  String get settings_use_paragraph_spacing_description => 'Использовать интервал между параграфами';
 
   @override
   String get settings_backup => 'Резервное копирование';
 
   @override
-  String get settings_backup_description => 'Export, import';
+  String get settings_backup_description => 'Экспорт, импорт';
 
   @override
-  String get settings_backup_export => 'Export';
+  String get settings_backup_export => 'Экспорт';
 
   @override
-  String get settings_backup_import => 'Import';
+  String get settings_backup_import => 'Импорт';
 
   @override
-  String get settings_auto_export => 'Auto export as JSON';
+  String get settings_auto_export => 'Автоматический экспорт в формате JSON';
 
   @override
   String get settings_auto_export_description =>
@@ -216,22 +214,22 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
+        '1': 'Каждый день',
+        '7': 'Каждую неделю',
+        '14': 'Каждые 2 недели',
+        '30': 'Каждый месяц',
+        'other': 'Каждые $frequency дней',
       },
     );
     String _temp1 = intl.Intl.selectLogic(
       encrypt,
       {
-        'true': 'encrypted',
-        'false': 'not encrypted',
+        'true': 'зашифровано',
+        'false': 'не зашифровано',
         'other': '',
       },
     );
-    return 'Every $_temp0, $_temp1';
+    return '$_temp0, $_temp1';
   }
 
   @override
@@ -243,21 +241,21 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get settings_auto_export_dialog_description_disabled => 'Auto export will be disabled.';
+  String get settings_auto_export_dialog_description_disabled => 'Автоматический экспорт будет отключен.';
 
   @override
   String settings_auto_export_dialog_description_enabled(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
+        '1': 'каждый день',
+        '7': 'каждую неделю',
+        '14': 'каждые 2 недели',
+        '30': 'каждый месяц',
+        'other': 'каждые $frequency дней',
       },
     );
-    return 'Auto export will be performed every $_temp0. Set the frequency to 0 to disable it.';
+    return 'Автоматический экспорт будет производиться $_temp0. Установите значение на 0, чтобы отключить автоматический экспорт.';
   }
 
   @override
@@ -265,14 +263,14 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
+        '1': 'Каждый день',
+        '7': 'Каждую неделю',
+        '14': 'Каждые 2 недели',
+        '30': 'Каждый месяц',
+        'other': 'Каждые $frequency дней',
       },
     );
-    return 'Every $_temp0';
+    return '$_temp0';
   }
 
   @override
@@ -283,13 +281,14 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settings_export_json_description =>
-      'Immediately export the notes to a JSON file (bin included) that can be imported back';
+      'Моментально экспортировать заметки в формате JSON (включая заметки из корзины)';
 
   @override
   String get settings_export_markdown => 'Экспортировать в формате Markdown';
 
   @override
-  String get settings_export_markdown_description => 'Immediately export the notes to a Markdown file (bin included)';
+  String get settings_export_markdown_description =>
+      'Моментально экспортировать заметки в формате Markdown (включая заметки из корзины)';
 
   @override
   String get settings_import => 'Импорт заметок';
@@ -304,19 +303,19 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_about => 'О приложении';
 
   @override
-  String get settings_about_application => 'Application';
+  String get settings_about_application => 'Приложение';
 
   @override
-  String get settings_about_links => 'Links';
+  String get settings_about_links => 'Ссылки';
 
   @override
-  String get settings_about_help => 'Help';
+  String get settings_about_help => 'Справка';
 
   @override
-  String get settings_about_description => 'Information, help, GitHub, license';
+  String get settings_about_description => 'Информация, справка, GitHub, лицензия';
 
   @override
-  String get settings_build_mode => 'Build mode';
+  String get settings_build_mode => 'Режим сборки';
 
   @override
   String get settings_build_mode_release => 'Release';
@@ -337,22 +336,22 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
-  String get settings_github_issues => 'Report a bug';
+  String get settings_github_issues => 'Сообщить об ошибке';
 
   @override
-  String get settings_github_issues_description => 'Report a bug by creating a GitHub issue';
+  String get settings_github_issues_description => 'Сообщить об ошибке через GitHub';
 
   @override
-  String get settings_github_discussions => 'Ask a question';
+  String get settings_github_discussions => 'Задать вопрос';
 
   @override
-  String get settings_github_discussions_description => 'Ask a question on GitHub discussions';
+  String get settings_github_discussions_description => 'Задайте вопрос на обсуждениях в GitHub';
 
   @override
-  String get settings_get_in_touch => 'Contact the developer';
+  String get settings_get_in_touch => 'Связаться с разработчиком';
 
   @override
-  String get settings_get_in_touch_description => 'Contact the developer via mail at contact@maelchiotti.dev';
+  String get settings_get_in_touch_description => 'Свяжитесь с разработчиком по почте contact@maelchiotti.dev';
 
   @override
   String get hint_title => 'Заголовок';
@@ -478,7 +477,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Вы действительно хотите отчистить корзину? Все заметки будут безвозвратно удалены.';
 
   @override
-  String get dialog_export_encryption_switch => 'Encrypt the JSON export';
+  String get dialog_export_encryption_switch => 'Зашифровать экспорт в формате JSON';
 
   @override
   String get dialog_export_encryption_description =>
@@ -496,7 +495,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get dialog_export_encryption_password_hint => 'Пароль';
 
   @override
-  String get dialog_export_encryption_password_invalid => 'Invalid';
+  String get dialog_export_encryption_password_invalid => 'Неверно';
 
   @override
   String get dialog_import_encryption_password_description =>
@@ -552,13 +551,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get confirmations_title_all => 'Всегда';
 
   @override
-  String get swipe_action_disabled => 'Disabled';
+  String get swipe_action_disabled => 'Отключено';
 
   @override
-  String get swipe_action_delete => 'Delete';
+  String get swipe_action_delete => 'Удалить';
 
   @override
-  String get swipe_action_pin => 'Pin';
+  String get swipe_action_pin => 'Закрепить';
 
   @override
   String get dismiss_pin => 'Закрепить';

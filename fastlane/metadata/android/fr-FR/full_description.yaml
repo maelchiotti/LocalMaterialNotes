@@ -31,7 +31,7 @@ full_description: |
   <ul>
       <li>Partagez du texte à partir d'autres applications pour l'ajouter directement à une note</li>
       <li>Partagez vos notes sous forme de texte</li>
-      <li>Exportez vos notes au format JSON et importez-les à nouveau</li>
+      <li>Exportez vos notes au format JSON, manuellement ou automatiquement, et importez-les à nouveau</li>
       <li>Exportez vos notes au format Markdown</li>
   </ul>
 
@@ -41,6 +41,7 @@ full_description: |
   <ul>
       <li>Ne vous inquiétez pas de la façon dont vos données sont traitées :
       elles ne peuvent pas quitter votre appareil car l'application n'a pas d'autorisations Internet</li>
+      <li>Chiffrez vos exports</li>
   </ul>
 
   <p>

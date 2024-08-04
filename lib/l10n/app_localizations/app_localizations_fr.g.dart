@@ -267,14 +267,14 @@ class AppLocalizationsFr extends AppLocalizations {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
+        '1': 'jour',
+        '7': 'semaine',
+        '14': '2 semaines',
+        '30': 'mois',
+        'other': '$frequency jours',
       },
     );
-    return 'Every $_temp0';
+    return 'Tous les $_temp0';
   }
 
   @override
