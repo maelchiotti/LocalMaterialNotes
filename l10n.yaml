@@ -1,5 +1,6 @@
 format: true
 use-escaping: true
+nullable-getter: false
 synthetic-package: false
 
 arb-dir: lib/l10n
