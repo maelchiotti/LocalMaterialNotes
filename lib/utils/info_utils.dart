@@ -1,4 +1,6 @@
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/foundation.dart';
+import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class InfoUtils {
@@ -13,7 +15,7 @@ class InfoUtils {
   late final PackageInfo _packageInfo;
   late final AndroidDeviceInfo _androidDeviceInfo;
 
-  Future<void> init() async {
+  Future<void> ensureInitialized() async {
     _packageInfo = await PackageInfo.fromPlatform();
     _androidDeviceInfo = await DeviceInfoPlugin().androidInfo;
   }
@@ -21,4 +23,11 @@ class InfoUtils {
   String get appVersion => _packageInfo.version;
 
   int get androidVersion => _androidDeviceInfo.version.sdkInt;
+
+  String get brand => _androidDeviceInfo.brand;
+
+  String get model => _androidDeviceInfo.model;
+
+  String get buildMode =>
+      kReleaseMode ? localizations.settings_build_mode_release : localizations.settings_build_mode_debug;
 }

@@ -1,5 +1,6 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
+import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
@@ -17,7 +18,7 @@ class ThemeUtils {
 
   late final bool isDynamicThemingAvailable;
 
-  Future<void> init() async {
+  Future<void> ensureInitialized() async {
     isDynamicThemingAvailable = await DynamicColorPlugin.getCorePalette() != null;
   }
 
@@ -27,10 +28,6 @@ class ThemeUtils {
 
   bool get useBlackTheming {
     return PreferenceKey.blackTheming.getPreferenceOrDefault<bool>();
-  }
-
-  Brightness get brightness {
-    return Theme.of(navigatorKey.currentContext!).brightness;
   }
 
   ThemeMode get themeMode {
@@ -67,7 +64,7 @@ class ThemeUtils {
     final ColorScheme colorScheme;
     if (useDynamicTheming && lightDynamicColorScheme != null) {
       // TODO: remove when dynamic_colors is updated to support new roles
-      // cf. https://github.com/material-foundation/flutter-packages/issues/582
+      // See https://github.com/material-foundation/flutter-packages/issues/582
       final temporaryColorScheme = ColorScheme.fromSeed(
         seedColor: lightDynamicColorScheme.primary,
       );
@@ -95,7 +92,7 @@ class ThemeUtils {
 
     if (useDynamicTheming && darkDynamicColorScheme != null) {
       // TODO: remove when dynamic_colors is updated to support new roles
-      // cf. https://github.com/material-foundation/flutter-packages/issues/582
+      // See https://github.com/material-foundation/flutter-packages/issues/582
       final temporaryColorScheme = ColorScheme.fromSeed(
         brightness: Brightness.dark,
         seedColor: darkDynamicColorScheme.primary,
@@ -104,7 +101,7 @@ class ThemeUtils {
       colorScheme = useBlackTheming
           ? darkDynamicColorScheme.copyWith(
               // TODO: remove when dynamic_colors is updated to support new roles
-              // cf. https://github.com/material-foundation/flutter-packages/issues/582
+              // See https://github.com/material-foundation/flutter-packages/issues/582
               // ignore: deprecated_member_use
               background: Colors.black,
               surface: Colors.black,

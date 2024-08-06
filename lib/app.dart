@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
+import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/locale_extension.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
@@ -47,13 +48,13 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
       builder: (lightDynamicColorScheme, darkDynamicColorScheme) {
         return ValueListenableBuilder(
           valueListenable: dynamicThemingNotifier,
-          builder: (_, __, ___) {
+          builder: (context, dynamicTheming, child) {
             return ValueListenableBuilder(
               valueListenable: blackThemingNotifier,
-              builder: (_, __, ___) {
+              builder: (context, blackTheming, child) {
                 return ValueListenableBuilder(
                   valueListenable: themeModeNotifier,
-                  builder: (_, themeMode, ___) {
+                  builder: (context, themeMode, child) {
                     return MaterialApp.router(
                       title: 'Material Notes',
                       builder: (context, child) {

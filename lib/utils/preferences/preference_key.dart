@@ -1,7 +1,8 @@
-import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
-import 'package:localmaterialnotes/utils/preferences/layout.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/confirmations.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/layout.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/sort_method.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
-import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
 
 enum PreferenceKey {
   // Appearance
@@ -9,16 +10,26 @@ enum PreferenceKey {
   theme(0),
   dynamicTheming(true),
   blackTheming(false),
+  showSeparators(false),
+  showTilesBackground(false),
+
+  // Behavior
+  flagSecure(false),
+  confirmations(Confirmations.irreversible),
+  swipeRightAction(SwipeAction.delete),
+  swipeLeftAction(SwipeAction.pin),
 
   // Editor
   showUndoRedoButtons(true),
   showChecklistButton(true),
   showToolbar(true),
+  useParagraphsSpacing(true),
 
-  // Behavior
-  showSeparators(false),
-  showTilesBackground(false),
-  confirmations(Confirmations.irreversible),
+  // Backup
+  autoExportFrequency(0.0),
+  autoExportEncryption(false),
+  autoExportPassword(''),
+  lastAutoExportDate(''),
 
   // Notes
   sortMethod(SortMethod.date),
@@ -40,5 +51,9 @@ enum PreferenceKey {
     }
 
     return PreferencesUtils().get<T>(this) ?? defaultValue as T;
+  }
+
+  Future<String> getPreferenceOrDefaultSecure() async {
+    return await PreferencesUtils().getSecure(this) ?? defaultValue as String;
   }
 }

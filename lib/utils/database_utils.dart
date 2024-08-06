@@ -1,17 +1,24 @@
 import 'dart:convert';
+import 'dart:developer';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
+import 'package:flutter/material.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
+import 'package:localmaterialnotes/pages/settings/dialogs/import_dialog.dart';
+import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
+import 'package:localmaterialnotes/utils/files_utils.dart';
+import 'package:localmaterialnotes/utils/info_utils.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/sort_method.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/sort_method.dart';
+import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sanitize_filename/sanitize_filename.dart';
-import 'package:shared_storage/shared_storage.dart' as saf;
 
 class DatabaseUtils {
   static final DatabaseUtils _singleton = DatabaseUtils._internal();
@@ -26,7 +33,7 @@ class DatabaseUtils {
   late String _databaseDirectory;
   late Isar _database;
 
-  Future<void> init() async {
+  Future<void> ensureInitialized() async {
     _databaseDirectory = (await getApplicationDocumentsDirectory()).path;
     _database = await Isar.open(
       [NoteSchema],
@@ -57,7 +64,7 @@ class DatabaseUtils {
             ? await sortedByPinned.thenByTitle().findAll()
             : await sortedByPinned.thenByTitleDesc().findAll();
       default:
-        throw Exception();
+        throw Exception('The sort methode is not set: $sortMethod');
     }
   }
 
@@ -75,13 +82,13 @@ class DatabaseUtils {
 
   Future<void> delete(Note note) async {
     await _database.writeTxn(() async {
-      await _database.notes.delete(note.isarId);
+      await _database.notes.delete(note.id);
     });
   }
 
   Future<void> deleteAll(List<Note> notes) async {
     await _database.writeTxn(() async {
-      await _database.notes.deleteAll(notes.map((note) => note.isarId).toList());
+      await _database.notes.deleteAll(notes.map((note) => note.id).toList());
     });
   }
 
@@ -91,51 +98,47 @@ class DatabaseUtils {
     });
   }
 
-  Future<bool> isBinEmpty() async {
-    return await _database.notes.where().deletedEqualTo(true).isEmpty();
-  }
+  Future<bool> _exportAsJson(bool encrypt, String? password, File file) async {
+    var notes = await getAll();
 
-  Future<Uri?> _getDirectory() async {
-    final directory = await saf.openDocumentTree();
-
-    if (directory == null) {
-      return null;
+    if (encrypt && password != null && password.isNotEmpty) {
+      notes = notes.map((note) => note.encrypted(password)).toList();
     }
 
-    return directory;
+    final version = InfoUtils().appVersion;
+
+    final exportData = {
+      'version': version,
+      'encrypted': encrypt,
+      'notes': notes,
+    };
+    final exportDataAsJson = jsonEncode(exportData);
+
+    return await writeStringToFile(file, exportDataAsJson);
   }
 
-  Future<bool> _export(Uri directory, String mimeType, String extension, Uint8List bytes) async {
-    final timestamp = DateTime.timestamp();
-    final filename = 'materialnotes_export_${timestamp.filename}';
+  Future<bool> autoExportAsJson(bool encrypt, String password) async {
+    final file = await AutoExportUtils().getAutoExportFile;
 
-    await saf.createFile(
-      directory,
-      mimeType: mimeType,
-      displayName: filename,
-      bytes: bytes,
-    );
-
-    return true;
+    return await _exportAsJson(encrypt, password, file);
   }
 
-  Future<bool> exportAsJson() async {
-    final directory = await _getDirectory();
+  Future<bool> manuallyExportAsJson(bool encrypt, String? password) async {
+    final exportDirectory = await pickDirectory();
 
-    if (directory == null) {
+    if (exportDirectory == null) {
       return false;
     }
 
-    final notes = await getAll();
-    final notesAsJson = jsonEncode(notes);
+    final file = getExportFile(exportDirectory, 'json');
 
-    return await _export(directory, 'application/json', 'json', Uint8List.fromList(utf8.encode(notesAsJson)));
+    return await _exportAsJson(encrypt, password, file);
   }
 
   Future<bool> exportAsMarkdown() async {
-    final directory = await _getDirectory();
+    final exportDirectory = await pickDirectory();
 
-    if (directory == null) {
+    if (exportDirectory == null) {
       return false;
     }
 
@@ -155,28 +158,68 @@ class DatabaseUtils {
       return false;
     }
 
-    return await _export(directory, 'application/zip', 'zip', Uint8List.fromList(encodedArchive));
+    final file = getExportFile(exportDirectory, 'zip');
+
+    return await writeBytesToFile(file, encodedArchive);
   }
 
-  Future<bool> import() async {
-    final importFiles = await saf.openDocument(
-      grantWritePermission: false,
-      mimeType: 'application/json',
-    );
+  Future<bool> import(BuildContext context) async {
+    final importPlatformFile = await pickSingleFile(typeGroupJson);
 
-    if (importFiles == null || importFiles.isEmpty) {
+    if (importPlatformFile == null) {
       return false;
     }
 
-    final importedData = await saf.getDocumentContent(importFiles.first);
+    final importedString = await importPlatformFile.readAsString();
+    var importedJson = jsonDecode(importedString);
 
-    if (importedData == null) {
-      throw Exception(localizations.error_read_file);
+    List<Note>? notes;
+
+    // If the imported JSON is just a list, then it's the old export format (before v1.5.0) that just contains
+    // the notes list. Otherwise, it's the new export format (after v1.5.0) that contains other data.
+    if (importedJson is List) {
+      notes = importedJson.map((noteAsJson) {
+        return Note.fromJson(noteAsJson as Map<String, dynamic>);
+      }).toList();
+    } else {
+      importedJson = importedJson as Map<String, dynamic>;
+
+      final encrypted = importedJson['encrypted'] as bool;
+      final notesAsJson = importedJson['notes'] as List;
+
+      if (encrypted && context.mounted) {
+        final password = await showAdaptiveDialog<String>(
+          context: context,
+          builder: (context) => ImportDialog(title: localizations.settings_import),
+        );
+
+        if (password == null) {
+          return false;
+        }
+
+        try {
+          notes = notesAsJson.map((noteAsJsonEncrypted) {
+            return Note.fromJsonEncrypted(
+              noteAsJsonEncrypted as Map<String, dynamic>,
+              password,
+            );
+          }).toList();
+        } catch (exception, stackTrace) {
+          log(exception.toString(), stackTrace: stackTrace);
+
+          SnackBarUtils.error(
+            localizations.dialog_import_encryption_password_error,
+            duration: const Duration(seconds: 8),
+          ).show();
+
+          return false;
+        }
+      } else {
+        notes = notesAsJson.map((noteAsJson) {
+          return Note.fromJson(noteAsJson as Map<String, dynamic>);
+        }).toList();
+      }
     }
-
-    final importedString = utf8.decode(importedData);
-    final notesJson = jsonDecode(importedString) as List;
-    final notes = notesJson.map((e) => Note.fromJson(e as Map<String, dynamic>)).toList();
 
     await putAll(notes);
 

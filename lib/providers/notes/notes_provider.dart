@@ -2,13 +2,13 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/base_provider.dart';
+import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'notes_provider.g.dart';
 
 @riverpod
-class Notes extends _$Notes with BaseProvider {
+class Notes extends _$Notes {
   @override
   FutureOr<List<Note>> build() {
     return get();
@@ -18,8 +18,8 @@ class Notes extends _$Notes with BaseProvider {
     List<Note> notes = [];
 
     try {
-      notes = await databaseUtils.getAll(deleted: false);
-    } on Exception catch (exception, stackTrace) {
+      notes = await DatabaseUtils().getAll(deleted: false);
+    } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
     }
 
@@ -39,11 +39,11 @@ class Notes extends _$Notes with BaseProvider {
 
     try {
       if (editedNote.isEmpty) {
-        await databaseUtils.delete(editedNote);
+        await DatabaseUtils().delete(editedNote);
       } else {
-        await databaseUtils.put(editedNote);
+        await DatabaseUtils().put(editedNote);
       }
-    } on Exception catch (exception, stackTrace) {
+    } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
@@ -76,8 +76,8 @@ class Notes extends _$Notes with BaseProvider {
     }
 
     try {
-      await databaseUtils.putAll(notes);
-    } on Exception catch (exception, stackTrace) {
+      await DatabaseUtils().putAll(notes);
+    } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }
@@ -110,8 +110,8 @@ class Notes extends _$Notes with BaseProvider {
     }
 
     try {
-      await databaseUtils.putAll(notes);
-    } on Exception catch (exception, stackTrace) {
+      await DatabaseUtils().putAll(notes);
+    } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
     }

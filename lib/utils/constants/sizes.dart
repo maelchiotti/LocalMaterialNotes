@@ -19,13 +19,15 @@ enum Sizes {
 
   double get infinity => double.infinity;
 
-  double get searchAppBar => 8;
+  double get selectionAppBar => 8;
 
   double get searchBar => 48;
 
   int get gridLayoutColumnWidth => 384;
 
-  double get editorToolbarHeight => 48;
+  double get editorToolbarButtonHeight => 42;
+
+  double get editorToolbarButtonWidth => 42;
 
   double get notesGridViewSpacing => 8;
 

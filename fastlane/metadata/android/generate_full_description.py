@@ -14,7 +14,7 @@ for language in os.listdir(root):
     if not os.path.isfile(yaml_filepath):
         continue
 
-    with open(yaml_filepath) as yaml_stream:
+    with open(yaml_filepath, mode="r", encoding="utf-8") as yaml_stream:
         try:
             # Read and minimize the description inside the YAML file
             yaml_file = yaml.safe_load(yaml_stream)
@@ -25,7 +25,7 @@ for language in os.listdir(root):
 
             # Write the description into the text file
             text_filepath = os.path.join(root, language, "full_description.txt")
-            with open(text_filepath, mode="w") as text_file:
+            with open(text_filepath, mode="w", encoding="utf-8") as text_file:
                 text_file.write(full_description_minified)
 
             print("Generated full_description.txt for language " + language)

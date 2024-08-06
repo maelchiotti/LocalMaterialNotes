@@ -5,8 +5,8 @@ import 'package:localmaterialnotes/common/actions/select.dart';
 import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/current_note/current_note_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/notifiers.dart';
 
 Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) async {
   exitSelectionMode(ref);
@@ -18,7 +18,7 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) asy
     ref.read(notesProvider.notifier).edit(note);
   }
 
-  ref.read(currentNoteProvider.notifier).set(note);
+  currentNoteNotifier.value = note;
 
   if (!context.mounted) {
     return;

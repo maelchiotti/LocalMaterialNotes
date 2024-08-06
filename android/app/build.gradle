@@ -69,8 +69,8 @@ android {
 
     defaultConfig {
         applicationId "com.maelchiotti.localmaterialnotes"
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

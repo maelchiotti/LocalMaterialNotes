@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/preferences/confirmations.dart';
+import 'package:localmaterialnotes/utils/preferences/enums/confirmations.dart';
 
 Future<bool> _showConfirmationDialog(
   String title,
@@ -10,7 +10,7 @@ Future<bool> _showConfirmationDialog(
   return await showAdaptiveDialog<bool>(
         context: navigatorKey.currentContext!,
         builder: (context) {
-          return AlertDialog(
+          return AlertDialog.adaptive(
             title: Text(title),
             content: SingleChildScrollView(
               child: Column(
@@ -21,15 +21,11 @@ Future<bool> _showConfirmationDialog(
             ),
             actions: [
               TextButton(
-                onPressed: () {
-                  Navigator.pop(context, false);
-                },
+                onPressed: () => Navigator.pop(context, false),
                 child: Text(localizations.button_cancel),
               ),
               TextButton(
-                onPressed: () {
-                  Navigator.pop(context, true);
-                },
+                onPressed: () => Navigator.pop(context, true),
                 child: Text(confirmText),
               ),
             ],

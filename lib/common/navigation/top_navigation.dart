@@ -1,57 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/back_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/editor_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/empty_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/notes_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/selection_app_bar.dart';
-import 'package:localmaterialnotes/providers/selection_mode/selection_mode_provider.dart';
-import 'package:localmaterialnotes/utils/constants/sizes.dart';
-
-enum TopNavigationStyle {
-  empty,
-  back,
-  backMenu,
-  searchSort,
-}
+import 'package:localmaterialnotes/providers/notifiers.dart';
 
 class TopNavigation extends ConsumerWidget implements PreferredSizeWidget {
-  const TopNavigation.empty() : topNavigationStyle = TopNavigationStyle.empty;
+  const TopNavigation({super.key, required this.appbar});
 
-  const TopNavigation.back() : topNavigationStyle = TopNavigationStyle.back;
-
-  const TopNavigation.backMenu() : topNavigationStyle = TopNavigationStyle.backMenu;
-
-  const TopNavigation.searchSort({super.key}) : topNavigationStyle = TopNavigationStyle.searchSort;
-
-  final TopNavigationStyle topNavigationStyle;
+  final Widget appbar;
 
   @override
   Size get preferredSize {
-    var height = kToolbarHeight;
-
-    if (topNavigationStyle == TopNavigationStyle.searchSort) {
-      height += Sizes.custom.searchAppBar;
-    }
-
-    return Size.fromHeight(height);
+    return const Size.fromHeight(kToolbarHeight);
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (ref.watch(selectionModeProvider)) {
-      return const SelectionAppBar();
-    }
-
-    switch (topNavigationStyle) {
-      case TopNavigationStyle.empty:
-        return const EmptyAppBar();
-      case TopNavigationStyle.back:
-        return const BackAppBar();
-      case TopNavigationStyle.backMenu:
-        return const EditorAppBar();
-      case TopNavigationStyle.searchSort:
-        return NotesAppBar(key: super.key);
-    }
+    return ValueListenableBuilder(
+      valueListenable: isSelectionModeNotifier,
+      builder: (BuildContext context, isSelectionMode, Widget? child) {
+        // If the selection mode is enabled, return the selection app bar
+        return isSelectionMode ? const SelectionAppBar() : appbar;
+      },
+    );
   }
 }
