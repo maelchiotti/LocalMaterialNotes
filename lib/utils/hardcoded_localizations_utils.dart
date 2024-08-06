@@ -2,6 +2,7 @@ import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.da
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations_en.g.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations_es.g.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations_fr.g.dart';
+import 'package:localmaterialnotes/l10n/app_localizations/app_localizations_ru.g.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations_tr.g.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 
@@ -10,6 +11,7 @@ class HardcodedLocalizationsUtils {
     AppLocalizationsEn(),
     AppLocalizationsEs(),
     AppLocalizationsFr(),
+    AppLocalizationsRu(),
     AppLocalizationsTr(),
   ];
 

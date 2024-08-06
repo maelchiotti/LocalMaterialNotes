@@ -93,7 +93,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_dynamic_theming => 'Tema dinámico';
 
   @override
-  String get settings_dynamic_theming_description => 'Generar colores a partir del sistema';
+  String get settings_dynamic_theming_description => 'Generate colors from the system';
 
   @override
   String get settings_black_theming => 'Negro puro';
@@ -102,10 +102,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_black_theming_description => 'Fondo negro puro para el tema oscuro';
 
   @override
-  String get settings_show_separators => 'Mostrar separadores';
+  String get settings_show_separators => 'Separators';
 
   @override
-  String get settings_show_separators_description => 'Mostrar un separador entre notas para diferenciarlas fácilmente';
+  String get settings_show_separators_description =>
+      'Show a separator between the notes tiles to differentiate them easily';
 
   @override
   String get settings_show_tiles_background => 'Background';
@@ -127,7 +128,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_behavior_swipe_actions => 'Swipe actions';
 
   @override
-  String get settings_confirmations => 'Mostrar diálogos de confirmación';
+  String get settings_confirmations => 'Confirmation dialogs';
 
   @override
   String get settings_confirmations_description =>
@@ -148,7 +149,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Action to trigger when a left swipe is performed on the notes tiles';
 
   @override
-  String get settings_flag_secure => 'Make app secure';
+  String get settings_flag_secure => 'Flag the app as secure';
 
   @override
   String get settings_flag_secure_description =>
@@ -171,21 +172,20 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settings_show_undo_redo_buttons_description =>
-      'Mostrar los botones para deshacer y rehacer cambios en el editor';
+      'Show the buttons to undo and redo changes in the editor\'s app bar';
 
   @override
   String get settings_show_checklist_button => 'Botón de casilla de verificación';
 
   @override
   String get settings_show_checklist_button_description =>
-      'Mostrar el botón para alternar casillas de verificación en el editor';
+      'Show the button to toggle checklists in the editor\'s app bar, hiding it from the editor\'s toolbar if enabled';
 
   @override
-  String get settings_show_toolbar => 'Barra de herramientas del editor';
+  String get settings_show_toolbar => 'Toolbar';
 
   @override
-  String get settings_show_toolbar_description =>
-      'Mostrar la barra de herramientas del editor para habilitar el formateado avanzado del texto.';
+  String get settings_show_toolbar_description => 'Show the editor\'s toolbar to enable advanced text formatting';
 
   @override
   String get settings_use_paragraph_spacing => 'Paragraph spacing';
@@ -284,13 +284,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settings_export_json_description =>
-      'Exportar notas a un archivo JSON (incluyendo la papelera) que pueda ser importado de vuelta';
+      'Immediately export the notes to a JSON file (bin included) that can be imported back';
 
   @override
   String get settings_export_markdown => 'Exportar a Markdown';
 
   @override
-  String get settings_export_markdown_description => 'Exportar notas a un archivo Markdown (incluyendo la papelera)';
+  String get settings_export_markdown_description => 'Immediately export the notes to a Markdown file (bin included)';
 
   @override
   String get settings_import => 'Importar';
@@ -300,10 +300,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settings_import_success => 'Las notas fueron importadas exitosamente.';
-
-  @override
-  String get settings_import_incompatible_prior_v1_5_0 =>
-      'Exports made in versions prior to v1.5.0 are not compatible anymore. Please see the pinned issue on GitHub for an easy fix.';
 
   @override
   String get settings_about => 'Acerca de';
@@ -523,7 +519,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get placeholder_notes => 'No hay notas';
 
   @override
-  String get placeholder_bin => 'La papelera está vacía';
+  String get placeholder_bin => 'No deleted notes';
 
   @override
   String get menu_pin => 'Fijar';

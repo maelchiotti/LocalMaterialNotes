@@ -8,6 +8,7 @@ import 'package:intl/intl.dart' as intl;
 import 'app_localizations_en.g.dart';
 import 'app_localizations_es.g.dart';
 import 'app_localizations_fr.g.dart';
+import 'app_localizations_ru.g.dart';
 import 'app_localizations_tr.g.dart';
 
 /// Callers can lookup localized strings with an instance of AppLocalizations
@@ -66,8 +67,8 @@ abstract class AppLocalizations {
 
   final String localeName;
 
-  static AppLocalizations? of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(context, AppLocalizations);
+  static AppLocalizations of(BuildContext context) {
+    return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
   static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
@@ -90,7 +91,13 @@ abstract class AppLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en'), Locale('es'), Locale('fr'), Locale('tr')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('en'),
+    Locale('es'),
+    Locale('fr'),
+    Locale('ru'),
+    Locale('tr')
+  ];
 
   /// No description provided for @app_name.
   ///
@@ -365,7 +372,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_flag_secure.
   ///
   /// In en, this message translates to:
-  /// **'Make app secure'**
+  /// **'Flag the app as secure'**
   String get settings_flag_secure;
 
   /// No description provided for @settings_flag_secure_description.
@@ -565,12 +572,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The notes were successfully imported.'**
   String get settings_import_success;
-
-  /// No description provided for @settings_import_incompatible_prior_v1_5_0.
-  ///
-  /// In en, this message translates to:
-  /// **'Exports made in versions prior to v1.5.0 are not compatible anymore. Please see the pinned issue on GitHub for an easy fix.'**
-  String get settings_import_incompatible_prior_v1_5_0;
 
   /// No description provided for @settings_about.
   ///
@@ -1068,7 +1069,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es', 'fr', 'tr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es', 'fr', 'ru', 'tr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -1083,6 +1084,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEs();
     case 'fr':
       return AppLocalizationsFr();
+    case 'ru':
+      return AppLocalizationsRu();
     case 'tr':
       return AppLocalizationsTr();
   }

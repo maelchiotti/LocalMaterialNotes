@@ -6,7 +6,7 @@ import 'package:parchment/codecs.dart'; // ignore: depend_on_referenced_packages
 final navigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Root navigator key');
 final drawerKey = GlobalKey<ScaffoldState>(debugLabel: 'Drawer key');
 
-final localizations = AppLocalizations.of(navigatorKey.currentContext!)!;
+final localizations = AppLocalizations.of(navigatorKey.currentContext!);
 final hardcodedLocalizations = HardcodedLocalizationsUtils();
 
 const parchmentMarkdownCodec = ParchmentMarkdownCodec();

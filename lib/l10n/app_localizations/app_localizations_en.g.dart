@@ -149,7 +149,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Action to trigger when a left swipe is performed on the notes tiles';
 
   @override
-  String get settings_flag_secure => 'Make app secure';
+  String get settings_flag_secure => 'Flag the app as secure';
 
   @override
   String get settings_flag_secure_description =>
@@ -300,10 +300,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_import_success => 'The notes were successfully imported.';
-
-  @override
-  String get settings_import_incompatible_prior_v1_5_0 =>
-      'Exports made in versions prior to v1.5.0 are not compatible anymore. Please see the pinned issue on GitHub for an easy fix.';
 
   @override
   String get settings_about => 'About';

@@ -53,12 +53,13 @@ Simple, local, material design notes.
 
 - Share text from other applications to add it directly to a note
 - Share your notes as text
-- Export your notes as JSON and import them back
+- Export your notes as JSON, manually or automatically, and import them back
 - Export your notes as Markdown
 
 ### Protect
 
 - Never worry about how your data is handled: it cannot leave your device as the application doesn't have any internet permissions
+- Encrypt your JSON exports
 
 ### Customize
 
