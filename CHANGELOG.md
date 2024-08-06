@@ -17,7 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Russian localization
 - Show localizations completion as a percentage
 
-## Changed
+### Changed
 
 - New settings page layout that divides settings into separate pages
 - Disable undo/redo buttons in the editor's app bar if they can't be used
