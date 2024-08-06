@@ -51,7 +51,6 @@ class _SideNavigationState extends State<SideNavigation> {
             children: [
               Image.asset(
                 Asset.icon.path,
-                filterQuality: FilterQuality.medium,
                 fit: BoxFit.fitWidth,
                 width: Sizes.size64.size,
               ),

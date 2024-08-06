@@ -2,6 +2,7 @@
 
 ## Checklist
 
+- [ ] Upgrade Flutter
 - [ ] Bump application version
 - [ ] Bump dependencies versions
 - [ ] Update `CHANGELOG.md`

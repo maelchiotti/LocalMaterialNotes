@@ -28,7 +28,6 @@ class SettingsAboutPage extends StatelessWidget {
       applicationVersion: InfoUtils().appVersion,
       applicationIcon: Image.asset(
         Asset.icon.path,
-        filterQuality: FilterQuality.medium,
         fit: BoxFit.fitWidth,
         width: Sizes.size64.size,
       ),
