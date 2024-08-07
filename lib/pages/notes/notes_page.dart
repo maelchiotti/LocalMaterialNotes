@@ -27,14 +27,18 @@ class _NotesPageState extends ConsumerState<NotesPage> {
     super.dispose();
   }
 
+  /// Actions to perform when the back button is intercepted.
+  ///
+  /// If the selection mode is not active, the route should be popped (closing the app). Otherwise, the navigation mode
+  /// should be exited, but the route shouldn't be popped (keeping the app open).
   bool _interceptor(bool stopDefaultButtonEvent, RouteInfo info) {
     if (!isSelectionModeNotifier.value) {
       return false;
+    } else {
+      exitSelectionMode(ref);
+
+      return true;
     }
-
-    exitSelectionMode(ref);
-
-    return true;
   }
 
   @override

@@ -29,13 +29,25 @@ class EditorPage extends ConsumerStatefulWidget {
 }
 
 class _EditorState extends ConsumerState<EditorPage> {
-  final titleController = TextEditingController();
+  final note = currentNoteNotifier.value;
+
+  late final TextEditingController titleController;
+  late final FleatherController editorController;
 
   @override
   void initState() {
     super.initState();
 
     BackButtonInterceptor.add(_interceptor);
+
+    if (note != null) {
+      titleController = TextEditingController(text: note!.title);
+      editorController = FleatherController(document: note!.document);
+
+      editorController.addListener(() => _synchronizeContent(note!));
+
+      fleatherControllerNotifier.value = editorController;
+    }
   }
 
   @override
@@ -45,14 +57,22 @@ class _EditorState extends ConsumerState<EditorPage> {
     super.dispose();
   }
 
+  /// Actions to perform when the back button is intercepted.
+  ///
+  /// If the `Navigator` can't be popped, it means the menu isn't opened and the route should be popped (going back
+  /// to the notes list or the bin). Otherwise, the menu is open, so it should be closed but the route shouldn't
+  /// be popped (staying in the editor).
   bool _interceptor(bool stopDefaultButtonEvent, RouteInfo info) {
     if (!Navigator.canPop(navigatorKey.currentContext!)) {
+      currentNoteNotifier.value = null;
+      fleatherControllerNotifier.value = null;
+
       return false;
+    } else {
+      Navigator.pop(navigatorKey.currentContext!);
+
+      return true;
     }
-
-    Navigator.pop(navigatorKey.currentContext!);
-
-    return true;
   }
 
   void _synchronizeTitle(Note note, String? newTitle) {
@@ -66,12 +86,6 @@ class _EditorState extends ConsumerState<EditorPage> {
   }
 
   void _synchronizeContent(Note note) {
-    final editorController = fleatherControllerNotifier.value;
-
-    if (editorController == null) {
-      return;
-    }
-
     fleatherControllerCanUndoNotifier.value = editorController.canUndo;
     fleatherControllerCanRedoNotifier.value = editorController.canRedo;
 
@@ -82,19 +96,12 @@ class _EditorState extends ConsumerState<EditorPage> {
 
   @override
   Widget build(BuildContext context) {
-    final note = currentNoteNotifier.value;
-
     if (note == null) {
       return const LoadingPlaceholder();
     }
 
-    final editorController = fleatherControllerNotifier.value ??= FleatherController(
-      document: note.document,
-    )..addListener(() => _synchronizeContent(note));
-
-    titleController.text = note.title;
-
     final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
+    final isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
 
     return Column(
       children: [
@@ -112,7 +119,7 @@ class _EditorState extends ConsumerState<EditorPage> {
                     hintText: localizations.hint_title,
                   ),
                   controller: titleController,
-                  onChanged: (text) => _synchronizeTitle(note, text),
+                  onChanged: (text) => _synchronizeTitle(note!, text),
                 ),
                 Padding(padding: Paddings.padding8.vertical),
                 Expanded(
@@ -132,7 +139,7 @@ class _EditorState extends ConsumerState<EditorPage> {
         ValueListenableBuilder(
           valueListenable: fleatherFieldHasFocusNotifier,
           builder: (context, hasFocus, child) {
-            return showToolbar && hasFocus && KeyboardVisibilityProvider.isKeyboardVisible(context)
+            return showToolbar && hasFocus && isKeyboardVisible
                 ? ColoredBox(
                     color: Theme.of(context).colorScheme.surfaceContainerHigh,
                     child: EditorToolbar(editorController),
