@@ -1,0 +1,3 @@
+CORRIGÉ
+- Quitter l'éditeur à l'aide du bouton retour de l'appareil ou du geste retour (et non du bouton retour de l'application) entraîne l'affichage du contenu de la note dans toute autre note ouverte par la suite
+- Caractères spéciaux mal décodés lors de l'importation d'un fichier JSON
