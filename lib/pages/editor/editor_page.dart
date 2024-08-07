@@ -64,6 +64,7 @@ class _EditorState extends ConsumerState<EditorPage> {
   /// be popped (staying in the editor).
   bool _interceptor(bool stopDefaultButtonEvent, RouteInfo info) {
     if (!Navigator.canPop(navigatorKey.currentContext!)) {
+      currentNoteNotifier.value = null;
       fleatherControllerNotifier.value = null;
 
       return false;
