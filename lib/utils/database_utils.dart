@@ -170,7 +170,7 @@ class DatabaseUtils {
       return false;
     }
 
-    final importedString = await importPlatformFile.readAsString();
+    final importedString = utf8.decode(await importPlatformFile.readAsBytes());
     var importedJson = jsonDecode(importedString);
 
     List<Note>? notes;
