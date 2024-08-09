@@ -3,6 +3,7 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 
+/// Text field to enter the password to use to encrypt the JSON exports.
 class PasswordField extends StatefulWidget {
   const PasswordField({
     super.key,
@@ -12,10 +13,16 @@ class PasswordField extends StatefulWidget {
     required this.onEditingComplete,
   });
 
+  /// First paragraph of description.
   final String? description;
+
+  /// Second paragraph of description.
   final String? secondaryDescription;
 
-  final Function(String?) onChanged;
+  /// Called when the password has changed.
+  final Function(String? password) onChanged;
+
+  /// Called when the user validates the form.
   final Function() onEditingComplete;
 
   @override
@@ -23,29 +30,38 @@ class PasswordField extends StatefulWidget {
 }
 
 class _PasswordFieldState extends State<PasswordField> {
+  /// Whether to obscure the password.
   bool _obscurePassword = true;
 
+  /// Key of the form.
   final _formKey = GlobalKey<FormState>();
+
+  /// Controller of the password text field.
   final _passwordController = TextEditingController();
 
+  /// Toggles whether to [_obscurePassword].
   void _toggleObscurePassword() {
     setState(() {
       _obscurePassword = !_obscurePassword;
     });
   }
 
-  String? _validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
+  /// Validates the [password].
+  ///
+  /// The password must be exactly 32 characters long and be strong.
+  String? _validatePassword(String? password) {
+    if (password == null || password.isEmpty) {
       return null;
     }
 
-    if (!(value.length == 32) || !value.isStrongPassword) {
+    if (!(password.length == 32) || !password.isStrongPassword) {
       return localizations.dialog_export_encryption_password_invalid;
     }
 
     return null;
   }
 
+  /// Triggers the [widget.onChanged] callback if the form is valid.
   void _onChanged() {
     if (!_formKey.currentState!.validate()) {
       widget.onChanged(null);
@@ -56,6 +72,7 @@ class _PasswordFieldState extends State<PasswordField> {
     widget.onChanged(_passwordController.text);
   }
 
+  /// Triggers the [widget.onEditingComplete] callback if the form is valid.
   void _onEditingComplete() {
     if (!_formKey.currentState!.validate()) {
       return;

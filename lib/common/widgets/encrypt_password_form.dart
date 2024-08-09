@@ -4,6 +4,7 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
+/// Form to choose whether to encrypt the JSON exports and to provide the password.
 class EncryptionPasswordForm extends StatefulWidget {
   const EncryptionPasswordForm({
     super.key,
@@ -12,9 +13,15 @@ class EncryptionPasswordForm extends StatefulWidget {
     required this.onEditingComplete,
   });
 
+  /// Second paragraph of description to show above the password field.
   final String secondaryDescription;
 
-  final Function(bool, String?) onChanged;
+  /// Called when the text has changed in the password field.
+  ///
+  /// Returns whether to [encrypt] the JSON export, and in that case the [password] to use.
+  final Function(bool encrypt, String? password) onChanged;
+
+  /// Called when the user validates the form.
   final Function() onEditingComplete;
 
   @override
@@ -22,8 +29,10 @@ class EncryptionPasswordForm extends StatefulWidget {
 }
 
 class _EncryptionPasswordFormState extends State<EncryptionPasswordForm> {
+  /// Whether the JSON export should be encrypted.
   bool _encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
 
+  /// Toggles whether to [_encrypt] the JSON export.
   void _toggleEncrypt(_) {
     setState(() {
       _encrypt = !_encrypt;
@@ -32,10 +41,12 @@ class _EncryptionPasswordFormState extends State<EncryptionPasswordForm> {
     _onChanged(null);
   }
 
+  /// Triggers the [widget.onChanged] callback.
   void _onChanged(String? password) {
     widget.onChanged(_encrypt, password);
   }
 
+  /// Triggers the [widget.onEditingComplete] callback.
   void _onEditingComplete() {
     widget.onEditingComplete();
   }
