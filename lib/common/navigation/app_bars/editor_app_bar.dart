@@ -14,6 +14,14 @@ import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:share_plus/share_plus.dart';
 
+/// Editor's app bar.
+///
+/// Contains:
+///   - A back button.
+///   - The title of the editor route.
+///   - The undo/redo buttons if enabled by the user.
+///   - The checklist button if enabled by the user.
+///   - The menu with further actions.
 class EditorAppBar extends ConsumerStatefulWidget {
   const EditorAppBar();
 
@@ -30,6 +38,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     context.pop();
   }
 
+  /// Performs the action associated with the selected [menuOption].
   Future<void> _onMenuOptionSelected(MenuOption menuOption) async {
     // Manually close the keyboard
     FocusManager.instance.primaryFocus?.unfocus();
@@ -63,6 +72,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     }
   }
 
+  /// Undoes the latest change in the editor.
   void _undo() {
     final editorController = fleatherControllerNotifier.value;
 
@@ -73,6 +83,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     editorController.undo();
   }
 
+  /// Redoes the latest change in the editor.
   void _redo() {
     final editorController = fleatherControllerNotifier.value;
 
@@ -83,6 +94,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     editorController.redo();
   }
 
+  /// Toggles the presence of the checklist in the currently active line of the editor.
   void _toggleChecklist() {
     final editorController = fleatherControllerNotifier.value;
 
@@ -96,6 +108,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     );
   }
 
+  /// Shares the note as text (title and content).
   Future<void> _shareNote(Note note) async {
     await Share.share(note.shareText, subject: note.title);
   }

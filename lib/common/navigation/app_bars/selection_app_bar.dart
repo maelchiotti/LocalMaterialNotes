@@ -4,7 +4,6 @@ import 'package:localmaterialnotes/common/actions/delete.dart';
 import 'package:localmaterialnotes/common/actions/pin.dart';
 import 'package:localmaterialnotes/common/actions/restore.dart';
 import 'package:localmaterialnotes/common/actions/select.dart';
-import 'package:localmaterialnotes/common/placeholders/empty_placeholder.dart';
 import 'package:localmaterialnotes/common/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/common/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
@@ -15,6 +14,14 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/separators.dart';
 
+/// Selection mode's app bar.
+///
+/// Contains (sometimes depending on whether the current route is the notes list or the bin):
+///   - A back button.
+///   - The number of currently selected notes.
+///   - A button to select or deselects all notes.
+///   - A button to pin / restore the selected notes.
+///   - A button to delete / permanently delete the selected notes.
 class SelectionAppBar extends ConsumerStatefulWidget {
   const SelectionAppBar();
 
@@ -23,26 +30,34 @@ class SelectionAppBar extends ConsumerStatefulWidget {
 }
 
 class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
+  /// Toggles the pin status of the [selectedNotes].
   Future<void> _togglePin(List<Note> selectedNotes) async {
     await togglePinNotes(context, ref, selectedNotes);
     exitSelectionMode(ref);
   }
 
+  /// Restores the [selectedNotes].
   Future<void> _restore(List<Note> selectedNotes) async {
     await restoreNotes(ref, selectedNotes);
     exitSelectionMode(ref);
   }
 
+  /// Deletes the [selectedNotes].
   Future<void> _delete(List<Note> selectedNotes) async {
     await deleteNotes(ref, selectedNotes);
     exitSelectionMode(ref);
   }
 
+  /// Permanently deletes the [selectedNotes].
   Future<void> _permanentlyDelete(List<Note> selectedNotes) async {
     await permanentlyDeleteNotes(ref, selectedNotes);
     exitSelectionMode(ref);
   }
 
+  /// Builds the app bar.
+  ///
+  /// The title and the behavior of the buttons can change depending on the difference between
+  /// the length of the [selectedNotes] and the [totalNotesCount].
   AppBar _buildAppBar(List<Note> selectedNotes, int totalNotesCount) {
     final allSelected = selectedNotes.length == totalNotesCount;
 
@@ -107,10 +122,10 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
               return _buildAppBar(notes.where((note) => note.selected).toList(), notes.length);
             },
             error: (error, stackTrace) {
-              return const EmptyPlaceholder();
+              return const ErrorPlaceholder();
             },
             loading: () {
-              return const EmptyPlaceholder();
+              return const LoadingPlaceholder();
             },
           );
   }

@@ -15,6 +15,13 @@ import 'package:localmaterialnotes/utils/preferences/enums/sort_method.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
+/// Notes list and bin's app bar.
+///
+/// Contains:
+///   - The title of the notes list route or the bin route.
+///   - The button to toggle the notes layout.
+///   - The button to change the notes sorting method.
+///   - The button to search through the notes.
 class NotesAppBar extends ConsumerStatefulWidget {
   const NotesAppBar({super.key});
 
@@ -35,6 +42,7 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
     super.initState();
   }
 
+  /// Toggles the notes layout.
   void _toggleLayout() {
     final newLayout = layoutNotifier.value == Layout.list ? Layout.grid : Layout.list;
 
@@ -43,15 +51,16 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
     layoutNotifier.value = newLayout;
   }
 
-  void _sort({SortMethod? method, bool? ascending}) {
-    if (method != null) {
-      final forceAscending = method == SortMethod.title;
+  /// Sorts the notes according to the [sortMethod] and whether they should be sorted in [ascending] order.
+  void _sort({SortMethod? sortMethod, bool? ascending}) {
+    if (sortMethod != null) {
+      final forceAscending = sortMethod == SortMethod.title;
 
-      PreferencesUtils().set<String>(PreferenceKey.sortMethod.name, method.name);
+      PreferencesUtils().set<String>(PreferenceKey.sortMethod.name, sortMethod.name);
       PreferencesUtils().set<bool>(PreferenceKey.sortAscending.name, forceAscending);
 
       setState(() {
-        sortMethod = method;
+        this.sortMethod = sortMethod;
         sortAscending = forceAscending;
       });
     } else if (ascending != null) {
@@ -69,6 +78,7 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
     }
   }
 
+  /// Filters the [notes] according to the [search].
   List<NoteTile> _filterNotes(String? search, List<Note> notes) {
     if (search == null || search.isEmpty) {
       return [];
@@ -136,8 +146,8 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
                   trailing: Checkbox(
                     value: sortAscending,
                     onChanged: (ascending) {
-                      // Circumvent the normal PopupMenuButton behavior to use the second parameter or _sort
                       _sort(ascending: ascending);
+
                       context.pop();
                     },
                   ),
@@ -145,7 +155,7 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
               ),
             ];
           },
-          onSelected: (sort) => _sort(method: sort),
+          onSelected: (sortMethod) => _sort(sortMethod: sortMethod),
         ),
         ref.watch(provider).when(
           data: (notes) {
