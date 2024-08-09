@@ -20,8 +20,10 @@ import 'package:localmaterialnotes/pages/settings/pages/settings_editor_page.dar
 import 'package:localmaterialnotes/pages/settings/settings_main_page.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 
+/// Parameters of the editor route.
 typedef EditorParameters = Map<String, bool>?;
 
+/// Returns the app bar to use depending on the current route.
 PreferredSizeWidget? _getAppBar(BuildContext context) {
   switch (RouterRoute.currentRoute) {
     case RouterRoute.notes:
@@ -51,6 +53,7 @@ PreferredSizeWidget? _getAppBar(BuildContext context) {
   }
 }
 
+/// Returns the drawer to use depending on the current route.
 Widget? _getDrawer() {
   if (RouterRoute.currentRoute.drawerIndex == null) {
     return null;
@@ -59,6 +62,7 @@ Widget? _getDrawer() {
   return const SideNavigation();
 }
 
+/// Returns the floating action button to use depending on the current route.
 Widget? _getFloatingActionButton(BuildContext context) {
   switch (RouterRoute.currentRoute) {
     case RouterRoute.notes:
@@ -70,6 +74,7 @@ Widget? _getFloatingActionButton(BuildContext context) {
   }
 }
 
+/// Router of the application.
 final router = GoRouter(
   navigatorKey: navigatorKey,
   initialLocation: RouterRoute.notes.path,

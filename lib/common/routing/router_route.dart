@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/go_router_extension.dart';
 
+/// Routes for the router of the application.
 enum RouterRoute {
   // Notes
   notes('/notes', drawerIndex: 0),
@@ -20,12 +21,18 @@ enum RouterRoute {
   settingsAbout('about', fullPath: '/settings/about'),
   ;
 
+  /// Path of the route (last element of the path only).
   final String path;
+
+  /// Full path of the route (including the parent routes).
   final String? fullPath;
+
+  /// Index of the route in the drawer, if any.
   final int? drawerIndex;
 
   const RouterRoute(this.path, {this.fullPath, this.drawerIndex});
 
+  /// Returns the title of the route.
   String get title {
     switch (this) {
       case notes:
@@ -49,6 +56,7 @@ enum RouterRoute {
     }
   }
 
+  /// Returns the current drawer index of the application depending on the current route.
   static int get currentDrawerIndex {
     final drawerIndex = currentRoute.drawerIndex;
 
@@ -59,6 +67,7 @@ enum RouterRoute {
     return drawerIndex;
   }
 
+  /// Returns the route corresponding to the drawer [index].
   static RouterRoute getRouteFromIndex(int index) {
     final route = values.firstWhereOrNull((route) => route.drawerIndex == index);
 
@@ -69,6 +78,7 @@ enum RouterRoute {
     return route;
   }
 
+  /// Returns the current route of the application.
   static RouterRoute get currentRoute {
     final location = GoRouter.of(navigatorKey.currentContext!).location;
 
@@ -95,7 +105,9 @@ enum RouterRoute {
     }
   }
 
+  /// Whether the current route of the application is the [bin].
   static bool get isBin => currentRoute == bin;
 
+  /// Whether the current route of the application is the [editor].
   static bool get isEditor => currentRoute == editor;
 }
