@@ -3,20 +3,26 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
 
+/// Placeholder widget for empty content.
 class EmptyPlaceholder extends StatelessWidget {
   const EmptyPlaceholder()
       : icon = null,
         text = null;
 
+  /// Empty notes lists.
   EmptyPlaceholder.notes()
       : icon = Icons.notes,
         text = localizations.placeholder_notes;
 
+  /// Empty bin.
   EmptyPlaceholder.bin()
       : icon = Icons.delete_outline,
         text = localizations.placeholder_bin;
 
+  /// Icon to display.
   final IconData? icon;
+
+  /// Text to display.
   final String? text;
 
   @override
