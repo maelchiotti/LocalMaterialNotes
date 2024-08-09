@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 
+/// Toggles the pined status of the [note].
 Future<bool> togglePinNote(BuildContext context, WidgetRef ref, Note? note) async {
   if (note == null) {
     return false;
@@ -13,6 +14,7 @@ Future<bool> togglePinNote(BuildContext context, WidgetRef ref, Note? note) asyn
   return false;
 }
 
+/// Toggles the pined status of the [notes].
 Future<void> togglePinNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   await ref.read(notesProvider.notifier).togglePinAll(notes);
 }
