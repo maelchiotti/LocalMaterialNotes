@@ -6,6 +6,7 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
 
+/// Side navigation with the drawer.
 class SideNavigation extends StatefulWidget {
   const SideNavigation();
 
@@ -14,8 +15,10 @@ class SideNavigation extends StatefulWidget {
 }
 
 class _SideNavigationState extends State<SideNavigation> {
+  /// Index of the currently selected drawer index.
   int _index = RouterRoute.currentDrawerIndex;
 
+  /// Navigates to the route corresponding to the [newIndex].
   void _navigate(int newIndex) {
     // If the new route is the same as the current one, just close the drawer
     if (_index == newIndex) {
