@@ -4,6 +4,7 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/preferences/enums/swipe_direction.dart';
 
+/// Dismissible widget for the pin swipe action.
 class DismissiblePinWidget extends StatelessWidget {
   const DismissiblePinWidget({
     super.key,
@@ -11,7 +12,10 @@ class DismissiblePinWidget extends StatelessWidget {
     required this.swipeDirection,
   });
 
+  /// Note that will be swiped.
   final Note note;
+
+  /// Direction in which is widget will be swiped.
   final SwipeDirection swipeDirection;
 
   @override
