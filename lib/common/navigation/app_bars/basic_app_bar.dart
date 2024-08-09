@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/back.dart';
+import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
 
-class BasicAppBar extends ConsumerWidget {
+class BasicAppBar extends StatefulWidget {
   const BasicAppBar() : showBack = false;
 
   const BasicAppBar.back() : showBack = true;
@@ -11,9 +10,18 @@ class BasicAppBar extends ConsumerWidget {
   final bool showBack;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  State<BasicAppBar> createState() => _BasicAppBarState();
+}
+
+class _BasicAppBarState extends State<BasicAppBar> {
+  void pop() {
+    context.pop();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return AppBar(
-      leading: showBack ? BackButton(onPressed: () => back(context)) : null,
+      leading: widget.showBack ? BackButton(onPressed: pop) : null,
       title: Text(RouterRoute.currentRoute.title),
     );
   }

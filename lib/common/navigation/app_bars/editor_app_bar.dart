@@ -1,7 +1,7 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/back.dart';
+import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/actions/delete.dart';
 import 'package:localmaterialnotes/common/actions/pin.dart';
 import 'package:localmaterialnotes/common/actions/restore.dart';
@@ -22,6 +22,14 @@ class EditorAppBar extends ConsumerStatefulWidget {
 }
 
 class _BackAppBarState extends ConsumerState<EditorAppBar> {
+  /// Goes back from the editor.
+  void _pop() {
+    currentNoteNotifier.value = null;
+    fleatherControllerNotifier.value = null;
+
+    context.pop();
+  }
+
   Future<void> _onMenuOptionSelected(MenuOption menuOption) async {
     // Manually close the keyboard
     FocusManager.instance.primaryFocus?.unfocus();
@@ -105,7 +113,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       builder: (context, hasFocus, child) {
         return AppBar(
           leading: BackButton(
-            onPressed: () => backFromEditor(context, ref),
+            onPressed: _pop,
           ),
           actions: note == null
               ? null
