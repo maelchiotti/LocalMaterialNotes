@@ -8,9 +8,11 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 
-/// Adds a note and navigates the app to the editor page.
+/// Adds a note.
 ///
-/// An optional [content] can be specified.
+/// An optional [content] can be specified for the note.
+///
+/// Exits the selection mode and navigates the app to the editor page.
 Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) async {
   exitSelectionMode(ref);
 
