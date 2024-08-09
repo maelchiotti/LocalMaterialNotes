@@ -14,7 +14,7 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 /// Returns `true` if the [note] was deleted, `false` otherwise.
 ///
 /// First, asks for a confirmation if needed.
-/// Finally, Pops the route if the note was deleted from the editor page.
+/// Finally, pops the route if the note was deleted from the editor page.
 Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
   if (note == null) {
     return false;
@@ -63,7 +63,7 @@ Future<bool> deleteNotes(WidgetRef ref, List<Note> notes) async {
 /// Returns `true` if the [note] was permanently deleted, `false` otherwise.
 ///
 /// First, asks for a confirmation if needed.
-/// Finally, Pops the route if the note was deleted from the editor page.
+/// Finally, pops the route if the note was deleted from the editor page.
 Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? note) async {
   if (note == null) {
     return false;
@@ -112,7 +112,7 @@ Future<bool> permanentlyDeleteNotes(WidgetRef ref, List<Note> notes) async {
 /// Empties the bin by deleting every note inside.
 ///
 /// First, asks for a confirmation if needed.
-/// Also disables the selection mode.
+/// Exits the selection mode.
 Future<bool> emptyBin(WidgetRef ref) async {
   if (await askForConfirmation(
     localizations.dialog_empty_bin,
