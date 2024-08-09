@@ -1,21 +1,20 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
-class EditorToolbar extends ConsumerStatefulWidget {
+class EditorToolbar extends StatefulWidget {
   const EditorToolbar(this.fleatherController);
 
   final FleatherController fleatherController;
 
   @override
-  ConsumerState<EditorToolbar> createState() => _EditorToolbarState();
+  State<EditorToolbar> createState() => _EditorToolbarState();
 }
 
-class _EditorToolbarState extends ConsumerState<EditorToolbar> {
+class _EditorToolbarState extends State<EditorToolbar> {
   Widget _buttonBuilder(
     BuildContext context,
     ParchmentAttribute attribute,
