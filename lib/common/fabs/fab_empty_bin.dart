@@ -4,6 +4,7 @@ import 'package:localmaterialnotes/common/actions/delete.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 
+/// Floating action button to empty the bin.
 class FabEmptyBin extends ConsumerWidget {
   const FabEmptyBin({super.key});
 
