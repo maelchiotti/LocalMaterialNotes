@@ -60,11 +60,11 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         await PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassword);
       }
 
-      setState(() {});
-
       // No need to await this, it can be performed in the background
       AutoExportUtils().performAutoExportIfNeeded();
     });
+
+    setState(() {});
   }
 
   /// Asks the user to configure the immediate export as JSON.
