@@ -19,17 +19,17 @@
 Simple, local, material design notes.
 
 <div align="center">
-  <img alt="Screenshot of the notes list" src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_en-US.jpg" width="24%">
-  <img alt="Screenshots of the note editor" src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_en-US.jpg" width="24%">
-  <img alt="Screenshot of the bin" src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_en-US.jpg" width="24%">
-  <img alt="Screenshot of the settings" src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_en-US.jpg" width="24%">
+  <img alt="Screenshot of the notes list" src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_en-US.png" width="24%">
+  <img alt="Screenshots of the note editor" src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_en-US.png" width="24%">
+  <img alt="Screenshot of the bin" src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_en-US.png" width="24%">
+  <img alt="Screenshot of the settings" src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_en-US.png" width="24%">
 </div>
 
 <div align="center">
-  <img alt="Screenshot of the notes list in selection mode" src="fastlane/metadata/android/en-US/images/phoneScreenshots/5_en-US.jpg" width="24%">
-  <img alt="Screenshots of the search feature" src="fastlane/metadata/android/en-US/images/phoneScreenshots/6_en-US.jpg" width="24%">
-  <img alt="Screenshot of the notes list in the dark mode with dynamic theming" src="fastlane/metadata/android/en-US/images/phoneScreenshots/7_en-US.jpg" width="24%">
-  <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="fastlane/metadata/android/en-US/images/phoneScreenshots/8_en-US.jpg" width="24%">
+  <img alt="Screenshot of the notes list in selection mode" src="fastlane/metadata/android/en-US/images/phoneScreenshots/5_en-US.png" width="24%">
+  <img alt="Screenshots of the search feature" src="fastlane/metadata/android/en-US/images/phoneScreenshots/6_en-US.png" width="24%">
+  <img alt="Screenshot of the notes list in the dark mode with dynamic theming" src="fastlane/metadata/android/en-US/images/phoneScreenshots/7_en-US.png" width="24%">
+  <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="fastlane/metadata/android/en-US/images/phoneScreenshots/8_en-US.png" width="24%">
 </div>
 
 ## Features
