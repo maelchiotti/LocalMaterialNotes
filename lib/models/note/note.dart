@@ -238,8 +238,8 @@ class Note extends Equatable {
       switch (sortMethod) {
         case SortMethod.date:
           return sortAscending
-              ? createdTime.compareTo(otherNote.createdTime)
-              : otherNote.createdTime.compareTo(createdTime);
+              ? editedTime.compareTo(otherNote.editedTime)
+              : otherNote.editedTime.compareTo(editedTime);
         case SortMethod.title:
           return sortAscending ? title.compareTo(otherNote.title) : otherNote.title.compareTo(title);
         default:
