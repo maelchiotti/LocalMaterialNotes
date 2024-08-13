@@ -9,5 +9,5 @@
 - [ ] Update [README.md](README.md)
 - [ ] Update fastlane descriptions
 - [ ] Update fastlane changelogs
-- [ ] Update [screenshots.json](docs/data/screenshots.json)
+- [ ] Update [`screenshotNotes`](lib/utils/constants/notes.dart)
 - [ ] Update fastlane screenshots

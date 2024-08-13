@@ -11,6 +11,8 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/import_dialog.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
+import 'package:localmaterialnotes/utils/constants/environment.dart';
+import 'package:localmaterialnotes/utils/constants/notes.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
@@ -41,8 +43,15 @@ class DatabaseUtils {
       directory: _databaseDirectory,
     );
 
-    if (await IsFirstRun.isFirstCall()) {
-      await put(Note.welcome());
+    // If the app runs with the 'screenshots' environment parameter,
+    // clear all the notes and add the notes for the screenshots
+    if (Environment.screenshots) {
+      await clear();
+      await putAll(screenshotNotes);
+    }
+    // If the app runs for the first time ever, add the welcome note
+    else if (await IsFirstRun.isFirstCall()) {
+      await put(welcomeNote);
     }
   }
 
@@ -95,6 +104,12 @@ class DatabaseUtils {
   Future<void> emptyBin() async {
     await _database.writeTxn(() async {
       await _database.notes.where().deletedEqualTo(true).deleteAll();
+    });
+  }
+
+  Future<void> clear() async {
+    await _database.writeTxn(() async {
+      await _database.notes.where().deleteAll();
     });
   }
 
