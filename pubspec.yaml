@@ -7,7 +7,7 @@ publish_to: none
 
 environment:
   sdk: ">=3.4.3 <4.0.0"
-  flutter: 3.22.2
+  flutter: 3.24.0
 
 dependencies:
   after_layout: ^1.2.0
@@ -39,10 +39,10 @@ dependencies:
   intl: ^0.19.0
   is_first_run: ^1.0.0
   isar:
-    version: ^3.1.7
+    version: ^3.1.8
     hosted: https://pub.isar-community.dev/
   isar_flutter_libs:
-    version: ^3.1.7
+    version: ^3.1.8
     hosted: https://pub.isar-community.dev/
   json_annotation: ^4.9.0
   locale_names: ^1.1.1
@@ -62,7 +62,7 @@ dependencies:
   yaml: ^3.1.2
 
 dev_dependencies:
-  build_runner: ^2.4.11
+  build_runner: ^2.4.12
   custom_lint: ^0.6.4
   # TODO: replace when the monochrome feature is released on pub.dev
   # See https://github.com/fluttercommunity/flutter_launcher_icons/issues/555
@@ -73,7 +73,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   isar_generator:
-    version: ^3.1.7
+    version: ^3.1.8
     hosted: https://pub.isar-community.dev/
   json_serializable: ^6.8.0
   lint: ^2.3.0
