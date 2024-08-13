@@ -30,6 +30,7 @@ class EditorField extends StatelessWidget {
   Widget build(BuildContext context) {
     final fleatherField = FleatherField(
       controller: fleatherController,
+      focusNode: editorFocusNode,
       autofocus: autofocus,
       readOnly: readOnly,
       expands: true,

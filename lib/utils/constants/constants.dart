@@ -10,3 +10,5 @@ final localizations = AppLocalizations.of(navigatorKey.currentContext!);
 final hardcodedLocalizations = HardcodedLocalizationsUtils();
 
 const parchmentMarkdownCodec = ParchmentMarkdownCodec();
+
+final editorFocusNode = FocusNode(debugLabel: 'Editor focus node');

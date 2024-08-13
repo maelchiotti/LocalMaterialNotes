@@ -94,6 +94,10 @@ class _EditorState extends ConsumerState<EditorPage> {
     ref.read(notesProvider.notifier).edit(note);
   }
 
+  void _requestEditorFocus(_) {
+    editorFocusNode.requestFocus();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (note == null) {
@@ -120,6 +124,7 @@ class _EditorState extends ConsumerState<EditorPage> {
                   ),
                   controller: titleController,
                   onChanged: (text) => _synchronizeTitle(note!, text),
+                  onSubmitted: _requestEditorFocus,
                 ),
                 Padding(padding: Paddings.padding8.vertical),
                 Expanded(
