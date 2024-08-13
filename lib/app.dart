@@ -14,24 +14,28 @@ import 'package:localmaterialnotes/utils/quick_actions_utils.dart';
 import 'package:localmaterialnotes/utils/share_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
 
+/// MaterialNotes application.
 class App extends ConsumerStatefulWidget {
   @override
   ConsumerState<App> createState() => _AppState();
 }
 
 class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
+  /// Stream of data shared from other applications.
   late StreamSubscription _stream;
 
   @override
   void initState() {
     super.initState();
 
+    // Read the potential data shared from other applications
     readSharedData(ref);
     _stream = listenSharedData(ref);
   }
 
   @override
   void afterFirstLayout(BuildContext context) {
+    // When the app is built, initialize the quick actions
     QuickActionsUtils().init(navigatorKey.currentContext!, ref);
   }
 

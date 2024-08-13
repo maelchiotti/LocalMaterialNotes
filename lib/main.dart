@@ -11,9 +11,11 @@ import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
 
+/// Main entry point of the application.
 Future<void> main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
+  // Keep the splash screen until all initializations are done
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   // Display the application behind the system's notifications bar and navigation bar
@@ -42,6 +44,7 @@ Future<void> main() async {
   // Set FLAG_SECURE if needed
   await setFlagSecureIfNeeded();
 
+  // Remove the splash screen
   FlutterNativeSplash.remove();
 
   runApp(
