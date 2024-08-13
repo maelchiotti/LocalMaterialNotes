@@ -95,12 +95,17 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
       ),
       title: Text(RouterRoute.currentRoute.title),
       actions: [
-        IconButton(
-          onPressed: _toggleLayout,
-          tooltip: layoutNotifier.value == Layout.list
-              ? localizations.tooltip_layout_grid
-              : localizations.tooltip_layout_list,
-          icon: Icon(layoutNotifier.value == Layout.list ? Icons.grid_view : Icons.view_list_outlined),
+        ValueListenableBuilder(
+          valueListenable: layoutNotifier,
+          builder: (context, layout, child) {
+            final isListLayout = layout == Layout.list;
+
+            return IconButton(
+              onPressed: _toggleLayout,
+              tooltip: isListLayout ? localizations.tooltip_layout_grid : localizations.tooltip_layout_list,
+              icon: Icon(isListLayout ? Icons.grid_view : Icons.view_list_outlined),
+            );
+          },
         ),
         PopupMenuButton<SortMethod>(
           icon: const Icon(Icons.sort),
