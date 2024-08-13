@@ -14,11 +14,17 @@ import 'package:localmaterialnotes/utils/constants/separators.dart';
 import 'package:localmaterialnotes/utils/constants/sizes.dart';
 import 'package:localmaterialnotes/utils/preferences/enums/layout.dart';
 
+/// List of notes.
 class NotesList extends ConsumerStatefulWidget {
+  /// Main page with the list of not deleted notes.
   const NotesList.notes() : route = RouterRoute.notes;
 
+  /// Bin page with the list of deleted notes.
   const NotesList.bin() : route = RouterRoute.bin;
 
+  /// Route in which the notes list is displayed.
+  ///
+  /// Used to determine which notes provider should be used.
   final RouterRoute route;
 
   @override
