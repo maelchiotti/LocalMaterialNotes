@@ -16,12 +16,20 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/constants/paddings.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
+/// Page displaying the note editor.
+///
+/// Contains:
+///   - The text field for the title of the note.
+///   - The text field for the content of the note.
 class EditorPage extends ConsumerStatefulWidget {
   EditorPage(EditorParameters editorParameters)
       : _readOnly = editorParameters?['readonly'] ?? false,
         _autofocus = editorParameters?['autofocus'] ?? false;
 
+  /// Whether the text fields should be read only.
   final bool _readOnly;
+
+  /// Whether to automatically focus the content text field.
   final bool _autofocus;
 
   @override
@@ -75,6 +83,7 @@ class _EditorState extends ConsumerState<EditorPage> {
     }
   }
 
+  /// Saves the [newTitle] of the [note] in the database.
   void _synchronizeTitle(Note note, String? newTitle) {
     if (newTitle == null) {
       return;
@@ -85,6 +94,9 @@ class _EditorState extends ConsumerState<EditorPage> {
     ref.read(notesProvider.notifier).edit(note);
   }
 
+  /// Saves the new content of the [note] in the database.
+  ///
+  /// Also updates whether the undo/redo actions can be used.
   void _synchronizeContent(Note note) {
     fleatherControllerCanUndoNotifier.value = editorController.canUndo;
     fleatherControllerCanRedoNotifier.value = editorController.canRedo;

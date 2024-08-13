@@ -4,6 +4,13 @@ import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
 
+/// Sheets that displays information about the note.
+///
+/// Contains:
+///   - Creation time.
+///   - Last edit time.
+///   - Number of words.
+///   - Number of characters.
 class AboutSheet extends StatelessWidget {
   const AboutSheet();
 
@@ -14,6 +21,9 @@ class AboutSheet extends StatelessWidget {
     if (note == null) {
       return const ErrorPlaceholder();
     }
+
+    final wordCount = RegExp(r'[\w-]+').allMatches(note.contentPreview).length;
+    final charactersCount = note.contentPreview.length;
 
     return ListView(
       shrinkWrap: true,
@@ -28,11 +38,11 @@ class AboutSheet extends StatelessWidget {
         ),
         ListTile(
           title: Text(localizations.about_words),
-          trailing: Text(RegExp(r'[\w-]+').allMatches(note.contentPreview).length.toString()),
+          trailing: Text('$wordCount'),
         ),
         ListTile(
           title: Text(localizations.about_characters),
-          trailing: Text(note.contentPreview.length.toString()),
+          trailing: Text('$charactersCount'),
         ),
       ],
     );
