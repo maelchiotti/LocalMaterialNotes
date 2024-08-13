@@ -83,16 +83,6 @@ class Note extends Equatable {
         content: content,
       );
 
-  /// Welcome note (localized).
-  factory Note.welcome() => Note(
-        deleted: false,
-        pinned: true,
-        createdTime: DateTime.now(),
-        editedTime: DateTime.now(),
-        title: hardcodedLocalizations.welcomeNoteTitle,
-        content: '[{"insert":"${hardcodedLocalizations.welcomeNoteContent}\\n"}]',
-      );
-
   /// Note from [json] data.
   factory Note.fromJson(Map<String, dynamic> json) => _$NoteFromJson(json);
 
