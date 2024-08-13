@@ -14,6 +14,7 @@ class Notes extends _$Notes {
     return get();
   }
 
+  /// Returns the list of not deleted notes.
   Future<List<Note>> get() async {
     List<Note> notes = [];
 
@@ -28,12 +29,14 @@ class Notes extends _$Notes {
     return notes;
   }
 
+  /// Sorts the not deleted notes.
   void sort() {
     final sortedNotes = (state.value ?? []).sorted((note, otherNote) => note.compareTo(otherNote));
 
     state = AsyncData(sortedNotes);
   }
 
+  /// Saves the [editedNote] to the database.
   Future<bool> edit(Note editedNote) async {
     editedNote.editedTime = DateTime.now();
 
@@ -64,12 +67,14 @@ class Notes extends _$Notes {
     return true;
   }
 
+  /// Toggles the pin status of the [note] in the database.
   Future<bool> togglePin(Note note) async {
     note.pinned = !note.pinned;
 
     return await edit(note);
   }
 
+  /// Toggles the pin status of the [notes] in the database.
   Future<bool> togglePinAll(List<Note> notes) async {
     for (final note in notes) {
       note.pinned = !note.pinned;
@@ -96,6 +101,7 @@ class Notes extends _$Notes {
     return true;
   }
 
+  /// Sets the [note] as deleted in the database.
   Future<bool> delete(Note note) async {
     note.pinned = false;
     note.deleted = true;
@@ -103,6 +109,7 @@ class Notes extends _$Notes {
     return await edit(note);
   }
 
+  /// Sets the [notes] as deleted in the database.
   Future<bool> deleteAll(List<Note> notes) async {
     for (final note in notes) {
       note.pinned = false;
@@ -124,18 +131,21 @@ class Notes extends _$Notes {
     return true;
   }
 
+  /// Selects the [noteToSelect].
   void select(Note noteToSelect) {
     state = AsyncData([
       for (final Note note in state.value ?? []) note == noteToSelect ? (noteToSelect..selected = true) : note,
     ]);
   }
 
+  /// Unselects the [noteToSelect].
   void unselect(Note noteToUnselect) {
     state = AsyncData([
       for (final Note note in state.value ?? []) note == noteToUnselect ? (noteToUnselect..selected = false) : note,
     ]);
   }
 
+  /// Selects all the not deleted notes.
   void selectAll() {
     state = AsyncData([
       ...?state.value
@@ -145,6 +155,7 @@ class Notes extends _$Notes {
     ]);
   }
 
+  /// Unselects all the not deleted notes.
   void unselectAll() {
     state = AsyncData([
       ...?state.value
