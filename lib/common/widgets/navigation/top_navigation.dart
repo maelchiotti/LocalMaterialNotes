@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/selection_app_bar.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/app_bars/selection_app_bar.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 
 /// Top navigation with the app bar.

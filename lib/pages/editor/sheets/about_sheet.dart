@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
-import 'package:localmaterialnotes/common/placeholders/error_placeholder.dart';
+import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 
 /// Sheets that displays information about the note.
