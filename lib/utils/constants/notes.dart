@@ -1,6 +1,7 @@
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 
+/// Note displayed on the very first run of the application to welcome the user.
 final welcomeNote = Note(
   deleted: false,
   pinned: true,
@@ -10,6 +11,7 @@ final welcomeNote = Note(
   content: '[{"insert":"${hardcodedLocalizations.welcomeNoteContent}\\n"}]',
 );
 
+/// Notes used when taking screenshots of the application for the stores.
 final screenshotNotes = [
   Note(
     deleted: false,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localmaterialnotes/utils/constants/paddings.dart';
 
 /// Placeholder widget for loading content.
 class LoadingPlaceholder extends StatelessWidget {
@@ -6,9 +7,12 @@ class LoadingPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: SingleChildScrollView(
-        child: CircularProgressIndicator(),
+    return Center(
+      child: Padding(
+        padding: Paddings.custom.page,
+        child: const SingleChildScrollView(
+          child: CircularProgressIndicator(),
+        ),
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+/// Radiuses of widgets.
 enum Radiuses {
+  /// Allows to access custom radiuses.
   custom(0),
   radius2(2),
   radius4(4),
@@ -10,9 +12,11 @@ enum Radiuses {
   radius64(64),
   ;
 
-  final double radius;
+  /// Radius to apply.
+  final double _radius;
 
-  BorderRadius get circular => BorderRadius.circular(radius);
+  const Radiuses(this._radius);
 
-  const Radiuses(this.radius);
+  /// Circular radius.
+  BorderRadius get circular => BorderRadius.circular(_radius);
 }

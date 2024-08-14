@@ -1,4 +1,6 @@
+/// Sizes.
 enum Sizes {
+  /// Allows to access custom sizes.
   custom(0),
   size2(2),
   size4(4),
@@ -13,23 +15,23 @@ enum Sizes {
   size2048(2048),
   ;
 
+  /// Size to apply.
   final double size;
 
-  double get zero => 0;
+  const Sizes(this.size);
 
+  /// Infinity.
   double get infinity => double.infinity;
 
-  double get selectionAppBar => 8;
-
-  double get searchBar => 48;
-
+  /// Width of a column in grid layout.
   int get gridLayoutColumnWidth => 384;
 
+  /// Height of a button in the editor toolbar.
   double get editorToolbarButtonHeight => 42;
 
+  /// Width of a button in the editor toolbar.
   double get editorToolbarButtonWidth => 42;
 
-  double get notesGridViewSpacing => 8;
-
-  const Sizes(this.size);
+  /// Spacing between the notes tiles in the grid layout.
+  double get notesGridLayoutSpacing => 8;
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
+import 'package:localmaterialnotes/utils/constants/paddings.dart';
 
 /// Placeholder widget for an error.
 class ErrorPlaceholder extends StatelessWidget {
@@ -8,8 +9,11 @@ class ErrorPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SingleChildScrollView(
-        child: Text(localizations.error_error),
+      child: Padding(
+        padding: Paddings.custom.page,
+        child: SingleChildScrollView(
+          child: Text(localizations.error_error),
+        ),
       ),
     );
   }

@@ -66,7 +66,7 @@ class _NotesListState extends ConsumerState<NotesList> {
                             separatorBuilder: (BuildContext context, int index) {
                               return Padding(
                                 padding: showTilesBackground
-                                    ? Paddings.custom.notesListViewWithBackgroundSeparation
+                                    ? Paddings.custom.notesListWithBackgroundSeparation
                                     : EdgeInsetsDirectional.zero,
                                 child: showSeparators ? Separator.divider1indent8.horizontal : null,
                               );
@@ -74,8 +74,8 @@ class _NotesListState extends ConsumerState<NotesList> {
                           )
                         : AlignedGridView.count(
                             padding: Paddings.custom.notesWithBackground,
-                            mainAxisSpacing: Sizes.custom.notesGridViewSpacing,
-                            crossAxisSpacing: Sizes.custom.notesGridViewSpacing,
+                            mainAxisSpacing: Sizes.custom.notesGridLayoutSpacing,
+                            crossAxisSpacing: Sizes.custom.notesGridLayoutSpacing,
                             crossAxisCount: crossAxisCount,
                             itemCount: notes.length,
                             itemBuilder: (context, index) {
