@@ -916,7 +916,7 @@ packages:
     source: hosted
     version: "3.0.1"
   parchment:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: parchment
       sha256: "42bbe427bdc53aaee836b493b4b03e269f04d636eba822a6a18cc77df2567e4e"
@@ -924,7 +924,7 @@ packages:
     source: hosted
     version: "1.15.0"
   parchment_delta:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: parchment_delta
       sha256: "8b360d0138eb591c7fe193670e2d05466e482792af9c5b4d3f568c5c61530f08"

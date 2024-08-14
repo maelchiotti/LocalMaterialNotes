@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
-import 'package:localmaterialnotes/utils/constants/paddings.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
 
 class CustomSettingsList extends StatelessWidget {
   const CustomSettingsList({

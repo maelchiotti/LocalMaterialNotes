@@ -48,6 +48,8 @@ dependencies:
   locale_names: ^1.1.1
   material_symbols_icons: ^4.2777.1
   package_info_plus: ^8.0.1
+  parchment: any
+  parchment_delta: any
   path: ^1.9.0
   path_provider: ^2.1.4
   quick_actions: ^1.0.7

@@ -1,10 +1,13 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
+/// Utilities for the application's theme.
+///
+/// This class is a singleton.
 class ThemeUtils {
   static final ThemeUtils _singleton = ThemeUtils._internal();
 
@@ -14,22 +17,28 @@ class ThemeUtils {
 
   ThemeUtils._internal();
 
+  /// Custom primary color.
   final _customPrimaryColor = const Color(0xFF2278e9);
 
+  /// Whether the dynamic theming is available on the device?
   late final bool isDynamicThemingAvailable;
 
+  /// Ensures the utility is initialized.
   Future<void> ensureInitialized() async {
     isDynamicThemingAvailable = await DynamicColorPlugin.getCorePalette() != null;
   }
 
+  /// Whether dynamic theming should be used.
   bool get useDynamicTheming {
     return PreferenceKey.dynamicTheming.getPreferenceOrDefault<bool>();
   }
 
+  /// Whether black theming should be used.
   bool get useBlackTheming {
     return PreferenceKey.blackTheming.getPreferenceOrDefault<bool>();
   }
 
+  /// Returns the [ThemeMode] of the application.
   ThemeMode get themeMode {
     final themeModePreference = PreferenceKey.theme.getPreferenceOrDefault<int>();
 
@@ -45,7 +54,8 @@ class ThemeUtils {
     return ThemeMode.system;
   }
 
-  String get themeModeName {
+  /// Returns the title of the current theme mode.
+  String get themeModeTitle {
     final themeModePreference = PreferenceKey.theme.getPreferenceOrDefault<int>();
 
     switch (themeModePreference) {
@@ -60,6 +70,9 @@ class ThemeUtils {
     return localizations.settings_theme_system;
   }
 
+  /// Returns the light theme.
+  ///
+  /// Returns a dynamic light theme if [lightDynamicColorScheme] is not null, or the custom one otherwise.
   ThemeData getLightTheme(ColorScheme? lightDynamicColorScheme) {
     final ColorScheme colorScheme;
     if (useDynamicTheming && lightDynamicColorScheme != null) {
@@ -87,6 +100,9 @@ class ThemeUtils {
     );
   }
 
+  /// Returns the dark theme.
+  ///
+  /// Returns a dynamic dark theme if [darkDynamicColorScheme] is not null, or the custom one otherwise.
   ThemeData getDarkTheme(ColorScheme? darkDynamicColorScheme) {
     final ColorScheme colorScheme;
 
@@ -138,6 +154,7 @@ class ThemeUtils {
     );
   }
 
+  /// Sets the application's theme mode to [themeMode].
   void setThemeMode(ThemeMode? themeMode) {
     if (themeMode == null) {
       return;

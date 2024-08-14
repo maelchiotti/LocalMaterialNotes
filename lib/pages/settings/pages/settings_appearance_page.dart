@@ -2,15 +2,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:locale_names/locale_names.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/extensions/string_extension.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/l10n/localization_completion.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
 import 'package:restart_app/restart_app.dart';
 
@@ -159,7 +159,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
             SettingsTile.navigation(
               leading: const Icon(Icons.palette),
               title: Text(localizations.settings_theme),
-              value: Text(ThemeUtils().themeModeName),
+              value: Text(ThemeUtils().themeModeTitle),
               onPressed: _selectTheme,
             ),
             SettingsTile.switchTile(

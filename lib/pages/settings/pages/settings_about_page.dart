@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
+import 'package:localmaterialnotes/common/constants/sizes.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/constants/paddings.dart';
-import 'package:localmaterialnotes/utils/constants/sizes.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';

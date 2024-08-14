@@ -1,11 +1,12 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/constants/paddings.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+/// Text field to edit the content of a note.
 class EditorField extends StatelessWidget {
   const EditorField({
     super.key,
@@ -14,10 +15,16 @@ class EditorField extends StatelessWidget {
     required this.autofocus,
   });
 
+  /// Controller of the content text field.
   final FleatherController fleatherController;
+
+  /// Whether the text fields should be read only.
   final bool readOnly;
+
+  /// Whether to automatically focus the content text field.
   final bool autofocus;
 
+  /// Opens the [url].
   void _launchUrl(String? url) {
     if (url == null) {
       return;
@@ -44,7 +51,7 @@ class EditorField extends StatelessWidget {
       padding: Paddings.custom.bottomSystemUi,
     );
 
-    // If paragraph spacing should be used, return the editor directly without modifying its theme
+    // If paragraph spacing should be used, return the editor directly without modifying its default theme
     if (PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault<bool>()) {
       return fleatherField;
     }

@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:go_router/go_router.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/pages/settings/enums/settings_page.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
 
 /// Page for the settings of the application.
-class SettingsMainPage extends ConsumerStatefulWidget {
+class SettingsMainPage extends StatefulWidget {
   const SettingsMainPage();
 
   @override
-  ConsumerState<SettingsMainPage> createState() => _SettingsPageState();
+  State<SettingsMainPage> createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends ConsumerState<SettingsMainPage> {
+class _SettingsPageState extends State<SettingsMainPage> {
   void _openSettingsPage(SettingsPage page) {
     switch (page) {
       case SettingsPage.appearance:
