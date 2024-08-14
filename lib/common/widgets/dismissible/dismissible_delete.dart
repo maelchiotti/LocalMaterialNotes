@@ -4,8 +4,8 @@ import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
 
 /// Dismissible widget for the delete swipe action.
-class DismissibleDeleteWidget extends StatelessWidget {
-  const DismissibleDeleteWidget({
+class DismissibleDelete extends StatelessWidget {
+  const DismissibleDelete({
     super.key,
     required this.swipeDirection,
   });

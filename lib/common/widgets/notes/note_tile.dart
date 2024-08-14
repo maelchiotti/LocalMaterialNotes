@@ -11,8 +11,8 @@ import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
 import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
-import 'package:localmaterialnotes/common/widgets/dismissibleWidgets/dismissible_delete_widget.dart';
-import 'package:localmaterialnotes/common/widgets/dismissibleWidgets/dismissible_pin_widget.dart';
+import 'package:localmaterialnotes/common/widgets/dismissible/dismissible_delete.dart';
+import 'package:localmaterialnotes/common/widgets/dismissible/dismissible_pin.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
@@ -129,9 +129,9 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   Widget _rightDismissibleWidget(SwipeAction rightSwipeAction) {
     switch (rightSwipeAction) {
       case SwipeAction.delete:
-        return const DismissibleDeleteWidget(swipeDirection: SwipeDirection.right);
+        return const DismissibleDelete(swipeDirection: SwipeDirection.right);
       case SwipeAction.pin:
-        return DismissiblePinWidget(note: widget.note, swipeDirection: SwipeDirection.right);
+        return DismissiblePin(note: widget.note, swipeDirection: SwipeDirection.right);
       default:
         throw Exception('Unexpected build of the right dismissible widget while it is disabled');
     }
@@ -141,9 +141,9 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   Widget _leftDismissibleWidget(SwipeAction leftSwipeAction) {
     switch (leftSwipeAction) {
       case SwipeAction.delete:
-        return const DismissibleDeleteWidget(swipeDirection: SwipeDirection.left);
+        return const DismissibleDelete(swipeDirection: SwipeDirection.left);
       case SwipeAction.pin:
-        return DismissiblePinWidget(note: widget.note, swipeDirection: SwipeDirection.left);
+        return DismissiblePin(note: widget.note, swipeDirection: SwipeDirection.left);
       default:
         throw Exception('Unexpected build of the left dismissible widget while it is disabled');
     }
