@@ -14,6 +14,7 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 
 /// List of notes.
@@ -41,7 +42,8 @@ class NotesList extends ConsumerWidget {
                         padding: showTilesBackground ? Paddings.custom.notesWithBackground : Paddings.custom.fab,
                         itemCount: notes.length,
                         itemBuilder: (context, index) {
-                          return NoteTile(notes[index]);
+                          return NoteTile(
+                              key: Keys.notesPageNoteTile, note: notes[index],);
                         },
                         separatorBuilder: (BuildContext context, int index) {
                           return Padding(
@@ -59,7 +61,8 @@ class NotesList extends ConsumerWidget {
                         crossAxisCount: crossAxisCount,
                         itemCount: notes.length,
                         itemBuilder: (context, index) {
-                          return NoteTile(notes[index]);
+                          return NoteTile(
+                              key: Keys.notesPageNoteTile, note :notes[index],);
                         },
                       );
               },

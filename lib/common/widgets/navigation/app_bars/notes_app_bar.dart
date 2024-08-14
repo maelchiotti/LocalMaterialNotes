@@ -13,6 +13,7 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 
 /// Notes list and bin's app bar.
@@ -39,6 +40,7 @@ class NotesAppBar extends ConsumerWidget {
     }
 
     return SearchAnchor(
+      key: Keys.notesPageSearchIconButton,
       viewHintText: localizations.tooltip_search,
       searchController: SearchController(),
       viewBackgroundColor: Theme.of(context).colorScheme.surface,
@@ -100,7 +102,10 @@ class NotesAppBar extends ConsumerWidget {
     return notes.where((note) {
       return note.matchesSearch(search);
     }).map((note) {
-      return NoteTile.searchView(note);
+      return NoteTile.searchView(
+          key: Keys.notesPageNoteTile,
+        note: note,
+      );
     }).toList();
   }
 
@@ -121,6 +126,7 @@ class NotesAppBar extends ConsumerWidget {
             final isListLayout = layout == Layout.list;
 
             return IconButton(
+              key: Keys.notesPageLayoutIconButton,
               onPressed: _toggleLayout,
               tooltip: isListLayout ? localizations.tooltip_layout_grid : localizations.tooltip_layout_list,
               icon: Icon(isListLayout ? Icons.grid_view : Icons.view_list_outlined),
@@ -128,6 +134,7 @@ class NotesAppBar extends ConsumerWidget {
           },
         ),
         PopupMenuButton<SortMethod>(
+          key: Keys.notesPageSortIconButton,
           icon: const Icon(Icons.sort),
           tooltip: localizations.tooltip_sort,
           itemBuilder: (context) {

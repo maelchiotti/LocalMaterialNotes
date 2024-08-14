@@ -23,10 +23,10 @@ import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 /// A custom `ListTile` widget is created because the default one doesn't allow not displaying a title.
 class NoteTile extends ConsumerStatefulWidget {
   /// Note tile shown in the notes list or the bin.
-  const NoteTile(this.note) : searchView = false;
+  const NoteTile(this.note, {super.key}) : searchView = false;
 
   /// Note tile shown in the search view.
-  const NoteTile.searchView(this.note) : searchView = true;
+  const NoteTile.searchView(this.note, {super.key}) : searchView = true;
 
   /// Note to display.
   final Note note;
