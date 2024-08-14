@@ -2,12 +2,19 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
+/// Confirmations asked for user actions such as pining and deleting notes.
 enum Confirmations {
+  /// Never ask for a confirmation.
   none,
+
+  /// Asks confirmations only for irreversible actions.
   irreversible,
+
+  /// Always ask for a confirmation.
   all,
   ;
 
+  /// Returns the value of the preference if set, or its default value otherwise.
   factory Confirmations.fromPreference() {
     final preference = PreferencesUtils().get<String>(PreferenceKey.confirmations);
 
@@ -16,6 +23,7 @@ enum Confirmations {
         : PreferenceKey.confirmations.defaultValue as Confirmations;
   }
 
+  /// Returns the title of the preference for the settings page.
   String get title {
     switch (this) {
       case none:

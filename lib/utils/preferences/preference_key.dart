@@ -4,6 +4,7 @@ import 'package:localmaterialnotes/utils/preferences/enums/sort_method.dart';
 import 'package:localmaterialnotes/utils/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
+/// Keys of the preferences.
 enum PreferenceKey {
   // Appearance
   locale('en'),
@@ -37,10 +38,14 @@ enum PreferenceKey {
   layout(Layout.list),
   ;
 
+  /// Default value of the preference.
   final Object defaultValue;
 
   const PreferenceKey(this.defaultValue);
 
+  /// Returns the value of the preference if set, or its default value otherwise.
+  ///
+  /// The type [T] of the value should be a basic type: `bool`, `int`, `double`, `String` or `List<String>`.
   T getPreferenceOrDefault<T>() {
     if (T == dynamic) {
       throw ArgumentError('The type T is required.');
@@ -53,6 +58,7 @@ enum PreferenceKey {
     return PreferencesUtils().get<T>(this) ?? defaultValue as T;
   }
 
+  /// Returns the value of the securely stored preference if set, or its default value otherwise.
   Future<String> getPreferenceOrDefaultSecure() async {
     return await PreferencesUtils().getSecure(this) ?? defaultValue as String;
   }
