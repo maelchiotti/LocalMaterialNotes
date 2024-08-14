@@ -3,8 +3,13 @@ import 'dart:ui';
 import 'package:intl/intl.dart' as intl;
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 
+/// Extends the [Locale] class with some utilities functions.
 extension LocaleExtension on Locale {
+  /// Returns the text direction (RTL or LTR) according to the locale of the device (not the locale of the application).
   TextDirection get textDirection {
-    return intl.Bidi.isRtlLanguage(LocaleUtils().deviceLocale.languageCode) ? TextDirection.rtl : TextDirection.ltr;
+    final deviceLanguageCode = LocaleUtils().deviceLocale.languageCode;
+    final textDirection = intl.Bidi.isRtlLanguage(deviceLanguageCode) ? TextDirection.rtl : TextDirection.ltr;
+
+    return textDirection;
   }
 }
