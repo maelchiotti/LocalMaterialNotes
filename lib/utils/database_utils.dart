@@ -22,6 +22,9 @@ import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sanitize_filename/sanitize_filename.dart';
 
+/// Utilities for the database.
+///
+/// This class is a singleton.
 class DatabaseUtils {
   static final DatabaseUtils _singleton = DatabaseUtils._internal();
 
@@ -31,10 +34,16 @@ class DatabaseUtils {
 
   DatabaseUtils._internal();
 
+  /// Name of the database.
   final _databaseName = 'materialnotes';
+
+  /// Directory where the database is stored.
   late String _databaseDirectory;
+
+  /// Isar database.
   late Isar _database;
 
+  /// Ensures the utility is initialized.
   Future<void> ensureInitialized() async {
     _databaseDirectory = (await getApplicationDocumentsDirectory()).path;
     _database = await Isar.open(
@@ -55,13 +64,16 @@ class DatabaseUtils {
     }
   }
 
-  Future<List<Note>> getAll({bool? deleted}) async {
+  /// Returns all the notes.
+  ///
+  /// Returns the not deleted notes by default, or the deleted ones if [deleted] is set to `true`.
+  Future<List<Note>> getAll({bool deleted = false}) async {
     final sortMethod = SortMethod.fromPreference();
     final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
-    final sortedByPinned = deleted == null
-        ? _database.notes.where().sortByPinnedDesc()
-        : _database.notes.where().deletedEqualTo(deleted).sortByPinnedDesc();
+    final sortedByPinned = deleted
+        ? _database.notes.where().deletedEqualTo(deleted).sortByPinnedDesc()
+        : _database.notes.where().sortByPinnedDesc();
 
     switch (sortMethod) {
       case SortMethod.date:
@@ -77,42 +89,51 @@ class DatabaseUtils {
     }
   }
 
+  /// Puts the [note] in the database.
   Future<void> put(Note note) async {
     await _database.writeTxn(() async {
       await _database.notes.put(note);
     });
   }
 
+  /// Puts the [notes] in the database.
   Future<void> putAll(List<Note> notes) async {
     await _database.writeTxn(() async {
       await _database.notes.putAll(notes);
     });
   }
 
+  /// Deletes the [note] from the database.
   Future<void> delete(Note note) async {
     await _database.writeTxn(() async {
       await _database.notes.delete(note.id);
     });
   }
 
+  /// Deletes the [notes] from the database.
   Future<void> deleteAll(List<Note> notes) async {
     await _database.writeTxn(() async {
       await _database.notes.deleteAll(notes.map((note) => note.id).toList());
     });
   }
 
+  /// Deletes all the deleted notes from the database.
   Future<void> emptyBin() async {
     await _database.writeTxn(() async {
       await _database.notes.where().deletedEqualTo(true).deleteAll();
     });
   }
 
+  /// Deletes all the notes from the database.
   Future<void> clear() async {
     await _database.writeTxn(() async {
       await _database.notes.where().deleteAll();
     });
   }
 
+  /// Exports all the notes in a JSON [file].
+  ///
+  /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
   Future<bool> _exportAsJson(bool encrypt, String? password, File file) async {
     var notes = await getAll();
 
@@ -132,12 +153,20 @@ class DatabaseUtils {
     return await writeStringToFile(file, exportDataAsJson);
   }
 
+  /// Automatically exports all the notes in a JSON file.
+  ///
+  /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
   Future<bool> autoExportAsJson(bool encrypt, String password) async {
     final file = await AutoExportUtils().getAutoExportFile;
 
     return await _exportAsJson(encrypt, password, file);
   }
 
+  /// Manually exports all the notes in a JSON file.
+  ///
+  /// First asks the user to pick a directory where to save the export file.
+  ///
+  /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
   Future<bool> manuallyExportAsJson(bool encrypt, String? password) async {
     final exportDirectory = await pickDirectory();
 
@@ -150,6 +179,9 @@ class DatabaseUtils {
     return await _exportAsJson(encrypt, password, file);
   }
 
+  /// Exports all the notes in a Markdown file.
+  ///
+  /// First asks the user to pick a directory where to save the export file.
   Future<bool> exportAsMarkdown() async {
     final exportDirectory = await pickDirectory();
 
@@ -178,6 +210,7 @@ class DatabaseUtils {
     return await writeBytesToFile(file, encodedArchive);
   }
 
+  /// Imports all the notes from a JSON file picked by the user.
   Future<bool> import(BuildContext context) async {
     final importPlatformFile = await pickSingleFile(typeGroupJson);
 

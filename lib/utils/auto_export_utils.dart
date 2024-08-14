@@ -70,10 +70,9 @@ class AutoExportUtils {
 
   /// Checks if an auto export should be performed.
   ///
-  /// An auto export should be performed if it is enabled and either if:
-  /// - no auto export has been performed yet
-  /// - or the time difference between now and the last auto export is greater than the auto export frequency
-  ///   chosen by the user
+  /// An auto export should be performed if it is enabled and either if no auto export has been performed yet,
+  /// or the time difference between now and the last auto export is greater than the auto export frequency
+  /// chosen by the user
   bool _shouldPerformAutoExport() {
     final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>();
 

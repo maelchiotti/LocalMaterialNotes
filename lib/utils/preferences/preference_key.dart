@@ -4,7 +4,7 @@ import 'package:localmaterialnotes/utils/preferences/enums/sort_method.dart';
 import 'package:localmaterialnotes/utils/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
-/// Keys of the preferences.
+/// Lists the preferences' keys.
 enum PreferenceKey {
   // Appearance
   locale('en'),

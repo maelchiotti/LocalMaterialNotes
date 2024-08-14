@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Radiuses of widgets.
+/// Lists radiuses of widgets.
 enum Radiuses {
   /// Allows to access custom radiuses.
   custom(0),

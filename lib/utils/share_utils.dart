@@ -7,12 +7,14 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:parchment_delta/parchment_delta.dart'; // ignore: depend_on_referenced_packages
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
+/// Listens to any data shared from other applications.
 StreamSubscription listenSharedData(WidgetRef ref) {
   return ReceiveSharingIntent.instance.getMediaStream().listen((data) {
     _processSharedData(ref, data);
   });
 }
 
+/// Reads the data shared from other applications.
 void readSharedData(WidgetRef ref) {
   ReceiveSharingIntent.instance.getInitialMedia().then((data) {
     _processSharedData(ref, data);
@@ -21,6 +23,9 @@ void readSharedData(WidgetRef ref) {
   });
 }
 
+/// Processes the [data] shared from other applications.
+///
+/// If the [data] is text, it's added to a new note that is then opened.
 void _processSharedData(WidgetRef ref, List<SharedMediaFile> data) {
   if (navigatorKey.currentContext == null ||
       data.isEmpty ||

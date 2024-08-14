@@ -4,10 +4,13 @@ import 'package:localmaterialnotes/common/actions/add.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:quick_actions/quick_actions.dart';
 
+/// Utilities for the quick actions.
 class QuickActionsUtils {
+  /// Application's quick actions.
   late final QuickActions quickActions;
 
-  void init(BuildContext context, WidgetRef ref) {
+  /// Ensures the utility is initialized.
+  void ensureInitialized(BuildContext context, WidgetRef ref) {
     quickActions = const QuickActions();
 
     quickActions.initialize((action) {

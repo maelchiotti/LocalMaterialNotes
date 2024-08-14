@@ -19,7 +19,7 @@ class Notes extends _$Notes {
     List<Note> notes = [];
 
     try {
-      notes = await DatabaseUtils().getAll(deleted: false);
+      notes = await DatabaseUtils().getAll();
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
     }

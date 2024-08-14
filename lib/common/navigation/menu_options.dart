@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 
-/// Options available in the menu of the editor's app bar.
+/// Lists the options available in the menu of the editor's app bar.
 enum MenuOption {
   togglePin(Icons.push_pin, alternativeIcon: Icons.push_pin_outlined),
   share(Icons.share),

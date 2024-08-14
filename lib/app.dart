@@ -36,7 +36,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
   @override
   void afterFirstLayout(BuildContext context) {
     // When the app is built, initialize the quick actions
-    QuickActionsUtils().init(navigatorKey.currentContext!, ref);
+    QuickActionsUtils().ensureInitialized(navigatorKey.currentContext!, ref);
   }
 
   @override

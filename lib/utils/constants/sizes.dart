@@ -1,4 +1,4 @@
-/// Sizes.
+/// Lists sizes.
 enum Sizes {
   /// Allows to access custom sizes.
   custom(0),

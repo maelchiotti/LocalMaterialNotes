@@ -2,7 +2,7 @@ import 'package:localmaterialnotes/utils/constants/constants.dart';
 import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
-/// Confirmations asked for user actions such as pining and deleting notes.
+/// Lists the options for the confirmations asked for user actions such as pining and deleting notes.
 enum Confirmations {
   /// Never ask for a confirmation.
   none,

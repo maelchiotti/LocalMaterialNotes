@@ -159,7 +159,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
             SettingsTile.navigation(
               leading: const Icon(Icons.palette),
               title: Text(localizations.settings_theme),
-              value: Text(ThemeUtils().themeModeName),
+              value: Text(ThemeUtils().themeModeTitle),
               onPressed: _selectTheme,
             ),
             SettingsTile.switchTile(

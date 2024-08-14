@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/utils/constants/constants.dart';
 
-/// Paddings between widgets.
+/// Lists paddings between widgets.
 enum Paddings {
   /// Allows to access custom paddings.
   custom(0),
