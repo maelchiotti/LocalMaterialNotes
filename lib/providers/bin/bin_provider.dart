@@ -2,13 +2,15 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/utils/database_utils.dart';
+import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'bin_provider.g.dart';
 
 @riverpod
 class Bin extends _$Bin {
+  final _notesService = NotesService();
+
   @override
   FutureOr<List<Note>> build() {
     return get();
@@ -19,7 +21,7 @@ class Bin extends _$Bin {
     List<Note> notes = [];
 
     try {
-      notes = await DatabaseUtils().getAll(deleted: true);
+      notes = await _notesService.getAll(deleted: true);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
     }
@@ -39,7 +41,7 @@ class Bin extends _$Bin {
   /// Removes all the deleted notes from the database.
   Future<bool> empty() async {
     try {
-      await DatabaseUtils().emptyBin();
+      await _notesService.emptyBin();
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
@@ -53,7 +55,7 @@ class Bin extends _$Bin {
   /// Removes the [permanentlyDeletedNote] from the database.
   Future<bool> permanentlyDelete(Note permanentlyDeletedNote) async {
     try {
-      await DatabaseUtils().delete(permanentlyDeletedNote);
+      await _notesService.delete(permanentlyDeletedNote);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
@@ -74,7 +76,7 @@ class Bin extends _$Bin {
     }
 
     try {
-      await DatabaseUtils().deleteAll(notes);
+      await _notesService.deleteAll(notes);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
@@ -93,7 +95,7 @@ class Bin extends _$Bin {
     restoredNote.deleted = false;
 
     try {
-      await DatabaseUtils().put(restoredNote);
+      await _notesService.put(restoredNote);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
@@ -114,7 +116,7 @@ class Bin extends _$Bin {
     }
 
     try {
-      await DatabaseUtils().putAll(notes);
+      await _notesService.putAll(notes);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;

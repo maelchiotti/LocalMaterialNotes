@@ -2,13 +2,15 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/utils/database_utils.dart';
+import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'notes_provider.g.dart';
 
 @riverpod
 class Notes extends _$Notes {
+  final _notesService = NotesService();
+
   @override
   FutureOr<List<Note>> build() {
     return get();
@@ -19,7 +21,7 @@ class Notes extends _$Notes {
     List<Note> notes = [];
 
     try {
-      notes = await DatabaseUtils().getAll();
+      notes = await _notesService.getAll();
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
     }
@@ -42,9 +44,9 @@ class Notes extends _$Notes {
 
     try {
       if (editedNote.isEmpty) {
-        await DatabaseUtils().delete(editedNote);
+        await _notesService.delete(editedNote);
       } else {
-        await DatabaseUtils().put(editedNote);
+        await _notesService.put(editedNote);
       }
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
@@ -81,7 +83,7 @@ class Notes extends _$Notes {
     }
 
     try {
-      await DatabaseUtils().putAll(notes);
+      await _notesService.putAll(notes);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
@@ -117,7 +119,7 @@ class Notes extends _$Notes {
     }
 
     try {
-      await DatabaseUtils().putAll(notes);
+      await _notesService.putAll(notes);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
