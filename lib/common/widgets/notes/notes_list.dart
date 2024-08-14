@@ -39,11 +39,13 @@ class NotesList extends ConsumerWidget {
               builder: (context, showSeparators, child) {
                 return layout == Layout.list
                     ? ListView.separated(
-                        padding: showTilesBackground ? Paddings.custom.notesWithBackground : Paddings.custom.fab,
+                  key: Keys.notesPageNotesListListLayout,
+
+                  padding: showTilesBackground ? Paddings.custom.notesWithBackground : Paddings.custom.fab,
                         itemCount: notes.length,
                         itemBuilder: (context, index) {
                           return NoteTile(
-                              key: Keys.notesPageNoteTile, note: notes[index],);
+                              key: Keys.notesPageNoteTile(index), note: notes[index],);
                         },
                         separatorBuilder: (BuildContext context, int index) {
                           return Padding(
@@ -62,7 +64,7 @@ class NotesList extends ConsumerWidget {
                         itemCount: notes.length,
                         itemBuilder: (context, index) {
                           return NoteTile(
-                              key: Keys.notesPageNoteTile, note :notes[index],);
+                              key: Keys.notesPageNoteTile(index), note :notes[index],);
                         },
                       );
               },

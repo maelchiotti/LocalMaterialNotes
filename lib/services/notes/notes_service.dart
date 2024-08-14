@@ -75,7 +75,7 @@ class NotesService extends DatabaseService {
             ? await sortedByPinned.thenByTitle().findAll()
             : await sortedByPinned.thenByTitleDesc().findAll();
       default:
-        throw Exception('The sort methode is not set: $sortMethod');
+        throw Exception('The sort methode is not valid: $sortMethod');
     }
   }
 

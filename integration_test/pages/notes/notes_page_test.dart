@@ -30,21 +30,24 @@ void main() {
       await $.pumpWidgetAndSettle(await appInitialized);
 
       // Find the 1st note tile that should be visible
-      expect($(#notesPageNoteTile).at(0), findsOne);
+      expect(
+        $(#notesPageNoteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 0'),
+        findsOne,
+      );
 
       // Scroll to find the 50th note tile
       expect(
-        await $(#notesPageNoteTile).which<NoteTile>((noteTile) {
-          return noteTile.note.title == 'Note 49';
-        }).scrollTo(maxScrolls: 50),
+        await $(#notesPageNoteTile49)
+            .which<NoteTile>((noteTile) => noteTile.note.title == 'Note 49')
+            .scrollTo(maxScrolls: 50),
         findsOne,
       );
 
       // Scroll to find the 100th and last note tile
       expect(
-        await $(#notesPageNoteTile).which<NoteTile>((noteTile) {
-          return noteTile.note.title == 'Note 99';
-        }).scrollTo(maxScrolls: 50),
+        await $(#notesPageNoteTile99)
+            .which<NoteTile>((noteTile) => noteTile.note.title == 'Note 99')
+            .scrollTo(maxScrolls: 50),
         findsOne,
       );
     },
