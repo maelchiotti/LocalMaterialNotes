@@ -85,6 +85,7 @@ dev_dependencies:
     hosted: https://pub.isar-community.dev/
   json_serializable: ^6.8.0
   lint: ^2.3.0
+  patrol: ^3.10.0
   riverpod_generator: ^2.4.2
   riverpod_lint: ^2.3.12
 
@@ -92,3 +93,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/
+
+patrol:
+  android:
+    package_name: com.maelchiotti.localmaterialnotes
