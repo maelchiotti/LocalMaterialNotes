@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/actions/delete.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
 
 /// Floating action button to empty the bin.
 class FabEmptyBin extends ConsumerWidget {

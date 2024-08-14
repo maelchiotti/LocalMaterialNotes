@@ -1,5 +1,5 @@
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 
 /// Lists the methods to sort the notes in the notes list.
 enum SortMethod {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 
 /// Lists the options available in the menu of the editor's app bar.
 enum MenuOption {

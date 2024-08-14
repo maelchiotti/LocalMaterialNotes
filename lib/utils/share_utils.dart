@@ -3,8 +3,8 @@ import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/actions/add.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:parchment_delta/parchment_delta.dart'; // ignore: depend_on_referenced_packages
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:parchment_delta/parchment_delta.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 /// Listens to any data shared from other applications.

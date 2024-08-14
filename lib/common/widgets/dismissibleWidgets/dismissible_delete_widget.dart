@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/constants/paddings.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/swipe_direction.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
+import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
 
 /// Dismissible widget for the delete swipe action.
 class DismissibleDeleteWidget extends StatelessWidget {

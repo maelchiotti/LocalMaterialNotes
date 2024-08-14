@@ -1,5 +1,5 @@
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 
 /// Lists the layouts of the notes list.
 enum Layout {

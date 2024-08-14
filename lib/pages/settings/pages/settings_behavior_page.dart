@@ -1,14 +1,14 @@
 import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
+import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
+import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/confirmations.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/swipe_action.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/swipe_direction.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 
 /// Settings related to the behavior of the application.
 class SettingsBehaviorPage extends StatefulWidget {

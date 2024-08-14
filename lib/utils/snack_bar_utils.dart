@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 
 /// Utilities for the snack bars.
 class SnackBarUtils {

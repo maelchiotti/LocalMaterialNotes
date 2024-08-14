@@ -1,9 +1,9 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
+import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
+import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/layout.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/swipe_action.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
 
 /// Notifier for the app theme mode.

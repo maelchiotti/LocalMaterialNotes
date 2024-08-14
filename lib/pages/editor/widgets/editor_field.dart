@@ -1,9 +1,9 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/constants/paddings.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 /// Text field to edit the content of a note.

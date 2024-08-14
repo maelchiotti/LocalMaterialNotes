@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:go_router/go_router.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/extensions/go_router_extension.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/extensions/go_router_extension.dart';
 
 /// Lists the routes of the application's router.
 enum RouterRoute {

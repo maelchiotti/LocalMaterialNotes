@@ -1,8 +1,8 @@
-import 'package:localmaterialnotes/utils/preferences/enums/confirmations.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/layout.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/sort_method.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/swipe_action.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
+import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
+import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
+import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
+import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
+import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 
 /// Lists the preferences' keys.
 enum PreferenceKey {

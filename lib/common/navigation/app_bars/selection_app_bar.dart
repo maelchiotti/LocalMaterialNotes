@@ -4,15 +4,15 @@ import 'package:localmaterialnotes/common/actions/delete.dart';
 import 'package:localmaterialnotes/common/actions/pin.dart';
 import 'package:localmaterialnotes/common/actions/restore.dart';
 import 'package:localmaterialnotes/common/actions/select.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
+import 'package:localmaterialnotes/common/constants/separators.dart';
 import 'package:localmaterialnotes/common/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/common/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/constants/paddings.dart';
-import 'package:localmaterialnotes/utils/constants/separators.dart';
 
 /// Selection mode's app bar.
 ///

@@ -3,6 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/actions/delete.dart';
 import 'package:localmaterialnotes/common/actions/pin.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
+import 'package:localmaterialnotes/common/constants/radiuses.dart';
+import 'package:localmaterialnotes/common/constants/sizes.dart';
+import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
+import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
+import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
 import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/common/widgets/dismissibleWidgets/dismissible_delete_widget.dart';
@@ -11,12 +17,6 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/utils/constants/paddings.dart';
-import 'package:localmaterialnotes/utils/constants/radiuses.dart';
-import 'package:localmaterialnotes/utils/constants/sizes.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/layout.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/swipe_action.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/swipe_direction.dart';
 
 /// List tile that displays the main info about a note.
 ///

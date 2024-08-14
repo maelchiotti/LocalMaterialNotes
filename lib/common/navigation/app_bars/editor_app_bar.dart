@@ -5,13 +5,13 @@ import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/actions/delete.dart';
 import 'package:localmaterialnotes/common/actions/pin.dart';
 import 'package:localmaterialnotes/common/actions/restore.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/navigation/menu_options.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/editor/sheets/about_sheet.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/constants/paddings.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 import 'package:share_plus/share_plus.dart';
 
 /// Editor's app bar.

@@ -1,10 +1,10 @@
 import 'dart:io';
 
+import 'package:localmaterialnotes/common/extensions/uri_extension.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
-import 'package:localmaterialnotes/utils/extensions/uri_extension.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 

@@ -1,5 +1,5 @@
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
 
 /// Note displayed on the very first run of the application to welcome the user.
 final welcomeNote = Note(

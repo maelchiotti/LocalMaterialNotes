@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:go_router/go_router.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/fabs/fab_add_note.dart';
 import 'package:localmaterialnotes/common/fabs/fab_empty_bin.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
@@ -18,7 +19,6 @@ import 'package:localmaterialnotes/pages/settings/pages/settings_backup_page.dar
 import 'package:localmaterialnotes/pages/settings/pages/settings_behavior_page.dart';
 import 'package:localmaterialnotes/pages/settings/pages/settings_editor_page.dart';
 import 'package:localmaterialnotes/pages/settings/settings_main_page.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
 
 /// Parameters of the editor route.
 typedef EditorParameters = Map<String, bool>?;

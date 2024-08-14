@@ -1,5 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Manages user preferences.

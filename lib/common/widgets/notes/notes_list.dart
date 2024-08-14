@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
+import 'package:localmaterialnotes/common/constants/separators.dart';
+import 'package:localmaterialnotes/common/constants/sizes.dart';
 import 'package:localmaterialnotes/common/placeholders/empty_placeholder.dart';
 import 'package:localmaterialnotes/common/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/common/placeholders/loading_placeholder.dart';
+import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/common/widgets/notes/note_tile.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/utils/constants/paddings.dart';
-import 'package:localmaterialnotes/utils/constants/separators.dart';
-import 'package:localmaterialnotes/utils/constants/sizes.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/layout.dart';
 
 /// List of notes.
 class NotesList extends ConsumerStatefulWidget {

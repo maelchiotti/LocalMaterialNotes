@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/confirmations.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
 
 /// Shows the confirmation dialog to ask the user for a confirmation on an action.
 ///

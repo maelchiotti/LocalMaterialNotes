@@ -1,8 +1,8 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/utils/constants/paddings.dart';
-import 'package:localmaterialnotes/utils/constants/sizes.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
+import 'package:localmaterialnotes/common/constants/sizes.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 /// Toolbar for the content text field that enables advanced formatting options.

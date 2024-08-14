@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:file_selector/file_selector.dart';
-import 'package:localmaterialnotes/utils/extensions/date_time_extensions.dart';
+import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
 import 'package:path/path.dart';
 
 /// Type group corresponding to JSON files.

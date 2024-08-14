@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
+import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/constants/paddings.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/swipe_direction.dart';
 
 /// Dismissible widget for the pin swipe action.
 class DismissiblePinWidget extends StatelessWidget {
