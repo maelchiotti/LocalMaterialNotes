@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
@@ -46,6 +47,7 @@ class NotesAppBar extends ConsumerWidget {
       viewBackgroundColor: Theme.of(context).colorScheme.surface,
       builder: (context, controller) {
         return IconButton(
+          key: Keys.notesPageSearchIconButton,
           onPressed: () => controller.openView(),
           icon: const Icon(Icons.search),
           tooltip: localizations.tooltip_search,
@@ -94,16 +96,16 @@ class NotesAppBar extends ConsumerWidget {
   }
 
   /// Filters the [notes] according to the [search].
-  List<NoteTile> _filterNotes(String? search, List<Note> notes) {
+  List<NoteTile> _filter(String? search, List<Note> notes) {
     if (search == null || search.isEmpty) {
       return [];
     }
 
     return notes.where((note) {
       return note.matchesSearch(search);
-    }).map((note) {
+    }).mapIndexed((index, note) {
       return NoteTile.searchView(
-          key: Keys.notesPageNoteTile,
+        key: Keys.notesPageNoteTile(index),
         note: note,
       );
     }).toList();
@@ -129,7 +131,7 @@ class NotesAppBar extends ConsumerWidget {
               key: Keys.notesPageLayoutIconButton,
               onPressed: _toggleLayout,
               tooltip: isListLayout ? localizations.tooltip_layout_grid : localizations.tooltip_layout_list,
-              icon: Icon(isListLayout ? Icons.grid_view : Icons.view_list_outlined),
+              icon: Icon(isListLayout ? Icons.grid_view : Icons.view_list),
             );
           },
         ),
@@ -140,6 +142,7 @@ class NotesAppBar extends ConsumerWidget {
           itemBuilder: (context) {
             return [
               PopupMenuItem(
+                key: Keys.notesPageSortDateMenuItem,
                 value: SortMethod.date,
                 child: ListTile(
                   selected: sortMethod == SortMethod.date,
@@ -148,6 +151,7 @@ class NotesAppBar extends ConsumerWidget {
                 ),
               ),
               PopupMenuItem(
+                key: Keys.notesPageSortTitleMenuItem,
                 value: SortMethod.title,
                 child: ListTile(
                   selected: sortMethod == SortMethod.title,
@@ -157,6 +161,7 @@ class NotesAppBar extends ConsumerWidget {
               ),
               const PopupMenuDivider(),
               PopupMenuItem(
+                key: Keys.notesPageSortAscendingMenuItem,
                 value: SortMethod.ascending,
                 child: ListTile(
                   title: Text(localizations.sort_ascending),
