@@ -6,6 +6,7 @@ enum LocalizationCompletion {
   en(Locale('en'), 1),
   es(Locale('es'), .42),
   fr(Locale('fr'), 1),
+  pt(Locale('pt'), .97),
   ru(Locale('ru'), 1),
   tr(Locale('tr'), .41),
   ;
