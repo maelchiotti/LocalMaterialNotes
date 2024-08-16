@@ -20,6 +20,12 @@ class NotesService extends DatabaseService {
 
   NotesService._internal();
 
+  @override
+  late final String databaseDirectory;
+
+  @override
+  late final Isar database;
+
   /// Ensures the notes service is initialized.
   @override
   Future<void> ensureInitialized() async {
@@ -49,9 +55,7 @@ class NotesService extends DatabaseService {
     final sortMethod = SortMethod.fromPreference();
     final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
-    final sortedByPinned = deleted
-        ? database.notes.where().deletedEqualTo(deleted).sortByPinnedDesc()
-        : database.notes.where().sortByPinnedDesc();
+    final sortedByPinned = database.notes.where().deletedEqualTo(deleted).sortByPinnedDesc();
 
     switch (sortMethod) {
       case SortMethod.date:

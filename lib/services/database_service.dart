@@ -6,14 +6,10 @@ abstract class DatabaseService {
   final databaseName = 'materialnotes';
 
   /// Directory where the database is stored.
-  ///
-  /// Needs to be set by the implementing class.
-  late String databaseDirectory;
+  abstract String databaseDirectory;
 
   /// Isar database instance.
-  ///
-  /// Needs to be set by the implementing class.
-  late Isar database;
+  abstract Isar database;
 
   /// Ensures the service is initialized.
   Future<void> ensureInitialized();

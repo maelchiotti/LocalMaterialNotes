@@ -69,7 +69,7 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
     return false;
   }
 
-  if (await askForConfirmation(
+  if (!await askForConfirmation(
     localizations.dialog_permanently_delete,
     localizations.dialog_permanently_delete_body_single,
     localizations.dialog_permanently_delete,
@@ -95,7 +95,7 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
 ///
 /// First, asks for a confirmation if needed.
 Future<bool> permanentlyDeleteNotes(WidgetRef ref, List<Note> notes) async {
-  if (await askForConfirmation(
+  if (!await askForConfirmation(
     localizations.dialog_permanently_delete,
     localizations.dialog_permanently_delete_body(notes.length),
     localizations.dialog_permanently_delete,
@@ -114,7 +114,7 @@ Future<bool> permanentlyDeleteNotes(WidgetRef ref, List<Note> notes) async {
 /// First, asks for a confirmation if needed.
 /// Exits the selection mode.
 Future<bool> emptyBin(WidgetRef ref) async {
-  if (await askForConfirmation(
+  if (!await askForConfirmation(
     localizations.dialog_empty_bin,
     localizations.dialog_empty_bin_body,
     localizations.dialog_empty_bin,
