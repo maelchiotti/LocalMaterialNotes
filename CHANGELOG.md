@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.5.2 - 2024-08-16
+
+### Added
+
+- Portuguese localization
+
+### Fixed
+
+- Auto export settings tile not updating after disabling auto export
+- Notes sorted by their created time instead of their edited time
+- Toggling the sort by ascending order by taping on the list tile instead of the checkbox not working
+- Focus on the note content not requested when the title is validated
+- Typos
+
 ## 1.5.1 - 2024-08-07
 
 ### Fixed
