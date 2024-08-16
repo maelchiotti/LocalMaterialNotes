@@ -21,6 +21,9 @@ final isSelectionModeNotifier = ValueNotifier(false);
 /// Notifier for the notes layout.
 final layoutNotifier = ValueNotifier(Layout.fromPreference());
 
+/// Notifier for whether to show the notes titles.
+final showTitlesOnlyNotifier = ValueNotifier(PreferenceKey.showTitlesOnly.getPreferenceOrDefault<bool>());
+
 /// Notifier for whether to show the notes tiles background.
 final showTilesBackgroundNotifier = ValueNotifier(PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>());
 

@@ -289,17 +289,17 @@ abstract class AppLocalizations {
   /// **'Use a black background in dark mode'**
   String get settings_black_theming_description;
 
-  /// No description provided for @settings_show_separators.
+  /// No description provided for @settings_show_titles_only.
   ///
   /// In en, this message translates to:
-  /// **'Separators'**
-  String get settings_show_separators;
+  /// **'Titles only'**
+  String get settings_show_titles_only;
 
-  /// No description provided for @settings_show_separators_description.
+  /// No description provided for @settings_show_titles_only_description.
   ///
   /// In en, this message translates to:
-  /// **'Show a separator between the notes tiles to differentiate them easily'**
-  String get settings_show_separators_description;
+  /// **'Only show the titles of the notes so more of them can be displayed'**
+  String get settings_show_titles_only_description;
 
   /// No description provided for @settings_show_tiles_background.
   ///
@@ -312,6 +312,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show the background of the notes tiles to differentiate them easily'**
   String get settings_show_tiles_background_description;
+
+  /// No description provided for @settings_show_separators.
+  ///
+  /// In en, this message translates to:
+  /// **'Separators'**
+  String get settings_show_separators;
+
+  /// No description provided for @settings_show_separators_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Show a separator between the notes tiles to differentiate them easily'**
+  String get settings_show_separators_description;
 
   /// No description provided for @settings_behavior.
   ///

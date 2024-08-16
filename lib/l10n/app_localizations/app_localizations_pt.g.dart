@@ -104,11 +104,11 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_black_theming_description => 'Use um fundo preto no modo escuro';
 
   @override
-  String get settings_show_separators => 'Separadores';
+  String get settings_show_titles_only => 'Titles only';
 
   @override
-  String get settings_show_separators_description =>
-      'Mostre um separador entre os blocos de notas para diferenciá-los facilmente';
+  String get settings_show_titles_only_description =>
+      'Only show the titles of the notes so more of them can be displayed';
 
   @override
   String get settings_show_tiles_background => 'Plano de Fundo';
@@ -116,6 +116,13 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get settings_show_tiles_background_description =>
       'Mostrar o plano de fundo dos blocos de notas para diferenciá-los facilmente';
+
+  @override
+  String get settings_show_separators => 'Separadores';
+
+  @override
+  String get settings_show_separators_description =>
+      'Mostre um separador entre os blocos de notas para diferenciá-los facilmente';
 
   @override
   String get settings_behavior => 'Comportamento';

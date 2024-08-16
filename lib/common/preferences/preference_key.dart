@@ -13,6 +13,7 @@ enum PreferenceKey {
   blackTheming(false),
   showSeparators(false),
   showTilesBackground(false),
+  showTitlesOnly(false),
 
   // Behavior
   flagSecure(false),

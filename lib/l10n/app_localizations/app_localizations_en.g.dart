@@ -104,11 +104,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_black_theming_description => 'Use a black background in dark mode';
 
   @override
-  String get settings_show_separators => 'Separators';
+  String get settings_show_titles_only => 'Titles only';
 
   @override
-  String get settings_show_separators_description =>
-      'Show a separator between the notes tiles to differentiate them easily';
+  String get settings_show_titles_only_description =>
+      'Only show the titles of the notes so more of them can be displayed';
 
   @override
   String get settings_show_tiles_background => 'Background';
@@ -116,6 +116,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get settings_show_tiles_background_description =>
       'Show the background of the notes tiles to differentiate them easily';
+
+  @override
+  String get settings_show_separators => 'Separators';
+
+  @override
+  String get settings_show_separators_description =>
+      'Show a separator between the notes tiles to differentiate them easily';
 
   @override
   String get settings_behavior => 'Behavior';

@@ -104,16 +104,23 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_black_theming_description => 'Использовать чёрный фон при тёмной теме оформления';
 
   @override
-  String get settings_show_separators => 'Разделители';
+  String get settings_show_titles_only => 'Titles only';
 
   @override
-  String get settings_show_separators_description => 'Показывать разделитель между заметками';
+  String get settings_show_titles_only_description =>
+      'Only show the titles of the notes so more of them can be displayed';
 
   @override
   String get settings_show_tiles_background => 'Фон';
 
   @override
   String get settings_show_tiles_background_description => 'Показывать задний фон у заметок';
+
+  @override
+  String get settings_show_separators => 'Разделители';
+
+  @override
+  String get settings_show_separators_description => 'Показывать разделитель между заметками';
 
   @override
   String get settings_behavior => 'Поведение';

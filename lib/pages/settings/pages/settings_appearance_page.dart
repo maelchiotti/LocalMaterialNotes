@@ -120,6 +120,15 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   }
 
   /// Toggles the setting to show background of the notes tiles.
+  void _toggleShowTitlesOnly(bool toggled) {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.showTitlesOnly.name, toggled);
+    });
+
+    showTitlesOnlyNotifier.value = toggled;
+  }
+
+  /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTilesBackground(bool toggled) {
     setState(() {
       PreferencesUtils().set<bool>(PreferenceKey.showTilesBackground.name, toggled);
@@ -142,8 +151,9 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     final locale = LocaleUtils().appLocale.nativeDisplayLanguage.capitalized;
     final showUseBlackTheming = Theme.of(context).colorScheme.brightness == Brightness.dark;
 
-    final showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
+    final showTitlesOnly = PreferenceKey.showTitlesOnly.getPreferenceOrDefault<bool>();
     final showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();
+    final showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
 
     return CustomSettingsList(
       sections: [
@@ -183,6 +193,13 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
         SettingsSection(
           title: Text(localizations.settings_appearance_notes_tiles),
           tiles: [
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.view_compact),
+              title: Text(localizations.settings_show_titles_only),
+              description: Text(localizations.settings_show_titles_only_description),
+              initialValue: showTitlesOnly,
+              onToggle: _toggleShowTitlesOnly,
+            ),
             SettingsTile.switchTile(
               leading: const Icon(Icons.safety_divider),
               title: Text(localizations.settings_show_separators),
