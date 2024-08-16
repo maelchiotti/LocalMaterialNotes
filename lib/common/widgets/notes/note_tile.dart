@@ -214,58 +214,66 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   @override
   Widget build(BuildContext context) {
     final tile = ValueListenableBuilder(
-      valueListenable: showTilesBackgroundNotifier,
-      builder: (BuildContext context, showTilesBackground, Widget? child) {
-        // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
-        // See https://github.com/flutter/flutter/issues/86584
-        return Material(
-          child: Ink(
-            color: _backgroundColor(showTilesBackground),
-            child: InkWell(
-              onTap: _openOrSelect,
-              onLongPress: widget.searchView ? null : _enterSelectionMode,
-              child: Padding(
-                padding: Paddings.padding16.all,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Title
-                          if (!widget.note.isTitleEmpty)
-                            Text(
-                              widget.note.title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                          // Subtitle
-                          if (!widget.note.isContentEmpty && !widget.note.isContentPreviewEmpty)
-                            Text(
-                              widget.note.contentPreview,
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
-                                  ),
-                            ),
+      valueListenable: showTitlesOnlyNotifier,
+      builder: (context, showTitlesOnly, child) {
+        return ValueListenableBuilder(
+          valueListenable: showTilesBackgroundNotifier,
+          builder: (context, showTilesBackground, child) {
+            final showTitle = (!showTitlesOnly && !widget.note.isContentEmpty && !widget.note.isContentPreviewEmpty) ||
+                (showTitlesOnly && widget.note.isTitleEmpty);
+
+            // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
+            // See https://github.com/flutter/flutter/issues/86584
+            return Material(
+              child: Ink(
+                color: _backgroundColor(showTilesBackground),
+                child: InkWell(
+                  onTap: _openOrSelect,
+                  onLongPress: widget.searchView ? null : _enterSelectionMode,
+                  child: Padding(
+                    padding: Paddings.padding16.all,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Title
+                              if (!widget.note.isTitleEmpty)
+                                Text(
+                                  widget.note.title,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                ),
+                              // Subtitle
+                              if (showTitle)
+                                Text(
+                                  widget.note.contentPreview,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                        color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
+                                      ),
+                                ),
+                            ],
+                          ),
+                        ),
+                        // Trailing
+                        if (widget.note.pinned && !widget.note.deleted) ...[
+                          Padding(padding: Paddings.padding2.horizontal),
+                          Icon(
+                            Icons.push_pin,
+                            size: Sizes.size16.size,
+                          ),
                         ],
-                      ),
+                      ],
                     ),
-                    // Trailing
-                    if (widget.note.pinned && !widget.note.deleted) ...[
-                      Padding(padding: Paddings.padding2.horizontal),
-                      Icon(
-                        Icons.push_pin,
-                        size: Sizes.size16.size,
-                      ),
-                    ],
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ),
+            );
+          },
         );
       },
     );
@@ -277,13 +285,13 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
     return ValueListenableBuilder(
       valueListenable: layoutNotifier,
-      builder: (BuildContext context, layout, Widget? child) {
+      builder: (context, layout, child) {
         return ValueListenableBuilder(
           valueListenable: showTilesBackgroundNotifier,
-          builder: (BuildContext context, showTilesBackground, Widget? child) {
+          builder: (context, showTilesBackground, child) {
             return ValueListenableBuilder(
               valueListenable: swipeActionsNotifier,
-              builder: (BuildContext context, swipeActions, Widget? child) {
+              builder: (context, swipeActions, child) {
                 final rightSwipeAction = swipeActions.$1;
                 final leftSwipeAction = swipeActions.$2;
 

@@ -53,7 +53,19 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
 
   /// Sorts the notes according to the [sortMethod] and whether they should be sorted in [ascending] order.
   void _sort({SortMethod? sortMethod, bool? ascending}) {
-    if (sortMethod != null) {
+    // The 'Ascending' menu item was taped
+    if (sortMethod == SortMethod.ascending) {
+      final oldAscendingPreference = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
+
+      PreferencesUtils().set<bool>(PreferenceKey.sortAscending.name, !oldAscendingPreference);
+
+      setState(() {
+        sortAscending = !oldAscendingPreference;
+      });
+    }
+
+    // The 'Date' or 'Title' menu items were taped
+    else if (sortMethod != null) {
       final forceAscending = sortMethod == SortMethod.title;
 
       PreferencesUtils().set<String>(PreferenceKey.sortMethod.name, sortMethod.name);
@@ -63,7 +75,10 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
         this.sortMethod = sortMethod;
         sortAscending = forceAscending;
       });
-    } else if (ascending != null) {
+    }
+
+    // The checkbox of the 'Ascending' menu item was toggled
+    else if (ascending != null) {
       PreferencesUtils().set<bool>(PreferenceKey.sortAscending.name, ascending);
 
       setState(() {
@@ -71,11 +86,7 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
       });
     }
 
-    if (RouterRoute.currentRoute == RouterRoute.notes) {
-      ref.read(notesProvider.notifier).sort();
-    } else if (RouterRoute.currentRoute == RouterRoute.bin) {
-      ref.read(binProvider.notifier).sort();
-    }
+    RouterRoute.isBin ? ref.read(binProvider.notifier).sort() : ref.read(notesProvider.notifier).sort();
   }
 
   /// Filters the [notes] according to the [search].

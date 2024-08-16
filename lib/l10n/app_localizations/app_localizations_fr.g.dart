@@ -104,11 +104,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_black_theming_description => 'Utilise un fond noir pour le thème sombre';
 
   @override
-  String get settings_show_separators => 'Séparateurs';
+  String get settings_show_titles_only => 'Titles only';
 
   @override
-  String get settings_show_separators_description =>
-      'Afficher un séparateur entre les tuiles de notes pour les différencier facilement';
+  String get settings_show_titles_only_description =>
+      'Only show the titles of the notes so more of them can be displayed';
 
   @override
   String get settings_show_tiles_background => 'Fond';
@@ -116,6 +116,13 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get settings_show_tiles_background_description =>
       'Afficher l\'arrière plan des tuiles des notes pour les différencier plus facilement';
+
+  @override
+  String get settings_show_separators => 'Séparateurs';
+
+  @override
+  String get settings_show_separators_description =>
+      'Afficher un séparateur entre les tuiles de notes pour les différencier facilement';
 
   @override
   String get settings_behavior => 'Comportement';

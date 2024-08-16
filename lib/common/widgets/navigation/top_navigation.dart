@@ -18,7 +18,7 @@ class TopNavigation extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: isSelectionModeNotifier,
-      builder: (BuildContext context, isSelectionMode, Widget? child) {
+      builder: (context, isSelectionMode, child) {
         // If the selection mode is enabled, return the selection app bar
         return isSelectionMode ? const SelectionAppBar() : appbar;
       },

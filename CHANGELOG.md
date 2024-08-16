@@ -14,7 +14,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Auto export settings tile not updating after disabling auto export
 - Notes sorted by their created time instead of their edited time
-- Toggling the sort by ascending order by taping on the list tile instead of the checkbox not working
 - Focus on the note content not requested when the title is validated
 - Typos
 
