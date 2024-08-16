@@ -36,6 +36,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Extract changelog
+        id: extract_changelog
+        uses: dahlia/submark@main
+        with:
+          input-file: CHANGELOG.md
+          heading-level: 2
+          heading-title-regex: ^${{ needs.get_version.outputs.version }}
+      - run: echo ${{ steps.extract_changelog.outputs.output-text }}
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -62,13 +70,7 @@ jobs:
           mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk release/localmaterialnotes_armeabi-v7a_v${{ needs.get_version.outputs.version }}.apk
           mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk release/localmaterialnotes_arm64-v8a_v${{ needs.get_version.outputs.version }}.apk
           mv build/app/outputs/flutter-apk/app-x86_64-release.apk release/localmaterialnotes_x86_64_v${{ needs.get_version.outputs.version }}.apk
-      - name: Extract changelog
-        id: extract_changelog
-        uses: dahlia/submark@main
-        with:
-          input-file: CHANGELOG.md
-          heading-level: 2
-          heading-title-regex: ^${{ needs.get_version.outputs.version }}
+
       - name: Create release tag
         uses: actions/github-script@v5
         with:
