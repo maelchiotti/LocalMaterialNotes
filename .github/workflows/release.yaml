@@ -1,0 +1,86 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+      - 76_release_with_CI
+
+permissions:
+  contents: write
+
+jobs:
+  get_version:
+    name: Get the app version
+    environment: release
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.echo_version.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Get version
+        id: get_version
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq -r '.version' 'pubspec.yaml' | cut -d '+' -f 1
+      - name: Echo version
+        id: echo_version
+        run: echo "version=${{ steps.get_version.outputs.result }}" >> "$GITHUB_OUTPUT"
+
+  release_github:
+    name: Release on GitHub
+    environment: release
+    needs: [ get_version ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          flutter-version-file: pubspec.yaml
+      - name: Add keystore
+        run: echo "${{ secrets.ANDROID_KEYSTORE }}" | base64 -d > android/localmaterialnotes_keystore.jks
+      - name: Add key properties
+        run: echo "${{ secrets.ANDROID_KEY_PROPERTIES }}" > android/key.properties
+      - name: Build app (fat APK)
+        run: flutter build apk --release
+      - name: Build app (per ABIs)
+        run: flutter build apk --release --split-per-abi
+      - name: Create a folder to store the APKs to release
+        run: mkdir release
+      - name: Move and rename APKs
+        run: |
+          mv build/app/outputs/flutter-apk/app-release.apk release/localmaterialnotes_v${{ needs.get_version.outputs.version }}.apk
+          mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk release/localmaterialnotes_armeabi-v7a_v${{ needs.get_version.outputs.version }}.apk
+          mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk release/localmaterialnotes_arm64-v8a_v${{ needs.get_version.outputs.version }}.apk
+          mv build/app/outputs/flutter-apk/app-x86_64-release.apk release/localmaterialnotes_x86_64_v${{ needs.get_version.outputs.version }}.apk
+      - name: Extract changelog
+        id: extract_changelog
+        uses: dahlia/submark@0.3.1
+        with:
+          input-file: CHANGELOG.md
+          heading-level: 2
+          heading-title-regex: ^${{ needs.get_version.outputs.version }}
+      - name: Create release tag
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v${{ needs.get_version.outputs.version }}',
+              sha: context.sha
+            })
+      - name: Publish to GitHub releases
+        uses: softprops/action-gh-release@v2
+        with:
+          body: ${{ steps.extract_changelog.outputs.output-text }}
+          files: release/*
