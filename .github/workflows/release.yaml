@@ -29,6 +29,7 @@ jobs:
         run: echo "version=${{ steps.get_version.outputs.result }}" >> "$GITHUB_OUTPUT"
 
   release_github:
+    if: false
     name: Release on GitHub
     environment: release
     needs: [ get_version ]
@@ -90,3 +91,31 @@ jobs:
           body: ${{ steps.extract_changelog.outputs.output-text }}
           tag_name: v${{ needs.get_version.outputs.version }}
           files: release/*
+
+  release_play_store:
+    name: Release on the Play Store
+    environment: release
+    needs: [ get_version ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - run: echo "${{ steps.extract_changelog.outputs.output-text }}"
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          flutter-version-file: pubspec.yaml
+      - name: Add keystore
+        run: echo "${{ secrets.ANDROID_KEYSTORE }}" | base64 -d > android/localmaterialnotes_keystore.jks
+      - name: Add key properties
+        run: echo "${{ secrets.ANDROID_KEY_PROPERTIES }}" > android/key.properties
+      - name: Build app (appbundle)
+        run: flutter build aab --release
+      - name: Run fastlane
+        run: bundle exec fastlane deploy_internal
