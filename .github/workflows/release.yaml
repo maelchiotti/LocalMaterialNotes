@@ -117,5 +117,7 @@ jobs:
         run: echo "${{ secrets.ANDROID_KEYSTORE }}" | base64 -d > android/localmaterialnotes_keystore.jks
       - name: Add key properties
         run: echo "${{ secrets.ANDROID_KEY_PROPERTIES }}" > android/key.properties
+      - name: Add fastlane supply key
+        run: echo "${{ secrets.FASTLANE_SUPPLY_KEY }}" > fastlane/localmaterialnotes_fastlane-supply_key.json
       - name: Run fastlane
         run: bundle exec fastlane deploy_internal
