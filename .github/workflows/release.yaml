@@ -28,7 +28,6 @@ jobs:
         run: echo "version=${{ steps.get_version.outputs.result }}" >> "$GITHUB_OUTPUT"
 
   release_github:
-    if: false
     name: Release on GitHub
     environment: release
     needs: [ get_version ]
@@ -119,4 +118,4 @@ jobs:
       - name: Add fastlane supply key
         run: echo "${{ secrets.FASTLANE_SUPPLY_KEY }}" | base64 -d > fastlane/localmaterialnotes_fastlane-supply_key.json
       - name: Run fastlane
-        run: bundle exec fastlane deploy_internal
+        run: bundle exec fastlane deploy_production
