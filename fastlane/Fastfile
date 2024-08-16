@@ -14,7 +14,7 @@ platform :android do
         supply(
             track: 'production',
             package_name: 'com.maelchiotti.localmaterialnotes',
-            aab: 'build\app\outputs\bundle\release\app-release.aab',
+            aab: 'build/app/outputs/bundle/release/app-release.aab',
             skip_upload_apk: true
         )
     end
@@ -27,7 +27,7 @@ platform :android do
         supply(
             track: 'internal',
             package_name: 'com.maelchiotti.localmaterialnotes',
-            aab: 'build\app\outputs\bundle\release\app-release.aab',
+            aab: 'build/app/outputs/bundle/release/app-release.aab',
             skip_upload_apk: true
         )
     end

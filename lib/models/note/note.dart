@@ -5,10 +5,10 @@ import 'package:fleather/fleather.dart';
 import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/encryption_utils.dart';
-import 'package:localmaterialnotes/utils/preferences/enums/sort_method.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
 
 part 'note.g.dart';
 
@@ -81,16 +81,6 @@ class Note extends Equatable {
         editedTime: DateTime.now(),
         title: '',
         content: content,
-      );
-
-  /// Welcome note (localized).
-  factory Note.welcome() => Note(
-        deleted: false,
-        pinned: true,
-        createdTime: DateTime.now(),
-        editedTime: DateTime.now(),
-        title: hardcodedLocalizations.welcomeNoteTitle,
-        content: '[{"insert":"${hardcodedLocalizations.welcomeNoteContent}\\n"}]',
       );
 
   /// Note from [json] data.
@@ -238,8 +228,8 @@ class Note extends Equatable {
       switch (sortMethod) {
         case SortMethod.date:
           return sortAscending
-              ? createdTime.compareTo(otherNote.createdTime)
-              : otherNote.createdTime.compareTo(createdTime);
+              ? editedTime.compareTo(otherNote.editedTime)
+              : otherNote.editedTime.compareTo(editedTime);
         case SortMethod.title:
           return sortAscending ? title.compareTo(otherNote.title) : otherNote.title.compareTo(title);
         default:

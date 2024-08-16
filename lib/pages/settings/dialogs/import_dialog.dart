@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/widgets/password_field.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/extensions/string_extension.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/extensions/string_extension.dart';
+import 'package:localmaterialnotes/common/widgets/encryption/password_field.dart';
 
 class ImportDialog extends StatefulWidget {
   const ImportDialog({

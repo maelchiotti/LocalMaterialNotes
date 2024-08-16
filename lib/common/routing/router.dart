@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:go_router/go_router.dart';
-import 'package:localmaterialnotes/common/fabs/fab_add_note.dart';
-import 'package:localmaterialnotes/common/fabs/fab_empty_bin.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/editor_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/notes_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/side_navigation.dart';
-import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
+import 'package:localmaterialnotes/common/widgets/fabs/fab_add_note.dart';
+import 'package:localmaterialnotes/common/widgets/fabs/fab_empty_bin.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/app_bars/basic_app_bar.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/app_bars/editor_app_bar.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/app_bars/notes_app_bar.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/side_navigation.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/pages/bin/bin_page.dart';
 import 'package:localmaterialnotes/pages/editor/editor_page.dart';
 import 'package:localmaterialnotes/pages/notes/notes_page.dart';
@@ -18,10 +19,11 @@ import 'package:localmaterialnotes/pages/settings/pages/settings_backup_page.dar
 import 'package:localmaterialnotes/pages/settings/pages/settings_behavior_page.dart';
 import 'package:localmaterialnotes/pages/settings/pages/settings_editor_page.dart';
 import 'package:localmaterialnotes/pages/settings/settings_main_page.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
 
+/// Parameters of the editor route.
 typedef EditorParameters = Map<String, bool>?;
 
+/// Returns the app bar to use depending on the current route.
 PreferredSizeWidget? _getAppBar(BuildContext context) {
   switch (RouterRoute.currentRoute) {
     case RouterRoute.notes:
@@ -51,6 +53,7 @@ PreferredSizeWidget? _getAppBar(BuildContext context) {
   }
 }
 
+/// Returns the drawer to use depending on the current route.
 Widget? _getDrawer() {
   if (RouterRoute.currentRoute.drawerIndex == null) {
     return null;
@@ -59,6 +62,7 @@ Widget? _getDrawer() {
   return const SideNavigation();
 }
 
+/// Returns the floating action button to use depending on the current route.
 Widget? _getFloatingActionButton(BuildContext context) {
   switch (RouterRoute.currentRoute) {
     case RouterRoute.notes:
@@ -70,6 +74,7 @@ Widget? _getFloatingActionButton(BuildContext context) {
   }
 }
 
+/// Router of the application.
 final router = GoRouter(
   navigatorKey: navigatorKey,
   initialLocation: RouterRoute.notes.path,

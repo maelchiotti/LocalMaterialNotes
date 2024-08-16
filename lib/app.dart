@@ -4,35 +4,39 @@ import 'package:after_layout/after_layout.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/extensions/locale_extension.dart';
 import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/utils/constants/constants.dart';
-import 'package:localmaterialnotes/utils/extensions/locale_extension.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 import 'package:localmaterialnotes/utils/quick_actions_utils.dart';
 import 'package:localmaterialnotes/utils/share_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
 
+/// MaterialNotes application.
 class App extends ConsumerStatefulWidget {
   @override
   ConsumerState<App> createState() => _AppState();
 }
 
 class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
+  /// Stream of data shared from other applications.
   late StreamSubscription _stream;
 
   @override
   void initState() {
     super.initState();
 
+    // Read the potential data shared from other applications
     readSharedData(ref);
     _stream = listenSharedData(ref);
   }
 
   @override
   void afterFirstLayout(BuildContext context) {
-    QuickActionsUtils().init(navigatorKey.currentContext!, ref);
+    // When the app is built, initialize the quick actions
+    QuickActionsUtils().ensureInitialized(navigatorKey.currentContext!, ref);
   }
 
   @override

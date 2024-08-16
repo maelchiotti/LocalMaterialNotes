@@ -1,21 +1,25 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/utils/constants/paddings.dart';
-import 'package:localmaterialnotes/utils/constants/sizes.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
+import 'package:localmaterialnotes/common/constants/sizes.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
-class EditorToolbar extends ConsumerStatefulWidget {
+/// Toolbar for the content text field that enables advanced formatting options.
+class EditorToolbar extends StatefulWidget {
   const EditorToolbar(this.fleatherController);
 
+  /// Controller of the content text field.
   final FleatherController fleatherController;
 
   @override
-  ConsumerState<EditorToolbar> createState() => _EditorToolbarState();
+  State<EditorToolbar> createState() => _EditorToolbarState();
 }
 
-class _EditorToolbarState extends ConsumerState<EditorToolbar> {
+class _EditorToolbarState extends State<EditorToolbar> {
+  /// Builds a button of the toolbar.
+  ///
+  /// Overrides the default button style of fleather.
   Widget _buttonBuilder(
     BuildContext context,
     ParchmentAttribute attribute,
@@ -42,6 +46,9 @@ class _EditorToolbarState extends ConsumerState<EditorToolbar> {
     );
   }
 
+  /// Inserts a rule in the content.
+  ///
+  /// Copied from the fleather source code to allow using a custom button to insert rules.
   void _insertRule() {
     final index = widget.fleatherController.selection.baseOffset;
     final length = widget.fleatherController.selection.extentOffset - index;

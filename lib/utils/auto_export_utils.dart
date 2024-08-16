@@ -1,10 +1,10 @@
 import 'dart:io';
 
+import 'package:localmaterialnotes/common/extensions/uri_extension.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
-import 'package:localmaterialnotes/utils/extensions/uri_extension.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
-import 'package:localmaterialnotes/utils/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/preferences/preferences_utils.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -70,10 +70,9 @@ class AutoExportUtils {
 
   /// Checks if an auto export should be performed.
   ///
-  /// An auto export should be performed if it is enabled and either if:
-  /// - no auto export has been performed yet
-  /// - or the time difference between now and the last auto export is greater than the auto export frequency
-  ///   chosen by the user
+  /// An auto export should be performed if it is enabled and either if no auto export has been performed yet,
+  /// or the time difference between now and the last auto export is greater than the auto export frequency
+  /// chosen by the user
   bool _shouldPerformAutoExport() {
     final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>();
 

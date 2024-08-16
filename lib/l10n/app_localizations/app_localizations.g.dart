@@ -8,8 +8,11 @@ import 'package:intl/intl.dart' as intl;
 import 'app_localizations_en.g.dart';
 import 'app_localizations_es.g.dart';
 import 'app_localizations_fr.g.dart';
+import 'app_localizations_pt.g.dart';
 import 'app_localizations_ru.g.dart';
 import 'app_localizations_tr.g.dart';
+
+// ignore_for_file: type=lint
 
 /// Callers can lookup localized strings with an instance of AppLocalizations
 /// returned by `AppLocalizations.of(context)`.
@@ -95,6 +98,7 @@ abstract class AppLocalizations {
     Locale('en'),
     Locale('es'),
     Locale('fr'),
+    Locale('pt'),
     Locale('ru'),
     Locale('tr')
   ];
@@ -1069,7 +1073,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es', 'fr', 'ru', 'tr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es', 'fr', 'pt', 'ru', 'tr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -1084,6 +1088,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEs();
     case 'fr':
       return AppLocalizationsFr();
+    case 'pt':
+      return AppLocalizationsPt();
     case 'ru':
       return AppLocalizationsRu();
     case 'tr':

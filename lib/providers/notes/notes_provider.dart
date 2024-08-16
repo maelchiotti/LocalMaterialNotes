@@ -2,23 +2,26 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/utils/database_utils.dart';
+import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'notes_provider.g.dart';
 
 @riverpod
 class Notes extends _$Notes {
+  final _notesService = NotesService();
+
   @override
   FutureOr<List<Note>> build() {
     return get();
   }
 
+  /// Returns the list of not deleted notes.
   Future<List<Note>> get() async {
     List<Note> notes = [];
 
     try {
-      notes = await DatabaseUtils().getAll(deleted: false);
+      notes = await _notesService.getAll();
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
     }
@@ -28,20 +31,22 @@ class Notes extends _$Notes {
     return notes;
   }
 
+  /// Sorts the not deleted notes.
   void sort() {
     final sortedNotes = (state.value ?? []).sorted((note, otherNote) => note.compareTo(otherNote));
 
     state = AsyncData(sortedNotes);
   }
 
+  /// Saves the [editedNote] to the database.
   Future<bool> edit(Note editedNote) async {
     editedNote.editedTime = DateTime.now();
 
     try {
       if (editedNote.isEmpty) {
-        await DatabaseUtils().delete(editedNote);
+        await _notesService.delete(editedNote);
       } else {
-        await DatabaseUtils().put(editedNote);
+        await _notesService.put(editedNote);
       }
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
@@ -64,19 +69,21 @@ class Notes extends _$Notes {
     return true;
   }
 
+  /// Toggles the pin status of the [note] in the database.
   Future<bool> togglePin(Note note) async {
     note.pinned = !note.pinned;
 
     return await edit(note);
   }
 
+  /// Toggles the pin status of the [notes] in the database.
   Future<bool> togglePinAll(List<Note> notes) async {
     for (final note in notes) {
       note.pinned = !note.pinned;
     }
 
     try {
-      await DatabaseUtils().putAll(notes);
+      await _notesService.putAll(notes);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
@@ -96,6 +103,7 @@ class Notes extends _$Notes {
     return true;
   }
 
+  /// Sets the [note] as deleted in the database.
   Future<bool> delete(Note note) async {
     note.pinned = false;
     note.deleted = true;
@@ -103,6 +111,7 @@ class Notes extends _$Notes {
     return await edit(note);
   }
 
+  /// Sets the [notes] as deleted in the database.
   Future<bool> deleteAll(List<Note> notes) async {
     for (final note in notes) {
       note.pinned = false;
@@ -110,7 +119,7 @@ class Notes extends _$Notes {
     }
 
     try {
-      await DatabaseUtils().putAll(notes);
+      await _notesService.putAll(notes);
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
       return false;
@@ -124,18 +133,21 @@ class Notes extends _$Notes {
     return true;
   }
 
+  /// Selects the [noteToSelect].
   void select(Note noteToSelect) {
     state = AsyncData([
       for (final Note note in state.value ?? []) note == noteToSelect ? (noteToSelect..selected = true) : note,
     ]);
   }
 
+  /// Unselects the [noteToSelect].
   void unselect(Note noteToUnselect) {
     state = AsyncData([
       for (final Note note in state.value ?? []) note == noteToUnselect ? (noteToUnselect..selected = false) : note,
     ]);
   }
 
+  /// Selects all the not deleted notes.
   void selectAll() {
     state = AsyncData([
       ...?state.value
@@ -145,6 +157,7 @@ class Notes extends _$Notes {
     ]);
   }
 
+  /// Unselects all the not deleted notes.
   void unselectAll() {
     state = AsyncData([
       ...?state.value
