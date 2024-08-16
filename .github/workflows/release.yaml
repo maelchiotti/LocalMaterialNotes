@@ -43,7 +43,8 @@ jobs:
           input-file: CHANGELOG.md
           heading-level: 2
           heading-title-regex: ^${{ needs.get_version.outputs.version }}
-      - run: echo ${{ steps.extract_changelog.outputs.output-text }}
+          omit-heading: true
+      - run: echo "${{ steps.extract_changelog.outputs.output-text }}"
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
