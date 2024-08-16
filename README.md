@@ -74,7 +74,8 @@ All the supported languages are listed here alphabetically. You can see more det
 
 ![English](https://img.shields.io/badge/dynamic/json?color=blue&label=English&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27en%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
 ![French](https://img.shields.io/badge/dynamic/json?color=blue&label=French&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27fr%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
-![Russian](https://img.shields.io/badge/dynamic/json?color=blue&label=ru&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27ru%27)].data.translationProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
+![Portuguese](https://img.shields.io/badge/dynamic/json?color=blue&label=Portuguese&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27pt-PT%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
+![Russian](https://img.shields.io/badge/dynamic/json?color=blue&label=Russian&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27ru%27)].data.translationProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
 ![Spanish](https://img.shields.io/badge/dynamic/json?color=blue&label=Spanish&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27es-ES%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
 ![Turkish](https://img.shields.io/badge/dynamic/json?color=blue&label=Turkish&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27tr%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
 
