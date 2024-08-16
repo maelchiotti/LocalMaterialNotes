@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - 76_release_with_CI
 
 permissions:
   contents: write
