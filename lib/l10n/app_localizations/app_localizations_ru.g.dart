@@ -68,7 +68,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_appearance => 'Персонализация';
 
   @override
-  String get settings_appearance_description => 'Язык, тема, стили заметок';
+  String get settings_appearance_description => 'Язык, тема, стиль заметок';
 
   @override
   String get settings_appearance_application => 'Приложение';
@@ -101,7 +101,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_black_theming => 'Натуральный чёрный';
 
   @override
-  String get settings_black_theming_description => 'Использовать чёрный фон при тёмном режиме';
+  String get settings_black_theming_description => 'Использовать чёрный фон при тёмной теме оформления';
 
   @override
   String get settings_show_separators => 'Разделители';
@@ -113,7 +113,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_show_tiles_background => 'Фон';
 
   @override
-  String get settings_show_tiles_background_description => 'Показывать фон у карточек с заметками';
+  String get settings_show_tiles_background_description => 'Показывать задний фон у заметок';
 
   @override
   String get settings_behavior => 'Поведение';
@@ -122,7 +122,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_behavior_application => 'Приложение';
 
   @override
-  String get settings_behavior_description => 'Подтверждения, действия свайпа';
+  String get settings_behavior_description => 'Диалоги подтверждения, действия при свайпе';
 
   @override
   String get settings_behavior_swipe_actions => 'Действия при свайпе';
@@ -174,11 +174,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_show_undo_redo_buttons_description => 'Показывать кнопки отмены/повтора изменений в редакторе';
 
   @override
-  String get settings_show_checklist_button => 'Кнопка для переключения списков';
+  String get settings_show_checklist_button => 'Кнопка для переключения чек-листов';
 
   @override
   String get settings_show_checklist_button_description =>
-      'Показать кнопку для переключения чек-листов в панели приложений редактора, скрывая его из панели инструментов редактора, если включено';
+      'Переместить кнопку для переключения чек-листов из панели инструментов в панель редактора';
 
   @override
   String get settings_show_toolbar => 'Панель инструментов';
@@ -187,10 +187,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_show_toolbar_description => 'Показать панель инструментов для расширенного форматирования текста';
 
   @override
-  String get settings_use_paragraph_spacing => 'Интервал между параграфами';
+  String get settings_use_paragraph_spacing => 'Расстояние между абзацами';
 
   @override
-  String get settings_use_paragraph_spacing_description => 'Использовать интервал между параграфами';
+  String get settings_use_paragraph_spacing_description => 'Применять интервал между абзацами';
 
   @override
   String get settings_backup => 'Резервное копирование';
@@ -220,7 +220,7 @@ class AppLocalizationsRu extends AppLocalizations {
         '7': 'Каждую неделю',
         '14': 'Каждые 2 недели',
         '30': 'Каждый месяц',
-        'other': 'Каждые $frequency дней',
+        'other': 'Каждые $frequency дня',
       },
     );
     String _temp1 = intl.Intl.selectLogic(
@@ -254,7 +254,7 @@ class AppLocalizationsRu extends AppLocalizations {
         '7': 'каждую неделю',
         '14': 'каждые 2 недели',
         '30': 'каждый месяц',
-        'other': 'каждые $frequency дней',
+        'other': 'каждые $frequency дня',
       },
     );
     return 'Автоматический экспорт будет производиться $_temp0. Установите значение на 0, чтобы отключить автоматический экспорт.';
@@ -269,7 +269,7 @@ class AppLocalizationsRu extends AppLocalizations {
         '7': 'Каждую неделю',
         '14': 'Каждые 2 недели',
         '30': 'Каждый месяц',
-        'other': 'Каждые $frequency дней',
+        'other': 'Каждые $frequency дня',
       },
     );
     return '$_temp0';

@@ -1,0 +1,9 @@
+AJOUTÉ
+- Localisation en portugais
+
+CORRIGÉ
+- La tuile des paramètres d'export automatique ne se mettait pas à jour après avoir désactivé l'export automatique
+- Notes triées en fonction de leur date de création au lieu de leur date d'édition
+- Le basculement du tri par ordre croissant en tapant sur la tuile au lieu de la case à cocher ne fonctionne pas
+- Le focus sur le contenu de la note n'est pas demandée lorsque le titre est validé
+- Fautes d'orthographe
