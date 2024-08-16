@@ -84,5 +84,9 @@ jobs:
       - name: Publish to GitHub releases
         uses: softprops/action-gh-release@v2
         with:
+          draft: true
+          make_latest: true
+          name: v${{ needs.get_version.outputs.version }}
           body: ${{ steps.extract_changelog.outputs.output-text }}
+          tag_name: v${{ needs.get_version.outputs.version }}
           files: release/*
