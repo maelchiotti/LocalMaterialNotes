@@ -64,7 +64,7 @@ jobs:
           mv build/app/outputs/flutter-apk/app-x86_64-release.apk release/localmaterialnotes_x86_64_v${{ needs.get_version.outputs.version }}.apk
       - name: Extract changelog
         id: extract_changelog
-        uses: dahlia/submark@0.3.1
+        uses: dahlia/submark@main
         with:
           input-file: CHANGELOG.md
           heading-level: 2
