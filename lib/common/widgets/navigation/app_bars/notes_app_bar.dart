@@ -177,6 +177,7 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
             return SearchAnchor(
               viewHintText: localizations.tooltip_search,
               searchController: searchController,
+              viewBackgroundColor: Theme.of(context).colorScheme.surface,
               builder: (context, controller) {
                 return IconButton(
                   onPressed: () => controller.openView(),
