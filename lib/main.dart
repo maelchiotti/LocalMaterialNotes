@@ -28,14 +28,16 @@ Future<void> main() async {
     ),
   );
 
-  // Set the application refresh rate
-  // See https://github.com/flutter/flutter/issues/35162
-  await FlutterDisplayMode.setHighRefreshRate();
-
   // Initialize the utilities
   await PreferencesUtils().ensureInitialized();
   await InfoUtils().ensureInitialized();
   await ThemeUtils().ensureInitialized();
+
+  // Set the application refresh rate (only in Android 6 or later)
+  // See https://github.com/flutter/flutter/issues/35162
+  if (InfoUtils().androidVersion >= 23) {
+    await FlutterDisplayMode.setHighRefreshRate();
+  }
 
   // Initialize the services
   await NotesService().ensureInitialized();
