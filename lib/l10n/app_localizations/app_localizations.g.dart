@@ -676,13 +676,13 @@ abstract class AppLocalizations {
   /// No description provided for @settings_github_issues.
   ///
   /// In en, this message translates to:
-  /// **'Report a bug'**
+  /// **'Report a bug or request a feature'**
   String get settings_github_issues;
 
   /// No description provided for @settings_github_issues_description.
   ///
   /// In en, this message translates to:
-  /// **'Report a bug by creating a GitHub issue'**
+  /// **'Report a bug or request a feature by creating a GitHub issue'**
   String get settings_github_issues_description;
 
   /// No description provided for @settings_github_discussions.
@@ -706,8 +706,8 @@ abstract class AppLocalizations {
   /// No description provided for @settings_get_in_touch_description.
   ///
   /// In en, this message translates to:
-  /// **'Contact the developer via mail at contact@maelchiotti.dev'**
-  String get settings_get_in_touch_description;
+  /// **'Contact the developer via mail at {email}'**
+  String settings_get_in_touch_description(Object email);
 
   /// No description provided for @hint_title.
   ///

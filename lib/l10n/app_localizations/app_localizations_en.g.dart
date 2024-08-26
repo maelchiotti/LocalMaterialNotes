@@ -351,10 +351,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
-  String get settings_github_issues => 'Report a bug';
+  String get settings_github_issues => 'Report a bug or request a feature';
 
   @override
-  String get settings_github_issues_description => 'Report a bug by creating a GitHub issue';
+  String get settings_github_issues_description => 'Report a bug or request a feature by creating a GitHub issue';
 
   @override
   String get settings_github_discussions => 'Ask a question';
@@ -366,7 +366,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_get_in_touch => 'Contact the developer';
 
   @override
-  String get settings_get_in_touch_description => 'Contact the developer via mail at contact@maelchiotti.dev';
+  String settings_get_in_touch_description(Object email) {
+    return 'Contact the developer via mail at $email';
+  }
 
   @override
   String get hint_title => 'Title';

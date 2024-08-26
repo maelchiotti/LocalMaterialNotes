@@ -368,8 +368,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_get_in_touch => 'Contatar o desenvolvedor';
 
   @override
-  String get settings_get_in_touch_description =>
-      'Entre em contato com o desenvolvedor por e-mail em contact@maelchiotti.dev';
+  String settings_get_in_touch_description(Object email) {
+    return 'Entre em contato com o desenvolvedor por e-mail em contact@maelchiotti.dev';
+  }
 
   @override
   String get hint_title => 'Título';

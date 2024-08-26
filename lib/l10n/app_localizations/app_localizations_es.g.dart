@@ -366,7 +366,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_get_in_touch => 'Contact the developer';
 
   @override
-  String get settings_get_in_touch_description => 'Contact the developer via mail at contact@maelchiotti.dev';
+  String settings_get_in_touch_description(Object email) {
+    return 'Contact the developer via mail at contact@maelchiotti.dev';
+  }
 
   @override
   String get hint_title => 'Título';
