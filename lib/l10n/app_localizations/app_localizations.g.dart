@@ -481,11 +481,17 @@ abstract class AppLocalizations {
   /// **'Export, import'**
   String get settings_backup_description;
 
-  /// No description provided for @settings_backup_export.
+  /// No description provided for @settings_backup_auto_export.
   ///
   /// In en, this message translates to:
-  /// **'Export'**
-  String get settings_backup_export;
+  /// **'Automatic export'**
+  String get settings_backup_auto_export;
+
+  /// No description provided for @settings_backup_manual_export.
+  ///
+  /// In en, this message translates to:
+  /// **'Manual export'**
+  String get settings_backup_manual_export;
 
   /// No description provided for @settings_backup_import.
   ///
@@ -517,12 +523,6 @@ abstract class AppLocalizations {
   /// **'Disabled'**
   String get settings_auto_export_disabled;
 
-  /// No description provided for @settings_auto_export_directory.
-  ///
-  /// In en, this message translates to:
-  /// **'Exports can be found in {directory}'**
-  String settings_auto_export_directory(Object directory);
-
   /// No description provided for @settings_auto_export_dialog_description_disabled.
   ///
   /// In en, this message translates to:
@@ -540,6 +540,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}'**
   String settings_auto_export_dialog_slider_label(String frequency);
+
+  /// No description provided for @settings_auto_export_directory.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto export directory'**
+  String get settings_auto_export_directory;
+
+  /// No description provided for @settings_auto_export_directory_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Directory where the automatic exports will be saved'**
+  String get settings_auto_export_directory_description;
 
   /// No description provided for @settings_export_success.
   ///
@@ -786,6 +798,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Toggle pins'**
   String get tooltip_toggle_pins;
+
+  /// No description provided for @tooltip_reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get tooltip_reset;
 
   /// No description provided for @dialog_delete.
   ///

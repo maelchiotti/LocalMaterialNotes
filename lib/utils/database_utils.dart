@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
@@ -15,6 +14,7 @@ import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:sanitize_filename/sanitize_filename.dart';
+import 'package:shared_storage/shared_storage.dart';
 
 /// Utilities for the database.
 ///
@@ -22,10 +22,17 @@ import 'package:sanitize_filename/sanitize_filename.dart';
 class DatabaseUtils {
   final _notesService = NotesService();
 
-  /// Exports all the notes in a JSON [file].
+  /// Returns the file name of the export file depending of the current date and time and the [extension].
+  String _getExportFileName(String extension) {
+    final timestamp = DateTime.timestamp();
+
+    return 'materialnotes_export_${timestamp.filename}.$extension';
+  }
+
+  /// Exports all the notes in a JSON file with the [fileName] at the path of the [parentUri] directory.
   ///
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
-  Future<bool> _exportAsJson(bool encrypt, String? password, File file) async {
+  Future<bool> _exportAsJson(bool encrypt, String? password, Uri parentUri, String fileName) async {
     var notes = await _notesService.getAll();
 
     if (encrypt && password != null && password.isNotEmpty) {
@@ -41,16 +48,19 @@ class DatabaseUtils {
     };
     final exportDataAsJson = jsonEncode(exportData);
 
-    return await writeStringToFile(file, exportDataAsJson);
+    return await writeStringToFile(parentUri, 'application/json', fileName, exportDataAsJson);
   }
 
   /// Automatically exports all the notes in a JSON file.
   ///
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
   Future<bool> autoExportAsJson(bool encrypt, String password) async {
-    final file = await AutoExportUtils().getAutoExportFile;
-
-    return await _exportAsJson(encrypt, password, file);
+    return await _exportAsJson(
+      encrypt,
+      password,
+      AutoExportUtils().autoExportDirectory,
+      _getExportFileName('json'),
+    );
   }
 
   /// Manually exports all the notes in a JSON file.
@@ -65,9 +75,12 @@ class DatabaseUtils {
       return false;
     }
 
-    final file = getExportFile(exportDirectory, 'json');
-
-    return await _exportAsJson(encrypt, password, file);
+    return await _exportAsJson(
+      encrypt,
+      password,
+      exportDirectory,
+      _getExportFileName('json'),
+    );
   }
 
   /// Exports all the notes in a Markdown file.
@@ -96,20 +109,28 @@ class DatabaseUtils {
       return false;
     }
 
-    final file = getExportFile(exportDirectory, 'zip');
-
-    return await writeBytesToFile(file, encodedArchive);
+    return await writeBytesToFile(
+      exportDirectory,
+      'text/markdown',
+      _getExportFileName('md'),
+      Uint8List.fromList(encodedArchive),
+    );
   }
 
   /// Imports all the notes from a JSON file picked by the user.
   Future<bool> import(BuildContext context) async {
-    final importPlatformFile = await pickSingleFile(typeGroupJson);
+    final importPlatformFile = await pickSingleFile('application/json');
 
     if (importPlatformFile == null) {
       return false;
     }
 
-    final importedString = utf8.decode(await importPlatformFile.readAsBytes());
+    final importedString = await getDocumentContentAsString(importPlatformFile);
+
+    if (importedString == null) {
+      return false;
+    }
+
     var importedJson = jsonDecode(importedString);
 
     List<Note>? notes;

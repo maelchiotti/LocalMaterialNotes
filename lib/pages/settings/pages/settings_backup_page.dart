@@ -14,10 +14,12 @@ import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
+import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:simple_icons/simple_icons.dart';
 
-/// Settings related to backup of the notes.
+/// Settings related to the backup of the notes.
 class SettingsBackupPage extends ConsumerStatefulWidget {
   const SettingsBackupPage({super.key});
 
@@ -63,6 +65,28 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       // No need to await this, it can be performed in the background
       AutoExportUtils().performAutoExportIfNeeded();
     });
+
+    setState(() {});
+  }
+
+  /// Asks the user to choose a directory for the auto export.
+  Future<void> setAutoExportDirectory(_) async {
+    final autoExportDirectory = await pickDirectory();
+
+    if (autoExportDirectory == null) {
+      return;
+    }
+
+    PreferencesUtils().set<String>(PreferenceKey.autoExportDirectory.name, autoExportDirectory.path);
+    await AutoExportUtils().setAutoExportDirectory();
+
+    setState(() {});
+  }
+
+  /// Resets the directory of the auto export to its default value.
+  Future<void> resetAutoExportDirectory() async {
+    await PreferencesUtils().remove(PreferenceKey.autoExportDirectory);
+    await AutoExportUtils().setAutoExportDirectory();
 
     setState(() {});
   }
@@ -128,12 +152,12 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   Widget build(BuildContext context) {
     final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>();
     final autoExportEncryption = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
-    final autoExportDirectory = AutoExportUtils().backupsDirectory.toDecodedString;
+    final autoExportDirectory = AutoExportUtils().autoExportDirectory.display;
 
     return CustomSettingsList(
       sections: [
         SettingsSection(
-          title: Text(localizations.settings_backup_export),
+          title: Text(localizations.settings_backup_auto_export),
           tiles: [
             SettingsTile.navigation(
               leading: const Icon(Icons.settings_backup_restore),
@@ -151,11 +175,35 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   Text(localizations.settings_auto_export_description),
-                  Text(localizations.settings_auto_export_directory(autoExportDirectory)),
                 ],
               ),
               onPressed: autoExportAsJson,
             ),
+            SettingsTile.navigation(
+              leading: const Icon(Icons.folder),
+              title: Text(localizations.settings_auto_export_directory),
+              value: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    autoExportDirectory,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  Text(localizations.settings_auto_export_directory_description),
+                ],
+              ),
+              trailing: IconButton(
+                icon: const Icon(Symbols.reset_settings),
+                tooltip: localizations.tooltip_reset,
+                onPressed: resetAutoExportDirectory,
+              ),
+              onPressed: setAutoExportDirectory,
+            ),
+          ],
+        ),
+        SettingsSection(
+          title: Text(localizations.settings_backup_manual_export),
+          tiles: [
             SettingsTile.navigation(
               leading: const Icon(SimpleIcons.json),
               title: Text(localizations.settings_export_json),

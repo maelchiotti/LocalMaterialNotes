@@ -31,6 +31,7 @@ enum PreferenceKey {
   autoExportFrequency(0.0),
   autoExportEncryption(false),
   autoExportPassword(''),
+  autoExportDirectory(''),
   lastAutoExportDate(''),
 
   // Notes

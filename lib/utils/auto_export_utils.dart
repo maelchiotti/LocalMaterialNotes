@@ -1,12 +1,9 @@
-import 'dart:io';
-
-import 'package:localmaterialnotes/common/extensions/uri_extension.dart';
+import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
-import 'package:localmaterialnotes/utils/files_utils.dart';
-import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_storage/shared_storage.dart' as saf;
 
 /// Utilities for the auto export functionality.
 ///
@@ -20,52 +17,50 @@ class AutoExportUtils {
 
   AutoExportUtils._internal();
 
-  /// Root directory where auto exports are located.
-  late Uri _autoExportDirectory;
+  /// Directory where auto exports are saved.
+  late Uri autoExportDirectory;
 
-  /// Path to the default download directory on Android devices.
-  final _downloadDirectoryPath = '/storage/emulated/0/Download';
-
-  /// Subdirectories to add after the export path.
-  final subDirectories = ['Material Notes', 'backups'];
-
-  /// Precise directory where auto exports are located.
-  ///
-  /// It's a combination of [_autoExportDirectory] and [subDirectories].
-  Uri get backupsDirectory {
-    final backupsDirectoryPath = joinAll([_autoExportDirectory.path, ...subDirectories]);
-
-    return Uri.directory(backupsDirectoryPath);
-  }
-
+  /// Ensures the utility is initialized.
   Future<void> ensureInitialized() async {
-    await _setAutoExportDirectory();
-
+    await setAutoExportDirectory();
     await performAutoExportIfNeeded();
   }
 
-  /// Returns the JSON file in which to write the exported data.
-  Future<File> get getAutoExportFile async {
-    return getExportFile(
-      backupsDirectory.toDecodedString,
-      'json',
-    );
-  }
+  /// Sets the directory where auto exports are located depending on the user preference and the available permissions.
+  Future<void> setAutoExportDirectory() async {
+    final autoExportDirectoryPreference = PreferenceKey.autoExportDirectory.getPreferenceOrDefault<String>();
 
-  /// Set the auto export directory.
-  ///
-  /// By default, the auto export directory is the Android's Download directory.
-  /// If it doesn't exist, the application documents directory is used.
-  Future<void> _setAutoExportDirectory() async {
-    final downloadsDirectory = Directory(_downloadDirectoryPath);
-
-    if (!downloadsDirectory.existsSync()) {
-      final externalStorageDirectory = await getApplicationDocumentsDirectory();
-
-      _autoExportDirectory = externalStorageDirectory.uri;
+    // Set to default if the user didn't choose a directory
+    if (autoExportDirectoryPreference.isEmpty) {
+      return setAutoExportDirectoryToDefault();
     }
 
-    _autoExportDirectory = downloadsDirectory.uri;
+    final persistedPermissions = await saf.persistedUriPermissions();
+
+    // Set to default if no URI permissions are persisted by SAF
+    if (persistedPermissions == null || persistedPermissions.isEmpty) {
+      return setAutoExportDirectoryToDefault();
+    }
+
+    final persistedUris = persistedPermissions.map((permission) => permission.uri);
+    final persistedAutoExportDirectory = persistedUris.firstWhereOrNull((uri) {
+      return uri.path == autoExportDirectoryPreference;
+    });
+
+    // Set to default if no URI permission corresponding to the user preference is persisted by SAF,
+    // or if the directory doesn't exist or doesn't have write permission
+    if (persistedAutoExportDirectory == null ||
+        !(await saf.exists(persistedAutoExportDirectory) ?? false) ||
+        !(await saf.canWrite(persistedAutoExportDirectory) ?? false)) {
+      return setAutoExportDirectoryToDefault();
+    }
+
+    autoExportDirectory = persistedAutoExportDirectory;
+  }
+
+  /// Sets the auto export directory to its default value (the application documents).
+  Future<void> setAutoExportDirectoryToDefault() async {
+    autoExportDirectory = (await getApplicationDocumentsDirectory()).uri;
   }
 
   /// Checks if an auto export should be performed.

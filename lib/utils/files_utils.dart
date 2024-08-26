@@ -1,59 +1,47 @@
 import 'dart:developer';
-import 'dart:io';
+import 'dart:typed_data';
 
-import 'package:file_selector/file_selector.dart';
-import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
-import 'package:path/path.dart';
+import 'package:shared_storage/shared_storage.dart' as saf;
 
-/// Type group corresponding to JSON files.
-const typeGroupJson = XTypeGroup(
-  label: 'JSON',
-  extensions: <String>['json'],
-);
-
-/// Returns the export file depending on the [directory] where to save it and its file [extension].
-File getExportFile(String directory, String extension) {
-  final timestamp = DateTime.timestamp();
-  final fileName = 'materialnotes_export_${timestamp.filename}.$extension';
-  final filePath = join(directory, fileName);
-  final fileUri = Uri.file(filePath);
-
-  return File.fromUri(fileUri)..createSync(recursive: true);
+/// Returns the URI to the directory picked by the user.
+Future<Uri?> pickDirectory() async {
+  return await saf.openDocumentTree();
 }
 
-/// Returns the path to the directory picked by the user.
-Future<String?> pickDirectory() async {
-  final directory = await getDirectoryPath();
+/// Returns the URI to the file picked by the user, limiting the choice to only files of the [mimeType].
+Future<Uri?> pickSingleFile(
+  String mimeType, {
+  bool persistablePermission = false,
+  bool grantWritePermission = false,
+}) async {
+  final pickedFiles = await saf.openDocument(
+    persistablePermission: persistablePermission,
+    grantWritePermission: grantWritePermission,
+    mimeType: mimeType,
+  );
 
-  if (directory == null) {
-    return null;
-  }
-
-  return directory;
+  return pickedFiles?.firstOrNull;
 }
 
-/// Returns the path to the file picked by the user, limiting the choice to only files of the [typeGroup].
-Future<XFile?> pickSingleFile(XTypeGroup typeGroup) async {
-  return await openFile(acceptedTypeGroups: [typeGroup]);
+/// Writes the [content] to a file with the [mimeType] and the [fileName] at the path of the [parentUri] directory.
+Future<bool> writeStringToFile(Uri parentUri, String mimeType, String fileName, String content) async {
+  return await writeBytesToFile(
+    parentUri,
+    mimeType,
+    fileName,
+    Uint8List.fromList(content.codeUnits),
+  );
 }
 
-/// Writes the [contents] to the file.
-Future<bool> writeStringToFile(File file, String contents) async {
+/// Writes the [bytes] to a file with the [mimeType] and the [fileName] at the path of the [parentUri] directory.
+Future<bool> writeBytesToFile(Uri parentUri, String mimeType, String fileName, Uint8List bytes) async {
   try {
-    await file.writeAsString(contents, mode: FileMode.writeOnly);
-  } catch (exception, stackTrace) {
-    log(exception.toString(), stackTrace: stackTrace);
-
-    return false;
-  }
-
-  return true;
-}
-
-/// Writes the [bytes] to the file.
-Future<bool> writeBytesToFile(File file, List<int> bytes) async {
-  try {
-    await file.writeAsBytes(bytes, mode: FileMode.writeOnly);
+    await saf.createFileAsBytes(
+      parentUri,
+      mimeType: mimeType,
+      displayName: fileName,
+      bytes: bytes,
+    );
   } catch (exception, stackTrace) {
     log(exception.toString(), stackTrace: stackTrace);
 

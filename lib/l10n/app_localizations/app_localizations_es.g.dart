@@ -209,7 +209,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_backup_description => 'Export, import';
 
   @override
-  String get settings_backup_export => 'Export';
+  String get settings_backup_auto_export => 'Automatic export';
+
+  @override
+  String get settings_backup_manual_export => 'Manual export';
 
   @override
   String get settings_backup_import => 'Import';
@@ -248,11 +251,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_auto_export_disabled => 'Disabled';
 
   @override
-  String settings_auto_export_directory(Object directory) {
-    return 'Exports can be found in $directory';
-  }
-
-  @override
   String get settings_auto_export_dialog_description_disabled => 'Auto export will be disabled.';
 
   @override
@@ -284,6 +282,12 @@ class AppLocalizationsEs extends AppLocalizations {
     );
     return 'Every $_temp0';
   }
+
+  @override
+  String get settings_auto_export_directory => 'Auto export directory';
+
+  @override
+  String get settings_auto_export_directory_description => 'Directory where the automatic exports will be saved';
 
   @override
   String get settings_export_success => 'Las notas fueron exportadas exitosamente.';
@@ -408,6 +412,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get tooltip_toggle_pins => 'Alternar fijado';
+
+  @override
+  String get tooltip_reset => 'Reset';
 
   @override
   String get dialog_delete => 'Eliminar';
