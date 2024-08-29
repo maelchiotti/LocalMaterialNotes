@@ -63,6 +63,23 @@ class AutoExportUtils {
     autoExportDirectory = (await getApplicationDocumentsDirectory()).uri;
   }
 
+  /// Performs an auto export of the database if it is needed.
+  Future<void> performAutoExportIfNeeded() async {
+    if (!_shouldPerformAutoExport()) {
+      return;
+    }
+
+    final encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
+    final password = await PreferenceKey.autoExportPassword.getPreferenceOrDefaultSecure();
+
+    DatabaseUtils().autoExportAsJson(encrypt, password);
+
+    PreferencesUtils().set<String>(
+      PreferenceKey.lastAutoExportDate.name,
+      DateTime.now().toIso8601String(),
+    );
+  }
+
   /// Checks if an auto export should be performed.
   ///
   /// An auto export should be performed if it is enabled and either if no auto export has been performed yet,
@@ -89,22 +106,5 @@ class AutoExportUtils {
     // If no auto export has been done for longer than the defined auto export frequency,
     // then perform an auto export now
     return durationSinceLastAutoExport > autoExportFrequencyDuration;
-  }
-
-  /// Performs an auto export of the database if it is needed.
-  Future<void> performAutoExportIfNeeded() async {
-    if (!_shouldPerformAutoExport()) {
-      return;
-    }
-
-    final encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
-    final password = await PreferenceKey.autoExportPassword.getPreferenceOrDefaultSecure();
-
-    DatabaseUtils().autoExportAsJson(encrypt, password);
-
-    PreferencesUtils().set<String>(
-      PreferenceKey.lastAutoExportDate.name,
-      DateTime.now().toIso8601String(),
-    );
   }
 }
