@@ -66,7 +66,6 @@
   "settings_auto_export_description": "Exportar automaticamente as notas para um arquivo JSON (lixeira incluída) que pode ser importado de volta",
   "settings_auto_export_value": "A cada {frequency, select, 1{dia} 7{semana} 14{2 semanas} 30{mês} other{{frequency} dias}}, {encrypt, select, true{criptografado} false{não criptografado} other{}}",
   "settings_auto_export_disabled": "Desabilitado",
-  "settings_auto_export_directory": "As exportações podem ser encontradas em {directory}",
   "settings_auto_export_dialog_description_disabled": "A exportação automática será desativada.",
   "settings_auto_export_dialog_description_enabled": "A exportação automática será realizada a cada {frequency, select, 1{dia} 7{semana} 14{2 semanas} 30{mês} other{{frequency} dias}}. Defina a frequência como 0 para desativá-la.",
   "settings_auto_export_dialog_slider_label": "A cada {frequency, select, 1{dia} 7{semana} 14{2 semanas} 30{mês} other{{frequency} dias}}",

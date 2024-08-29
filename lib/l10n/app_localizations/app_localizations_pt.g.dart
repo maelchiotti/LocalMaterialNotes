@@ -210,7 +210,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_backup_description => 'Exportar, importar';
 
   @override
-  String get settings_backup_export => 'Exportar';
+  String get settings_backup_auto_export => 'Automatic export';
+
+  @override
+  String get settings_backup_manual_export => 'Manual export';
 
   @override
   String get settings_backup_import => 'Importar';
@@ -249,11 +252,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_auto_export_disabled => 'Desabilitado';
 
   @override
-  String settings_auto_export_directory(Object directory) {
-    return 'As exportações podem ser encontradas em $directory';
-  }
-
-  @override
   String get settings_auto_export_dialog_description_disabled => 'A exportação automática será desativada.';
 
   @override
@@ -285,6 +283,12 @@ class AppLocalizationsPt extends AppLocalizations {
     );
     return 'A cada $_temp0';
   }
+
+  @override
+  String get settings_auto_export_directory => 'Auto export directory';
+
+  @override
+  String get settings_auto_export_directory_description => 'Directory where the automatic exports will be saved';
 
   @override
   String get settings_export_success => 'As anotações foram exportadas com sucesso.';
@@ -364,8 +368,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_get_in_touch => 'Contatar o desenvolvedor';
 
   @override
-  String get settings_get_in_touch_description =>
-      'Entre em contato com o desenvolvedor por e-mail em contact@maelchiotti.dev';
+  String settings_get_in_touch_description(Object email) {
+    return 'Entre em contato com o desenvolvedor por e-mail em contact@maelchiotti.dev';
+  }
 
   @override
   String get hint_title => 'Título';
@@ -411,6 +416,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get tooltip_toggle_pins => 'Alternar fixados';
+
+  @override
+  String get tooltip_reset => 'Reset';
 
   @override
   String get dialog_delete => 'Excluir';

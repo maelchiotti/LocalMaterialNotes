@@ -13,6 +13,8 @@ import 'package:url_launcher/url_launcher.dart';
 class SettingsAboutPage extends StatelessWidget {
   const SettingsAboutPage({super.key});
 
+  static const _contactEmail = 'contact@maelchiotti.dev';
+
   String? _encodeQueryParameters(Map<String, String> params) {
     return params.entries.map((MapEntry<String, String> e) {
       return '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}';
@@ -66,7 +68,7 @@ class SettingsAboutPage extends StatelessWidget {
     );
   }
 
-  /// Sends an email to `contact@maelchiotti.dev` with some basic information.
+  /// Sends an email to the contact email with some basic information.
   void _sendMail(_) {
     final appVersion = InfoUtils().appVersion;
     final buildMode = InfoUtils().buildMode;
@@ -77,7 +79,7 @@ class SettingsAboutPage extends StatelessWidget {
     launchUrl(
       Uri(
         scheme: 'mailto',
-        path: 'contact@maelchiotti.dev',
+        path: _contactEmail,
         query: _encodeQueryParameters({
           'subject': '[Material Notes] ',
           'body': '\n\n\n----------\nv$appVersion\n$buildMode mode\nAndroid $androidVersion\n$brand $model',
@@ -148,7 +150,7 @@ class SettingsAboutPage extends StatelessWidget {
             SettingsTile(
               leading: const Icon(Icons.mail),
               title: Text(localizations.settings_get_in_touch),
-              value: Text(localizations.settings_get_in_touch_description),
+              value: Text(localizations.settings_get_in_touch_description(_contactEmail)),
               onPressed: _sendMail,
             ),
           ],

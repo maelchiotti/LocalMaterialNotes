@@ -209,7 +209,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_backup_description => 'Export, import';
 
   @override
-  String get settings_backup_export => 'Export';
+  String get settings_backup_auto_export => 'Automatic export';
+
+  @override
+  String get settings_backup_manual_export => 'Manual export';
 
   @override
   String get settings_backup_import => 'Import';
@@ -248,11 +251,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_auto_export_disabled => 'Disabled';
 
   @override
-  String settings_auto_export_directory(Object directory) {
-    return 'Exports can be found in $directory';
-  }
-
-  @override
   String get settings_auto_export_dialog_description_disabled => 'Auto export will be disabled.';
 
   @override
@@ -284,6 +282,12 @@ class AppLocalizationsTr extends AppLocalizations {
     );
     return 'Every $_temp0';
   }
+
+  @override
+  String get settings_auto_export_directory => 'Auto export directory';
+
+  @override
+  String get settings_auto_export_directory_description => 'Directory where the automatic exports will be saved';
 
   @override
   String get settings_export_success => 'Dışa aktarma başarılı';
@@ -362,7 +366,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_get_in_touch => 'Contact the developer';
 
   @override
-  String get settings_get_in_touch_description => 'Contact the developer via mail at contact@maelchiotti.dev';
+  String settings_get_in_touch_description(Object email) {
+    return 'Contact the developer via mail at contact@maelchiotti.dev';
+  }
 
   @override
   String get hint_title => 'Başlık';
@@ -408,6 +414,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get tooltip_toggle_pins => 'Sabitlemeyi aç/kapat';
+
+  @override
+  String get tooltip_reset => 'Reset';
 
   @override
   String get dialog_delete => 'Sil';

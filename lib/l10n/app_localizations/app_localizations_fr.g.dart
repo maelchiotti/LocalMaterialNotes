@@ -210,7 +210,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_backup_description => 'Exportation, importation';
 
   @override
-  String get settings_backup_export => 'Exporter';
+  String get settings_backup_auto_export => 'Automatic export';
+
+  @override
+  String get settings_backup_manual_export => 'Manual export';
 
   @override
   String get settings_backup_import => 'Importer';
@@ -249,11 +252,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_auto_export_disabled => 'Désactivé';
 
   @override
-  String settings_auto_export_directory(Object directory) {
-    return 'Les exports peuvent être trouvés dans $directory';
-  }
-
-  @override
   String get settings_auto_export_dialog_description_disabled => 'L\'export automatique sera désactivé.';
 
   @override
@@ -285,6 +283,12 @@ class AppLocalizationsFr extends AppLocalizations {
     );
     return 'Tous les $_temp0';
   }
+
+  @override
+  String get settings_auto_export_directory => 'Auto export directory';
+
+  @override
+  String get settings_auto_export_directory_description => 'Directory where the automatic exports will be saved';
 
   @override
   String get settings_export_success => 'Les notes ont bien été exportées.';
@@ -364,7 +368,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_get_in_touch => 'Contacter le développeur';
 
   @override
-  String get settings_get_in_touch_description => 'Contacter le développeur par mail à contact@maelchiotti.dev';
+  String settings_get_in_touch_description(Object email) {
+    return 'Contacter le développeur par mail à contact@maelchiotti.dev';
+  }
 
   @override
   String get hint_title => 'Titre';
@@ -410,6 +416,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tooltip_toggle_pins => 'Basculer les épingles';
+
+  @override
+  String get tooltip_reset => 'Reset';
 
   @override
   String get dialog_delete => 'Supprimer';

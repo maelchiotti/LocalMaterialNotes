@@ -209,7 +209,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_backup_description => 'Export, import';
 
   @override
-  String get settings_backup_export => 'Export';
+  String get settings_backup_auto_export => 'Automatic export';
+
+  @override
+  String get settings_backup_manual_export => 'Manual export';
 
   @override
   String get settings_backup_import => 'Import';
@@ -248,11 +251,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_auto_export_disabled => 'Disabled';
 
   @override
-  String settings_auto_export_directory(Object directory) {
-    return 'Exports can be found in $directory';
-  }
-
-  @override
   String get settings_auto_export_dialog_description_disabled => 'Auto export will be disabled.';
 
   @override
@@ -284,6 +282,12 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return 'Every $_temp0';
   }
+
+  @override
+  String get settings_auto_export_directory => 'Auto export directory';
+
+  @override
+  String get settings_auto_export_directory_description => 'Directory where the automatic exports will be saved';
 
   @override
   String get settings_export_success => 'The notes were successfully exported.';
@@ -347,10 +351,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
-  String get settings_github_issues => 'Report a bug';
+  String get settings_github_issues => 'Report a bug or request a feature';
 
   @override
-  String get settings_github_issues_description => 'Report a bug by creating a GitHub issue';
+  String get settings_github_issues_description => 'Report a bug or request a feature by creating a GitHub issue';
 
   @override
   String get settings_github_discussions => 'Ask a question';
@@ -362,7 +366,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_get_in_touch => 'Contact the developer';
 
   @override
-  String get settings_get_in_touch_description => 'Contact the developer via mail at contact@maelchiotti.dev';
+  String settings_get_in_touch_description(Object email) {
+    return 'Contact the developer via mail at $email';
+  }
 
   @override
   String get hint_title => 'Title';
@@ -408,6 +414,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tooltip_toggle_pins => 'Toggle pins';
+
+  @override
+  String get tooltip_reset => 'Reset';
 
   @override
   String get dialog_delete => 'Delete';

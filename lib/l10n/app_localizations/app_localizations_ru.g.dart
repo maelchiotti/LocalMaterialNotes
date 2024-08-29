@@ -206,7 +206,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_backup_description => 'Экспорт, импорт';
 
   @override
-  String get settings_backup_export => 'Экспорт';
+  String get settings_backup_auto_export => 'Automatic export';
+
+  @override
+  String get settings_backup_manual_export => 'Manual export';
 
   @override
   String get settings_backup_import => 'Импорт';
@@ -245,11 +248,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_auto_export_disabled => 'Отключено';
 
   @override
-  String settings_auto_export_directory(Object directory) {
-    return 'Экспортированные заметки находятся в $directory';
-  }
-
-  @override
   String get settings_auto_export_dialog_description_disabled => 'Автоматический экспорт будет отключен.';
 
   @override
@@ -281,6 +279,12 @@ class AppLocalizationsRu extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get settings_auto_export_directory => 'Auto export directory';
+
+  @override
+  String get settings_auto_export_directory_description => 'Directory where the automatic exports will be saved';
 
   @override
   String get settings_export_success => 'Заметки были успешно экспортированы.';
@@ -360,7 +364,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_get_in_touch => 'Связаться с разработчиком';
 
   @override
-  String get settings_get_in_touch_description => 'Свяжитесь с разработчиком по почте contact@maelchiotti.dev';
+  String settings_get_in_touch_description(Object email) {
+    return 'Свяжитесь с разработчиком по почте contact@maelchiotti.dev';
+  }
 
   @override
   String get hint_title => 'Заголовок';
@@ -406,6 +412,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get tooltip_toggle_pins => 'Закрепить/Открепить';
+
+  @override
+  String get tooltip_reset => 'Reset';
 
   @override
   String get dialog_delete => 'Удалить';
