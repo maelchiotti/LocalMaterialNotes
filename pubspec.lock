@@ -1166,10 +1166,11 @@ packages:
   shared_storage:
     dependency: "direct main"
     description:
-      name: shared_storage
-      sha256: cf20428d06af065311b71e09cbfbbfe431e979a3bf9180001c1952129b7c708f
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: "v0.8.1_fixed"
+      resolved-ref: "828d1840a897f96cd482436e0538cdbf6314eb56"
+      url: "https://github.com/maelchiotti/shared_storage"
+    source: git
     version: "0.8.1"
   shelf:
     dependency: transitive
