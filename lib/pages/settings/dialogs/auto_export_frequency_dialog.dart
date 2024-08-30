@@ -66,7 +66,7 @@ class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
               value: _frequencyIndex.toDouble(),
               max: _frequencyValues.length - 1,
               divisions: _frequencyValues.length - 1,
-              label: localizations.dialog_auto_export_frequency_slider_label(_frequencyValue.toInt().toString()),
+              label: localizations.dialog_auto_export_frequency_slider_label(_frequencyValue.toString()),
               onChanged: _onFrequencyChanged,
             ),
           ],

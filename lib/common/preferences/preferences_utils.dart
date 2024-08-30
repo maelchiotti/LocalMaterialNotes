@@ -29,7 +29,7 @@ class PreferencesUtils {
   /// Sets the [preferenceKey] to the [value].
   ///
   /// The type [T] of the value should be a basic type: `bool`, `int`, `double`, `String` or `List<String>`.
-  void set<T>(PreferenceKey preferenceKey, T value) {
+  Future<void> set<T>(PreferenceKey preferenceKey, T value) async {
     if (preferenceKey.secure) {
       _secureStorage.write(key: preferenceKey.name, value: value as String);
 
@@ -41,15 +41,15 @@ class PreferencesUtils {
     }
 
     if (T == bool) {
-      _preferences.setBool(preferenceKey.name, value as bool);
+      await _preferences.setBool(preferenceKey.name, value as bool);
     } else if (T == int) {
-      _preferences.setInt(preferenceKey.name, value as int);
+      await _preferences.setInt(preferenceKey.name, value as int);
     } else if (T == double) {
-      _preferences.setDouble(preferenceKey.name, value as double);
+      await _preferences.setDouble(preferenceKey.name, value as double);
     } else if (T == String) {
-      _preferences.setString(preferenceKey.name, value as String);
+      await _preferences.setString(preferenceKey.name, value as String);
     } else if (T == List<String>) {
-      _preferences.setStringList(preferenceKey.name, value as List<String>);
+      await _preferences.setStringList(preferenceKey.name, value as List<String>);
     }
   }
 
@@ -78,19 +78,19 @@ class PreferencesUtils {
   }
 
   /// Removes the value of the [preferenceKey].
-  void remove(PreferenceKey preferenceKey) {
+  Future<void> remove(PreferenceKey preferenceKey) async {
     if (preferenceKey.secure) {
-      _secureStorage.delete(key: preferenceKey.name);
+      await _secureStorage.delete(key: preferenceKey.name);
 
       return;
     }
 
-    _preferences.remove(preferenceKey.name);
+    await _preferences.remove(preferenceKey.name);
   }
 
   /// Clears all the preferences and all the securely stored preferences.
-  void clear() {
-    _preferences.clear();
-    _secureStorage.deleteAll();
+  Future<void> clear() async {
+    await _preferences.clear();
+    await _secureStorage.deleteAll();
   }
 }

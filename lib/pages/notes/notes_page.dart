@@ -17,7 +17,7 @@ class _NotesPageState extends ConsumerState<NotesPage> {
   void initState() {
     super.initState();
 
-    BackButtonInterceptor.add(_interceptor);
+    BackButtonInterceptor.add(_interceptor, context: context);
   }
 
   @override

@@ -94,17 +94,20 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
   /// Toggles the setting to enable the automatic export.
   Future<void> _toggleEnableAutoExport(bool toggled) async {
+    await PreferencesUtils().set<bool>(PreferenceKey.enableAutoExport, toggled);
+
+    setState(() {});
+
     if (!toggled) {
       PreferencesUtils().remove(PreferenceKey.lastAutoExportDate);
-      _toggleAutoExportEncryption(false);
-    } else {
-      // No need to await
-      AutoExportUtils().performAutoExportIfNeeded();
+      PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption, false);
+      PreferencesUtils().remove(PreferenceKey.autoExportPassword);
+
+      return;
     }
 
-    setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.enableAutoExport, toggled);
-    });
+    // No need to await
+    AutoExportUtils().performAutoExportIfNeeded();
   }
 
   /// Toggles the setting to enable the automatic export encryption.
@@ -239,7 +242,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
               leading: const Icon(Symbols.calendar_clock),
               title: Text(localizations.settings_auto_export_frequency),
               value: Text(
-                localizations.settings_auto_export_frequency_description(autoExportFrequency.toInt().toString()),
+                localizations.settings_auto_export_frequency_description(autoExportFrequency.toString()),
               ),
               onPressed: _setAutoExportFrequency,
             ),
