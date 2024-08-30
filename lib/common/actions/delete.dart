@@ -21,6 +21,7 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
   }
 
   if (!await askForConfirmation(
+    context,
     localizations.dialog_delete,
     localizations.dialog_delete_body_single,
     localizations.dialog_delete,
@@ -44,8 +45,9 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
 /// Returns `true` if the [notes] were deleted, `false` otherwise.
 ///
 /// First, asks for a confirmation if needed.
-Future<bool> deleteNotes(WidgetRef ref, List<Note> notes) async {
+Future<bool> deleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   if (!await askForConfirmation(
+    context,
     localizations.dialog_delete,
     localizations.dialog_delete_body(notes.length),
     localizations.dialog_delete,
@@ -70,6 +72,7 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
   }
 
   if (!await askForConfirmation(
+    context,
     localizations.dialog_permanently_delete,
     localizations.dialog_permanently_delete_body_single,
     localizations.dialog_permanently_delete,
@@ -94,8 +97,9 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
 /// Returns `true` if the [notes] were permanently deleted, `false` otherwise.
 ///
 /// First, asks for a confirmation if needed.
-Future<bool> permanentlyDeleteNotes(WidgetRef ref, List<Note> notes) async {
+Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   if (!await askForConfirmation(
+    context,
     localizations.dialog_permanently_delete,
     localizations.dialog_permanently_delete_body(notes.length),
     localizations.dialog_permanently_delete,
@@ -113,8 +117,9 @@ Future<bool> permanentlyDeleteNotes(WidgetRef ref, List<Note> notes) async {
 ///
 /// First, asks for a confirmation if needed.
 /// Exits the selection mode.
-Future<bool> emptyBin(WidgetRef ref) async {
+Future<bool> emptyBin(BuildContext context, WidgetRef ref) async {
   if (!await askForConfirmation(
+    context,
     localizations.dialog_empty_bin,
     localizations.dialog_empty_bin_body,
     localizations.dialog_empty_bin,

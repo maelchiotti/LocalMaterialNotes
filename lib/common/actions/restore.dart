@@ -20,6 +20,7 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async 
   }
 
   if (!await askForConfirmation(
+    context,
     localizations.dialog_restore,
     localizations.dialog_restore_body_single,
     localizations.dialog_restore,
@@ -43,8 +44,9 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async 
 /// Returns `true` if the [notes] were restored, `false` otherwise.
 ///
 /// First, asks for a confirmation if needed.
-Future<bool> restoreNotes(WidgetRef ref, List<Note> notes) async {
+Future<bool> restoreNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   if (!await askForConfirmation(
+    context,
     localizations.dialog_restore,
     localizations.dialog_restore_body(notes.length),
     localizations.dialog_restore,

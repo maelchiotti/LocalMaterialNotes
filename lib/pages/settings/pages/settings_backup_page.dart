@@ -55,6 +55,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   Future<void> _exportAsJson(BuildContext context) async {
     await showAdaptiveDialog<(bool, String?)?>(
       context: context,
+      useRootNavigator: false,
       builder: (context) => const ManualExportDialog(),
     ).then((shouldEncrypt) async {
       if (shouldEncrypt == null) {
@@ -126,6 +127,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
     await showAdaptiveDialog<String>(
       context: context,
+      useRootNavigator: false,
       builder: (context) => AutoExportPasswordDialog(
         title: localizations.settings_auto_export_encryption,
         description: localizations.dialog_export_encryption_description,
@@ -148,6 +150,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   Future<void> _setAutoExportFrequency(BuildContext context) async {
     await showAdaptiveDialog<int>(
       context: context,
+      useRootNavigator: false,
       builder: (context) => const AutoExportFrequencyDialog(),
     ).then((autoExportFrequency) async {
       if (autoExportFrequency == null) {

@@ -38,19 +38,34 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
 
   /// Restores the [selectedNotes].
   Future<void> _restore(List<Note> selectedNotes) async {
-    await restoreNotes(ref, selectedNotes);
+    final restored = await restoreNotes(context, ref, selectedNotes);
+
+    if (!restored) {
+      return;
+    }
+
     exitSelectionMode(ref);
   }
 
   /// Deletes the [selectedNotes].
   Future<void> _delete(List<Note> selectedNotes) async {
-    await deleteNotes(ref, selectedNotes);
+    final deleted = await deleteNotes(context, ref, selectedNotes);
+
+    if (!deleted) {
+      return;
+    }
+
     exitSelectionMode(ref);
   }
 
   /// Permanently deletes the [selectedNotes].
   Future<void> _permanentlyDelete(List<Note> selectedNotes) async {
-    await permanentlyDeleteNotes(ref, selectedNotes);
+    final permanentlyDeleted = await permanentlyDeleteNotes(context, ref, selectedNotes);
+
+    if (!permanentlyDeleted) {
+      return;
+    }
+
     exitSelectionMode(ref);
   }
 

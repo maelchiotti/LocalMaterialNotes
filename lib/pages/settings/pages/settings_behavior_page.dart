@@ -25,6 +25,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
 
     await showAdaptiveDialog<Confirmations>(
       context: context,
+      useRootNavigator: false,
       builder: (context) {
         return SimpleDialog(
           clipBehavior: Clip.hardEdge,
@@ -63,6 +64,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
 
     await showAdaptiveDialog<SwipeAction>(
       context: context,
+      useRootNavigator: false,
       builder: (context) {
         return SimpleDialog(
           clipBehavior: Clip.hardEdge,
