@@ -9,8 +9,6 @@ final navigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Root navigator key')
 /// Key of the application's drawer.
 final drawerKey = GlobalKey<ScaffoldState>(debugLabel: 'Drawer key');
 
-final key = GlobalKey();
-
 /// Application's localizations.
 final localizations = AppLocalizations.of(navigatorKey.currentContext!);
 

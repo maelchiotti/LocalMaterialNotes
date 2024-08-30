@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -46,8 +45,6 @@ class _EditorState extends ConsumerState<EditorPage> {
   void initState() {
     super.initState();
 
-    BackButtonInterceptor.add(_interceptor);
-
     if (note != null) {
       titleController = TextEditingController(text: note!.title);
       editorController = FleatherController(document: note!.document);
@@ -55,31 +52,6 @@ class _EditorState extends ConsumerState<EditorPage> {
       editorController.addListener(() => _synchronizeContent(note!));
 
       fleatherControllerNotifier.value = editorController;
-    }
-  }
-
-  @override
-  void dispose() {
-    BackButtonInterceptor.remove(_interceptor);
-
-    super.dispose();
-  }
-
-  /// Actions to perform when the back button is intercepted.
-  ///
-  /// If the `Navigator` can't be popped, it means the menu isn't opened and the route should be popped (going back
-  /// to the notes list or the bin). Otherwise, the menu is open, so it should be closed but the route shouldn't
-  /// be popped (staying in the editor).
-  bool _interceptor(bool stopDefaultButtonEvent, RouteInfo info) {
-    if (!Navigator.canPop(navigatorKey.currentContext!)) {
-      currentNoteNotifier.value = null;
-      fleatherControllerNotifier.value = null;
-
-      return false;
-    } else {
-      Navigator.pop(navigatorKey.currentContext!);
-
-      return true;
     }
   }
 
