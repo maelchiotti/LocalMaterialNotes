@@ -26,24 +26,30 @@ class PreferencesUtils {
     );
   }
 
-  /// Sets the [key] of the preference to the [value].
+  /// Sets the [preferenceKey] to the [value].
   ///
   /// The type [T] of the value should be a basic type: `bool`, `int`, `double`, `String` or `List<String>`.
-  void set<T>(String key, T value) {
+  void set<T>(PreferenceKey preferenceKey, T value) {
+    if (preferenceKey.secure) {
+      _secureStorage.write(key: preferenceKey.name, value: value as String);
+
+      return;
+    }
+
     if (T == dynamic) {
       throw ArgumentError('The type T is required.');
     }
 
     if (T == bool) {
-      _preferences.setBool(key, value as bool);
+      _preferences.setBool(preferenceKey.name, value as bool);
     } else if (T == int) {
-      _preferences.setInt(key, value as int);
+      _preferences.setInt(preferenceKey.name, value as int);
     } else if (T == double) {
-      _preferences.setDouble(key, value as double);
+      _preferences.setDouble(preferenceKey.name, value as double);
     } else if (T == String) {
-      _preferences.setString(key, value as String);
+      _preferences.setString(preferenceKey.name, value as String);
     } else if (T == List<String>) {
-      _preferences.setStringList(key, value as List<String>);
+      _preferences.setStringList(preferenceKey.name, value as List<String>);
     }
   }
 
@@ -51,6 +57,10 @@ class PreferencesUtils {
   ///
   /// The type [T] of the value should be a basic type: `bool`, `int`, `double`, `String` or `List<String>`.
   T? get<T>(PreferenceKey preferenceKey) {
+    if (preferenceKey.secure) {
+      throw ArgumentError('The preference is securely stored, use getSecure() instead');
+    }
+
     if (T == dynamic) {
       throw ArgumentError('The type T is required.');
     }
@@ -58,28 +68,29 @@ class PreferencesUtils {
     return _preferences.get(preferenceKey.name) as T?;
   }
 
-  /// Removes the value of the [preferenceKey].
-  Future<void> remove(PreferenceKey preferenceKey) async {
-    await _preferences.remove(preferenceKey.name);
-  }
-
-  /// Clears all the preferences.
-  Future<void> clear() async {
-    await _preferences.clear();
-  }
-
-  /// Securely sets the [preferenceKey] to the [value].
-  void setSecure(PreferenceKey preferenceKey, String value) {
-    _secureStorage.write(key: preferenceKey.name, value: value);
-  }
-
   /// Returns the value of the securely stored [preferenceKey].
   Future<String?> getSecure(PreferenceKey preferenceKey) async {
+    if (!preferenceKey.secure) {
+      throw ArgumentError('The preference is not securely stored, use get<T>() instead');
+    }
+
     return await _secureStorage.read(key: preferenceKey.name);
   }
 
-  /// Deletes the value of the securely stored [preferenceKey].
-  Future<void> deleteSecure(PreferenceKey preferenceKey) async {
-    await _secureStorage.delete(key: preferenceKey.name);
+  /// Removes the value of the [preferenceKey].
+  void remove(PreferenceKey preferenceKey) {
+    if (preferenceKey.secure) {
+      _secureStorage.delete(key: preferenceKey.name);
+
+      return;
+    }
+
+    _preferences.remove(preferenceKey.name);
+  }
+
+  /// Clears all the preferences and all the securely stored preferences.
+  void clear() {
+    _preferences.clear();
+    _secureStorage.deleteAll();
   }
 }

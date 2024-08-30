@@ -46,7 +46,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
       }
 
       setState(() {
-        PreferencesUtils().set<String>(PreferenceKey.confirmations.name, confirmations.name);
+        PreferencesUtils().set<String>(PreferenceKey.confirmations, confirmations.name);
       });
     });
   }
@@ -86,10 +86,10 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
       setState(() {
         switch (swipeDirection) {
           case SwipeDirection.right:
-            PreferencesUtils().set<String>(PreferenceKey.swipeRightAction.name, swipeAction.name);
+            PreferencesUtils().set<String>(PreferenceKey.swipeRightAction, swipeAction.name);
             swipeActionsNotifier.value = (swipeAction, swipeActionsNotifier.value.$2);
           case SwipeDirection.left:
-            PreferencesUtils().set<String>(PreferenceKey.swipeLeftAction.name, swipeAction.name);
+            PreferencesUtils().set<String>(PreferenceKey.swipeLeftAction, swipeAction.name);
             swipeActionsNotifier.value = (swipeActionsNotifier.value.$1, swipeAction);
         }
       });
@@ -99,7 +99,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
   /// Toggles Android's `FLAG_SECURE` to hide the app from the recent apps and prevent screenshots.
   Future<void> _setFlagSecure(bool toggled) async {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.flagSecure.name, toggled);
+      PreferencesUtils().set<bool>(PreferenceKey.flagSecure, toggled);
     });
 
     toggled ? await FlagSecure.set() : await FlagSecure.unset();

@@ -28,9 +28,10 @@ enum PreferenceKey {
   useParagraphsSpacing(true),
 
   // Backup
-  autoExportFrequency(0.0),
+  enableAutoExport(false),
+  autoExportFrequency(1),
   autoExportEncryption(false),
-  autoExportPassword(''),
+  autoExportPassword('', secure: true),
   autoExportDirectory(''),
   lastAutoExportDate(''),
 
@@ -43,7 +44,9 @@ enum PreferenceKey {
   /// Default value of the preference.
   final Object defaultValue;
 
-  const PreferenceKey(this.defaultValue);
+  final bool secure;
+
+  const PreferenceKey(this.defaultValue, {this.secure = false});
 
   /// Returns the value of the preference if set, or its default value otherwise.
   ///

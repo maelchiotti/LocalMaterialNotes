@@ -7,7 +7,8 @@ import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/uri_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
-import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_dialog.dart';
+import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_frequency_dialog.dart';
+import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_password_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/manual_export_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
@@ -28,71 +29,30 @@ class SettingsBackupPage extends ConsumerStatefulWidget {
 }
 
 class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
-  /// Asks the user to configure the auto export as JSON.
-  Future<void> autoExportAsJson(BuildContext context) async {
-    await showAdaptiveDialog<(double, bool, String?)>(
-      context: context,
-      builder: (context) => const AutoExportDialog(),
-    ).then((autoExportSettings) async {
-      if (autoExportSettings == null) {
-        return;
+  /// Asks the user to choose a JSON file to import.
+  ///
+  /// If the file is encrypted, asks for the password used to encrypt it.
+  Future<void> _import(BuildContext context) async {
+    try {
+      final imported = await DatabaseUtils().import(context);
+
+      if (imported) {
+        await ref.read(notesProvider.notifier).get();
+        await ref.read(binProvider.notifier).get();
+
+        SnackBarUtils.info(localizations.settings_import_success).show();
       }
+    } catch (exception, stackTrace) {
+      log(exception.toString(), stackTrace: stackTrace);
 
-      final frequency = autoExportSettings.$1;
-      PreferencesUtils().set<double>(PreferenceKey.autoExportFrequency.name, frequency);
-
-      // If the auto export was disabled, just remove the encryption, last export date and password settings
-      if (frequency == 0.0) {
-        await PreferencesUtils().remove(PreferenceKey.autoExportEncryption);
-        await PreferencesUtils().remove(PreferenceKey.lastAutoExportDate);
-        await PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassword);
-
-        return;
-      }
-
-      final encrypt = autoExportSettings.$2;
-      PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption.name, encrypt);
-
-      // If the encryption was enabled, set the password. If not, make sure to delete it
-      // (even though it might not have been set previously)
-      if (encrypt) {
-        final password = autoExportSettings.$3!;
-        PreferencesUtils().setSecure(PreferenceKey.autoExportPassword, password);
-      } else {
-        await PreferencesUtils().deleteSecure(PreferenceKey.autoExportPassword);
-      }
-
-      // No need to await this, it can be performed in the background
-      AutoExportUtils().performAutoExportIfNeeded();
-    });
-
-    setState(() {});
-  }
-
-  /// Asks the user to choose a directory for the auto export.
-  Future<void> setAutoExportDirectory(_) async {
-    final autoExportDirectory = await pickDirectory();
-
-    if (autoExportDirectory == null) {
-      return;
+      SnackBarUtils.info(exception.toString()).show();
     }
-
-    PreferencesUtils().set<String>(PreferenceKey.autoExportDirectory.name, autoExportDirectory.path);
-    await AutoExportUtils().setAutoExportDirectory();
-
-    setState(() {});
-  }
-
-  /// Resets the directory of the auto export to its default value.
-  Future<void> resetAutoExportDirectory() async {
-    await PreferencesUtils().remove(PreferenceKey.autoExportDirectory);
-    await AutoExportUtils().setAutoExportDirectory();
-
-    setState(() {});
   }
 
   /// Asks the user to configure the immediate export as JSON.
-  Future<void> exportAsJson(BuildContext context) async {
+  ///
+  /// Asks whether to encrypt and where to store the export file.
+  Future<void> _exportAsJson(BuildContext context) async {
     await showAdaptiveDialog<(bool, String?)?>(
       context: context,
       builder: (context) => const ManualExportDialog(),
@@ -118,7 +78,9 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   }
 
   /// Asks the user to configure the immediate export as Markdown.
-  Future<void> exportAsMarkdown(BuildContext context) async {
+  ///
+  /// Asks where to store the export file.
+  Future<void> _exportAsMarkdown(BuildContext context) async {
     try {
       if (await DatabaseUtils().exportAsMarkdown()) {
         SnackBarUtils.info(localizations.settings_export_success).show();
@@ -130,26 +92,96 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     }
   }
 
-  /// Asks the user to choose a JSON file to import in the application.
-  Future<void> import(BuildContext context) async {
-    try {
-      final imported = await DatabaseUtils().import(context);
-
-      if (imported) {
-        await ref.read(notesProvider.notifier).get();
-        await ref.read(binProvider.notifier).get();
-
-        SnackBarUtils.info(localizations.settings_import_success).show();
-      }
-    } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
-
-      SnackBarUtils.info(exception.toString()).show();
+  /// Toggles the setting to enable the automatic export.
+  Future<void> _toggleEnableAutoExport(bool toggled) async {
+    if (!toggled) {
+      PreferencesUtils().remove(PreferenceKey.lastAutoExportDate);
+      _toggleAutoExportEncryption(false);
+    } else {
+      // No need to await
+      AutoExportUtils().performAutoExportIfNeeded();
     }
+
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.enableAutoExport, toggled);
+    });
+  }
+
+  /// Toggles the setting to enable the automatic export encryption.
+  ///
+  /// If enabled, asks the user for the password used for the encryption.
+  Future<void> _toggleAutoExportEncryption(bool toggled) async {
+    if (!toggled) {
+      PreferencesUtils().remove(PreferenceKey.autoExportPassword);
+
+      setState(() {
+        PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption, false);
+      });
+
+      return;
+    }
+
+    await showAdaptiveDialog<String>(
+      context: context,
+      builder: (context) => AutoExportPasswordDialog(
+        title: localizations.settings_auto_export_encryption,
+        description: localizations.dialog_export_encryption_description,
+        secondaryDescription: localizations.dialog_export_encryption_secondary_description_auto,
+      ),
+    ).then((autoExportPassword) async {
+      if (autoExportPassword == null) {
+        return;
+      }
+
+      PreferencesUtils().set(PreferenceKey.autoExportPassword, autoExportPassword);
+
+      setState(() {
+        PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption, true);
+      });
+    });
+  }
+
+  /// Asks the user to configure the automatic export frequency.
+  Future<void> _setAutoExportFrequency(BuildContext context) async {
+    await showAdaptiveDialog<double>(
+      context: context,
+      builder: (context) => const AutoExportFrequencyDialog(),
+    ).then((autoExportFrequency) async {
+      if (autoExportFrequency == null) {
+        return;
+      }
+
+      setState(() {
+        PreferencesUtils().set<double>(PreferenceKey.autoExportFrequency, autoExportFrequency);
+      });
+    });
+  }
+
+  /// Asks the user to choose a directory for the automatic export.
+  Future<void> _setAutoExportDirectory(_) async {
+    final autoExportDirectory = await pickDirectory();
+
+    if (autoExportDirectory == null) {
+      return;
+    }
+
+    PreferencesUtils().set<String>(PreferenceKey.autoExportDirectory, autoExportDirectory.path);
+    await AutoExportUtils().setAutoExportDirectory();
+
+    setState(() {});
+  }
+
+  /// Resets the directory of the automatic export to its default value.
+  Future<void> _resetAutoExportDirectory() async {
+    PreferencesUtils().remove(PreferenceKey.autoExportDirectory);
+    await AutoExportUtils().setAutoExportDirectory();
+
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault<bool>();
     final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>();
     final autoExportEncryption = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
     final autoExportDirectory = AutoExportUtils().autoExportDirectory.display;
@@ -157,47 +189,13 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     return CustomSettingsList(
       sections: [
         SettingsSection(
-          title: Text(localizations.settings_backup_auto_export),
+          title: Text(localizations.settings_backup_import),
           tiles: [
             SettingsTile.navigation(
-              leading: const Icon(Icons.settings_backup_restore),
-              title: Text(localizations.settings_auto_export),
-              value: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    autoExportFrequency == 0
-                        ? localizations.settings_auto_export_disabled
-                        : localizations.settings_auto_export_value(
-                            autoExportEncryption.toString(),
-                            autoExportFrequency.toInt().toString(),
-                          ),
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  Text(localizations.settings_auto_export_description),
-                ],
-              ),
-              onPressed: autoExportAsJson,
-            ),
-            SettingsTile.navigation(
-              leading: const Icon(Icons.folder),
-              title: Text(localizations.settings_auto_export_directory),
-              value: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    autoExportDirectory,
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  Text(localizations.settings_auto_export_directory_description),
-                ],
-              ),
-              trailing: IconButton(
-                icon: const Icon(Symbols.reset_settings),
-                tooltip: localizations.tooltip_reset,
-                onPressed: resetAutoExportDirectory,
-              ),
-              onPressed: setAutoExportDirectory,
+              leading: const Icon(Icons.file_upload),
+              title: Text(localizations.settings_import),
+              value: Text(localizations.settings_import_description),
+              onPressed: _import,
             ),
           ],
         ),
@@ -208,24 +206,54 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
               leading: const Icon(SimpleIcons.json),
               title: Text(localizations.settings_export_json),
               value: Text(localizations.settings_export_json_description),
-              onPressed: exportAsJson,
+              onPressed: _exportAsJson,
             ),
             SettingsTile.navigation(
               leading: const Icon(SimpleIcons.markdown),
               title: Text(localizations.settings_export_markdown),
               value: Text(localizations.settings_export_markdown_description),
-              onPressed: exportAsMarkdown,
+              onPressed: _exportAsMarkdown,
             ),
           ],
         ),
         SettingsSection(
-          title: Text(localizations.settings_backup_import),
+          title: Text(localizations.settings_backup_auto_export),
           tiles: [
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.settings_backup_restore),
+              title: Text(localizations.settings_auto_export),
+              description: Text(localizations.settings_auto_export_description),
+              initialValue: enableAutoExport,
+              onToggle: _toggleEnableAutoExport,
+            ),
+            SettingsTile.switchTile(
+              enabled: enableAutoExport,
+              leading: const Icon(Icons.enhanced_encryption),
+              title: Text(localizations.settings_auto_export_encryption),
+              description: Text(localizations.settings_auto_export_encryption_description),
+              initialValue: autoExportEncryption,
+              onToggle: _toggleAutoExportEncryption,
+            ),
             SettingsTile.navigation(
-              leading: const Icon(Icons.file_upload),
-              title: Text(localizations.settings_import),
-              value: Text(localizations.settings_import_description),
-              onPressed: import,
+              enabled: enableAutoExport,
+              leading: const Icon(Symbols.calendar_clock),
+              title: Text(localizations.settings_auto_export_frequency),
+              value: Text(
+                localizations.settings_auto_export_frequency_description(autoExportFrequency.toInt().toString()),
+              ),
+              onPressed: _setAutoExportFrequency,
+            ),
+            SettingsTile.navigation(
+              enabled: enableAutoExport,
+              leading: const Icon(Icons.folder),
+              title: Text(localizations.settings_auto_export_directory),
+              value: Text(localizations.settings_auto_export_directory_description(autoExportDirectory)),
+              trailing: IconButton(
+                icon: const Icon(Symbols.reset_settings),
+                tooltip: localizations.tooltip_reset,
+                onPressed: _resetAutoExportDirectory,
+              ),
+              onPressed: _setAutoExportDirectory,
             ),
           ],
         ),

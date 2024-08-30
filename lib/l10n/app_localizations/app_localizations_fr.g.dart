@@ -219,6 +219,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_backup_import => 'Importer';
 
   @override
+  String get settings_import => 'Importer';
+
+  @override
+  String get settings_import_description => 'Importer les notes depuis un fichier JSON';
+
+  @override
+  String get settings_import_success => 'Les notes ont bien été importées.';
+
+  @override
   String get settings_auto_export => 'Export automatique en JSON';
 
   @override
@@ -226,69 +235,37 @@ class AppLocalizationsFr extends AppLocalizations {
       'Exporter les notes automatiquement dans un fichier JSON (corbeille incluse) qui peut être réimporté';
 
   @override
-  String settings_auto_export_value(String encrypt, String frequency) {
+  String get settings_auto_export_frequency => 'Frequency';
+
+  @override
+  String settings_auto_export_frequency_description(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
-        '1': 'jour',
-        '7': 'semaine',
-        '14': '2 semaines',
-        '30': 'mois',
-        'other': '$frequency jours',
+        '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
+        'other': '$frequency days',
       },
     );
-    String _temp1 = intl.Intl.selectLogic(
-      encrypt,
-      {
-        'true': 'chiffré',
-        'false': 'non chiffré',
-        'other': '',
-      },
-    );
-    return 'Tous les $_temp0, $_temp1';
+    return 'Automatically export the notes every $_temp0';
   }
 
   @override
-  String get settings_auto_export_disabled => 'Désactivé';
+  String get settings_auto_export_encryption => 'Encryption';
 
   @override
-  String get settings_auto_export_dialog_description_disabled => 'L\'export automatique sera désactivé.';
+  String get settings_auto_export_encryption_description =>
+      'Encrypt the title and the content of the notes with a password';
 
   @override
-  String settings_auto_export_dialog_description_enabled(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'jour',
-        '7': 'semaine',
-        '14': '2 semaines',
-        '30': 'mois',
-        'other': '$frequency jours',
-      },
-    );
-    return 'L\'exportation automatique sera effectuée tous les $_temp0. Mettez la fréquence à 0 pour la désactiver.';
+  String get settings_auto_export_directory => 'Directory';
+
+  @override
+  String settings_auto_export_directory_description(Object autoExportDirectory) {
+    return 'Save the automatic exports in $autoExportDirectory';
   }
-
-  @override
-  String settings_auto_export_dialog_slider_label(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'jour',
-        '7': 'semaine',
-        '14': '2 semaines',
-        '30': 'mois',
-        'other': '$frequency jours',
-      },
-    );
-    return 'Tous les $_temp0';
-  }
-
-  @override
-  String get settings_auto_export_directory => 'Auto export directory';
-
-  @override
-  String get settings_auto_export_directory_description => 'Directory where the automatic exports will be saved';
 
   @override
   String get settings_export_success => 'Les notes ont bien été exportées.';
@@ -306,15 +283,6 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get settings_export_markdown_description =>
       'Exporter immédiatement les notes vers un fichier Markdown (corbeille incluse)';
-
-  @override
-  String get settings_import => 'Importer';
-
-  @override
-  String get settings_import_description => 'Importer les notes depuis un fichier JSON';
-
-  @override
-  String get settings_import_success => 'Les notes ont bien été importées.';
 
   @override
   String get settings_about => 'À propos';
@@ -496,6 +464,21 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get dialog_empty_bin_body =>
       'Voulez-vous vraiment vider définitivement la corbeille ? Vous ne pourrez pas restaurer les notes qu\'elle contient.';
+
+  @override
+  String dialog_auto_export_frequency_slider_label(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
+        'other': '$frequency days',
+      },
+    );
+    return 'Every $_temp0';
+  }
 
   @override
   String get dialog_export_encryption_switch => 'Chiffrer l\'export JSON';

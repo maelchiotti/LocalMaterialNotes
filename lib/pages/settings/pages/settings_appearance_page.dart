@@ -104,7 +104,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the dynamic theming.
   void _toggleDynamicTheming(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.dynamicTheming.name, toggled);
+      PreferencesUtils().set<bool>(PreferenceKey.dynamicTheming, toggled);
     });
 
     dynamicThemingNotifier.value = toggled;
@@ -113,7 +113,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the black theming.
   void _toggleBlackTheming(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.blackTheming.name, toggled);
+      PreferencesUtils().set<bool>(PreferenceKey.blackTheming, toggled);
     });
 
     blackThemingNotifier.value = toggled;
@@ -122,7 +122,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTitlesOnly(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showTitlesOnly.name, toggled);
+      PreferencesUtils().set<bool>(PreferenceKey.showTitlesOnly, toggled);
     });
 
     showTitlesOnlyNotifier.value = toggled;
@@ -131,7 +131,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTilesBackground(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showTilesBackground.name, toggled);
+      PreferencesUtils().set<bool>(PreferenceKey.showTilesBackground, toggled);
     });
 
     showTilesBackgroundNotifier.value = toggled;
@@ -140,7 +140,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the setting to show the separators between the notes tiles.
   void _toggleShowSeparators(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showSeparators.name, toggled);
+      PreferencesUtils().set<bool>(PreferenceKey.showSeparators, toggled);
     });
 
     showSeparatorsNotifier.value = toggled;
