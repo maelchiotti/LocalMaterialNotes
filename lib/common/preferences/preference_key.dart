@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
 import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
@@ -62,7 +64,13 @@ enum PreferenceKey {
       throw ArgumentError('The type T should be a native type (bool, int, double, String or List<String>), not $T.');
     }
 
-    return PreferencesUtils().get<T>(this) ?? defaultValue as T;
+    try {
+      return PreferencesUtils().get<T>(this) ?? defaultValue as T;
+    } catch (exception, stackTrace) {
+      log(exception.toString(), stackTrace: stackTrace);
+
+      return defaultValue as T;
+    }
   }
 
   /// Returns the value of the securely stored preference if set, or its default value otherwise.

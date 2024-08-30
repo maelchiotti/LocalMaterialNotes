@@ -71,7 +71,7 @@ class AutoExportUtils {
   /// chosen by the user
   bool _shouldPerformAutoExport() {
     final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault<bool>();
-    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>();
+    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<int>();
 
     if (!enableAutoExport) {
       return false;

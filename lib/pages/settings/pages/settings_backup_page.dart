@@ -143,7 +143,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
   /// Asks the user to configure the automatic export frequency.
   Future<void> _setAutoExportFrequency(BuildContext context) async {
-    await showAdaptiveDialog<double>(
+    await showAdaptiveDialog<int>(
       context: context,
       builder: (context) => const AutoExportFrequencyDialog(),
     ).then((autoExportFrequency) async {
@@ -152,7 +152,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       }
 
       setState(() {
-        PreferencesUtils().set<double>(PreferenceKey.autoExportFrequency, autoExportFrequency);
+        PreferencesUtils().set<int>(PreferenceKey.autoExportFrequency, autoExportFrequency);
       });
     });
   }
@@ -182,7 +182,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   @override
   Widget build(BuildContext context) {
     final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault<bool>();
-    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>();
+    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<int>();
     final autoExportEncryption = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
     final autoExportDirectory = AutoExportUtils().autoExportDirectory.display;
 

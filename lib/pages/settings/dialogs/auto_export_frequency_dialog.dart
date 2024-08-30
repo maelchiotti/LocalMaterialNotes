@@ -14,10 +14,10 @@ class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
   late int _frequencyIndex;
 
   /// Allowed frequency values.
-  final _frequencyValues = [1.0, 3.0, 7.0, 14.0, 30.0];
+  final _frequencyValues = [1, 3, 7, 14, 30];
 
   /// Current frequency value.
-  double get _frequencyValue {
+  int get _frequencyValue {
     return _frequencyValues[_frequencyIndex];
   }
 
@@ -25,7 +25,7 @@ class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
   void initState() {
     super.initState();
 
-    final frequencyPreference = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>();
+    final frequencyPreference = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<int>();
     final frequencyIndex = _frequencyValues.indexOf(frequencyPreference);
 
     if (frequencyIndex == -1) {
