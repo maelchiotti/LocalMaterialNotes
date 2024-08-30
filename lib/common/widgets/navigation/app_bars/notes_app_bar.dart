@@ -46,7 +46,7 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
   void _toggleLayout() {
     final newLayout = layoutNotifier.value == Layout.list ? Layout.grid : Layout.list;
 
-    PreferencesUtils().set<String>(PreferenceKey.layout.name, newLayout.name);
+    PreferencesUtils().set<String>(PreferenceKey.layout, newLayout.name);
 
     layoutNotifier.value = newLayout;
   }
@@ -57,7 +57,7 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
     if (sortMethod == SortMethod.ascending) {
       final oldAscendingPreference = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
-      PreferencesUtils().set<bool>(PreferenceKey.sortAscending.name, !oldAscendingPreference);
+      PreferencesUtils().set<bool>(PreferenceKey.sortAscending, !oldAscendingPreference);
 
       setState(() {
         sortAscending = !oldAscendingPreference;
@@ -68,8 +68,8 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
     else if (sortMethod != null) {
       final forceAscending = sortMethod == SortMethod.title;
 
-      PreferencesUtils().set<String>(PreferenceKey.sortMethod.name, sortMethod.name);
-      PreferencesUtils().set<bool>(PreferenceKey.sortAscending.name, forceAscending);
+      PreferencesUtils().set<String>(PreferenceKey.sortMethod, sortMethod.name);
+      PreferencesUtils().set<bool>(PreferenceKey.sortAscending, forceAscending);
 
       setState(() {
         this.sortMethod = sortMethod;
@@ -79,7 +79,7 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
 
     // The checkbox of the 'Ascending' menu item was toggled
     else if (ascending != null) {
-      PreferencesUtils().set<bool>(PreferenceKey.sortAscending.name, ascending);
+      PreferencesUtils().set<bool>(PreferenceKey.sortAscending, ascending);
 
       setState(() {
         sortAscending = ascending;

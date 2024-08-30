@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/string_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/widgets/encryption/encrypt_password_form.dart';
+import 'package:localmaterialnotes/pages/settings/widgets/encrypt_password_form.dart';
 
 class ManualExportDialog extends StatefulWidget {
   const ManualExportDialog({
@@ -38,8 +38,9 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
     });
   }
 
-  void _pop({bool cancel = false}) {
-    if (cancel) {
+  /// Pops the dialog with whether to [_encrypt] and the entered [_password], or nothing if it was [canceled].
+  void _pop({bool canceled = false}) {
+    if (canceled) {
       Navigator.pop(context);
 
       return;
@@ -53,7 +54,7 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
     return AlertDialog.adaptive(
       title: Text(localizations.settings_export_json),
       content: SingleChildScrollView(
-        child: EncryptionPasswordForm(
+        child: EncryptPasswordForm(
           secondaryDescription: localizations.dialog_export_encryption_secondary_description_manual,
           onChanged: _onChanged,
           onEditingComplete: _pop,
@@ -61,7 +62,7 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
       ),
       actions: [
         TextButton(
-          onPressed: () => _pop(cancel: true),
+          onPressed: () => _pop(canceled: true),
           child: Text(localizations.button_cancel),
         ),
         TextButton(

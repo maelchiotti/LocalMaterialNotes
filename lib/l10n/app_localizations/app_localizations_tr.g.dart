@@ -218,6 +218,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_backup_import => 'Import';
 
   @override
+  String get settings_import => 'İçe aktar';
+
+  @override
+  String get settings_import_description => 'JSON dosyasından içe aktar';
+
+  @override
+  String get settings_import_success => 'İçe aktarma başarılı.';
+
+  @override
   String get settings_auto_export => 'Auto export as JSON';
 
   @override
@@ -225,7 +234,10 @@ class AppLocalizationsTr extends AppLocalizations {
       'Automatically export the notes to a JSON file (bin included) that can be imported back';
 
   @override
-  String settings_auto_export_value(String encrypt, String frequency) {
+  String get settings_auto_export_frequency => 'Frequency';
+
+  @override
+  String settings_auto_export_frequency_description(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
@@ -236,58 +248,23 @@ class AppLocalizationsTr extends AppLocalizations {
         'other': '$frequency days',
       },
     );
-    String _temp1 = intl.Intl.selectLogic(
-      encrypt,
-      {
-        'true': 'encrypted',
-        'false': 'not encrypted',
-        'other': '',
-      },
-    );
-    return 'Every $_temp0, $_temp1';
+    return 'Automatically export the notes every $_temp0';
   }
 
   @override
-  String get settings_auto_export_disabled => 'Disabled';
+  String get settings_auto_export_encryption => 'Encryption';
 
   @override
-  String get settings_auto_export_dialog_description_disabled => 'Auto export will be disabled.';
+  String get settings_auto_export_encryption_description =>
+      'Encrypt the title and the content of the notes with a password';
 
   @override
-  String settings_auto_export_dialog_description_enabled(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
-      },
-    );
-    return 'Auto export will be performed every $_temp0. Set the frequency to 0 to disable it.';
+  String get settings_auto_export_directory => 'Directory';
+
+  @override
+  String settings_auto_export_directory_description(Object autoExportDirectory) {
+    return 'Save the automatic exports in $autoExportDirectory';
   }
-
-  @override
-  String settings_auto_export_dialog_slider_label(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
-      },
-    );
-    return 'Every $_temp0';
-  }
-
-  @override
-  String get settings_auto_export_directory => 'Auto export directory';
-
-  @override
-  String get settings_auto_export_directory_description => 'Directory where the automatic exports will be saved';
 
   @override
   String get settings_export_success => 'Dışa aktarma başarılı';
@@ -304,15 +281,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_export_markdown_description => 'Immediately export the notes to a Markdown file (bin included)';
-
-  @override
-  String get settings_import => 'İçe aktar';
-
-  @override
-  String get settings_import_description => 'JSON dosyasından içe aktar';
-
-  @override
-  String get settings_import_success => 'İçe aktarma başarılı.';
 
   @override
   String get settings_about => 'Hakkında';
@@ -493,6 +461,21 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get dialog_empty_bin_body =>
       'Çöp kutusunu gerçekten kalıcı olarak boşaltmak istiyor musunuz? İçerdiği notları kurtaramazsınız';
+
+  @override
+  String dialog_auto_export_frequency_slider_label(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
+        'other': '$frequency days',
+      },
+    );
+    return 'Every $_temp0';
+  }
 
   @override
   String get dialog_export_encryption_switch => 'Encrypt the JSON export';

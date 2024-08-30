@@ -169,7 +169,7 @@ class ThemeUtils {
       case ThemeMode.dark:
         value = 2;
     }
-    PreferencesUtils().set<int>(PreferenceKey.theme.name, value);
+    PreferencesUtils().set<int>(PreferenceKey.theme, value);
 
     themeModeNotifier.value = themeMode;
   }

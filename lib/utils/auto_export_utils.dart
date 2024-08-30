@@ -5,7 +5,7 @@ import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_storage/shared_storage.dart' as saf;
 
-/// Utilities for the auto export functionality.
+/// Utilities for the automatic export functionality.
 ///
 /// This class is a singleton.
 class AutoExportUtils {
@@ -17,7 +17,7 @@ class AutoExportUtils {
 
   AutoExportUtils._internal();
 
-  /// Directory where auto exports are saved.
+  /// Directory where automatic exports are saved.
   late Uri autoExportDirectory;
 
   /// Ensures the utility is initialized.
@@ -26,7 +26,8 @@ class AutoExportUtils {
     await performAutoExportIfNeeded();
   }
 
-  /// Sets the directory where auto exports are located depending on the user preference and the available permissions.
+  /// Sets the directory where automatic exports are located depending on the user preference and the available
+  /// permissions.
   Future<void> setAutoExportDirectory() async {
     final autoExportDirectoryPreference = PreferenceKey.autoExportDirectory.getPreferenceOrDefault<String>();
 
@@ -58,12 +59,40 @@ class AutoExportUtils {
     autoExportDirectory = persistedAutoExportDirectory;
   }
 
-  /// Sets the auto export directory to its default value (the application documents).
+  /// Sets the automatic export directory to its default value (the application documents).
   Future<void> setAutoExportDirectoryToDefault() async {
     autoExportDirectory = (await getApplicationDocumentsDirectory()).uri;
   }
 
-  /// Performs an auto export of the database if it is needed.
+  /// Checks if an automatic export should be performed.
+  ///
+  /// An automatic export should be performed if it is enabled and either if no automatic export has been performed yet,
+  /// or the time difference between now and the last automatic export is greater than the automatic export frequency
+  /// chosen by the user
+  bool _shouldPerformAutoExport() {
+    final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault<bool>();
+    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>();
+
+    if (!enableAutoExport) {
+      return false;
+    }
+
+    final lastAutoExportDate = DateTime.tryParse(PreferenceKey.lastAutoExportDate.getPreferenceOrDefault());
+
+    // If the last automatic export date is null, perform the auto first automatic export now
+    if (lastAutoExportDate == null) {
+      return true;
+    }
+
+    final durationSinceLastAutoExport = DateTime.now().difference(lastAutoExportDate);
+    final autoExportFrequencyDuration = Duration(days: autoExportFrequency.toInt());
+
+    // If no automatic export has been done for longer than the defined automatic export frequency,
+    // then perform an automatic export now
+    return durationSinceLastAutoExport > autoExportFrequencyDuration;
+  }
+
+  /// Performs an automatic export of the database if it is needed.
   Future<void> performAutoExportIfNeeded() async {
     if (!_shouldPerformAutoExport()) {
       return;
@@ -75,36 +104,8 @@ class AutoExportUtils {
     DatabaseUtils().autoExportAsJson(encrypt, password);
 
     PreferencesUtils().set<String>(
-      PreferenceKey.lastAutoExportDate.name,
+      PreferenceKey.lastAutoExportDate,
       DateTime.now().toIso8601String(),
     );
-  }
-
-  /// Checks if an auto export should be performed.
-  ///
-  /// An auto export should be performed if it is enabled and either if no auto export has been performed yet,
-  /// or the time difference between now and the last auto export is greater than the auto export frequency
-  /// chosen by the user
-  bool _shouldPerformAutoExport() {
-    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>();
-
-    // Auto export is disabled
-    if (autoExportFrequency == 0) {
-      return false;
-    }
-
-    final lastAutoExportDate = DateTime.tryParse(PreferenceKey.lastAutoExportDate.getPreferenceOrDefault());
-
-    // If the last auto export date is null, perform the auto first auto export now
-    if (lastAutoExportDate == null) {
-      return true;
-    }
-
-    final durationSinceLastAutoExport = DateTime.now().difference(lastAutoExportDate);
-    final autoExportFrequencyDuration = Duration(days: autoExportFrequency.toInt());
-
-    // If no auto export has been done for longer than the defined auto export frequency,
-    // then perform an auto export now
-    return durationSinceLastAutoExport > autoExportFrequencyDuration;
   }
 }

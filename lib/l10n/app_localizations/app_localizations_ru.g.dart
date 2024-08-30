@@ -215,6 +215,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_backup_import => 'Импорт';
 
   @override
+  String get settings_import => 'Импорт заметок';
+
+  @override
+  String get settings_import_description => 'Импортировать заметки из JSON–файла';
+
+  @override
+  String get settings_import_success => 'Заметки были успешно импортированы.';
+
+  @override
   String get settings_auto_export => 'Автоматический экспорт в формате JSON';
 
   @override
@@ -222,69 +231,37 @@ class AppLocalizationsRu extends AppLocalizations {
       'Автоматически экспортировать заметки в формате JSON (включая заметки из корзины)';
 
   @override
-  String settings_auto_export_value(String encrypt, String frequency) {
+  String get settings_auto_export_frequency => 'Frequency';
+
+  @override
+  String settings_auto_export_frequency_description(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
-        '1': 'Каждый день',
-        '7': 'Каждую неделю',
-        '14': 'Каждые 2 недели',
-        '30': 'Каждый месяц',
-        'other': 'Каждые $frequency дня',
+        '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
+        'other': '$frequency days',
       },
     );
-    String _temp1 = intl.Intl.selectLogic(
-      encrypt,
-      {
-        'true': 'зашифровано',
-        'false': 'не зашифровано',
-        'other': '',
-      },
-    );
-    return '$_temp0, $_temp1';
+    return 'Automatically export the notes every $_temp0';
   }
 
   @override
-  String get settings_auto_export_disabled => 'Отключено';
+  String get settings_auto_export_encryption => 'Encryption';
 
   @override
-  String get settings_auto_export_dialog_description_disabled => 'Автоматический экспорт будет отключен.';
+  String get settings_auto_export_encryption_description =>
+      'Encrypt the title and the content of the notes with a password';
 
   @override
-  String settings_auto_export_dialog_description_enabled(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'каждый день',
-        '7': 'каждую неделю',
-        '14': 'каждые 2 недели',
-        '30': 'каждый месяц',
-        'other': 'каждые $frequency дня',
-      },
-    );
-    return 'Автоматический экспорт будет производиться $_temp0. Установите значение на 0, чтобы отключить автоматический экспорт.';
+  String get settings_auto_export_directory => 'Directory';
+
+  @override
+  String settings_auto_export_directory_description(Object autoExportDirectory) {
+    return 'Save the automatic exports in $autoExportDirectory';
   }
-
-  @override
-  String settings_auto_export_dialog_slider_label(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'Каждый день',
-        '7': 'Каждую неделю',
-        '14': 'Каждые 2 недели',
-        '30': 'Каждый месяц',
-        'other': 'Каждые $frequency дня',
-      },
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get settings_auto_export_directory => 'Auto export directory';
-
-  @override
-  String get settings_auto_export_directory_description => 'Directory where the automatic exports will be saved';
 
   @override
   String get settings_export_success => 'Заметки были успешно экспортированы.';
@@ -302,15 +279,6 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get settings_export_markdown_description =>
       'Моментально экспортировать заметки в формате Markdown (включая заметки из корзины)';
-
-  @override
-  String get settings_import => 'Импорт заметок';
-
-  @override
-  String get settings_import_description => 'Импортировать заметки из JSON–файла';
-
-  @override
-  String get settings_import_success => 'Заметки были успешно импортированы.';
 
   @override
   String get settings_about => 'О приложении';
@@ -493,6 +461,21 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get dialog_empty_bin_body =>
       'Вы действительно хотите отчистить корзину? Все заметки будут безвозвратно удалены.';
+
+  @override
+  String dialog_auto_export_frequency_slider_label(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
+        'other': '$frequency days',
+      },
+    );
+    return 'Every $_temp0';
+  }
 
   @override
   String get dialog_export_encryption_switch => 'Зашифровать экспорт в формате JSON';

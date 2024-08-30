@@ -61,7 +61,7 @@ class _PasswordFieldState extends State<PasswordField> {
     return null;
   }
 
-  /// Triggers the [widget.onChanged] callback if the form is valid.
+  /// Triggers the [widget.onChanged] callback with the entered password if the form is valid.
   void _onChanged() {
     if (!_formKey.currentState!.validate()) {
       widget.onChanged(null);

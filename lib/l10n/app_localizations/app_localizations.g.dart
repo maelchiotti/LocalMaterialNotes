@@ -499,10 +499,28 @@ abstract class AppLocalizations {
   /// **'Import'**
   String get settings_backup_import;
 
+  /// No description provided for @settings_import.
+  ///
+  /// In en, this message translates to:
+  /// **'Import'**
+  String get settings_import;
+
+  /// No description provided for @settings_import_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Import notes from a JSON file'**
+  String get settings_import_description;
+
+  /// No description provided for @settings_import_success.
+  ///
+  /// In en, this message translates to:
+  /// **'The notes were successfully imported.'**
+  String get settings_import_success;
+
   /// No description provided for @settings_auto_export.
   ///
   /// In en, this message translates to:
-  /// **'Auto export as JSON'**
+  /// **'Automatic export'**
   String get settings_auto_export;
 
   /// No description provided for @settings_auto_export_description.
@@ -511,47 +529,41 @@ abstract class AppLocalizations {
   /// **'Automatically export the notes to a JSON file (bin included) that can be imported back'**
   String get settings_auto_export_description;
 
-  /// No description provided for @settings_auto_export_value.
+  /// No description provided for @settings_auto_export_frequency.
   ///
   /// In en, this message translates to:
-  /// **'Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}, {encrypt, select, true{encrypted} false{not encrypted} other{}}'**
-  String settings_auto_export_value(String encrypt, String frequency);
+  /// **'Frequency'**
+  String get settings_auto_export_frequency;
 
-  /// No description provided for @settings_auto_export_disabled.
+  /// No description provided for @settings_auto_export_frequency_description.
   ///
   /// In en, this message translates to:
-  /// **'Disabled'**
-  String get settings_auto_export_disabled;
+  /// **'Automatically export the notes every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}'**
+  String settings_auto_export_frequency_description(String frequency);
 
-  /// No description provided for @settings_auto_export_dialog_description_disabled.
+  /// No description provided for @settings_auto_export_encryption.
   ///
   /// In en, this message translates to:
-  /// **'Auto export will be disabled.'**
-  String get settings_auto_export_dialog_description_disabled;
+  /// **'Encryption'**
+  String get settings_auto_export_encryption;
 
-  /// No description provided for @settings_auto_export_dialog_description_enabled.
+  /// No description provided for @settings_auto_export_encryption_description.
   ///
   /// In en, this message translates to:
-  /// **'Auto export will be performed every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}. Set the frequency to 0 to disable it.'**
-  String settings_auto_export_dialog_description_enabled(String frequency);
-
-  /// No description provided for @settings_auto_export_dialog_slider_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}'**
-  String settings_auto_export_dialog_slider_label(String frequency);
+  /// **'Encrypt the title and the content of the notes with a password'**
+  String get settings_auto_export_encryption_description;
 
   /// No description provided for @settings_auto_export_directory.
   ///
   /// In en, this message translates to:
-  /// **'Auto export directory'**
+  /// **'Directory'**
   String get settings_auto_export_directory;
 
   /// No description provided for @settings_auto_export_directory_description.
   ///
   /// In en, this message translates to:
-  /// **'Directory where the automatic exports will be saved'**
-  String get settings_auto_export_directory_description;
+  /// **'Save the automatic exports in {autoExportDirectory}'**
+  String settings_auto_export_directory_description(Object autoExportDirectory);
 
   /// No description provided for @settings_export_success.
   ///
@@ -582,24 +594,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Immediately export the notes to a Markdown file (bin included)'**
   String get settings_export_markdown_description;
-
-  /// No description provided for @settings_import.
-  ///
-  /// In en, this message translates to:
-  /// **'Import'**
-  String get settings_import;
-
-  /// No description provided for @settings_import_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Import notes from a JSON file'**
-  String get settings_import_description;
-
-  /// No description provided for @settings_import_success.
-  ///
-  /// In en, this message translates to:
-  /// **'The notes were successfully imported.'**
-  String get settings_import_success;
 
   /// No description provided for @settings_about.
   ///
@@ -870,6 +864,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Do you really want to permanently empty the bin? You will not be able to restore the notes it contains.'**
   String get dialog_empty_bin_body;
+
+  /// No description provided for @dialog_auto_export_frequency_slider_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}'**
+  String dialog_auto_export_frequency_slider_label(String frequency);
 
   /// No description provided for @dialog_export_encryption_switch.
   ///
