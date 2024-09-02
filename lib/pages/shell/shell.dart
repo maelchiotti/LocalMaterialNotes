@@ -23,12 +23,12 @@ class ShellPage extends StatefulWidget {
 class _ShellPageState extends State<ShellPage> {
   /// Returns the app bar to use depending on the current route.
   PreferredSizeWidget? get _appBar {
+    print(context.route);
     switch (context.route) {
       case RoutingRoute.notes:
       case RoutingRoute.bin:
-        return TopNavigation(
-          key: UniqueKey(),
-          appbar: const NotesAppBar(),
+        return const TopNavigation(
+          appbar: NotesAppBar(),
         );
       case RoutingRoute.notesEditor:
         return const TopNavigation(
@@ -43,9 +43,7 @@ class _ShellPageState extends State<ShellPage> {
           appbar: BasicAppBar.back(),
         );
       default:
-        return const TopNavigation(
-          appbar: BasicAppBar(),
-        );
+        return null;
     }
   }
 

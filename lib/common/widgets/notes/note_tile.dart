@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/actions/delete.dart';
 import 'package:localmaterialnotes/common/actions/pin.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
@@ -178,7 +177,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
       // If the note was opened from the search view, it need to be closed.
       if (widget.searchView) {
-        context.pop();
+        Navigator.pop(context);
       }
     }
   }

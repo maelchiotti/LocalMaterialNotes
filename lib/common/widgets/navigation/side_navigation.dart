@@ -41,7 +41,7 @@ class _SideNavigationState extends State<SideNavigation> {
   void _navigate(int index) {
     // If the new route is the same as the current one, just close the drawer
     if (_index == index) {
-      Navigator.of(context).pop();
+      Navigator.pop(context);
 
       return;
     }
@@ -57,7 +57,7 @@ class _SideNavigationState extends State<SideNavigation> {
         throw Exception('Invalid drawer index while navigating to a new route: $index');
     }
 
-    Navigator.of(context).pop();
+    Navigator.pop(context);
 
     setState(() {
       _index = index;

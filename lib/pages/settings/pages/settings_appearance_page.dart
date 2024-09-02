@@ -41,7 +41,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
               title: Text(locale.nativeDisplayLanguage.capitalized),
               subtitle: Text(LocalizationCompletion.getFormattedPercentage(locale)),
               selected: Localizations.localeOf(context) == locale,
-              onChanged: (locale) => Navigator.of(context).pop(locale),
+              onChanged: (locale) => Navigator.pop(context, locale),
             );
           }).toList(),
         );
@@ -74,21 +74,21 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
               groupValue: ThemeUtils().themeMode,
               title: Text(localizations.settings_theme_system),
               selected: ThemeUtils().themeMode == ThemeMode.system,
-              onChanged: (themeMode) => Navigator.of(context).pop(themeMode),
+              onChanged: (themeMode) => Navigator.pop(context, themeMode),
             ),
             RadioListTile<ThemeMode>(
               value: ThemeMode.light,
               groupValue: ThemeUtils().themeMode,
               title: Text(localizations.settings_theme_light),
               selected: ThemeUtils().themeMode == ThemeMode.light,
-              onChanged: (themeMode) => Navigator.of(context).pop(themeMode),
+              onChanged: (themeMode) => Navigator.pop(context, themeMode),
             ),
             RadioListTile<ThemeMode>(
               value: ThemeMode.dark,
               groupValue: ThemeUtils().themeMode,
               title: Text(localizations.settings_theme_dark),
               selected: ThemeUtils().themeMode == ThemeMode.dark,
-              onChanged: (themeMode) => Navigator.of(context).pop(themeMode),
+              onChanged: (themeMode) => Navigator.pop(context, themeMode),
             ),
           ],
         );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
@@ -23,18 +22,8 @@ import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 ///   - The button to toggle the notes layout.
 ///   - The button to change the notes sorting method.
 ///   - The button to search through the notes.
-class NotesAppBar extends ConsumerStatefulWidget {
+class NotesAppBar extends ConsumerWidget {
   const NotesAppBar({super.key});
-
-  @override
-  ConsumerState<NotesAppBar> createState() => _SearchAppBarState();
-}
-
-class _SearchAppBarState extends ConsumerState<NotesAppBar> {
-  final searchController = SearchController();
-
-  SortMethod sortMethod = SortMethod.fromPreference();
-  bool sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
   Widget get searchButtonPlaceholder {
     return IconButton(
@@ -44,14 +33,14 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
     );
   }
 
-  Widget child(List<Note> notes) {
+  Widget child(BuildContext context, List<Note> notes) {
     if (notes.isEmpty) {
       return searchButtonPlaceholder;
     }
 
     return SearchAnchor(
       viewHintText: localizations.tooltip_search,
-      searchController: searchController,
+      searchController: SearchController(),
       viewBackgroundColor: Theme.of(context).colorScheme.surface,
       builder: (context, controller) {
         return IconButton(
@@ -74,16 +63,12 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
   }
 
   /// Sorts the notes according to the [sortMethod] and whether they should be sorted in [ascending] order.
-  void _sort({SortMethod? sortMethod, bool? ascending}) {
+  void _sort(BuildContext context, WidgetRef ref, {SortMethod? sortMethod, bool? ascending}) {
     // The 'Ascending' menu item was taped
     if (sortMethod == SortMethod.ascending) {
       final oldAscendingPreference = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
       PreferencesUtils().set<bool>(PreferenceKey.sortAscending, !oldAscendingPreference);
-
-      setState(() {
-        sortAscending = !oldAscendingPreference;
-      });
     }
 
     // The 'Date' or 'Title' menu items were taped
@@ -92,20 +77,13 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
 
       PreferencesUtils().set<String>(PreferenceKey.sortMethod, sortMethod.name);
       PreferencesUtils().set<bool>(PreferenceKey.sortAscending, forceAscending);
-
-      setState(() {
-        this.sortMethod = sortMethod;
-        sortAscending = forceAscending;
-      });
     }
 
     // The checkbox of the 'Ascending' menu item was toggled
     else if (ascending != null) {
       PreferencesUtils().set<bool>(PreferenceKey.sortAscending, ascending);
 
-      setState(() {
-        sortAscending = ascending;
-      });
+      Navigator.pop(context);
     }
 
     context.route == RoutingRoute.notes
@@ -127,7 +105,10 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final sortMethod = SortMethod.fromPreference();
+    final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
+
     return AppBar(
       leading: DrawerButton(
         onPressed: () => scaffoldDrawerKey.currentState!.openDrawer(),
@@ -174,22 +155,18 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
                   title: Text(localizations.sort_ascending),
                   trailing: Checkbox(
                     value: sortAscending,
-                    onChanged: (ascending) {
-                      _sort(ascending: ascending);
-
-                      context.pop();
-                    },
+                    onChanged: (ascending) => _sort(context, ref, ascending: ascending),
                   ),
                 ),
               ),
             ];
           },
-          onSelected: (sortMethod) => _sort(sortMethod: sortMethod),
+          onSelected: (sortMethod) => _sort(context, ref, sortMethod: sortMethod),
         ),
         if (context.route == RoutingRoute.notes)
           ref.watch(notesProvider).when(
             data: (notes) {
-              return child(notes);
+              return child(context, notes);
             },
             error: (error, stackTrace) {
               return const EmptyPlaceholder();
@@ -201,7 +178,7 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
         else
           ref.watch(binProvider).when(
             data: (notes) {
-              return child(notes);
+              return child(context, notes);
             },
             error: (error, stackTrace) {
               return const EmptyPlaceholder();
