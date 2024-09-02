@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/routing/router_route.dart';
+import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/common/widgets/dialogs/confirmation_dialog.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 
 /// Deletes the [note].
 ///
@@ -21,6 +22,7 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
   }
 
   if (!await askForConfirmation(
+    context,
     localizations.dialog_delete,
     localizations.dialog_delete_body_single,
     localizations.dialog_delete,
@@ -32,7 +34,7 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
 
   await ref.read(notesProvider.notifier).delete(note);
 
-  if (context.mounted && RouterRoute.isEditor) {
+  if (context.mounted && context.route == RoutingRoute.notesEditor) {
     context.pop();
   }
 
@@ -44,8 +46,9 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
 /// Returns `true` if the [notes] were deleted, `false` otherwise.
 ///
 /// First, asks for a confirmation if needed.
-Future<bool> deleteNotes(WidgetRef ref, List<Note> notes) async {
+Future<bool> deleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   if (!await askForConfirmation(
+    context,
     localizations.dialog_delete,
     localizations.dialog_delete_body(notes.length),
     localizations.dialog_delete,
@@ -70,6 +73,7 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
   }
 
   if (!await askForConfirmation(
+    context,
     localizations.dialog_permanently_delete,
     localizations.dialog_permanently_delete_body_single,
     localizations.dialog_permanently_delete,
@@ -82,7 +86,7 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
 
   await ref.read(binProvider.notifier).permanentlyDelete(note);
 
-  if (context.mounted && RouterRoute.isEditor) {
+  if (context.mounted && context.route == RoutingRoute.notesEditor) {
     context.pop();
   }
 
@@ -94,8 +98,9 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
 /// Returns `true` if the [notes] were permanently deleted, `false` otherwise.
 ///
 /// First, asks for a confirmation if needed.
-Future<bool> permanentlyDeleteNotes(WidgetRef ref, List<Note> notes) async {
+Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   if (!await askForConfirmation(
+    context,
     localizations.dialog_permanently_delete,
     localizations.dialog_permanently_delete_body(notes.length),
     localizations.dialog_permanently_delete,
@@ -113,8 +118,9 @@ Future<bool> permanentlyDeleteNotes(WidgetRef ref, List<Note> notes) async {
 ///
 /// First, asks for a confirmation if needed.
 /// Exits the selection mode.
-Future<bool> emptyBin(WidgetRef ref) async {
+Future<bool> emptyBin(BuildContext context, WidgetRef ref) async {
   if (!await askForConfirmation(
+    context,
     localizations.dialog_empty_bin,
     localizations.dialog_empty_bin_body,
     localizations.dialog_empty_bin,

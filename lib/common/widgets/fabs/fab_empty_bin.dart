@@ -15,7 +15,7 @@ class FabEmptyBin extends ConsumerWidget {
     return deletedNotesCount != null && deletedNotesCount != 0
         ? FloatingActionButton(
             tooltip: localizations.tooltip_fab_empty_bin,
-            onPressed: () => emptyBin(ref),
+            onPressed: () => emptyBin(context, ref),
             child: const Icon(Icons.delete_forever),
           )
         : Container();

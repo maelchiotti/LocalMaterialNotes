@@ -25,7 +25,6 @@ class SettingsAboutPage extends StatelessWidget {
   Future<void> _showAbout(BuildContext context) async {
     showAboutDialog(
       context: context,
-      useRootNavigator: false,
       applicationName: localizations.app_name,
       applicationVersion: InfoUtils().appVersion,
       applicationIcon: Image.asset(

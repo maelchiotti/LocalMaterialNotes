@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_field.dart';
@@ -21,22 +19,23 @@ import 'package:localmaterialnotes/providers/notifiers.dart';
 /// Contains:
 ///   - The text field for the title of the note.
 ///   - The text field for the content of the note.
-class EditorPage extends ConsumerStatefulWidget {
-  EditorPage(EditorParameters editorParameters)
-      : _readOnly = editorParameters?['readonly'] ?? false,
-        _autofocus = editorParameters?['autofocus'] ?? false;
+class NotesEditorPage extends ConsumerStatefulWidget {
+  const NotesEditorPage({
+    required this.readOnly,
+    required this.autofocus,
+  });
 
   /// Whether the text fields should be read only.
-  final bool _readOnly;
+  final bool readOnly;
 
   /// Whether to automatically focus the content text field.
-  final bool _autofocus;
+  final bool autofocus;
 
   @override
-  ConsumerState<EditorPage> createState() => _EditorState();
+  ConsumerState<NotesEditorPage> createState() => _EditorState();
 }
 
-class _EditorState extends ConsumerState<EditorPage> {
+class _EditorState extends ConsumerState<NotesEditorPage> {
   final note = currentNoteNotifier.value;
 
   late final TextEditingController titleController;
@@ -46,8 +45,6 @@ class _EditorState extends ConsumerState<EditorPage> {
   void initState() {
     super.initState();
 
-    BackButtonInterceptor.add(_interceptor);
-
     if (note != null) {
       titleController = TextEditingController(text: note!.title);
       editorController = FleatherController(document: note!.document);
@@ -55,31 +52,6 @@ class _EditorState extends ConsumerState<EditorPage> {
       editorController.addListener(() => _synchronizeContent(note!));
 
       fleatherControllerNotifier.value = editorController;
-    }
-  }
-
-  @override
-  void dispose() {
-    BackButtonInterceptor.remove(_interceptor);
-
-    super.dispose();
-  }
-
-  /// Actions to perform when the back button is intercepted.
-  ///
-  /// If the `Navigator` can't be popped, it means the menu isn't opened and the route should be popped (going back
-  /// to the notes list or the bin). Otherwise, the menu is open, so it should be closed but the route shouldn't
-  /// be popped (staying in the editor).
-  bool _interceptor(bool stopDefaultButtonEvent, RouteInfo info) {
-    if (!Navigator.canPop(navigatorKey.currentContext!)) {
-      currentNoteNotifier.value = null;
-      fleatherControllerNotifier.value = null;
-
-      return false;
-    } else {
-      Navigator.pop(navigatorKey.currentContext!);
-
-      return true;
     }
   }
 
@@ -129,8 +101,8 @@ class _EditorState extends ConsumerState<EditorPage> {
             child: Column(
               children: [
                 TextField(
-                  readOnly: widget._readOnly,
-                  autofocus: widget._autofocus && focusTitleOnNewNote,
+                  readOnly: widget.readOnly,
+                  autofocus: widget.autofocus && focusTitleOnNewNote,
                   textCapitalization: TextCapitalization.sentences,
                   textInputAction: TextInputAction.next,
                   style: Theme.of(context).textTheme.titleLarge,
@@ -147,8 +119,8 @@ class _EditorState extends ConsumerState<EditorPage> {
                     onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,
                     child: EditorField(
                       fleatherController: editorController,
-                      readOnly: widget._readOnly,
-                      autofocus: widget._autofocus && !focusTitleOnNewNote,
+                      readOnly: widget.readOnly,
+                      autofocus: widget.autofocus && !focusTitleOnNewNote,
                     ),
                   ),
                 ),

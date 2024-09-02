@@ -35,7 +35,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
               groupValue: confirmationsPreference,
               title: Text(confirmationsValue.title),
               selected: confirmationsPreference == confirmationsValue,
-              onChanged: (confirmations) => Navigator.of(context).pop(confirmations),
+              onChanged: (confirmations) => Navigator.pop(context, confirmations),
             );
           }).toList(),
         );
@@ -66,14 +66,18 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
       builder: (context) {
         return SimpleDialog(
           clipBehavior: Clip.hardEdge,
-          title: Text(localizations.settings_confirmations),
+          title: Text(
+            swipeDirection == SwipeDirection.right
+                ? localizations.settings_swipe_action_right
+                : localizations.settings_swipe_action_left,
+          ),
           children: SwipeAction.values.map((swipeAction) {
             return RadioListTile<SwipeAction>(
               value: swipeAction,
               groupValue: swipeActionPreference,
               title: Text(swipeAction.title),
               selected: swipeActionPreference == swipeAction,
-              onChanged: (swipeAction) => Navigator.of(context).pop(swipeAction),
+              onChanged: (swipeAction) => Navigator.pop(context, swipeAction),
             );
           }).toList(),
         );

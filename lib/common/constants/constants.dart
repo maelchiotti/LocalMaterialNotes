@@ -4,15 +4,16 @@ import 'package:localmaterialnotes/utils/hardcoded_localizations_utils.dart';
 import 'package:parchment/codecs.dart';
 
 /// Key of the application's root navigator.
-final navigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Root navigator key');
+final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Root navigator key');
+
+/// Key of the application's shell.
+final shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Shell navigator key');
 
 /// Key of the application's drawer.
-final drawerKey = GlobalKey<ScaffoldState>(debugLabel: 'Drawer key');
-
-final key = GlobalKey();
+final scaffoldDrawerKey = GlobalKey<ScaffoldState>(debugLabel: 'Scaffold drawer key');
 
 /// Application's localizations.
-final localizations = AppLocalizations.of(navigatorKey.currentContext!);
+final localizations = AppLocalizations.of(rootNavigatorKey.currentContext!);
 
 /// Application's hardcoded localizations.
 final hardcodedLocalizations = HardcodedLocalizationsUtils();

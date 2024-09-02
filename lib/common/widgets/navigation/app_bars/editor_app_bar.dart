@@ -32,9 +32,6 @@ class EditorAppBar extends ConsumerStatefulWidget {
 class _BackAppBarState extends ConsumerState<EditorAppBar> {
   /// Goes back from the editor.
   void _pop() {
-    currentNoteNotifier.value = null;
-    fleatherControllerNotifier.value = null;
-
     context.pop();
   }
 
@@ -61,7 +58,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       case MenuOption.deletePermanently:
         await permanentlyDeleteNote(context, ref, note);
       case MenuOption.about:
-        showModalBottomSheet(
+        await showModalBottomSheet(
           context: context,
           clipBehavior: Clip.hardEdge,
           showDragHandle: true,

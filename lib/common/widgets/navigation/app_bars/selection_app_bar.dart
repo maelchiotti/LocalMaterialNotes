@@ -7,12 +7,13 @@ import 'package:localmaterialnotes/common/actions/select.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/constants/separators.dart';
-import 'package:localmaterialnotes/common/routing/router_route.dart';
+import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 
 /// Selection mode's app bar.
 ///
@@ -33,25 +34,45 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
   /// Toggles the pin status of the [selectedNotes].
   Future<void> _togglePin(List<Note> selectedNotes) async {
     await togglePinNotes(context, ref, selectedNotes);
-    exitSelectionMode(ref);
+
+    if (!mounted) {
+      return;
+    }
+
+    exitSelectionMode(context, ref);
   }
 
   /// Restores the [selectedNotes].
   Future<void> _restore(List<Note> selectedNotes) async {
-    await restoreNotes(ref, selectedNotes);
-    exitSelectionMode(ref);
+    final restored = await restoreNotes(context, ref, selectedNotes);
+
+    if (!restored || !mounted) {
+      return;
+    }
+
+    exitSelectionMode(context, ref);
   }
 
   /// Deletes the [selectedNotes].
   Future<void> _delete(List<Note> selectedNotes) async {
-    await deleteNotes(ref, selectedNotes);
-    exitSelectionMode(ref);
+    final deleted = await deleteNotes(context, ref, selectedNotes);
+
+    if (!deleted || !mounted) {
+      return;
+    }
+
+    exitSelectionMode(context, ref);
   }
 
   /// Permanently deletes the [selectedNotes].
   Future<void> _permanentlyDelete(List<Note> selectedNotes) async {
-    await permanentlyDeleteNotes(ref, selectedNotes);
-    exitSelectionMode(ref);
+    final permanentlyDeleted = await permanentlyDeleteNotes(context, ref, selectedNotes);
+
+    if (!permanentlyDeleted || !mounted) {
+      return;
+    }
+
+    exitSelectionMode(context, ref);
   }
 
   /// Builds the app bar.
@@ -63,19 +84,19 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
 
     return AppBar(
       leading: BackButton(
-        onPressed: () => exitSelectionMode(ref),
+        onPressed: () => exitSelectionMode(context, ref),
       ),
       title: Text('${selectedNotes.length}'),
       actions: [
         IconButton(
           icon: Icon(allSelected ? Icons.deselect : Icons.select_all),
           tooltip: allSelected ? localizations.tooltip_unselect_all : localizations.tooltip_select_all,
-          onPressed: () => allSelected ? unselectAll(ref) : selectAll(ref),
+          onPressed: () => allSelected ? unselectAll(context, ref) : selectAll(context, ref),
         ),
         Padding(padding: Paddings.custom.appBarActionsEnd),
         Separator.divider1indent16.vertical,
         Padding(padding: Paddings.custom.appBarActionsEnd),
-        if (RouterRoute.isBin) ...[
+        if (context.route == RoutingRoute.bin) ...[
           IconButton(
             icon: const Icon(Icons.restore_from_trash),
             tooltip: localizations.tooltip_restore,
@@ -105,8 +126,8 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return RouterRoute.isBin
-        ? ref.watch(binProvider).when(
+    return context.route == RoutingRoute.notes
+        ? ref.watch(notesProvider).when(
             data: (notes) {
               return _buildAppBar(notes.where((note) => note.selected).toList(), notes.length);
             },
@@ -117,7 +138,7 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
               return const LoadingPlaceholder();
             },
           )
-        : ref.watch(notesProvider).when(
+        : ref.watch(binProvider).when(
             data: (notes) {
               return _buildAppBar(notes.where((note) => note.selected).toList(), notes.length);
             },
