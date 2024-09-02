@@ -62,7 +62,7 @@ Future<bool> writeBytesToFile(
       final filePath = join(parentUri.path, fileName);
       final file = File(filePath);
 
-      print(await file.writeAsBytes(bytes));
+      await file.writeAsBytes(bytes);
     }
   } catch (exception, stackTrace) {
     log(exception.toString(), stackTrace: stackTrace);
