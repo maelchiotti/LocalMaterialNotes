@@ -27,7 +27,7 @@ void readSharedData(WidgetRef ref) {
 ///
 /// If the [data] is text, it's added to a new note that is then opened.
 void _processSharedData(WidgetRef ref, List<SharedMediaFile> data) {
-  if (navigatorKey.currentContext == null ||
+  if (rootNavigatorKey.currentContext == null ||
       data.isEmpty ||
       data.first.type != SharedMediaType.text ||
       data.first.path.isEmpty) {
@@ -39,5 +39,5 @@ void _processSharedData(WidgetRef ref, List<SharedMediaFile> data) {
     delta.insert('$line\n');
   }
 
-  addNote(navigatorKey.currentContext!, ref, content: jsonEncode(delta));
+  addNote(rootNavigatorKey.currentContext!, ref, content: jsonEncode(delta));
 }

@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/routing/router_route.dart';
+import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/common/widgets/dialogs/confirmation_dialog.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 
 /// Deletes the [note].
 ///
@@ -33,7 +34,7 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
 
   await ref.read(notesProvider.notifier).delete(note);
 
-  if (context.mounted && RouterRoute.isEditor) {
+  if (context.mounted && context.route == RoutingRoute.notesEditor) {
     context.pop();
   }
 
@@ -85,7 +86,7 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
 
   await ref.read(binProvider.notifier).permanentlyDelete(note);
 
-  if (context.mounted && RouterRoute.isEditor) {
+  if (context.mounted && context.route == RoutingRoute.notesEditor) {
     context.pop();
   }
 

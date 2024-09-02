@@ -3,17 +3,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
+import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
-import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/common/widgets/notes/note_tile.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/empty_placeholder.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 
 /// Notes list and bin's app bar.
 ///
@@ -32,14 +33,35 @@ class NotesAppBar extends ConsumerStatefulWidget {
 class _SearchAppBarState extends ConsumerState<NotesAppBar> {
   final searchController = SearchController();
 
-  final provider = RouterRoute.currentRoute == RouterRoute.notes ? notesProvider : binProvider;
-
   SortMethod sortMethod = SortMethod.fromPreference();
   bool sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
-  @override
-  void initState() {
-    super.initState();
+  Widget get searchButtonPlaceholder {
+    return IconButton(
+      onPressed: null,
+      icon: const Icon(Icons.search),
+      tooltip: localizations.tooltip_search,
+    );
+  }
+
+  Widget child(List<Note> notes) {
+    if (notes.isEmpty) {
+      return searchButtonPlaceholder;
+    }
+
+    return SearchAnchor(
+      viewHintText: localizations.tooltip_search,
+      searchController: searchController,
+      viewBackgroundColor: Theme.of(context).colorScheme.surface,
+      builder: (context, controller) {
+        return IconButton(
+          onPressed: () => controller.openView(),
+          icon: const Icon(Icons.search),
+          tooltip: localizations.tooltip_search,
+        );
+      },
+      suggestionsBuilder: (_, controller) => _filterNotes(controller.text, notes),
+    );
   }
 
   /// Toggles the notes layout.
@@ -86,7 +108,9 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
       });
     }
 
-    RouterRoute.isBin ? ref.read(binProvider.notifier).sort() : ref.read(notesProvider.notifier).sort();
+    context.route == RoutingRoute.notes
+        ? ref.read(notesProvider.notifier).sort()
+        : ref.read(binProvider.notifier).sort();
   }
 
   /// Filters the [notes] according to the [search].
@@ -104,17 +128,11 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    final searchButtonPlaceholder = IconButton(
-      onPressed: null,
-      icon: const Icon(Icons.search),
-      tooltip: localizations.tooltip_search,
-    );
-
     return AppBar(
       leading: DrawerButton(
-        onPressed: () => drawerKey.currentState!.openDrawer(),
+        onPressed: () => scaffoldDrawerKey.currentState!.openDrawer(),
       ),
-      title: Text(RouterRoute.currentRoute.title),
+      title: Text(RoutingRoute.title(context)),
       actions: [
         ValueListenableBuilder(
           valueListenable: layoutNotifier,
@@ -168,33 +186,30 @@ class _SearchAppBarState extends ConsumerState<NotesAppBar> {
           },
           onSelected: (sortMethod) => _sort(sortMethod: sortMethod),
         ),
-        ref.watch(provider).when(
-          data: (notes) {
-            if (notes.isEmpty) {
+        if (context.route == RoutingRoute.notes)
+          ref.watch(notesProvider).when(
+            data: (notes) {
+              return child(notes);
+            },
+            error: (error, stackTrace) {
+              return const EmptyPlaceholder();
+            },
+            loading: () {
               return searchButtonPlaceholder;
-            }
-
-            return SearchAnchor(
-              viewHintText: localizations.tooltip_search,
-              searchController: searchController,
-              viewBackgroundColor: Theme.of(context).colorScheme.surface,
-              builder: (context, controller) {
-                return IconButton(
-                  onPressed: () => controller.openView(),
-                  icon: const Icon(Icons.search),
-                  tooltip: localizations.tooltip_search,
-                );
-              },
-              suggestionsBuilder: (_, controller) => _filterNotes(controller.text, notes),
-            );
-          },
-          error: (error, stackTrace) {
-            return const EmptyPlaceholder();
-          },
-          loading: () {
-            return searchButtonPlaceholder;
-          },
-        ),
+            },
+          )
+        else
+          ref.watch(binProvider).when(
+            data: (notes) {
+              return child(notes);
+            },
+            error: (error, stackTrace) {
+              return const EmptyPlaceholder();
+            },
+            loading: () {
+              return searchButtonPlaceholder;
+            },
+          ),
         Padding(padding: Paddings.custom.appBarActionsEnd),
       ],
     );

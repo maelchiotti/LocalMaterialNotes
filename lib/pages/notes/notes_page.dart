@@ -12,6 +12,6 @@ class NotesPage extends ConsumerStatefulWidget {
 class _NotesPageState extends ConsumerState<NotesPage> {
   @override
   Widget build(BuildContext context) {
-    return const NotesList.notes();
+    return NotesList();
   }
 }

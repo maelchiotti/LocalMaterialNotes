@@ -19,7 +19,7 @@ enum Paddings {
   const Paddings(this._padding);
 
   /// Size of the system bottom padding.
-  double get _bottomSystemUiPadding => MediaQuery.of(navigatorKey.currentContext!).viewPadding.bottom;
+  double get _bottomSystemUiPadding => MediaQuery.of(rootNavigatorKey.currentContext!).viewPadding.bottom;
 
   /// Padding in all directions.
   EdgeInsetsDirectional get all => EdgeInsetsDirectional.all(_padding);

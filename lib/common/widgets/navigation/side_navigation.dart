@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/constants/sizes.dart';
-import 'package:localmaterialnotes/common/routing/router_route.dart';
+import 'package:localmaterialnotes/routing/routes/bin/bin_route.dart';
+import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
+import 'package:localmaterialnotes/routing/routes/settings/settings_route.dart';
+import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
 
 /// Side navigation with the drawer.
@@ -16,30 +18,33 @@ class SideNavigation extends StatefulWidget {
 
 class _SideNavigationState extends State<SideNavigation> {
   /// Index of the currently selected drawer index.
-  int _index = RouterRoute.currentDrawerIndex;
+  int _index = 0;
 
-  /// Navigates to the route corresponding to the [newIndex].
-  void _navigate(int newIndex) {
+  /// Navigates to the route corresponding to the [index].
+  void _navigate(int index) {
     // If the new route is the same as the current one, just close the drawer
-    if (_index == newIndex) {
+    if (_index == index) {
       Navigator.of(context).pop();
 
       return;
     }
 
-    setState(() {
-      _index = newIndex;
-    });
-
-    final newRoute = RouterRoute.getRouteFromIndex(_index);
-    switch (newRoute) {
-      case RouterRoute.settings:
-        context.push(newRoute.path);
+    switch (index) {
+      case 0:
+        NotesRoute().go(context);
+      case 1:
+        BinRoute().go(context);
+      case 2:
+        SettingsRoute().push(context);
       default:
-        context.go(newRoute.path);
+        throw Exception('Invalid drawer index while navigating to a new route: $index');
     }
 
     Navigator.of(context).pop();
+
+    setState(() {
+      _index = index;
+    });
   }
 
   @override

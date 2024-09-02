@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/actions/select.dart';
-import 'package:localmaterialnotes/common/routing/router.dart';
-import 'package:localmaterialnotes/common/routing/router_route.dart';
+import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
+import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 /// Adds a note.
 ///
@@ -14,7 +14,7 @@ import 'package:localmaterialnotes/providers/notifiers.dart';
 ///
 /// Exits the selection mode and navigates the app to the editor page.
 Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) async {
-  exitSelectionMode(ref);
+  exitSelectionMode(context, ref);
 
   final note = content == null ? Note.empty() : Note.content(content);
 
@@ -29,11 +29,7 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) asy
     return;
   }
 
-  final editorRoute = RouterRoute.editor.fullPath!;
-  final editorParameters = EditorParameters.from({'readonly': false, 'autofocus': true});
-
   // If the editor is already opened with another note, replace the route with the new editor
-  RouterRoute.isEditor
-      ? context.pushReplacement(editorRoute, extra: editorParameters)
-      : context.push(editorRoute, extra: editorParameters);
+  const editorRoute = NotesEditorRoute(readOnly: false, autoFocus: true);
+  context.location == editorRoute.location ? editorRoute.pushReplacement(context) : editorRoute.push(context);
 }

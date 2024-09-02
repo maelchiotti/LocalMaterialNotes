@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/locale_extension.dart';
-import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/routing/router.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 import 'package:localmaterialnotes/utils/quick_actions_utils.dart';
 import 'package:localmaterialnotes/utils/share_utils.dart';
@@ -36,7 +36,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
   @override
   void afterFirstLayout(BuildContext context) {
     // When the app is built, initialize the quick actions
-    QuickActionsUtils().ensureInitialized(navigatorKey.currentContext!, ref);
+    QuickActionsUtils().ensureInitialized(rootNavigatorKey.currentContext!, ref);
   }
 
   @override
@@ -61,6 +61,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
                   builder: (context, themeMode, child) {
                     return MaterialApp.router(
                       title: 'Material Notes',
+                      routerConfig: router,
                       builder: (context, child) {
                         if (child == null) {
                           throw Exception('MaterialApp child is null');
@@ -77,7 +78,6 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
                       localizationsDelegates: AppLocalizations.localizationsDelegates,
                       supportedLocales: AppLocalizations.supportedLocales,
                       locale: LocaleUtils().appLocale,
-                      routerConfig: router,
                       debugShowCheckedModeBanner: false,
                     );
                   },

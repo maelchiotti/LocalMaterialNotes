@@ -1,33 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
-import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/routing/router_route.dart';
-import 'package:localmaterialnotes/pages/settings/enums/settings_page.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
+import 'package:localmaterialnotes/routing/routes/settings/settings_about_route.dart';
+import 'package:localmaterialnotes/routing/routes/settings/settings_appearance_route.dart';
+import 'package:localmaterialnotes/routing/routes/settings/settings_backup_route.dart';
+import 'package:localmaterialnotes/routing/routes/settings/settings_behavior_route.dart';
+import 'package:localmaterialnotes/routing/routes/settings/settings_editor_route.dart';
+import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 /// Page for the settings of the application.
-class SettingsMainPage extends StatefulWidget {
+class SettingsMainPage extends StatelessWidget {
   const SettingsMainPage();
 
-  @override
-  State<SettingsMainPage> createState() => _SettingsPageState();
-}
+  void _openAppearancePage(BuildContext context) {
+    SettingsAppearanceRoute().push(context);
+  }
 
-class _SettingsPageState extends State<SettingsMainPage> {
-  void _openSettingsPage(SettingsPage page) {
-    switch (page) {
-      case SettingsPage.appearance:
-        context.push(RouterRoute.settingsAppearance.fullPath!);
-      case SettingsPage.behavior:
-        context.push(RouterRoute.settingsBehavior.fullPath!);
-      case SettingsPage.editor:
-        context.push(RouterRoute.settingsEditor.fullPath!);
-      case SettingsPage.backup:
-        context.push(RouterRoute.settingsBackup.fullPath!);
-      case SettingsPage.about:
-        context.push(RouterRoute.settingsAbout.fullPath!);
-    }
+  void _openBehaviorPage(BuildContext context) {
+    SettingsBehaviorRoute().push(context);
+  }
+
+  void _openEditorPage(BuildContext context) {
+    SettingsEditorRoute().push(context);
+  }
+
+  void _openBackupPage(BuildContext context) {
+    SettingsBackupRoute().push(context);
+  }
+
+  void _openAboutPage(BuildContext context) {
+    SettingsAboutRoute().push(context);
   }
 
   @override
@@ -40,31 +43,31 @@ class _SettingsPageState extends State<SettingsMainPage> {
               leading: const Icon(Icons.palette),
               title: Text(localizations.settings_appearance),
               description: Text(localizations.settings_appearance_description),
-              onPressed: (_) => _openSettingsPage(SettingsPage.appearance),
+              onPressed: _openAppearancePage,
             ),
             SettingsTile.navigation(
               leading: const Icon(Icons.swipe),
               title: Text(localizations.settings_behavior),
               description: Text(localizations.settings_behavior_description),
-              onPressed: (_) => _openSettingsPage(SettingsPage.behavior),
+              onPressed: _openBehaviorPage,
             ),
             SettingsTile.navigation(
               leading: const Icon(Icons.format_color_text),
               title: Text(localizations.settings_editor),
               description: Text(localizations.settings_editor_description),
-              onPressed: (_) => _openSettingsPage(SettingsPage.editor),
+              onPressed: _openEditorPage,
             ),
             SettingsTile.navigation(
               leading: const Icon(Icons.settings_backup_restore),
               title: Text(localizations.settings_backup),
               description: Text(localizations.settings_backup_description),
-              onPressed: (_) => _openSettingsPage(SettingsPage.backup),
+              onPressed: _openBackupPage,
             ),
             SettingsTile.navigation(
               leading: const Icon(Icons.info),
               title: Text(localizations.settings_about),
               description: Text(localizations.settings_about_description),
-              onPressed: (_) => _openSettingsPage(SettingsPage.about),
+              onPressed: _openAboutPage,
             ),
           ],
         ),

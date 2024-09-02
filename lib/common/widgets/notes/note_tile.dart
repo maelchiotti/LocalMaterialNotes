@@ -10,14 +10,14 @@ import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/routing/router.dart';
-import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/common/widgets/dismissible/dismissible_delete.dart';
 import 'package:localmaterialnotes/common/widgets/dismissible/dismissible_pin.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
+import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 /// List tile that displays the main info about a note.
 ///
@@ -174,10 +174,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     } else {
       currentNoteNotifier.value = widget.note;
 
-      context.push(
-        RouterRoute.editor.fullPath!,
-        extra: EditorParameters.from({'readonly': widget.note.deleted, 'autofocus': false}),
-      );
+      NotesEditorRoute(readOnly: widget.note.deleted, autoFocus: false).push(context);
 
       // If the note was opened from the search view, it need to be closed.
       if (widget.searchView) {
