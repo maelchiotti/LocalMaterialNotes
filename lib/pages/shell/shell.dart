@@ -23,7 +23,6 @@ class ShellPage extends StatefulWidget {
 class _ShellPageState extends State<ShellPage> {
   /// Returns the app bar to use depending on the current route.
   PreferredSizeWidget? get _appBar {
-    print(context.route);
     switch (context.route) {
       case RoutingRoute.notes:
       case RoutingRoute.bin:
