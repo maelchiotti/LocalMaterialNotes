@@ -30,7 +30,6 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   Future<void> _selectLanguage(BuildContext context) async {
     await showAdaptiveDialog<Locale>(
       context: context,
-      useRootNavigator: false,
       builder: (context) {
         return SimpleDialog(
           clipBehavior: Clip.hardEdge,
@@ -65,7 +64,6 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   Future<void> _selectTheme(BuildContext context) async {
     await showAdaptiveDialog<ThemeMode>(
       context: context,
-      useRootNavigator: false,
       builder: (context) {
         return SimpleDialog(
           clipBehavior: Clip.hardEdge,

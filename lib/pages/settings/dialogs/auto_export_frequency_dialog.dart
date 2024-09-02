@@ -56,7 +56,7 @@ class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog.adaptive(
-      title: Text(localizations.settings_auto_export),
+      title: Text(localizations.settings_auto_export_frequency),
       content: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

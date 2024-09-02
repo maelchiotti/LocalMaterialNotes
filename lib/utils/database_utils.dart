@@ -62,7 +62,6 @@ class DatabaseUtils {
       if (encrypted && context.mounted) {
         final password = await showAdaptiveDialog<String>(
           context: context,
-          useRootNavigator: false,
           builder: (context) => AutoExportPasswordDialog(
             title: localizations.settings_import,
             description: localizations.dialog_import_encryption_password_description,

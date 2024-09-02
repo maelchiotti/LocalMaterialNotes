@@ -25,7 +25,6 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
 
     await showAdaptiveDialog<Confirmations>(
       context: context,
-      useRootNavigator: false,
       builder: (context) {
         return SimpleDialog(
           clipBehavior: Clip.hardEdge,
@@ -64,11 +63,14 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
 
     await showAdaptiveDialog<SwipeAction>(
       context: context,
-      useRootNavigator: false,
       builder: (context) {
         return SimpleDialog(
           clipBehavior: Clip.hardEdge,
-          title: Text(localizations.settings_confirmations),
+          title: Text(
+            swipeDirection == SwipeDirection.right
+                ? localizations.settings_swipe_action_right
+                : localizations.settings_swipe_action_left,
+          ),
           children: SwipeAction.values.map((swipeAction) {
             return RadioListTile<SwipeAction>(
               value: swipeAction,
