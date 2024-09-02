@@ -12,6 +12,7 @@ import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.d
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:restart_app/restart_app.dart';
 
 /// Settings related to the appearance of the application.
@@ -129,6 +130,13 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   }
 
   /// Toggles the setting to show background of the notes tiles.
+  void _toggleShowTitlesOnlyDisableInSearchView(bool toggled) {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.showTitlesOnlyDisableInSearchView, toggled);
+    });
+  }
+
+  /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTilesBackground(bool toggled) {
     setState(() {
       PreferencesUtils().set<bool>(PreferenceKey.showTilesBackground, toggled);
@@ -152,6 +160,8 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     final showUseBlackTheming = Theme.of(context).colorScheme.brightness == Brightness.dark;
 
     final showTitlesOnly = PreferenceKey.showTitlesOnly.getPreferenceOrDefault<bool>();
+    final showTitlesOnlyDisableInSearchView =
+        PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault<bool>();
     final showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();
     final showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
 
@@ -199,6 +209,14 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
               description: Text(localizations.settings_show_titles_only_description),
               initialValue: showTitlesOnly,
               onToggle: _toggleShowTitlesOnly,
+            ),
+            SettingsTile.switchTile(
+              enabled: showTitlesOnly,
+              leading: const Icon(Symbols.feature_search),
+              title: Text(localizations.settings_show_titles_only_disable_in_search_view),
+              description: Text(localizations.settings_show_titles_only_disable_in_search_view_description),
+              initialValue: showTitlesOnlyDisableInSearchView,
+              onToggle: _toggleShowTitlesOnlyDisableInSearchView,
             ),
             SettingsTile.switchTile(
               leading: const Icon(Icons.safety_divider),

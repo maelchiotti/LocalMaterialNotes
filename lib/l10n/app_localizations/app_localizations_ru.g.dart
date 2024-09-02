@@ -111,6 +111,13 @@ class AppLocalizationsRu extends AppLocalizations {
       'Only show the titles of the notes so more of them can be displayed';
 
   @override
+  String get settings_show_titles_only_disable_in_search_view => 'Disable titles only in search view';
+
+  @override
+  String get settings_show_titles_only_disable_in_search_view_description =>
+      'Disable the option to only show the titles when in the search view';
+
+  @override
   String get settings_show_tiles_background => 'Фон';
 
   @override

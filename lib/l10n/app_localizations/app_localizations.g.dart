@@ -301,6 +301,18 @@ abstract class AppLocalizations {
   /// **'Only show the titles of the notes so more of them can be displayed'**
   String get settings_show_titles_only_description;
 
+  /// No description provided for @settings_show_titles_only_disable_in_search_view.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable titles only in search view'**
+  String get settings_show_titles_only_disable_in_search_view;
+
+  /// No description provided for @settings_show_titles_only_disable_in_search_view_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable the option to only show the titles when in the search view'**
+  String get settings_show_titles_only_disable_in_search_view_description;
+
   /// No description provided for @settings_show_tiles_background.
   ///
   /// In en, this message translates to:
