@@ -33,6 +33,10 @@ class _ShellPageState extends State<ShellPage> {
         return const TopNavigation(
           appbar: EditorAppBar(),
         );
+      case RoutingRoute.settings:
+        return const TopNavigation(
+          appbar: BasicAppBar(),
+        );
       case RoutingRoute.settingsAppearance:
       case RoutingRoute.settingsBehavior:
       case RoutingRoute.settingsEditor:
