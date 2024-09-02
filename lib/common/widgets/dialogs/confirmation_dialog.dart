@@ -16,6 +16,7 @@ Future<bool> _showConfirmationDialog(
         context: navigatorKey.currentContext!,
         builder: (context) {
           return AlertDialog.adaptive(
+            key: key,
             title: Text(title),
             content: SingleChildScrollView(
               child: Column(

@@ -64,6 +64,10 @@ class AutoExportUtils {
     autoExportDirectory = (await getApplicationDocumentsDirectory()).uri;
   }
 
+  Future<bool> get isAutoExportDirectoryDefault async {
+    return autoExportDirectory == (await getApplicationDocumentsDirectory()).uri;
+  }
+
   /// Checks if an automatic export should be performed.
   ///
   /// An automatic export should be performed if it is enabled and either if no automatic export has been performed yet,
@@ -71,13 +75,14 @@ class AutoExportUtils {
   /// chosen by the user
   bool _shouldPerformAutoExport() {
     final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault<bool>();
-    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>();
+    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<int>();
 
     if (!enableAutoExport) {
       return false;
     }
 
-    final lastAutoExportDate = DateTime.tryParse(PreferenceKey.lastAutoExportDate.getPreferenceOrDefault());
+    final lastAutoExportDatePreference = PreferenceKey.lastAutoExportDate.getPreferenceOrDefault<String>();
+    final lastAutoExportDate = DateTime.tryParse(lastAutoExportDatePreference);
 
     // If the last automatic export date is null, perform the auto first automatic export now
     if (lastAutoExportDate == null) {
@@ -85,7 +90,7 @@ class AutoExportUtils {
     }
 
     final durationSinceLastAutoExport = DateTime.now().difference(lastAutoExportDate);
-    final autoExportFrequencyDuration = Duration(days: autoExportFrequency.toInt());
+    final autoExportFrequencyDuration = Duration(days: autoExportFrequency);
 
     // If no automatic export has been done for longer than the defined automatic export frequency,
     // then perform an automatic export now

@@ -94,17 +94,20 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
   /// Toggles the setting to enable the automatic export.
   Future<void> _toggleEnableAutoExport(bool toggled) async {
+    await PreferencesUtils().set<bool>(PreferenceKey.enableAutoExport, toggled);
+
+    setState(() {});
+
     if (!toggled) {
       PreferencesUtils().remove(PreferenceKey.lastAutoExportDate);
-      _toggleAutoExportEncryption(false);
-    } else {
-      // No need to await
-      AutoExportUtils().performAutoExportIfNeeded();
+      PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption, false);
+      PreferencesUtils().remove(PreferenceKey.autoExportPassword);
+
+      return;
     }
 
-    setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.enableAutoExport, toggled);
-    });
+    // No need to await
+    AutoExportUtils().performAutoExportIfNeeded();
   }
 
   /// Toggles the setting to enable the automatic export encryption.
@@ -143,7 +146,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
   /// Asks the user to configure the automatic export frequency.
   Future<void> _setAutoExportFrequency(BuildContext context) async {
-    await showAdaptiveDialog<double>(
+    await showAdaptiveDialog<int>(
       context: context,
       builder: (context) => const AutoExportFrequencyDialog(),
     ).then((autoExportFrequency) async {
@@ -152,7 +155,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       }
 
       setState(() {
-        PreferencesUtils().set<double>(PreferenceKey.autoExportFrequency, autoExportFrequency);
+        PreferencesUtils().set<int>(PreferenceKey.autoExportFrequency, autoExportFrequency);
       });
     });
   }
@@ -182,7 +185,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   @override
   Widget build(BuildContext context) {
     final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault<bool>();
-    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>();
+    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<int>();
     final autoExportEncryption = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
     final autoExportDirectory = AutoExportUtils().autoExportDirectory.display;
 
@@ -239,7 +242,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
               leading: const Icon(Symbols.calendar_clock),
               title: Text(localizations.settings_auto_export_frequency),
               value: Text(
-                localizations.settings_auto_export_frequency_description(autoExportFrequency.toInt().toString()),
+                localizations.settings_auto_export_frequency_description(autoExportFrequency.toString()),
               ),
               onPressed: _setAutoExportFrequency,
             ),

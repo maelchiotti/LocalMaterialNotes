@@ -22,11 +22,11 @@ import 'package:shared_storage/shared_storage.dart';
 class DatabaseUtils {
   final _notesService = NotesService();
 
-  /// Returns the file name of the export file depending of the current date and time.
-  String get _exportFileName {
+  /// Returns the file name of the export file depending of the current date and time and its [extension].
+  String _exportFileName(String extension) {
     final timestamp = DateTime.timestamp();
 
-    return 'materialnotes_export_${timestamp.filename}';
+    return 'materialnotes_export_${timestamp.filename}.$extension';
   }
 
   /// Imports all the notes from a JSON file picked by the user.
@@ -104,7 +104,13 @@ class DatabaseUtils {
   /// Exports all the notes in a JSON file with the [fileName] at the path of the [parentUri] directory.
   ///
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
-  Future<bool> _exportAsJson(bool encrypt, String? password, Uri parentUri, String fileName) async {
+  Future<bool> _exportAsJson(
+    bool encrypt,
+    String? password,
+    Uri parentUri,
+    String fileName, {
+    bool useSaf = true,
+  }) async {
     var notes = await _notesService.getAll();
 
     if (encrypt && password != null && password.isNotEmpty) {
@@ -125,6 +131,7 @@ class DatabaseUtils {
       'application/json',
       fileName,
       exportDataAsJson,
+      useSaf: useSaf,
     );
   }
 
@@ -136,7 +143,8 @@ class DatabaseUtils {
       encrypt,
       password,
       AutoExportUtils().autoExportDirectory,
-      _exportFileName,
+      _exportFileName('json'),
+      useSaf: !await AutoExportUtils().isAutoExportDirectoryDefault,
     );
   }
 
@@ -156,7 +164,7 @@ class DatabaseUtils {
       encrypt,
       password,
       exportDirectory,
-      _exportFileName,
+      _exportFileName('json'),
     );
   }
 
@@ -189,7 +197,7 @@ class DatabaseUtils {
     return await writeBytesToFile(
       exportDirectory,
       'application/zip',
-      _exportFileName,
+      _exportFileName('zip'),
       Uint8List.fromList(encodedArchive),
     );
   }

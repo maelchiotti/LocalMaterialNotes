@@ -17,7 +17,7 @@ class _NotesPageState extends ConsumerState<NotesPage> {
   void initState() {
     super.initState();
 
-    BackButtonInterceptor.add(_interceptor);
+    BackButtonInterceptor.add(_interceptor, context: context);
   }
 
   @override
@@ -32,13 +32,13 @@ class _NotesPageState extends ConsumerState<NotesPage> {
   /// If the selection mode is not active, the route should be popped (closing the app). Otherwise, the navigation mode
   /// should be exited, but the route shouldn't be popped (keeping the app open).
   bool _interceptor(bool stopDefaultButtonEvent, RouteInfo info) {
-    if (!isSelectionModeNotifier.value) {
-      return false;
-    } else {
+    if (isSelectionModeNotifier.value) {
       exitSelectionMode(ref);
 
       return true;
     }
+
+    return false;
   }
 
   @override
