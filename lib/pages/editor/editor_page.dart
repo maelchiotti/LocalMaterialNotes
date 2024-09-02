@@ -117,6 +117,8 @@ class _EditorState extends ConsumerState<EditorPage> {
     }
 
     final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
+    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault<bool>();
+
     final isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
 
     return Column(
@@ -128,6 +130,7 @@ class _EditorState extends ConsumerState<EditorPage> {
               children: [
                 TextField(
                   readOnly: widget._readOnly,
+                  autofocus: widget._autofocus && focusTitleOnNewNote,
                   textCapitalization: TextCapitalization.sentences,
                   textInputAction: TextInputAction.next,
                   style: Theme.of(context).textTheme.titleLarge,
@@ -145,7 +148,7 @@ class _EditorState extends ConsumerState<EditorPage> {
                     child: EditorField(
                       fleatherController: editorController,
                       readOnly: widget._readOnly,
-                      autofocus: widget._autofocus,
+                      autofocus: widget._autofocus && !focusTitleOnNewNote,
                     ),
                   ),
                 ),

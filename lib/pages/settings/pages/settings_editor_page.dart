@@ -39,6 +39,13 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
   }
 
   /// Toggles the setting to use spacing between the paragraphs.
+  void _toggleFocusTitleOnNewNote(bool toggled) {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.focusTitleOnNewNote, toggled);
+    });
+  }
+
+  /// Toggles the setting to use spacing between the paragraphs.
   void _toggleUseParagraphSpacing(bool toggled) {
     setState(() {
       PreferencesUtils().set<bool>(PreferenceKey.useParagraphsSpacing, toggled);
@@ -47,11 +54,13 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bool showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
-    final bool showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
-    final bool showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
+    final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
+    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
+    final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
 
-    final bool useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault<bool>();
+    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault<bool>();
+
+    final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault<bool>();
 
     return CustomSettingsList(
       sections: [
@@ -78,6 +87,18 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
               description: Text(localizations.settings_show_toolbar_description),
               initialValue: showToolbar,
               onToggle: _toggleShowToolbar,
+            ),
+          ],
+        ),
+        SettingsSection(
+          title: Text(localizations.settings_editor_behavior),
+          tiles: [
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.filter_center_focus),
+              title: Text(localizations.settings_focus_title_on_new_note),
+              description: Text(localizations.settings_focus_title_on_new_note_description),
+              initialValue: focusTitleOnNewNote,
+              onToggle: _toggleFocusTitleOnNewNote,
             ),
           ],
         ),
