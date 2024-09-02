@@ -25,6 +25,7 @@ enum PreferenceKey {
   showUndoRedoButtons(true),
   showChecklistButton(true),
   showToolbar(true),
+  focusTitleOnNewNote(false),
   useParagraphsSpacing(true),
 
   // Backup

@@ -169,6 +169,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_editor_formatting => 'Форматирование';
 
   @override
+  String get settings_editor_behavior => 'Behavior';
+
+  @override
   String get settings_editor_appearance => 'Персонализация';
 
   @override
@@ -192,6 +195,13 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settings_show_toolbar_description => 'Показать панель инструментов для расширенного форматирования текста';
+
+  @override
+  String get settings_focus_title_on_new_note => 'Focus the title';
+
+  @override
+  String get settings_focus_title_on_new_note_description =>
+      'Focus the title instead of the content when creating a new note';
 
   @override
   String get settings_use_paragraph_spacing => 'Расстояние между абзацами';

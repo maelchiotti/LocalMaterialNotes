@@ -409,6 +409,12 @@ abstract class AppLocalizations {
   /// **'Formatting'**
   String get settings_editor_formatting;
 
+  /// No description provided for @settings_editor_behavior.
+  ///
+  /// In en, this message translates to:
+  /// **'Behavior'**
+  String get settings_editor_behavior;
+
   /// No description provided for @settings_editor_appearance.
   ///
   /// In en, this message translates to:
@@ -456,6 +462,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show the editor\'\'s toolbar to enable advanced text formatting'**
   String get settings_show_toolbar_description;
+
+  /// No description provided for @settings_focus_title_on_new_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus the title'**
+  String get settings_focus_title_on_new_note;
+
+  /// No description provided for @settings_focus_title_on_new_note_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus the title instead of the content when creating a new note'**
+  String get settings_focus_title_on_new_note_description;
 
   /// No description provided for @settings_use_paragraph_spacing.
   ///

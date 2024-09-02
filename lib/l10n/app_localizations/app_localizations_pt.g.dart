@@ -171,6 +171,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_editor_formatting => 'Formatação';
 
   @override
+  String get settings_editor_behavior => 'Behavior';
+
+  @override
   String get settings_editor_appearance => 'Aparência';
 
   @override
@@ -196,6 +199,13 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get settings_show_toolbar_description =>
       'Mostrar a barra de ferramentas do editor para ativar a formatação avançada de texto';
+
+  @override
+  String get settings_focus_title_on_new_note => 'Focus the title';
+
+  @override
+  String get settings_focus_title_on_new_note_description =>
+      'Focus the title instead of the content when creating a new note';
 
   @override
   String get settings_use_paragraph_spacing => 'Espaçamento dos parágrafos';
