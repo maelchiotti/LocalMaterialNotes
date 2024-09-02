@@ -13,10 +13,12 @@ class NotesEditorRoute extends GoRouteData {
   final bool autoFocus;
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return NotesEditorPage(
-      readOnly: readOnly,
-      autofocus: autoFocus,
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return NoTransitionPage(
+      child: NotesEditorPage(
+        readOnly: readOnly,
+        autofocus: autoFocus,
+      ),
     );
   }
 }
