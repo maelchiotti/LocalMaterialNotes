@@ -14,6 +14,7 @@ enum PreferenceKey {
   showSeparators(false),
   showTilesBackground(false),
   showTitlesOnly(false),
+  showTitlesOnlyDisableInSearchView(true),
 
   // Behavior
   flagSecure(false),

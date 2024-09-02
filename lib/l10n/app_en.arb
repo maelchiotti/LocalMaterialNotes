@@ -32,6 +32,8 @@
   "settings_black_theming_description": "Use a black background in dark mode",
   "settings_show_titles_only": "Titles only",
   "settings_show_titles_only_description": "Only show the titles of the notes so more of them can be displayed",
+  "settings_show_titles_only_disable_in_search_view": "Disable titles only in search view",
+  "settings_show_titles_only_disable_in_search_view_description": "Disable the option to only show the titles when in the search view",
   "settings_show_tiles_background": "Background",
   "settings_show_tiles_background_description": "Show the background of the notes tiles to differentiate them easily",
   "settings_show_separators": "Separators",

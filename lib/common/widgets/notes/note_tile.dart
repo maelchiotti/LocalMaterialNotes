@@ -9,6 +9,7 @@ import 'package:localmaterialnotes/common/constants/sizes.dart';
 import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/routing/router.dart';
 import 'package:localmaterialnotes/common/routing/router_route.dart';
 import 'package:localmaterialnotes/common/widgets/dismissible/dismissible_delete.dart';
@@ -213,14 +214,22 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
   @override
   Widget build(BuildContext context) {
+    final showTitlesOnlyDisableInSearchView =
+        PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault<bool>();
+
     final tile = ValueListenableBuilder(
       valueListenable: showTitlesOnlyNotifier,
       builder: (context, showTitlesOnly, child) {
         return ValueListenableBuilder(
           valueListenable: showTilesBackgroundNotifier,
           builder: (context, showTilesBackground, child) {
-            final showTitle = (!showTitlesOnly && !widget.note.isContentEmpty && !widget.note.isContentPreviewEmpty) ||
-                (showTitlesOnly && widget.note.isTitleEmpty);
+            final showTitle =
+                // Do not show only the title and the preview content is not empty
+                (!showTitlesOnly && !widget.note.isContentPreviewEmpty) ||
+                    // Show only the title and the title is not empty
+                    (showTitlesOnly && widget.note.isTitleEmpty) ||
+                    // In search view, do not show only the title and the preview content is not empty
+                    (widget.searchView && showTitlesOnlyDisableInSearchView && !widget.note.isContentPreviewEmpty);
 
             // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
             // See https://github.com/flutter/flutter/issues/86584
