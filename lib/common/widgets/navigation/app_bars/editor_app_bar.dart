@@ -32,9 +32,6 @@ class EditorAppBar extends ConsumerStatefulWidget {
 class _BackAppBarState extends ConsumerState<EditorAppBar> {
   /// Goes back from the editor.
   void _pop() {
-    currentNoteNotifier.value = null;
-    fleatherControllerNotifier.value = null;
-
     context.pop();
   }
 

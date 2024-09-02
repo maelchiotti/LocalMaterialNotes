@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/constants/sizes.dart';
+import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/routing/routes/bin/bin_route.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
+import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_route.dart';
 import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
@@ -18,7 +20,22 @@ class SideNavigation extends StatefulWidget {
 
 class _SideNavigationState extends State<SideNavigation> {
   /// Index of the currently selected drawer index.
-  int _index = 0;
+  late int _index;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    switch (context.route) {
+      case RoutingRoute.notes:
+        _index = 0;
+      case RoutingRoute.bin:
+        _index = 1;
+      case RoutingRoute.settings:
+        _index = 2;
+      default:
+    }
+  }
 
   /// Navigates to the route corresponding to the [index].
   void _navigate(int index) {
