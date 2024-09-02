@@ -1,6 +1,8 @@
 import 'dart:developer';
+import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:path/path.dart';
 import 'package:shared_storage/shared_storage.dart' as saf;
 
 /// Returns the URI to the directory picked by the user.
@@ -24,24 +26,44 @@ Future<Uri?> pickSingleFile(
 }
 
 /// Writes the [content] to a file with the [mimeType] and the [fileName] at the path of the [parentUri] directory.
-Future<bool> writeStringToFile(Uri parentUri, String mimeType, String fileName, String content) async {
+Future<bool> writeStringToFile(
+  Uri parentUri,
+  String mimeType,
+  String fileName,
+  String content, {
+  bool useSaf = true,
+}) async {
   return await writeBytesToFile(
     parentUri,
     mimeType,
     fileName,
     Uint8List.fromList(content.codeUnits),
+    useSaf: useSaf,
   );
 }
 
 /// Writes the [bytes] to a file with the [mimeType] and the [fileName] at the path of the [parentUri] directory.
-Future<bool> writeBytesToFile(Uri parentUri, String mimeType, String fileName, Uint8List bytes) async {
+Future<bool> writeBytesToFile(
+  Uri parentUri,
+  String mimeType,
+  String fileName,
+  Uint8List bytes, {
+  bool useSaf = true,
+}) async {
   try {
-    await saf.createFileAsBytes(
-      parentUri,
-      mimeType: mimeType,
-      displayName: fileName,
-      bytes: bytes,
-    );
+    if (useSaf) {
+      await saf.createFileAsBytes(
+        parentUri,
+        mimeType: mimeType,
+        displayName: fileName,
+        bytes: bytes,
+      );
+    } else {
+      final filePath = join(parentUri.path, fileName);
+      final file = File(filePath);
+
+      print(await file.writeAsBytes(bytes));
+    }
   } catch (exception, stackTrace) {
     log(exception.toString(), stackTrace: stackTrace);
 

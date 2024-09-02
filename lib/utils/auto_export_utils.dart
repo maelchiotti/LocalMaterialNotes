@@ -64,6 +64,10 @@ class AutoExportUtils {
     autoExportDirectory = (await getApplicationDocumentsDirectory()).uri;
   }
 
+  Future<bool> get isAutoExportDirectoryDefault async {
+    return autoExportDirectory == (await getApplicationDocumentsDirectory()).uri;
+  }
+
   /// Checks if an automatic export should be performed.
   ///
   /// An automatic export should be performed if it is enabled and either if no automatic export has been performed yet,
