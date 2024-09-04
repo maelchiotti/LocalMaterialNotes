@@ -59,26 +59,36 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
                 return ValueListenableBuilder(
                   valueListenable: themeModeNotifier,
                   builder: (context, themeMode, child) {
-                    return MaterialApp.router(
-                      title: 'Material Notes',
-                      routerConfig: router,
-                      builder: (context, child) {
-                        if (child == null) {
-                          throw Exception('MaterialApp child is null');
-                        }
+                    return ValueListenableBuilder(
+                      valueListenable: textScalingNotifier,
+                      builder: (context, textScaling, child) {
+                        return MediaQuery(
+                          data: MediaQuery.of(context).copyWith(
+                            textScaler: TextScaler.linear(textScaling),
+                          ),
+                          child: MaterialApp.router(
+                            title: 'Material Notes',
+                            routerConfig: router,
+                            builder: (context, child) {
+                              if (child == null) {
+                                throw Exception('MaterialApp child is null');
+                              }
 
-                        return Directionality(
-                          textDirection: LocaleUtils().deviceLocale.textDirection,
-                          child: child,
+                              return Directionality(
+                                textDirection: LocaleUtils().deviceLocale.textDirection,
+                                child: child,
+                              );
+                            },
+                            theme: ThemeUtils().getLightTheme(lightDynamicColorScheme),
+                            darkTheme: ThemeUtils().getDarkTheme(darkDynamicColorScheme),
+                            themeMode: themeMode,
+                            localizationsDelegates: AppLocalizations.localizationsDelegates,
+                            supportedLocales: AppLocalizations.supportedLocales,
+                            locale: LocaleUtils().appLocale,
+                            debugShowCheckedModeBanner: false,
+                          ),
                         );
                       },
-                      theme: ThemeUtils().getLightTheme(lightDynamicColorScheme),
-                      darkTheme: ThemeUtils().getDarkTheme(darkDynamicColorScheme),
-                      themeMode: themeMode,
-                      localizationsDelegates: AppLocalizations.localizationsDelegates,
-                      supportedLocales: AppLocalizations.supportedLocales,
-                      locale: LocaleUtils().appLocale,
-                      debugShowCheckedModeBanner: false,
                     );
                   },
                 );

@@ -13,6 +13,7 @@ enum PreferenceKey {
   theme(0),
   dynamicTheming(true),
   blackTheming(false),
+  textScaling(1.0),
   showTitlesOnly(false),
   showTitlesOnlyDisableInSearchView(true),
   disableSubduedNoteContentPreview(false),

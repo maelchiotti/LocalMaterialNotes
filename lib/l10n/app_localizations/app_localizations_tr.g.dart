@@ -104,6 +104,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_black_theming_description => 'Koyu modda siyah arkaplan kullanın';
 
   @override
+  String get settings_text_scaling => 'Text scaling';
+
+  @override
   String get settings_show_titles_only => 'Titles only';
 
   @override

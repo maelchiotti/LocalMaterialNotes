@@ -15,6 +15,9 @@ final dynamicThemingNotifier = ValueNotifier(ThemeUtils().useDynamicTheming);
 /// Notifier for whether to use black theming.
 final blackThemingNotifier = ValueNotifier(ThemeUtils().useBlackTheming);
 
+/// Notifier for the text scaling.
+final textScalingNotifier = ValueNotifier(PreferenceKey.textScaling.getPreferenceOrDefault<double>());
+
 /// Notifier for whether the selection mode is active.
 final isSelectionModeNotifier = ValueNotifier(false);
 

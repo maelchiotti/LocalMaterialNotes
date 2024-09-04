@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:localmaterialnotes/common/extensions/double_extension.dart';
 
 /// Lists the localization completion for every supported language.
 enum LocalizationCompletion {
@@ -21,14 +21,12 @@ enum LocalizationCompletion {
 
   const LocalizationCompletion(this.locale, this.percentage);
 
-  /// Returns the percentage of strings that are localized for the [locale], formatted as a String for the [locale].
+  /// Returns the percentage of strings that are localized for the [locale], formatted as a [String] for the [locale].
   static String getFormattedPercentage(Locale locale) {
     final percentage = values.firstWhere((localizationSupport) {
       return localizationSupport.locale == locale;
     }).percentage;
 
-    final formatter = NumberFormat.percentPattern(locale.languageCode);
-
-    return formatter.format(percentage);
+    return percentage.formatedAsPercentage(locale: locale);
   }
 }
