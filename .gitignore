@@ -54,3 +54,6 @@ lib/l10n/untranslated.txt
 fastlane/localmaterialnotes_fastlane-supply_key.json
 fastlane/README.md
 fastlane/report.xml
+
+# Tests
+integration_test/test_bundle.dart

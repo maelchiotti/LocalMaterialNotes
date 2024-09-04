@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
@@ -14,6 +15,7 @@ import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/routing/routes/routing_route.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Notes list and bin's app bar.
 ///
@@ -39,11 +41,13 @@ class NotesAppBar extends ConsumerWidget {
     }
 
     return SearchAnchor(
+      key: Keys.notesPageSearchViewSearchAnchor,
       viewHintText: localizations.tooltip_search,
       searchController: SearchController(),
       viewBackgroundColor: Theme.of(context).colorScheme.surface,
       builder: (context, controller) {
         return IconButton(
+          key: Keys.notesPageSearchIconButton,
           onPressed: () => controller.openView(),
           icon: const Icon(Icons.search),
           tooltip: localizations.tooltip_search,
@@ -99,8 +103,11 @@ class NotesAppBar extends ConsumerWidget {
 
     return notes.where((note) {
       return note.matchesSearch(search);
-    }).map((note) {
-      return NoteTile.searchView(note);
+    }).mapIndexed((index, note) {
+      return NoteTile.searchView(
+        key: Keys.notesPageNoteTile(index),
+        note: note,
+      );
     }).toList();
   }
 
@@ -121,18 +128,21 @@ class NotesAppBar extends ConsumerWidget {
             final isListLayout = layout == Layout.list;
 
             return IconButton(
+              key: Keys.notesPageLayoutIconButton,
               onPressed: _toggleLayout,
               tooltip: isListLayout ? localizations.tooltip_layout_grid : localizations.tooltip_layout_list,
-              icon: Icon(isListLayout ? Icons.grid_view : Icons.view_list_outlined),
+              icon: Icon(isListLayout ? Icons.grid_view : Icons.view_list),
             );
           },
         ),
         PopupMenuButton<SortMethod>(
+          key: Keys.notesPageSortIconButton,
           icon: const Icon(Icons.sort),
           tooltip: localizations.tooltip_sort,
           itemBuilder: (context) {
             return [
               PopupMenuItem(
+                key: Keys.notesPageSortDateMenuItem,
                 value: SortMethod.date,
                 child: ListTile(
                   selected: sortMethod == SortMethod.date,
@@ -141,6 +151,7 @@ class NotesAppBar extends ConsumerWidget {
                 ),
               ),
               PopupMenuItem(
+                key: Keys.notesPageSortTitleMenuItem,
                 value: SortMethod.title,
                 child: ListTile(
                   selected: sortMethod == SortMethod.title,
@@ -150,6 +161,7 @@ class NotesAppBar extends ConsumerWidget {
               ),
               const PopupMenuDivider(),
               PopupMenuItem(
+                key: Keys.notesPageSortAscendingMenuItem,
                 value: SortMethod.ascending,
                 child: ListTile(
                   title: Text(localizations.sort_ascending),

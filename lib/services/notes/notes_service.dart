@@ -36,12 +36,20 @@ class NotesService extends DatabaseService {
       directory: databaseDirectory,
     );
 
-    // If the app runs with the 'screenshots' environment parameter,
+    // If the app runs with the 'INTEGRATION_TEST' environment parameter,
+    // clear all the notes and add the notes for the integration tests
+    if (Environment.integrationTest) {
+      await clear();
+      await putAll(integrationTestNotes);
+    }
+
+    // If the app runs with the 'SCREENSHOTS' environment parameter,
     // clear all the notes and add the notes for the screenshots
-    if (Environment.screenshots) {
+    else if (Environment.screenshots) {
       await clear();
       await putAll(screenshotNotes);
     }
+
     // If the app runs for the first time ever, add the welcome note
     else if (await IsFirstRun.isFirstCall()) {
       await put(welcomeNote);
@@ -67,7 +75,7 @@ class NotesService extends DatabaseService {
             ? await sortedByPinned.thenByTitle().findAll()
             : await sortedByPinned.thenByTitleDesc().findAll();
       default:
-        throw Exception('The sort methode is not set: $sortMethod');
+        throw Exception('The sort methode is not valid: $sortMethod');
     }
   }
 
