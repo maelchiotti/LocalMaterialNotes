@@ -104,6 +104,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_black_theming_description => 'Использовать чёрный фон при тёмной теме оформления';
 
   @override
+  String get settings_text_scaling => 'Text scaling';
+
+  @override
   String get settings_show_titles_only => 'Titles only';
 
   @override

@@ -104,6 +104,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_black_theming_description => 'Fondo negro puro para el tema oscuro';
 
   @override
+  String get settings_text_scaling => 'Text scaling';
+
+  @override
   String get settings_show_titles_only => 'Titles only';
 
   @override

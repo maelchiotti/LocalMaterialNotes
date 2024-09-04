@@ -289,6 +289,12 @@ abstract class AppLocalizations {
   /// **'Use a black background in dark mode'**
   String get settings_black_theming_description;
 
+  /// No description provided for @settings_text_scaling.
+  ///
+  /// In en, this message translates to:
+  /// **'Text scaling'**
+  String get settings_text_scaling;
+
   /// No description provided for @settings_show_titles_only.
   ///
   /// In en, this message translates to:

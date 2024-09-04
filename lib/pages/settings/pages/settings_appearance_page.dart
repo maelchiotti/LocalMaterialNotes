@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/extensions/double_extension.dart';
 import 'package:localmaterialnotes/common/extensions/string_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/l10n/localization_completion.dart';
+import 'package:localmaterialnotes/pages/settings/dialogs/text_scaling_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
@@ -120,6 +122,23 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     blackThemingNotifier.value = toggled;
   }
 
+  Future<void> _setTextScaling(BuildContext context) async {
+    await showAdaptiveDialog<double>(
+      context: context,
+      builder: (context) => const TextScalingDialog(),
+    ).then((textScaling) async {
+      if (textScaling == null) {
+        return;
+      }
+
+      setState(() {
+        PreferencesUtils().set<double>(PreferenceKey.textScaling, textScaling);
+      });
+
+      textScalingNotifier.value = textScaling;
+    });
+  }
+
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTitlesOnly(bool toggled) {
     setState(() {
@@ -165,6 +184,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   Widget build(BuildContext context) {
     final locale = LocaleUtils().appLocale.nativeDisplayLanguage.capitalized;
     final showUseBlackTheming = Theme.of(context).colorScheme.brightness == Brightness.dark;
+    final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
 
     final showTitlesOnly = PreferenceKey.showTitlesOnly.getPreferenceOrDefault<bool>();
     final showTitlesOnlyDisableInSearchView =
@@ -206,6 +226,12 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
               description: Text(localizations.settings_black_theming_description),
               initialValue: ThemeUtils().useBlackTheming,
               onToggle: _toggleBlackTheming,
+            ),
+            SettingsTile.navigation(
+              leading: const Icon(Icons.format_size),
+              title: Text(localizations.settings_text_scaling),
+              value: Text(textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale)),
+              onPressed: _setTextScaling,
             ),
           ],
         ),
