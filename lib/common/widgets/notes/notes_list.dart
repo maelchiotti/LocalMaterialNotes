@@ -60,6 +60,7 @@ class NotesList extends ConsumerWidget {
                         },
                       )
                     : AlignedGridView.count(
+                        key: Keys.notesPageNotesListGridLayout,
                         padding: Paddings.custom.notesWithBackground,
                         mainAxisSpacing: Sizes.custom.notesGridLayoutSpacing,
                         crossAxisSpacing: Sizes.custom.notesGridLayoutSpacing,

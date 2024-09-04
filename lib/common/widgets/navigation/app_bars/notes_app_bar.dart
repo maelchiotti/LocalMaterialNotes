@@ -41,7 +41,7 @@ class NotesAppBar extends ConsumerWidget {
     }
 
     return SearchAnchor(
-      key: Keys.notesPageSearchIconButton,
+      key: Keys.notesPageSearchViewSearchAnchor,
       viewHintText: localizations.tooltip_search,
       searchController: SearchController(),
       viewBackgroundColor: Theme.of(context).colorScheme.surface,

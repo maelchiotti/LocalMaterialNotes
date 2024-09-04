@@ -10,6 +10,7 @@ import 'package:localmaterialnotes/common/widgets/navigation/app_bars/notes_app_
 import 'package:localmaterialnotes/common/widgets/navigation/side_navigation.dart';
 import 'package:localmaterialnotes/common/widgets/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/routing/routes/routing_route.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 
 class ShellPage extends StatefulWidget {
   const ShellPage(this.child, {super.key});
@@ -27,7 +28,9 @@ class _ShellPageState extends State<ShellPage> {
       case RoutingRoute.notes:
       case RoutingRoute.bin:
         return const TopNavigation(
-          appbar: NotesAppBar(),
+          appbar: NotesAppBar(
+            key: Keys.appBarNotes,
+          ),
         );
       case RoutingRoute.notesEditor:
         return const TopNavigation(
@@ -66,7 +69,9 @@ class _ShellPageState extends State<ShellPage> {
   Widget? get _floatingActionButton {
     switch (context.route) {
       case RoutingRoute.notes:
-        return const FabAddNote();
+        return const FabAddNote(
+          key: Keys.fabAddNote,
+        );
       case RoutingRoute.bin:
         return const FabEmptyBin();
       default:

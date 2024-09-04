@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 
 /// Keys used to identify widgets in integration testing.
 class Keys {
-  // Notes page
+  // App bars
   static const appBarNotes = Key('appBarNotes');
 
   // Notes page
