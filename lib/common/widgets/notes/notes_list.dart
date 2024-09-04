@@ -14,11 +14,13 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:localmaterialnotes/routing/routes/routing_route.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 
 /// List of notes.
 class NotesList extends ConsumerWidget {
+  const NotesList({super.key});
+
   Widget child(BuildContext context, List<Note> notes) {
     if (notes.isEmpty) {
       return context.route == RoutingRoute.notes ? EmptyPlaceholder.notes() : EmptyPlaceholder.bin();
@@ -39,13 +41,14 @@ class NotesList extends ConsumerWidget {
               builder: (context, showSeparators, child) {
                 return layout == Layout.list
                     ? ListView.separated(
-                  key: Keys.notesPageNotesListListLayout,
-
-                  padding: showTilesBackground ? Paddings.custom.notesWithBackground : Paddings.custom.fab,
+                        key: Keys.notesPageNotesListListLayout,
+                        padding: showTilesBackground ? Paddings.custom.notesWithBackground : Paddings.custom.fab,
                         itemCount: notes.length,
                         itemBuilder: (context, index) {
                           return NoteTile(
-                              key: Keys.notesPageNoteTile(index), note: notes[index],);
+                            key: Keys.notesPageNoteTile(index),
+                            note: notes[index],
+                          );
                         },
                         separatorBuilder: (BuildContext context, int index) {
                           return Padding(
@@ -64,7 +67,9 @@ class NotesList extends ConsumerWidget {
                         itemCount: notes.length,
                         itemBuilder: (context, index) {
                           return NoteTile(
-                              key: Keys.notesPageNoteTile(index), note :notes[index],);
+                            key: Keys.notesPageNoteTile(index),
+                            note: notes[index],
+                          );
                         },
                       );
               },

@@ -14,8 +14,8 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:localmaterialnotes/routing/routes/routing_route.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Notes list and bin's app bar.
 ///
@@ -96,7 +96,7 @@ class NotesAppBar extends ConsumerWidget {
   }
 
   /// Filters the [notes] according to the [search].
-  List<NoteTile> _filter(String? search, List<Note> notes) {
+  List<NoteTile> _filterNotes(String? search, List<Note> notes) {
     if (search == null || search.isEmpty) {
       return [];
     }
