@@ -118,6 +118,13 @@ class AppLocalizationsFr extends AppLocalizations {
       'Disable the option to only show the titles when in the search view';
 
   @override
+  String get settings_disable_subdued_note_content_preview => 'Non-subdued preview';
+
+  @override
+  String get settings_disable_subdued_note_content_preview_description =>
+      'Disable the subdued text color of the notes content preview';
+
+  @override
   String get settings_show_tiles_background => 'Fond';
 
   @override

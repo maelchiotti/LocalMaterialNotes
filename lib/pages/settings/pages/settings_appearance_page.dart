@@ -137,6 +137,13 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   }
 
   /// Toggles the setting to show background of the notes tiles.
+  void _toggleDisableSubduedNoteContentPreview(bool toggled) {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.disableSubduedNoteContentPreview, toggled);
+    });
+  }
+
+  /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTilesBackground(bool toggled) {
     setState(() {
       PreferencesUtils().set<bool>(PreferenceKey.showTilesBackground, toggled);
@@ -162,6 +169,8 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     final showTitlesOnly = PreferenceKey.showTitlesOnly.getPreferenceOrDefault<bool>();
     final showTitlesOnlyDisableInSearchView =
         PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault<bool>();
+    final disableSubduedNoteContentPreview =
+        PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault<bool>();
     final showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();
     final showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
 
@@ -217,6 +226,13 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
               description: Text(localizations.settings_show_titles_only_disable_in_search_view_description),
               initialValue: showTitlesOnlyDisableInSearchView,
               onToggle: _toggleShowTitlesOnlyDisableInSearchView,
+            ),
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.format_color_text),
+              title: Text(localizations.settings_disable_subdued_note_content_preview),
+              description: Text(localizations.settings_disable_subdued_note_content_preview_description),
+              initialValue: disableSubduedNoteContentPreview,
+              onToggle: _toggleDisableSubduedNoteContentPreview,
             ),
             SettingsTile.switchTile(
               leading: const Icon(Icons.safety_divider),
