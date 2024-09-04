@@ -212,6 +212,8 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   Widget build(BuildContext context) {
     final showTitlesOnlyDisableInSearchView =
         PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault<bool>();
+    final disableSubduedNoteContentPreview =
+        PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault<bool>();
 
     final tile = ValueListenableBuilder(
       valueListenable: showTitlesOnlyNotifier,
@@ -257,9 +259,11 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                                   widget.note.contentPreview,
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                        color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
-                                      ),
+                                  style: disableSubduedNoteContentPreview
+                                      ? null
+                                      : Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                            color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
+                                          ),
                                 ),
                             ],
                           ),

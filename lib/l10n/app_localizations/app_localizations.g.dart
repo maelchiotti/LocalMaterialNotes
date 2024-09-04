@@ -313,6 +313,18 @@ abstract class AppLocalizations {
   /// **'Disable the option to only show the titles when in the search view'**
   String get settings_show_titles_only_disable_in_search_view_description;
 
+  /// No description provided for @settings_disable_subdued_note_content_preview.
+  ///
+  /// In en, this message translates to:
+  /// **'Non-subdued preview'**
+  String get settings_disable_subdued_note_content_preview;
+
+  /// No description provided for @settings_disable_subdued_note_content_preview_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable the subdued text color of the notes content preview'**
+  String get settings_disable_subdued_note_content_preview_description;
+
   /// No description provided for @settings_show_tiles_background.
   ///
   /// In en, this message translates to:
@@ -322,7 +334,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_show_tiles_background_description.
   ///
   /// In en, this message translates to:
-  /// **'Show the background of the notes tiles to differentiate them easily'**
+  /// **'Show the background of the notes tiles'**
   String get settings_show_tiles_background_description;
 
   /// No description provided for @settings_show_separators.
@@ -334,7 +346,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_show_separators_description.
   ///
   /// In en, this message translates to:
-  /// **'Show a separator between the notes tiles to differentiate them easily'**
+  /// **'Show a separator between the notes tiles'**
   String get settings_show_separators_description;
 
   /// No description provided for @settings_behavior.
