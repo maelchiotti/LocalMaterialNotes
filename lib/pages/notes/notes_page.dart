@@ -3,8 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/widgets/notes/notes_list.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
+/// Page displaying the list of notes.
+///
+/// Contains:
+///   - The list of notes.
+///   - The FAB to add a note.
 class NotesPage extends ConsumerStatefulWidget {
-  const NotesPage();
+  /// Default constructor.
+  const NotesPage({super.key});
 
   @override
   ConsumerState<NotesPage> createState() => _NotesPageState();

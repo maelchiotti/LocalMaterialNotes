@@ -14,6 +14,7 @@ import 'package:localmaterialnotes/routing/routes/settings/settings_route.dart';
 
 part 'shell_route.g.dart';
 
+/// Route of the shell page.
 @TypedShellRoute<ShellRoute>(
   routes: [
     TypedGoRoute<NotesRoute>(
@@ -48,10 +49,11 @@ part 'shell_route.g.dart';
   ],
 )
 class ShellRoute extends ShellRouteData {
+  /// Key used for navigation.
   static final GlobalKey<NavigatorState> $navigatorKey = shellNavigatorKey;
 
   @override
   Widget builder(BuildContext context, GoRouterState state, Widget navigator) {
-    return ShellPage(navigator);
+    return ShellPage(child: navigator);
   }
 }

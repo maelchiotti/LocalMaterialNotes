@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 
+/// Dialog to choose the frequency of the auto export.
 class AutoExportFrequencyDialog extends StatefulWidget {
+  /// Default constructor.
   const AutoExportFrequencyDialog({super.key});
 
   @override

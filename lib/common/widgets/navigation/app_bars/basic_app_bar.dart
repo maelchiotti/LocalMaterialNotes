@@ -8,8 +8,10 @@ import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 ///   - A back button if built with [BasicAppBar.back].
 ///   - The title of the current route.
 class BasicAppBar extends StatefulWidget {
+  /// Default constructor.
   const BasicAppBar() : showBack = false;
 
+  /// App bar with a back button.
   const BasicAppBar.back() : showBack = true;
 
   /// Whether to show the back button.

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 
+// ignore_for_file: public_member_api_docs
+
 enum RoutingRoute {
   // Notes
   notes('/notes'),

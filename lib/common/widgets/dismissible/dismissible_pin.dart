@@ -6,6 +6,7 @@ import 'package:localmaterialnotes/models/note/note.dart';
 
 /// Dismissible widget for the pin swipe action.
 class DismissiblePin extends StatelessWidget {
+  /// Default constructor.
   const DismissiblePin({
     super.key,
     required this.note,

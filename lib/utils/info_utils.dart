@@ -9,6 +9,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 class InfoUtils {
   static final InfoUtils _singleton = InfoUtils._internal();
 
+  /// Default constructor.
   factory InfoUtils() {
     return _singleton;
   }

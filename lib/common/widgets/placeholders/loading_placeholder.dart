@@ -3,6 +3,7 @@ import 'package:localmaterialnotes/common/constants/paddings.dart';
 
 /// Placeholder widget for loading content.
 class LoadingPlaceholder extends StatelessWidget {
+  /// Default constructor.
   const LoadingPlaceholder();
 
   @override

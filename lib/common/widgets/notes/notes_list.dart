@@ -19,8 +19,12 @@ import 'package:localmaterialnotes/utils/keys.dart';
 
 /// List of notes.
 class NotesList extends ConsumerWidget {
+  /// Default constructor.
   const NotesList({super.key});
 
+  /// Returns the child of the widget.
+  ///
+  /// The child is either an empty placeholder if the [notes] are empty, are the [notes] list otherwise.
   Widget child(BuildContext context, List<Note> notes) {
     if (notes.isEmpty) {
       return context.route == RoutingRoute.notes ? EmptyPlaceholder.notes() : EmptyPlaceholder.bin();

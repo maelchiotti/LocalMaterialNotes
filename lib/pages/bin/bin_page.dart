@@ -9,7 +9,8 @@ import 'package:localmaterialnotes/utils/keys.dart';
 ///   - The list of deleted notes.
 ///   - The FAB to empty the bin.
 class BinPage extends ConsumerStatefulWidget {
-  const BinPage();
+  /// Default constructor.
+  const BinPage({super.key});
 
   @override
   ConsumerState<BinPage> createState() => _BinPageState();

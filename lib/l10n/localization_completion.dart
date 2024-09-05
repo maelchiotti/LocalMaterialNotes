@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/extensions/double_extension.dart';
 
+// ignore_for_file: public_member_api_docs
+
 /// Lists the localization completion for every supported language.
 enum LocalizationCompletion {
   en(Locale('en'), 1),

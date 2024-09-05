@@ -11,6 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 /// Settings providing information about the application.
 class SettingsAboutPage extends StatelessWidget {
+  /// Default constructor.
   const SettingsAboutPage({super.key});
 
   static const _contactEmail = 'contact@maelchiotti.dev';

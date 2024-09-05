@@ -12,7 +12,8 @@ import 'package:localmaterialnotes/utils/asset.dart';
 
 /// Side navigation with the drawer.
 class SideNavigation extends StatefulWidget {
-  const SideNavigation();
+  /// Default constructor.
+  const SideNavigation({super.key});
 
   @override
   State<SideNavigation> createState() => _SideNavigationState();

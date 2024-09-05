@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+// ignore_for_file: public_member_api_docs
 // ignore_for_file: avoid_classes_with_only_static_members
 
 /// Keys used to identify widgets in integration testing.

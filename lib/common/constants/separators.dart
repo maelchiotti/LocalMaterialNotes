@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// ignore_for_file: public_member_api_docs
+
 /// Lists separators between widgets.
 enum Separator {
   divider1indent8(1, 1, 8, 8),

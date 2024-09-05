@@ -7,6 +7,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'bin_provider.g.dart';
 
+/// Provider for the deleted notes.
 @riverpod
 class Bin extends _$Bin {
   final _notesService = NotesService();

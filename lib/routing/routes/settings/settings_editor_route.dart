@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/pages/settings/pages/settings_editor_page.dart';
 
+/// Route of the settings editor page.
 @immutable
 class SettingsEditorRoute extends GoRouteData {
   @override

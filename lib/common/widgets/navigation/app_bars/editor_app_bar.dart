@@ -23,7 +23,8 @@ import 'package:share_plus/share_plus.dart';
 ///   - The checklist button if enabled by the user.
 ///   - The menu with further actions.
 class EditorAppBar extends ConsumerStatefulWidget {
-  const EditorAppBar();
+  /// Default constructor.
+  const EditorAppBar({super.key});
 
   @override
   ConsumerState<EditorAppBar> createState() => _BackAppBarState();

@@ -12,6 +12,7 @@ import 'package:localmaterialnotes/providers/notifiers.dart';
 
 /// Settings related to the behavior of the application.
 class SettingsBehaviorPage extends StatefulWidget {
+  /// Default constructor.
   const SettingsBehaviorPage({super.key});
 
   @override

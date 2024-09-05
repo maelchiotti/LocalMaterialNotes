@@ -19,6 +19,7 @@ import 'package:restart_app/restart_app.dart';
 
 /// Settings related to the appearance of the application.
 class SettingsAppearancePage extends StatefulWidget {
+  /// Default constructor.
   const SettingsAppearancePage({super.key});
 
   @override
