@@ -1,0 +1,12 @@
+AJOUTÉ
+- Publication sur F-Droid
+- Choisir répertoire sauvegarde automatique
+- Choisir afficher que titres des notes (peut être désactivé dans la recherche)
+- Choisir de focus le titre au lieu du contenu lors  d'une nouvelle note
+- Choisir de désactiver couleur atténuée de l'aperçu du contenu des notes
+- Choisir de modifier l'échelle du texte
+
+CORRIGÉ
+- Recherche pas noire en thème noir
+- Échec du réglage de la fréquence de rafraîchissement sous Android 6
+- Échec lors de l'écriture des exports

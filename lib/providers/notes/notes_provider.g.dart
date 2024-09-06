@@ -8,7 +8,9 @@ part of 'notes_provider.dart';
 
 String _$notesHash() => r'd23699d764ea0a3a7bccf496dd02824206331e2d';
 
-/// See also [Notes].
+/// Provider for the notes.
+///
+/// Copied from [Notes].
 @ProviderFor(Notes)
 final notesProvider = AutoDisposeAsyncNotifierProvider<Notes, List<Note>>.internal(
   Notes.new,
