@@ -80,6 +80,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_language => 'Langue';
 
   @override
+  String get settings_language_contribute => 'Contribuer';
+
+  @override
   String get settings_theme => 'Thème';
 
   @override
@@ -337,6 +340,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_github_description => 'Jeter un coup d\'œil au code source';
+
+  @override
+  String get settings_localizations => 'Crowdin';
+
+  @override
+  String get settings_localizations_description => 'Ajouter ou améliorer les traductions sur le projet Crowdin';
 
   @override
   String get settings_licence => 'License';

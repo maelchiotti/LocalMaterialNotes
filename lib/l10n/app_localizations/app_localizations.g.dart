@@ -243,6 +243,12 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get settings_language;
 
+  /// No description provided for @settings_language_contribute.
+  ///
+  /// In en, this message translates to:
+  /// **'Contribute'**
+  String get settings_language_contribute;
+
   /// No description provided for @settings_theme.
   ///
   /// In en, this message translates to:
@@ -704,6 +710,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Take a look at the source code'**
   String get settings_github_description;
+
+  /// No description provided for @settings_localizations.
+  ///
+  /// In en, this message translates to:
+  /// **'Crowdin'**
+  String get settings_localizations;
+
+  /// No description provided for @settings_localizations_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Add or improve the localizations on the Crowdin project'**
+  String get settings_localizations_description;
 
   /// No description provided for @settings_licence.
   ///

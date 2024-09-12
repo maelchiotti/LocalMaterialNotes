@@ -16,6 +16,17 @@ class SettingsAboutPage extends StatelessWidget {
 
   static const _contactEmail = 'contact@maelchiotti.dev';
 
+  /// Opens the Crowdin project.
+  void _openCrowdin(_) {
+    launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'crowdin.com',
+        path: 'project/localmaterialnotes',
+      ),
+    );
+  }
+
   String? _encodeQueryParameters(Map<String, String> params) {
     return params.entries.map((MapEntry<String, String> e) {
       return '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}';
@@ -163,6 +174,12 @@ class SettingsAboutPage extends StatelessWidget {
               title: Text(localizations.settings_github),
               value: Text(localizations.settings_github_description),
               onPressed: _openGitHub,
+            ),
+            SettingsTile(
+              leading: const Icon(SimpleIcons.crowdin),
+              title: Text(localizations.settings_localizations),
+              value: Text(localizations.settings_localizations_description),
+              onPressed: _openCrowdin,
             ),
             SettingsTile(
               leading: const Icon(Icons.balance),

@@ -80,6 +80,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_language => '语言';
 
   @override
+  String get settings_language_contribute => 'Contribute';
+
+  @override
   String get settings_theme => '主题';
 
   @override
@@ -327,6 +330,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings_github_description => '查看源代码';
+
+  @override
+  String get settings_localizations => 'Crowdin';
+
+  @override
+  String get settings_localizations_description => 'Add or improve the localizations on the Crowdin project';
 
   @override
   String get settings_licence => '许可证';

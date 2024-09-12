@@ -8,10 +8,10 @@ enum LocalizationCompletion {
   en(Locale('en'), 1), // English
   es(Locale('es'), .4), // Spanish
   fr(Locale('fr'), 1), // French
-  pt(Locale('pt'), .77), // Portuguese
-  ru(Locale('ru'), 0.8), // Russian
-  tr(Locale('tr'), .39), // Turkish
-  zh(Locale('zh'), .8), // Chinese Simplified
+  pt(Locale('pt'), .76), // Portuguese
+  ru(Locale('ru'), 0.79), // Russian
+  tr(Locale('tr'), .38), // Turkish
+  zh(Locale('zh'), .79), // Chinese Simplified
   ;
 
   /// The locale of this localization.
