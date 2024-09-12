@@ -11,6 +11,7 @@ import 'package:localmaterialnotes/providers/notifiers.dart';
 class ThemeUtils {
   static final ThemeUtils _singleton = ThemeUtils._internal();
 
+  /// Default constructor.
   factory ThemeUtils() {
     return _singleton;
   }

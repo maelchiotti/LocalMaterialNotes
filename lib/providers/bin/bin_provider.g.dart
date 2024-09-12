@@ -8,7 +8,9 @@ part of 'bin_provider.dart';
 
 String _$binHash() => r'3a9a1e9a5e9a274b5d936fbe1ec924489b07b59c';
 
-/// See also [Bin].
+/// Provider for the deleted notes.
+///
+/// Copied from [Bin].
 @ProviderFor(Bin)
 final binProvider = AutoDisposeAsyncNotifierProvider<Bin, List<Note>>.internal(
   Bin.new,

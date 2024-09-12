@@ -7,10 +7,14 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 /// Toolbar for the content text field that enables advanced formatting options.
 class EditorToolbar extends StatefulWidget {
-  const EditorToolbar(this.fleatherController);
+  /// Default constructor.
+  const EditorToolbar({
+    super.key,
+    required this.editorController,
+  });
 
   /// Controller of the content text field.
-  final FleatherController fleatherController;
+  final FleatherController editorController;
 
   @override
   State<EditorToolbar> createState() => _EditorToolbarState();
@@ -50,14 +54,14 @@ class _EditorToolbarState extends State<EditorToolbar> {
   ///
   /// Copied from the fleather source code to allow using a custom button to insert rules.
   void _insertRule() {
-    final index = widget.fleatherController.selection.baseOffset;
-    final length = widget.fleatherController.selection.extentOffset - index;
-    final newSelection = widget.fleatherController.selection.copyWith(
+    final index = widget.editorController.selection.baseOffset;
+    final length = widget.editorController.selection.extentOffset - index;
+    final newSelection = widget.editorController.selection.copyWith(
       baseOffset: index + 2,
       extentOffset: index + 2,
     );
 
-    widget.fleatherController.replaceText(index, length, BlockEmbed.horizontalRule, selection: newSelection);
+    widget.editorController.replaceText(index, length, BlockEmbed.horizontalRule, selection: newSelection);
   }
 
   @override
@@ -69,62 +73,62 @@ class _EditorToolbarState extends State<EditorToolbar> {
         ToggleStyleButton(
           attribute: ParchmentAttribute.bold,
           icon: Icons.format_bold,
-          controller: widget.fleatherController,
+          controller: widget.editorController,
           childBuilder: _buttonBuilder,
         ),
         ToggleStyleButton(
           attribute: ParchmentAttribute.italic,
           icon: Icons.format_italic,
-          controller: widget.fleatherController,
+          controller: widget.editorController,
           childBuilder: _buttonBuilder,
         ),
         ToggleStyleButton(
           attribute: ParchmentAttribute.underline,
           icon: Icons.format_underline,
-          controller: widget.fleatherController,
+          controller: widget.editorController,
           childBuilder: _buttonBuilder,
         ),
         ToggleStyleButton(
           attribute: ParchmentAttribute.strikethrough,
           icon: Icons.format_strikethrough,
-          controller: widget.fleatherController,
+          controller: widget.editorController,
           childBuilder: _buttonBuilder,
         ),
         if (!PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>())
           ToggleStyleButton(
             attribute: ParchmentAttribute.block.checkList,
             icon: Icons.checklist,
-            controller: widget.fleatherController,
+            controller: widget.editorController,
             childBuilder: _buttonBuilder,
           ),
         ToggleStyleButton(
           attribute: ParchmentAttribute.block.bulletList,
           icon: Icons.format_list_bulleted,
-          controller: widget.fleatherController,
+          controller: widget.editorController,
           childBuilder: _buttonBuilder,
         ),
         ToggleStyleButton(
           attribute: ParchmentAttribute.block.numberList,
           icon: Icons.format_list_numbered,
-          controller: widget.fleatherController,
+          controller: widget.editorController,
           childBuilder: _buttonBuilder,
         ),
         ToggleStyleButton(
           attribute: ParchmentAttribute.inlineCode,
           icon: Icons.code,
-          controller: widget.fleatherController,
+          controller: widget.editorController,
           childBuilder: _buttonBuilder,
         ),
         ToggleStyleButton(
           attribute: ParchmentAttribute.block.code,
           icon: Symbols.code_blocks,
-          controller: widget.fleatherController,
+          controller: widget.editorController,
           childBuilder: _buttonBuilder,
         ),
         ToggleStyleButton(
           attribute: ParchmentAttribute.block.quote,
           icon: Icons.format_quote,
-          controller: widget.fleatherController,
+          controller: widget.editorController,
           childBuilder: _buttonBuilder,
         ),
         IconButton(

@@ -7,6 +7,7 @@ import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.d
 
 /// Settings related to the notes editor.
 class SettingsEditorPage extends StatefulWidget {
+  /// Default constructor.
   const SettingsEditorPage({super.key});
 
   @override

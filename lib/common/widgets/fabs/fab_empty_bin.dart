@@ -6,6 +6,7 @@ import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 
 /// Floating action button to empty the bin.
 class FabEmptyBin extends ConsumerWidget {
+  /// Default constructor.
   const FabEmptyBin({super.key});
 
   @override

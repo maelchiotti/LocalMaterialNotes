@@ -11,7 +11,8 @@ import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 /// Page for the settings of the application.
 class SettingsMainPage extends StatelessWidget {
-  const SettingsMainPage();
+  /// Default constructor.
+  const SettingsMainPage({super.key});
 
   void _openAppearancePage(BuildContext context) {
     SettingsAppearanceRoute().push(context);

@@ -5,9 +5,8 @@ import 'package:localmaterialnotes/common/constants/sizes.dart';
 
 /// Placeholder widget for empty content.
 class EmptyPlaceholder extends StatelessWidget {
-  const EmptyPlaceholder()
-      : icon = null,
-        text = null;
+  /// Default constructor.
+  const EmptyPlaceholder({super.key, this.icon, this.text});
 
   /// Empty notes lists.
   EmptyPlaceholder.notes()

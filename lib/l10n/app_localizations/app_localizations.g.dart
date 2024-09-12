@@ -11,6 +11,7 @@ import 'app_localizations_fr.g.dart';
 import 'app_localizations_pt.g.dart';
 import 'app_localizations_ru.g.dart';
 import 'app_localizations_tr.g.dart';
+import 'app_localizations_zh.g.dart';
 
 // ignore_for_file: type=lint
 
@@ -100,7 +101,8 @@ abstract class AppLocalizations {
     Locale('fr'),
     Locale('pt'),
     Locale('ru'),
-    Locale('tr')
+    Locale('tr'),
+    Locale('zh')
   ];
 
   /// No description provided for @app_name.
@@ -241,6 +243,12 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get settings_language;
 
+  /// No description provided for @settings_language_contribute.
+  ///
+  /// In en, this message translates to:
+  /// **'Contribute'**
+  String get settings_language_contribute;
+
   /// No description provided for @settings_theme.
   ///
   /// In en, this message translates to:
@@ -304,7 +312,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_show_titles_only_description.
   ///
   /// In en, this message translates to:
-  /// **'Only show the titles of the notes so more of them can be displayed'**
+  /// **'Only show the titles of the notes'**
   String get settings_show_titles_only_description;
 
   /// No description provided for @settings_show_titles_only_disable_in_search_view.
@@ -702,6 +710,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Take a look at the source code'**
   String get settings_github_description;
+
+  /// No description provided for @settings_localizations.
+  ///
+  /// In en, this message translates to:
+  /// **'Crowdin'**
+  String get settings_localizations;
+
+  /// No description provided for @settings_localizations_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Add or improve the localizations on the Crowdin project'**
+  String get settings_localizations_description;
 
   /// No description provided for @settings_licence.
   ///
@@ -1151,7 +1171,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es', 'fr', 'pt', 'ru', 'tr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es', 'fr', 'pt', 'ru', 'tr', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -1172,6 +1192,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsRu();
     case 'tr':
       return AppLocalizationsTr();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError('AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '

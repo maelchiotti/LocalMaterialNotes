@@ -16,9 +16,11 @@ import 'package:localmaterialnotes/utils/locale_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:restart_app/restart_app.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// Settings related to the appearance of the application.
 class SettingsAppearancePage extends StatefulWidget {
+  /// Default constructor.
   const SettingsAppearancePage({super.key});
 
   @override
@@ -26,6 +28,17 @@ class SettingsAppearancePage extends StatefulWidget {
 }
 
 class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
+  /// Opens the Crowdin project.
+  void _openCrowdin() {
+    launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'crowdin.com',
+        path: 'project/localmaterialnotes',
+      ),
+    );
+  }
+
   /// Asks the user to select the language of the application.
   ///
   /// Restarts the application if the language is changed.
@@ -202,6 +215,10 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
             SettingsTile.navigation(
               leading: const Icon(Icons.language),
               title: Text(localizations.settings_language),
+              trailing: TextButton.icon(
+                onPressed: _openCrowdin,
+                label: Text(localizations.settings_language_contribute),
+              ),
               value: Text(locale),
               onPressed: _selectLanguage,
             ),

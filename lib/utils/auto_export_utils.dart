@@ -11,6 +11,7 @@ import 'package:shared_storage/shared_storage.dart' as saf;
 class AutoExportUtils {
   static final AutoExportUtils _singleton = AutoExportUtils._internal();
 
+  /// Default constructor.
   factory AutoExportUtils() {
     return _singleton;
   }
@@ -64,6 +65,7 @@ class AutoExportUtils {
     autoExportDirectory = (await getApplicationDocumentsDirectory()).uri;
   }
 
+  /// Returns whether the auto export directory is set to the default value.
   Future<bool> get isAutoExportDirectoryDefault async {
     return autoExportDirectory == (await getApplicationDocumentsDirectory()).uri;
   }

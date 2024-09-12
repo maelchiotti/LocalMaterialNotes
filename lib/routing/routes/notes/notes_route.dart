@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/pages/notes/notes_page.dart';
 
+/// Route of the notes page.
 @immutable
 class NotesRoute extends GoRouteData {
   @override

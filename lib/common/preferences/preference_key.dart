@@ -6,6 +6,8 @@ import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 
+// ignore_for_file: public_member_api_docs
+
 /// Lists the preferences' keys.
 enum PreferenceKey {
   // Appearance

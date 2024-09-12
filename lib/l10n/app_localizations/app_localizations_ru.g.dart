@@ -80,6 +80,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_language => 'Язык';
 
   @override
+  String get settings_language_contribute => 'Contribute';
+
+  @override
   String get settings_theme => 'Тема оформления';
 
   @override
@@ -110,8 +113,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_show_titles_only => 'Titles only';
 
   @override
-  String get settings_show_titles_only_description =>
-      'Only show the titles of the notes so more of them can be displayed';
+  String get settings_show_titles_only_description => 'Only show the titles of the notes';
 
   @override
   String get settings_show_titles_only_disable_in_search_view => 'Disable titles only in search view';
@@ -131,13 +133,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_show_tiles_background => 'Фон';
 
   @override
-  String get settings_show_tiles_background_description => 'Показывать задний фон у заметок';
+  String get settings_show_tiles_background_description => 'Show the background of the notes tiles';
 
   @override
   String get settings_show_separators => 'Разделители';
 
   @override
-  String get settings_show_separators_description => 'Показывать разделитель между заметками';
+  String get settings_show_separators_description => 'Show a separator between the notes tiles';
 
   @override
   String get settings_behavior => 'Поведение';
@@ -251,7 +253,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_import_success => 'Заметки были успешно импортированы.';
 
   @override
-  String get settings_auto_export => 'Автоматический экспорт в формате JSON';
+  String get settings_auto_export => 'Automatic export';
 
   @override
   String get settings_auto_export_description =>
@@ -338,16 +340,22 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_github_description => 'Ознакомьтесь с исходным кодом приложения';
 
   @override
+  String get settings_localizations => 'Crowdin';
+
+  @override
+  String get settings_localizations_description => 'Add or improve the localizations on the Crowdin project';
+
+  @override
   String get settings_licence => 'Лицензия';
 
   @override
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
-  String get settings_github_issues => 'Сообщить об ошибке';
+  String get settings_github_issues => 'Report a bug or request a feature';
 
   @override
-  String get settings_github_issues_description => 'Сообщить об ошибке через GitHub';
+  String get settings_github_issues_description => 'Report a bug or request a feature by creating a GitHub issue';
 
   @override
   String get settings_github_discussions => 'Задать вопрос';
@@ -360,7 +368,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String settings_get_in_touch_description(Object email) {
-    return 'Свяжитесь с разработчиком по почте contact@maelchiotti.dev';
+    return 'Contact the developer via mail at $email';
   }
 
   @override

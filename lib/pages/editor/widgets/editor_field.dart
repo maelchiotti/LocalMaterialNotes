@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 /// Text field to edit the content of a note.
 class EditorField extends StatelessWidget {
+  /// Default constructor.
   const EditorField({
     super.key,
     required this.fleatherController,

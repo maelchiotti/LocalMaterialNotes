@@ -20,7 +20,9 @@ import 'package:localmaterialnotes/providers/notifiers.dart';
 ///   - The text field for the title of the note.
 ///   - The text field for the content of the note.
 class NotesEditorPage extends ConsumerStatefulWidget {
+  /// Default constructor.
   const NotesEditorPage({
+    super.key,
     required this.readOnly,
     required this.autofocus,
   });
@@ -134,7 +136,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
             return showToolbar && hasFocus && isKeyboardVisible
                 ? ColoredBox(
                     color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                    child: EditorToolbar(editorController),
+                    child: EditorToolbar(editorController: editorController),
                   )
                 : Container();
           },

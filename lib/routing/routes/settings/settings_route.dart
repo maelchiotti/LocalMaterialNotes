@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/pages/settings/settings_main_page.dart';
 
+/// Route of the main settings page.
 @immutable
 class SettingsRoute extends GoRouteData {
   @override

@@ -11,9 +11,21 @@ import 'package:url_launcher/url_launcher.dart';
 
 /// Settings providing information about the application.
 class SettingsAboutPage extends StatelessWidget {
+  /// Default constructor.
   const SettingsAboutPage({super.key});
 
   static const _contactEmail = 'contact@maelchiotti.dev';
+
+  /// Opens the Crowdin project.
+  void _openCrowdin(_) {
+    launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'crowdin.com',
+        path: 'project/localmaterialnotes',
+      ),
+    );
+  }
 
   String? _encodeQueryParameters(Map<String, String> params) {
     return params.entries.map((MapEntry<String, String> e) {
@@ -162,6 +174,12 @@ class SettingsAboutPage extends StatelessWidget {
               title: Text(localizations.settings_github),
               value: Text(localizations.settings_github_description),
               onPressed: _openGitHub,
+            ),
+            SettingsTile(
+              leading: const Icon(SimpleIcons.crowdin),
+              title: Text(localizations.settings_localizations),
+              value: Text(localizations.settings_localizations_description),
+              onPressed: _openCrowdin,
             ),
             SettingsTile(
               leading: const Icon(Icons.balance),

@@ -24,6 +24,7 @@ import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 ///   - A button to pin / restore the selected notes.
 ///   - A button to delete / permanently delete the selected notes.
 class SelectionAppBar extends ConsumerStatefulWidget {
+  /// Default constructor.
   const SelectionAppBar();
 
   @override

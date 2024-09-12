@@ -80,6 +80,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_language => 'Language';
 
   @override
+  String get settings_language_contribute => 'Contribute';
+
+  @override
   String get settings_theme => 'Theme';
 
   @override
@@ -110,8 +113,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_show_titles_only => 'Titles only';
 
   @override
-  String get settings_show_titles_only_description =>
-      'Only show the titles of the notes so more of them can be displayed';
+  String get settings_show_titles_only_description => 'Only show the titles of the notes';
 
   @override
   String get settings_show_titles_only_disable_in_search_view => 'Disable titles only in search view';
@@ -336,6 +338,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_github_description => 'Take a look at the source code';
+
+  @override
+  String get settings_localizations => 'Crowdin';
+
+  @override
+  String get settings_localizations_description => 'Add or improve the localizations on the Crowdin project';
 
   @override
   String get settings_licence => 'License';

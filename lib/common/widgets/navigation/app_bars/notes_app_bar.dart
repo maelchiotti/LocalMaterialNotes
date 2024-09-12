@@ -25,8 +25,10 @@ import 'package:localmaterialnotes/utils/keys.dart';
 ///   - The button to change the notes sorting method.
 ///   - The button to search through the notes.
 class NotesAppBar extends ConsumerWidget {
+  /// Default constructor.
   const NotesAppBar({super.key});
 
+  /// Returns the placeholder for the search button used when the search isn't available.
   Widget get searchButtonPlaceholder {
     return IconButton(
       onPressed: null,
@@ -35,6 +37,10 @@ class NotesAppBar extends ConsumerWidget {
     );
   }
 
+  /// Returns the child of the widget.
+  ///
+  /// The child is either the [searchButtonPlaceholder] if the [notes] are empty, or the search anchor with the [notes]
+  /// to search otherwise.
   Widget child(BuildContext context, List<Note> notes) {
     if (notes.isEmpty) {
       return searchButtonPlaceholder;

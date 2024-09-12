@@ -22,6 +22,7 @@ import 'package:simple_icons/simple_icons.dart';
 
 /// Settings related to the backup of the notes.
 class SettingsBackupPage extends ConsumerStatefulWidget {
+  /// Default constructor.
   const SettingsBackupPage({super.key});
 
   @override

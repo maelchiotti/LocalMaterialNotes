@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 
+// ignore_for_file: public_member_api_docs
+
 /// Lists the options available in the menu of the editor's app bar.
 enum MenuOption {
   togglePin(Icons.push_pin, alternativeIcon: Icons.push_pin_outlined),

@@ -10,6 +10,7 @@ extension BuildContextExtension on BuildContext {
     return GoRouterState.of(this).uri.path;
   }
 
+  /// Returns the [RoutingRoute] corresponding to the current [location].
   RoutingRoute get route {
     final route = RoutingRoute.values.firstWhereOrNull((route) {
       return route.path == location;

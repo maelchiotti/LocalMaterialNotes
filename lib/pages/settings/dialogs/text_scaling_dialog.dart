@@ -4,7 +4,9 @@ import 'package:localmaterialnotes/common/extensions/double_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 
+/// Dialog to choose the text scaling.
 class TextScalingDialog extends StatefulWidget {
+  /// Default constructor.
   const TextScalingDialog({super.key});
 
   @override

@@ -80,6 +80,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_language => 'Langue';
 
   @override
+  String get settings_language_contribute => 'Contribuer';
+
+  @override
   String get settings_theme => 'Thème';
 
   @override
@@ -104,42 +107,39 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_black_theming_description => 'Utilise un fond noir pour le thème sombre';
 
   @override
-  String get settings_text_scaling => 'Text scaling';
+  String get settings_text_scaling => 'Mise à l\'échelle du texte';
 
   @override
-  String get settings_show_titles_only => 'Titles only';
+  String get settings_show_titles_only => 'Titres uniquement';
 
   @override
-  String get settings_show_titles_only_description =>
-      'Only show the titles of the notes so more of them can be displayed';
+  String get settings_show_titles_only_description => 'Afficher uniquement les titres des notes';
 
   @override
-  String get settings_show_titles_only_disable_in_search_view => 'Disable titles only in search view';
+  String get settings_show_titles_only_disable_in_search_view => 'Désactiver titres uniquement dans la recherche';
 
   @override
   String get settings_show_titles_only_disable_in_search_view_description =>
-      'Disable the option to only show the titles when in the search view';
+      'Désactiver l’option pour afficher uniquement les titres dans la vue de recherche';
 
   @override
-  String get settings_disable_subdued_note_content_preview => 'Non-subdued preview';
+  String get settings_disable_subdued_note_content_preview => 'Aperçu non atténué';
 
   @override
   String get settings_disable_subdued_note_content_preview_description =>
-      'Disable the subdued text color of the notes content preview';
+      'Désactiver la couleur de texte atténuée de l\'aperçu du contenu des notes';
 
   @override
   String get settings_show_tiles_background => 'Fond';
 
   @override
-  String get settings_show_tiles_background_description =>
-      'Afficher l\'arrière plan des tuiles des notes pour les différencier plus facilement';
+  String get settings_show_tiles_background_description => 'Afficher l\'arrière-plan des tuiles de notes';
 
   @override
   String get settings_show_separators => 'Séparateurs';
 
   @override
-  String get settings_show_separators_description =>
-      'Afficher un séparateur entre les tuiles de notes pour les différencier facilement';
+  String get settings_show_separators_description => 'Afficher un séparateur entre les tuiles de notes';
 
   @override
   String get settings_behavior => 'Comportement';
@@ -188,7 +188,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_editor_formatting => 'Mise en forme';
 
   @override
-  String get settings_editor_behavior => 'Behavior';
+  String get settings_editor_behavior => 'Comportement';
 
   @override
   String get settings_editor_appearance => 'Apparence';
@@ -218,11 +218,11 @@ class AppLocalizationsFr extends AppLocalizations {
       'Afficher la barre d\'outils de l\'éditeur pour permettre la mise en forme textuelle avancée';
 
   @override
-  String get settings_focus_title_on_new_note => 'Focus the title';
+  String get settings_focus_title_on_new_note => 'Focaliser le titre';
 
   @override
   String get settings_focus_title_on_new_note_description =>
-      'Focus the title instead of the content when creating a new note';
+      'Focaliser le titre au lieu du contenu lors de la création d\'une nouvelle note';
 
   @override
   String get settings_use_paragraph_spacing => 'Espacement entre les paragraphes';
@@ -237,10 +237,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_backup_description => 'Exportation, importation';
 
   @override
-  String get settings_backup_auto_export => 'Automatic export';
+  String get settings_backup_auto_export => 'Export automatique';
 
   @override
-  String get settings_backup_manual_export => 'Manual export';
+  String get settings_backup_manual_export => 'Export manuel';
 
   @override
   String get settings_backup_import => 'Importer';
@@ -255,43 +255,43 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_import_success => 'Les notes ont bien été importées.';
 
   @override
-  String get settings_auto_export => 'Export automatique en JSON';
+  String get settings_auto_export => 'Export automatique';
 
   @override
   String get settings_auto_export_description =>
       'Exporter les notes automatiquement dans un fichier JSON (corbeille incluse) qui peut être réimporté';
 
   @override
-  String get settings_auto_export_frequency => 'Frequency';
+  String get settings_auto_export_frequency => 'Fréquence';
 
   @override
   String settings_auto_export_frequency_description(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
+        '1': 'tous les jours',
+        '7': 'toutes les semaines',
+        '14': 'toutes les 2 semaines',
+        '30': 'tous les mois',
+        'other': 'tous les $frequency jours',
       },
     );
-    return 'Automatically export the notes every $_temp0';
+    return 'Exporter automatiquement les notes $_temp0';
   }
 
   @override
-  String get settings_auto_export_encryption => 'Encryption';
+  String get settings_auto_export_encryption => 'Chiffrement';
 
   @override
   String get settings_auto_export_encryption_description =>
-      'Encrypt the title and the content of the notes with a password';
+      'Chiffrer le titre et le contenu des notes avec un mot de passe';
 
   @override
-  String get settings_auto_export_directory => 'Directory';
+  String get settings_auto_export_directory => 'Dossier';
 
   @override
   String settings_auto_export_directory_description(Object autoExportDirectory) {
-    return 'Save the automatic exports in $autoExportDirectory';
+    return 'Sauvegarder les exports automatiques dans $autoExportDirectory';
   }
 
   @override
@@ -342,16 +342,23 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_github_description => 'Jeter un coup d\'œil au code source';
 
   @override
+  String get settings_localizations => 'Crowdin';
+
+  @override
+  String get settings_localizations_description => 'Ajouter ou améliorer les traductions sur le projet Crowdin';
+
+  @override
   String get settings_licence => 'License';
 
   @override
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
-  String get settings_github_issues => 'Signaler un bug';
+  String get settings_github_issues => 'Signaler un bug ou proposer une fonctionnalité';
 
   @override
-  String get settings_github_issues_description => 'Signaler un bug en créant une issue GitHub';
+  String get settings_github_issues_description =>
+      'Signaler un bug ou proposer une fonctionnalité en créant une issue GitHub';
 
   @override
   String get settings_github_discussions => 'Poser une question';
@@ -364,7 +371,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String settings_get_in_touch_description(Object email) {
-    return 'Contacter le développeur par mail à contact@maelchiotti.dev';
+    return 'Contacter le développeur par mail à $email';
   }
 
   @override
@@ -413,7 +420,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tooltip_toggle_pins => 'Basculer les épingles';
 
   @override
-  String get tooltip_reset => 'Reset';
+  String get tooltip_reset => 'Réinitialiser';
 
   @override
   String get dialog_delete => 'Supprimer';
@@ -497,14 +504,14 @@ class AppLocalizationsFr extends AppLocalizations {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
+        '1': 'Tous les jours',
+        '7': 'Toutes les semaines',
+        '14': 'Toutes les 2 semaines',
+        '30': 'Tous les mois',
+        'other': 'Tous les $frequency jours',
       },
     );
-    return 'Every $_temp0';
+    return '$_temp0';
   }
 
   @override

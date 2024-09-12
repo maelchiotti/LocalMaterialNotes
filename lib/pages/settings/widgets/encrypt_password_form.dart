@@ -6,6 +6,7 @@ import 'package:localmaterialnotes/pages/settings/widgets/password_field.dart';
 
 /// Form to choose whether to encrypt the JSON exports and to provide the password.
 class EncryptPasswordForm extends StatefulWidget {
+  /// Default constructor.
   const EncryptPasswordForm({
     super.key,
     required this.secondaryDescription,

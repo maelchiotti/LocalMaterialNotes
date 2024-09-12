@@ -5,6 +5,7 @@ import 'package:localmaterialnotes/common/extensions/string_extension.dart';
 
 /// Text field to enter the password to use to encrypt the JSON exports.
 class PasswordField extends StatefulWidget {
+  /// Default constructor.
   const PasswordField({
     super.key,
     this.description,

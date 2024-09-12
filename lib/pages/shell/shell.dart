@@ -12,9 +12,15 @@ import 'package:localmaterialnotes/common/widgets/navigation/top_navigation.dart
 import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
+/// Shell that contains the current page, the app bar, the drawer and the FAB.
 class ShellPage extends StatefulWidget {
-  const ShellPage(this.child, {super.key});
+  /// Default constructor.
+  const ShellPage({
+    super.key,
+    required this.child,
+  });
 
+  /// Page to show.
   final Widget child;
 
   @override

@@ -14,6 +14,7 @@ import 'package:path_provider/path_provider.dart';
 class NotesService extends DatabaseService {
   static final NotesService _singleton = NotesService._internal();
 
+  /// Default constructor.
   factory NotesService() {
     return _singleton;
   }
