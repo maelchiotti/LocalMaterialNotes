@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Setting to focus the title instead of the content when creating a new note
 - Setting to disable the subdued color of the notes content preview
 - Setting to change the text scaling
+- Chinese simplified localization
 
 ### Fixed
 
