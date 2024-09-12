@@ -5,12 +5,13 @@ import 'package:localmaterialnotes/common/extensions/double_extension.dart';
 
 /// Lists the localization completion for every supported language.
 enum LocalizationCompletion {
-  en(Locale('en'), 1),
-  es(Locale('es'), .42),
-  fr(Locale('fr'), 1),
-  pt(Locale('pt'), .97),
-  ru(Locale('ru'), 1),
-  tr(Locale('tr'), .41),
+  en(Locale('en'), 1), // English
+  es(Locale('es'), .4), // Spanish
+  fr(Locale('fr'), 1), // French
+  pt(Locale('pt'), .77), // Portuguese
+  ru(Locale('ru'), 0.8), // Russian
+  tr(Locale('tr'), .39), // Turkish
+  zh(Locale('zh'), .8), // Chinese Simplified
   ;
 
   /// The locale of this localization.

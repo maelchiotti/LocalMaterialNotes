@@ -110,8 +110,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_show_titles_only => 'Titles only';
 
   @override
-  String get settings_show_titles_only_description =>
-      'Only show the titles of the notes so more of them can be displayed';
+  String get settings_show_titles_only_description => 'Only show the titles of the notes';
 
   @override
   String get settings_show_titles_only_disable_in_search_view => 'Disable titles only in search view';

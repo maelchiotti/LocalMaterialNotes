@@ -110,8 +110,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_show_titles_only => 'Titles only';
 
   @override
-  String get settings_show_titles_only_description =>
-      'Only show the titles of the notes so more of them can be displayed';
+  String get settings_show_titles_only_description => 'Only show the titles of the notes';
 
   @override
   String get settings_show_titles_only_disable_in_search_view => 'Disable titles only in search view';
@@ -131,15 +130,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_show_tiles_background => 'Background';
 
   @override
-  String get settings_show_tiles_background_description =>
-      'Show the background of the notes tiles to differentiate them easily';
+  String get settings_show_tiles_background_description => 'Show the background of the notes tiles';
 
   @override
   String get settings_show_separators => 'Separators';
 
   @override
-  String get settings_show_separators_description =>
-      'Show a separator between the notes tiles to differentiate them easily';
+  String get settings_show_separators_description => 'Show a separator between the notes tiles';
 
   @override
   String get settings_behavior => 'Davranış';
@@ -254,7 +251,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_import_success => 'İçe aktarma başarılı.';
 
   @override
-  String get settings_auto_export => 'Auto export as JSON';
+  String get settings_auto_export => 'Automatic export';
 
   @override
   String get settings_auto_export_description =>
@@ -346,10 +343,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
-  String get settings_github_issues => 'Report a bug';
+  String get settings_github_issues => 'Report a bug or request a feature';
 
   @override
-  String get settings_github_issues_description => 'Report a bug by creating a GitHub issue';
+  String get settings_github_issues_description => 'Report a bug or request a feature by creating a GitHub issue';
 
   @override
   String get settings_github_discussions => 'Ask a question';
@@ -362,7 +359,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String settings_get_in_touch_description(Object email) {
-    return 'Contact the developer via mail at contact@maelchiotti.dev';
+    return 'Contact the developer via mail at $email';
   }
 
   @override

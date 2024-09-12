@@ -11,6 +11,7 @@ import 'app_localizations_fr.g.dart';
 import 'app_localizations_pt.g.dart';
 import 'app_localizations_ru.g.dart';
 import 'app_localizations_tr.g.dart';
+import 'app_localizations_zh.g.dart';
 
 // ignore_for_file: type=lint
 
@@ -100,7 +101,8 @@ abstract class AppLocalizations {
     Locale('fr'),
     Locale('pt'),
     Locale('ru'),
-    Locale('tr')
+    Locale('tr'),
+    Locale('zh')
   ];
 
   /// No description provided for @app_name.
@@ -304,7 +306,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_show_titles_only_description.
   ///
   /// In en, this message translates to:
-  /// **'Only show the titles of the notes so more of them can be displayed'**
+  /// **'Only show the titles of the notes'**
   String get settings_show_titles_only_description;
 
   /// No description provided for @settings_show_titles_only_disable_in_search_view.
@@ -1151,7 +1153,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es', 'fr', 'pt', 'ru', 'tr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es', 'fr', 'pt', 'ru', 'tr', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -1172,6 +1174,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsRu();
     case 'tr':
       return AppLocalizationsTr();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError('AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
