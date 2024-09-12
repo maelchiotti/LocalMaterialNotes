@@ -274,18 +274,18 @@ packages:
     dependency: "direct dev"
     description:
       name: custom_lint
-      sha256: "4939d89e580c36215e48a7de8fd92f22c79dcc3eb11fda84f3402b3b45aec663"
+      sha256: "6e1ec47427ca968f22bce734d00028ae7084361999b41673291138945c5baca0"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.5"
+    version: "0.6.7"
   custom_lint_builder:
     dependency: transitive
     description:
       name: custom_lint_builder
-      sha256: d9e5bb63ed52c1d006f5a1828992ba6de124c27a531e8fba0a31afffa81621b3
+      sha256: ba2f90fff4eff71d202d097eb14b14f87087eaaef742e956208c0eb9d3a40a21
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.5"
+    version: "0.6.7"
   custom_lint_core:
     dependency: transitive
     description:
@@ -402,10 +402,10 @@ packages:
     dependency: "direct main"
     description:
       name: fleather
-      sha256: f3fbddf184ae6729de77a2a5df82a15d066afd959dce59fed0c245daaaf4e578
+      sha256: "622231d66508fd2f481824134e0e4e539168f20a5ec513c8c6246f5b8c8240da"
       url: "https://pub.dev"
     source: hosted
-    version: "1.18.0"
+    version: "1.19.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -831,10 +831,10 @@ packages:
     dependency: "direct main"
     description:
       name: material_symbols_icons
-      sha256: b72bf7566d024d51627dce81b1b98539830a0e3ffbb5784989aa3e97c8493160
+      sha256: "66416c4e30bd363508e12669634fc4f3250b83b69e862de67f4f9c480cf42414"
       url: "https://pub.dev"
     source: hosted
-    version: "4.2784.0"
+    version: "4.2785.1"
   meta:
     dependency: transitive
     description:
@@ -887,10 +887,10 @@ packages:
     dependency: "direct main"
     description:
       name: parchment
-      sha256: f200be9988c72b3abb9d5f6b7dfa843dddb1e33ec16533e580b2f11161666d53
+      sha256: a7b4ae5bc7fcfe29909840246d824651315b09cae2176708f86c6ce7f8236019
       url: "https://pub.dev"
     source: hosted
-    version: "1.18.0"
+    version: "1.19.0"
   parchment_delta:
     dependency: "direct main"
     description:
@@ -1079,10 +1079,10 @@ packages:
     dependency: "direct main"
     description:
       name: restart_app
-      sha256: ed8b6a3223e90dcd5d9e44c79b66b96f5527a2467ba2b1ec2c242c3807dbd435
+      sha256: "00d5ec3e9de871cedbe552fc41e615b042b5ec654385e090e0983f6d02f655ed"
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.0"
+    version: "1.3.2"
   riverpod:
     dependency: transitive
     description:
