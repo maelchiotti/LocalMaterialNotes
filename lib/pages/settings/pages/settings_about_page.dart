@@ -11,7 +11,21 @@ import 'package:url_launcher/url_launcher.dart';
 
 /// Settings providing information about the application.
 class SettingsAboutPage extends StatelessWidget {
+  /// Default constructor.
   const SettingsAboutPage({super.key});
+
+  static const _contactEmail = 'contact@maelchiotti.dev';
+
+  /// Opens the Crowdin project.
+  void _openCrowdin(_) {
+    launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'crowdin.com',
+        path: 'project/localmaterialnotes',
+      ),
+    );
+  }
 
   String? _encodeQueryParameters(Map<String, String> params) {
     return params.entries.map((MapEntry<String, String> e) {
@@ -23,7 +37,6 @@ class SettingsAboutPage extends StatelessWidget {
   Future<void> _showAbout(BuildContext context) async {
     showAboutDialog(
       context: context,
-      useRootNavigator: false,
       applicationName: localizations.app_name,
       applicationVersion: InfoUtils().appVersion,
       applicationIcon: Image.asset(
@@ -66,7 +79,7 @@ class SettingsAboutPage extends StatelessWidget {
     );
   }
 
-  /// Sends an email to `contact@maelchiotti.dev` with some basic information.
+  /// Sends an email to the contact email with some basic information.
   void _sendMail(_) {
     final appVersion = InfoUtils().appVersion;
     final buildMode = InfoUtils().buildMode;
@@ -77,7 +90,7 @@ class SettingsAboutPage extends StatelessWidget {
     launchUrl(
       Uri(
         scheme: 'mailto',
-        path: 'contact@maelchiotti.dev',
+        path: _contactEmail,
         query: _encodeQueryParameters({
           'subject': '[Material Notes] ',
           'body': '\n\n\n----------\nv$appVersion\n$buildMode mode\nAndroid $androidVersion\n$brand $model',
@@ -148,7 +161,7 @@ class SettingsAboutPage extends StatelessWidget {
             SettingsTile(
               leading: const Icon(Icons.mail),
               title: Text(localizations.settings_get_in_touch),
-              value: Text(localizations.settings_get_in_touch_description),
+              value: Text(localizations.settings_get_in_touch_description(_contactEmail)),
               onPressed: _sendMail,
             ),
           ],
@@ -161,6 +174,12 @@ class SettingsAboutPage extends StatelessWidget {
               title: Text(localizations.settings_github),
               value: Text(localizations.settings_github_description),
               onPressed: _openGitHub,
+            ),
+            SettingsTile(
+              leading: const Icon(SimpleIcons.crowdin),
+              title: Text(localizations.settings_localizations),
+              value: Text(localizations.settings_localizations_description),
+              onPressed: _openCrowdin,
             ),
             SettingsTile(
               leading: const Icon(Icons.balance),

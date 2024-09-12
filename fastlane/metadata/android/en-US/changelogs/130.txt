@@ -1,0 +1,13 @@
+ADDED
+- Release on F-Droid
+- Choose the auto backup directory
+- Choose to only show the titles of the notes (can be disabled in the search view)
+- Choose to focus title instead of content when creating new note
+- Choose to disable subdued color of notes content preview
+- Choose to change the text scaling
+- Chinese simplified localization
+
+FIXED
+- Search view not black in black theme mode
+- Failure to set refresh rate below Android 6
+- Failure to get the write permission when writing export files

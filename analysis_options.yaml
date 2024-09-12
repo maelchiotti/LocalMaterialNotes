@@ -8,5 +8,6 @@ analyzer:
 
 linter:
   rules:
+    - public_member_api_docs
     - always_put_control_body_on_new_line
     - curly_braces_in_flow_control_structures

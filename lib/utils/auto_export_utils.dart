@@ -1,102 +1,105 @@
-import 'dart:io';
-
-import 'package:localmaterialnotes/common/extensions/uri_extension.dart';
+import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
-import 'package:localmaterialnotes/utils/files_utils.dart';
-import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_storage/shared_storage.dart' as saf;
 
-/// Utilities for the auto export functionality.
+/// Utilities for the automatic export functionality.
 ///
 /// This class is a singleton.
 class AutoExportUtils {
   static final AutoExportUtils _singleton = AutoExportUtils._internal();
 
+  /// Default constructor.
   factory AutoExportUtils() {
     return _singleton;
   }
 
   AutoExportUtils._internal();
 
-  /// Root directory where auto exports are located.
-  late Uri _autoExportDirectory;
+  /// Directory where automatic exports are saved.
+  late Uri autoExportDirectory;
 
-  /// Path to the default download directory on Android devices.
-  final _downloadDirectoryPath = '/storage/emulated/0/Download';
-
-  /// Subdirectories to add after the export path.
-  final subDirectories = ['Material Notes', 'backups'];
-
-  /// Precise directory where auto exports are located.
-  ///
-  /// It's a combination of [_autoExportDirectory] and [subDirectories].
-  Uri get backupsDirectory {
-    final backupsDirectoryPath = joinAll([_autoExportDirectory.path, ...subDirectories]);
-
-    return Uri.directory(backupsDirectoryPath);
-  }
-
+  /// Ensures the utility is initialized.
   Future<void> ensureInitialized() async {
-    await _setAutoExportDirectory();
-
+    await setAutoExportDirectory();
     await performAutoExportIfNeeded();
   }
 
-  /// Returns the JSON file in which to write the exported data.
-  Future<File> get getAutoExportFile async {
-    return getExportFile(
-      backupsDirectory.toDecodedString,
-      'json',
-    );
-  }
+  /// Sets the directory where automatic exports are located depending on the user preference and the available
+  /// permissions.
+  Future<void> setAutoExportDirectory() async {
+    final autoExportDirectoryPreference = PreferenceKey.autoExportDirectory.getPreferenceOrDefault<String>();
 
-  /// Set the auto export directory.
-  ///
-  /// By default, the auto export directory is the Android's Download directory.
-  /// If it doesn't exist, the application documents directory is used.
-  Future<void> _setAutoExportDirectory() async {
-    final downloadsDirectory = Directory(_downloadDirectoryPath);
-
-    if (!downloadsDirectory.existsSync()) {
-      final externalStorageDirectory = await getApplicationDocumentsDirectory();
-
-      _autoExportDirectory = externalStorageDirectory.uri;
+    // Set to default if the user didn't choose a directory
+    if (autoExportDirectoryPreference.isEmpty) {
+      return setAutoExportDirectoryToDefault();
     }
 
-    _autoExportDirectory = downloadsDirectory.uri;
+    final persistedPermissions = await saf.persistedUriPermissions();
+
+    // Set to default if no URI permissions are persisted by SAF
+    if (persistedPermissions == null || persistedPermissions.isEmpty) {
+      return setAutoExportDirectoryToDefault();
+    }
+
+    final persistedUris = persistedPermissions.map((permission) => permission.uri);
+    final persistedAutoExportDirectory = persistedUris.firstWhereOrNull((uri) {
+      return uri.path == autoExportDirectoryPreference;
+    });
+
+    // Set to default if no URI permission corresponding to the user preference is persisted by SAF,
+    // or if the directory doesn't exist or doesn't have write permission
+    if (persistedAutoExportDirectory == null ||
+        !(await saf.exists(persistedAutoExportDirectory) ?? false) ||
+        !(await saf.canWrite(persistedAutoExportDirectory) ?? false)) {
+      return setAutoExportDirectoryToDefault();
+    }
+
+    autoExportDirectory = persistedAutoExportDirectory;
   }
 
-  /// Checks if an auto export should be performed.
+  /// Sets the automatic export directory to its default value (the application documents).
+  Future<void> setAutoExportDirectoryToDefault() async {
+    autoExportDirectory = (await getApplicationDocumentsDirectory()).uri;
+  }
+
+  /// Returns whether the auto export directory is set to the default value.
+  Future<bool> get isAutoExportDirectoryDefault async {
+    return autoExportDirectory == (await getApplicationDocumentsDirectory()).uri;
+  }
+
+  /// Checks if an automatic export should be performed.
   ///
-  /// An auto export should be performed if it is enabled and either if no auto export has been performed yet,
-  /// or the time difference between now and the last auto export is greater than the auto export frequency
+  /// An automatic export should be performed if it is enabled and either if no automatic export has been performed yet,
+  /// or the time difference between now and the last automatic export is greater than the automatic export frequency
   /// chosen by the user
   bool _shouldPerformAutoExport() {
-    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<double>();
+    final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault<bool>();
+    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<int>();
 
-    // Auto export is disabled
-    if (autoExportFrequency == 0) {
+    if (!enableAutoExport) {
       return false;
     }
 
-    final lastAutoExportDate = DateTime.tryParse(PreferenceKey.lastAutoExportDate.getPreferenceOrDefault());
+    final lastAutoExportDatePreference = PreferenceKey.lastAutoExportDate.getPreferenceOrDefault<String>();
+    final lastAutoExportDate = DateTime.tryParse(lastAutoExportDatePreference);
 
-    // If the last auto export date is null, perform the auto first auto export now
+    // If the last automatic export date is null, perform the auto first automatic export now
     if (lastAutoExportDate == null) {
       return true;
     }
 
     final durationSinceLastAutoExport = DateTime.now().difference(lastAutoExportDate);
-    final autoExportFrequencyDuration = Duration(days: autoExportFrequency.toInt());
+    final autoExportFrequencyDuration = Duration(days: autoExportFrequency);
 
-    // If no auto export has been done for longer than the defined auto export frequency,
-    // then perform an auto export now
+    // If no automatic export has been done for longer than the defined automatic export frequency,
+    // then perform an automatic export now
     return durationSinceLastAutoExport > autoExportFrequencyDuration;
   }
 
-  /// Performs an auto export of the database if it is needed.
+  /// Performs an automatic export of the database if it is needed.
   Future<void> performAutoExportIfNeeded() async {
     if (!_shouldPerformAutoExport()) {
       return;
@@ -108,7 +111,7 @@ class AutoExportUtils {
     DatabaseUtils().autoExportAsJson(encrypt, password);
 
     PreferencesUtils().set<String>(
-      PreferenceKey.lastAutoExportDate.name,
+      PreferenceKey.lastAutoExportDate,
       DateTime.now().toIso8601String(),
     );
   }

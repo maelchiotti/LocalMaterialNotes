@@ -80,6 +80,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_language => 'Язык';
 
   @override
+  String get settings_language_contribute => 'Contribute';
+
+  @override
   String get settings_theme => 'Тема оформления';
 
   @override
@@ -104,16 +107,39 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_black_theming_description => 'Использовать чёрный фон при тёмной теме оформления';
 
   @override
-  String get settings_show_separators => 'Разделители';
+  String get settings_text_scaling => 'Text scaling';
 
   @override
-  String get settings_show_separators_description => 'Показывать разделитель между заметками';
+  String get settings_show_titles_only => 'Titles only';
+
+  @override
+  String get settings_show_titles_only_description => 'Only show the titles of the notes';
+
+  @override
+  String get settings_show_titles_only_disable_in_search_view => 'Disable titles only in search view';
+
+  @override
+  String get settings_show_titles_only_disable_in_search_view_description =>
+      'Disable the option to only show the titles when in the search view';
+
+  @override
+  String get settings_disable_subdued_note_content_preview => 'Non-subdued preview';
+
+  @override
+  String get settings_disable_subdued_note_content_preview_description =>
+      'Disable the subdued text color of the notes content preview';
 
   @override
   String get settings_show_tiles_background => 'Фон';
 
   @override
-  String get settings_show_tiles_background_description => 'Показывать задний фон у заметок';
+  String get settings_show_tiles_background_description => 'Show the background of the notes tiles';
+
+  @override
+  String get settings_show_separators => 'Разделители';
+
+  @override
+  String get settings_show_separators_description => 'Show a separator between the notes tiles';
 
   @override
   String get settings_behavior => 'Поведение';
@@ -162,6 +188,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_editor_formatting => 'Форматирование';
 
   @override
+  String get settings_editor_behavior => 'Behavior';
+
+  @override
   String get settings_editor_appearance => 'Персонализация';
 
   @override
@@ -187,6 +216,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_show_toolbar_description => 'Показать панель инструментов для расширенного форматирования текста';
 
   @override
+  String get settings_focus_title_on_new_note => 'Focus the title';
+
+  @override
+  String get settings_focus_title_on_new_note_description =>
+      'Focus the title instead of the content when creating a new note';
+
+  @override
   String get settings_use_paragraph_spacing => 'Расстояние между абзацами';
 
   @override
@@ -199,80 +235,61 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_backup_description => 'Экспорт, импорт';
 
   @override
-  String get settings_backup_export => 'Экспорт';
+  String get settings_backup_auto_export => 'Automatic export';
+
+  @override
+  String get settings_backup_manual_export => 'Manual export';
 
   @override
   String get settings_backup_import => 'Импорт';
 
   @override
-  String get settings_auto_export => 'Автоматический экспорт в формате JSON';
+  String get settings_import => 'Импорт заметок';
+
+  @override
+  String get settings_import_description => 'Импортировать заметки из JSON–файла';
+
+  @override
+  String get settings_import_success => 'Заметки были успешно импортированы.';
+
+  @override
+  String get settings_auto_export => 'Automatic export';
 
   @override
   String get settings_auto_export_description =>
       'Автоматически экспортировать заметки в формате JSON (включая заметки из корзины)';
 
   @override
-  String settings_auto_export_value(String encrypt, String frequency) {
+  String get settings_auto_export_frequency => 'Frequency';
+
+  @override
+  String settings_auto_export_frequency_description(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
-        '1': 'Каждый день',
-        '7': 'Каждую неделю',
-        '14': 'Каждые 2 недели',
-        '30': 'Каждый месяц',
-        'other': 'Каждые $frequency дня',
+        '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
+        'other': '$frequency days',
       },
     );
-    String _temp1 = intl.Intl.selectLogic(
-      encrypt,
-      {
-        'true': 'зашифровано',
-        'false': 'не зашифровано',
-        'other': '',
-      },
-    );
-    return '$_temp0, $_temp1';
+    return 'Automatically export the notes every $_temp0';
   }
 
   @override
-  String get settings_auto_export_disabled => 'Отключено';
+  String get settings_auto_export_encryption => 'Encryption';
 
   @override
-  String settings_auto_export_directory(Object directory) {
-    return 'Экспортированные заметки находятся в $directory';
-  }
+  String get settings_auto_export_encryption_description =>
+      'Encrypt the title and the content of the notes with a password';
 
   @override
-  String get settings_auto_export_dialog_description_disabled => 'Автоматический экспорт будет отключен.';
+  String get settings_auto_export_directory => 'Directory';
 
   @override
-  String settings_auto_export_dialog_description_enabled(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'каждый день',
-        '7': 'каждую неделю',
-        '14': 'каждые 2 недели',
-        '30': 'каждый месяц',
-        'other': 'каждые $frequency дня',
-      },
-    );
-    return 'Автоматический экспорт будет производиться $_temp0. Установите значение на 0, чтобы отключить автоматический экспорт.';
-  }
-
-  @override
-  String settings_auto_export_dialog_slider_label(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'Каждый день',
-        '7': 'Каждую неделю',
-        '14': 'Каждые 2 недели',
-        '30': 'Каждый месяц',
-        'other': 'Каждые $frequency дня',
-      },
-    );
-    return '$_temp0';
+  String settings_auto_export_directory_description(Object autoExportDirectory) {
+    return 'Save the automatic exports in $autoExportDirectory';
   }
 
   @override
@@ -291,15 +308,6 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get settings_export_markdown_description =>
       'Моментально экспортировать заметки в формате Markdown (включая заметки из корзины)';
-
-  @override
-  String get settings_import => 'Импорт заметок';
-
-  @override
-  String get settings_import_description => 'Импортировать заметки из JSON–файла';
-
-  @override
-  String get settings_import_success => 'Заметки были успешно импортированы.';
 
   @override
   String get settings_about => 'О приложении';
@@ -332,16 +340,22 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_github_description => 'Ознакомьтесь с исходным кодом приложения';
 
   @override
+  String get settings_localizations => 'Crowdin';
+
+  @override
+  String get settings_localizations_description => 'Add or improve the localizations on the Crowdin project';
+
+  @override
   String get settings_licence => 'Лицензия';
 
   @override
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
-  String get settings_github_issues => 'Сообщить об ошибке';
+  String get settings_github_issues => 'Report a bug or request a feature';
 
   @override
-  String get settings_github_issues_description => 'Сообщить об ошибке через GitHub';
+  String get settings_github_issues_description => 'Report a bug or request a feature by creating a GitHub issue';
 
   @override
   String get settings_github_discussions => 'Задать вопрос';
@@ -353,7 +367,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_get_in_touch => 'Связаться с разработчиком';
 
   @override
-  String get settings_get_in_touch_description => 'Свяжитесь с разработчиком по почте contact@maelchiotti.dev';
+  String settings_get_in_touch_description(Object email) {
+    return 'Contact the developer via mail at $email';
+  }
 
   @override
   String get hint_title => 'Заголовок';
@@ -399,6 +415,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get tooltip_toggle_pins => 'Закрепить/Открепить';
+
+  @override
+  String get tooltip_reset => 'Reset';
 
   @override
   String get dialog_delete => 'Удалить';
@@ -477,6 +496,21 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get dialog_empty_bin_body =>
       'Вы действительно хотите отчистить корзину? Все заметки будут безвозвратно удалены.';
+
+  @override
+  String dialog_auto_export_frequency_slider_label(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
+        'other': '$frequency days',
+      },
+    );
+    return 'Every $_temp0';
+  }
 
   @override
   String get dialog_export_encryption_switch => 'Зашифровать экспорт в формате JSON';

@@ -23,7 +23,8 @@ import 'package:share_plus/share_plus.dart';
 ///   - The checklist button if enabled by the user.
 ///   - The menu with further actions.
 class EditorAppBar extends ConsumerStatefulWidget {
-  const EditorAppBar();
+  /// Default constructor.
+  const EditorAppBar({super.key});
 
   @override
   ConsumerState<EditorAppBar> createState() => _BackAppBarState();
@@ -32,9 +33,6 @@ class EditorAppBar extends ConsumerStatefulWidget {
 class _BackAppBarState extends ConsumerState<EditorAppBar> {
   /// Goes back from the editor.
   void _pop() {
-    currentNoteNotifier.value = null;
-    fleatherControllerNotifier.value = null;
-
     context.pop();
   }
 
@@ -61,7 +59,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       case MenuOption.deletePermanently:
         await permanentlyDeleteNote(context, ref, note);
       case MenuOption.about:
-        showModalBottomSheet(
+        await showModalBottomSheet(
           context: context,
           clipBehavior: Clip.hardEdge,
           showDragHandle: true,

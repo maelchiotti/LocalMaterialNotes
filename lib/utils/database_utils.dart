@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
@@ -8,13 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/pages/settings/dialogs/import_dialog.dart';
+import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_password_dialog.dart';
 import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:sanitize_filename/sanitize_filename.dart';
+import 'package:shared_storage/shared_storage.dart';
 
 /// Utilities for the database.
 ///
@@ -22,95 +22,28 @@ import 'package:sanitize_filename/sanitize_filename.dart';
 class DatabaseUtils {
   final _notesService = NotesService();
 
-  /// Exports all the notes in a JSON [file].
-  ///
-  /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
-  Future<bool> _exportAsJson(bool encrypt, String? password, File file) async {
-    var notes = await _notesService.getAll();
+  /// Returns the file name of the export file depending of the current date and time and its [extension].
+  String _exportFileName(String extension) {
+    final timestamp = DateTime.timestamp();
 
-    if (encrypt && password != null && password.isNotEmpty) {
-      notes = notes.map((note) => note.encrypted(password)).toList();
-    }
-
-    final version = InfoUtils().appVersion;
-
-    final exportData = {
-      'version': version,
-      'encrypted': encrypt,
-      'notes': notes,
-    };
-    final exportDataAsJson = jsonEncode(exportData);
-
-    return await writeStringToFile(file, exportDataAsJson);
-  }
-
-  /// Automatically exports all the notes in a JSON file.
-  ///
-  /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
-  Future<bool> autoExportAsJson(bool encrypt, String password) async {
-    final file = await AutoExportUtils().getAutoExportFile;
-
-    return await _exportAsJson(encrypt, password, file);
-  }
-
-  /// Manually exports all the notes in a JSON file.
-  ///
-  /// First asks the user to pick a directory where to save the export file.
-  ///
-  /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
-  Future<bool> manuallyExportAsJson(bool encrypt, String? password) async {
-    final exportDirectory = await pickDirectory();
-
-    if (exportDirectory == null) {
-      return false;
-    }
-
-    final file = getExportFile(exportDirectory, 'json');
-
-    return await _exportAsJson(encrypt, password, file);
-  }
-
-  /// Exports all the notes in a Markdown file.
-  ///
-  /// First asks the user to pick a directory where to save the export file.
-  Future<bool> exportAsMarkdown() async {
-    final exportDirectory = await pickDirectory();
-
-    if (exportDirectory == null) {
-      return false;
-    }
-
-    final notes = await _notesService.getAll();
-    final archive = Archive();
-
-    for (final note in notes) {
-      final bytes = Uint8List.fromList(utf8.encode(note.markdown));
-      final filename = sanitizeFilename('${note.title} (${note.createdTime.filename}).md');
-
-      archive.addFile(ArchiveFile(filename, bytes.length, bytes));
-    }
-
-    final encodedArchive = ZipEncoder().encode(archive);
-
-    if (encodedArchive == null) {
-      return false;
-    }
-
-    final file = getExportFile(exportDirectory, 'zip');
-
-    return await writeBytesToFile(file, encodedArchive);
+    return 'materialnotes_export_${timestamp.filename}.$extension';
   }
 
   /// Imports all the notes from a JSON file picked by the user.
   Future<bool> import(BuildContext context) async {
-    final importPlatformFile = await pickSingleFile(typeGroupJson);
+    final importPlatformFile = await pickSingleFile('application/json');
 
     if (importPlatformFile == null) {
       return false;
     }
 
-    final importedString = utf8.decode(await importPlatformFile.readAsBytes());
-    var importedJson = jsonDecode(importedString);
+    final importedString = await getDocumentContentAsString(importPlatformFile);
+
+    if (importedString == null) {
+      return false;
+    }
+
+    var importedJson = jsonDecode(utf8.decode(importedString.codeUnits));
 
     List<Note>? notes;
 
@@ -129,7 +62,10 @@ class DatabaseUtils {
       if (encrypted && context.mounted) {
         final password = await showAdaptiveDialog<String>(
           context: context,
-          builder: (context) => ImportDialog(title: localizations.settings_import),
+          builder: (context) => AutoExportPasswordDialog(
+            title: localizations.settings_import,
+            description: localizations.dialog_import_encryption_password_description,
+          ),
         );
 
         if (password == null) {
@@ -163,5 +99,106 @@ class DatabaseUtils {
     await _notesService.putAll(notes);
 
     return true;
+  }
+
+  /// Exports all the notes in a JSON file with the [fileName] at the path of the [parentUri] directory.
+  ///
+  /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
+  Future<bool> _exportAsJson(
+    bool encrypt,
+    String? password,
+    Uri parentUri,
+    String fileName, {
+    bool useSaf = true,
+  }) async {
+    var notes = await _notesService.getAll();
+
+    if (encrypt && password != null && password.isNotEmpty) {
+      notes = notes.map((note) => note.encrypted(password)).toList();
+    }
+
+    final version = InfoUtils().appVersion;
+
+    final exportData = {
+      'version': version,
+      'encrypted': encrypt,
+      'notes': notes,
+    };
+    final exportDataAsJson = utf8.encode(jsonEncode(exportData));
+
+    return await writeBytesToFile(
+      parentUri,
+      'application/json',
+      fileName,
+      exportDataAsJson,
+      useSaf: useSaf,
+    );
+  }
+
+  /// Automatically exports all the notes in a JSON file.
+  ///
+  /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
+  Future<bool> autoExportAsJson(bool encrypt, String password) async {
+    return await _exportAsJson(
+      encrypt,
+      password,
+      AutoExportUtils().autoExportDirectory,
+      _exportFileName('json'),
+      useSaf: !await AutoExportUtils().isAutoExportDirectoryDefault,
+    );
+  }
+
+  /// Manually exports all the notes in a JSON file.
+  ///
+  /// First asks the user to pick a directory where to save the export file.
+  ///
+  /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
+  Future<bool> manuallyExportAsJson(bool encrypt, String? password) async {
+    final exportDirectory = await pickDirectory();
+
+    if (exportDirectory == null) {
+      return false;
+    }
+
+    return await _exportAsJson(
+      encrypt,
+      password,
+      exportDirectory,
+      _exportFileName('json'),
+    );
+  }
+
+  /// Exports all the notes separately in Markdown files, stored in a ZIP archive.
+  ///
+  /// First asks the user to pick a directory where to save the export file.
+  Future<bool> exportAsMarkdown() async {
+    final exportDirectory = await pickDirectory();
+
+    if (exportDirectory == null) {
+      return false;
+    }
+
+    final notes = await _notesService.getAll();
+    final archive = Archive();
+
+    for (final note in notes) {
+      final bytes = utf8.encode(note.markdown);
+      final filename = sanitizeFilename('${note.title} (${note.createdTime.filename}).md');
+
+      archive.addFile(ArchiveFile(filename, bytes.length, bytes));
+    }
+
+    final encodedArchive = ZipEncoder().encode(archive);
+
+    if (encodedArchive == null) {
+      return false;
+    }
+
+    return await writeBytesToFile(
+      exportDirectory,
+      'application/zip',
+      _exportFileName('zip'),
+      Uint8List.fromList(encodedArchive),
+    );
   }
 }

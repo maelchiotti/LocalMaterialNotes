@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/actions/delete.dart';
 import 'package:localmaterialnotes/common/actions/pin.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
@@ -9,24 +8,31 @@ import 'package:localmaterialnotes/common/constants/sizes.dart';
 import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
-import 'package:localmaterialnotes/common/routing/router.dart';
-import 'package:localmaterialnotes/common/routing/router_route.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/widgets/dismissible/dismissible_delete.dart';
 import 'package:localmaterialnotes/common/widgets/dismissible/dismissible_pin.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
+import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 /// List tile that displays the main info about a note.
 ///
 /// A custom `ListTile` widget is created because the default one doesn't allow not displaying a title.
 class NoteTile extends ConsumerStatefulWidget {
   /// Note tile shown in the notes list or the bin.
-  const NoteTile(this.note) : searchView = false;
+  const NoteTile({
+    super.key,
+    required this.note,
+  }) : searchView = false;
 
   /// Note tile shown in the search view.
-  const NoteTile.searchView(this.note) : searchView = true;
+  const NoteTile.searchView({
+    super.key,
+    required this.note,
+  }) : searchView = true;
 
   /// Note to display.
   final Note note;
@@ -173,14 +179,11 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     } else {
       currentNoteNotifier.value = widget.note;
 
-      context.push(
-        RouterRoute.editor.fullPath!,
-        extra: EditorParameters.from({'readonly': widget.note.deleted, 'autofocus': false}),
-      );
+      NotesEditorRoute(readOnly: widget.note.deleted, autoFocus: false).push(context);
 
       // If the note was opened from the search view, it need to be closed.
       if (widget.searchView) {
-        context.pop();
+        Navigator.pop(context);
       }
     }
   }
@@ -213,59 +216,79 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
   @override
   Widget build(BuildContext context) {
+    final showTitlesOnlyDisableInSearchView =
+        PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault<bool>();
+    final disableSubduedNoteContentPreview =
+        PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault<bool>();
+
     final tile = ValueListenableBuilder(
-      valueListenable: showTilesBackgroundNotifier,
-      builder: (BuildContext context, showTilesBackground, Widget? child) {
-        // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
-        // See https://github.com/flutter/flutter/issues/86584
-        return Material(
-          child: Ink(
-            color: _backgroundColor(showTilesBackground),
-            child: InkWell(
-              onTap: _openOrSelect,
-              onLongPress: widget.searchView ? null : _enterSelectionMode,
-              child: Padding(
-                padding: Paddings.padding16.all,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Title
-                          if (!widget.note.isTitleEmpty)
-                            Text(
-                              widget.note.title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                          // Subtitle
-                          if (!widget.note.isContentEmpty && !widget.note.isContentPreviewEmpty)
-                            Text(
-                              widget.note.contentPreview,
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
-                                  ),
-                            ),
+      valueListenable: showTitlesOnlyNotifier,
+      builder: (context, showTitlesOnly, child) {
+        return ValueListenableBuilder(
+          valueListenable: showTilesBackgroundNotifier,
+          builder: (context, showTilesBackground, child) {
+            final showTitle =
+                // Do not show only the title and the preview content is not empty
+                (!showTitlesOnly && !widget.note.isContentPreviewEmpty) ||
+                    // Show only the title and the title is not empty
+                    (showTitlesOnly && widget.note.isTitleEmpty) ||
+                    // In search view, do not show only the title and the preview content is not empty
+                    (widget.searchView && showTitlesOnlyDisableInSearchView && !widget.note.isContentPreviewEmpty);
+
+            // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
+            // See https://github.com/flutter/flutter/issues/86584
+            return Material(
+              child: Ink(
+                color: _backgroundColor(showTilesBackground),
+                child: InkWell(
+                  onTap: _openOrSelect,
+                  onLongPress: widget.searchView ? null : _enterSelectionMode,
+                  child: Padding(
+                    padding: Paddings.padding16.all,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Title
+                              if (!widget.note.isTitleEmpty)
+                                Text(
+                                  widget.note.title,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                ),
+                              // Subtitle
+                              if (showTitle)
+                                Text(
+                                  widget.note.contentPreview,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: disableSubduedNoteContentPreview
+                                      ? null
+                                      : Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                            color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
+                                          ),
+                                ),
+                            ],
+                          ),
+                        ),
+                        // Trailing
+                        if (widget.note.pinned && !widget.note.deleted) ...[
+                          Padding(padding: Paddings.padding2.horizontal),
+                          Icon(
+                            Icons.push_pin,
+                            size: Sizes.size16.size,
+                          ),
                         ],
-                      ),
+                      ],
                     ),
-                    // Trailing
-                    if (widget.note.pinned && !widget.note.deleted) ...[
-                      Padding(padding: Paddings.padding2.horizontal),
-                      Icon(
-                        Icons.push_pin,
-                        size: Sizes.size16.size,
-                      ),
-                    ],
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ),
+            );
+          },
         );
       },
     );
@@ -277,13 +300,13 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
     return ValueListenableBuilder(
       valueListenable: layoutNotifier,
-      builder: (BuildContext context, layout, Widget? child) {
+      builder: (context, layout, child) {
         return ValueListenableBuilder(
           valueListenable: showTilesBackgroundNotifier,
-          builder: (BuildContext context, showTilesBackground, Widget? child) {
+          builder: (context, showTilesBackground, child) {
             return ValueListenableBuilder(
               valueListenable: swipeActionsNotifier,
-              builder: (BuildContext context, swipeActions, Widget? child) {
+              builder: (context, swipeActions, child) {
                 final rightSwipeAction = swipeActions.$1;
                 final leftSwipeAction = swipeActions.$2;
 

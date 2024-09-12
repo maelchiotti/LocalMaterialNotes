@@ -7,6 +7,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'notes_provider.g.dart';
 
+/// Provider for the notes.
 @riverpod
 class Notes extends _$Notes {
   final _notesService = NotesService();

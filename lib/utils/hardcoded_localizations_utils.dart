@@ -5,6 +5,7 @@ import 'package:localmaterialnotes/l10n/app_localizations/app_localizations_fr.g
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations_pt.g.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations_ru.g.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations_tr.g.dart';
+import 'package:localmaterialnotes/l10n/app_localizations/app_localizations_zh.g.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 
 /// Utilities for the hardcoded application's localizations.
@@ -17,6 +18,7 @@ class HardcodedLocalizationsUtils {
     AppLocalizationsPt(),
     AppLocalizationsRu(),
     AppLocalizationsTr(),
+    AppLocalizationsZh(),
   ];
 
   /// Returns the application's localizations corresponding to the current locale.

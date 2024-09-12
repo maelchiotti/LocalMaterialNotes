@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 
+// ignore_for_file: public_member_api_docs
+
 /// Lists paddings between widgets.
 enum Paddings {
   /// Allows to access custom paddings.
@@ -19,7 +21,7 @@ enum Paddings {
   const Paddings(this._padding);
 
   /// Size of the system bottom padding.
-  double get _bottomSystemUiPadding => MediaQuery.of(navigatorKey.currentContext!).viewPadding.bottom;
+  double get _bottomSystemUiPadding => MediaQuery.of(rootNavigatorKey.currentContext!).viewPadding.bottom;
 
   /// Padding in all directions.
   EdgeInsetsDirectional get all => EdgeInsetsDirectional.all(_padding);

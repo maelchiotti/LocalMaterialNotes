@@ -15,11 +15,17 @@ final dynamicThemingNotifier = ValueNotifier(ThemeUtils().useDynamicTheming);
 /// Notifier for whether to use black theming.
 final blackThemingNotifier = ValueNotifier(ThemeUtils().useBlackTheming);
 
+/// Notifier for the text scaling.
+final textScalingNotifier = ValueNotifier(PreferenceKey.textScaling.getPreferenceOrDefault<double>());
+
 /// Notifier for whether the selection mode is active.
 final isSelectionModeNotifier = ValueNotifier(false);
 
 /// Notifier for the notes layout.
 final layoutNotifier = ValueNotifier(Layout.fromPreference());
+
+/// Notifier for whether to show the notes titles.
+final showTitlesOnlyNotifier = ValueNotifier(PreferenceKey.showTitlesOnly.getPreferenceOrDefault<bool>());
 
 /// Notifier for whether to show the notes tiles background.
 final showTilesBackgroundNotifier = ValueNotifier(PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>());

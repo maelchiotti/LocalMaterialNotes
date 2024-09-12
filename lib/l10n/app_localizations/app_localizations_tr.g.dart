@@ -80,6 +80,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_language => 'Dil';
 
   @override
+  String get settings_language_contribute => 'Contribute';
+
+  @override
   String get settings_theme => 'Tema';
 
   @override
@@ -104,18 +107,39 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_black_theming_description => 'Koyu modda siyah arkaplan kullanın';
 
   @override
-  String get settings_show_separators => 'Separators';
+  String get settings_text_scaling => 'Text scaling';
 
   @override
-  String get settings_show_separators_description =>
-      'Show a separator between the notes tiles to differentiate them easily';
+  String get settings_show_titles_only => 'Titles only';
+
+  @override
+  String get settings_show_titles_only_description => 'Only show the titles of the notes';
+
+  @override
+  String get settings_show_titles_only_disable_in_search_view => 'Disable titles only in search view';
+
+  @override
+  String get settings_show_titles_only_disable_in_search_view_description =>
+      'Disable the option to only show the titles when in the search view';
+
+  @override
+  String get settings_disable_subdued_note_content_preview => 'Non-subdued preview';
+
+  @override
+  String get settings_disable_subdued_note_content_preview_description =>
+      'Disable the subdued text color of the notes content preview';
 
   @override
   String get settings_show_tiles_background => 'Background';
 
   @override
-  String get settings_show_tiles_background_description =>
-      'Show the background of the notes tiles to differentiate them easily';
+  String get settings_show_tiles_background_description => 'Show the background of the notes tiles';
+
+  @override
+  String get settings_show_separators => 'Separators';
+
+  @override
+  String get settings_show_separators_description => 'Show a separator between the notes tiles';
 
   @override
   String get settings_behavior => 'Davranış';
@@ -164,6 +188,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_editor_formatting => 'Formatting';
 
   @override
+  String get settings_editor_behavior => 'Behavior';
+
+  @override
   String get settings_editor_appearance => 'Appearance';
 
   @override
@@ -190,6 +217,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_show_toolbar_description => 'Show the editor\'s toolbar to enable advanced text formatting';
 
   @override
+  String get settings_focus_title_on_new_note => 'Focus the title';
+
+  @override
+  String get settings_focus_title_on_new_note_description =>
+      'Focus the title instead of the content when creating a new note';
+
+  @override
   String get settings_use_paragraph_spacing => 'Paragraph spacing';
 
   @override
@@ -202,20 +236,35 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_backup_description => 'Export, import';
 
   @override
-  String get settings_backup_export => 'Export';
+  String get settings_backup_auto_export => 'Automatic export';
+
+  @override
+  String get settings_backup_manual_export => 'Manual export';
 
   @override
   String get settings_backup_import => 'Import';
 
   @override
-  String get settings_auto_export => 'Auto export as JSON';
+  String get settings_import => 'İçe aktar';
+
+  @override
+  String get settings_import_description => 'JSON dosyasından içe aktar';
+
+  @override
+  String get settings_import_success => 'İçe aktarma başarılı.';
+
+  @override
+  String get settings_auto_export => 'Automatic export';
 
   @override
   String get settings_auto_export_description =>
       'Automatically export the notes to a JSON file (bin included) that can be imported back';
 
   @override
-  String settings_auto_export_value(String encrypt, String frequency) {
+  String get settings_auto_export_frequency => 'Frequency';
+
+  @override
+  String settings_auto_export_frequency_description(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
@@ -226,56 +275,22 @@ class AppLocalizationsTr extends AppLocalizations {
         'other': '$frequency days',
       },
     );
-    String _temp1 = intl.Intl.selectLogic(
-      encrypt,
-      {
-        'true': 'encrypted',
-        'false': 'not encrypted',
-        'other': '',
-      },
-    );
-    return 'Every $_temp0, $_temp1';
+    return 'Automatically export the notes every $_temp0';
   }
 
   @override
-  String get settings_auto_export_disabled => 'Disabled';
+  String get settings_auto_export_encryption => 'Encryption';
 
   @override
-  String settings_auto_export_directory(Object directory) {
-    return 'Exports can be found in $directory';
-  }
+  String get settings_auto_export_encryption_description =>
+      'Encrypt the title and the content of the notes with a password';
 
   @override
-  String get settings_auto_export_dialog_description_disabled => 'Auto export will be disabled.';
+  String get settings_auto_export_directory => 'Directory';
 
   @override
-  String settings_auto_export_dialog_description_enabled(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
-      },
-    );
-    return 'Auto export will be performed every $_temp0. Set the frequency to 0 to disable it.';
-  }
-
-  @override
-  String settings_auto_export_dialog_slider_label(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
-      },
-    );
-    return 'Every $_temp0';
+  String settings_auto_export_directory_description(Object autoExportDirectory) {
+    return 'Save the automatic exports in $autoExportDirectory';
   }
 
   @override
@@ -293,15 +308,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_export_markdown_description => 'Immediately export the notes to a Markdown file (bin included)';
-
-  @override
-  String get settings_import => 'İçe aktar';
-
-  @override
-  String get settings_import_description => 'JSON dosyasından içe aktar';
-
-  @override
-  String get settings_import_success => 'İçe aktarma başarılı.';
 
   @override
   String get settings_about => 'Hakkında';
@@ -334,16 +340,22 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_github_description => 'Kaynak koduna göz at';
 
   @override
+  String get settings_localizations => 'Crowdin';
+
+  @override
+  String get settings_localizations_description => 'Add or improve the localizations on the Crowdin project';
+
+  @override
   String get settings_licence => 'Lisans';
 
   @override
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
-  String get settings_github_issues => 'Report a bug';
+  String get settings_github_issues => 'Report a bug or request a feature';
 
   @override
-  String get settings_github_issues_description => 'Report a bug by creating a GitHub issue';
+  String get settings_github_issues_description => 'Report a bug or request a feature by creating a GitHub issue';
 
   @override
   String get settings_github_discussions => 'Ask a question';
@@ -355,7 +367,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_get_in_touch => 'Contact the developer';
 
   @override
-  String get settings_get_in_touch_description => 'Contact the developer via mail at contact@maelchiotti.dev';
+  String settings_get_in_touch_description(Object email) {
+    return 'Contact the developer via mail at $email';
+  }
 
   @override
   String get hint_title => 'Başlık';
@@ -401,6 +415,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get tooltip_toggle_pins => 'Sabitlemeyi aç/kapat';
+
+  @override
+  String get tooltip_reset => 'Reset';
 
   @override
   String get dialog_delete => 'Sil';
@@ -477,6 +494,21 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get dialog_empty_bin_body =>
       'Çöp kutusunu gerçekten kalıcı olarak boşaltmak istiyor musunuz? İçerdiği notları kurtaramazsınız';
+
+  @override
+  String dialog_auto_export_frequency_slider_label(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
+        'other': '$frequency days',
+      },
+    );
+    return 'Every $_temp0';
+  }
 
   @override
   String get dialog_export_encryption_switch => 'Encrypt the JSON export';

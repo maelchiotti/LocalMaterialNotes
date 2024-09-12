@@ -20,6 +20,6 @@ class LocaleUtils {
 
   /// Sets the application's locale to [locale].
   void setLocale(Locale locale) {
-    PreferencesUtils().set(PreferenceKey.locale.name, locale.languageCode);
+    PreferencesUtils().set(PreferenceKey.locale, locale.languageCode);
   }
 }

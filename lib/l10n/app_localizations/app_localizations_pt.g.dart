@@ -80,6 +80,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_language => 'Idioma';
 
   @override
+  String get settings_language_contribute => 'Contribute';
+
+  @override
   String get settings_theme => 'Tema';
 
   @override
@@ -104,18 +107,39 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_black_theming_description => 'Use um fundo preto no modo escuro';
 
   @override
-  String get settings_show_separators => 'Separadores';
+  String get settings_text_scaling => 'Text scaling';
 
   @override
-  String get settings_show_separators_description =>
-      'Mostre um separador entre os blocos de notas para diferenciá-los facilmente';
+  String get settings_show_titles_only => 'Titles only';
+
+  @override
+  String get settings_show_titles_only_description => 'Only show the titles of the notes';
+
+  @override
+  String get settings_show_titles_only_disable_in_search_view => 'Disable titles only in search view';
+
+  @override
+  String get settings_show_titles_only_disable_in_search_view_description =>
+      'Disable the option to only show the titles when in the search view';
+
+  @override
+  String get settings_disable_subdued_note_content_preview => 'Non-subdued preview';
+
+  @override
+  String get settings_disable_subdued_note_content_preview_description =>
+      'Disable the subdued text color of the notes content preview';
 
   @override
   String get settings_show_tiles_background => 'Plano de Fundo';
 
   @override
-  String get settings_show_tiles_background_description =>
-      'Mostrar o plano de fundo dos blocos de notas para diferenciá-los facilmente';
+  String get settings_show_tiles_background_description => 'Show the background of the notes tiles';
+
+  @override
+  String get settings_show_separators => 'Separadores';
+
+  @override
+  String get settings_show_separators_description => 'Show a separator between the notes tiles';
 
   @override
   String get settings_behavior => 'Comportamento';
@@ -164,6 +188,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_editor_formatting => 'Formatação';
 
   @override
+  String get settings_editor_behavior => 'Behavior';
+
+  @override
   String get settings_editor_appearance => 'Aparência';
 
   @override
@@ -191,6 +218,13 @@ class AppLocalizationsPt extends AppLocalizations {
       'Mostrar a barra de ferramentas do editor para ativar a formatação avançada de texto';
 
   @override
+  String get settings_focus_title_on_new_note => 'Focus the title';
+
+  @override
+  String get settings_focus_title_on_new_note_description =>
+      'Focus the title instead of the content when creating a new note';
+
+  @override
   String get settings_use_paragraph_spacing => 'Espaçamento dos parágrafos';
 
   @override
@@ -203,80 +237,61 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_backup_description => 'Exportar, importar';
 
   @override
-  String get settings_backup_export => 'Exportar';
+  String get settings_backup_auto_export => 'Automatic export';
+
+  @override
+  String get settings_backup_manual_export => 'Manual export';
 
   @override
   String get settings_backup_import => 'Importar';
 
   @override
-  String get settings_auto_export => 'Exportar automaticamente como JSON';
+  String get settings_import => 'Importar';
+
+  @override
+  String get settings_import_description => 'Importar anotações de um arquivo JSON';
+
+  @override
+  String get settings_import_success => 'As anotações foram importadas com sucesso.';
+
+  @override
+  String get settings_auto_export => 'Automatic export';
 
   @override
   String get settings_auto_export_description =>
       'Exportar automaticamente as notas para um arquivo JSON (lixeira incluída) que pode ser importado de volta';
 
   @override
-  String settings_auto_export_value(String encrypt, String frequency) {
+  String get settings_auto_export_frequency => 'Frequency';
+
+  @override
+  String settings_auto_export_frequency_description(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
-        '1': 'dia',
-        '7': 'semana',
-        '14': '2 semanas',
-        '30': 'mês',
-        'other': '$frequency dias',
+        '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
+        'other': '$frequency days',
       },
     );
-    String _temp1 = intl.Intl.selectLogic(
-      encrypt,
-      {
-        'true': 'criptografado',
-        'false': 'não criptografado',
-        'other': '',
-      },
-    );
-    return 'A cada $_temp0, $_temp1';
+    return 'Automatically export the notes every $_temp0';
   }
 
   @override
-  String get settings_auto_export_disabled => 'Desabilitado';
+  String get settings_auto_export_encryption => 'Encryption';
 
   @override
-  String settings_auto_export_directory(Object directory) {
-    return 'As exportações podem ser encontradas em $directory';
-  }
+  String get settings_auto_export_encryption_description =>
+      'Encrypt the title and the content of the notes with a password';
 
   @override
-  String get settings_auto_export_dialog_description_disabled => 'A exportação automática será desativada.';
+  String get settings_auto_export_directory => 'Directory';
 
   @override
-  String settings_auto_export_dialog_description_enabled(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'dia',
-        '7': 'semana',
-        '14': '2 semanas',
-        '30': 'mês',
-        'other': '$frequency dias',
-      },
-    );
-    return 'A exportação automática será realizada a cada $_temp0. Defina a frequência como 0 para desativá-la.';
-  }
-
-  @override
-  String settings_auto_export_dialog_slider_label(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'dia',
-        '7': 'semana',
-        '14': '2 semanas',
-        '30': 'mês',
-        'other': '$frequency dias',
-      },
-    );
-    return 'A cada $_temp0';
+  String settings_auto_export_directory_description(Object autoExportDirectory) {
+    return 'Save the automatic exports in $autoExportDirectory';
   }
 
   @override
@@ -295,15 +310,6 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get settings_export_markdown_description =>
       'Exporte imediatamente as notas para um arquivo Markdown (lixeira incluída)';
-
-  @override
-  String get settings_import => 'Importar';
-
-  @override
-  String get settings_import_description => 'Importar anotações de um arquivo JSON';
-
-  @override
-  String get settings_import_success => 'As anotações foram importadas com sucesso.';
 
   @override
   String get settings_about => 'Sobre';
@@ -336,16 +342,22 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_github_description => 'Dê uma olhada no código-fonte';
 
   @override
+  String get settings_localizations => 'Crowdin';
+
+  @override
+  String get settings_localizations_description => 'Add or improve the localizations on the Crowdin project';
+
+  @override
   String get settings_licence => 'Licença';
 
   @override
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
-  String get settings_github_issues => 'Reportar um erro';
+  String get settings_github_issues => 'Report a bug or request a feature';
 
   @override
-  String get settings_github_issues_description => 'Relatar um erro criando uma issue no GitHub';
+  String get settings_github_issues_description => 'Report a bug or request a feature by creating a GitHub issue';
 
   @override
   String get settings_github_discussions => 'Fazer uma pergunta';
@@ -357,8 +369,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_get_in_touch => 'Contatar o desenvolvedor';
 
   @override
-  String get settings_get_in_touch_description =>
-      'Entre em contato com o desenvolvedor por e-mail em contact@maelchiotti.dev';
+  String settings_get_in_touch_description(Object email) {
+    return 'Contact the developer via mail at $email';
+  }
 
   @override
   String get hint_title => 'Título';
@@ -404,6 +417,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get tooltip_toggle_pins => 'Alternar fixados';
+
+  @override
+  String get tooltip_reset => 'Reset';
 
   @override
   String get dialog_delete => 'Excluir';
@@ -476,6 +492,21 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get dialog_empty_bin_body =>
       'Você realmente deseja esvaziar permanentemente a lixeira? Você não poderá restaurar as notas que ele contém.';
+
+  @override
+  String dialog_auto_export_frequency_slider_label(String frequency) {
+    String _temp0 = intl.Intl.selectLogic(
+      frequency,
+      {
+        '1': 'day',
+        '7': 'week',
+        '14': '2 weeks',
+        '30': 'month',
+        'other': '$frequency days',
+      },
+    );
+    return 'Every $_temp0';
+  }
 
   @override
   String get dialog_export_encryption_switch => 'Criptografar a exportação JSON';

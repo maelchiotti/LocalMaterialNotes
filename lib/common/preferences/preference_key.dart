@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
 import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
+
+// ignore_for_file: public_member_api_docs
 
 /// Lists the preferences' keys.
 enum PreferenceKey {
@@ -11,6 +15,10 @@ enum PreferenceKey {
   theme(0),
   dynamicTheming(true),
   blackTheming(false),
+  textScaling(1.0),
+  showTitlesOnly(false),
+  showTitlesOnlyDisableInSearchView(true),
+  disableSubduedNoteContentPreview(false),
   showSeparators(false),
   showTilesBackground(false),
 
@@ -24,12 +32,15 @@ enum PreferenceKey {
   showUndoRedoButtons(true),
   showChecklistButton(true),
   showToolbar(true),
+  focusTitleOnNewNote(false),
   useParagraphsSpacing(true),
 
   // Backup
-  autoExportFrequency(0.0),
+  enableAutoExport(false),
+  autoExportFrequency(1),
   autoExportEncryption(false),
-  autoExportPassword(''),
+  autoExportPassword('', secure: true),
+  autoExportDirectory(''),
   lastAutoExportDate(''),
 
   // Notes
@@ -41,7 +52,9 @@ enum PreferenceKey {
   /// Default value of the preference.
   final Object defaultValue;
 
-  const PreferenceKey(this.defaultValue);
+  final bool secure;
+
+  const PreferenceKey(this.defaultValue, {this.secure = false});
 
   /// Returns the value of the preference if set, or its default value otherwise.
   ///
@@ -55,7 +68,13 @@ enum PreferenceKey {
       throw ArgumentError('The type T should be a native type (bool, int, double, String or List<String>), not $T.');
     }
 
-    return PreferencesUtils().get<T>(this) ?? defaultValue as T;
+    try {
+      return PreferencesUtils().get<T>(this) ?? defaultValue as T;
+    } catch (exception, stackTrace) {
+      log(exception.toString(), stackTrace: stackTrace);
+
+      return defaultValue as T;
+    }
   }
 
   /// Returns the value of the securely stored preference if set, or its default value otherwise.

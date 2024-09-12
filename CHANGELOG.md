@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.6.0 - 2024-09-06
+
+### Added
+
+- Release on F-Droid
+- Setting to choose the auto backup directory
+- Setting to only show the titles of the notes (can be disabled in the search view)
+- Setting to focus the title instead of the content when creating a new note
+- Setting to disable the subdued color of the notes content preview
+- Setting to change the text scaling
+- Chinese simplified localization
+
+### Fixed
+
+- Search view is not black in black theme mode
+- Failure to set the refresh rate on devices running Android below version 6
+- Failure to get the write permission when writing export files
+
 ## 1.5.2 - 2024-08-16
 
 ### Added
@@ -12,9 +30,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- Auto export settings tile not updating after disabling auto export
+- Auto export settings tiles not updating after disabling auto export
 - Notes sorted by their created time instead of their edited time
-- Toggling the sort by ascending order by taping on the list tile instead of the checkbox not working
 - Focus on the note content not requested when the title is validated
 - Typos
 
@@ -46,7 +63,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- Notes tiles: use rounded corners when background is not shown, use correct background color in list view
+- Incorrect corner radius and background color of the notes tiles
 - Keyboard opening when toggling a checkbox
 - Keyboard popping back up after using the back gesture
 - App closing when going back while the selection mode is active instead of exiting it
@@ -80,7 +97,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-- Release to IzzyOnDroid
+- Release on IzzyOnDroid
 - Grid view
 - Advanced text formatting
 - Undo/redo while editing
@@ -100,11 +117,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- Hide note preview if empty
-- Providers not updating correctly
+- Note preview shown even if empty
+- List of notes not updating correctly
 - Notes not sorted after being updated
-- Support RTL for paddings
-- Many small issues
+- RTL not supported for paddings
 
 ## 1.2.0 - 2024-04-15
 
@@ -128,11 +144,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - App crashing when using the quick action to add a note if the app was closed, or opened but not on the notes list
 - Focus being reset in the note content text field
-- Remove the drawer on the editor page
-- Exit selection mode when adding a note
+- Drawer openable on the editor page
+- Selection mode note exited when adding a note
 - Tiles background color not scrolling with the tile when scrolling the notes list in selection mode
 - FAB padding
-- Spelling
 
 ## 1.1.1 - 2024-03-03
 
@@ -141,14 +156,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Export notes as Markdown
 - Show a separator between the notes (toggleable)
 
+### Changed
+
+- Automatically sort in descending order when sorting by date, and in ascending order when sorting by title (the order can still be manually changed afterwards)
+
 ### Removed
 
 - Remove the app lock feature (most recent Android devices have a more stable, built-in identical functionality)
 
 ### Fixed
 
-- Disable the black theme setting tile while in light theme
-- Automatically sort in descending order when sorting by date, and in ascending order when sorting by title (the order can still be manually changed afterwards)
+- Black theme setting tile not disabled while in light theme
 
 ## 1.1.0 - 2024-02-18
 
@@ -165,8 +183,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- Localize the welcome note
-- Going back from the editor after adding a note from the quick action when the editor was already opened on an other note correctly goes back to the notes list
+- Welcome note not localized
+- Going back from the editor after adding a note from the quick action when the editor was already opened on an other does not go back to the notes list
 
 ## 1.0.1 - 2024-02-10
 
@@ -176,7 +194,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- System navigation bar transparency and the padding at the bottom of the settings page
+- System navigation bar transparency
+- Padding at the bottom of the settings page
 
 ## 1.0.0 - 2024-02-07
 

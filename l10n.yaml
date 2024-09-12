@@ -3,7 +3,7 @@ use-escaping: true
 nullable-getter: false
 synthetic-package: false
 
-arb-dir: lib/l10n
+arb-dir: lib/l10n/translations
 template-arb-file: app_en.arb
 
 output-dir: lib/l10n/app_localizations

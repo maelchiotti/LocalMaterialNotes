@@ -6,6 +6,7 @@ import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 
 /// Floating action button to empty the bin.
 class FabEmptyBin extends ConsumerWidget {
+  /// Default constructor.
   const FabEmptyBin({super.key});
 
   @override
@@ -15,7 +16,7 @@ class FabEmptyBin extends ConsumerWidget {
     return deletedNotesCount != null && deletedNotesCount != 0
         ? FloatingActionButton(
             tooltip: localizations.tooltip_fab_empty_bin,
-            onPressed: () => emptyBin(ref),
+            onPressed: () => emptyBin(context, ref),
             child: const Icon(Icons.delete_forever),
           )
         : Container();

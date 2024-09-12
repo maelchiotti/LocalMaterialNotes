@@ -11,6 +11,7 @@ import 'app_localizations_fr.g.dart';
 import 'app_localizations_pt.g.dart';
 import 'app_localizations_ru.g.dart';
 import 'app_localizations_tr.g.dart';
+import 'app_localizations_zh.g.dart';
 
 // ignore_for_file: type=lint
 
@@ -100,7 +101,8 @@ abstract class AppLocalizations {
     Locale('fr'),
     Locale('pt'),
     Locale('ru'),
-    Locale('tr')
+    Locale('tr'),
+    Locale('zh')
   ];
 
   /// No description provided for @app_name.
@@ -241,6 +243,12 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get settings_language;
 
+  /// No description provided for @settings_language_contribute.
+  ///
+  /// In en, this message translates to:
+  /// **'Contribute'**
+  String get settings_language_contribute;
+
   /// No description provided for @settings_theme.
   ///
   /// In en, this message translates to:
@@ -289,17 +297,47 @@ abstract class AppLocalizations {
   /// **'Use a black background in dark mode'**
   String get settings_black_theming_description;
 
-  /// No description provided for @settings_show_separators.
+  /// No description provided for @settings_text_scaling.
   ///
   /// In en, this message translates to:
-  /// **'Separators'**
-  String get settings_show_separators;
+  /// **'Text scaling'**
+  String get settings_text_scaling;
 
-  /// No description provided for @settings_show_separators_description.
+  /// No description provided for @settings_show_titles_only.
   ///
   /// In en, this message translates to:
-  /// **'Show a separator between the notes tiles to differentiate them easily'**
-  String get settings_show_separators_description;
+  /// **'Titles only'**
+  String get settings_show_titles_only;
+
+  /// No description provided for @settings_show_titles_only_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Only show the titles of the notes'**
+  String get settings_show_titles_only_description;
+
+  /// No description provided for @settings_show_titles_only_disable_in_search_view.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable titles only in search view'**
+  String get settings_show_titles_only_disable_in_search_view;
+
+  /// No description provided for @settings_show_titles_only_disable_in_search_view_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable the option to only show the titles when in the search view'**
+  String get settings_show_titles_only_disable_in_search_view_description;
+
+  /// No description provided for @settings_disable_subdued_note_content_preview.
+  ///
+  /// In en, this message translates to:
+  /// **'Non-subdued preview'**
+  String get settings_disable_subdued_note_content_preview;
+
+  /// No description provided for @settings_disable_subdued_note_content_preview_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable the subdued text color of the notes content preview'**
+  String get settings_disable_subdued_note_content_preview_description;
 
   /// No description provided for @settings_show_tiles_background.
   ///
@@ -310,8 +348,20 @@ abstract class AppLocalizations {
   /// No description provided for @settings_show_tiles_background_description.
   ///
   /// In en, this message translates to:
-  /// **'Show the background of the notes tiles to differentiate them easily'**
+  /// **'Show the background of the notes tiles'**
   String get settings_show_tiles_background_description;
+
+  /// No description provided for @settings_show_separators.
+  ///
+  /// In en, this message translates to:
+  /// **'Separators'**
+  String get settings_show_separators;
+
+  /// No description provided for @settings_show_separators_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Show a separator between the notes tiles'**
+  String get settings_show_separators_description;
 
   /// No description provided for @settings_behavior.
   ///
@@ -397,6 +447,12 @@ abstract class AppLocalizations {
   /// **'Formatting'**
   String get settings_editor_formatting;
 
+  /// No description provided for @settings_editor_behavior.
+  ///
+  /// In en, this message translates to:
+  /// **'Behavior'**
+  String get settings_editor_behavior;
+
   /// No description provided for @settings_editor_appearance.
   ///
   /// In en, this message translates to:
@@ -445,6 +501,18 @@ abstract class AppLocalizations {
   /// **'Show the editor\'\'s toolbar to enable advanced text formatting'**
   String get settings_show_toolbar_description;
 
+  /// No description provided for @settings_focus_title_on_new_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus the title'**
+  String get settings_focus_title_on_new_note;
+
+  /// No description provided for @settings_focus_title_on_new_note_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus the title instead of the content when creating a new note'**
+  String get settings_focus_title_on_new_note_description;
+
   /// No description provided for @settings_use_paragraph_spacing.
   ///
   /// In en, this message translates to:
@@ -469,11 +537,17 @@ abstract class AppLocalizations {
   /// **'Export, import'**
   String get settings_backup_description;
 
-  /// No description provided for @settings_backup_export.
+  /// No description provided for @settings_backup_auto_export.
   ///
   /// In en, this message translates to:
-  /// **'Export'**
-  String get settings_backup_export;
+  /// **'Automatic export'**
+  String get settings_backup_auto_export;
+
+  /// No description provided for @settings_backup_manual_export.
+  ///
+  /// In en, this message translates to:
+  /// **'Manual export'**
+  String get settings_backup_manual_export;
 
   /// No description provided for @settings_backup_import.
   ///
@@ -481,10 +555,28 @@ abstract class AppLocalizations {
   /// **'Import'**
   String get settings_backup_import;
 
+  /// No description provided for @settings_import.
+  ///
+  /// In en, this message translates to:
+  /// **'Import'**
+  String get settings_import;
+
+  /// No description provided for @settings_import_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Import notes from a JSON file'**
+  String get settings_import_description;
+
+  /// No description provided for @settings_import_success.
+  ///
+  /// In en, this message translates to:
+  /// **'The notes were successfully imported.'**
+  String get settings_import_success;
+
   /// No description provided for @settings_auto_export.
   ///
   /// In en, this message translates to:
-  /// **'Auto export as JSON'**
+  /// **'Automatic export'**
   String get settings_auto_export;
 
   /// No description provided for @settings_auto_export_description.
@@ -493,41 +585,41 @@ abstract class AppLocalizations {
   /// **'Automatically export the notes to a JSON file (bin included) that can be imported back'**
   String get settings_auto_export_description;
 
-  /// No description provided for @settings_auto_export_value.
+  /// No description provided for @settings_auto_export_frequency.
   ///
   /// In en, this message translates to:
-  /// **'Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}, {encrypt, select, true{encrypted} false{not encrypted} other{}}'**
-  String settings_auto_export_value(String encrypt, String frequency);
+  /// **'Frequency'**
+  String get settings_auto_export_frequency;
 
-  /// No description provided for @settings_auto_export_disabled.
+  /// No description provided for @settings_auto_export_frequency_description.
   ///
   /// In en, this message translates to:
-  /// **'Disabled'**
-  String get settings_auto_export_disabled;
+  /// **'Automatically export the notes every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}'**
+  String settings_auto_export_frequency_description(String frequency);
+
+  /// No description provided for @settings_auto_export_encryption.
+  ///
+  /// In en, this message translates to:
+  /// **'Encryption'**
+  String get settings_auto_export_encryption;
+
+  /// No description provided for @settings_auto_export_encryption_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Encrypt the title and the content of the notes with a password'**
+  String get settings_auto_export_encryption_description;
 
   /// No description provided for @settings_auto_export_directory.
   ///
   /// In en, this message translates to:
-  /// **'Exports can be found in {directory}'**
-  String settings_auto_export_directory(Object directory);
+  /// **'Directory'**
+  String get settings_auto_export_directory;
 
-  /// No description provided for @settings_auto_export_dialog_description_disabled.
+  /// No description provided for @settings_auto_export_directory_description.
   ///
   /// In en, this message translates to:
-  /// **'Auto export will be disabled.'**
-  String get settings_auto_export_dialog_description_disabled;
-
-  /// No description provided for @settings_auto_export_dialog_description_enabled.
-  ///
-  /// In en, this message translates to:
-  /// **'Auto export will be performed every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}. Set the frequency to 0 to disable it.'**
-  String settings_auto_export_dialog_description_enabled(String frequency);
-
-  /// No description provided for @settings_auto_export_dialog_slider_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}'**
-  String settings_auto_export_dialog_slider_label(String frequency);
+  /// **'Save the automatic exports in {autoExportDirectory}'**
+  String settings_auto_export_directory_description(Object autoExportDirectory);
 
   /// No description provided for @settings_export_success.
   ///
@@ -558,24 +650,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Immediately export the notes to a Markdown file (bin included)'**
   String get settings_export_markdown_description;
-
-  /// No description provided for @settings_import.
-  ///
-  /// In en, this message translates to:
-  /// **'Import'**
-  String get settings_import;
-
-  /// No description provided for @settings_import_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Import notes from a JSON file'**
-  String get settings_import_description;
-
-  /// No description provided for @settings_import_success.
-  ///
-  /// In en, this message translates to:
-  /// **'The notes were successfully imported.'**
-  String get settings_import_success;
 
   /// No description provided for @settings_about.
   ///
@@ -637,6 +711,18 @@ abstract class AppLocalizations {
   /// **'Take a look at the source code'**
   String get settings_github_description;
 
+  /// No description provided for @settings_localizations.
+  ///
+  /// In en, this message translates to:
+  /// **'Crowdin'**
+  String get settings_localizations;
+
+  /// No description provided for @settings_localizations_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Add or improve the localizations on the Crowdin project'**
+  String get settings_localizations_description;
+
   /// No description provided for @settings_licence.
   ///
   /// In en, this message translates to:
@@ -652,13 +738,13 @@ abstract class AppLocalizations {
   /// No description provided for @settings_github_issues.
   ///
   /// In en, this message translates to:
-  /// **'Report a bug'**
+  /// **'Report a bug or request a feature'**
   String get settings_github_issues;
 
   /// No description provided for @settings_github_issues_description.
   ///
   /// In en, this message translates to:
-  /// **'Report a bug by creating a GitHub issue'**
+  /// **'Report a bug or request a feature by creating a GitHub issue'**
   String get settings_github_issues_description;
 
   /// No description provided for @settings_github_discussions.
@@ -682,8 +768,8 @@ abstract class AppLocalizations {
   /// No description provided for @settings_get_in_touch_description.
   ///
   /// In en, this message translates to:
-  /// **'Contact the developer via mail at contact@maelchiotti.dev'**
-  String get settings_get_in_touch_description;
+  /// **'Contact the developer via mail at {email}'**
+  String settings_get_in_touch_description(Object email);
 
   /// No description provided for @hint_title.
   ///
@@ -775,6 +861,12 @@ abstract class AppLocalizations {
   /// **'Toggle pins'**
   String get tooltip_toggle_pins;
 
+  /// No description provided for @tooltip_reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get tooltip_reset;
+
   /// No description provided for @dialog_delete.
   ///
   /// In en, this message translates to:
@@ -840,6 +932,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Do you really want to permanently empty the bin? You will not be able to restore the notes it contains.'**
   String get dialog_empty_bin_body;
+
+  /// No description provided for @dialog_auto_export_frequency_slider_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}'**
+  String dialog_auto_export_frequency_slider_label(String frequency);
 
   /// No description provided for @dialog_export_encryption_switch.
   ///
@@ -1073,7 +1171,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es', 'fr', 'pt', 'ru', 'tr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es', 'fr', 'pt', 'ru', 'tr', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -1094,6 +1192,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsRu();
     case 'tr':
       return AppLocalizationsTr();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError('AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '

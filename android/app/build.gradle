@@ -73,6 +73,9 @@ android {
         targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        testInstrumentationRunner "pl.leancode.patrol.PatrolJUnitRunner"
+        testInstrumentationRunnerArguments clearPackageData: "true"
+
     }
 
     signingConfigs {
@@ -88,6 +91,14 @@ android {
         release {
             signingConfig signingConfigs.release
         }
+
+        debug {
+            minifyEnabled false
+        }
+    }
+
+    testOptions {
+        execution "ANDROIDX_TEST_ORCHESTRATOR"
     }
 }
 
@@ -97,4 +108,5 @@ flutter {
 
 dependencies {
     implementation 'com.android.support:multidex:2.0.1'
+    androidTestUtil 'androidx.test:orchestrator:1.4.2'
 }

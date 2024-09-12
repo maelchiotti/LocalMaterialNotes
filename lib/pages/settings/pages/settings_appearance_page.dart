@@ -3,19 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/extensions/double_extension.dart';
 import 'package:localmaterialnotes/common/extensions/string_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/l10n/localization_completion.dart';
+import 'package:localmaterialnotes/pages/settings/dialogs/text_scaling_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:restart_app/restart_app.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// Settings related to the appearance of the application.
 class SettingsAppearancePage extends StatefulWidget {
+  /// Default constructor.
   const SettingsAppearancePage({super.key});
 
   @override
@@ -23,6 +28,17 @@ class SettingsAppearancePage extends StatefulWidget {
 }
 
 class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
+  /// Opens the Crowdin project.
+  void _openCrowdin() {
+    launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'crowdin.com',
+        path: 'project/localmaterialnotes',
+      ),
+    );
+  }
+
   /// Asks the user to select the language of the application.
   ///
   /// Restarts the application if the language is changed.
@@ -40,7 +56,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
               title: Text(locale.nativeDisplayLanguage.capitalized),
               subtitle: Text(LocalizationCompletion.getFormattedPercentage(locale)),
               selected: Localizations.localeOf(context) == locale,
-              onChanged: (locale) => Navigator.of(context).pop(locale),
+              onChanged: (locale) => Navigator.pop(context, locale),
             );
           }).toList(),
         );
@@ -73,21 +89,21 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
               groupValue: ThemeUtils().themeMode,
               title: Text(localizations.settings_theme_system),
               selected: ThemeUtils().themeMode == ThemeMode.system,
-              onChanged: (themeMode) => Navigator.of(context).pop(themeMode),
+              onChanged: (themeMode) => Navigator.pop(context, themeMode),
             ),
             RadioListTile<ThemeMode>(
               value: ThemeMode.light,
               groupValue: ThemeUtils().themeMode,
               title: Text(localizations.settings_theme_light),
               selected: ThemeUtils().themeMode == ThemeMode.light,
-              onChanged: (themeMode) => Navigator.of(context).pop(themeMode),
+              onChanged: (themeMode) => Navigator.pop(context, themeMode),
             ),
             RadioListTile<ThemeMode>(
               value: ThemeMode.dark,
               groupValue: ThemeUtils().themeMode,
               title: Text(localizations.settings_theme_dark),
               selected: ThemeUtils().themeMode == ThemeMode.dark,
-              onChanged: (themeMode) => Navigator.of(context).pop(themeMode),
+              onChanged: (themeMode) => Navigator.pop(context, themeMode),
             ),
           ],
         );
@@ -104,7 +120,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the dynamic theming.
   void _toggleDynamicTheming(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.dynamicTheming.name, toggled);
+      PreferencesUtils().set<bool>(PreferenceKey.dynamicTheming, toggled);
     });
 
     dynamicThemingNotifier.value = toggled;
@@ -113,16 +129,56 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the black theming.
   void _toggleBlackTheming(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.blackTheming.name, toggled);
+      PreferencesUtils().set<bool>(PreferenceKey.blackTheming, toggled);
     });
 
     blackThemingNotifier.value = toggled;
   }
 
+  Future<void> _setTextScaling(BuildContext context) async {
+    await showAdaptiveDialog<double>(
+      context: context,
+      builder: (context) => const TextScalingDialog(),
+    ).then((textScaling) async {
+      if (textScaling == null) {
+        return;
+      }
+
+      setState(() {
+        PreferencesUtils().set<double>(PreferenceKey.textScaling, textScaling);
+      });
+
+      textScalingNotifier.value = textScaling;
+    });
+  }
+
+  /// Toggles the setting to show background of the notes tiles.
+  void _toggleShowTitlesOnly(bool toggled) {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.showTitlesOnly, toggled);
+    });
+
+    showTitlesOnlyNotifier.value = toggled;
+  }
+
+  /// Toggles the setting to show background of the notes tiles.
+  void _toggleShowTitlesOnlyDisableInSearchView(bool toggled) {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.showTitlesOnlyDisableInSearchView, toggled);
+    });
+  }
+
+  /// Toggles the setting to show background of the notes tiles.
+  void _toggleDisableSubduedNoteContentPreview(bool toggled) {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.disableSubduedNoteContentPreview, toggled);
+    });
+  }
+
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTilesBackground(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showTilesBackground.name, toggled);
+      PreferencesUtils().set<bool>(PreferenceKey.showTilesBackground, toggled);
     });
 
     showTilesBackgroundNotifier.value = toggled;
@@ -131,7 +187,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the setting to show the separators between the notes tiles.
   void _toggleShowSeparators(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showSeparators.name, toggled);
+      PreferencesUtils().set<bool>(PreferenceKey.showSeparators, toggled);
     });
 
     showSeparatorsNotifier.value = toggled;
@@ -141,9 +197,15 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   Widget build(BuildContext context) {
     final locale = LocaleUtils().appLocale.nativeDisplayLanguage.capitalized;
     final showUseBlackTheming = Theme.of(context).colorScheme.brightness == Brightness.dark;
+    final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
 
-    final showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
+    final showTitlesOnly = PreferenceKey.showTitlesOnly.getPreferenceOrDefault<bool>();
+    final showTitlesOnlyDisableInSearchView =
+        PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault<bool>();
+    final disableSubduedNoteContentPreview =
+        PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault<bool>();
     final showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();
+    final showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
 
     return CustomSettingsList(
       sections: [
@@ -153,6 +215,10 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
             SettingsTile.navigation(
               leading: const Icon(Icons.language),
               title: Text(localizations.settings_language),
+              trailing: TextButton.icon(
+                onPressed: _openCrowdin,
+                label: Text(localizations.settings_language_contribute),
+              ),
               value: Text(locale),
               onPressed: _selectLanguage,
             ),
@@ -178,11 +244,39 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
               initialValue: ThemeUtils().useBlackTheming,
               onToggle: _toggleBlackTheming,
             ),
+            SettingsTile.navigation(
+              leading: const Icon(Icons.format_size),
+              title: Text(localizations.settings_text_scaling),
+              value: Text(textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale)),
+              onPressed: _setTextScaling,
+            ),
           ],
         ),
         SettingsSection(
           title: Text(localizations.settings_appearance_notes_tiles),
           tiles: [
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.view_compact),
+              title: Text(localizations.settings_show_titles_only),
+              description: Text(localizations.settings_show_titles_only_description),
+              initialValue: showTitlesOnly,
+              onToggle: _toggleShowTitlesOnly,
+            ),
+            SettingsTile.switchTile(
+              enabled: showTitlesOnly,
+              leading: const Icon(Symbols.feature_search),
+              title: Text(localizations.settings_show_titles_only_disable_in_search_view),
+              description: Text(localizations.settings_show_titles_only_disable_in_search_view_description),
+              initialValue: showTitlesOnlyDisableInSearchView,
+              onToggle: _toggleShowTitlesOnlyDisableInSearchView,
+            ),
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.format_color_text),
+              title: Text(localizations.settings_disable_subdued_note_content_preview),
+              description: Text(localizations.settings_disable_subdued_note_content_preview_description),
+              initialValue: disableSubduedNoteContentPreview,
+              onToggle: _toggleDisableSubduedNoteContentPreview,
+            ),
             SettingsTile.switchTile(
               leading: const Icon(Icons.safety_divider),
               title: Text(localizations.settings_show_separators),

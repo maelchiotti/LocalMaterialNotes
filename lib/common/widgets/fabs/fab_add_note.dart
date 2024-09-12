@@ -5,6 +5,7 @@ import 'package:localmaterialnotes/common/constants/constants.dart';
 
 /// Floating action button to add a note.
 class FabAddNote extends ConsumerStatefulWidget {
+  /// Default constructor.
   const FabAddNote({super.key});
 
   @override

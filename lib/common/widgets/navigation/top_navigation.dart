@@ -4,7 +4,11 @@ import 'package:localmaterialnotes/providers/notifiers.dart';
 
 /// Top navigation with the app bar.
 class TopNavigation extends StatelessWidget implements PreferredSizeWidget {
-  const TopNavigation({super.key, required this.appbar});
+  /// Default constructor.
+  const TopNavigation({
+    super.key,
+    required this.appbar,
+  });
 
   /// App bar depending on the current route and whether the selection mode is enabled.
   final Widget appbar;
@@ -18,7 +22,7 @@ class TopNavigation extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: isSelectionModeNotifier,
-      builder: (BuildContext context, isSelectionMode, Widget? child) {
+      builder: (context, isSelectionMode, child) {
         // If the selection mode is enabled, return the selection app bar
         return isSelectionMode ? const SelectionAppBar() : appbar;
       },

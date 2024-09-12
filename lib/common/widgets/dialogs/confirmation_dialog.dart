@@ -8,12 +8,13 @@ import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
 ///
 /// The [title], [body] and [confirmText] depend on the action for which the confirmation must be obtained.
 Future<bool> _showConfirmationDialog(
+  BuildContext context,
   String title,
   String body,
   String confirmText,
 ) async {
   return await showAdaptiveDialog<bool>(
-        context: navigatorKey.currentContext!,
+        context: context,
         builder: (context) {
           return AlertDialog.adaptive(
             title: Text(title),
@@ -51,6 +52,7 @@ Future<bool> _showConfirmationDialog(
 /// An action is [irreversible] if its consequences cannot be reversed, such as permanently deleting a note
 /// or emptying the bin.
 Future<bool> askForConfirmation(
+  BuildContext context,
   String title,
   String body,
   String confirmText, {
@@ -63,11 +65,11 @@ Future<bool> askForConfirmation(
       return true;
     case Confirmations.irreversible:
       if (irreversible) {
-        return _showConfirmationDialog(title, body, confirmText);
+        return _showConfirmationDialog(context, title, body, confirmText);
       } else {
         return true;
       }
     case Confirmations.all:
-      return _showConfirmationDialog(title, body, confirmText);
+      return _showConfirmationDialog(context, title, body, confirmText);
   }
 }

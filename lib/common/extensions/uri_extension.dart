@@ -1,9 +1,11 @@
+import 'package:path/path.dart';
+
 /// Extends the [Uri] class with some utilities functions.
 extension UriExtension on Uri {
-  /// Returns the path of the URI with the spaces correctly encoded.
+  /// Returns the path of the URI with the separators correctly encoded.
   ///
-  /// By default, spaces are encoded with `%20` instead of a space.
-  String get toDecodedString {
-    return path.replaceAll('%20', ' ');
+  /// Useful for SAF URIs as it doesn't properly encode `:`.
+  String get display {
+    return joinAll(pathSegments);
   }
 }

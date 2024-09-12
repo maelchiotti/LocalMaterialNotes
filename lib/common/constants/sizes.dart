@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 /// Lists sizes.
 enum Sizes {
   /// Allows to access custom sizes.

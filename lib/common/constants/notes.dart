@@ -11,6 +11,31 @@ final welcomeNote = Note(
   content: '[{"insert":"${hardcodedLocalizations.welcomeNoteContent}\\n"}]',
 );
 
+/// Notes used when running integration tests.
+final integrationTestNotes = List.generate(
+  100,
+  (index) => Note(
+    deleted: false,
+    pinned: false,
+    createdTime: DateTime(2000, 01, 01, 12).subtract(Duration(minutes: index)),
+    editedTime: DateTime(2000, 01, 01, 12).subtract(Duration(minutes: index)),
+    title: "Note $index",
+    content: '[{"insert":"This is note $index.\\n"}]',
+  ),
+)..addAll(
+    List.generate(
+      100,
+      (index) => Note(
+        deleted: true,
+        pinned: false,
+        createdTime: DateTime(2000, 01, 01, 12).subtract(Duration(minutes: index)),
+        editedTime: DateTime(2000, 01, 01, 12).subtract(Duration(minutes: index)),
+        title: "Deleted note $index",
+        content: '[{"insert":"This is deleted note $index.\\n"}]',
+      ),
+    ),
+  );
+
 /// Notes used when taking screenshots of the application for the stores.
 final screenshotNotes = [
   Note(

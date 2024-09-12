@@ -11,6 +11,7 @@ import 'package:localmaterialnotes/providers/notifiers.dart';
 class ThemeUtils {
   static final ThemeUtils _singleton = ThemeUtils._internal();
 
+  /// Default constructor.
   factory ThemeUtils() {
     return _singleton;
   }
@@ -169,7 +170,7 @@ class ThemeUtils {
       case ThemeMode.dark:
         value = 2;
     }
-    PreferencesUtils().set<int>(PreferenceKey.theme.name, value);
+    PreferencesUtils().set<int>(PreferenceKey.theme, value);
 
     themeModeNotifier.value = themeMode;
   }

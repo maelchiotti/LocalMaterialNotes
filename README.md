@@ -1,14 +1,17 @@
 <div align="center">
 
-![Platforms](https://img.shields.io/badge/Platforms-Android-blue)
+![Platforms](https://img.shields.io/badge/Platforms-Android-green)
 [![Style](https://img.shields.io/badge/Style-lint-blue)](https://pub.dev/packages/lint)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196)](https://conventionalcommits.org)
 
 [![License](https://img.shields.io/github/license/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/blob/main/LICENSE)
 [![Releases](https://img.shields.io/github/v/release/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/releases)
 [![Issues](https://img.shields.io/github/issues/maelchiotti/LocalMaterialNotes)](https://github.com/maelchiotti/LocalMaterialNotes/issues)
 
-[<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200px">](https://play.google.com/store/apps/details?id=com.maelchiotti.localmaterialnotes)
-[<img alt="Get it on IzzyOnDroid" src="docs/badges/izzy_on_droid.png" width="200px">](https://apt.izzysoft.de/packages/com.maelchiotti.localmaterialnotes)
+[<img alt="Get it on Google Play" src="docs/badges/google_play.png" width="200px">](https://play.google.com/store/apps/details?id=com.maelchiotti.localmaterialnotes)
+[<img alt="Get it on IzzyOnDroid" src="docs/badges/izzyondroid.png" width="200px">](https://apt.izzysoft.de/packages/com.maelchiotti.localmaterialnotes)
+[<img alt="Get it on F-Droid" src="docs/badges/fdroid.png" width="200px">](https://f-droid.org/fr/packages/com.maelchiotti.localmaterialnotes)
+<br />
 [<img alt="Get it on Obtainium" src="docs/badges/obtainium.png" width="200px">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/maelchiotti/LocalMaterialNotes)
 [<img alt="Get it on GitHub" src="docs/badges/github.png" width="200px">](https://github.com/maelchiotti/LocalMaterialNotes/releases/latest)
 
@@ -72,6 +75,7 @@ Simple, local, material design notes.
 
 All the supported languages are listed here alphabetically. You can see more details on the [Crowdin project](https://crowdin.com/project/localmaterialnotes). To improve a language or add support for a new one, please see [CONTRIBUTING.md](CONTRIBUTING.md#localization).
 
+![Chinese Simplified](https://img.shields.io/badge/dynamic/json?color=blue&label=Chinese%20Simplified&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27zh-CN%27)].data.translationProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
 ![English](https://img.shields.io/badge/dynamic/json?color=blue&label=English&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27en%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
 ![French](https://img.shields.io/badge/dynamic/json?color=blue&label=French&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27fr%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
 ![Portuguese](https://img.shields.io/badge/dynamic/json?color=blue&label=Portuguese&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27pt-PT%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
@@ -89,7 +93,7 @@ All the supported languages are listed here alphabetically. You can see more det
 ### Localization
 
 - All of the [Crowdin project members](https://crowdin.com/project/localmaterialnotes/reports/top-members).
-- [newmanls](https://github.com/newmanls) for the spanish localization
+- [newmanls](https://github.com/newmanls) for the spanish localization.
 - [xe1st](https://github.com/xe1st) for the turkish localization.
 
 ### Assets

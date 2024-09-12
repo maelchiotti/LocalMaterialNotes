@@ -54,6 +54,7 @@ class Note extends Equatable {
   /// Content (rich text in the fleather representation).
   String content;
 
+  /// Default constructor.
   Note({
     required this.deleted,
     required this.pinned,

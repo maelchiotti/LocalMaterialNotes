@@ -4,6 +4,7 @@ import 'package:localmaterialnotes/common/constants/paddings.dart';
 
 /// Placeholder widget for an error.
 class ErrorPlaceholder extends StatelessWidget {
+  /// Default constructor.
   const ErrorPlaceholder();
 
   @override

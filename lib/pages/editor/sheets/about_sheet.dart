@@ -12,7 +12,8 @@ import 'package:localmaterialnotes/providers/notifiers.dart';
 ///   - Number of words.
 ///   - Number of characters.
 class AboutSheet extends StatelessWidget {
-  const AboutSheet();
+  /// Default constructor.
+  const AboutSheet({super.key});
 
   @override
   Widget build(BuildContext context) {

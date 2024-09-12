@@ -12,6 +12,7 @@ import 'package:localmaterialnotes/providers/notifiers.dart';
 
 /// Settings related to the behavior of the application.
 class SettingsBehaviorPage extends StatefulWidget {
+  /// Default constructor.
   const SettingsBehaviorPage({super.key});
 
   @override
@@ -35,7 +36,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
               groupValue: confirmationsPreference,
               title: Text(confirmationsValue.title),
               selected: confirmationsPreference == confirmationsValue,
-              onChanged: (confirmations) => Navigator.of(context).pop(confirmations),
+              onChanged: (confirmations) => Navigator.pop(context, confirmations),
             );
           }).toList(),
         );
@@ -46,7 +47,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
       }
 
       setState(() {
-        PreferencesUtils().set<String>(PreferenceKey.confirmations.name, confirmations.name);
+        PreferencesUtils().set<String>(PreferenceKey.confirmations, confirmations.name);
       });
     });
   }
@@ -66,14 +67,18 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
       builder: (context) {
         return SimpleDialog(
           clipBehavior: Clip.hardEdge,
-          title: Text(localizations.settings_confirmations),
+          title: Text(
+            swipeDirection == SwipeDirection.right
+                ? localizations.settings_swipe_action_right
+                : localizations.settings_swipe_action_left,
+          ),
           children: SwipeAction.values.map((swipeAction) {
             return RadioListTile<SwipeAction>(
               value: swipeAction,
               groupValue: swipeActionPreference,
               title: Text(swipeAction.title),
               selected: swipeActionPreference == swipeAction,
-              onChanged: (swipeAction) => Navigator.of(context).pop(swipeAction),
+              onChanged: (swipeAction) => Navigator.pop(context, swipeAction),
             );
           }).toList(),
         );
@@ -86,10 +91,10 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
       setState(() {
         switch (swipeDirection) {
           case SwipeDirection.right:
-            PreferencesUtils().set<String>(PreferenceKey.swipeRightAction.name, swipeAction.name);
+            PreferencesUtils().set<String>(PreferenceKey.swipeRightAction, swipeAction.name);
             swipeActionsNotifier.value = (swipeAction, swipeActionsNotifier.value.$2);
           case SwipeDirection.left:
-            PreferencesUtils().set<String>(PreferenceKey.swipeLeftAction.name, swipeAction.name);
+            PreferencesUtils().set<String>(PreferenceKey.swipeLeftAction, swipeAction.name);
             swipeActionsNotifier.value = (swipeActionsNotifier.value.$1, swipeAction);
         }
       });
@@ -99,7 +104,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
   /// Toggles Android's `FLAG_SECURE` to hide the app from the recent apps and prevent screenshots.
   Future<void> _setFlagSecure(bool toggled) async {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.flagSecure.name, toggled);
+      PreferencesUtils().set<bool>(PreferenceKey.flagSecure, toggled);
     });
 
     toggled ? await FlagSecure.set() : await FlagSecure.unset();
