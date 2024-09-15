@@ -2,20 +2,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:localmaterialnotes/common/widgets/notes/note_tile.dart';
 import 'package:patrol/patrol.dart';
 
-import '../../utils.dart';
+import '../utils.dart';
 
 void main() {
-  patrolTest('Initializes the notes page', ($) async {
+  patrolTest('Opens the notes page', ($) async {
     await $.pumpWidgetAndSettle(await app);
 
     // Find the layout icon button
-    expect($(#notesPageLayoutIconButton), findsOne);
+    expect($(#appBarLayoutIconButton), findsOne);
 
     // Find the sort icon button
-    expect($(#notesPageSortIconButton), findsOne);
+    expect($(#appBarSortIconButton), findsOne);
 
     // Find the search icon button
-    expect($(#notesPageSearchIconButton), findsOne);
+    expect($(#appBarSearchIconButton), findsOne);
 
     // Find the notes list
     expect($(#notesPageNotesList), findsOne);

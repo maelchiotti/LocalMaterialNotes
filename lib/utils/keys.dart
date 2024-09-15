@@ -11,28 +11,28 @@ class Keys {
   static const drawerSettingsTab = Key('drawerSettingsTab');
 
   // Dialogs
-  static const dialogConfirmationConfirmButton = Key('dialogConfirmationConfirmButton');
-  static const dialogConfirmationCancelButton = Key('dialogConfirmationCancelButton');
+  static const dialogConfirmButton = Key('dialogConfirmButton');
+  static const dialogCancelButton = Key('dialogCancelButton');
 
   // App bars
   static const appBarNotesBin = Key('appBarNotes');
   static const appBarEditor = Key('appBarEditor');
   static const appBarBin = Key('appBarBin');
-  static const appBarSettingsMain = Key('appBarSettings');
+  static const appBarSettingsMain = Key('appBarSettingsMain');
   static const appBarSettingsMainSubpage = Key('appBarSettingsMainSubpage');
 
   // App bars icon buttons
-  static const notesPageLayoutIconButton = Key('notesPageLayoutIconButton');
-  static const notesPageSortIconButton = Key('notesPageSortIconButton');
-  static const notesPageSearchIconButton = Key('notesPageSearchIconButton');
+  static const appBarLayoutIconButton = Key('appBarLayoutIconButton');
+  static const appBarSortIconButton = Key('appBarSortIconButton');
+  static const appBarSearchIconButton = Key('appBarSearchIconButton');
 
   // Sort method popup menu items
-  static const notesPageSortDateMenuItem = Key('notesPageSortDateMenuItem');
-  static const notesPageSortTitleMenuItem = Key('notesPageSortTitleMenuItem');
-  static const notesPageSortAscendingMenuItem = Key('notesPageSortAscendingMenuItem');
+  static const sortDateMenuItem = Key('sortDateMenuItem');
+  static const sortTitleMenuItem = Key('sortTitleMenuItem');
+  static const sortAscendingMenuItem = Key('sortAscendingMenuItem');
 
   // Search view
-  static const notesPageSearchViewSearchAnchor = Key('notesPageSearchViewSearchAnchor');
+  static const searchViewSearchAnchor = Key('searchViewSearchAnchor');
 
   // FABs
   static const fabAddNote = Key('fabAddNote');

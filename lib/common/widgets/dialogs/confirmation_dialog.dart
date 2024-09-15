@@ -28,12 +28,12 @@ Future<bool> _showConfirmationDialog(
             ),
             actions: [
               TextButton(
-                key: Keys.dialogConfirmationCancelButton,
+                key: Keys.dialogCancelButton,
                 onPressed: () => Navigator.pop(context, false),
                 child: Text(localizations.button_cancel),
               ),
               TextButton(
-                key: Keys.dialogConfirmationConfirmButton,
+                key: Keys.dialogConfirmButton,
                 onPressed: () => Navigator.pop(context, true),
                 child: Text(confirmText),
               ),

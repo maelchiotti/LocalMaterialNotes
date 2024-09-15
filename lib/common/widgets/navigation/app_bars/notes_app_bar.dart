@@ -47,13 +47,13 @@ class NotesAppBar extends ConsumerWidget {
     }
 
     return SearchAnchor(
-      key: Keys.notesPageSearchViewSearchAnchor,
+      key: Keys.searchViewSearchAnchor,
       viewHintText: localizations.tooltip_search,
       searchController: SearchController(),
       viewBackgroundColor: Theme.of(context).colorScheme.surface,
       builder: (context, controller) {
         return IconButton(
-          key: Keys.notesPageSearchIconButton,
+          key: Keys.appBarSearchIconButton,
           onPressed: () => controller.openView(),
           icon: const Icon(Icons.search),
           tooltip: localizations.tooltip_search,
@@ -131,7 +131,7 @@ class NotesAppBar extends ConsumerWidget {
             final isListLayout = layout == Layout.list;
 
             return IconButton(
-              key: Keys.notesPageLayoutIconButton,
+              key: Keys.appBarLayoutIconButton,
               onPressed: _toggleLayout,
               tooltip: isListLayout ? localizations.tooltip_layout_grid : localizations.tooltip_layout_list,
               icon: Icon(isListLayout ? Icons.grid_view : Icons.view_list),
@@ -139,13 +139,13 @@ class NotesAppBar extends ConsumerWidget {
           },
         ),
         PopupMenuButton<SortMethod>(
-          key: Keys.notesPageSortIconButton,
+          key: Keys.appBarSortIconButton,
           icon: const Icon(Icons.sort),
           tooltip: localizations.tooltip_sort,
           itemBuilder: (context) {
             return [
               PopupMenuItem(
-                key: Keys.notesPageSortDateMenuItem,
+                key: Keys.sortDateMenuItem,
                 value: SortMethod.date,
                 child: ListTile(
                   selected: sortMethod == SortMethod.date,
@@ -154,7 +154,7 @@ class NotesAppBar extends ConsumerWidget {
                 ),
               ),
               PopupMenuItem(
-                key: Keys.notesPageSortTitleMenuItem,
+                key: Keys.sortTitleMenuItem,
                 value: SortMethod.title,
                 child: ListTile(
                   selected: sortMethod == SortMethod.title,
@@ -164,7 +164,7 @@ class NotesAppBar extends ConsumerWidget {
               ),
               const PopupMenuDivider(),
               PopupMenuItem(
-                key: Keys.notesPageSortAscendingMenuItem,
+                key: Keys.sortAscendingMenuItem,
                 value: SortMethod.ascending,
                 child: ListTile(
                   title: Text(localizations.button_sort_ascending),
