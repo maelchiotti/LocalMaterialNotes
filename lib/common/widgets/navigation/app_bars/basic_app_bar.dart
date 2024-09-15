@@ -22,14 +22,14 @@ class BasicAppBar extends StatefulWidget {
 }
 
 class _BasicAppBarState extends State<BasicAppBar> {
-  void pop() {
+  void _pop() {
     context.pop();
   }
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: widget.showBack ? BackButton(onPressed: pop) : null,
+      leading: widget.showBack ? BackButton(onPressed: _pop) : null,
       title: Text(RoutingRoute.title(context)),
     );
   }

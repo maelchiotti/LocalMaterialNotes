@@ -6,7 +6,7 @@ import '../../utils.dart';
 
 void main() {
   patrolTest('Initializes the notes page', ($) async {
-    await $.pumpWidgetAndSettle(await appInitialized);
+    await $.pumpWidgetAndSettle(await app);
 
     // Find the layout icon button
     expect($(#notesPageLayoutIconButton), findsOne);
@@ -27,27 +27,23 @@ void main() {
   patrolTest(
     'Finds the notes tiles in the notes page',
     ($) async {
-      await $.pumpWidgetAndSettle(await appInitialized);
+      await $.pumpWidgetAndSettle(await app);
 
       // Find the 1st note tile that should be visible
       expect(
-        $(#notesPageNoteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 0'),
+        $(#noteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 0'),
         findsOne,
       );
 
       // Scroll to find the 50th note tile
       expect(
-        await $(#notesPageNoteTile49)
-            .which<NoteTile>((noteTile) => noteTile.note.title == 'Note 49')
-            .scrollTo(maxScrolls: 50),
+        await $(#noteTile49).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 49').scrollTo(maxScrolls: 50),
         findsOne,
       );
 
       // Scroll to find the 100th and last note tile
       expect(
-        await $(#notesPageNoteTile99)
-            .which<NoteTile>((noteTile) => noteTile.note.title == 'Note 99')
-            .scrollTo(maxScrolls: 50),
+        await $(#noteTile99).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 99').scrollTo(maxScrolls: 50),
         findsOne,
       );
     },

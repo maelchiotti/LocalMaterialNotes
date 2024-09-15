@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Shows the confirmation dialog to ask the user for a confirmation on an action.
 ///
@@ -27,10 +28,12 @@ Future<bool> _showConfirmationDialog(
             ),
             actions: [
               TextButton(
+                key: Keys.dialogConfirmationCancelButton,
                 onPressed: () => Navigator.pop(context, false),
                 child: Text(localizations.button_cancel),
               ),
               TextButton(
+                key: Keys.dialogConfirmationConfirmButton,
                 onPressed: () => Navigator.pop(context, true),
                 child: Text(confirmText),
               ),

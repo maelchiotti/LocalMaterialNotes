@@ -9,7 +9,7 @@ void main() {
   patrolTest(
     'Change the layout of the notes list',
     ($) async {
-      await $.pumpWidgetAndSettle(await appInitialized);
+      await $.pumpWidgetAndSettle(await app);
 
       // The layout should be the list view
       expect($(Icons.grid_view), findsOne);
@@ -37,7 +37,7 @@ void main() {
   patrolTest(
     'Use the default sort method by date',
     ($) async {
-      await $.pumpWidgetAndSettle(await appInitialized);
+      await $.pumpWidgetAndSettle(await app);
 
       // Open the sort method menu
       await $(#notesPageSortIconButton).tap();
@@ -65,12 +65,12 @@ void main() {
 
       // The 1st note should be the most recent
       expect(
-        $(#notesPageNoteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 0'),
+        $(#noteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 0'),
         findsOne,
       );
       // The 3rd note should be the 3rd most recent
       expect(
-        $(#notesPageNoteTile2).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 2'),
+        $(#noteTile2).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 2'),
         findsOne,
       );
     },
@@ -79,7 +79,7 @@ void main() {
   patrolTest(
     'Use the sort method by title',
     ($) async {
-      await $.pumpWidgetAndSettle(await appInitialized);
+      await $.pumpWidgetAndSettle(await app);
 
       // Open the sort method menu
       await $(#notesPageSortIconButton).tap();
@@ -113,12 +113,12 @@ void main() {
 
       // The 1st note should be the first in alphabetical order
       expect(
-        $(#notesPageNoteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 0'),
+        $(#noteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 0'),
         findsOne,
       );
       // The 3rd note should be the 3rd in alphabetical order
       expect(
-        $(#notesPageNoteTile2).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 10'),
+        $(#noteTile2).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 10'),
         findsOne,
       );
     },
@@ -127,7 +127,7 @@ void main() {
   patrolTest(
     'Use the default sort method by date but in ascending order',
     ($) async {
-      await $.pumpWidgetAndSettle(await appInitialized);
+      await $.pumpWidgetAndSettle(await app);
 
       // Open the sort method menu
       await $(#notesPageSortIconButton).tap();
@@ -161,12 +161,12 @@ void main() {
 
       // The 1st note should be the least recent
       expect(
-        $(#notesPageNoteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 99'),
+        $(#noteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 99'),
         findsOne,
       );
       // The 3rd note should be the 3rd least recent
       expect(
-        $(#notesPageNoteTile2).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 97'),
+        $(#noteTile2).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 97'),
         findsOne,
       );
     },
@@ -175,7 +175,7 @@ void main() {
   patrolTest(
     'Use the sort method by title but in descending order',
     ($) async {
-      await $.pumpWidgetAndSettle(await appInitialized);
+      await $.pumpWidgetAndSettle(await app);
 
       // Open the sort method menu
       await $(#notesPageSortIconButton).tap();
@@ -215,12 +215,12 @@ void main() {
 
       // The 1st note should be the last in alphabetical order
       expect(
-        $(#notesPageNoteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 99'),
+        $(#noteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 99'),
         findsOne,
       );
       // The 3rd note should be the 3rd last in alphabetical order
       expect(
-        $(#notesPageNoteTile2).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 97'),
+        $(#noteTile2).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 97'),
         findsOne,
       );
     },
@@ -231,7 +231,7 @@ void main() {
     skip: true,
     'Search the notes',
     ($) async {
-      await $.pumpWidgetAndSettle(await appInitialized);
+      await $.pumpWidgetAndSettle(await app);
 
       // Open the search view
       await $(#notesPageSearchIconButton).tap();
@@ -260,12 +260,12 @@ void main() {
 
       // The 1st note should be the 'Note 1' note
       expect(
-        $(#notesPageNoteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 1'),
+        $(#noteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 1'),
         findsOne,
       );
       // The 2nd note should be the 'Note 10' note
       expect(
-        $(#notesPageNoteTile2).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 10'),
+        $(#noteTile2).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 10'),
         findsOne,
       );
 
@@ -282,11 +282,11 @@ void main() {
 
       // The 1st note should be the 'Note 10' note
       expect(
-        $(#notesPageNoteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 10'),
+        $(#noteTile0).which<NoteTile>((noteTile) => noteTile.note.title == 'Note 10'),
         findsOne,
       );
       // There should only be one note found by the search
-      expect($(#notesPageNoteTile1), findsNothing);
+      expect($(#noteTile1), findsNothing);
     },
   );
 }

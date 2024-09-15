@@ -5,11 +5,21 @@ import 'package:flutter/foundation.dart';
 
 /// Keys used to identify widgets in integration testing.
 class Keys {
-  // App bars
-  static const appBarNotes = Key('appBarNotes');
+  // Drawer
+  static const drawerNotesTab = Key('drawerNotesTab');
+  static const drawerBinTab = Key('drawerBinTab');
+  static const drawerSettingsTab = Key('drawerSettingsTab');
 
-  // Notes page
-  static const fabAddNote = Key('fabAddNote');
+  // Dialogs
+  static const dialogConfirmationConfirmButton = Key('dialogConfirmationConfirmButton');
+  static const dialogConfirmationCancelButton = Key('dialogConfirmationCancelButton');
+
+  // App bars
+  static const appBarNotesBin = Key('appBarNotes');
+  static const appBarEditor = Key('appBarEditor');
+  static const appBarBin = Key('appBarBin');
+  static const appBarSettingsMain = Key('appBarSettings');
+  static const appBarSettingsMainSubpage = Key('appBarSettingsMainSubpage');
 
   // App bars icon buttons
   static const notesPageLayoutIconButton = Key('notesPageLayoutIconButton');
@@ -24,11 +34,25 @@ class Keys {
   // Search view
   static const notesPageSearchViewSearchAnchor = Key('notesPageSearchViewSearchAnchor');
 
+  // FABs
+  static const fabAddNote = Key('fabAddNote');
+  static const fabEmptyBin = Key('fabEmptyBin');
+
+  // Pages
+  static const pageNotes = Key('pageNotes');
+  static const pageBin = Key('pageBin');
+  static const pageEditor = Key('pageEditor');
+  static const pageSettingsMain = Key('pageSettingsMain');
+
   // Notes list
   static const notesPageNotesList = Key('notesPageNotesList');
   static const notesPageNotesListListLayout = Key('notesPageNotesListListLayout');
   static const notesPageNotesListGridLayout = Key('notesPageNotesListGridLayout');
 
-  // Notes tile
-  static Key notesPageNoteTile(int index) => Key('notesPageNoteTile$index');
+  // Notes tiles
+  static Key noteTile(int index) => Key('noteTile$index');
+
+  // Editor page
+  static const editorTitleTextField = Key('editorTitleTextField');
+  static const editorContentTextField = Key('editorContentTextField');
 }

@@ -13,6 +13,7 @@ import 'package:localmaterialnotes/pages/editor/widgets/editor_toolbar.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/fab_toggle_editor_mode.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Page displaying the note editor.
 ///
@@ -118,6 +119,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                   child: Column(
                     children: [
                       TextField(
+                        key: Keys.editorTitleTextField,
                         readOnly: widget.readOnly,
                         autofocus: widget.isNewNote && focusTitleOnNewNote,
                         textCapitalization: TextCapitalization.sentences,
@@ -135,6 +137,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                         child: Focus(
                           onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,
                           child: EditorField(
+                            key: Keys.editorContentTextField,
                             fleatherController: editorController,
                             readOnly: widget.readOnly || (showEditorModeButton && !isEditMode),
                             autofocus: widget.isNewNote && !focusTitleOnNewNote,

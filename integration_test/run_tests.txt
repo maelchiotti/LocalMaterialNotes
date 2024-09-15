@@ -1,0 +1,5 @@
+All tests:
+patrol test -t . --dart-define=INTEGRATION_TEST=true
+
+A specific test:
+patrol test -t integration_test/launch/launch_test.dart --dart-define=INTEGRATION_TEST=true

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/pages/editor/editor_page.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Route of the notes editor page.
 @immutable
@@ -25,6 +26,7 @@ class NotesEditorRoute extends GoRouteData {
 
     return NoTransitionPage(
       child: NotesEditorPage(
+        key: Keys.pageNotes,
         readOnly: readOnly,
         isNewNote: autoFocus,
       ),

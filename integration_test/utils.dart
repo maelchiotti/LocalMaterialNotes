@@ -9,7 +9,7 @@ import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Future<Widget> get appInitialized async {
+Future<Widget> get app async {
   // Mock the preferences
   SharedPreferences.setMockInitialValues({});
 

@@ -50,7 +50,7 @@ class NotesList extends ConsumerWidget {
                         itemCount: notes.length,
                         itemBuilder: (context, index) {
                           return NoteTile(
-                            key: Keys.notesPageNoteTile(index),
+                            key: Keys.noteTile(index),
                             note: notes[index],
                           );
                         },
@@ -72,7 +72,7 @@ class NotesList extends ConsumerWidget {
                         itemCount: notes.length,
                         itemBuilder: (context, index) {
                           return NoteTile(
-                            key: Keys.notesPageNoteTile(index),
+                            key: Keys.noteTile(index),
                             note: notes[index],
                           );
                         },

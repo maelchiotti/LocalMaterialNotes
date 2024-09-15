@@ -111,7 +111,7 @@ class NotesAppBar extends ConsumerWidget {
       return note.matchesSearch(search);
     }).mapIndexed((index, note) {
       return NoteTile.searchView(
-        key: Keys.notesPageNoteTile(index),
+        key: Keys.noteTile(index),
         note: note,
       );
     }).toList();
@@ -123,9 +123,6 @@ class NotesAppBar extends ConsumerWidget {
     final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
     return AppBar(
-      leading: DrawerButton(
-        onPressed: () => scaffoldDrawerKey.currentState!.openDrawer(),
-      ),
       title: Text(RoutingRoute.title(context)),
       actions: [
         ValueListenableBuilder(
