@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/double_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 
 /// Dialog to choose the text scaling.
@@ -20,6 +21,8 @@ class _TextScalingDialogState extends State<TextScalingDialog> {
     setState(() {
       _textScaling = value;
     });
+
+    textScalingNotifier.value = value;
   }
 
   /// Pops the dialog with the chosen [_frequencyValue], or nothing if it was [canceled].
@@ -36,7 +39,7 @@ class _TextScalingDialogState extends State<TextScalingDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog.adaptive(
-      title: Text(localizations.settings_auto_export_frequency),
+      title: Text(localizations.settings_text_scaling),
       content: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

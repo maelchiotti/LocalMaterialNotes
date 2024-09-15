@@ -141,6 +141,9 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
       builder: (context) => const TextScalingDialog(),
     ).then((textScaling) async {
       if (textScaling == null) {
+        // Set the text scaling back to its preference value
+        textScalingNotifier.value = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
+
         return;
       }
 
