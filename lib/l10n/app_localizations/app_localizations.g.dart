@@ -867,6 +867,18 @@ abstract class AppLocalizations {
   /// **'Reset'**
   String get tooltip_reset;
 
+  /// No description provided for @dialog_add_link.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a link'**
+  String get dialog_add_link;
+
+  /// No description provided for @dialog_link.
+  ///
+  /// In en, this message translates to:
+  /// **'Link'**
+  String get dialog_link;
+
   /// No description provided for @dialog_delete.
   ///
   /// In en, this message translates to:

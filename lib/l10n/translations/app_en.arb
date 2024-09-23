@@ -126,6 +126,8 @@
   "tooltip_restore": "Restore",
   "tooltip_toggle_pins": "Toggle pins",
   "tooltip_reset": "Reset",
+  "dialog_add_link": "Add a link",
+  "dialog_link": "Link",
   "dialog_delete": "Delete",
   "dialog_delete_body": "Do you really want to delete {count} {count, plural, zero{} one{note} other{notes}}? You can restore {count, plural, zero{} one{it} other{them}} from the bin.",
   "dialog_delete_body_single": "Do you really want to delete this note? You can restore it from the bin.",
