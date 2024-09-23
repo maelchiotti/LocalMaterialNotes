@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/constants/sizes.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/pages/editor/widgets/editor_button.dart';
+import 'package:localmaterialnotes/pages/editor/widgets/link_button.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 /// Toolbar for the content text field that enables advanced formatting options.
@@ -52,7 +54,7 @@ class _EditorToolbarState extends State<EditorToolbar> {
 
   /// Inserts a rule in the content.
   ///
-  /// Copied from the fleather source code to allow using a custom button to insert rules.
+  /// Copied from the fleather source code to allow using a custom button.
   void _insertRule() {
     final index = widget.editorController.selection.baseOffset;
     final length = widget.editorController.selection.extentOffset - index;
@@ -66,6 +68,8 @@ class _EditorToolbarState extends State<EditorToolbar> {
 
   @override
   Widget build(BuildContext context) {
+    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
+
     return FleatherToolbar(
       padding: EdgeInsets.zero,
       children: [
@@ -94,7 +98,7 @@ class _EditorToolbarState extends State<EditorToolbar> {
           controller: widget.editorController,
           childBuilder: _buttonBuilder,
         ),
-        if (!PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>())
+        if (!showChecklistButton)
           ToggleStyleButton(
             attribute: ParchmentAttribute.block.checkList,
             icon: Icons.checklist,
@@ -131,9 +135,11 @@ class _EditorToolbarState extends State<EditorToolbar> {
           controller: widget.editorController,
           childBuilder: _buttonBuilder,
         ),
-        IconButton(
-          visualDensity: VisualDensity.compact,
-          icon: const Icon(Icons.horizontal_rule),
+        LinkButton(
+          controller: widget.editorController,
+        ),
+        EditorButton(
+          icon: Icons.horizontal_rule,
           onPressed: _insertRule,
         ),
         Padding(padding: Paddings.padding2.horizontal),

@@ -420,6 +420,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get tooltip_reset => 'Reset';
 
   @override
+  String get dialog_add_link => 'Add a link';
+
+  @override
+  String get dialog_link => 'Link';
+
+  @override
   String get dialog_delete => 'Удалить';
 
   @override

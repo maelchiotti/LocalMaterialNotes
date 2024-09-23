@@ -16,9 +16,13 @@ class ManualExportDialog extends StatefulWidget {
 }
 
 class _ManualExportDialogState extends State<ManualExportDialog> {
+  /// Whether to encrypt the export.
   bool _encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
+
+  /// Password to encrypt the export.
   String? _password;
 
+  /// Whether to enable the 'OK' button.
   late bool ok;
 
   @override
@@ -28,10 +32,12 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
     _updateOk();
   }
 
+  /// Updates [ok].
   void _updateOk() {
     ok = !_encrypt || (_encrypt && (_password?.isStrongPassword ?? false));
   }
 
+  /// Updates [_encrypt], [_password] and [ok].
   void _onChanged(bool encrypt, String? password) {
     setState(() {
       _encrypt = encrypt;
