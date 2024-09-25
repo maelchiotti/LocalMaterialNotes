@@ -501,6 +501,30 @@ abstract class AppLocalizations {
   /// **'Show the editor\'\'s toolbar to enable advanced text formatting'**
   String get settings_show_toolbar_description;
 
+  /// No description provided for @settings_show_editor_mode_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Editor mode button'**
+  String get settings_show_editor_mode_button;
+
+  /// No description provided for @settings_show_editor_mode_button_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable the button to toggle the editor between editing mode and viewing mode, always using the editing mode'**
+  String get settings_show_editor_mode_button_description;
+
+  /// No description provided for @settings_open_editor_reading_mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in reading mode'**
+  String get settings_open_editor_reading_mode;
+
+  /// No description provided for @settings_open_editor_reading_mode_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the editor in reading mode by default'**
+  String get settings_open_editor_reading_mode_description;
+
   /// No description provided for @settings_focus_title_on_new_note.
   ///
   /// In en, this message translates to:
@@ -794,6 +818,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Empty the bin'**
   String get tooltip_fab_empty_bin;
+
+  /// No description provided for @tooltip_fab_toggle_editor_mode_edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to editing mode'**
+  String get tooltip_fab_toggle_editor_mode_edit;
+
+  /// No description provided for @tooltip_fab_toggle_editor_mode_read.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to reading mode'**
+  String get tooltip_fab_toggle_editor_mode_read;
 
   /// No description provided for @tooltip_layout_list.
   ///

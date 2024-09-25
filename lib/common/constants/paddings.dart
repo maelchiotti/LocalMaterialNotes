@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/sizes.dart';
 
 // ignore_for_file: public_member_api_docs
 
@@ -66,4 +67,9 @@ enum Paddings {
 
   /// Padding for the separators in the notes list when the notes tiles have a background.
   EdgeInsetsDirectional get notesListWithBackgroundSeparation => const EdgeInsetsDirectional.symmetric(vertical: 4);
+
+  /// Padding for the separators in the notes list when the notes tiles have a background.
+  EdgeInsetsDirectional get fabToggleEditorModeWithToolbarBottom => EdgeInsetsDirectional.only(
+        bottom: Sizes.custom.editorToolbarHeight,
+      );
 }

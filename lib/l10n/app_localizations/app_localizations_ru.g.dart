@@ -216,6 +216,19 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_show_toolbar_description => 'Показать панель инструментов для расширенного форматирования текста';
 
   @override
+  String get settings_show_editor_mode_button => 'Editor mode button';
+
+  @override
+  String get settings_show_editor_mode_button_description =>
+      'Enable the button to toggle the editor between editing mode and viewing mode, always using the editing mode';
+
+  @override
+  String get settings_open_editor_reading_mode => 'Open in reading mode';
+
+  @override
+  String get settings_open_editor_reading_mode_description => 'Open the editor in reading mode by default';
+
+  @override
   String get settings_focus_title_on_new_note => 'Focus the title';
 
   @override
@@ -382,6 +395,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get tooltip_fab_empty_bin => 'Очистить корзину';
+
+  @override
+  String get tooltip_fab_toggle_editor_mode_edit => 'Switch to editing mode';
+
+  @override
+  String get tooltip_fab_toggle_editor_mode_read => 'Switch to reading mode';
 
   @override
   String get tooltip_layout_list => 'Список';

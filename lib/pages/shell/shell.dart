@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/common/widgets/fabs/fab_add_note.dart';
@@ -91,7 +90,7 @@ class _ShellPageState extends State<ShellPage> {
       key: scaffoldDrawerKey,
       appBar: _appBar,
       drawer: _drawer,
-      body: KeyboardVisibilityProvider(child: widget.child),
+      body: widget.child,
       floatingActionButton: _floatingActionButton,
     );
   }

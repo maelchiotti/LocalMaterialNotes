@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
@@ -11,6 +10,7 @@ import 'package:localmaterialnotes/common/widgets/placeholders/loading_placehold
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_field.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_toolbar.dart';
+import 'package:localmaterialnotes/pages/editor/widgets/fab_toggle_editor_mode.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 
@@ -24,14 +24,15 @@ class NotesEditorPage extends ConsumerStatefulWidget {
   const NotesEditorPage({
     super.key,
     required this.readOnly,
-    required this.autofocus,
+    required this.isNewNote,
   });
 
   /// Whether the text fields should be read only.
   final bool readOnly;
 
-  /// Whether to automatically focus the content text field.
-  final bool autofocus;
+  /// Whether this is a new note, so the title or content field should be auto focused
+  /// and the editor mode should be forced to editing.
+  final bool isNewNote;
 
   @override
   ConsumerState<NotesEditorPage> createState() => _EditorState();
@@ -54,6 +55,11 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
       editorController.addListener(() => _synchronizeContent(note!));
 
       fleatherControllerNotifier.value = editorController;
+
+      // If this is a new note, force the editing mode
+      if (widget.isNewNote) {
+        isFleatherEditorEditMode.value = true;
+      }
     }
   }
 
@@ -90,58 +96,67 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
       return const LoadingPlaceholder();
     }
 
+    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault<bool>();
     final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
     final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault<bool>();
 
-    final isKeyboardVisible = KeyboardVisibilityProvider.isKeyboardVisible(context);
-
-    return Column(
-      children: [
-        Expanded(
-          child: Padding(
-            padding: Paddings.custom.pageButBottom,
-            child: Column(
-              children: [
-                TextField(
-                  readOnly: widget.readOnly,
-                  autofocus: widget.autofocus && focusTitleOnNewNote,
-                  textCapitalization: TextCapitalization.sentences,
-                  textInputAction: TextInputAction.next,
-                  style: Theme.of(context).textTheme.titleLarge,
-                  decoration: InputDecoration.collapsed(
-                    hintText: localizations.hint_title,
+    return Scaffold(
+      floatingActionButton: showEditorModeButton ? const FabToggleEditorMode() : null,
+      body: ValueListenableBuilder(
+        valueListenable: isFleatherEditorEditMode,
+        builder: (context, isEditMode, child) {
+          return Column(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: Paddings.custom.pageButBottom,
+                  child: Column(
+                    children: [
+                      TextField(
+                        readOnly: widget.readOnly,
+                        autofocus: widget.isNewNote && focusTitleOnNewNote,
+                        textCapitalization: TextCapitalization.sentences,
+                        textInputAction: TextInputAction.next,
+                        style: Theme.of(context).textTheme.titleLarge,
+                        decoration: InputDecoration.collapsed(
+                          hintText: localizations.hint_title,
+                        ),
+                        controller: titleController,
+                        onChanged: (text) => _synchronizeTitle(note!, text),
+                        onSubmitted: _requestEditorFocus,
+                      ),
+                      Padding(padding: Paddings.padding8.vertical),
+                      Expanded(
+                        child: Focus(
+                          onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,
+                          child: EditorField(
+                            fleatherController: editorController,
+                            readOnly: widget.readOnly || (showEditorModeButton && !isEditMode),
+                            autofocus: widget.isNewNote && !focusTitleOnNewNote,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  controller: titleController,
-                  onChanged: (text) => _synchronizeTitle(note!, text),
-                  onSubmitted: _requestEditorFocus,
                 ),
-                Padding(padding: Paddings.padding8.vertical),
-                Expanded(
-                  child: Focus(
-                    onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,
-                    child: EditorField(
-                      fleatherController: editorController,
-                      readOnly: widget.readOnly,
-                      autofocus: widget.autofocus && !focusTitleOnNewNote,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        ValueListenableBuilder(
-          valueListenable: fleatherFieldHasFocusNotifier,
-          builder: (context, hasFocus, child) {
-            return showToolbar && hasFocus && isKeyboardVisible
-                ? ColoredBox(
-                    color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                    child: EditorToolbar(editorController: editorController),
-                  )
-                : Container();
-          },
-        ),
-      ],
+              ),
+              ValueListenableBuilder(
+                valueListenable: fleatherFieldHasFocusNotifier,
+                builder: (context, hasFocus, child) {
+                  return showToolbar && isEditMode
+                      ? SafeArea(
+                          child: ColoredBox(
+                            color: Theme.of(context).colorScheme.surfaceContainerHigh,
+                            child: EditorToolbar(editorController: editorController),
+                          ),
+                        )
+                      : Container();
+                },
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

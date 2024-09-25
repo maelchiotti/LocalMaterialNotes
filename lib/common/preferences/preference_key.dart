@@ -32,6 +32,8 @@ enum PreferenceKey {
   showUndoRedoButtons(true),
   showChecklistButton(true),
   showToolbar(true),
+  editorModeButton(true),
+  openEditorReadingMode(false),
   focusTitleOnNewNote(false),
   useParagraphsSpacing(true),
 

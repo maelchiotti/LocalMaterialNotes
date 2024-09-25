@@ -28,6 +28,8 @@ enum Sizes {
   /// Width of a column in grid layout.
   int get gridLayoutColumnWidth => 384;
 
+  double get editorToolbarHeight => 54;
+
   /// Height of a button in the editor toolbar.
   double get editorToolbarButtonHeight => 42;
 
