@@ -39,9 +39,13 @@ class NotesEditorPage extends ConsumerStatefulWidget {
 }
 
 class _EditorState extends ConsumerState<NotesEditorPage> {
+  /// Current note being edited.
   final note = currentNoteNotifier.value;
 
+  /// Controller of the title of the note.
   late final TextEditingController titleController;
+
+  /// Controller of the content of the note.
   late final FleatherController editorController;
 
   @override
@@ -86,6 +90,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
     ref.read(notesProvider.notifier).edit(note);
   }
 
+  /// Request focus on the content editor.
   void _requestEditorFocus(_) {
     editorFocusNode.requestFocus();
   }
@@ -144,7 +149,9 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                 valueListenable: fleatherFieldHasFocusNotifier,
                 builder: (context, hasFocus, child) {
                   return showToolbar && isEditMode
-                      ? SafeArea(
+                      ?
+                      // Use a SafeArea to prevent the toolbar from displaying under the system bottom UI
+                      SafeArea(
                           child: ColoredBox(
                             color: Theme.of(context).colorScheme.surfaceContainerHigh,
                             child: EditorToolbar(editorController: editorController),
