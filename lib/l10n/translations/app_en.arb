@@ -66,7 +66,7 @@
   "settings_show_toolbar": "Toolbar",
   "settings_show_toolbar_description": "Show the editor''s toolbar to enable advanced text formatting",
   "settings_show_editor_mode_button": "Editor mode button",
-  "settings_show_editor_mode_button_description": "Enable the button to toggle the editor between editing mode and viewing mode, always using the editing mode",
+  "settings_show_editor_mode_button_description": "Enable the button to toggle the editor between editing mode and viewing mode",
   "settings_open_editor_reading_mode": "Open in reading mode",
   "settings_open_editor_reading_mode_description": "Open the editor in reading mode by default",
   "settings_focus_title_on_new_note": "Focus the title",

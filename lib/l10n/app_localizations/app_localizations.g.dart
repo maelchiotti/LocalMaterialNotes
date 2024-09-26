@@ -510,7 +510,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_show_editor_mode_button_description.
   ///
   /// In en, this message translates to:
-  /// **'Enable the button to toggle the editor between editing mode and viewing mode, always using the editing mode'**
+  /// **'Enable the button to toggle the editor between editing mode and viewing mode'**
   String get settings_show_editor_mode_button_description;
 
   /// No description provided for @settings_open_editor_reading_mode.

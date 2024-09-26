@@ -221,7 +221,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settings_show_editor_mode_button_description =>
-      'Enable the button to toggle the editor between editing mode and viewing mode, always using the editing mode';
+      'Enable the button to toggle the editor between editing mode and viewing mode';
 
   @override
   String get settings_open_editor_reading_mode => 'Open in reading mode';
