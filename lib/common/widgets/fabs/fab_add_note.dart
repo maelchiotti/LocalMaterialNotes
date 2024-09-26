@@ -4,17 +4,12 @@ import 'package:localmaterialnotes/common/actions/add.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 
 /// Floating action button to add a note.
-class FabAddNote extends ConsumerStatefulWidget {
+class FabAddNote extends ConsumerWidget {
   /// Default constructor.
   const FabAddNote({super.key});
 
   @override
-  ConsumerState<FabAddNote> createState() => _FabAddNoteState();
-}
-
-class _FabAddNoteState extends ConsumerState<FabAddNote> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return FloatingActionButton(
       tooltip: localizations.tooltip_fab_add_note,
       onPressed: () => addNote(context, ref),

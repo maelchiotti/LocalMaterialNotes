@@ -39,6 +39,20 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
     });
   }
 
+  /// Toggles the setting to use the editor mode button.
+  void _toggleShowEditorModeButton(bool toggled) {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.editorModeButton, toggled);
+    });
+  }
+
+  /// Toggles the setting to open the editor in reading mode by default.
+  void _toggleOpenEditorInReadMode(bool toggled) {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.openEditorReadingMode, toggled);
+    });
+  }
+
   /// Toggles the setting to use spacing between the paragraphs.
   void _toggleFocusTitleOnNewNote(bool toggled) {
     setState(() {
@@ -59,6 +73,8 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
     final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
     final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
 
+    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault<bool>();
+    final openEditorInReadMode = PreferenceKey.openEditorReadingMode.getPreferenceOrDefault<bool>();
     final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault<bool>();
 
     final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault<bool>();
@@ -94,6 +110,21 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
         SettingsSection(
           title: Text(localizations.settings_editor_behavior),
           tiles: [
+            SettingsTile.switchTile(
+              leading: const Icon(Icons.edit),
+              title: Text(localizations.settings_show_editor_mode_button),
+              description: Text(localizations.settings_show_editor_mode_button_description),
+              initialValue: showEditorModeButton,
+              onToggle: _toggleShowEditorModeButton,
+            ),
+            SettingsTile.switchTile(
+              enabled: showEditorModeButton,
+              leading: const Icon(Icons.visibility),
+              title: Text(localizations.settings_open_editor_reading_mode),
+              description: Text(localizations.settings_open_editor_reading_mode_description),
+              initialValue: openEditorInReadMode,
+              onToggle: _toggleOpenEditorInReadMode,
+            ),
             SettingsTile.switchTile(
               leading: const Icon(Icons.filter_center_focus),
               title: Text(localizations.settings_focus_title_on_new_note),

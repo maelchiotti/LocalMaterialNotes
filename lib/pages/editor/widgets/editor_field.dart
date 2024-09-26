@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// Text field to edit the content of a note.
 class EditorField extends StatelessWidget {
@@ -31,7 +31,10 @@ class EditorField extends StatelessWidget {
       return;
     }
 
-    launchUrlString(url);
+    // Force the https scheme to handle the case where the URL does not contain 'http://' or 'https://' at the beginning
+    final uri = Uri(scheme: 'https', path: url);
+
+    launchUrl(uri);
   }
 
   @override

@@ -217,6 +217,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_show_toolbar_description => 'Show the editor\'s toolbar to enable advanced text formatting';
 
   @override
+  String get settings_show_editor_mode_button => 'Editor mode button';
+
+  @override
+  String get settings_show_editor_mode_button_description =>
+      'Enable the button to toggle the editor between editing mode and viewing mode';
+
+  @override
+  String get settings_open_editor_reading_mode => 'Open in reading mode';
+
+  @override
+  String get settings_open_editor_reading_mode_description => 'Open the editor in reading mode by default';
+
+  @override
   String get settings_focus_title_on_new_note => 'Focus the title';
 
   @override
@@ -382,6 +395,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get tooltip_fab_empty_bin => 'Vaciar la papelera';
+
+  @override
+  String get tooltip_fab_toggle_editor_mode_edit => 'Switch to editing mode';
+
+  @override
+  String get tooltip_fab_toggle_editor_mode_read => 'Switch to reading mode';
 
   @override
   String get tooltip_layout_list => 'Vista en lista';
