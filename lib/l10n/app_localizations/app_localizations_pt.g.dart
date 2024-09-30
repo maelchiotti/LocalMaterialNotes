@@ -578,28 +578,31 @@ class AppLocalizationsPt extends AppLocalizations {
   String get placeholder_bin => 'Nenhuma anotação excluída';
 
   @override
-  String get menu_pin => 'Fixar';
+  String get action_disabled => 'Disabled';
 
   @override
-  String get menu_unpin => 'Desafixar';
+  String get action_pin => 'Pin';
 
   @override
-  String get menu_copy => 'Copy';
+  String get action_unpin => 'Unpin';
 
   @override
-  String get menu_share => 'Compartilhar';
+  String get action_copy => 'Copy';
 
   @override
-  String get menu_delete => 'Excluir';
+  String get action_share => 'Share';
 
   @override
-  String get menu_restore => 'Restaurar';
+  String get action_delete => 'Delete';
 
   @override
-  String get menu_delete_permanently => 'Excluir permanentemente';
+  String get action_restore => 'Restore';
 
   @override
-  String get menu_about => 'Sobre';
+  String get action_delete_permanently => 'Delete permanently';
+
+  @override
+  String get action_about => 'About';
 
   @override
   String get confirmations_title_none => 'Nunca';
@@ -609,24 +612,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get confirmations_title_all => 'Sempre';
-
-  @override
-  String get swipe_action_disabled => 'Desabilitado';
-
-  @override
-  String get swipe_action_delete => 'Excluir';
-
-  @override
-  String get swipe_action_pin => 'Fixar';
-
-  @override
-  String get dismiss_pin => 'Fixar';
-
-  @override
-  String get dismiss_unpin => 'Desafixar';
-
-  @override
-  String get dismiss_delete => 'Excluir';
 
   @override
   String get about_last_edited => 'Última edição';

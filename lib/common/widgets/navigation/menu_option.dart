@@ -28,19 +28,19 @@ enum MenuOption {
   String title([bool alternative = false]) {
     switch (this) {
       case togglePin:
-        return alternative ? localizations.menu_unpin : localizations.menu_pin;
+        return alternative ? localizations.action_unpin : localizations.action_pin;
       case copy:
-        return localizations.menu_copy;
+        return localizations.action_copy;
       case share:
-        return localizations.menu_share;
+        return localizations.action_share;
       case delete:
-        return localizations.menu_delete;
+        return localizations.action_delete;
       case restore:
-        return localizations.menu_restore;
+        return localizations.action_restore;
       case deletePermanently:
-        return localizations.menu_delete_permanently;
+        return localizations.action_delete_permanently;
       case about:
-        return localizations.menu_about;
+        return localizations.action_about;
     }
   }
 

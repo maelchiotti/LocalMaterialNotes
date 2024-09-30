@@ -584,28 +584,31 @@ class AppLocalizationsFr extends AppLocalizations {
   String get placeholder_bin => 'Aucune note supprimée';
 
   @override
-  String get menu_pin => 'Épingler';
+  String get action_disabled => 'Disabled';
 
   @override
-  String get menu_unpin => 'Désépingler';
+  String get action_pin => 'Pin';
 
   @override
-  String get menu_copy => 'Copy';
+  String get action_unpin => 'Unpin';
 
   @override
-  String get menu_share => 'Partager';
+  String get action_copy => 'Copy';
 
   @override
-  String get menu_delete => 'Supprimer';
+  String get action_share => 'Share';
 
   @override
-  String get menu_restore => 'Restaurer';
+  String get action_delete => 'Delete';
 
   @override
-  String get menu_delete_permanently => 'Supprimer définitivement';
+  String get action_restore => 'Restore';
 
   @override
-  String get menu_about => 'À propos';
+  String get action_delete_permanently => 'Delete permanently';
+
+  @override
+  String get action_about => 'About';
 
   @override
   String get confirmations_title_none => 'Jamais';
@@ -615,24 +618,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get confirmations_title_all => 'Toujours';
-
-  @override
-  String get swipe_action_disabled => 'Désactivé';
-
-  @override
-  String get swipe_action_delete => 'Supprimer';
-
-  @override
-  String get swipe_action_pin => 'Épingler';
-
-  @override
-  String get dismiss_pin => 'Épingler';
-
-  @override
-  String get dismiss_unpin => 'Désépingler';
-
-  @override
-  String get dismiss_delete => 'Supprimer';
 
   @override
   String get about_last_edited => 'Dernière modification';

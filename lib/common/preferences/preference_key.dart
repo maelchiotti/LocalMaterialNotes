@@ -26,7 +26,7 @@ enum PreferenceKey {
   flagSecure(false),
   confirmations(Confirmations.irreversible),
   swipeRightAction(SwipeAction.delete),
-  swipeLeftAction(SwipeAction.pin),
+  swipeLeftAction(SwipeAction.togglePin),
 
   // Editor
   showUndoRedoButtons(true),

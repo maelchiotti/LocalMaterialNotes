@@ -556,28 +556,31 @@ class AppLocalizationsZh extends AppLocalizations {
   String get placeholder_bin => '没有删除的笔记';
 
   @override
-  String get menu_pin => '置顶';
+  String get action_disabled => 'Disabled';
 
   @override
-  String get menu_unpin => '取消置顶';
+  String get action_pin => 'Pin';
 
   @override
-  String get menu_copy => 'Copy';
+  String get action_unpin => 'Unpin';
 
   @override
-  String get menu_share => '分享';
+  String get action_copy => 'Copy';
 
   @override
-  String get menu_delete => '删除';
+  String get action_share => 'Share';
 
   @override
-  String get menu_restore => '还原';
+  String get action_delete => 'Delete';
 
   @override
-  String get menu_delete_permanently => '永久删除';
+  String get action_restore => 'Restore';
 
   @override
-  String get menu_about => '关于';
+  String get action_delete_permanently => 'Delete permanently';
+
+  @override
+  String get action_about => 'About';
 
   @override
   String get confirmations_title_none => '从不';
@@ -587,24 +590,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get confirmations_title_all => '始终';
-
-  @override
-  String get swipe_action_disabled => '已禁用';
-
-  @override
-  String get swipe_action_delete => '删除';
-
-  @override
-  String get swipe_action_pin => '置顶';
-
-  @override
-  String get dismiss_pin => '置顶';
-
-  @override
-  String get dismiss_unpin => '取消置顶';
-
-  @override
-  String get dismiss_delete => '删除';
 
   @override
   String get about_last_edited => '最后编辑';

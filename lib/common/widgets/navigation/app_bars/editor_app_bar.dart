@@ -10,7 +10,7 @@ import 'package:localmaterialnotes/common/actions/share.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/widgets/navigation/menu_options.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/menu_option.dart';
 import 'package:localmaterialnotes/pages/editor/sheets/about_sheet.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 
