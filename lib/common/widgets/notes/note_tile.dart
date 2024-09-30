@@ -5,7 +5,6 @@ import 'package:localmaterialnotes/common/actions/delete.dart';
 import 'package:localmaterialnotes/common/actions/pin.dart';
 import 'package:localmaterialnotes/common/actions/share.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/constants/radiuses.dart';
 import 'package:localmaterialnotes/common/constants/sizes.dart';
 import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
@@ -74,7 +73,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   ///
   /// If neither are `true`, then [BorderRadius.zero] is returned.
   BorderRadius _borderRadius(Layout layout, bool showTilesBackground) {
-    return layout == Layout.grid || showTilesBackground ? Radiuses.radius16.circular : BorderRadius.zero;
+    return layout == Layout.grid || showTilesBackground ? BorderRadius.circular(16) : BorderRadius.zero;
   }
 
   /// Returns the [DismissDirection] of the note tile, depending on the [rightSwipeAction] and the [leftSwipeAction].
@@ -233,7 +232,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                   onTap: _openOrSelect,
                   onLongPress: widget.searchView ? null : _enterSelectionMode,
                   child: Padding(
-                    padding: Paddings.padding16.all,
+                    padding: Paddings.all(16),
                     child: Row(
                       children: [
                         Expanded(
@@ -265,10 +264,10 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                         ),
                         // Trailing
                         if (widget.note.pinned && !widget.note.deleted) ...[
-                          Padding(padding: Paddings.padding2.horizontal),
+                          Padding(padding: Paddings.horizontal(2)),
                           Icon(
                             Icons.push_pin,
-                            size: Sizes.size16.size,
+                            size: Sizes.pinIconSize.size,
                           ),
                         ],
                       ],

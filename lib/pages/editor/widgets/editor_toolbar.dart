@@ -34,11 +34,11 @@ class _EditorToolbarState extends State<EditorToolbar> {
     VoidCallback? onPressed,
   ) {
     return Padding(
-      padding: Paddings.padding2.horizontal,
+      padding: Paddings.vertical(2),
       child: ConstrainedBox(
         constraints: BoxConstraints.tightFor(
-          width: Sizes.custom.editorToolbarButtonHeight,
-          height: Sizes.custom.editorToolbarButtonWidth,
+          width: Sizes.editorToolbarButtonHeight.size,
+          height: Sizes.editorToolbarButtonWidth.size,
         ),
         child: RawMaterialButton(
           shape: const CircleBorder(),
@@ -71,11 +71,11 @@ class _EditorToolbarState extends State<EditorToolbar> {
     final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
 
     return SizedBox(
-      height: Sizes.custom.editorToolbarHeight,
+      height: Sizes.editorToolbarHeight.size,
       child: FleatherToolbar(
         padding: EdgeInsets.zero,
         children: [
-          Padding(padding: Paddings.padding2.horizontal),
+          Padding(padding: Paddings.vertical(2)),
           ToggleStyleButton(
             attribute: ParchmentAttribute.bold,
             icon: Icons.format_bold,
@@ -144,7 +144,7 @@ class _EditorToolbarState extends State<EditorToolbar> {
             icon: Icons.horizontal_rule,
             onPressed: _insertRule,
           ),
-          Padding(padding: Paddings.padding2.horizontal),
+          Padding(padding: Paddings.vertical(2)),
         ],
       ),
     );

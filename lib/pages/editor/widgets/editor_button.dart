@@ -26,11 +26,11 @@ class EditorButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Paddings.padding2.horizontal,
+      padding: Paddings.horizontal(2),
       child: ConstrainedBox(
         constraints: BoxConstraints.tightFor(
-          width: Sizes.custom.editorToolbarButtonHeight,
-          height: Sizes.custom.editorToolbarButtonWidth,
+          width: Sizes.editorToolbarButtonHeight.size,
+          height: Sizes.editorToolbarButtonWidth.size,
         ),
         child: RawMaterialButton(
           shape: const CircleBorder(),

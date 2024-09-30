@@ -32,17 +32,17 @@ class EmptyPlaceholder extends StatelessWidget {
 
     return Center(
       child: Padding(
-        padding: Paddings.custom.page,
+        padding: Paddings.page,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
                 icon,
-                size: Sizes.size64.size,
+                size: Sizes.placeholderIcon.size,
                 color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
-              Padding(padding: Paddings.padding16.vertical),
+              Padding(padding: Paddings.vertical(16)),
               Text(
                 text!,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(

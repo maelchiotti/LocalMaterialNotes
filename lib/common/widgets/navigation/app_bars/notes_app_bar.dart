@@ -205,7 +205,7 @@ class NotesAppBar extends ConsumerWidget {
               return searchButtonPlaceholder;
             },
           ),
-        Padding(padding: Paddings.custom.appBarActionsEnd),
+        Padding(padding: Paddings.appBarActionsEnd),
       ],
     );
   }

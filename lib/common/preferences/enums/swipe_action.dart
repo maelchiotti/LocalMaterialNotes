@@ -7,10 +7,21 @@ import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 
 /// Lists the actions to trigger when swiping on a note tile.
 enum SwipeAction {
+  /// The swipe action is disabled.
   disabled(null),
+
+  /// Delete the note.
+  ///
+  /// This action is [dangerous].
   delete(Icons.delete, dangerous: true),
+
+  /// Toggle the pin status of the note.
   togglePin(Icons.push_pin, alternativeIcon: Icons.push_pin_outlined),
+
+  /// Share the note.
   share(Icons.share),
+
+  /// Copy the note to the clipboard.
   copy(Icons.copy),
   ;
 
@@ -25,6 +36,11 @@ enum SwipeAction {
   /// Changes the background, text and icon colors to red.
   final bool? dangerous;
 
+  /// The swipe action that can be performed on a note tile.
+  ///
+  /// A swipe action is represented by an [icon] and a [title]. If it has two states, it can have an [alternativeIcon].
+  ///
+  /// If it performs a dangerous action, is can be marked as [dangerous].
   const SwipeAction(this.icon, {this.alternativeIcon, this.dangerous});
 
   /// Returns the value of the right swipe action preference if set, or its default value otherwise.

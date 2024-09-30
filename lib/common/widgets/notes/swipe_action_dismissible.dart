@@ -64,13 +64,13 @@ class _SwipeActionDismissibleState extends State<SwipeActionDismissible> {
     return ColoredBox(
       color: backgroundColor,
       child: Padding(
-        padding: Paddings.padding16.horizontal,
+        padding: Paddings.horizontal(16),
         child: Row(
           mainAxisAlignment:
               widget.swipeDirection == SwipeDirection.right ? MainAxisAlignment.start : MainAxisAlignment.end,
           children: [
             if (widget.swipeDirection == SwipeDirection.right) icon else text,
-            Padding(padding: Paddings.padding4.horizontal),
+            Padding(padding: Paddings.horizontal(4)),
             if (widget.swipeDirection == SwipeDirection.right) text else icon,
           ],
         ),

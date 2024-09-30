@@ -5,13 +5,26 @@ import 'package:localmaterialnotes/common/extensions/double_extension.dart';
 
 /// Lists the localization completion for every supported language.
 enum LocalizationCompletion {
-  en(Locale('en'), 1), // English
-  es(Locale('es'), .4), // Spanish
-  fr(Locale('fr'), 1), // French
-  pt(Locale('pt'), .76), // Portuguese
-  ru(Locale('ru'), 0.79), // Russian
-  tr(Locale('tr'), .38), // Turkish
-  zh(Locale('zh'), .79), // Chinese Simplified
+  /// English.
+  en(Locale('en'), 1),
+
+  /// Spanish.
+  es(Locale('es'), .4),
+
+  /// French.
+  fr(Locale('fr'), 1),
+
+  /// Portuguese.
+  pt(Locale('pt'), .76),
+
+  /// Russian.
+  ru(Locale('ru'), 0.79),
+
+  /// Turkish.
+  tr(Locale('tr'), .38),
+
+  /// Chinese Simplified.
+  zh(Locale('zh'), .79),
   ;
 
   /// The locale of this localization.
@@ -22,6 +35,7 @@ enum LocalizationCompletion {
   /// The value is a double contained between 0 and 1.
   final double percentage;
 
+  /// The completion of the localization for the [locale] as a [percentage].
   const LocalizationCompletion(this.locale, this.percentage);
 
   /// Returns the percentage of strings that are localized for the [locale], formatted as a [String] for the [locale].

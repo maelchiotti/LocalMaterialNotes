@@ -31,7 +31,7 @@ class NotesList extends ConsumerWidget {
     }
 
     // Use at least 2 columns for the grid view
-    final columnsCount = MediaQuery.of(context).size.width ~/ Sizes.custom.gridLayoutColumnWidth;
+    final columnsCount = MediaQuery.of(context).size.width ~/ Sizes.gridLayoutColumnWidth.size;
     final crossAxisCount = columnsCount > 2 ? columnsCount : 2;
 
     return ValueListenableBuilder(
@@ -46,7 +46,7 @@ class NotesList extends ConsumerWidget {
                 return layout == Layout.list
                     ? ListView.separated(
                         key: Keys.notesPageNotesListListLayout,
-                        padding: showTilesBackground ? Paddings.custom.notesWithBackground : Paddings.custom.fab,
+                        padding: showTilesBackground ? Paddings.notesWithBackground : Paddings.fab,
                         itemCount: notes.length,
                         itemBuilder: (context, index) {
                           return NoteTile(
@@ -57,7 +57,7 @@ class NotesList extends ConsumerWidget {
                         separatorBuilder: (BuildContext context, int index) {
                           return Padding(
                             padding: showTilesBackground
-                                ? Paddings.custom.notesListWithBackgroundSeparation
+                                ? Paddings.notesListWithBackgroundSeparation
                                 : EdgeInsetsDirectional.zero,
                             child: showSeparators ? Separator.divider1indent8.horizontal : null,
                           );
@@ -65,9 +65,9 @@ class NotesList extends ConsumerWidget {
                       )
                     : AlignedGridView.count(
                         key: Keys.notesPageNotesListGridLayout,
-                        padding: Paddings.custom.notesWithBackground,
-                        mainAxisSpacing: Sizes.custom.notesGridLayoutSpacing,
-                        crossAxisSpacing: Sizes.custom.notesGridLayoutSpacing,
+                        padding: Paddings.notesWithBackground,
+                        mainAxisSpacing: Sizes.notesGridLayoutSpacing.size,
+                        crossAxisSpacing: Sizes.notesGridLayoutSpacing.size,
                         crossAxisCount: crossAxisCount,
                         itemCount: notes.length,
                         itemBuilder: (context, index) {

@@ -181,7 +181,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                     },
                     onSelected: _onMenuOptionSelected,
                   ),
-                  Padding(padding: Paddings.custom.appBarActionsEnd),
+                  Padding(padding: Paddings.appBarActionsEnd),
                 ],
         );
       },

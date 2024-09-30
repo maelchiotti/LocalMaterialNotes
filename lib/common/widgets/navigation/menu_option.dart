@@ -20,6 +20,9 @@ enum MenuOption {
   /// Alternative icon of the menu option if the option has two states.
   final IconData? alternativeIcon;
 
+  /// An option displayed in the editor's menu.
+  ///
+  /// A swipe action is represented by an [icon] and a [title]. If it has two states, it can have an [alternativeIcon].
   const MenuOption(this.icon, {this.alternativeIcon});
 
   /// Returns the title of the menu option.

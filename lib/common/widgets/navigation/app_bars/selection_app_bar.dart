@@ -94,9 +94,9 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
           tooltip: allSelected ? localizations.tooltip_unselect_all : localizations.tooltip_select_all,
           onPressed: () => allSelected ? unselectAll(context, ref) : selectAll(context, ref),
         ),
-        Padding(padding: Paddings.custom.appBarActionsEnd),
+        Padding(padding: Paddings.appBarActionsEnd),
         Separator.divider1indent16.vertical,
-        Padding(padding: Paddings.custom.appBarActionsEnd),
+        Padding(padding: Paddings.appBarActionsEnd),
         if (context.route == RoutingRoute.bin) ...[
           IconButton(
             icon: const Icon(Icons.restore_from_trash),
@@ -120,7 +120,7 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
             onPressed: selectedNotes.isNotEmpty ? () => _delete(selectedNotes) : null,
           ),
         ],
-        Padding(padding: Paddings.custom.appBarActionsEnd),
+        Padding(padding: Paddings.appBarActionsEnd),
       ],
     );
   }

@@ -23,7 +23,7 @@ class FabToggleEditorMode extends ConsumerWidget {
       valueListenable: isFleatherEditorEditMode,
       builder: (context, isEditMode, child) {
         return Padding(
-          padding: showToolbar && isEditMode ? Paddings.custom.fabToggleEditorModeWithToolbarBottom : EdgeInsets.zero,
+          padding: showToolbar && isEditMode ? Paddings.fabToggleEditorModeWithToolbarBottom : EdgeInsets.zero,
           child: FloatingActionButton.small(
             tooltip: isEditMode
                 ? localizations.tooltip_fab_toggle_editor_mode_read
