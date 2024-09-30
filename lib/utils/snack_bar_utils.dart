@@ -6,7 +6,7 @@ class SnackBarUtils {
   /// A snack bar that holds an informative [message].
   SnackBarUtils.info(
     String message, {
-    this.duration = const Duration(seconds: 4),
+    this.duration = const Duration(milliseconds: 4000),
   }) : text = message;
 
   /// A snack bar that holds an [error] message.
@@ -14,7 +14,7 @@ class SnackBarUtils {
   /// The message is prefixed with the string `Error: `. Thus, the message should start with a lowercase.
   SnackBarUtils.error(
     String error, {
-    this.duration = const Duration(seconds: 4),
+    this.duration = const Duration(milliseconds: 4000),
   }) : text = '${localizations.error_error}: $error';
 
   /// Text to display in the snack bar;

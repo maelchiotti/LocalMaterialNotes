@@ -585,10 +585,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get menu_pin => 'Закрепить';
 
   @override
-  String get menu_share => 'Поделиться';
+  String get menu_unpin => 'Открепить';
 
   @override
-  String get menu_unpin => 'Открепить';
+  String get menu_copy => 'Copy';
+
+  @override
+  String get menu_share => 'Поделиться';
 
   @override
   String get menu_delete => 'Удалить';
@@ -642,7 +645,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get about_characters => 'Количество символов';
 
   @override
-  String get time_at => 'в';
+  String get snack_bar_copied => 'Content of the note copied to the clipboard.';
 
   @override
   String get action_add_note_title => 'Добавить заметку';
@@ -652,4 +655,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Простые, локальные заметки в стиле Material Design';
+
+  @override
+  String get time_at => 'в';
 }

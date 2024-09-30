@@ -583,10 +583,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get menu_pin => 'Pin';
 
   @override
-  String get menu_share => 'Share';
+  String get menu_unpin => 'Unpin';
 
   @override
-  String get menu_unpin => 'Unpin';
+  String get menu_copy => 'Copy';
+
+  @override
+  String get menu_share => 'Share';
 
   @override
   String get menu_delete => 'Delete';
@@ -640,7 +643,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get about_characters => 'Characters';
 
   @override
-  String get time_at => 'at';
+  String get snack_bar_copied => 'Content of the note copied to the clipboard.';
 
   @override
   String get action_add_note_title => 'Add a note';
@@ -650,4 +653,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Simple, local, material design notes';
+
+  @override
+  String get time_at => 'at';
 }

@@ -583,10 +583,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get menu_pin => 'Sabitle';
 
   @override
-  String get menu_share => 'Paylaş';
+  String get menu_unpin => 'Sabitleme';
 
   @override
-  String get menu_unpin => 'Sabitleme';
+  String get menu_copy => 'Copy';
+
+  @override
+  String get menu_share => 'Paylaş';
 
   @override
   String get menu_delete => 'Sil';
@@ -640,7 +643,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get about_characters => 'Karakter';
 
   @override
-  String get time_at => 'saat';
+  String get snack_bar_copied => 'Content of the note copied to the clipboard.';
 
   @override
   String get action_add_note_title => 'Not ekle';
@@ -650,4 +653,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Basit, çevrimdışı, materyal tasarımlı notlar';
+
+  @override
+  String get time_at => 'saat';
 }

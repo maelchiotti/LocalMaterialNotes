@@ -1071,17 +1071,23 @@ abstract class AppLocalizations {
   /// **'Pin'**
   String get menu_pin;
 
-  /// No description provided for @menu_share.
-  ///
-  /// In en, this message translates to:
-  /// **'Share'**
-  String get menu_share;
-
   /// No description provided for @menu_unpin.
   ///
   /// In en, this message translates to:
   /// **'Unpin'**
   String get menu_unpin;
+
+  /// No description provided for @menu_copy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get menu_copy;
+
+  /// No description provided for @menu_share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get menu_share;
 
   /// No description provided for @menu_delete.
   ///
@@ -1185,11 +1191,11 @@ abstract class AppLocalizations {
   /// **'Characters'**
   String get about_characters;
 
-  /// No description provided for @time_at.
+  /// No description provided for @snack_bar_copied.
   ///
   /// In en, this message translates to:
-  /// **'at'**
-  String get time_at;
+  /// **'Content of the note copied to the clipboard.'**
+  String get snack_bar_copied;
 
   /// No description provided for @action_add_note_title.
   ///
@@ -1208,6 +1214,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Simple, local, material design notes'**
   String get welcome_note_content;
+
+  /// No description provided for @time_at.
+  ///
+  /// In en, this message translates to:
+  /// **'at'**
+  String get time_at;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

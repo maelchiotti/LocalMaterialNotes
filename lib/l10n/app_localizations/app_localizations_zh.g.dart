@@ -559,10 +559,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get menu_pin => '置顶';
 
   @override
-  String get menu_share => '分享';
+  String get menu_unpin => '取消置顶';
 
   @override
-  String get menu_unpin => '取消置顶';
+  String get menu_copy => 'Copy';
+
+  @override
+  String get menu_share => '分享';
 
   @override
   String get menu_delete => '删除';
@@ -616,7 +619,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get about_characters => '字符';
 
   @override
-  String get time_at => '于';
+  String get snack_bar_copied => 'Content of the note copied to the clipboard.';
 
   @override
   String get action_add_note_title => '添加笔记';
@@ -626,4 +629,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get welcome_note_content => '简单、本地、Material 设计笔记';
+
+  @override
+  String get time_at => '于';
 }

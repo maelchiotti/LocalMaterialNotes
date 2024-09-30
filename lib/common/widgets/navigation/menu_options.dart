@@ -6,6 +6,7 @@ import 'package:localmaterialnotes/common/constants/constants.dart';
 /// Lists the options available in the menu of the editor's app bar.
 enum MenuOption {
   togglePin(Icons.push_pin, alternativeIcon: Icons.push_pin_outlined),
+  copy(Icons.copy),
   share(Icons.share),
   delete(Icons.delete),
   restore(Icons.restore_from_trash),
@@ -26,17 +27,19 @@ enum MenuOption {
   /// Returns the alternative title if [alternative] is set to `true`.
   String title([bool alternative = false]) {
     switch (this) {
-      case MenuOption.togglePin:
+      case togglePin:
         return alternative ? localizations.menu_unpin : localizations.menu_pin;
-      case MenuOption.share:
+      case copy:
+        return localizations.menu_copy;
+      case share:
         return localizations.menu_share;
-      case MenuOption.delete:
+      case delete:
         return localizations.menu_delete;
-      case MenuOption.restore:
+      case restore:
         return localizations.menu_restore;
-      case MenuOption.deletePermanently:
+      case deletePermanently:
         return localizations.menu_delete_permanently;
-      case MenuOption.about:
+      case about:
         return localizations.menu_about;
     }
   }

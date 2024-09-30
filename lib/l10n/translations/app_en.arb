@@ -160,8 +160,9 @@
   "placeholder_notes": "No notes",
   "placeholder_bin": "No deleted notes",
   "menu_pin": "Pin",
-  "menu_share": "Share",
   "menu_unpin": "Unpin",
+  "menu_copy": "Copy",
+  "menu_share": "Share",
   "menu_delete": "Delete",
   "menu_restore": "Restore",
   "menu_delete_permanently": "Delete permanently",
@@ -179,8 +180,9 @@
   "about_created": "Created",
   "about_words": "Words",
   "about_characters": "Characters",
-  "time_at": "at",
+  "snack_bar_copied": "Content of the note copied to the clipboard.",
   "action_add_note_title": "Add a note",
   "welcome_note_title": "Welcome to Material Notes!",
-  "welcome_note_content": "Simple, local, material design notes"
+  "welcome_note_content": "Simple, local, material design notes",
+  "time_at": "at"
 }
