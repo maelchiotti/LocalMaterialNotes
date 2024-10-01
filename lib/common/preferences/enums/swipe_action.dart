@@ -8,7 +8,7 @@ import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 /// Lists the actions to trigger when swiping on a note tile.
 enum SwipeAction {
   /// The swipe action is disabled.
-  disabled(null),
+  disabled(Icons.hide_source),
 
   /// Delete the note.
   ///

@@ -8,6 +8,9 @@ enum Sizes {
   /// The size of the icon.
   iconSize(64),
 
+  /// The size of the icon in a settings page when displaying the value of a setting.
+  settingValueIconSize(16),
+
   /// The size of the pin icon in a note tile.
   pinIconSize(8),
 

@@ -8,6 +8,7 @@ import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
+import 'package:localmaterialnotes/pages/settings/widgets/setting_value_text.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 
 /// Settings related to the behavior of the application.
@@ -126,15 +127,9 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
             SettingsTile.navigation(
               leading: const Icon(Icons.warning),
               title: Text(localizations.settings_confirmations),
-              value: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    confirmations.title,
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  Text(localizations.settings_confirmations_description),
-                ],
+              value: SettingNavigationTileBody(
+                value: confirmations.title,
+                description: localizations.settings_confirmations_description,
               ),
               onPressed: _selectConfirmations,
             ),
@@ -153,30 +148,20 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
             SettingsTile.navigation(
               leading: const Icon(Icons.swipe_right),
               title: Text(localizations.settings_swipe_action_right),
-              value: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    swipeRightAction.title(),
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  Text(localizations.settings_swipe_action_right_description),
-                ],
+              value: SettingNavigationTileBody(
+                value: swipeRightAction.title(),
+                description: localizations.settings_swipe_action_left_description,
+                icon: swipeRightAction.icon,
               ),
               onPressed: (context) => _selectSwipeAction(context, SwipeDirection.right),
             ),
             SettingsTile.navigation(
               leading: const Icon(Icons.swipe_left),
               title: Text(localizations.settings_swipe_action_left),
-              value: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    swipeLeftAction.title(),
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  Text(localizations.settings_swipe_action_left_description),
-                ],
+              value: SettingNavigationTileBody(
+                value: swipeLeftAction.title(),
+                description: localizations.settings_swipe_action_left_description,
+                icon: swipeLeftAction.icon,
               ),
               onPressed: (context) => _selectSwipeAction(context, SwipeDirection.left),
             ),

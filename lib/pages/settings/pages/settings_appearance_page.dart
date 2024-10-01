@@ -11,6 +11,7 @@ import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.da
 import 'package:localmaterialnotes/l10n/localization_completion.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/text_scaling_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
+import 'package:localmaterialnotes/pages/settings/widgets/setting_value_text.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
@@ -222,13 +223,17 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
                 onPressed: _openCrowdin,
                 label: Text(localizations.settings_language_contribute),
               ),
-              value: Text(locale),
+              value: SettingNavigationTileBody(
+                value: locale,
+              ),
               onPressed: _selectLanguage,
             ),
             SettingsTile.navigation(
               leading: const Icon(Icons.palette),
               title: Text(localizations.settings_theme),
-              value: Text(ThemeUtils().themeModeTitle),
+              value: SettingNavigationTileBody(
+                value: ThemeUtils().themeModeTitle,
+              ),
               onPressed: _selectTheme,
             ),
             SettingsTile.switchTile(
@@ -250,7 +255,9 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
             SettingsTile.navigation(
               leading: const Icon(Icons.format_size),
               title: Text(localizations.settings_text_scaling),
-              value: Text(textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale)),
+              value: SettingNavigationTileBody(
+                value: textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale),
+              ),
               onPressed: _setTextScaling,
             ),
           ],

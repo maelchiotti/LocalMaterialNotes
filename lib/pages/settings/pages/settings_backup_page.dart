@@ -11,6 +11,7 @@ import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_frequency_
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_password_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/manual_export_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
+import 'package:localmaterialnotes/pages/settings/widgets/setting_value_text.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
@@ -242,8 +243,9 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
               enabled: enableAutoExport,
               leading: const Icon(Symbols.calendar_clock),
               title: Text(localizations.settings_auto_export_frequency),
-              value: Text(
-                localizations.settings_auto_export_frequency_description(autoExportFrequency.toString()),
+              value: SettingNavigationTileBody(
+                value: localizations.settings_auto_export_frequency_value(autoExportFrequency.toString()),
+                description: localizations.settings_auto_export_frequency_description,
               ),
               onPressed: _setAutoExportFrequency,
             ),
@@ -251,7 +253,10 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
               enabled: enableAutoExport,
               leading: const Icon(Icons.folder),
               title: Text(localizations.settings_auto_export_directory),
-              value: Text(localizations.settings_auto_export_directory_description(autoExportDirectory)),
+              value: SettingNavigationTileBody(
+                value: autoExportDirectory,
+                description: localizations.settings_auto_export_directory_description,
+              ),
               trailing: IconButton(
                 icon: const Icon(Symbols.reset_settings),
                 tooltip: localizations.tooltip_reset,
