@@ -582,25 +582,31 @@ class AppLocalizationsRu extends AppLocalizations {
   String get placeholder_bin => 'Нет удаленных заметок';
 
   @override
-  String get menu_pin => 'Закрепить';
+  String get action_disabled => 'Disabled';
 
   @override
-  String get menu_share => 'Поделиться';
+  String get action_pin => 'Pin';
 
   @override
-  String get menu_unpin => 'Открепить';
+  String get action_unpin => 'Unpin';
 
   @override
-  String get menu_delete => 'Удалить';
+  String get action_copy => 'Copy';
 
   @override
-  String get menu_restore => 'Восстановить';
+  String get action_share => 'Share';
 
   @override
-  String get menu_delete_permanently => 'Удалить навсегда';
+  String get action_delete => 'Delete';
 
   @override
-  String get menu_about => 'О приложении';
+  String get action_restore => 'Restore';
+
+  @override
+  String get action_delete_permanently => 'Delete permanently';
+
+  @override
+  String get action_about => 'About';
 
   @override
   String get confirmations_title_none => 'Никогда';
@@ -610,24 +616,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get confirmations_title_all => 'Всегда';
-
-  @override
-  String get swipe_action_disabled => 'Отключено';
-
-  @override
-  String get swipe_action_delete => 'Удалить';
-
-  @override
-  String get swipe_action_pin => 'Закрепить';
-
-  @override
-  String get dismiss_pin => 'Закрепить';
-
-  @override
-  String get dismiss_unpin => 'Открепить';
-
-  @override
-  String get dismiss_delete => 'Удалить';
 
   @override
   String get about_last_edited => 'Изменено';
@@ -642,7 +630,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get about_characters => 'Количество символов';
 
   @override
-  String get time_at => 'в';
+  String get snack_bar_copied => 'Content of the note copied to the clipboard.';
 
   @override
   String get action_add_note_title => 'Добавить заметку';
@@ -652,4 +640,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Простые, локальные заметки в стиле Material Design';
+
+  @override
+  String get time_at => 'в';
 }

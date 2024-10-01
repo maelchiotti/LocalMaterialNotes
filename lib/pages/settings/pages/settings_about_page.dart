@@ -42,16 +42,16 @@ class SettingsAboutPage extends StatelessWidget {
       applicationIcon: Image.asset(
         Asset.icon.path,
         fit: BoxFit.fitWidth,
-        width: Sizes.size64.size,
+        width: Sizes.iconSize.size,
       ),
       applicationLegalese: localizations.settings_licence_description,
       children: [
-        Padding(padding: Paddings.padding16.vertical),
+        Padding(padding: Paddings.vertical(16)),
         Text(
           localizations.app_tagline,
           style: Theme.of(context).textTheme.titleSmall,
         ),
-        Padding(padding: Paddings.padding8.vertical),
+        Padding(padding: Paddings.vertical(8)),
         Text(localizations.app_about(localizations.app_name)),
       ],
     );

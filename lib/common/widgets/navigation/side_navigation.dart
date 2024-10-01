@@ -78,9 +78,9 @@ class _SideNavigationState extends State<SideNavigation> {
               Image.asset(
                 Asset.icon.path,
                 fit: BoxFit.fitWidth,
-                width: Sizes.size64.size,
+                width: Sizes.iconSize.size,
               ),
-              Padding(padding: Paddings.padding8.vertical),
+              Padding(padding: Paddings.vertical(8)),
               Text(
                 localizations.app_name,
                 style: Theme.of(context).textTheme.headlineSmall,

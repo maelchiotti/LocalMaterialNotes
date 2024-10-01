@@ -114,7 +114,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: Paddings.custom.pageButBottom,
+                  padding: Paddings.pageButBottom,
                   child: Column(
                     children: [
                       TextField(
@@ -130,7 +130,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                         onChanged: (text) => _synchronizeTitle(note!, text),
                         onSubmitted: _requestEditorFocus,
                       ),
-                      Padding(padding: Paddings.padding8.vertical),
+                      Padding(padding: Paddings.vertical(8)),
                       Expanded(
                         child: Focus(
                           onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,

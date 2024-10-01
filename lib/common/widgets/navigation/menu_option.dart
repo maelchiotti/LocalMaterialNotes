@@ -6,6 +6,7 @@ import 'package:localmaterialnotes/common/constants/constants.dart';
 /// Lists the options available in the menu of the editor's app bar.
 enum MenuOption {
   togglePin(Icons.push_pin, alternativeIcon: Icons.push_pin_outlined),
+  copy(Icons.copy),
   share(Icons.share),
   delete(Icons.delete),
   restore(Icons.restore_from_trash),
@@ -19,6 +20,9 @@ enum MenuOption {
   /// Alternative icon of the menu option if the option has two states.
   final IconData? alternativeIcon;
 
+  /// An option displayed in the editor's menu.
+  ///
+  /// A swipe action is represented by an [icon] and a [title]. If it has two states, it can have an [alternativeIcon].
   const MenuOption(this.icon, {this.alternativeIcon});
 
   /// Returns the title of the menu option.
@@ -26,18 +30,20 @@ enum MenuOption {
   /// Returns the alternative title if [alternative] is set to `true`.
   String title([bool alternative = false]) {
     switch (this) {
-      case MenuOption.togglePin:
-        return alternative ? localizations.menu_unpin : localizations.menu_pin;
-      case MenuOption.share:
-        return localizations.menu_share;
-      case MenuOption.delete:
-        return localizations.menu_delete;
-      case MenuOption.restore:
-        return localizations.menu_restore;
-      case MenuOption.deletePermanently:
-        return localizations.menu_delete_permanently;
-      case MenuOption.about:
-        return localizations.menu_about;
+      case togglePin:
+        return alternative ? localizations.action_unpin : localizations.action_pin;
+      case copy:
+        return localizations.action_copy;
+      case share:
+        return localizations.action_share;
+      case delete:
+        return localizations.action_delete;
+      case restore:
+        return localizations.action_restore;
+      case deletePermanently:
+        return localizations.action_delete_permanently;
+      case about:
+        return localizations.action_about;
     }
   }
 

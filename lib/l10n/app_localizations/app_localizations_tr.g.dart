@@ -580,25 +580,31 @@ class AppLocalizationsTr extends AppLocalizations {
   String get placeholder_bin => 'No deleted notes';
 
   @override
-  String get menu_pin => 'Sabitle';
+  String get action_disabled => 'Disabled';
 
   @override
-  String get menu_share => 'Paylaş';
+  String get action_pin => 'Pin';
 
   @override
-  String get menu_unpin => 'Sabitleme';
+  String get action_unpin => 'Unpin';
 
   @override
-  String get menu_delete => 'Sil';
+  String get action_copy => 'Copy';
 
   @override
-  String get menu_restore => 'Kurtar';
+  String get action_share => 'Share';
 
   @override
-  String get menu_delete_permanently => 'Kalıcı Sil';
+  String get action_delete => 'Delete';
 
   @override
-  String get menu_about => 'Hakkında';
+  String get action_restore => 'Restore';
+
+  @override
+  String get action_delete_permanently => 'Delete permanently';
+
+  @override
+  String get action_about => 'About';
 
   @override
   String get confirmations_title_none => 'Asla';
@@ -608,24 +614,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get confirmations_title_all => 'Her zaman';
-
-  @override
-  String get swipe_action_disabled => 'Disabled';
-
-  @override
-  String get swipe_action_delete => 'Delete';
-
-  @override
-  String get swipe_action_pin => 'Pin';
-
-  @override
-  String get dismiss_pin => 'Sabitle';
-
-  @override
-  String get dismiss_unpin => 'Sabitleme';
-
-  @override
-  String get dismiss_delete => 'Sil';
 
   @override
   String get about_last_edited => 'Son düzenleme';
@@ -640,7 +628,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get about_characters => 'Karakter';
 
   @override
-  String get time_at => 'saat';
+  String get snack_bar_copied => 'Content of the note copied to the clipboard.';
 
   @override
   String get action_add_note_title => 'Not ekle';
@@ -650,4 +638,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Basit, çevrimdışı, materyal tasarımlı notlar';
+
+  @override
+  String get time_at => 'saat';
 }

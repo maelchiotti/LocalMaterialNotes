@@ -76,7 +76,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
             return RadioListTile<SwipeAction>(
               value: swipeAction,
               groupValue: swipeActionPreference,
-              title: Text(swipeAction.title),
+              title: Text(swipeAction.title()),
               selected: swipeActionPreference == swipeAction,
               onChanged: (swipeAction) => Navigator.pop(context, swipeAction),
             );
@@ -157,7 +157,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    swipeRightAction.title,
+                    swipeRightAction.title(),
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   Text(localizations.settings_swipe_action_right_description),
@@ -172,7 +172,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    swipeLeftAction.title,
+                    swipeLeftAction.title(),
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   Text(localizations.settings_swipe_action_left_description),

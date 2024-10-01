@@ -12,6 +12,9 @@ enum Asset {
   /// Path of the asset inside the [_basePath].
   final String _filePath;
 
+  /// An asset stored in the assets folder of the application.
+  ///
+  /// The asset is accessible with its [path].
   const Asset(this._filePath);
 
   /// Full path of the asset (combination of the [_basePath] and the [_filePath].

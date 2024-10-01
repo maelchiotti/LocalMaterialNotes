@@ -14,7 +14,7 @@ enum Confirmations {
   all,
   ;
 
-  /// Returns the value of the preference if set, or its default value otherwise.
+  /// The value of the preference if set, or its default value otherwise.
   factory Confirmations.fromPreference() {
     final preference = PreferencesUtils().get<String>(PreferenceKey.confirmations);
 

@@ -52,7 +52,7 @@ class EditorField extends StatelessWidget {
       spellCheckConfiguration: SpellCheckConfiguration(
         spellCheckService: DefaultSpellCheckService(),
       ),
-      padding: Paddings.custom.bottomSystemUi,
+      padding: Paddings.bottomSystemUi,
     );
 
     // If paragraph spacing should be used, return the editor directly without modifying its default theme

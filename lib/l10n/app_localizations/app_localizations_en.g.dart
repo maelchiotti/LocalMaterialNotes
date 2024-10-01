@@ -580,25 +580,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get placeholder_bin => 'No deleted notes';
 
   @override
-  String get menu_pin => 'Pin';
+  String get action_disabled => 'Disabled';
 
   @override
-  String get menu_share => 'Share';
+  String get action_pin => 'Pin';
 
   @override
-  String get menu_unpin => 'Unpin';
+  String get action_unpin => 'Unpin';
 
   @override
-  String get menu_delete => 'Delete';
+  String get action_copy => 'Copy';
 
   @override
-  String get menu_restore => 'Restore';
+  String get action_share => 'Share';
 
   @override
-  String get menu_delete_permanently => 'Delete permanently';
+  String get action_delete => 'Delete';
 
   @override
-  String get menu_about => 'About';
+  String get action_restore => 'Restore';
+
+  @override
+  String get action_delete_permanently => 'Delete permanently';
+
+  @override
+  String get action_about => 'About';
 
   @override
   String get confirmations_title_none => 'Never';
@@ -608,24 +614,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get confirmations_title_all => 'Always';
-
-  @override
-  String get swipe_action_disabled => 'Disabled';
-
-  @override
-  String get swipe_action_delete => 'Delete';
-
-  @override
-  String get swipe_action_pin => 'Pin';
-
-  @override
-  String get dismiss_pin => 'Pin';
-
-  @override
-  String get dismiss_unpin => 'Unpin';
-
-  @override
-  String get dismiss_delete => 'Delete';
 
   @override
   String get about_last_edited => 'Last edited';
@@ -640,7 +628,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get about_characters => 'Characters';
 
   @override
-  String get time_at => 'at';
+  String get snack_bar_copied => 'Content of the note copied to the clipboard.';
 
   @override
   String get action_add_note_title => 'Add a note';
@@ -650,4 +638,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Simple, local, material design notes';
+
+  @override
+  String get time_at => 'at';
 }

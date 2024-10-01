@@ -26,7 +26,7 @@ enum PreferenceKey {
   flagSecure(false),
   confirmations(Confirmations.irreversible),
   swipeRightAction(SwipeAction.delete),
-  swipeLeftAction(SwipeAction.pin),
+  swipeLeftAction(SwipeAction.togglePin),
 
   // Editor
   showUndoRedoButtons(true),
@@ -54,8 +54,14 @@ enum PreferenceKey {
   /// Default value of the preference.
   final Object defaultValue;
 
+  /// Whether the preference should be securely stored.
   final bool secure;
 
+  /// The key of a preference.
+  ///
+  /// Every preference has a [defaultValue].
+  ///
+  /// if the preference should be securely stored, it can be marked as [secure].
   const PreferenceKey(this.defaultValue, {this.secure = false});
 
   /// Returns the value of the preference if set, or its default value otherwise.

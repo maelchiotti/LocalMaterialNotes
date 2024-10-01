@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:localmaterialnotes/common/actions/copy.dart';
 import 'package:localmaterialnotes/common/actions/delete.dart';
 import 'package:localmaterialnotes/common/actions/pin.dart';
+import 'package:localmaterialnotes/common/actions/share.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/constants/radiuses.dart';
 import 'package:localmaterialnotes/common/constants/sizes.dart';
 import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/widgets/dismissible/dismissible_delete.dart';
-import 'package:localmaterialnotes/common/widgets/dismissible/dismissible_pin.dart';
+import 'package:localmaterialnotes/common/widgets/notes/swipe_action_dismissible.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
@@ -73,7 +73,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   ///
   /// If neither are `true`, then [BorderRadius.zero] is returned.
   BorderRadius _borderRadius(Layout layout, bool showTilesBackground) {
-    return layout == Layout.grid || showTilesBackground ? Radiuses.radius16.circular : BorderRadius.zero;
+    return layout == Layout.grid || showTilesBackground ? BorderRadius.circular(16) : BorderRadius.zero;
   }
 
   /// Returns the [DismissDirection] of the note tile, depending on the [rightSwipeAction] and the [leftSwipeAction].
@@ -100,19 +100,14 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     }
   }
 
-  /// Returns the main and the secondary dismissible widgets, depending on the [direction].
-  ///
-  /// There are 4 possible outputs:
-  ///   - right and left : ([_rightDismissibleWidget], [_leftDismissibleWidget])
-  ///   - right only : ([_rightDismissibleWidget], null)
-  ///   - left only : ([_leftDismissibleWidget], null)
-  ///   - none : (null, null)
+  /// Returns the main and the secondary dismissible widgets for the [rightSwipeAction] and the [leftSwipeAction],
+  /// depending on the [direction].
   (Widget?, Widget?) _dismissibleWidgets(
     DismissDirection direction,
     SwipeAction rightSwipeAction,
     SwipeAction leftSwipeAction,
   ) {
-    // If the note is deleted, the secondary swipe action is not available
+    // If the note is deleted, the swipe actions are not available
     if (widget.note.deleted) {
       return (null, null);
     }
@@ -121,38 +116,26 @@ class _NoteTileState extends ConsumerState<NoteTile> {
       case DismissDirection.none:
         return (null, null);
       case DismissDirection.horizontal:
-        return (_rightDismissibleWidget(rightSwipeAction), _leftDismissibleWidget(leftSwipeAction));
+        return (
+          _dismissibleWidget(rightSwipeAction, SwipeDirection.right),
+          _dismissibleWidget(leftSwipeAction, SwipeDirection.left)
+        );
       case DismissDirection.startToEnd:
-        return (_rightDismissibleWidget(rightSwipeAction), null);
+        return (_dismissibleWidget(rightSwipeAction, SwipeDirection.right), null);
       case DismissDirection.endToStart:
-        return (_leftDismissibleWidget(leftSwipeAction), null);
+        return (_dismissibleWidget(leftSwipeAction, SwipeDirection.left), null);
       default:
         throw Exception('Unexpected dismiss direction while building dismissible widgets: $direction');
     }
   }
 
-  /// Returns the right dismissible background widget, depending on the [rightSwipeAction].
-  Widget _rightDismissibleWidget(SwipeAction rightSwipeAction) {
-    switch (rightSwipeAction) {
-      case SwipeAction.delete:
-        return const DismissibleDelete(swipeDirection: SwipeDirection.right);
-      case SwipeAction.pin:
-        return DismissiblePin(note: widget.note, swipeDirection: SwipeDirection.right);
-      default:
-        throw Exception('Unexpected build of the right dismissible widget while it is disabled');
-    }
-  }
-
-  /// Returns the left dismissible background widget, depending the [leftSwipeAction].
-  Widget _leftDismissibleWidget(SwipeAction leftSwipeAction) {
-    switch (leftSwipeAction) {
-      case SwipeAction.delete:
-        return const DismissibleDelete(swipeDirection: SwipeDirection.left);
-      case SwipeAction.pin:
-        return DismissiblePin(note: widget.note, swipeDirection: SwipeDirection.left);
-      default:
-        throw Exception('Unexpected build of the left dismissible widget while it is disabled');
-    }
+  /// Returns the dismissible widget for the [swipeAction] in the [swipeDirection].
+  Widget _dismissibleWidget(SwipeAction swipeAction, SwipeDirection swipeDirection) {
+    return SwipeActionDismissible(
+      swipeAction: swipeAction,
+      swipeDirection: swipeDirection,
+      alternative: widget.note.deleted,
+    );
   }
 
   /// Enters the selection mode and selects this note.
@@ -192,25 +175,30 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   Future<bool> _dismiss(DismissDirection direction, SwipeAction rightSwipeAction, SwipeAction leftSwipeAction) {
     switch (direction) {
       case DismissDirection.startToEnd:
-        switch (rightSwipeAction) {
-          case SwipeAction.delete:
-            return deleteNote(context, ref, widget.note);
-          case SwipeAction.pin:
-            return togglePinNote(context, ref, widget.note);
-          default:
-            throw Exception('Unexpected right swipe action when swiping on note tile: $rightSwipeAction');
-        }
+        return _performDismissAction(rightSwipeAction);
       case DismissDirection.endToStart:
-        switch (leftSwipeAction) {
-          case SwipeAction.delete:
-            return deleteNote(context, ref, widget.note);
-          case SwipeAction.pin:
-            return togglePinNote(context, ref, widget.note);
-          default:
-            throw Exception('Unexpected left swipe action when swiping on note tile: $rightSwipeAction');
-        }
+        return _performDismissAction(leftSwipeAction);
       default:
         throw Exception('Unexpected dismiss direction after swiping on note tile: $direction');
+    }
+  }
+
+  Future<bool> _performDismissAction(SwipeAction swipeAction) async {
+    switch (swipeAction) {
+      case SwipeAction.delete:
+        return deleteNote(context, ref, widget.note);
+      case SwipeAction.togglePin:
+        return togglePinNote(context, ref, widget.note);
+      case SwipeAction.share:
+        await share(widget.note);
+
+        return false;
+      case SwipeAction.copy:
+        await copy(widget.note);
+
+        return false;
+      default:
+        throw Exception('Unexpected swipe action when swiping on note tile: $swipeAction');
     }
   }
 
@@ -244,7 +232,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                   onTap: _openOrSelect,
                   onLongPress: widget.searchView ? null : _enterSelectionMode,
                   child: Padding(
-                    padding: Paddings.padding16.all,
+                    padding: Paddings.all(16),
                     child: Row(
                       children: [
                         Expanded(
@@ -276,10 +264,10 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                         ),
                         // Trailing
                         if (widget.note.pinned && !widget.note.deleted) ...[
-                          Padding(padding: Paddings.padding2.horizontal),
+                          Padding(padding: Paddings.horizontal(2)),
                           Icon(
                             Icons.push_pin,
-                            size: Sizes.size16.size,
+                            size: Sizes.pinIconSize.size,
                           ),
                         ],
                       ],

@@ -1065,47 +1065,59 @@ abstract class AppLocalizations {
   /// **'No deleted notes'**
   String get placeholder_bin;
 
-  /// No description provided for @menu_pin.
+  /// No description provided for @action_disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get action_disabled;
+
+  /// No description provided for @action_pin.
   ///
   /// In en, this message translates to:
   /// **'Pin'**
-  String get menu_pin;
+  String get action_pin;
 
-  /// No description provided for @menu_share.
-  ///
-  /// In en, this message translates to:
-  /// **'Share'**
-  String get menu_share;
-
-  /// No description provided for @menu_unpin.
+  /// No description provided for @action_unpin.
   ///
   /// In en, this message translates to:
   /// **'Unpin'**
-  String get menu_unpin;
+  String get action_unpin;
 
-  /// No description provided for @menu_delete.
+  /// No description provided for @action_copy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get action_copy;
+
+  /// No description provided for @action_share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get action_share;
+
+  /// No description provided for @action_delete.
   ///
   /// In en, this message translates to:
   /// **'Delete'**
-  String get menu_delete;
+  String get action_delete;
 
-  /// No description provided for @menu_restore.
+  /// No description provided for @action_restore.
   ///
   /// In en, this message translates to:
   /// **'Restore'**
-  String get menu_restore;
+  String get action_restore;
 
-  /// No description provided for @menu_delete_permanently.
+  /// No description provided for @action_delete_permanently.
   ///
   /// In en, this message translates to:
   /// **'Delete permanently'**
-  String get menu_delete_permanently;
+  String get action_delete_permanently;
 
-  /// No description provided for @menu_about.
+  /// No description provided for @action_about.
   ///
   /// In en, this message translates to:
   /// **'About'**
-  String get menu_about;
+  String get action_about;
 
   /// No description provided for @confirmations_title_none.
   ///
@@ -1124,42 +1136,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Always'**
   String get confirmations_title_all;
-
-  /// No description provided for @swipe_action_disabled.
-  ///
-  /// In en, this message translates to:
-  /// **'Disabled'**
-  String get swipe_action_disabled;
-
-  /// No description provided for @swipe_action_delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get swipe_action_delete;
-
-  /// No description provided for @swipe_action_pin.
-  ///
-  /// In en, this message translates to:
-  /// **'Pin'**
-  String get swipe_action_pin;
-
-  /// No description provided for @dismiss_pin.
-  ///
-  /// In en, this message translates to:
-  /// **'Pin'**
-  String get dismiss_pin;
-
-  /// No description provided for @dismiss_unpin.
-  ///
-  /// In en, this message translates to:
-  /// **'Unpin'**
-  String get dismiss_unpin;
-
-  /// No description provided for @dismiss_delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get dismiss_delete;
 
   /// No description provided for @about_last_edited.
   ///
@@ -1185,11 +1161,11 @@ abstract class AppLocalizations {
   /// **'Characters'**
   String get about_characters;
 
-  /// No description provided for @time_at.
+  /// No description provided for @snack_bar_copied.
   ///
   /// In en, this message translates to:
-  /// **'at'**
-  String get time_at;
+  /// **'Content of the note copied to the clipboard.'**
+  String get snack_bar_copied;
 
   /// No description provided for @action_add_note_title.
   ///
@@ -1208,6 +1184,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Simple, local, material design notes'**
   String get welcome_note_content;
+
+  /// No description provided for @time_at.
+  ///
+  /// In en, this message translates to:
+  /// **'at'**
+  String get time_at;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
