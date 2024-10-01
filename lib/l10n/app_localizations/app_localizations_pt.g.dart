@@ -15,18 +15,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get app_tagline => 'Simple, local, material design notes';
 
   @override
-  String app_about(Object appName) {
+  String app_about(String appName) {
     return '$appName é um aplicativo de anotações com base em texto, destinado à simplicidade. Abraça Material Design. Ele armazena as notas localmente e não possui nenhuma permissão de internet, então você é o único que pode acessar as notas.';
   }
 
   @override
   String get error_error => 'Erro';
-
-  @override
-  String get error_permission => 'Falha ao obter permissão para gravar o arquivo.';
-
-  @override
-  String get error_read_file => 'Falha ao ler o arquivo.';
 
   @override
   String get navigation_notes => 'Notas';
@@ -56,13 +50,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get button_ok => 'Ok';
 
   @override
-  String get button_close => 'Fechar';
-
-  @override
   String get button_cancel => 'Cancelar';
-
-  @override
-  String get button_add => 'Adicionar';
 
   @override
   String get settings_appearance => 'Aparência';
@@ -72,9 +60,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get settings_appearance_application => 'Aplicativo';
-
-  @override
-  String get settings_appearance_notes_tiles => 'Blocos de notas';
 
   @override
   String get settings_language => 'Idioma';
@@ -108,6 +93,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get settings_text_scaling => 'Text scaling';
+
+  @override
+  String get settings_appearance_notes_tiles => 'Blocos de notas';
 
   @override
   String get settings_show_titles_only => 'Titles only';
@@ -145,13 +133,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_behavior => 'Comportamento';
 
   @override
-  String get settings_behavior_application => 'Aplicativo';
-
-  @override
   String get settings_behavior_description => 'Confirmações, ações de deslizar';
 
   @override
-  String get settings_behavior_swipe_actions => 'Ações de deslizar';
+  String get settings_behavior_application => 'Aplicativo';
 
   @override
   String get settings_confirmations => 'Diálogos de confirmação';
@@ -159,6 +144,16 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get settings_confirmations_description =>
       'Mostrar as caixas de diálogo de confirmação para ações como fixar e excluir notas';
+
+  @override
+  String get settings_flag_secure => 'Sinalizar o aplicativo como seguro';
+
+  @override
+  String get settings_flag_secure_description =>
+      'Ocultar o aplicativo dos aplicativos recentes e impedir que capturas de tela sejam feitas';
+
+  @override
+  String get settings_behavior_swipe_actions => 'Ações de deslizar';
 
   @override
   String get settings_swipe_action_right => 'Ação de deslizar para a direita';
@@ -175,14 +170,10 @@ class AppLocalizationsPt extends AppLocalizations {
       'Ação a ser acionada quando um deslizamento para a esquerda é executado nos blocos de notas';
 
   @override
-  String get settings_flag_secure => 'Sinalizar o aplicativo como seguro';
-
-  @override
-  String get settings_flag_secure_description =>
-      'Ocultar o aplicativo dos aplicativos recentes e impedir que capturas de tela sejam feitas';
-
-  @override
   String get settings_editor => 'Editor';
+
+  @override
+  String get settings_editor_description => 'Botões, barra de ferramentas, espaçamento';
 
   @override
   String get settings_editor_formatting => 'Formatação';
@@ -192,9 +183,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get settings_editor_appearance => 'Aparência';
-
-  @override
-  String get settings_editor_description => 'Botões, barra de ferramentas, espaçamento';
 
   @override
   String get settings_show_undo_redo_buttons => 'Botões desfazer/refazer';
@@ -278,7 +266,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_auto_export_frequency => 'Frequency';
 
   @override
-  String settings_auto_export_frequency_description(String frequency) {
+  String settings_auto_export_frequency_value(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
@@ -289,8 +277,11 @@ class AppLocalizationsPt extends AppLocalizations {
         'other': '$frequency days',
       },
     );
-    return 'Automatically export the notes every $_temp0';
+    return 'Every $_temp0';
   }
+
+  @override
+  String get settings_auto_export_frequency_description => 'Frequency of the automatic export of the notes';
 
   @override
   String get settings_auto_export_encryption => 'Encryption';
@@ -303,9 +294,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_auto_export_directory => 'Directory';
 
   @override
-  String settings_auto_export_directory_description(Object autoExportDirectory) {
-    return 'Save the automatic exports in $autoExportDirectory';
-  }
+  String get settings_auto_export_directory_description =>
+      'Directory where to store the automatic exports of the notes';
 
   @override
   String get settings_export_success => 'As anotações foram exportadas com sucesso.';
@@ -328,6 +318,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_about => 'Sobre';
 
   @override
+  String get settings_about_description => 'Informação, ajuda, GitHub, licença';
+
+  @override
   String get settings_about_application => 'Aplicativo';
 
   @override
@@ -335,9 +328,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get settings_about_help => 'Ajuda';
-
-  @override
-  String get settings_about_description => 'Informação, ajuda, GitHub, licença';
 
   @override
   String get settings_build_mode => 'Build mode';
@@ -517,21 +507,6 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get dialog_empty_bin_body =>
       'Você realmente deseja esvaziar permanentemente a lixeira? Você não poderá restaurar as notas que ele contém.';
-
-  @override
-  String dialog_auto_export_frequency_slider_label(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
-      },
-    );
-    return 'Every $_temp0';
-  }
 
   @override
   String get dialog_export_encryption_switch => 'Criptografar a exportação JSON';

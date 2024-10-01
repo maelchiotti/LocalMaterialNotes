@@ -15,18 +15,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_tagline => 'Simple, local, material design notes';
 
   @override
-  String app_about(Object appName) {
+  String app_about(String appName) {
     return '$appName is a text-based note-taking application, aimed at simplicity. It embraces Material Design. It stores the notes locally and doesn\'t have any internet permissions, so you are the only one that can access the notes.';
   }
 
   @override
   String get error_error => 'Error';
-
-  @override
-  String get error_permission => 'Failed to get permission to write the file.';
-
-  @override
-  String get error_read_file => 'Failed to read the file.';
 
   @override
   String get navigation_notes => 'Notes';
@@ -56,25 +50,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get button_ok => 'Ok';
 
   @override
-  String get button_close => 'Close';
-
-  @override
   String get button_cancel => 'Cancel';
-
-  @override
-  String get button_add => 'Add';
 
   @override
   String get settings_appearance => 'Appearance';
 
   @override
-  String get settings_appearance_description => 'Language, theme, notes tiles';
+  String get settings_appearance_description => 'Language, theme, text scaling, notes tiles';
 
   @override
   String get settings_appearance_application => 'Application';
-
-  @override
-  String get settings_appearance_notes_tiles => 'Notes tiles';
 
   @override
   String get settings_language => 'Language';
@@ -108,6 +93,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_text_scaling => 'Text scaling';
+
+  @override
+  String get settings_appearance_notes_tiles => 'Notes tiles';
 
   @override
   String get settings_show_titles_only => 'Titles only';
@@ -145,34 +133,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_behavior => 'Behavior';
 
   @override
+  String get settings_behavior_description => 'Confirmations, secure flag, swipe actions';
+
+  @override
   String get settings_behavior_application => 'Application';
 
   @override
-  String get settings_behavior_description => 'Confirmations, swipe actions';
-
-  @override
-  String get settings_behavior_swipe_actions => 'Swipe actions';
-
-  @override
-  String get settings_confirmations => 'Confirmation dialogs';
+  String get settings_confirmations => 'Confirmation dialog';
 
   @override
   String get settings_confirmations_description =>
-      'Show the confirmation dialogs for actions such as pining and deleting notes';
-
-  @override
-  String get settings_swipe_action_right => 'Right swipe action';
-
-  @override
-  String get settings_swipe_action_right_description =>
-      'Action to trigger when a right swipe is performed on the notes tiles';
-
-  @override
-  String get settings_swipe_action_left => 'Left swipe action';
-
-  @override
-  String get settings_swipe_action_left_description =>
-      'Action to trigger when a left swipe is performed on the notes tiles';
+      'When to show a confirmation dialog when performing an action on a note';
 
   @override
   String get settings_flag_secure => 'Flag the app as secure';
@@ -182,7 +153,27 @@ class AppLocalizationsEn extends AppLocalizations {
       'Hide the app from the recent apps and prevent screenshots from being made';
 
   @override
+  String get settings_behavior_swipe_actions => 'Swipe actions';
+
+  @override
+  String get settings_swipe_action_right => 'Right swipe action';
+
+  @override
+  String get settings_swipe_action_right_description =>
+      'Action to trigger when a right swipe is performed on a note tile';
+
+  @override
+  String get settings_swipe_action_left => 'Left swipe action';
+
+  @override
+  String get settings_swipe_action_left_description =>
+      'Action to trigger when a left swipe is performed on a note tile';
+
+  @override
   String get settings_editor => 'Editor';
+
+  @override
+  String get settings_editor_description => 'Buttons, toolbar, reading mode, spacing';
 
   @override
   String get settings_editor_formatting => 'Formatting';
@@ -192,9 +183,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_editor_appearance => 'Appearance';
-
-  @override
-  String get settings_editor_description => 'Buttons, toolbar, spacing';
 
   @override
   String get settings_show_undo_redo_buttons => 'Undo/redo buttons';
@@ -246,7 +234,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_backup => 'Backup';
 
   @override
-  String get settings_backup_description => 'Export, import';
+  String get settings_backup_description => 'Manual and auto export, encryption, import';
 
   @override
   String get settings_backup_auto_export => 'Automatic export';
@@ -277,7 +265,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_auto_export_frequency => 'Frequency';
 
   @override
-  String settings_auto_export_frequency_description(String frequency) {
+  String settings_auto_export_frequency_value(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
@@ -288,8 +276,11 @@ class AppLocalizationsEn extends AppLocalizations {
         'other': '$frequency days',
       },
     );
-    return 'Automatically export the notes every $_temp0';
+    return 'Every $_temp0';
   }
+
+  @override
+  String get settings_auto_export_frequency_description => 'Frequency of the automatic export of the notes';
 
   @override
   String get settings_auto_export_encryption => 'Encryption';
@@ -302,9 +293,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_auto_export_directory => 'Directory';
 
   @override
-  String settings_auto_export_directory_description(Object autoExportDirectory) {
-    return 'Save the automatic exports in $autoExportDirectory';
-  }
+  String get settings_auto_export_directory_description =>
+      'Directory where to store the automatic exports of the notes';
 
   @override
   String get settings_export_success => 'The notes were successfully exported.';
@@ -326,6 +316,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_about => 'About';
 
   @override
+  String get settings_about_description => 'Information, help, links';
+
+  @override
   String get settings_about_application => 'Application';
 
   @override
@@ -333,9 +326,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_about_help => 'Help';
-
-  @override
-  String get settings_about_description => 'Information, help, GitHub, license';
 
   @override
   String get settings_build_mode => 'Build mode';
@@ -519,21 +509,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get dialog_empty_bin_body =>
       'Do you really want to permanently empty the bin? You will not be able to restore the notes it contains.';
-
-  @override
-  String dialog_auto_export_frequency_slider_label(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
-      },
-    );
-    return 'Every $_temp0';
-  }
 
   @override
   String get dialog_export_encryption_switch => 'Encrypt the JSON export';

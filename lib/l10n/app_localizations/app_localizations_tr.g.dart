@@ -15,18 +15,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get app_tagline => 'Basit, çevrimdışı, materyal tasarımlı notlar';
 
   @override
-  String app_about(Object appName) {
+  String app_about(String appName) {
     return '$appName basitliği hedefleyen metin tabanlı bir not alma uygulamasıdır. Materyal Tasarımı benimser. Notları yerel olarak saklar ve internet izni yoktur, böylece notlara erişebilen tek kişi sizsiniz.';
   }
 
   @override
   String get error_error => 'Hata';
-
-  @override
-  String get error_permission => 'Dosyayı yazma izni alınamadı.';
-
-  @override
-  String get error_read_file => 'Dosyayı okuma izni alınamadı.';
 
   @override
   String get navigation_notes => 'Notlar';
@@ -56,13 +50,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get button_ok => 'Tamam';
 
   @override
-  String get button_close => 'Kapat';
-
-  @override
   String get button_cancel => 'İptal et';
-
-  @override
-  String get button_add => 'Ekle';
 
   @override
   String get settings_appearance => 'Görünüş';
@@ -72,9 +60,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_appearance_application => 'Application';
-
-  @override
-  String get settings_appearance_notes_tiles => 'Notes tiles';
 
   @override
   String get settings_language => 'Dil';
@@ -108,6 +93,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_text_scaling => 'Text scaling';
+
+  @override
+  String get settings_appearance_notes_tiles => 'Notes tiles';
 
   @override
   String get settings_show_titles_only => 'Titles only';
@@ -145,13 +133,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_behavior => 'Davranış';
 
   @override
-  String get settings_behavior_application => 'Application';
-
-  @override
   String get settings_behavior_description => 'Confirmations, swipe actions';
 
   @override
-  String get settings_behavior_swipe_actions => 'Swipe actions';
+  String get settings_behavior_application => 'Application';
 
   @override
   String get settings_confirmations => 'Confirmation dialogs';
@@ -159,6 +144,16 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get settings_confirmations_description =>
       'Show the confirmation dialogs for actions such as pining and deleting notes';
+
+  @override
+  String get settings_flag_secure => 'Flag the app as secure';
+
+  @override
+  String get settings_flag_secure_description =>
+      'Hide the app from the recent apps and prevent screenshots from being made';
+
+  @override
+  String get settings_behavior_swipe_actions => 'Swipe actions';
 
   @override
   String get settings_swipe_action_right => 'Right swipe action';
@@ -175,14 +170,10 @@ class AppLocalizationsTr extends AppLocalizations {
       'Action to trigger when a left swipe is performed on the notes tiles';
 
   @override
-  String get settings_flag_secure => 'Flag the app as secure';
-
-  @override
-  String get settings_flag_secure_description =>
-      'Hide the app from the recent apps and prevent screenshots from being made';
-
-  @override
   String get settings_editor => 'Editor';
+
+  @override
+  String get settings_editor_description => 'Buttons, toolbar, spacing';
 
   @override
   String get settings_editor_formatting => 'Formatting';
@@ -192,9 +183,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_editor_appearance => 'Appearance';
-
-  @override
-  String get settings_editor_description => 'Buttons, toolbar, spacing';
 
   @override
   String get settings_show_undo_redo_buttons => 'Undo/redo buttons';
@@ -277,7 +265,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_auto_export_frequency => 'Frequency';
 
   @override
-  String settings_auto_export_frequency_description(String frequency) {
+  String settings_auto_export_frequency_value(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
@@ -288,8 +276,11 @@ class AppLocalizationsTr extends AppLocalizations {
         'other': '$frequency days',
       },
     );
-    return 'Automatically export the notes every $_temp0';
+    return 'Every $_temp0';
   }
+
+  @override
+  String get settings_auto_export_frequency_description => 'Frequency of the automatic export of the notes';
 
   @override
   String get settings_auto_export_encryption => 'Encryption';
@@ -302,9 +293,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_auto_export_directory => 'Directory';
 
   @override
-  String settings_auto_export_directory_description(Object autoExportDirectory) {
-    return 'Save the automatic exports in $autoExportDirectory';
-  }
+  String get settings_auto_export_directory_description =>
+      'Directory where to store the automatic exports of the notes';
 
   @override
   String get settings_export_success => 'Dışa aktarma başarılı';
@@ -326,6 +316,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settings_about => 'Hakkında';
 
   @override
+  String get settings_about_description => 'Information, help, GitHub, license';
+
+  @override
   String get settings_about_application => 'Application';
 
   @override
@@ -333,9 +326,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_about_help => 'Help';
-
-  @override
-  String get settings_about_description => 'Information, help, GitHub, license';
 
   @override
   String get settings_build_mode => 'Build mode';
@@ -519,21 +509,6 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get dialog_empty_bin_body =>
       'Çöp kutusunu gerçekten kalıcı olarak boşaltmak istiyor musunuz? İçerdiği notları kurtaramazsınız';
-
-  @override
-  String dialog_auto_export_frequency_slider_label(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
-      },
-    );
-    return 'Every $_temp0';
-  }
 
   @override
   String get dialog_export_encryption_switch => 'Encrypt the JSON export';

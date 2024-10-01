@@ -15,18 +15,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get app_tagline => '简单、本地、Material 设计笔记';
 
   @override
-  String app_about(Object appName) {
+  String app_about(String appName) {
     return '$appName 是基于文本的笔记应用程序，旨在简单。它包含 Material 设计。它在本地存储笔记，并且没有任何互联网权限，因此您是唯一可以访问笔记的人。';
   }
 
   @override
   String get error_error => '错误';
-
-  @override
-  String get error_permission => '无法获取写入文件的权限。';
-
-  @override
-  String get error_read_file => '无法读取文件。';
 
   @override
   String get navigation_notes => '笔记';
@@ -56,13 +50,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get button_ok => '确定';
 
   @override
-  String get button_close => '关闭';
-
-  @override
   String get button_cancel => '取消';
-
-  @override
-  String get button_add => '添加';
 
   @override
   String get settings_appearance => '外观';
@@ -72,9 +60,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings_appearance_application => '应用程序';
-
-  @override
-  String get settings_appearance_notes_tiles => '笔记平铺';
 
   @override
   String get settings_language => '语言';
@@ -108,6 +93,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings_text_scaling => 'Text scaling';
+
+  @override
+  String get settings_appearance_notes_tiles => '笔记平铺';
 
   @override
   String get settings_show_titles_only => 'Titles only';
@@ -145,19 +133,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_behavior => '行为';
 
   @override
-  String get settings_behavior_application => '应用程序';
-
-  @override
   String get settings_behavior_description => '确认、滑动操作';
 
   @override
-  String get settings_behavior_swipe_actions => '滑动操作';
+  String get settings_behavior_application => '应用程序';
 
   @override
   String get settings_confirmations => '确认对话框';
 
   @override
   String get settings_confirmations_description => '显示置顶和删除笔记等操作的确认对话框';
+
+  @override
+  String get settings_flag_secure => '将应用标记为安全';
+
+  @override
+  String get settings_flag_secure_description => '从最近的应用中隐藏本应用并防止截屏';
+
+  @override
+  String get settings_behavior_swipe_actions => '滑动操作';
 
   @override
   String get settings_swipe_action_right => '向右滑动操作';
@@ -172,13 +166,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_swipe_action_left_description => '在笔记平铺上向左滑动时触发的操作';
 
   @override
-  String get settings_flag_secure => '将应用标记为安全';
-
-  @override
-  String get settings_flag_secure_description => '从最近的应用中隐藏本应用并防止截屏';
-
-  @override
   String get settings_editor => '编辑器';
+
+  @override
+  String get settings_editor_description => '按钮、工具栏、间距';
 
   @override
   String get settings_editor_formatting => '格式设置';
@@ -188,9 +179,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings_editor_appearance => '外观';
-
-  @override
-  String get settings_editor_description => '按钮、工具栏、间距';
 
   @override
   String get settings_show_undo_redo_buttons => '撤销/恢复按钮';
@@ -270,7 +258,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_auto_export_frequency => 'Frequency';
 
   @override
-  String settings_auto_export_frequency_description(String frequency) {
+  String settings_auto_export_frequency_value(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
@@ -281,8 +269,11 @@ class AppLocalizationsZh extends AppLocalizations {
         'other': '$frequency days',
       },
     );
-    return 'Automatically export the notes every $_temp0';
+    return 'Every $_temp0';
   }
+
+  @override
+  String get settings_auto_export_frequency_description => 'Frequency of the automatic export of the notes';
 
   @override
   String get settings_auto_export_encryption => 'Encryption';
@@ -295,9 +286,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_auto_export_directory => 'Directory';
 
   @override
-  String settings_auto_export_directory_description(Object autoExportDirectory) {
-    return 'Save the automatic exports in $autoExportDirectory';
-  }
+  String get settings_auto_export_directory_description =>
+      'Directory where to store the automatic exports of the notes';
 
   @override
   String get settings_export_success => '已成功导出笔记。';
@@ -318,6 +308,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_about => '关于';
 
   @override
+  String get settings_about_description => '信息、帮助、GitHub、许可证';
+
+  @override
   String get settings_about_application => '应用程序';
 
   @override
@@ -325,9 +318,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings_about_help => '帮助';
-
-  @override
-  String get settings_about_description => '信息、帮助、GitHub、许可证';
 
   @override
   String get settings_build_mode => '构建模式';
@@ -499,21 +489,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get dialog_empty_bin_body => '是否确定要永久清空回收站？您将无法还原其中包含的笔记。';
-
-  @override
-  String dialog_auto_export_frequency_slider_label(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
-      },
-    );
-    return 'Every $_temp0';
-  }
 
   @override
   String get dialog_export_encryption_switch => '加密 JSON 导出';

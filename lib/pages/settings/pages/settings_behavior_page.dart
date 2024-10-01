@@ -150,7 +150,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
               title: Text(localizations.settings_swipe_action_right),
               value: SettingNavigationTileBody(
                 value: swipeRightAction.title(),
-                description: localizations.settings_swipe_action_left_description,
+                description: localizations.settings_swipe_action_right_description,
                 icon: swipeRightAction.icon,
               ),
               onPressed: (context) => _selectSwipeAction(context, SwipeDirection.right),

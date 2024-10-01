@@ -15,18 +15,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get app_tagline => 'Простые, локальные заметки в стиле material design';
 
   @override
-  String app_about(Object appName) {
+  String app_about(String appName) {
     return '$appName – это приложение для создания простых текстовых заметок. Приложение выполнено в стиле Material Design. Оно хранит заметки локально на устройстве и работает без подключения к Интернету, поэтому только вы имеете доступ к заметкам.';
   }
 
   @override
   String get error_error => 'Ошибка';
-
-  @override
-  String get error_permission => 'Не удалось получить разрешение на запись файла.';
-
-  @override
-  String get error_read_file => 'Не удалось прочитать файл.';
 
   @override
   String get navigation_notes => 'Заметки';
@@ -56,13 +50,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get button_ok => 'Оk';
 
   @override
-  String get button_close => 'Закрыть';
-
-  @override
   String get button_cancel => 'Отмена';
-
-  @override
-  String get button_add => 'Добавить';
 
   @override
   String get settings_appearance => 'Персонализация';
@@ -72,9 +60,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settings_appearance_application => 'Приложение';
-
-  @override
-  String get settings_appearance_notes_tiles => 'Стиль заметок';
 
   @override
   String get settings_language => 'Язык';
@@ -108,6 +93,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settings_text_scaling => 'Text scaling';
+
+  @override
+  String get settings_appearance_notes_tiles => 'Стиль заметок';
 
   @override
   String get settings_show_titles_only => 'Titles only';
@@ -145,13 +133,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_behavior => 'Поведение';
 
   @override
-  String get settings_behavior_application => 'Приложение';
-
-  @override
   String get settings_behavior_description => 'Диалоги подтверждения, действия при свайпе';
 
   @override
-  String get settings_behavior_swipe_actions => 'Действия при свайпе';
+  String get settings_behavior_application => 'Приложение';
 
   @override
   String get settings_confirmations => 'Диалоги подтверждения';
@@ -159,6 +144,16 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get settings_confirmations_description =>
       'Показать диалоги подтверждения при закреплении или удалении заметок';
+
+  @override
+  String get settings_flag_secure => 'Помечать приложение как защищённое';
+
+  @override
+  String get settings_flag_secure_description =>
+      'Скрывать приложение из недавних приложений и предотвращать создание скриншотов';
+
+  @override
+  String get settings_behavior_swipe_actions => 'Действия при свайпе';
 
   @override
   String get settings_swipe_action_right => 'Действие при свайпе вправо';
@@ -175,14 +170,10 @@ class AppLocalizationsRu extends AppLocalizations {
       'Действие, которое будет выполняться при свайпе влево по заметке';
 
   @override
-  String get settings_flag_secure => 'Помечать приложение как защищённое';
-
-  @override
-  String get settings_flag_secure_description =>
-      'Скрывать приложение из недавних приложений и предотвращать создание скриншотов';
-
-  @override
   String get settings_editor => 'Редактор';
+
+  @override
+  String get settings_editor_description => 'Кнопки, панель инструментов, интервал';
 
   @override
   String get settings_editor_formatting => 'Форматирование';
@@ -192,9 +183,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settings_editor_appearance => 'Персонализация';
-
-  @override
-  String get settings_editor_description => 'Кнопки, панель инструментов, интервал';
 
   @override
   String get settings_show_undo_redo_buttons => 'Кнопки отмены/повтора';
@@ -276,7 +264,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_auto_export_frequency => 'Frequency';
 
   @override
-  String settings_auto_export_frequency_description(String frequency) {
+  String settings_auto_export_frequency_value(String frequency) {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
@@ -287,8 +275,11 @@ class AppLocalizationsRu extends AppLocalizations {
         'other': '$frequency days',
       },
     );
-    return 'Automatically export the notes every $_temp0';
+    return 'Every $_temp0';
   }
+
+  @override
+  String get settings_auto_export_frequency_description => 'Frequency of the automatic export of the notes';
 
   @override
   String get settings_auto_export_encryption => 'Encryption';
@@ -301,9 +292,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_auto_export_directory => 'Directory';
 
   @override
-  String settings_auto_export_directory_description(Object autoExportDirectory) {
-    return 'Save the automatic exports in $autoExportDirectory';
-  }
+  String get settings_auto_export_directory_description =>
+      'Directory where to store the automatic exports of the notes';
 
   @override
   String get settings_export_success => 'Заметки были успешно экспортированы.';
@@ -326,6 +316,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_about => 'О приложении';
 
   @override
+  String get settings_about_description => 'Информация, справка, GitHub, лицензия';
+
+  @override
   String get settings_about_application => 'Приложение';
 
   @override
@@ -333,9 +326,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settings_about_help => 'Справка';
-
-  @override
-  String get settings_about_description => 'Информация, справка, GitHub, лицензия';
 
   @override
   String get settings_build_mode => 'Режим сборки';
@@ -521,21 +511,6 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get dialog_empty_bin_body =>
       'Вы действительно хотите отчистить корзину? Все заметки будут безвозвратно удалены.';
-
-  @override
-  String dialog_auto_export_frequency_slider_label(String frequency) {
-    String _temp0 = intl.Intl.selectLogic(
-      frequency,
-      {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
-      },
-    );
-    return 'Every $_temp0';
-  }
 
   @override
   String get dialog_export_encryption_switch => 'Зашифровать экспорт в формате JSON';
