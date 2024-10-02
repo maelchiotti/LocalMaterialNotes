@@ -423,103 +423,103 @@ abstract class AppLocalizations {
   /// **'Buttons, toolbar, reading mode, spacing'**
   String get settings_editor_description;
 
-  ///
+  /// Title of the settings section regarding the notes content formatting in the editor.
   ///
   /// In en, this message translates to:
   /// **'Formatting'**
   String get settings_editor_formatting;
 
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Behavior'**
-  String get settings_editor_behavior;
-
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Appearance'**
-  String get settings_editor_appearance;
-
-  ///
+  /// Title of the setting tile to enable the the undo and redo buttons in the editor.
   ///
   /// In en, this message translates to:
   /// **'Undo/redo buttons'**
   String get settings_show_undo_redo_buttons;
 
-  ///
+  /// Description of the setting tile to enable the the undo and redo buttons in the editor.
   ///
   /// In en, this message translates to:
   /// **'Show the buttons to undo and redo changes in the editor\'\'s app bar'**
   String get settings_show_undo_redo_buttons_description;
 
-  ///
+  /// Title of the setting tile to enable the checklist button in the editor.
   ///
   /// In en, this message translates to:
   /// **'Checklist button'**
   String get settings_show_checklist_button;
 
-  ///
+  /// Description of the setting tile to enable the checklist button in the editor.
   ///
   /// In en, this message translates to:
   /// **'Show the button to toggle checklists in the editor\'\'s app bar, hiding it from the editor\'\'s toolbar if enabled'**
   String get settings_show_checklist_button_description;
 
-  ///
+  /// Title of the setting tile to enable the toolbar for advanced formatting options in the editor.
   ///
   /// In en, this message translates to:
   /// **'Toolbar'**
   String get settings_show_toolbar;
 
-  ///
+  /// Description of the setting tile to enable the toolbar for advanced formatting options in the editor.
   ///
   /// In en, this message translates to:
   /// **'Show the editor\'\'s toolbar to enable advanced text formatting'**
   String get settings_show_toolbar_description;
 
+  /// Title of the settings section regarding the behavior of the editor
   ///
+  /// In en, this message translates to:
+  /// **'Behavior'**
+  String get settings_editor_behavior;
+
+  /// Title of the setting tile to enable the button to toggle between editing mode and reading mode in the editor.
   ///
   /// In en, this message translates to:
   /// **'Editor mode button'**
   String get settings_show_editor_mode_button;
 
-  ///
+  /// Description of the setting tile to enable the button to toggle between editing mode and reading mode in the editor.
   ///
   /// In en, this message translates to:
-  /// **'Enable the button to toggle the editor between editing mode and viewing mode'**
+  /// **'Enable the button to toggle the editor between editing mode and reading mode'**
   String get settings_show_editor_mode_button_description;
 
-  ///
+  /// Title of the setting tile to enable opening the editor in reading mode by default.
   ///
   /// In en, this message translates to:
   /// **'Open in reading mode'**
   String get settings_open_editor_reading_mode;
 
-  ///
+  /// Description of the setting tile to enable opening the editor in reading mode by default.
   ///
   /// In en, this message translates to:
   /// **'Open the editor in reading mode by default'**
   String get settings_open_editor_reading_mode_description;
 
-  ///
+  /// Title of the setting tile to enable focusing the title when creating a new note by default.
   ///
   /// In en, this message translates to:
   /// **'Focus the title'**
   String get settings_focus_title_on_new_note;
 
-  ///
+  /// Description of the setting tile to enable focusing the title when creating a new note by default.
   ///
   /// In en, this message translates to:
   /// **'Focus the title instead of the content when creating a new note'**
   String get settings_focus_title_on_new_note_description;
 
+  /// Title of the settings section regarding the appearance of the editor
   ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get settings_editor_appearance;
+
+  /// Title of the setting tile to enable the spacing between paragraphs in the notes content.
   ///
   /// In en, this message translates to:
   /// **'Paragraph spacing'**
   String get settings_use_paragraph_spacing;
 
-  ///
+  /// Description of the setting tile to enable the spacing between paragraphs in the notes content.
   ///
   /// In en, this message translates to:
   /// **'Use spacing between paragraphs'**
@@ -537,125 +537,113 @@ abstract class AppLocalizations {
   /// **'Manual and auto export, encryption, import'**
   String get settings_backup_description;
 
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Automatic export'**
-  String get settings_backup_auto_export;
-
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Manual export'**
-  String get settings_backup_manual_export;
-
-  ///
+  /// Title of the settings section regarding the import of a backup.
   ///
   /// In en, this message translates to:
   /// **'Import'**
   String get settings_backup_import;
 
-  ///
+  /// Title of the setting tile to import a backup.
   ///
   /// In en, this message translates to:
   /// **'Import'**
   String get settings_import;
 
-  ///
+  /// Description of the setting tile to import a backup.
   ///
   /// In en, this message translates to:
   /// **'Import notes from a JSON file'**
   String get settings_import_description;
 
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'The notes were successfully imported.'**
-  String get settings_import_success;
-
-  ///
+  /// Title of the settings section regarding the manual export of the notes.
   ///
   /// In en, this message translates to:
-  /// **'Automatic export'**
-  String get settings_auto_export;
+  /// **'Manual export'**
+  String get settings_backup_manual_export;
 
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Automatically export the notes to a JSON file (bin included) that can be imported back'**
-  String get settings_auto_export_description;
-
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Frequency'**
-  String get settings_auto_export_frequency;
-
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}'**
-  String settings_auto_export_frequency_value(String frequency);
-
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Frequency of the automatic export of the notes'**
-  String get settings_auto_export_frequency_description;
-
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Encryption'**
-  String get settings_auto_export_encryption;
-
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Encrypt the title and the content of the notes with a password'**
-  String get settings_auto_export_encryption_description;
-
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Directory'**
-  String get settings_auto_export_directory;
-
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Directory where to store the automatic exports of the notes'**
-  String get settings_auto_export_directory_description;
-
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'The notes were successfully exported.'**
-  String get settings_export_success;
-
-  ///
+  /// Title of the setting tile to manually export the notes as JSON.
   ///
   /// In en, this message translates to:
   /// **'Export as JSON'**
   String get settings_export_json;
 
-  ///
+  /// Description of the setting tile to manually export the notes as JSON.
   ///
   /// In en, this message translates to:
   /// **'Immediately export the notes to a JSON file (bin included) that can be imported back'**
   String get settings_export_json_description;
 
-  ///
+  /// Title of the setting tile to manually export the notes as Markdown.
   ///
   /// In en, this message translates to:
   /// **'Export as Markdown'**
   String get settings_export_markdown;
 
-  ///
+  /// Description of the setting tile to manually export the notes as Markdown.
   ///
   /// In en, this message translates to:
   /// **'Immediately export the notes to a Markdown file (bin included)'**
   String get settings_export_markdown_description;
+
+  /// Title of the settings section regarding the automatic export of the notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic export'**
+  String get settings_backup_auto_export;
+
+  /// Title of the settings tile to enable the automatic export of the notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic export'**
+  String get settings_auto_export;
+
+  /// Description of the settings tile to enable the automatic export of the notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically export the notes to a JSON file (bin included) that can be imported back'**
+  String get settings_auto_export_description;
+
+  /// Title of the settings tile to choose the frequency of the automatic exports of the notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequency'**
+  String get settings_auto_export_frequency;
+
+  /// Frequency of the automatic exports of the notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}'**
+  String settings_auto_export_frequency_value(String frequency);
+
+  /// Description of the settings tile to choose the frequency of the automatic exports of the notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequency of the automatic export of the notes'**
+  String get settings_auto_export_frequency_description;
+
+  /// Title of the settings tile to enable the encryption of the automatic exports.
+  ///
+  /// In en, this message translates to:
+  /// **'Encryption'**
+  String get settings_auto_export_encryption;
+
+  /// Description of the settings tile to enable the encryption of the automatic exports.
+  ///
+  /// In en, this message translates to:
+  /// **'Encrypt the title and the content of the notes with a password'**
+  String get settings_auto_export_encryption_description;
+
+  /// Title of the settings tile to choose the directory where to save the automatic exports.
+  ///
+  /// In en, this message translates to:
+  /// **'Directory'**
+  String get settings_auto_export_directory;
+
+  /// Description of the settings tile to choose the directory where to save the automatic exports.
+  ///
+  /// In en, this message translates to:
+  /// **'Directory where to store the automatic exports of the notes'**
+  String get settings_auto_export_directory_description;
 
   /// Title of the settings section regarding the information about the application.
   ///
@@ -1142,6 +1130,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Content of the note copied to the clipboard.'**
   String get snack_bar_copied;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'The notes were successfully imported.'**
+  String get snack_bar_import_success;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'The notes were successfully exported.'**
+  String get snack_bar_export_success;
 
   /// No description provided for @action_add_note_title.
   ///

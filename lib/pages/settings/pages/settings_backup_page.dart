@@ -42,7 +42,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         await ref.read(notesProvider.notifier).get();
         await ref.read(binProvider.notifier).get();
 
-        SnackBarUtils.info(localizations.settings_import_success).show();
+        SnackBarUtils.info(localizations.snack_bar_import_success).show();
       }
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);
@@ -69,7 +69,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         final password = shouldEncrypt.$2;
 
         if (await DatabaseUtils().manuallyExportAsJson(encrypt, password)) {
-          SnackBarUtils.info(localizations.settings_export_success).show();
+          SnackBarUtils.info(localizations.snack_bar_export_success).show();
         }
       } catch (exception, stackTrace) {
         log(exception.toString(), stackTrace: stackTrace);
@@ -85,7 +85,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   Future<void> _exportAsMarkdown(BuildContext context) async {
     try {
       if (await DatabaseUtils().exportAsMarkdown()) {
-        SnackBarUtils.info(localizations.settings_export_success).show();
+        SnackBarUtils.info(localizations.snack_bar_export_success).show();
       }
     } catch (exception, stackTrace) {
       log(exception.toString(), stackTrace: stackTrace);

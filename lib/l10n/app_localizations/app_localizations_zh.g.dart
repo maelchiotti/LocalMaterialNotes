@@ -175,12 +175,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_editor_formatting => '格式设置';
 
   @override
-  String get settings_editor_behavior => 'Behavior';
-
-  @override
-  String get settings_editor_appearance => '外观';
-
-  @override
   String get settings_show_undo_redo_buttons => '撤销/恢复按钮';
 
   @override
@@ -199,11 +193,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_show_toolbar_description => '显示编辑器的工具栏以启用高级文本格式';
 
   @override
+  String get settings_editor_behavior => 'Behavior';
+
+  @override
   String get settings_show_editor_mode_button => 'Editor mode button';
 
   @override
   String get settings_show_editor_mode_button_description =>
-      'Enable the button to toggle the editor between editing mode and viewing mode';
+      'Enable the button to toggle the editor between editing mode and reading mode';
 
   @override
   String get settings_open_editor_reading_mode => 'Open in reading mode';
@@ -219,6 +216,9 @@ class AppLocalizationsZh extends AppLocalizations {
       'Focus the title instead of the content when creating a new note';
 
   @override
+  String get settings_editor_appearance => '外观';
+
+  @override
   String get settings_use_paragraph_spacing => '段落间距';
 
   @override
@@ -231,12 +231,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_backup_description => '导出、导入';
 
   @override
-  String get settings_backup_auto_export => 'Automatic export';
-
-  @override
-  String get settings_backup_manual_export => 'Manual export';
-
-  @override
   String get settings_backup_import => '导入';
 
   @override
@@ -246,7 +240,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_import_description => '从 JSON 文件导入笔记';
 
   @override
-  String get settings_import_success => '已成功导入笔记。';
+  String get settings_backup_manual_export => 'Manual export';
+
+  @override
+  String get settings_export_json => '导出为 JSON';
+
+  @override
+  String get settings_export_json_description => '立即将笔记导出到 JSON 文件（包括回收站），可以重新导入';
+
+  @override
+  String get settings_export_markdown => '导出为 Markdown';
+
+  @override
+  String get settings_export_markdown_description => '立即将笔记导出到 Markdown 文件（包括回收站）';
+
+  @override
+  String get settings_backup_auto_export => 'Automatic export';
 
   @override
   String get settings_auto_export => 'Automatic export';
@@ -288,21 +297,6 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get settings_auto_export_directory_description =>
       'Directory where to store the automatic exports of the notes';
-
-  @override
-  String get settings_export_success => '已成功导出笔记。';
-
-  @override
-  String get settings_export_json => '导出为 JSON';
-
-  @override
-  String get settings_export_json_description => '立即将笔记导出到 JSON 文件（包括回收站），可以重新导入';
-
-  @override
-  String get settings_export_markdown => '导出为 Markdown';
-
-  @override
-  String get settings_export_markdown_description => '立即将笔记导出到 Markdown 文件（包括回收站）';
 
   @override
   String get settings_about => '关于';
@@ -580,6 +574,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get snack_bar_copied => 'Content of the note copied to the clipboard.';
+
+  @override
+  String get snack_bar_import_success => 'The notes were successfully imported.';
+
+  @override
+  String get snack_bar_export_success => 'The notes were successfully exported.';
 
   @override
   String get action_add_note_title => '添加笔记';

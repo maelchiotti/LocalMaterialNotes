@@ -220,71 +220,71 @@
   },
   "settings_editor_formatting": "Formatting",
   "@settings_editor_formatting": {
-    "description": ""
-  },
-  "settings_editor_behavior": "Behavior",
-  "@settings_editor_behavior": {
-    "description": ""
-  },
-  "settings_editor_appearance": "Appearance",
-  "@settings_editor_appearance": {
-    "description": ""
+    "description": "Title of the settings section regarding the notes content formatting in the editor."
   },
   "settings_show_undo_redo_buttons": "Undo/redo buttons",
   "@settings_show_undo_redo_buttons": {
-    "description": ""
+    "description": "Title of the setting tile to enable the the undo and redo buttons in the editor."
   },
   "settings_show_undo_redo_buttons_description": "Show the buttons to undo and redo changes in the editor''s app bar",
   "@settings_show_undo_redo_buttons_description": {
-    "description": ""
+    "description": "Description of the setting tile to enable the the undo and redo buttons in the editor."
   },
   "settings_show_checklist_button": "Checklist button",
   "@settings_show_checklist_button": {
-    "description": ""
+    "description": "Title of the setting tile to enable the checklist button in the editor."
   },
   "settings_show_checklist_button_description": "Show the button to toggle checklists in the editor''s app bar, hiding it from the editor''s toolbar if enabled",
   "@settings_show_checklist_button_description": {
-    "description": ""
+    "description": "Description of the setting tile to enable the checklist button in the editor."
   },
   "settings_show_toolbar": "Toolbar",
   "@settings_show_toolbar": {
-    "description": ""
+    "description": "Title of the setting tile to enable the toolbar for advanced formatting options in the editor."
   },
   "settings_show_toolbar_description": "Show the editor''s toolbar to enable advanced text formatting",
   "@settings_show_toolbar_description": {
-    "description": ""
+    "description": "Description of the setting tile to enable the toolbar for advanced formatting options in the editor."
+  },
+  "settings_editor_behavior": "Behavior",
+  "@settings_editor_behavior": {
+    "description": "Title of the settings section regarding the behavior of the editor"
   },
   "settings_show_editor_mode_button": "Editor mode button",
   "@settings_show_editor_mode_button": {
-    "description": ""
+    "description": "Title of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
   },
-  "settings_show_editor_mode_button_description": "Enable the button to toggle the editor between editing mode and viewing mode",
+  "settings_show_editor_mode_button_description": "Enable the button to toggle the editor between editing mode and reading mode",
   "@settings_show_editor_mode_button_description": {
-    "description": ""
+    "description": "Description of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
   },
   "settings_open_editor_reading_mode": "Open in reading mode",
   "@settings_open_editor_reading_mode": {
-    "description": ""
+    "description": "Title of the setting tile to enable opening the editor in reading mode by default."
   },
   "settings_open_editor_reading_mode_description": "Open the editor in reading mode by default",
   "@settings_open_editor_reading_mode_description": {
-    "description": ""
+    "description": "Description of the setting tile to enable opening the editor in reading mode by default."
   },
   "settings_focus_title_on_new_note": "Focus the title",
   "@settings_focus_title_on_new_note": {
-    "description": ""
+    "description": "Title of the setting tile to enable focusing the title when creating a new note by default."
   },
   "settings_focus_title_on_new_note_description": "Focus the title instead of the content when creating a new note",
   "@settings_focus_title_on_new_note_description": {
-    "description": ""
+    "description": "Description of the setting tile to enable focusing the title when creating a new note by default."
+  },
+  "settings_editor_appearance": "Appearance",
+  "@settings_editor_appearance": {
+    "description": "Title of the settings section regarding the appearance of the editor"
   },
   "settings_use_paragraph_spacing": "Paragraph spacing",
   "@settings_use_paragraph_spacing": {
-    "description": ""
+    "description": "Title of the setting tile to enable the spacing between paragraphs in the notes content."
   },
   "settings_use_paragraph_spacing_description": "Use spacing between paragraphs",
   "@settings_use_paragraph_spacing_description": {
-    "description": ""
+    "description": "Description of the setting tile to enable the spacing between paragraphs in the notes content."
   },
   "settings_backup": "Backup",
   "@settings_backup": {
@@ -294,85 +294,83 @@
   "@settings_backup_description": {
     "description": "Description of the backup settings section."
   },
-  "settings_backup_auto_export": "Automatic export",
-  "@settings_backup_auto_export": {
-    "description": ""
-  },
-  "settings_backup_manual_export": "Manual export",
-  "@settings_backup_manual_export": {
-    "description": ""
-  },
   "settings_backup_import": "Import",
   "@settings_backup_import": {
-    "description": ""
+    "description": "Title of the settings section regarding the import of a backup."
   },
   "settings_import": "Import",
   "@settings_import": {
-    "description": ""
+    "description": "Title of the setting tile to import a backup."
   },
   "settings_import_description": "Import notes from a JSON file",
   "@settings_import_description": {
-    "description": ""
+    "description": "Description of the setting tile to import a backup."
   },
-  "settings_import_success": "The notes were successfully imported.",
-  "@settings_import_success": {
-    "description": ""
-  },
-  "settings_auto_export": "Automatic export",
-  "@settings_auto_export": {
-    "description": ""
-  },
-  "settings_auto_export_description": "Automatically export the notes to a JSON file (bin included) that can be imported back",
-  "@settings_auto_export_description": {
-    "description": ""
-  },
-  "settings_auto_export_frequency": "Frequency",
-  "@settings_auto_export_frequency": {
-    "description": ""
-  },
-  "settings_auto_export_frequency_value": "Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}",
-  "@settings_auto_export_frequency_value": {
-    "description": ""
-  },
-  "settings_auto_export_frequency_description": "Frequency of the automatic export of the notes",
-  "@settings_auto_export_frequency_description": {
-    "description": ""
-  },
-  "settings_auto_export_encryption": "Encryption",
-  "@settings_auto_export_encryption": {
-    "description": ""
-  },
-  "settings_auto_export_encryption_description": "Encrypt the title and the content of the notes with a password",
-  "@settings_auto_export_encryption_description": {
-    "description": ""
-  },
-  "settings_auto_export_directory": "Directory",
-  "@settings_auto_export_directory": {
-    "description": ""
-  },
-  "settings_auto_export_directory_description": "Directory where to store the automatic exports of the notes",
-  "@settings_auto_export_directory_description": {
-    "description": ""
-  },
-  "settings_export_success": "The notes were successfully exported.",
-  "@settings_export_success": {
-    "description": ""
+  "settings_backup_manual_export": "Manual export",
+  "@settings_backup_manual_export": {
+    "description": "Title of the settings section regarding the manual export of the notes."
   },
   "settings_export_json": "Export as JSON",
   "@settings_export_json": {
-    "description": ""
+    "description": "Title of the setting tile to manually export the notes as JSON."
   },
   "settings_export_json_description": "Immediately export the notes to a JSON file (bin included) that can be imported back",
   "@settings_export_json_description": {
-    "description": ""
+    "description": "Description of the setting tile to manually export the notes as JSON."
   },
   "settings_export_markdown": "Export as Markdown",
   "@settings_export_markdown": {
-    "description": ""
+    "description": "Title of the setting tile to manually export the notes as Markdown."
   },
   "settings_export_markdown_description": "Immediately export the notes to a Markdown file (bin included)",
   "@settings_export_markdown_description": {
-    "description": ""
+    "description": "Description of the setting tile to manually export the notes as Markdown."
+  },
+  "settings_backup_auto_export": "Automatic export",
+  "@settings_backup_auto_export": {
+    "description": "Title of the settings section regarding the automatic export of the notes."
+  },
+  "settings_auto_export": "Automatic export",
+  "@settings_auto_export": {
+    "description": "Title of the settings tile to enable the automatic export of the notes."
+  },
+  "settings_auto_export_description": "Automatically export the notes to a JSON file (bin included) that can be imported back",
+  "@settings_auto_export_description": {
+    "description": "Description of the settings tile to enable the automatic export of the notes."
+  },
+  "settings_auto_export_frequency": "Frequency",
+  "@settings_auto_export_frequency": {
+    "description": "Title of the settings tile to choose the frequency of the automatic exports of the notes."
+  },
+  "settings_auto_export_frequency_value": "Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}",
+  "@settings_auto_export_frequency_value": {
+    "description": "Frequency of the automatic exports of the notes.",
+    "placeholders": {
+      "frequency": {
+        "description": "Value of the frequency (as a String to enable the select, but it's an int).",
+        "type": "String"
+      }
+    }
+  },
+  "settings_auto_export_frequency_description": "Frequency of the automatic export of the notes",
+  "@settings_auto_export_frequency_description": {
+    "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
+  },
+  "settings_auto_export_encryption": "Encryption",
+  "@settings_auto_export_encryption": {
+    "description": "Title of the settings tile to enable the encryption of the automatic exports."
+  },
+  "settings_auto_export_encryption_description": "Encrypt the title and the content of the notes with a password",
+  "@settings_auto_export_encryption_description": {
+    "description": "Description of the settings tile to enable the encryption of the automatic exports."
+  },
+  "settings_auto_export_directory": "Directory",
+  "@settings_auto_export_directory": {
+    "description": "Title of the settings tile to choose the directory where to save the automatic exports."
+  },
+  "settings_auto_export_directory_description": "Directory where to store the automatic exports of the notes",
+  "@settings_auto_export_directory_description": {
+    "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
   "settings_about": "About",
   "@settings_about": {
@@ -515,6 +513,14 @@
   "about_words": "Words",
   "about_characters": "Characters",
   "snack_bar_copied": "Content of the note copied to the clipboard.",
+  "snack_bar_import_success": "The notes were successfully imported.",
+  "@snack_bar_import_success": {
+    "description": ""
+  },
+  "snack_bar_export_success": "The notes were successfully exported.",
+  "@snack_bar_export_success": {
+    "description": ""
+  },
   "action_add_note_title": "Add a note",
   "welcome_note_title": "Welcome to Material Notes!",
   "welcome_note_content": "Simple, local, material design notes",

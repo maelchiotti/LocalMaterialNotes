@@ -179,12 +179,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_editor_formatting => 'Formatting';
 
   @override
-  String get settings_editor_behavior => 'Behavior';
-
-  @override
-  String get settings_editor_appearance => 'Appearance';
-
-  @override
   String get settings_show_undo_redo_buttons => 'Botones deshacer/rehacer';
 
   @override
@@ -205,11 +199,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_show_toolbar_description => 'Show the editor\'s toolbar to enable advanced text formatting';
 
   @override
+  String get settings_editor_behavior => 'Behavior';
+
+  @override
   String get settings_show_editor_mode_button => 'Editor mode button';
 
   @override
   String get settings_show_editor_mode_button_description =>
-      'Enable the button to toggle the editor between editing mode and viewing mode';
+      'Enable the button to toggle the editor between editing mode and reading mode';
 
   @override
   String get settings_open_editor_reading_mode => 'Open in reading mode';
@@ -225,6 +222,9 @@ class AppLocalizationsEs extends AppLocalizations {
       'Focus the title instead of the content when creating a new note';
 
   @override
+  String get settings_editor_appearance => 'Appearance';
+
+  @override
   String get settings_use_paragraph_spacing => 'Paragraph spacing';
 
   @override
@@ -237,12 +237,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_backup_description => 'Export, import';
 
   @override
-  String get settings_backup_auto_export => 'Automatic export';
-
-  @override
-  String get settings_backup_manual_export => 'Manual export';
-
-  @override
   String get settings_backup_import => 'Import';
 
   @override
@@ -252,7 +246,23 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_import_description => 'Importar notas desde un archivo JSON';
 
   @override
-  String get settings_import_success => 'Las notas fueron importadas exitosamente.';
+  String get settings_backup_manual_export => 'Manual export';
+
+  @override
+  String get settings_export_json => 'Exportar a JSON';
+
+  @override
+  String get settings_export_json_description =>
+      'Immediately export the notes to a JSON file (bin included) that can be imported back';
+
+  @override
+  String get settings_export_markdown => 'Exportar a Markdown';
+
+  @override
+  String get settings_export_markdown_description => 'Immediately export the notes to a Markdown file (bin included)';
+
+  @override
+  String get settings_backup_auto_export => 'Automatic export';
 
   @override
   String get settings_auto_export => 'Automatic export';
@@ -295,22 +305,6 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get settings_auto_export_directory_description =>
       'Directory where to store the automatic exports of the notes';
-
-  @override
-  String get settings_export_success => 'Las notas fueron exportadas exitosamente.';
-
-  @override
-  String get settings_export_json => 'Exportar a JSON';
-
-  @override
-  String get settings_export_json_description =>
-      'Immediately export the notes to a JSON file (bin included) that can be imported back';
-
-  @override
-  String get settings_export_markdown => 'Exportar a Markdown';
-
-  @override
-  String get settings_export_markdown_description => 'Immediately export the notes to a Markdown file (bin included)';
 
   @override
   String get settings_about => 'Acerca de';
@@ -605,6 +599,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get snack_bar_copied => 'Content of the note copied to the clipboard.';
+
+  @override
+  String get snack_bar_import_success => 'The notes were successfully imported.';
+
+  @override
+  String get snack_bar_export_success => 'The notes were successfully exported.';
 
   @override
   String get action_add_note_title => 'Agregar una nota';
