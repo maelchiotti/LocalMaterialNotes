@@ -107,7 +107,7 @@ class _PasswordFieldState extends State<PasswordField> {
                   icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
                   onPressed: _toggleObscurePassword,
                 ),
-                hintText: localizations.dialog_export_encryption_password_hint,
+                hintText: localizations.dialog_export_encryption_password,
               ),
               obscureText: _obscurePassword,
               autocorrect: false,

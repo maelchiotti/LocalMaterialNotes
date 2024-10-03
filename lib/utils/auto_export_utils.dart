@@ -65,7 +65,7 @@ class AutoExportUtils {
     autoExportDirectory = (await getApplicationDocumentsDirectory()).uri;
   }
 
-  /// Returns whether the auto export directory is set to the default value.
+  /// Returns whether the automatic export directory is set to the default value.
   Future<bool> get isAutoExportDirectoryDefault async {
     return autoExportDirectory == (await getApplicationDocumentsDirectory()).uri;
   }

@@ -21,6 +21,6 @@ extension DateTimeExtensions on DateTime {
     final date = DateFormat.yMMMMd(localeName).format(this);
     final time = DateFormat.Hm(localeName).format(this);
 
-    return '$date ${localizations.time_at} $time';
+    return '$date ${localizations.about_time_at} $time';
   }
 }

@@ -153,7 +153,7 @@ class NotesAppBar extends ConsumerWidget {
                 child: ListTile(
                   selected: sortMethod == SortMethod.date,
                   leading: const Icon(Icons.calendar_month),
-                  title: Text(localizations.sort_date),
+                  title: Text(localizations.button_sort_date),
                 ),
               ),
               PopupMenuItem(
@@ -162,7 +162,7 @@ class NotesAppBar extends ConsumerWidget {
                 child: ListTile(
                   selected: sortMethod == SortMethod.title,
                   leading: const Icon(Icons.sort_by_alpha),
-                  title: Text(localizations.sort_title),
+                  title: Text(localizations.button_sort_title),
                 ),
               ),
               const PopupMenuDivider(),
@@ -170,7 +170,7 @@ class NotesAppBar extends ConsumerWidget {
                 key: Keys.notesPageSortAscendingMenuItem,
                 value: SortMethod.ascending,
                 child: ListTile(
-                  title: Text(localizations.sort_ascending),
+                  title: Text(localizations.button_sort_ascending),
                   trailing: Checkbox(
                     value: sortAscending,
                     onChanged: (ascending) => _sort(context, ref, ascending: ascending),

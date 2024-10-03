@@ -24,7 +24,7 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
   if (!await askForConfirmation(
     context,
     localizations.dialog_delete,
-    localizations.dialog_delete_body_single,
+    localizations.dialog_delete_body(1),
     localizations.dialog_delete,
   )) {
     return false;
@@ -75,7 +75,7 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
   if (!await askForConfirmation(
     context,
     localizations.dialog_permanently_delete,
-    localizations.dialog_permanently_delete_body_single,
+    localizations.dialog_permanently_delete_body(1),
     localizations.dialog_permanently_delete,
     irreversible: true,
   )) {
