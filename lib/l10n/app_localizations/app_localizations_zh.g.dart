@@ -308,12 +308,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_about_application => '应用程序';
 
   @override
-  String get settings_about_links => '链接';
-
-  @override
-  String get settings_about_help => '帮助';
-
-  @override
   String get settings_build_mode => '构建模式';
 
   @override
@@ -323,22 +317,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_build_mode_debug => 'Debug';
 
   @override
-  String get settings_github => 'GitHub';
-
-  @override
-  String get settings_github_description => '查看源代码';
-
-  @override
-  String get settings_localizations => 'Crowdin';
-
-  @override
-  String get settings_localizations_description => 'Add or improve the localizations on the Crowdin project';
-
-  @override
-  String get settings_licence => '许可证';
-
-  @override
-  String get settings_licence_description => 'AGPL-3.0';
+  String get settings_about_help => '帮助';
 
   @override
   String get settings_github_issues => 'Report a bug or request a feature';
@@ -359,6 +338,27 @@ class AppLocalizationsZh extends AppLocalizations {
   String settings_get_in_touch_description(Object email) {
     return 'Contact the developer via mail at $email';
   }
+
+  @override
+  String get settings_about_links => '链接';
+
+  @override
+  String get settings_github => 'GitHub';
+
+  @override
+  String get settings_github_description => '查看源代码';
+
+  @override
+  String get settings_localizations => 'Crowdin';
+
+  @override
+  String get settings_localizations_description => 'Add or improve the localizations on the Crowdin project';
+
+  @override
+  String get settings_licence => '许可证';
+
+  @override
+  String get settings_licence_description => 'AGPL-3.0';
 
   @override
   String get hint_title => '标题';

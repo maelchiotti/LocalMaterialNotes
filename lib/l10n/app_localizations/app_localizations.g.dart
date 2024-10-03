@@ -657,113 +657,113 @@ abstract class AppLocalizations {
   /// **'Information, help, links'**
   String get settings_about_description;
 
-  ///
+  /// Title of the settings section regarding the information about the application.
   ///
   /// In en, this message translates to:
   /// **'Application'**
   String get settings_about_application;
 
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Links'**
-  String get settings_about_links;
-
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Help'**
-  String get settings_about_help;
-
-  ///
+  /// Title of the settings tile displaying the build mode of the application.
   ///
   /// In en, this message translates to:
   /// **'Build mode'**
   String get settings_build_mode;
 
-  ///
+  /// Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores).
   ///
   /// In en, this message translates to:
   /// **'Release'**
   String get settings_build_mode_release;
 
-  ///
+  /// Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and ).
   ///
   /// In en, this message translates to:
   /// **'Debug'**
   String get settings_build_mode_debug;
 
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'GitHub'**
-  String get settings_github;
-
-  ///
+  /// Title of the settings section regarding how to get help for the application.
   ///
   /// In en, this message translates to:
-  /// **'Take a look at the source code'**
-  String get settings_github_description;
+  /// **'Help'**
+  String get settings_about_help;
 
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Crowdin'**
-  String get settings_localizations;
-
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'Add or improve the localizations on the Crowdin project'**
-  String get settings_localizations_description;
-
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'License'**
-  String get settings_licence;
-
-  ///
-  ///
-  /// In en, this message translates to:
-  /// **'AGPL-3.0'**
-  String get settings_licence_description;
-
-  ///
+  /// Title of the settings tile to open the GitHub issues and report a bug or request a feature.
   ///
   /// In en, this message translates to:
   /// **'Report a bug or request a feature'**
   String get settings_github_issues;
 
-  ///
+  /// Description of the settings tile to open the GitHub issues and report a bug or request a feature.
   ///
   /// In en, this message translates to:
   /// **'Report a bug or request a feature by creating a GitHub issue'**
   String get settings_github_issues_description;
 
-  ///
+  /// Title of the settings tile to open the GitHub discussions and ask a question.
   ///
   /// In en, this message translates to:
   /// **'Ask a question'**
   String get settings_github_discussions;
 
-  ///
+  /// Description of the settings tile to open the GitHub discussions and ask a question.
   ///
   /// In en, this message translates to:
   /// **'Ask a question on GitHub discussions'**
   String get settings_github_discussions_description;
 
-  ///
+  /// Title of the settings tile to contact the developer via mail.
   ///
   /// In en, this message translates to:
   /// **'Contact the developer'**
   String get settings_get_in_touch;
 
-  ///
+  /// Description of the settings tile to contact the developer via mail.
   ///
   /// In en, this message translates to:
   /// **'Contact the developer via mail at {email}'**
   String settings_get_in_touch_description(Object email);
+
+  /// Title of the settings section regarding the outside links related to the application.
+  ///
+  /// In en, this message translates to:
+  /// **'Links'**
+  String get settings_about_links;
+
+  /// Title of the settings tile to open the GitHub repository of the application.
+  ///
+  /// In en, this message translates to:
+  /// **'GitHub'**
+  String get settings_github;
+
+  /// Description of the settings tile to open the GitHub repository of the application.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a look at the source code'**
+  String get settings_github_description;
+
+  /// Title of the settings tile to open the Crowdin project managing the localization of the application.
+  ///
+  /// In en, this message translates to:
+  /// **'Crowdin'**
+  String get settings_localizations;
+
+  /// Description of the settings tile to open the Crowdin project managing the localization of the application.
+  ///
+  /// In en, this message translates to:
+  /// **'Add or improve the localizations on the Crowdin project'**
+  String get settings_localizations_description;
+
+  /// Title of the settings tile to open the license of the application.
+  ///
+  /// In en, this message translates to:
+  /// **'License'**
+  String get settings_licence;
+
+  /// Description of the settings tile to open the license of the application.
+  ///
+  /// In en, this message translates to:
+  /// **'AGPL-3.0'**
+  String get settings_licence_description;
 
   /// No description provided for @hint_title.
   ///

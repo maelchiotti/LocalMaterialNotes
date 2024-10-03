@@ -318,12 +318,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_about_application => 'Application';
 
   @override
-  String get settings_about_links => 'Liens';
-
-  @override
-  String get settings_about_help => 'Aide';
-
-  @override
   String get settings_build_mode => 'Build mode';
 
   @override
@@ -333,22 +327,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_build_mode_debug => 'Debug';
 
   @override
-  String get settings_github => 'GitHub';
-
-  @override
-  String get settings_github_description => 'Jeter un coup d\'œil au code source';
-
-  @override
-  String get settings_localizations => 'Crowdin';
-
-  @override
-  String get settings_localizations_description => 'Ajouter ou améliorer les traductions sur le projet Crowdin';
-
-  @override
-  String get settings_licence => 'License';
-
-  @override
-  String get settings_licence_description => 'AGPL-3.0';
+  String get settings_about_help => 'Aide';
 
   @override
   String get settings_github_issues => 'Signaler un bug ou proposer une fonctionnalité';
@@ -370,6 +349,27 @@ class AppLocalizationsFr extends AppLocalizations {
   String settings_get_in_touch_description(Object email) {
     return 'Contacter le développeur par mail à $email';
   }
+
+  @override
+  String get settings_about_links => 'Liens';
+
+  @override
+  String get settings_github => 'GitHub';
+
+  @override
+  String get settings_github_description => 'Jeter un coup d\'œil au code source';
+
+  @override
+  String get settings_localizations => 'Crowdin';
+
+  @override
+  String get settings_localizations_description => 'Ajouter ou améliorer les traductions sur le projet Crowdin';
+
+  @override
+  String get settings_licence => 'License';
+
+  @override
+  String get settings_licence_description => 'AGPL-3.0';
 
   @override
   String get hint_title => 'Titre';
