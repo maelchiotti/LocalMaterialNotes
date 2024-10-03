@@ -44,7 +44,7 @@ class _LinkDialogState extends State<LinkDialog> {
         controller: _linkController,
         autofocus: true,
         decoration: InputDecoration(
-          labelText: localizations.dialog_link,
+          labelText: localizations.hint_link,
         ),
         onChanged: _onChanged,
       ),

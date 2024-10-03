@@ -62,6 +62,14 @@
   "@button_cancel": {
     "description": "Button to cancel and close a dialog."
   },
+  "button_sort_title": "Title",
+  "@button_sort_title": {
+    "description": "Text of the button to sort the notes list by title."
+  },
+  "button_sort_ascending": "Ascending",
+  "@button_sort_ascending": {
+    "description": "Text of the button to sort the notes list in ascending order."
+  },
   "settings_appearance": "Appearance",
   "@settings_appearance": {
     "description": "Title of the settings section regarding the application's appearance."
@@ -182,6 +190,18 @@
   "@settings_confirmations_description": {
     "description": "Description of the setting tile to choose when to show the confirmation dialog when performing an action on a note."
   },
+  "settings_confirmations_title_none": "Never",
+  "@settings_confirmations_title_none": {
+    "description": "Value of the setting to never show a confirmation dialog when performing an action on a note."
+  },
+  "settings_confirmations_title_irreversible": "Irreversible actions only",
+  "@settings_confirmations_title_irreversible": {
+    "description": "Value of the setting to only show a confirmation dialog when performing an action on a note if it is irreversible."
+  },
+  "settings_confirmations_title_all": "Always",
+  "@settings_confirmations_title_all": {
+    "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
+  },
   "settings_flag_secure": "Flag the app as secure",
   "@settings_flag_secure": {
     "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
@@ -290,7 +310,7 @@
   "@settings_backup": {
     "description": "Title of the settings section regarding the backup functionality."
   },
-  "settings_backup_description": "Manual and auto export, encryption, import",
+  "settings_backup_description": "Manual and automatic export, encryption, import",
   "@settings_backup_description": {
     "description": "Description of the backup settings section."
   },
@@ -453,76 +473,257 @@
     "description": "Description of the settings tile to open the license of the application."
   },
   "hint_title": "Title",
+  "@hint_title": {
+    "description": "Hint for the text field of the title of the notes."
+  },
   "hint_note": "Note",
-  "tooltip_fab_add_note": "Add a note",
-  "tooltip_fab_empty_bin": "Empty the bin",
-  "tooltip_fab_toggle_editor_mode_edit": "Switch to editing mode",
-  "tooltip_fab_toggle_editor_mode_read": "Switch to reading mode",
-  "tooltip_layout_list": "List view",
-  "tooltip_layout_grid": "Grid view",
-  "tooltip_sort": "Sort the notes",
-  "tooltip_search": "Search the notes",
+  "@hint_note": {
+    "description": "Hint for the text field of the content of the notes."
+  },
+  "hint_link": "Link",
+  "@hint_link": {
+    "description": "Hint for the link text field in the dialog to add a link in the editor."
+  },
+  "dialog_export_encryption_password": "Password",
+  "@dialog_export_encryption_password": {
+    "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
+  },
   "tooltip_toggle_checkbox": "Toggle checkbox",
-  "tooltip_select_all": "Select all",
-  "tooltip_unselect_all": "Unselect all",
-  "tooltip_delete": "Delete",
-  "tooltip_permanently_delete": "Permanently delete",
-  "tooltip_restore": "Restore",
+  "@tooltip_toggle_checkbox": {
+    "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
+  },
   "tooltip_toggle_pins": "Toggle pins",
+  "@tooltip_toggle_pins": {
+    "description": "Tooltip for the button to toggle the pining state of the selected notes in selection mode (the pinned notes will be unpinned, and the not pinned ones will be pinned)."
+  },
+  "tooltip_fab_add_note": "Add a note",
+  "@tooltip_fab_add_note": {
+    "description": "Floating action button on the notes list to add a new note."
+  },
+  "tooltip_fab_empty_bin": "Empty the bin",
+  "@tooltip_fab_empty_bin": {
+    "description": "Floating action button in the bin to empty it."
+  },
+  "tooltip_fab_toggle_editor_mode_edit": "Switch to editing mode",
+  "@tooltip_fab_toggle_editor_mode_edit": {
+    "description": "Floating action button in the notes editor to switch to editing mode."
+  },
+  "tooltip_fab_toggle_editor_mode_read": "Switch to reading mode",
+  "@tooltip_fab_toggle_editor_mode_read": {
+    "description": "Floating action button in the notes editor to switch to reading mode."
+  },
+  "tooltip_layout_list": "List view",
+  "@tooltip_layout_list": {
+    "description": "Tooltip for the button to use the list layout in the notes list."
+  },
+  "tooltip_layout_grid": "Grid view",
+  "@tooltip_layout_grid": {
+    "description": "Tooltip for the button to use the grid layout in the notes list."
+  },
+  "tooltip_sort": "Sort the notes",
+  "@tooltip_sort": {
+    "description": "Tooltip for the button to open the menu to choose the sorting method of the notes list."
+  },
+  "tooltip_search": "Search the notes",
+  "@tooltip_search": {
+    "description": "Tooltip for the button to open the search view to search through the notes."
+  },
+  "tooltip_select_all": "Select all",
+  "@tooltip_select_all": {
+    "description": "Tooltip for the button to select all the notes while in selection mode in the notes list."
+  },
+  "tooltip_unselect_all": "Unselect all",
+  "@tooltip_unselect_all": {
+    "description": "Tooltip for the button to unselect all the notes while in selection mode in the notes list."
+  },
+  "tooltip_delete": "Delete",
+  "@tooltip_delete": {
+    "description": "Tooltip for the button to delete a note (moving it to bin)."
+  },
+  "tooltip_permanently_delete": "Permanently delete",
+  "@tooltip_permanently_delete": {
+    "description": "Tooltip for the button to permanently delete a note."
+  },
+  "tooltip_restore": "Restore",
+  "@tooltip_restore": {
+    "description": "Tooltip for the button to restore a note from the bin."
+  },
   "tooltip_reset": "Reset",
+  "@tooltip_reset": {
+    "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
+  },
   "dialog_add_link": "Add a link",
-  "dialog_link": "Link",
+  "@dialog_add_link": {
+    "description": "Tooltip for the button to validate the dialog to add a link in the note editor."
+  },
   "dialog_delete": "Delete",
+  "@dialog_delete": {
+    "description": "Title of the the dialog to delete one or multiple notes (moving them to the bin), and text for the confirmation button."
+  },
   "dialog_delete_body": "Do you really want to delete {count} {count, plural, zero{} one{note} other{notes}}? You can restore {count, plural, zero{} one{it} other{them}} from the bin.",
-  "dialog_delete_body_single": "Do you really want to delete this note? You can restore it from the bin.",
+  "@dialog_delete_body": {
+    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
+  },
   "dialog_permanently_delete": "Delete permanently",
+  "@dialog_permanently_delete": {
+    "description": "Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button."
+  },
   "dialog_permanently_delete_body": "Do you really want to permanently delete {count} {count, plural, zero{} one{note} other{notes}}? You will not be able to restore {count, plural, zero{} one{it} other{them}}.",
-  "dialog_permanently_delete_body_single": "Do you really want to permanently delete this note? You will not be able to restore it.",
+  "@dialog_permanently_delete_body": {
+    "description": "Text for the dialog to confirm the permanent deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
+  },
   "dialog_restore": "Restore",
+  "@dialog_restore": {
+    "description": "Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button."
+  },
   "dialog_restore_body": "Do you really want to restore {count} {count, plural, zero{} one{note} other{notes}}?",
-  "dialog_restore_body_single": "Do you really want to restore this note?",
+  "@dialog_restore_body": {
+    "description": "Text for the dialog to confirm restoring one or multiple notes from the bin.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
+  },
   "dialog_empty_bin": "Empty the bin",
+  "@dialog_empty_bin": {
+    "description": "Title of the the dialog to empty the bin, and text for the confirmation button."
+  },
   "dialog_empty_bin_body": "Do you really want to permanently empty the bin? You will not be able to restore the notes it contains.",
+  "@dialog_empty_bin_body": {
+    "description": "Text for the dialog to confirm emptying the bin."
+  },
   "dialog_export_encryption_switch": "Encrypt the JSON export",
+  "@dialog_export_encryption_switch": {
+    "description": "Text for the switch to toggle the encryption of the export in the dialog to manually or automatically exporting the notes as JSON."
+  },
   "dialog_export_encryption_description": "The title and the content of the notes will be encrypted using your password. It should be randomly generated, exactly 32 characters long, strong (at least 1 lowercase, 1 uppercase, 1 number and 1 special character) and securely stored.",
-  "dialog_export_encryption_secondary_description_auto": "This password will be used for all future auto exports.",
+  "@dialog_export_encryption_description": {
+    "description": "Description for the encryption feature when the switch to toggle the encryption of the export is enabled."
+  },
+  "dialog_export_encryption_secondary_description_auto": "This password will be used for all future automatic exports.",
+  "@dialog_export_encryption_secondary_description_auto": {
+    "description": "Secondary description for the encryption feature in the case of an automatic export."
+  },
   "dialog_export_encryption_secondary_description_manual": "This password will only be used for this export.",
-  "dialog_export_encryption_password_hint": "Password",
+  "@dialog_export_encryption_secondary_description_manual": {
+    "description": "Secondary description for the encryption feature in the case of a manual export."
+  },
   "dialog_export_encryption_password_invalid": "Invalid",
+  "@dialog_export_encryption_password_invalid": {
+    "description": "Error message displayed under the text field for the encryption password if it does not meet the strength requirements."
+  },
   "dialog_import_encryption_password_description": "This export is encrypted. To import it, you need to provide the password used to encrypt it.",
+  "@dialog_import_encryption_password_description": {
+    "description": "Description in the import dialog when an import is encrypted and the password is needed."
+  },
   "dialog_import_encryption_password_error": "the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.",
-  "sort_date": "Date",
-  "sort_title": "Title",
-  "sort_ascending": "Ascending",
+  "@dialog_import_encryption_password_error": {
+    "description": "Error when the decryption of an encrypted import failed."
+  },
+  "button_sort_date": "Date",
+  "@button_sort_date": {
+    "description": "Text of the button to sort the notes list by date."
+  },
   "placeholder_notes": "No notes",
+  "@placeholder_notes": {
+    "description": "Placeholder on the notes page when there are no notes."
+  },
   "placeholder_bin": "No deleted notes",
+  "@placeholder_bin": {
+    "description": "Placeholder on the bin page when there are no notes."
+  },
   "action_disabled": "Disabled",
+  "@action_disabled": {
+    "description": "Swipe action that is disabled in the settings."
+  },
   "action_pin": "Pin",
+  "@action_pin": {
+    "description": "Swipe or menu action to pin a note."
+  },
   "action_unpin": "Unpin",
+  "@action_unpin": {
+    "description": "Swipe or menu action to unpin a note."
+  },
   "action_copy": "Copy",
+  "@action_copy": {
+    "description": "Swipe or menu action to copy the content of a note."
+  },
   "action_share": "Share",
+  "@action_share": {
+    "description": "Swipe or menu action to share the title and the content of a note."
+  },
   "action_delete": "Delete",
+  "@action_delete": {
+    "description": "Swipe or menu action to delete a note (moving it to the bin)."
+  },
   "action_restore": "Restore",
+  "@action_restore": {
+    "description": "Swipe or menu action to restore a note from the bin."
+  },
   "action_delete_permanently": "Delete permanently",
+  "@action_delete_permanently": {
+    "description": "Swipe or menu action to permanently delete a note."
+  },
   "action_about": "About",
-  "confirmations_title_none": "Never",
-  "confirmations_title_irreversible": "Irreversible actions only",
-  "confirmations_title_all": "Always",
+  "@action_about": {
+    "description": "Swipe or menu action to show information about a note."
+  },
   "about_last_edited": "Last edited",
+  "@about_last_edited": {
+    "description": "Date when the note was edited for the last time."
+  },
   "about_created": "Created",
+  "@about_created": {
+    "description": "Date when the note was created."
+  },
   "about_words": "Words",
+  "@about_words": {
+    "description": "Number of words in the content of the note."
+  },
   "about_characters": "Characters",
+  "@about_characters": {
+    "description": "Number of characters in the content of the note."
+  },
+  "about_time_at": "at",
+  "@time_at": {
+    "description": "Preposition shown between the date and the time in the about dialog (example: 12 ."
+  },
   "snack_bar_copied": "Content of the note copied to the clipboard.",
+  "@snack_bar_copied": {
+    "description": "Snack bar informing that the content of the note was copied to clipboard."
+  },
   "snack_bar_import_success": "The notes were successfully imported.",
   "@snack_bar_import_success": {
-    "description": ""
+    "description": "Snack bar informing that the notes were successfully imported."
   },
   "snack_bar_export_success": "The notes were successfully exported.",
   "@snack_bar_export_success": {
-    "description": ""
+    "description": "Snack bar informing that the notes were successfully manually exported."
   },
   "action_add_note_title": "Add a note",
+  "@action_add_note_title": {
+    "description": "Title of the home screen action to add a new note."
+  },
   "welcome_note_title": "Welcome to Material Notes!",
+  "@welcome_note_title": {
+    "description": "Title of the welcome note automatically created on the first run of the application."
+  },
   "welcome_note_content": "Simple, local, material design notes",
-  "time_at": "at"
+  "@welcome_note_content": {
+    "description": "Content of the welcome note automatically created on the first run of the application."
+  }
 }

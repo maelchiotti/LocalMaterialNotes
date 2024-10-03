@@ -53,6 +53,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get button_cancel => 'Cancel';
 
   @override
+  String get button_sort_title => 'Title';
+
+  @override
+  String get button_sort_ascending => 'Ascending';
+
+  @override
   String get settings_appearance => 'Appearance';
 
   @override
@@ -146,6 +152,15 @@ class AppLocalizationsEn extends AppLocalizations {
       'When to show a confirmation dialog when performing an action on a note';
 
   @override
+  String get settings_confirmations_title_none => 'Never';
+
+  @override
+  String get settings_confirmations_title_irreversible => 'Irreversible actions only';
+
+  @override
+  String get settings_confirmations_title_all => 'Always';
+
+  @override
   String get settings_flag_secure => 'Flag the app as secure';
 
   @override
@@ -234,7 +249,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_backup => 'Backup';
 
   @override
-  String get settings_backup_description => 'Manual and auto export, encryption, import';
+  String get settings_backup_description => 'Manual and automatic export, encryption, import';
 
   @override
   String get settings_backup_import => 'Import';
@@ -375,6 +390,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hint_note => 'Note';
 
   @override
+  String get hint_link => 'Link';
+
+  @override
+  String get dialog_export_encryption_password => 'Password';
+
+  @override
+  String get tooltip_toggle_checkbox => 'Toggle checkbox';
+
+  @override
+  String get tooltip_toggle_pins => 'Toggle pins';
+
+  @override
   String get tooltip_fab_add_note => 'Add a note';
 
   @override
@@ -399,9 +426,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tooltip_search => 'Search the notes';
 
   @override
-  String get tooltip_toggle_checkbox => 'Toggle checkbox';
-
-  @override
   String get tooltip_select_all => 'Select all';
 
   @override
@@ -417,22 +441,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tooltip_restore => 'Restore';
 
   @override
-  String get tooltip_toggle_pins => 'Toggle pins';
-
-  @override
   String get tooltip_reset => 'Reset';
 
   @override
   String get dialog_add_link => 'Add a link';
 
   @override
-  String get dialog_link => 'Link';
-
-  @override
   String get dialog_delete => 'Delete';
 
   @override
-  String dialog_delete_body(num count) {
+  String dialog_delete_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -451,13 +469,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get dialog_delete_body_single => 'Do you really want to delete this note? You can restore it from the bin.';
-
-  @override
   String get dialog_permanently_delete => 'Delete permanently';
 
   @override
-  String dialog_permanently_delete_body(num count) {
+  String dialog_permanently_delete_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -476,14 +491,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get dialog_permanently_delete_body_single =>
-      'Do you really want to permanently delete this note? You will not be able to restore it.';
-
-  @override
   String get dialog_restore => 'Restore';
 
   @override
-  String dialog_restore_body(num count) {
+  String dialog_restore_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -493,9 +504,6 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return 'Do you really want to restore $count $_temp0?';
   }
-
-  @override
-  String get dialog_restore_body_single => 'Do you really want to restore this note?';
 
   @override
   String get dialog_empty_bin => 'Empty the bin';
@@ -513,14 +521,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dialog_export_encryption_secondary_description_auto =>
-      'This password will be used for all future auto exports.';
+      'This password will be used for all future automatic exports.';
 
   @override
   String get dialog_export_encryption_secondary_description_manual =>
       'This password will only be used for this export.';
-
-  @override
-  String get dialog_export_encryption_password_hint => 'Password';
 
   @override
   String get dialog_export_encryption_password_invalid => 'Invalid';
@@ -534,13 +539,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.';
 
   @override
-  String get sort_date => 'Date';
-
-  @override
-  String get sort_title => 'Title';
-
-  @override
-  String get sort_ascending => 'Ascending';
+  String get button_sort_date => 'Date';
 
   @override
   String get placeholder_notes => 'No notes';
@@ -576,15 +575,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get action_about => 'About';
 
   @override
-  String get confirmations_title_none => 'Never';
-
-  @override
-  String get confirmations_title_irreversible => 'Irreversible actions only';
-
-  @override
-  String get confirmations_title_all => 'Always';
-
-  @override
   String get about_last_edited => 'Last edited';
 
   @override
@@ -595,6 +585,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get about_characters => 'Characters';
+
+  @override
+  String get about_time_at => 'at';
 
   @override
   String get snack_bar_copied => 'Content of the note copied to the clipboard.';
@@ -613,7 +606,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Simple, local, material design notes';
-
-  @override
-  String get time_at => 'at';
 }

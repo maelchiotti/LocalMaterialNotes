@@ -53,6 +53,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get button_cancel => 'Annuler';
 
   @override
+  String get button_sort_title => 'Title';
+
+  @override
+  String get button_sort_ascending => 'Ascending';
+
+  @override
   String get settings_appearance => 'Apparence';
 
   @override
@@ -144,6 +150,15 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get settings_confirmations_description =>
       'Afficher les dialogues de confirmation pour les actions telles qu\'épingler ou supprimer les notes';
+
+  @override
+  String get settings_confirmations_title_none => 'Never';
+
+  @override
+  String get settings_confirmations_title_irreversible => 'Irreversible actions only';
+
+  @override
+  String get settings_confirmations_title_all => 'Always';
 
   @override
   String get settings_flag_secure => 'Marquer l\'application comme sécurisée';
@@ -378,6 +393,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get hint_note => 'Note';
 
   @override
+  String get hint_link => 'Link';
+
+  @override
+  String get dialog_export_encryption_password => 'Password';
+
+  @override
+  String get tooltip_toggle_checkbox => 'Basculer la case à cocher';
+
+  @override
+  String get tooltip_toggle_pins => 'Basculer les épingles';
+
+  @override
   String get tooltip_fab_add_note => 'Ajouter une note';
 
   @override
@@ -402,9 +429,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tooltip_search => 'Rechercher parmi les notes';
 
   @override
-  String get tooltip_toggle_checkbox => 'Basculer la case à cocher';
-
-  @override
   String get tooltip_select_all => 'Tout sélectionner';
 
   @override
@@ -420,22 +444,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tooltip_restore => 'Restaurer';
 
   @override
-  String get tooltip_toggle_pins => 'Basculer les épingles';
-
-  @override
   String get tooltip_reset => 'Réinitialiser';
 
   @override
   String get dialog_add_link => 'Add a link';
 
   @override
-  String get dialog_link => 'Link';
-
-  @override
   String get dialog_delete => 'Supprimer';
 
   @override
-  String dialog_delete_body(num count) {
+  String dialog_delete_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -454,14 +472,10 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get dialog_delete_body_single =>
-      'Voulez-vous vraiment supprimer cette note ? Vous pouvez la restaurer depuis la corbeille.';
-
-  @override
   String get dialog_permanently_delete => 'Supprimer définitivement';
 
   @override
-  String dialog_permanently_delete_body(num count) {
+  String dialog_permanently_delete_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -480,14 +494,10 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get dialog_permanently_delete_body_single =>
-      'Voulez-vous vraiment supprimer définitivement cette note ? Vous ne pourrez pas la restaurer.';
-
-  @override
   String get dialog_restore => 'Restaurer';
 
   @override
-  String dialog_restore_body(num count) {
+  String dialog_restore_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -497,9 +507,6 @@ class AppLocalizationsFr extends AppLocalizations {
     );
     return 'Voulez-vous vraiment restaurer $count $_temp0 ?';
   }
-
-  @override
-  String get dialog_restore_body_single => 'Voulez-vous vraiment restaurer cette note ?';
 
   @override
   String get dialog_empty_bin => 'Vider la corbeille';
@@ -524,9 +531,6 @@ class AppLocalizationsFr extends AppLocalizations {
       'Ce mot de passe ne sera utilisé que pour cet export.';
 
   @override
-  String get dialog_export_encryption_password_hint => 'Mot de passe';
-
-  @override
   String get dialog_export_encryption_password_invalid => 'Invalide';
 
   @override
@@ -538,13 +542,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'le déchiffrement de lexport a échoué. Veuillez vérifier que vous avez fourni le même mot de passe que celui que vous avez utilisé pour chiffrer lexport.';
 
   @override
-  String get sort_date => 'Date';
-
-  @override
-  String get sort_title => 'Titre';
-
-  @override
-  String get sort_ascending => 'Croissant';
+  String get button_sort_date => 'Date';
 
   @override
   String get placeholder_notes => 'Pas de notes';
@@ -580,15 +578,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get action_about => 'About';
 
   @override
-  String get confirmations_title_none => 'Jamais';
-
-  @override
-  String get confirmations_title_irreversible => 'Actions irréversibles uniquement';
-
-  @override
-  String get confirmations_title_all => 'Toujours';
-
-  @override
   String get about_last_edited => 'Dernière modification';
 
   @override
@@ -599,6 +588,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get about_characters => 'Caractères';
+
+  @override
+  String get about_time_at => 'at';
 
   @override
   String get snack_bar_copied => 'Content of the note copied to the clipboard.';
@@ -617,7 +609,4 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Notes simples, locales, en material design';
-
-  @override
-  String get time_at => 'à';
 }

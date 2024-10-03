@@ -53,6 +53,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get button_cancel => '取消';
 
   @override
+  String get button_sort_title => 'Title';
+
+  @override
+  String get button_sort_ascending => 'Ascending';
+
+  @override
   String get settings_appearance => '外观';
 
   @override
@@ -143,6 +149,15 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings_confirmations_description => '显示置顶和删除笔记等操作的确认对话框';
+
+  @override
+  String get settings_confirmations_title_none => 'Never';
+
+  @override
+  String get settings_confirmations_title_irreversible => 'Irreversible actions only';
+
+  @override
+  String get settings_confirmations_title_all => 'Always';
 
   @override
   String get settings_flag_secure => '将应用标记为安全';
@@ -367,6 +382,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String get hint_note => '笔记';
 
   @override
+  String get hint_link => 'Link';
+
+  @override
+  String get dialog_export_encryption_password => 'Password';
+
+  @override
+  String get tooltip_toggle_checkbox => '切换复选框';
+
+  @override
+  String get tooltip_toggle_pins => '切换置顶';
+
+  @override
   String get tooltip_fab_add_note => '添加笔记';
 
   @override
@@ -391,9 +418,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tooltip_search => '搜索笔记';
 
   @override
-  String get tooltip_toggle_checkbox => '切换复选框';
-
-  @override
   String get tooltip_select_all => '选择全部';
 
   @override
@@ -409,22 +433,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tooltip_restore => '还原';
 
   @override
-  String get tooltip_toggle_pins => '切换置顶';
-
-  @override
   String get tooltip_reset => 'Reset';
 
   @override
   String get dialog_add_link => 'Add a link';
 
   @override
-  String get dialog_link => 'Link';
-
-  @override
   String get dialog_delete => '删除';
 
   @override
-  String dialog_delete_body(num count) {
+  String dialog_delete_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -439,13 +457,10 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get dialog_delete_body_single => '是否确定要删除此笔记？您可以从回收站中还原它。';
-
-  @override
   String get dialog_permanently_delete => '永久删除';
 
   @override
-  String dialog_permanently_delete_body(num count) {
+  String dialog_permanently_delete_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -460,13 +475,10 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get dialog_permanently_delete_body_single => '是否确定要永久删除此笔记？您将无法还原它。';
-
-  @override
   String get dialog_restore => '还原';
 
   @override
-  String dialog_restore_body(num count) {
+  String dialog_restore_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -474,9 +486,6 @@ class AppLocalizationsZh extends AppLocalizations {
     );
     return '是否确定要还原 $count $_temp0？';
   }
-
-  @override
-  String get dialog_restore_body_single => '是否确定要还原此笔记？';
 
   @override
   String get dialog_empty_bin => '清空回收站';
@@ -498,9 +507,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dialog_export_encryption_secondary_description_manual => '此密码仅用于此导出。';
 
   @override
-  String get dialog_export_encryption_password_hint => '密码';
-
-  @override
   String get dialog_export_encryption_password_invalid => '无效';
 
   @override
@@ -510,13 +516,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dialog_import_encryption_password_error => '解密导出失败。请检查您提供的密码是否与加密导出时使用的密码相同。';
 
   @override
-  String get sort_date => '日期';
-
-  @override
-  String get sort_title => '标题';
-
-  @override
-  String get sort_ascending => '升序';
+  String get button_sort_date => 'Date';
 
   @override
   String get placeholder_notes => '无笔记';
@@ -552,15 +552,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get action_about => 'About';
 
   @override
-  String get confirmations_title_none => '从不';
-
-  @override
-  String get confirmations_title_irreversible => '仅限不可逆转的操作';
-
-  @override
-  String get confirmations_title_all => '始终';
-
-  @override
   String get about_last_edited => '最后编辑';
 
   @override
@@ -571,6 +562,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get about_characters => '字符';
+
+  @override
+  String get about_time_at => 'at';
 
   @override
   String get snack_bar_copied => 'Content of the note copied to the clipboard.';
@@ -589,7 +583,4 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get welcome_note_content => '简单、本地、Material 设计笔记';
-
-  @override
-  String get time_at => '于';
 }

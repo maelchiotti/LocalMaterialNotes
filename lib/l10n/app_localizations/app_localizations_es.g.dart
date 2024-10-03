@@ -53,6 +53,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get button_cancel => 'Cancelar';
 
   @override
+  String get button_sort_title => 'Title';
+
+  @override
+  String get button_sort_ascending => 'Ascending';
+
+  @override
   String get settings_appearance => 'Apariencia';
 
   @override
@@ -144,6 +150,15 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get settings_confirmations_description =>
       'Show the confirmation dialogs for actions such as pining and deleting notes';
+
+  @override
+  String get settings_confirmations_title_none => 'Never';
+
+  @override
+  String get settings_confirmations_title_irreversible => 'Irreversible actions only';
+
+  @override
+  String get settings_confirmations_title_all => 'Always';
 
   @override
   String get settings_flag_secure => 'Flag the app as secure';
@@ -375,6 +390,18 @@ class AppLocalizationsEs extends AppLocalizations {
   String get hint_note => 'Nota';
 
   @override
+  String get hint_link => 'Link';
+
+  @override
+  String get dialog_export_encryption_password => 'Password';
+
+  @override
+  String get tooltip_toggle_checkbox => 'Alternar casilla';
+
+  @override
+  String get tooltip_toggle_pins => 'Alternar fijado';
+
+  @override
   String get tooltip_fab_add_note => 'Agregar una nota';
 
   @override
@@ -399,9 +426,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get tooltip_search => 'Buscar entre las notas';
 
   @override
-  String get tooltip_toggle_checkbox => 'Alternar casilla';
-
-  @override
   String get tooltip_select_all => 'Seleccionar todo';
 
   @override
@@ -417,22 +441,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get tooltip_restore => 'Restaurar';
 
   @override
-  String get tooltip_toggle_pins => 'Alternar fijado';
-
-  @override
   String get tooltip_reset => 'Reset';
 
   @override
   String get dialog_add_link => 'Add a link';
 
   @override
-  String get dialog_link => 'Link';
-
-  @override
   String get dialog_delete => 'Eliminar';
 
   @override
-  String dialog_delete_body(num count) {
+  String dialog_delete_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -451,14 +469,10 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get dialog_delete_body_single =>
-      '¿Realmente quierers eliminar esta nota? Puedes restaurarla desde la papelera.';
-
-  @override
   String get dialog_permanently_delete => 'Eliminar permanentemente';
 
   @override
-  String dialog_permanently_delete_body(num count) {
+  String dialog_permanently_delete_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -477,14 +491,10 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get dialog_permanently_delete_body_single =>
-      '¿Realmente quieres eliminar permanentemente esta nota? No podrás restaurarla.';
-
-  @override
   String get dialog_restore => 'Restaurar';
 
   @override
-  String dialog_restore_body(num count) {
+  String dialog_restore_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -494,9 +504,6 @@ class AppLocalizationsEs extends AppLocalizations {
     );
     return '¿Realmente quieres restaurar $count $_temp0?';
   }
-
-  @override
-  String get dialog_restore_body_single => '¿Realmente quieres restaurar esta nota?';
 
   @override
   String get dialog_empty_bin => 'Vaciar la papelera';
@@ -521,9 +528,6 @@ class AppLocalizationsEs extends AppLocalizations {
       'This password will only be used for this export.';
 
   @override
-  String get dialog_export_encryption_password_hint => 'Password';
-
-  @override
   String get dialog_export_encryption_password_invalid => 'Invalid';
 
   @override
@@ -535,13 +539,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.';
 
   @override
-  String get sort_date => 'Fecha';
-
-  @override
-  String get sort_title => 'Título';
-
-  @override
-  String get sort_ascending => 'Ascendente';
+  String get button_sort_date => 'Date';
 
   @override
   String get placeholder_notes => 'No hay notas';
@@ -577,15 +575,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get action_about => 'About';
 
   @override
-  String get confirmations_title_none => 'Nunca';
-
-  @override
-  String get confirmations_title_irreversible => 'Sólo acciones irreversibles';
-
-  @override
-  String get confirmations_title_all => 'Siempre';
-
-  @override
   String get about_last_edited => 'Última edición';
 
   @override
@@ -596,6 +585,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get about_characters => 'Caracteres';
+
+  @override
+  String get about_time_at => 'at';
 
   @override
   String get snack_bar_copied => 'Content of the note copied to the clipboard.';
@@ -614,7 +606,4 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Notas simples, locales, en Material Design';
-
-  @override
-  String get time_at => 'el';
 }

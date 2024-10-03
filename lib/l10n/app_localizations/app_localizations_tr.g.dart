@@ -53,6 +53,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get button_cancel => 'İptal et';
 
   @override
+  String get button_sort_title => 'Title';
+
+  @override
+  String get button_sort_ascending => 'Ascending';
+
+  @override
   String get settings_appearance => 'Görünüş';
 
   @override
@@ -144,6 +150,15 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get settings_confirmations_description =>
       'Show the confirmation dialogs for actions such as pining and deleting notes';
+
+  @override
+  String get settings_confirmations_title_none => 'Never';
+
+  @override
+  String get settings_confirmations_title_irreversible => 'Irreversible actions only';
+
+  @override
+  String get settings_confirmations_title_all => 'Always';
 
   @override
   String get settings_flag_secure => 'Flag the app as secure';
@@ -375,6 +390,18 @@ class AppLocalizationsTr extends AppLocalizations {
   String get hint_note => 'Note';
 
   @override
+  String get hint_link => 'Link';
+
+  @override
+  String get dialog_export_encryption_password => 'Password';
+
+  @override
+  String get tooltip_toggle_checkbox => 'Onay kutusunu aç/kapat';
+
+  @override
+  String get tooltip_toggle_pins => 'Sabitlemeyi aç/kapat';
+
+  @override
   String get tooltip_fab_add_note => 'Bir not ekle';
 
   @override
@@ -399,9 +426,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get tooltip_search => 'Notların içinde ara';
 
   @override
-  String get tooltip_toggle_checkbox => 'Onay kutusunu aç/kapat';
-
-  @override
   String get tooltip_select_all => 'Tümünü seç';
 
   @override
@@ -417,22 +441,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get tooltip_restore => 'Kurtar';
 
   @override
-  String get tooltip_toggle_pins => 'Sabitlemeyi aç/kapat';
-
-  @override
   String get tooltip_reset => 'Reset';
 
   @override
   String get dialog_add_link => 'Add a link';
 
   @override
-  String get dialog_link => 'Link';
-
-  @override
   String get dialog_delete => 'Sil';
 
   @override
-  String dialog_delete_body(num count) {
+  String dialog_delete_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -451,13 +469,10 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get dialog_delete_body_single => 'Bu notu gerçekten silmek istiyor musunuz?Çöp kutusundan kurtarabilirsiniz.';
-
-  @override
   String get dialog_permanently_delete => 'Kalıcı sil';
 
   @override
-  String dialog_permanently_delete_body(num count) {
+  String dialog_permanently_delete_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -476,14 +491,10 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get dialog_permanently_delete_body_single =>
-      'Bu notu gerçekten kalıcı olarak silmek istiyor musunuz?Kurtarmanız mümkün olmayacaktır.';
-
-  @override
   String get dialog_restore => 'Kurtar';
 
   @override
-  String dialog_restore_body(num count) {
+  String dialog_restore_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -493,9 +504,6 @@ class AppLocalizationsTr extends AppLocalizations {
     );
     return 'Gerçekten $count $_temp0 kurtarmak istiyor musunuz?';
   }
-
-  @override
-  String get dialog_restore_body_single => 'Bu notu gerçekten kurtarmak istiyor musunuz?';
 
   @override
   String get dialog_empty_bin => 'Çöp kutusunu boşalt';
@@ -520,9 +528,6 @@ class AppLocalizationsTr extends AppLocalizations {
       'This password will only be used for this export.';
 
   @override
-  String get dialog_export_encryption_password_hint => 'Password';
-
-  @override
   String get dialog_export_encryption_password_invalid => 'Invalid';
 
   @override
@@ -534,13 +539,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.';
 
   @override
-  String get sort_date => 'Tarih';
-
-  @override
-  String get sort_title => 'Başlık';
-
-  @override
-  String get sort_ascending => 'Artan';
+  String get button_sort_date => 'Date';
 
   @override
   String get placeholder_notes => 'Not yok';
@@ -576,15 +575,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get action_about => 'About';
 
   @override
-  String get confirmations_title_none => 'Asla';
-
-  @override
-  String get confirmations_title_irreversible => 'Sadece geri alınamaz eylemler';
-
-  @override
-  String get confirmations_title_all => 'Her zaman';
-
-  @override
   String get about_last_edited => 'Son düzenleme';
 
   @override
@@ -595,6 +585,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get about_characters => 'Karakter';
+
+  @override
+  String get about_time_at => 'at';
 
   @override
   String get snack_bar_copied => 'Content of the note copied to the clipboard.';
@@ -613,7 +606,4 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Basit, çevrimdışı, materyal tasarımlı notlar';
-
-  @override
-  String get time_at => 'saat';
 }

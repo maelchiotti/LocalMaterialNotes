@@ -53,6 +53,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get button_cancel => 'Отмена';
 
   @override
+  String get button_sort_title => 'Title';
+
+  @override
+  String get button_sort_ascending => 'Ascending';
+
+  @override
   String get settings_appearance => 'Персонализация';
 
   @override
@@ -144,6 +150,15 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get settings_confirmations_description =>
       'Показать диалоги подтверждения при закреплении или удалении заметок';
+
+  @override
+  String get settings_confirmations_title_none => 'Never';
+
+  @override
+  String get settings_confirmations_title_irreversible => 'Irreversible actions only';
+
+  @override
+  String get settings_confirmations_title_all => 'Always';
 
   @override
   String get settings_flag_secure => 'Помечать приложение как защищённое';
@@ -375,6 +390,18 @@ class AppLocalizationsRu extends AppLocalizations {
   String get hint_note => 'Заметка';
 
   @override
+  String get hint_link => 'Link';
+
+  @override
+  String get dialog_export_encryption_password => 'Password';
+
+  @override
+  String get tooltip_toggle_checkbox => 'Переключить флажок';
+
+  @override
+  String get tooltip_toggle_pins => 'Закрепить/Открепить';
+
+  @override
   String get tooltip_fab_add_note => 'Добавить заметку';
 
   @override
@@ -399,9 +426,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get tooltip_search => 'Поиск заметок';
 
   @override
-  String get tooltip_toggle_checkbox => 'Переключить флажок';
-
-  @override
   String get tooltip_select_all => 'Выбрать все';
 
   @override
@@ -417,22 +441,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get tooltip_restore => 'Восстановить';
 
   @override
-  String get tooltip_toggle_pins => 'Закрепить/Открепить';
-
-  @override
   String get tooltip_reset => 'Reset';
 
   @override
   String get dialog_add_link => 'Add a link';
 
   @override
-  String get dialog_link => 'Link';
-
-  @override
   String get dialog_delete => 'Удалить';
 
   @override
-  String dialog_delete_body(num count) {
+  String dialog_delete_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -451,14 +469,10 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get dialog_delete_body_single =>
-      'Вы действительно хотите поместить эту заметку в корзину? Вы можете восстановить её из корзины.';
-
-  @override
   String get dialog_permanently_delete => 'Удалить';
 
   @override
-  String dialog_permanently_delete_body(num count) {
+  String dialog_permanently_delete_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -477,14 +491,10 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get dialog_permanently_delete_body_single =>
-      'Вы действительно хотите навсегда удалить эту заметку? Заметка будет безвозвратно удалена.';
-
-  @override
   String get dialog_restore => 'Восстановить';
 
   @override
-  String dialog_restore_body(num count) {
+  String dialog_restore_body(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -495,9 +505,6 @@ class AppLocalizationsRu extends AppLocalizations {
     );
     return 'Вы действительно хотите восстановить $count $_temp0?';
   }
-
-  @override
-  String get dialog_restore_body_single => 'Вы действительно хотите восстановить эту заметку?';
 
   @override
   String get dialog_empty_bin => 'Очистить корзину';
@@ -522,9 +529,6 @@ class AppLocalizationsRu extends AppLocalizations {
       'Этот пароль будет использоваться только для экспорта текущих заметок.';
 
   @override
-  String get dialog_export_encryption_password_hint => 'Пароль';
-
-  @override
   String get dialog_export_encryption_password_invalid => 'Неверно';
 
   @override
@@ -536,13 +540,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'не удалось расшифровать данные. Убедитесь, что вы ввели правильный пароль.';
 
   @override
-  String get sort_date => 'По дате';
-
-  @override
-  String get sort_title => 'По заголовку';
-
-  @override
-  String get sort_ascending => 'В порядке возрастания';
+  String get button_sort_date => 'Date';
 
   @override
   String get placeholder_notes => 'Нет заметок';
@@ -578,15 +576,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get action_about => 'About';
 
   @override
-  String get confirmations_title_none => 'Никогда';
-
-  @override
-  String get confirmations_title_irreversible => 'Только необратимые действия';
-
-  @override
-  String get confirmations_title_all => 'Всегда';
-
-  @override
   String get about_last_edited => 'Изменено';
 
   @override
@@ -597,6 +586,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get about_characters => 'Количество символов';
+
+  @override
+  String get about_time_at => 'at';
 
   @override
   String get snack_bar_copied => 'Content of the note copied to the clipboard.';
@@ -615,7 +607,4 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get welcome_note_content => 'Простые, локальные заметки в стиле Material Design';
-
-  @override
-  String get time_at => 'в';
 }

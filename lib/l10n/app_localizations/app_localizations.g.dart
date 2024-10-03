@@ -189,6 +189,18 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get button_cancel;
 
+  /// Text of the button to sort the notes list by title.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get button_sort_title;
+
+  /// Text of the button to sort the notes list in ascending order.
+  ///
+  /// In en, this message translates to:
+  /// **'Ascending'**
+  String get button_sort_ascending;
+
   /// Title of the settings section regarding the application's appearance.
   ///
   /// In en, this message translates to:
@@ -369,6 +381,24 @@ abstract class AppLocalizations {
   /// **'When to show a confirmation dialog when performing an action on a note'**
   String get settings_confirmations_description;
 
+  /// Value of the setting to never show a confirmation dialog when performing an action on a note.
+  ///
+  /// In en, this message translates to:
+  /// **'Never'**
+  String get settings_confirmations_title_none;
+
+  /// Value of the setting to only show a confirmation dialog when performing an action on a note if it is irreversible.
+  ///
+  /// In en, this message translates to:
+  /// **'Irreversible actions only'**
+  String get settings_confirmations_title_irreversible;
+
+  /// Value of the setting to always show a confirmation dialog when performing an action on a note.
+  ///
+  /// In en, this message translates to:
+  /// **'Always'**
+  String get settings_confirmations_title_all;
+
   /// Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made).
   ///
   /// In en, this message translates to:
@@ -534,7 +564,7 @@ abstract class AppLocalizations {
   /// Description of the backup settings section.
   ///
   /// In en, this message translates to:
-  /// **'Manual and auto export, encryption, import'**
+  /// **'Manual and automatic export, encryption, import'**
   String get settings_backup_description;
 
   /// Title of the settings section regarding the import of a backup.
@@ -765,407 +795,359 @@ abstract class AppLocalizations {
   /// **'AGPL-3.0'**
   String get settings_licence_description;
 
-  /// No description provided for @hint_title.
+  /// Hint for the text field of the title of the notes.
   ///
   /// In en, this message translates to:
   /// **'Title'**
   String get hint_title;
 
-  /// No description provided for @hint_note.
+  /// Hint for the text field of the content of the notes.
   ///
   /// In en, this message translates to:
   /// **'Note'**
   String get hint_note;
 
-  /// No description provided for @tooltip_fab_add_note.
+  /// Hint for the link text field in the dialog to add a link in the editor.
   ///
   /// In en, this message translates to:
-  /// **'Add a note'**
-  String get tooltip_fab_add_note;
+  /// **'Link'**
+  String get hint_link;
 
-  /// No description provided for @tooltip_fab_empty_bin.
+  /// Hint for the password text field in the dialog to configure the encryption of an automatic or manual export.
   ///
   /// In en, this message translates to:
-  /// **'Empty the bin'**
-  String get tooltip_fab_empty_bin;
+  /// **'Password'**
+  String get dialog_export_encryption_password;
 
-  /// No description provided for @tooltip_fab_toggle_editor_mode_edit.
-  ///
-  /// In en, this message translates to:
-  /// **'Switch to editing mode'**
-  String get tooltip_fab_toggle_editor_mode_edit;
-
-  /// No description provided for @tooltip_fab_toggle_editor_mode_read.
-  ///
-  /// In en, this message translates to:
-  /// **'Switch to reading mode'**
-  String get tooltip_fab_toggle_editor_mode_read;
-
-  /// No description provided for @tooltip_layout_list.
-  ///
-  /// In en, this message translates to:
-  /// **'List view'**
-  String get tooltip_layout_list;
-
-  /// No description provided for @tooltip_layout_grid.
-  ///
-  /// In en, this message translates to:
-  /// **'Grid view'**
-  String get tooltip_layout_grid;
-
-  /// No description provided for @tooltip_sort.
-  ///
-  /// In en, this message translates to:
-  /// **'Sort the notes'**
-  String get tooltip_sort;
-
-  /// No description provided for @tooltip_search.
-  ///
-  /// In en, this message translates to:
-  /// **'Search the notes'**
-  String get tooltip_search;
-
-  /// No description provided for @tooltip_toggle_checkbox.
+  /// Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection).
   ///
   /// In en, this message translates to:
   /// **'Toggle checkbox'**
   String get tooltip_toggle_checkbox;
 
-  /// No description provided for @tooltip_select_all.
-  ///
-  /// In en, this message translates to:
-  /// **'Select all'**
-  String get tooltip_select_all;
-
-  /// No description provided for @tooltip_unselect_all.
-  ///
-  /// In en, this message translates to:
-  /// **'Unselect all'**
-  String get tooltip_unselect_all;
-
-  /// No description provided for @tooltip_delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get tooltip_delete;
-
-  /// No description provided for @tooltip_permanently_delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Permanently delete'**
-  String get tooltip_permanently_delete;
-
-  /// No description provided for @tooltip_restore.
-  ///
-  /// In en, this message translates to:
-  /// **'Restore'**
-  String get tooltip_restore;
-
-  /// No description provided for @tooltip_toggle_pins.
+  /// Tooltip for the button to toggle the pining state of the selected notes in selection mode (the pinned notes will be unpinned, and the not pinned ones will be pinned).
   ///
   /// In en, this message translates to:
   /// **'Toggle pins'**
   String get tooltip_toggle_pins;
 
-  /// No description provided for @tooltip_reset.
+  /// Floating action button on the notes list to add a new note.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a note'**
+  String get tooltip_fab_add_note;
+
+  /// Floating action button in the bin to empty it.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty the bin'**
+  String get tooltip_fab_empty_bin;
+
+  /// Floating action button in the notes editor to switch to editing mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to editing mode'**
+  String get tooltip_fab_toggle_editor_mode_edit;
+
+  /// Floating action button in the notes editor to switch to reading mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to reading mode'**
+  String get tooltip_fab_toggle_editor_mode_read;
+
+  /// Tooltip for the button to use the list layout in the notes list.
+  ///
+  /// In en, this message translates to:
+  /// **'List view'**
+  String get tooltip_layout_list;
+
+  /// Tooltip for the button to use the grid layout in the notes list.
+  ///
+  /// In en, this message translates to:
+  /// **'Grid view'**
+  String get tooltip_layout_grid;
+
+  /// Tooltip for the button to open the menu to choose the sorting method of the notes list.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort the notes'**
+  String get tooltip_sort;
+
+  /// Tooltip for the button to open the search view to search through the notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Search the notes'**
+  String get tooltip_search;
+
+  /// Tooltip for the button to select all the notes while in selection mode in the notes list.
+  ///
+  /// In en, this message translates to:
+  /// **'Select all'**
+  String get tooltip_select_all;
+
+  /// Tooltip for the button to unselect all the notes while in selection mode in the notes list.
+  ///
+  /// In en, this message translates to:
+  /// **'Unselect all'**
+  String get tooltip_unselect_all;
+
+  /// Tooltip for the button to delete a note (moving it to bin).
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get tooltip_delete;
+
+  /// Tooltip for the button to permanently delete a note.
+  ///
+  /// In en, this message translates to:
+  /// **'Permanently delete'**
+  String get tooltip_permanently_delete;
+
+  /// Tooltip for the button to restore a note from the bin.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore'**
+  String get tooltip_restore;
+
+  /// Tooltip for the button to reset the value of a setting to its default value in a settings page.
   ///
   /// In en, this message translates to:
   /// **'Reset'**
   String get tooltip_reset;
 
-  /// No description provided for @dialog_add_link.
+  /// Tooltip for the button to validate the dialog to add a link in the note editor.
   ///
   /// In en, this message translates to:
   /// **'Add a link'**
   String get dialog_add_link;
 
-  /// No description provided for @dialog_link.
-  ///
-  /// In en, this message translates to:
-  /// **'Link'**
-  String get dialog_link;
-
-  /// No description provided for @dialog_delete.
+  /// Title of the the dialog to delete one or multiple notes (moving them to the bin), and text for the confirmation button.
   ///
   /// In en, this message translates to:
   /// **'Delete'**
   String get dialog_delete;
 
-  /// No description provided for @dialog_delete_body.
+  /// Text for the dialog to confirm the deletion of one or multiple notes.
   ///
   /// In en, this message translates to:
   /// **'Do you really want to delete {count} {count, plural, zero{} one{note} other{notes}}? You can restore {count, plural, zero{} one{it} other{them}} from the bin.'**
-  String dialog_delete_body(num count);
+  String dialog_delete_body(int count);
 
-  /// No description provided for @dialog_delete_body_single.
-  ///
-  /// In en, this message translates to:
-  /// **'Do you really want to delete this note? You can restore it from the bin.'**
-  String get dialog_delete_body_single;
-
-  /// No description provided for @dialog_permanently_delete.
+  /// Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button.
   ///
   /// In en, this message translates to:
   /// **'Delete permanently'**
   String get dialog_permanently_delete;
 
-  /// No description provided for @dialog_permanently_delete_body.
+  /// Text for the dialog to confirm the permanent deletion of one or multiple notes.
   ///
   /// In en, this message translates to:
   /// **'Do you really want to permanently delete {count} {count, plural, zero{} one{note} other{notes}}? You will not be able to restore {count, plural, zero{} one{it} other{them}}.'**
-  String dialog_permanently_delete_body(num count);
+  String dialog_permanently_delete_body(int count);
 
-  /// No description provided for @dialog_permanently_delete_body_single.
-  ///
-  /// In en, this message translates to:
-  /// **'Do you really want to permanently delete this note? You will not be able to restore it.'**
-  String get dialog_permanently_delete_body_single;
-
-  /// No description provided for @dialog_restore.
+  /// Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button.
   ///
   /// In en, this message translates to:
   /// **'Restore'**
   String get dialog_restore;
 
-  /// No description provided for @dialog_restore_body.
+  /// Text for the dialog to confirm restoring one or multiple notes from the bin.
   ///
   /// In en, this message translates to:
   /// **'Do you really want to restore {count} {count, plural, zero{} one{note} other{notes}}?'**
-  String dialog_restore_body(num count);
+  String dialog_restore_body(int count);
 
-  /// No description provided for @dialog_restore_body_single.
-  ///
-  /// In en, this message translates to:
-  /// **'Do you really want to restore this note?'**
-  String get dialog_restore_body_single;
-
-  /// No description provided for @dialog_empty_bin.
+  /// Title of the the dialog to empty the bin, and text for the confirmation button.
   ///
   /// In en, this message translates to:
   /// **'Empty the bin'**
   String get dialog_empty_bin;
 
-  /// No description provided for @dialog_empty_bin_body.
+  /// Text for the dialog to confirm emptying the bin.
   ///
   /// In en, this message translates to:
   /// **'Do you really want to permanently empty the bin? You will not be able to restore the notes it contains.'**
   String get dialog_empty_bin_body;
 
-  /// No description provided for @dialog_export_encryption_switch.
+  /// Text for the switch to toggle the encryption of the export in the dialog to manually or automatically exporting the notes as JSON.
   ///
   /// In en, this message translates to:
   /// **'Encrypt the JSON export'**
   String get dialog_export_encryption_switch;
 
-  /// No description provided for @dialog_export_encryption_description.
+  /// Description for the encryption feature when the switch to toggle the encryption of the export is enabled.
   ///
   /// In en, this message translates to:
   /// **'The title and the content of the notes will be encrypted using your password. It should be randomly generated, exactly 32 characters long, strong (at least 1 lowercase, 1 uppercase, 1 number and 1 special character) and securely stored.'**
   String get dialog_export_encryption_description;
 
-  /// No description provided for @dialog_export_encryption_secondary_description_auto.
+  /// Secondary description for the encryption feature in the case of an automatic export.
   ///
   /// In en, this message translates to:
-  /// **'This password will be used for all future auto exports.'**
+  /// **'This password will be used for all future automatic exports.'**
   String get dialog_export_encryption_secondary_description_auto;
 
-  /// No description provided for @dialog_export_encryption_secondary_description_manual.
+  /// Secondary description for the encryption feature in the case of a manual export.
   ///
   /// In en, this message translates to:
   /// **'This password will only be used for this export.'**
   String get dialog_export_encryption_secondary_description_manual;
 
-  /// No description provided for @dialog_export_encryption_password_hint.
-  ///
-  /// In en, this message translates to:
-  /// **'Password'**
-  String get dialog_export_encryption_password_hint;
-
-  /// No description provided for @dialog_export_encryption_password_invalid.
+  /// Error message displayed under the text field for the encryption password if it does not meet the strength requirements.
   ///
   /// In en, this message translates to:
   /// **'Invalid'**
   String get dialog_export_encryption_password_invalid;
 
-  /// No description provided for @dialog_import_encryption_password_description.
+  /// Description in the import dialog when an import is encrypted and the password is needed.
   ///
   /// In en, this message translates to:
   /// **'This export is encrypted. To import it, you need to provide the password used to encrypt it.'**
   String get dialog_import_encryption_password_description;
 
-  /// No description provided for @dialog_import_encryption_password_error.
+  /// Error when the decryption of an encrypted import failed.
   ///
   /// In en, this message translates to:
   /// **'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.'**
   String get dialog_import_encryption_password_error;
 
-  /// No description provided for @sort_date.
+  /// Text of the button to sort the notes list by date.
   ///
   /// In en, this message translates to:
   /// **'Date'**
-  String get sort_date;
+  String get button_sort_date;
 
-  /// No description provided for @sort_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Title'**
-  String get sort_title;
-
-  /// No description provided for @sort_ascending.
-  ///
-  /// In en, this message translates to:
-  /// **'Ascending'**
-  String get sort_ascending;
-
-  /// No description provided for @placeholder_notes.
+  /// Placeholder on the notes page when there are no notes.
   ///
   /// In en, this message translates to:
   /// **'No notes'**
   String get placeholder_notes;
 
-  /// No description provided for @placeholder_bin.
+  /// Placeholder on the bin page when there are no notes.
   ///
   /// In en, this message translates to:
   /// **'No deleted notes'**
   String get placeholder_bin;
 
-  /// No description provided for @action_disabled.
+  /// Swipe action that is disabled in the settings.
   ///
   /// In en, this message translates to:
   /// **'Disabled'**
   String get action_disabled;
 
-  /// No description provided for @action_pin.
+  /// Swipe or menu action to pin a note.
   ///
   /// In en, this message translates to:
   /// **'Pin'**
   String get action_pin;
 
-  /// No description provided for @action_unpin.
+  /// Swipe or menu action to unpin a note.
   ///
   /// In en, this message translates to:
   /// **'Unpin'**
   String get action_unpin;
 
-  /// No description provided for @action_copy.
+  /// Swipe or menu action to copy the content of a note.
   ///
   /// In en, this message translates to:
   /// **'Copy'**
   String get action_copy;
 
-  /// No description provided for @action_share.
+  /// Swipe or menu action to share the title and the content of a note.
   ///
   /// In en, this message translates to:
   /// **'Share'**
   String get action_share;
 
-  /// No description provided for @action_delete.
+  /// Swipe or menu action to delete a note (moving it to the bin).
   ///
   /// In en, this message translates to:
   /// **'Delete'**
   String get action_delete;
 
-  /// No description provided for @action_restore.
+  /// Swipe or menu action to restore a note from the bin.
   ///
   /// In en, this message translates to:
   /// **'Restore'**
   String get action_restore;
 
-  /// No description provided for @action_delete_permanently.
+  /// Swipe or menu action to permanently delete a note.
   ///
   /// In en, this message translates to:
   /// **'Delete permanently'**
   String get action_delete_permanently;
 
-  /// No description provided for @action_about.
+  /// Swipe or menu action to show information about a note.
   ///
   /// In en, this message translates to:
   /// **'About'**
   String get action_about;
 
-  /// No description provided for @confirmations_title_none.
-  ///
-  /// In en, this message translates to:
-  /// **'Never'**
-  String get confirmations_title_none;
-
-  /// No description provided for @confirmations_title_irreversible.
-  ///
-  /// In en, this message translates to:
-  /// **'Irreversible actions only'**
-  String get confirmations_title_irreversible;
-
-  /// No description provided for @confirmations_title_all.
-  ///
-  /// In en, this message translates to:
-  /// **'Always'**
-  String get confirmations_title_all;
-
-  /// No description provided for @about_last_edited.
+  /// Date when the note was edited for the last time.
   ///
   /// In en, this message translates to:
   /// **'Last edited'**
   String get about_last_edited;
 
-  /// No description provided for @about_created.
+  /// Date when the note was created.
   ///
   /// In en, this message translates to:
   /// **'Created'**
   String get about_created;
 
-  /// No description provided for @about_words.
+  /// Number of words in the content of the note.
   ///
   /// In en, this message translates to:
   /// **'Words'**
   String get about_words;
 
-  /// No description provided for @about_characters.
+  /// Number of characters in the content of the note.
   ///
   /// In en, this message translates to:
   /// **'Characters'**
   String get about_characters;
 
-  /// No description provided for @snack_bar_copied.
+  /// No description provided for @about_time_at.
+  ///
+  /// In en, this message translates to:
+  /// **'at'**
+  String get about_time_at;
+
+  /// Snack bar informing that the content of the note was copied to clipboard.
   ///
   /// In en, this message translates to:
   /// **'Content of the note copied to the clipboard.'**
   String get snack_bar_copied;
 
-  ///
+  /// Snack bar informing that the notes were successfully imported.
   ///
   /// In en, this message translates to:
   /// **'The notes were successfully imported.'**
   String get snack_bar_import_success;
 
-  ///
+  /// Snack bar informing that the notes were successfully manually exported.
   ///
   /// In en, this message translates to:
   /// **'The notes were successfully exported.'**
   String get snack_bar_export_success;
 
-  /// No description provided for @action_add_note_title.
+  /// Title of the home screen action to add a new note.
   ///
   /// In en, this message translates to:
   /// **'Add a note'**
   String get action_add_note_title;
 
-  /// No description provided for @welcome_note_title.
+  /// Title of the welcome note automatically created on the first run of the application.
   ///
   /// In en, this message translates to:
   /// **'Welcome to Material Notes!'**
   String get welcome_note_title;
 
-  /// No description provided for @welcome_note_content.
+  /// Content of the welcome note automatically created on the first run of the application.
   ///
   /// In en, this message translates to:
   /// **'Simple, local, material design notes'**
   String get welcome_note_content;
-
-  /// No description provided for @time_at.
-  ///
-  /// In en, this message translates to:
-  /// **'at'**
-  String get time_at;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

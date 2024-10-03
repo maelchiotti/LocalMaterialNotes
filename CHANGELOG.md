@@ -30,7 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- Auto export settings tiles not updating after disabling auto export
+- Automatic export settings tiles not updating after disabling automatic export
 - Notes sorted by their created time instead of their edited time
 - Focus on the note content not requested when the title is validated
 - Typos
