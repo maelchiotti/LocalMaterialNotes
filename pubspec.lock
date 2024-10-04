@@ -1168,7 +1168,7 @@ packages:
     description:
       path: "."
       ref: "v0.8.1_fixed"
-      resolved-ref: "828d1840a897f96cd482436e0538cdbf6314eb56"
+      resolved-ref: "786c04ea6a0fe1624db73ca50bc75ab26fbdfd52"
       url: "https://github.com/maelchiotti/shared_storage"
     source: git
     version: "0.8.1"
