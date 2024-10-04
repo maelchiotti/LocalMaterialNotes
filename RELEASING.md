@@ -2,6 +2,10 @@
 
 ## Checklist
 
+### Tests
+
+- [ ] Run all tests successfully
+
 ### Upgrades, versioning and code generation
 
 - [ ] Upgrade Flutter and Dart versions
