@@ -1,0 +1,13 @@
+AJOUTÉ
+- Bouton dans la barre d'outils pour ajouter un lien au texte sélectionné
+- Bouton pour basculer l'éditeur entre le mode édition et le mode lecture
+- Réglage pour ouvrir l'éditeur en mode lecture par défaut
+- Menu et action de balayage pour copier dans le presse-papier
+- Action de balayage pour partager
+- Aperçu en direct lors de la sélection de la mise à l'échelle du texte
+
+MODIFIÉ
+- Affichage des valeurs des paramètres
+
+CORRIGÉ
+- Titre de la popup de mise à l'échelle du texte erroné
