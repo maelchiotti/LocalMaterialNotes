@@ -34,15 +34,17 @@ class _ShellPageState extends State<ShellPage> {
       case RoutingRoute.bin:
         return const TopNavigation(
           appbar: NotesAppBar(
-            key: Keys.appBarNotes,
+            key: Keys.appBarNotesBin,
           ),
         );
       case RoutingRoute.notesEditor:
         return const TopNavigation(
+          key: Keys.appBarEditor,
           appbar: EditorAppBar(),
         );
       case RoutingRoute.settings:
         return const TopNavigation(
+          key: Keys.appBarSettingsMain,
           appbar: BasicAppBar(),
         );
       case RoutingRoute.settingsAppearance:
@@ -51,6 +53,7 @@ class _ShellPageState extends State<ShellPage> {
       case RoutingRoute.settingsBackup:
       case RoutingRoute.settingsAbout:
         return const TopNavigation(
+          key: Keys.appBarSettingsMainSubpage,
           appbar: BasicAppBar.back(),
         );
       default:
@@ -78,7 +81,9 @@ class _ShellPageState extends State<ShellPage> {
           key: Keys.fabAddNote,
         );
       case RoutingRoute.bin:
-        return const FabEmptyBin();
+        return const FabEmptyBin(
+          key: Keys.fabEmptyBin,
+        );
       default:
         return null;
     }
