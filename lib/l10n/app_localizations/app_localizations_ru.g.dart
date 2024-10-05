@@ -62,7 +62,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_appearance => 'Персонализация';
 
   @override
-  String get settings_appearance_description => 'Язык, тема, стиль заметок';
+  String get settings_appearance_description => 'Language, theme, text scaling, notes tiles';
 
   @override
   String get settings_appearance_application => 'Приложение';
@@ -71,7 +71,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_language => 'Язык';
 
   @override
-  String get settings_language_contribute => 'Contribute';
+  String get settings_language_contribute => 'Поддержать';
 
   @override
   String get settings_theme => 'Тема оформления';
@@ -98,58 +98,58 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_black_theming_description => 'Использовать чёрный фон при тёмной теме оформления';
 
   @override
-  String get settings_text_scaling => 'Text scaling';
+  String get settings_text_scaling => 'Размер текста';
 
   @override
   String get settings_appearance_notes_tiles => 'Стиль заметок';
 
   @override
-  String get settings_show_titles_only => 'Titles only';
+  String get settings_show_titles_only => 'Только заголовки';
 
   @override
-  String get settings_show_titles_only_description => 'Only show the titles of the notes';
+  String get settings_show_titles_only_description => 'Показывать только заголовки заметок';
 
   @override
-  String get settings_show_titles_only_disable_in_search_view => 'Disable titles only in search view';
+  String get settings_show_titles_only_disable_in_search_view => 'Отключить заголовки только в режиме поиска';
 
   @override
   String get settings_show_titles_only_disable_in_search_view_description =>
-      'Disable the option to only show the titles when in the search view';
+      'Отключите опцию, чтобы показывать только заголовки во время поиска';
 
   @override
-  String get settings_disable_subdued_note_content_preview => 'Non-subdued preview';
+  String get settings_disable_subdued_note_content_preview => 'Неприглушенный предварительный просмотр';
 
   @override
   String get settings_disable_subdued_note_content_preview_description =>
-      'Disable the subdued text color of the notes content preview';
+      'Не приглушать цвет текста контента заметки при предварительном просмотре';
 
   @override
   String get settings_show_tiles_background => 'Фон';
 
   @override
-  String get settings_show_tiles_background_description => 'Show the background of the notes tiles';
+  String get settings_show_tiles_background_description => 'Показывать фон заметок';
 
   @override
   String get settings_show_separators => 'Разделители';
 
   @override
-  String get settings_show_separators_description => 'Show a separator between the notes tiles';
+  String get settings_show_separators_description => 'Показать разделитель между заметками';
 
   @override
   String get settings_behavior => 'Поведение';
 
   @override
-  String get settings_behavior_description => 'Диалоги подтверждения, действия при свайпе';
+  String get settings_behavior_description => 'Confirmations, secure flag, swipe actions';
 
   @override
   String get settings_behavior_application => 'Приложение';
 
   @override
-  String get settings_confirmations => 'Диалоги подтверждения';
+  String get settings_confirmations => 'Confirmation dialog';
 
   @override
   String get settings_confirmations_description =>
-      'Показать диалоги подтверждения при закреплении или удалении заметок';
+      'When to show a confirmation dialog when performing an action on a note';
 
   @override
   String get settings_confirmations_title_none => 'Never';
@@ -175,20 +175,20 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settings_swipe_action_right_description =>
-      'Действие, которое будет выполняться при свайпе вправо по заметке';
+      'Action to trigger when a right swipe is performed on a note tile';
 
   @override
   String get settings_swipe_action_left => 'Действие при свайпе влево';
 
   @override
   String get settings_swipe_action_left_description =>
-      'Действие, которое будет выполняться при свайпе влево по заметке';
+      'Action to trigger when a left swipe is performed on a note tile';
 
   @override
   String get settings_editor => 'Редактор';
 
   @override
-  String get settings_editor_description => 'Кнопки, панель инструментов, интервал';
+  String get settings_editor_description => 'Buttons, toolbar, reading mode, spacing';
 
   @override
   String get settings_editor_formatting => 'Форматирование';
@@ -213,7 +213,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_show_toolbar_description => 'Показать панель инструментов для расширенного форматирования текста';
 
   @override
-  String get settings_editor_behavior => 'Behavior';
+  String get settings_editor_behavior => 'Поведение';
 
   @override
   String get settings_show_editor_mode_button => 'Editor mode button';
@@ -229,11 +229,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_open_editor_reading_mode_description => 'Open the editor in reading mode by default';
 
   @override
-  String get settings_focus_title_on_new_note => 'Focus the title';
+  String get settings_focus_title_on_new_note => 'Фокусироваться на заголовке';
 
   @override
-  String get settings_focus_title_on_new_note_description =>
-      'Focus the title instead of the content when creating a new note';
+  String get settings_focus_title_on_new_note_description => 'При создании новой заметки сфокусироваться на заголовок';
 
   @override
   String get settings_editor_appearance => 'Персонализация';
@@ -248,7 +247,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_backup => 'Резервное копирование';
 
   @override
-  String get settings_backup_description => 'Экспорт, импорт';
+  String get settings_backup_description => 'Manual and automatic export, encryption, import';
 
   @override
   String get settings_backup_import => 'Импорт';
@@ -260,7 +259,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_import_description => 'Импортировать заметки из JSON–файла';
 
   @override
-  String get settings_backup_manual_export => 'Manual export';
+  String get settings_backup_manual_export => 'Ручной экспорт';
 
   @override
   String get settings_export_json => 'Экспортировать в формате JSON';
@@ -277,17 +276,17 @@ class AppLocalizationsRu extends AppLocalizations {
       'Моментально экспортировать заметки в формате Markdown (включая заметки из корзины)';
 
   @override
-  String get settings_backup_auto_export => 'Automatic export';
+  String get settings_backup_auto_export => 'Автоматический экспорт';
 
   @override
-  String get settings_auto_export => 'Automatic export';
+  String get settings_auto_export => 'Автоматический экспорт';
 
   @override
   String get settings_auto_export_description =>
       'Автоматически экспортировать заметки в формате JSON (включая заметки из корзины)';
 
   @override
-  String get settings_auto_export_frequency => 'Frequency';
+  String get settings_auto_export_frequency => 'Периодичность';
 
   @override
   String settings_auto_export_frequency_value(String frequency) {
@@ -308,14 +307,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_auto_export_frequency_description => 'Frequency of the automatic export of the notes';
 
   @override
-  String get settings_auto_export_encryption => 'Encryption';
+  String get settings_auto_export_encryption => 'Шифрование';
 
   @override
-  String get settings_auto_export_encryption_description =>
-      'Encrypt the title and the content of the notes with a password';
+  String get settings_auto_export_encryption_description => 'Зашифровать заголовок и содержимое заметок паролем';
 
   @override
-  String get settings_auto_export_directory => 'Directory';
+  String get settings_auto_export_directory => 'Директория';
 
   @override
   String get settings_auto_export_directory_description =>
@@ -325,7 +323,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_about => 'О приложении';
 
   @override
-  String get settings_about_description => 'Информация, справка, GitHub, лицензия';
+  String get settings_about_description => 'Information, help, links';
 
   @override
   String get settings_about_application => 'Приложение';
@@ -343,10 +341,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_about_help => 'Справка';
 
   @override
-  String get settings_github_issues => 'Report a bug or request a feature';
+  String get settings_github_issues => 'Сообщить об ошибке или запросить функцию';
 
   @override
-  String get settings_github_issues_description => 'Report a bug or request a feature by creating a GitHub issue';
+  String get settings_github_issues_description => 'Сообщить об ошибке или запросить функцию, создав запрос на GitHub';
 
   @override
   String get settings_github_discussions => 'Задать вопрос';
@@ -359,7 +357,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String settings_get_in_touch_description(Object email) {
-    return 'Contact the developer via mail at $email';
+    return 'Свяжитесь с разработчиком по почте $email';
   }
 
   @override
@@ -375,7 +373,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_localizations => 'Crowdin';
 
   @override
-  String get settings_localizations_description => 'Add or improve the localizations on the Crowdin project';
+  String get settings_localizations_description => 'Добавляйте или улучшайте перевод в проекте Crowdin';
 
   @override
   String get settings_licence => 'Лицензия';
@@ -441,7 +439,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get tooltip_restore => 'Восстановить';
 
   @override
-  String get tooltip_reset => 'Reset';
+  String get tooltip_reset => 'Сброс';
 
   @override
   String get dialog_add_link => 'Add a link';
@@ -522,7 +520,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get dialog_export_encryption_secondary_description_auto =>
-      'Этот пароль будет использован для всех автоматических экспортов заметок.';
+      'This password will be used for all future automatic exports.';
 
   @override
   String get dialog_export_encryption_secondary_description_manual =>

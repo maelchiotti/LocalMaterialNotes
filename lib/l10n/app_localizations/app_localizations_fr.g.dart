@@ -53,16 +53,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get button_cancel => 'Annuler';
 
   @override
-  String get button_sort_title => 'Title';
+  String get button_sort_title => 'Titre';
 
   @override
-  String get button_sort_ascending => 'Ascending';
+  String get button_sort_ascending => 'Croissant';
 
   @override
   String get settings_appearance => 'Apparence';
 
   @override
-  String get settings_appearance_description => 'Langue, thème, tuiles de notes';
+  String get settings_appearance_description => 'Langue, thème, mise à l\'échelle du texte, tuiles de notes';
 
   @override
   String get settings_appearance_application => 'Application';
@@ -139,7 +139,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_behavior => 'Comportement';
 
   @override
-  String get settings_behavior_description => 'Confirmations, actions de balayage';
+  String get settings_behavior_description => 'Confirmations, sécurité, actions de balayage';
 
   @override
   String get settings_behavior_application => 'Application';
@@ -149,23 +149,23 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_confirmations_description =>
-      'Afficher les dialogues de confirmation pour les actions telles qu\'épingler ou supprimer les notes';
+      'Quand afficher un dialogue de confirmation lors de l\'exécution d\'une action sur une note';
 
   @override
-  String get settings_confirmations_title_none => 'Never';
+  String get settings_confirmations_title_none => 'Jamais';
 
   @override
-  String get settings_confirmations_title_irreversible => 'Irreversible actions only';
+  String get settings_confirmations_title_irreversible => 'Actions irréversibles uniquement';
 
   @override
-  String get settings_confirmations_title_all => 'Always';
+  String get settings_confirmations_title_all => 'Toujours';
 
   @override
   String get settings_flag_secure => 'Marquer l\'application comme sécurisée';
 
   @override
   String get settings_flag_secure_description =>
-      'Masquer lapplication des applications récentes et empêcher la réalisation de captures décran';
+      'Masquer l\'application des applications récentes et empêcher la réalisation de captures d\'écran';
 
   @override
   String get settings_behavior_swipe_actions => 'Actions de balayage';
@@ -175,20 +175,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_swipe_action_right_description =>
-      'Action à déclencher lorsqu\'un balayage vers la droite est effectué sur les tuiles de notes';
+      'Action à déclencher lorsqu\'un balayage vers la droite est effectué sur une tuile de note';
 
   @override
   String get settings_swipe_action_left => 'Action de balayage à gauche';
 
   @override
   String get settings_swipe_action_left_description =>
-      'Action à déclencher lorsqu\'un balayage vers la gauche est effectué sur les tuiles de notes';
+      'Action à déclencher lorsqu\'un balayage vers la gauche est effectué sur une tuile de note';
 
   @override
   String get settings_editor => 'Éditeur';
 
   @override
-  String get settings_editor_description => 'Boutons, barre d\'outils, espacement';
+  String get settings_editor_description => 'Boutons, barre d\'outils, mode lecture, espacement';
 
   @override
   String get settings_editor_formatting => 'Mise en forme';
@@ -218,17 +218,17 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_editor_behavior => 'Comportement';
 
   @override
-  String get settings_show_editor_mode_button => 'Editor mode button';
+  String get settings_show_editor_mode_button => 'Bouton du mode édition';
 
   @override
   String get settings_show_editor_mode_button_description =>
-      'Enable the button to toggle the editor between editing mode and reading mode';
+      'Activer le bouton pour basculer entre le mode d\'édition et le mode de lecture';
 
   @override
-  String get settings_open_editor_reading_mode => 'Open in reading mode';
+  String get settings_open_editor_reading_mode => 'Ouvrir en mode lecture';
 
   @override
-  String get settings_open_editor_reading_mode_description => 'Open the editor in reading mode by default';
+  String get settings_open_editor_reading_mode_description => 'Ouvrir l\'éditeur en mode lecture par défaut';
 
   @override
   String get settings_focus_title_on_new_note => 'Focaliser le titre';
@@ -250,7 +250,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_backup => 'Sauvegarde';
 
   @override
-  String get settings_backup_description => 'Exportation, importation';
+  String get settings_backup_description => 'Export manuel et automatique, chiffrement, import';
 
   @override
   String get settings_backup_import => 'Importer';
@@ -296,18 +296,18 @@ class AppLocalizationsFr extends AppLocalizations {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
+        '1': 'Tous les jours',
+        '7': 'Toutes les semaines',
+        '14': 'Toutes les 2 semaines',
+        '30': 'Tous les mois',
+        'other': 'Tous les $frequency jours',
       },
     );
-    return 'Every $_temp0';
+    return '$_temp0';
   }
 
   @override
-  String get settings_auto_export_frequency_description => 'Frequency of the automatic export of the notes';
+  String get settings_auto_export_frequency_description => 'Fréquence de l\'export automatique des notes';
 
   @override
   String get settings_auto_export_encryption => 'Chiffrement';
@@ -320,14 +320,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_auto_export_directory => 'Dossier';
 
   @override
-  String get settings_auto_export_directory_description =>
-      'Directory where to store the automatic exports of the notes';
+  String get settings_auto_export_directory_description => 'Répertoire où stocker les exports automatiques des notes';
 
   @override
   String get settings_about => 'À propos';
 
   @override
-  String get settings_about_description => 'Informations, aide, GitHub, licence';
+  String get settings_about_description => 'Information, aide, liens';
 
   @override
   String get settings_about_application => 'Application';
@@ -393,10 +392,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get hint_note => 'Note';
 
   @override
-  String get hint_link => 'Link';
+  String get hint_link => 'Lien';
 
   @override
-  String get dialog_export_encryption_password => 'Password';
+  String get dialog_export_encryption_password => 'Mot de passe';
 
   @override
   String get tooltip_toggle_checkbox => 'Basculer la case à cocher';
@@ -411,10 +410,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tooltip_fab_empty_bin => 'Vider la corbeille';
 
   @override
-  String get tooltip_fab_toggle_editor_mode_edit => 'Switch to editing mode';
+  String get tooltip_fab_toggle_editor_mode_edit => 'Basculer en mode édition';
 
   @override
-  String get tooltip_fab_toggle_editor_mode_read => 'Switch to reading mode';
+  String get tooltip_fab_toggle_editor_mode_read => 'Basculer en mode lecture';
 
   @override
   String get tooltip_layout_list => 'Vue en liste';
@@ -447,7 +446,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tooltip_reset => 'Réinitialiser';
 
   @override
-  String get dialog_add_link => 'Add a link';
+  String get dialog_add_link => 'Ajouter un lien';
 
   @override
   String get dialog_delete => 'Supprimer';
@@ -551,31 +550,31 @@ class AppLocalizationsFr extends AppLocalizations {
   String get placeholder_bin => 'Aucune note supprimée';
 
   @override
-  String get action_disabled => 'Disabled';
+  String get action_disabled => 'Désactivé';
 
   @override
-  String get action_pin => 'Pin';
+  String get action_pin => 'Épingler';
 
   @override
-  String get action_unpin => 'Unpin';
+  String get action_unpin => 'Désépingler';
 
   @override
-  String get action_copy => 'Copy';
+  String get action_copy => 'Copier';
 
   @override
-  String get action_share => 'Share';
+  String get action_share => 'Partager';
 
   @override
-  String get action_delete => 'Delete';
+  String get action_delete => 'Supprimer';
 
   @override
-  String get action_restore => 'Restore';
+  String get action_restore => 'Restaurer';
 
   @override
-  String get action_delete_permanently => 'Delete permanently';
+  String get action_delete_permanently => 'Supprimer définitivement';
 
   @override
-  String get action_about => 'About';
+  String get action_about => 'À propos';
 
   @override
   String get about_last_edited => 'Dernière modification';
@@ -590,16 +589,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get about_characters => 'Caractères';
 
   @override
-  String get about_time_at => 'at';
+  String get about_time_at => 'à';
 
   @override
-  String get snack_bar_copied => 'Content of the note copied to the clipboard.';
+  String get snack_bar_copied => 'Contenu de la note copié dans le presse-papiers.';
 
   @override
-  String get snack_bar_import_success => 'The notes were successfully imported.';
+  String get snack_bar_import_success => 'Les notes ont bien été importées.';
 
   @override
-  String get snack_bar_export_success => 'The notes were successfully exported.';
+  String get snack_bar_export_success => 'Les notes ont bien été exportées.';
 
   @override
   String get action_add_note_title => 'Ajouter une note';

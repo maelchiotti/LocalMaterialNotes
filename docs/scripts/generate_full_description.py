@@ -1,15 +1,15 @@
-# Generates all full_description.txt files
-
 import minify_html
 import os
 import yaml
 
 root = os.getcwd()
-for language in os.listdir(root):
-    if not os.path.isdir(os.path.join(root, language)):
+path = os.path.join(root, "fastlane/metadata/android")
+
+for language in os.listdir(path):
+    if not os.path.isdir(os.path.join(path, language)):
         continue
 
-    yaml_filepath = os.path.join(root, language, "full_description.yaml")
+    yaml_filepath = os.path.join(path, language, "full_description.yaml")
 
     if not os.path.isfile(yaml_filepath):
         continue
@@ -24,7 +24,7 @@ for language in os.listdir(root):
             )
 
             # Write the description into the text file
-            text_filepath = os.path.join(root, language, "full_description.txt")
+            text_filepath = os.path.join(path, language, "full_description.txt")
             with open(text_filepath, mode="w", encoding="utf-8") as text_file:
                 text_file.write(full_description_minified)
 
