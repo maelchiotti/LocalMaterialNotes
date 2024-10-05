@@ -19,7 +19,7 @@ class CustomSettingsList extends StatelessWidget {
 
     return SettingsList(
       platform: DevicePlatform.android,
-      contentPadding: Paddings.custom.bottomSystemUi,
+      contentPadding: Paddings.bottomSystemUi,
       lightTheme: SettingsThemeData(
         settingsListBackground: theme.colorScheme.surface,
         titleTextColor: theme.textTheme.bodyMedium?.color,

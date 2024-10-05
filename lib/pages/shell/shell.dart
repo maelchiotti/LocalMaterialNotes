@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/common/widgets/fabs/fab_add_note.dart';
@@ -35,15 +34,17 @@ class _ShellPageState extends State<ShellPage> {
       case RoutingRoute.bin:
         return const TopNavigation(
           appbar: NotesAppBar(
-            key: Keys.appBarNotes,
+            key: Keys.appBarNotesBin,
           ),
         );
       case RoutingRoute.notesEditor:
         return const TopNavigation(
+          key: Keys.appBarEditor,
           appbar: EditorAppBar(),
         );
       case RoutingRoute.settings:
         return const TopNavigation(
+          key: Keys.appBarSettingsMain,
           appbar: BasicAppBar(),
         );
       case RoutingRoute.settingsAppearance:
@@ -52,6 +53,7 @@ class _ShellPageState extends State<ShellPage> {
       case RoutingRoute.settingsBackup:
       case RoutingRoute.settingsAbout:
         return const TopNavigation(
+          key: Keys.appBarSettingsMainSubpage,
           appbar: BasicAppBar.back(),
         );
       default:
@@ -79,7 +81,9 @@ class _ShellPageState extends State<ShellPage> {
           key: Keys.fabAddNote,
         );
       case RoutingRoute.bin:
-        return const FabEmptyBin();
+        return const FabEmptyBin(
+          key: Keys.fabEmptyBin,
+        );
       default:
         return null;
     }
@@ -91,7 +95,7 @@ class _ShellPageState extends State<ShellPage> {
       key: scaffoldDrawerKey,
       appBar: _appBar,
       drawer: _drawer,
-      body: KeyboardVisibilityProvider(child: widget.child),
+      body: widget.child,
       floatingActionButton: _floatingActionButton,
     );
   }

@@ -2,17 +2,17 @@ import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:localmaterialnotes/common/actions/copy.dart';
 import 'package:localmaterialnotes/common/actions/delete.dart';
 import 'package:localmaterialnotes/common/actions/pin.dart';
 import 'package:localmaterialnotes/common/actions/restore.dart';
+import 'package:localmaterialnotes/common/actions/share.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/widgets/navigation/menu_options.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/menu_option.dart';
 import 'package:localmaterialnotes/pages/editor/sheets/about_sheet.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:share_plus/share_plus.dart';
 
 /// Editor's app bar.
 ///
@@ -24,7 +24,9 @@ import 'package:share_plus/share_plus.dart';
 ///   - The menu with further actions.
 class EditorAppBar extends ConsumerStatefulWidget {
   /// Default constructor.
-  const EditorAppBar({super.key});
+  const EditorAppBar({
+    super.key,
+  });
 
   @override
   ConsumerState<EditorAppBar> createState() => _BackAppBarState();
@@ -50,8 +52,10 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     switch (menuOption) {
       case MenuOption.togglePin:
         await togglePinNote(context, ref, note);
+      case MenuOption.copy:
+        await copy(note);
       case MenuOption.share:
-        await _shareNote(note);
+        await share(note);
       case MenuOption.delete:
         await deleteNote(context, ref, note);
       case MenuOption.restore:
@@ -104,11 +108,6 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     editorController.formatSelection(
       isToggled ? ParchmentAttribute.block.checkList.unset : ParchmentAttribute.block.checkList,
     );
-  }
-
-  /// Shares the note as text (title and content).
-  Future<void> _shareNote(Note note) async {
-    await Share.share(note.shareText, subject: note.title);
   }
 
   @override
@@ -167,21 +166,22 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                           ? [
                               MenuOption.restore.popupMenuItem(),
                               MenuOption.deletePermanently.popupMenuItem(),
+                              const PopupMenuDivider(),
+                              MenuOption.about.popupMenuItem(),
                             ]
                           : [
-                              MenuOption.togglePin.popupMenuItem(note.pinned),
+                              MenuOption.copy.popupMenuItem(),
                               MenuOption.share.popupMenuItem(),
+                              const PopupMenuDivider(),
+                              MenuOption.togglePin.popupMenuItem(note.pinned),
                               MenuOption.delete.popupMenuItem(),
-                            ])
-                        ..addAll(
-                          [
-                            MenuOption.about.popupMenuItem(),
-                          ],
-                        );
+                              const PopupMenuDivider(),
+                              MenuOption.about.popupMenuItem(),
+                            ]);
                     },
                     onSelected: _onMenuOptionSelected,
                   ),
-                  Padding(padding: Paddings.custom.appBarActionsEnd),
+                  Padding(padding: Paddings.appBarActionsEnd),
                 ],
         );
       },

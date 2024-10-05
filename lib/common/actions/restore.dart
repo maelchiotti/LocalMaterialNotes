@@ -23,7 +23,7 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async 
   if (!await askForConfirmation(
     context,
     localizations.dialog_restore,
-    localizations.dialog_restore_body_single,
+    localizations.dialog_restore_body(1),
     localizations.dialog_restore,
   )) {
     return false;

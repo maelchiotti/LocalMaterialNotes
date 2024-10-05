@@ -42,16 +42,16 @@ class SettingsAboutPage extends StatelessWidget {
       applicationIcon: Image.asset(
         Asset.icon.path,
         fit: BoxFit.fitWidth,
-        width: Sizes.size64.size,
+        width: Sizes.iconSize.size,
       ),
       applicationLegalese: localizations.settings_licence_description,
       children: [
-        Padding(padding: Paddings.padding16.vertical),
+        Padding(padding: Paddings.vertical(16)),
         Text(
           localizations.app_tagline,
           style: Theme.of(context).textTheme.titleSmall,
         ),
-        Padding(padding: Paddings.padding8.vertical),
+        Padding(padding: Paddings.vertical(8)),
         Text(localizations.app_about(localizations.app_name)),
       ],
     );
@@ -133,13 +133,13 @@ class SettingsAboutPage extends StatelessWidget {
             SettingsTile(
               leading: const Icon(Icons.info),
               title: Text(localizations.app_name),
-              value: Text('v$appVersion'),
+              description: Text('v$appVersion'),
               onPressed: _showAbout,
             ),
             SettingsTile(
               leading: const Icon(Icons.build),
               title: Text(localizations.settings_build_mode),
-              value: Text(InfoUtils().buildMode),
+              description: Text(InfoUtils().buildMode),
             ),
           ],
         ),
@@ -149,19 +149,19 @@ class SettingsAboutPage extends StatelessWidget {
             SettingsTile(
               leading: const Icon(Icons.bug_report),
               title: Text(localizations.settings_github_issues),
-              value: Text(localizations.settings_github_issues_description),
+              description: Text(localizations.settings_github_issues_description),
               onPressed: _openGitHubIssues,
             ),
             SettingsTile(
               leading: const Icon(Icons.forum),
               title: Text(localizations.settings_github_discussions),
-              value: Text(localizations.settings_github_discussions_description),
+              description: Text(localizations.settings_github_discussions_description),
               onPressed: _openGitHubDiscussions,
             ),
             SettingsTile(
               leading: const Icon(Icons.mail),
               title: Text(localizations.settings_get_in_touch),
-              value: Text(localizations.settings_get_in_touch_description(_contactEmail)),
+              description: Text(localizations.settings_get_in_touch_description(_contactEmail)),
               onPressed: _sendMail,
             ),
           ],
@@ -172,19 +172,19 @@ class SettingsAboutPage extends StatelessWidget {
             SettingsTile(
               leading: const Icon(SimpleIcons.github),
               title: Text(localizations.settings_github),
-              value: Text(localizations.settings_github_description),
+              description: Text(localizations.settings_github_description),
               onPressed: _openGitHub,
             ),
             SettingsTile(
               leading: const Icon(SimpleIcons.crowdin),
               title: Text(localizations.settings_localizations),
-              value: Text(localizations.settings_localizations_description),
+              description: Text(localizations.settings_localizations_description),
               onPressed: _openCrowdin,
             ),
             SettingsTile(
               leading: const Icon(Icons.balance),
               title: Text(localizations.settings_licence),
-              value: Text(localizations.settings_licence_description),
+              description: Text(localizations.settings_licence_description),
               onPressed: _openLicense,
             ),
           ],

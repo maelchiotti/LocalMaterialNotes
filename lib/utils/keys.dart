@@ -5,30 +5,54 @@ import 'package:flutter/foundation.dart';
 
 /// Keys used to identify widgets in integration testing.
 class Keys {
-  // App bars
-  static const appBarNotes = Key('appBarNotes');
+  // Drawer
+  static const drawerNotesTab = Key('drawerNotesTab');
+  static const drawerBinTab = Key('drawerBinTab');
+  static const drawerSettingsTab = Key('drawerSettingsTab');
 
-  // Notes page
-  static const fabAddNote = Key('fabAddNote');
+  // Dialogs
+  static const dialogConfirmButton = Key('dialogConfirmButton');
+  static const dialogCancelButton = Key('dialogCancelButton');
+
+  // App bars
+  static const appBarNotesBin = Key('appBarNotes');
+  static const appBarEditor = Key('appBarEditor');
+  static const appBarBin = Key('appBarBin');
+  static const appBarSettingsMain = Key('appBarSettingsMain');
+  static const appBarSettingsMainSubpage = Key('appBarSettingsMainSubpage');
 
   // App bars icon buttons
-  static const notesPageLayoutIconButton = Key('notesPageLayoutIconButton');
-  static const notesPageSortIconButton = Key('notesPageSortIconButton');
-  static const notesPageSearchIconButton = Key('notesPageSearchIconButton');
+  static const appBarLayoutIconButton = Key('appBarLayoutIconButton');
+  static const appBarSortIconButton = Key('appBarSortIconButton');
+  static const appBarSearchIconButton = Key('appBarSearchIconButton');
 
   // Sort method popup menu items
-  static const notesPageSortDateMenuItem = Key('notesPageSortDateMenuItem');
-  static const notesPageSortTitleMenuItem = Key('notesPageSortTitleMenuItem');
-  static const notesPageSortAscendingMenuItem = Key('notesPageSortAscendingMenuItem');
+  static const sortDateMenuItem = Key('sortDateMenuItem');
+  static const sortTitleMenuItem = Key('sortTitleMenuItem');
+  static const sortAscendingMenuItem = Key('sortAscendingMenuItem');
 
   // Search view
-  static const notesPageSearchViewSearchAnchor = Key('notesPageSearchViewSearchAnchor');
+  static const searchViewSearchAnchor = Key('searchViewSearchAnchor');
+
+  // FABs
+  static const fabAddNote = Key('fabAddNote');
+  static const fabEmptyBin = Key('fabEmptyBin');
+
+  // Pages
+  static const pageNotes = Key('pageNotes');
+  static const pageBin = Key('pageBin');
+  static const pageEditor = Key('pageEditor');
+  static const pageSettingsMain = Key('pageSettingsMain');
 
   // Notes list
   static const notesPageNotesList = Key('notesPageNotesList');
   static const notesPageNotesListListLayout = Key('notesPageNotesListListLayout');
   static const notesPageNotesListGridLayout = Key('notesPageNotesListGridLayout');
 
-  // Notes tile
-  static Key notesPageNoteTile(int index) => Key('notesPageNoteTile$index');
+  // Notes tiles
+  static Key noteTile(int index) => Key('noteTile$index');
+
+  // Editor page
+  static const editorTitleTextField = Key('editorTitleTextField');
+  static const editorContentTextField = Key('editorContentTextField');
 }

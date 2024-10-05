@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 
-/// Dialog to choose the frequency of the auto export.
+/// Dialog to choose the frequency of the automatic export.
 class AutoExportFrequencyDialog extends StatefulWidget {
   /// Default constructor.
   const AutoExportFrequencyDialog({super.key});
@@ -68,7 +68,7 @@ class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
               value: _frequencyIndex.toDouble(),
               max: _frequencyValues.length - 1,
               divisions: _frequencyValues.length - 1,
-              label: localizations.dialog_auto_export_frequency_slider_label(_frequencyValue.toString()),
+              label: localizations.settings_auto_export_frequency_value(_frequencyValue.toString()),
               onChanged: _onFrequencyChanged,
             ),
           ],

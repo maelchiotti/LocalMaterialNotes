@@ -52,3 +52,6 @@ final fleatherControllerCanRedoNotifier = ValueNotifier(false);
 
 /// Notifier for whether the fleather editor has focus.
 final fleatherFieldHasFocusNotifier = ValueNotifier(false);
+
+/// Notifier for whether the fleather editor is in edit mode.
+final isFleatherEditorEditMode = ValueNotifier(!PreferenceKey.openEditorReadingMode.getPreferenceOrDefault<bool>());

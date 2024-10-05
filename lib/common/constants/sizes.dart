@@ -2,38 +2,40 @@
 
 /// Lists sizes.
 enum Sizes {
-  /// Allows to access custom sizes.
-  custom(0),
-  size2(2),
-  size4(4),
-  size8(8),
-  size16(16),
-  size32(32),
-  size64(64),
-  size128(128),
-  size256(256),
-  size512(512),
-  size1024(1024),
-  size2048(2048),
-  ;
+  /// Infinity
+  infinity(double.infinity),
 
-  /// Size to apply.
-  final double size;
+  /// The size of the icon.
+  iconSize(64),
 
-  const Sizes(this.size);
+  /// The size of the icon in a settings page when displaying the value of a setting.
+  settingValueIconSize(16),
 
-  /// Infinity.
-  double get infinity => double.infinity;
+  /// The size of the pin icon in a note tile.
+  pinIconSize(8),
 
-  /// Width of a column in grid layout.
-  int get gridLayoutColumnWidth => 384;
+  /// The size of the empty placeholder icon.
+  placeholderIcon(64),
 
-  /// Height of a button in the editor toolbar.
-  double get editorToolbarButtonHeight => 42;
+  /// The width of a column in grid layout.
+  gridLayoutColumnWidth(384),
 
-  /// Width of a button in the editor toolbar.
-  double get editorToolbarButtonWidth => 42;
+  /// The height of the editor's toolbar
+  editorToolbarHeight(54),
+
+  /// The height of a button in the editor toolbar.
+  editorToolbarButtonHeight(42),
+
+  /// The width of a button in the editor toolbar.
+  editorToolbarButtonWidth(42),
 
   /// Spacing between the notes tiles in the grid layout.
-  double get notesGridLayoutSpacing => 8;
+  notesGridLayoutSpacing(8),
+  ;
+
+  /// The size to apply.
+  final double size;
+
+  /// The [size].
+  const Sizes(this.size);
 }

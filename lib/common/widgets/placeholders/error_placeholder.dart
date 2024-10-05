@@ -11,7 +11,7 @@ class ErrorPlaceholder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: Paddings.custom.page,
+        padding: Paddings.page,
         child: SingleChildScrollView(
           child: Text(localizations.error_error),
         ),

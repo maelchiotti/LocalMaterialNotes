@@ -1,0 +1,13 @@
+ADDED
+- Toolbar button to add a link to the selected text
+- Button to toggle the editor between editing mode and reading mode
+- Setting to open the editor in reading mode by default
+- Copy to clipboard menu and swipe action
+- Share swipe action
+- Live preview when selecting the text scaling
+
+CHANGED
+- Settings values display
+
+FIXED
+- Text scaling popup having a wrong title

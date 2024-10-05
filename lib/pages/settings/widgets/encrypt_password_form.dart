@@ -70,7 +70,7 @@ class _EncryptPasswordFormState extends State<EncryptPasswordForm> {
           ],
         ),
         if (_encrypt) ...[
-          Padding(padding: Paddings.padding8.vertical),
+          Padding(padding: Paddings.vertical(8)),
           PasswordField(
             description: localizations.dialog_export_encryption_description,
             secondaryDescription: widget.secondaryDescription,

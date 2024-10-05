@@ -90,11 +90,11 @@ class _PasswordFieldState extends State<PasswordField> {
         children: [
           if (widget.description != null) ...[
             Text(widget.description!),
-            Padding(padding: Paddings.padding8.vertical),
+            Padding(padding: Paddings.vertical(8)),
           ],
           if (widget.secondaryDescription != null) ...[
             Text(widget.secondaryDescription!),
-            Padding(padding: Paddings.padding8.vertical),
+            Padding(padding: Paddings.vertical(8)),
           ],
           AutofillGroup(
             child: TextFormField(
@@ -107,7 +107,7 @@ class _PasswordFieldState extends State<PasswordField> {
                   icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
                   onPressed: _toggleObscurePassword,
                 ),
-                hintText: localizations.dialog_export_encryption_password_hint,
+                hintText: localizations.dialog_export_encryption_password,
               ),
               obscureText: _obscurePassword,
               autocorrect: false,

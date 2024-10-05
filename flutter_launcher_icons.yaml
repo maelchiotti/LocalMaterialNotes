@@ -1,4 +1,3 @@
-# dart run flutter_launcher_icons
 flutter_launcher_icons:
   image_path: "assets/icons/icon.png"
   adaptive_icon_foreground: "assets/icons/icon_foreground.png"

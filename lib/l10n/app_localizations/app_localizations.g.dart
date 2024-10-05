@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_de.g.dart';
 import 'app_localizations_en.g.dart';
 import 'app_localizations_es.g.dart';
 import 'app_localizations_fr.g.dart';
@@ -96,6 +97,7 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('de'),
     Locale('en'),
     Locale('es'),
     Locale('fr'),
@@ -105,1057 +107,1045 @@ abstract class AppLocalizations {
     Locale('zh')
   ];
 
-  /// No description provided for @app_name.
+  /// Name of the application.
   ///
   /// In en, this message translates to:
   /// **'Material Notes'**
   String get app_name;
 
-  /// No description provided for @app_tagline.
+  /// Tagline of the application, shown in the about popup.
   ///
   /// In en, this message translates to:
   /// **'Simple, local, material design notes'**
   String get app_tagline;
 
-  /// No description provided for @app_about.
+  /// Description of the application, shown in the about popup.
   ///
   /// In en, this message translates to:
   /// **'{appName} is a text-based note-taking application, aimed at simplicity. It embraces Material Design. It stores the notes locally and doesn\'\'t have any internet permissions, so you are the only one that can access the notes.'**
-  String app_about(Object appName);
+  String app_about(String appName);
 
-  /// No description provided for @error_error.
+  /// Error message, shown in the error snack bar before the actual error message.
   ///
   /// In en, this message translates to:
   /// **'Error'**
   String get error_error;
 
-  /// No description provided for @error_permission.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to get permission to write the file.'**
-  String get error_permission;
-
-  /// No description provided for @error_read_file.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to read the file.'**
-  String get error_read_file;
-
-  /// No description provided for @navigation_notes.
+  /// Title of the notes page.
   ///
   /// In en, this message translates to:
   /// **'Notes'**
   String get navigation_notes;
 
-  /// No description provided for @navigation_bin.
+  /// Title of the bin page.
   ///
   /// In en, this message translates to:
   /// **'Bin'**
   String get navigation_bin;
 
-  /// No description provided for @navigation_settings.
+  /// Title of the settings page.
   ///
   /// In en, this message translates to:
   /// **'Settings'**
   String get navigation_settings;
 
-  /// No description provided for @navigation_settings_appearance.
+  /// Title of the settings page regarding the application's appearance.
   ///
   /// In en, this message translates to:
   /// **'Appearance'**
   String get navigation_settings_appearance;
 
-  /// No description provided for @navigation_settings_behavior.
+  /// Title of the settings page regarding the application's behavior.
   ///
   /// In en, this message translates to:
   /// **'Behavior'**
   String get navigation_settings_behavior;
 
-  /// No description provided for @navigation_settings_editor.
+  /// Title of the settings page regarding the notes content editor.
   ///
   /// In en, this message translates to:
   /// **'Editor'**
   String get navigation_settings_editor;
 
-  /// No description provided for @navigation_settings_backup.
+  /// Title of the settings page regarding the backup functionality.
   ///
   /// In en, this message translates to:
   /// **'Backup'**
   String get navigation_settings_backup;
 
-  /// No description provided for @navigation_settings_about.
+  /// Title of the settings page regarding the information about the application.
   ///
   /// In en, this message translates to:
   /// **'About'**
   String get navigation_settings_about;
 
-  /// No description provided for @button_ok.
+  /// Button to validate a dialog.
   ///
   /// In en, this message translates to:
   /// **'Ok'**
   String get button_ok;
 
-  /// No description provided for @button_close.
-  ///
-  /// In en, this message translates to:
-  /// **'Close'**
-  String get button_close;
-
-  /// No description provided for @button_cancel.
+  /// Button to cancel and close a dialog.
   ///
   /// In en, this message translates to:
   /// **'Cancel'**
   String get button_cancel;
 
-  /// No description provided for @button_add.
+  /// Text of the button to sort the notes list by title.
   ///
   /// In en, this message translates to:
-  /// **'Add'**
-  String get button_add;
+  /// **'Title'**
+  String get button_sort_title;
 
-  /// No description provided for @settings_appearance.
+  /// Text of the button to sort the notes list in ascending order.
+  ///
+  /// In en, this message translates to:
+  /// **'Ascending'**
+  String get button_sort_ascending;
+
+  /// Title of the settings section regarding the application's appearance.
   ///
   /// In en, this message translates to:
   /// **'Appearance'**
   String get settings_appearance;
 
-  /// No description provided for @settings_appearance_description.
+  /// Description of the appearance settings section.
   ///
   /// In en, this message translates to:
-  /// **'Language, theme, notes tiles'**
+  /// **'Language, theme, text scaling, notes tiles'**
   String get settings_appearance_description;
 
-  /// No description provided for @settings_appearance_application.
+  /// Title of the sub-section regarding the application under the appearance settings.
   ///
   /// In en, this message translates to:
   /// **'Application'**
   String get settings_appearance_application;
 
-  /// No description provided for @settings_appearance_notes_tiles.
-  ///
-  /// In en, this message translates to:
-  /// **'Notes tiles'**
-  String get settings_appearance_notes_tiles;
-
-  /// No description provided for @settings_language.
+  /// Title of the language setting tile.
   ///
   /// In en, this message translates to:
   /// **'Language'**
   String get settings_language;
 
-  /// No description provided for @settings_language_contribute.
+  /// Button to contribute to the localizations, shown on the language setting tile.
   ///
   /// In en, this message translates to:
   /// **'Contribute'**
   String get settings_language_contribute;
 
-  /// No description provided for @settings_theme.
+  /// Title of the theming setting tile.
   ///
   /// In en, this message translates to:
   /// **'Theme'**
   String get settings_theme;
 
-  /// No description provided for @settings_theme_system.
+  /// Theming setting to use the theme of the system.
   ///
   /// In en, this message translates to:
   /// **'System'**
   String get settings_theme_system;
 
-  /// No description provided for @settings_theme_light.
+  /// Theming setting to use the light theme.
   ///
   /// In en, this message translates to:
   /// **'Light'**
   String get settings_theme_light;
 
-  /// No description provided for @settings_theme_dark.
+  /// Theming setting to use the dark theme.
   ///
   /// In en, this message translates to:
   /// **'Dark'**
   String get settings_theme_dark;
 
-  /// No description provided for @settings_dynamic_theming.
+  /// Title of the dynamic theming setting tile (to use colors generated from the system).
   ///
   /// In en, this message translates to:
   /// **'Dynamic theming'**
   String get settings_dynamic_theming;
 
-  /// No description provided for @settings_dynamic_theming_description.
+  /// Description of the dynamic theming setting tile.
   ///
   /// In en, this message translates to:
   /// **'Generate colors from the system'**
   String get settings_dynamic_theming_description;
 
-  /// No description provided for @settings_black_theming.
+  /// Title of the black theming setting tile (to use a black background in dark mode).
   ///
   /// In en, this message translates to:
   /// **'Black theming'**
   String get settings_black_theming;
 
-  /// No description provided for @settings_black_theming_description.
+  /// Description of the black theming setting tile.
   ///
   /// In en, this message translates to:
   /// **'Use a black background in dark mode'**
   String get settings_black_theming_description;
 
-  /// No description provided for @settings_text_scaling.
+  /// Title of the text scale setting tile.
   ///
   /// In en, this message translates to:
   /// **'Text scaling'**
   String get settings_text_scaling;
 
-  /// No description provided for @settings_show_titles_only.
+  /// Title of the sub-section regarding the notes tiles under the appearance settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes tiles'**
+  String get settings_appearance_notes_tiles;
+
+  /// Title of the setting tile to only show the titles of the notes in the notes tiles.
   ///
   /// In en, this message translates to:
   /// **'Titles only'**
   String get settings_show_titles_only;
 
-  /// No description provided for @settings_show_titles_only_description.
+  /// Description of the setting tile to only show the titles of the notes in the notes tiles.
   ///
   /// In en, this message translates to:
   /// **'Only show the titles of the notes'**
   String get settings_show_titles_only_description;
 
-  /// No description provided for @settings_show_titles_only_disable_in_search_view.
+  /// Title of the setting tile to disable only showing the titles of the notes in the search view.
   ///
   /// In en, this message translates to:
   /// **'Disable titles only in search view'**
   String get settings_show_titles_only_disable_in_search_view;
 
-  /// No description provided for @settings_show_titles_only_disable_in_search_view_description.
+  /// Description of the setting tile to disable only showing the titles of the notes in the search view.
   ///
   /// In en, this message translates to:
   /// **'Disable the option to only show the titles when in the search view'**
   String get settings_show_titles_only_disable_in_search_view_description;
 
-  /// No description provided for @settings_disable_subdued_note_content_preview.
+  /// Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles.
   ///
   /// In en, this message translates to:
   /// **'Non-subdued preview'**
   String get settings_disable_subdued_note_content_preview;
 
-  /// No description provided for @settings_disable_subdued_note_content_preview_description.
+  /// Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles.
   ///
   /// In en, this message translates to:
   /// **'Disable the subdued text color of the notes content preview'**
   String get settings_disable_subdued_note_content_preview_description;
 
-  /// No description provided for @settings_show_tiles_background.
+  /// Title of the setting tile to show the background of the notes tiles.
   ///
   /// In en, this message translates to:
   /// **'Background'**
   String get settings_show_tiles_background;
 
-  /// No description provided for @settings_show_tiles_background_description.
+  /// Description of the setting tile to show the background of the notes tiles.
   ///
   /// In en, this message translates to:
   /// **'Show the background of the notes tiles'**
   String get settings_show_tiles_background_description;
 
-  /// No description provided for @settings_show_separators.
+  /// Title of the setting tile to show the separators between the notes tiles.
   ///
   /// In en, this message translates to:
   /// **'Separators'**
   String get settings_show_separators;
 
-  /// No description provided for @settings_show_separators_description.
+  /// Description of the setting tile to show the separators between the notes tiles.
   ///
   /// In en, this message translates to:
   /// **'Show a separator between the notes tiles'**
   String get settings_show_separators_description;
 
-  /// No description provided for @settings_behavior.
+  /// Title of the settings section regarding the application's behavior.
   ///
   /// In en, this message translates to:
   /// **'Behavior'**
   String get settings_behavior;
 
-  /// No description provided for @settings_behavior_application.
+  /// Description of the behavior settings section.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmations, secure flag, swipe actions'**
+  String get settings_behavior_description;
+
+  /// Title of the sub-section regarding the application under the behavior settings.
   ///
   /// In en, this message translates to:
   /// **'Application'**
   String get settings_behavior_application;
 
-  /// No description provided for @settings_behavior_description.
+  /// Title of the setting tile to choose when to show the confirmation dialog when performing an action on a note.
   ///
   /// In en, this message translates to:
-  /// **'Confirmations, swipe actions'**
-  String get settings_behavior_description;
-
-  /// No description provided for @settings_behavior_swipe_actions.
-  ///
-  /// In en, this message translates to:
-  /// **'Swipe actions'**
-  String get settings_behavior_swipe_actions;
-
-  /// No description provided for @settings_confirmations.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirmation dialogs'**
+  /// **'Confirmation dialog'**
   String get settings_confirmations;
 
-  /// No description provided for @settings_confirmations_description.
+  /// Description of the setting tile to choose when to show the confirmation dialog when performing an action on a note.
   ///
   /// In en, this message translates to:
-  /// **'Show the confirmation dialogs for actions such as pining and deleting notes'**
+  /// **'When to show a confirmation dialog when performing an action on a note'**
   String get settings_confirmations_description;
 
-  /// No description provided for @settings_swipe_action_right.
+  /// Value of the setting to never show a confirmation dialog when performing an action on a note.
   ///
   /// In en, this message translates to:
-  /// **'Right swipe action'**
-  String get settings_swipe_action_right;
+  /// **'Never'**
+  String get settings_confirmations_title_none;
 
-  /// No description provided for @settings_swipe_action_right_description.
+  /// Value of the setting to only show a confirmation dialog when performing an action on a note if it is irreversible.
   ///
   /// In en, this message translates to:
-  /// **'Action to trigger when a right swipe is performed on the notes tiles'**
-  String get settings_swipe_action_right_description;
+  /// **'Irreversible actions only'**
+  String get settings_confirmations_title_irreversible;
 
-  /// No description provided for @settings_swipe_action_left.
+  /// Value of the setting to always show a confirmation dialog when performing an action on a note.
   ///
   /// In en, this message translates to:
-  /// **'Left swipe action'**
-  String get settings_swipe_action_left;
+  /// **'Always'**
+  String get settings_confirmations_title_all;
 
-  /// No description provided for @settings_swipe_action_left_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Action to trigger when a left swipe is performed on the notes tiles'**
-  String get settings_swipe_action_left_description;
-
-  /// No description provided for @settings_flag_secure.
+  /// Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made).
   ///
   /// In en, this message translates to:
   /// **'Flag the app as secure'**
   String get settings_flag_secure;
 
-  /// No description provided for @settings_flag_secure_description.
+  /// Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made).
   ///
   /// In en, this message translates to:
   /// **'Hide the app from the recent apps and prevent screenshots from being made'**
   String get settings_flag_secure_description;
 
-  /// No description provided for @settings_editor.
+  /// Title of the sub-section regarding the swipe actions under the behavior settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe actions'**
+  String get settings_behavior_swipe_actions;
+
+  /// Title of the setting tile to choose which action to trigger when a right swapping a note tile.
+  ///
+  /// In en, this message translates to:
+  /// **'Right swipe action'**
+  String get settings_swipe_action_right;
+
+  /// Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile.
+  ///
+  /// In en, this message translates to:
+  /// **'Action to trigger when a right swipe is performed on a note tile'**
+  String get settings_swipe_action_right_description;
+
+  /// Title of the setting tile to choose which action to trigger when a left swipe is performed on a note tile.
+  ///
+  /// In en, this message translates to:
+  /// **'Left swipe action'**
+  String get settings_swipe_action_left;
+
+  /// Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile.
+  ///
+  /// In en, this message translates to:
+  /// **'Action to trigger when a left swipe is performed on a note tile'**
+  String get settings_swipe_action_left_description;
+
+  /// Title of the settings section regarding the notes content editor.
   ///
   /// In en, this message translates to:
   /// **'Editor'**
   String get settings_editor;
 
-  /// No description provided for @settings_editor_formatting.
+  /// Description of the editor settings section.
+  ///
+  /// In en, this message translates to:
+  /// **'Buttons, toolbar, reading mode, spacing'**
+  String get settings_editor_description;
+
+  /// Title of the settings section regarding the notes content formatting in the editor.
   ///
   /// In en, this message translates to:
   /// **'Formatting'**
   String get settings_editor_formatting;
 
-  /// No description provided for @settings_editor_behavior.
-  ///
-  /// In en, this message translates to:
-  /// **'Behavior'**
-  String get settings_editor_behavior;
-
-  /// No description provided for @settings_editor_appearance.
-  ///
-  /// In en, this message translates to:
-  /// **'Appearance'**
-  String get settings_editor_appearance;
-
-  /// No description provided for @settings_editor_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Buttons, toolbar, spacing'**
-  String get settings_editor_description;
-
-  /// No description provided for @settings_show_undo_redo_buttons.
+  /// Title of the setting tile to enable the the undo and redo buttons in the editor.
   ///
   /// In en, this message translates to:
   /// **'Undo/redo buttons'**
   String get settings_show_undo_redo_buttons;
 
-  /// No description provided for @settings_show_undo_redo_buttons_description.
+  /// Description of the setting tile to enable the the undo and redo buttons in the editor.
   ///
   /// In en, this message translates to:
   /// **'Show the buttons to undo and redo changes in the editor\'\'s app bar'**
   String get settings_show_undo_redo_buttons_description;
 
-  /// No description provided for @settings_show_checklist_button.
+  /// Title of the setting tile to enable the checklist button in the editor.
   ///
   /// In en, this message translates to:
   /// **'Checklist button'**
   String get settings_show_checklist_button;
 
-  /// No description provided for @settings_show_checklist_button_description.
+  /// Description of the setting tile to enable the checklist button in the editor.
   ///
   /// In en, this message translates to:
   /// **'Show the button to toggle checklists in the editor\'\'s app bar, hiding it from the editor\'\'s toolbar if enabled'**
   String get settings_show_checklist_button_description;
 
-  /// No description provided for @settings_show_toolbar.
+  /// Title of the setting tile to enable the toolbar for advanced formatting options in the editor.
   ///
   /// In en, this message translates to:
   /// **'Toolbar'**
   String get settings_show_toolbar;
 
-  /// No description provided for @settings_show_toolbar_description.
+  /// Description of the setting tile to enable the toolbar for advanced formatting options in the editor.
   ///
   /// In en, this message translates to:
   /// **'Show the editor\'\'s toolbar to enable advanced text formatting'**
   String get settings_show_toolbar_description;
 
-  /// No description provided for @settings_focus_title_on_new_note.
+  /// Title of the settings section regarding the behavior of the editor
+  ///
+  /// In en, this message translates to:
+  /// **'Behavior'**
+  String get settings_editor_behavior;
+
+  /// Title of the setting tile to enable the button to toggle between editing mode and reading mode in the editor.
+  ///
+  /// In en, this message translates to:
+  /// **'Editor mode button'**
+  String get settings_show_editor_mode_button;
+
+  /// Description of the setting tile to enable the button to toggle between editing mode and reading mode in the editor.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable the button to toggle the editor between editing mode and reading mode'**
+  String get settings_show_editor_mode_button_description;
+
+  /// Title of the setting tile to enable opening the editor in reading mode by default.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in reading mode'**
+  String get settings_open_editor_reading_mode;
+
+  /// Description of the setting tile to enable opening the editor in reading mode by default.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the editor in reading mode by default'**
+  String get settings_open_editor_reading_mode_description;
+
+  /// Title of the setting tile to enable focusing the title when creating a new note by default.
   ///
   /// In en, this message translates to:
   /// **'Focus the title'**
   String get settings_focus_title_on_new_note;
 
-  /// No description provided for @settings_focus_title_on_new_note_description.
+  /// Description of the setting tile to enable focusing the title when creating a new note by default.
   ///
   /// In en, this message translates to:
   /// **'Focus the title instead of the content when creating a new note'**
   String get settings_focus_title_on_new_note_description;
 
-  /// No description provided for @settings_use_paragraph_spacing.
+  /// Title of the settings section regarding the appearance of the editor
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get settings_editor_appearance;
+
+  /// Title of the setting tile to enable the spacing between paragraphs in the notes content.
   ///
   /// In en, this message translates to:
   /// **'Paragraph spacing'**
   String get settings_use_paragraph_spacing;
 
-  /// No description provided for @settings_use_paragraph_spacing_description.
+  /// Description of the setting tile to enable the spacing between paragraphs in the notes content.
   ///
   /// In en, this message translates to:
   /// **'Use spacing between paragraphs'**
   String get settings_use_paragraph_spacing_description;
 
-  /// No description provided for @settings_backup.
+  /// Title of the settings section regarding the backup functionality.
   ///
   /// In en, this message translates to:
   /// **'Backup'**
   String get settings_backup;
 
-  /// No description provided for @settings_backup_description.
+  /// Description of the backup settings section.
   ///
   /// In en, this message translates to:
-  /// **'Export, import'**
+  /// **'Manual and automatic export, encryption, import'**
   String get settings_backup_description;
 
-  /// No description provided for @settings_backup_auto_export.
-  ///
-  /// In en, this message translates to:
-  /// **'Automatic export'**
-  String get settings_backup_auto_export;
-
-  /// No description provided for @settings_backup_manual_export.
-  ///
-  /// In en, this message translates to:
-  /// **'Manual export'**
-  String get settings_backup_manual_export;
-
-  /// No description provided for @settings_backup_import.
+  /// Title of the settings section regarding the import of a backup.
   ///
   /// In en, this message translates to:
   /// **'Import'**
   String get settings_backup_import;
 
-  /// No description provided for @settings_import.
+  /// Title of the setting tile to import a backup.
   ///
   /// In en, this message translates to:
   /// **'Import'**
   String get settings_import;
 
-  /// No description provided for @settings_import_description.
+  /// Description of the setting tile to import a backup.
   ///
   /// In en, this message translates to:
   /// **'Import notes from a JSON file'**
   String get settings_import_description;
 
-  /// No description provided for @settings_import_success.
+  /// Title of the settings section regarding the manual export of the notes.
   ///
   /// In en, this message translates to:
-  /// **'The notes were successfully imported.'**
-  String get settings_import_success;
+  /// **'Manual export'**
+  String get settings_backup_manual_export;
 
-  /// No description provided for @settings_auto_export.
-  ///
-  /// In en, this message translates to:
-  /// **'Automatic export'**
-  String get settings_auto_export;
-
-  /// No description provided for @settings_auto_export_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Automatically export the notes to a JSON file (bin included) that can be imported back'**
-  String get settings_auto_export_description;
-
-  /// No description provided for @settings_auto_export_frequency.
-  ///
-  /// In en, this message translates to:
-  /// **'Frequency'**
-  String get settings_auto_export_frequency;
-
-  /// No description provided for @settings_auto_export_frequency_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Automatically export the notes every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}'**
-  String settings_auto_export_frequency_description(String frequency);
-
-  /// No description provided for @settings_auto_export_encryption.
-  ///
-  /// In en, this message translates to:
-  /// **'Encryption'**
-  String get settings_auto_export_encryption;
-
-  /// No description provided for @settings_auto_export_encryption_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Encrypt the title and the content of the notes with a password'**
-  String get settings_auto_export_encryption_description;
-
-  /// No description provided for @settings_auto_export_directory.
-  ///
-  /// In en, this message translates to:
-  /// **'Directory'**
-  String get settings_auto_export_directory;
-
-  /// No description provided for @settings_auto_export_directory_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Save the automatic exports in {autoExportDirectory}'**
-  String settings_auto_export_directory_description(Object autoExportDirectory);
-
-  /// No description provided for @settings_export_success.
-  ///
-  /// In en, this message translates to:
-  /// **'The notes were successfully exported.'**
-  String get settings_export_success;
-
-  /// No description provided for @settings_export_json.
+  /// Title of the setting tile to manually export the notes as JSON.
   ///
   /// In en, this message translates to:
   /// **'Export as JSON'**
   String get settings_export_json;
 
-  /// No description provided for @settings_export_json_description.
+  /// Description of the setting tile to manually export the notes as JSON.
   ///
   /// In en, this message translates to:
   /// **'Immediately export the notes to a JSON file (bin included) that can be imported back'**
   String get settings_export_json_description;
 
-  /// No description provided for @settings_export_markdown.
+  /// Title of the setting tile to manually export the notes as Markdown.
   ///
   /// In en, this message translates to:
   /// **'Export as Markdown'**
   String get settings_export_markdown;
 
-  /// No description provided for @settings_export_markdown_description.
+  /// Description of the setting tile to manually export the notes as Markdown.
   ///
   /// In en, this message translates to:
   /// **'Immediately export the notes to a Markdown file (bin included)'**
   String get settings_export_markdown_description;
 
-  /// No description provided for @settings_about.
+  /// Title of the settings section regarding the automatic export of the notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic export'**
+  String get settings_backup_auto_export;
+
+  /// Title of the settings tile to enable the automatic export of the notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic export'**
+  String get settings_auto_export;
+
+  /// Description of the settings tile to enable the automatic export of the notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically export the notes to a JSON file (bin included) that can be imported back'**
+  String get settings_auto_export_description;
+
+  /// Title of the settings tile to choose the frequency of the automatic exports of the notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequency'**
+  String get settings_auto_export_frequency;
+
+  /// Frequency of the automatic exports of the notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}'**
+  String settings_auto_export_frequency_value(String frequency);
+
+  /// Description of the settings tile to choose the frequency of the automatic exports of the notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequency of the automatic export of the notes'**
+  String get settings_auto_export_frequency_description;
+
+  /// Title of the settings tile to enable the encryption of the automatic exports.
+  ///
+  /// In en, this message translates to:
+  /// **'Encryption'**
+  String get settings_auto_export_encryption;
+
+  /// Description of the settings tile to enable the encryption of the automatic exports.
+  ///
+  /// In en, this message translates to:
+  /// **'Encrypt the title and the content of the notes with a password'**
+  String get settings_auto_export_encryption_description;
+
+  /// Title of the settings tile to choose the directory where to save the automatic exports.
+  ///
+  /// In en, this message translates to:
+  /// **'Directory'**
+  String get settings_auto_export_directory;
+
+  /// Description of the settings tile to choose the directory where to save the automatic exports.
+  ///
+  /// In en, this message translates to:
+  /// **'Directory where to store the automatic exports of the notes'**
+  String get settings_auto_export_directory_description;
+
+  /// Title of the settings section regarding the information about the application.
   ///
   /// In en, this message translates to:
   /// **'About'**
   String get settings_about;
 
-  /// No description provided for @settings_about_application.
+  /// Description of the about settings section.
+  ///
+  /// In en, this message translates to:
+  /// **'Information, help, links'**
+  String get settings_about_description;
+
+  /// Title of the settings section regarding the information about the application.
   ///
   /// In en, this message translates to:
   /// **'Application'**
   String get settings_about_application;
 
-  /// No description provided for @settings_about_links.
-  ///
-  /// In en, this message translates to:
-  /// **'Links'**
-  String get settings_about_links;
-
-  /// No description provided for @settings_about_help.
-  ///
-  /// In en, this message translates to:
-  /// **'Help'**
-  String get settings_about_help;
-
-  /// No description provided for @settings_about_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Information, help, GitHub, license'**
-  String get settings_about_description;
-
-  /// No description provided for @settings_build_mode.
+  /// Title of the settings tile displaying the build mode of the application.
   ///
   /// In en, this message translates to:
   /// **'Build mode'**
   String get settings_build_mode;
 
-  /// No description provided for @settings_build_mode_release.
+  /// Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores).
   ///
   /// In en, this message translates to:
   /// **'Release'**
   String get settings_build_mode_release;
 
-  /// No description provided for @settings_build_mode_debug.
+  /// Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and ).
   ///
   /// In en, this message translates to:
   /// **'Debug'**
   String get settings_build_mode_debug;
 
-  /// No description provided for @settings_github.
+  /// Title of the settings section regarding how to get help for the application.
   ///
   /// In en, this message translates to:
-  /// **'GitHub'**
-  String get settings_github;
+  /// **'Help'**
+  String get settings_about_help;
 
-  /// No description provided for @settings_github_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Take a look at the source code'**
-  String get settings_github_description;
-
-  /// No description provided for @settings_localizations.
-  ///
-  /// In en, this message translates to:
-  /// **'Crowdin'**
-  String get settings_localizations;
-
-  /// No description provided for @settings_localizations_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Add or improve the localizations on the Crowdin project'**
-  String get settings_localizations_description;
-
-  /// No description provided for @settings_licence.
-  ///
-  /// In en, this message translates to:
-  /// **'License'**
-  String get settings_licence;
-
-  /// No description provided for @settings_licence_description.
-  ///
-  /// In en, this message translates to:
-  /// **'AGPL-3.0'**
-  String get settings_licence_description;
-
-  /// No description provided for @settings_github_issues.
+  /// Title of the settings tile to open the GitHub issues and report a bug or request a feature.
   ///
   /// In en, this message translates to:
   /// **'Report a bug or request a feature'**
   String get settings_github_issues;
 
-  /// No description provided for @settings_github_issues_description.
+  /// Description of the settings tile to open the GitHub issues and report a bug or request a feature.
   ///
   /// In en, this message translates to:
   /// **'Report a bug or request a feature by creating a GitHub issue'**
   String get settings_github_issues_description;
 
-  /// No description provided for @settings_github_discussions.
+  /// Title of the settings tile to open the GitHub discussions and ask a question.
   ///
   /// In en, this message translates to:
   /// **'Ask a question'**
   String get settings_github_discussions;
 
-  /// No description provided for @settings_github_discussions_description.
+  /// Description of the settings tile to open the GitHub discussions and ask a question.
   ///
   /// In en, this message translates to:
   /// **'Ask a question on GitHub discussions'**
   String get settings_github_discussions_description;
 
-  /// No description provided for @settings_get_in_touch.
+  /// Title of the settings tile to contact the developer via mail.
   ///
   /// In en, this message translates to:
   /// **'Contact the developer'**
   String get settings_get_in_touch;
 
-  /// No description provided for @settings_get_in_touch_description.
+  /// Description of the settings tile to contact the developer via mail.
   ///
   /// In en, this message translates to:
   /// **'Contact the developer via mail at {email}'**
   String settings_get_in_touch_description(Object email);
 
-  /// No description provided for @hint_title.
+  /// Title of the settings section regarding the outside links related to the application.
+  ///
+  /// In en, this message translates to:
+  /// **'Links'**
+  String get settings_about_links;
+
+  /// Title of the settings tile to open the GitHub repository of the application.
+  ///
+  /// In en, this message translates to:
+  /// **'GitHub'**
+  String get settings_github;
+
+  /// Description of the settings tile to open the GitHub repository of the application.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a look at the source code'**
+  String get settings_github_description;
+
+  /// Title of the settings tile to open the Crowdin project managing the localization of the application.
+  ///
+  /// In en, this message translates to:
+  /// **'Crowdin'**
+  String get settings_localizations;
+
+  /// Description of the settings tile to open the Crowdin project managing the localization of the application.
+  ///
+  /// In en, this message translates to:
+  /// **'Add or improve the localizations on the Crowdin project'**
+  String get settings_localizations_description;
+
+  /// Title of the settings tile to open the license of the application.
+  ///
+  /// In en, this message translates to:
+  /// **'License'**
+  String get settings_licence;
+
+  /// Description of the settings tile to open the license of the application.
+  ///
+  /// In en, this message translates to:
+  /// **'AGPL-3.0'**
+  String get settings_licence_description;
+
+  /// Hint for the text field of the title of the notes.
   ///
   /// In en, this message translates to:
   /// **'Title'**
   String get hint_title;
 
-  /// No description provided for @hint_note.
+  /// Hint for the text field of the content of the notes.
   ///
   /// In en, this message translates to:
   /// **'Note'**
   String get hint_note;
 
-  /// No description provided for @tooltip_fab_add_note.
+  /// Hint for the link text field in the dialog to add a link in the editor.
   ///
   /// In en, this message translates to:
-  /// **'Add a note'**
-  String get tooltip_fab_add_note;
+  /// **'Link'**
+  String get hint_link;
 
-  /// No description provided for @tooltip_fab_empty_bin.
+  /// Hint for the password text field in the dialog to configure the encryption of an automatic or manual export.
   ///
   /// In en, this message translates to:
-  /// **'Empty the bin'**
-  String get tooltip_fab_empty_bin;
+  /// **'Password'**
+  String get dialog_export_encryption_password;
 
-  /// No description provided for @tooltip_layout_list.
-  ///
-  /// In en, this message translates to:
-  /// **'List view'**
-  String get tooltip_layout_list;
-
-  /// No description provided for @tooltip_layout_grid.
-  ///
-  /// In en, this message translates to:
-  /// **'Grid view'**
-  String get tooltip_layout_grid;
-
-  /// No description provided for @tooltip_sort.
-  ///
-  /// In en, this message translates to:
-  /// **'Sort the notes'**
-  String get tooltip_sort;
-
-  /// No description provided for @tooltip_search.
-  ///
-  /// In en, this message translates to:
-  /// **'Search the notes'**
-  String get tooltip_search;
-
-  /// No description provided for @tooltip_toggle_checkbox.
+  /// Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection).
   ///
   /// In en, this message translates to:
   /// **'Toggle checkbox'**
   String get tooltip_toggle_checkbox;
 
-  /// No description provided for @tooltip_select_all.
-  ///
-  /// In en, this message translates to:
-  /// **'Select all'**
-  String get tooltip_select_all;
-
-  /// No description provided for @tooltip_unselect_all.
-  ///
-  /// In en, this message translates to:
-  /// **'Unselect all'**
-  String get tooltip_unselect_all;
-
-  /// No description provided for @tooltip_delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get tooltip_delete;
-
-  /// No description provided for @tooltip_permanently_delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Permanently delete'**
-  String get tooltip_permanently_delete;
-
-  /// No description provided for @tooltip_restore.
-  ///
-  /// In en, this message translates to:
-  /// **'Restore'**
-  String get tooltip_restore;
-
-  /// No description provided for @tooltip_toggle_pins.
+  /// Tooltip for the button to toggle the pining state of the selected notes in selection mode (the pinned notes will be unpinned, and the not pinned ones will be pinned).
   ///
   /// In en, this message translates to:
   /// **'Toggle pins'**
   String get tooltip_toggle_pins;
 
-  /// No description provided for @tooltip_reset.
+  /// Floating action button on the notes list to add a new note.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a note'**
+  String get tooltip_fab_add_note;
+
+  /// Floating action button in the bin to empty it.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty the bin'**
+  String get tooltip_fab_empty_bin;
+
+  /// Floating action button in the notes editor to switch to editing mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to editing mode'**
+  String get tooltip_fab_toggle_editor_mode_edit;
+
+  /// Floating action button in the notes editor to switch to reading mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to reading mode'**
+  String get tooltip_fab_toggle_editor_mode_read;
+
+  /// Tooltip for the button to use the list layout in the notes list.
+  ///
+  /// In en, this message translates to:
+  /// **'List view'**
+  String get tooltip_layout_list;
+
+  /// Tooltip for the button to use the grid layout in the notes list.
+  ///
+  /// In en, this message translates to:
+  /// **'Grid view'**
+  String get tooltip_layout_grid;
+
+  /// Tooltip for the button to open the menu to choose the sorting method of the notes list.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort the notes'**
+  String get tooltip_sort;
+
+  /// Tooltip for the button to open the search view to search through the notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Search the notes'**
+  String get tooltip_search;
+
+  /// Tooltip for the button to select all the notes while in selection mode in the notes list.
+  ///
+  /// In en, this message translates to:
+  /// **'Select all'**
+  String get tooltip_select_all;
+
+  /// Tooltip for the button to unselect all the notes while in selection mode in the notes list.
+  ///
+  /// In en, this message translates to:
+  /// **'Unselect all'**
+  String get tooltip_unselect_all;
+
+  /// Tooltip for the button to delete a note (moving it to bin).
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get tooltip_delete;
+
+  /// Tooltip for the button to permanently delete a note.
+  ///
+  /// In en, this message translates to:
+  /// **'Permanently delete'**
+  String get tooltip_permanently_delete;
+
+  /// Tooltip for the button to restore a note from the bin.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore'**
+  String get tooltip_restore;
+
+  /// Tooltip for the button to reset the value of a setting to its default value in a settings page.
   ///
   /// In en, this message translates to:
   /// **'Reset'**
   String get tooltip_reset;
 
-  /// No description provided for @dialog_delete.
+  /// Tooltip for the button to validate the dialog to add a link in the note editor.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a link'**
+  String get dialog_add_link;
+
+  /// Title of the the dialog to delete one or multiple notes (moving them to the bin), and text for the confirmation button.
   ///
   /// In en, this message translates to:
   /// **'Delete'**
   String get dialog_delete;
 
-  /// No description provided for @dialog_delete_body.
+  /// Text for the dialog to confirm the deletion of one or multiple notes.
   ///
   /// In en, this message translates to:
   /// **'Do you really want to delete {count} {count, plural, zero{} one{note} other{notes}}? You can restore {count, plural, zero{} one{it} other{them}} from the bin.'**
-  String dialog_delete_body(num count);
+  String dialog_delete_body(int count);
 
-  /// No description provided for @dialog_delete_body_single.
-  ///
-  /// In en, this message translates to:
-  /// **'Do you really want to delete this note? You can restore it from the bin.'**
-  String get dialog_delete_body_single;
-
-  /// No description provided for @dialog_permanently_delete.
+  /// Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button.
   ///
   /// In en, this message translates to:
   /// **'Delete permanently'**
   String get dialog_permanently_delete;
 
-  /// No description provided for @dialog_permanently_delete_body.
+  /// Text for the dialog to confirm the permanent deletion of one or multiple notes.
   ///
   /// In en, this message translates to:
   /// **'Do you really want to permanently delete {count} {count, plural, zero{} one{note} other{notes}}? You will not be able to restore {count, plural, zero{} one{it} other{them}}.'**
-  String dialog_permanently_delete_body(num count);
+  String dialog_permanently_delete_body(int count);
 
-  /// No description provided for @dialog_permanently_delete_body_single.
-  ///
-  /// In en, this message translates to:
-  /// **'Do you really want to permanently delete this note? You will not be able to restore it.'**
-  String get dialog_permanently_delete_body_single;
-
-  /// No description provided for @dialog_restore.
+  /// Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button.
   ///
   /// In en, this message translates to:
   /// **'Restore'**
   String get dialog_restore;
 
-  /// No description provided for @dialog_restore_body.
+  /// Text for the dialog to confirm restoring one or multiple notes from the bin.
   ///
   /// In en, this message translates to:
   /// **'Do you really want to restore {count} {count, plural, zero{} one{note} other{notes}}?'**
-  String dialog_restore_body(num count);
+  String dialog_restore_body(int count);
 
-  /// No description provided for @dialog_restore_body_single.
-  ///
-  /// In en, this message translates to:
-  /// **'Do you really want to restore this note?'**
-  String get dialog_restore_body_single;
-
-  /// No description provided for @dialog_empty_bin.
+  /// Title of the the dialog to empty the bin, and text for the confirmation button.
   ///
   /// In en, this message translates to:
   /// **'Empty the bin'**
   String get dialog_empty_bin;
 
-  /// No description provided for @dialog_empty_bin_body.
+  /// Text for the dialog to confirm emptying the bin.
   ///
   /// In en, this message translates to:
   /// **'Do you really want to permanently empty the bin? You will not be able to restore the notes it contains.'**
   String get dialog_empty_bin_body;
 
-  /// No description provided for @dialog_auto_export_frequency_slider_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}'**
-  String dialog_auto_export_frequency_slider_label(String frequency);
-
-  /// No description provided for @dialog_export_encryption_switch.
+  /// Text for the switch to toggle the encryption of the export in the dialog to manually or automatically exporting the notes as JSON.
   ///
   /// In en, this message translates to:
   /// **'Encrypt the JSON export'**
   String get dialog_export_encryption_switch;
 
-  /// No description provided for @dialog_export_encryption_description.
+  /// Description for the encryption feature when the switch to toggle the encryption of the export is enabled.
   ///
   /// In en, this message translates to:
   /// **'The title and the content of the notes will be encrypted using your password. It should be randomly generated, exactly 32 characters long, strong (at least 1 lowercase, 1 uppercase, 1 number and 1 special character) and securely stored.'**
   String get dialog_export_encryption_description;
 
-  /// No description provided for @dialog_export_encryption_secondary_description_auto.
+  /// Secondary description for the encryption feature in the case of an automatic export.
   ///
   /// In en, this message translates to:
-  /// **'This password will be used for all future auto exports.'**
+  /// **'This password will be used for all future automatic exports.'**
   String get dialog_export_encryption_secondary_description_auto;
 
-  /// No description provided for @dialog_export_encryption_secondary_description_manual.
+  /// Secondary description for the encryption feature in the case of a manual export.
   ///
   /// In en, this message translates to:
   /// **'This password will only be used for this export.'**
   String get dialog_export_encryption_secondary_description_manual;
 
-  /// No description provided for @dialog_export_encryption_password_hint.
-  ///
-  /// In en, this message translates to:
-  /// **'Password'**
-  String get dialog_export_encryption_password_hint;
-
-  /// No description provided for @dialog_export_encryption_password_invalid.
+  /// Error message displayed under the text field for the encryption password if it does not meet the strength requirements.
   ///
   /// In en, this message translates to:
   /// **'Invalid'**
   String get dialog_export_encryption_password_invalid;
 
-  /// No description provided for @dialog_import_encryption_password_description.
+  /// Description in the import dialog when an import is encrypted and the password is needed.
   ///
   /// In en, this message translates to:
   /// **'This export is encrypted. To import it, you need to provide the password used to encrypt it.'**
   String get dialog_import_encryption_password_description;
 
-  /// No description provided for @dialog_import_encryption_password_error.
+  /// Error when the decryption of an encrypted import failed.
   ///
   /// In en, this message translates to:
   /// **'the decrypting of the export failed. Please check that you provided the same password that the one you used for encrypting the export.'**
   String get dialog_import_encryption_password_error;
 
-  /// No description provided for @sort_date.
+  /// Text of the button to sort the notes list by date.
   ///
   /// In en, this message translates to:
   /// **'Date'**
-  String get sort_date;
+  String get button_sort_date;
 
-  /// No description provided for @sort_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Title'**
-  String get sort_title;
-
-  /// No description provided for @sort_ascending.
-  ///
-  /// In en, this message translates to:
-  /// **'Ascending'**
-  String get sort_ascending;
-
-  /// No description provided for @placeholder_notes.
+  /// Placeholder on the notes page when there are no notes.
   ///
   /// In en, this message translates to:
   /// **'No notes'**
   String get placeholder_notes;
 
-  /// No description provided for @placeholder_bin.
+  /// Placeholder on the bin page when there are no notes.
   ///
   /// In en, this message translates to:
   /// **'No deleted notes'**
   String get placeholder_bin;
 
-  /// No description provided for @menu_pin.
-  ///
-  /// In en, this message translates to:
-  /// **'Pin'**
-  String get menu_pin;
-
-  /// No description provided for @menu_share.
-  ///
-  /// In en, this message translates to:
-  /// **'Share'**
-  String get menu_share;
-
-  /// No description provided for @menu_unpin.
-  ///
-  /// In en, this message translates to:
-  /// **'Unpin'**
-  String get menu_unpin;
-
-  /// No description provided for @menu_delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get menu_delete;
-
-  /// No description provided for @menu_restore.
-  ///
-  /// In en, this message translates to:
-  /// **'Restore'**
-  String get menu_restore;
-
-  /// No description provided for @menu_delete_permanently.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete permanently'**
-  String get menu_delete_permanently;
-
-  /// No description provided for @menu_about.
-  ///
-  /// In en, this message translates to:
-  /// **'About'**
-  String get menu_about;
-
-  /// No description provided for @confirmations_title_none.
-  ///
-  /// In en, this message translates to:
-  /// **'Never'**
-  String get confirmations_title_none;
-
-  /// No description provided for @confirmations_title_irreversible.
-  ///
-  /// In en, this message translates to:
-  /// **'Irreversible actions only'**
-  String get confirmations_title_irreversible;
-
-  /// No description provided for @confirmations_title_all.
-  ///
-  /// In en, this message translates to:
-  /// **'Always'**
-  String get confirmations_title_all;
-
-  /// No description provided for @swipe_action_disabled.
+  /// Swipe action that is disabled in the settings.
   ///
   /// In en, this message translates to:
   /// **'Disabled'**
-  String get swipe_action_disabled;
+  String get action_disabled;
 
-  /// No description provided for @swipe_action_delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get swipe_action_delete;
-
-  /// No description provided for @swipe_action_pin.
+  /// Swipe or menu action to pin a note.
   ///
   /// In en, this message translates to:
   /// **'Pin'**
-  String get swipe_action_pin;
+  String get action_pin;
 
-  /// No description provided for @dismiss_pin.
-  ///
-  /// In en, this message translates to:
-  /// **'Pin'**
-  String get dismiss_pin;
-
-  /// No description provided for @dismiss_unpin.
+  /// Swipe or menu action to unpin a note.
   ///
   /// In en, this message translates to:
   /// **'Unpin'**
-  String get dismiss_unpin;
+  String get action_unpin;
 
-  /// No description provided for @dismiss_delete.
+  /// Swipe or menu action to copy the content of a note.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get action_copy;
+
+  /// Swipe or menu action to share the title and the content of a note.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get action_share;
+
+  /// Swipe or menu action to delete a note (moving it to the bin).
   ///
   /// In en, this message translates to:
   /// **'Delete'**
-  String get dismiss_delete;
+  String get action_delete;
 
-  /// No description provided for @about_last_edited.
+  /// Swipe or menu action to restore a note from the bin.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore'**
+  String get action_restore;
+
+  /// Swipe or menu action to permanently delete a note.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete permanently'**
+  String get action_delete_permanently;
+
+  /// Swipe or menu action to show information about a note.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get action_about;
+
+  /// Date when the note was edited for the last time.
   ///
   /// In en, this message translates to:
   /// **'Last edited'**
   String get about_last_edited;
 
-  /// No description provided for @about_created.
+  /// Date when the note was created.
   ///
   /// In en, this message translates to:
   /// **'Created'**
   String get about_created;
 
-  /// No description provided for @about_words.
+  /// Number of words in the content of the note.
   ///
   /// In en, this message translates to:
   /// **'Words'**
   String get about_words;
 
-  /// No description provided for @about_characters.
+  /// Number of characters in the content of the note.
   ///
   /// In en, this message translates to:
   /// **'Characters'**
   String get about_characters;
 
-  /// No description provided for @time_at.
+  /// No description provided for @about_time_at.
   ///
   /// In en, this message translates to:
   /// **'at'**
-  String get time_at;
+  String get about_time_at;
 
-  /// No description provided for @action_add_note_title.
+  /// Snack bar informing that the content of the note was copied to clipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Content of the note copied to the clipboard.'**
+  String get snack_bar_copied;
+
+  /// Snack bar informing that the notes were successfully imported.
+  ///
+  /// In en, this message translates to:
+  /// **'The notes were successfully imported.'**
+  String get snack_bar_import_success;
+
+  /// Snack bar informing that the notes were successfully manually exported.
+  ///
+  /// In en, this message translates to:
+  /// **'The notes were successfully exported.'**
+  String get snack_bar_export_success;
+
+  /// Title of the home screen action to add a new note.
   ///
   /// In en, this message translates to:
   /// **'Add a note'**
   String get action_add_note_title;
 
-  /// No description provided for @welcome_note_title.
+  /// Title of the welcome note automatically created on the first run of the application.
   ///
   /// In en, this message translates to:
   /// **'Welcome to Material Notes!'**
   String get welcome_note_title;
 
-  /// No description provided for @welcome_note_content.
+  /// Content of the welcome note automatically created on the first run of the application.
   ///
   /// In en, this message translates to:
   /// **'Simple, local, material design notes'**
@@ -1171,7 +1161,8 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es', 'fr', 'pt', 'ru', 'tr', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['de', 'en', 'es', 'fr', 'pt', 'ru', 'tr', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -1180,6 +1171,8 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'de':
+      return AppLocalizationsDe();
     case 'en':
       return AppLocalizationsEn();
     case 'es':

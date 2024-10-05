@@ -1,5 +1,5 @@
-import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
+import 'package:localmaterialnotes/utils/localizations_utils.dart';
 
 /// Note displayed on the very first run of the application to welcome the user.
 final welcomeNote = Note(
@@ -7,8 +7,8 @@ final welcomeNote = Note(
   pinned: true,
   createdTime: DateTime.now(),
   editedTime: DateTime.now(),
-  title: hardcodedLocalizations.welcomeNoteTitle,
-  content: '[{"insert":"${hardcodedLocalizations.welcomeNoteContent}\\n"}]',
+  title: LocalizationsUtils().welcomeNoteTitle,
+  content: '[{"insert":"${LocalizationsUtils().welcomeNoteContent}\\n"}]',
 );
 
 /// Notes used when running integration tests.

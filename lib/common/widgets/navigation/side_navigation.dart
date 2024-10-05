@@ -9,6 +9,7 @@ import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_route.dart';
 import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Side navigation with the drawer.
 class SideNavigation extends StatefulWidget {
@@ -78,9 +79,9 @@ class _SideNavigationState extends State<SideNavigation> {
               Image.asset(
                 Asset.icon.path,
                 fit: BoxFit.fitWidth,
-                width: Sizes.size64.size,
+                width: Sizes.iconSize.size,
               ),
-              Padding(padding: Paddings.padding8.vertical),
+              Padding(padding: Paddings.vertical(8)),
               Text(
                 localizations.app_name,
                 style: Theme.of(context).textTheme.headlineSmall,
@@ -89,16 +90,19 @@ class _SideNavigationState extends State<SideNavigation> {
           ),
         ),
         NavigationDrawerDestination(
+          key: Keys.drawerNotesTab,
           icon: const Icon(Icons.notes_outlined),
           selectedIcon: const Icon(Icons.notes),
           label: Text(localizations.navigation_notes),
         ),
         NavigationDrawerDestination(
+          key: Keys.drawerNotesTab,
           icon: const Icon(Icons.delete_outline),
           selectedIcon: const Icon(Icons.delete),
           label: Text(localizations.navigation_bin),
         ),
         NavigationDrawerDestination(
+          key: Keys.drawerSettingsTab,
           icon: const Icon(Icons.settings_outlined),
           selectedIcon: const Icon(Icons.settings),
           label: Text(localizations.navigation_settings),

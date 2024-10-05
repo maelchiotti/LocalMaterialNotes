@@ -14,7 +14,7 @@ enum Confirmations {
   all,
   ;
 
-  /// Returns the value of the preference if set, or its default value otherwise.
+  /// The value of the preference if set, or its default value otherwise.
   factory Confirmations.fromPreference() {
     final preference = PreferencesUtils().get<String>(PreferenceKey.confirmations);
 
@@ -27,11 +27,11 @@ enum Confirmations {
   String get title {
     switch (this) {
       case none:
-        return localizations.confirmations_title_none;
+        return localizations.settings_confirmations_title_none;
       case irreversible:
-        return localizations.confirmations_title_irreversible;
+        return localizations.settings_confirmations_title_irreversible;
       case all:
-        return localizations.confirmations_title_all;
+        return localizations.settings_confirmations_title_all;
     }
   }
 }
