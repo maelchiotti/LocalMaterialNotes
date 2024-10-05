@@ -130,10 +130,10 @@ packages:
     dependency: "direct dev"
     description:
       name: build_runner
-      sha256: dd09dd4e2b078992f42aac7f1a622f01882a8492fef08486b27ddde929c19f04
+      sha256: "028819cfb90051c6b5440c7e574d1896f8037e3c96cf17aaeb054c9311cfbf4d"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.12"
+    version: "2.4.13"
   build_runner_core:
     dependency: transitive
     description:
@@ -430,12 +430,11 @@ packages:
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
-      path: "."
-      ref: master
-      resolved-ref: "006cb1ed53f969bf11816cde5b16dd520e1ee40e"
-      url: "https://github.com/fluttercommunity/flutter_launcher_icons"
-    source: git
-    version: "0.13.1"
+      name: flutter_launcher_icons
+      sha256: "619817c4b65b322b5104b6bb6dfe6cda62d9729bd7ad4303ecc8b4e690a67a77"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.14.1"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -567,10 +566,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "2ddb88e9ad56ae15ee144ed10e33886777eb5ca2509a914850a5faa7b52ff459"
+      sha256: "6f1b756f6e863259a99135ff3c95026c3cdca17d10ebef2bba2261a25ddc8bbc"
       url: "https://pub.dev"
     source: hosted
-    version: "14.2.7"
+    version: "14.3.0"
   go_router_builder:
     dependency: "direct dev"
     description:
@@ -911,10 +910,10 @@ packages:
     dependency: "direct dev"
     description:
       name: patrol
-      sha256: "4e1d239412b81124d28381a953951ccd8fff2841afd8420a052a458bf5534510"
+      sha256: "6ac5e239384282da389a6b78d68aa86d8760ad8d5481d665937c4eb586c0b3dc"
       url: "https://pub.dev"
     source: hosted
-    version: "3.10.0"
+    version: "3.11.0"
   patrol_finders:
     dependency: transitive
     description:
@@ -983,10 +982,10 @@ packages:
     dependency: "direct main"
     description:
       name: quick_actions
-      sha256: b17da113df7a7005977f64adfa58ccc49c829d3ccc6e8e770079a8c7fbf2da9e
+      sha256: "2c1d9a91f3218b4e987a7e1e95ba0415b7f48a2cb3ffacc027a1e3d3c117223f"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.7"
+    version: "1.0.8"
   quick_actions_android:
     dependency: transitive
     description:
@@ -1168,7 +1167,7 @@ packages:
     description:
       path: "."
       ref: "v0.8.1_fixed"
-      resolved-ref: "828d1840a897f96cd482436e0538cdbf6314eb56"
+      resolved-ref: "786c04ea6a0fe1624db73ca50bc75ab26fbdfd52"
       url: "https://github.com/maelchiotti/shared_storage"
     source: git
     version: "0.8.1"
@@ -1554,5 +1553,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.5.2 <4.0.0"
-  flutter: ">=3.24.2"
+  dart: ">=3.5.3 <4.0.0"
+  flutter: ">=3.24.3"

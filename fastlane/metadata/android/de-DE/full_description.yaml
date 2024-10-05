@@ -1,0 +1,54 @@
+full_description: |
+  <p>
+      <b>Material Notes</b> ist eine auf Einfachheit fokussierte, textbasierte Notizenapp im Material-Design.
+      Sie speichert die Notizen lokal und hat keinen Internetzugang, sodass du der einzige bist, der auf deine Notizen zugreifen kann.
+  </p>
+
+  <p>
+      <b>Verfasse Notizen</b>
+  </p>
+  <ul>
+      <li>Schreibe Textnotizen (Titel und Inhalt)</li>
+      <li>Nutze die erweiterten Formatierungsoptionen, einschließlich Checklisten</li>
+      <li>Mache Veränderungen rückgängig und wiederhole sie während der Bearbeitung </li>
+      <li>Nutze den Schnellzugriff von deinem Homescreen um schnell eine Notiz hinzuzufügen</li>
+  </ul>
+
+  <p>
+      <b>Organisiere</b>
+  </p>
+  <ul>
+      <li>Suche in deinen Notizen</li>
+      <li>Sortiere deine Notizen nach Datum oder Titel, in auf- und absteigender Reihenfolge</li>
+      <li>Zeige deine Notizen in Listen- oder Tabellenansicht an</li>
+      <li>Hefte Notizen an</li>
+      <li>Stelle gelöschte Notizen aus dem Papierkorb wieder her</li>
+  </ul>
+
+  <p>
+      <b>Teilen & Sichern</b>
+  </p>
+  <ul>
+      <li>Teile Text aus anderen Apps um ihn direkt zu einer Notiz hinzuzufügen</li>
+      <li>Teile deine Notizen als Text</li>
+      <li>Exportiere deine Notizen als JSON, manuell oder automatisch und importiere sie zurück</li>
+      <li>Exportiere deine Notizen als Markdown</li>
+  </ul>
+
+  <p>
+      <b>Schütze</b>
+  </p>
+  <ul>
+      <li>Sorge dich niemals darum, wie mit deinen Daten umgegangen wird: Sie können dein Gerät nicht verlassen, weil die App keinen Internetzugang hat</li>
+      <li>Verschlüssele deine JSON Exporte</li>
+  </ul>
+
+  <p>
+      <b>Anpassbar</b>
+  </p>
+  <ul>
+      <li>Wähle deine Sprache</li>
+      <li>Wähle dein Thema (hell, dunkel oder schwarz)</li>
+      <li>Wähle ob du ein dynamisches Thema haben willst (nutze Farben von deinem Hintergrund)</li>
+      <li>Wähle ob du erweiterte Formatierungsoptionen, nur die Checkliste oder einfache Notizen möchtest</li>
+  </ul>

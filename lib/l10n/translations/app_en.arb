@@ -1,5 +1,4 @@
 {
-  "@@locale": "en",
   "app_name": "Material Notes",
   "@app_name": {
     "description": "Name of the application."

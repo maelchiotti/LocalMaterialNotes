@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.7.0 - 2024-10-..
+
+### Added
+
+- Toolbar button to add a link to the selected text
+- Button to toggle the editor between editing mode and reading mode
+- Setting to open the editor in reading mode by default
+- Copy to clipboard menu and swipe action
+- Share swipe action
+- Live preview when selecting the text scaling
+
+### Changed
+
+- Settings values display
+
+### Fixed
+
+- Text scaling popup having a wrong title
+
 ## 1.6.0 - 2024-09-06
 
 ### Added

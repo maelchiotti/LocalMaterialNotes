@@ -67,12 +67,14 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
         return;
       }
 
-      LocaleUtils().setLocale(locale);
+      await LocaleUtils().setLocale(locale);
 
-      // The Restart package crashes the app if used in debug mode
-      if (!kDebugMode) {
-        await Restart.restartApp();
+      // The Restart package crashes the app if used in debug mode.
+      if (kDebugMode) {
+        return;
       }
+
+      await Restart.restartApp();
     });
   }
 

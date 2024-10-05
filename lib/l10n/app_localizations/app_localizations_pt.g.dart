@@ -62,7 +62,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_appearance => 'Aparência';
 
   @override
-  String get settings_appearance_description => 'Idioma, tema, blocos de notas';
+  String get settings_appearance_description => 'Language, theme, text scaling, notes tiles';
 
   @override
   String get settings_appearance_application => 'Aplicativo';
@@ -139,17 +139,17 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_behavior => 'Comportamento';
 
   @override
-  String get settings_behavior_description => 'Confirmações, ações de deslizar';
+  String get settings_behavior_description => 'Confirmations, secure flag, swipe actions';
 
   @override
   String get settings_behavior_application => 'Aplicativo';
 
   @override
-  String get settings_confirmations => 'Diálogos de confirmação';
+  String get settings_confirmations => 'Confirmation dialog';
 
   @override
   String get settings_confirmations_description =>
-      'Mostrar as caixas de diálogo de confirmação para ações como fixar e excluir notas';
+      'When to show a confirmation dialog when performing an action on a note';
 
   @override
   String get settings_confirmations_title_none => 'Never';
@@ -175,20 +175,20 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get settings_swipe_action_right_description =>
-      'Ação a ser acionada quando um deslizamento para a direita é executado nos blocos de notas';
+      'Action to trigger when a right swipe is performed on a note tile';
 
   @override
   String get settings_swipe_action_left => 'Ação de deslizar para a esquerda';
 
   @override
   String get settings_swipe_action_left_description =>
-      'Ação a ser acionada quando um deslizamento para a esquerda é executado nos blocos de notas';
+      'Action to trigger when a left swipe is performed on a note tile';
 
   @override
   String get settings_editor => 'Editor';
 
   @override
-  String get settings_editor_description => 'Botões, barra de ferramentas, espaçamento';
+  String get settings_editor_description => 'Buttons, toolbar, reading mode, spacing';
 
   @override
   String get settings_editor_formatting => 'Formatação';
@@ -250,7 +250,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_backup => 'Backup';
 
   @override
-  String get settings_backup_description => 'Exportar, importar';
+  String get settings_backup_description => 'Manual and automatic export, encryption, import';
 
   @override
   String get settings_backup_import => 'Importar';
@@ -327,7 +327,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_about => 'Sobre';
 
   @override
-  String get settings_about_description => 'Informação, ajuda, GitHub, licença';
+  String get settings_about_description => 'Information, help, links';
 
   @override
   String get settings_about_application => 'Aplicativo';
@@ -518,7 +518,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get dialog_export_encryption_secondary_description_auto =>
-      'Esta senha será usada para todas as exportações automáticas futuras.';
+      'This password will be used for all future automatic exports.';
 
   @override
   String get dialog_export_encryption_secondary_description_manual =>

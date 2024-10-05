@@ -62,7 +62,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_appearance => 'Apariencia';
 
   @override
-  String get settings_appearance_description => 'Language, theme, notes tiles';
+  String get settings_appearance_description => 'Language, theme, text scaling, notes tiles';
 
   @override
   String get settings_appearance_application => 'Application';
@@ -139,17 +139,17 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_behavior => 'Comportamiento';
 
   @override
-  String get settings_behavior_description => 'Confirmations, swipe actions';
+  String get settings_behavior_description => 'Confirmations, secure flag, swipe actions';
 
   @override
   String get settings_behavior_application => 'Application';
 
   @override
-  String get settings_confirmations => 'Confirmation dialogs';
+  String get settings_confirmations => 'Confirmation dialog';
 
   @override
   String get settings_confirmations_description =>
-      'Show the confirmation dialogs for actions such as pining and deleting notes';
+      'When to show a confirmation dialog when performing an action on a note';
 
   @override
   String get settings_confirmations_title_none => 'Never';
@@ -175,20 +175,20 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settings_swipe_action_right_description =>
-      'Action to trigger when a right swipe is performed on the notes tiles';
+      'Action to trigger when a right swipe is performed on a note tile';
 
   @override
   String get settings_swipe_action_left => 'Left swipe action';
 
   @override
   String get settings_swipe_action_left_description =>
-      'Action to trigger when a left swipe is performed on the notes tiles';
+      'Action to trigger when a left swipe is performed on a note tile';
 
   @override
   String get settings_editor => 'Editor';
 
   @override
-  String get settings_editor_description => 'Buttons, toolbar, spacing';
+  String get settings_editor_description => 'Buttons, toolbar, reading mode, spacing';
 
   @override
   String get settings_editor_formatting => 'Formatting';
@@ -249,7 +249,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_backup => 'Respaldo';
 
   @override
-  String get settings_backup_description => 'Export, import';
+  String get settings_backup_description => 'Manual and automatic export, encryption, import';
 
   @override
   String get settings_backup_import => 'Import';
@@ -325,7 +325,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_about => 'Acerca de';
 
   @override
-  String get settings_about_description => 'Information, help, GitHub, license';
+  String get settings_about_description => 'Information, help, links';
 
   @override
   String get settings_about_application => 'Application';
@@ -521,7 +521,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get dialog_export_encryption_secondary_description_auto =>
-      'This password will be used for all future auto exports.';
+      'This password will be used for all future automatic exports.';
 
   @override
   String get dialog_export_encryption_secondary_description_manual =>
