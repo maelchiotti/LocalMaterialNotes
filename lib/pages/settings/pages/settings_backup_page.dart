@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/uri_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_frequency_dialog.dart';
@@ -164,13 +163,13 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
   /// Asks the user to choose a directory for the automatic export.
   Future<void> _setAutoExportDirectory(_) async {
-    final autoExportDirectory = await pickDirectory();
+    final autoExportDirectory = await selectDirectory();
 
     if (autoExportDirectory == null) {
       return;
     }
 
-    PreferencesUtils().set<String>(PreferenceKey.autoExportDirectory, autoExportDirectory.path);
+    PreferencesUtils().set<String>(PreferenceKey.autoExportDirectory, autoExportDirectory);
     await AutoExportUtils().setAutoExportDirectory();
 
     setState(() {});
@@ -189,7 +188,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault<bool>();
     final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<int>();
     final autoExportEncryption = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
-    final autoExportDirectory = AutoExportUtils().autoExportDirectory.display;
+    final autoExportDirectory = Uri.parse(AutoExportUtils().autoExportDirectory).path;
 
     return CustomSettingsList(
       sections: [

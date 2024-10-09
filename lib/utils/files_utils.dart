@@ -1,69 +1,33 @@
 import 'dart:developer';
-import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:path/path.dart';
-import 'package:shared_storage/shared_storage.dart' as saf;
+import 'package:file_selector/file_selector.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 
-/// Returns the URI to the directory picked by the user.
-Future<Uri?> pickDirectory() async {
-  return await saf.openDocumentTree();
+/// Returns the URI to the directory picked by the user, with a persisted write permission.
+Future<String?> selectDirectory() async {
+  return await safUtil.openDirectory(writePermission: true, persistablePermission: true);
 }
 
-/// Returns the URI to the file picked by the user, limiting the choice to only files of the [mimeType].
-Future<Uri?> pickSingleFile(
-  String mimeType, {
-  bool persistablePermission = false,
-  bool grantWritePermission = false,
-}) async {
-  final pickedFiles = await saf.openDocument(
-    persistablePermission: persistablePermission,
-    grantWritePermission: grantWritePermission,
-    mimeType: mimeType,
-  );
-
-  return pickedFiles?.firstOrNull;
+/// Returns the the file picked by the user, limiting the choice to only files of the [typeGroup].
+Future<XFile?> selectFile(XTypeGroup typeGroup) async {
+  return await openFile(acceptedTypeGroups: [typeGroup]);
 }
 
-/// Writes the [content] to a file with the [mimeType] and the [fileName] at the path of the [parentUri] directory.
-Future<bool> writeStringToFile(
-  Uri parentUri,
-  String mimeType,
+/// Returns whether the directory at [path] exists.
+Future<bool> doesDirectoryExist(String path) async {
+  return await safUtil.exists(path, true);
+}
+
+/// Writes a file with the [data], in the [directory], with the [filename] and the [mimeType].
+Future<bool> writeFileSaf(
+  String directory,
   String fileName,
-  String content, {
-  bool useSaf = true,
-}) async {
-  return await writeBytesToFile(
-    parentUri,
-    mimeType,
-    fileName,
-    Uint8List.fromList(content.codeUnits),
-    useSaf: useSaf,
-  );
-}
-
-/// Writes the [bytes] to a file with the [mimeType] and the [fileName] at the path of the [parentUri] directory.
-Future<bool> writeBytesToFile(
-  Uri parentUri,
   String mimeType,
-  String fileName,
-  Uint8List bytes, {
-  bool useSaf = true,
-}) async {
+  Uint8List data,
+) async {
   try {
-    if (useSaf) {
-      await saf.createFileAsBytes(
-        parentUri,
-        mimeType: mimeType,
-        displayName: fileName,
-        bytes: bytes,
-      );
-    } else {
-      final filePath = join(parentUri.path, fileName);
-      final file = File(filePath);
-
-      await file.writeAsBytes(bytes);
-    }
+    await safStream.writeFileSync(directory, fileName, mimeType, data);
   } catch (exception, stackTrace) {
     log(exception.toString(), stackTrace: stackTrace);
 

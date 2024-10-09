@@ -14,7 +14,6 @@ import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:sanitize_filename/sanitize_filename.dart';
-import 'package:shared_storage/shared_storage.dart';
 
 /// Utilities for the database.
 ///
@@ -31,18 +30,13 @@ class DatabaseUtils {
 
   /// Imports all the notes from a JSON file picked by the user.
   Future<bool> import(BuildContext context) async {
-    final importPlatformFile = await pickSingleFile('application/json');
+    final importFile = await selectFile(jsonTypeGroup);
 
-    if (importPlatformFile == null) {
+    if (importFile == null) {
       return false;
     }
 
-    final importedString = await getDocumentContentAsString(importPlatformFile);
-
-    if (importedString == null) {
-      return false;
-    }
-
+    final importedString = await importFile.readAsString();
     var importedJson = jsonDecode(utf8.decode(importedString.codeUnits));
 
     List<Note>? notes;
@@ -101,16 +95,15 @@ class DatabaseUtils {
     return true;
   }
 
-  /// Exports all the notes in a JSON file with the [fileName] at the path of the [parentUri] directory.
+  /// Exports all the notes in a JSON file with the [fileName] in the [directory].
   ///
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
   Future<bool> _exportAsJson(
     bool encrypt,
     String? password,
-    Uri parentUri,
-    String fileName, {
-    bool useSaf = true,
-  }) async {
+    String directory,
+    String fileName,
+  ) async {
     var notes = await _notesService.getAll();
 
     if (encrypt && password != null && password.isNotEmpty) {
@@ -126,12 +119,11 @@ class DatabaseUtils {
     };
     final exportDataAsJson = utf8.encode(jsonEncode(exportData));
 
-    return await writeBytesToFile(
-      parentUri,
-      'application/json',
+    return await writeFileSaf(
+      directory,
       fileName,
+      jsonMimeType,
       exportDataAsJson,
-      useSaf: useSaf,
     );
   }
 
@@ -144,7 +136,6 @@ class DatabaseUtils {
       password,
       AutoExportUtils().autoExportDirectory,
       _exportFileName('json'),
-      useSaf: !await AutoExportUtils().isAutoExportDirectoryDefault,
     );
   }
 
@@ -154,7 +145,7 @@ class DatabaseUtils {
   ///
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
   Future<bool> manuallyExportAsJson(bool encrypt, String? password) async {
-    final exportDirectory = await pickDirectory();
+    final exportDirectory = await selectDirectory();
 
     if (exportDirectory == null) {
       return false;
@@ -172,7 +163,7 @@ class DatabaseUtils {
   ///
   /// First asks the user to pick a directory where to save the export file.
   Future<bool> exportAsMarkdown() async {
-    final exportDirectory = await pickDirectory();
+    final exportDirectory = await selectDirectory();
 
     if (exportDirectory == null) {
       return false;
@@ -194,10 +185,10 @@ class DatabaseUtils {
       return false;
     }
 
-    return await writeBytesToFile(
+    return await writeFileSaf(
       exportDirectory,
-      'application/zip',
       _exportFileName('zip'),
+      zipMimeType,
       Uint8List.fromList(encodedArchive),
     );
   }
