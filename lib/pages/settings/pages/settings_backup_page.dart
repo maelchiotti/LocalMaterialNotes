@@ -244,6 +244,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
               leading: const Icon(Symbols.calendar_clock),
               title: Text(localizations.settings_auto_export_frequency),
               value: SettingNavigationTileBody(
+                enabled: enableAutoExport,
                 value: localizations.settings_auto_export_frequency_value(autoExportFrequency.toString()),
                 description: localizations.settings_auto_export_frequency_description,
               ),
@@ -254,6 +255,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
               leading: const Icon(Icons.folder),
               title: Text(localizations.settings_auto_export_directory),
               value: SettingNavigationTileBody(
+                enabled: enableAutoExport,
                 value: autoExportDirectory,
                 description: localizations.settings_auto_export_directory_description,
               ),
