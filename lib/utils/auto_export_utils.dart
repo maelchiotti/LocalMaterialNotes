@@ -1,9 +1,12 @@
-import 'package:collection/collection.dart';
+import 'dart:developer';
+
+import 'package:localmaterialnotes/common/extensions/string_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
+import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:shared_storage/shared_storage.dart' as saf;
+import 'package:saf_util/saf_util.dart';
 
 /// Utilities for the automatic export functionality.
 ///
@@ -18,8 +21,10 @@ class AutoExportUtils {
 
   AutoExportUtils._internal();
 
+  final _safUtil = SafUtil();
+
   /// Directory where automatic exports are saved.
-  late Uri autoExportDirectory;
+  late String autoExportDirectory;
 
   /// Ensures the utility is initialized.
   Future<void> ensureInitialized() async {
@@ -37,37 +42,37 @@ class AutoExportUtils {
       return setAutoExportDirectoryToDefault();
     }
 
-    final persistedPermissions = await saf.persistedUriPermissions();
+    final autoExportDirectorySaf = await _safUtil.documentFileFromUri(autoExportDirectoryPreference, true);
 
-    // Set to default if no URI permissions are persisted by SAF
-    if (persistedPermissions == null || persistedPermissions.isEmpty) {
+    // Set to default if the directory doesn't exist
+    try {
+      if (autoExportDirectorySaf == null || !(await doesDirectoryExist(autoExportDirectorySaf.uri))) {
+        return setAutoExportDirectoryToDefault();
+      }
+    } catch (exception, stackTrace) {
+      log(exception.toString(), stackTrace: stackTrace);
+
+      // URIs for SAF used before v1.7.1 are not compatible and need to be discarded
+      log("[Auto export] Discarding an URI in the old format for the SAF auto export directory.");
+      await PreferencesUtils().remove(PreferenceKey.autoExportDirectory);
+
       return setAutoExportDirectoryToDefault();
     }
 
-    final persistedUris = persistedPermissions.map((permission) => permission.uri);
-    final persistedAutoExportDirectory = persistedUris.firstWhereOrNull((uri) {
-      return uri.path == autoExportDirectoryPreference;
-    });
-
-    // Set to default if no URI permission corresponding to the user preference is persisted by SAF,
-    // or if the directory doesn't exist or doesn't have write permission
-    if (persistedAutoExportDirectory == null ||
-        !(await saf.exists(persistedAutoExportDirectory) ?? false) ||
-        !(await saf.canWrite(persistedAutoExportDirectory) ?? false)) {
-      return setAutoExportDirectoryToDefault();
-    }
-
-    autoExportDirectory = persistedAutoExportDirectory;
+    autoExportDirectory = autoExportDirectorySaf.uri.decoded;
   }
 
-  /// Sets the automatic export directory to its default value (the application documents).
+  /// Sets the automatic export directory to its default value.
+  ///
+  /// The default automatic export directory is the downloads directory,
+  /// or the application documents directory if it does not exist.
   Future<void> setAutoExportDirectoryToDefault() async {
-    autoExportDirectory = (await getApplicationDocumentsDirectory()).uri;
+    autoExportDirectory = (await getDownloadsDirectory() ?? await getApplicationDocumentsDirectory()).path;
   }
 
-  /// Returns whether the automatic export directory is set to the default value.
-  Future<bool> get isAutoExportDirectoryDefault async {
-    return autoExportDirectory == (await getApplicationDocumentsDirectory()).uri;
+  /// Returns the default automatic export directory.
+  Future<String> get autoExportDirectoryDefault async {
+    return (await getDownloadsDirectory() ?? await getApplicationDocumentsDirectory()).path;
   }
 
   /// Checks if an automatic export should be performed.

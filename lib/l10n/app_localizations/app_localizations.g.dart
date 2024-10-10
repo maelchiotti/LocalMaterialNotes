@@ -1109,7 +1109,7 @@ abstract class AppLocalizations {
   /// **'Characters'**
   String get about_characters;
 
-  /// No description provided for @about_time_at.
+  /// Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM').
   ///
   /// In en, this message translates to:
   /// **'at'**

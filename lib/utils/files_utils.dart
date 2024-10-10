@@ -1,69 +1,27 @@
 import 'dart:developer';
-import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:file_selector/file_selector.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/extensions/string_extension.dart';
+import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:path/path.dart';
-import 'package:shared_storage/shared_storage.dart' as saf;
 
-/// Returns the URI to the directory picked by the user.
-Future<Uri?> pickDirectory() async {
-  return await saf.openDocumentTree();
-}
-
-/// Returns the URI to the file picked by the user, limiting the choice to only files of the [mimeType].
-Future<Uri?> pickSingleFile(
-  String mimeType, {
-  bool persistablePermission = false,
-  bool grantWritePermission = false,
-}) async {
-  final pickedFiles = await saf.openDocument(
-    persistablePermission: persistablePermission,
-    grantWritePermission: grantWritePermission,
-    mimeType: mimeType,
-  );
-
-  return pickedFiles?.firstOrNull;
-}
-
-/// Writes the [content] to a file with the [mimeType] and the [fileName] at the path of the [parentUri] directory.
-Future<bool> writeStringToFile(
-  Uri parentUri,
-  String mimeType,
-  String fileName,
-  String content, {
-  bool useSaf = true,
-}) async {
-  return await writeBytesToFile(
-    parentUri,
-    mimeType,
-    fileName,
-    Uint8List.fromList(content.codeUnits),
-    useSaf: useSaf,
-  );
-}
-
-/// Writes the [bytes] to a file with the [mimeType] and the [fileName] at the path of the [parentUri] directory.
-Future<bool> writeBytesToFile(
-  Uri parentUri,
-  String mimeType,
-  String fileName,
-  Uint8List bytes, {
-  bool useSaf = true,
+/// Writes a file with the [data], in the [directory], with the [filename] and the [mimeType].
+///
+/// Uses the native APIs to write the file without needing any permissions,
+/// so it will only work in the application's own data directory.
+Future<bool> _writeFileNative({
+  required String directory,
+  required String fileName,
+  required String mimeType,
+  required Uint8List data,
 }) async {
   try {
-    if (useSaf) {
-      await saf.createFileAsBytes(
-        parentUri,
-        mimeType: mimeType,
-        displayName: fileName,
-        bytes: bytes,
-      );
-    } else {
-      final filePath = join(parentUri.path, fileName);
-      final file = File(filePath);
+    final path = join(directory, fileName);
+    final file = XFile.fromData(data, mimeType: mimeType);
 
-      await file.writeAsBytes(bytes);
-    }
+    await file.saveTo(path);
   } catch (exception, stackTrace) {
     log(exception.toString(), stackTrace: stackTrace);
 
@@ -71,4 +29,56 @@ Future<bool> writeBytesToFile(
   }
 
   return true;
+}
+
+/// Writes a file with the [data], in the [directory], with the [filename] and the [mimeType].
+///
+/// Uses the Storage Access Framework (SAF) APIs that should have given a persisted permission
+/// to write files at that location.
+Future<bool> _writeFileSaf({
+  required String directory,
+  required String fileName,
+  required String mimeType,
+  required Uint8List data,
+}) async {
+  try {
+    await safStream.writeFileSync(directory, fileName, mimeType, data);
+  } catch (exception, stackTrace) {
+    log(exception.toString(), stackTrace: stackTrace);
+
+    return false;
+  }
+
+  return true;
+}
+
+/// Writes a file with the [data], in the [directory], with the [filename] and the [mimeType].
+///
+/// Uses the Storage Access Framework (SAF) APIs only if the directory is not the default export directory.
+Future<bool> writeFile({
+  required String directory,
+  required String fileName,
+  required String mimeType,
+  required Uint8List data,
+}) async {
+  final isDefaultDirectory = directory == await AutoExportUtils().autoExportDirectoryDefault;
+
+  return isDefaultDirectory
+      ? await _writeFileNative(directory: directory, fileName: fileName, mimeType: mimeType, data: data)
+      : await _writeFileSaf(directory: directory, fileName: fileName, mimeType: mimeType, data: data);
+}
+
+/// Returns the URI to the directory picked by the user, with a persisted write permission.
+Future<String?> selectDirectory() async {
+  return (await safUtil.openDirectory(writePermission: true, persistablePermission: true))?.decoded;
+}
+
+/// Returns the the file picked by the user, limiting the choice to only files of the [typeGroup].
+Future<XFile?> selectFile(XTypeGroup typeGroup) async {
+  return await openFile(acceptedTypeGroups: [typeGroup]);
+}
+
+/// Returns whether the directory at [path] exists.
+Future<bool> doesDirectoryExist(String path) async {
+  return await safUtil.exists(path, true);
 }

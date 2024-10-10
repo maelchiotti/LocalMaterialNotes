@@ -24,4 +24,16 @@ extension StringExtension on String {
 
     return regex.hasMatch(this);
   }
+
+  /// Returns the encoded URI as decoded.
+  ///
+  /// Decodes `:` and `/`.
+  String get decoded {
+    var uri = this;
+
+    uri = uri.replaceAll('%3A', ':');
+    uri = uri.replaceAll('%2F', '/');
+
+    return uri;
+  }
 }
