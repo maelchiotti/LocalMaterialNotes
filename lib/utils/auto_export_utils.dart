@@ -5,6 +5,7 @@ import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:saf_util/saf_util.dart';
 
@@ -67,12 +68,16 @@ class AutoExportUtils {
   /// The default automatic export directory is the downloads directory,
   /// or the application documents directory if it does not exist.
   Future<void> setAutoExportDirectoryToDefault() async {
-    autoExportDirectory = (await getDownloadsDirectory() ?? await getApplicationDocumentsDirectory()).path;
+    autoExportDirectory = await autoExportDirectoryDefault;
+
+    await createDirectoryIfDoesNotExist(autoExportDirectory);
   }
 
   /// Returns the default automatic export directory.
   Future<String> get autoExportDirectoryDefault async {
-    return (await getDownloadsDirectory() ?? await getApplicationDocumentsDirectory()).path;
+    final baseDirectory = (await getDownloadsDirectory() ?? await getApplicationDocumentsDirectory()).path;
+
+    return join(baseDirectory, 'backups');
   }
 
   /// Checks if an automatic export should be performed.
