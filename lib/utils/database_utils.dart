@@ -98,12 +98,12 @@ class DatabaseUtils {
   /// Exports all the notes in a JSON file with the [fileName] in the [directory].
   ///
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
-  Future<bool> _exportAsJson(
-    bool encrypt,
-    String? password,
-    String directory,
-    String fileName,
-  ) async {
+  Future<bool> _exportAsJson({
+    required bool encrypt,
+    required String? password,
+    required String directory,
+    required String fileName,
+  }) async {
     var notes = await _notesService.getAll();
 
     if (encrypt && password != null && password.isNotEmpty) {
@@ -119,11 +119,11 @@ class DatabaseUtils {
     };
     final exportDataAsJson = utf8.encode(jsonEncode(exportData));
 
-    return await writeFileSaf(
-      directory,
-      fileName,
-      jsonMimeType,
-      exportDataAsJson,
+    return await writeFile(
+      directory: directory,
+      fileName: fileName,
+      mimeType: jsonMimeType,
+      data: exportDataAsJson,
     );
   }
 
@@ -132,10 +132,10 @@ class DatabaseUtils {
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
   Future<bool> autoExportAsJson(bool encrypt, String password) async {
     return await _exportAsJson(
-      encrypt,
-      password,
-      AutoExportUtils().autoExportDirectory,
-      _exportFileName('json'),
+      encrypt: encrypt,
+      password: password,
+      directory: AutoExportUtils().autoExportDirectory,
+      fileName: _exportFileName('json'),
     );
   }
 
@@ -152,10 +152,10 @@ class DatabaseUtils {
     }
 
     return await _exportAsJson(
-      encrypt,
-      password,
-      exportDirectory,
-      _exportFileName('json'),
+      encrypt: encrypt,
+      password: password,
+      directory: exportDirectory,
+      fileName: _exportFileName('json'),
     );
   }
 
@@ -185,11 +185,11 @@ class DatabaseUtils {
       return false;
     }
 
-    return await writeFileSaf(
-      exportDirectory,
-      _exportFileName('zip'),
-      zipMimeType,
-      Uint8List.fromList(encodedArchive),
+    return await writeFile(
+      directory: exportDirectory,
+      fileName: _exportFileName('zip'),
+      mimeType: zipMimeType,
+      data: Uint8List.fromList(encodedArchive),
     );
   }
 }

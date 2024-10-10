@@ -61,14 +61,17 @@ class AutoExportUtils {
     autoExportDirectory = autoExportDirectorySaf.uri;
   }
 
-  /// Sets the automatic export directory to its default value (the application documents).
+  /// Sets the automatic export directory to its default value.
+  ///
+  /// The default automatic export directory is the downloads directory,
+  /// or the application documents directory if it does not exist.
   Future<void> setAutoExportDirectoryToDefault() async {
-    autoExportDirectory = (await getApplicationDocumentsDirectory()).path;
+    autoExportDirectory = (await getDownloadsDirectory() ?? await getApplicationDocumentsDirectory()).path;
   }
 
-  /// Returns whether the automatic export directory is set to the default value.
-  Future<bool> get isAutoExportDirectoryDefault async {
-    return autoExportDirectory == (await getApplicationDocumentsDirectory()).path;
+  /// Returns the default automatic export directory.
+  Future<String> get autoExportDirectoryDefault async {
+    return (await getDownloadsDirectory() ?? await getApplicationDocumentsDirectory()).path;
   }
 
   /// Checks if an automatic export should be performed.

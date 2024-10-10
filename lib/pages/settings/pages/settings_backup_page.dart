@@ -177,7 +177,8 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
   /// Resets the directory of the automatic export to its default value.
   Future<void> _resetAutoExportDirectory() async {
-    PreferencesUtils().remove(PreferenceKey.autoExportDirectory);
+    await PreferencesUtils().remove(PreferenceKey.autoExportDirectory);
+
     await AutoExportUtils().setAutoExportDirectory();
 
     setState(() {});
