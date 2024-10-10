@@ -168,7 +168,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     if (autoExportDirectory == null) {
       return;
     }
-
+    print(autoExportDirectory);
     PreferencesUtils().set<String>(PreferenceKey.autoExportDirectory, autoExportDirectory);
     await AutoExportUtils().setAutoExportDirectory();
 
@@ -189,7 +189,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault<bool>();
     final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<int>();
     final autoExportEncryption = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
-    final autoExportDirectory = Uri.parse(AutoExportUtils().autoExportDirectory).path;
+    final autoExportDirectory = AutoExportUtils().autoExportDirectory;
 
     return CustomSettingsList(
       sections: [

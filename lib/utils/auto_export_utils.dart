@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:localmaterialnotes/common/extensions/string_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
@@ -58,7 +59,7 @@ class AutoExportUtils {
       return setAutoExportDirectoryToDefault();
     }
 
-    autoExportDirectory = autoExportDirectorySaf.uri;
+    autoExportDirectory = autoExportDirectorySaf.uri.decoded;
   }
 
   /// Sets the automatic export directory to its default value.
