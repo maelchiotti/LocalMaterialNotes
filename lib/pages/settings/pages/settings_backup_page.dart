@@ -168,7 +168,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     if (autoExportDirectory == null) {
       return;
     }
-    print(autoExportDirectory);
+
     PreferencesUtils().set<String>(PreferenceKey.autoExportDirectory, autoExportDirectory);
     await AutoExportUtils().setAutoExportDirectory();
 
