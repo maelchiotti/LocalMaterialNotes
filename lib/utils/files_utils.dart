@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:file_selector/file_selector.dart';
@@ -81,4 +82,13 @@ Future<XFile?> selectFile(XTypeGroup typeGroup) async {
 /// Returns whether the directory at [path] exists.
 Future<bool> doesDirectoryExist(String path) async {
   return await safUtil.exists(path, true);
+}
+
+/// Creates the directory at [path], recursively creating the parent directories if necessary.
+Future<void> createDirectoryIfDoesNotExist(String path) async {
+  final directory = Directory(path);
+
+  if (!await directory.exists()) {
+    await Directory(path).create(recursive: true);
+  }
 }
