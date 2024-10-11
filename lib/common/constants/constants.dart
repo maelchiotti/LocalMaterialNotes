@@ -5,6 +5,9 @@ import 'package:parchment/codecs.dart';
 import 'package:saf_stream/saf_stream.dart';
 import 'package:saf_util/saf_util.dart';
 
+/// Contact email address.
+const contactEmail = 'contact@maelchiotti.dev';
+
 /// Key of the application's root navigator.
 final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Root navigator key');
 
@@ -34,6 +37,9 @@ const jsonMimeType = 'application/json';
 
 /// Mime type for the ZIP file format.
 const zipMimeType = 'application/zip';
+
+/// Mime type for plain text files.
+const textMimeType = 'text/plain';
 
 /// Type group for the JSON file format.
 const jsonTypeGroup = XTypeGroup(

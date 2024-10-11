@@ -20,7 +20,33 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get error_error => '错误';
+  String get error_snack_bar => 'Error:';
+
+  @override
+  String get error_widget_title => 'An error has occurred.';
+
+  @override
+  String get error_widget_description =>
+      'Please report this issue on GitHub or via mail. Attach a screenshot of this page and the logs that you can copy or export below. As a precaution, you should also export your notes.';
+
+  @override
+  String get error_widget_disabled_secure_flag =>
+      'The setting to flag the app as secure is disabled until the next restart to enable screenshots.';
+
+  @override
+  String get error_widget_button_export_notes => 'Export notes';
+
+  @override
+  String get error_widget_button_copy_logs => 'Copy logs';
+
+  @override
+  String get error_widget_button_export_logs => 'Export logs';
+
+  @override
+  String get error_widget_button_create_github_issue => 'Create GitHub issue';
+
+  @override
+  String get error_widget_button_send_mail => 'Send mail';
 
   @override
   String get navigation_notes => '笔记';
@@ -574,6 +600,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get snack_bar_export_success => 'The notes were successfully exported.';
+
+  @override
+  String get snack_bar_logs_copied => 'The logs were copied to your clipboard.';
+
+  @override
+  String get snack_bar_logs_exported => 'The logs were successfully exported.';
 
   @override
   String get action_add_note_title => '添加笔记';

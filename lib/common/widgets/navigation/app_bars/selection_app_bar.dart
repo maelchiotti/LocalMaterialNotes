@@ -132,8 +132,8 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
             data: (notes) {
               return _buildAppBar(notes.where((note) => note.selected).toList(), notes.length);
             },
-            error: (error, stackTrace) {
-              return const ErrorPlaceholder();
+            error: (exception, stackTrace) {
+              return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
             },
             loading: () {
               return const LoadingPlaceholder();
@@ -143,8 +143,8 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
             data: (notes) {
               return _buildAppBar(notes.where((note) => note.selected).toList(), notes.length);
             },
-            error: (error, stackTrace) {
-              return const ErrorPlaceholder();
+            error: (exception, stackTrace) {
+              return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
             },
             loading: () {
               return const LoadingPlaceholder();

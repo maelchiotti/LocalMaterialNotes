@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
 import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
+import 'package:localmaterialnotes/utils/logs_utils.dart';
 
 // ignore_for_file: public_member_api_docs
 
@@ -79,7 +78,7 @@ enum PreferenceKey {
     try {
       return PreferencesUtils().get<T>(this) ?? defaultValue as T;
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
 
       return defaultValue as T;
     }

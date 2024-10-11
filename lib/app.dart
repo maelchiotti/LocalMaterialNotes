@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/locale_extension.dart';
+import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/routing/router.dart';
@@ -70,8 +71,11 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
                             title: 'Material Notes',
                             routerConfig: router,
                             builder: (context, child) {
+                              // Change the widget shown when a widget building fails
+                              ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);
+
                               if (child == null) {
-                                throw Exception('MaterialApp child is null');
+                                throw StateError('MaterialApp child is null');
                               }
 
                               return Directionality(

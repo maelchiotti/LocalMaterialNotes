@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
@@ -12,6 +11,7 @@ import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
+import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:sanitize_filename/sanitize_filename.dart';
 
@@ -74,7 +74,7 @@ class DatabaseUtils {
             );
           }).toList();
         } catch (exception, stackTrace) {
-          log(exception.toString(), stackTrace: stackTrace);
+          LogsUtils().handleException(exception, stackTrace);
 
           SnackBarUtils.error(
             localizations.dialog_import_encryption_password_error,
@@ -122,7 +122,7 @@ class DatabaseUtils {
     return await writeFile(
       directory: directory,
       fileName: fileName,
-      mimeType: jsonMimeType,
+      mimeType: textMimeType,
       data: exportDataAsJson,
     );
   }
@@ -144,7 +144,7 @@ class DatabaseUtils {
   /// First asks the user to pick a directory where to save the export file.
   ///
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
-  Future<bool> manuallyExportAsJson(bool encrypt, String? password) async {
+  Future<bool> manuallyExportAsJson({required bool encrypt, String? password}) async {
     final exportDirectory = await selectDirectory();
 
     if (exportDirectory == null) {
