@@ -125,11 +125,59 @@ abstract class AppLocalizations {
   /// **'{appName} is a text-based note-taking application, aimed at simplicity. It embraces Material Design. It stores the notes locally and doesn\'\'t have any internet permissions, so you are the only one that can access the notes.'**
   String app_about(String appName);
 
-  /// Error message, shown in the error snack bar before the actual error message.
+  /// Prefix for the error message shown in the error snack bar, before the actual error message.
   ///
   /// In en, this message translates to:
-  /// **'Error'**
-  String get error_error;
+  /// **'Error:'**
+  String get error_snack_bar;
+
+  /// Message shown in the error widget shown when a widget fails to build.
+  ///
+  /// In en, this message translates to:
+  /// **'An error has occurred.'**
+  String get error_widget_title;
+
+  /// Message shown in the error widget shown when a widget fails to build.
+  ///
+  /// In en, this message translates to:
+  /// **'Please report this issue on GitHub or via mail. Attach a screenshot of this page and the logs that you can copy or export below. As a precaution, you should also export your notes.'**
+  String get error_widget_description;
+
+  /// Label shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred.
+  ///
+  /// In en, this message translates to:
+  /// **'The setting to flag the app as secure is disabled until the next restart to enable screenshots.'**
+  String get error_widget_disabled_secure_flag;
+
+  /// Title of the button to export the notes as JSON on the error widget.
+  ///
+  /// In en, this message translates to:
+  /// **'Export notes'**
+  String get error_widget_button_export_notes;
+
+  /// Title of the button to copy the logs to the clipboard on the error widget.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy logs'**
+  String get error_widget_button_copy_logs;
+
+  /// Title of the button to export the logs in a text file on the error widget.
+  ///
+  /// In en, this message translates to:
+  /// **'Export logs'**
+  String get error_widget_button_export_logs;
+
+  /// Title of the button to create a new GitHub issue on the error widget.
+  ///
+  /// In en, this message translates to:
+  /// **'Create GitHub issue'**
+  String get error_widget_button_create_github_issue;
+
+  /// Title of the button to end a bug report mail on the error widget.
+  ///
+  /// In en, this message translates to:
+  /// **'Send mail'**
+  String get error_widget_button_send_mail;
 
   /// Title of the notes page.
   ///
@@ -1132,6 +1180,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The notes were successfully exported.'**
   String get snack_bar_export_success;
+
+  /// Snack bar message shown when the logs where copied to the clipboard from the error widget.
+  ///
+  /// In en, this message translates to:
+  /// **'The logs were copied to your clipboard.'**
+  String get snack_bar_logs_copied;
+
+  /// Snack bar message shown when the logs where successfully exported in a text file from the error widget.
+  ///
+  /// In en, this message translates to:
+  /// **'The logs were successfully exported.'**
+  String get snack_bar_logs_exported;
 
   /// Title of the home screen action to add a new note.
   ///

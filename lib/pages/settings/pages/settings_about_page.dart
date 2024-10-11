@@ -6,6 +6,7 @@ import 'package:localmaterialnotes/common/constants/sizes.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
+import 'package:localmaterialnotes/utils/utils.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -13,8 +14,6 @@ import 'package:url_launcher/url_launcher.dart';
 class SettingsAboutPage extends StatelessWidget {
   /// Default constructor.
   const SettingsAboutPage({super.key});
-
-  static const _contactEmail = 'contact@maelchiotti.dev';
 
   /// Opens the Crowdin project.
   void _openCrowdin(_) {
@@ -25,12 +24,6 @@ class SettingsAboutPage extends StatelessWidget {
         path: 'project/localmaterialnotes',
       ),
     );
-  }
-
-  String? _encodeQueryParameters(Map<String, String> params) {
-    return params.entries.map((MapEntry<String, String> e) {
-      return '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}';
-    }).join('&');
   }
 
   /// Shows the about dialog.
@@ -90,8 +83,8 @@ class SettingsAboutPage extends StatelessWidget {
     launchUrl(
       Uri(
         scheme: 'mailto',
-        path: _contactEmail,
-        query: _encodeQueryParameters({
+        path: contactEmail,
+        query: encodeQueryParameters({
           'subject': '[Material Notes] ',
           'body': '\n\n\n----------\nv$appVersion\n$buildMode mode\nAndroid $androidVersion\n$brand $model',
         }),
@@ -161,7 +154,7 @@ class SettingsAboutPage extends StatelessWidget {
             SettingsTile(
               leading: const Icon(Icons.mail),
               title: Text(localizations.settings_get_in_touch),
-              description: Text(localizations.settings_get_in_touch_description(_contactEmail)),
+              description: Text(localizations.settings_get_in_touch_description(contactEmail)),
               onPressed: _sendMail,
             ),
           ],

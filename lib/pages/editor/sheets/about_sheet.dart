@@ -20,7 +20,7 @@ class AboutSheet extends StatelessWidget {
     final note = currentNoteNotifier.value;
 
     if (note == null) {
-      return const ErrorPlaceholder();
+      return const ErrorPlaceholder(exception: 'The note is null in the about sheet');
     }
 
     final wordCount = RegExp(r'[\w-]+').allMatches(note.contentPreview).length;

@@ -10,6 +10,7 @@ import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/flag_secure_utils.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/localizations_utils.dart';
+import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
 
 /// Main entry point of the application.
@@ -34,6 +35,7 @@ Future<void> main() async {
   await InfoUtils().ensureInitialized();
   await LocalizationsUtils().ensureInitialized();
   await ThemeUtils().ensureInitialized();
+  await LogsUtils().ensureInitialized();
 
   // Set the application refresh rate (only in Android 6 or later)
   // See https://github.com/flutter/flutter/issues/35162

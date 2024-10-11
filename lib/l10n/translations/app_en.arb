@@ -17,9 +17,41 @@
       }
     }
   },
-  "error_error": "Error",
-  "@error_error": {
-    "description": "Error message, shown in the error snack bar before the actual error message."
+  "error_snack_bar": "Error:",
+  "@error_snack_bar": {
+    "description": "Prefix for the error message shown in the error snack bar, before the actual error message."
+  },
+  "error_widget_title": "An error has occurred.",
+  "@error_widget_title": {
+    "description": "Message shown in the error widget shown when a widget fails to build."
+  },
+  "error_widget_description": "Please report this issue on GitHub or via mail. Attach a screenshot of this page and the logs that you can copy or export below. As a precaution, you should also export your notes.",
+  "@error_widget_description": {
+    "description": "Message shown in the error widget shown when a widget fails to build."
+  },
+  "error_widget_disabled_secure_flag": "The setting to flag the app as secure is disabled until the next restart to enable screenshots.",
+  "@error_widget_disabled_secure_flag": {
+    "description": "Label shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
+  },
+  "error_widget_button_export_notes": "Export notes",
+  "@error_widget_button_export_notes": {
+    "description": "Title of the button to export the notes as JSON on the error widget."
+  },
+  "error_widget_button_copy_logs": "Copy logs",
+  "@error_widget_button_copy_logs": {
+    "description": "Title of the button to copy the logs to the clipboard on the error widget."
+  },
+  "error_widget_button_export_logs": "Export logs",
+  "@error_widget_button_export_logs": {
+    "description": "Title of the button to export the logs in a text file on the error widget."
+  },
+  "error_widget_button_create_github_issue": "Create GitHub issue",
+  "@error_widget_button_create_github_issue": {
+    "description": "Title of the button to create a new GitHub issue on the error widget."
+  },
+  "error_widget_button_send_mail": "Send mail",
+  "@error_widget_button_send_mail": {
+    "description": "Title of the button to end a bug report mail on the error widget."
   },
   "navigation_notes": "Notes",
   "@navigation_notes": {
@@ -712,6 +744,14 @@
   "snack_bar_export_success": "The notes were successfully exported.",
   "@snack_bar_export_success": {
     "description": "Snack bar informing that the notes were successfully manually exported."
+  },
+  "snack_bar_logs_copied": "The logs were copied to your clipboard.",
+  "@snack_bar_logs_copied": {
+    "description": "Snack bar message shown when the logs where copied to the clipboard from the error widget."
+  },
+  "snack_bar_logs_exported": "The logs were successfully exported.",
+  "@snack_bar_logs_exported": {
+    "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
   },
   "action_add_note_title": "Add a note",
   "@action_add_note_title": {

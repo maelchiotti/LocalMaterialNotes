@@ -92,8 +92,8 @@ class NotesList extends ConsumerWidget {
             data: (notes) {
               return child(context, notes);
             },
-            error: (error, stackTrace) {
-              return const ErrorPlaceholder();
+            error: (exception, stackTrace) {
+              return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
             },
             loading: () {
               return const LoadingPlaceholder();
@@ -103,8 +103,8 @@ class NotesList extends ConsumerWidget {
             data: (notes) {
               return child(context, notes);
             },
-            error: (error, stackTrace) {
-              return const ErrorPlaceholder();
+            error: (exception, stackTrace) {
+              return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
             },
             loading: () {
               return const LoadingPlaceholder();

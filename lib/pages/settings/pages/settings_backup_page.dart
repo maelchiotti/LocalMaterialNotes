@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
@@ -16,6 +14,7 @@ import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
+import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:simple_icons/simple_icons.dart';
@@ -44,7 +43,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         SnackBarUtils.info(localizations.snack_bar_import_success).show();
       }
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
 
       SnackBarUtils.info(exception.toString()).show();
     }
@@ -67,11 +66,11 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       try {
         final password = shouldEncrypt.$2;
 
-        if (await DatabaseUtils().manuallyExportAsJson(encrypt, password)) {
+        if (await DatabaseUtils().manuallyExportAsJson(encrypt: encrypt, password: password)) {
           SnackBarUtils.info(localizations.snack_bar_export_success).show();
         }
       } catch (exception, stackTrace) {
-        log(exception.toString(), stackTrace: stackTrace);
+        LogsUtils().handleException(exception, stackTrace);
 
         SnackBarUtils.info(exception.toString()).show();
       }
@@ -87,7 +86,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         SnackBarUtils.info(localizations.snack_bar_export_success).show();
       }
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
 
       SnackBarUtils.info(exception.toString()).show();
     }
