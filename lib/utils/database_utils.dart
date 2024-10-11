@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/enums/mime_type.dart';
 import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_password_dialog.dart';
@@ -12,9 +12,9 @@ import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
+import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:sanitize_filename/sanitize_filename.dart';
-import 'package:shared_storage/shared_storage.dart';
 
 /// Utilities for the database.
 ///
@@ -31,18 +31,13 @@ class DatabaseUtils {
 
   /// Imports all the notes from a JSON file picked by the user.
   Future<bool> import(BuildContext context) async {
-    final importPlatformFile = await pickSingleFile('application/json');
+    final importFile = await selectFile(jsonTypeGroup);
 
-    if (importPlatformFile == null) {
+    if (importFile == null) {
       return false;
     }
 
-    final importedString = await getDocumentContentAsString(importPlatformFile);
-
-    if (importedString == null) {
-      return false;
-    }
-
+    final importedString = await importFile.readAsString();
     var importedJson = jsonDecode(utf8.decode(importedString.codeUnits));
 
     List<Note>? notes;
@@ -80,7 +75,7 @@ class DatabaseUtils {
             );
           }).toList();
         } catch (exception, stackTrace) {
-          log(exception.toString(), stackTrace: stackTrace);
+          LogsUtils().handleException(exception, stackTrace);
 
           SnackBarUtils.error(
             localizations.dialog_import_encryption_password_error,
@@ -101,15 +96,14 @@ class DatabaseUtils {
     return true;
   }
 
-  /// Exports all the notes in a JSON file with the [fileName] at the path of the [parentUri] directory.
+  /// Exports all the notes in a JSON file with the [fileName] in the [directory].
   ///
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
-  Future<bool> _exportAsJson(
-    bool encrypt,
-    String? password,
-    Uri parentUri,
-    String fileName, {
-    bool useSaf = true,
+  Future<bool> _exportAsJson({
+    required bool encrypt,
+    required String? password,
+    required String directory,
+    required String fileName,
   }) async {
     var notes = await _notesService.getAll();
 
@@ -126,12 +120,11 @@ class DatabaseUtils {
     };
     final exportDataAsJson = utf8.encode(jsonEncode(exportData));
 
-    return await writeBytesToFile(
-      parentUri,
-      'application/json',
-      fileName,
-      exportDataAsJson,
-      useSaf: useSaf,
+    return await writeFile(
+      directory: directory,
+      fileName: fileName,
+      mimeType: MimeType.plainText.value,
+      data: exportDataAsJson,
     );
   }
 
@@ -140,11 +133,10 @@ class DatabaseUtils {
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
   Future<bool> autoExportAsJson(bool encrypt, String password) async {
     return await _exportAsJson(
-      encrypt,
-      password,
-      AutoExportUtils().autoExportDirectory,
-      _exportFileName('json'),
-      useSaf: !await AutoExportUtils().isAutoExportDirectoryDefault,
+      encrypt: encrypt,
+      password: password,
+      directory: AutoExportUtils().autoExportDirectory,
+      fileName: _exportFileName(MimeType.json.extension),
     );
   }
 
@@ -153,18 +145,18 @@ class DatabaseUtils {
   /// First asks the user to pick a directory where to save the export file.
   ///
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
-  Future<bool> manuallyExportAsJson(bool encrypt, String? password) async {
-    final exportDirectory = await pickDirectory();
+  Future<bool> manuallyExportAsJson({required bool encrypt, String? password}) async {
+    final exportDirectory = await selectDirectory();
 
     if (exportDirectory == null) {
       return false;
     }
 
     return await _exportAsJson(
-      encrypt,
-      password,
-      exportDirectory,
-      _exportFileName('json'),
+      encrypt: encrypt,
+      password: password,
+      directory: exportDirectory,
+      fileName: _exportFileName(MimeType.json.extension),
     );
   }
 
@@ -172,7 +164,7 @@ class DatabaseUtils {
   ///
   /// First asks the user to pick a directory where to save the export file.
   Future<bool> exportAsMarkdown() async {
-    final exportDirectory = await pickDirectory();
+    final exportDirectory = await selectDirectory();
 
     if (exportDirectory == null) {
       return false;
@@ -183,7 +175,7 @@ class DatabaseUtils {
 
     for (final note in notes) {
       final bytes = utf8.encode(note.markdown);
-      final filename = sanitizeFilename('${note.title} (${note.createdTime.filename}).md');
+      final filename = sanitizeFilename('${note.title} (${note.createdTime.filename}).${MimeType.markdown.extension}');
 
       archive.addFile(ArchiveFile(filename, bytes.length, bytes));
     }
@@ -194,11 +186,11 @@ class DatabaseUtils {
       return false;
     }
 
-    return await writeBytesToFile(
-      exportDirectory,
-      'application/zip',
-      _exportFileName('zip'),
-      Uint8List.fromList(encodedArchive),
+    return await writeFile(
+      directory: exportDirectory,
+      fileName: _exportFileName(MimeType.zip.extension),
+      mimeType: MimeType.zip.value,
+      data: Uint8List.fromList(encodedArchive),
     );
   }
 }

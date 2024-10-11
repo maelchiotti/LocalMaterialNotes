@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/uri_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_frequency_dialog.dart';
@@ -17,6 +14,7 @@ import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
+import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:simple_icons/simple_icons.dart';
@@ -45,7 +43,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         SnackBarUtils.info(localizations.snack_bar_import_success).show();
       }
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
 
       SnackBarUtils.info(exception.toString()).show();
     }
@@ -68,11 +66,11 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       try {
         final password = shouldEncrypt.$2;
 
-        if (await DatabaseUtils().manuallyExportAsJson(encrypt, password)) {
+        if (await DatabaseUtils().manuallyExportAsJson(encrypt: encrypt, password: password)) {
           SnackBarUtils.info(localizations.snack_bar_export_success).show();
         }
       } catch (exception, stackTrace) {
-        log(exception.toString(), stackTrace: stackTrace);
+        LogsUtils().handleException(exception, stackTrace);
 
         SnackBarUtils.info(exception.toString()).show();
       }
@@ -88,7 +86,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         SnackBarUtils.info(localizations.snack_bar_export_success).show();
       }
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
 
       SnackBarUtils.info(exception.toString()).show();
     }
@@ -164,13 +162,13 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
   /// Asks the user to choose a directory for the automatic export.
   Future<void> _setAutoExportDirectory(_) async {
-    final autoExportDirectory = await pickDirectory();
+    final autoExportDirectory = await selectDirectory();
 
     if (autoExportDirectory == null) {
       return;
     }
 
-    PreferencesUtils().set<String>(PreferenceKey.autoExportDirectory, autoExportDirectory.path);
+    PreferencesUtils().set<String>(PreferenceKey.autoExportDirectory, autoExportDirectory);
     await AutoExportUtils().setAutoExportDirectory();
 
     setState(() {});
@@ -178,7 +176,8 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
   /// Resets the directory of the automatic export to its default value.
   Future<void> _resetAutoExportDirectory() async {
-    PreferencesUtils().remove(PreferenceKey.autoExportDirectory);
+    await PreferencesUtils().remove(PreferenceKey.autoExportDirectory);
+
     await AutoExportUtils().setAutoExportDirectory();
 
     setState(() {});
@@ -189,7 +188,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault<bool>();
     final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<int>();
     final autoExportEncryption = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
-    final autoExportDirectory = AutoExportUtils().autoExportDirectory.display;
+    final autoExportDirectory = AutoExportUtils().autoExportDirectory;
 
     return CustomSettingsList(
       sections: [
@@ -244,6 +243,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
               leading: const Icon(Symbols.calendar_clock),
               title: Text(localizations.settings_auto_export_frequency),
               value: SettingNavigationTileBody(
+                enabled: enableAutoExport,
                 value: localizations.settings_auto_export_frequency_value(autoExportFrequency.toString()),
                 description: localizations.settings_auto_export_frequency_description,
               ),
@@ -254,6 +254,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
               leading: const Icon(Icons.folder),
               title: Text(localizations.settings_auto_export_directory),
               value: SettingNavigationTileBody(
+                enabled: enableAutoExport,
                 value: autoExportDirectory,
                 description: localizations.settings_auto_export_directory_description,
               ),

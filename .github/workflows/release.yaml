@@ -70,7 +70,7 @@ jobs:
           heading-title-regex: ^${{ needs.get_version.outputs.version }}
           omit-heading: true
       - name: Create release tag
-        uses: actions/github-script@v5
+        uses: actions/github-script@v7.0.1
         with:
           script: |
             github.rest.git.createRef({

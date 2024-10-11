@@ -9,25 +9,25 @@ enum LocalizationCompletion {
   en(Locale('en'), 1),
 
   /// Spanish.
-  es(Locale('es'), .29),
+  es(Locale('es'), .91),
 
   /// French.
   fr(Locale('fr'), 1),
 
   /// German.
-  de(Locale('de'), 1),
+  de(Locale('de'), .91),
 
   /// Portuguese.
-  pt(Locale('pt'), .58),
+  pt(Locale('pt'), .53),
 
   /// Russian.
-  ru(Locale('ru'), 0.76),
+  ru(Locale('ru'), 0.69),
 
   /// Turkish.
-  tr(Locale('tr'), .28),
+  tr(Locale('tr'), .25),
 
   /// Chinese Simplified.
-  zh(Locale('zh'), .76),
+  zh(Locale('zh'), .91),
   ;
 
   /// The locale of this localization.

@@ -1,0 +1,7 @@
+ADDED
+- Error page shown when a page fails to load, with the ability to copy and export the error logs
+
+FIXED
+- Value of the setting on the settings tiles not using a subdued color when disabled
+- Too small note pinned icon on the notes tiles
+- Too small application icon

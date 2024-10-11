@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/services/notes/notes_service.dart';
+import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'bin_provider.g.dart';
@@ -24,7 +23,7 @@ class Bin extends _$Bin {
     try {
       notes = await _notesService.getAll(deleted: true);
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
     }
 
     state = AsyncData(notes);
@@ -44,7 +43,7 @@ class Bin extends _$Bin {
     try {
       await _notesService.emptyBin();
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
       return false;
     }
 
@@ -58,7 +57,7 @@ class Bin extends _$Bin {
     try {
       await _notesService.delete(permanentlyDeletedNote);
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
       return false;
     }
 
@@ -79,7 +78,7 @@ class Bin extends _$Bin {
     try {
       await _notesService.deleteAll(notes);
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
       return false;
     }
 
@@ -98,7 +97,7 @@ class Bin extends _$Bin {
     try {
       await _notesService.put(restoredNote);
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
       return false;
     }
 
@@ -119,7 +118,7 @@ class Bin extends _$Bin {
     try {
       await _notesService.putAll(notes);
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
       return false;
     }
 

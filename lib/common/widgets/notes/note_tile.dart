@@ -215,6 +215,8 @@ class _NoteTileState extends ConsumerState<NoteTile> {
         return ValueListenableBuilder(
           valueListenable: showTilesBackgroundNotifier,
           builder: (context, showTilesBackground, child) {
+            final bodyMediumTextTheme = Theme.of(context).textTheme.bodyMedium;
+
             final showTitle =
                 // Do not show only the title and the preview content is not empty
                 (!showTitlesOnly && !widget.note.isContentPreviewEmpty) ||
@@ -255,9 +257,9 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                                   overflow: TextOverflow.ellipsis,
                                   style: disableSubduedNoteContentPreview
                                       ? null
-                                      : Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                            color: Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(175),
-                                          ),
+                                      : bodyMediumTextTheme?.copyWith(
+                                          color: bodyMediumTextTheme.color?.withAlpha(175),
+                                        ),
                                 ),
                             ],
                           ),

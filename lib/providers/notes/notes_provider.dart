@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/services/notes/notes_service.dart';
+import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'notes_provider.g.dart';
@@ -24,7 +23,7 @@ class Notes extends _$Notes {
     try {
       notes = await _notesService.getAll();
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
     }
 
     state = AsyncData(notes);
@@ -50,7 +49,7 @@ class Notes extends _$Notes {
         await _notesService.put(editedNote);
       }
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
       return false;
     }
 
@@ -86,7 +85,7 @@ class Notes extends _$Notes {
     try {
       await _notesService.putAll(notes);
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
       return false;
     }
 
@@ -122,7 +121,7 @@ class Notes extends _$Notes {
     try {
       await _notesService.putAll(notes);
     } catch (exception, stackTrace) {
-      log(exception.toString(), stackTrace: stackTrace);
+      LogsUtils().handleException(exception, stackTrace);
       return false;
     }
 

@@ -15,7 +15,7 @@ class SnackBarUtils {
   SnackBarUtils.error(
     String error, {
     this.duration = const Duration(milliseconds: 4000),
-  }) : text = '${localizations.error_error}: $error';
+  }) : text = '${localizations.error_snack_bar} $error';
 
   /// Text to display in the snack bar;
   final String text;
