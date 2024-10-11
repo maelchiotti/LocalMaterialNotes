@@ -1,5 +1,6 @@
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:localmaterialnotes/common/enums/mime_type.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:parchment/codecs.dart';
 import 'package:saf_stream/saf_stream.dart';
@@ -32,25 +33,16 @@ final safUtil = SafUtil();
 /// Read and write methods for files through the Storage Access Framework (SAF) APIs.
 final safStream = SafStream();
 
-/// Mime type for the JSON file format.
-const jsonMimeType = 'application/json';
-
-/// Mime type for the ZIP file format.
-const zipMimeType = 'application/zip';
-
-/// Mime type for plain text files.
-const textMimeType = 'text/plain';
-
 /// Type group for the JSON file format.
-const jsonTypeGroup = XTypeGroup(
-  label: 'JSON files',
-  extensions: ['json'],
-  mimeTypes: [jsonMimeType],
+final jsonTypeGroup = XTypeGroup(
+  label: MimeType.json.label,
+  extensions: [MimeType.json.extension],
+  mimeTypes: [MimeType.json.value],
 );
 
 /// Type group for the ZIP file format.
-const zipTypeGroup = XTypeGroup(
-  label: 'ZIP files',
-  extensions: ['zip'],
-  mimeTypes: [jsonMimeType],
+final zipTypeGroup = XTypeGroup(
+  label: MimeType.zip.label,
+  extensions: [MimeType.zip.extension],
+  mimeTypes: [MimeType.zip.value],
 );

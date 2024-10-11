@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:archive/archive.dart';
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/enums/mime_type.dart';
 import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_password_dialog.dart';
@@ -122,7 +123,7 @@ class DatabaseUtils {
     return await writeFile(
       directory: directory,
       fileName: fileName,
-      mimeType: textMimeType,
+      mimeType: MimeType.plainText.value,
       data: exportDataAsJson,
     );
   }
@@ -135,7 +136,7 @@ class DatabaseUtils {
       encrypt: encrypt,
       password: password,
       directory: AutoExportUtils().autoExportDirectory,
-      fileName: _exportFileName('json'),
+      fileName: _exportFileName(MimeType.json.extension),
     );
   }
 
@@ -155,7 +156,7 @@ class DatabaseUtils {
       encrypt: encrypt,
       password: password,
       directory: exportDirectory,
-      fileName: _exportFileName('json'),
+      fileName: _exportFileName(MimeType.json.extension),
     );
   }
 
@@ -174,7 +175,7 @@ class DatabaseUtils {
 
     for (final note in notes) {
       final bytes = utf8.encode(note.markdown);
-      final filename = sanitizeFilename('${note.title} (${note.createdTime.filename}).md');
+      final filename = sanitizeFilename('${note.title} (${note.createdTime.filename}).${MimeType.markdown.extension}');
 
       archive.addFile(ArchiveFile(filename, bytes.length, bytes));
     }
@@ -187,8 +188,8 @@ class DatabaseUtils {
 
     return await writeFile(
       directory: exportDirectory,
-      fileName: _exportFileName('zip'),
-      mimeType: zipMimeType,
+      fileName: _exportFileName(MimeType.zip.extension),
+      mimeType: MimeType.zip.value,
       data: Uint8List.fromList(encodedArchive),
     );
   }
