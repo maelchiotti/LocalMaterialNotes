@@ -17,10 +17,6 @@
       }
     }
   },
-  "error_error": "Error",
-  "@error_error": {
-    "description": "Error message, shown in the error snack bar before the actual error message."
-  },
   "navigation_notes": "Notas",
   "@navigation_notes": {
     "description": "Title of the notes page."
@@ -33,6 +29,26 @@
   "@navigation_settings": {
     "description": "Title of the settings page."
   },
+  "navigation_settings_appearance": "Apariencia",
+  "@navigation_settings_appearance": {
+    "description": "Title of the settings page regarding the application's appearance."
+  },
+  "navigation_settings_behavior": "Comportamiento",
+  "@navigation_settings_behavior": {
+    "description": "Title of the settings page regarding the application's behavior."
+  },
+  "navigation_settings_editor": "Editor",
+  "@navigation_settings_editor": {
+    "description": "Title of the settings page regarding the notes content editor."
+  },
+  "navigation_settings_backup": "Copia de seguridad",
+  "@navigation_settings_backup": {
+    "description": "Title of the settings page regarding the backup functionality."
+  },
+  "navigation_settings_about": "Acerca de",
+  "@navigation_settings_about": {
+    "description": "Title of the settings page regarding the information about the application."
+  },
   "button_ok": "Aceptar",
   "@button_ok": {
     "description": "Button to validate a dialog."
@@ -41,13 +57,33 @@
   "@button_cancel": {
     "description": "Button to cancel and close a dialog."
   },
+  "button_sort_title": "Título",
+  "@button_sort_title": {
+    "description": "Text of the button to sort the notes list by title."
+  },
+  "button_sort_ascending": "Ascendente",
+  "@button_sort_ascending": {
+    "description": "Text of the button to sort the notes list in ascending order."
+  },
   "settings_appearance": "Apariencia",
   "@settings_appearance": {
     "description": "Title of the settings section regarding the application's appearance."
   },
+  "settings_appearance_description": "Idioma, tema, tamaño del texto, fichas de notas",
+  "@settings_appearance_description": {
+    "description": "Description of the appearance settings section."
+  },
+  "settings_appearance_application": "Aplicación",
+  "@settings_appearance_application": {
+    "description": "Title of the sub-section regarding the application under the appearance settings."
+  },
   "settings_language": "Idioma",
   "@settings_language": {
     "description": "Title of the language setting tile."
+  },
+  "settings_language_contribute": "Contribuir",
+  "@settings_language_contribute": {
+    "description": "Button to contribute to the localizations, shown on the language setting tile."
   },
   "settings_theme": "Tema",
   "@settings_theme": {
@@ -69,6 +105,10 @@
   "@settings_dynamic_theming": {
     "description": "Title of the dynamic theming setting tile (to use colors generated from the system)."
   },
+  "settings_dynamic_theming_description": "Generar colores desde el sistema",
+  "@settings_dynamic_theming_description": {
+    "description": "Description of the dynamic theming setting tile."
+  },
   "settings_black_theming": "Negro puro",
   "@settings_black_theming": {
     "description": "Title of the black theming setting tile (to use a black background in dark mode)."
@@ -77,25 +117,201 @@
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
   },
+  "settings_text_scaling": "Escala del texto",
+  "@settings_text_scaling": {
+    "description": "Title of the text scale setting tile."
+  },
+  "settings_appearance_notes_tiles": "Fichas de las notas",
+  "@settings_appearance_notes_tiles": {
+    "description": "Title of the sub-section regarding the notes tiles under the appearance settings."
+  },
+  "settings_show_titles_only": "Sólo títulos",
+  "@settings_show_titles_only": {
+    "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
+  },
+  "settings_show_titles_only_description": "Sólo mostrar los títulos de las notas",
+  "@settings_show_titles_only_description": {
+    "description": "Description of the setting tile to only show the titles of the notes in the notes tiles."
+  },
+  "settings_show_titles_only_disable_in_search_view": "Deshabilitar mostrar solo los títulos en la búsqueda",
+  "@settings_show_titles_only_disable_in_search_view": {
+    "description": "Title of the setting tile to disable only showing the titles of the notes in the search view."
+  },
+  "settings_show_titles_only_disable_in_search_view_description": "Deshabilitar la opción de sólo mostrar los títulos cuando se muestra la vista de búsqueda",
+  "@settings_show_titles_only_disable_in_search_view_description": {
+    "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
+  },
+  "settings_disable_subdued_note_content_preview": "No subrayado en vista previa",
+  "@settings_disable_subdued_note_content_preview": {
+    "description": "Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
+  },
+  "settings_disable_subdued_note_content_preview_description": "Desactiva el color de texto subrayado de la vista previa del contenido de las notas",
+  "@settings_disable_subdued_note_content_preview_description": {
+    "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
+  },
+  "settings_show_tiles_background": "Fondo",
+  "@settings_show_tiles_background": {
+    "description": "Title of the setting tile to show the background of the notes tiles."
+  },
+  "settings_show_tiles_background_description": "Muestra el fondo de tarjetas en las notas",
+  "@settings_show_tiles_background_description": {
+    "description": "Description of the setting tile to show the background of the notes tiles."
+  },
+  "settings_show_separators": "Separadores",
+  "@settings_show_separators": {
+    "description": "Title of the setting tile to show the separators between the notes tiles."
+  },
+  "settings_show_separators_description": "Mostrar un separador entre las notas",
+  "@settings_show_separators_description": {
+    "description": "Description of the setting tile to show the separators between the notes tiles."
+  },
   "settings_behavior": "Comportamiento",
   "@settings_behavior": {
     "description": "Title of the settings section regarding the application's behavior."
+  },
+  "settings_behavior_description": "Confirmaciones, marcar cómo segura, acciones de deslizamiento",
+  "@settings_behavior_description": {
+    "description": "Description of the behavior settings section."
+  },
+  "settings_behavior_application": "Aplicación",
+  "@settings_behavior_application": {
+    "description": "Title of the sub-section regarding the application under the behavior settings."
+  },
+  "settings_confirmations": "Diálogo de confirmación",
+  "@settings_confirmations": {
+    "description": "Title of the setting tile to choose when to show the confirmation dialog when performing an action on a note."
+  },
+  "settings_confirmations_description": "Cuándo mostrar un cuadro de diálogo de confirmación al realizar una acción en una nota",
+  "@settings_confirmations_description": {
+    "description": "Description of the setting tile to choose when to show the confirmation dialog when performing an action on a note."
+  },
+  "settings_confirmations_title_none": "Nunca",
+  "@settings_confirmations_title_none": {
+    "description": "Value of the setting to never show a confirmation dialog when performing an action on a note."
+  },
+  "settings_confirmations_title_irreversible": "En acciones irreversibles",
+  "@settings_confirmations_title_irreversible": {
+    "description": "Value of the setting to only show a confirmation dialog when performing an action on a note if it is irreversible."
+  },
+  "settings_confirmations_title_all": "Siempre",
+  "@settings_confirmations_title_all": {
+    "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
+  },
+  "settings_flag_secure": "Marcar la aplicación cómo segura",
+  "@settings_flag_secure": {
+    "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  },
+  "settings_flag_secure_description": "Oculta la aplicación de las aplicaciones recientes y previene que se realicen capturas de pantalla",
+  "@settings_flag_secure_description": {
+    "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  },
+  "settings_behavior_swipe_actions": "Acciones de deslizamiento",
+  "@settings_behavior_swipe_actions": {
+    "description": "Title of the sub-section regarding the swipe actions under the behavior settings."
+  },
+  "settings_swipe_action_right": "Deslizar a la derecha",
+  "@settings_swipe_action_right": {
+    "description": "Title of the setting tile to choose which action to trigger when a right swapping a note tile."
+  },
+  "settings_swipe_action_right_description": "Acción a realizar al deslizar a la derecha la tarjeta se una nota",
+  "@settings_swipe_action_right_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile."
+  },
+  "settings_swipe_action_left": "Desliza a la izquierda",
+  "@settings_swipe_action_left": {
+    "description": "Title of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
+  },
+  "settings_swipe_action_left_description": "Acción a realizar al deslizar a la izquierda la tarjeta de una nota",
+  "@settings_swipe_action_left_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
   },
   "settings_editor": "Editor",
   "@settings_editor": {
     "description": "Title of the settings section regarding the notes content editor."
   },
+  "settings_editor_description": "Botones, barra de herramientas, modo lectura, espaciado",
+  "@settings_editor_description": {
+    "description": "Description of the editor settings section."
+  },
+  "settings_editor_formatting": "Formato",
+  "@settings_editor_formatting": {
+    "description": "Title of the settings section regarding the notes content formatting in the editor."
+  },
   "settings_show_undo_redo_buttons": "Botones deshacer/rehacer",
   "@settings_show_undo_redo_buttons": {
     "description": "Title of the setting tile to enable the the undo and redo buttons in the editor."
+  },
+  "settings_show_undo_redo_buttons_description": "Mostrar los botones para deshacer y rehacer cambios en la barra de aplicaciones del editor",
+  "@settings_show_undo_redo_buttons_description": {
+    "description": "Description of the setting tile to enable the the undo and redo buttons in the editor."
   },
   "settings_show_checklist_button": "Botón de casilla de verificación",
   "@settings_show_checklist_button": {
     "description": "Title of the setting tile to enable the checklist button in the editor."
   },
+  "settings_show_checklist_button_description": "Mostrar el botón para alternar listas en la barra de aplicaciones del editor, ocultándolo de la barra de herramientas del editor si está habilitado",
+  "@settings_show_checklist_button_description": {
+    "description": "Description of the setting tile to enable the checklist button in the editor."
+  },
+  "settings_show_toolbar": "Barra de herramientas",
+  "@settings_show_toolbar": {
+    "description": "Title of the setting tile to enable the toolbar for advanced formatting options in the editor."
+  },
+  "settings_show_toolbar_description": "Mostrar la barra de herramientas del editor para habilitar el formato avanzado de texto",
+  "@settings_show_toolbar_description": {
+    "description": "Description of the setting tile to enable the toolbar for advanced formatting options in the editor."
+  },
+  "settings_editor_behavior": "Comportamiento",
+  "@settings_editor_behavior": {
+    "description": "Title of the settings section regarding the behavior of the editor"
+  },
+  "settings_show_editor_mode_button": "Botón del modo editor",
+  "@settings_show_editor_mode_button": {
+    "description": "Title of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
+  },
+  "settings_show_editor_mode_button_description": "Activar el botón para cambiar el editor entre el modo de edición y el modo de lectura",
+  "@settings_show_editor_mode_button_description": {
+    "description": "Description of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
+  },
+  "settings_open_editor_reading_mode": "Abrir en modo de lectura",
+  "@settings_open_editor_reading_mode": {
+    "description": "Title of the setting tile to enable opening the editor in reading mode by default."
+  },
+  "settings_open_editor_reading_mode_description": "Abrir el editor en modo de lectura por defecto",
+  "@settings_open_editor_reading_mode_description": {
+    "description": "Description of the setting tile to enable opening the editor in reading mode by default."
+  },
+  "settings_focus_title_on_new_note": "Enfocar el título",
+  "@settings_focus_title_on_new_note": {
+    "description": "Title of the setting tile to enable focusing the title when creating a new note by default."
+  },
+  "settings_focus_title_on_new_note_description": "Enfocar el título en lugar del contenido cuando se crea una nueva nota",
+  "@settings_focus_title_on_new_note_description": {
+    "description": "Description of the setting tile to enable focusing the title when creating a new note by default."
+  },
+  "settings_editor_appearance": "Apariencia",
+  "@settings_editor_appearance": {
+    "description": "Title of the settings section regarding the appearance of the editor"
+  },
+  "settings_use_paragraph_spacing": "Espacio entre párrafos",
+  "@settings_use_paragraph_spacing": {
+    "description": "Title of the setting tile to enable the spacing between paragraphs in the notes content."
+  },
+  "settings_use_paragraph_spacing_description": "Usar espaciado entre párrafos",
+  "@settings_use_paragraph_spacing_description": {
+    "description": "Description of the setting tile to enable the spacing between paragraphs in the notes content."
+  },
   "settings_backup": "Respaldo",
   "@settings_backup": {
     "description": "Title of the settings section regarding the backup functionality."
+  },
+  "settings_backup_description": "Exportación manual y automática, cifrado, importación",
+  "@settings_backup_description": {
+    "description": "Description of the backup settings section."
+  },
+  "settings_backup_import": "Importar",
+  "@settings_backup_import": {
+    "description": "Title of the settings section regarding the import of a backup."
   },
   "settings_import": "Importar",
   "@settings_import": {
@@ -105,17 +321,127 @@
   "@settings_import_description": {
     "description": "Description of the setting tile to import a backup."
   },
+  "settings_backup_manual_export": "Exportar manualmente",
+  "@settings_backup_manual_export": {
+    "description": "Title of the settings section regarding the manual export of the notes."
+  },
   "settings_export_json": "Exportar a JSON",
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
+  },
+  "settings_export_json_description": "Exportar inmediatamente las notas a un archivo JSON (bin incluido) que puede ser importado de nuevo",
+  "@settings_export_json_description": {
+    "description": "Description of the setting tile to manually export the notes as JSON."
   },
   "settings_export_markdown": "Exportar a Markdown",
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
   },
+  "settings_export_markdown_description": "Exportar inmediatamente las notas a un archivo Markdown (bin incluido)",
+  "@settings_export_markdown_description": {
+    "description": "Description of the setting tile to manually export the notes as Markdown."
+  },
+  "settings_backup_auto_export": "Exportación automática",
+  "@settings_backup_auto_export": {
+    "description": "Title of the settings section regarding the automatic export of the notes."
+  },
+  "settings_auto_export": "Exportación automática",
+  "@settings_auto_export": {
+    "description": "Title of the settings tile to enable the automatic export of the notes."
+  },
+  "settings_auto_export_description": "Exportar automáticamente las notas a un archivo JSON (bin incluido) que puede ser importado de nuevo",
+  "@settings_auto_export_description": {
+    "description": "Description of the settings tile to enable the automatic export of the notes."
+  },
+  "settings_auto_export_frequency": "Frecuencia",
+  "@settings_auto_export_frequency": {
+    "description": "Title of the settings tile to choose the frequency of the automatic exports of the notes."
+  },
+  "settings_auto_export_frequency_value": "¡Cada {frequency, select, 1{día} 7{semana} 14{¡2 semanas} 30{mes} other{{frequency} días}}",
+  "@settings_auto_export_frequency_value": {
+    "description": "Frequency of the automatic exports of the notes.",
+    "placeholders": {
+      "frequency": {
+        "description": "Value of the frequency (as a String to enable the select, but it's an int).",
+        "type": "String"
+      }
+    }
+  },
+  "settings_auto_export_frequency_description": "Frecuencia de la exportación automática de las notas",
+  "@settings_auto_export_frequency_description": {
+    "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
+  },
+  "settings_auto_export_encryption": "Encriptación",
+  "@settings_auto_export_encryption": {
+    "description": "Title of the settings tile to enable the encryption of the automatic exports."
+  },
+  "settings_auto_export_encryption_description": "Encriptar el título y el contenido de las notas con una contraseña",
+  "@settings_auto_export_encryption_description": {
+    "description": "Description of the settings tile to enable the encryption of the automatic exports."
+  },
+  "settings_auto_export_directory": "Directorio",
+  "@settings_auto_export_directory": {
+    "description": "Title of the settings tile to choose the directory where to save the automatic exports."
+  },
+  "settings_auto_export_directory_description": "Directorio donde guardar las exportaciones automáticas de las notas",
+  "@settings_auto_export_directory_description": {
+    "description": "Description of the settings tile to choose the directory where to save the automatic exports."
+  },
   "settings_about": "Acerca de",
   "@settings_about": {
     "description": "Title of the settings section regarding the information about the application."
+  },
+  "settings_about_description": "Información, ayuda, enlaces",
+  "@settings_about_description": {
+    "description": "Description of the about settings section."
+  },
+  "settings_about_application": "Aplicación",
+  "@settings_about_application": {
+    "description": "Title of the settings section regarding the information about the application."
+  },
+  "settings_build_mode": "Modo de compilación",
+  "@settings_build_mode": {
+    "description": "Title of the settings tile displaying the build mode of the application."
+  },
+  "settings_build_mode_release": "Versión",
+  "@settings_build_mode_release": {
+    "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
+  },
+  "settings_build_mode_debug": "Depuración",
+  "@settings_build_mode_debug": {
+    "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
+  },
+  "settings_about_help": "Ayuda",
+  "@settings_about_help": {
+    "description": "Title of the settings section regarding how to get help for the application."
+  },
+  "settings_github_issues": "Reporta errores o solicita nuevas características",
+  "@settings_github_issues": {
+    "description": "Title of the settings tile to open the GitHub issues and report a bug or request a feature."
+  },
+  "settings_github_issues_description": "Reportar un error o solicitar una característica creando un problema de GitHub",
+  "@settings_github_issues_description": {
+    "description": "Description of the settings tile to open the GitHub issues and report a bug or request a feature."
+  },
+  "settings_github_discussions": "Hacer una pregunta",
+  "@settings_github_discussions": {
+    "description": "Title of the settings tile to open the GitHub discussions and ask a question."
+  },
+  "settings_github_discussions_description": "Hacer una pregunta en las discusiones de GitHub",
+  "@settings_github_discussions_description": {
+    "description": "Description of the settings tile to open the GitHub discussions and ask a question."
+  },
+  "settings_get_in_touch": "Contactar con el desarrollador",
+  "@settings_get_in_touch": {
+    "description": "Title of the settings tile to contact the developer via mail."
+  },
+  "settings_get_in_touch_description": "Póngase en contacto con el desarrollador por correo electrónico en {email}",
+  "@settings_get_in_touch_description": {
+    "description": "Description of the settings tile to contact the developer via mail."
+  },
+  "settings_about_links": "Enlaces",
+  "@settings_about_links": {
+    "description": "Title of the settings section regarding the outside links related to the application."
   },
   "settings_github": "GitHub",
   "@settings_github": {
@@ -124,6 +450,14 @@
   "settings_github_description": "Da un vistazo al código fuente",
   "@settings_github_description": {
     "description": "Description of the settings tile to open the GitHub repository of the application."
+  },
+  "settings_localizations": "Crowdin",
+  "@settings_localizations": {
+    "description": "Title of the settings tile to open the Crowdin project managing the localization of the application."
+  },
+  "settings_localizations_description": "Añade o mejora las localizaciones en el proyecto Crowdin",
+  "@settings_localizations_description": {
+    "description": "Description of the settings tile to open the Crowdin project managing the localization of the application."
   },
   "settings_licence": "Licencia",
   "@settings_licence": {
@@ -141,6 +475,14 @@
   "@hint_note": {
     "description": "Hint for the text field of the content of the notes."
   },
+  "hint_link": "Enlace",
+  "@hint_link": {
+    "description": "Hint for the link text field in the dialog to add a link in the editor."
+  },
+  "dialog_export_encryption_password": "Contraseña",
+  "@dialog_export_encryption_password": {
+    "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
+  },
   "tooltip_toggle_checkbox": "Alternar casilla",
   "@tooltip_toggle_checkbox": {
     "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
@@ -156,6 +498,14 @@
   "tooltip_fab_empty_bin": "Vaciar la papelera",
   "@tooltip_fab_empty_bin": {
     "description": "Floating action button in the bin to empty it."
+  },
+  "tooltip_fab_toggle_editor_mode_edit": "Cambiar al modo de edición",
+  "@tooltip_fab_toggle_editor_mode_edit": {
+    "description": "Floating action button in the notes editor to switch to editing mode."
+  },
+  "tooltip_fab_toggle_editor_mode_read": "Cambiar al modo de lectura",
+  "@tooltip_fab_toggle_editor_mode_read": {
+    "description": "Floating action button in the notes editor to switch to reading mode."
   },
   "tooltip_layout_list": "Vista en lista",
   "@tooltip_layout_list": {
@@ -192,6 +542,14 @@
   "tooltip_restore": "Restaurar",
   "@tooltip_restore": {
     "description": "Tooltip for the button to restore a note from the bin."
+  },
+  "tooltip_reset": "Restablecer",
+  "@tooltip_reset": {
+    "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
+  },
+  "dialog_add_link": "Agregar un vínculo",
+  "@dialog_add_link": {
+    "description": "Tooltip for the button to validate the dialog to add a link in the note editor."
   },
   "dialog_delete": "Eliminar",
   "@dialog_delete": {
@@ -243,9 +601,81 @@
   "@dialog_empty_bin_body": {
     "description": "Text for the dialog to confirm emptying the bin."
   },
+  "dialog_export_encryption_switch": "Encriptar la exportación JSON",
+  "@dialog_export_encryption_switch": {
+    "description": "Text for the switch to toggle the encryption of the export in the dialog to manually or automatically exporting the notes as JSON."
+  },
+  "dialog_export_encryption_description": "El título y el contenido de las notas serán cifrados usando su contraseña. Debe ser generado aleatoriamente, exactamente 32 caracteres de largo, fuerte (al menos 1 minúscula, 1 mayúscula, 1 número y 1 carácter especial) y almacenado de forma segura.",
+  "@dialog_export_encryption_description": {
+    "description": "Description for the encryption feature when the switch to toggle the encryption of the export is enabled."
+  },
+  "dialog_export_encryption_secondary_description_auto": "Esta contraseña se utilizará para todas las exportaciones automáticas futuras.",
+  "@dialog_export_encryption_secondary_description_auto": {
+    "description": "Secondary description for the encryption feature in the case of an automatic export."
+  },
+  "dialog_export_encryption_secondary_description_manual": "Esta contraseña sólo se usará para esta exportación.",
+  "@dialog_export_encryption_secondary_description_manual": {
+    "description": "Secondary description for the encryption feature in the case of a manual export."
+  },
+  "dialog_export_encryption_password_invalid": "Inválido",
+  "@dialog_export_encryption_password_invalid": {
+    "description": "Error message displayed under the text field for the encryption password if it does not meet the strength requirements."
+  },
+  "dialog_import_encryption_password_description": "Esta exportación está encriptada. Para importarla, necesita proporcionar la contraseña utilizada para encriptarla.",
+  "@dialog_import_encryption_password_description": {
+    "description": "Description in the import dialog when an import is encrypted and the password is needed."
+  },
+  "dialog_import_encryption_password_error": "el desencriptado de la exportación falló. Por favor, compruebe que proporcionó la misma contraseña que la que utilizó para encriptar la exportación.",
+  "@dialog_import_encryption_password_error": {
+    "description": "Error when the decryption of an encrypted import failed."
+  },
+  "button_sort_date": "Fecha",
+  "@button_sort_date": {
+    "description": "Text of the button to sort the notes list by date."
+  },
   "placeholder_notes": "No hay notas",
   "@placeholder_notes": {
     "description": "Placeholder on the notes page when there are no notes."
+  },
+  "placeholder_bin": "No hay notas eliminadas",
+  "@placeholder_bin": {
+    "description": "Placeholder on the bin page when there are no notes."
+  },
+  "action_disabled": "Desactivado",
+  "@action_disabled": {
+    "description": "Swipe action that is disabled in the settings."
+  },
+  "action_pin": "Fijar",
+  "@action_pin": {
+    "description": "Swipe or menu action to pin a note."
+  },
+  "action_unpin": "Desfijar",
+  "@action_unpin": {
+    "description": "Swipe or menu action to unpin a note."
+  },
+  "action_copy": "Copiar",
+  "@action_copy": {
+    "description": "Swipe or menu action to copy the content of a note."
+  },
+  "action_share": "Compartir",
+  "@action_share": {
+    "description": "Swipe or menu action to share the title and the content of a note."
+  },
+  "action_delete": "Eliminar",
+  "@action_delete": {
+    "description": "Swipe or menu action to delete a note (moving it to the bin)."
+  },
+  "action_restore": "Restaurar",
+  "@action_restore": {
+    "description": "Swipe or menu action to restore a note from the bin."
+  },
+  "action_delete_permanently": "Eliminar permanentemente",
+  "@action_delete_permanently": {
+    "description": "Swipe or menu action to permanently delete a note."
+  },
+  "action_about": "Acerca de",
+  "@action_about": {
+    "description": "Swipe or menu action to show information about a note."
   },
   "about_last_edited": "Última edición",
   "@about_last_edited": {
@@ -263,8 +693,21 @@
   "@about_characters": {
     "description": "Number of characters in the content of the note."
   },
-  "@time_at": {
-    "description": "Preposition shown between the date and the time in the about dialog (example: 12 ."
+  "about_time_at": "a las",
+  "@about_time_at": {
+    "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
+  },
+  "snack_bar_copied": "Contenido de la nota copiada al portapapeles.",
+  "@snack_bar_copied": {
+    "description": "Snack bar informing that the content of the note was copied to clipboard."
+  },
+  "snack_bar_import_success": "Las notas fueron importadas exitosamente.",
+  "@snack_bar_import_success": {
+    "description": "Snack bar informing that the notes were successfully imported."
+  },
+  "snack_bar_export_success": "Las notas fueron exportadas exitosamente.",
+  "@snack_bar_export_success": {
+    "description": "Snack bar informing that the notes were successfully manually exported."
   },
   "action_add_note_title": "Agregar una nota",
   "@action_add_note_title": {

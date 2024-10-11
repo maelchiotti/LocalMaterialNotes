@@ -6,7 +6,7 @@ part of 'bin_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$binHash() => r'3a9a1e9a5e9a274b5d936fbe1ec924489b07b59c';
+String _$binHash() => r'5d82b9621125ca2042061983f904a0e5eaee5d44';
 
 /// Provider for the deleted notes.
 ///

@@ -1,4 +1,8 @@
 {
+  "app_name": "Material Notes",
+  "@app_name": {
+    "description": "Name of the application."
+  },
   "app_tagline": "Notes simples, locales, en material design",
   "@app_tagline": {
     "description": "Tagline of the application, shown in the about popup."
@@ -13,9 +17,41 @@
       }
     }
   },
-  "error_error": "Erreur",
-  "@error_error": {
-    "description": "Error message, shown in the error snack bar before the actual error message."
+  "error_snack_bar": "Erreur :",
+  "@error_snack_bar": {
+    "description": "Prefix for the error message shown in the error snack bar, before the actual error message."
+  },
+  "error_widget_title": "Une erreur s''est produite.",
+  "@error_widget_title": {
+    "description": "Message shown in the error widget shown when a widget fails to build."
+  },
+  "error_widget_description": "Veuillez signaler cette erreur sur GitHub ou par mail. Joignez une capture d''écran de cette page et les logs que vous pouvez copier ou exporter ci-dessous. Par précaution, vous devriez également exporter vos notes.",
+  "@error_widget_description": {
+    "description": "Message shown in the error widget shown when a widget fails to build."
+  },
+  "error_widget_disabled_secure_flag": "Le paramètre pour marquer l''application comme sécurisée est désactivé jusqu'au prochain redémarrage pour permettre les captures d'écran.",
+  "@error_widget_disabled_secure_flag": {
+    "description": "Label shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
+  },
+  "error_widget_button_export_notes": "Exporter les notes",
+  "@error_widget_button_export_notes": {
+    "description": "Title of the button to export the notes as JSON on the error widget."
+  },
+  "error_widget_button_copy_logs": "Copier les logs",
+  "@error_widget_button_copy_logs": {
+    "description": "Title of the button to copy the logs to the clipboard on the error widget."
+  },
+  "error_widget_button_export_logs": "Exporter les logs",
+  "@error_widget_button_export_logs": {
+    "description": "Title of the button to export the logs in a text file on the error widget."
+  },
+  "error_widget_button_create_github_issue": "Créer une issue GitHub",
+  "@error_widget_button_create_github_issue": {
+    "description": "Title of the button to create a new GitHub issue on the error widget."
+  },
+  "error_widget_button_send_mail": "Envoyer un mail",
+  "@error_widget_button_send_mail": {
+    "description": "Title of the button to end a bug report mail on the error widget."
   },
   "navigation_notes": "Notes",
   "@navigation_notes": {
@@ -694,8 +730,8 @@
     "description": "Number of characters in the content of the note."
   },
   "about_time_at": "à",
-  "@time_at": {
-    "description": "Preposition shown between the date and the time in the about dialog (example: 12 ."
+  "@about_time_at": {
+    "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
   "snack_bar_copied": "Contenu de la note copié dans le presse-papiers.",
   "@snack_bar_copied": {
@@ -708,6 +744,14 @@
   "snack_bar_export_success": "Les notes ont bien été exportées.",
   "@snack_bar_export_success": {
     "description": "Snack bar informing that the notes were successfully manually exported."
+  },
+  "snack_bar_logs_copied": "Les logs ont été copiés dans votre presse-papiers.",
+  "@snack_bar_logs_copied": {
+    "description": "Snack bar message shown when the logs where copied to the clipboard from the error widget."
+  },
+  "snack_bar_logs_exported": "Les logs ont été exportés avec succès.",
+  "@snack_bar_logs_exported": {
+    "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
   },
   "action_add_note_title": "Ajouter une note",
   "@action_add_note_title": {

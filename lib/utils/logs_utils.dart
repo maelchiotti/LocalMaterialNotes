@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/enums/mime_type.dart';
 import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:path/path.dart';
@@ -30,7 +30,7 @@ class LogsUtils {
     final directoryPath = join(baseDirectory.path, 'logs');
     final directory = Directory(directoryPath);
     await directory.create(recursive: true);
-    final logFilePath = join(directory.path, 'logs.txt');
+    final logFilePath = join(directory.path, 'logs.${MimeType.plainText.extension}');
 
     _logFile = File(logFilePath);
 
@@ -87,8 +87,8 @@ class LogsUtils {
 
     return await writeFile(
       directory: exportDirectory,
-      fileName: 'logs.txt',
-      mimeType: jsonMimeType,
+      fileName: 'logs.${MimeType.plainText.extension}',
+      mimeType: MimeType.plainText.value,
       data: data,
     );
   }

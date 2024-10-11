@@ -13,10 +13,6 @@
       }
     }
   },
-  "error_error": "Fehler",
-  "@error_error": {
-    "description": "Error message, shown in the error snack bar before the actual error message."
-  },
   "navigation_notes": "Notizen",
   "@navigation_notes": {
     "description": "Title of the notes page."
@@ -694,8 +690,8 @@
     "description": "Number of characters in the content of the note."
   },
   "about_time_at": "um",
-  "@time_at": {
-    "description": "Preposition shown between the date and the time in the about dialog (example: 12 ."
+  "@about_time_at": {
+    "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
   "snack_bar_copied": "Inhalt der Notiz in die Zwischenablage kopiert.",
   "@snack_bar_copied": {

@@ -13,10 +13,6 @@
       }
     }
   },
-  "error_error": "Hata",
-  "@error_error": {
-    "description": "Error message, shown in the error snack bar before the actual error message."
-  },
   "navigation_notes": "Notlar",
   "@navigation_notes": {
     "description": "Title of the notes page."
@@ -238,9 +234,6 @@
   "about_characters": "Karakter",
   "@about_characters": {
     "description": "Number of characters in the content of the note."
-  },
-  "@time_at": {
-    "description": "Preposition shown between the date and the time in the about dialog (example: 12 ."
   },
   "action_add_note_title": "Not ekle",
   "@action_add_note_title": {

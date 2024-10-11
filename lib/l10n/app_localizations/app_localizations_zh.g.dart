@@ -79,16 +79,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get button_cancel => '取消';
 
   @override
-  String get button_sort_title => 'Title';
+  String get button_sort_title => '标题';
 
   @override
-  String get button_sort_ascending => 'Ascending';
+  String get button_sort_ascending => '升序';
 
   @override
   String get settings_appearance => '外观';
 
   @override
-  String get settings_appearance_description => 'Language, theme, text scaling, notes tiles';
+  String get settings_appearance_description => '语言、主题、文本缩放、笔记平铺';
 
   @override
   String get settings_appearance_application => '应用程序';
@@ -163,26 +163,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_behavior => '行为';
 
   @override
-  String get settings_behavior_description => 'Confirmations, secure flag, swipe actions';
+  String get settings_behavior_description => '确认、安全标记、滑动操作';
 
   @override
   String get settings_behavior_application => '应用程序';
 
   @override
-  String get settings_confirmations => 'Confirmation dialog';
+  String get settings_confirmations => '确认对话框';
 
   @override
-  String get settings_confirmations_description =>
-      'When to show a confirmation dialog when performing an action on a note';
+  String get settings_confirmations_description => '对笔记执行操作时何时显示确认对话框';
 
   @override
-  String get settings_confirmations_title_none => 'Never';
+  String get settings_confirmations_title_none => '从不';
 
   @override
-  String get settings_confirmations_title_irreversible => 'Irreversible actions only';
+  String get settings_confirmations_title_irreversible => '仅限不可撤销的操作';
 
   @override
-  String get settings_confirmations_title_all => 'Always';
+  String get settings_confirmations_title_all => '始终';
 
   @override
   String get settings_flag_secure => '将应用标记为安全';
@@ -197,21 +196,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_swipe_action_right => '向右滑动操作';
 
   @override
-  String get settings_swipe_action_right_description =>
-      'Action to trigger when a right swipe is performed on a note tile';
+  String get settings_swipe_action_right_description => '在笔记平铺上向右滑动时触发的操作';
 
   @override
   String get settings_swipe_action_left => '向左滑动操作';
 
   @override
-  String get settings_swipe_action_left_description =>
-      'Action to trigger when a left swipe is performed on a note tile';
+  String get settings_swipe_action_left_description => '在笔记平铺上向左滑动时触发的操作';
 
   @override
   String get settings_editor => '编辑器';
 
   @override
-  String get settings_editor_description => 'Buttons, toolbar, reading mode, spacing';
+  String get settings_editor_description => '按钮、工具栏、阅读模式、间距';
 
   @override
   String get settings_editor_formatting => '格式设置';
@@ -238,17 +235,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_editor_behavior => '行为';
 
   @override
-  String get settings_show_editor_mode_button => 'Editor mode button';
+  String get settings_show_editor_mode_button => '编辑器模式按钮';
 
   @override
-  String get settings_show_editor_mode_button_description =>
-      'Enable the button to toggle the editor between editing mode and reading mode';
+  String get settings_show_editor_mode_button_description => '启用在编辑模式和阅读模式之间切换编辑器的按钮';
 
   @override
-  String get settings_open_editor_reading_mode => 'Open in reading mode';
+  String get settings_open_editor_reading_mode => '以阅读模式打开';
 
   @override
-  String get settings_open_editor_reading_mode_description => 'Open the editor in reading mode by default';
+  String get settings_open_editor_reading_mode_description => '默认以阅读模式打开编辑器';
 
   @override
   String get settings_focus_title_on_new_note => '聚焦标题';
@@ -269,7 +265,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_backup => '备份';
 
   @override
-  String get settings_backup_description => 'Manual and automatic export, encryption, import';
+  String get settings_backup_description => '手动和自动导出、加密、导入';
 
   @override
   String get settings_backup_import => '导入';
@@ -312,18 +308,18 @@ class AppLocalizationsZh extends AppLocalizations {
     String _temp0 = intl.Intl.selectLogic(
       frequency,
       {
-        '1': 'day',
-        '7': 'week',
-        '14': '2 weeks',
-        '30': 'month',
-        'other': '$frequency days',
+        '1': '天',
+        '7': '周',
+        '14': ' 2 周',
+        '30': '月',
+        'other': ' $frequency 天',
       },
     );
-    return 'Every $_temp0';
+    return '每$_temp0';
   }
 
   @override
-  String get settings_auto_export_frequency_description => 'Frequency of the automatic export of the notes';
+  String get settings_auto_export_frequency_description => '自动导出笔记的频率';
 
   @override
   String get settings_auto_export_encryption => '加密';
@@ -335,14 +331,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_auto_export_directory => '目录';
 
   @override
-  String get settings_auto_export_directory_description =>
-      'Directory where to store the automatic exports of the notes';
+  String get settings_auto_export_directory_description => '存储自动导出笔记的目录';
 
   @override
   String get settings_about => '关于';
 
   @override
-  String get settings_about_description => 'Information, help, links';
+  String get settings_about_description => '信息、帮助、链接';
 
   @override
   String get settings_about_application => '应用程序';
@@ -407,10 +402,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get hint_note => '笔记';
 
   @override
-  String get hint_link => 'Link';
+  String get hint_link => '链接';
 
   @override
-  String get dialog_export_encryption_password => 'Password';
+  String get dialog_export_encryption_password => '密码';
 
   @override
   String get tooltip_toggle_checkbox => '切换复选框';
@@ -425,10 +420,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tooltip_fab_empty_bin => '清空回收站';
 
   @override
-  String get tooltip_fab_toggle_editor_mode_edit => 'Switch to editing mode';
+  String get tooltip_fab_toggle_editor_mode_edit => '切换到编辑模式';
 
   @override
-  String get tooltip_fab_toggle_editor_mode_read => 'Switch to reading mode';
+  String get tooltip_fab_toggle_editor_mode_read => '切换到阅读模式';
 
   @override
   String get tooltip_layout_list => '列表视图';
@@ -461,7 +456,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tooltip_reset => '重置';
 
   @override
-  String get dialog_add_link => 'Add a link';
+  String get dialog_add_link => '添加链接';
 
   @override
   String get dialog_delete => '删除';
@@ -526,8 +521,7 @@ class AppLocalizationsZh extends AppLocalizations {
       '笔记的标题和内容将使用您的密码进行加密。密码应随机生成，长度恰好为 32 个字符，具有较强的强度（至少 1 个小写字母、1 个大写字母、1 个数字和 1 个特殊字符），并安全存储。';
 
   @override
-  String get dialog_export_encryption_secondary_description_auto =>
-      'This password will be used for all future automatic exports.';
+  String get dialog_export_encryption_secondary_description_auto => '此密码将用于将来的所有自动导出。';
 
   @override
   String get dialog_export_encryption_secondary_description_manual => '此密码仅用于此导出。';
@@ -542,7 +536,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dialog_import_encryption_password_error => '解密导出失败。请检查您提供的密码是否与加密导出时使用的密码相同。';
 
   @override
-  String get button_sort_date => 'Date';
+  String get button_sort_date => '日期';
 
   @override
   String get placeholder_notes => '无笔记';
@@ -551,31 +545,31 @@ class AppLocalizationsZh extends AppLocalizations {
   String get placeholder_bin => '没有删除的笔记';
 
   @override
-  String get action_disabled => 'Disabled';
+  String get action_disabled => '已禁用';
 
   @override
-  String get action_pin => 'Pin';
+  String get action_pin => '置顶';
 
   @override
-  String get action_unpin => 'Unpin';
+  String get action_unpin => '取消置顶';
 
   @override
-  String get action_copy => 'Copy';
+  String get action_copy => '复制';
 
   @override
-  String get action_share => 'Share';
+  String get action_share => '分享';
 
   @override
-  String get action_delete => 'Delete';
+  String get action_delete => '删除';
 
   @override
-  String get action_restore => 'Restore';
+  String get action_restore => '还原';
 
   @override
-  String get action_delete_permanently => 'Delete permanently';
+  String get action_delete_permanently => '永久删除';
 
   @override
-  String get action_about => 'About';
+  String get action_about => '关于';
 
   @override
   String get about_last_edited => '最后编辑';
@@ -590,16 +584,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get about_characters => '字符';
 
   @override
-  String get about_time_at => 'at';
+  String get about_time_at => '于';
 
   @override
-  String get snack_bar_copied => 'Content of the note copied to the clipboard.';
+  String get snack_bar_copied => '笔记内容已复制到剪贴板。';
 
   @override
-  String get snack_bar_import_success => 'The notes were successfully imported.';
+  String get snack_bar_import_success => '已成功导入笔记。';
 
   @override
-  String get snack_bar_export_success => 'The notes were successfully exported.';
+  String get snack_bar_export_success => '已成功导出笔记。';
 
   @override
   String get snack_bar_logs_copied => 'The logs were copied to your clipboard.';
