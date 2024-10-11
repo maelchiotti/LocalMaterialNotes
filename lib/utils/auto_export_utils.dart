@@ -71,7 +71,7 @@ class AutoExportUtils {
   Future<void> setAutoExportDirectoryToDefault() async {
     autoExportDirectory = await autoExportDirectoryDefault;
 
-    await createDirectoryIfDoesNotExist(autoExportDirectory);
+    await createDirectory(autoExportDirectory);
   }
 
   /// Returns the default automatic export directory.

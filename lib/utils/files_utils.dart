@@ -1,6 +1,5 @@
-import 'dart:typed_data';
-import 'dart:developer';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:file_selector/file_selector.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
@@ -86,10 +85,6 @@ Future<bool> doesDirectoryExist(String path) async {
 }
 
 /// Creates the directory at [path], recursively creating the parent directories if necessary.
-Future<void> createDirectoryIfDoesNotExist(String path) async {
-  final directory = Directory(path);
-
-  if (!await directory.exists()) {
-    await Directory(path).create(recursive: true);
-  }
+Future<void> createDirectory(String path) async {
+  await Directory(path).create(recursive: true);
 }
