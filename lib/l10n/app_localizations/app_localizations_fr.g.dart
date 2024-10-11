@@ -20,33 +20,33 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get error_snack_bar => 'Error:';
+  String get error_snack_bar => 'Erreur :';
 
   @override
-  String get error_widget_title => 'An error has occurred.';
+  String get error_widget_title => 'Une erreur s\'est produite.';
 
   @override
   String get error_widget_description =>
-      'Please report this issue on GitHub or via mail. Attach a screenshot of this page and the logs that you can copy or export below. As a precaution, you should also export your notes.';
+      'Veuillez signaler cette erreur sur GitHub ou par mail. Joignez une capture d\'écran de cette page et les logs que vous pouvez copier ou exporter ci-dessous. Par précaution, vous devriez également exporter vos notes.';
 
   @override
   String get error_widget_disabled_secure_flag =>
-      'The setting to flag the app as secure is disabled until the next restart to enable screenshots.';
+      'Le paramètre pour marquer l\'application comme sécurisée est désactivé jusquau prochain redémarrage pour permettre les captures décran.';
 
   @override
-  String get error_widget_button_export_notes => 'Export notes';
+  String get error_widget_button_export_notes => 'Exporter les notes';
 
   @override
-  String get error_widget_button_copy_logs => 'Copy logs';
+  String get error_widget_button_copy_logs => 'Copier les logs';
 
   @override
-  String get error_widget_button_export_logs => 'Export logs';
+  String get error_widget_button_export_logs => 'Exporter les logs';
 
   @override
-  String get error_widget_button_create_github_issue => 'Create GitHub issue';
+  String get error_widget_button_create_github_issue => 'Créer une issue GitHub';
 
   @override
-  String get error_widget_button_send_mail => 'Send mail';
+  String get error_widget_button_send_mail => 'Envoyer un mail';
 
   @override
   String get navigation_notes => 'Notes';
@@ -627,10 +627,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get snack_bar_export_success => 'Les notes ont bien été exportées.';
 
   @override
-  String get snack_bar_logs_copied => 'The logs were copied to your clipboard.';
+  String get snack_bar_logs_copied => 'Les logs ont été copiés dans votre presse-papiers.';
 
   @override
-  String get snack_bar_logs_exported => 'The logs were successfully exported.';
+  String get snack_bar_logs_exported => 'Les logs ont été exportés avec succès.';
 
   @override
   String get action_add_note_title => 'Ajouter une note';
