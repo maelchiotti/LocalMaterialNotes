@@ -5,7 +5,6 @@ import 'package:localmaterialnotes/common/constants/sizes.dart';
 import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/routing/routes/bin/bin_route.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
-import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_route.dart';
 import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
@@ -28,14 +27,14 @@ class _SideNavigationState extends State<SideNavigation> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    switch (context.route) {
-      case RoutingRoute.notes:
-        _index = 0;
-      case RoutingRoute.bin:
-        _index = 1;
-      case RoutingRoute.settings:
-        _index = 2;
-      default:
+    if (context.location == NotesRoute().location) {
+      _index = 0;
+    } else if (context.location == BinRoute().location) {
+      _index = 1;
+    } else if (context.location == SettingsRoute().location) {
+      _index = 2;
+    } else {
+      throw Exception('Unexpected route while setting the drawer index: ${context.location}');
     }
   }
 
