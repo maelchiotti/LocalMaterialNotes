@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/logs_utils.dart';
@@ -32,14 +33,14 @@ class ErrorPlaceholder extends StatelessWidget {
   final StackTrace? stackTrace;
 
   /// Exports the notes as JSON.
-  Future<void> exportNotes() async {
+  Future<void> exportNotes(AppLocalizations localizations) async {
     if (await DatabaseUtils().manuallyExportAsJson(encrypt: false)) {
       SnackBarUtils.info(localizations.snack_bar_export_success).show();
     }
   }
 
   /// Copies the logs to the clipboard.
-  Future<void> copyLogs() async {
+  Future<void> copyLogs(AppLocalizations localizations) async {
     final clipboardData = ClipboardData(text: LogsUtils().getLogsMessage(exception, stackTrace));
 
     await Clipboard.setData(clipboardData);
@@ -48,7 +49,7 @@ class ErrorPlaceholder extends StatelessWidget {
   }
 
   /// Exports the logs to a text file.
-  Future<void> exportLogs() async {
+  Future<void> exportLogs(AppLocalizations localizations) async {
     if (await LogsUtils().exportLogs(exception, stackTrace)) {
       SnackBarUtils.info(localizations.snack_bar_logs_exported).show();
     }
@@ -87,13 +88,17 @@ class ErrorPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final isFlagSecureEnabled = PreferenceKey.flagSecure.getPreferenceOrDefault<bool>();
+    // Avoid depending on rootNavigatorKey.context to get the localizations
+    // in case the error prevented it from being instantiated
+    final localizations = AppLocalizations.of(context);
 
     // Disable the secure flag until the next restart to allow screenshots
-    if (isFlagSecureEnabled) {
+    final isFlagSecureSettingEnabled = PreferenceKey.flagSecure.getPreferenceOrDefault<bool>();
+    if (isFlagSecureSettingEnabled) {
       FlagSecure.unset();
     }
+
+    final textTheme = Theme.of(context).textTheme;
 
     return Center(
       child: Padding(
@@ -111,7 +116,7 @@ class ErrorPlaceholder extends StatelessWidget {
                 localizations.error_widget_description,
                 textAlign: TextAlign.center,
               ),
-              if (isFlagSecureEnabled) ...[
+              if (isFlagSecureSettingEnabled) ...[
                 Padding(padding: Paddings.vertical(4.0)),
                 Text(
                   localizations.error_widget_disabled_secure_flag,
@@ -123,7 +128,7 @@ class ErrorPlaceholder extends StatelessWidget {
               ElevatedButton.icon(
                 icon: const Icon(Icons.settings_backup_restore),
                 label: Text(localizations.error_widget_button_export_notes),
-                onPressed: exportNotes,
+                onPressed: () => exportNotes(localizations),
               ),
               Padding(padding: Paddings.vertical(16.0)),
               Column(
@@ -132,13 +137,13 @@ class ErrorPlaceholder extends StatelessWidget {
                   ElevatedButton.icon(
                     icon: const Icon(Icons.copy),
                     label: Text(localizations.error_widget_button_copy_logs),
-                    onPressed: copyLogs,
+                    onPressed: () => copyLogs(localizations),
                   ),
                   Padding(padding: Paddings.horizontal(8.0)),
                   ElevatedButton.icon(
                     icon: const Icon(Icons.file_download),
                     label: Text(localizations.error_widget_button_export_logs),
-                    onPressed: exportLogs,
+                    onPressed: () => exportLogs(localizations),
                   ),
                 ],
               ),

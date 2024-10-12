@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:localmaterialnotes/routing/routes/routing_route.dart';
+import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 
 /// Basic app bar.
 ///
@@ -30,7 +30,7 @@ class _BasicAppBarState extends State<BasicAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       leading: widget.showBack ? BackButton(onPressed: _pop) : null,
-      title: Text(RoutingRoute.title(context)),
+      title: Text(context.title),
     );
   }
 }

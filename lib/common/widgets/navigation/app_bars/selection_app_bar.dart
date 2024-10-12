@@ -13,7 +13,9 @@ import 'package:localmaterialnotes/common/widgets/placeholders/loading_placehold
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/routing/routes/routing_route.dart';
+import 'package:localmaterialnotes/routing/routes/bin/bin_route.dart';
+import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
+import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 /// Selection mode's app bar.
 ///
@@ -97,7 +99,7 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
         Padding(padding: Paddings.appBarActionsEnd),
         Separator.divider1indent16.vertical,
         Padding(padding: Paddings.appBarActionsEnd),
-        if (context.route == RoutingRoute.bin) ...[
+        if (context.location == BinRoute().location) ...[
           IconButton(
             icon: const Icon(Icons.restore_from_trash),
             tooltip: localizations.tooltip_restore,
@@ -127,7 +129,7 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return context.route == RoutingRoute.notes
+    return context.location == NotesRoute().location
         ? ref.watch(notesProvider).when(
             data: (notes) {
               return _buildAppBar(notes.where((note) => note.selected).toList(), notes.length);

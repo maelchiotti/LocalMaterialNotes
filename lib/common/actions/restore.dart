@@ -7,7 +7,8 @@ import 'package:localmaterialnotes/common/widgets/dialogs/confirmation_dialog.da
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/routing/routes/routing_route.dart';
+import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
+import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 /// Restores the [note].
 ///
@@ -33,7 +34,7 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async 
 
   await ref.read(binProvider.notifier).restore(note);
 
-  if (context.mounted && context.route == RoutingRoute.notesEditor) {
+  if (context.mounted && context.location == const NotesEditorRoute.empty().location) {
     context.pop();
   }
 

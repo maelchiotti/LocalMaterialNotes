@@ -4,6 +4,8 @@ import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/app_bars/basic_app_bar.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_frequency_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_password_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/manual_export_dialog.dart';
@@ -14,6 +16,7 @@ import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
@@ -55,6 +58,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   Future<void> _exportAsJson(BuildContext context) async {
     await showAdaptiveDialog<(bool, String?)?>(
       context: context,
+      useRootNavigator: false,
       builder: (context) => const ManualExportDialog(),
     ).then((shouldEncrypt) async {
       if (shouldEncrypt == null) {
@@ -126,6 +130,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
     await showAdaptiveDialog<String>(
       context: context,
+      useRootNavigator: false,
       builder: (context) => AutoExportPasswordDialog(
         title: localizations.settings_auto_export_encryption,
         description: localizations.dialog_export_encryption_description,
@@ -148,6 +153,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   Future<void> _setAutoExportFrequency(BuildContext context) async {
     await showAdaptiveDialog<int>(
       context: context,
+      useRootNavigator: false,
       builder: (context) => const AutoExportFrequencyDialog(),
     ).then((autoExportFrequency) async {
       if (autoExportFrequency == null) {
@@ -190,84 +196,90 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     final autoExportEncryption = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
     final autoExportDirectory = AutoExportUtils().autoExportDirectory;
 
-    return CustomSettingsList(
-      sections: [
-        SettingsSection(
-          title: Text(localizations.settings_backup_import),
-          tiles: [
-            SettingsTile.navigation(
-              leading: const Icon(Icons.file_upload),
-              title: Text(localizations.settings_import),
-              value: Text(localizations.settings_import_description),
-              onPressed: _import,
-            ),
-          ],
-        ),
-        SettingsSection(
-          title: Text(localizations.settings_backup_manual_export),
-          tiles: [
-            SettingsTile.navigation(
-              leading: const Icon(SimpleIcons.json),
-              title: Text(localizations.settings_export_json),
-              value: Text(localizations.settings_export_json_description),
-              onPressed: _exportAsJson,
-            ),
-            SettingsTile.navigation(
-              leading: const Icon(SimpleIcons.markdown),
-              title: Text(localizations.settings_export_markdown),
-              value: Text(localizations.settings_export_markdown_description),
-              onPressed: _exportAsMarkdown,
-            ),
-          ],
-        ),
-        SettingsSection(
-          title: Text(localizations.settings_backup_auto_export),
-          tiles: [
-            SettingsTile.switchTile(
-              leading: const Icon(Icons.settings_backup_restore),
-              title: Text(localizations.settings_auto_export),
-              description: Text(localizations.settings_auto_export_description),
-              initialValue: enableAutoExport,
-              onToggle: _toggleEnableAutoExport,
-            ),
-            SettingsTile.switchTile(
-              enabled: enableAutoExport,
-              leading: const Icon(Icons.enhanced_encryption),
-              title: Text(localizations.settings_auto_export_encryption),
-              description: Text(localizations.settings_auto_export_encryption_description),
-              initialValue: autoExportEncryption,
-              onToggle: _toggleAutoExportEncryption,
-            ),
-            SettingsTile.navigation(
-              enabled: enableAutoExport,
-              leading: const Icon(Symbols.calendar_clock),
-              title: Text(localizations.settings_auto_export_frequency),
-              value: SettingNavigationTileBody(
+    return Scaffold(
+      appBar: const TopNavigation(
+        key: Keys.appBarSettingsMainSubpage,
+        appbar: BasicAppBar.back(),
+      ),
+      body: CustomSettingsList(
+        sections: [
+          SettingsSection(
+            title: Text(localizations.settings_backup_import),
+            tiles: [
+              SettingsTile.navigation(
+                leading: const Icon(Icons.file_upload),
+                title: Text(localizations.settings_import),
+                value: Text(localizations.settings_import_description),
+                onPressed: _import,
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: Text(localizations.settings_backup_manual_export),
+            tiles: [
+              SettingsTile.navigation(
+                leading: const Icon(SimpleIcons.json),
+                title: Text(localizations.settings_export_json),
+                value: Text(localizations.settings_export_json_description),
+                onPressed: _exportAsJson,
+              ),
+              SettingsTile.navigation(
+                leading: const Icon(SimpleIcons.markdown),
+                title: Text(localizations.settings_export_markdown),
+                value: Text(localizations.settings_export_markdown_description),
+                onPressed: _exportAsMarkdown,
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: Text(localizations.settings_backup_auto_export),
+            tiles: [
+              SettingsTile.switchTile(
+                leading: const Icon(Icons.settings_backup_restore),
+                title: Text(localizations.settings_auto_export),
+                description: Text(localizations.settings_auto_export_description),
+                initialValue: enableAutoExport,
+                onToggle: _toggleEnableAutoExport,
+              ),
+              SettingsTile.switchTile(
                 enabled: enableAutoExport,
-                value: localizations.settings_auto_export_frequency_value(autoExportFrequency.toString()),
-                description: localizations.settings_auto_export_frequency_description,
+                leading: const Icon(Icons.enhanced_encryption),
+                title: Text(localizations.settings_auto_export_encryption),
+                description: Text(localizations.settings_auto_export_encryption_description),
+                initialValue: autoExportEncryption,
+                onToggle: _toggleAutoExportEncryption,
               ),
-              onPressed: _setAutoExportFrequency,
-            ),
-            SettingsTile.navigation(
-              enabled: enableAutoExport,
-              leading: const Icon(Icons.folder),
-              title: Text(localizations.settings_auto_export_directory),
-              value: SettingNavigationTileBody(
+              SettingsTile.navigation(
                 enabled: enableAutoExport,
-                value: autoExportDirectory,
-                description: localizations.settings_auto_export_directory_description,
+                leading: const Icon(Symbols.calendar_clock),
+                title: Text(localizations.settings_auto_export_frequency),
+                value: SettingNavigationTileBody(
+                  enabled: enableAutoExport,
+                  value: localizations.settings_auto_export_frequency_value(autoExportFrequency.toString()),
+                  description: localizations.settings_auto_export_frequency_description,
+                ),
+                onPressed: _setAutoExportFrequency,
               ),
-              trailing: IconButton(
-                icon: const Icon(Symbols.reset_settings),
-                tooltip: localizations.tooltip_reset,
-                onPressed: _resetAutoExportDirectory,
+              SettingsTile.navigation(
+                enabled: enableAutoExport,
+                leading: const Icon(Icons.folder),
+                title: Text(localizations.settings_auto_export_directory),
+                value: SettingNavigationTileBody(
+                  enabled: enableAutoExport,
+                  value: autoExportDirectory,
+                  description: localizations.settings_auto_export_directory_description,
+                ),
+                trailing: IconButton(
+                  icon: const Icon(Symbols.reset_settings),
+                  tooltip: localizations.tooltip_reset,
+                  onPressed: _resetAutoExportDirectory,
+                ),
+                onPressed: _setAutoExportDirectory,
               ),
-              onPressed: _setAutoExportDirectory,
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

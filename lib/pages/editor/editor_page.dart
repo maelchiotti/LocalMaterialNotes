@@ -6,6 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/app_bars/editor_app_bar.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_field.dart';
@@ -107,6 +109,11 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
     final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault<bool>();
 
     return Scaffold(
+      appBar: const TopNavigation(
+        appbar: EditorAppBar(
+          key: Keys.appBarEditor,
+        ),
+      ),
       floatingActionButton: showEditorModeButton ? const FabToggleEditorMode() : null,
       body: ValueListenableBuilder(
         valueListenable: isFleatherEditorEditMode,

@@ -3,9 +3,12 @@ import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/constants/sizes.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/app_bars/basic_app_bar.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:localmaterialnotes/utils/utils.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -118,71 +121,77 @@ class SettingsAboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final appVersion = InfoUtils().appVersion;
 
-    return CustomSettingsList(
-      sections: [
-        SettingsSection(
-          title: Text(localizations.settings_about_application),
-          tiles: [
-            SettingsTile(
-              leading: const Icon(Icons.info),
-              title: Text(localizations.app_name),
-              description: Text('v$appVersion'),
-              onPressed: _showAbout,
-            ),
-            SettingsTile(
-              leading: const Icon(Icons.build),
-              title: Text(localizations.settings_build_mode),
-              description: Text(InfoUtils().buildMode),
-            ),
-          ],
-        ),
-        SettingsSection(
-          title: Text(localizations.settings_about_help),
-          tiles: [
-            SettingsTile(
-              leading: const Icon(Icons.bug_report),
-              title: Text(localizations.settings_github_issues),
-              description: Text(localizations.settings_github_issues_description),
-              onPressed: _openGitHubIssues,
-            ),
-            SettingsTile(
-              leading: const Icon(Icons.forum),
-              title: Text(localizations.settings_github_discussions),
-              description: Text(localizations.settings_github_discussions_description),
-              onPressed: _openGitHubDiscussions,
-            ),
-            SettingsTile(
-              leading: const Icon(Icons.mail),
-              title: Text(localizations.settings_get_in_touch),
-              description: Text(localizations.settings_get_in_touch_description(contactEmail)),
-              onPressed: _sendMail,
-            ),
-          ],
-        ),
-        SettingsSection(
-          title: Text(localizations.settings_about_links),
-          tiles: [
-            SettingsTile(
-              leading: const Icon(SimpleIcons.github),
-              title: Text(localizations.settings_github),
-              description: Text(localizations.settings_github_description),
-              onPressed: _openGitHub,
-            ),
-            SettingsTile(
-              leading: const Icon(SimpleIcons.crowdin),
-              title: Text(localizations.settings_localizations),
-              description: Text(localizations.settings_localizations_description),
-              onPressed: _openCrowdin,
-            ),
-            SettingsTile(
-              leading: const Icon(Icons.balance),
-              title: Text(localizations.settings_licence),
-              description: Text(localizations.settings_licence_description),
-              onPressed: _openLicense,
-            ),
-          ],
-        ),
-      ],
+    return Scaffold(
+      appBar: const TopNavigation(
+        key: Keys.appBarSettingsMainSubpage,
+        appbar: BasicAppBar.back(),
+      ),
+      body: CustomSettingsList(
+        sections: [
+          SettingsSection(
+            title: Text(localizations.settings_about_application),
+            tiles: [
+              SettingsTile(
+                leading: const Icon(Icons.info),
+                title: Text(localizations.app_name),
+                description: Text('v$appVersion'),
+                onPressed: _showAbout,
+              ),
+              SettingsTile(
+                leading: const Icon(Icons.build),
+                title: Text(localizations.settings_build_mode),
+                description: Text(InfoUtils().buildMode),
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: Text(localizations.settings_about_help),
+            tiles: [
+              SettingsTile(
+                leading: const Icon(Icons.bug_report),
+                title: Text(localizations.settings_github_issues),
+                description: Text(localizations.settings_github_issues_description),
+                onPressed: _openGitHubIssues,
+              ),
+              SettingsTile(
+                leading: const Icon(Icons.forum),
+                title: Text(localizations.settings_github_discussions),
+                description: Text(localizations.settings_github_discussions_description),
+                onPressed: _openGitHubDiscussions,
+              ),
+              SettingsTile(
+                leading: const Icon(Icons.mail),
+                title: Text(localizations.settings_get_in_touch),
+                description: Text(localizations.settings_get_in_touch_description(contactEmail)),
+                onPressed: _sendMail,
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: Text(localizations.settings_about_links),
+            tiles: [
+              SettingsTile(
+                leading: const Icon(SimpleIcons.github),
+                title: Text(localizations.settings_github),
+                description: Text(localizations.settings_github_description),
+                onPressed: _openGitHub,
+              ),
+              SettingsTile(
+                leading: const Icon(SimpleIcons.crowdin),
+                title: Text(localizations.settings_localizations),
+                description: Text(localizations.settings_localizations_description),
+                onPressed: _openCrowdin,
+              ),
+              SettingsTile(
+                leading: const Icon(Icons.balance),
+                title: Text(localizations.settings_licence),
+                description: Text(localizations.settings_licence_description),
+                onPressed: _openLicense,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
