@@ -3,11 +3,10 @@ import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/app_bars/basic_app_bar.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
-
-import '../../../common/widgets/navigation/app_bars/basic_app_bar.dart';
-import '../../../common/widgets/navigation/top_navigation.dart';
-import '../../../utils/keys.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Settings related to the notes editor.
 class SettingsEditorPage extends StatefulWidget {

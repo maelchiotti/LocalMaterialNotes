@@ -7,13 +7,12 @@ import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/app_bars/basic_app_bar.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/setting_value_text.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-
-import '../../../common/widgets/navigation/app_bars/basic_app_bar.dart';
-import '../../../common/widgets/navigation/top_navigation.dart';
-import '../../../utils/keys.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Settings related to the behavior of the application.
 class SettingsBehaviorPage extends StatefulWidget {

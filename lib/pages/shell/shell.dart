@@ -1,5 +1,3 @@
-// ignore_for_file: always_use_package_imports
-
 import 'package:flutter/material.dart';
 
 /// Shell that contains the current page.
