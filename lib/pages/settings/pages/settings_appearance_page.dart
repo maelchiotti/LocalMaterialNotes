@@ -19,6 +19,10 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../common/widgets/navigation/app_bars/basic_app_bar.dart';
+import '../../../common/widgets/navigation/top_navigation.dart';
+import '../../../utils/keys.dart';
+
 /// Settings related to the appearance of the application.
 class SettingsAppearancePage extends StatefulWidget {
   /// Default constructor.
@@ -46,6 +50,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   Future<void> _selectLanguage(BuildContext context) async {
     await showAdaptiveDialog<Locale>(
       context: context,
+      useRootNavigator: false,
       builder: (context) {
         return SimpleDialog(
           clipBehavior: Clip.hardEdge,
@@ -82,6 +87,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   Future<void> _selectTheme(BuildContext context) async {
     await showAdaptiveDialog<ThemeMode>(
       context: context,
+      useRootNavigator: false,
       builder: (context) {
         return SimpleDialog(
           clipBehavior: Clip.hardEdge,
@@ -141,6 +147,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   Future<void> _setTextScaling(BuildContext context) async {
     await showAdaptiveDialog<double>(
       context: context,
+      useRootNavigator: false,
       builder: (context) => const TextScalingDialog(),
     ).then((textScaling) async {
       if (textScaling == null) {
@@ -213,99 +220,105 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     final showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();
     final showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
 
-    return CustomSettingsList(
-      sections: [
-        SettingsSection(
-          title: Text(localizations.settings_appearance_application),
-          tiles: [
-            SettingsTile.navigation(
-              leading: const Icon(Icons.language),
-              title: Text(localizations.settings_language),
-              trailing: TextButton.icon(
-                onPressed: _openCrowdin,
-                label: Text(localizations.settings_language_contribute),
+    return Scaffold(
+      appBar: const TopNavigation(
+        key: Keys.appBarSettingsMainSubpage,
+        appbar: BasicAppBar.back(),
+      ),
+      body: CustomSettingsList(
+        sections: [
+          SettingsSection(
+            title: Text(localizations.settings_appearance_application),
+            tiles: [
+              SettingsTile.navigation(
+                leading: const Icon(Icons.language),
+                title: Text(localizations.settings_language),
+                trailing: TextButton.icon(
+                  onPressed: _openCrowdin,
+                  label: Text(localizations.settings_language_contribute),
+                ),
+                value: SettingNavigationTileBody(
+                  value: locale,
+                ),
+                onPressed: _selectLanguage,
               ),
-              value: SettingNavigationTileBody(
-                value: locale,
+              SettingsTile.navigation(
+                leading: const Icon(Icons.palette),
+                title: Text(localizations.settings_theme),
+                value: SettingNavigationTileBody(
+                  value: ThemeUtils().themeModeTitle,
+                ),
+                onPressed: _selectTheme,
               ),
-              onPressed: _selectLanguage,
-            ),
-            SettingsTile.navigation(
-              leading: const Icon(Icons.palette),
-              title: Text(localizations.settings_theme),
-              value: SettingNavigationTileBody(
-                value: ThemeUtils().themeModeTitle,
+              SettingsTile.switchTile(
+                enabled: ThemeUtils().isDynamicThemingAvailable,
+                leading: const Icon(Icons.bolt),
+                title: Text(localizations.settings_dynamic_theming),
+                description: Text(localizations.settings_dynamic_theming_description),
+                initialValue: ThemeUtils().useDynamicTheming,
+                onToggle: _toggleDynamicTheming,
               ),
-              onPressed: _selectTheme,
-            ),
-            SettingsTile.switchTile(
-              enabled: ThemeUtils().isDynamicThemingAvailable,
-              leading: const Icon(Icons.bolt),
-              title: Text(localizations.settings_dynamic_theming),
-              description: Text(localizations.settings_dynamic_theming_description),
-              initialValue: ThemeUtils().useDynamicTheming,
-              onToggle: _toggleDynamicTheming,
-            ),
-            SettingsTile.switchTile(
-              enabled: showUseBlackTheming,
-              leading: const Icon(Icons.nightlight),
-              title: Text(localizations.settings_black_theming),
-              description: Text(localizations.settings_black_theming_description),
-              initialValue: ThemeUtils().useBlackTheming,
-              onToggle: _toggleBlackTheming,
-            ),
-            SettingsTile.navigation(
-              leading: const Icon(Icons.format_size),
-              title: Text(localizations.settings_text_scaling),
-              value: SettingNavigationTileBody(
-                value: textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale),
+              SettingsTile.switchTile(
+                enabled: showUseBlackTheming,
+                leading: const Icon(Icons.nightlight),
+                title: Text(localizations.settings_black_theming),
+                description: Text(localizations.settings_black_theming_description),
+                initialValue: ThemeUtils().useBlackTheming,
+                onToggle: _toggleBlackTheming,
               ),
-              onPressed: _setTextScaling,
-            ),
-          ],
-        ),
-        SettingsSection(
-          title: Text(localizations.settings_appearance_notes_tiles),
-          tiles: [
-            SettingsTile.switchTile(
-              leading: const Icon(Icons.view_compact),
-              title: Text(localizations.settings_show_titles_only),
-              description: Text(localizations.settings_show_titles_only_description),
-              initialValue: showTitlesOnly,
-              onToggle: _toggleShowTitlesOnly,
-            ),
-            SettingsTile.switchTile(
-              enabled: showTitlesOnly,
-              leading: const Icon(Symbols.feature_search),
-              title: Text(localizations.settings_show_titles_only_disable_in_search_view),
-              description: Text(localizations.settings_show_titles_only_disable_in_search_view_description),
-              initialValue: showTitlesOnlyDisableInSearchView,
-              onToggle: _toggleShowTitlesOnlyDisableInSearchView,
-            ),
-            SettingsTile.switchTile(
-              leading: const Icon(Icons.format_color_text),
-              title: Text(localizations.settings_disable_subdued_note_content_preview),
-              description: Text(localizations.settings_disable_subdued_note_content_preview_description),
-              initialValue: disableSubduedNoteContentPreview,
-              onToggle: _toggleDisableSubduedNoteContentPreview,
-            ),
-            SettingsTile.switchTile(
-              leading: const Icon(Icons.safety_divider),
-              title: Text(localizations.settings_show_separators),
-              description: Text(localizations.settings_show_separators_description),
-              initialValue: showSeparators,
-              onToggle: _toggleShowSeparators,
-            ),
-            SettingsTile.switchTile(
-              leading: const Icon(Icons.gradient),
-              title: Text(localizations.settings_show_tiles_background),
-              description: Text(localizations.settings_show_tiles_background_description),
-              initialValue: showTilesBackground,
-              onToggle: _toggleShowTilesBackground,
-            ),
-          ],
-        ),
-      ],
+              SettingsTile.navigation(
+                leading: const Icon(Icons.format_size),
+                title: Text(localizations.settings_text_scaling),
+                value: SettingNavigationTileBody(
+                  value: textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale),
+                ),
+                onPressed: _setTextScaling,
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: Text(localizations.settings_appearance_notes_tiles),
+            tiles: [
+              SettingsTile.switchTile(
+                leading: const Icon(Icons.view_compact),
+                title: Text(localizations.settings_show_titles_only),
+                description: Text(localizations.settings_show_titles_only_description),
+                initialValue: showTitlesOnly,
+                onToggle: _toggleShowTitlesOnly,
+              ),
+              SettingsTile.switchTile(
+                enabled: showTitlesOnly,
+                leading: const Icon(Symbols.feature_search),
+                title: Text(localizations.settings_show_titles_only_disable_in_search_view),
+                description: Text(localizations.settings_show_titles_only_disable_in_search_view_description),
+                initialValue: showTitlesOnlyDisableInSearchView,
+                onToggle: _toggleShowTitlesOnlyDisableInSearchView,
+              ),
+              SettingsTile.switchTile(
+                leading: const Icon(Icons.format_color_text),
+                title: Text(localizations.settings_disable_subdued_note_content_preview),
+                description: Text(localizations.settings_disable_subdued_note_content_preview_description),
+                initialValue: disableSubduedNoteContentPreview,
+                onToggle: _toggleDisableSubduedNoteContentPreview,
+              ),
+              SettingsTile.switchTile(
+                leading: const Icon(Icons.safety_divider),
+                title: Text(localizations.settings_show_separators),
+                description: Text(localizations.settings_show_separators_description),
+                initialValue: showSeparators,
+                onToggle: _toggleShowSeparators,
+              ),
+              SettingsTile.switchTile(
+                leading: const Icon(Icons.gradient),
+                title: Text(localizations.settings_show_tiles_background),
+                description: Text(localizations.settings_show_tiles_background_description),
+                initialValue: showTilesBackground,
+                onToggle: _toggleShowTilesBackground,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

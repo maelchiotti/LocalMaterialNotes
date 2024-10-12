@@ -16,6 +16,7 @@ Future<bool> _showConfirmationDialog(
 ) async {
   return await showAdaptiveDialog<bool>(
         context: context,
+        useRootNavigator: false,
         builder: (context) {
           return AlertDialog.adaptive(
             title: Text(title),
