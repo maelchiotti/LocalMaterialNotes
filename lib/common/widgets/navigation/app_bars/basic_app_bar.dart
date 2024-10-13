@@ -9,10 +9,10 @@ import 'package:localmaterialnotes/common/extensions/build_context_extension.dar
 ///   - The title of the current route.
 class BasicAppBar extends StatefulWidget {
   /// Default constructor.
-  const BasicAppBar() : showBack = false;
+  const BasicAppBar({super.key}) : showBack = false;
 
   /// App bar with a back button.
-  const BasicAppBar.back() : showBack = true;
+  const BasicAppBar.back({super.key}) : showBack = true;
 
   /// Whether to show the back button.
   final bool showBack;

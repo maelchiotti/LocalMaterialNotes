@@ -8,7 +8,7 @@ class LinkDialog extends StatefulWidget {
   const LinkDialog({super.key});
 
   @override
-  _LinkDialogState createState() => _LinkDialogState();
+  State<LinkDialog> createState() => _LinkDialogState();
 }
 
 class _LinkDialogState extends State<LinkDialog> {

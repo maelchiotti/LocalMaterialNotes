@@ -17,12 +17,13 @@ import 'package:url_launcher/url_launcher.dart';
 class ErrorPlaceholder extends StatelessWidget {
   /// Default constructor.
   const ErrorPlaceholder({
+    super.key,
     required this.exception,
     this.stackTrace,
   });
 
   /// Constructor from [errorDetails].
-  ErrorPlaceholder.errorDetails(FlutterErrorDetails errorDetails)
+  ErrorPlaceholder.errorDetails(FlutterErrorDetails errorDetails, {super.key})
       : exception = errorDetails.exception,
         stackTrace = errorDetails.stack;
 

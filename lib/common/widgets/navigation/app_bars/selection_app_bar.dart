@@ -27,7 +27,7 @@ import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 ///   - A button to delete / permanently delete the selected notes.
 class SelectionAppBar extends ConsumerStatefulWidget {
   /// Default constructor.
-  const SelectionAppBar();
+  const SelectionAppBar({super.key});
 
   @override
   ConsumerState<SelectionAppBar> createState() => _SelectionAppBarState();
