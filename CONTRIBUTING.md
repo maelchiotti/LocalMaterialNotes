@@ -13,3 +13,7 @@ Logged in with your Crowdin account, open the [Crowdin project](https://crowdin.
 ### Add a new language
 
 Create an [issue](https://github.com/maelchiotti/LocalMaterialNotes/issues) mentioning which language you would like to be added.
+
+## External imports scripts
+
+To submit a script that converts an export from an other application to the format used by Material Notes, either open an issue and provide the script, or open a pull request that add your script to the [external_imports](docs/external_imports) directory (in that case, please name the file after the application).
