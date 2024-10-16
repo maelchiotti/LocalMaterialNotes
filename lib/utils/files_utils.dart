@@ -3,7 +3,6 @@ import 'dart:typed_data';
 
 import 'package:file_selector/file_selector.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/string_extension.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:path/path.dart';
@@ -71,7 +70,7 @@ Future<bool> writeFile({
 
 /// Returns the URI to the directory picked by the user, with a persisted write permission.
 Future<String?> selectDirectory() async {
-  return (await safUtil.openDirectory(writePermission: true, persistablePermission: true))?.decoded;
+  return (await safUtil.openDirectory(writePermission: true, persistablePermission: true));
 }
 
 /// Returns the the file picked by the user, limiting the choice to only files of the [typeGroup].

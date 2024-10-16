@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -8,7 +10,8 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/routing/routes/routing_route.dart';
+import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
+import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 /// Deletes the [note].
 ///
@@ -34,7 +37,7 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
 
   await ref.read(notesProvider.notifier).delete(note);
 
-  if (context.mounted && context.route == RoutingRoute.notesEditor) {
+  if (context.mounted && context.location == const NotesEditorRoute.empty().location) {
     context.pop();
   }
 
@@ -86,7 +89,7 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
 
   await ref.read(binProvider.notifier).permanentlyDelete(note);
 
-  if (context.mounted && context.route == RoutingRoute.notesEditor) {
+  if (context.mounted && context.location == const NotesEditorRoute.empty().location) {
     context.pop();
   }
 

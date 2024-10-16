@@ -14,7 +14,8 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/routing/routes/routing_route.dart';
+import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
+import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
 /// List of notes.
@@ -27,7 +28,7 @@ class NotesList extends ConsumerWidget {
   /// The child is either an empty placeholder if the [notes] are empty, are the [notes] list otherwise.
   Widget child(BuildContext context, List<Note> notes) {
     if (notes.isEmpty) {
-      return context.route == RoutingRoute.notes ? EmptyPlaceholder.notes() : EmptyPlaceholder.bin();
+      return context.location == NotesRoute().location ? EmptyPlaceholder.notes() : EmptyPlaceholder.bin();
     }
 
     // Use at least 2 columns for the grid view
@@ -87,7 +88,7 @@ class NotesList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return context.route == RoutingRoute.notes
+    return context.location == NotesRoute().location
         ? ref.watch(notesProvider).when(
             data: (notes) {
               return child(context, notes);

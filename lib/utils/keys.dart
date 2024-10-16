@@ -15,7 +15,7 @@ class Keys {
   static const dialogCancelButton = Key('dialogCancelButton');
 
   // App bars
-  static const appBarNotesBin = Key('appBarNotes');
+  static const appBarNotesBin = Key('appBarNotesBin');
   static const appBarEditor = Key('appBarEditor');
   static const appBarBin = Key('appBarBin');
   static const appBarSettingsMain = Key('appBarSettingsMain');

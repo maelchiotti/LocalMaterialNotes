@@ -14,7 +14,8 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/routing/routes/routing_route.dart';
+import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
+import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Notes list and bin's app bar.
@@ -96,7 +97,7 @@ class NotesAppBar extends ConsumerWidget {
       Navigator.pop(context);
     }
 
-    context.route == RoutingRoute.notes
+    context.location == NotesRoute().location
         ? ref.read(notesProvider.notifier).sort()
         : ref.read(binProvider.notifier).sort();
   }
@@ -123,7 +124,7 @@ class NotesAppBar extends ConsumerWidget {
     final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
     return AppBar(
-      title: Text(RoutingRoute.title(context)),
+      title: Text(context.title),
       actions: [
         ValueListenableBuilder(
           valueListenable: layoutNotifier,
@@ -178,7 +179,7 @@ class NotesAppBar extends ConsumerWidget {
           },
           onSelected: (sortMethod) => _sort(context, ref, sortMethod: sortMethod),
         ),
-        if (context.route == RoutingRoute.notes)
+        if (context.location == NotesRoute().location)
           ref.watch(notesProvider).when(
             data: (notes) {
               return child(context, notes);
