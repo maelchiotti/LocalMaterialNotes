@@ -84,6 +84,14 @@ All the supported languages are listed here alphabetically. You can see more det
 ![Spanish](https://img.shields.io/badge/dynamic/json?color=blue&label=Spanish&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27es-ES%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
 ![Turkish](https://img.shields.io/badge/dynamic/json?color=blue&label=Turkish&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27tr%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
 
+## External imports
+
+The JSON import feature only supports JSON files created by the application. Scripts to convert exports from other applications to the format used by Material Notes are available in the [external_imports](docs/external_imports) directory.
+
+Currently availbale scripts:
+
+- [Samsung Notes](docs/external_imports/samsung_notes.py)
+
 ## Credits
 
 ### Inspiration
