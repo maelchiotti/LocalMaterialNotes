@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/extensions/string_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/common/widgets/navigation/app_bars/basic_app_bar.dart';
@@ -194,7 +195,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault<bool>();
     final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<int>();
     final autoExportEncryption = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
-    final autoExportDirectory = AutoExportUtils().autoExportDirectory;
+    final autoExportDirectory = AutoExportUtils().autoExportDirectory.decoded;
 
     return Scaffold(
       appBar: const TopNavigation(
