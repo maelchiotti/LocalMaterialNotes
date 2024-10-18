@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:localmaterialnotes/common/enums/mime_type.dart';
-import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -53,14 +52,14 @@ class LogsUtils {
   String getLogsMessage(Object exception, StackTrace? stackTrace) {
     final message = StringBuffer();
 
-    message.writeln(DateTime.timestamp().toUtc().log);
+    message.writeln(DateTime.timestamp().toUtc().toIso8601String());
     message.writeln(exception.toString());
 
     if (stackTrace != null) {
       message.writeln(stackTrace.toString());
     }
 
-    message.write('\n');
+    message.writeln();
 
     return message.toString();
   }

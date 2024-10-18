@@ -4,6 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/app_bars/basic_app_bar.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/side_navigation.dart';
+import 'package:localmaterialnotes/common/widgets/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
@@ -101,71 +104,77 @@ class ErrorPlaceholder extends StatelessWidget {
 
     final textTheme = Theme.of(context).textTheme;
 
-    return Center(
-      child: Padding(
-        padding: Paddings.page,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Text(
-                localizations.error_widget_title,
-                textAlign: TextAlign.center,
-                style: textTheme.titleMedium,
-              ),
-              Padding(padding: Paddings.vertical(4.0)),
-              Text(
-                localizations.error_widget_description,
-                textAlign: TextAlign.center,
-              ),
-              if (isFlagSecureSettingEnabled) ...[
+    return Scaffold(
+      appBar: const TopNavigation(
+        appbar: BasicAppBar(),
+      ),
+      drawer: const SideNavigation(),
+      body: Center(
+        child: Padding(
+          padding: Paddings.page,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                  localizations.error_widget_title,
+                  textAlign: TextAlign.center,
+                  style: textTheme.titleMedium,
+                ),
                 Padding(padding: Paddings.vertical(4.0)),
                 Text(
-                  localizations.error_widget_disabled_secure_flag,
+                  localizations.error_widget_description,
                   textAlign: TextAlign.center,
-                  style: textTheme.labelMedium,
+                ),
+                if (isFlagSecureSettingEnabled) ...[
+                  Padding(padding: Paddings.vertical(4.0)),
+                  Text(
+                    localizations.error_widget_disabled_secure_flag,
+                    textAlign: TextAlign.center,
+                    style: textTheme.labelMedium,
+                  ),
+                ],
+                Padding(padding: Paddings.vertical(16.0)),
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.settings_backup_restore),
+                  label: Text(localizations.error_widget_button_export_notes),
+                  onPressed: () => exportNotes(localizations),
+                ),
+                Padding(padding: Paddings.vertical(16.0)),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton.icon(
+                      icon: const Icon(Icons.copy),
+                      label: Text(localizations.error_widget_button_copy_logs),
+                      onPressed: () => copyLogs(localizations),
+                    ),
+                    Padding(padding: Paddings.horizontal(8.0)),
+                    ElevatedButton.icon(
+                      icon: const Icon(Icons.file_download),
+                      label: Text(localizations.error_widget_button_export_logs),
+                      onPressed: () => exportLogs(localizations),
+                    ),
+                  ],
+                ),
+                Padding(padding: Paddings.vertical(8.0)),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FilledButton.icon(
+                      icon: const Icon(SimpleIcons.github),
+                      label: Text(localizations.error_widget_button_create_github_issue),
+                      onPressed: createGitHubIssue,
+                    ),
+                    Padding(padding: Paddings.horizontal(8.0)),
+                    FilledButton.icon(
+                      icon: const Icon(Icons.mail),
+                      label: Text(localizations.error_widget_button_send_mail),
+                      onPressed: sendMail,
+                    ),
+                  ],
                 ),
               ],
-              Padding(padding: Paddings.vertical(16.0)),
-              ElevatedButton.icon(
-                icon: const Icon(Icons.settings_backup_restore),
-                label: Text(localizations.error_widget_button_export_notes),
-                onPressed: () => exportNotes(localizations),
-              ),
-              Padding(padding: Paddings.vertical(16.0)),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton.icon(
-                    icon: const Icon(Icons.copy),
-                    label: Text(localizations.error_widget_button_copy_logs),
-                    onPressed: () => copyLogs(localizations),
-                  ),
-                  Padding(padding: Paddings.horizontal(8.0)),
-                  ElevatedButton.icon(
-                    icon: const Icon(Icons.file_download),
-                    label: Text(localizations.error_widget_button_export_logs),
-                    onPressed: () => exportLogs(localizations),
-                  ),
-                ],
-              ),
-              Padding(padding: Paddings.vertical(8.0)),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FilledButton.icon(
-                    icon: const Icon(SimpleIcons.github),
-                    label: Text(localizations.error_widget_button_create_github_issue),
-                    onPressed: createGitHubIssue,
-                  ),
-                  Padding(padding: Paddings.horizontal(8.0)),
-                  FilledButton.icon(
-                    icon: const Icon(Icons.mail),
-                    label: Text(localizations.error_widget_button_send_mail),
-                    onPressed: sendMail,
-                  ),
-                ],
-              ),
-            ],
+            ),
           ),
         ),
       ),
