@@ -68,6 +68,20 @@ Future<bool> writeFile({
       : await _writeFileSaf(directory: directory, fileName: fileName, mimeType: mimeType, data: data);
 }
 
+/// Writes a file with the [content] as a [String], in the [directory], with the [filename] and the [mimeType].
+///
+/// Uses the Storage Access Framework (SAF) APIs only if the directory is not the default export directory.
+Future<bool> writeFileFromString({
+  required String directory,
+  required String fileName,
+  required String mimeType,
+  required String content,
+}) async {
+  final data = Uint8List.fromList(content.codeUnits);
+
+  return await writeFile(directory: directory, fileName: fileName, mimeType: mimeType, data: data);
+}
+
 /// Returns the URI to the directory picked by the user, with a persisted write permission.
 Future<String?> selectDirectory() async {
   return (await safUtil.openDirectory(writePermission: true, persistablePermission: true));
