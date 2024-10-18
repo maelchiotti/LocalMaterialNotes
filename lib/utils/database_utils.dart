@@ -59,8 +59,8 @@ class DatabaseUtils {
           context: context,
           useRootNavigator: false,
           builder: (context) => AutoExportPasswordDialog(
-            title: localizations.settings_import,
-            description: localizations.dialog_import_encryption_password_description,
+            title: l.settings_import,
+            description: l.dialog_import_encryption_password_description,
           ),
         );
 
@@ -79,7 +79,7 @@ class DatabaseUtils {
           LogsUtils().handleException(exception, stackTrace);
 
           SnackBarUtils.error(
-            localizations.dialog_import_encryption_password_error,
+            l.dialog_import_encryption_password_error,
             duration: const Duration(seconds: 8),
           ).show();
 

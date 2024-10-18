@@ -44,7 +44,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         await ref.read(notesProvider.notifier).get();
         await ref.read(binProvider.notifier).get();
 
-        SnackBarUtils.info(localizations.snack_bar_import_success).show();
+        SnackBarUtils.info(l.snack_bar_import_success).show();
       }
     } catch (exception, stackTrace) {
       LogsUtils().handleException(exception, stackTrace);
@@ -72,7 +72,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         final password = shouldEncrypt.$2;
 
         if (await DatabaseUtils().manuallyExportAsJson(encrypt: encrypt, password: password)) {
-          SnackBarUtils.info(localizations.snack_bar_export_success).show();
+          SnackBarUtils.info(l.snack_bar_export_success).show();
         }
       } catch (exception, stackTrace) {
         LogsUtils().handleException(exception, stackTrace);
@@ -88,7 +88,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   Future<void> _exportAsMarkdown(BuildContext context) async {
     try {
       if (await DatabaseUtils().exportAsMarkdown()) {
-        SnackBarUtils.info(localizations.snack_bar_export_success).show();
+        SnackBarUtils.info(l.snack_bar_export_success).show();
       }
     } catch (exception, stackTrace) {
       LogsUtils().handleException(exception, stackTrace);
@@ -133,9 +133,9 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       context: context,
       useRootNavigator: false,
       builder: (context) => AutoExportPasswordDialog(
-        title: localizations.settings_auto_export_encryption,
-        description: localizations.dialog_export_encryption_description,
-        secondaryDescription: localizations.dialog_export_encryption_secondary_description_auto,
+        title: l.settings_auto_export_encryption,
+        description: l.dialog_export_encryption_description,
+        secondaryDescription: l.dialog_export_encryption_secondary_description_auto,
       ),
     ).then((autoExportPassword) async {
       if (autoExportPassword == null) {
@@ -205,74 +205,74 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       body: CustomSettingsList(
         sections: [
           SettingsSection(
-            title: Text(localizations.settings_backup_import),
+            title: Text(l.settings_backup_import),
             tiles: [
               SettingsTile.navigation(
                 leading: const Icon(Icons.file_upload),
-                title: Text(localizations.settings_import),
-                value: Text(localizations.settings_import_description),
+                title: Text(l.settings_import),
+                value: Text(l.settings_import_description),
                 onPressed: _import,
               ),
             ],
           ),
           SettingsSection(
-            title: Text(localizations.settings_backup_manual_export),
+            title: Text(l.settings_backup_manual_export),
             tiles: [
               SettingsTile.navigation(
                 leading: const Icon(SimpleIcons.json),
-                title: Text(localizations.settings_export_json),
-                value: Text(localizations.settings_export_json_description),
+                title: Text(l.settings_export_json),
+                value: Text(l.settings_export_json_description),
                 onPressed: _exportAsJson,
               ),
               SettingsTile.navigation(
                 leading: const Icon(SimpleIcons.markdown),
-                title: Text(localizations.settings_export_markdown),
-                value: Text(localizations.settings_export_markdown_description),
+                title: Text(l.settings_export_markdown),
+                value: Text(l.settings_export_markdown_description),
                 onPressed: _exportAsMarkdown,
               ),
             ],
           ),
           SettingsSection(
-            title: Text(localizations.settings_backup_auto_export),
+            title: Text(l.settings_backup_auto_export),
             tiles: [
               SettingsTile.switchTile(
                 leading: const Icon(Icons.settings_backup_restore),
-                title: Text(localizations.settings_auto_export),
-                description: Text(localizations.settings_auto_export_description),
+                title: Text(l.settings_auto_export),
+                description: Text(l.settings_auto_export_description),
                 initialValue: enableAutoExport,
                 onToggle: _toggleEnableAutoExport,
               ),
               SettingsTile.switchTile(
                 enabled: enableAutoExport,
                 leading: const Icon(Icons.enhanced_encryption),
-                title: Text(localizations.settings_auto_export_encryption),
-                description: Text(localizations.settings_auto_export_encryption_description),
+                title: Text(l.settings_auto_export_encryption),
+                description: Text(l.settings_auto_export_encryption_description),
                 initialValue: autoExportEncryption,
                 onToggle: _toggleAutoExportEncryption,
               ),
               SettingsTile.navigation(
                 enabled: enableAutoExport,
                 leading: const Icon(Symbols.calendar_clock),
-                title: Text(localizations.settings_auto_export_frequency),
+                title: Text(l.settings_auto_export_frequency),
                 value: SettingNavigationTileBody(
                   enabled: enableAutoExport,
-                  value: localizations.settings_auto_export_frequency_value(autoExportFrequency.toString()),
-                  description: localizations.settings_auto_export_frequency_description,
+                  value: l.settings_auto_export_frequency_value(autoExportFrequency.toString()),
+                  description: l.settings_auto_export_frequency_description,
                 ),
                 onPressed: _setAutoExportFrequency,
               ),
               SettingsTile.navigation(
                 enabled: enableAutoExport,
                 leading: const Icon(Icons.folder),
-                title: Text(localizations.settings_auto_export_directory),
+                title: Text(l.settings_auto_export_directory),
                 value: SettingNavigationTileBody(
                   enabled: enableAutoExport,
                   value: autoExportDirectory,
-                  description: localizations.settings_auto_export_directory_description,
+                  description: l.settings_auto_export_directory_description,
                 ),
                 trailing: IconButton(
                   icon: const Icon(Symbols.reset_settings),
-                  tooltip: localizations.tooltip_reset,
+                  tooltip: l.tooltip_reset,
                   onPressed: _resetAutoExportDirectory,
                 ),
                 onPressed: _setAutoExportDirectory,

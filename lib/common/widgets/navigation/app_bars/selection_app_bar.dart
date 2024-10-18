@@ -93,7 +93,7 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
       actions: [
         IconButton(
           icon: Icon(allSelected ? Icons.deselect : Icons.select_all),
-          tooltip: allSelected ? localizations.tooltip_unselect_all : localizations.tooltip_select_all,
+          tooltip: allSelected ? l.tooltip_unselect_all : flutterL?.selectAllButtonLabel ?? 'Select all',
           onPressed: () => allSelected ? unselectAll(context, ref) : selectAll(context, ref),
         ),
         Padding(padding: Paddings.appBarActionsEnd),
@@ -102,23 +102,23 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
         if (context.location == BinRoute().location) ...[
           IconButton(
             icon: const Icon(Icons.restore_from_trash),
-            tooltip: localizations.tooltip_restore,
+            tooltip: l.tooltip_restore,
             onPressed: selectedNotes.isNotEmpty ? () => _restore(selectedNotes) : null,
           ),
           IconButton(
             icon: const Icon(Icons.delete_forever),
-            tooltip: localizations.tooltip_permanently_delete,
+            tooltip: l.tooltip_permanently_delete,
             onPressed: selectedNotes.isNotEmpty ? () => _permanentlyDelete(selectedNotes) : null,
           ),
         ] else ...[
           IconButton(
             icon: const Icon(Icons.push_pin),
-            tooltip: localizations.tooltip_toggle_pins,
+            tooltip: l.tooltip_toggle_pins,
             onPressed: selectedNotes.isNotEmpty ? () => _togglePin(selectedNotes) : null,
           ),
           IconButton(
             icon: const Icon(Icons.delete),
-            tooltip: localizations.tooltip_delete,
+            tooltip: l.tooltip_delete,
             onPressed: selectedNotes.isNotEmpty ? () => _delete(selectedNotes) : null,
           ),
         ],

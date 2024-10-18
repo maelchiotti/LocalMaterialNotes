@@ -73,12 +73,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get navigation_settings_about => 'Über';
 
   @override
-  String get button_ok => 'In Ordnung';
-
-  @override
-  String get button_cancel => 'Schließen';
-
-  @override
   String get button_sort_title => 'Titel';
 
   @override
@@ -451,9 +445,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get tooltip_search => 'Suche Notizen';
 
   @override
-  String get tooltip_select_all => 'Alle auswählen';
-
-  @override
   String get tooltip_unselect_all => 'Alle abwählen';
 
   @override
@@ -580,12 +571,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get action_unpin => 'Loslösen';
-
-  @override
-  String get action_copy => 'Kopieren';
-
-  @override
-  String get action_share => 'Teilen';
 
   @override
   String get action_delete => 'Löschen';

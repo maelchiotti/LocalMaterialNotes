@@ -133,7 +133,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                         textInputAction: TextInputAction.next,
                         style: Theme.of(context).textTheme.titleLarge,
                         decoration: InputDecoration.collapsed(
-                          hintText: localizations.hint_title,
+                          hintText: l.hint_title,
                         ),
                         controller: titleController,
                         onChanged: (text) => _synchronizeTitle(note!, text),

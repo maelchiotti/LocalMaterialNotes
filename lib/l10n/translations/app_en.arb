@@ -85,14 +85,6 @@
   "@navigation_settings_about": {
     "description": "Title of the settings page regarding the information about the application."
   },
-  "button_ok": "Ok",
-  "@button_ok": {
-    "description": "Button to validate a dialog."
-  },
-  "button_cancel": "Cancel",
-  "@button_cancel": {
-    "description": "Button to cancel and close a dialog."
-  },
   "button_sort_title": "Title",
   "@button_sort_title": {
     "description": "Text of the button to sort the notes list by title."
@@ -559,10 +551,6 @@
   "@tooltip_search": {
     "description": "Tooltip for the button to open the search view to search through the notes."
   },
-  "tooltip_select_all": "Select all",
-  "@tooltip_select_all": {
-    "description": "Tooltip for the button to select all the notes while in selection mode in the notes list."
-  },
   "tooltip_unselect_all": "Unselect all",
   "@tooltip_unselect_all": {
     "description": "Tooltip for the button to unselect all the notes while in selection mode in the notes list."
@@ -688,14 +676,6 @@
   "action_unpin": "Unpin",
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
-  },
-  "action_copy": "Copy",
-  "@action_copy": {
-    "description": "Swipe or menu action to copy the content of a note."
-  },
-  "action_share": "Share",
-  "@action_share": {
-    "description": "Swipe or menu action to share the title and the content of a note."
   },
   "action_delete": "Delete",
   "@action_delete": {

@@ -90,65 +90,65 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
       body: CustomSettingsList(
         sections: [
           SettingsSection(
-            title: Text(localizations.settings_editor_formatting),
+            title: Text(l.settings_editor_formatting),
             tiles: [
               SettingsTile.switchTile(
                 leading: const Icon(Icons.undo),
-                title: Text(localizations.settings_show_undo_redo_buttons),
-                description: Text(localizations.settings_show_undo_redo_buttons_description),
+                title: Text(l.settings_show_undo_redo_buttons),
+                description: Text(l.settings_show_undo_redo_buttons_description),
                 initialValue: showUndoRedoButtons,
                 onToggle: _toggleShowUndoRedoButtons,
               ),
               SettingsTile.switchTile(
                 leading: const Icon(Icons.checklist),
-                title: Text(localizations.settings_show_checklist_button),
-                description: Text(localizations.settings_show_checklist_button_description),
+                title: Text(l.settings_show_checklist_button),
+                description: Text(l.settings_show_checklist_button_description),
                 initialValue: showChecklistButton,
                 onToggle: _toggleShowChecklistButton,
               ),
               SettingsTile.switchTile(
                 leading: const Icon(Icons.format_paint),
-                title: Text(localizations.settings_show_toolbar),
-                description: Text(localizations.settings_show_toolbar_description),
+                title: Text(l.settings_show_toolbar),
+                description: Text(l.settings_show_toolbar_description),
                 initialValue: showToolbar,
                 onToggle: _toggleShowToolbar,
               ),
             ],
           ),
           SettingsSection(
-            title: Text(localizations.settings_editor_behavior),
+            title: Text(l.settings_editor_behavior),
             tiles: [
               SettingsTile.switchTile(
                 leading: const Icon(Icons.edit),
-                title: Text(localizations.settings_show_editor_mode_button),
-                description: Text(localizations.settings_show_editor_mode_button_description),
+                title: Text(l.settings_show_editor_mode_button),
+                description: Text(l.settings_show_editor_mode_button_description),
                 initialValue: showEditorModeButton,
                 onToggle: _toggleShowEditorModeButton,
               ),
               SettingsTile.switchTile(
                 enabled: showEditorModeButton,
                 leading: const Icon(Icons.visibility),
-                title: Text(localizations.settings_open_editor_reading_mode),
-                description: Text(localizations.settings_open_editor_reading_mode_description),
+                title: Text(l.settings_open_editor_reading_mode),
+                description: Text(l.settings_open_editor_reading_mode_description),
                 initialValue: openEditorInReadMode,
                 onToggle: _toggleOpenEditorInReadMode,
               ),
               SettingsTile.switchTile(
                 leading: const Icon(Icons.filter_center_focus),
-                title: Text(localizations.settings_focus_title_on_new_note),
-                description: Text(localizations.settings_focus_title_on_new_note_description),
+                title: Text(l.settings_focus_title_on_new_note),
+                description: Text(l.settings_focus_title_on_new_note_description),
                 initialValue: focusTitleOnNewNote,
                 onToggle: _toggleFocusTitleOnNewNote,
               ),
             ],
           ),
           SettingsSection(
-            title: Text(localizations.settings_editor_appearance),
+            title: Text(l.settings_editor_appearance),
             tiles: [
               SettingsTile.switchTile(
                 leading: const Icon(Icons.format_line_spacing),
-                title: Text(localizations.settings_use_paragraph_spacing),
-                description: Text(localizations.settings_use_paragraph_spacing_description),
+                title: Text(l.settings_use_paragraph_spacing),
+                description: Text(l.settings_use_paragraph_spacing_description),
                 initialValue: useParagraphsSpacing,
                 onToggle: _toggleUseParagraphSpacing,
               ),

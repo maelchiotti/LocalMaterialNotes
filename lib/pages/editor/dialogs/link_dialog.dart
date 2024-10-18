@@ -39,23 +39,23 @@ class _LinkDialogState extends State<LinkDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(localizations.dialog_add_link),
+      title: Text(l.dialog_add_link),
       content: TextField(
         controller: _linkController,
         autofocus: true,
         decoration: InputDecoration(
-          labelText: localizations.hint_link,
+          labelText: l.hint_link,
         ),
         onChanged: _onChanged,
       ),
       actions: [
         TextButton(
           onPressed: () => _pop(canceled: true),
-          child: Text(localizations.button_cancel),
+          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
         ),
         TextButton(
           onPressed: _isLinkValid ? _pop : null,
-          child: Text(localizations.button_ok),
+          child: Text(flutterL?.okButtonLabel ?? 'OK'),
         ),
       ],
     );

@@ -39,7 +39,7 @@ class _TextScalingDialogState extends State<TextScalingDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog.adaptive(
-      title: Text(localizations.settings_text_scaling),
+      title: Text(l.settings_text_scaling),
       content: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,11 +59,11 @@ class _TextScalingDialogState extends State<TextScalingDialog> {
       actions: [
         TextButton(
           onPressed: () => _pop(canceled: true),
-          child: Text(localizations.button_cancel),
+          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
         ),
         TextButton(
           onPressed: _pop,
-          child: Text(localizations.button_ok),
+          child: Text(flutterL?.okButtonLabel ?? 'OK'),
         ),
       ],
     );

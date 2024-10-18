@@ -61,14 +61,14 @@ class ThemeUtils {
 
     switch (themeModePreference) {
       case 0:
-        return localizations.settings_theme_system;
+        return l.settings_theme_system;
       case 1:
-        return localizations.settings_theme_light;
+        return l.settings_theme_light;
       case 2:
-        return localizations.settings_theme_dark;
+        return l.settings_theme_dark;
     }
 
-    return localizations.settings_theme_system;
+    return l.settings_theme_system;
   }
 
   /// Returns the light theme.

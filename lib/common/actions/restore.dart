@@ -23,9 +23,9 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async 
 
   if (!await askForConfirmation(
     context,
-    localizations.dialog_restore,
-    localizations.dialog_restore_body(1),
-    localizations.dialog_restore,
+    l.dialog_restore,
+    l.dialog_restore_body(1),
+    l.dialog_restore,
   )) {
     return false;
   }
@@ -49,9 +49,9 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async 
 Future<bool> restoreNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   if (!await askForConfirmation(
     context,
-    localizations.dialog_restore,
-    localizations.dialog_restore_body(notes.length),
-    localizations.dialog_restore,
+    l.dialog_restore,
+    l.dialog_restore_body(notes.length),
+    l.dialog_restore,
   )) {
     return false;
   }
