@@ -105,6 +105,10 @@ Currently availbale scripts:
 - [newmanls](https://github.com/newmanls) for the spanish localization.
 - [xe1st](https://github.com/xe1st) for the turkish localization.
 
+### External imports scripts
+
+- [1ycx](https://github.com/1ycx) for the [Samsung Notes](docs/external_imports/samsung_notes.py) script.
+
 ### Assets
 
 - [Material Design Icons](https://github.com/google/material-design-icons) for the [notes](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:notes) icon used for the logo.
