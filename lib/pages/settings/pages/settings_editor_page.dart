@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
-import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
+import 'package:settings_tiles/settings_tiles.dart';
 
 /// Settings related to the notes editor.
 class SettingsEditorPage extends StatefulWidget {
@@ -87,74 +86,79 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
         key: Keys.appBarSettingsMainSubpage,
         appbar: BasicAppBar.back(),
       ),
-      body: CustomSettingsList(
-        sections: [
-          SettingsSection(
-            title: Text(l.settings_editor_formatting),
-            tiles: [
-              SettingsTile.switchTile(
-                leading: const Icon(Icons.undo),
-                title: Text(l.settings_show_undo_redo_buttons),
-                description: Text(l.settings_show_undo_redo_buttons_description),
-                initialValue: showUndoRedoButtons,
-                onToggle: _toggleShowUndoRedoButtons,
-              ),
-              SettingsTile.switchTile(
-                leading: const Icon(Icons.checklist),
-                title: Text(l.settings_show_checklist_button),
-                description: Text(l.settings_show_checklist_button_description),
-                initialValue: showChecklistButton,
-                onToggle: _toggleShowChecklistButton,
-              ),
-              SettingsTile.switchTile(
-                leading: const Icon(Icons.format_paint),
-                title: Text(l.settings_show_toolbar),
-                description: Text(l.settings_show_toolbar_description),
-                initialValue: showToolbar,
-                onToggle: _toggleShowToolbar,
-              ),
-            ],
-          ),
-          SettingsSection(
-            title: Text(l.settings_editor_behavior),
-            tiles: [
-              SettingsTile.switchTile(
-                leading: const Icon(Icons.edit),
-                title: Text(l.settings_show_editor_mode_button),
-                description: Text(l.settings_show_editor_mode_button_description),
-                initialValue: showEditorModeButton,
-                onToggle: _toggleShowEditorModeButton,
-              ),
-              SettingsTile.switchTile(
-                enabled: showEditorModeButton,
-                leading: const Icon(Icons.visibility),
-                title: Text(l.settings_open_editor_reading_mode),
-                description: Text(l.settings_open_editor_reading_mode_description),
-                initialValue: openEditorInReadMode,
-                onToggle: _toggleOpenEditorInReadMode,
-              ),
-              SettingsTile.switchTile(
-                leading: const Icon(Icons.filter_center_focus),
-                title: Text(l.settings_focus_title_on_new_note),
-                description: Text(l.settings_focus_title_on_new_note_description),
-                initialValue: focusTitleOnNewNote,
-                onToggle: _toggleFocusTitleOnNewNote,
-              ),
-            ],
-          ),
-          SettingsSection(
-            title: Text(l.settings_editor_appearance),
-            tiles: [
-              SettingsTile.switchTile(
-                leading: const Icon(Icons.format_line_spacing),
-                title: Text(l.settings_use_paragraph_spacing),
-                description: Text(l.settings_use_paragraph_spacing_description),
-                initialValue: useParagraphsSpacing,
-                onToggle: _toggleUseParagraphSpacing,
-              ),
-            ],
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SettingSection(
+              divider: null,
+              title: l.settings_editor_formatting,
+              tiles: [
+                SettingSwitchTile(
+                  icon: Icons.undo,
+                  title: l.settings_show_undo_redo_buttons,
+                  description: l.settings_show_undo_redo_buttons_description,
+                  toggled: showUndoRedoButtons,
+                  onChanged: _toggleShowUndoRedoButtons,
+                ),
+                SettingSwitchTile(
+                  icon: Icons.checklist,
+                  title: l.settings_show_checklist_button,
+                  description: l.settings_show_checklist_button_description,
+                  toggled: showChecklistButton,
+                  onChanged: _toggleShowChecklistButton,
+                ),
+                SettingSwitchTile(
+                  icon: Icons.format_paint,
+                  title: l.settings_show_toolbar,
+                  description: l.settings_show_toolbar_description,
+                  toggled: showToolbar,
+                  onChanged: _toggleShowToolbar,
+                ),
+              ],
+            ),
+            SettingSection(
+              divider: null,
+              title: l.settings_editor_behavior,
+              tiles: [
+                SettingSwitchTile(
+                  icon: Icons.edit,
+                  title: l.settings_show_editor_mode_button,
+                  description: l.settings_show_editor_mode_button_description,
+                  toggled: showEditorModeButton,
+                  onChanged: _toggleShowEditorModeButton,
+                ),
+                SettingSwitchTile(
+                  enabled: showEditorModeButton,
+                  icon: Icons.visibility,
+                  title: l.settings_open_editor_reading_mode,
+                  description: l.settings_open_editor_reading_mode_description,
+                  toggled: openEditorInReadMode,
+                  onChanged: _toggleOpenEditorInReadMode,
+                ),
+                SettingSwitchTile(
+                  icon: Icons.filter_center_focus,
+                  title: l.settings_focus_title_on_new_note,
+                  description: l.settings_focus_title_on_new_note_description,
+                  toggled: focusTitleOnNewNote,
+                  onChanged: _toggleFocusTitleOnNewNote,
+                ),
+              ],
+            ),
+            SettingSection(
+              divider: null,
+              title: l.settings_editor_appearance,
+              tiles: [
+                SettingSwitchTile(
+                  icon: Icons.format_line_spacing,
+                  title: l.settings_use_paragraph_spacing,
+                  description: l.settings_use_paragraph_spacing_description,
+                  toggled: useParagraphsSpacing,
+                  onChanged: _toggleUseParagraphSpacing,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/enums/localization_completion.dart';
@@ -12,14 +11,13 @@ import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/text_scaling_dialog.dart';
-import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
-import 'package:localmaterialnotes/pages/settings/widgets/setting_value_text.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:restart_app/restart_app.dart';
+import 'package:settings_tiles/settings_tiles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Settings related to the appearance of the application.
@@ -46,7 +44,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Asks the user to select the language of the application.
   ///
   /// Restarts the application if the language is changed.
-  Future<void> _selectLanguage(BuildContext context) async {
+  Future<void> _selectLanguage() async {
     await showAdaptiveDialog<Locale>(
       context: context,
       useRootNavigator: false,
@@ -83,7 +81,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   }
 
   /// Asks the user to select the theme of the application.
-  Future<void> _selectTheme(BuildContext context) async {
+  Future<void> _selectTheme() async {
     await showAdaptiveDialog<ThemeMode>(
       context: context,
       useRootNavigator: false,
@@ -143,7 +141,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     blackThemingNotifier.value = toggled;
   }
 
-  Future<void> _setTextScaling(BuildContext context) async {
+  Future<void> _setTextScaling() async {
     await showAdaptiveDialog<double>(
       context: context,
       useRootNavigator: false,
@@ -224,99 +222,97 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
         key: Keys.appBarSettingsMainSubpage,
         appbar: BasicAppBar.back(),
       ),
-      body: CustomSettingsList(
-        sections: [
-          SettingsSection(
-            title: Text(l.settings_appearance_application),
-            tiles: [
-              SettingsTile.navigation(
-                leading: const Icon(Icons.language),
-                title: Text(l.settings_language),
-                trailing: TextButton.icon(
-                  onPressed: _openCrowdin,
-                  label: Text(l.settings_language_contribute),
-                ),
-                value: SettingNavigationTileBody(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SettingSection(
+              divider: null,
+              title: l.settings_appearance_application,
+              tiles: [
+                SettingActionTile(
+                  icon: Icons.language,
+                  title: l.settings_language,
+                  trailing: TextButton.icon(
+                    onPressed: _openCrowdin,
+                    label: Text(l.settings_language_contribute),
+                  ),
                   value: locale,
+                  onTap: _selectLanguage,
                 ),
-                onPressed: _selectLanguage,
-              ),
-              SettingsTile.navigation(
-                leading: const Icon(Icons.palette),
-                title: Text(l.settings_theme),
-                value: SettingNavigationTileBody(
+                SettingActionTile(
+                  icon: Icons.palette,
+                  title: l.settings_theme,
                   value: ThemeUtils().themeModeTitle,
+                  onTap: _selectTheme,
                 ),
-                onPressed: _selectTheme,
-              ),
-              SettingsTile.switchTile(
-                enabled: ThemeUtils().isDynamicThemingAvailable,
-                leading: const Icon(Icons.bolt),
-                title: Text(l.settings_dynamic_theming),
-                description: Text(l.settings_dynamic_theming_description),
-                initialValue: ThemeUtils().useDynamicTheming,
-                onToggle: _toggleDynamicTheming,
-              ),
-              SettingsTile.switchTile(
-                enabled: showUseBlackTheming,
-                leading: const Icon(Icons.nightlight),
-                title: Text(l.settings_black_theming),
-                description: Text(l.settings_black_theming_description),
-                initialValue: ThemeUtils().useBlackTheming,
-                onToggle: _toggleBlackTheming,
-              ),
-              SettingsTile.navigation(
-                leading: const Icon(Icons.format_size),
-                title: Text(l.settings_text_scaling),
-                value: SettingNavigationTileBody(
+                SettingSwitchTile(
+                  enabled: ThemeUtils().isDynamicThemingAvailable,
+                  icon: Icons.bolt,
+                  title: l.settings_dynamic_theming,
+                  description: l.settings_dynamic_theming_description,
+                  toggled: ThemeUtils().useDynamicTheming,
+                  onChanged: _toggleDynamicTheming,
+                ),
+                SettingSwitchTile(
+                  enabled: showUseBlackTheming,
+                  icon: Icons.nightlight,
+                  title: l.settings_black_theming,
+                  description: l.settings_black_theming_description,
+                  toggled: ThemeUtils().useBlackTheming,
+                  onChanged: _toggleBlackTheming,
+                ),
+                SettingActionTile(
+                  icon: Icons.format_size,
+                  title: l.settings_text_scaling,
                   value: textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale),
+                  onTap: _setTextScaling,
                 ),
-                onPressed: _setTextScaling,
-              ),
-            ],
-          ),
-          SettingsSection(
-            title: Text(l.settings_appearance_notes_tiles),
-            tiles: [
-              SettingsTile.switchTile(
-                leading: const Icon(Icons.view_compact),
-                title: Text(l.settings_show_titles_only),
-                description: Text(l.settings_show_titles_only_description),
-                initialValue: showTitlesOnly,
-                onToggle: _toggleShowTitlesOnly,
-              ),
-              SettingsTile.switchTile(
-                enabled: showTitlesOnly,
-                leading: const Icon(Symbols.feature_search),
-                title: Text(l.settings_show_titles_only_disable_in_search_view),
-                description: Text(l.settings_show_titles_only_disable_in_search_view_description),
-                initialValue: showTitlesOnlyDisableInSearchView,
-                onToggle: _toggleShowTitlesOnlyDisableInSearchView,
-              ),
-              SettingsTile.switchTile(
-                leading: const Icon(Icons.format_color_text),
-                title: Text(l.settings_disable_subdued_note_content_preview),
-                description: Text(l.settings_disable_subdued_note_content_preview_description),
-                initialValue: disableSubduedNoteContentPreview,
-                onToggle: _toggleDisableSubduedNoteContentPreview,
-              ),
-              SettingsTile.switchTile(
-                leading: const Icon(Icons.safety_divider),
-                title: Text(l.settings_show_separators),
-                description: Text(l.settings_show_separators_description),
-                initialValue: showSeparators,
-                onToggle: _toggleShowSeparators,
-              ),
-              SettingsTile.switchTile(
-                leading: const Icon(Icons.gradient),
-                title: Text(l.settings_show_tiles_background),
-                description: Text(l.settings_show_tiles_background_description),
-                initialValue: showTilesBackground,
-                onToggle: _toggleShowTilesBackground,
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+            SettingSection(
+              divider: null,
+              title: l.settings_appearance_notes_tiles,
+              tiles: [
+                SettingSwitchTile(
+                  icon: Icons.view_compact,
+                  title: l.settings_show_titles_only,
+                  description: l.settings_show_titles_only_description,
+                  toggled: showTitlesOnly,
+                  onChanged: _toggleShowTitlesOnly,
+                ),
+                SettingSwitchTile(
+                  enabled: showTitlesOnly,
+                  icon: Symbols.feature_search,
+                  title: l.settings_show_titles_only_disable_in_search_view,
+                  description: l.settings_show_titles_only_disable_in_search_view_description,
+                  toggled: showTitlesOnlyDisableInSearchView,
+                  onChanged: _toggleShowTitlesOnlyDisableInSearchView,
+                ),
+                SettingSwitchTile(
+                  icon: Icons.format_color_text,
+                  title: l.settings_disable_subdued_note_content_preview,
+                  description: l.settings_disable_subdued_note_content_preview_description,
+                  toggled: disableSubduedNoteContentPreview,
+                  onChanged: _toggleDisableSubduedNoteContentPreview,
+                ),
+                SettingSwitchTile(
+                  icon: Icons.safety_divider,
+                  title: l.settings_show_separators,
+                  description: l.settings_show_separators_description,
+                  toggled: showSeparators,
+                  onChanged: _toggleShowSeparators,
+                ),
+                SettingSwitchTile(
+                  icon: Icons.gradient,
+                  title: l.settings_show_tiles_background,
+                  description: l.settings_show_tiles_background_description,
+                  toggled: showTilesBackground,
+                  onChanged: _toggleShowTilesBackground,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

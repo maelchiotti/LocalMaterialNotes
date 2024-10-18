@@ -470,6 +470,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.19.0"
+  flex_color_picker:
+    dependency: transitive
+    description:
+      name: flex_color_picker
+      sha256: "12dc855ae8ef5491f529b1fc52c655f06dcdf4114f1f7fdecafa41eec2ec8d79"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.6.0"
+  flex_seed_scheme:
+    dependency: transitive
+    description:
+      name: flex_seed_scheme
+      sha256: "7639d2c86268eff84a909026eb169f008064af0fb3696a651b24b0fa24a40334"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.4.1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -576,14 +592,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
-  flutter_settings_ui:
-    dependency: "direct main"
-    description:
-      name: flutter_settings_ui
-      sha256: dcc506fab724192594e5c232b6214a941abd6e7b5151626635b89258fadbc17c
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.1"
   flutter_staggered_grid_view:
     dependency: "direct main"
     description:
@@ -626,6 +634,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  gap:
+    dependency: transitive
+    description:
+      name: gap
+      sha256: f19387d4e32f849394758b91377f9153a1b41d79513ef7668c088c77dbc6955d
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
   glob:
     dependency: transitive
     description:
@@ -1178,6 +1194,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  settings_tiles:
+    dependency: "direct main"
+    description:
+      name: settings_tiles
+      sha256: "420f7722210f183257d7d30f430b186b97ec1e9d83422b30d6ae9a7fa9b1b6d7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   share_plus:
     dependency: "direct main"
     description:

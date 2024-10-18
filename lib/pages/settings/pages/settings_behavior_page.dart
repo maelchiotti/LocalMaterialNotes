@@ -1,6 +1,5 @@
 import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
@@ -9,10 +8,9 @@ import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
-import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
-import 'package:localmaterialnotes/pages/settings/widgets/setting_value_text.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
+import 'package:settings_tiles/settings_tiles.dart';
 
 /// Settings related to the behavior of the application.
 class SettingsBehaviorPage extends StatefulWidget {
@@ -25,7 +23,7 @@ class SettingsBehaviorPage extends StatefulWidget {
 
 class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
   /// Asks the user to choose which confirmations should be shown.
-  Future<void> _selectConfirmations(BuildContext context) async {
+  Future<void> _selectConfirmations() async {
     final confirmationsPreference = Confirmations.fromPreference();
 
     await showAdaptiveDialog<Confirmations>(
@@ -58,7 +56,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
   }
 
   /// Asks the user to choose which action should be triggered when swiping the notes tiles in the [swipeDirection].
-  Future<void> _selectSwipeAction(BuildContext context, SwipeDirection swipeDirection) async {
+  Future<void> _selectSwipeAction(SwipeDirection swipeDirection) async {
     SwipeAction swipeActionPreference;
     switch (swipeDirection) {
       case SwipeDirection.right:
@@ -127,55 +125,51 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
         key: Keys.appBarSettingsMainSubpage,
         appbar: BasicAppBar.back(),
       ),
-      body: CustomSettingsList(
-        sections: [
-          SettingsSection(
-            title: Text(l.settings_behavior_application),
-            tiles: [
-              SettingsTile.navigation(
-                leading: const Icon(Icons.warning),
-                title: Text(l.settings_confirmations),
-                value: SettingNavigationTileBody(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SettingSection(
+              divider: null,
+              title: l.settings_behavior_application,
+              tiles: [
+                SettingActionTile(
+                  icon: Icons.warning,
+                  title: l.settings_confirmations,
                   value: confirmations.title,
                   description: l.settings_confirmations_description,
+                  onTap: _selectConfirmations,
                 ),
-                onPressed: _selectConfirmations,
-              ),
-              SettingsTile.switchTile(
-                leading: const Icon(Icons.security),
-                title: Text(l.settings_flag_secure),
-                description: Text(l.settings_flag_secure_description),
-                initialValue: flagSecure,
-                onToggle: _setFlagSecure,
-              ),
-            ],
-          ),
-          SettingsSection(
-            title: Text(l.settings_behavior_swipe_actions),
-            tiles: [
-              SettingsTile.navigation(
-                leading: const Icon(Icons.swipe_right),
-                title: Text(l.settings_swipe_action_right),
-                value: SettingNavigationTileBody(
+                SettingSwitchTile(
+                  icon: Icons.security,
+                  title: l.settings_flag_secure,
+                  description: l.settings_flag_secure_description,
+                  toggled: flagSecure,
+                  onChanged: _setFlagSecure,
+                ),
+              ],
+            ),
+            SettingSection(
+              divider: null,
+              title: l.settings_behavior_swipe_actions,
+              tiles: [
+                SettingActionTile(
+                  icon: Icons.swipe_right,
+                  title: l.settings_swipe_action_right,
                   value: swipeRightAction.title(),
                   description: l.settings_swipe_action_right_description,
-                  icon: swipeRightAction.icon,
+                  onTap: () => _selectSwipeAction(SwipeDirection.right),
                 ),
-                onPressed: (context) => _selectSwipeAction(context, SwipeDirection.right),
-              ),
-              SettingsTile.navigation(
-                leading: const Icon(Icons.swipe_left),
-                title: Text(l.settings_swipe_action_left),
-                value: SettingNavigationTileBody(
+                SettingActionTile(
+                  icon: Icons.swipe_left,
+                  title: l.settings_swipe_action_left,
                   value: swipeLeftAction.title(),
                   description: l.settings_swipe_action_left_description,
-                  icon: swipeLeftAction.icon,
+                  onTap: () => _selectSwipeAction(SwipeDirection.left),
                 ),
-                onPressed: (context) => _selectSwipeAction(context, SwipeDirection.left),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
