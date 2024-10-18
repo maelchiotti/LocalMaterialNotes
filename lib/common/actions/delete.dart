@@ -26,9 +26,9 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
 
   if (!await askForConfirmation(
     context,
-    localizations.dialog_delete,
-    localizations.dialog_delete_body(1),
-    localizations.dialog_delete,
+    l.dialog_delete,
+    l.dialog_delete_body(1),
+    l.dialog_delete,
   )) {
     return false;
   }
@@ -52,9 +52,9 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
 Future<bool> deleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   if (!await askForConfirmation(
     context,
-    localizations.dialog_delete,
-    localizations.dialog_delete_body(notes.length),
-    localizations.dialog_delete,
+    l.dialog_delete,
+    l.dialog_delete_body(notes.length),
+    l.dialog_delete,
   )) {
     return false;
   }
@@ -77,9 +77,9 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
 
   if (!await askForConfirmation(
     context,
-    localizations.dialog_permanently_delete,
-    localizations.dialog_permanently_delete_body(1),
-    localizations.dialog_permanently_delete,
+    l.dialog_permanently_delete,
+    l.dialog_permanently_delete_body(1),
+    l.dialog_permanently_delete,
     irreversible: true,
   )) {
     return false;
@@ -104,9 +104,9 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
 Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   if (!await askForConfirmation(
     context,
-    localizations.dialog_permanently_delete,
-    localizations.dialog_permanently_delete_body(notes.length),
-    localizations.dialog_permanently_delete,
+    l.dialog_permanently_delete,
+    l.dialog_permanently_delete_body(notes.length),
+    l.dialog_permanently_delete,
     irreversible: true,
   )) {
     return false;
@@ -124,9 +124,9 @@ Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, List<No
 Future<bool> emptyBin(BuildContext context, WidgetRef ref) async {
   if (!await askForConfirmation(
     context,
-    localizations.dialog_empty_bin,
-    localizations.dialog_empty_bin_body,
-    localizations.dialog_empty_bin,
+    l.dialog_empty_bin,
+    l.dialog_empty_bin_body,
+    l.dialog_empty_bin,
     irreversible: true,
   )) {
     return false;

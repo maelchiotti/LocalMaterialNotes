@@ -73,12 +73,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get navigation_settings_about => 'О приложении';
 
   @override
-  String get button_ok => 'Оk';
-
-  @override
-  String get button_cancel => 'Отмена';
-
-  @override
   String get button_sort_title => 'Title';
 
   @override
@@ -465,9 +459,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get tooltip_search => 'Поиск заметок';
 
   @override
-  String get tooltip_select_all => 'Выбрать все';
-
-  @override
   String get tooltip_unselect_all => 'Отменить выбор';
 
   @override
@@ -595,12 +586,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get action_unpin => 'Unpin';
-
-  @override
-  String get action_copy => 'Copy';
-
-  @override
-  String get action_share => 'Share';
 
   @override
   String get action_delete => 'Delete';

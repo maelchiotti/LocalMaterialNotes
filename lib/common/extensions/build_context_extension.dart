@@ -21,21 +21,21 @@ extension BuildContextExtension on BuildContext {
   /// Returns the title of the current location of the application's router.
   String get title {
     if (location == NotesRoute().location) {
-      return localizations.navigation_notes;
+      return l.navigation_notes;
     } else if (location == BinRoute().location) {
-      return localizations.navigation_bin;
+      return l.navigation_bin;
     } else if (location == SettingsRoute().location) {
-      return localizations.navigation_settings;
+      return l.navigation_settings;
     } else if (location == SettingsAppearanceRoute().location) {
-      return localizations.navigation_settings_appearance;
+      return l.navigation_settings_appearance;
     } else if (location == SettingsBehaviorRoute().location) {
-      return localizations.navigation_settings_behavior;
+      return l.navigation_settings_behavior;
     } else if (location == SettingsEditorRoute().location) {
-      return localizations.navigation_settings_editor;
+      return l.navigation_settings_editor;
     } else if (location == SettingsBackupRoute().location) {
-      return localizations.navigation_settings_backup;
+      return l.navigation_settings_backup;
     } else if (location == SettingsAboutRoute().location) {
-      return localizations.navigation_settings_about;
+      return l.navigation_settings_about;
     } else {
       throw Exception('Unexpected route while getting its title: $location');
     }

@@ -11,7 +11,7 @@ class FabAddNote extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return FloatingActionButton(
-      tooltip: localizations.tooltip_fab_add_note,
+      tooltip: l.tooltip_fab_add_note,
       onPressed: () => addNote(context, ref),
       child: const Icon(Icons.add),
     );

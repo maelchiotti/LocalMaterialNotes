@@ -82,7 +82,7 @@ class _SideNavigationState extends State<SideNavigation> {
               ),
               Padding(padding: Paddings.vertical(8)),
               Text(
-                localizations.app_name,
+                l.app_name,
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
             ],
@@ -92,19 +92,19 @@ class _SideNavigationState extends State<SideNavigation> {
           key: Keys.drawerNotesTab,
           icon: const Icon(Icons.notes_outlined),
           selectedIcon: const Icon(Icons.notes),
-          label: Text(localizations.navigation_notes),
+          label: Text(l.navigation_notes),
         ),
         NavigationDrawerDestination(
           key: Keys.drawerNotesTab,
           icon: const Icon(Icons.delete_outline),
           selectedIcon: const Icon(Icons.delete),
-          label: Text(localizations.navigation_bin),
+          label: Text(l.navigation_bin),
         ),
         NavigationDrawerDestination(
           key: Keys.drawerSettingsTab,
           icon: const Icon(Icons.settings_outlined),
           selectedIcon: const Icon(Icons.settings),
-          label: Text(localizations.navigation_settings),
+          label: Text(l.navigation_settings),
         ),
       ],
     );

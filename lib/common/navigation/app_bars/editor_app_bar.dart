@@ -138,7 +138,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                               builder: (context, canUndo, child) {
                                 return IconButton(
                                   icon: const Icon(Icons.undo),
-                                  tooltip: localizations.tooltip_toggle_checkbox,
+                                  tooltip: l.tooltip_toggle_checkbox,
                                   onPressed: hasFocus &&
                                           canUndo &&
                                           editorController != null &&
@@ -155,7 +155,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                               builder: (context, canRedo, child) {
                                 return IconButton(
                                   icon: const Icon(Icons.redo),
-                                  tooltip: localizations.tooltip_toggle_checkbox,
+                                  tooltip: l.tooltip_toggle_checkbox,
                                   onPressed: hasFocus && canRedo && isEditMode ? _redo : null,
                                 );
                               },
@@ -163,7 +163,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                           if (showChecklistButton)
                             IconButton(
                               icon: const Icon(Icons.checklist),
-                              tooltip: localizations.tooltip_toggle_checkbox,
+                              tooltip: l.tooltip_toggle_checkbox,
                               onPressed: hasFocus && isEditMode ? _toggleChecklist : null,
                             ),
                         ],

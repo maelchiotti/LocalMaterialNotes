@@ -227,18 +227,6 @@ abstract class AppLocalizations {
   /// **'About'**
   String get navigation_settings_about;
 
-  /// Button to validate a dialog.
-  ///
-  /// In en, this message translates to:
-  /// **'Ok'**
-  String get button_ok;
-
-  /// Button to cancel and close a dialog.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get button_cancel;
-
   /// Text of the button to sort the notes list by title.
   ///
   /// In en, this message translates to:
@@ -959,12 +947,6 @@ abstract class AppLocalizations {
   /// **'Search the notes'**
   String get tooltip_search;
 
-  /// Tooltip for the button to select all the notes while in selection mode in the notes list.
-  ///
-  /// In en, this message translates to:
-  /// **'Select all'**
-  String get tooltip_select_all;
-
   /// Tooltip for the button to unselect all the notes while in selection mode in the notes list.
   ///
   /// In en, this message translates to:
@@ -1126,18 +1108,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unpin'**
   String get action_unpin;
-
-  /// Swipe or menu action to copy the content of a note.
-  ///
-  /// In en, this message translates to:
-  /// **'Copy'**
-  String get action_copy;
-
-  /// Swipe or menu action to share the title and the content of a note.
-  ///
-  /// In en, this message translates to:
-  /// **'Share'**
-  String get action_share;
 
   /// Swipe or menu action to delete a note (moving it to the bin).
   ///

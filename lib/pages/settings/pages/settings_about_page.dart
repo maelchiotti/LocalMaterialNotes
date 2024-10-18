@@ -35,22 +35,22 @@ class SettingsAboutPage extends StatelessWidget {
   Future<void> _showAbout(BuildContext context) async {
     showAboutDialog(
       context: context,
-      applicationName: localizations.app_name,
+      applicationName: l.app_name,
       applicationVersion: InfoUtils().appVersion,
       applicationIcon: Image.asset(
         Asset.icon.path,
         fit: BoxFit.fitWidth,
         width: Sizes.iconSize.size,
       ),
-      applicationLegalese: localizations.settings_licence_description,
+      applicationLegalese: l.settings_licence_description,
       children: [
         Padding(padding: Paddings.vertical(16)),
         Text(
-          localizations.app_tagline,
+          l.app_tagline,
           style: Theme.of(context).textTheme.titleSmall,
         ),
         Padding(padding: Paddings.vertical(8)),
-        Text(localizations.app_about(localizations.app_name)),
+        Text(l.app_about(l.app_name)),
       ],
     );
   }
@@ -139,80 +139,80 @@ class SettingsAboutPage extends StatelessWidget {
       body: CustomSettingsList(
         sections: [
           SettingsSection(
-            title: Text(localizations.settings_about_application),
+            title: Text(l.settings_about_application),
             tiles: [
               SettingsTile(
                 leading: const Icon(Icons.info),
-                title: Text(localizations.app_name),
+                title: Text(l.app_name),
                 description: Text('v$appVersion'),
                 onPressed: _showAbout,
               ),
               SettingsTile(
                 leading: const Icon(Icons.build),
-                title: Text(localizations.settings_build_mode),
+                title: Text(l.settings_build_mode),
                 description: Text(InfoUtils().buildMode),
               ),
             ],
           ),
           SettingsSection(
-            title: Text(localizations.settings_about_help),
+            title: Text(l.settings_about_help),
             tiles: [
               SettingsTile(
                 leading: const Icon(Icons.bug_report),
-                title: Text(localizations.settings_github_issues),
-                description: Text(localizations.settings_github_issues_description),
+                title: Text(l.settings_github_issues),
+                description: Text(l.settings_github_issues_description),
                 onPressed: _openGitHubIssues,
               ),
               SettingsTile(
                 leading: const Icon(Icons.forum),
-                title: Text(localizations.settings_github_discussions),
-                description: Text(localizations.settings_github_discussions_description),
+                title: Text(l.settings_github_discussions),
+                description: Text(l.settings_github_discussions_description),
                 onPressed: _openGitHubDiscussions,
               ),
               SettingsTile(
                 leading: const Icon(Icons.mail),
-                title: Text(localizations.settings_get_in_touch),
-                description: Text(localizations.settings_get_in_touch_description(contactEmail)),
+                title: Text(l.settings_get_in_touch),
+                description: Text(l.settings_get_in_touch_description(contactEmail)),
                 onPressed: _sendMail,
               ),
             ],
           ),
           SettingsSection(
-            title: Text(localizations.settings_about_links),
+            title: Text(l.settings_about_links),
             tiles: [
               SettingsTile(
                 leading: const Icon(SimpleIcons.github),
-                title: Text(localizations.settings_github),
-                description: Text(localizations.settings_github_description),
+                title: Text(l.settings_github),
+                description: Text(l.settings_github_description),
                 onPressed: _openGitHub,
               ),
               SettingsTile(
                 leading: const Icon(SimpleIcons.crowdin),
-                title: Text(localizations.settings_localizations),
-                description: Text(localizations.settings_localizations_description),
+                title: Text(l.settings_localizations),
+                description: Text(l.settings_localizations_description),
                 onPressed: _openCrowdin,
               ),
               SettingsTile(
                 leading: const Icon(Icons.balance),
-                title: Text(localizations.settings_licence),
-                description: Text(localizations.settings_licence_description),
+                title: Text(l.settings_licence),
+                description: Text(l.settings_licence_description),
                 onPressed: _openLicense,
               ),
             ],
           ),
           SettingsSection(
-            title: Text(localizations.settings_about_logs),
+            title: Text(l.settings_about_logs),
             tiles: [
               SettingsTile(
                 leading: const Icon(Icons.copy_all),
-                title: Text(localizations.settings_copy_logs),
-                description: Text(localizations.settings_copy_logs_description),
+                title: Text(l.settings_copy_logs),
+                description: Text(l.settings_copy_logs_description),
                 onPressed: _copyLogs,
               ),
               SettingsTile(
                 leading: const Icon(Symbols.file_save),
-                title: Text(localizations.settings_export_logs),
-                description: Text(localizations.settings_export_logs_description),
+                title: Text(l.settings_export_logs),
+                description: Text(l.settings_export_logs_description),
                 onPressed: _exportLogs,
               ),
             ],

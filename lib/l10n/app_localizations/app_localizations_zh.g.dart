@@ -73,12 +73,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get navigation_settings_about => '关于';
 
   @override
-  String get button_ok => '确定';
-
-  @override
-  String get button_cancel => '取消';
-
-  @override
   String get button_sort_title => '标题';
 
   @override
@@ -453,9 +447,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tooltip_search => '搜索笔记';
 
   @override
-  String get tooltip_select_all => '选择全部';
-
-  @override
   String get tooltip_unselect_all => '取消全选';
 
   @override
@@ -567,12 +558,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get action_unpin => '取消置顶';
-
-  @override
-  String get action_copy => '复制';
-
-  @override
-  String get action_share => '分享';
 
   @override
   String get action_delete => '删除';

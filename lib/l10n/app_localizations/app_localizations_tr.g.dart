@@ -73,12 +73,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get navigation_settings_about => 'About';
 
   @override
-  String get button_ok => 'Tamam';
-
-  @override
-  String get button_cancel => 'İptal et';
-
-  @override
   String get button_sort_title => 'Title';
 
   @override
@@ -467,9 +461,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get tooltip_search => 'Notların içinde ara';
 
   @override
-  String get tooltip_select_all => 'Tümünü seç';
-
-  @override
   String get tooltip_unselect_all => 'Tümünün seçimini kaldır';
 
   @override
@@ -596,12 +587,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get action_unpin => 'Unpin';
-
-  @override
-  String get action_copy => 'Copy';
-
-  @override
-  String get action_share => 'Share';
 
   @override
   String get action_delete => 'Delete';

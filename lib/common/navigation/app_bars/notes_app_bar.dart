@@ -34,7 +34,7 @@ class NotesAppBar extends ConsumerWidget {
     return IconButton(
       onPressed: null,
       icon: const Icon(Icons.search),
-      tooltip: localizations.tooltip_search,
+      tooltip: l.tooltip_search,
     );
   }
 
@@ -49,7 +49,7 @@ class NotesAppBar extends ConsumerWidget {
 
     return SearchAnchor(
       key: Keys.searchViewSearchAnchor,
-      viewHintText: localizations.tooltip_search,
+      viewHintText: l.tooltip_search,
       searchController: SearchController(),
       viewBackgroundColor: Theme.of(context).colorScheme.surface,
       builder: (context, controller) {
@@ -57,7 +57,7 @@ class NotesAppBar extends ConsumerWidget {
           key: Keys.appBarSearchIconButton,
           onPressed: () => controller.openView(),
           icon: const Icon(Icons.search),
-          tooltip: localizations.tooltip_search,
+          tooltip: l.tooltip_search,
         );
       },
       suggestionsBuilder: (_, controller) => _filterNotes(controller.text, notes),
@@ -134,7 +134,7 @@ class NotesAppBar extends ConsumerWidget {
             return IconButton(
               key: Keys.appBarLayoutIconButton,
               onPressed: _toggleLayout,
-              tooltip: isListLayout ? localizations.tooltip_layout_grid : localizations.tooltip_layout_list,
+              tooltip: isListLayout ? l.tooltip_layout_grid : l.tooltip_layout_list,
               icon: Icon(isListLayout ? Icons.grid_view : Icons.view_list),
             );
           },
@@ -142,7 +142,7 @@ class NotesAppBar extends ConsumerWidget {
         PopupMenuButton<SortMethod>(
           key: Keys.appBarSortIconButton,
           icon: const Icon(Icons.sort),
-          tooltip: localizations.tooltip_sort,
+          tooltip: l.tooltip_sort,
           itemBuilder: (context) {
             return [
               PopupMenuItem(
@@ -151,7 +151,7 @@ class NotesAppBar extends ConsumerWidget {
                 child: ListTile(
                   selected: sortMethod == SortMethod.date,
                   leading: const Icon(Icons.calendar_month),
-                  title: Text(localizations.button_sort_date),
+                  title: Text(l.button_sort_date),
                 ),
               ),
               PopupMenuItem(
@@ -160,7 +160,7 @@ class NotesAppBar extends ConsumerWidget {
                 child: ListTile(
                   selected: sortMethod == SortMethod.title,
                   leading: const Icon(Icons.sort_by_alpha),
-                  title: Text(localizations.button_sort_title),
+                  title: Text(l.button_sort_title),
                 ),
               ),
               const PopupMenuDivider(),
@@ -168,7 +168,7 @@ class NotesAppBar extends ConsumerWidget {
                 key: Keys.sortAscendingMenuItem,
                 value: SortMethod.ascending,
                 child: ListTile(
-                  title: Text(localizations.button_sort_ascending),
+                  title: Text(l.button_sort_ascending),
                   trailing: Checkbox(
                     value: sortAscending,
                     onChanged: (ascending) => _sort(context, ref, ascending: ascending),
