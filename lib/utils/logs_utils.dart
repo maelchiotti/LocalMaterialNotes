@@ -93,7 +93,7 @@ class LogsUtils {
   /// The localizations can be overridden with [overrideLocalizations] to avoid depending on `rootNavigatorKey.context`
   /// to get them in case the error prevented it from being instantiated.
   Future<void> copyLogs({AppLocalizations? overrideLocalizations}) async {
-    final appLocalizations = overrideLocalizations ?? localizations;
+    final localizations = overrideLocalizations ?? l;
 
     final content = await _logFile.readAsString();
 
@@ -101,7 +101,7 @@ class LogsUtils {
 
     await Clipboard.setData(clipboardData);
 
-    SnackBarUtils.info(appLocalizations.snack_bar_logs_copied).show();
+    SnackBarUtils.info(localizations.snack_bar_logs_copied).show();
   }
 
   /// Exports the logs to a text file into a directory chosen by the user.
@@ -109,7 +109,7 @@ class LogsUtils {
   /// The localizations can be overridden with [overrideLocalizations] to avoid depending on `rootNavigatorKey.context`
   /// to get them in case the error prevented it from being instantiated.
   Future<bool> exportLogs({AppLocalizations? overrideLocalizations}) async {
-    final appLocalizations = overrideLocalizations ?? localizations;
+    final localizations = overrideLocalizations ?? l;
 
     final exportDirectory = await selectDirectory();
 
@@ -127,7 +127,7 @@ class LogsUtils {
     );
 
     if (exported) {
-      SnackBarUtils.info(appLocalizations.snack_bar_logs_exported).show();
+      SnackBarUtils.info(localizations.snack_bar_logs_exported).show();
     }
 
     return exported;

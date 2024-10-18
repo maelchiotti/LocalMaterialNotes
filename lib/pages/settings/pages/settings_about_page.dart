@@ -201,18 +201,18 @@ class SettingsAboutPage extends StatelessWidget {
             ],
           ),
           SettingsSection(
-            title: Text(localizations.settings_about_logs),
+            title: Text(l.settings_about_logs),
             tiles: [
               SettingsTile(
                 leading: const Icon(Icons.copy_all),
-                title: Text(localizations.settings_copy_logs),
-                description: Text(localizations.settings_copy_logs_description),
+                title: Text(l.settings_copy_logs),
+                description: Text(l.settings_copy_logs_description),
                 onPressed: _copyLogs,
               ),
               SettingsTile(
                 leading: const Icon(Symbols.file_save),
-                title: Text(localizations.settings_export_logs),
-                description: Text(localizations.settings_export_logs_description),
+                title: Text(l.settings_export_logs),
+                description: Text(l.settings_export_logs_description),
                 onPressed: _exportLogs,
               ),
             ],
