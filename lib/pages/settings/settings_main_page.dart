@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/widgets/navigation/app_bars/basic_app_bar.dart';
-import 'package:localmaterialnotes/common/widgets/navigation/side_navigation.dart';
-import 'package:localmaterialnotes/common/widgets/navigation/top_navigation.dart';
+import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
+import 'package:localmaterialnotes/common/navigation/side_navigation.dart';
+import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_about_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_appearance_route.dart';
