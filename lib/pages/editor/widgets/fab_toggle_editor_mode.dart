@@ -25,9 +25,7 @@ class FabToggleEditorMode extends ConsumerWidget {
         return Padding(
           padding: showToolbar && isEditMode ? Paddings.fabToggleEditorModeWithToolbarBottom : EdgeInsets.zero,
           child: FloatingActionButton.small(
-            tooltip: isEditMode
-                ? localizations.tooltip_fab_toggle_editor_mode_read
-                : localizations.tooltip_fab_toggle_editor_mode_edit,
+            tooltip: isEditMode ? l.tooltip_fab_toggle_editor_mode_read : l.tooltip_fab_toggle_editor_mode_edit,
             onPressed: _switchMode,
             child: Icon(isEditMode ? Icons.visibility : Icons.edit),
           ),

@@ -30,19 +30,19 @@ class AboutSheet extends StatelessWidget {
       shrinkWrap: true,
       children: [
         ListTile(
-          title: Text(localizations.about_created),
+          title: Text(l.about_created),
           trailing: Text(note.createdTime.yMMMMd_at_Hm),
         ),
         ListTile(
-          title: Text(localizations.about_last_edited),
+          title: Text(l.about_last_edited),
           trailing: Text(note.editedTime.yMMMMd_at_Hm),
         ),
         ListTile(
-          title: Text(localizations.about_words),
+          title: Text(l.about_words),
           trailing: Text('$wordCount'),
         ),
         ListTile(
-          title: Text(localizations.about_characters),
+          title: Text(l.about_characters),
           trailing: Text('$charactersCount'),
         ),
       ],

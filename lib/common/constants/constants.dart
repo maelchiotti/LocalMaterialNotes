@@ -12,14 +12,11 @@ const contactEmail = 'contact@maelchiotti.dev';
 /// Key of the application's root navigator.
 final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Root navigator key');
 
-/// Key of the application's shell.
-final shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Shell navigator key');
-
-/// Key of the application's drawer.
-final scaffoldDrawerKey = GlobalKey<ScaffoldState>(debugLabel: 'Scaffold drawer key');
-
 /// Application's localizations.
-final localizations = AppLocalizations.of(rootNavigatorKey.currentContext!);
+final l = AppLocalizations.of(rootNavigatorKey.currentContext!);
+
+/// Flutter's localizations.
+final flutterL = Localizations.of<MaterialLocalizations>(rootNavigatorKey.currentContext!, MaterialLocalizations);
 
 /// Codec to encode and decode Markdown files in fleather.
 const parchmentMarkdownCodec = ParchmentMarkdownCodec();

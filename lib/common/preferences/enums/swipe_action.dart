@@ -77,15 +77,15 @@ enum SwipeAction {
   String title([bool alternative = false]) {
     switch (this) {
       case disabled:
-        return localizations.action_disabled;
+        return l.action_disabled;
       case delete:
-        return localizations.action_delete;
+        return l.action_delete;
       case togglePin:
-        return localizations.action_pin;
+        return l.action_pin;
       case share:
-        return localizations.action_share;
+        return flutterL?.shareButtonLabel ?? 'Share';
       case copy:
-        return localizations.action_copy;
+        return flutterL?.copyButtonLabel ?? 'Copy';
     }
   }
 }

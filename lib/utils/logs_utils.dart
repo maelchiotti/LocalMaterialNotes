@@ -2,9 +2,12 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/enums/mime_type.dart';
-import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
+import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
+import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -38,7 +41,7 @@ class LogsUtils {
     FlutterError.onError = (details) {
       FlutterError.presentError(details);
 
-      writeLogs(details.exception, details.stack);
+      _writeLogs(details.exception, details.stack);
     };
 
     // Intercept all exceptions raised by the platform
@@ -50,56 +53,83 @@ class LogsUtils {
   }
 
   /// Combines a timestamp, the [exception] and the [stackTrace] into a readable log message.
-  String getLogsMessage(Object exception, StackTrace? stackTrace) {
+  String _getLogsMessage(Object exception, StackTrace? stackTrace) {
     final message = StringBuffer();
 
-    message.writeln(DateTime.timestamp().toUtc().log);
+    message.writeln(DateTime.timestamp().toUtc().toIso8601String());
     message.writeln(exception.toString());
 
     if (stackTrace != null) {
       message.writeln(stackTrace.toString());
     }
 
-    message.write('\n');
+    message.writeln();
 
     return message.toString();
   }
 
   /// Prints the [exception] and the [stackTrace] to the console.
-  void printLogs(Object exception, StackTrace? stackTrace) {
+  void _printLogs(Object exception, StackTrace? stackTrace) {
     log(exception.toString(), stackTrace: stackTrace);
   }
 
   /// Writes a timestamp, the [exception] and the [stackTrace] to the log file.
-  void writeLogs(Object exception, StackTrace? stackTrace) {
-    _logFile.writeAsStringSync(getLogsMessage(exception, stackTrace), mode: FileMode.append);
-  }
-
-  /// Exports the logs from the [exception] and the [stackTrace] to a text file into a directory chosen by the user.
-  Future<bool> exportLogs(Object exception, StackTrace? stackTrace) async {
-    final exportDirectory = await selectDirectory();
-
-    if (exportDirectory == null) {
-      return false;
-    }
-
-    final data = Uint8List.fromList(getLogsMessage(exception, stackTrace).codeUnits);
-
-    return await writeFile(
-      directory: exportDirectory,
-      fileName: 'logs.${MimeType.plainText.extension}',
-      mimeType: MimeType.plainText.value,
-      data: data,
-    );
+  void _writeLogs(Object exception, StackTrace? stackTrace) {
+    _logFile.writeAsStringSync(_getLogsMessage(exception, stackTrace), mode: FileMode.append);
   }
 
   /// Handles the [exception] and its [stackTrace], printing them to the console and writing them to the log file.
   void handleException(Object exception, StackTrace? stackTrace) {
     // Only print to the console in debug mode.
     if (kDebugMode) {
-      printLogs(exception, stackTrace);
+      _printLogs(exception, stackTrace);
     }
 
-    writeLogs(exception, stackTrace);
+    _writeLogs(exception, stackTrace);
+  }
+
+  /// Copies the logs to the clipboard.
+  ///
+  /// The localizations can be overridden with [overrideLocalizations] to avoid depending on `rootNavigatorKey.context`
+  /// to get them in case the error prevented it from being instantiated.
+  Future<void> copyLogs({AppLocalizations? overrideLocalizations}) async {
+    final localizations = overrideLocalizations ?? l;
+
+    final content = await _logFile.readAsString();
+
+    final clipboardData = ClipboardData(text: content);
+
+    await Clipboard.setData(clipboardData);
+
+    SnackBarUtils.info(localizations.snack_bar_logs_copied).show();
+  }
+
+  /// Exports the logs to a text file into a directory chosen by the user.
+  ///
+  /// The localizations can be overridden with [overrideLocalizations] to avoid depending on `rootNavigatorKey.context`
+  /// to get them in case the error prevented it from being instantiated.
+  Future<bool> exportLogs({AppLocalizations? overrideLocalizations}) async {
+    final localizations = overrideLocalizations ?? l;
+
+    final exportDirectory = await selectDirectory();
+
+    if (exportDirectory == null) {
+      return false;
+    }
+
+    final content = await _logFile.readAsString();
+
+    final exported = await writeFileFromString(
+      directory: exportDirectory,
+      fileName: 'materialnotes_logs.${MimeType.plainText.extension}',
+      mimeType: MimeType.plainText.value,
+      content: content,
+    );
+
+    if (exported) {
+      SnackBarUtils.info(localizations.snack_bar_logs_exported).show();
+    }
+
+    return exported;
   }
 }

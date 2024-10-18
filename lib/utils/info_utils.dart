@@ -41,6 +41,5 @@ class InfoUtils {
   String get model => _androidDeviceInfo.model;
 
   /// Build mode of the application (either `release` or `debug`).
-  String get buildMode =>
-      kReleaseMode ? localizations.settings_build_mode_release : localizations.settings_build_mode_debug;
+  String get buildMode => kReleaseMode ? l.settings_build_mode_release : l.settings_build_mode_debug;
 }

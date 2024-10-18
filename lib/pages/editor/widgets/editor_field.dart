@@ -46,7 +46,7 @@ class EditorField extends StatelessWidget {
       readOnly: readOnly,
       expands: true,
       decoration: InputDecoration.collapsed(
-        hintText: localizations.hint_note,
+        hintText: l.hint_note,
       ),
       onLaunchUrl: _launchUrl,
       spellCheckConfiguration: SpellCheckConfiguration(

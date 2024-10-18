@@ -23,11 +23,11 @@ extension DateTimeExtensions on DateTime {
   ///
   /// Pattern: `{date} at {time}`.
   String get yMMMMd_at_Hm {
-    final localeName = localizations.localeName;
+    final localeName = l.localeName;
 
     final date = DateFormat.yMMMMd(localeName).format(this);
     final time = DateFormat.Hm(localeName).format(this);
 
-    return '$date ${localizations.about_time_at} $time';
+    return '$date ${l.about_time_at} $time';
   }
 }

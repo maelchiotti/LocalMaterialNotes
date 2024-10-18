@@ -79,11 +79,11 @@ class _AutoExportPasswordDialogState extends State<AutoExportPasswordDialog> {
       actions: [
         TextButton(
           onPressed: () => _pop(canceled: true),
-          child: Text(localizations.button_cancel),
+          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
         ),
         TextButton(
           onPressed: ok ? _pop : null,
-          child: Text(localizations.button_ok),
+          child: Text(flutterL?.okButtonLabel ?? 'OK'),
         ),
       ],
     );

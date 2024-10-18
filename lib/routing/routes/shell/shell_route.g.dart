@@ -11,7 +11,6 @@ List<RouteBase> get $appRoutes => [
     ];
 
 RouteBase get $shellRoute => ShellRouteData.$route(
-      navigatorKey: ShellRoute.$navigatorKey,
       factory: $ShellRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
@@ -79,15 +78,15 @@ extension $NotesRouteExtension on NotesRoute {
 
 extension $NotesEditorRouteExtension on NotesEditorRoute {
   static NotesEditorRoute _fromState(GoRouterState state) => NotesEditorRoute(
-        readOnly: _$boolConverter(state.uri.queryParameters['read-only']!),
-        autoFocus: _$boolConverter(state.uri.queryParameters['auto-focus']!),
+        readOnly: _$convertMapValue('read-only', state.uri.queryParameters, _$boolConverter),
+        autoFocus: _$convertMapValue('auto-focus', state.uri.queryParameters, _$boolConverter),
       );
 
   String get location => GoRouteData.$location(
         '/notes/editor',
         queryParams: {
-          'read-only': readOnly.toString(),
-          'auto-focus': autoFocus.toString(),
+          if (readOnly != null) 'read-only': readOnly!.toString(),
+          if (autoFocus != null) 'auto-focus': autoFocus!.toString(),
         },
       );
 
@@ -210,6 +209,15 @@ extension $SettingsAboutRouteExtension on SettingsAboutRoute {
   void pushReplacement(BuildContext context) => context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
+}
+
+T? _$convertMapValue<T>(
+  String key,
+  Map<String, String> map,
+  T Function(String) converter,
+) {
+  final value = map[key];
+  return value == null ? null : converter(value);
 }
 
 bool _$boolConverter(String value) {

@@ -1,14 +1,17 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/dialogs/confirmation_dialog.dart';
 import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
-import 'package:localmaterialnotes/common/widgets/dialogs/confirmation_dialog.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/routing/routes/routing_route.dart';
+import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
+import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 /// Deletes the [note].
 ///
@@ -23,9 +26,9 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
 
   if (!await askForConfirmation(
     context,
-    localizations.dialog_delete,
-    localizations.dialog_delete_body(1),
-    localizations.dialog_delete,
+    l.dialog_delete,
+    l.dialog_delete_body(1),
+    l.dialog_delete,
   )) {
     return false;
   }
@@ -34,7 +37,7 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
 
   await ref.read(notesProvider.notifier).delete(note);
 
-  if (context.mounted && context.route == RoutingRoute.notesEditor) {
+  if (context.mounted && context.location == const NotesEditorRoute.empty().location) {
     context.pop();
   }
 
@@ -49,9 +52,9 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
 Future<bool> deleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   if (!await askForConfirmation(
     context,
-    localizations.dialog_delete,
-    localizations.dialog_delete_body(notes.length),
-    localizations.dialog_delete,
+    l.dialog_delete,
+    l.dialog_delete_body(notes.length),
+    l.dialog_delete,
   )) {
     return false;
   }
@@ -74,9 +77,9 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
 
   if (!await askForConfirmation(
     context,
-    localizations.dialog_permanently_delete,
-    localizations.dialog_permanently_delete_body(1),
-    localizations.dialog_permanently_delete,
+    l.dialog_permanently_delete,
+    l.dialog_permanently_delete_body(1),
+    l.dialog_permanently_delete,
     irreversible: true,
   )) {
     return false;
@@ -86,7 +89,7 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
 
   await ref.read(binProvider.notifier).permanentlyDelete(note);
 
-  if (context.mounted && context.route == RoutingRoute.notesEditor) {
+  if (context.mounted && context.location == const NotesEditorRoute.empty().location) {
     context.pop();
   }
 
@@ -101,9 +104,9 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
 Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   if (!await askForConfirmation(
     context,
-    localizations.dialog_permanently_delete,
-    localizations.dialog_permanently_delete_body(notes.length),
-    localizations.dialog_permanently_delete,
+    l.dialog_permanently_delete,
+    l.dialog_permanently_delete_body(notes.length),
+    l.dialog_permanently_delete,
     irreversible: true,
   )) {
     return false;
@@ -121,9 +124,9 @@ Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, List<No
 Future<bool> emptyBin(BuildContext context, WidgetRef ref) async {
   if (!await askForConfirmation(
     context,
-    localizations.dialog_empty_bin,
-    localizations.dialog_empty_bin_body,
-    localizations.dialog_empty_bin,
+    l.dialog_empty_bin,
+    l.dialog_empty_bin_body,
+    l.dialog_empty_bin,
     irreversible: true,
   )) {
     return false;

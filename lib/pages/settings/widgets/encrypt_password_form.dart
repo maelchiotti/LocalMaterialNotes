@@ -61,7 +61,7 @@ class _EncryptPasswordFormState extends State<EncryptPasswordForm> {
         Row(
           children: [
             Expanded(
-              child: Text(localizations.dialog_export_encryption_switch),
+              child: Text(l.dialog_export_encryption_switch),
             ),
             Switch(
               value: _encrypt,
@@ -72,7 +72,7 @@ class _EncryptPasswordFormState extends State<EncryptPasswordForm> {
         if (_encrypt) ...[
           Padding(padding: Paddings.vertical(8)),
           PasswordField(
-            description: localizations.dialog_export_encryption_description,
+            description: l.dialog_export_encryption_description,
             secondaryDescription: widget.secondaryDescription,
             onChanged: _onChanged,
             onEditingComplete: _onEditingComplete,

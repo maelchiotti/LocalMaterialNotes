@@ -27,12 +27,13 @@ extension StringExtension on String {
 
   /// Returns the encoded URI as decoded.
   ///
-  /// Decodes `:` and `/`.
+  /// Decodes `:`, `/` and `␣`.
   String get decoded {
     var uri = this;
 
     uri = uri.replaceAll('%3A', ':');
     uri = uri.replaceAll('%2F', '/');
+    uri = uri.replaceAll('%20', ' ');
 
     return uri;
   }

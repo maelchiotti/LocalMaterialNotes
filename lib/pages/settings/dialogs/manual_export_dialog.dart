@@ -60,10 +60,10 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog.adaptive(
-      title: Text(localizations.settings_export_json),
+      title: Text(l.settings_export_json),
       content: SingleChildScrollView(
         child: EncryptPasswordForm(
-          secondaryDescription: localizations.dialog_export_encryption_secondary_description_manual,
+          secondaryDescription: l.dialog_export_encryption_secondary_description_manual,
           onChanged: _onChanged,
           onEditingComplete: _pop,
         ),
@@ -71,11 +71,11 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
       actions: [
         TextButton(
           onPressed: () => _pop(canceled: true),
-          child: Text(localizations.button_cancel),
+          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
         ),
         TextButton(
           onPressed: ok ? _pop : null,
-          child: Text(localizations.button_ok),
+          child: Text(flutterL?.okButtonLabel ?? 'OK'),
         ),
       ],
     );

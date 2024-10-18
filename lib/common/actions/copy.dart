@@ -9,5 +9,5 @@ Future<void> copy(Note note) async {
     ClipboardData(text: note.contentPreview),
   );
 
-  SnackBarUtils.info(localizations.snack_bar_copied).show();
+  SnackBarUtils.info(l.snack_bar_copied).show();
 }

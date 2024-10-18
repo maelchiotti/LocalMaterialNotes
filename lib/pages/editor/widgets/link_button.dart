@@ -57,6 +57,7 @@ class _LinkButtonState extends State<LinkButton> {
   Future<void> _enterLink() async {
     final link = await showAdaptiveDialog<String>(
       context: context,
+      useRootNavigator: false,
       builder: (context) {
         return const LinkDialog();
       },

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/pages/shell/shell.dart';
 import 'package:localmaterialnotes/routing/routes/bin/bin_route.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
@@ -49,9 +48,6 @@ part 'shell_route.g.dart';
   ],
 )
 class ShellRoute extends ShellRouteData {
-  /// Key used for navigation.
-  static final GlobalKey<NavigatorState> $navigatorKey = shellNavigatorKey;
-
   @override
   Widget builder(BuildContext context, GoRouterState state, Widget navigator) {
     return ShellPage(child: navigator);

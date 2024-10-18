@@ -5,7 +5,6 @@ import 'package:localmaterialnotes/common/constants/sizes.dart';
 import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/routing/routes/bin/bin_route.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
-import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_route.dart';
 import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
@@ -28,14 +27,14 @@ class _SideNavigationState extends State<SideNavigation> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    switch (context.route) {
-      case RoutingRoute.notes:
-        _index = 0;
-      case RoutingRoute.bin:
-        _index = 1;
-      case RoutingRoute.settings:
-        _index = 2;
-      default:
+    if (context.location == NotesRoute().location) {
+      _index = 0;
+    } else if (context.location == BinRoute().location) {
+      _index = 1;
+    } else if (context.location == SettingsRoute().location) {
+      _index = 2;
+    } else {
+      throw Exception('Unexpected route while setting the drawer index: ${context.location}');
     }
   }
 
@@ -83,7 +82,7 @@ class _SideNavigationState extends State<SideNavigation> {
               ),
               Padding(padding: Paddings.vertical(8)),
               Text(
-                localizations.app_name,
+                l.app_name,
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
             ],
@@ -93,19 +92,19 @@ class _SideNavigationState extends State<SideNavigation> {
           key: Keys.drawerNotesTab,
           icon: const Icon(Icons.notes_outlined),
           selectedIcon: const Icon(Icons.notes),
-          label: Text(localizations.navigation_notes),
+          label: Text(l.navigation_notes),
         ),
         NavigationDrawerDestination(
           key: Keys.drawerNotesTab,
           icon: const Icon(Icons.delete_outline),
           selectedIcon: const Icon(Icons.delete),
-          label: Text(localizations.navigation_bin),
+          label: Text(l.navigation_bin),
         ),
         NavigationDrawerDestination(
           key: Keys.drawerSettingsTab,
           icon: const Icon(Icons.settings_outlined),
           selectedIcon: const Icon(Icons.settings),
-          label: Text(localizations.navigation_settings),
+          label: Text(l.navigation_settings),
         ),
       ],
     );

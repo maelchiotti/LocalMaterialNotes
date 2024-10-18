@@ -2,6 +2,8 @@ import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
+import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
@@ -10,6 +12,7 @@ import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/setting_value_text.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Settings related to the behavior of the application.
 class SettingsBehaviorPage extends StatefulWidget {
@@ -27,10 +30,11 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
 
     await showAdaptiveDialog<Confirmations>(
       context: context,
+      useRootNavigator: false,
       builder: (context) {
         return SimpleDialog(
           clipBehavior: Clip.hardEdge,
-          title: Text(localizations.settings_confirmations),
+          title: Text(l.settings_confirmations),
           children: Confirmations.values.map((confirmationsValue) {
             return RadioListTile<Confirmations>(
               value: confirmationsValue,
@@ -65,13 +69,12 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
 
     await showAdaptiveDialog<SwipeAction>(
       context: context,
+      useRootNavigator: false,
       builder: (context) {
         return SimpleDialog(
           clipBehavior: Clip.hardEdge,
           title: Text(
-            swipeDirection == SwipeDirection.right
-                ? localizations.settings_swipe_action_right
-                : localizations.settings_swipe_action_left,
+            swipeDirection == SwipeDirection.right ? l.settings_swipe_action_right : l.settings_swipe_action_left,
           ),
           children: SwipeAction.values.map((swipeAction) {
             return RadioListTile<SwipeAction>(
@@ -119,55 +122,61 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
     final swipeRightAction = swipeActionsNotifier.value.$1;
     final swipeLeftAction = swipeActionsNotifier.value.$2;
 
-    return CustomSettingsList(
-      sections: [
-        SettingsSection(
-          title: Text(localizations.settings_behavior_application),
-          tiles: [
-            SettingsTile.navigation(
-              leading: const Icon(Icons.warning),
-              title: Text(localizations.settings_confirmations),
-              value: SettingNavigationTileBody(
-                value: confirmations.title,
-                description: localizations.settings_confirmations_description,
+    return Scaffold(
+      appBar: const TopNavigation(
+        key: Keys.appBarSettingsMainSubpage,
+        appbar: BasicAppBar.back(),
+      ),
+      body: CustomSettingsList(
+        sections: [
+          SettingsSection(
+            title: Text(l.settings_behavior_application),
+            tiles: [
+              SettingsTile.navigation(
+                leading: const Icon(Icons.warning),
+                title: Text(l.settings_confirmations),
+                value: SettingNavigationTileBody(
+                  value: confirmations.title,
+                  description: l.settings_confirmations_description,
+                ),
+                onPressed: _selectConfirmations,
               ),
-              onPressed: _selectConfirmations,
-            ),
-            SettingsTile.switchTile(
-              leading: const Icon(Icons.security),
-              title: Text(localizations.settings_flag_secure),
-              description: Text(localizations.settings_flag_secure_description),
-              initialValue: flagSecure,
-              onToggle: _setFlagSecure,
-            ),
-          ],
-        ),
-        SettingsSection(
-          title: Text(localizations.settings_behavior_swipe_actions),
-          tiles: [
-            SettingsTile.navigation(
-              leading: const Icon(Icons.swipe_right),
-              title: Text(localizations.settings_swipe_action_right),
-              value: SettingNavigationTileBody(
-                value: swipeRightAction.title(),
-                description: localizations.settings_swipe_action_right_description,
-                icon: swipeRightAction.icon,
+              SettingsTile.switchTile(
+                leading: const Icon(Icons.security),
+                title: Text(l.settings_flag_secure),
+                description: Text(l.settings_flag_secure_description),
+                initialValue: flagSecure,
+                onToggle: _setFlagSecure,
               ),
-              onPressed: (context) => _selectSwipeAction(context, SwipeDirection.right),
-            ),
-            SettingsTile.navigation(
-              leading: const Icon(Icons.swipe_left),
-              title: Text(localizations.settings_swipe_action_left),
-              value: SettingNavigationTileBody(
-                value: swipeLeftAction.title(),
-                description: localizations.settings_swipe_action_left_description,
-                icon: swipeLeftAction.icon,
+            ],
+          ),
+          SettingsSection(
+            title: Text(l.settings_behavior_swipe_actions),
+            tiles: [
+              SettingsTile.navigation(
+                leading: const Icon(Icons.swipe_right),
+                title: Text(l.settings_swipe_action_right),
+                value: SettingNavigationTileBody(
+                  value: swipeRightAction.title(),
+                  description: l.settings_swipe_action_right_description,
+                  icon: swipeRightAction.icon,
+                ),
+                onPressed: (context) => _selectSwipeAction(context, SwipeDirection.right),
               ),
-              onPressed: (context) => _selectSwipeAction(context, SwipeDirection.left),
-            ),
-          ],
-        ),
-      ],
+              SettingsTile.navigation(
+                leading: const Icon(Icons.swipe_left),
+                title: Text(l.settings_swipe_action_left),
+                value: SettingNavigationTileBody(
+                  value: swipeLeftAction.title(),
+                  description: l.settings_swipe_action_left_description,
+                  icon: swipeLeftAction.icon,
+                ),
+                onPressed: (context) => _selectSwipeAction(context, SwipeDirection.left),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

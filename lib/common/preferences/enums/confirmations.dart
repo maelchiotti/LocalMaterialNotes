@@ -27,11 +27,11 @@ enum Confirmations {
   String get title {
     switch (this) {
       case none:
-        return localizations.settings_confirmations_title_none;
+        return l.settings_confirmations_title_none;
       case irreversible:
-        return localizations.settings_confirmations_title_irreversible;
+        return l.settings_confirmations_title_irreversible;
       case all:
-        return localizations.settings_confirmations_title_all;
+        return l.settings_confirmations_title_all;
     }
   }
 }

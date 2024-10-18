@@ -3,10 +3,15 @@ import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/constants/sizes.dart';
+import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
+import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
+import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:localmaterialnotes/utils/utils.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -30,22 +35,22 @@ class SettingsAboutPage extends StatelessWidget {
   Future<void> _showAbout(BuildContext context) async {
     showAboutDialog(
       context: context,
-      applicationName: localizations.app_name,
+      applicationName: l.app_name,
       applicationVersion: InfoUtils().appVersion,
       applicationIcon: Image.asset(
         Asset.icon.path,
         fit: BoxFit.fitWidth,
         width: Sizes.iconSize.size,
       ),
-      applicationLegalese: localizations.settings_licence_description,
+      applicationLegalese: l.settings_licence_description,
       children: [
         Padding(padding: Paddings.vertical(16)),
         Text(
-          localizations.app_tagline,
+          l.app_tagline,
           style: Theme.of(context).textTheme.titleSmall,
         ),
         Padding(padding: Paddings.vertical(8)),
-        Text(localizations.app_about(localizations.app_name)),
+        Text(l.app_about(l.app_name)),
       ],
     );
   }
@@ -114,75 +119,106 @@ class SettingsAboutPage extends StatelessWidget {
     );
   }
 
+  Future<void> _copyLogs(_) async {
+    await LogsUtils().copyLogs();
+  }
+
+  Future<void> _exportLogs(_) async {
+    await LogsUtils().exportLogs();
+  }
+
   @override
   Widget build(BuildContext context) {
     final appVersion = InfoUtils().appVersion;
 
-    return CustomSettingsList(
-      sections: [
-        SettingsSection(
-          title: Text(localizations.settings_about_application),
-          tiles: [
-            SettingsTile(
-              leading: const Icon(Icons.info),
-              title: Text(localizations.app_name),
-              description: Text('v$appVersion'),
-              onPressed: _showAbout,
-            ),
-            SettingsTile(
-              leading: const Icon(Icons.build),
-              title: Text(localizations.settings_build_mode),
-              description: Text(InfoUtils().buildMode),
-            ),
-          ],
-        ),
-        SettingsSection(
-          title: Text(localizations.settings_about_help),
-          tiles: [
-            SettingsTile(
-              leading: const Icon(Icons.bug_report),
-              title: Text(localizations.settings_github_issues),
-              description: Text(localizations.settings_github_issues_description),
-              onPressed: _openGitHubIssues,
-            ),
-            SettingsTile(
-              leading: const Icon(Icons.forum),
-              title: Text(localizations.settings_github_discussions),
-              description: Text(localizations.settings_github_discussions_description),
-              onPressed: _openGitHubDiscussions,
-            ),
-            SettingsTile(
-              leading: const Icon(Icons.mail),
-              title: Text(localizations.settings_get_in_touch),
-              description: Text(localizations.settings_get_in_touch_description(contactEmail)),
-              onPressed: _sendMail,
-            ),
-          ],
-        ),
-        SettingsSection(
-          title: Text(localizations.settings_about_links),
-          tiles: [
-            SettingsTile(
-              leading: const Icon(SimpleIcons.github),
-              title: Text(localizations.settings_github),
-              description: Text(localizations.settings_github_description),
-              onPressed: _openGitHub,
-            ),
-            SettingsTile(
-              leading: const Icon(SimpleIcons.crowdin),
-              title: Text(localizations.settings_localizations),
-              description: Text(localizations.settings_localizations_description),
-              onPressed: _openCrowdin,
-            ),
-            SettingsTile(
-              leading: const Icon(Icons.balance),
-              title: Text(localizations.settings_licence),
-              description: Text(localizations.settings_licence_description),
-              onPressed: _openLicense,
-            ),
-          ],
-        ),
-      ],
+    return Scaffold(
+      appBar: const TopNavigation(
+        key: Keys.appBarSettingsMainSubpage,
+        appbar: BasicAppBar.back(),
+      ),
+      body: CustomSettingsList(
+        sections: [
+          SettingsSection(
+            title: Text(l.settings_about_application),
+            tiles: [
+              SettingsTile(
+                leading: const Icon(Icons.info),
+                title: Text(l.app_name),
+                description: Text('v$appVersion'),
+                onPressed: _showAbout,
+              ),
+              SettingsTile(
+                leading: const Icon(Icons.build),
+                title: Text(l.settings_build_mode),
+                description: Text(InfoUtils().buildMode),
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: Text(l.settings_about_help),
+            tiles: [
+              SettingsTile(
+                leading: const Icon(Icons.bug_report),
+                title: Text(l.settings_github_issues),
+                description: Text(l.settings_github_issues_description),
+                onPressed: _openGitHubIssues,
+              ),
+              SettingsTile(
+                leading: const Icon(Icons.forum),
+                title: Text(l.settings_github_discussions),
+                description: Text(l.settings_github_discussions_description),
+                onPressed: _openGitHubDiscussions,
+              ),
+              SettingsTile(
+                leading: const Icon(Icons.mail),
+                title: Text(l.settings_get_in_touch),
+                description: Text(l.settings_get_in_touch_description(contactEmail)),
+                onPressed: _sendMail,
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: Text(l.settings_about_links),
+            tiles: [
+              SettingsTile(
+                leading: const Icon(SimpleIcons.github),
+                title: Text(l.settings_github),
+                description: Text(l.settings_github_description),
+                onPressed: _openGitHub,
+              ),
+              SettingsTile(
+                leading: const Icon(SimpleIcons.crowdin),
+                title: Text(l.settings_localizations),
+                description: Text(l.settings_localizations_description),
+                onPressed: _openCrowdin,
+              ),
+              SettingsTile(
+                leading: const Icon(Icons.balance),
+                title: Text(l.settings_licence),
+                description: Text(l.settings_licence_description),
+                onPressed: _openLicense,
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: Text(l.settings_about_logs),
+            tiles: [
+              SettingsTile(
+                leading: const Icon(Icons.copy_all),
+                title: Text(l.settings_copy_logs),
+                description: Text(l.settings_copy_logs_description),
+                onPressed: _copyLogs,
+              ),
+              SettingsTile(
+                leading: const Icon(Symbols.file_save),
+                title: Text(l.settings_export_logs),
+                description: Text(l.settings_export_logs_description),
+                onPressed: _exportLogs,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

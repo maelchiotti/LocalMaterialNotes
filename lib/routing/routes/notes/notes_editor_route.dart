@@ -14,21 +14,30 @@ class NotesEditorRoute extends GoRouteData {
     required this.autoFocus,
   });
 
+  /// Constructor without parameters used to get the location of the route.
+  const NotesEditorRoute.empty()
+      : readOnly = null,
+        autoFocus = null;
+
   /// Whether the text fields should be read only.
-  final bool readOnly;
+  final bool? readOnly;
 
   /// Whether to automatically focus the content text field.
-  final bool autoFocus;
+  final bool? autoFocus;
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
+    if (readOnly == null || autoFocus == null) {
+      throw Exception('Parameters are required for the notes editor route');
+    }
+
     isFleatherEditorEditMode.value = !PreferenceKey.openEditorReadingMode.getPreferenceOrDefault<bool>();
 
     return NoTransitionPage(
       child: NotesEditorPage(
         key: Keys.pageNotes,
-        readOnly: readOnly,
-        isNewNote: autoFocus,
+        readOnly: readOnly!,
+        isNewNote: autoFocus!,
       ),
     );
   }

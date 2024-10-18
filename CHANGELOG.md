@@ -10,11 +10,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Error page shown when a page fails to load, with the ability to copy and export the error logs
 
+### Improved
+
+- Reliability of the automatic exports
+
 ### Fixed
 
 - Value of the setting on the settings tiles not using a subdued color when disabled
 - Small note pinned icon on the notes tiles
 - Small application icon
+
+### Removed
+
+- `READ_EXTERNAL_STORAGE` and `WRITE_EXTERNAL_STORAGE` permissions that were added by mistake
 
 ## 1.7.0 - 2024-10-05
 

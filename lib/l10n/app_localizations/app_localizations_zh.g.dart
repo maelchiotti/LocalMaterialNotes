@@ -73,12 +73,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get navigation_settings_about => '关于';
 
   @override
-  String get button_ok => '确定';
-
-  @override
-  String get button_cancel => '取消';
-
-  @override
   String get button_sort_title => '标题';
 
   @override
@@ -396,6 +390,21 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
+  String get settings_about_logs => 'Logs';
+
+  @override
+  String get settings_copy_logs => 'Copy the logs';
+
+  @override
+  String get settings_copy_logs_description => 'Copy the logs of the application to the clipboard';
+
+  @override
+  String get settings_export_logs => 'Export the logs';
+
+  @override
+  String get settings_export_logs_description => 'Export the logs of the application to a text file';
+
+  @override
   String get hint_title => '标题';
 
   @override
@@ -436,9 +445,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get tooltip_search => '搜索笔记';
-
-  @override
-  String get tooltip_select_all => '选择全部';
 
   @override
   String get tooltip_unselect_all => '取消全选';
@@ -552,12 +558,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get action_unpin => '取消置顶';
-
-  @override
-  String get action_copy => '复制';
-
-  @override
-  String get action_share => '分享';
 
   @override
   String get action_delete => '删除';

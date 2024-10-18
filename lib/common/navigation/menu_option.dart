@@ -31,19 +31,19 @@ enum MenuOption {
   String title([bool alternative = false]) {
     switch (this) {
       case togglePin:
-        return alternative ? localizations.action_unpin : localizations.action_pin;
+        return alternative ? l.action_unpin : l.action_pin;
       case copy:
-        return localizations.action_copy;
+        return flutterL?.copyButtonLabel ?? 'Copy';
       case share:
-        return localizations.action_share;
+        return flutterL?.shareButtonLabel ?? 'Share';
       case delete:
-        return localizations.action_delete;
+        return l.action_delete;
       case restore:
-        return localizations.action_restore;
+        return l.action_restore;
       case deletePermanently:
-        return localizations.action_delete_permanently;
+        return l.action_delete_permanently;
       case about:
-        return localizations.action_about;
+        return l.action_about;
     }
   }
 
