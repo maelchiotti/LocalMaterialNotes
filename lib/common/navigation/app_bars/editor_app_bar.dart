@@ -9,8 +9,8 @@ import 'package:localmaterialnotes/common/actions/restore.dart';
 import 'package:localmaterialnotes/common/actions/share.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
+import 'package:localmaterialnotes/common/navigation/menu_option.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/widgets/navigation/menu_option.dart';
 import 'package:localmaterialnotes/pages/editor/sheets/about_sheet.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 
@@ -121,69 +121,77 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     return ValueListenableBuilder(
       valueListenable: fleatherFieldHasFocusNotifier,
       builder: (context, hasFocus, child) {
-        return AppBar(
-          leading: BackButton(
-            onPressed: _pop,
-          ),
-          actions: note == null
-              ? null
-              : [
-                  if (!note.deleted) ...[
-                    if (showUndoRedoButtons)
-                      ValueListenableBuilder(
-                        valueListenable: fleatherControllerCanUndoNotifier,
-                        builder: (context, canUndo, child) {
-                          return IconButton(
-                            icon: const Icon(Icons.undo),
-                            tooltip: l.tooltip_toggle_checkbox,
-                            onPressed: hasFocus && canUndo && editorController != null && editorController.canUndo
-                                ? _undo
-                                : null,
-                          );
-                        },
-                      ),
-                    if (showUndoRedoButtons)
-                      ValueListenableBuilder(
-                        valueListenable: fleatherControllerCanRedoNotifier,
-                        builder: (context, canRedo, child) {
-                          return IconButton(
-                            icon: const Icon(Icons.redo),
-                            tooltip: l.tooltip_toggle_checkbox,
-                            onPressed: hasFocus && canRedo ? _redo : null,
-                          );
-                        },
-                      ),
-                    if (showChecklistButton)
-                      IconButton(
-                        icon: const Icon(Icons.checklist),
-                        tooltip: l.tooltip_toggle_checkbox,
-                        onPressed: hasFocus ? _toggleChecklist : null,
-                      ),
-                  ],
-                  PopupMenuButton<MenuOption>(
-                    itemBuilder: (context) {
-                      return (note.deleted
-                          ? [
-                              MenuOption.restore.popupMenuItem(),
-                              MenuOption.deletePermanently.popupMenuItem(),
-                              const PopupMenuDivider(),
-                              MenuOption.about.popupMenuItem(),
-                            ]
-                          : [
-                              MenuOption.copy.popupMenuItem(),
-                              MenuOption.share.popupMenuItem(),
-                              const PopupMenuDivider(),
-                              MenuOption.togglePin.popupMenuItem(note.pinned),
-                              MenuOption.delete.popupMenuItem(),
-                              const PopupMenuDivider(),
-                              MenuOption.about.popupMenuItem(),
-                            ]);
-                    },
-                    onSelected: _onMenuOptionSelected,
-                  ),
-                  Padding(padding: Paddings.appBarActionsEnd),
-                ],
-        );
+        return ValueListenableBuilder(
+            valueListenable: isFleatherEditorEditMode,
+            builder: (context, isEditMode, child) {
+              return AppBar(
+                leading: BackButton(
+                  onPressed: _pop,
+                ),
+                actions: note == null
+                    ? null
+                    : [
+                        if (!note.deleted) ...[
+                          if (showUndoRedoButtons)
+                            ValueListenableBuilder(
+                              valueListenable: fleatherControllerCanUndoNotifier,
+                              builder: (context, canUndo, child) {
+                                return IconButton(
+                                  icon: const Icon(Icons.undo),
+                                  tooltip: l.tooltip_toggle_checkbox,
+                                  onPressed: hasFocus &&
+                                          canUndo &&
+                                          editorController != null &&
+                                          editorController.canUndo &&
+                                          isEditMode
+                                      ? _undo
+                                      : null,
+                                );
+                              },
+                            ),
+                          if (showUndoRedoButtons)
+                            ValueListenableBuilder(
+                              valueListenable: fleatherControllerCanRedoNotifier,
+                              builder: (context, canRedo, child) {
+                                return IconButton(
+                                  icon: const Icon(Icons.redo),
+                                  tooltip: l.tooltip_toggle_checkbox,
+                                  onPressed: hasFocus && canRedo && isEditMode ? _redo : null,
+                                );
+                              },
+                            ),
+                          if (showChecklistButton)
+                            IconButton(
+                              icon: const Icon(Icons.checklist),
+                              tooltip: l.tooltip_toggle_checkbox,
+                              onPressed: hasFocus && isEditMode ? _toggleChecklist : null,
+                            ),
+                        ],
+                        PopupMenuButton<MenuOption>(
+                          itemBuilder: (context) {
+                            return (note.deleted
+                                ? [
+                                    MenuOption.restore.popupMenuItem(),
+                                    MenuOption.deletePermanently.popupMenuItem(),
+                                    const PopupMenuDivider(),
+                                    MenuOption.about.popupMenuItem(),
+                                  ]
+                                : [
+                                    MenuOption.copy.popupMenuItem(),
+                                    MenuOption.share.popupMenuItem(),
+                                    const PopupMenuDivider(),
+                                    MenuOption.togglePin.popupMenuItem(note.pinned),
+                                    MenuOption.delete.popupMenuItem(),
+                                    const PopupMenuDivider(),
+                                    MenuOption.about.popupMenuItem(),
+                                  ]);
+                          },
+                          onSelected: _onMenuOptionSelected,
+                        ),
+                        Padding(padding: Paddings.appBarActionsEnd),
+                      ],
+              );
+            });
       },
     );
   }

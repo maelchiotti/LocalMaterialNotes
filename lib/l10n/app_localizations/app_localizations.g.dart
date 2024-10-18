@@ -833,6 +833,36 @@ abstract class AppLocalizations {
   /// **'AGPL-3.0'**
   String get settings_licence_description;
 
+  /// Title of the settings section regarding the logs of the application.
+  ///
+  /// In en, this message translates to:
+  /// **'Logs'**
+  String get settings_about_logs;
+
+  /// Title of the settings tile to copy the logs of the application to the clipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy the logs'**
+  String get settings_copy_logs;
+
+  /// Description of the settings tile to copy the logs of the application to the clipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy the logs of the application to the clipboard'**
+  String get settings_copy_logs_description;
+
+  /// Title of the settings tile to export the logs of the application to a text file.
+  ///
+  /// In en, this message translates to:
+  /// **'Export the logs'**
+  String get settings_export_logs;
+
+  /// Description of the settings tile to export the logs of the application to a text file.
+  ///
+  /// In en, this message translates to:
+  /// **'Export the logs of the application to a text file'**
+  String get settings_export_logs_description;
+
   /// Hint for the text field of the title of the notes.
   ///
   /// In en, this message translates to:

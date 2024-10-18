@@ -407,6 +407,21 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
+  String get settings_about_logs => 'Logs';
+
+  @override
+  String get settings_copy_logs => 'Copy the logs';
+
+  @override
+  String get settings_copy_logs_description => 'Copy the logs of the application to the clipboard';
+
+  @override
+  String get settings_export_logs => 'Export the logs';
+
+  @override
+  String get settings_export_logs_description => 'Export the logs of the application to a text file';
+
+  @override
   String get hint_title => 'Título';
 
   @override

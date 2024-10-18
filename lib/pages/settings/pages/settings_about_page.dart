@@ -3,13 +3,15 @@ import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/constants/sizes.dart';
-import 'package:localmaterialnotes/common/widgets/navigation/app_bars/basic_app_bar.dart';
-import 'package:localmaterialnotes/common/widgets/navigation/top_navigation.dart';
+import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
+import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
+import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:localmaterialnotes/utils/utils.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -117,6 +119,14 @@ class SettingsAboutPage extends StatelessWidget {
     );
   }
 
+  Future<void> _copyLogs(_) async {
+    await LogsUtils().copyLogs();
+  }
+
+  Future<void> _exportLogs(_) async {
+    await LogsUtils().exportLogs();
+  }
+
   @override
   Widget build(BuildContext context) {
     final appVersion = InfoUtils().appVersion;
@@ -187,6 +197,23 @@ class SettingsAboutPage extends StatelessWidget {
                 title: Text(l.settings_licence),
                 description: Text(l.settings_licence_description),
                 onPressed: _openLicense,
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: Text(localizations.settings_about_logs),
+            tiles: [
+              SettingsTile(
+                leading: const Icon(Icons.copy_all),
+                title: Text(localizations.settings_copy_logs),
+                description: Text(localizations.settings_copy_logs_description),
+                onPressed: _copyLogs,
+              ),
+              SettingsTile(
+                leading: const Icon(Symbols.file_save),
+                title: Text(localizations.settings_export_logs),
+                description: Text(localizations.settings_export_logs_description),
+                onPressed: _exportLogs,
               ),
             ],
           ),
