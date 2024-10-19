@@ -409,16 +409,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_about_logs => 'Logs';
 
   @override
-  String get settings_copy_logs => 'Copy the logs';
+  String get settings_copy_logs => 'Copier les logs';
 
   @override
-  String get settings_copy_logs_description => 'Copy the logs of the application to the clipboard';
+  String get settings_copy_logs_description => 'Copier les logs de l\'application dans le presse-papiers';
 
   @override
-  String get settings_export_logs => 'Export the logs';
+  String get settings_export_logs => 'Exporter les logs';
 
   @override
-  String get settings_export_logs_description => 'Export the logs of the application to a text file';
+  String get settings_export_logs_description => 'Exporter les logs de l\'application vers un fichier texte';
 
   @override
   String get hint_title => 'Titre';

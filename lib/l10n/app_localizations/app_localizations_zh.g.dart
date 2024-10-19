@@ -20,33 +20,31 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get error_snack_bar => 'Error:';
+  String get error_snack_bar => '错误：';
 
   @override
-  String get error_widget_title => 'An error has occurred.';
+  String get error_widget_title => '发生了一个错误。';
 
   @override
-  String get error_widget_description =>
-      'Please report this issue on GitHub or via mail. Attach a screenshot of this page and the logs that you can copy or export below. As a precaution, you should also export your notes.';
+  String get error_widget_description => '请在 GitHub 上或通过邮件报告此问题。附上此页面的屏幕截图以及您在下方复制或导出的日志。作为预防措施，您还应该导出您的笔记。';
 
   @override
-  String get error_widget_disabled_secure_flag =>
-      'The setting to flag the app as secure is disabled until the next restart to enable screenshots.';
+  String get error_widget_disabled_secure_flag => '将应用标记为安全的设置将被禁用，直到下次重启以启用截屏。';
 
   @override
-  String get error_widget_button_export_notes => 'Export notes';
+  String get error_widget_button_export_notes => '导出笔记';
 
   @override
-  String get error_widget_button_copy_logs => 'Copy logs';
+  String get error_widget_button_copy_logs => '复制日志';
 
   @override
-  String get error_widget_button_export_logs => 'Export logs';
+  String get error_widget_button_export_logs => '导出日志';
 
   @override
-  String get error_widget_button_create_github_issue => 'Create GitHub issue';
+  String get error_widget_button_create_github_issue => '创建 GitHub 问题';
 
   @override
-  String get error_widget_button_send_mail => 'Send mail';
+  String get error_widget_button_send_mail => '发送邮件';
 
   @override
   String get navigation_notes => '笔记';
@@ -599,10 +597,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get snack_bar_export_success => '已成功导出笔记。';
 
   @override
-  String get snack_bar_logs_copied => 'The logs were copied to your clipboard.';
+  String get snack_bar_logs_copied => '日志已复制到剪贴板。';
 
   @override
-  String get snack_bar_logs_exported => 'The logs were successfully exported.';
+  String get snack_bar_logs_exported => '日志已成功导出。';
 
   @override
   String get action_add_note_title => '添加笔记';

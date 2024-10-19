@@ -45,14 +45,6 @@
   "@navigation_settings_about": {
     "description": "Title of the settings page regarding the information about the application."
   },
-  "button_ok": "Оk",
-  "@button_ok": {
-    "description": "Button to validate a dialog."
-  },
-  "button_cancel": "Отмена",
-  "@button_cancel": {
-    "description": "Button to cancel and close a dialog."
-  },
   "settings_appearance": "Персонализация",
   "@settings_appearance": {
     "description": "Title of the settings section regarding the application's appearance."
@@ -412,10 +404,6 @@
   "tooltip_search": "Поиск заметок",
   "@tooltip_search": {
     "description": "Tooltip for the button to open the search view to search through the notes."
-  },
-  "tooltip_select_all": "Выбрать все",
-  "@tooltip_select_all": {
-    "description": "Tooltip for the button to select all the notes while in selection mode in the notes list."
   },
   "tooltip_unselect_all": "Отменить выбор",
   "@tooltip_unselect_all": {
