@@ -297,8 +297,8 @@ class _NoteTileState extends ConsumerState<NoteTile> {
             return ValueListenableBuilder(
               valueListenable: swipeActionsNotifier,
               builder: (context, swipeActions, child) {
-                final rightSwipeAction = swipeActions.$1;
-                final leftSwipeAction = swipeActions.$2;
+                final rightSwipeAction = swipeActions.right;
+                final leftSwipeAction = swipeActions.left;
 
                 final direction = _dismissDirection(rightSwipeAction, leftSwipeAction);
 

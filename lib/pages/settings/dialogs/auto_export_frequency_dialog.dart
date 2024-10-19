@@ -3,6 +3,8 @@ import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 
 /// Dialog to choose the frequency of the automatic export.
+///
+/// This is used instead of a `SettingSliderTile` to use custom values for the slider.
 class AutoExportFrequencyDialog extends StatefulWidget {
   /// Default constructor.
   const AutoExportFrequencyDialog({super.key});

@@ -591,6 +591,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get action_unpin => 'Désépingler';
 
   @override
+  String get action_share => 'Partager';
+
+  @override
   String get action_delete => 'Supprimer';
 
   @override

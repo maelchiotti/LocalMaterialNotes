@@ -586,6 +586,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get action_unpin => 'Unpin';
 
   @override
+  String get action_share => 'Share';
+
+  @override
   String get action_delete => 'Delete';
 
   @override

@@ -34,9 +34,10 @@ final showTilesBackgroundNotifier = ValueNotifier(PreferenceKey.showTilesBackgro
 final showSeparatorsNotifier = ValueNotifier(PreferenceKey.showSeparators.getPreferenceOrDefault<bool>());
 
 /// Notifier for the actions on the notes tiles swipe.
-final swipeActionsNotifier = ValueNotifier(
-  (SwipeAction.rightFromPreference(), SwipeAction.leftFromPreference()),
-);
+final ValueNotifier<({SwipeAction right, SwipeAction left})> swipeActionsNotifier = ValueNotifier((
+  right: SwipeAction.rightFromPreference(),
+  left: SwipeAction.leftFromPreference(),
+));
 
 /// Notifier for the currently displayed note.
 final currentNoteNotifier = ValueNotifier<Note?>(null);

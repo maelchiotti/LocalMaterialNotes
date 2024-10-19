@@ -588,6 +588,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get action_unpin => 'Loslösen';
 
   @override
+  String get action_share => 'Teilen';
+
+  @override
   String get action_delete => 'Löschen';
 
   @override

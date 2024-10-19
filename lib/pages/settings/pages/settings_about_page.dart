@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/constants/sizes.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
-import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:localmaterialnotes/utils/utils.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:settings_tiles/settings_tiles.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,7 +20,7 @@ class SettingsAboutPage extends StatelessWidget {
   const SettingsAboutPage({super.key});
 
   /// Opens the Crowdin project.
-  void _openCrowdin(_) {
+  void _openCrowdin() {
     launchUrl(
       Uri(
         scheme: 'https',
@@ -31,32 +30,8 @@ class SettingsAboutPage extends StatelessWidget {
     );
   }
 
-  /// Shows the about dialog.
-  Future<void> _showAbout(BuildContext context) async {
-    showAboutDialog(
-      context: context,
-      applicationName: l.app_name,
-      applicationVersion: InfoUtils().appVersion,
-      applicationIcon: Image.asset(
-        Asset.icon.path,
-        fit: BoxFit.fitWidth,
-        width: Sizes.iconSize.size,
-      ),
-      applicationLegalese: l.settings_licence_description,
-      children: [
-        Padding(padding: Paddings.vertical(16)),
-        Text(
-          l.app_tagline,
-          style: Theme.of(context).textTheme.titleSmall,
-        ),
-        Padding(padding: Paddings.vertical(8)),
-        Text(l.app_about(l.app_name)),
-      ],
-    );
-  }
-
   /// Opens the application's GitHub issues.
-  void _openGitHubIssues(_) {
+  void _openGitHubIssues() {
     launchUrl(
       Uri(
         scheme: 'https',
@@ -67,7 +42,7 @@ class SettingsAboutPage extends StatelessWidget {
   }
 
   /// Opens the application's GitHub discussions.
-  void _openGitHubDiscussions(_) {
+  void _openGitHubDiscussions() {
     launchUrl(
       Uri(
         scheme: 'https',
@@ -78,7 +53,7 @@ class SettingsAboutPage extends StatelessWidget {
   }
 
   /// Sends an email to the contact email with some basic information.
-  void _sendMail(_) {
+  void _sendMail() {
     final appVersion = InfoUtils().appVersion;
     final buildMode = InfoUtils().buildMode;
     final androidVersion = InfoUtils().androidVersion;
@@ -98,7 +73,7 @@ class SettingsAboutPage extends StatelessWidget {
   }
 
   /// Opens the application's GitHub repository.
-  void _openGitHub(_) {
+  void _openGitHub() {
     launchUrl(
       Uri(
         scheme: 'https',
@@ -109,7 +84,7 @@ class SettingsAboutPage extends StatelessWidget {
   }
 
   /// Opens the application's license file.
-  void _openLicense(_) {
+  void _openLicense() {
     launchUrl(
       Uri(
         scheme: 'https',
@@ -119,11 +94,11 @@ class SettingsAboutPage extends StatelessWidget {
     );
   }
 
-  Future<void> _copyLogs(_) async {
+  Future<void> _copyLogs() async {
     await LogsUtils().copyLogs();
   }
 
-  Future<void> _exportLogs(_) async {
+  Future<void> _exportLogs() async {
     await LogsUtils().exportLogs();
   }
 
@@ -136,88 +111,110 @@ class SettingsAboutPage extends StatelessWidget {
         key: Keys.appBarSettingsMainSubpage,
         appbar: BasicAppBar.back(),
       ),
-      body: CustomSettingsList(
-        sections: [
-          SettingsSection(
-            title: Text(l.settings_about_application),
-            tiles: [
-              SettingsTile(
-                leading: const Icon(Icons.info),
-                title: Text(l.app_name),
-                description: Text('v$appVersion'),
-                onPressed: _showAbout,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: Paddings.bottomSystemUi,
+          child: Column(
+            children: [
+              SettingSection(
+                divider: null,
+                title: l.settings_about_application,
+                tiles: [
+                  SettingAboutTile(
+                    title: l.app_name,
+                    description: 'v$appVersion',
+                    applicationIcon: Image.asset(
+                      Asset.icon.path,
+                      fit: BoxFit.fitWidth,
+                      width: Sizes.iconSize.size,
+                    ),
+                    applicationLegalese: l.settings_licence_description,
+                    dialogChildren: [
+                      Padding(padding: Paddings.vertical(16)),
+                      Text(
+                        l.app_tagline,
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      Padding(padding: Paddings.vertical(8)),
+                      Text(l.app_about(l.app_name)),
+                    ],
+                  ),
+                  SettingTextTile(
+                    icon: Icons.build,
+                    title: l.settings_build_mode,
+                    description: InfoUtils().buildMode,
+                  ),
+                ],
               ),
-              SettingsTile(
-                leading: const Icon(Icons.build),
-                title: Text(l.settings_build_mode),
-                description: Text(InfoUtils().buildMode),
+              SettingSection(
+                divider: null,
+                title: l.settings_about_help,
+                tiles: [
+                  SettingActionTile(
+                    icon: Icons.bug_report,
+                    title: l.settings_github_issues,
+                    description: l.settings_github_issues_description,
+                    onTap: _openGitHubIssues,
+                  ),
+                  SettingActionTile(
+                    icon: Icons.forum,
+                    title: l.settings_github_discussions,
+                    description: l.settings_github_discussions_description,
+                    onTap: _openGitHubDiscussions,
+                  ),
+                  SettingActionTile(
+                    icon: Icons.mail,
+                    title: l.settings_get_in_touch,
+                    description: l.settings_get_in_touch_description(contactEmail),
+                    onTap: _sendMail,
+                  ),
+                ],
+              ),
+              SettingSection(
+                divider: null,
+                title: l.settings_about_links,
+                tiles: [
+                  SettingActionTile(
+                    icon: SimpleIcons.github,
+                    title: l.settings_github,
+                    description: l.settings_github_description,
+                    onTap: _openGitHub,
+                  ),
+                  SettingActionTile(
+                    icon: SimpleIcons.crowdin,
+                    title: l.settings_localizations,
+                    description: l.settings_localizations_description,
+                    onTap: _openCrowdin,
+                  ),
+                  SettingActionTile(
+                    icon: Icons.balance,
+                    title: l.settings_licence,
+                    description: l.settings_licence_description,
+                    onTap: _openLicense,
+                  ),
+                ],
+              ),
+              SettingSection(
+                divider: null,
+                title: l.settings_about_logs,
+                tiles: [
+                  SettingActionTile(
+                    icon: Icons.copy_all,
+                    title: l.settings_copy_logs,
+                    description: l.settings_copy_logs_description,
+                    onTap: _copyLogs,
+                  ),
+                  SettingActionTile(
+                    icon: Symbols.file_save,
+                    title: l.settings_export_logs,
+                    description: l.settings_export_logs_description,
+                    onTap: _exportLogs,
+                  ),
+                ],
               ),
             ],
           ),
-          SettingsSection(
-            title: Text(l.settings_about_help),
-            tiles: [
-              SettingsTile(
-                leading: const Icon(Icons.bug_report),
-                title: Text(l.settings_github_issues),
-                description: Text(l.settings_github_issues_description),
-                onPressed: _openGitHubIssues,
-              ),
-              SettingsTile(
-                leading: const Icon(Icons.forum),
-                title: Text(l.settings_github_discussions),
-                description: Text(l.settings_github_discussions_description),
-                onPressed: _openGitHubDiscussions,
-              ),
-              SettingsTile(
-                leading: const Icon(Icons.mail),
-                title: Text(l.settings_get_in_touch),
-                description: Text(l.settings_get_in_touch_description(contactEmail)),
-                onPressed: _sendMail,
-              ),
-            ],
-          ),
-          SettingsSection(
-            title: Text(l.settings_about_links),
-            tiles: [
-              SettingsTile(
-                leading: const Icon(SimpleIcons.github),
-                title: Text(l.settings_github),
-                description: Text(l.settings_github_description),
-                onPressed: _openGitHub,
-              ),
-              SettingsTile(
-                leading: const Icon(SimpleIcons.crowdin),
-                title: Text(l.settings_localizations),
-                description: Text(l.settings_localizations_description),
-                onPressed: _openCrowdin,
-              ),
-              SettingsTile(
-                leading: const Icon(Icons.balance),
-                title: Text(l.settings_licence),
-                description: Text(l.settings_licence_description),
-                onPressed: _openLicense,
-              ),
-            ],
-          ),
-          SettingsSection(
-            title: Text(l.settings_about_logs),
-            tiles: [
-              SettingsTile(
-                leading: const Icon(Icons.copy_all),
-                title: Text(l.settings_copy_logs),
-                description: Text(l.settings_copy_logs_description),
-                onPressed: _copyLogs,
-              ),
-              SettingsTile(
-                leading: const Icon(Symbols.file_save),
-                title: Text(l.settings_export_logs),
-                description: Text(l.settings_export_logs_description),
-                onPressed: _exportLogs,
-              ),
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }

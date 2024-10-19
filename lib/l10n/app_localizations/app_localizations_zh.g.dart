@@ -560,6 +560,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get action_unpin => '取消置顶';
 
   @override
+  String get action_share => '分享';
+
+  @override
   String get action_delete => '删除';
 
   @override

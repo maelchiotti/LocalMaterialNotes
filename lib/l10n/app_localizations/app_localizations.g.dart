@@ -1109,6 +1109,12 @@ abstract class AppLocalizations {
   /// **'Unpin'**
   String get action_unpin;
 
+  /// Swipe or menu action to share a note.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get action_share;
+
   /// Swipe or menu action to delete a note (moving it to the bin).
   ///
   /// In en, this message translates to:
