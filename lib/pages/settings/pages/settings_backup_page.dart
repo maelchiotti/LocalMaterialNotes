@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/extensions/string_extension.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
@@ -201,81 +202,84 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         appbar: BasicAppBar.back(),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SettingSection(
-              divider: null,
-              title: l.settings_backup_import,
-              tiles: [
-                SettingActionTile(
-                  icon: Icons.file_upload,
-                  title: l.settings_import,
-                  description: l.settings_import_description,
-                  onTap: _import,
-                ),
-              ],
-            ),
-            SettingSection(
-              divider: null,
-              title: l.settings_backup_manual_export,
-              tiles: [
-                SettingActionTile(
-                  icon: SimpleIcons.json,
-                  title: l.settings_export_json,
-                  description: l.settings_export_json_description,
-                  onTap: _exportAsJson,
-                ),
-                SettingActionTile(
-                  icon: SimpleIcons.markdown,
-                  title: l.settings_export_markdown,
-                  description: l.settings_export_markdown_description,
-                  onTap: _exportAsMarkdown,
-                ),
-              ],
-            ),
-            SettingSection(
-              divider: null,
-              title: l.settings_backup_auto_export,
-              tiles: [
-                SettingSwitchTile(
-                  icon: Icons.settings_backup_restore,
-                  title: l.settings_auto_export,
-                  description: l.settings_auto_export_description,
-                  toggled: enableAutoExport,
-                  onChanged: _toggleEnableAutoExport,
-                ),
-                SettingSwitchTile(
-                  enabled: enableAutoExport,
-                  icon: Icons.enhanced_encryption,
-                  title: l.settings_auto_export_encryption,
-                  description: l.settings_auto_export_encryption_description,
-                  toggled: autoExportEncryption,
-                  onChanged: _toggleAutoExportEncryption,
-                ),
-                SettingActionTile(
-                  enabled: enableAutoExport,
-                  icon: Symbols.calendar_clock,
-                  title: l.settings_auto_export_frequency,
-                  value: l.settings_auto_export_frequency_value(autoExportFrequency.toString()),
-                  description: l.settings_auto_export_frequency_description,
-                  onTap: _setAutoExportFrequency,
-                ),
-                SettingActionTile(
-                  enabled: enableAutoExport,
-                  icon: Icons.folder,
-                  title: l.settings_auto_export_directory,
-                  value: autoExportDirectory,
-                  description: l.settings_auto_export_directory_description,
-                  trailing: IconButton(
-                    icon: const Icon(Symbols.reset_settings),
-                    tooltip: l.tooltip_reset,
-                    onPressed: enableAutoExport ? _resetAutoExportDirectory : null,
+        child: Padding(
+          padding: Paddings.bottomSystemUi,
+          child: Column(
+            children: [
+              SettingSection(
+                divider: null,
+                title: l.settings_backup_import,
+                tiles: [
+                  SettingActionTile(
+                    icon: Icons.file_upload,
+                    title: l.settings_import,
+                    description: l.settings_import_description,
+                    onTap: _import,
                   ),
-                  onTap: _setAutoExportDirectory,
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+              SettingSection(
+                divider: null,
+                title: l.settings_backup_manual_export,
+                tiles: [
+                  SettingActionTile(
+                    icon: SimpleIcons.json,
+                    title: l.settings_export_json,
+                    description: l.settings_export_json_description,
+                    onTap: _exportAsJson,
+                  ),
+                  SettingActionTile(
+                    icon: SimpleIcons.markdown,
+                    title: l.settings_export_markdown,
+                    description: l.settings_export_markdown_description,
+                    onTap: _exportAsMarkdown,
+                  ),
+                ],
+              ),
+              SettingSection(
+                divider: null,
+                title: l.settings_backup_auto_export,
+                tiles: [
+                  SettingSwitchTile(
+                    icon: Icons.settings_backup_restore,
+                    title: l.settings_auto_export,
+                    description: l.settings_auto_export_description,
+                    toggled: enableAutoExport,
+                    onChanged: _toggleEnableAutoExport,
+                  ),
+                  SettingSwitchTile(
+                    enabled: enableAutoExport,
+                    icon: Icons.enhanced_encryption,
+                    title: l.settings_auto_export_encryption,
+                    description: l.settings_auto_export_encryption_description,
+                    toggled: autoExportEncryption,
+                    onChanged: _toggleAutoExportEncryption,
+                  ),
+                  SettingActionTile(
+                    enabled: enableAutoExport,
+                    icon: Symbols.calendar_clock,
+                    title: l.settings_auto_export_frequency,
+                    value: l.settings_auto_export_frequency_value(autoExportFrequency.toString()),
+                    description: l.settings_auto_export_frequency_description,
+                    onTap: _setAutoExportFrequency,
+                  ),
+                  SettingActionTile(
+                    enabled: enableAutoExport,
+                    icon: Icons.folder,
+                    title: l.settings_auto_export_directory,
+                    value: autoExportDirectory,
+                    description: l.settings_auto_export_directory_description,
+                    trailing: IconButton(
+                      icon: const Icon(Symbols.reset_settings),
+                      tooltip: l.tooltip_reset,
+                      onPressed: enableAutoExport ? _resetAutoExportDirectory : null,
+                    ),
+                    onTap: _setAutoExportDirectory,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

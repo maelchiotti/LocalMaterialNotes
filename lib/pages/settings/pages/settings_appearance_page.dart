@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/enums/localization_completion.dart';
 import 'package:localmaterialnotes/common/extensions/double_extension.dart';
 import 'package:localmaterialnotes/common/extensions/string_extension.dart';
@@ -159,121 +160,124 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
         appbar: BasicAppBar.back(),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SettingSection(
-              divider: null,
-              title: l.settings_appearance_application,
-              tiles: [
-                SettingSingleOptionTile.detailed(
-                  icon: Icons.language,
-                  title: l.settings_language,
-                  trailing: TextButton.icon(
-                    onPressed: _openCrowdin,
-                    label: Text(l.settings_language_contribute),
+        child: Padding(
+          padding: Paddings.bottomSystemUi,
+          child: Column(
+            children: [
+              SettingSection(
+                divider: null,
+                title: l.settings_appearance_application,
+                tiles: [
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.language,
+                    title: l.settings_language,
+                    trailing: TextButton.icon(
+                      onPressed: _openCrowdin,
+                      label: Text(l.settings_language_contribute),
+                    ),
+                    value: locale.nativeDisplayLanguage.capitalized,
+                    dialogTitle: l.settings_language,
+                    options: AppLocalizations.supportedLocales.map(
+                      (locale) {
+                        return (
+                          value: locale,
+                          title: locale.nativeDisplayLanguage.capitalized,
+                          subtitle: LocalizationCompletion.getFormattedPercentage(locale),
+                        );
+                      },
+                    ).toList(),
+                    initialOption: locale,
+                    onSubmitted: _submittedLanguage,
                   ),
-                  value: locale.nativeDisplayLanguage.capitalized,
-                  dialogTitle: l.settings_language,
-                  options: AppLocalizations.supportedLocales.map(
-                    (locale) {
-                      return (
-                        value: locale,
-                        title: locale.nativeDisplayLanguage.capitalized,
-                        subtitle: LocalizationCompletion.getFormattedPercentage(locale),
-                      );
-                    },
-                  ).toList(),
-                  initialOption: locale,
-                  onSubmitted: _submittedLanguage,
-                ),
-                SettingSingleOptionTile.detailed(
-                  icon: Icons.palette,
-                  title: l.settings_theme,
-                  value: ThemeUtils().themeModeTitle,
-                  dialogTitle: l.settings_theme,
-                  options: [
-                    (value: ThemeMode.light, title: l.settings_theme_light, subtitle: null),
-                    (value: ThemeMode.dark, title: l.settings_theme_dark, subtitle: null),
-                    (value: ThemeMode.system, title: l.settings_theme_system, subtitle: null),
-                  ],
-                  initialOption: themeMode,
-                  onSubmitted: _submittedTheme,
-                ),
-                SettingSwitchTile(
-                  enabled: ThemeUtils().isDynamicThemingAvailable,
-                  icon: Icons.bolt,
-                  title: l.settings_dynamic_theming,
-                  description: l.settings_dynamic_theming_description,
-                  toggled: ThemeUtils().useDynamicTheming,
-                  onChanged: _toggleDynamicTheming,
-                ),
-                SettingSwitchTile(
-                  enabled: showUseBlackTheming,
-                  icon: Icons.nightlight,
-                  title: l.settings_black_theming,
-                  description: l.settings_black_theming_description,
-                  toggled: ThemeUtils().useBlackTheming,
-                  onChanged: _toggleBlackTheming,
-                ),
-                SettingSliderTile(
-                  icon: Icons.format_size,
-                  title: l.settings_text_scaling,
-                  value: textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale),
-                  dialogTitle: l.settings_text_scaling,
-                  label: (textScaling) => textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale),
-                  min: 0.5,
-                  max: 2.0,
-                  divisions: 15,
-                  initialValue: textScaling,
-                  onChanged: _changedTextScaling,
-                  onSubmitted: _submittedTextScaling,
-                  onCanceled: _canceledTextScaling,
-                ),
-              ],
-            ),
-            SettingSection(
-              divider: null,
-              title: l.settings_appearance_notes_tiles,
-              tiles: [
-                SettingSwitchTile(
-                  icon: Icons.view_compact,
-                  title: l.settings_show_titles_only,
-                  description: l.settings_show_titles_only_description,
-                  toggled: showTitlesOnly,
-                  onChanged: _toggleShowTitlesOnly,
-                ),
-                SettingSwitchTile(
-                  enabled: showTitlesOnly,
-                  icon: Symbols.feature_search,
-                  title: l.settings_show_titles_only_disable_in_search_view,
-                  description: l.settings_show_titles_only_disable_in_search_view_description,
-                  toggled: showTitlesOnlyDisableInSearchView,
-                  onChanged: _toggleShowTitlesOnlyDisableInSearchView,
-                ),
-                SettingSwitchTile(
-                  icon: Icons.format_color_text,
-                  title: l.settings_disable_subdued_note_content_preview,
-                  description: l.settings_disable_subdued_note_content_preview_description,
-                  toggled: disableSubduedNoteContentPreview,
-                  onChanged: _toggleDisableSubduedNoteContentPreview,
-                ),
-                SettingSwitchTile(
-                  icon: Icons.safety_divider,
-                  title: l.settings_show_separators,
-                  description: l.settings_show_separators_description,
-                  toggled: showSeparators,
-                  onChanged: _toggleShowSeparators,
-                ),
-                SettingSwitchTile(
-                  icon: Icons.gradient,
-                  title: l.settings_show_tiles_background,
-                  description: l.settings_show_tiles_background_description,
-                  toggled: showTilesBackground,
-                  onChanged: _toggleShowTilesBackground,
-                ),
-              ],
-            ),
-          ],
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.palette,
+                    title: l.settings_theme,
+                    value: ThemeUtils().themeModeTitle,
+                    dialogTitle: l.settings_theme,
+                    options: [
+                      (value: ThemeMode.light, title: l.settings_theme_light, subtitle: null),
+                      (value: ThemeMode.dark, title: l.settings_theme_dark, subtitle: null),
+                      (value: ThemeMode.system, title: l.settings_theme_system, subtitle: null),
+                    ],
+                    initialOption: themeMode,
+                    onSubmitted: _submittedTheme,
+                  ),
+                  SettingSwitchTile(
+                    enabled: ThemeUtils().isDynamicThemingAvailable,
+                    icon: Icons.bolt,
+                    title: l.settings_dynamic_theming,
+                    description: l.settings_dynamic_theming_description,
+                    toggled: ThemeUtils().useDynamicTheming,
+                    onChanged: _toggleDynamicTheming,
+                  ),
+                  SettingSwitchTile(
+                    enabled: showUseBlackTheming,
+                    icon: Icons.nightlight,
+                    title: l.settings_black_theming,
+                    description: l.settings_black_theming_description,
+                    toggled: ThemeUtils().useBlackTheming,
+                    onChanged: _toggleBlackTheming,
+                  ),
+                  SettingSliderTile(
+                    icon: Icons.format_size,
+                    title: l.settings_text_scaling,
+                    value: textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale),
+                    dialogTitle: l.settings_text_scaling,
+                    label: (textScaling) => textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale),
+                    min: 0.5,
+                    max: 2.0,
+                    divisions: 15,
+                    initialValue: textScaling,
+                    onChanged: _changedTextScaling,
+                    onSubmitted: _submittedTextScaling,
+                    onCanceled: _canceledTextScaling,
+                  ),
+                ],
+              ),
+              SettingSection(
+                divider: null,
+                title: l.settings_appearance_notes_tiles,
+                tiles: [
+                  SettingSwitchTile(
+                    icon: Icons.view_compact,
+                    title: l.settings_show_titles_only,
+                    description: l.settings_show_titles_only_description,
+                    toggled: showTitlesOnly,
+                    onChanged: _toggleShowTitlesOnly,
+                  ),
+                  SettingSwitchTile(
+                    enabled: showTitlesOnly,
+                    icon: Symbols.feature_search,
+                    title: l.settings_show_titles_only_disable_in_search_view,
+                    description: l.settings_show_titles_only_disable_in_search_view_description,
+                    toggled: showTitlesOnlyDisableInSearchView,
+                    onChanged: _toggleShowTitlesOnlyDisableInSearchView,
+                  ),
+                  SettingSwitchTile(
+                    icon: Icons.format_color_text,
+                    title: l.settings_disable_subdued_note_content_preview,
+                    description: l.settings_disable_subdued_note_content_preview_description,
+                    toggled: disableSubduedNoteContentPreview,
+                    onChanged: _toggleDisableSubduedNoteContentPreview,
+                  ),
+                  SettingSwitchTile(
+                    icon: Icons.safety_divider,
+                    title: l.settings_show_separators,
+                    description: l.settings_show_separators_description,
+                    toggled: showSeparators,
+                    onChanged: _toggleShowSeparators,
+                  ),
+                  SettingSwitchTile(
+                    icon: Icons.gradient,
+                    title: l.settings_show_tiles_background,
+                    description: l.settings_show_tiles_background_description,
+                    toggled: showTilesBackground,
+                    onChanged: _toggleShowTilesBackground,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

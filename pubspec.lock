@@ -1198,10 +1198,10 @@ packages:
     dependency: "direct main"
     description:
       name: settings_tiles
-      sha256: "311852042b703d4686062a8d08bae2f8e33507edb0e136e5831d7c4c07d554dc"
+      sha256: ff6b76d1b07e716cb2c396f0d3571e92e2bdc78adb0367fea366940b8bef95e8
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.2"
   share_plus:
     dependency: "direct main"
     description:

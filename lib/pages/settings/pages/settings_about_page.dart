@@ -112,105 +112,108 @@ class SettingsAboutPage extends StatelessWidget {
         appbar: BasicAppBar.back(),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SettingSection(
-              divider: null,
-              title: l.settings_about_application,
-              tiles: [
-                SettingAboutTile(
-                  title: l.app_name,
-                  description: 'v$appVersion',
-                  applicationIcon: Image.asset(
-                    Asset.icon.path,
-                    fit: BoxFit.fitWidth,
-                    width: Sizes.iconSize.size,
-                  ),
-                  applicationLegalese: l.settings_licence_description,
-                  dialogChildren: [
-                    Padding(padding: Paddings.vertical(16)),
-                    Text(
-                      l.app_tagline,
-                      style: Theme.of(context).textTheme.titleSmall,
+        child: Padding(
+          padding: Paddings.bottomSystemUi,
+          child: Column(
+            children: [
+              SettingSection(
+                divider: null,
+                title: l.settings_about_application,
+                tiles: [
+                  SettingAboutTile(
+                    title: l.app_name,
+                    description: 'v$appVersion',
+                    applicationIcon: Image.asset(
+                      Asset.icon.path,
+                      fit: BoxFit.fitWidth,
+                      width: Sizes.iconSize.size,
                     ),
-                    Padding(padding: Paddings.vertical(8)),
-                    Text(l.app_about(l.app_name)),
-                  ],
-                ),
-                SettingTextTile(
-                  icon: Icons.build,
-                  title: l.settings_build_mode,
-                  description: InfoUtils().buildMode,
-                ),
-              ],
-            ),
-            SettingSection(
-              divider: null,
-              title: l.settings_about_help,
-              tiles: [
-                SettingActionTile(
-                  icon: Icons.bug_report,
-                  title: l.settings_github_issues,
-                  description: l.settings_github_issues_description,
-                  onTap: _openGitHubIssues,
-                ),
-                SettingActionTile(
-                  icon: Icons.forum,
-                  title: l.settings_github_discussions,
-                  description: l.settings_github_discussions_description,
-                  onTap: _openGitHubDiscussions,
-                ),
-                SettingActionTile(
-                  icon: Icons.mail,
-                  title: l.settings_get_in_touch,
-                  description: l.settings_get_in_touch_description(contactEmail),
-                  onTap: _sendMail,
-                ),
-              ],
-            ),
-            SettingSection(
-              divider: null,
-              title: l.settings_about_links,
-              tiles: [
-                SettingActionTile(
-                  icon: SimpleIcons.github,
-                  title: l.settings_github,
-                  description: l.settings_github_description,
-                  onTap: _openGitHub,
-                ),
-                SettingActionTile(
-                  icon: SimpleIcons.crowdin,
-                  title: l.settings_localizations,
-                  description: l.settings_localizations_description,
-                  onTap: _openCrowdin,
-                ),
-                SettingActionTile(
-                  icon: Icons.balance,
-                  title: l.settings_licence,
-                  description: l.settings_licence_description,
-                  onTap: _openLicense,
-                ),
-              ],
-            ),
-            SettingSection(
-              divider: null,
-              title: l.settings_about_logs,
-              tiles: [
-                SettingActionTile(
-                  icon: Icons.copy_all,
-                  title: l.settings_copy_logs,
-                  description: l.settings_copy_logs_description,
-                  onTap: _copyLogs,
-                ),
-                SettingActionTile(
-                  icon: Symbols.file_save,
-                  title: l.settings_export_logs,
-                  description: l.settings_export_logs_description,
-                  onTap: _exportLogs,
-                ),
-              ],
-            ),
-          ],
+                    applicationLegalese: l.settings_licence_description,
+                    dialogChildren: [
+                      Padding(padding: Paddings.vertical(16)),
+                      Text(
+                        l.app_tagline,
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      Padding(padding: Paddings.vertical(8)),
+                      Text(l.app_about(l.app_name)),
+                    ],
+                  ),
+                  SettingTextTile(
+                    icon: Icons.build,
+                    title: l.settings_build_mode,
+                    description: InfoUtils().buildMode,
+                  ),
+                ],
+              ),
+              SettingSection(
+                divider: null,
+                title: l.settings_about_help,
+                tiles: [
+                  SettingActionTile(
+                    icon: Icons.bug_report,
+                    title: l.settings_github_issues,
+                    description: l.settings_github_issues_description,
+                    onTap: _openGitHubIssues,
+                  ),
+                  SettingActionTile(
+                    icon: Icons.forum,
+                    title: l.settings_github_discussions,
+                    description: l.settings_github_discussions_description,
+                    onTap: _openGitHubDiscussions,
+                  ),
+                  SettingActionTile(
+                    icon: Icons.mail,
+                    title: l.settings_get_in_touch,
+                    description: l.settings_get_in_touch_description(contactEmail),
+                    onTap: _sendMail,
+                  ),
+                ],
+              ),
+              SettingSection(
+                divider: null,
+                title: l.settings_about_links,
+                tiles: [
+                  SettingActionTile(
+                    icon: SimpleIcons.github,
+                    title: l.settings_github,
+                    description: l.settings_github_description,
+                    onTap: _openGitHub,
+                  ),
+                  SettingActionTile(
+                    icon: SimpleIcons.crowdin,
+                    title: l.settings_localizations,
+                    description: l.settings_localizations_description,
+                    onTap: _openCrowdin,
+                  ),
+                  SettingActionTile(
+                    icon: Icons.balance,
+                    title: l.settings_licence,
+                    description: l.settings_licence_description,
+                    onTap: _openLicense,
+                  ),
+                ],
+              ),
+              SettingSection(
+                divider: null,
+                title: l.settings_about_logs,
+                tiles: [
+                  SettingActionTile(
+                    icon: Icons.copy_all,
+                    title: l.settings_copy_logs,
+                    description: l.settings_copy_logs_description,
+                    onTap: _copyLogs,
+                  ),
+                  SettingActionTile(
+                    icon: Symbols.file_save,
+                    title: l.settings_export_logs,
+                    description: l.settings_export_logs_description,
+                    onTap: _exportLogs,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
@@ -67,82 +68,85 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
         appbar: BasicAppBar.back(),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SettingSection(
-              divider: null,
-              title: l.settings_behavior_application,
-              tiles: [
-                SettingSingleOptionTile.detailed(
-                  icon: Icons.warning,
-                  title: l.settings_confirmations,
-                  value: confirmations.title,
-                  description: l.settings_confirmations_description,
-                  dialogTitle: l.settings_confirmations,
-                  options: Confirmations.values.map(
-                    (confirmation) {
-                      return (
-                        value: confirmation,
-                        title: confirmation.title,
-                        subtitle: null,
-                      );
-                    },
-                  ).toList(),
-                  initialOption: confirmations,
-                  onSubmitted: _submittedConfirmations,
-                ),
-                SettingSwitchTile(
-                  icon: Icons.security,
-                  title: l.settings_flag_secure,
-                  description: l.settings_flag_secure_description,
-                  toggled: flagSecure,
-                  onChanged: _setFlagSecure,
-                ),
-              ],
-            ),
-            SettingSection(
-              divider: null,
-              title: l.settings_behavior_swipe_actions,
-              tiles: [
-                SettingSingleOptionTile.detailed(
-                  icon: Icons.swipe_right,
-                  title: l.settings_swipe_action_right,
-                  value: swipeRightAction.title(),
-                  description: l.settings_swipe_action_right_description,
-                  dialogTitle: l.settings_swipe_action_right,
-                  options: SwipeAction.values.map(
-                    (swipeAction) {
-                      return (
-                        value: swipeAction,
-                        title: swipeAction.title(),
-                        subtitle: null,
-                      );
-                    },
-                  ).toList(),
-                  initialOption: swipeRightAction,
-                  onSubmitted: _submittedSwipeRightAction,
-                ),
-                SettingSingleOptionTile.detailed(
-                  icon: Icons.swipe_left,
-                  title: l.settings_swipe_action_left,
-                  value: swipeLeftAction.title(),
-                  description: l.settings_swipe_action_left_description,
-                  dialogTitle: l.settings_swipe_action_left,
-                  options: SwipeAction.values.map(
-                    (swipeAction) {
-                      return (
-                        value: swipeAction,
-                        title: swipeAction.title(),
-                        subtitle: null,
-                      );
-                    },
-                  ).toList(),
-                  initialOption: swipeLeftAction,
-                  onSubmitted: _submittedSwipeLeftAction,
-                ),
-              ],
-            ),
-          ],
+        child: Padding(
+          padding: Paddings.bottomSystemUi,
+          child: Column(
+            children: [
+              SettingSection(
+                divider: null,
+                title: l.settings_behavior_application,
+                tiles: [
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.warning,
+                    title: l.settings_confirmations,
+                    value: confirmations.title,
+                    description: l.settings_confirmations_description,
+                    dialogTitle: l.settings_confirmations,
+                    options: Confirmations.values.map(
+                      (confirmation) {
+                        return (
+                          value: confirmation,
+                          title: confirmation.title,
+                          subtitle: null,
+                        );
+                      },
+                    ).toList(),
+                    initialOption: confirmations,
+                    onSubmitted: _submittedConfirmations,
+                  ),
+                  SettingSwitchTile(
+                    icon: Icons.security,
+                    title: l.settings_flag_secure,
+                    description: l.settings_flag_secure_description,
+                    toggled: flagSecure,
+                    onChanged: _setFlagSecure,
+                  ),
+                ],
+              ),
+              SettingSection(
+                divider: null,
+                title: l.settings_behavior_swipe_actions,
+                tiles: [
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.swipe_right,
+                    title: l.settings_swipe_action_right,
+                    value: swipeRightAction.title(),
+                    description: l.settings_swipe_action_right_description,
+                    dialogTitle: l.settings_swipe_action_right,
+                    options: SwipeAction.values.map(
+                      (swipeAction) {
+                        return (
+                          value: swipeAction,
+                          title: swipeAction.title(),
+                          subtitle: null,
+                        );
+                      },
+                    ).toList(),
+                    initialOption: swipeRightAction,
+                    onSubmitted: _submittedSwipeRightAction,
+                  ),
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.swipe_left,
+                    title: l.settings_swipe_action_left,
+                    value: swipeLeftAction.title(),
+                    description: l.settings_swipe_action_left_description,
+                    dialogTitle: l.settings_swipe_action_left,
+                    options: SwipeAction.values.map(
+                      (swipeAction) {
+                        return (
+                          value: swipeAction,
+                          title: swipeAction.title(),
+                          subtitle: null,
+                        );
+                      },
+                    ).toList(),
+                    initialOption: swipeLeftAction,
+                    onSubmitted: _submittedSwipeLeftAction,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
