@@ -210,7 +210,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                 SettingActionTile(
                   icon: Icons.file_upload,
                   title: l.settings_import,
-                  value: l.settings_import_description,
+                  description: l.settings_import_description,
                   onTap: _import,
                 ),
               ],
@@ -222,13 +222,13 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                 SettingActionTile(
                   icon: SimpleIcons.json,
                   title: l.settings_export_json,
-                  value: l.settings_export_json_description,
+                  description: l.settings_export_json_description,
                   onTap: _exportAsJson,
                 ),
                 SettingActionTile(
                   icon: SimpleIcons.markdown,
                   title: l.settings_export_markdown,
-                  value: l.settings_export_markdown_description,
+                  description: l.settings_export_markdown_description,
                   onTap: _exportAsMarkdown,
                 ),
               ],
