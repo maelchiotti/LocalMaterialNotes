@@ -269,7 +269,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                   trailing: IconButton(
                     icon: const Icon(Symbols.reset_settings),
                     tooltip: l.tooltip_reset,
-                    onPressed: _resetAutoExportDirectory,
+                    onPressed: enableAutoExport ? _resetAutoExportDirectory : null,
                   ),
                   onTap: _setAutoExportDirectory,
                 ),

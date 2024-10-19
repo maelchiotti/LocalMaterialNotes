@@ -10,7 +10,6 @@ import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
-import 'package:localmaterialnotes/pages/settings/dialogs/text_scaling_dialog.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
@@ -44,83 +43,20 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Asks the user to select the language of the application.
   ///
   /// Restarts the application if the language is changed.
-  Future<void> _selectLanguage() async {
-    await showAdaptiveDialog<Locale>(
-      context: context,
-      useRootNavigator: false,
-      builder: (context) {
-        return SimpleDialog(
-          clipBehavior: Clip.hardEdge,
-          title: Text(l.settings_language),
-          children: AppLocalizations.supportedLocales.map((locale) {
-            return RadioListTile<Locale>(
-              value: locale,
-              groupValue: Localizations.localeOf(context),
-              title: Text(locale.nativeDisplayLanguage.capitalized),
-              subtitle: Text(LocalizationCompletion.getFormattedPercentage(locale)),
-              selected: Localizations.localeOf(context) == locale,
-              onChanged: (locale) => Navigator.pop(context, locale),
-            );
-          }).toList(),
-        );
-      },
-    ).then((locale) async {
-      if (locale == null) {
-        return;
-      }
+  Future<void> _submittedLanguage(Locale locale) async {
+    await LocaleUtils().setLocale(locale);
 
-      await LocaleUtils().setLocale(locale);
+    // The Restart package crashes the app if used in debug mode.
+    if (kDebugMode) {
+      return;
+    }
 
-      // The Restart package crashes the app if used in debug mode.
-      if (kDebugMode) {
-        return;
-      }
-
-      await Restart.restartApp();
-    });
+    await Restart.restartApp();
   }
 
   /// Asks the user to select the theme of the application.
-  Future<void> _selectTheme() async {
-    await showAdaptiveDialog<ThemeMode>(
-      context: context,
-      useRootNavigator: false,
-      builder: (context) {
-        return SimpleDialog(
-          clipBehavior: Clip.hardEdge,
-          title: Text(l.settings_theme),
-          children: [
-            RadioListTile<ThemeMode>(
-              value: ThemeMode.system,
-              groupValue: ThemeUtils().themeMode,
-              title: Text(l.settings_theme_system),
-              selected: ThemeUtils().themeMode == ThemeMode.system,
-              onChanged: (themeMode) => Navigator.pop(context, themeMode),
-            ),
-            RadioListTile<ThemeMode>(
-              value: ThemeMode.light,
-              groupValue: ThemeUtils().themeMode,
-              title: Text(l.settings_theme_light),
-              selected: ThemeUtils().themeMode == ThemeMode.light,
-              onChanged: (themeMode) => Navigator.pop(context, themeMode),
-            ),
-            RadioListTile<ThemeMode>(
-              value: ThemeMode.dark,
-              groupValue: ThemeUtils().themeMode,
-              title: Text(l.settings_theme_dark),
-              selected: ThemeUtils().themeMode == ThemeMode.dark,
-              onChanged: (themeMode) => Navigator.pop(context, themeMode),
-            ),
-          ],
-        );
-      },
-    ).then((themeMode) {
-      if (themeMode == null) {
-        return;
-      }
-
-      ThemeUtils().setThemeMode(themeMode);
-    });
+  Future<void> _submittedTheme(ThemeMode themeMode) async {
+    ThemeUtils().setThemeMode(themeMode);
   }
 
   /// Toggles the dynamic theming.
@@ -141,25 +77,20 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     blackThemingNotifier.value = toggled;
   }
 
-  Future<void> _setTextScaling() async {
-    await showAdaptiveDialog<double>(
-      context: context,
-      useRootNavigator: false,
-      builder: (context) => const TextScalingDialog(),
-    ).then((textScaling) async {
-      if (textScaling == null) {
-        // Set the text scaling back to its preference value
-        textScalingNotifier.value = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
+  Future<void> _changedTextScaling(double textScaling) async {
+    textScalingNotifier.value = textScaling;
+  }
 
-        return;
-      }
-
-      setState(() {
-        PreferencesUtils().set<double>(PreferenceKey.textScaling, textScaling);
-      });
-
-      textScalingNotifier.value = textScaling;
+  Future<void> _submittedTextScaling(double textScaling) async {
+    setState(() {
+      PreferencesUtils().set<double>(PreferenceKey.textScaling, textScaling);
     });
+
+    textScalingNotifier.value = textScaling;
+  }
+
+  Future<void> _canceledTextScaling() async {
+    textScalingNotifier.value = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
   }
 
   /// Toggles the setting to show background of the notes tiles.
@@ -205,7 +136,8 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
 
   @override
   Widget build(BuildContext context) {
-    final locale = LocaleUtils().appLocale.nativeDisplayLanguage.capitalized;
+    final locale = LocaleUtils().appLocale;
+    final themeMode = ThemeUtils().themeMode;
     final showUseBlackTheming = Theme.of(context).colorScheme.brightness == Brightness.dark;
     final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
 
@@ -229,21 +161,39 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
               divider: null,
               title: l.settings_appearance_application,
               tiles: [
-                SettingActionTile(
+                SettingSingleOptionTile.detailed(
                   icon: Icons.language,
                   title: l.settings_language,
                   trailing: TextButton.icon(
                     onPressed: _openCrowdin,
                     label: Text(l.settings_language_contribute),
                   ),
-                  value: locale,
-                  onTap: _selectLanguage,
+                  value: locale.nativeDisplayLanguage.capitalized,
+                  dialogTitle: l.settings_language,
+                  options: AppLocalizations.supportedLocales.map(
+                    (locale) {
+                      return (
+                        value: locale,
+                        title: locale.nativeDisplayLanguage,
+                        subtitle: LocalizationCompletion.getFormattedPercentage(locale),
+                      );
+                    },
+                  ).toList(),
+                  initialOption: locale,
+                  onSubmitted: _submittedLanguage,
                 ),
-                SettingActionTile(
+                SettingSingleOptionTile.detailed(
                   icon: Icons.palette,
                   title: l.settings_theme,
                   value: ThemeUtils().themeModeTitle,
-                  onTap: _selectTheme,
+                  dialogTitle: l.settings_theme,
+                  options: [
+                    (value: ThemeMode.light, title: l.settings_theme_light, subtitle: null),
+                    (value: ThemeMode.dark, title: l.settings_theme_dark, subtitle: null),
+                    (value: ThemeMode.system, title: l.settings_theme_system, subtitle: null),
+                  ],
+                  initialOption: themeMode,
+                  onSubmitted: _submittedTheme,
                 ),
                 SettingSwitchTile(
                   enabled: ThemeUtils().isDynamicThemingAvailable,
@@ -261,11 +211,19 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
                   toggled: ThemeUtils().useBlackTheming,
                   onChanged: _toggleBlackTheming,
                 ),
-                SettingActionTile(
+                SettingSliderTile(
                   icon: Icons.format_size,
                   title: l.settings_text_scaling,
                   value: textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale),
-                  onTap: _setTextScaling,
+                  dialogTitle: l.settings_text_scaling,
+                  label: (textScaling) => textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale),
+                  min: 0.5,
+                  max: 2.0,
+                  divisions: 15,
+                  initialValue: textScaling,
+                  onChanged: _changedTextScaling,
+                  onSubmitted: _submittedTextScaling,
+                  onCanceled: _canceledTextScaling,
                 ),
               ],
             ),
