@@ -1,7 +1,13 @@
 AJOUTÉ
 - Page d'erreur affichée lorsqu'une page ne se charge pas, avec la possibilité de copier et d'exporter les logs d'erreur
 
+AMÉLIORÉ
+- Fiabilité des exports automatiques
+
 CORRIGÉ
 - La valeur du paramètre sur les tuiles de paramètres n'utilise pas une couleur atténuée lorsqu'elle est désactivée
 - Trop petite icône de note épinglée sur les tuiles de notes
 - Trop petite icône d'application
+
+SUPPRIMÉ
+- Permissions READ_EXTERNAL_STORAGE et WRITE_EXTERNAL_STORAGE ajoutées par erreur

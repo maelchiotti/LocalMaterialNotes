@@ -24,9 +24,9 @@ class DatabaseUtils {
 
   /// Returns the file name of the export file depending of the current date and time and its [extension].
   String _exportFileName(String extension) {
-    final timestamp = DateTime.timestamp();
+    final timestamp = DateTime.timestamp().filename;
 
-    return 'materialnotes_export_${timestamp.filename}.$extension';
+    return 'materialnotes_export_$timestamp.$extension';
   }
 
   /// Imports all the notes from a JSON file picked by the user.
@@ -57,9 +57,10 @@ class DatabaseUtils {
       if (encrypted && context.mounted) {
         final password = await showAdaptiveDialog<String>(
           context: context,
+          useRootNavigator: false,
           builder: (context) => AutoExportPasswordDialog(
-            title: localizations.settings_import,
-            description: localizations.dialog_import_encryption_password_description,
+            title: l.settings_import,
+            description: l.dialog_import_encryption_password_description,
           ),
         );
 
@@ -78,7 +79,7 @@ class DatabaseUtils {
           LogsUtils().handleException(exception, stackTrace);
 
           SnackBarUtils.error(
-            localizations.dialog_import_encryption_password_error,
+            l.dialog_import_encryption_password_error,
             duration: const Duration(seconds: 8),
           ).show();
 
@@ -123,7 +124,7 @@ class DatabaseUtils {
     return await writeFile(
       directory: directory,
       fileName: fileName,
-      mimeType: MimeType.plainText.value,
+      mimeType: MimeType.json.value,
       data: exportDataAsJson,
     );
   }
@@ -175,7 +176,9 @@ class DatabaseUtils {
 
     for (final note in notes) {
       final bytes = utf8.encode(note.markdown);
-      final filename = sanitizeFilename('${note.title} (${note.createdTime.filename}).${MimeType.markdown.extension}');
+      final filenameWithoutExtension = '${note.title} (${note.createdTime.filename})';
+      final filenameWithoutExtensionSanitized = sanitizeFilename(filenameWithoutExtension);
+      final filename = '$filenameWithoutExtensionSanitized.${MimeType.markdown.extension}';
 
       archive.addFile(ArchiveFile(filename, bytes.length, bytes));
     }

@@ -17,6 +17,9 @@ import 'package:localmaterialnotes/utils/theme_utils.dart';
 
 /// MaterialNotes application.
 class App extends ConsumerStatefulWidget {
+  /// Default constructor.
+  const App({super.key});
+
   @override
   ConsumerState<App> createState() => _AppState();
 }

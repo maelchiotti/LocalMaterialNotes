@@ -85,14 +85,6 @@
   "@navigation_settings_about": {
     "description": "Title of the settings page regarding the information about the application."
   },
-  "button_ok": "Ok",
-  "@button_ok": {
-    "description": "Button to validate a dialog."
-  },
-  "button_cancel": "Annuler",
-  "@button_cancel": {
-    "description": "Button to cancel and close a dialog."
-  },
   "button_sort_title": "Titre",
   "@button_sort_title": {
     "description": "Text of the button to sort the notes list by title."
@@ -503,6 +495,26 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
+  "settings_about_logs": "Logs",
+  "@settings_about_logs": {
+    "description": "Title of the settings section regarding the logs of the application."
+  },
+  "settings_copy_logs": "Copier les logs",
+  "@settings_copy_logs": {
+    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_copy_logs_description": "Copier les logs de l''application dans le presse-papiers",
+  "@settings_copy_logs_description": {
+    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_export_logs": "Exporter les logs",
+  "@settings_export_logs": {
+    "description": "Title of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_export_logs_description": "Exporter les logs de l''application vers un fichier texte",
+  "@settings_export_logs_description": {
+    "description": "Description of the settings tile to export the logs of the application to a text file."
+  },
   "hint_title": "Titre",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
@@ -558,10 +570,6 @@
   "tooltip_search": "Rechercher parmi les notes",
   "@tooltip_search": {
     "description": "Tooltip for the button to open the search view to search through the notes."
-  },
-  "tooltip_select_all": "Tout sélectionner",
-  "@tooltip_select_all": {
-    "description": "Tooltip for the button to select all the notes while in selection mode in the notes list."
   },
   "tooltip_unselect_all": "Tout déselectionner",
   "@tooltip_unselect_all": {
@@ -689,13 +697,9 @@
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
   },
-  "action_copy": "Copier",
-  "@action_copy": {
-    "description": "Swipe or menu action to copy the content of a note."
-  },
   "action_share": "Partager",
   "@action_share": {
-    "description": "Swipe or menu action to share the title and the content of a note."
+    "description": "Swipe or menu action to share a note."
   },
   "action_delete": "Supprimer",
   "@action_delete": {

@@ -3,6 +3,8 @@ import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 
 /// Dialog to choose the frequency of the automatic export.
+///
+/// This is used instead of a `SettingSliderTile` to use custom values for the slider.
 class AutoExportFrequencyDialog extends StatefulWidget {
   /// Default constructor.
   const AutoExportFrequencyDialog({super.key});
@@ -58,7 +60,7 @@ class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog.adaptive(
-      title: Text(localizations.settings_auto_export_frequency),
+      title: Text(l.settings_auto_export_frequency),
       content: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +70,7 @@ class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
               value: _frequencyIndex.toDouble(),
               max: _frequencyValues.length - 1,
               divisions: _frequencyValues.length - 1,
-              label: localizations.settings_auto_export_frequency_value(_frequencyValue.toString()),
+              label: l.settings_auto_export_frequency_value(_frequencyValue.toString()),
               onChanged: _onFrequencyChanged,
             ),
           ],
@@ -77,11 +79,11 @@ class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
       actions: [
         TextButton(
           onPressed: () => _pop(canceled: true),
-          child: Text(localizations.button_cancel),
+          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
         ),
         TextButton(
           onPressed: _pop,
-          child: Text(localizations.button_ok),
+          child: Text(flutterL?.okButtonLabel ?? 'OK'),
         ),
       ],
     );

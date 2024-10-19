@@ -9,14 +9,14 @@ class EmptyPlaceholder extends StatelessWidget {
   const EmptyPlaceholder({super.key, this.icon, this.text});
 
   /// Empty notes lists.
-  EmptyPlaceholder.notes()
+  EmptyPlaceholder.notes({super.key})
       : icon = Icons.notes,
-        text = localizations.placeholder_notes;
+        text = l.placeholder_notes;
 
   /// Empty bin.
-  EmptyPlaceholder.bin()
+  EmptyPlaceholder.bin({super.key})
       : icon = Icons.delete_outline,
-        text = localizations.placeholder_bin;
+        text = l.placeholder_bin;
 
   /// Icon to display.
   final IconData? icon;

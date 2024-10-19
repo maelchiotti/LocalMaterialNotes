@@ -13,7 +13,9 @@ import 'package:localmaterialnotes/common/widgets/placeholders/loading_placehold
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/routing/routes/routing_route.dart';
+import 'package:localmaterialnotes/routing/routes/bin/bin_route.dart';
+import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
+import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 /// Selection mode's app bar.
 ///
@@ -25,7 +27,7 @@ import 'package:localmaterialnotes/routing/routes/routing_route.dart';
 ///   - A button to delete / permanently delete the selected notes.
 class SelectionAppBar extends ConsumerStatefulWidget {
   /// Default constructor.
-  const SelectionAppBar();
+  const SelectionAppBar({super.key});
 
   @override
   ConsumerState<SelectionAppBar> createState() => _SelectionAppBarState();
@@ -91,32 +93,32 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
       actions: [
         IconButton(
           icon: Icon(allSelected ? Icons.deselect : Icons.select_all),
-          tooltip: allSelected ? localizations.tooltip_unselect_all : localizations.tooltip_select_all,
+          tooltip: allSelected ? l.tooltip_unselect_all : flutterL?.selectAllButtonLabel ?? 'Select all',
           onPressed: () => allSelected ? unselectAll(context, ref) : selectAll(context, ref),
         ),
         Padding(padding: Paddings.appBarActionsEnd),
         Separator.divider1indent16.vertical,
         Padding(padding: Paddings.appBarActionsEnd),
-        if (context.route == RoutingRoute.bin) ...[
+        if (context.location == BinRoute().location) ...[
           IconButton(
             icon: const Icon(Icons.restore_from_trash),
-            tooltip: localizations.tooltip_restore,
+            tooltip: l.tooltip_restore,
             onPressed: selectedNotes.isNotEmpty ? () => _restore(selectedNotes) : null,
           ),
           IconButton(
             icon: const Icon(Icons.delete_forever),
-            tooltip: localizations.tooltip_permanently_delete,
+            tooltip: l.tooltip_permanently_delete,
             onPressed: selectedNotes.isNotEmpty ? () => _permanentlyDelete(selectedNotes) : null,
           ),
         ] else ...[
           IconButton(
             icon: const Icon(Icons.push_pin),
-            tooltip: localizations.tooltip_toggle_pins,
+            tooltip: l.tooltip_toggle_pins,
             onPressed: selectedNotes.isNotEmpty ? () => _togglePin(selectedNotes) : null,
           ),
           IconButton(
             icon: const Icon(Icons.delete),
-            tooltip: localizations.tooltip_delete,
+            tooltip: l.tooltip_delete,
             onPressed: selectedNotes.isNotEmpty ? () => _delete(selectedNotes) : null,
           ),
         ],
@@ -127,7 +129,7 @@ class _SelectionAppBarState extends ConsumerState<SelectionAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return context.route == RoutingRoute.notes
+    return context.location == NotesRoute().location
         ? ref.watch(notesProvider).when(
             data: (notes) {
               return _buildAppBar(notes.where((note) => note.selected).toList(), notes.length);

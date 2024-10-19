@@ -73,12 +73,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get navigation_settings_about => 'О приложении';
 
   @override
-  String get button_ok => 'Оk';
-
-  @override
-  String get button_cancel => 'Отмена';
-
-  @override
   String get button_sort_title => 'Title';
 
   @override
@@ -408,6 +402,21 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
+  String get settings_about_logs => 'Logs';
+
+  @override
+  String get settings_copy_logs => 'Copy the logs';
+
+  @override
+  String get settings_copy_logs_description => 'Copy the logs of the application to the clipboard';
+
+  @override
+  String get settings_export_logs => 'Export the logs';
+
+  @override
+  String get settings_export_logs_description => 'Export the logs of the application to a text file';
+
+  @override
   String get hint_title => 'Заголовок';
 
   @override
@@ -448,9 +457,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get tooltip_search => 'Поиск заметок';
-
-  @override
-  String get tooltip_select_all => 'Выбрать все';
 
   @override
   String get tooltip_unselect_all => 'Отменить выбор';
@@ -580,9 +586,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get action_unpin => 'Unpin';
-
-  @override
-  String get action_copy => 'Copy';
 
   @override
   String get action_share => 'Share';

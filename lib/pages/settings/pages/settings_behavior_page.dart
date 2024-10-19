@@ -1,15 +1,16 @@
 import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/constants/paddings.dart';
+import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
+import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
-import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
-import 'package:localmaterialnotes/pages/settings/widgets/custom_settings_list.dart';
-import 'package:localmaterialnotes/pages/settings/widgets/setting_value_text.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/utils/keys.dart';
+import 'package:settings_tiles/settings_tiles.dart';
 
 /// Settings related to the behavior of the application.
 class SettingsBehaviorPage extends StatefulWidget {
@@ -22,83 +23,25 @@ class SettingsBehaviorPage extends StatefulWidget {
 
 class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
   /// Asks the user to choose which confirmations should be shown.
-  Future<void> _selectConfirmations(BuildContext context) async {
-    final confirmationsPreference = Confirmations.fromPreference();
-
-    await showAdaptiveDialog<Confirmations>(
-      context: context,
-      builder: (context) {
-        return SimpleDialog(
-          clipBehavior: Clip.hardEdge,
-          title: Text(localizations.settings_confirmations),
-          children: Confirmations.values.map((confirmationsValue) {
-            return RadioListTile<Confirmations>(
-              value: confirmationsValue,
-              groupValue: confirmationsPreference,
-              title: Text(confirmationsValue.title),
-              selected: confirmationsPreference == confirmationsValue,
-              onChanged: (confirmations) => Navigator.pop(context, confirmations),
-            );
-          }).toList(),
-        );
-      },
-    ).then((confirmations) {
-      if (confirmations == null) {
-        return;
-      }
-
-      setState(() {
-        PreferencesUtils().set<String>(PreferenceKey.confirmations, confirmations.name);
-      });
+  void _submittedConfirmations(Confirmations confirmations) {
+    setState(() {
+      PreferencesUtils().set<String>(PreferenceKey.confirmations, confirmations.name);
     });
   }
 
-  /// Asks the user to choose which action should be triggered when swiping the notes tiles in the [swipeDirection].
-  Future<void> _selectSwipeAction(BuildContext context, SwipeDirection swipeDirection) async {
-    SwipeAction swipeActionPreference;
-    switch (swipeDirection) {
-      case SwipeDirection.right:
-        swipeActionPreference = swipeActionsNotifier.value.$1;
-      case SwipeDirection.left:
-        swipeActionPreference = swipeActionsNotifier.value.$2;
-    }
+  /// Sets the new right [swipeAction].
+  void _submittedSwipeRightAction(SwipeAction swipeAction) {
+    setState(() {
+      PreferencesUtils().set<String>(PreferenceKey.swipeRightAction, swipeAction.name);
+      swipeActionsNotifier.value = (right: swipeAction, left: swipeActionsNotifier.value.left);
+    });
+  }
 
-    await showAdaptiveDialog<SwipeAction>(
-      context: context,
-      builder: (context) {
-        return SimpleDialog(
-          clipBehavior: Clip.hardEdge,
-          title: Text(
-            swipeDirection == SwipeDirection.right
-                ? localizations.settings_swipe_action_right
-                : localizations.settings_swipe_action_left,
-          ),
-          children: SwipeAction.values.map((swipeAction) {
-            return RadioListTile<SwipeAction>(
-              value: swipeAction,
-              groupValue: swipeActionPreference,
-              title: Text(swipeAction.title()),
-              selected: swipeActionPreference == swipeAction,
-              onChanged: (swipeAction) => Navigator.pop(context, swipeAction),
-            );
-          }).toList(),
-        );
-      },
-    ).then((swipeAction) {
-      if (swipeAction == null) {
-        return;
-      }
-
-      setState(() {
-        switch (swipeDirection) {
-          case SwipeDirection.right:
-            PreferencesUtils().set<String>(PreferenceKey.swipeRightAction, swipeAction.name);
-            swipeActionsNotifier.value = (swipeAction, swipeActionsNotifier.value.$2);
-          case SwipeDirection.left:
-            PreferencesUtils().set<String>(PreferenceKey.swipeLeftAction, swipeAction.name);
-            swipeActionsNotifier.value = (swipeActionsNotifier.value.$1, swipeAction);
-        }
-      });
+  /// Sets the new left [swipeAction].
+  void _submittedSwipeLeftAction(SwipeAction swipeAction) {
+    setState(() {
+      PreferencesUtils().set<String>(PreferenceKey.swipeLeftAction, swipeAction.name);
+      swipeActionsNotifier.value = (right: swipeActionsNotifier.value.right, left: swipeAction);
     });
   }
 
@@ -116,58 +59,96 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
     final confirmations = Confirmations.fromPreference();
     final flagSecure = PreferenceKey.flagSecure.getPreferenceOrDefault<bool>();
 
-    final swipeRightAction = swipeActionsNotifier.value.$1;
-    final swipeLeftAction = swipeActionsNotifier.value.$2;
+    final swipeRightAction = swipeActionsNotifier.value.right;
+    final swipeLeftAction = swipeActionsNotifier.value.left;
 
-    return CustomSettingsList(
-      sections: [
-        SettingsSection(
-          title: Text(localizations.settings_behavior_application),
-          tiles: [
-            SettingsTile.navigation(
-              leading: const Icon(Icons.warning),
-              title: Text(localizations.settings_confirmations),
-              value: SettingNavigationTileBody(
-                value: confirmations.title,
-                description: localizations.settings_confirmations_description,
+    return Scaffold(
+      appBar: const TopNavigation(
+        key: Keys.appBarSettingsMainSubpage,
+        appbar: BasicAppBar.back(),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: Paddings.bottomSystemUi,
+          child: Column(
+            children: [
+              SettingSection(
+                divider: null,
+                title: l.settings_behavior_application,
+                tiles: [
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.warning,
+                    title: l.settings_confirmations,
+                    value: confirmations.title,
+                    description: l.settings_confirmations_description,
+                    dialogTitle: l.settings_confirmations,
+                    options: Confirmations.values.map(
+                      (confirmation) {
+                        return (
+                          value: confirmation,
+                          title: confirmation.title,
+                          subtitle: null,
+                        );
+                      },
+                    ).toList(),
+                    initialOption: confirmations,
+                    onSubmitted: _submittedConfirmations,
+                  ),
+                  SettingSwitchTile(
+                    icon: Icons.security,
+                    title: l.settings_flag_secure,
+                    description: l.settings_flag_secure_description,
+                    toggled: flagSecure,
+                    onChanged: _setFlagSecure,
+                  ),
+                ],
               ),
-              onPressed: _selectConfirmations,
-            ),
-            SettingsTile.switchTile(
-              leading: const Icon(Icons.security),
-              title: Text(localizations.settings_flag_secure),
-              description: Text(localizations.settings_flag_secure_description),
-              initialValue: flagSecure,
-              onToggle: _setFlagSecure,
-            ),
-          ],
+              SettingSection(
+                divider: null,
+                title: l.settings_behavior_swipe_actions,
+                tiles: [
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.swipe_right,
+                    title: l.settings_swipe_action_right,
+                    value: swipeRightAction.title(),
+                    description: l.settings_swipe_action_right_description,
+                    dialogTitle: l.settings_swipe_action_right,
+                    options: SwipeAction.values.map(
+                      (swipeAction) {
+                        return (
+                          value: swipeAction,
+                          title: swipeAction.title(),
+                          subtitle: null,
+                        );
+                      },
+                    ).toList(),
+                    initialOption: swipeRightAction,
+                    onSubmitted: _submittedSwipeRightAction,
+                  ),
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.swipe_left,
+                    title: l.settings_swipe_action_left,
+                    value: swipeLeftAction.title(),
+                    description: l.settings_swipe_action_left_description,
+                    dialogTitle: l.settings_swipe_action_left,
+                    options: SwipeAction.values.map(
+                      (swipeAction) {
+                        return (
+                          value: swipeAction,
+                          title: swipeAction.title(),
+                          subtitle: null,
+                        );
+                      },
+                    ).toList(),
+                    initialOption: swipeLeftAction,
+                    onSubmitted: _submittedSwipeLeftAction,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-        SettingsSection(
-          title: Text(localizations.settings_behavior_swipe_actions),
-          tiles: [
-            SettingsTile.navigation(
-              leading: const Icon(Icons.swipe_right),
-              title: Text(localizations.settings_swipe_action_right),
-              value: SettingNavigationTileBody(
-                value: swipeRightAction.title(),
-                description: localizations.settings_swipe_action_right_description,
-                icon: swipeRightAction.icon,
-              ),
-              onPressed: (context) => _selectSwipeAction(context, SwipeDirection.right),
-            ),
-            SettingsTile.navigation(
-              leading: const Icon(Icons.swipe_left),
-              title: Text(localizations.settings_swipe_action_left),
-              value: SettingNavigationTileBody(
-                value: swipeLeftAction.title(),
-                description: localizations.settings_swipe_action_left_description,
-                icon: swipeLeftAction.icon,
-              ),
-              onPressed: (context) => _selectSwipeAction(context, SwipeDirection.left),
-            ),
-          ],
-        ),
-      ],
+      ),
     );
   }
 }

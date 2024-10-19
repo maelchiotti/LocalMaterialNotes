@@ -73,12 +73,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get navigation_settings_about => 'À propos';
 
   @override
-  String get button_ok => 'Ok';
-
-  @override
-  String get button_cancel => 'Annuler';
-
-  @override
   String get button_sort_title => 'Titre';
 
   @override
@@ -412,6 +406,21 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
+  String get settings_about_logs => 'Logs';
+
+  @override
+  String get settings_copy_logs => 'Copier les logs';
+
+  @override
+  String get settings_copy_logs_description => 'Copier les logs de l\'application dans le presse-papiers';
+
+  @override
+  String get settings_export_logs => 'Exporter les logs';
+
+  @override
+  String get settings_export_logs_description => 'Exporter les logs de l\'application vers un fichier texte';
+
+  @override
   String get hint_title => 'Titre';
 
   @override
@@ -452,9 +461,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tooltip_search => 'Rechercher parmi les notes';
-
-  @override
-  String get tooltip_select_all => 'Tout sélectionner';
 
   @override
   String get tooltip_unselect_all => 'Tout déselectionner';
@@ -583,9 +589,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get action_unpin => 'Désépingler';
-
-  @override
-  String get action_copy => 'Copier';
 
   @override
   String get action_share => 'Partager';

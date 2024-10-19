@@ -17,6 +17,42 @@
       }
     }
   },
+  "error_snack_bar": "错误：",
+  "@error_snack_bar": {
+    "description": "Prefix for the error message shown in the error snack bar, before the actual error message."
+  },
+  "error_widget_title": "发生了一个错误。",
+  "@error_widget_title": {
+    "description": "Message shown in the error widget shown when a widget fails to build."
+  },
+  "error_widget_description": "请在 GitHub 上或通过邮件报告此问题。附上此页面的屏幕截图以及您在下方复制或导出的日志。作为预防措施，您还应该导出您的笔记。",
+  "@error_widget_description": {
+    "description": "Message shown in the error widget shown when a widget fails to build."
+  },
+  "error_widget_disabled_secure_flag": "将应用标记为安全的设置将被禁用，直到下次重启以启用截屏。",
+  "@error_widget_disabled_secure_flag": {
+    "description": "Label shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
+  },
+  "error_widget_button_export_notes": "导出笔记",
+  "@error_widget_button_export_notes": {
+    "description": "Title of the button to export the notes as JSON on the error widget."
+  },
+  "error_widget_button_copy_logs": "复制日志",
+  "@error_widget_button_copy_logs": {
+    "description": "Title of the button to copy the logs to the clipboard on the error widget."
+  },
+  "error_widget_button_export_logs": "导出日志",
+  "@error_widget_button_export_logs": {
+    "description": "Title of the button to export the logs in a text file on the error widget."
+  },
+  "error_widget_button_create_github_issue": "创建 GitHub 问题",
+  "@error_widget_button_create_github_issue": {
+    "description": "Title of the button to create a new GitHub issue on the error widget."
+  },
+  "error_widget_button_send_mail": "发送邮件",
+  "@error_widget_button_send_mail": {
+    "description": "Title of the button to end a bug report mail on the error widget."
+  },
   "navigation_notes": "笔记",
   "@navigation_notes": {
     "description": "Title of the notes page."
@@ -48,14 +84,6 @@
   "navigation_settings_about": "关于",
   "@navigation_settings_about": {
     "description": "Title of the settings page regarding the information about the application."
-  },
-  "button_ok": "确定",
-  "@button_ok": {
-    "description": "Button to validate a dialog."
-  },
-  "button_cancel": "取消",
-  "@button_cancel": {
-    "description": "Button to cancel and close a dialog."
   },
   "button_sort_title": "标题",
   "@button_sort_title": {
@@ -523,10 +551,6 @@
   "@tooltip_search": {
     "description": "Tooltip for the button to open the search view to search through the notes."
   },
-  "tooltip_select_all": "选择全部",
-  "@tooltip_select_all": {
-    "description": "Tooltip for the button to select all the notes while in selection mode in the notes list."
-  },
   "tooltip_unselect_all": "取消全选",
   "@tooltip_unselect_all": {
     "description": "Tooltip for the button to unselect all the notes while in selection mode in the notes list."
@@ -653,13 +677,9 @@
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
   },
-  "action_copy": "复制",
-  "@action_copy": {
-    "description": "Swipe or menu action to copy the content of a note."
-  },
   "action_share": "分享",
   "@action_share": {
-    "description": "Swipe or menu action to share the title and the content of a note."
+    "description": "Swipe or menu action to share a note."
   },
   "action_delete": "删除",
   "@action_delete": {
@@ -708,6 +728,14 @@
   "snack_bar_export_success": "已成功导出笔记。",
   "@snack_bar_export_success": {
     "description": "Snack bar informing that the notes were successfully manually exported."
+  },
+  "snack_bar_logs_copied": "日志已复制到剪贴板。",
+  "@snack_bar_logs_copied": {
+    "description": "Snack bar message shown when the logs where copied to the clipboard from the error widget."
+  },
+  "snack_bar_logs_exported": "日志已成功导出。",
+  "@snack_bar_logs_exported": {
+    "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
   },
   "action_add_note_title": "添加笔记",
   "@action_add_note_title": {

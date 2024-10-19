@@ -16,6 +16,7 @@ Future<bool> _showConfirmationDialog(
 ) async {
   return await showAdaptiveDialog<bool>(
         context: context,
+        useRootNavigator: false,
         builder: (context) {
           return AlertDialog.adaptive(
             title: Text(title),
@@ -30,7 +31,7 @@ Future<bool> _showConfirmationDialog(
               TextButton(
                 key: Keys.dialogCancelButton,
                 onPressed: () => Navigator.pop(context, false),
-                child: Text(localizations.button_cancel),
+                child: Text(flutterL?.okButtonLabel ?? 'OK'),
               ),
               TextButton(
                 key: Keys.dialogConfirmButton,

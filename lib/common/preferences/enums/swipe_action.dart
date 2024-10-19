@@ -10,13 +10,13 @@ enum SwipeAction {
   /// The swipe action is disabled.
   disabled(Icons.hide_source),
 
+  /// Toggle the pin status of the note.
+  togglePin(Icons.push_pin, alternativeIcon: Icons.push_pin_outlined),
+
   /// Delete the note.
   ///
   /// This action is [dangerous].
   delete(Icons.delete, dangerous: true),
-
-  /// Toggle the pin status of the note.
-  togglePin(Icons.push_pin, alternativeIcon: Icons.push_pin_outlined),
 
   /// Share the note.
   share(Icons.share),
@@ -77,15 +77,15 @@ enum SwipeAction {
   String title([bool alternative = false]) {
     switch (this) {
       case disabled:
-        return localizations.action_disabled;
+        return l.action_disabled;
       case delete:
-        return localizations.action_delete;
+        return l.action_delete;
       case togglePin:
-        return localizations.action_pin;
+        return l.action_pin;
       case share:
-        return localizations.action_share;
+        return l.action_share;
       case copy:
-        return localizations.action_copy;
+        return flutterL?.copyButtonLabel ?? 'Copy';
     }
   }
 }

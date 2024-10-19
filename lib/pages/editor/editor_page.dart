@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
+import 'package:localmaterialnotes/common/navigation/app_bars/editor_app_bar.dart';
+import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
@@ -107,7 +109,12 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
     final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault<bool>();
 
     return Scaffold(
-      floatingActionButton: showEditorModeButton ? const FabToggleEditorMode() : null,
+      appBar: const TopNavigation(
+        appbar: EditorAppBar(
+          key: Keys.appBarEditor,
+        ),
+      ),
+      floatingActionButton: showEditorModeButton && !note!.deleted ? const FabToggleEditorMode() : null,
       body: ValueListenableBuilder(
         valueListenable: isFleatherEditorEditMode,
         builder: (context, isEditMode, child) {
@@ -126,7 +133,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                         textInputAction: TextInputAction.next,
                         style: Theme.of(context).textTheme.titleLarge,
                         decoration: InputDecoration.collapsed(
-                          hintText: localizations.hint_title,
+                          hintText: l.hint_title,
                         ),
                         controller: titleController,
                         onChanged: (text) => _synchronizeTitle(note!, text),
@@ -151,7 +158,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
               ValueListenableBuilder(
                 valueListenable: fleatherFieldHasFocusNotifier,
                 builder: (context, hasFocus, child) {
-                  return showToolbar && isEditMode
+                  return showToolbar && isEditMode && !note!.deleted
                       ?
                       // Use a SafeArea to prevent the toolbar from displaying under the system bottom UI
                       SafeArea(

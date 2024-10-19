@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/dialogs/confirmation_dialog.dart';
 import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
-import 'package:localmaterialnotes/common/widgets/dialogs/confirmation_dialog.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
-import 'package:localmaterialnotes/routing/routes/routing_route.dart';
+import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
+import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 /// Restores the [note].
 ///
@@ -22,9 +23,9 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async 
 
   if (!await askForConfirmation(
     context,
-    localizations.dialog_restore,
-    localizations.dialog_restore_body(1),
-    localizations.dialog_restore,
+    l.dialog_restore,
+    l.dialog_restore_body(1),
+    l.dialog_restore,
   )) {
     return false;
   }
@@ -33,7 +34,7 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async 
 
   await ref.read(binProvider.notifier).restore(note);
 
-  if (context.mounted && context.route == RoutingRoute.notesEditor) {
+  if (context.mounted && context.location == const NotesEditorRoute.empty().location) {
     context.pop();
   }
 
@@ -48,9 +49,9 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async 
 Future<bool> restoreNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
   if (!await askForConfirmation(
     context,
-    localizations.dialog_restore,
-    localizations.dialog_restore_body(notes.length),
-    localizations.dialog_restore,
+    l.dialog_restore,
+    l.dialog_restore_body(notes.length),
+    l.dialog_restore,
   )) {
     return false;
   }

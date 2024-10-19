@@ -227,18 +227,6 @@ abstract class AppLocalizations {
   /// **'About'**
   String get navigation_settings_about;
 
-  /// Button to validate a dialog.
-  ///
-  /// In en, this message translates to:
-  /// **'Ok'**
-  String get button_ok;
-
-  /// Button to cancel and close a dialog.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get button_cancel;
-
   /// Text of the button to sort the notes list by title.
   ///
   /// In en, this message translates to:
@@ -845,6 +833,36 @@ abstract class AppLocalizations {
   /// **'AGPL-3.0'**
   String get settings_licence_description;
 
+  /// Title of the settings section regarding the logs of the application.
+  ///
+  /// In en, this message translates to:
+  /// **'Logs'**
+  String get settings_about_logs;
+
+  /// Title of the settings tile to copy the logs of the application to the clipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy the logs'**
+  String get settings_copy_logs;
+
+  /// Description of the settings tile to copy the logs of the application to the clipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy the logs of the application to the clipboard'**
+  String get settings_copy_logs_description;
+
+  /// Title of the settings tile to export the logs of the application to a text file.
+  ///
+  /// In en, this message translates to:
+  /// **'Export the logs'**
+  String get settings_export_logs;
+
+  /// Description of the settings tile to export the logs of the application to a text file.
+  ///
+  /// In en, this message translates to:
+  /// **'Export the logs of the application to a text file'**
+  String get settings_export_logs_description;
+
   /// Hint for the text field of the title of the notes.
   ///
   /// In en, this message translates to:
@@ -928,12 +946,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search the notes'**
   String get tooltip_search;
-
-  /// Tooltip for the button to select all the notes while in selection mode in the notes list.
-  ///
-  /// In en, this message translates to:
-  /// **'Select all'**
-  String get tooltip_select_all;
 
   /// Tooltip for the button to unselect all the notes while in selection mode in the notes list.
   ///
@@ -1097,13 +1109,7 @@ abstract class AppLocalizations {
   /// **'Unpin'**
   String get action_unpin;
 
-  /// Swipe or menu action to copy the content of a note.
-  ///
-  /// In en, this message translates to:
-  /// **'Copy'**
-  String get action_copy;
-
-  /// Swipe or menu action to share the title and the content of a note.
+  /// Swipe or menu action to share a note.
   ///
   /// In en, this message translates to:
   /// **'Share'**

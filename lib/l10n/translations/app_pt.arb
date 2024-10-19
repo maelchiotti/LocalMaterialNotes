@@ -1,4 +1,8 @@
 {
+  "app_tagline": "Notas simples, locais, em material design",
+  "@app_tagline": {
+    "description": "Tagline of the application, shown in the about popup."
+  },
   "app_about": "{appName} é um aplicativo de anotações com base em texto, destinado à simplicidade. Abraça Material Design. Ele armazena as notas localmente e não possui nenhuma permissão de internet, então você é o único que pode acessar as notas.",
   "@app_about": {
     "description": "Description of the application, shown in the about popup.",
@@ -8,6 +12,34 @@
         "description": "Name of the application."
       }
     }
+  },
+  "error_snack_bar": "Erro:",
+  "@error_snack_bar": {
+    "description": "Prefix for the error message shown in the error snack bar, before the actual error message."
+  },
+  "error_widget_title": "Ocorreu um erro.",
+  "@error_widget_title": {
+    "description": "Message shown in the error widget shown when a widget fails to build."
+  },
+  "error_widget_description": "Por favor, reporte este problema no GitHub ou por email. Anexe uma captura de tela desta página e os logs que você pode copiar ou exportar abaixo. Por precaução, você também deve exportar as suas notas.",
+  "@error_widget_description": {
+    "description": "Message shown in the error widget shown when a widget fails to build."
+  },
+  "error_widget_button_export_notes": "Exportar notas",
+  "@error_widget_button_export_notes": {
+    "description": "Title of the button to export the notes as JSON on the error widget."
+  },
+  "error_widget_button_copy_logs": "Copiar logs",
+  "@error_widget_button_copy_logs": {
+    "description": "Title of the button to copy the logs to the clipboard on the error widget."
+  },
+  "error_widget_button_export_logs": "Exportar logs",
+  "@error_widget_button_export_logs": {
+    "description": "Title of the button to export the logs in a text file on the error widget."
+  },
+  "error_widget_button_send_mail": "Enviar email",
+  "@error_widget_button_send_mail": {
+    "description": "Title of the button to end a bug report mail on the error widget."
   },
   "navigation_notes": "Notas",
   "@navigation_notes": {
@@ -33,21 +65,25 @@
   "@navigation_settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
+  "navigation_settings_backup": "Backup",
+  "@navigation_settings_backup": {
+    "description": "Title of the settings page regarding the backup functionality."
+  },
   "navigation_settings_about": "Sobre",
   "@navigation_settings_about": {
     "description": "Title of the settings page regarding the information about the application."
   },
-  "button_ok": "Ok",
-  "@button_ok": {
-    "description": "Button to validate a dialog."
-  },
-  "button_cancel": "Cancelar",
-  "@button_cancel": {
-    "description": "Button to cancel and close a dialog."
+  "button_sort_title": "Título",
+  "@button_sort_title": {
+    "description": "Text of the button to sort the notes list by title."
   },
   "settings_appearance": "Aparência",
   "@settings_appearance": {
     "description": "Title of the settings section regarding the application's appearance."
+  },
+  "settings_appearance_description": "Idioma, tema, escala de texto, blocos de notas",
+  "@settings_appearance_description": {
+    "description": "Description of the appearance settings section."
   },
   "settings_appearance_application": "Aplicativo",
   "@settings_appearance_application": {
@@ -56,6 +92,10 @@
   "settings_language": "Idioma",
   "@settings_language": {
     "description": "Title of the language setting tile."
+  },
+  "settings_language_contribute": "Contribuir",
+  "@settings_language_contribute": {
+    "description": "Button to contribute to the localizations, shown on the language setting tile."
   },
   "settings_theme": "Tema",
   "@settings_theme": {
@@ -89,9 +129,21 @@
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
   },
+  "settings_text_scaling": "Ajuste da escala do texto",
+  "@settings_text_scaling": {
+    "description": "Title of the text scale setting tile."
+  },
   "settings_appearance_notes_tiles": "Blocos de notas",
   "@settings_appearance_notes_tiles": {
     "description": "Title of the sub-section regarding the notes tiles under the appearance settings."
+  },
+  "settings_show_titles_only": "Títulos apenas",
+  "@settings_show_titles_only": {
+    "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
+  },
+  "settings_show_titles_only_description": "Mostrar apenas os títulos das notas",
+  "@settings_show_titles_only_description": {
+    "description": "Description of the setting tile to only show the titles of the notes in the notes tiles."
   },
   "settings_show_tiles_background": "Plano de Fundo",
   "@settings_show_tiles_background": {
@@ -108,6 +160,14 @@
   "settings_behavior_application": "Aplicativo",
   "@settings_behavior_application": {
     "description": "Title of the sub-section regarding the application under the behavior settings."
+  },
+  "settings_confirmations_title_none": "Nunca",
+  "@settings_confirmations_title_none": {
+    "description": "Value of the setting to never show a confirmation dialog when performing an action on a note."
+  },
+  "settings_confirmations_title_all": "Sempre",
+  "@settings_confirmations_title_all": {
+    "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
   },
   "settings_flag_secure": "Sinalizar o aplicativo como seguro",
   "@settings_flag_secure": {
@@ -161,6 +221,22 @@
   "@settings_show_toolbar_description": {
     "description": "Description of the setting tile to enable the toolbar for advanced formatting options in the editor."
   },
+  "settings_editor_behavior": "Comportamento",
+  "@settings_editor_behavior": {
+    "description": "Title of the settings section regarding the behavior of the editor"
+  },
+  "settings_show_editor_mode_button": "Botão modo editor",
+  "@settings_show_editor_mode_button": {
+    "description": "Title of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
+  },
+  "settings_show_editor_mode_button_description": "Habilite o botão para alternar o editor entre o modo de edição e o modo de leitura",
+  "@settings_show_editor_mode_button_description": {
+    "description": "Description of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
+  },
+  "settings_open_editor_reading_mode": "Abrir no modo de leitura",
+  "@settings_open_editor_reading_mode": {
+    "description": "Title of the setting tile to enable opening the editor in reading mode by default."
+  },
   "settings_editor_appearance": "Aparência",
   "@settings_editor_appearance": {
     "description": "Title of the settings section regarding the appearance of the editor"
@@ -172,6 +248,14 @@
   "settings_use_paragraph_spacing_description": "Usar espaçamento entre parágrafos",
   "@settings_use_paragraph_spacing_description": {
     "description": "Description of the setting tile to enable the spacing between paragraphs in the notes content."
+  },
+  "settings_backup": "Backup",
+  "@settings_backup": {
+    "description": "Title of the settings section regarding the backup functionality."
+  },
+  "settings_backup_description": "Exportação manual e automática, criptografia, importação",
+  "@settings_backup_description": {
+    "description": "Description of the backup settings section."
   },
   "settings_backup_import": "Importar",
   "@settings_backup_import": {
@@ -204,6 +288,10 @@
   "settings_auto_export_description": "Exportar automaticamente as notas para um arquivo JSON (lixeira incluída) que pode ser importado de volta",
   "@settings_auto_export_description": {
     "description": "Description of the settings tile to enable the automatic export of the notes."
+  },
+  "settings_auto_export_frequency": "Frequência",
+  "@settings_auto_export_frequency": {
+    "description": "Title of the settings tile to choose the frequency of the automatic exports of the notes."
   },
   "settings_about": "Sobre",
   "@settings_about": {
@@ -292,10 +380,6 @@
   "tooltip_search": "Pesquisar por anotações",
   "@tooltip_search": {
     "description": "Tooltip for the button to open the search view to search through the notes."
-  },
-  "tooltip_select_all": "Selecionar tudo",
-  "@tooltip_select_all": {
-    "description": "Tooltip for the button to select all the notes while in selection mode in the notes list."
   },
   "tooltip_unselect_all": "Desmarcar tudo",
   "@tooltip_unselect_all": {

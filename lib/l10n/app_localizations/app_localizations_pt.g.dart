@@ -12,7 +12,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get app_name => 'Material Notes';
 
   @override
-  String get app_tagline => 'Simple, local, material design notes';
+  String get app_tagline => 'Notas simples, locais, em material design';
 
   @override
   String app_about(String appName) {
@@ -20,33 +20,33 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get error_snack_bar => 'Error:';
+  String get error_snack_bar => 'Erro:';
 
   @override
-  String get error_widget_title => 'An error has occurred.';
+  String get error_widget_title => 'Ocorreu um erro.';
 
   @override
   String get error_widget_description =>
-      'Please report this issue on GitHub or via mail. Attach a screenshot of this page and the logs that you can copy or export below. As a precaution, you should also export your notes.';
+      'Por favor, reporte este problema no GitHub ou por email. Anexe uma captura de tela desta página e os logs que você pode copiar ou exportar abaixo. Por precaução, você também deve exportar as suas notas.';
 
   @override
   String get error_widget_disabled_secure_flag =>
       'The setting to flag the app as secure is disabled until the next restart to enable screenshots.';
 
   @override
-  String get error_widget_button_export_notes => 'Export notes';
+  String get error_widget_button_export_notes => 'Exportar notas';
 
   @override
-  String get error_widget_button_copy_logs => 'Copy logs';
+  String get error_widget_button_copy_logs => 'Copiar logs';
 
   @override
-  String get error_widget_button_export_logs => 'Export logs';
+  String get error_widget_button_export_logs => 'Exportar logs';
 
   @override
   String get error_widget_button_create_github_issue => 'Create GitHub issue';
 
   @override
-  String get error_widget_button_send_mail => 'Send mail';
+  String get error_widget_button_send_mail => 'Enviar email';
 
   @override
   String get navigation_notes => 'Notas';
@@ -73,13 +73,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get navigation_settings_about => 'Sobre';
 
   @override
-  String get button_ok => 'Ok';
-
-  @override
-  String get button_cancel => 'Cancelar';
-
-  @override
-  String get button_sort_title => 'Title';
+  String get button_sort_title => 'Título';
 
   @override
   String get button_sort_ascending => 'Ascending';
@@ -88,7 +82,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_appearance => 'Aparência';
 
   @override
-  String get settings_appearance_description => 'Language, theme, text scaling, notes tiles';
+  String get settings_appearance_description => 'Idioma, tema, escala de texto, blocos de notas';
 
   @override
   String get settings_appearance_application => 'Aplicativo';
@@ -97,7 +91,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_language => 'Idioma';
 
   @override
-  String get settings_language_contribute => 'Contribute';
+  String get settings_language_contribute => 'Contribuir';
 
   @override
   String get settings_theme => 'Tema';
@@ -124,16 +118,16 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_black_theming_description => 'Use um fundo preto no modo escuro';
 
   @override
-  String get settings_text_scaling => 'Text scaling';
+  String get settings_text_scaling => 'Ajuste da escala do texto';
 
   @override
   String get settings_appearance_notes_tiles => 'Blocos de notas';
 
   @override
-  String get settings_show_titles_only => 'Titles only';
+  String get settings_show_titles_only => 'Títulos apenas';
 
   @override
-  String get settings_show_titles_only_description => 'Only show the titles of the notes';
+  String get settings_show_titles_only_description => 'Mostrar apenas os títulos das notas';
 
   @override
   String get settings_show_titles_only_disable_in_search_view => 'Disable titles only in search view';
@@ -178,13 +172,13 @@ class AppLocalizationsPt extends AppLocalizations {
       'When to show a confirmation dialog when performing an action on a note';
 
   @override
-  String get settings_confirmations_title_none => 'Never';
+  String get settings_confirmations_title_none => 'Nunca';
 
   @override
   String get settings_confirmations_title_irreversible => 'Irreversible actions only';
 
   @override
-  String get settings_confirmations_title_all => 'Always';
+  String get settings_confirmations_title_all => 'Sempre';
 
   @override
   String get settings_flag_secure => 'Sinalizar o aplicativo como seguro';
@@ -241,17 +235,17 @@ class AppLocalizationsPt extends AppLocalizations {
       'Mostrar a barra de ferramentas do editor para ativar a formatação avançada de texto';
 
   @override
-  String get settings_editor_behavior => 'Behavior';
+  String get settings_editor_behavior => 'Comportamento';
 
   @override
-  String get settings_show_editor_mode_button => 'Editor mode button';
+  String get settings_show_editor_mode_button => 'Botão modo editor';
 
   @override
   String get settings_show_editor_mode_button_description =>
-      'Enable the button to toggle the editor between editing mode and reading mode';
+      'Habilite o botão para alternar o editor entre o modo de edição e o modo de leitura';
 
   @override
-  String get settings_open_editor_reading_mode => 'Open in reading mode';
+  String get settings_open_editor_reading_mode => 'Abrir no modo de leitura';
 
   @override
   String get settings_open_editor_reading_mode_description => 'Open the editor in reading mode by default';
@@ -276,7 +270,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_backup => 'Backup';
 
   @override
-  String get settings_backup_description => 'Manual and automatic export, encryption, import';
+  String get settings_backup_description => 'Exportação manual e automática, criptografia, importação';
 
   @override
   String get settings_backup_import => 'Importar';
@@ -315,7 +309,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'Exportar automaticamente as notas para um arquivo JSON (lixeira incluída) que pode ser importado de volta';
 
   @override
-  String get settings_auto_export_frequency => 'Frequency';
+  String get settings_auto_export_frequency => 'Frequência';
 
   @override
   String settings_auto_export_frequency_value(String frequency) {
@@ -412,6 +406,21 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settings_licence_description => 'AGPL-3.0';
 
   @override
+  String get settings_about_logs => 'Logs';
+
+  @override
+  String get settings_copy_logs => 'Copy the logs';
+
+  @override
+  String get settings_copy_logs_description => 'Copy the logs of the application to the clipboard';
+
+  @override
+  String get settings_export_logs => 'Export the logs';
+
+  @override
+  String get settings_export_logs_description => 'Export the logs of the application to a text file';
+
+  @override
   String get hint_title => 'Título';
 
   @override
@@ -452,9 +461,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get tooltip_search => 'Pesquisar por anotações';
-
-  @override
-  String get tooltip_select_all => 'Selecionar tudo';
 
   @override
   String get tooltip_unselect_all => 'Desmarcar tudo';
@@ -578,9 +584,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get action_unpin => 'Unpin';
-
-  @override
-  String get action_copy => 'Copy';
 
   @override
   String get action_share => 'Share';
