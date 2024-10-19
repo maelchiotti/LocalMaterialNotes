@@ -75,7 +75,7 @@ class AutoExportUtils {
 
   /// Returns the default automatic export directory.
   Future<String> get autoExportDirectoryDefault async {
-    final baseDirectory = (await getDownloadsDirectory() ?? await getApplicationDocumentsDirectory()).path;
+    final baseDirectory = (await getApplicationDocumentsDirectory()).path;
 
     return join(baseDirectory, 'backups');
   }
