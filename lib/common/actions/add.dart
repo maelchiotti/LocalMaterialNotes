@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/actions/select.dart';
-import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
@@ -10,11 +9,12 @@ import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 /// Adds a note.
 ///
-/// An optional [content] can be specified for the note.
-///
-/// Exits the selection mode and navigates the app to the editor page.
+/// A [content] can be specified when the note is created from a sharing intent.
 Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) async {
-  exitSelectionMode(context, ref);
+  // Exit the selection mode if the note was created inside the app, not from a sharing intent
+  if (content == null) {
+    exitSelectionMode(context, ref);
+  }
 
   final note = content == null ? Note.empty() : Note.content(content);
 
@@ -29,7 +29,5 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) asy
     return;
   }
 
-  // If the editor is already opened with another note, replace the route with the new editor
-  const editorRoute = NotesEditorRoute(readOnly: false, autoFocus: true);
-  context.location == editorRoute.location ? editorRoute.pushReplacement(context) : editorRoute.push(context);
+  NotesEditorRoute(readOnly: false, autoFocus: true).push(context);
 }
