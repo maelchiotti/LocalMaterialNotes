@@ -178,7 +178,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
                     (locale) {
                       return (
                         value: locale,
-                        title: locale.nativeDisplayLanguage,
+                        title: locale.nativeDisplayLanguage.capitalized,
                         subtitle: LocalizationCompletion.getFormattedPercentage(locale),
                       );
                     },
