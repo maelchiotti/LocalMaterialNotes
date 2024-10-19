@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.7.2 - 2024-10-19
+
+### Added
+
+- Python script to convert Samsung Notes exports to a format compatible with Material Notes (see the GitHub repository)
+- Ability to copy the logs to the clipboard and to export them to a text file
+
+### Changed
+
+- Improve the style of the settings tiles
+
+### Fixed
+
+- Using the system back button or back gesture after opening a dialog, sheet or menu closes the app
+- Auto export directory picker fails when choosing a directory that is not at the root of the storage
+- JSON export file using the .txt extension instead of .json
+- Buttons in the editor app bar not disabled in reading mode
+- Button to toggle between editing and reading mode not hidden for deleted notes
+
 ## 1.7.1 - 2024-10-11
 
 ### Added

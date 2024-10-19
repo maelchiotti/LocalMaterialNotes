@@ -1,0 +1,13 @@
+AJOUTÉ
+- Script pour convertir exports de Samsung Notes (voir dépôt GitHub)
+- Possibilité de copier les logs et les exporter vers un fichier
+
+MODIFIÉ
+- Amélioration du style des tuiles de paramètres
+
+CORRIGÉ
+- Bouton ou geste retour du système ferme l'application
+- Sélecteur du répertoire d'export automatique échoue
+- Fichier d'export JSON avec extension .txt
+- Boutons de la barre de l'éditeur pas désactivés en mode lecture
+- Bouton du mode de l'éditeur pas masqué pour les notes supprimées
