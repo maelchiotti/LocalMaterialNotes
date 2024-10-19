@@ -38,7 +38,7 @@ class _LinkDialogState extends State<LinkDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
+    return AlertDialog.adaptive(
       title: Text(l.dialog_add_link),
       content: TextField(
         controller: _linkController,

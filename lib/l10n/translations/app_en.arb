@@ -697,6 +697,10 @@
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
   },
+  "action_share": "Share",
+  "@action_share": {
+    "description": "Swipe or menu action to share a note."
+  },
   "action_delete": "Delete",
   "@action_delete": {
     "description": "Swipe or menu action to delete a note (moving it to the bin)."

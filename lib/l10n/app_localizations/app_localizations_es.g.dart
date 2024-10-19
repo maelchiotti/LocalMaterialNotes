@@ -592,6 +592,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get action_unpin => 'Desfijar';
 
   @override
+  String get action_share => 'Compartir';
+
+  @override
   String get action_delete => 'Eliminar';
 
   @override

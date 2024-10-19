@@ -5,7 +5,6 @@ import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
-import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
@@ -55,51 +54,19 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
     });
   }
 
-  /// Asks the user to choose which action should be triggered when swiping the notes tiles in the [swipeDirection].
-  Future<void> _selectSwipeAction(SwipeDirection swipeDirection) async {
-    SwipeAction swipeActionPreference;
-    switch (swipeDirection) {
-      case SwipeDirection.right:
-        swipeActionPreference = swipeActionsNotifier.value.$1;
-      case SwipeDirection.left:
-        swipeActionPreference = swipeActionsNotifier.value.$2;
-    }
+  /// Sets the new right [swipeAction].
+  Future<void> _submittedSwipeRightAction(SwipeAction swipeAction) async {
+    setState(() {
+      PreferencesUtils().set<String>(PreferenceKey.swipeRightAction, swipeAction.name);
+      swipeActionsNotifier.value = (right: swipeAction, left: swipeActionsNotifier.value.left);
+    });
+  }
 
-    await showAdaptiveDialog<SwipeAction>(
-      context: context,
-      useRootNavigator: false,
-      builder: (context) {
-        return SimpleDialog(
-          clipBehavior: Clip.hardEdge,
-          title: Text(
-            swipeDirection == SwipeDirection.right ? l.settings_swipe_action_right : l.settings_swipe_action_left,
-          ),
-          children: SwipeAction.values.map((swipeAction) {
-            return RadioListTile<SwipeAction>(
-              value: swipeAction,
-              groupValue: swipeActionPreference,
-              title: Text(swipeAction.title()),
-              selected: swipeActionPreference == swipeAction,
-              onChanged: (swipeAction) => Navigator.pop(context, swipeAction),
-            );
-          }).toList(),
-        );
-      },
-    ).then((swipeAction) {
-      if (swipeAction == null) {
-        return;
-      }
-
-      setState(() {
-        switch (swipeDirection) {
-          case SwipeDirection.right:
-            PreferencesUtils().set<String>(PreferenceKey.swipeRightAction, swipeAction.name);
-            swipeActionsNotifier.value = (swipeAction, swipeActionsNotifier.value.$2);
-          case SwipeDirection.left:
-            PreferencesUtils().set<String>(PreferenceKey.swipeLeftAction, swipeAction.name);
-            swipeActionsNotifier.value = (swipeActionsNotifier.value.$1, swipeAction);
-        }
-      });
+  /// Sets the new left [swipeAction].
+  Future<void> _submittedSwipeLeftAction(SwipeAction swipeAction) async {
+    setState(() {
+      PreferencesUtils().set<String>(PreferenceKey.swipeLeftAction, swipeAction.name);
+      swipeActionsNotifier.value = (right: swipeActionsNotifier.value.right, left: swipeAction);
     });
   }
 
@@ -117,8 +84,8 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
     final confirmations = Confirmations.fromPreference();
     final flagSecure = PreferenceKey.flagSecure.getPreferenceOrDefault<bool>();
 
-    final swipeRightAction = swipeActionsNotifier.value.$1;
-    final swipeLeftAction = swipeActionsNotifier.value.$2;
+    final swipeRightAction = swipeActionsNotifier.value.right;
+    final swipeLeftAction = swipeActionsNotifier.value.left;
 
     return Scaffold(
       appBar: const TopNavigation(
@@ -152,19 +119,41 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
               divider: null,
               title: l.settings_behavior_swipe_actions,
               tiles: [
-                SettingActionTile(
+                SettingSingleOptionTile.detailed(
                   icon: Icons.swipe_right,
                   title: l.settings_swipe_action_right,
                   value: swipeRightAction.title(),
                   description: l.settings_swipe_action_right_description,
-                  onTap: () => _selectSwipeAction(SwipeDirection.right),
+                  dialogTitle: l.settings_swipe_action_right,
+                  options: SwipeAction.values.map(
+                    (swipeAction) {
+                      return (
+                        value: swipeAction,
+                        title: swipeAction.title(),
+                        subtitle: null,
+                      );
+                    },
+                  ).toList(),
+                  initialOption: swipeRightAction,
+                  onSubmitted: _submittedSwipeRightAction,
                 ),
-                SettingActionTile(
+                SettingSingleOptionTile.detailed(
                   icon: Icons.swipe_left,
                   title: l.settings_swipe_action_left,
                   value: swipeLeftAction.title(),
                   description: l.settings_swipe_action_left_description,
-                  onTap: () => _selectSwipeAction(SwipeDirection.left),
+                  dialogTitle: l.settings_swipe_action_left,
+                  options: SwipeAction.values.map(
+                    (swipeAction) {
+                      return (
+                        value: swipeAction,
+                        title: swipeAction.title(),
+                        subtitle: null,
+                      );
+                    },
+                  ).toList(),
+                  initialOption: swipeLeftAction,
+                  onSubmitted: _submittedSwipeLeftAction,
                 ),
               ],
             ),

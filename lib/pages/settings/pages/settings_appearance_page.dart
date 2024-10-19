@@ -40,9 +40,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     );
   }
 
-  /// Asks the user to select the language of the application.
-  ///
-  /// Restarts the application if the language is changed.
+  /// Sets the language to the new [locale].
   Future<void> _submittedLanguage(Locale locale) async {
     await LocaleUtils().setLocale(locale);
 
@@ -54,7 +52,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     await Restart.restartApp();
   }
 
-  /// Asks the user to select the theme of the application.
+  /// Sets the theme to the new [themeMode].
   Future<void> _submittedTheme(ThemeMode themeMode) async {
     ThemeUtils().setThemeMode(themeMode);
   }
@@ -77,10 +75,12 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     blackThemingNotifier.value = toggled;
   }
 
+  /// Updates the scaling of the text to the new [textScaling] when the slider of the text scaling dialog is changed.
   Future<void> _changedTextScaling(double textScaling) async {
     textScalingNotifier.value = textScaling;
   }
 
+  /// Sets the text scaling to the new [textScaling].
   Future<void> _submittedTextScaling(double textScaling) async {
     setState(() {
       PreferencesUtils().set<double>(PreferenceKey.textScaling, textScaling);
@@ -89,6 +89,10 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     textScalingNotifier.value = textScaling;
   }
 
+  /// Resets the text scaling to the preference value.
+  ///
+  /// Called when the dialog to choose the text scaling is canceled, to revert changes made in real time
+  /// when the slider is changed.
   Future<void> _canceledTextScaling() async {
     textScalingNotifier.value = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
   }
