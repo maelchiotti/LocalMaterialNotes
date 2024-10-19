@@ -53,7 +53,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   }
 
   /// Sets the theme to the new [themeMode].
-  Future<void> _submittedTheme(ThemeMode themeMode) async {
+  void _submittedTheme(ThemeMode themeMode) {
     ThemeUtils().setThemeMode(themeMode);
   }
 
@@ -76,12 +76,12 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   }
 
   /// Updates the scaling of the text to the new [textScaling] when the slider of the text scaling dialog is changed.
-  Future<void> _changedTextScaling(double textScaling) async {
+  void _changedTextScaling(double textScaling) {
     textScalingNotifier.value = textScaling;
   }
 
   /// Sets the text scaling to the new [textScaling].
-  Future<void> _submittedTextScaling(double textScaling) async {
+  void _submittedTextScaling(double textScaling) {
     setState(() {
       PreferencesUtils().set<double>(PreferenceKey.textScaling, textScaling);
     });
@@ -93,7 +93,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   ///
   /// Called when the dialog to choose the text scaling is canceled, to revert changes made in real time
   /// when the slider is changed.
-  Future<void> _canceledTextScaling() async {
+  void _canceledTextScaling() {
     textScalingNotifier.value = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
   }
 

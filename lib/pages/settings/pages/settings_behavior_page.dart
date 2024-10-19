@@ -22,40 +22,14 @@ class SettingsBehaviorPage extends StatefulWidget {
 
 class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
   /// Asks the user to choose which confirmations should be shown.
-  Future<void> _selectConfirmations() async {
-    final confirmationsPreference = Confirmations.fromPreference();
-
-    await showAdaptiveDialog<Confirmations>(
-      context: context,
-      useRootNavigator: false,
-      builder: (context) {
-        return SimpleDialog(
-          clipBehavior: Clip.hardEdge,
-          title: Text(l.settings_confirmations),
-          children: Confirmations.values.map((confirmationsValue) {
-            return RadioListTile<Confirmations>(
-              value: confirmationsValue,
-              groupValue: confirmationsPreference,
-              title: Text(confirmationsValue.title),
-              selected: confirmationsPreference == confirmationsValue,
-              onChanged: (confirmations) => Navigator.pop(context, confirmations),
-            );
-          }).toList(),
-        );
-      },
-    ).then((confirmations) {
-      if (confirmations == null) {
-        return;
-      }
-
-      setState(() {
-        PreferencesUtils().set<String>(PreferenceKey.confirmations, confirmations.name);
-      });
+  void _submittedConfirmations(Confirmations confirmations) {
+    setState(() {
+      PreferencesUtils().set<String>(PreferenceKey.confirmations, confirmations.name);
     });
   }
 
   /// Sets the new right [swipeAction].
-  Future<void> _submittedSwipeRightAction(SwipeAction swipeAction) async {
+  void _submittedSwipeRightAction(SwipeAction swipeAction) {
     setState(() {
       PreferencesUtils().set<String>(PreferenceKey.swipeRightAction, swipeAction.name);
       swipeActionsNotifier.value = (right: swipeAction, left: swipeActionsNotifier.value.left);
@@ -63,7 +37,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
   }
 
   /// Sets the new left [swipeAction].
-  Future<void> _submittedSwipeLeftAction(SwipeAction swipeAction) async {
+  void _submittedSwipeLeftAction(SwipeAction swipeAction) {
     setState(() {
       PreferencesUtils().set<String>(PreferenceKey.swipeLeftAction, swipeAction.name);
       swipeActionsNotifier.value = (right: swipeActionsNotifier.value.right, left: swipeAction);
@@ -99,12 +73,23 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
               divider: null,
               title: l.settings_behavior_application,
               tiles: [
-                SettingActionTile(
+                SettingSingleOptionTile.detailed(
                   icon: Icons.warning,
                   title: l.settings_confirmations,
                   value: confirmations.title,
                   description: l.settings_confirmations_description,
-                  onTap: _selectConfirmations,
+                  dialogTitle: l.settings_confirmations,
+                  options: Confirmations.values.map(
+                    (confirmation) {
+                      return (
+                        value: confirmation,
+                        title: confirmation.title,
+                        subtitle: null,
+                      );
+                    },
+                  ).toList(),
+                  initialOption: confirmations,
+                  onSubmitted: _submittedConfirmations,
                 ),
                 SettingSwitchTile(
                   icon: Icons.security,
