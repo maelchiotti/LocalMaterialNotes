@@ -1,0 +1,13 @@
+ADDED
+- Script to convert Samsung Notes exports (see the GitHub repository)
+- Ability to copy the logs and to export them to a file
+
+CHANGED
+- Improve the style of the settings tiles
+
+FIXED
+- Using the system back button or back gesture closes the app
+- Auto export directory picker fails when choosing a directory
+- JSON export file using the .txt extension instead of .json
+- Buttons in the editor app bar not disabled in reading mode
+- Button to toggle editor mode not hidden for deleted notes
