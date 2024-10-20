@@ -57,3 +57,6 @@ fastlane/report.xml
 
 # Tests
 integration_test/test_bundle.dart
+
+# Generated files
+*.g.dart
