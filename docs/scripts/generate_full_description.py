@@ -11,8 +11,9 @@ for language in os.listdir(path):
 
     yaml_filepath = os.path.join(path, language, "full_description.yaml")
 
+    # If the full description is not translated for that language, use the english one
     if not os.path.isfile(yaml_filepath):
-        continue
+        yaml_filepath = os.path.join(path, "en-US", "full_description.yaml")
 
     with open(yaml_filepath, mode="r", encoding="utf-8") as yaml_stream:
         try:

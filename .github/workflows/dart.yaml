@@ -17,6 +17,8 @@ jobs:
           channel: 'stable'
           flutter-version-file: pubspec.yaml
       - run: |
+          dart run build_runner build
+          flutter gen-l10n
           flutter pub get
           dart analyze --fatal-infos
 
