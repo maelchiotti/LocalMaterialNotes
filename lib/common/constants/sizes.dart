@@ -31,6 +31,9 @@ enum Sizes {
 
   /// Spacing between the notes tiles in the grid layout.
   notesGridLayoutSpacing(8),
+
+  /// Size of the color indicators.
+  colorIndicator(40),
   ;
 
   /// The size to apply.

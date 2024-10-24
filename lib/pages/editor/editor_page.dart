@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/editor_app_bar.dart';
@@ -11,9 +12,10 @@ import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_field.dart';
+import 'package:localmaterialnotes/pages/editor/widgets/editor_labels_list.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_toolbar.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/fab_toggle_editor_mode.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
@@ -139,7 +141,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                         onChanged: (text) => _synchronizeTitle(note!, text),
                         onSubmitted: _requestEditorFocus,
                       ),
-                      Padding(padding: Paddings.vertical(8)),
+                      Gap(8.0),
                       Expanded(
                         child: Focus(
                           onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,
@@ -155,6 +157,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                   ),
                 ),
               ),
+              EditorLabelsList(),
               ValueListenableBuilder(
                 valueListenable: fleatherFieldHasFocusNotifier,
                 builder: (context, hasFocus, child) {
@@ -167,7 +170,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                             child: EditorToolbar(editorController: editorController),
                           ),
                         )
-                      : Container();
+                      : SizedBox.shrink();
                 },
               ),
             ],

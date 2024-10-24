@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
+
+import 'notes/current_note_notifier.dart';
 
 /// Notifier for the app theme mode.
 final themeModeNotifier = ValueNotifier(ThemeUtils().themeMode);
@@ -18,8 +19,11 @@ final blackThemingNotifier = ValueNotifier(ThemeUtils().useBlackTheming);
 /// Notifier for the text scaling.
 final textScalingNotifier = ValueNotifier(PreferenceKey.textScaling.getPreferenceOrDefault<double>());
 
-/// Notifier for whether the selection mode is active.
-final isSelectionModeNotifier = ValueNotifier(false);
+/// Notifier for whether the notes selection mode is active.
+final isNotesSelectionModeNotifier = ValueNotifier(false);
+
+/// Notifier for whether the labels selection mode is active.
+final isLabelsSelectionModeNotifier = ValueNotifier(false);
 
 /// Notifier for the notes layout.
 final layoutNotifier = ValueNotifier(Layout.fromPreference());
@@ -33,14 +37,14 @@ final showTilesBackgroundNotifier = ValueNotifier(PreferenceKey.showTilesBackgro
 /// Notifier for whether to show the separators between the notes tiles.
 final showSeparatorsNotifier = ValueNotifier(PreferenceKey.showSeparators.getPreferenceOrDefault<bool>());
 
-/// Notifier for the actions on the notes tiles swipe.
+/// Notifier for the swipe actions on the notes tiles.
 final ValueNotifier<({SwipeAction right, SwipeAction left})> swipeActionsNotifier = ValueNotifier((
   right: SwipeAction.rightFromPreference(),
   left: SwipeAction.leftFromPreference(),
 ));
 
 /// Notifier for the currently displayed note.
-final currentNoteNotifier = ValueNotifier<Note?>(null);
+final currentNoteNotifier = CurrentNoteNotifier();
 
 /// Notifier for the fleather editor controller of the currently displayed note.
 final fleatherControllerNotifier = ValueNotifier<FleatherController?>(null);

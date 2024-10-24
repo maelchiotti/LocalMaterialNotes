@@ -3,10 +3,10 @@ import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
 
-/// Dismissible widget for the delete swipe action.
-class SwipeActionDismissible extends StatefulWidget {
+/// Dismissible widget for the note swipe actions.
+class NoteTileDismissible extends StatefulWidget {
   /// Default constructor.
-  const SwipeActionDismissible({
+  const NoteTileDismissible({
     super.key,
     required this.swipeAction,
     required this.swipeDirection,
@@ -23,20 +23,17 @@ class SwipeActionDismissible extends StatefulWidget {
   final bool alternative;
 
   @override
-  State<SwipeActionDismissible> createState() => _SwipeActionDismissibleState();
+  State<NoteTileDismissible> createState() => _NoteTileDismissibleState();
 }
 
-class _SwipeActionDismissibleState extends State<SwipeActionDismissible> {
-  /// Whether the swipe action is dangerous.
-  bool get dangerous {
-    return widget.swipeAction.dangerous ?? false;
-  }
-
+class _NoteTileDismissibleState extends State<NoteTileDismissible> {
   /// Icon of the swipe action to display.
   Widget get icon {
     return Icon(
-      widget.alternative ? widget.swipeAction.alternativeIcon : widget.swipeAction.icon,
-      color: dangerous
+      widget.alternative && widget.swipeAction.alternativeIcon != null
+          ? widget.swipeAction.alternativeIcon
+          : widget.swipeAction.icon,
+      color: widget.swipeAction.dangerous
           ? Theme.of(context).colorScheme.onErrorContainer
           : Theme.of(context).colorScheme.onTertiaryContainer,
     );
@@ -47,7 +44,7 @@ class _SwipeActionDismissibleState extends State<SwipeActionDismissible> {
     return Text(
       widget.swipeAction.title(widget.alternative),
       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            color: dangerous
+            color: widget.swipeAction.dangerous
                 ? Theme.of(context).colorScheme.onErrorContainer
                 : Theme.of(context).colorScheme.onTertiaryContainer,
           ),
@@ -56,7 +53,9 @@ class _SwipeActionDismissibleState extends State<SwipeActionDismissible> {
 
   /// Background color of the widget.
   Color get backgroundColor {
-    return dangerous ? Theme.of(context).colorScheme.errorContainer : Theme.of(context).colorScheme.tertiaryContainer;
+    return widget.swipeAction.dangerous
+        ? Theme.of(context).colorScheme.errorContainer
+        : Theme.of(context).colorScheme.tertiaryContainer;
   }
 
   @override

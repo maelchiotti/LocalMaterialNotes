@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:localmaterialnotes/common/actions/notes/select.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/dialogs/confirmation_dialog.dart';
 import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
@@ -32,13 +33,13 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note) async 
 
   currentNoteNotifier.value = null;
 
-  await ref.read(binProvider.notifier).restore(note);
+  final succeeded = await ref.read(binProvider.notifier).restore(note);
 
   if (context.mounted && context.location == const NotesEditorRoute.empty().location) {
     context.pop();
   }
 
-  return true;
+  return succeeded;
 }
 
 /// Restores the [notes].
@@ -56,7 +57,11 @@ Future<bool> restoreNotes(BuildContext context, WidgetRef ref, List<Note> notes)
     return false;
   }
 
-  await ref.read(binProvider.notifier).restoreAll(notes);
+  final succeeded = await ref.read(binProvider.notifier).restoreAll(notes);
 
-  return true;
+  if (context.mounted) {
+    exitNotesSelectionMode(context, ref);
+  }
+
+  return succeeded;
 }

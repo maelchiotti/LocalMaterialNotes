@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/select.dart';
+import 'package:localmaterialnotes/common/actions/notes/select.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
 import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
@@ -12,7 +12,7 @@ import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 /// A [content] can be specified when the note is created from a sharing intent.
 Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) async {
   if (isSelectionModeNotifier.value) {
-    exitSelectionMode(context, ref);
+    exitNotesSelectionMode(context, ref);
   }
 
   final note = content == null ? Note.empty() : Note.content(content);

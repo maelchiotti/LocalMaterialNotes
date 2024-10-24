@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/copy.dart';
-import 'package:localmaterialnotes/common/actions/delete.dart';
-import 'package:localmaterialnotes/common/actions/pin.dart';
-import 'package:localmaterialnotes/common/actions/share.dart';
+import 'package:localmaterialnotes/common/actions/notes/copy.dart';
+import 'package:localmaterialnotes/common/actions/notes/delete.dart';
+import 'package:localmaterialnotes/common/actions/notes/pin.dart';
+import 'package:localmaterialnotes/common/actions/notes/select.dart';
+import 'package:localmaterialnotes/common/actions/notes/share.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/constants/sizes.dart';
+import 'package:localmaterialnotes/common/extensions/color_extension.dart';
 import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/widgets/notes/swipe_action_dismissible.dart';
+import 'package:localmaterialnotes/common/widgets/notes/note_tile_dismissible.dart';
+import 'package:localmaterialnotes/common/widgets/notes/note_tile_labels_list.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
 import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
@@ -53,7 +54,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   ///   - Whether the [showTilesBackground] setting is enabled.
   ///
   /// If none are `true`, then `null` is returned.
-  Color? _backgroundColor(bool showTilesBackground) {
+  Color? getBackgroundColor(bool showTilesBackground) {
     if (widget.searchView) {
       return Theme.of(context).colorScheme.surfaceContainerHigh;
     } else if (widget.note.selected) {
@@ -72,7 +73,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   ///   - Whether the [showTilesBackground] setting is enabled.
   ///
   /// If neither are `true`, then [BorderRadius.zero] is returned.
-  BorderRadius _borderRadius(Layout layout, bool showTilesBackground) {
+  BorderRadius getBorderRadius(Layout layout, bool showTilesBackground) {
     return layout == Layout.grid || showTilesBackground ? BorderRadius.circular(16) : BorderRadius.zero;
   }
 
@@ -83,7 +84,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   ///   - right only : [DismissDirection.startToEnd]
   ///   - left only : [DismissDirection.endToStart]
   ///   - none : [DismissDirection.none]
-  DismissDirection _dismissDirection(SwipeAction rightSwipeAction, SwipeAction leftSwipeAction) {
+  DismissDirection getDismissDirection(SwipeAction rightSwipeAction, SwipeAction leftSwipeAction) {
     // If the note is deleted, no swipe actions are available
     if (widget.note.deleted) {
       return DismissDirection.none;
@@ -102,103 +103,93 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
   /// Returns the main and the secondary dismissible widgets for the [rightSwipeAction] and the [leftSwipeAction],
   /// depending on the [direction].
-  (Widget?, Widget?) _dismissibleWidgets(
+  ({Widget? main, Widget? secondary}) getDismissibleWidgets(
     DismissDirection direction,
     SwipeAction rightSwipeAction,
     SwipeAction leftSwipeAction,
   ) {
     // If the note is deleted, the swipe actions are not available
     if (widget.note.deleted) {
-      return (null, null);
+      return (main: null, secondary: null);
     }
 
     switch (direction) {
       case DismissDirection.none:
-        return (null, null);
+        return (main: null, secondary: null);
       case DismissDirection.horizontal:
         return (
-          _dismissibleWidget(rightSwipeAction, SwipeDirection.right),
-          _dismissibleWidget(leftSwipeAction, SwipeDirection.left)
+          main: getDismissibleWidget(rightSwipeAction, SwipeDirection.right),
+          secondary: getDismissibleWidget(leftSwipeAction, SwipeDirection.left)
         );
       case DismissDirection.startToEnd:
-        return (_dismissibleWidget(rightSwipeAction, SwipeDirection.right), null);
+        return (main: getDismissibleWidget(rightSwipeAction, SwipeDirection.right), secondary: null);
       case DismissDirection.endToStart:
-        return (_dismissibleWidget(leftSwipeAction, SwipeDirection.left), null);
+        return (main: getDismissibleWidget(leftSwipeAction, SwipeDirection.left), secondary: null);
       default:
         throw Exception('Unexpected dismiss direction while building dismissible widgets: $direction');
     }
   }
 
   /// Returns the dismissible widget for the [swipeAction] in the [swipeDirection].
-  Widget _dismissibleWidget(SwipeAction swipeAction, SwipeDirection swipeDirection) {
-    return SwipeActionDismissible(
+  Widget getDismissibleWidget(SwipeAction swipeAction, SwipeDirection swipeDirection) {
+    return NoteTileDismissible(
       swipeAction: swipeAction,
       swipeDirection: swipeDirection,
-      alternative: widget.note.deleted,
+      alternative: widget.note.pinned,
     );
   }
 
-  /// Enters the selection mode and selects this note.
-  void _enterSelectionMode() {
-    isSelectionModeNotifier.value = true;
-
-    widget.note.deleted
-        ? ref.read(binProvider.notifier).select(widget.note)
-        : ref.read(notesProvider.notifier).select(widget.note);
-  }
-
-  /// Opens the editor for this note or selects this note, depending on whether the selection mode is enabled or not.
-  void _openOrSelect() {
-    if (isSelectionModeNotifier.value) {
-      if (widget.note.deleted) {
-        widget.note.selected
-            ? ref.read(binProvider.notifier).unselect(widget.note)
-            : ref.read(binProvider.notifier).select(widget.note);
-      } else {
-        widget.note.selected
-            ? ref.read(notesProvider.notifier).unselect(widget.note)
-            : ref.read(notesProvider.notifier).select(widget.note);
-      }
-    } else {
-      currentNoteNotifier.value = widget.note;
-
-      NotesEditorRoute(readOnly: widget.note.deleted, autoFocus: false).push(context);
-
-      // If the note was opened from the search view, it need to be closed.
-      if (widget.searchView) {
-        Navigator.pop(context);
-      }
-    }
-  }
-
-  /// Executes the [rightSwipeAction] or the [leftSwipeAction] depending on the [direction] that has been swiped.
-  Future<bool> _dismiss(DismissDirection direction, SwipeAction rightSwipeAction, SwipeAction leftSwipeAction) {
+  /// Executes the [rightSwipeAction] or the [leftSwipeAction] depending on the [direction] that was swiped.
+  Future<bool> onDismissed(DismissDirection direction, SwipeAction rightSwipeAction, SwipeAction leftSwipeAction) {
     switch (direction) {
       case DismissDirection.startToEnd:
-        return _performDismissAction(rightSwipeAction);
+        return performDismissAction(rightSwipeAction);
       case DismissDirection.endToStart:
-        return _performDismissAction(leftSwipeAction);
+        return performDismissAction(leftSwipeAction);
       default:
         throw Exception('Unexpected dismiss direction after swiping on note tile: $direction');
     }
   }
 
-  Future<bool> _performDismissAction(SwipeAction swipeAction) async {
+  Future<bool> performDismissAction(SwipeAction swipeAction) async {
     switch (swipeAction) {
       case SwipeAction.delete:
         return deleteNote(context, ref, widget.note);
       case SwipeAction.togglePin:
         return togglePinNote(context, ref, widget.note);
       case SwipeAction.share:
-        await share(widget.note);
+        await shareNote(widget.note);
 
         return false;
       case SwipeAction.copy:
-        await copy(widget.note);
+        await copyNote(widget.note);
 
         return false;
       default:
         throw Exception('Unexpected swipe action when swiping on note tile: $swipeAction');
+    }
+  }
+
+  /// Enters the selection mode and selects this note.
+  void onLongPress() {
+    isNotesSelectionModeNotifier.value = true;
+
+    toggleSelectNote(ref, widget.note);
+  }
+
+  /// Opens the editor for this note or selects this note, depending on whether the selection mode is enabled or not.
+  void onTap() {
+    if (isNotesSelectionModeNotifier.value) {
+      toggleSelectNote(ref, widget.note);
+    } else {
+      currentNoteNotifier.value = widget.note;
+
+      NotesEditorRoute(readOnly: widget.note.deleted, autoFocus: false).push(context);
+
+      // If the note was opened from the search view, it needs to be closed.
+      if (widget.searchView) {
+        Navigator.pop(context);
+      }
     }
   }
 
@@ -229,49 +220,55 @@ class _NoteTileState extends ConsumerState<NoteTile> {
             // See https://github.com/flutter/flutter/issues/86584
             return Material(
               child: Ink(
-                color: _backgroundColor(showTilesBackground),
+                color: getBackgroundColor(showTilesBackground),
                 child: InkWell(
-                  onTap: _openOrSelect,
-                  onLongPress: widget.searchView ? null : _enterSelectionMode,
+                  onTap: onTap,
+                  onLongPress: widget.searchView ? null : onLongPress,
                   child: Padding(
                     padding: Paddings.all(16),
-                    child: Row(
+                    child: Column(
                       children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Title
-                              if (!widget.note.isTitleEmpty)
-                                Text(
-                                  widget.note.title,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.titleMedium,
-                                ),
-                              // Subtitle
-                              if (showTitle)
-                                Text(
-                                  widget.note.contentPreview,
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: disableSubduedNoteContentPreview
-                                      ? null
-                                      : bodyMediumTextTheme?.copyWith(
-                                          color: bodyMediumTextTheme.color?.withAlpha(175),
-                                        ),
-                                ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Title
+                                  if (!widget.note.isTitleEmpty)
+                                    Text(
+                                      widget.note.title,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context).textTheme.titleMedium,
+                                    ),
+                                  // Subtitle
+                                  if (showTitle)
+                                    Text(
+                                      widget.note.contentPreview,
+                                      maxLines: 3,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: disableSubduedNoteContentPreview
+                                          ? null
+                                          : bodyMediumTextTheme?.copyWith(
+                                              color: bodyMediumTextTheme.color?.subdued,
+                                            ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                            // Trailing
+                            if (widget.note.pinned && !widget.note.deleted) ...[
+                              Padding(padding: Paddings.horizontal(2.0)),
+                              Icon(
+                                Icons.push_pin,
+                                size: Sizes.pinIconSize.size,
+                              ),
                             ],
-                          ),
+                          ],
                         ),
-                        // Trailing
-                        if (widget.note.pinned && !widget.note.deleted) ...[
-                          Padding(padding: Paddings.horizontal(2)),
-                          Icon(
-                            Icons.push_pin,
-                            size: Sizes.pinIconSize.size,
-                          ),
-                        ],
+                        Padding(padding: Paddings.vertical(2.0)),
+                        NoteTileLabelsList(note: widget.note),
                       ],
                     ),
                   ),
@@ -300,20 +297,18 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                 final rightSwipeAction = swipeActions.right;
                 final leftSwipeAction = swipeActions.left;
 
-                final direction = _dismissDirection(rightSwipeAction, leftSwipeAction);
-
-                final dismissibleWidgets = _dismissibleWidgets(direction, rightSwipeAction, leftSwipeAction);
-                final dismissibleMainWidget = dismissibleWidgets.$1;
-                final dismissibleSecondaryWidget = dismissibleWidgets.$2;
+                final direction = getDismissDirection(rightSwipeAction, leftSwipeAction);
+                final dismissibleWidgets = getDismissibleWidgets(direction, rightSwipeAction, leftSwipeAction);
 
                 return ClipRRect(
-                  borderRadius: _borderRadius(layout, showTilesBackground),
+                  borderRadius: getBorderRadius(layout, showTilesBackground),
                   child: Dismissible(
                     key: Key(widget.note.id.toString()),
                     direction: direction,
-                    background: dismissibleMainWidget,
-                    secondaryBackground: dismissibleSecondaryWidget,
-                    confirmDismiss: (dismissDirection) => _dismiss(dismissDirection, rightSwipeAction, leftSwipeAction),
+                    background: dismissibleWidgets.main,
+                    secondaryBackground: dismissibleWidgets.secondary,
+                    confirmDismiss: (dismissDirection) =>
+                        onDismissed(dismissDirection, rightSwipeAction, leftSwipeAction),
                     child: tile,
                   ),
                 );

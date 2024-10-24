@@ -8,6 +8,8 @@ import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/locale_extension.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
+import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
+import 'package:localmaterialnotes/providers/labels/labels_navigation/labels_navigation_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/routing/router.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
@@ -35,6 +37,10 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
     // Read the potential data shared from other applications
     readSharedData(ref);
     _stream = listenSharedData(ref);
+
+    // Eagerly get the labels for the full list and the navigation
+    ref.read(labelsListProvider.notifier).get();
+    ref.read(labelsNavigationProvider.notifier).get();
   }
 
   @override

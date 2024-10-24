@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/delete.dart';
+import 'package:localmaterialnotes/common/actions/notes/delete.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 
 /// Floating action button to empty the bin.
-class FabEmptyBin extends ConsumerWidget {
+class EmptyBinFab extends ConsumerWidget {
   /// Default constructor.
-  const FabEmptyBin({super.key});
+  const EmptyBinFab({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,6 +19,6 @@ class FabEmptyBin extends ConsumerWidget {
             onPressed: () => emptyBin(context, ref),
             child: const Icon(Icons.delete_forever),
           )
-        : Container();
+        : SizedBox.shrink();
   }
 }

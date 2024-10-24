@@ -5,7 +5,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/app.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
-import 'package:localmaterialnotes/services/notes/notes_service.dart';
+import 'package:localmaterialnotes/services/database_service.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/flag_secure_utils.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
@@ -43,8 +43,8 @@ Future<void> main() async {
     await FlutterDisplayMode.setHighRefreshRate();
   }
 
-  // Initialize the services
-  await NotesService().ensureInitialized();
+  // Initialize the database service
+  await DatabaseService().ensureInitialized();
 
   // No need to await this, it can be performed in the background
   AutoExportUtils().ensureInitialized();

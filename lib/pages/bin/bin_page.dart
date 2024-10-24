@@ -4,7 +4,7 @@ import 'package:localmaterialnotes/common/navigation/app_bars/notes_app_bar.dart
 import 'package:localmaterialnotes/common/navigation/side_navigation.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/widgets/notes/notes_list.dart';
-import 'package:localmaterialnotes/pages/bin/widgets/fab_empty_bin.dart';
+import 'package:localmaterialnotes/pages/bin/widgets/empty_bin_fab.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Page displaying the deleted notes.
@@ -30,7 +30,7 @@ class _BinPageState extends ConsumerState<BinPage> {
         ),
       ),
       drawer: SideNavigation(),
-      floatingActionButton: FabEmptyBin(
+      floatingActionButton: EmptyBinFab(
         key: Keys.fabEmptyBin,
       ),
       body: NotesList(key: Keys.notesPageNotesList),

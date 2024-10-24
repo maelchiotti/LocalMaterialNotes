@@ -30,7 +30,7 @@ class _BasicAppBarState extends State<BasicAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       leading: widget.showBack ? BackButton(onPressed: _pop) : null,
-      title: Text(context.title),
+      title: Text(context.title(context)),
     );
   }
 }

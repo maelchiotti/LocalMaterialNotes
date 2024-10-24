@@ -2,16 +2,14 @@ import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
 import 'package:localmaterialnotes/common/constants/environment.dart';
 import 'package:localmaterialnotes/common/constants/notes.dart';
-import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/services/database_service.dart';
-import 'package:path_provider/path_provider.dart';
 
 /// Service for the notes database.
 ///
 /// This class is a singleton.
-class NotesService extends DatabaseService {
+class NotesService {
   static final NotesService _singleton = NotesService._internal();
 
   /// Default constructor.
@@ -21,22 +19,11 @@ class NotesService extends DatabaseService {
 
   NotesService._internal();
 
-  @override
-  late final String databaseDirectory;
-
-  @override
-  late final Isar database;
+  final Isar _database = DatabaseService().database;
+  final _notes = DatabaseService().database.notes;
 
   /// Ensures the notes service is initialized.
-  @override
   Future<void> ensureInitialized() async {
-    databaseDirectory = (await getApplicationDocumentsDirectory()).path;
-    database = await Isar.open(
-      [NoteSchema],
-      name: databaseName,
-      directory: databaseDirectory,
-    );
-
     // If the app runs with the 'INTEGRATION_TEST' environment parameter,
     // clear all the notes and add the notes for the integration tests
     if (Environment.integrationTest) {
@@ -61,64 +48,69 @@ class NotesService extends DatabaseService {
   ///
   /// Returns the not deleted notes by default, or the deleted ones if [deleted] is set to `true`.
   Future<List<Note>> getAll({bool deleted = false}) async {
-    final sortMethod = SortMethod.fromPreference();
-    final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
+    return _notes.where().deletedEqualTo(deleted).findAll();
+  }
 
-    final sortedByPinned = database.notes.where().deletedEqualTo(deleted).sortByPinnedDesc();
+  Future<List<Note>> getAllFilteredByLabel(Label label) async {
+    final notes = await getAll();
 
-    switch (sortMethod) {
-      case SortMethod.date:
-        return sortAscending
-            ? await sortedByPinned.thenByEditedTime().findAll()
-            : await sortedByPinned.thenByEditedTimeDesc().findAll();
-      case SortMethod.title:
-        return sortAscending
-            ? await sortedByPinned.thenByTitle().findAll()
-            : await sortedByPinned.thenByTitleDesc().findAll();
-      default:
-        throw Exception('The sort methode is not valid: $sortMethod');
-    }
+    return notes.where((note) {
+      note.labels.loadSync();
+
+      return note.labels.contains(label);
+    }).toList();
   }
 
   /// Puts the [note] in the database.
   Future<void> put(Note note) async {
-    await database.writeTxn(() async {
-      await database.notes.put(note);
+    await _database.writeTxn(() async {
+      await _notes.put(note);
     });
   }
 
   /// Puts the [notes] in the database.
   Future<void> putAll(List<Note> notes) async {
-    await database.writeTxn(() async {
-      await database.notes.putAll(notes);
+    await _database.writeTxn(() async {
+      await _notes.putAll(notes);
+    });
+  }
+
+  /// Updates the [note] with the [labels] in the database.
+  Future<void> putLabels(Note note, Iterable<Label> labels) async {
+    await _database.writeTxn(() async {
+      await note.labels.reset();
+
+      note.labels.addAll(labels);
+
+      await note.labels.save();
     });
   }
 
   /// Deletes the [note] from the database.
   Future<void> delete(Note note) async {
-    await database.writeTxn(() async {
-      await database.notes.delete(note.id);
+    await _database.writeTxn(() async {
+      await _notes.delete(note.id);
     });
   }
 
   /// Deletes the [notes] from the database.
   Future<void> deleteAll(List<Note> notes) async {
-    await database.writeTxn(() async {
-      await database.notes.deleteAll(notes.map((note) => note.id).toList());
+    await _database.writeTxn(() async {
+      await _notes.deleteAll(notes.map((note) => note.id).toList());
     });
   }
 
   /// Deletes all the deleted notes from the database.
   Future<void> emptyBin() async {
-    await database.writeTxn(() async {
-      await database.notes.where().deletedEqualTo(true).deleteAll();
+    await _database.writeTxn(() async {
+      await _notes.where().deletedEqualTo(true).deleteAll();
     });
   }
 
   /// Deletes all the notes from the database.
   Future<void> clear() async {
-    await database.writeTxn(() async {
-      await database.notes.where().deleteAll();
+    await _database.writeTxn(() async {
+      await _notes.where().deleteAll();
     });
   }
 }

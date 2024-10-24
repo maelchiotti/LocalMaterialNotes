@@ -2,11 +2,12 @@ import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:localmaterialnotes/common/actions/copy.dart';
-import 'package:localmaterialnotes/common/actions/delete.dart';
-import 'package:localmaterialnotes/common/actions/pin.dart';
-import 'package:localmaterialnotes/common/actions/restore.dart';
-import 'package:localmaterialnotes/common/actions/share.dart';
+import 'package:localmaterialnotes/common/actions/notes/copy.dart';
+import 'package:localmaterialnotes/common/actions/notes/delete.dart';
+import 'package:localmaterialnotes/common/actions/notes/labels.dart';
+import 'package:localmaterialnotes/common/actions/notes/pin.dart';
+import 'package:localmaterialnotes/common/actions/notes/restore.dart';
+import 'package:localmaterialnotes/common/actions/notes/share.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/navigation/menu_option.dart';
@@ -52,10 +53,12 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     switch (menuOption) {
       case MenuOption.togglePin:
         await togglePinNote(context, ref, note);
+      case MenuOption.selectLabels:
+        selectLabels(context, ref, note);
       case MenuOption.copy:
-        await copy(note);
+        await copyNote(note);
       case MenuOption.share:
-        await share(note);
+        await shareNote(note);
       case MenuOption.delete:
         await deleteNote(context, ref, note);
       case MenuOption.restore:
@@ -171,19 +174,20 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                           itemBuilder: (context) {
                             return (note.deleted
                                 ? [
-                                    MenuOption.restore.popupMenuItem(),
-                                    MenuOption.deletePermanently.popupMenuItem(),
+                                    MenuOption.restore.popupMenuItem(context),
+                                    MenuOption.deletePermanently.popupMenuItem(context),
                                     const PopupMenuDivider(),
-                                    MenuOption.about.popupMenuItem(),
+                                    MenuOption.about.popupMenuItem(context),
                                   ]
                                 : [
-                                    MenuOption.copy.popupMenuItem(),
-                                    MenuOption.share.popupMenuItem(),
+                                    MenuOption.copy.popupMenuItem(context),
+                                    MenuOption.share.popupMenuItem(context),
                                     const PopupMenuDivider(),
-                                    MenuOption.togglePin.popupMenuItem(note.pinned),
-                                    MenuOption.delete.popupMenuItem(),
+                                    MenuOption.togglePin.popupMenuItem(context, alternative: note.pinned),
+                                    MenuOption.selectLabels.popupMenuItem(context),
+                                    MenuOption.delete.popupMenuItem(context),
                                     const PopupMenuDivider(),
-                                    MenuOption.about.popupMenuItem(),
+                                    MenuOption.about.popupMenuItem(context),
                                   ]);
                           },
                           onSelected: _onMenuOptionSelected,

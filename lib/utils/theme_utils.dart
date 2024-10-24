@@ -19,7 +19,7 @@ class ThemeUtils {
   ThemeUtils._internal();
 
   /// Custom primary color.
-  final _customPrimaryColor = const Color(0xFF2278e9);
+  final customPrimaryColor = const Color(0xFF2278e9);
 
   /// Whether the dynamic theming is available on the device?
   late final bool isDynamicThemingAvailable;
@@ -91,7 +91,7 @@ class ThemeUtils {
       );
     } else {
       colorScheme = ColorScheme.fromSeed(
-        seedColor: _customPrimaryColor,
+        seedColor: customPrimaryColor,
       );
     }
 
@@ -137,7 +137,7 @@ class ThemeUtils {
       colorScheme = useBlackTheming
           ? ColorScheme.fromSeed(
               brightness: Brightness.dark,
-              seedColor: _customPrimaryColor,
+              seedColor: customPrimaryColor,
               // TODO: remove when not required anymore, can't figure out why it's needed since it's not an issue of dynamic_colors
               // ignore: deprecated_member_use
               background: Colors.black,
@@ -145,7 +145,7 @@ class ThemeUtils {
             )
           : ColorScheme.fromSeed(
               brightness: Brightness.dark,
-              seedColor: _customPrimaryColor,
+              seedColor: customPrimaryColor,
             );
     }
 

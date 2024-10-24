@@ -4,7 +4,9 @@ import 'package:localmaterialnotes/common/navigation/app_bars/notes_app_bar.dart
 import 'package:localmaterialnotes/common/navigation/side_navigation.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/widgets/notes/notes_list.dart';
-import 'package:localmaterialnotes/pages/notes/widgets/fab_add_note.dart';
+import 'package:localmaterialnotes/models/label/label.dart';
+import 'package:localmaterialnotes/pages/notes/widgets/add_note_fab.dart';
+import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Page displaying the list of notes.
@@ -12,17 +14,19 @@ import 'package:localmaterialnotes/utils/keys.dart';
 /// Contains:
 ///   - The list of notes.
 ///   - The FAB to add a note.
-class NotesPage extends ConsumerStatefulWidget {
+class NotesPage extends ConsumerWidget {
   /// Default constructor.
-  const NotesPage({super.key});
+  const NotesPage({
+    super.key,
+    required this.label,
+  });
+
+  final Label? label;
 
   @override
-  ConsumerState<NotesPage> createState() => _NotesPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    label != null ? ref.read(notesProvider.notifier).filter(label!) : ref.read(notesProvider.notifier).get();
 
-class _NotesPageState extends ConsumerState<NotesPage> {
-  @override
-  Widget build(BuildContext context) {
     return const Scaffold(
       appBar: TopNavigation(
         appbar: NotesAppBar(
@@ -30,7 +34,7 @@ class _NotesPageState extends ConsumerState<NotesPage> {
         ),
       ),
       drawer: SideNavigation(),
-      floatingActionButton: FabAddNote(
+      floatingActionButton: AddNoteFab(
         key: Keys.fabAddNote,
       ),
       body: NotesList(key: Keys.notesPageNotesList),

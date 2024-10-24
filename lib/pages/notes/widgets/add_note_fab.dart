@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/add.dart';
+import 'package:localmaterialnotes/common/actions/notes/add.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 
 /// Floating action button to add a note.
-class FabAddNote extends ConsumerWidget {
+class AddNoteFab extends ConsumerWidget {
   /// Default constructor.
-  const FabAddNote({super.key});
+  const AddNoteFab({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

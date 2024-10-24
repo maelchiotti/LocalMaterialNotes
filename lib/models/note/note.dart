@@ -8,6 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/utils/encryption_utils.dart';
 
 part 'note.g.dart';
@@ -17,7 +18,7 @@ part 'note.g.dart';
 /// Rich text note with title, content and metadata.
 @JsonSerializable()
 @Collection(inheritance: false)
-class Note extends Equatable {
+class Note extends Equatable implements Comparable<Note> {
   /// Empty content in fleather data representation.
   static const String _emptyContent = '[{"insert":"\\n"}]';
 
@@ -53,6 +54,10 @@ class Note extends Equatable {
 
   /// Content (rich text in the fleather representation).
   String content;
+
+  /// Labels.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  IsarLinks<Label> labels = IsarLinks<Label>();
 
   /// Default constructor.
   Note({
@@ -217,22 +222,21 @@ class Note extends Equatable {
   /// Notes are sorted according to:
   ///   1. Their pin state.
   ///   2. The sort method chosen by the user.
-  int compareTo(Note otherNote) {
+  @override
+  int compareTo(Note other) {
     final sortMethod = SortMethod.fromPreference();
     final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
-    if (pinned && !otherNote.pinned) {
+    if (pinned && !other.pinned) {
       return -1;
-    } else if (!pinned && otherNote.pinned) {
+    } else if (!pinned && other.pinned) {
       return 1;
     } else {
       switch (sortMethod) {
         case SortMethod.date:
-          return sortAscending
-              ? editedTime.compareTo(otherNote.editedTime)
-              : otherNote.editedTime.compareTo(editedTime);
+          return sortAscending ? editedTime.compareTo(other.editedTime) : other.editedTime.compareTo(editedTime);
         case SortMethod.title:
-          return sortAscending ? title.compareTo(otherNote.title) : otherNote.title.compareTo(title);
+          return sortAscending ? title.compareTo(other.title) : other.title.compareTo(title);
         default:
           throw Exception('The sort method is not valid: $sortMethod');
       }

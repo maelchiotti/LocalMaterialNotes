@@ -1,4 +1,6 @@
 import 'package:collection/collection.dart';
+import 'package:localmaterialnotes/common/extensions/list_extension.dart';
+import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:localmaterialnotes/utils/logs_utils.dart';
@@ -7,7 +9,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'notes_provider.g.dart';
 
 /// Provider for the notes.
-@riverpod
+@Riverpod(keepAlive: true)
 class Notes extends _$Notes {
   final _notesService = NotesService();
 
@@ -26,14 +28,29 @@ class Notes extends _$Notes {
       LogsUtils().handleException(exception, stackTrace);
     }
 
-    state = AsyncData(notes);
+    state = AsyncData(notes.sorted());
 
-    return notes;
+    return notes.sorted();
+  }
+
+  /// Returns the list of not deleted notes.
+  Future<List<Note>> filter(Label label) async {
+    List<Note> notes = [];
+
+    try {
+      notes = await _notesService.getAllFilteredByLabel(label);
+    } catch (exception, stackTrace) {
+      LogsUtils().handleException(exception, stackTrace);
+    }
+
+    state = AsyncData(notes.sorted());
+
+    return notes.sorted();
   }
 
   /// Sorts the not deleted notes.
   void sort() {
-    final sortedNotes = (state.value ?? []).sorted((note, otherNote) => note.compareTo(otherNote));
+    final sortedNotes = (state.value ?? []).sorted();
 
     state = AsyncData(sortedNotes);
   }
@@ -53,18 +70,37 @@ class Notes extends _$Notes {
       return false;
     }
 
-    // Keep all the notes that were not edited
-    final newNotes = (state.value ?? []).where((note) => note != editedNote).toList();
-
-    // Add the edited note if it was not deleted and it is not empty
+    final notes = (state.value ?? []);
     if (!editedNote.deleted && !editedNote.isEmpty) {
-      newNotes.add(editedNote);
+      notes.addOrUpdate(editedNote);
+    } else {
+      notes.remove(editedNote);
     }
 
-    // Sort all the notes
-    final sortedNotes = newNotes.sorted((note, otherNote) => note.compareTo(otherNote));
+    state = AsyncData(notes.sorted());
 
-    state = AsyncData(sortedNotes);
+    return true;
+  }
+
+  /// Saves the [note] with the new [selectedLabels] to the database.
+  Future<bool> editLabels(Note note, Iterable<Label> selectedLabels) async {
+    note.editedTime = DateTime.now();
+
+    try {
+      await _notesService.putLabels(note, selectedLabels);
+    } catch (exception, stackTrace) {
+      LogsUtils().handleException(exception, stackTrace);
+      return false;
+    }
+
+    final notes = (state.value ?? []);
+    if (!note.deleted && !note.isEmpty) {
+      notes.addOrUpdate(note);
+    } else {
+      notes.remove(note);
+    }
+
+    state = AsyncData(notes.sorted());
 
     return true;
   }
@@ -76,29 +112,26 @@ class Notes extends _$Notes {
     return await edit(note);
   }
 
-  /// Toggles the pin status of the [notes] in the database.
-  Future<bool> togglePinAll(List<Note> notes) async {
-    for (final note in notes) {
+  /// Toggles the pin status of the [notesToToggle] in the database.
+  Future<bool> togglePinAll(List<Note> notesToToggle) async {
+    for (final note in notesToToggle) {
       note.pinned = !note.pinned;
     }
 
     try {
-      await _notesService.putAll(notes);
+      await _notesService.putAll(notesToToggle);
     } catch (exception, stackTrace) {
       LogsUtils().handleException(exception, stackTrace);
       return false;
     }
 
-    // Keep all the notes for which the pin was not toggled
-    final newNotes = (state.value ?? []).where((note) => !notes.contains(note)).toList();
+    final notes = (state.value ?? [])
+      ..removeWhere(
+        (note) => notesToToggle.contains(note),
+      )
+      ..addAll(notesToToggle);
 
-    // Add all the notes for which the pin was toggled
-    newNotes.addAll(notes);
-
-    // Sort all the notes
-    final sortedNotes = newNotes.sorted((note, otherNote) => note.compareTo(otherNote));
-
-    state = AsyncData(sortedNotes);
+    state = AsyncData(notes.sorted());
 
     return true;
   }
@@ -112,23 +145,25 @@ class Notes extends _$Notes {
   }
 
   /// Sets the [notes] as deleted in the database.
-  Future<bool> deleteAll(List<Note> notes) async {
-    for (final note in notes) {
+  Future<bool> deleteAll(List<Note> notesToDelete) async {
+    for (final note in notesToDelete) {
       note.pinned = false;
       note.deleted = true;
     }
 
     try {
-      await _notesService.putAll(notes);
+      await _notesService.putAll(notesToDelete);
     } catch (exception, stackTrace) {
       LogsUtils().handleException(exception, stackTrace);
       return false;
     }
 
-    // Keep all the notes that were not deleted
-    final newNotes = (state.value ?? []).where((note) => !notes.contains(note)).toList();
+    final notes = (state.value ?? [])
+      ..removeWhere(
+        (note) => notesToDelete.contains(note),
+      );
 
-    state = AsyncData(newNotes);
+    state = AsyncData(notes);
 
     return true;
   }

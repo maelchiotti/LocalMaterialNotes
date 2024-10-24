@@ -18,6 +18,11 @@ class EmptyPlaceholder extends StatelessWidget {
       : icon = Icons.delete_outline,
         text = l.placeholder_bin;
 
+  /// Empty labels.
+  const EmptyPlaceholder.labels({super.key})
+      : icon = Icons.label_outline,
+        text = 'No labels';
+
   /// Icon to display.
   final IconData? icon;
 
@@ -27,7 +32,7 @@ class EmptyPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (icon == null || text == null) {
-      return Container();
+      return SizedBox.shrink();
     }
 
     return Center(
