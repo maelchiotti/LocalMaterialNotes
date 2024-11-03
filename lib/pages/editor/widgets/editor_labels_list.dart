@@ -7,18 +7,17 @@ import 'package:localmaterialnotes/common/widgets/placeholders/empty_placeholder
 import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 
-class EditorLabelsList extends ConsumerStatefulWidget {
+class EditorLabelsList extends ConsumerWidget {
   const EditorLabelsList({
     super.key,
+    required this.readOnly,
   });
 
-  @override
-  ConsumerState<EditorLabelsList> createState() => _EditorLabelsListState();
-}
+  /// Whether the page should be read only.
+  final bool readOnly;
 
-class _EditorLabelsListState extends ConsumerState<EditorLabelsList> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
       child: ValueListenableBuilder(
           valueListenable: currentNoteNotifier,
@@ -34,7 +33,7 @@ class _EditorLabelsListState extends ConsumerState<EditorLabelsList> {
             final labels = currentNote.labels.toList();
 
             return InkWell(
-              onTap: () => selectLabels(context, ref, currentNote),
+              onTap: readOnly ? null : () => selectLabels(context, ref, currentNote),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: SizedBox(

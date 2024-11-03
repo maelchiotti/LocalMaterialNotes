@@ -32,7 +32,7 @@ class NotesEditorPage extends ConsumerStatefulWidget {
     required this.isNewNote,
   });
 
-  /// Whether the text fields should be read only.
+  /// Whether the page should be read only.
   final bool readOnly;
 
   /// Whether this is a new note, so the title or content field should be auto focused
@@ -157,7 +157,9 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                   ),
                 ),
               ),
-              EditorLabelsList(),
+              EditorLabelsList(
+                readOnly: widget.readOnly,
+              ),
               ValueListenableBuilder(
                 valueListenable: fleatherFieldHasFocusNotifier,
                 builder: (context, hasFocus, child) {
