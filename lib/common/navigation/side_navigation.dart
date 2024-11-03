@@ -7,6 +7,7 @@ import 'package:localmaterialnotes/common/extensions/build_context_extension.dar
 import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/providers/labels/labels_navigation/labels_navigation_provider.dart';
+import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/routing/routes/bin/bin_route.dart';
 import 'package:localmaterialnotes/routing/routes/labels/labels_route.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
@@ -73,7 +74,15 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
 
     final labelsCount = labels?.length ?? 0;
 
-    if (index == 0) {
+    final isNotesRoute = index == 0;
+    final isLabelsRoute = index > 0 && index <= labelsCount;
+
+    // Clear the current note if the new route is not the notes list or the labels list
+    if (!isNotesRoute && !isLabelsRoute) {
+      currentNoteNotifier.value = null;
+    }
+
+    if (isNotesRoute) {
       NotesRoute().go(context);
     } else if (index == labelsCount + 1) {
       LabelsRoute().go(context);
@@ -81,7 +90,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
       BinRoute().go(context);
     } else if (index == labelsCount + 3) {
       SettingsRoute().push(context);
-    } else if (index > 0 && index <= labelsCount) {
+    } else if (isLabelsRoute) {
       NotesRoute(
         labelName: labels?[index - 1].name,
         $extra: labels?[index - 1],

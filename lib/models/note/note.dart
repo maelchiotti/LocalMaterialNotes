@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fleather/fleather.dart';
 import 'package:fuzzywuzzy/fuzzywuzzy.dart';
@@ -108,6 +109,9 @@ class Note extends Equatable implements Comparable<Note> {
       ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
       ..content = EncryptionUtils().encrypt(password, content);
   }
+
+  @ignore
+  List<Label> get labelsSorted => labels.toList().sorted();
 
   /// Note content as plain text.
   @ignore

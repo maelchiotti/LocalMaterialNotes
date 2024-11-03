@@ -30,7 +30,7 @@ class EditorLabelsList extends ConsumerWidget {
               return EmptyPlaceholder();
             }
 
-            final labels = currentNote.labels.toList();
+            final labels = currentNote.labelsSorted;
 
             return InkWell(
               onTap: readOnly ? null : () => selectLabels(context, ref, currentNote),

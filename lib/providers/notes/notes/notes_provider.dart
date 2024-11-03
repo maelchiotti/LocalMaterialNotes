@@ -28,7 +28,12 @@ class Notes extends _$Notes {
       LogsUtils().handleException(exception, stackTrace);
     }
 
-    state = AsyncData(notes.sorted());
+    final sortedNotes = notes.sorted();
+    for (final sortedNote in sortedNotes) {
+      sortedNote.labels.sorted();
+    }
+
+    state = AsyncData(sortedNotes);
 
     return notes.sorted();
   }
