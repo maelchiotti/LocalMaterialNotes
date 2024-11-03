@@ -1,6 +1,7 @@
 import 'package:isar/isar.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
+import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:path_provider/path_provider.dart';
 
 /// Abstract service for the database.
@@ -27,5 +28,8 @@ class DatabaseService {
       name: databaseName,
       directory: databaseDirectory,
     );
+
+    // Initialize the models services
+    await NotesService().ensureInitialized();
   }
 }
