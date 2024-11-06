@@ -70,82 +70,85 @@ class _EditorToolbarState extends State<EditorToolbar> {
   Widget build(BuildContext context) {
     final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
 
-    return SizedBox(
-      height: Sizes.editorToolbarHeight.size,
-      child: FleatherToolbar(
-        padding: EdgeInsets.zero,
-        children: [
-          Padding(padding: Paddings.vertical(2)),
-          ToggleStyleButton(
-            attribute: ParchmentAttribute.bold,
-            icon: Icons.format_bold,
-            controller: widget.editorController,
-            childBuilder: _buttonBuilder,
-          ),
-          ToggleStyleButton(
-            attribute: ParchmentAttribute.italic,
-            icon: Icons.format_italic,
-            controller: widget.editorController,
-            childBuilder: _buttonBuilder,
-          ),
-          ToggleStyleButton(
-            attribute: ParchmentAttribute.underline,
-            icon: Icons.format_underline,
-            controller: widget.editorController,
-            childBuilder: _buttonBuilder,
-          ),
-          ToggleStyleButton(
-            attribute: ParchmentAttribute.strikethrough,
-            icon: Icons.format_strikethrough,
-            controller: widget.editorController,
-            childBuilder: _buttonBuilder,
-          ),
-          if (!showChecklistButton)
+    return ColoredBox(
+      color: Theme.of(context).colorScheme.surfaceContainerHigh,
+      child: SizedBox(
+        height: Sizes.editorToolbarHeight.size,
+        child: FleatherToolbar(
+          padding: EdgeInsets.zero,
+          children: [
+            Padding(padding: Paddings.vertical(2)),
             ToggleStyleButton(
-              attribute: ParchmentAttribute.block.checkList,
-              icon: Icons.checklist,
+              attribute: ParchmentAttribute.bold,
+              icon: Icons.format_bold,
               controller: widget.editorController,
               childBuilder: _buttonBuilder,
             ),
-          ToggleStyleButton(
-            attribute: ParchmentAttribute.block.bulletList,
-            icon: Icons.format_list_bulleted,
-            controller: widget.editorController,
-            childBuilder: _buttonBuilder,
-          ),
-          ToggleStyleButton(
-            attribute: ParchmentAttribute.block.numberList,
-            icon: Icons.format_list_numbered,
-            controller: widget.editorController,
-            childBuilder: _buttonBuilder,
-          ),
-          ToggleStyleButton(
-            attribute: ParchmentAttribute.inlineCode,
-            icon: Icons.code,
-            controller: widget.editorController,
-            childBuilder: _buttonBuilder,
-          ),
-          ToggleStyleButton(
-            attribute: ParchmentAttribute.block.code,
-            icon: Symbols.code_blocks,
-            controller: widget.editorController,
-            childBuilder: _buttonBuilder,
-          ),
-          ToggleStyleButton(
-            attribute: ParchmentAttribute.block.quote,
-            icon: Icons.format_quote,
-            controller: widget.editorController,
-            childBuilder: _buttonBuilder,
-          ),
-          LinkButton(
-            controller: widget.editorController,
-          ),
-          EditorButton(
-            icon: Icons.horizontal_rule,
-            onPressed: _insertRule,
-          ),
-          Padding(padding: Paddings.vertical(2)),
-        ],
+            ToggleStyleButton(
+              attribute: ParchmentAttribute.italic,
+              icon: Icons.format_italic,
+              controller: widget.editorController,
+              childBuilder: _buttonBuilder,
+            ),
+            ToggleStyleButton(
+              attribute: ParchmentAttribute.underline,
+              icon: Icons.format_underline,
+              controller: widget.editorController,
+              childBuilder: _buttonBuilder,
+            ),
+            ToggleStyleButton(
+              attribute: ParchmentAttribute.strikethrough,
+              icon: Icons.format_strikethrough,
+              controller: widget.editorController,
+              childBuilder: _buttonBuilder,
+            ),
+            if (!showChecklistButton)
+              ToggleStyleButton(
+                attribute: ParchmentAttribute.block.checkList,
+                icon: Icons.checklist,
+                controller: widget.editorController,
+                childBuilder: _buttonBuilder,
+              ),
+            ToggleStyleButton(
+              attribute: ParchmentAttribute.block.bulletList,
+              icon: Icons.format_list_bulleted,
+              controller: widget.editorController,
+              childBuilder: _buttonBuilder,
+            ),
+            ToggleStyleButton(
+              attribute: ParchmentAttribute.block.numberList,
+              icon: Icons.format_list_numbered,
+              controller: widget.editorController,
+              childBuilder: _buttonBuilder,
+            ),
+            ToggleStyleButton(
+              attribute: ParchmentAttribute.inlineCode,
+              icon: Icons.code,
+              controller: widget.editorController,
+              childBuilder: _buttonBuilder,
+            ),
+            ToggleStyleButton(
+              attribute: ParchmentAttribute.block.code,
+              icon: Symbols.code_blocks,
+              controller: widget.editorController,
+              childBuilder: _buttonBuilder,
+            ),
+            ToggleStyleButton(
+              attribute: ParchmentAttribute.block.quote,
+              icon: Icons.format_quote,
+              controller: widget.editorController,
+              childBuilder: _buttonBuilder,
+            ),
+            LinkButton(
+              controller: widget.editorController,
+            ),
+            EditorButton(
+              icon: Icons.horizontal_rule,
+              onPressed: _insertRule,
+            ),
+            Padding(padding: Paddings.vertical(2)),
+          ],
+        ),
       ),
     );
   }

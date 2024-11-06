@@ -200,6 +200,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     final disableSubduedNoteContentPreview =
         PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault<bool>();
     final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
+    final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.getPreferenceOrDefault<bool>();
 
     final tile = ValueListenableBuilder(
       valueListenable: showTitlesOnlyNotifier,
@@ -268,7 +269,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                             ],
                           ],
                         ),
-                        if (enableLabels) ...[
+                        if (enableLabels && showLabelsListOnNoteTile) ...[
                           Padding(padding: Paddings.vertical(2.0)),
                           NoteTileLabelsList(note: widget.note),
                         ]

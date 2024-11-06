@@ -38,6 +38,8 @@ enum PreferenceKey {
 
   // Labels
   enableLabels(true),
+  showLabelsListOnNoteTile(true),
+  showLabelsListInEditorPage(true),
 
   // Backup
   enableAutoExport(false),

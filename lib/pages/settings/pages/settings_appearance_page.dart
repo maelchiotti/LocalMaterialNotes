@@ -238,7 +238,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
                 title: l.settings_appearance_notes_tiles,
                 tiles: [
                   SettingSwitchTile(
-                    icon: Icons.view_compact,
+                    icon: Icons.title,
                     title: l.settings_show_titles_only,
                     description: l.settings_show_titles_only_description,
                     toggled: showTitlesOnly,

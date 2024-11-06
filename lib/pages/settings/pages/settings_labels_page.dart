@@ -19,7 +19,7 @@ class SettingsLabelsPage extends StatefulWidget {
 }
 
 class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
-  /// Toggles the dynamic theming.
+  /// Toggles whether to enable the labels.
   Future<void> _toggleEnableLabels(bool toggled) async {
     setState(() {
       PreferencesUtils().set<bool>(PreferenceKey.enableLabels, toggled);
@@ -31,9 +31,25 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
     }
   }
 
+  /// Toggles whether to show the labels list in the editor.
+  Future<void> _toggleShowLabelsListOnNoteTile(bool toggled) async {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.showLabelsListOnNoteTile, toggled);
+    });
+  }
+
+  /// Toggles whether to show the labels list in the editor.
+  Future<void> _toggleShowLabelsListInEditor(bool toggled) async {
+    setState(() {
+      PreferencesUtils().set<bool>(PreferenceKey.showLabelsListInEditorPage, toggled);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final isLabelsEnabled = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
+    final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.getPreferenceOrDefault<bool>();
+    final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.getPreferenceOrDefault<bool>();
 
     return Scaffold(
       appBar: const TopNavigation(
@@ -54,6 +70,25 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
                     description: 'Allow to categorize the notes with labels',
                     toggled: isLabelsEnabled,
                     onChanged: _toggleEnableLabels,
+                  ),
+                ],
+              ),
+              SettingSection(
+                divider: null,
+                title: 'Appearance',
+                tiles: [
+                  SettingSwitchTile(
+                    title: 'Show list on note tile',
+                    description: 'Show the list of labels of the note tiles',
+                    toggled: showLabelsListOnNoteTile,
+                    onChanged: _toggleShowLabelsListOnNoteTile,
+                  ),
+                  SettingSwitchTile(
+                    icon: Icons.edit,
+                    title: 'Show list in editor',
+                    description: 'Show the list of labels at the bottom of the editor',
+                    toggled: showLabelsListInEditorPage,
+                    onChanged: _toggleShowLabelsListInEditor,
                   ),
                 ],
               ),

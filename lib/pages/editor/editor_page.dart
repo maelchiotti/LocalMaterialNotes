@@ -110,6 +110,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
     final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
     final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault<bool>();
     final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
+    final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.getPreferenceOrDefault<bool>();
 
     return Scaffold(
       appBar: const TopNavigation(
@@ -158,21 +159,13 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                   ),
                 ),
               ),
-              if (enableLabels) EditorLabelsList(readOnly: widget.readOnly),
-              ValueListenableBuilder(
-                valueListenable: fleatherFieldHasFocusNotifier,
-                builder: (context, hasFocus, child) {
-                  return showToolbar && isEditMode && !note!.deleted
-                      ?
-                      // Use a SafeArea to prevent the toolbar from displaying under the system bottom UI
-                      SafeArea(
-                          child: ColoredBox(
-                            color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                            child: EditorToolbar(editorController: editorController),
-                          ),
-                        )
-                      : SizedBox.shrink();
-                },
+              SafeArea(
+                child: Column(
+                  children: [
+                    if (enableLabels && showLabelsListInEditorPage) EditorLabelsList(readOnly: widget.readOnly),
+                    if (showToolbar && isEditMode && !note!.deleted) EditorToolbar(editorController: editorController)
+                  ],
+                ),
               ),
             ],
           );
