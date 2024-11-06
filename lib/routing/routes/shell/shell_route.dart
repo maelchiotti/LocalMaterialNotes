@@ -11,6 +11,7 @@ import 'package:localmaterialnotes/routing/routes/settings/settings_appearance_r
 import 'package:localmaterialnotes/routing/routes/settings/settings_backup_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_behavior_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_editor_route.dart';
+import 'package:localmaterialnotes/routing/routes/settings/settings_labels_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_route.dart';
 
 part 'shell_route.g.dart';
@@ -39,6 +40,9 @@ part 'shell_route.g.dart';
         ),
         TypedGoRoute<SettingsEditorRoute>(
           path: 'editor',
+        ),
+        TypedGoRoute<SettingsLabelsRoute>(
+          path: 'labels',
         ),
         TypedGoRoute<SettingsBackupRoute>(
           path: 'backup',

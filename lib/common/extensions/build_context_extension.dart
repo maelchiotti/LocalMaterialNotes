@@ -9,6 +9,7 @@ import 'package:localmaterialnotes/routing/routes/settings/settings_appearance_r
 import 'package:localmaterialnotes/routing/routes/settings/settings_backup_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_behavior_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_editor_route.dart';
+import 'package:localmaterialnotes/routing/routes/settings/settings_labels_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_route.dart';
 import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
@@ -53,6 +54,8 @@ extension BuildContextExtension on BuildContext {
       return l.navigation_settings_behavior;
     } else if (location == SettingsEditorRoute().location) {
       return l.navigation_settings_editor;
+    } else if (location == SettingsLabelsRoute().location) {
+      return 'Labels';
     } else if (location == SettingsBackupRoute().location) {
       return l.navigation_settings_backup;
     } else if (location == SettingsAboutRoute().location) {

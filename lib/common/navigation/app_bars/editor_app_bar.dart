@@ -120,6 +120,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
     final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
     final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
+    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
 
     return ValueListenableBuilder(
       valueListenable: fleatherFieldHasFocusNotifier,
@@ -184,7 +185,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                                     MenuOption.share.popupMenuItem(context),
                                     const PopupMenuDivider(),
                                     MenuOption.togglePin.popupMenuItem(context, alternative: note.pinned),
-                                    MenuOption.selectLabels.popupMenuItem(context),
+                                    if (enableLabels) MenuOption.selectLabels.popupMenuItem(context),
                                     MenuOption.delete.popupMenuItem(context),
                                     const PopupMenuDivider(),
                                     MenuOption.about.popupMenuItem(context),

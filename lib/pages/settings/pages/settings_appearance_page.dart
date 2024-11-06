@@ -44,12 +44,10 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   Future<void> _submittedLanguage(Locale locale) async {
     await LocaleUtils().setLocale(locale);
 
-    // The Restart package crashes the app if used in debug mode.
-    if (kDebugMode) {
-      return;
+    // The Restart package crashes the app if used in debug mode
+    if (kReleaseMode) {
+      await Restart.restartApp();
     }
-
-    await Restart.restartApp();
   }
 
   /// Sets the theme to the new [themeMode].

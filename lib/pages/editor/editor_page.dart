@@ -109,6 +109,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
     final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault<bool>();
     final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
     final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault<bool>();
+    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
 
     return Scaffold(
       appBar: const TopNavigation(
@@ -157,9 +158,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                   ),
                 ),
               ),
-              EditorLabelsList(
-                readOnly: widget.readOnly,
-              ),
+              if (enableLabels) EditorLabelsList(readOnly: widget.readOnly),
               ValueListenableBuilder(
                 valueListenable: fleatherFieldHasFocusNotifier,
                 builder: (context, hasFocus, child) {
