@@ -78,14 +78,14 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
                 title: 'Appearance',
                 tiles: [
                   SettingSwitchTile(
-                    title: 'Show list on note tile',
+                    title: 'Show labels on note tile',
                     description: 'Show the list of labels of the note tiles',
                     toggled: showLabelsListOnNoteTile,
                     onChanged: _toggleShowLabelsListOnNoteTile,
                   ),
                   SettingSwitchTile(
                     icon: Icons.edit,
-                    title: 'Show list in editor',
+                    title: 'Show labels in editor',
                     description: 'Show the list of labels at the bottom of the editor',
                     toggled: showLabelsListInEditorPage,
                     onChanged: _toggleShowLabelsListInEditor,

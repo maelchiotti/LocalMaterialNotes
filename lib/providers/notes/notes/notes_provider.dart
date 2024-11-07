@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/common/extensions/list_extension.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
+import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -146,7 +147,11 @@ class Notes extends _$Notes {
     note.pinned = false;
     note.deleted = true;
 
-    return await edit(note);
+    final succeeded = await edit(note);
+
+    ref.read(binProvider.notifier).get();
+
+    return succeeded;
   }
 
   /// Sets the [notes] as deleted in the database.
@@ -169,6 +174,8 @@ class Notes extends _$Notes {
       );
 
     state = AsyncData(notes);
+
+    ref.read(binProvider.notifier).get();
 
     return true;
   }

@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
+import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
 import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -106,6 +107,8 @@ class Bin extends _$Bin {
       (state.value ?? [])..remove(noteToRestore),
     );
 
+    ref.read(notesProvider.notifier).get();
+
     return true;
   }
 
@@ -128,6 +131,8 @@ class Bin extends _$Bin {
           (note) => notesToRestore.contains(note),
         ),
     );
+
+    ref.read(notesProvider.notifier).get();
 
     return true;
   }
