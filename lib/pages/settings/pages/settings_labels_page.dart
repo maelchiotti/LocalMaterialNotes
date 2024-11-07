@@ -1,11 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
@@ -66,8 +68,8 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
                 tiles: [
                   SettingSwitchTile(
                     icon: Icons.label,
-                    title: 'Enable',
-                    description: 'Allow to categorize the notes with labels',
+                    title: l.settings_enable_labels,
+                    description: l.settings_enable_labels_description,
                     toggled: isLabelsEnabled,
                     onChanged: _toggleEnableLabels,
                   ),
@@ -75,18 +77,21 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
               ),
               SettingSection(
                 divider: null,
-                title: 'Appearance',
+                title: l.settings_labels_appearance,
                 tiles: [
                   SettingSwitchTile(
-                    title: 'Show labels on note tile',
-                    description: 'Show the list of labels of the note tiles',
+                    enabled: isLabelsEnabled,
+                    icon: Symbols.tile_small,
+                    title: l.settings_show_labels_note_tile,
+                    description: l.settings_show_labels_note_tile_description,
                     toggled: showLabelsListOnNoteTile,
                     onChanged: _toggleShowLabelsListOnNoteTile,
                   ),
                   SettingSwitchTile(
+                    enabled: isLabelsEnabled,
                     icon: Icons.edit,
-                    title: 'Show labels in editor',
-                    description: 'Show the list of labels at the bottom of the editor',
+                    title: l.settings_show_labels_editor,
+                    description: l.settings_show_labels_editor_description,
                     toggled: showLabelsListInEditorPage,
                     onChanged: _toggleShowLabelsListInEditor,
                   ),

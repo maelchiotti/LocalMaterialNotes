@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/actions/labels/add.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 
-/// Floating action button to add a label.
+/// FAB to add a label.
 class AddLabelFab extends ConsumerWidget {
-  /// Default constructor.
+  /// Floating action button to add a new label.
   const AddLabelFab({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return FloatingActionButton(
-      tooltip: 'Add a label',
+      tooltip: l.tooltip_fab_add_label,
       onPressed: () => addLabel(context, ref),
       child: const Icon(Icons.add),
     );

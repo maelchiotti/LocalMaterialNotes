@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 
 // ignore_for_file: public_member_api_docs
 
@@ -25,9 +26,9 @@ enum LabelMenuOption {
   String get title {
     switch (this) {
       case edit:
-        return 'Edit';
+        return l.action_labels_edit;
       case delete:
-        return 'Delete';
+        return l.action_labels_edit;
     }
   }
 

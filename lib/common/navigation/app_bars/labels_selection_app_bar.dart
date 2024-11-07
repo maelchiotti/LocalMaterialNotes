@@ -52,12 +52,12 @@ class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
         Padding(padding: Paddings.appBarActionsEnd),
         IconButton(
           icon: const Icon(Icons.push_pin),
-          tooltip: 'Toggle pins',
+          tooltip: l.action_labels_toggle_pins,
           onPressed: selectedLabels.isNotEmpty ? () => togglePinLabels(ref, selectedLabels) : null,
         ),
         IconButton(
           icon: const Icon(Icons.visibility),
-          tooltip: 'Toggle visibility',
+          tooltip: l.action_labels_toggle_visibility,
           onPressed: selectedLabels.isNotEmpty ? () => toggleVisibleLabels(ref, selectedLabels) : null,
         ),
         IconButton(

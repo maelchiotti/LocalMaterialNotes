@@ -59,9 +59,9 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
 
   String? _nameValidator(String? name) {
     if (name == null || name.isEmpty) {
-      return 'The name cannot be empty.';
+      return l.dialog_label_name_cannot_be_empty;
     } else if (_labels.map((label) => label.name).toList().contains(name) && name != widget.label?.name) {
-      return 'This name is already used.';
+      return l.dialog_label_name_already_used;
     }
 
     return null;
@@ -140,7 +140,7 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
                 child: TextFormField(
                   controller: _nameController,
                   decoration: InputDecoration(
-                    hintText: 'Name',
+                    hintText: l.hint_label_name,
                   ),
                   autofocus: true,
                   validator: _nameValidator,

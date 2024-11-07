@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/providers/labels/labels/labels_provider.dart';
 
 class LabelsFilters extends ConsumerStatefulWidget {
@@ -44,13 +45,13 @@ class _LabelsFiltersState extends ConsumerState<LabelsFilters> {
       children: [
         Gap(8.0),
         FilterChip(
-          label: Text('Pinned'),
+          label: Text(l.filter_labels_pinned),
           selected: _onlyPinned,
           onSelected: _toggleOnlyPinned,
         ),
         Gap(8.0),
         FilterChip(
-          label: Text('Hidden'),
+          label: Text(l.filter_labels_hidden),
           selected: _onlyHidden,
           onSelected: _toggleOnlyHidden,
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/actions/labels/select.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/extensions/color_extension.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
@@ -33,7 +34,7 @@ class _LabelTileState extends ConsumerState<LabelTile> {
       context: context,
       builder: (context) {
         return LabelDialog(
-          title: 'Edit label',
+          title: l.dialog_label_edit,
           label: widget.label,
         );
       },
@@ -72,7 +73,7 @@ class _LabelTileState extends ConsumerState<LabelTile> {
             ),
             Padding(padding: Paddings.horizontal(4)),
             Text(
-              'Delete',
+              l.action_labels_delete,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: Theme.of(context).colorScheme.onErrorContainer,
                   ),
@@ -92,7 +93,7 @@ class _LabelTileState extends ConsumerState<LabelTile> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              'Edit',
+              l.action_labels_edit,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: Theme.of(context).colorScheme.onSecondaryContainer,
                   ),

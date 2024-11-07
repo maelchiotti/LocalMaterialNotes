@@ -189,7 +189,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
           NavigationDrawerDestination(
             icon: const Icon(Symbols.auto_label),
             selectedIcon: VariedIcon.varied(Symbols.auto_label, fill: 1.0),
-            label: Text('Manage labels'),
+            label: Text(l.navigation_manage_labels_destination),
           ),
           Divider(indent: 24, endIndent: 24),
         ],

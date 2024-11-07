@@ -52,8 +52,8 @@ class SettingsMainPage extends StatelessWidget {
                 ),
                 SettingActionTile(
                   icon: Icons.label,
-                  title: 'Labels',
-                  description: 'Enable',
+                  title: l.settings_labels,
+                  description: l.settings_labels_description,
                   onTap: () => SettingsLabelsRoute().push(context),
                 ),
                 SettingActionTile(

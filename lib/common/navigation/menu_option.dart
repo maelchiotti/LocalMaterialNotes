@@ -39,7 +39,7 @@ enum MenuOption {
       case togglePin:
         return alternative ? l.action_unpin : l.action_pin;
       case selectLabels:
-        return 'Labels';
+        return l.menu_action_labels;
       case copy:
         return flutterL?.copyButtonLabel ?? 'Copy';
       case share:
