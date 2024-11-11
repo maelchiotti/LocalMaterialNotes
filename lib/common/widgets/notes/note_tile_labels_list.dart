@@ -24,7 +24,7 @@ class _NoteTileWidgetsState extends ConsumerState<NoteTileLabelsList> {
 
   @override
   Widget build(BuildContext context) {
-    final noteLabels = widget.note.labelsSorted;
+    final noteLabels = widget.note.labelsVisibleSorted;
 
     // Wrap with a SizedBox to allow the labels to align to the start of the tile
     return SizedBox(

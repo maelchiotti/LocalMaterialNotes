@@ -110,9 +110,9 @@ class Note extends Equatable implements Comparable<Note> {
       ..content = EncryptionUtils().encrypt(password, content);
   }
 
-  /// Returns the [labels] of the note as a sorted list.
+  /// Returns the visible [labels] of the note as a sorted list.
   @ignore
-  List<Label> get labelsSorted => labels.toList().sorted();
+  List<Label> get labelsVisibleSorted => labels.toList().where((label) => label.visible).sorted();
 
   /// Note content as plain text.
   @ignore

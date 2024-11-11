@@ -32,7 +32,7 @@ class EditorLabelsList extends ConsumerWidget {
             return EmptyPlaceholder();
           }
 
-          final labels = currentNote.labelsSorted;
+          final labels = currentNote.labelsVisibleSorted;
 
           return ColoredBox(
             color: Theme.of(context).colorScheme.surfaceContainerHigh,
