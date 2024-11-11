@@ -8,12 +8,15 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
+/// Dialog to select the labels.
 class LabelsSelectionDialog extends ConsumerStatefulWidget {
+  /// A dialog allowing the user to select the labels of a note.
   const LabelsSelectionDialog({
     super.key,
     required this.note,
   });
 
+  /// The note for which to select the labels.
   final Note note;
 
   @override

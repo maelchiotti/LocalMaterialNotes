@@ -8,13 +8,15 @@ import 'package:localmaterialnotes/common/widgets/placeholders/empty_placeholder
 import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 
+/// List of labels in the editor.
 class EditorLabelsList extends ConsumerWidget {
+  /// The list of labels of the current note at the bottom of the notes editor.
   const EditorLabelsList({
     super.key,
     required this.readOnly,
   });
 
-  /// Whether the page should be read only.
+  /// Whether the page is read only.
   final bool readOnly;
 
   @override

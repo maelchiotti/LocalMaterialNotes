@@ -7,14 +7,19 @@ import 'package:localmaterialnotes/common/constants/sizes.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
 
+/// Dialog to add or edit a label.
 class LabelDialog extends ConsumerStatefulWidget {
+  /// A dialog allowing the user to add a label providing its name and color, or to edit an existing one.
   const LabelDialog({
     super.key,
     required this.title,
     this.label,
   });
 
+  /// The title of the dialog.
   final String title;
+
+  /// The label to edit if the dialog is used to edit an existing label, `null` otherwise.
   final Label? label;
 
   @override
@@ -22,28 +27,28 @@ class LabelDialog extends ConsumerStatefulWidget {
 }
 
 class _AddLabelDialogState extends ConsumerState<LabelDialog> {
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
-  late bool _ok;
+  late bool ok;
 
-  late final List<Label> _labels;
+  late final List<Label> labels;
 
   /// Name of the label.
-  late final TextEditingController _nameController;
+  late final TextEditingController nameController;
 
   /// Color of the label.
-  late Color _color;
+  late Color color;
 
   @override
   void initState() {
     super.initState();
 
-    _ok = widget.label != null;
-    _labels = ref.read(labelsListProvider).value!;
+    ok = widget.label != null;
+    labels = ref.read(labelsListProvider).value!;
 
-    _nameController = TextEditingController();
+    nameController = TextEditingController();
     if (widget.label != null) {
-      _nameController.value = TextEditingValue(
+      nameController.value = TextEditingValue(
         text: widget.label!.name,
         selection: TextSelection.collapsed(offset: widget.label!.name.length),
       );
@@ -54,13 +59,13 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
   didChangeDependencies() {
     super.didChangeDependencies();
 
-    _color = widget.label?.color ?? Theme.of(context).colorScheme.tertiaryContainer;
+    color = widget.label?.color ?? Theme.of(context).colorScheme.tertiaryContainer;
   }
 
   String? _nameValidator(String? name) {
     if (name == null || name.isEmpty) {
       return l.dialog_label_name_cannot_be_empty;
-    } else if (_labels.map((label) => label.name).toList().contains(name) && name != widget.label?.name) {
+    } else if (labels.map((label) => label.name).toList().contains(name) && name != widget.label?.name) {
       return l.dialog_label_name_already_used;
     }
 
@@ -69,12 +74,12 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
 
   void _onNameChanged(String? name) {
     setState(() {
-      _ok = _formKey.currentState!.validate();
+      ok = formKey.currentState!.validate();
     });
   }
 
   Future<void> _pickColor() async {
-    Color pickedColor = _color;
+    Color pickedColor = color;
 
     final ok = await ColorPicker(
       height: Sizes.colorIndicator.size,
@@ -98,11 +103,11 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
     }
 
     setState(() {
-      _color = pickedColor;
+      color = pickedColor;
     });
   }
 
-  /// Pops the dialog with the entered [_nameController], or nothing if it was [canceled].
+  /// Pops the dialog with the entered [nameController], or nothing if it was [canceled].
   void _pop({bool canceled = false}) {
     if (canceled) {
       Navigator.pop(context);
@@ -112,9 +117,9 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
 
     final label = widget.label != null
         ? (widget.label!
-          ..name = _nameController.text
-          ..colorHex = _color.value)
-        : Label(name: _nameController.text, colorHex: _color.value);
+          ..name = nameController.text
+          ..colorHex = color.value)
+        : Label(name: nameController.text, colorHex: color.value);
 
     Navigator.pop(context, label);
   }
@@ -125,11 +130,11 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
       title: Text(widget.title),
       content: SingleChildScrollView(
         child: Form(
-          key: _formKey,
+          key: formKey,
           child: Row(
             children: [
               ColorIndicator(
-                color: _color,
+                color: color,
                 height: Sizes.colorIndicator.size,
                 width: Sizes.colorIndicator.size,
                 borderRadius: Sizes.colorIndicator.size,
@@ -138,7 +143,7 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
               Padding(padding: Paddings.horizontal(8.0)),
               Expanded(
                 child: TextFormField(
-                  controller: _nameController,
+                  controller: nameController,
                   decoration: InputDecoration(
                     hintText: l.hint_label_name,
                   ),
@@ -157,7 +162,7 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
           child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
         ),
         TextButton(
-          onPressed: _ok ? _pop : null,
+          onPressed: ok ? _pop : null,
           child: Text(flutterL?.okButtonLabel ?? 'OK'),
         ),
       ],

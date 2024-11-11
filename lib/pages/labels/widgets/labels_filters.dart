@@ -4,7 +4,13 @@ import 'package:gap/gap.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/providers/labels/labels/labels_provider.dart';
 
+/// Filters for the labels.
 class LabelsFilters extends ConsumerStatefulWidget {
+  /// A list of filters for the labels list.
+  ///
+  /// Allows to filter the labels to show only:
+  ///   - pinned labels
+  ///   - hidden labels
   const LabelsFilters({super.key});
 
   @override

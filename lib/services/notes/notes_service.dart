@@ -51,10 +51,12 @@ class NotesService {
     return _notes.where().deletedEqualTo(deleted).findAll();
   }
 
+  /// Returns all the notes containing the [label].
   Future<List<Note>> getAllFilteredByLabel(Label label) async {
     final notes = await getAll();
 
     return notes.where((note) {
+      // Load the list of labels of the note.
       note.labels.loadSync();
 
       return note.labels.contains(label);

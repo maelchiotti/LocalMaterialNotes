@@ -32,7 +32,7 @@ class NotesEditorPage extends ConsumerStatefulWidget {
     required this.isNewNote,
   });
 
-  /// Whether the page should be read only.
+  /// Whether the page is read only.
   final bool readOnly;
 
   /// Whether this is a new note, so the title or content field should be auto focused

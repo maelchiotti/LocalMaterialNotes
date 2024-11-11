@@ -25,6 +25,7 @@ class Labels extends _$Labels {
     await ref.read(labelsListProvider.notifier).get();
   }
 
+  /// Filters the labels to show the [onlyPinned] ones or the [onlyHidden] ones.
   Future<void> filter(bool onlyPinned, bool onlyHidden) async {
     List<Label> filteredLabels = [];
 

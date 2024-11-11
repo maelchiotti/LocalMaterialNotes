@@ -23,7 +23,7 @@ class Note extends Equatable implements Comparable<Note> {
   /// Empty content in fleather data representation.
   static const String _emptyContent = '[{"insert":"\\n"}]';
 
-  /// Id of the note.
+  /// The ID of the note.
   ///
   /// It's excluded from the JSON because it's fully managed by Isar.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -44,23 +44,23 @@ class Note extends Equatable implements Comparable<Note> {
   @Index()
   bool pinned;
 
-  /// Date of creation.
+  /// The date of creation of the note.
   DateTime createdTime;
 
-  /// Last date of edition.
+  /// The last date of edition of the note, including events such as toggling the pinned state.
   DateTime editedTime;
 
-  /// Title (simple text).
+  /// The title of the note.
   String title;
 
-  /// Content (rich text in the fleather representation).
+  /// The content of the note, as rich text in the fleather representation.
   String content;
 
-  /// Labels.
+  /// The labels used to categorize the note.
   @JsonKey(includeFromJson: false, includeToJson: false)
   IsarLinks<Label> labels = IsarLinks<Label>();
 
-  /// Default constructor.
+  /// Default constructor of a note.
   Note({
     required this.deleted,
     required this.pinned,
@@ -110,6 +110,7 @@ class Note extends Equatable implements Comparable<Note> {
       ..content = EncryptionUtils().encrypt(password, content);
   }
 
+  /// Returns the [labels] of the note as a sorted list.
   @ignore
   List<Label> get labelsSorted => labels.toList().sorted();
 

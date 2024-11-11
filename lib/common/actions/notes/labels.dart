@@ -6,6 +6,7 @@ import 'package:localmaterialnotes/pages/editor/dialogs/labels_selection_dialog.
 import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 
+/// Asks the user to select the labels for the [note].
 Future<List<Label>?> selectLabels(BuildContext context, WidgetRef ref, Note note) async {
   final selectedLabels = await showAdaptiveDialog<List<Label>>(
     context: context,

@@ -19,7 +19,7 @@ class EditorField extends StatelessWidget {
   /// Controller of the content text field.
   final FleatherController fleatherController;
 
-  /// Whether the text fields should be read only.
+  /// Whether the text fields are read only.
   final bool readOnly;
 
   /// Whether to automatically focus the content text field.

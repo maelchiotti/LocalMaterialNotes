@@ -11,13 +11,15 @@ import 'package:localmaterialnotes/providers/labels/labels/labels_provider.dart'
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
+/// Tile of a label.
 class LabelTile extends ConsumerStatefulWidget {
+  /// A tile displaying all the information about the [label].
   const LabelTile({
     super.key,
     required this.label,
   });
 
-  /// Label to display.
+  /// The label to display.
   final Label label;
 
   @override
