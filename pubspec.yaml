@@ -14,6 +14,7 @@ dependencies:
   archive: ^3.6.1
   collection: ^1.18.0
   cupertino_icons: ^1.0.8
+  dart_helper_utils: ^3.0.0
   device_info_plus: ^11.1.0
   dynamic_color: ^1.7.0
   encrypt: ^5.0.3

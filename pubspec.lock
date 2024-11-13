@@ -287,7 +287,7 @@ packages:
     source: hosted
     version: "0.6.5"
   dart_helper_utils:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: dart_helper_utils
       sha256: "5d11ed4b8c31feec9570caabd7a5d7444caaee19006f3c969638a5d8470ab152"
