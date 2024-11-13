@@ -1,11 +1,10 @@
+import 'package:dart_helper_utils/dart_helper_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/enums/localization_completion.dart';
-import 'package:localmaterialnotes/common/extensions/double_extension.dart';
-import 'package:localmaterialnotes/common/extensions/string_extension.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
@@ -175,13 +174,13 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
                       onPressed: _openCrowdin,
                       label: Text(l.settings_language_contribute),
                     ),
-                    value: locale.nativeDisplayLanguage.capitalized,
+                    value: locale.nativeDisplayLanguage.capitalizeFirstLetter,
                     dialogTitle: l.settings_language,
                     options: AppLocalizations.supportedLocales.map(
                       (locale) {
                         return (
                           value: locale,
-                          title: locale.nativeDisplayLanguage.capitalized,
+                          title: locale.nativeDisplayLanguage.capitalizeFirstLetter,
                           subtitle: LocalizationCompletion.getFormattedPercentage(locale),
                         );
                       },
@@ -221,9 +220,11 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
                   SettingSliderTile(
                     icon: Icons.format_size,
                     title: l.settings_text_scaling,
-                    value: textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale),
+                    value: (textScaling as num).formatAsPercentage(locale: LocaleUtils().appLocaleLanguageCode),
                     dialogTitle: l.settings_text_scaling,
-                    label: (textScaling) => textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale),
+                    label: (textScaling) {
+                      return (textScaling as num).formatAsPercentage(locale: LocaleUtils().appLocaleLanguageCode);
+                    },
                     min: 0.5,
                     max: 2.0,
                     divisions: 15,
