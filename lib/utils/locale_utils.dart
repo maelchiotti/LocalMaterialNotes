@@ -19,6 +19,11 @@ class LocaleUtils {
     return Locale(localePreferenceLanguageCode);
   }
 
+  /// Locale language code of the application.
+  String get appLocaleLanguageCode {
+    return appLocale.languageCode;
+  }
+
   /// Sets the application's locale to [locale].
   Future<void> setLocale(Locale locale) async {
     await PreferencesUtils().set(PreferenceKey.locale, locale.languageCode);

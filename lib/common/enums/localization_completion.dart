@@ -1,5 +1,5 @@
+import 'package:dart_helper_utils/dart_helper_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/extensions/double_extension.dart';
 
 // ignore_for_file: public_member_api_docs
 
@@ -36,7 +36,7 @@ enum LocalizationCompletion {
   /// The percentage of strings that are localized for this [locale].
   ///
   /// The value is a double contained between 0 and 1.
-  final double percentage;
+  final num percentage;
 
   /// The completion of the localization for the [locale] as a [percentage].
   const LocalizationCompletion(this.locale, this.percentage);
@@ -47,6 +47,6 @@ enum LocalizationCompletion {
       return localizationSupport.locale == locale;
     }).percentage;
 
-    return percentage.formatedAsPercentage(locale: locale);
+    return percentage.formatAsPercentage(locale: locale.languageCode);
   }
 }

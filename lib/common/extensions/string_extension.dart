@@ -1,15 +1,5 @@
-import 'package:intl/intl.dart';
-import 'package:localmaterialnotes/utils/locale_utils.dart';
-
 /// Extends the [String] class with some utilities functions.
 extension StringExtension on String {
-  /// Returns the string with the first letter capitalized according to the current locale.
-  String get capitalized {
-    final appLocaleLanguageCode = LocaleUtils().appLocale.languageCode;
-
-    return toBeginningOfSentenceCase(this, appLocaleLanguageCode) ?? this;
-  }
-
   /// Returns whether the password is a strong one.
   ///
   /// A strong password must contain at least:
