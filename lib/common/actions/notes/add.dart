@@ -11,7 +11,7 @@ import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 ///
 /// A [content] can be specified when the note is created from a sharing intent.
 Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) async {
-  if (isSelectionModeNotifier.value) {
+  if (isNotesSelectionModeNotifier.value) {
     exitNotesSelectionMode(context, ref);
   }
 
