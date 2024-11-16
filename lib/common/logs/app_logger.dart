@@ -17,10 +17,11 @@ import 'package:path_provider/path_provider.dart';
 import 'filters/debug_filter.dart';
 import 'filters/release_filter.dart';
 
+/// Exceptions logger.
 class AppLogger {
   static final AppLogger _singleton = AppLogger._internal();
 
-  /// Default constructor.
+  /// Logger that outputs all exceptions to the console or a log file.
   factory AppLogger() {
     return _singleton;
   }
@@ -29,12 +30,13 @@ class AppLogger {
 
   late final String _logFilesDirectory;
 
-  /// Logger that prints to the console, only in debug mode.
+  /// Logger that prints to the console (only in debug mode).
   late final Logger _consoleLogger;
 
-  /// Logger that writes to a file, only in release mode.
+  /// Logger that writes to a file (only in release mode).
   late final Logger _fileLogger;
 
+  /// Name of the latest log file.
   final _latestLogFileName = 'latest.log';
 
   /// Ensures the utility is initialized.
@@ -77,21 +79,25 @@ class AppLogger {
     };
   }
 
+  /// Logs an information message.
   void i(String message, {Object? exception, StackTrace? stackTrace}) {
     _consoleLogger.i(message, error: exception, stackTrace: stackTrace);
     _fileLogger.i(message.firstLine, error: exception, stackTrace: stackTrace);
   }
 
+  /// Logs a warning message.
   void w(String message, {Object? exception, StackTrace? stackTrace}) {
     _consoleLogger.w(message, error: exception, stackTrace: stackTrace);
     _fileLogger.w(message.firstLine, error: exception, stackTrace: stackTrace);
   }
 
+  /// Logs an error message.
   void e(String message, [Object? exception, StackTrace? stackTrace]) {
     _consoleLogger.e(message, error: exception, stackTrace: stackTrace);
     _fileLogger.e(message.firstLine, error: exception, stackTrace: stackTrace);
   }
 
+  /// Logs a fatal message.
   void f(String message, {Object? exception, StackTrace? stackTrace}) {
     _consoleLogger.f(message, error: exception, stackTrace: stackTrace);
     _fileLogger.f(message.firstLine, error: exception, stackTrace: stackTrace);
@@ -131,8 +137,8 @@ class AppLogger {
 
     final exported = await writeFileFromString(
       directory: exportDirectory,
-      fileName: 'materialnotes_logs_${DateTime.now().filename}.${MimeType.plainText.extension}',
-      mimeType: MimeType.plainText.value,
+      fileName: 'materialnotes_logs_${DateTime.now().filename}.${MimeType.log.extension}',
+      mimeType: MimeType.log.value,
       content: logs,
     );
 

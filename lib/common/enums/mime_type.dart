@@ -9,8 +9,8 @@ enum MimeType {
   /// ZIP archive files.
   zip('application/zip', 'ZIP files', 'zip'),
 
-  /// Plain text files.
-  plainText('text/plain', 'Text files', 'txt'),
+  /// Log files.
+  log('text/plain', 'Log files', 'log'),
   ;
 
   /// Value of the mime type.
