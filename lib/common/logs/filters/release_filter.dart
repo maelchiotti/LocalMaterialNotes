@@ -5,7 +5,7 @@ class ReleaseFilter extends LogFilter {
   @override
   bool shouldLog(LogEvent event) {
     if (!kReleaseMode) {
-      return true;
+      return false;
     }
 
     return event.level.value >= level!.value;
