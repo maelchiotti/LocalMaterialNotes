@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/services/labels/labels_service.dart';
-import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'labels_list_provider.g.dart';
@@ -23,7 +23,7 @@ class LabelsList extends _$LabelsList {
     try {
       labels = await _labelsService.getAll();
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
     }
 
     state = AsyncData(labels.sorted());

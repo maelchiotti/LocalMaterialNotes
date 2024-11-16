@@ -1,9 +1,9 @@
 import 'package:collection/collection.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/list_extension.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
 import 'package:localmaterialnotes/services/labels/labels_service.dart';
-import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../labels_navigation/labels_navigation_provider.dart';
@@ -32,7 +32,7 @@ class Labels extends _$Labels {
     try {
       filteredLabels = await _labelsService.getAllFiltered(onlyPinned, onlyHidden);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
     }
 
     state = AsyncData(filteredLabels.sorted());
@@ -45,7 +45,7 @@ class Labels extends _$Labels {
     try {
       labels = await _labelsService.getAll();
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
     }
 
     return labels.sorted();
@@ -56,7 +56,8 @@ class Labels extends _$Labels {
     try {
       await _labelsService.put(editedLabel);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
+
       return false;
     }
 
@@ -91,7 +92,8 @@ class Labels extends _$Labels {
     try {
       await _labelsService.putAll(labelsToToggle);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
+
       return false;
     }
 
@@ -130,7 +132,8 @@ class Labels extends _$Labels {
     try {
       await _labelsService.putAll(labelsToToggle);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
+
       return false;
     }
 
@@ -152,7 +155,8 @@ class Labels extends _$Labels {
     try {
       await _labelsService.delete(labelToDelete);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
+
       return false;
     }
 
@@ -170,7 +174,8 @@ class Labels extends _$Labels {
     try {
       await _labelsService.deleteAll(labelsToDelete);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
+
       return false;
     }
 

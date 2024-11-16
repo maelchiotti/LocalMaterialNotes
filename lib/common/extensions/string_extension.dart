@@ -27,4 +27,9 @@ extension StringExtension on String {
 
     return uri;
   }
+
+  /// Returns the first line of the string.
+  String? get firstLine {
+    return split('\n').firstOrNull;
+  }
 }

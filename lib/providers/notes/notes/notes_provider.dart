@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/list_extension.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/services/notes/notes_service.dart';
-import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'notes_provider.g.dart';
@@ -26,7 +26,7 @@ class Notes extends _$Notes {
     try {
       notes = await _notesService.getAll();
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
     }
 
     final sortedNotes = notes.sorted();
@@ -46,7 +46,7 @@ class Notes extends _$Notes {
     try {
       notes = await _notesService.getAllFilteredByLabel(label);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
     }
 
     state = AsyncData(notes.sorted());
@@ -72,7 +72,8 @@ class Notes extends _$Notes {
         await _notesService.put(editedNote);
       }
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
+
       return false;
     }
 
@@ -95,7 +96,8 @@ class Notes extends _$Notes {
     try {
       await _notesService.putLabels(note, selectedLabels);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
+
       return false;
     }
 
@@ -127,7 +129,8 @@ class Notes extends _$Notes {
     try {
       await _notesService.putAll(notesToToggle);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
+
       return false;
     }
 
@@ -164,7 +167,8 @@ class Notes extends _$Notes {
     try {
       await _notesService.putAll(notesToDelete);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
+
       return false;
     }
 

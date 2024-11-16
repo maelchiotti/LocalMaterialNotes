@@ -1,8 +1,8 @@
 import 'package:collection/collection.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
 import 'package:localmaterialnotes/services/notes/notes_service.dart';
-import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'bin_provider.g.dart';
@@ -24,7 +24,7 @@ class Bin extends _$Bin {
     try {
       notes = await _notesService.getAll(deleted: true);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
     }
 
     state = AsyncData(notes.sorted());
@@ -44,7 +44,8 @@ class Bin extends _$Bin {
     try {
       await _notesService.emptyBin();
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
+
       return false;
     }
 
@@ -58,7 +59,8 @@ class Bin extends _$Bin {
     try {
       await _notesService.delete(noteToPermanentlyDelete);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
+
       return false;
     }
 
@@ -78,7 +80,8 @@ class Bin extends _$Bin {
     try {
       await _notesService.deleteAll(notesToPermanentlyDelete);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
+
       return false;
     }
 
@@ -99,7 +102,8 @@ class Bin extends _$Bin {
     try {
       await _notesService.put(noteToRestore);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
+
       return false;
     }
 
@@ -121,7 +125,8 @@ class Bin extends _$Bin {
     try {
       await _notesService.putAll(notesToRestore);
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
+
       return false;
     }
 
