@@ -43,3 +43,6 @@ final zipTypeGroup = XTypeGroup(
   extensions: [MimeType.zip.extension],
   mimeTypes: [MimeType.zip.value],
 );
+
+/// The value to apply to the alpha channel to get a subdued color.
+const subduedAlpha = 150;

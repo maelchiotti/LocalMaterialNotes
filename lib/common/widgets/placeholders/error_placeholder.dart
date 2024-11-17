@@ -2,7 +2,7 @@ import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
+import 'package:localmaterialnotes/common/navigation/app_bars/error_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/side_navigation.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
@@ -87,7 +87,7 @@ class ErrorPlaceholder extends StatelessWidget {
 
     return Scaffold(
       appBar: const TopNavigation(
-        appbar: BasicAppBar(),
+        appbar: ErrorAppBar(),
       ),
       drawer: const SideNavigation(),
       body: Center(

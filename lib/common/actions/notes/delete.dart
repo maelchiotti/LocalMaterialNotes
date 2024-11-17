@@ -3,12 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:localmaterialnotes/common/actions/notes/select.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/dialogs/confirmation_dialog.dart';
 import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
 import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
@@ -35,13 +36,13 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
 
   currentNoteNotifier.value = null;
 
-  await ref.read(notesProvider.notifier).delete(note);
+  final succeeded = await ref.read(notesProvider.notifier).delete(note);
 
   if (context.mounted && context.location == const NotesEditorRoute.empty().location) {
     context.pop();
   }
 
-  return true;
+  return succeeded;
 }
 
 /// Deletes the [notes].
@@ -59,9 +60,13 @@ Future<bool> deleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) 
     return false;
   }
 
-  await ref.read(notesProvider.notifier).deleteAll(notes);
+  final succeeded = await ref.read(notesProvider.notifier).deleteAll(notes);
 
-  return true;
+  if (context.mounted) {
+    exitNotesSelectionMode(context, ref);
+  }
+
+  return succeeded;
 }
 
 /// Permanently deletes the [note].
@@ -87,13 +92,13 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
 
   currentNoteNotifier.value = null;
 
-  await ref.read(binProvider.notifier).permanentlyDelete(note);
+  final succeeded = await ref.read(binProvider.notifier).permanentlyDelete(note);
 
   if (context.mounted && context.location == const NotesEditorRoute.empty().location) {
     context.pop();
   }
 
-  return true;
+  return succeeded;
 }
 
 /// Permanently deletes the [notes].
@@ -112,9 +117,13 @@ Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, List<No
     return false;
   }
 
-  await ref.read(binProvider.notifier).permanentlyDeleteAll(notes);
+  final succeeded = await ref.read(binProvider.notifier).permanentlyDeleteAll(notes);
 
-  return true;
+  if (context.mounted) {
+    exitNotesSelectionMode(context, ref);
+  }
+
+  return succeeded;
 }
 
 /// Empties the bin by deleting every note inside.
@@ -132,9 +141,9 @@ Future<bool> emptyBin(BuildContext context, WidgetRef ref) async {
     return false;
   }
 
-  isSelectionModeNotifier.value = false;
+  isNotesSelectionModeNotifier.value = false;
 
-  await ref.read(binProvider.notifier).empty();
+  final succeeded = await ref.read(binProvider.notifier).empty();
 
-  return true;
+  return succeeded;
 }

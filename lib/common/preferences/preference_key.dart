@@ -36,6 +36,11 @@ enum PreferenceKey {
   focusTitleOnNewNote(false),
   useParagraphsSpacing(true),
 
+  // Labels
+  enableLabels(true),
+  showLabelsListOnNoteTile(true),
+  showLabelsListInEditorPage(true),
+
   // Backup
   enableAutoExport(false),
   autoExportFrequency(1),

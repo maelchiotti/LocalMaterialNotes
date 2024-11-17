@@ -4,7 +4,7 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 
 /// Copies the content of the [note] to the clipboard.
-Future<void> copy(Note note) async {
+Future<void> copyNote(Note note) async {
   Clipboard.setData(
     ClipboardData(text: note.contentPreview),
   );

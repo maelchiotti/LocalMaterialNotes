@@ -11,7 +11,7 @@ import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_frequency_
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_password_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/manual_export_dialog.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';

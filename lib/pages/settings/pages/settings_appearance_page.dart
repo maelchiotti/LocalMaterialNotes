@@ -44,12 +44,10 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   Future<void> _submittedLanguage(Locale locale) async {
     await LocaleUtils().setLocale(locale);
 
-    // The Restart package crashes the app if used in debug mode.
-    if (kDebugMode) {
-      return;
+    // The Restart package crashes the app if used in debug mode
+    if (kReleaseMode) {
+      await Restart.restartApp();
     }
-
-    await Restart.restartApp();
   }
 
   /// Sets the theme to the new [themeMode].
@@ -240,7 +238,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
                 title: l.settings_appearance_notes_tiles,
                 tiles: [
                   SettingSwitchTile(
-                    icon: Icons.view_compact,
+                    icon: Icons.title,
                     title: l.settings_show_titles_only,
                     description: l.settings_show_titles_only_description,
                     toggled: showTitlesOnly,

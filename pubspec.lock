@@ -471,7 +471,7 @@ packages:
     source: hosted
     version: "1.19.0"
   flex_color_picker:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flex_color_picker
       sha256: "12dc855ae8ef5491f529b1fc52c655f06dcdf4114f1f7fdecafa41eec2ec8d79"
@@ -643,7 +643,7 @@ packages:
     source: hosted
     version: "1.2.0"
   gap:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: gap
       sha256: f19387d4e32f849394758b91377f9153a1b41d79513ef7668c088c77dbc6955d

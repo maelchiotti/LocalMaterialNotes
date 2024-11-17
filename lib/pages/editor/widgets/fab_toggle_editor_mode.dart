@@ -18,12 +18,14 @@ class FabToggleEditorMode extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
+    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
+    final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.getPreferenceOrDefault<bool>();
 
     return ValueListenableBuilder(
       valueListenable: isFleatherEditorEditMode,
       builder: (context, isEditMode, child) {
         return Padding(
-          padding: showToolbar && isEditMode ? Paddings.fabToggleEditorModeWithToolbarBottom : EdgeInsets.zero,
+          padding: Paddings.fabToggleEditorMode(showToolbar, isEditMode, enableLabels, showLabelsListInEditorPage),
           child: FloatingActionButton.small(
             tooltip: isEditMode ? l.tooltip_fab_toggle_editor_mode_read : l.tooltip_fab_toggle_editor_mode_edit,
             onPressed: _switchMode,

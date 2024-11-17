@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/pages/shell/shell.dart';
 import 'package:localmaterialnotes/routing/routes/bin/bin_route.dart';
+import 'package:localmaterialnotes/routing/routes/labels/labels_route.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_about_route.dart';
@@ -9,6 +11,7 @@ import 'package:localmaterialnotes/routing/routes/settings/settings_appearance_r
 import 'package:localmaterialnotes/routing/routes/settings/settings_backup_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_behavior_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_editor_route.dart';
+import 'package:localmaterialnotes/routing/routes/settings/settings_labels_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_route.dart';
 
 part 'shell_route.g.dart';
@@ -24,6 +27,7 @@ part 'shell_route.g.dart';
         ),
       ],
     ),
+    TypedGoRoute<LabelsRoute>(path: '/labels'),
     TypedGoRoute<BinRoute>(path: '/bin'),
     TypedGoRoute<SettingsRoute>(
       path: '/settings',
@@ -36,6 +40,9 @@ part 'shell_route.g.dart';
         ),
         TypedGoRoute<SettingsEditorRoute>(
           path: 'editor',
+        ),
+        TypedGoRoute<SettingsLabelsRoute>(
+          path: 'labels',
         ),
         TypedGoRoute<SettingsBackupRoute>(
           path: 'backup',

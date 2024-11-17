@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
+import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
 import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -7,7 +8,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'bin_provider.g.dart';
 
 /// Provider for the deleted notes.
-@riverpod
+@Riverpod(keepAlive: true)
 class Bin extends _$Bin {
   final _notesService = NotesService();
 
@@ -26,14 +27,14 @@ class Bin extends _$Bin {
       LogsUtils().handleException(exception, stackTrace);
     }
 
-    state = AsyncData(notes);
+    state = AsyncData(notes.sorted());
 
-    return notes;
+    return notes.sorted();
   }
 
   /// Sorts the deleted notes.
-  Future<void> sort() async {
-    final sortedNotes = (state.value ?? []).sorted((note, otherNote) => note.compareTo(otherNote));
+  void sort() {
+    final sortedNotes = (state.value ?? []).sorted();
 
     state = AsyncData(sortedNotes);
   }
@@ -52,80 +53,86 @@ class Bin extends _$Bin {
     return true;
   }
 
-  /// Removes the [permanentlyDeletedNote] from the database.
-  Future<bool> permanentlyDelete(Note permanentlyDeletedNote) async {
+  /// Removes the [noteToPermanentlyDelete] from the database.
+  Future<bool> permanentlyDelete(Note noteToPermanentlyDelete) async {
     try {
-      await _notesService.delete(permanentlyDeletedNote);
+      await _notesService.delete(noteToPermanentlyDelete);
     } catch (exception, stackTrace) {
       LogsUtils().handleException(exception, stackTrace);
       return false;
     }
 
-    // Keep all the notes that were not permanently deleted
-    final newNotes = (state.value ?? []).where((note) => note != permanentlyDeletedNote).toList();
-
-    state = AsyncData(newNotes);
+    state = AsyncData(
+      (state.value ?? [])..remove(noteToPermanentlyDelete),
+    );
 
     return true;
   }
 
-  /// Removes the [permanentlyDeletedNotes] from the database.
-  Future<bool> permanentlyDeleteAll(List<Note> notes) async {
-    for (final note in notes) {
+  /// Removes the [notesToPermanentlyDelete] from the database.
+  Future<bool> permanentlyDeleteAll(List<Note> notesToPermanentlyDelete) async {
+    for (final note in notesToPermanentlyDelete) {
       note.deleted = false;
     }
 
     try {
-      await _notesService.deleteAll(notes);
+      await _notesService.deleteAll(notesToPermanentlyDelete);
     } catch (exception, stackTrace) {
       LogsUtils().handleException(exception, stackTrace);
       return false;
     }
 
-    // Keep all the notes that were not permanently deleted
-    final newNotes = (state.value ?? []).where((note) => !notes.contains(note)).toList();
-
-    state = AsyncData(newNotes);
+    state = AsyncData(
+      (state.value ?? [])
+        ..removeWhere(
+          (note) => notesToPermanentlyDelete.contains(note),
+        ),
+    );
 
     return true;
   }
 
-  /// Sets the [restoredNote] as not deleted in the database.
-  Future<bool> restore(Note restoredNote) async {
-    restoredNote.deleted = false;
+  /// Sets the [noteToRestore] as not deleted in the database.
+  Future<bool> restore(Note noteToRestore) async {
+    noteToRestore.deleted = false;
 
     try {
-      await _notesService.put(restoredNote);
+      await _notesService.put(noteToRestore);
     } catch (exception, stackTrace) {
       LogsUtils().handleException(exception, stackTrace);
       return false;
     }
 
-    // Keep all the notes that were not restored
-    final newNotes = (state.value ?? []).where((note) => note != restoredNote).toList();
+    state = AsyncData(
+      (state.value ?? [])..remove(noteToRestore),
+    );
 
-    state = AsyncData(newNotes);
+    ref.read(notesProvider.notifier).get();
 
     return true;
   }
 
-  /// Sets the [restoredNotes] as not deleted in the database.
-  Future<bool> restoreAll(List<Note> notes) async {
-    for (final note in notes) {
+  /// Sets the [notesToRestore] as not deleted in the database.
+  Future<bool> restoreAll(List<Note> notesToRestore) async {
+    for (final note in notesToRestore) {
       note.deleted = false;
     }
 
     try {
-      await _notesService.putAll(notes);
+      await _notesService.putAll(notesToRestore);
     } catch (exception, stackTrace) {
       LogsUtils().handleException(exception, stackTrace);
       return false;
     }
 
-    // Keep all the notes that were not restored
-    final newNotes = (state.value ?? []).where((note) => !notes.contains(note)).toList();
+    state = AsyncData(
+      (state.value ?? [])
+        ..removeWhere(
+          (note) => notesToRestore.contains(note),
+        ),
+    );
 
-    state = AsyncData(newNotes);
+    ref.read(notesProvider.notifier).get();
 
     return true;
   }
@@ -137,7 +144,7 @@ class Bin extends _$Bin {
     ]);
   }
 
-  /// Unselects the [noteToSelect].
+  /// Unselects the [noteToUnselect].
   void unselect(Note noteToUnselect) {
     state = AsyncData([
       for (final Note note in state.value ?? []) note == noteToUnselect ? (noteToUnselect..selected = false) : note,
