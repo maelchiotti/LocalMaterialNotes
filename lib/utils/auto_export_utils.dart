@@ -1,10 +1,10 @@
 import 'dart:developer';
 
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
-import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:saf_util/saf_util.dart';
@@ -51,7 +51,7 @@ class AutoExportUtils {
         return setAutoExportDirectoryToDefault();
       }
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
 
       // URIs for SAF used before v1.7.1 are not compatible and need to be discarded
       log("[Auto export] Discarding an URI in the old format for the SAF auto export directory.");

@@ -12,7 +12,6 @@ import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
-import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:sanitize_filename/sanitize_filename.dart';
 
@@ -76,7 +75,7 @@ class DatabaseUtils {
             );
           }).toList();
         } catch (exception, stackTrace) {
-          LogsUtils().handleException(exception, stackTrace);
+          logger.e(exception.toString(), exception, stackTrace);
 
           SnackBarUtils.error(
             l.dialog_import_encryption_password_error,

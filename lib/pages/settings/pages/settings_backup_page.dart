@@ -16,7 +16,6 @@ import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
-import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:settings_tiles/settings_tiles.dart';
@@ -46,7 +45,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         SnackBarUtils.info(l.snack_bar_import_success).show();
       }
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
 
       SnackBarUtils.info(exception.toString()).show();
     }
@@ -74,7 +73,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
           SnackBarUtils.info(l.snack_bar_export_success).show();
         }
       } catch (exception, stackTrace) {
-        LogsUtils().handleException(exception, stackTrace);
+        logger.e(exception.toString(), exception, stackTrace);
 
         SnackBarUtils.info(exception.toString()).show();
       }
@@ -90,7 +89,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         SnackBarUtils.info(l.snack_bar_export_success).show();
       }
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
 
       SnackBarUtils.info(exception.toString()).show();
     }

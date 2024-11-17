@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:file_selector/file_selector.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
-import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:path/path.dart';
 
 /// Writes a file with the [data], in the [directory], with the [filename] and the [mimeType].
@@ -23,7 +22,7 @@ Future<bool> _writeFileNative({
 
     await file.saveTo(path);
   } catch (exception, stackTrace) {
-    LogsUtils().handleException(exception, stackTrace);
+    logger.e(exception.toString(), exception, stackTrace);
 
     return false;
   }
@@ -44,7 +43,7 @@ Future<bool> _writeFileSaf({
   try {
     await safStream.writeFileSync(directory, fileName, mimeType, data);
   } catch (exception, stackTrace) {
-    LogsUtils().handleException(exception, stackTrace);
+    logger.e(exception.toString(), exception, stackTrace);
 
     return false;
   }

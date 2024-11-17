@@ -47,6 +47,7 @@ dependencies:
     hosted: https://pub.isar-community.dev/
   json_annotation: ^4.9.0
   locale_names: ^1.1.1
+  logger: ^2.4.0
   material_symbols_icons: ^4.2789.0
   package_info_plus: ^8.1.0
   parchment: any
