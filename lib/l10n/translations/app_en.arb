@@ -85,9 +85,17 @@
   "@navigation_settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
+  "navigation_settings_labels": "Labels",
+  "@navigation_settings_labels": {
+    "description": "Title of the settings page regarding the labels."
+  },
   "navigation_settings_backup": "Backup",
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
+  },
+  "navigation_settings_accessibility": "Accessibility",
+  "@navigation_settings_accessibility": {
+    "description": "Title of the settings page regarding the accessibility."
   },
   "navigation_settings_about": "About",
   "@navigation_settings_about": {
@@ -105,7 +113,7 @@
   "@settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
-  "settings_appearance_description": "Language, theme, text scaling, notes tiles",
+  "settings_appearance_description": "Language, theme, notes tiles",
   "@settings_appearance_description": {
     "description": "Description of the appearance settings page."
   },
@@ -152,10 +160,6 @@
   "settings_black_theming_description": "Use a black background in dark mode",
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
-  },
-  "settings_text_scaling": "Text scaling",
-  "@settings_text_scaling": {
-    "description": "Title of the text scale setting tile."
   },
   "settings_appearance_notes_tiles": "Notes tiles",
   "@settings_appearance_notes_tiles": {
@@ -458,6 +462,26 @@
   "settings_auto_export_directory_description": "Directory where to store the automatic exports of the notes",
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
+  },
+  "settings_accessibility": "Accessibility",
+  "@settings_accessibility": {
+    "description": "Title of the settings page regarding the accessibility."
+  },
+  "settings_accessibility_description": "Text color, text scaling",
+  "@settings_accessibility_description": {
+    "description": "Description of the accessibility settings page."
+  },
+  "settings_text_scaling": "Text scaling",
+  "@settings_text_scaling": {
+    "description": "Title of the text scale setting tile."
+  },
+  "settings_white_text_dark_mode": "White text in dark mode",
+  "@settings_white_text_dark_mode": {
+    "description": "Title of the text scale setting tile."
+  },
+  "settings_white_text_dark_mode_description": "Use a white color for the text in dark mode",
+  "@settings_white_text_dark_mode_description": {
+    "description": "Description of the text scale setting tile."
   },
   "settings_about": "About",
   "@settings_about": {

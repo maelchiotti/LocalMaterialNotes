@@ -5,6 +5,7 @@ import 'package:localmaterialnotes/routing/routes/bin/bin_route.dart';
 import 'package:localmaterialnotes/routing/routes/labels/labels_route.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_about_route.dart';
+import 'package:localmaterialnotes/routing/routes/settings/settings_accessibility_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_appearance_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_backup_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_behavior_route.dart';
@@ -43,7 +44,7 @@ extension BuildContextExtension on BuildContext {
         return labelName;
       }
     } else if (location == LabelsRoute().location) {
-      return 'Labels';
+      return l.navigation_manage_labels_page;
     } else if (location == BinRoute().location) {
       return l.navigation_bin;
     } else if (location == SettingsRoute().location) {
@@ -55,9 +56,11 @@ extension BuildContextExtension on BuildContext {
     } else if (location == SettingsEditorRoute().location) {
       return l.navigation_settings_editor;
     } else if (location == SettingsLabelsRoute().location) {
-      return 'Labels';
+      return l.navigation_settings_labels;
     } else if (location == SettingsBackupRoute().location) {
       return l.navigation_settings_backup;
+    } else if (location == SettingsAccessibilityRoute().location) {
+      return l.navigation_settings_accessibility;
     } else if (location == SettingsAboutRoute().location) {
       return l.navigation_settings_about;
     } else {

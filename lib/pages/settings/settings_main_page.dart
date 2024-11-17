@@ -4,6 +4,7 @@ import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart
 import 'package:localmaterialnotes/common/navigation/side_navigation.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_about_route.dart';
+import 'package:localmaterialnotes/routing/routes/settings/settings_accessibility_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_appearance_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_backup_route.dart';
 import 'package:localmaterialnotes/routing/routes/settings/settings_behavior_route.dart';
@@ -61,6 +62,12 @@ class SettingsMainPage extends StatelessWidget {
                   title: l.settings_backup,
                   description: l.settings_backup_description,
                   onTap: () => SettingsBackupRoute().push(context),
+                ),
+                SettingActionTile(
+                  icon: Icons.accessibility,
+                  title: l.settings_accessibility,
+                  description: l.settings_accessibility_description,
+                  onTap: () => SettingsAccessibilityRoute().push(context),
                 ),
                 SettingActionTile(
                   icon: Icons.info,

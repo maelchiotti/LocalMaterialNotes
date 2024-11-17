@@ -14,7 +14,6 @@ enum PreferenceKey {
   theme(0),
   dynamicTheming(true),
   blackTheming(false),
-  textScaling(1.0),
   showTitlesOnly(false),
   showTitlesOnlyDisableInSearchView(true),
   disableSubduedNoteContentPreview(false),
@@ -48,6 +47,10 @@ enum PreferenceKey {
   autoExportPassword('', secure: true),
   autoExportDirectory(''),
   lastAutoExportDate(''),
+
+  // Accessibility
+  textScaling(1.0),
+  useWhiteTextDarkMode(false),
 
   // Notes
   sortMethod(SortMethod.editedDate),
