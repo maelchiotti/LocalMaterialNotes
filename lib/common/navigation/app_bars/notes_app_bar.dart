@@ -146,12 +146,21 @@ class NotesAppBar extends ConsumerWidget {
           itemBuilder: (context) {
             return [
               PopupMenuItem(
-                key: Keys.sortDateMenuItem,
-                value: SortMethod.date,
+                key: Keys.sortCreatedDateMenuItem,
+                value: SortMethod.createdDate,
                 child: ListTile(
-                  selected: sortMethod == SortMethod.date,
+                  selected: sortMethod == SortMethod.createdDate,
                   leading: const Icon(Icons.calendar_month),
-                  title: Text(l.button_sort_date),
+                  title: Text(l.button_sort_creation_date),
+                ),
+              ),
+              PopupMenuItem(
+                key: Keys.sortEditedDateMenuItem,
+                value: SortMethod.editedDate,
+                child: ListTile(
+                  selected: sortMethod == SortMethod.editedDate,
+                  leading: const Icon(Icons.edit_calendar),
+                  title: Text(l.button_sort_edition_date),
                 ),
               ),
               PopupMenuItem(

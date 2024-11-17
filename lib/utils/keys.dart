@@ -27,7 +27,8 @@ class Keys {
   static const appBarSearchIconButton = Key('appBarSearchIconButton');
 
   // Sort method popup menu items
-  static const sortDateMenuItem = Key('sortDateMenuItem');
+  static const sortCreatedDateMenuItem = Key('sortCreatedDateMenuItem');
+  static const sortEditedDateMenuItem = Key('sortEditedDateMenuItem');
   static const sortTitleMenuItem = Key('sortTitleMenuItem');
   static const sortAscendingMenuItem = Key('sortAscendingMenuItem');
 
