@@ -104,7 +104,7 @@ class ThemeUtils {
   /// Returns the dark theme.
   ///
   /// Returns a dynamic dark theme if [darkDynamicColorScheme] is not null, or the custom one otherwise.
-  ThemeData getDarkTheme(ColorScheme? darkDynamicColorScheme) {
+  ThemeData getDarkTheme(ColorScheme? darkDynamicColorScheme, bool useWhiteTextDarkMode) {
     final ColorScheme colorScheme;
 
     if (useDynamicTheming && darkDynamicColorScheme != null) {
@@ -149,9 +149,17 @@ class ThemeUtils {
             );
     }
 
+    final textTheme = useWhiteTextDarkMode
+        ? Typography().white.apply(
+              bodyColor: Colors.white,
+              displayColor: Colors.white,
+            )
+        : null;
+
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
+      textTheme: textTheme,
     );
   }
 
@@ -170,6 +178,7 @@ class ThemeUtils {
       case ThemeMode.dark:
         value = 2;
     }
+
     PreferencesUtils().set<int>(PreferenceKey.theme, value);
 
     themeModeNotifier.value = themeMode;

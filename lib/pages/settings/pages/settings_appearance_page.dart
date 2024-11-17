@@ -73,28 +73,6 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     blackThemingNotifier.value = toggled;
   }
 
-  /// Updates the scaling of the text to the new [textScaling] when the slider of the text scaling dialog is changed.
-  void _changedTextScaling(double textScaling) {
-    textScalingNotifier.value = textScaling;
-  }
-
-  /// Sets the text scaling to the new [textScaling].
-  void _submittedTextScaling(double textScaling) {
-    setState(() {
-      PreferencesUtils().set<double>(PreferenceKey.textScaling, textScaling);
-    });
-
-    textScalingNotifier.value = textScaling;
-  }
-
-  /// Resets the text scaling to the preference value.
-  ///
-  /// Called when the dialog to choose the text scaling is canceled, to revert changes made in real time
-  /// when the slider is changed.
-  void _canceledTextScaling() {
-    textScalingNotifier.value = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
-  }
-
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTitlesOnly(bool toggled) {
     setState(() {
@@ -141,7 +119,6 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     final locale = LocaleUtils().appLocale;
     final themeMode = ThemeUtils().themeMode;
     final showUseBlackTheming = Theme.of(context).colorScheme.brightness == Brightness.dark;
-    final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
 
     final showTitlesOnly = PreferenceKey.showTitlesOnly.getPreferenceOrDefault<bool>();
     final showTitlesOnlyDisableInSearchView =
@@ -214,22 +191,6 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
                     description: l.settings_black_theming_description,
                     toggled: ThemeUtils().useBlackTheming,
                     onChanged: _toggleBlackTheming,
-                  ),
-                  SettingSliderTile(
-                    icon: Icons.format_size,
-                    title: l.settings_text_scaling,
-                    value: (textScaling as num).formatAsPercentage(locale: LocaleUtils().appLocaleLanguageCode),
-                    dialogTitle: l.settings_text_scaling,
-                    label: (textScaling) {
-                      return (textScaling as num).formatAsPercentage(locale: LocaleUtils().appLocaleLanguageCode);
-                    },
-                    min: 0.5,
-                    max: 2.0,
-                    divisions: 15,
-                    initialValue: textScaling,
-                    onChanged: _changedTextScaling,
-                    onSubmitted: _submittedTextScaling,
-                    onCanceled: _canceledTextScaling,
                   ),
                 ],
               ),

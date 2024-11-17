@@ -19,6 +19,9 @@ final blackThemingNotifier = ValueNotifier(ThemeUtils().useBlackTheming);
 /// Notifier for the text scaling.
 final textScalingNotifier = ValueNotifier(PreferenceKey.textScaling.getPreferenceOrDefault<double>());
 
+/// Notifier for the text scaling.
+final useWhiteTextDarkModeNotifier = ValueNotifier(PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault<bool>());
+
 /// Notifier for whether the notes selection mode is active.
 final isNotesSelectionModeNotifier = ValueNotifier(false);
 

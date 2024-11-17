@@ -72,35 +72,39 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
                     return ValueListenableBuilder(
                       valueListenable: textScalingNotifier,
                       builder: (context, textScaling, child) {
-                        return MediaQuery(
-                          data: MediaQuery.of(context).copyWith(
-                            textScaler: TextScaler.linear(textScaling),
-                          ),
-                          child: MaterialApp.router(
-                            title: 'Material Notes',
-                            routerConfig: router,
-                            builder: (context, child) {
-                              // Change the widget shown when a widget building fails
-                              ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);
+                        return ValueListenableBuilder(
+                            valueListenable: useWhiteTextDarkModeNotifier,
+                            builder: (context, useWhiteTextDarkMode, child) {
+                              return MediaQuery(
+                                data: MediaQuery.of(context).copyWith(
+                                  textScaler: TextScaler.linear(textScaling),
+                                ),
+                                child: MaterialApp.router(
+                                  title: 'Material Notes',
+                                  routerConfig: router,
+                                  builder: (context, child) {
+                                    // Change the widget shown when a widget building fails
+                                    ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);
 
-                              if (child == null) {
-                                throw StateError('MaterialApp child is null');
-                              }
+                                    if (child == null) {
+                                      throw StateError('MaterialApp child is null');
+                                    }
 
-                              return Directionality(
-                                textDirection: LocaleUtils().deviceLocale.textDirection,
-                                child: child,
+                                    return Directionality(
+                                      textDirection: LocaleUtils().deviceLocale.textDirection,
+                                      child: child,
+                                    );
+                                  },
+                                  theme: ThemeUtils().getLightTheme(lightDynamicColorScheme),
+                                  darkTheme: ThemeUtils().getDarkTheme(darkDynamicColorScheme, useWhiteTextDarkMode),
+                                  themeMode: themeMode,
+                                  localizationsDelegates: AppLocalizations.localizationsDelegates,
+                                  supportedLocales: AppLocalizations.supportedLocales,
+                                  locale: LocaleUtils().appLocale,
+                                  debugShowCheckedModeBanner: false,
+                                ),
                               );
-                            },
-                            theme: ThemeUtils().getLightTheme(lightDynamicColorScheme),
-                            darkTheme: ThemeUtils().getDarkTheme(darkDynamicColorScheme),
-                            themeMode: themeMode,
-                            localizationsDelegates: AppLocalizations.localizationsDelegates,
-                            supportedLocales: AppLocalizations.supportedLocales,
-                            locale: LocaleUtils().appLocale,
-                            debugShowCheckedModeBanner: false,
-                          ),
-                        );
+                            });
                       },
                     );
                   },
