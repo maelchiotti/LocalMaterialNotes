@@ -238,7 +238,9 @@ class Note extends Equatable implements Comparable<Note> {
       return 1;
     } else {
       switch (sortMethod) {
-        case SortMethod.date:
+        case SortMethod.createdDate:
+          return sortAscending ? createdTime.compareTo(other.createdTime) : other.createdTime.compareTo(createdTime);
+        case SortMethod.editedDate:
           return sortAscending ? editedTime.compareTo(other.editedTime) : other.editedTime.compareTo(editedTime);
         case SortMethod.title:
           return sortAscending ? title.compareTo(other.title) : other.title.compareTo(title);

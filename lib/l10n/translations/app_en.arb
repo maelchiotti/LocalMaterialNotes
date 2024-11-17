@@ -749,9 +749,13 @@
   "@dialog_label_name_already_used": {
     "description": "Error message shown when relevant on the text field of the name of the label."
   },
-  "button_sort_date": "Date",
-  "@button_sort_date": {
-    "description": "Text of the button to sort the notes list by date."
+  "button_sort_creation_date": "Creation date",
+  "@button_sort_creation_date": {
+    "description": "Text of the button to sort the notes list by their creation date."
+  },
+  "button_sort_edition_date": "Edition date",
+  "@button_sort_edition_date": {
+    "description": "Text of the button to sort the notes list by their last edition date."
   },
   "placeholder_notes": "No notes",
   "@placeholder_notes": {

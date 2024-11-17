@@ -50,7 +50,7 @@ enum PreferenceKey {
   lastAutoExportDate(''),
 
   // Notes
-  sortMethod(SortMethod.date),
+  sortMethod(SortMethod.editedDate),
   sortAscending(false),
   layout(Layout.list),
   ;
