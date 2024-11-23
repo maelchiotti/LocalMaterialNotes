@@ -1,0 +1,2 @@
+FIXED
+- Error at startup because of the ascending sorting setting

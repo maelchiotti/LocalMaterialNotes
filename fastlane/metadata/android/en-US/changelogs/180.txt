@@ -1,2 +1,2 @@
 FIXED
-- Crash at startup because of the sorting setting
+- Crash at startup because of the sorting method setting
