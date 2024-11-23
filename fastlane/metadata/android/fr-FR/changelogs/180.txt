@@ -1,2 +1,2 @@
 CORRIGÉ
-- Crash au démarrage à cause du paramètre de tri
+- Crash au démarrage à cause du paramètre de méthode de tri
