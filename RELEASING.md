@@ -11,7 +11,6 @@
 - [ ] Upgrade Flutter and Dart versions
 - [ ] Bump application version
 - [ ] Bump dependencies versions
-- [ ] Re-generate generated files
 
 ### Changelogs
 
