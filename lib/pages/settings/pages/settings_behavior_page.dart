@@ -7,7 +7,6 @@ import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:settings_tiles/settings_tiles.dart';
@@ -25,14 +24,14 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
   /// Asks the user to choose which confirmations should be shown.
   void _submittedConfirmations(Confirmations confirmations) {
     setState(() {
-      PreferencesUtils().set<String>(PreferenceKey.confirmations, confirmations.name);
+      PreferenceKey.confirmations.set<String>(confirmations.name);
     });
   }
 
   /// Sets the new right [swipeAction].
   void _submittedSwipeRightAction(SwipeAction swipeAction) {
     setState(() {
-      PreferencesUtils().set<String>(PreferenceKey.swipeRightAction, swipeAction.name);
+      PreferenceKey.swipeRightAction.set<String>(swipeAction.name);
       swipeActionsNotifier.value = (right: swipeAction, left: swipeActionsNotifier.value.left);
     });
   }
@@ -40,7 +39,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
   /// Sets the new left [swipeAction].
   void _submittedSwipeLeftAction(SwipeAction swipeAction) {
     setState(() {
-      PreferencesUtils().set<String>(PreferenceKey.swipeLeftAction, swipeAction.name);
+      PreferenceKey.swipeLeftAction.set<String>(swipeAction.name);
       swipeActionsNotifier.value = (right: swipeActionsNotifier.value.right, left: swipeAction);
     });
   }
@@ -48,7 +47,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
   /// Toggles Android's `FLAG_SECURE` to hide the app from the recent apps and prevent screenshots.
   Future<void> _setFlagSecure(bool toggled) async {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.flagSecure, toggled);
+      PreferenceKey.flagSecure.set<bool>(toggled);
     });
 
     toggled ? await FlagSecure.set() : await FlagSecure.unset();

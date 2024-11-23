@@ -7,7 +7,6 @@ import 'package:localmaterialnotes/common/extensions/build_context_extension.dar
 import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/common/widgets/notes/note_tile.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/empty_placeholder.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
@@ -68,7 +67,7 @@ class NotesAppBar extends ConsumerWidget {
   void _toggleLayout() {
     final newLayout = layoutNotifier.value == Layout.list ? Layout.grid : Layout.list;
 
-    PreferencesUtils().set<String>(PreferenceKey.layout, newLayout.name);
+    PreferenceKey.layout.set<String>(newLayout.name);
 
     layoutNotifier.value = newLayout;
   }
@@ -79,20 +78,20 @@ class NotesAppBar extends ConsumerWidget {
     if (sortMethod == SortMethod.ascending) {
       final oldAscendingPreference = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
-      PreferencesUtils().set<bool>(PreferenceKey.sortAscending, !oldAscendingPreference);
+      PreferenceKey.sortAscending.set<bool>(!oldAscendingPreference);
     }
 
     // The 'Date' or 'Title' menu items were taped
     else if (sortMethod != null) {
       final forceAscending = sortMethod == SortMethod.title;
 
-      PreferencesUtils().set<String>(PreferenceKey.sortMethod, sortMethod.name);
-      PreferencesUtils().set<bool>(PreferenceKey.sortAscending, forceAscending);
+      PreferenceKey.sortMethod.set<String>(sortMethod.name);
+      PreferenceKey.sortAscending.set<bool>(forceAscending);
     }
 
     // The checkbox of the 'Ascending' menu item was toggled
     else if (ascending != null) {
-      PreferencesUtils().set<bool>(PreferenceKey.sortAscending, ascending);
+      PreferenceKey.sortAscending.set<bool>(ascending);
 
       Navigator.pop(context);
     }

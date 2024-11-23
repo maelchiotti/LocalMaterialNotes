@@ -1,5 +1,5 @@
+import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 
 /// Lists the methods to sort the notes in the notes list.
 enum SortMethod {
@@ -20,10 +20,17 @@ enum SortMethod {
 
   /// Returns the value of the preference if set, or its default value otherwise.
   factory SortMethod.fromPreference() {
-    final preference = PreferencesUtils().get<String>(PreferenceKey.sortMethod);
+    final sortMethod = SortMethod.values.byNameOrNull(
+      PreferenceKey.sortMethod.getPreference<String>(),
+    );
 
-    return preference != null
-        ? SortMethod.values.byName(preference)
-        : PreferenceKey.sortMethod.defaultValue as SortMethod;
+    // Reset the malformed preference to its default value
+    if (sortMethod == null) {
+      PreferenceKey.sortMethod.setToDefault();
+
+      return PreferenceKey.sortMethod.defaultValue as SortMethod;
+    }
+
+    return sortMethod;
   }
 }
