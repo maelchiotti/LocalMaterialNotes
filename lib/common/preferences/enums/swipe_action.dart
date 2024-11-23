@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 
 /// Lists the actions to trigger when swiping on a note tile.
 enum SwipeAction {
@@ -43,20 +43,34 @@ enum SwipeAction {
 
   /// Returns the value of the right swipe action preference if set, or its default value otherwise.
   factory SwipeAction.rightFromPreference() {
-    final preference = PreferencesUtils().get<String>(PreferenceKey.swipeRightAction);
+    final swipeRightAction = SwipeAction.values.byNameOrNull(
+      PreferenceKey.swipeRightAction.getPreference<String>(),
+    );
 
-    return preference != null
-        ? SwipeAction.values.byName(preference)
-        : PreferenceKey.swipeRightAction.defaultValue as SwipeAction;
+    // Reset the malformed preference to its default value
+    if (swipeRightAction == null) {
+      PreferenceKey.swipeRightAction.setToDefault();
+
+      return PreferenceKey.swipeRightAction.defaultValue as SwipeAction;
+    }
+
+    return swipeRightAction;
   }
 
   /// Returns the value of the left swipe action preference if set, or its default value otherwise.
   factory SwipeAction.leftFromPreference() {
-    final preference = PreferencesUtils().get<String>(PreferenceKey.swipeLeftAction);
+    final swipeRightAction = SwipeAction.values.byNameOrNull(
+      PreferenceKey.swipeLeftAction.getPreference<String>(),
+    );
 
-    return preference != null
-        ? SwipeAction.values.byName(preference)
-        : PreferenceKey.swipeLeftAction.defaultValue as SwipeAction;
+    // Reset the malformed preference to its default value
+    if (swipeRightAction == null) {
+      PreferenceKey.swipeLeftAction.setToDefault();
+
+      return PreferenceKey.swipeLeftAction.defaultValue as SwipeAction;
+    }
+
+    return swipeRightAction;
   }
 
   /// Returns whether the swipe action is enabled.

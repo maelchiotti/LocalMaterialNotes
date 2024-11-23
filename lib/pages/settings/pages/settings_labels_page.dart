@@ -5,7 +5,6 @@ import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:restart_app/restart_app.dart';
@@ -24,7 +23,7 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
   /// Toggles whether to enable the labels.
   Future<void> _toggleEnableLabels(bool toggled) async {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.enableLabels, toggled);
+      PreferenceKey.enableLabels.set<bool>(toggled);
     });
 
     // The Restart package crashes the app if used in debug mode
@@ -36,14 +35,14 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
   /// Toggles whether to show the labels list in the editor.
   Future<void> _toggleShowLabelsListOnNoteTile(bool toggled) async {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showLabelsListOnNoteTile, toggled);
+      PreferenceKey.showLabelsListOnNoteTile.set<bool>(toggled);
     });
   }
 
   /// Toggles whether to show the labels list in the editor.
   Future<void> _toggleShowLabelsListInEditor(bool toggled) async {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showLabelsListInEditorPage, toggled);
+      PreferenceKey.showLabelsListInEditorPage.set<bool>(toggled);
     });
   }
 

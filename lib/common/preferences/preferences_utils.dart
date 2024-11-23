@@ -58,12 +58,16 @@ class PreferencesUtils {
   ///
   /// The type [T] of the value should be a basic type: `bool`, `int`, `double`, `String` or `List<String>`.
   T? get<T>(PreferenceKey preferenceKey) {
-    if (preferenceKey.secure) {
-      throw ArgumentError('The preference is securely stored, use getSecure() instead');
-    }
-
     if (T == dynamic) {
       throw ArgumentError('The type T is required.');
+    }
+
+    if (T != bool && T != int && T != double && T != String && T != List<String>) {
+      throw ArgumentError('The type T should be a native type (bool, int, double, String or List<String>), not $T.');
+    }
+
+    if (preferenceKey.secure) {
+      throw ArgumentError('The preference is securely stored, use getSecure() instead');
     }
 
     return _preferences.get(preferenceKey.name) as T?;

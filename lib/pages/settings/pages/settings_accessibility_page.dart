@@ -5,7 +5,6 @@ import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
@@ -29,7 +28,7 @@ class _SettingsAppearancePageState extends State<SettingsAccessibilityPage> {
   /// Sets the text scaling to the new [textScaling].
   void _submittedTextScaling(double textScaling) {
     setState(() {
-      PreferencesUtils().set<double>(PreferenceKey.textScaling, textScaling);
+      PreferenceKey.textScaling.set<double>(textScaling);
     });
 
     textScalingNotifier.value = textScaling;
@@ -46,7 +45,7 @@ class _SettingsAppearancePageState extends State<SettingsAccessibilityPage> {
   /// Toggles whether to use white text in dark mode.
   void _toggleUseWhiteTextDarkMode(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.useWhiteTextDarkMode, toggled);
+      PreferenceKey.useWhiteTextDarkMode.set<bool>(toggled);
     });
 
     useWhiteTextDarkModeNotifier.value = toggled;
