@@ -1,4 +1,6 @@
 import 'package:isar/isar.dart';
+import 'package:localmaterialnotes/common/constants/environment.dart';
+import 'package:localmaterialnotes/common/constants/labels.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/pages/labels/enums/labels_filter.dart';
 import 'package:localmaterialnotes/services/database_service.dart';
@@ -18,6 +20,23 @@ class LabelsService {
 
   final _database = DatabaseService().database;
   final _labels = DatabaseService().database.labels;
+
+  /// Ensures the labels service is initialized.
+  Future<void> ensureInitialized() async {
+    // If the app runs with the 'INTEGRATION_TEST' environment parameter,
+    // clear all the labels and add the labels for the integration tests
+    if (Environment.integrationTest) {
+      await clear();
+      await putAll(integrationTestLabels);
+    }
+
+    // If the app runs with the 'SCREENSHOTS' environment parameter,
+    // clear all the labels and add the labels for the screenshots
+    else if (Environment.screenshots) {
+      await clear();
+      await putAll(screenshotLabels);
+    }
+  }
 
   /// Returns all the labels.
   Future<List<Label>> getAll() async {
