@@ -3,6 +3,8 @@ default_platform(:android)
 platform :android do
     desc "Build AAB"
     lane :build_aab do
+        sh("dart run build_runner build")
+        sh("flutter gen-l10n")
         sh("flutter build appbundle --release")
     end
 

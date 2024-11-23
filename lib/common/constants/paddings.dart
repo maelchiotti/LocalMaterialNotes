@@ -82,9 +82,17 @@ class Paddings {
   }
 
   /// Padding for the separators in the notes list when the notes tiles have a background.
-  static EdgeInsetsDirectional get fabToggleEditorModeWithToolbarBottom {
-    return EdgeInsetsDirectional.only(
-      bottom: Sizes.editorToolbarHeight.size,
-    );
+  static EdgeInsetsDirectional fabToggleEditorMode(bool isEditMode, bool isToolbarShown, bool isLabelsListShown) {
+    double padding = 0;
+
+    if (isEditMode && isToolbarShown) {
+      padding += Sizes.editorToolbarHeight.size;
+    }
+
+    if (isLabelsListShown) {
+      padding += Sizes.editorLabelsListHeight.size;
+    }
+
+    return EdgeInsetsDirectional.only(bottom: padding);
   }
 }

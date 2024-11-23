@@ -2,14 +2,13 @@ import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
+import 'package:localmaterialnotes/common/navigation/app_bars/error_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/side_navigation.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
-import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 import 'package:localmaterialnotes/utils/utils.dart';
 import 'package:simple_icons/simple_icons.dart';
@@ -87,7 +86,7 @@ class ErrorPlaceholder extends StatelessWidget {
 
     return Scaffold(
       appBar: const TopNavigation(
-        appbar: BasicAppBar(),
+        appbar: ErrorAppBar(),
       ),
       drawer: const SideNavigation(),
       body: Center(
@@ -127,13 +126,13 @@ class ErrorPlaceholder extends StatelessWidget {
                     ElevatedButton.icon(
                       icon: const Icon(Icons.copy),
                       label: Text(appLocalizations.error_widget_button_copy_logs),
-                      onPressed: () => LogsUtils().copyLogs(overrideLocalizations: appLocalizations),
+                      onPressed: () => logger.copyLogs(overrideLocalizations: appLocalizations),
                     ),
                     Padding(padding: Paddings.horizontal(8.0)),
                     ElevatedButton.icon(
                       icon: const Icon(Icons.file_download),
                       label: Text(appLocalizations.error_widget_button_export_logs),
-                      onPressed: () => LogsUtils().exportLogs(overrideLocalizations: appLocalizations),
+                      onPressed: () => logger.exportLogs(overrideLocalizations: appLocalizations),
                     ),
                   ],
                 ),

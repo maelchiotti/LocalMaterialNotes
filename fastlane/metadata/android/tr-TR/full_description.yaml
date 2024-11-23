@@ -1,8 +1,7 @@
 full_description: |
   <p>
       <b>Materyal Not</b> basitliği hedefleyen, metin tabanlı bir not alma uygulamasıdır. Materyal Tasarımı'nı benimser.
-      Notları yerel olarak depolar ve herhangi bir internet iznine sahip değildir, bu nedenle notlara erişebilen tek kişi
-      sizsiniz.
+      Notları yerel olarak depolar ve herhangi bir internet iznine sahip değildir, bu nedenle notlara erişebilen tek kişi sizsiniz.
   </p>
 
   <p>
@@ -40,8 +39,7 @@ full_description: |
       <b>Koruma</b>
   </p>
   <ul>
-      <li>Verilerinizin nasıl işlendiği konusunda asla endişelenmeyin: uygulama internet izinlerine sahip olmadığı için
-          cihazınızdan ayrılamaz</li>
+      <li>Verilerinizin nasıl işlendiği konusunda asla endişelenmeyin: uygulama internet izinlerine sahip olmadığı için cihazınızdan ayrılamaz</li>
       <li>JSON dışa aktarımlarınızı şifreleyin</li>
   </ul>
 
@@ -52,7 +50,6 @@ full_description: |
       <li>Dilinizi seçin</li>
       <li>Temanızı seçin (açık, koyu veya siyah)</li>
       <li>Temanızın dinamik olup olmayacağını seçin (arkaplanınızdan renkler kullanın)</li>
-      <li>Gelişmiş biçimlendirmeyi, yalnızca kontrol listelerini mi yoksa notlarınızı temel tutmak isteyip istemediğinizi
-          seçin
+      <li>Gelişmiş biçimlendirmeyi, yalnızca kontrol listelerini mi yoksa notlarınızı temel tutmak isteyip istemediğinizi seçin
       </li>
   </ul>

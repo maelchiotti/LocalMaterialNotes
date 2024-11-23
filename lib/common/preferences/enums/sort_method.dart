@@ -3,8 +3,11 @@ import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 
 /// Lists the methods to sort the notes in the notes list.
 enum SortMethod {
-  /// Sort according to their date.
-  date,
+  /// Sort according to their creation date.
+  createdDate,
+
+  /// Sort according to their last edition date.
+  editedDate,
 
   /// Sort according to their title.
   title,

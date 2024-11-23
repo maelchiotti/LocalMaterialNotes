@@ -1,5 +1,5 @@
 {
-  "app_name": "Material Not",
+  "app_name": "Materyal Notlar",
   "@app_name": {
     "description": "Name of the application."
   },
@@ -95,11 +95,7 @@
   },
   "settings_appearance": "Görünüş",
   "@settings_appearance": {
-    "description": "Title of the settings section regarding the application's appearance."
-  },
-  "settings_appearance_description": "Dil, tema, metin ölçeklendirme, not kutucukları",
-  "@settings_appearance_description": {
-    "description": "Description of the appearance settings section."
+    "description": "Title of the settings page regarding the application's appearance."
   },
   "settings_appearance_application": "Uygulama",
   "@settings_appearance_application": {
@@ -144,10 +140,6 @@
   "settings_black_theming_description": "Koyu modda siyah arkaplan kullanın",
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
-  },
-  "settings_text_scaling": "Metin Ölçekleme",
-  "@settings_text_scaling": {
-    "description": "Title of the text scale setting tile."
   },
   "settings_appearance_notes_tiles": "Metin karo",
   "@settings_appearance_notes_tiles": {
@@ -195,11 +187,11 @@
   },
   "settings_behavior": "Davranış",
   "@settings_behavior": {
-    "description": "Title of the settings section regarding the application's behavior."
+    "description": "Title of the settings page regarding the application's behavior."
   },
   "settings_behavior_description": "Onaylar, güvenli bayrak, kaydırma eylemleri",
   "@settings_behavior_description": {
-    "description": "Description of the behavior settings section."
+    "description": "Description of the behavior settings page."
   },
   "settings_behavior_application": "Uygulama",
   "@settings_behavior_application": {
@@ -255,11 +247,11 @@
   },
   "settings_editor": "Düzenleyen",
   "@settings_editor": {
-    "description": "Title of the settings section regarding the notes content editor."
+    "description": "Title of the settings page regarding the notes content editor."
   },
   "settings_editor_description": "Düğmeler, araç çubuğu, okuma modu, aralık",
   "@settings_editor_description": {
-    "description": "Description of the editor settings section."
+    "description": "Description of the editor settings page."
   },
   "settings_editor_formatting": "Biçimlendirme",
   "@settings_editor_formatting": {
@@ -331,11 +323,11 @@
   },
   "settings_backup": "Yedekleme",
   "@settings_backup": {
-    "description": "Title of the settings section regarding the backup functionality."
+    "description": "Title of the settings page regarding the backup functionality."
   },
   "settings_backup_description": "Manuel ve otomatik dışa aktarma, şifreleme, içe aktarma",
   "@settings_backup_description": {
-    "description": "Description of the backup settings section."
+    "description": "Description of the backup settings page."
   },
   "settings_backup_import": "İçe aktar",
   "@settings_backup_import": {
@@ -399,7 +391,7 @@
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
   },
-  "settings_auto_export_encryption": "Şifreleme",
+  "settings_auto_export_encryption": "Parolamak",
   "@settings_auto_export_encryption": {
     "description": "Title of the settings tile to enable the encryption of the automatic exports."
   },
@@ -415,9 +407,13 @@
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_text_scaling": "Metin Ölçekleme",
+  "@settings_text_scaling": {
+    "description": "Title of the text scale setting tile."
+  },
   "settings_about": "Hakkında",
   "@settings_about": {
-    "description": "Title of the settings section regarding the information about the application."
+    "description": "Title of the settings page regarding the information about the application."
   },
   "settings_about_description": "Bilgi, yardım, bağlantılar",
   "@settings_about_description": {
@@ -495,11 +491,31 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
+  "settings_about_logs": "Günlükler",
+  "@settings_about_logs": {
+    "description": "Title of the settings section regarding the logs of the application."
+  },
+  "settings_copy_logs": "Günlükleri kopyalayın",
+  "@settings_copy_logs": {
+    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_copy_logs_description": "Uygulamanın günlüklerini panoya kopyalayın",
+  "@settings_copy_logs_description": {
+    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_export_logs": "Günlüğü indir",
+  "@settings_export_logs": {
+    "description": "Title of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_export_logs_description": "Uygulamanın günlüklerini bir metin dosyasına aktarın",
+  "@settings_export_logs_description": {
+    "description": "Description of the settings tile to export the logs of the application to a text file."
+  },
   "hint_title": "Başlık",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
   },
-  "hint_note": "Note",
+  "hint_note": "Not",
   "@hint_note": {
     "description": "Hint for the text field of the content of the notes."
   },
@@ -521,7 +537,7 @@
   },
   "tooltip_fab_add_note": "Bir not ekle",
   "@tooltip_fab_add_note": {
-    "description": "Floating action button on the notes list to add a new note."
+    "description": "Floating action button in the notes page to add a new note."
   },
   "tooltip_fab_empty_bin": "Çöp kutusunu boşalt",
   "@tooltip_fab_empty_bin": {
@@ -653,10 +669,6 @@
   "@dialog_import_encryption_password_error": {
     "description": "Error when the decryption of an encrypted import failed."
   },
-  "button_sort_date": "Tarih",
-  "@button_sort_date": {
-    "description": "Text of the button to sort the notes list by date."
-  },
   "placeholder_notes": "Not yok",
   "@placeholder_notes": {
     "description": "Placeholder on the notes page when there are no notes."
@@ -741,7 +753,7 @@
   "@action_add_note_title": {
     "description": "Title of the home screen action to add a new note."
   },
-  "welcome_note_title": "Material Notes''a hoşgeldin!",
+  "welcome_note_title": "Materyal Notlara hoşgeldin!",
   "@welcome_note_title": {
     "description": "Title of the welcome note automatically created on the first run of the application."
   },

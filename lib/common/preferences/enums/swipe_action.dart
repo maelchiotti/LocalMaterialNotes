@@ -3,8 +3,6 @@ import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 
-// ignore_for_file: public_member_api_docs
-
 /// Lists the actions to trigger when swiping on a note tile.
 enum SwipeAction {
   /// The swipe action is disabled.
@@ -25,23 +23,23 @@ enum SwipeAction {
   copy(Icons.copy),
   ;
 
-  /// Icon of the menu option.
-  final IconData? icon;
+  /// Icon of the swipe action.
+  final IconData icon;
 
-  /// Alternative icon of the menu option if the option has two states.
+  /// Alternative icon of the swipe action if the action has two states.
   final IconData? alternativeIcon;
 
-  /// Whether the action is a dangerous one.
+  /// Whether the swipe action is a dangerous one.
   ///
   /// Changes the background, text and icon colors to red.
-  final bool? dangerous;
+  final bool dangerous;
 
   /// The swipe action that can be performed on a note tile.
   ///
   /// A swipe action is represented by an [icon] and a [title]. If it has two states, it can have an [alternativeIcon].
   ///
   /// If it performs a dangerous action, is can be marked as [dangerous].
-  const SwipeAction(this.icon, {this.alternativeIcon, this.dangerous});
+  const SwipeAction(this.icon, {this.alternativeIcon, this.dangerous = false});
 
   /// Returns the value of the right swipe action preference if set, or its default value otherwise.
   factory SwipeAction.rightFromPreference() {
@@ -81,7 +79,7 @@ enum SwipeAction {
       case delete:
         return l.action_delete;
       case togglePin:
-        return l.action_pin;
+        return alternative ? l.action_unpin : l.action_pin;
       case share:
         return l.action_share;
       case copy:

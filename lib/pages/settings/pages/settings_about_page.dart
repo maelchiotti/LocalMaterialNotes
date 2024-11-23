@@ -7,7 +7,6 @@ import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
 import 'package:localmaterialnotes/utils/info_utils.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
-import 'package:localmaterialnotes/utils/logs_utils.dart';
 import 'package:localmaterialnotes/utils/utils.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:settings_tiles/settings_tiles.dart';
@@ -95,11 +94,11 @@ class SettingsAboutPage extends StatelessWidget {
   }
 
   Future<void> _copyLogs() async {
-    await LogsUtils().copyLogs();
+    await logger.copyLogs();
   }
 
   Future<void> _exportLogs() async {
-    await LogsUtils().exportLogs();
+    await logger.exportLogs();
   }
 
   @override

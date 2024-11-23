@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/editor_app_bar.dart';
@@ -11,9 +12,10 @@ import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_field.dart';
+import 'package:localmaterialnotes/pages/editor/widgets/editor_labels_list.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_toolbar.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/fab_toggle_editor_mode.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
@@ -30,7 +32,7 @@ class NotesEditorPage extends ConsumerStatefulWidget {
     required this.isNewNote,
   });
 
-  /// Whether the text fields should be read only.
+  /// Whether the page is read only.
   final bool readOnly;
 
   /// Whether this is a new note, so the title or content field should be auto focused
@@ -42,31 +44,19 @@ class NotesEditorPage extends ConsumerStatefulWidget {
 }
 
 class _EditorState extends ConsumerState<NotesEditorPage> {
-  /// Current note being edited.
-  final note = currentNoteNotifier.value;
-
   /// Controller of the title of the note.
-  late final TextEditingController titleController;
+  late TextEditingController titleController;
 
   /// Controller of the content of the note.
-  late final FleatherController editorController;
+  late FleatherController editorController;
 
   @override
   void initState() {
     super.initState();
 
-    if (note != null) {
-      titleController = TextEditingController(text: note!.title);
-      editorController = FleatherController(document: note!.document);
-
-      editorController.addListener(() => _synchronizeContent(note!));
-
-      fleatherControllerNotifier.value = editorController;
-
-      // If this is a new note, force the editing mode
-      if (widget.isNewNote) {
-        isFleatherEditorEditMode.value = true;
-      }
+    // If this is a new note, force the editing mode
+    if (widget.isNewNote) {
+      isFleatherEditorEditMode.value = true;
     }
   }
 
@@ -100,80 +90,95 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (note == null) {
-      return const LoadingPlaceholder();
-    }
-
     final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault<bool>();
     final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
     final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault<bool>();
+    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
+    final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.getPreferenceOrDefault<bool>();
 
-    return Scaffold(
-      appBar: const TopNavigation(
-        appbar: EditorAppBar(
-          key: Keys.appBarEditor,
-        ),
-      ),
-      floatingActionButton: showEditorModeButton && !note!.deleted ? const FabToggleEditorMode() : null,
-      body: ValueListenableBuilder(
-        valueListenable: isFleatherEditorEditMode,
-        builder: (context, isEditMode, child) {
-          return Column(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: Paddings.pageButBottom,
-                  child: Column(
-                    children: [
-                      TextField(
-                        key: Keys.editorTitleTextField,
-                        readOnly: widget.readOnly,
-                        autofocus: widget.isNewNote && focusTitleOnNewNote,
-                        textCapitalization: TextCapitalization.sentences,
-                        textInputAction: TextInputAction.next,
-                        style: Theme.of(context).textTheme.titleLarge,
-                        decoration: InputDecoration.collapsed(
-                          hintText: l.hint_title,
-                        ),
-                        controller: titleController,
-                        onChanged: (text) => _synchronizeTitle(note!, text),
-                        onSubmitted: _requestEditorFocus,
-                      ),
-                      Padding(padding: Paddings.vertical(8)),
-                      Expanded(
-                        child: Focus(
-                          onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,
-                          child: EditorField(
-                            key: Keys.editorContentTextField,
-                            fleatherController: editorController,
-                            readOnly: widget.readOnly || (showEditorModeButton && !isEditMode),
-                            autofocus: widget.isNewNote && !focusTitleOnNewNote,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+    return ValueListenableBuilder(
+        valueListenable: currentNoteNotifier,
+        builder: (context, currentNote, child) {
+          if (currentNote == null) {
+            return const LoadingPlaceholder();
+          }
+
+          titleController = TextEditingController(text: currentNote.title);
+
+          editorController = FleatherController(document: currentNote.document);
+          editorController.addListener(() => _synchronizeContent(currentNote));
+
+          fleatherControllerNotifier.value = editorController;
+
+          final showLabelsList =
+              enableLabels && showLabelsListInEditorPage && currentNote.labelsVisibleSorted.isNotEmpty;
+
+          return Scaffold(
+            appBar: const TopNavigation(
+              appbar: EditorAppBar(
+                key: Keys.appBarEditor,
               ),
-              ValueListenableBuilder(
-                valueListenable: fleatherFieldHasFocusNotifier,
-                builder: (context, hasFocus, child) {
-                  return showToolbar && isEditMode && !note!.deleted
-                      ?
-                      // Use a SafeArea to prevent the toolbar from displaying under the system bottom UI
-                      SafeArea(
-                          child: ColoredBox(
-                            color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                            child: EditorToolbar(editorController: editorController),
-                          ),
-                        )
-                      : Container();
-                },
-              ),
-            ],
+            ),
+            floatingActionButton: showEditorModeButton && !currentNote.deleted
+                ? FabToggleEditorMode(
+                    isToolbarShown: showToolbar,
+                    isLabelsListShown: showLabelsList,
+                  )
+                : null,
+            body: ValueListenableBuilder(
+              valueListenable: isFleatherEditorEditMode,
+              builder: (context, isEditMode, child) {
+                return Column(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: Paddings.pageButBottom,
+                        child: Column(
+                          children: [
+                            TextField(
+                              key: Keys.editorTitleTextField,
+                              readOnly: widget.readOnly,
+                              autofocus: widget.isNewNote && focusTitleOnNewNote,
+                              textCapitalization: TextCapitalization.sentences,
+                              textInputAction: TextInputAction.next,
+                              style: Theme.of(context).textTheme.titleLarge,
+                              decoration: InputDecoration.collapsed(
+                                hintText: l.hint_title,
+                              ),
+                              controller: titleController,
+                              onChanged: (text) => _synchronizeTitle(currentNote, text),
+                              onSubmitted: _requestEditorFocus,
+                            ),
+                            Gap(8.0),
+                            Expanded(
+                              child: Focus(
+                                onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,
+                                child: EditorField(
+                                  key: Keys.editorContentTextField,
+                                  fleatherController: editorController,
+                                  readOnly: widget.readOnly || (showEditorModeButton && !isEditMode),
+                                  autofocus: widget.isNewNote && !focusTitleOnNewNote,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SafeArea(
+                      child: Column(
+                        children: [
+                          if (showLabelsList) EditorLabelsList(readOnly: widget.readOnly),
+                          if (showToolbar && isEditMode && !currentNote.deleted)
+                            EditorToolbar(editorController: editorController)
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
           );
-        },
-      ),
-    );
+        });
   }
 }

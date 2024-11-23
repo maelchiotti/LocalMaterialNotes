@@ -1,4 +1,8 @@
 {
+  "app_name": "Material Notes",
+  "@app_name": {
+    "description": "Name of the application."
+  },
   "app_tagline": "Простые, локальные заметки в стиле material design",
   "@app_tagline": {
     "description": "Tagline of the application, shown in the about popup."
@@ -12,6 +16,42 @@
         "description": "Name of the application."
       }
     }
+  },
+  "error_snack_bar": "Ошибка:",
+  "@error_snack_bar": {
+    "description": "Prefix for the error message shown in the error snack bar, before the actual error message."
+  },
+  "error_widget_title": "Произошла ошибка.",
+  "@error_widget_title": {
+    "description": "Message shown in the error widget shown when a widget fails to build."
+  },
+  "error_widget_description": "Пожалуйста, сообщите об этой проблеме на GitHub или по почте. Прикрепите скриншот этой страницы и логи, которые вы можете скопировать или экспортировать ниже. В качестве меры предосторожности, вы должны экспортировать ваши заметки.",
+  "@error_widget_description": {
+    "description": "Message shown in the error widget shown when a widget fails to build."
+  },
+  "error_widget_disabled_secure_flag": "Параметр для отметки приложения как безопасного отключен до следующего перезапуска, чтобы включить снимки экрана.",
+  "@error_widget_disabled_secure_flag": {
+    "description": "Label shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
+  },
+  "error_widget_button_export_notes": "Экспортировать заметки",
+  "@error_widget_button_export_notes": {
+    "description": "Title of the button to export the notes as JSON on the error widget."
+  },
+  "error_widget_button_copy_logs": "Копировать журналы",
+  "@error_widget_button_copy_logs": {
+    "description": "Title of the button to copy the logs to the clipboard on the error widget."
+  },
+  "error_widget_button_export_logs": "Экспорт журналов",
+  "@error_widget_button_export_logs": {
+    "description": "Title of the button to export the logs in a text file on the error widget."
+  },
+  "error_widget_button_create_github_issue": "Создать issue на GitHub",
+  "@error_widget_button_create_github_issue": {
+    "description": "Title of the button to create a new GitHub issue on the error widget."
+  },
+  "error_widget_button_send_mail": "Отправить письмо",
+  "@error_widget_button_send_mail": {
+    "description": "Title of the button to end a bug report mail on the error widget."
   },
   "navigation_notes": "Заметки",
   "@navigation_notes": {
@@ -45,9 +85,17 @@
   "@navigation_settings_about": {
     "description": "Title of the settings page regarding the information about the application."
   },
+  "button_sort_title": "Заголовок",
+  "@button_sort_title": {
+    "description": "Text of the button to sort the notes list by title."
+  },
+  "button_sort_ascending": "По возрастанию",
+  "@button_sort_ascending": {
+    "description": "Text of the button to sort the notes list in ascending order."
+  },
   "settings_appearance": "Персонализация",
   "@settings_appearance": {
-    "description": "Title of the settings section regarding the application's appearance."
+    "description": "Title of the settings page regarding the application's appearance."
   },
   "settings_appearance_application": "Приложение",
   "@settings_appearance_application": {
@@ -92,10 +140,6 @@
   "settings_black_theming_description": "Использовать чёрный фон при тёмной теме оформления",
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
-  },
-  "settings_text_scaling": "Размер текста",
-  "@settings_text_scaling": {
-    "description": "Title of the text scale setting tile."
   },
   "settings_appearance_notes_tiles": "Стиль заметок",
   "@settings_appearance_notes_tiles": {
@@ -143,11 +187,35 @@
   },
   "settings_behavior": "Поведение",
   "@settings_behavior": {
-    "description": "Title of the settings section regarding the application's behavior."
+    "description": "Title of the settings page regarding the application's behavior."
+  },
+  "settings_behavior_description": "Диалоги подтверждения, защитные меры, действия при свайпе",
+  "@settings_behavior_description": {
+    "description": "Description of the behavior settings page."
   },
   "settings_behavior_application": "Приложение",
   "@settings_behavior_application": {
     "description": "Title of the sub-section regarding the application under the behavior settings."
+  },
+  "settings_confirmations": "Диалог подтверждения",
+  "@settings_confirmations": {
+    "description": "Title of the setting tile to choose when to show the confirmation dialog when performing an action on a note."
+  },
+  "settings_confirmations_description": "Когда показывать диалоговое окно подтверждения при выполнении действия над записью",
+  "@settings_confirmations_description": {
+    "description": "Description of the setting tile to choose when to show the confirmation dialog when performing an action on a note."
+  },
+  "settings_confirmations_title_none": "Никогда",
+  "@settings_confirmations_title_none": {
+    "description": "Value of the setting to never show a confirmation dialog when performing an action on a note."
+  },
+  "settings_confirmations_title_irreversible": "Только необратимые действия",
+  "@settings_confirmations_title_irreversible": {
+    "description": "Value of the setting to only show a confirmation dialog when performing an action on a note if it is irreversible."
+  },
+  "settings_confirmations_title_all": "Всегда",
+  "@settings_confirmations_title_all": {
+    "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
   },
   "settings_flag_secure": "Помечать приложение как защищённое",
   "@settings_flag_secure": {
@@ -165,13 +233,25 @@
   "@settings_swipe_action_right": {
     "description": "Title of the setting tile to choose which action to trigger when a right swapping a note tile."
   },
+  "settings_swipe_action_right_description": "Действие, которое будет выполняться при свайпе вправо по заметке",
+  "@settings_swipe_action_right_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile."
+  },
   "settings_swipe_action_left": "Действие при свайпе влево",
   "@settings_swipe_action_left": {
     "description": "Title of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
   },
+  "settings_swipe_action_left_description": "Действие, которое будет выполняться при свайпе влево по заметке",
+  "@settings_swipe_action_left_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
+  },
   "settings_editor": "Редактор",
   "@settings_editor": {
-    "description": "Title of the settings section regarding the notes content editor."
+    "description": "Title of the settings page regarding the notes content editor."
+  },
+  "settings_editor_description": "Кнопки, панель инструментов, режим чтения, интервал",
+  "@settings_editor_description": {
+    "description": "Description of the editor settings page."
   },
   "settings_editor_formatting": "Форматирование",
   "@settings_editor_formatting": {
@@ -205,6 +285,22 @@
   "@settings_editor_behavior": {
     "description": "Title of the settings section regarding the behavior of the editor"
   },
+  "settings_show_editor_mode_button": "Кнопка режима редактирования",
+  "@settings_show_editor_mode_button": {
+    "description": "Title of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
+  },
+  "settings_show_editor_mode_button_description": "Включите кнопку, чтобы переключить редактор между режимом редактирования и режимом чтения",
+  "@settings_show_editor_mode_button_description": {
+    "description": "Description of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
+  },
+  "settings_open_editor_reading_mode": "Открыть в режиме чтения",
+  "@settings_open_editor_reading_mode": {
+    "description": "Title of the setting tile to enable opening the editor in reading mode by default."
+  },
+  "settings_open_editor_reading_mode_description": "По умолчанию открывать редактор в режиме чтения",
+  "@settings_open_editor_reading_mode_description": {
+    "description": "Description of the setting tile to enable opening the editor in reading mode by default."
+  },
   "settings_focus_title_on_new_note": "Фокусироваться на заголовке",
   "@settings_focus_title_on_new_note": {
     "description": "Title of the setting tile to enable focusing the title when creating a new note by default."
@@ -227,7 +323,11 @@
   },
   "settings_backup": "Резервное копирование",
   "@settings_backup": {
-    "description": "Title of the settings section regarding the backup functionality."
+    "description": "Title of the settings page regarding the backup functionality."
+  },
+  "settings_backup_description": "Ручной и автоматический экспорт, шифрование, импорт",
+  "@settings_backup_description": {
+    "description": "Description of the backup settings page."
   },
   "settings_backup_import": "Импорт",
   "@settings_backup_import": {
@@ -277,6 +377,20 @@
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports of the notes."
   },
+  "settings_auto_export_frequency_value": "{frequency, select, 1{Каждый день} 7{Каждую неделю} 14{Каждые 2 недели} 30{Каждый месяц} other{Каждые {frequency} дня}}",
+  "@settings_auto_export_frequency_value": {
+    "description": "Frequency of the automatic exports of the notes.",
+    "placeholders": {
+      "frequency": {
+        "description": "Value of the frequency (as a String to enable the select, but it's an int).",
+        "type": "String"
+      }
+    }
+  },
+  "settings_auto_export_frequency_description": "Частота автоматического экспорта заметок",
+  "@settings_auto_export_frequency_description": {
+    "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
+  },
   "settings_auto_export_encryption": "Шифрование",
   "@settings_auto_export_encryption": {
     "description": "Title of the settings tile to enable the encryption of the automatic exports."
@@ -289,9 +403,21 @@
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_auto_export_directory_description": "Каталог для сохранения автоматических экспортов заметок",
+  "@settings_auto_export_directory_description": {
+    "description": "Description of the settings tile to choose the directory where to save the automatic exports."
+  },
+  "settings_text_scaling": "Размер текста",
+  "@settings_text_scaling": {
+    "description": "Title of the text scale setting tile."
+  },
   "settings_about": "О приложении",
   "@settings_about": {
-    "description": "Title of the settings section regarding the information about the application."
+    "description": "Title of the settings page regarding the information about the application."
+  },
+  "settings_about_description": "Информация, помощь, ссылки",
+  "@settings_about_description": {
+    "description": "Description of the about settings section."
   },
   "settings_about_application": "Приложение",
   "@settings_about_application": {
@@ -365,6 +491,26 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
+  "settings_about_logs": "Журналы",
+  "@settings_about_logs": {
+    "description": "Title of the settings section regarding the logs of the application."
+  },
+  "settings_copy_logs": "Скопировать журналы",
+  "@settings_copy_logs": {
+    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_copy_logs_description": "Скопировать журналы приложения в буфер обмена",
+  "@settings_copy_logs_description": {
+    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_export_logs": "Экспорт журналов",
+  "@settings_export_logs": {
+    "description": "Title of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_export_logs_description": "Экспорт журналов приложения в текстовый файл",
+  "@settings_export_logs_description": {
+    "description": "Description of the settings tile to export the logs of the application to a text file."
+  },
   "hint_title": "Заголовок",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
@@ -372,6 +518,14 @@
   "hint_note": "Заметка",
   "@hint_note": {
     "description": "Hint for the text field of the content of the notes."
+  },
+  "hint_link": "Ссылка",
+  "@hint_link": {
+    "description": "Hint for the link text field in the dialog to add a link in the editor."
+  },
+  "dialog_export_encryption_password": "Пароль",
+  "@dialog_export_encryption_password": {
+    "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
   },
   "tooltip_toggle_checkbox": "Переключить флажок",
   "@tooltip_toggle_checkbox": {
@@ -383,11 +537,19 @@
   },
   "tooltip_fab_add_note": "Добавить заметку",
   "@tooltip_fab_add_note": {
-    "description": "Floating action button on the notes list to add a new note."
+    "description": "Floating action button in the notes page to add a new note."
   },
   "tooltip_fab_empty_bin": "Очистить корзину",
   "@tooltip_fab_empty_bin": {
     "description": "Floating action button in the bin to empty it."
+  },
+  "tooltip_fab_toggle_editor_mode_edit": "Переключиться в режим редактирования",
+  "@tooltip_fab_toggle_editor_mode_edit": {
+    "description": "Floating action button in the notes editor to switch to editing mode."
+  },
+  "tooltip_fab_toggle_editor_mode_read": "Переключиться в режим чтения",
+  "@tooltip_fab_toggle_editor_mode_read": {
+    "description": "Floating action button in the notes editor to switch to reading mode."
   },
   "tooltip_layout_list": "Список",
   "@tooltip_layout_list": {
@@ -424,6 +586,10 @@
   "tooltip_reset": "Сброс",
   "@tooltip_reset": {
     "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
+  },
+  "dialog_add_link": "Добавить ссылку",
+  "@dialog_add_link": {
+    "description": "Tooltip for the button to validate the dialog to add a link in the note editor."
   },
   "dialog_delete": "Удалить",
   "@dialog_delete": {
@@ -483,6 +649,10 @@
   "@dialog_export_encryption_description": {
     "description": "Description for the encryption feature when the switch to toggle the encryption of the export is enabled."
   },
+  "dialog_export_encryption_secondary_description_auto": "Этот пароль будет использован для всех автоматических экспортов заметок.",
+  "@dialog_export_encryption_secondary_description_auto": {
+    "description": "Secondary description for the encryption feature in the case of an automatic export."
+  },
   "dialog_export_encryption_secondary_description_manual": "Этот пароль будет использоваться только для экспорта текущих заметок.",
   "@dialog_export_encryption_secondary_description_manual": {
     "description": "Secondary description for the encryption feature in the case of a manual export."
@@ -507,6 +677,38 @@
   "@placeholder_bin": {
     "description": "Placeholder on the bin page when there are no notes."
   },
+  "action_disabled": "Отключено",
+  "@action_disabled": {
+    "description": "Swipe action that is disabled in the settings."
+  },
+  "action_pin": "Закрепить",
+  "@action_pin": {
+    "description": "Swipe or menu action to pin a note."
+  },
+  "action_unpin": "Открепить",
+  "@action_unpin": {
+    "description": "Swipe or menu action to unpin a note."
+  },
+  "action_share": "Поделиться",
+  "@action_share": {
+    "description": "Swipe or menu action to share a note."
+  },
+  "action_delete": "Удалить",
+  "@action_delete": {
+    "description": "Swipe or menu action to delete a note (moving it to the bin)."
+  },
+  "action_restore": "Восстановить",
+  "@action_restore": {
+    "description": "Swipe or menu action to restore a note from the bin."
+  },
+  "action_delete_permanently": "Удалить навсегда",
+  "@action_delete_permanently": {
+    "description": "Swipe or menu action to permanently delete a note."
+  },
+  "action_about": "О заметке",
+  "@action_about": {
+    "description": "Swipe or menu action to show information about a note."
+  },
   "about_last_edited": "Изменено",
   "@about_last_edited": {
     "description": "Date when the note was edited for the last time."
@@ -522,6 +724,30 @@
   "about_characters": "Количество символов",
   "@about_characters": {
     "description": "Number of characters in the content of the note."
+  },
+  "about_time_at": "в",
+  "@about_time_at": {
+    "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
+  },
+  "snack_bar_copied": "Содержимое заметки скопировано.",
+  "@snack_bar_copied": {
+    "description": "Snack bar informing that the content of the note was copied to clipboard."
+  },
+  "snack_bar_import_success": "Заметки были успешно импортированы.",
+  "@snack_bar_import_success": {
+    "description": "Snack bar informing that the notes were successfully imported."
+  },
+  "snack_bar_export_success": "Заметки были успешно экспортированы.",
+  "@snack_bar_export_success": {
+    "description": "Snack bar informing that the notes were successfully manually exported."
+  },
+  "snack_bar_logs_copied": "Логи скопированы в буфер обмена.",
+  "@snack_bar_logs_copied": {
+    "description": "Snack bar message shown when the logs where copied to the clipboard from the error widget."
+  },
+  "snack_bar_logs_exported": "Логи были успешно экспортированы.",
+  "@snack_bar_logs_exported": {
+    "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
   },
   "action_add_note_title": "Добавить заметку",
   "@action_add_note_title": {

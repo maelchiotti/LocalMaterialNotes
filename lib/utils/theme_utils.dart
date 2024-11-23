@@ -19,7 +19,7 @@ class ThemeUtils {
   ThemeUtils._internal();
 
   /// Custom primary color.
-  final _customPrimaryColor = const Color(0xFF2278e9);
+  final customPrimaryColor = const Color(0xFF2278e9);
 
   /// Whether the dynamic theming is available on the device?
   late final bool isDynamicThemingAvailable;
@@ -91,7 +91,7 @@ class ThemeUtils {
       );
     } else {
       colorScheme = ColorScheme.fromSeed(
-        seedColor: _customPrimaryColor,
+        seedColor: customPrimaryColor,
       );
     }
 
@@ -104,7 +104,7 @@ class ThemeUtils {
   /// Returns the dark theme.
   ///
   /// Returns a dynamic dark theme if [darkDynamicColorScheme] is not null, or the custom one otherwise.
-  ThemeData getDarkTheme(ColorScheme? darkDynamicColorScheme) {
+  ThemeData getDarkTheme(ColorScheme? darkDynamicColorScheme, bool useWhiteTextDarkMode) {
     final ColorScheme colorScheme;
 
     if (useDynamicTheming && darkDynamicColorScheme != null) {
@@ -137,7 +137,7 @@ class ThemeUtils {
       colorScheme = useBlackTheming
           ? ColorScheme.fromSeed(
               brightness: Brightness.dark,
-              seedColor: _customPrimaryColor,
+              seedColor: customPrimaryColor,
               // TODO: remove when not required anymore, can't figure out why it's needed since it's not an issue of dynamic_colors
               // ignore: deprecated_member_use
               background: Colors.black,
@@ -145,13 +145,21 @@ class ThemeUtils {
             )
           : ColorScheme.fromSeed(
               brightness: Brightness.dark,
-              seedColor: _customPrimaryColor,
+              seedColor: customPrimaryColor,
             );
     }
+
+    final textTheme = useWhiteTextDarkMode
+        ? Typography().white.apply(
+              bodyColor: Colors.white,
+              displayColor: Colors.white,
+            )
+        : null;
 
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
+      textTheme: textTheme,
     );
   }
 
@@ -170,6 +178,7 @@ class ThemeUtils {
       case ThemeMode.dark:
         value = 2;
     }
+
     PreferencesUtils().set<int>(PreferenceKey.theme, value);
 
     themeModeNotifier.value = themeMode;

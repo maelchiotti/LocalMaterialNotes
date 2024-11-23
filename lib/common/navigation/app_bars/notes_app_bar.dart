@@ -12,7 +12,7 @@ import 'package:localmaterialnotes/common/widgets/notes/note_tile.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/empty_placeholder.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
 import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
@@ -124,7 +124,7 @@ class NotesAppBar extends ConsumerWidget {
     final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
 
     return AppBar(
-      title: Text(context.title),
+      title: Text(context.title(context)),
       actions: [
         ValueListenableBuilder(
           valueListenable: layoutNotifier,
@@ -146,12 +146,21 @@ class NotesAppBar extends ConsumerWidget {
           itemBuilder: (context) {
             return [
               PopupMenuItem(
-                key: Keys.sortDateMenuItem,
-                value: SortMethod.date,
+                key: Keys.sortCreatedDateMenuItem,
+                value: SortMethod.createdDate,
                 child: ListTile(
-                  selected: sortMethod == SortMethod.date,
+                  selected: sortMethod == SortMethod.createdDate,
                   leading: const Icon(Icons.calendar_month),
-                  title: Text(l.button_sort_date),
+                  title: Text(l.button_sort_creation_date),
+                ),
+              ),
+              PopupMenuItem(
+                key: Keys.sortEditedDateMenuItem,
+                value: SortMethod.editedDate,
+                child: ListTile(
+                  selected: sortMethod == SortMethod.editedDate,
+                  leading: const Icon(Icons.edit_calendar),
+                  title: Text(l.button_sort_edition_date),
                 ),
               ),
               PopupMenuItem(

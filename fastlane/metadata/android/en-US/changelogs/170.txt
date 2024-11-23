@@ -1,0 +1,11 @@
+ADDED
+- Ability to categorize the notes with labels
+- Allow to sort the notes by their creation date
+- Allow to use a white text in dark theme
+
+CHANGED
+- Improve logs
+- Move accessibility settings to their own page
+
+FIXED
+- Failure to add a note via the share action of the quick action

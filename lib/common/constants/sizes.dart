@@ -23,6 +23,9 @@ enum Sizes {
   /// The height of the editor's toolbar
   editorToolbarHeight(54),
 
+  /// Height of the labels list in the editor.
+  editorLabelsListHeight(38),
+
   /// The height of a button in the editor toolbar.
   editorToolbarButtonHeight(42),
 
@@ -31,6 +34,9 @@ enum Sizes {
 
   /// Spacing between the notes tiles in the grid layout.
   notesGridLayoutSpacing(8),
+
+  /// Size of the color indicators.
+  colorIndicator(40),
   ;
 
   /// The size to apply.

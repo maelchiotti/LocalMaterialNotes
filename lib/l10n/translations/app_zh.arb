@@ -95,11 +95,7 @@
   },
   "settings_appearance": "外观",
   "@settings_appearance": {
-    "description": "Title of the settings section regarding the application's appearance."
-  },
-  "settings_appearance_description": "语言、主题、文本缩放、笔记平铺",
-  "@settings_appearance_description": {
-    "description": "Description of the appearance settings section."
+    "description": "Title of the settings page regarding the application's appearance."
   },
   "settings_appearance_application": "应用程序",
   "@settings_appearance_application": {
@@ -144,10 +140,6 @@
   "settings_black_theming_description": "在深色模式下使用黑色背景",
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
-  },
-  "settings_text_scaling": "文本缩放",
-  "@settings_text_scaling": {
-    "description": "Title of the text scale setting tile."
   },
   "settings_appearance_notes_tiles": "笔记平铺",
   "@settings_appearance_notes_tiles": {
@@ -195,11 +187,11 @@
   },
   "settings_behavior": "行为",
   "@settings_behavior": {
-    "description": "Title of the settings section regarding the application's behavior."
+    "description": "Title of the settings page regarding the application's behavior."
   },
   "settings_behavior_description": "确认、安全标记、滑动操作",
   "@settings_behavior_description": {
-    "description": "Description of the behavior settings section."
+    "description": "Description of the behavior settings page."
   },
   "settings_behavior_application": "应用程序",
   "@settings_behavior_application": {
@@ -255,11 +247,11 @@
   },
   "settings_editor": "编辑器",
   "@settings_editor": {
-    "description": "Title of the settings section regarding the notes content editor."
+    "description": "Title of the settings page regarding the notes content editor."
   },
   "settings_editor_description": "按钮、工具栏、阅读模式、间距",
   "@settings_editor_description": {
-    "description": "Description of the editor settings section."
+    "description": "Description of the editor settings page."
   },
   "settings_editor_formatting": "格式设置",
   "@settings_editor_formatting": {
@@ -331,11 +323,11 @@
   },
   "settings_backup": "备份",
   "@settings_backup": {
-    "description": "Title of the settings section regarding the backup functionality."
+    "description": "Title of the settings page regarding the backup functionality."
   },
   "settings_backup_description": "手动和自动导出、加密、导入",
   "@settings_backup_description": {
-    "description": "Description of the backup settings section."
+    "description": "Description of the backup settings page."
   },
   "settings_backup_import": "导入",
   "@settings_backup_import": {
@@ -415,9 +407,13 @@
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_text_scaling": "文本缩放",
+  "@settings_text_scaling": {
+    "description": "Title of the text scale setting tile."
+  },
   "settings_about": "关于",
   "@settings_about": {
-    "description": "Title of the settings section regarding the information about the application."
+    "description": "Title of the settings page regarding the information about the application."
   },
   "settings_about_description": "信息、帮助、链接",
   "@settings_about_description": {
@@ -495,6 +491,26 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
+  "settings_about_logs": "日志",
+  "@settings_about_logs": {
+    "description": "Title of the settings section regarding the logs of the application."
+  },
+  "settings_copy_logs": "复制日志",
+  "@settings_copy_logs": {
+    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_copy_logs_description": "将应用程序的日志复制到剪贴板",
+  "@settings_copy_logs_description": {
+    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_export_logs": "导出日志",
+  "@settings_export_logs": {
+    "description": "Title of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_export_logs_description": "将应用程序的日志导出到文本文件",
+  "@settings_export_logs_description": {
+    "description": "Description of the settings tile to export the logs of the application to a text file."
+  },
   "hint_title": "标题",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
@@ -521,7 +537,7 @@
   },
   "tooltip_fab_add_note": "添加笔记",
   "@tooltip_fab_add_note": {
-    "description": "Floating action button on the notes list to add a new note."
+    "description": "Floating action button in the notes page to add a new note."
   },
   "tooltip_fab_empty_bin": "清空回收站",
   "@tooltip_fab_empty_bin": {
@@ -652,10 +668,6 @@
   "dialog_import_encryption_password_error": "解密导出失败。请检查您提供的密码是否与加密导出时使用的密码相同。",
   "@dialog_import_encryption_password_error": {
     "description": "Error when the decryption of an encrypted import failed."
-  },
-  "button_sort_date": "日期",
-  "@button_sort_date": {
-    "description": "Text of the button to sort the notes list by date."
   },
   "placeholder_notes": "无笔记",
   "@placeholder_notes": {

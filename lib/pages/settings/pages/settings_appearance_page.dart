@@ -1,11 +1,10 @@
+import 'package:dart_helper_utils/dart_helper_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/enums/localization_completion.dart';
-import 'package:localmaterialnotes/common/extensions/double_extension.dart';
-import 'package:localmaterialnotes/common/extensions/string_extension.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
@@ -45,12 +44,10 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   Future<void> _submittedLanguage(Locale locale) async {
     await LocaleUtils().setLocale(locale);
 
-    // The Restart package crashes the app if used in debug mode.
-    if (kDebugMode) {
-      return;
+    // The Restart package crashes the app if used in debug mode
+    if (kReleaseMode) {
+      await Restart.restartApp();
     }
-
-    await Restart.restartApp();
   }
 
   /// Sets the theme to the new [themeMode].
@@ -74,28 +71,6 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     });
 
     blackThemingNotifier.value = toggled;
-  }
-
-  /// Updates the scaling of the text to the new [textScaling] when the slider of the text scaling dialog is changed.
-  void _changedTextScaling(double textScaling) {
-    textScalingNotifier.value = textScaling;
-  }
-
-  /// Sets the text scaling to the new [textScaling].
-  void _submittedTextScaling(double textScaling) {
-    setState(() {
-      PreferencesUtils().set<double>(PreferenceKey.textScaling, textScaling);
-    });
-
-    textScalingNotifier.value = textScaling;
-  }
-
-  /// Resets the text scaling to the preference value.
-  ///
-  /// Called when the dialog to choose the text scaling is canceled, to revert changes made in real time
-  /// when the slider is changed.
-  void _canceledTextScaling() {
-    textScalingNotifier.value = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
   }
 
   /// Toggles the setting to show background of the notes tiles.
@@ -144,7 +119,6 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     final locale = LocaleUtils().appLocale;
     final themeMode = ThemeUtils().themeMode;
     final showUseBlackTheming = Theme.of(context).colorScheme.brightness == Brightness.dark;
-    final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
 
     final showTitlesOnly = PreferenceKey.showTitlesOnly.getPreferenceOrDefault<bool>();
     final showTitlesOnlyDisableInSearchView =
@@ -175,13 +149,13 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
                       onPressed: _openCrowdin,
                       label: Text(l.settings_language_contribute),
                     ),
-                    value: locale.nativeDisplayLanguage.capitalized,
+                    value: locale.nativeDisplayLanguage.capitalizeFirstLetter,
                     dialogTitle: l.settings_language,
                     options: AppLocalizations.supportedLocales.map(
                       (locale) {
                         return (
                           value: locale,
-                          title: locale.nativeDisplayLanguage.capitalized,
+                          title: locale.nativeDisplayLanguage.capitalizeFirstLetter,
                           subtitle: LocalizationCompletion.getFormattedPercentage(locale),
                         );
                       },
@@ -218,20 +192,6 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
                     toggled: ThemeUtils().useBlackTheming,
                     onChanged: _toggleBlackTheming,
                   ),
-                  SettingSliderTile(
-                    icon: Icons.format_size,
-                    title: l.settings_text_scaling,
-                    value: textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale),
-                    dialogTitle: l.settings_text_scaling,
-                    label: (textScaling) => textScaling.formatedAsPercentage(locale: LocaleUtils().appLocale),
-                    min: 0.5,
-                    max: 2.0,
-                    divisions: 15,
-                    initialValue: textScaling,
-                    onChanged: _changedTextScaling,
-                    onSubmitted: _submittedTextScaling,
-                    onCanceled: _canceledTextScaling,
-                  ),
                 ],
               ),
               SettingSection(
@@ -239,7 +199,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
                 title: l.settings_appearance_notes_tiles,
                 tiles: [
                   SettingSwitchTile(
-                    icon: Icons.view_compact,
+                    icon: Icons.title,
                     title: l.settings_show_titles_only,
                     description: l.settings_show_titles_only_description,
                     toggled: showTitlesOnly,

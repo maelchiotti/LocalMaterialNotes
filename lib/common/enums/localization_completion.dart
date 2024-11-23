@@ -1,5 +1,5 @@
+import 'package:dart_helper_utils/dart_helper_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/extensions/double_extension.dart';
 
 // ignore_for_file: public_member_api_docs
 
@@ -9,25 +9,28 @@ enum LocalizationCompletion {
   en(Locale('en'), 1),
 
   /// Spanish.
-  es(Locale('es'), .88),
+  es(Locale('es'), .79),
 
   /// French.
   fr(Locale('fr'), 1),
 
   /// German.
-  de(Locale('de'), .88),
+  de(Locale('de'), .89),
+
+  /// Polish.
+  pl(Locale('pl'), .86),
 
   /// Portuguese.
-  pt(Locale('pt'), .62),
+  pt(Locale('pt'), .87),
 
   /// Russian.
-  ru(Locale('ru'), 0.67),
+  ru(Locale('ru'), .89),
 
   /// Turkish.
-  tr(Locale('tr'), .97),
+  tr(Locale('tr'), .89),
 
   /// Chinese Simplified.
-  zh(Locale('zh'), .97),
+  zh(Locale('zh'), .89),
   ;
 
   /// The locale of this localization.
@@ -36,7 +39,7 @@ enum LocalizationCompletion {
   /// The percentage of strings that are localized for this [locale].
   ///
   /// The value is a double contained between 0 and 1.
-  final double percentage;
+  final num percentage;
 
   /// The completion of the localization for the [locale] as a [percentage].
   const LocalizationCompletion(this.locale, this.percentage);
@@ -47,6 +50,6 @@ enum LocalizationCompletion {
       return localizationSupport.locale == locale;
     }).percentage;
 
-    return percentage.formatedAsPercentage(locale: locale);
+    return percentage.formatAsPercentage(locale: locale.languageCode);
   }
 }

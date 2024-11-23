@@ -57,6 +57,14 @@
   "@navigation_notes": {
     "description": "Title of the notes page."
   },
+  "navigation_manage_labels_destination": "Manage labels",
+  "@navigation_manage_labels_destination": {
+    "description": "Title of the button in the side navigation drawer to got to the page to manage the labels."
+  },
+  "navigation_manage_labels_page": "Labels",
+  "@navigation_manage_labels_page": {
+    "description": "Title of the page to manage the labels."
+  },
   "navigation_bin": "Bin",
   "@navigation_bin": {
     "description": "Title of the bin page."
@@ -77,9 +85,17 @@
   "@navigation_settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
+  "navigation_settings_labels": "Labels",
+  "@navigation_settings_labels": {
+    "description": "Title of the settings page regarding the labels."
+  },
   "navigation_settings_backup": "Backup",
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
+  },
+  "navigation_settings_accessibility": "Accessibility",
+  "@navigation_settings_accessibility": {
+    "description": "Title of the settings page regarding the accessibility."
   },
   "navigation_settings_about": "About",
   "@navigation_settings_about": {
@@ -95,11 +111,11 @@
   },
   "settings_appearance": "Appearance",
   "@settings_appearance": {
-    "description": "Title of the settings section regarding the application's appearance."
+    "description": "Title of the settings page regarding the application's appearance."
   },
-  "settings_appearance_description": "Language, theme, text scaling, notes tiles",
+  "settings_appearance_description": "Language, theme, notes tiles",
   "@settings_appearance_description": {
-    "description": "Description of the appearance settings section."
+    "description": "Description of the appearance settings page."
   },
   "settings_appearance_application": "Application",
   "@settings_appearance_application": {
@@ -144,10 +160,6 @@
   "settings_black_theming_description": "Use a black background in dark mode",
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
-  },
-  "settings_text_scaling": "Text scaling",
-  "@settings_text_scaling": {
-    "description": "Title of the text scale setting tile."
   },
   "settings_appearance_notes_tiles": "Notes tiles",
   "@settings_appearance_notes_tiles": {
@@ -195,11 +207,11 @@
   },
   "settings_behavior": "Behavior",
   "@settings_behavior": {
-    "description": "Title of the settings section regarding the application's behavior."
+    "description": "Title of the settings page regarding the application's behavior."
   },
   "settings_behavior_description": "Confirmations, secure flag, swipe actions",
   "@settings_behavior_description": {
-    "description": "Description of the behavior settings section."
+    "description": "Description of the behavior settings page."
   },
   "settings_behavior_application": "Application",
   "@settings_behavior_application": {
@@ -255,11 +267,11 @@
   },
   "settings_editor": "Editor",
   "@settings_editor": {
-    "description": "Title of the settings section regarding the notes content editor."
+    "description": "Title of the settings page regarding the notes content editor."
   },
   "settings_editor_description": "Buttons, toolbar, reading mode, spacing",
   "@settings_editor_description": {
-    "description": "Description of the editor settings section."
+    "description": "Description of the editor settings page."
   },
   "settings_editor_formatting": "Formatting",
   "@settings_editor_formatting": {
@@ -329,13 +341,49 @@
   "@settings_use_paragraph_spacing_description": {
     "description": "Description of the setting tile to enable the spacing between paragraphs in the notes content."
   },
+  "settings_labels": "Labels",
+  "@settings_labels": {
+    "description": "Title of the settings page regarding the labels functionality."
+  },
+  "settings_labels_description": "Enable, appearance",
+  "@settings_labels_description": {
+    "description": "Description of the labels settings page."
+  },
+  "settings_enable_labels": "Enable",
+  "@settings_enable_labels": {
+    "description": "Title of the setting tile to enable the labels."
+  },
+  "settings_enable_labels_description": "Allow to categorize the notes with labels",
+  "@settings_enable_labels_description": {
+    "description": "Description of the setting tile to enable the labels."
+  },
+  "settings_labels_appearance": "Appearance",
+  "@settings_labels_appearance": {
+    "description": "Title of the settings section regarding the appearance of the labels."
+  },
+  "settings_show_labels_note_tile": "Show labels on note tile",
+  "@settings_show_labels_note_tile": {
+    "description": "Title of the setting tile to show the labels on the notes tiles."
+  },
+  "settings_show_labels_note_tile_description": "Show the list of labels of the note tiles",
+  "@settings_show_labels_note_tile_description": {
+    "description": "Description of the setting tile to show the labels on the notes tiles."
+  },
+  "settings_show_labels_editor": "Show labels in editor",
+  "@settings_show_labels_editor": {
+    "description": "Title of the setting tile to show the labels in the editor."
+  },
+  "settings_show_labels_editor_description": "Show the list of labels at the bottom of the editor",
+  "@settings_show_labels_editor_description": {
+    "description": "Description of the setting tile to show the labels in the editor."
+  },
   "settings_backup": "Backup",
   "@settings_backup": {
-    "description": "Title of the settings section regarding the backup functionality."
+    "description": "Title of the settings page regarding the backup functionality."
   },
   "settings_backup_description": "Manual and automatic export, encryption, import",
   "@settings_backup_description": {
-    "description": "Description of the backup settings section."
+    "description": "Description of the backup settings page."
   },
   "settings_backup_import": "Import",
   "@settings_backup_import": {
@@ -415,9 +463,29 @@
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_accessibility": "Accessibility",
+  "@settings_accessibility": {
+    "description": "Title of the settings page regarding the accessibility."
+  },
+  "settings_accessibility_description": "Text color, text scaling",
+  "@settings_accessibility_description": {
+    "description": "Description of the accessibility settings page."
+  },
+  "settings_text_scaling": "Text scaling",
+  "@settings_text_scaling": {
+    "description": "Title of the text scale setting tile."
+  },
+  "settings_white_text_dark_mode": "White text in dark mode",
+  "@settings_white_text_dark_mode": {
+    "description": "Title of the text scale setting tile."
+  },
+  "settings_white_text_dark_mode_description": "Use a white color for the text in dark mode",
+  "@settings_white_text_dark_mode_description": {
+    "description": "Description of the text scale setting tile."
+  },
   "settings_about": "About",
   "@settings_about": {
-    "description": "Title of the settings section regarding the information about the application."
+    "description": "Title of the settings page regarding the information about the application."
   },
   "settings_about_description": "Information, help, links",
   "@settings_about_description": {
@@ -527,6 +595,10 @@
   "@hint_link": {
     "description": "Hint for the link text field in the dialog to add a link in the editor."
   },
+  "hint_label_name": "Name",
+  "@hint_label_name": {
+    "description": "Hint for the text field of the name of a label."
+  },
   "dialog_export_encryption_password": "Password",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
@@ -541,7 +613,11 @@
   },
   "tooltip_fab_add_note": "Add a note",
   "@tooltip_fab_add_note": {
-    "description": "Floating action button on the notes list to add a new note."
+    "description": "Floating action button in the notes page to add a new note."
+  },
+  "tooltip_fab_add_label": "Add a label",
+  "@tooltip_fab_add_label": {
+    "description": "Floating action button in the labels page to add a new label."
   },
   "tooltip_fab_empty_bin": "Empty the bin",
   "@tooltip_fab_empty_bin": {
@@ -590,6 +666,14 @@
   "tooltip_reset": "Reset",
   "@tooltip_reset": {
     "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
+  },
+  "action_labels_toggle_pins": "Toggle pins",
+  "@action_labels_toggle_pins": {
+    "description": "Tooltip for the button to toggle the pin status of the selected labels."
+  },
+  "action_labels_toggle_visibility": "Toggle visibility",
+  "@action_labels_toggle_visibility": {
+    "description": "Tooltip for the button to toggle the visibility of the selected labels."
   },
   "dialog_add_link": "Add a link",
   "@dialog_add_link": {
@@ -673,9 +757,29 @@
   "@dialog_import_encryption_password_error": {
     "description": "Error when the decryption of an encrypted import failed."
   },
-  "button_sort_date": "Date",
-  "@button_sort_date": {
-    "description": "Text of the button to sort the notes list by date."
+  "dialog_label_add": "Add label",
+  "@dialog_label_add": {
+    "description": "Title of the dialog to add a label."
+  },
+  "dialog_label_edit": "Edit label",
+  "@dialog_label_edit": {
+    "description": "Title of the dialog to edit a label."
+  },
+  "dialog_label_name_cannot_be_empty": "The name cannot be empty.",
+  "@dialog_label_name_cannot_be_empty": {
+    "description": "Error message shown when relevant on the text field of the name of the label."
+  },
+  "dialog_label_name_already_used": "This name is already used.",
+  "@dialog_label_name_already_used": {
+    "description": "Error message shown when relevant on the text field of the name of the label."
+  },
+  "button_sort_creation_date": "Creation date",
+  "@button_sort_creation_date": {
+    "description": "Text of the button to sort the notes list by their creation date."
+  },
+  "button_sort_edition_date": "Edition date",
+  "@button_sort_edition_date": {
+    "description": "Text of the button to sort the notes list by their last edition date."
   },
   "placeholder_notes": "No notes",
   "@placeholder_notes": {
@@ -725,6 +829,10 @@
   "@about_created": {
     "description": "Date when the note was created."
   },
+  "about_labels": "Labels",
+  "@about_labels": {
+    "description": "Number of labels of the note."
+  },
   "about_words": "Words",
   "@about_words": {
     "description": "Number of words in the content of the note."
@@ -736,6 +844,34 @@
   "about_time_at": "at",
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
+  },
+  "menu_action_labels": "Labels",
+  "@menu_action_labels": {
+    "description": "Menu action to change the labels of a note."
+  },
+  "action_labels_edit": "Edit",
+  "@action_labels_edit": {
+    "description": "Menu or swipe action to edit a label."
+  },
+  "action_labels_delete": "Delete",
+  "@action_labels_delete": {
+    "description": "Menu or swipe action to delete a label."
+  },
+  "filter_labels_all": "All",
+  "@filter_labels_all": {
+    "description": "Filter chip in the labels page to all labels."
+  },
+  "filter_labels_visible": "Visible",
+  "@filter_labels_visible": {
+    "description": "Filter chip in the labels page to show only the visible labels."
+  },
+  "filter_labels_pinned": "Pinned",
+  "@filter_labels_pinned": {
+    "description": "Filter chip in the labels page to show only the pinned labels."
+  },
+  "filter_labels_hidden": "Hidden",
+  "@filter_labels_hidden": {
+    "description": "Filter chip in the labels page to show only the hidden labels."
   },
   "snack_bar_copied": "Content of the note copied to the clipboard.",
   "@snack_bar_copied": {

@@ -8,6 +8,8 @@ import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/locale_extension.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
+import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
+import 'package:localmaterialnotes/providers/labels/labels_navigation/labels_navigation_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/routing/router.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
@@ -35,6 +37,10 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
     // Read the potential data shared from other applications
     readSharedData(ref);
     _stream = listenSharedData(ref);
+
+    // Eagerly get the labels for the full list and the navigation
+    ref.read(labelsListProvider.notifier).get();
+    ref.read(labelsNavigationProvider.notifier).get();
   }
 
   @override
@@ -66,35 +72,39 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
                     return ValueListenableBuilder(
                       valueListenable: textScalingNotifier,
                       builder: (context, textScaling, child) {
-                        return MediaQuery(
-                          data: MediaQuery.of(context).copyWith(
-                            textScaler: TextScaler.linear(textScaling),
-                          ),
-                          child: MaterialApp.router(
-                            title: 'Material Notes',
-                            routerConfig: router,
-                            builder: (context, child) {
-                              // Change the widget shown when a widget building fails
-                              ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);
+                        return ValueListenableBuilder(
+                            valueListenable: useWhiteTextDarkModeNotifier,
+                            builder: (context, useWhiteTextDarkMode, child) {
+                              return MediaQuery(
+                                data: MediaQuery.of(context).copyWith(
+                                  textScaler: TextScaler.linear(textScaling),
+                                ),
+                                child: MaterialApp.router(
+                                  title: 'Material Notes',
+                                  routerConfig: router,
+                                  builder: (context, child) {
+                                    // Change the widget shown when a widget building fails
+                                    ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);
 
-                              if (child == null) {
-                                throw StateError('MaterialApp child is null');
-                              }
+                                    if (child == null) {
+                                      throw StateError('MaterialApp child is null');
+                                    }
 
-                              return Directionality(
-                                textDirection: LocaleUtils().deviceLocale.textDirection,
-                                child: child,
+                                    return Directionality(
+                                      textDirection: LocaleUtils().deviceLocale.textDirection,
+                                      child: child,
+                                    );
+                                  },
+                                  theme: ThemeUtils().getLightTheme(lightDynamicColorScheme),
+                                  darkTheme: ThemeUtils().getDarkTheme(darkDynamicColorScheme, useWhiteTextDarkMode),
+                                  themeMode: themeMode,
+                                  localizationsDelegates: AppLocalizations.localizationsDelegates,
+                                  supportedLocales: AppLocalizations.supportedLocales,
+                                  locale: LocaleUtils().appLocale,
+                                  debugShowCheckedModeBanner: false,
+                                ),
                               );
-                            },
-                            theme: ThemeUtils().getLightTheme(lightDynamicColorScheme),
-                            darkTheme: ThemeUtils().getDarkTheme(darkDynamicColorScheme),
-                            themeMode: themeMode,
-                            localizationsDelegates: AppLocalizations.localizationsDelegates,
-                            supportedLocales: AppLocalizations.supportedLocales,
-                            locale: LocaleUtils().appLocale,
-                            debugShowCheckedModeBanner: false,
-                          ),
-                        );
+                            });
                       },
                     );
                   },

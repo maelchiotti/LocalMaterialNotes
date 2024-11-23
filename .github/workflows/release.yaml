@@ -81,7 +81,10 @@ jobs:
       - name: Add key properties
         run: echo "${{ secrets.ANDROID_KEY_PROPERTIES }}" > android/key.properties
       - name: Build app (fat APK)
-        run: flutter build apk --release
+        run: |
+          dart run build_runner build
+          flutter gen-l10n
+          flutter build apk --release
       - name: Build app (per ABIs)
         run: flutter build apk --release --split-per-abi
       - name: Create a folder to store the APKs to release

@@ -28,7 +28,10 @@ jobs:
       - name: Add key properties
         run: echo "${{ secrets.ANDROID_KEY_PROPERTIES }}" > android/key.properties
       - name: Build app
-        run: flutter build apk --release
+        run: |
+          dart run build_runner build
+          flutter gen-l10n
+          flutter build apk --release
       - name: Archive APK
         uses: actions/upload-artifact@v4
         with:

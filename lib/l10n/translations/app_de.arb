@@ -1,4 +1,8 @@
 {
+  "app_name": "Material Notes",
+  "@app_name": {
+    "description": "Name of the application."
+  },
   "app_tagline": "Einfache, lokale Notizen-App im Material-Design",
   "@app_tagline": {
     "description": "Tagline of the application, shown in the about popup."
@@ -12,6 +16,42 @@
         "description": "Name of the application."
       }
     }
+  },
+  "error_snack_bar": "Fehler:",
+  "@error_snack_bar": {
+    "description": "Prefix for the error message shown in the error snack bar, before the actual error message."
+  },
+  "error_widget_title": "Es ist ein Fehler aufgetreten.",
+  "@error_widget_title": {
+    "description": "Message shown in the error widget shown when a widget fails to build."
+  },
+  "error_widget_description": "Bitte melde dieses Problem auf GitHub oder per E-Mail. Füge einen Screenshot dieser Seite und die Logs hinzu, die du unten kopieren oder exportieren kannst. Als Vorsichtsmaßnahme solltest Du Deine Notizen auch exportieren.",
+  "@error_widget_description": {
+    "description": "Message shown in the error widget shown when a widget fails to build."
+  },
+  "error_widget_disabled_secure_flag": "Die Einstellung, die App als sicher zu kennzeichnen, ist bis zum nächsten Neustart deaktiviert, um Screenshots zu ermöglichen.",
+  "@error_widget_disabled_secure_flag": {
+    "description": "Label shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
+  },
+  "error_widget_button_export_notes": "Notizen exportieren",
+  "@error_widget_button_export_notes": {
+    "description": "Title of the button to export the notes as JSON on the error widget."
+  },
+  "error_widget_button_copy_logs": "Logdateien kopieren",
+  "@error_widget_button_copy_logs": {
+    "description": "Title of the button to copy the logs to the clipboard on the error widget."
+  },
+  "error_widget_button_export_logs": "Logdateien exportieren",
+  "@error_widget_button_export_logs": {
+    "description": "Title of the button to export the logs in a text file on the error widget."
+  },
+  "error_widget_button_create_github_issue": "Erstelle ein Issue auf GitHub",
+  "@error_widget_button_create_github_issue": {
+    "description": "Title of the button to create a new GitHub issue on the error widget."
+  },
+  "error_widget_button_send_mail": "E-Mail senden",
+  "@error_widget_button_send_mail": {
+    "description": "Title of the button to end a bug report mail on the error widget."
   },
   "navigation_notes": "Notizen",
   "@navigation_notes": {
@@ -55,11 +95,7 @@
   },
   "settings_appearance": "Aussehen",
   "@settings_appearance": {
-    "description": "Title of the settings section regarding the application's appearance."
-  },
-  "settings_appearance_description": "Erscheinung",
-  "@settings_appearance_description": {
-    "description": "Description of the appearance settings section."
+    "description": "Title of the settings page regarding the application's appearance."
   },
   "settings_appearance_application": "Anwendung",
   "@settings_appearance_application": {
@@ -89,7 +125,7 @@
   "@settings_theme_dark": {
     "description": "Theming setting to use the dark theme."
   },
-  "settings_dynamic_theming": "Veränderliche Gestalt",
+  "settings_dynamic_theming": "Dynamisches Design",
   "@settings_dynamic_theming": {
     "description": "Title of the dynamic theming setting tile (to use colors generated from the system)."
   },
@@ -105,10 +141,6 @@
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
   },
-  "settings_text_scaling": "Textskalierung",
-  "@settings_text_scaling": {
-    "description": "Title of the text scale setting tile."
-  },
   "settings_appearance_notes_tiles": "Notizenfelder",
   "@settings_appearance_notes_tiles": {
     "description": "Title of the sub-section regarding the notes tiles under the appearance settings."
@@ -117,7 +149,7 @@
   "@settings_show_titles_only": {
     "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
   },
-  "settings_show_titles_only_description": "Nur Notiz Titel anzeigen",
+  "settings_show_titles_only_description": "Nur Notiztitel anzeigen",
   "@settings_show_titles_only_description": {
     "description": "Description of the setting tile to only show the titles of the notes in the notes tiles."
   },
@@ -125,7 +157,7 @@
   "@settings_show_titles_only_disable_in_search_view": {
     "description": "Title of the setting tile to disable only showing the titles of the notes in the search view."
   },
-  "settings_show_titles_only_disable_in_search_view_description": "Deaktivieren Sie die Option, nur Titel anzuzeigen, wenn sie sich in der Suchansicht befinden",
+  "settings_show_titles_only_disable_in_search_view_description": "\"Nur Titel anzeigen\" deaktivieren, wenn Du Dich in der Suchansicht befindest",
   "@settings_show_titles_only_disable_in_search_view_description": {
     "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
   },
@@ -133,7 +165,7 @@
   "@settings_disable_subdued_note_content_preview": {
     "description": "Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
-  "settings_disable_subdued_note_content_preview_description": "Deaktiviere die gedämpfte Textfarbe der Notiz Vorschau",
+  "settings_disable_subdued_note_content_preview_description": "Blassere Textfarbe der Notizvorschau deaktivieren",
   "@settings_disable_subdued_note_content_preview_description": {
     "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
@@ -145,7 +177,7 @@
   "@settings_show_tiles_background_description": {
     "description": "Description of the setting tile to show the background of the notes tiles."
   },
-  "settings_show_separators": "Trennzeichen",
+  "settings_show_separators": "Trennlinien",
   "@settings_show_separators": {
     "description": "Title of the setting tile to show the separators between the notes tiles."
   },
@@ -155,11 +187,11 @@
   },
   "settings_behavior": "Verhalten",
   "@settings_behavior": {
-    "description": "Title of the settings section regarding the application's behavior."
+    "description": "Title of the settings page regarding the application's behavior."
   },
   "settings_behavior_description": "Verhalten",
   "@settings_behavior_description": {
-    "description": "Description of the behavior settings section."
+    "description": "Description of the behavior settings page."
   },
   "settings_behavior_application": "Anwendung",
   "@settings_behavior_application": {
@@ -189,7 +221,7 @@
   "@settings_flag_secure": {
     "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
   },
-  "settings_flag_secure_description": "Verstecke die App in der kürzlich geöffnete Apps Übersicht und verhindere, dass Screenshots gemacht werden",
+  "settings_flag_secure_description": "Die App im App-Umschalter nicht anzeigen und verhindern, dass Screenshots gemacht werden",
   "@settings_flag_secure_description": {
     "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
   },
@@ -215,11 +247,11 @@
   },
   "settings_editor": "Editor",
   "@settings_editor": {
-    "description": "Title of the settings section regarding the notes content editor."
+    "description": "Title of the settings page regarding the notes content editor."
   },
-  "settings_editor_description": "Schaltflächen, Symbolleiste, Lesemodus",
+  "settings_editor_description": "Schaltflächen, Symbolleiste, Lesemodus, Abstand",
   "@settings_editor_description": {
-    "description": "Description of the editor settings section."
+    "description": "Description of the editor settings page."
   },
   "settings_editor_formatting": "Formatierung",
   "@settings_editor_formatting": {
@@ -237,7 +269,7 @@
   "@settings_show_checklist_button": {
     "description": "Title of the setting tile to enable the checklist button in the editor."
   },
-  "settings_show_checklist_button_description": "Zeigen Sie die Schaltfläche zum Umschalten von Checklisten in der App-Leiste des Editors an und verbergen Sie sie in der Symbolleiste des Editors, wenn sie aktiviert ist",
+  "settings_show_checklist_button_description": "Zeige die Schaltfläche zum Umschalten von Checklisten in der App-Leiste des Editors an und verbirg sie in der Symbolleiste des Editors, wenn sie aktiviert ist",
   "@settings_show_checklist_button_description": {
     "description": "Description of the setting tile to enable the checklist button in the editor."
   },
@@ -245,7 +277,7 @@
   "@settings_show_toolbar": {
     "description": "Title of the setting tile to enable the toolbar for advanced formatting options in the editor."
   },
-  "settings_show_toolbar_description": "Zeigen Sie die Symbolleiste des Editors an, um erweiterte Textformatierungen zu aktivieren",
+  "settings_show_toolbar_description": "Zeige die Symbolleiste des Editors an, um erweiterte Textformatierungen zu aktivieren",
   "@settings_show_toolbar_description": {
     "description": "Description of the setting tile to enable the toolbar for advanced formatting options in the editor."
   },
@@ -257,7 +289,7 @@
   "@settings_show_editor_mode_button": {
     "description": "Title of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
   },
-  "settings_show_editor_mode_button_description": "Schaltfläche anzeigen zum Umschalten zwischen Bearbeitungsmodus und Lesemodus",
+  "settings_show_editor_mode_button_description": "Schaltfläche zum Umschalten zwischen Bearbeitungs- und Lesemodus anzeigen",
   "@settings_show_editor_mode_button_description": {
     "description": "Description of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
   },
@@ -269,11 +301,11 @@
   "@settings_open_editor_reading_mode_description": {
     "description": "Description of the setting tile to enable opening the editor in reading mode by default."
   },
-  "settings_focus_title_on_new_note": "Titel fokussieren",
+  "settings_focus_title_on_new_note": "Cursor ins Titelfeld setzen",
   "@settings_focus_title_on_new_note": {
     "description": "Title of the setting tile to enable focusing the title when creating a new note by default."
   },
-  "settings_focus_title_on_new_note_description": "Fokussiere den Titel anstelle des Inhalts beim Erstellen einer neuen Notiz",
+  "settings_focus_title_on_new_note_description": "Den Cursor beim Erstellen einer neuen Notiz ins Titelfeld setzen anstelle des Inhaltsfeldes",
   "@settings_focus_title_on_new_note_description": {
     "description": "Description of the setting tile to enable focusing the title when creating a new note by default."
   },
@@ -291,11 +323,11 @@
   },
   "settings_backup": "Sicherung",
   "@settings_backup": {
-    "description": "Title of the settings section regarding the backup functionality."
+    "description": "Title of the settings page regarding the backup functionality."
   },
   "settings_backup_description": "Manueller und automatischer Export, Verschlüsselung, Import",
   "@settings_backup_description": {
-    "description": "Description of the backup settings section."
+    "description": "Description of the backup settings page."
   },
   "settings_backup_import": "Import",
   "@settings_backup_import": {
@@ -305,7 +337,7 @@
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
-  "settings_import_description": "Importierte Notizen aus einer JSON Datei",
+  "settings_import_description": "Notizen aus einer JSON-Datei importieren",
   "@settings_import_description": {
     "description": "Description of the setting tile to import a backup."
   },
@@ -325,7 +357,7 @@
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
   },
-  "settings_export_markdown_description": "Exportiere die Notizen (Papierkorb enthalten) sofort als Markdown Datei",
+  "settings_export_markdown_description": "Notizen (inkl. Papierkorb) sofort als Markdown-Datei exportieren",
   "@settings_export_markdown_description": {
     "description": "Description of the setting tile to manually export the notes as Markdown."
   },
@@ -375,9 +407,13 @@
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_text_scaling": "Textskalierung",
+  "@settings_text_scaling": {
+    "description": "Title of the text scale setting tile."
+  },
   "settings_about": "Über",
   "@settings_about": {
-    "description": "Title of the settings section regarding the information about the application."
+    "description": "Title of the settings page regarding the information about the application."
   },
   "settings_about_description": "Über",
   "@settings_about_description": {
@@ -411,11 +447,11 @@
   "@settings_github_issues_description": {
     "description": "Description of the settings tile to open the GitHub issues and report a bug or request a feature."
   },
-  "settings_github_discussions": "Frage eine Frage",
+  "settings_github_discussions": "Stelle eine Frage",
   "@settings_github_discussions": {
     "description": "Title of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_github_discussions_description": "Frage eine Frage in GitHub Diskussionen",
+  "settings_github_discussions_description": "Stelle eine Frage in GitHub Diskussionen",
   "@settings_github_discussions_description": {
     "description": "Description of the settings tile to open the GitHub discussions and ask a question."
   },
@@ -455,6 +491,26 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
+  "settings_about_logs": "Logs",
+  "@settings_about_logs": {
+    "description": "Title of the settings section regarding the logs of the application."
+  },
+  "settings_copy_logs": "Kopiere die Logs",
+  "@settings_copy_logs": {
+    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_copy_logs_description": "Kopiere die Logs der App in die Zwischenablage",
+  "@settings_copy_logs_description": {
+    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_export_logs": "Exportiere die Logs",
+  "@settings_export_logs": {
+    "description": "Title of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_export_logs_description": "Exportiere die Logs der App in eine Textdatei",
+  "@settings_export_logs_description": {
+    "description": "Description of the settings tile to export the logs of the application to a text file."
+  },
   "hint_title": "Titel",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
@@ -481,7 +537,7 @@
   },
   "tooltip_fab_add_note": "Notiz hinzufügen",
   "@tooltip_fab_add_note": {
-    "description": "Floating action button on the notes list to add a new note."
+    "description": "Floating action button in the notes page to add a new note."
   },
   "tooltip_fab_empty_bin": "Papierkorb leeren",
   "@tooltip_fab_empty_bin": {
@@ -507,7 +563,7 @@
   "@tooltip_sort": {
     "description": "Tooltip for the button to open the menu to choose the sorting method of the notes list."
   },
-  "tooltip_search": "Suche Notizen",
+  "tooltip_search": "Notizen suchen",
   "@tooltip_search": {
     "description": "Tooltip for the button to open the search view to search through the notes."
   },
@@ -553,7 +609,7 @@
   "@dialog_permanently_delete": {
     "description": "Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button."
   },
-  "dialog_permanently_delete_body": "Willst du die {count}{count, plural,zero{}one{Notiz}other{Notizen}} dauerhaft löschen? Du kannst {count, plural,zero{}one{diese}other{diese}} nicht wiederherstellen.",
+  "dialog_permanently_delete_body": "Willst du die {count} {count, plural, zero{} one{Notiz} other{Notizen}} dauerhaft löschen? Du kannst {count, plural, zero{} one{diese} other{diese}} nicht wiederherstellen.",
   "@dialog_permanently_delete_body": {
     "description": "Text for the dialog to confirm the permanent deletion of one or multiple notes.",
     "placeholders": {
@@ -567,7 +623,7 @@
   "@dialog_restore": {
     "description": "Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button."
   },
-  "dialog_restore_body": "Willst du diese {count}{count, plural,zero{}one{Notiz}other{Notizen}} wirklich wiederherstellen?",
+  "dialog_restore_body": "Willst du diese {count} {count, plural, zero{} one{Notiz} other{Notizen}} wirklich wiederherstellen?",
   "@dialog_restore_body": {
     "description": "Text for the dialog to confirm restoring one or multiple notes from the bin.",
     "placeholders": {
@@ -612,10 +668,6 @@
   "dialog_import_encryption_password_error": "Die Entschlüsselung des Exportes ist fehlgeschlagen. Bitte überprüfe, dass du das Passwort eingegeben hast, das du zum Verschlüsseln verwendet hast.",
   "@dialog_import_encryption_password_error": {
     "description": "Error when the decryption of an encrypted import failed."
-  },
-  "button_sort_date": "Datum",
-  "@button_sort_date": {
-    "description": "Text of the button to sort the notes list by date."
   },
   "placeholder_notes": "Keine Notizen",
   "@placeholder_notes": {
@@ -688,6 +740,14 @@
   "snack_bar_export_success": "Die Notizen wurden erfolgreich exportiert.",
   "@snack_bar_export_success": {
     "description": "Snack bar informing that the notes were successfully manually exported."
+  },
+  "snack_bar_logs_copied": "Die Logs wurden in deine Zwischenablage kopiert.",
+  "@snack_bar_logs_copied": {
+    "description": "Snack bar message shown when the logs where copied to the clipboard from the error widget."
+  },
+  "snack_bar_logs_exported": "Die Logs wurden erfolgreich exportiert.",
+  "@snack_bar_logs_exported": {
+    "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
   },
   "action_add_note_title": "Notiz erstellen",
   "@action_add_note_title": {

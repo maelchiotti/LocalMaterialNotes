@@ -1,9 +1,9 @@
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
 import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
-import 'package:localmaterialnotes/utils/logs_utils.dart';
 
 // ignore_for_file: public_member_api_docs
 
@@ -14,7 +14,6 @@ enum PreferenceKey {
   theme(0),
   dynamicTheming(true),
   blackTheming(false),
-  textScaling(1.0),
   showTitlesOnly(false),
   showTitlesOnlyDisableInSearchView(true),
   disableSubduedNoteContentPreview(false),
@@ -36,6 +35,11 @@ enum PreferenceKey {
   focusTitleOnNewNote(false),
   useParagraphsSpacing(true),
 
+  // Labels
+  enableLabels(true),
+  showLabelsListOnNoteTile(true),
+  showLabelsListInEditorPage(true),
+
   // Backup
   enableAutoExport(false),
   autoExportFrequency(1),
@@ -44,8 +48,12 @@ enum PreferenceKey {
   autoExportDirectory(''),
   lastAutoExportDate(''),
 
+  // Accessibility
+  textScaling(1.0),
+  useWhiteTextDarkMode(false),
+
   // Notes
-  sortMethod(SortMethod.date),
+  sortMethod(SortMethod.editedDate),
   sortAscending(false),
   layout(Layout.list),
   ;
@@ -78,7 +86,7 @@ enum PreferenceKey {
     try {
       return PreferencesUtils().get<T>(this) ?? defaultValue as T;
     } catch (exception, stackTrace) {
-      LogsUtils().handleException(exception, stackTrace);
+      logger.e(exception.toString(), exception, stackTrace);
 
       return defaultValue as T;
     }
