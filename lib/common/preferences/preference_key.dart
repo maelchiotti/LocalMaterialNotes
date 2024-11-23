@@ -53,7 +53,7 @@ enum PreferenceKey {
 
   // Notes
   sortMethod(SortMethod.editedDate),
-  sortAscending(bool),
+  sortAscending(false),
   layout(Layout.list),
   ;
 
