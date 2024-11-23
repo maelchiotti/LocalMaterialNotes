@@ -24,6 +24,15 @@ full_description: |
       <li>Épinglez vos notes</li>
       <li>Récupérez vos notes supprimées de la corbeille</li>
   </ul>
+  
+  <p>
+      <b>Catégorisez</b>
+  </p>
+  <ul>
+      <li>Catégorisez vos notes à l'aide d'étiquettes</li>
+      <li>Distinguez vos étiquettes par leur couleur</li>
+      <li>Épinglez et masquez vos étiquettes</li>
+  </ul>
 
   <p>
       <b>Partagez & sauvegardez</b>

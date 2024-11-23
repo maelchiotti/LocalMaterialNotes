@@ -52,6 +52,12 @@ Simple, local, material design notes.
 - Pin your notes
 - Recover your deleted notes from the bin
 
+### Categorize
+
+- Categorize your notes with labels
+- Distinguish your labels with their color
+- Pin and hide your labels
+
 ### Share & backup
 
 - Share text from other applications to add it directly to a note
