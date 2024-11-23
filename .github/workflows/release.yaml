@@ -56,7 +56,9 @@ jobs:
       - name: Add fastlane supply key
         run: echo "${{ secrets.FASTLANE_SUPPLY_KEY }}" | base64 -d > fastlane/localmaterialnotes_fastlane-supply_key.json
       - name: Generate files
-        run: dart run build_runner build
+        run: |
+          dart run build_runner build
+          flutter gen-l10n
       - name: Run fastlane
         run: bundle exec fastlane deploy_production
 
