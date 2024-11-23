@@ -13,7 +13,10 @@ class FabToggleEditorMode extends ConsumerWidget {
     required this.isLabelsListShown,
   });
 
+  /// Whether the editor toolbar is shown.
   final bool isToolbarShown;
+
+  /// Whether the list of labels is shown.
   final bool isLabelsListShown;
 
   /// Switches the editor mode between editing and viewing.
