@@ -3,6 +3,7 @@ import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/list_extension.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/pages/labels/enums/labels_filter.dart';
+import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
 import 'package:localmaterialnotes/services/labels/labels_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -24,6 +25,7 @@ class Labels extends _$Labels {
   Future<void> _updateProviders() async {
     await ref.read(labelsNavigationProvider.notifier).get();
     await ref.read(labelsListProvider.notifier).get();
+    await ref.read(binProvider.notifier).get();
   }
 
   /// Filters the labels to show the [onlyPinned] ones or the [onlyHidden] ones.
