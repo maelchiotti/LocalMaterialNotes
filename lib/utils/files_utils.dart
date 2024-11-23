@@ -41,7 +41,7 @@ Future<bool> _writeFileSaf({
   required Uint8List data,
 }) async {
   try {
-    await safStream.writeFileSync(directory, fileName, mimeType, data);
+    await safStream.writeFileBytes(directory, fileName, mimeType, data);
   } catch (exception, stackTrace) {
     logger.e(exception.toString(), exception, stackTrace);
 

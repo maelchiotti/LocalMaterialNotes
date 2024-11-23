@@ -1,0 +1,11 @@
+AJOUT
+- Possibilité de catégoriser les notes avec des étiquettes
+- Possibilité de trier les notes en fonction de leur date de création
+- Possibilité d'utiliser un texte blanc avec le thème sombre
+
+MODIFIÉ
+- Amélioration des logs
+- Déplacement des paramètres d'accessibilité vers leur propre page
+
+CORRIGÉ
+- Échec de l'ajout d'une note via l'action de partage ou l'action rapide de l'écran d'accueil

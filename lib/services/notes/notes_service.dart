@@ -1,6 +1,7 @@
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
 import 'package:localmaterialnotes/common/constants/environment.dart';
+import 'package:localmaterialnotes/common/constants/labels.dart';
 import 'package:localmaterialnotes/common/constants/notes.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
@@ -36,6 +37,7 @@ class NotesService {
     else if (Environment.screenshots) {
       await clear();
       await putAll(screenshotNotes);
+      await putLabels(screenshotNotes[4], screenshotLabels);
     }
 
     // If the app runs for the first time ever, add the welcome note

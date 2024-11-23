@@ -62,7 +62,15 @@ final screenshotNotes = [
     createdTime: DateTime(2000, 01, 01, 11, 50),
     editedTime: DateTime(2000, 01, 01, 11, 50),
     title: "Organize",
-    content: '[{"insert":"Search & sort\\nPin & recover from the bin\\nDisplay in a list or a grid\\n"}]',
+    content: '[{"insert":"Search, sort and display in a list or a grid\\nPin and recover from the bin\\n"}]',
+  ),
+  Note(
+    deleted: false,
+    pinned: false,
+    createdTime: DateTime(2000, 01, 01, 11, 50),
+    editedTime: DateTime(2000, 01, 01, 11, 50),
+    title: "Categorize",
+    content: '[{"insert":"Categorize notes with labels\\nPin, hide and colorize labels\\n"}]',
   ),
   Note(
     deleted: false,

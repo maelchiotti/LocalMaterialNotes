@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.8.0 - 2024-11-23
+
+### Added
+
+- Ability to categorize the notes with labels
+- Allow to sort the notes by their creation date
+- Allow to use a white text in dark theme
+
+### Changed
+
+- Improve logs
+- Move accessibility settings to their own page
+
+### Fixed
+
+- Failure to add a note via the share action of the quick action
+
 ## 1.7.2 - 2024-10-19
 
 ### Added

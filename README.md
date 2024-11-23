@@ -52,6 +52,12 @@ Simple, local, material design notes.
 - Pin your notes
 - Recover your deleted notes from the bin
 
+### Categorize
+
+- Categorize your notes with labels
+- Distinguish your labels with their color
+- Pin and hide your labels
+
 ### Share & backup
 
 - Share text from other applications to add it directly to a note
@@ -75,14 +81,15 @@ Simple, local, material design notes.
 
 All the supported languages are listed here alphabetically. You can see more details on the [Crowdin project](https://crowdin.com/project/localmaterialnotes). To improve a language or add support for a new one, please see [CONTRIBUTING.md](CONTRIBUTING.md#localization).
 
-![Chinese Simplified](https://img.shields.io/badge/dynamic/json?color=blue&label=Chinese%20Simplified&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27zh-CN%27)].data.translationProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
-![English](https://img.shields.io/badge/dynamic/json?color=blue&label=English&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27en%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
-![French](https://img.shields.io/badge/dynamic/json?color=blue&label=French&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27fr%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
-![German](https://img.shields.io/badge/dynamic/json?color=blue&label=German&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27de%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
-![Portuguese](https://img.shields.io/badge/dynamic/json?color=blue&label=Portuguese&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27pt-PT%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
-![Russian](https://img.shields.io/badge/dynamic/json?color=blue&label=Russian&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27ru%27)].data.translationProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
-![Spanish](https://img.shields.io/badge/dynamic/json?color=blue&label=Spanish&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27es-ES%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
-![Turkish](https://img.shields.io/badge/dynamic/json?color=blue&label=Turkish&style=for-the-badge&logo=crowdin&query=%24.progress[?(@.data.languageId==%27tr%27)].data.approvalProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-13392640-684950.json)
+- Chinese Simplified
+- English
+- French
+- German
+- Polish
+- Portuguese
+- Russian
+- Spanish
+- Turkish
 
 ## External imports
 

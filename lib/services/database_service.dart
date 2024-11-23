@@ -1,6 +1,7 @@
 import 'package:isar/isar.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
+import 'package:localmaterialnotes/services/labels/labels_service.dart';
 import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -30,6 +31,7 @@ class DatabaseService {
     );
 
     // Initialize the models services
+    await LabelsService().ensureInitialized();
     await NotesService().ensureInitialized();
   }
 }
