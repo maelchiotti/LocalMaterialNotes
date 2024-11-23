@@ -170,13 +170,6 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     }
   }
 
-  /// Enters the selection mode and selects this note.
-  void onLongPress() {
-    isNotesSelectionModeNotifier.value = true;
-
-    toggleSelectNote(ref, widget.note);
-  }
-
   /// Opens the editor for this note or selects this note, depending on whether the selection mode is enabled or not.
   void onTap() {
     if (isNotesSelectionModeNotifier.value) {
@@ -191,6 +184,13 @@ class _NoteTileState extends ConsumerState<NoteTile> {
         Navigator.pop(context);
       }
     }
+  }
+
+  /// Enters the selection mode and selects this note.
+  void onLongPress() {
+    isNotesSelectionModeNotifier.value = true;
+
+    toggleSelectNote(ref, widget.note);
   }
 
   @override

@@ -23,6 +23,8 @@ class AboutSheet extends StatelessWidget {
       return const ErrorPlaceholder(exception: 'The note is null in the about sheet');
     }
 
+    final labelsCount = note.labels.toList().length;
+
     final wordCount = RegExp(r'[\w-]+').allMatches(note.contentPreview).length;
     final charactersCount = note.contentPreview.length;
 
@@ -36,6 +38,10 @@ class AboutSheet extends StatelessWidget {
         ListTile(
           title: Text(l.about_last_edited),
           trailing: Text(note.editedTime.yMMMMd_at_Hm),
+        ),
+        ListTile(
+          title: Text(l.about_labels),
+          trailing: Text('$labelsCount'),
         ),
         ListTile(
           title: Text(l.about_words),

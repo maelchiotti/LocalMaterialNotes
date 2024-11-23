@@ -829,6 +829,10 @@
   "@about_created": {
     "description": "Date when the note was created."
   },
+  "about_labels": "Labels",
+  "@about_labels": {
+    "description": "Number of labels of the note."
+  },
   "about_words": "Words",
   "@about_words": {
     "description": "Number of words in the content of the note."
@@ -853,11 +857,19 @@
   "@action_labels_delete": {
     "description": "Menu or swipe action to delete a label."
   },
+  "filter_labels_all": "All",
+  "@filter_labels_all": {
+    "description": "Filter chip in the labels page to all labels."
+  },
+  "filter_labels_visible": "Visible",
+  "@filter_labels_visible": {
+    "description": "Filter chip in the labels page to show only the visible labels."
+  },
   "filter_labels_pinned": "Pinned",
   "@filter_labels_pinned": {
     "description": "Filter chip in the labels page to show only the pinned labels."
   },
-  "filter_labels_hidden": "Pinned",
+  "filter_labels_hidden": "Hidden",
   "@filter_labels_hidden": {
     "description": "Filter chip in the labels page to show only the hidden labels."
   },

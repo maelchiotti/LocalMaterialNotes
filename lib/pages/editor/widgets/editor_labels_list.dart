@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:localmaterialnotes/common/actions/notes/labels.dart';
 import 'package:localmaterialnotes/common/constants/sizes.dart';
 import 'package:localmaterialnotes/common/widgets/labels/label_badge.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/empty_placeholder.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 
@@ -26,10 +25,6 @@ class EditorLabelsList extends ConsumerWidget {
         builder: (context, currentNote, child) {
           if (currentNote == null) {
             return LoadingPlaceholder();
-          }
-
-          if (currentNote.labels.isEmpty) {
-            return EmptyPlaceholder();
           }
 
           final labels = currentNote.labelsVisibleSorted;
