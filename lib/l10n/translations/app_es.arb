@@ -59,11 +59,7 @@
   },
   "settings_appearance": "Apariencia",
   "@settings_appearance": {
-    "description": "Title of the settings section regarding the application's appearance."
-  },
-  "settings_appearance_description": "Idioma, tema, tamaño del texto, fichas de notas",
-  "@settings_appearance_description": {
-    "description": "Description of the appearance settings section."
+    "description": "Title of the settings page regarding the application's appearance."
   },
   "settings_appearance_application": "Aplicación",
   "@settings_appearance_application": {
@@ -108,10 +104,6 @@
   "settings_black_theming_description": "Fondo negro puro para el tema oscuro",
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
-  },
-  "settings_text_scaling": "Escala del texto",
-  "@settings_text_scaling": {
-    "description": "Title of the text scale setting tile."
   },
   "settings_appearance_notes_tiles": "Fichas de las notas",
   "@settings_appearance_notes_tiles": {
@@ -159,11 +151,11 @@
   },
   "settings_behavior": "Comportamiento",
   "@settings_behavior": {
-    "description": "Title of the settings section regarding the application's behavior."
+    "description": "Title of the settings page regarding the application's behavior."
   },
   "settings_behavior_description": "Confirmaciones, marcar cómo segura, acciones de deslizamiento",
   "@settings_behavior_description": {
-    "description": "Description of the behavior settings section."
+    "description": "Description of the behavior settings page."
   },
   "settings_behavior_application": "Aplicación",
   "@settings_behavior_application": {
@@ -219,11 +211,11 @@
   },
   "settings_editor": "Editor",
   "@settings_editor": {
-    "description": "Title of the settings section regarding the notes content editor."
+    "description": "Title of the settings page regarding the notes content editor."
   },
   "settings_editor_description": "Botones, barra de herramientas, modo lectura, espaciado",
   "@settings_editor_description": {
-    "description": "Description of the editor settings section."
+    "description": "Description of the editor settings page."
   },
   "settings_editor_formatting": "Formato",
   "@settings_editor_formatting": {
@@ -295,11 +287,11 @@
   },
   "settings_backup": "Respaldo",
   "@settings_backup": {
-    "description": "Title of the settings section regarding the backup functionality."
+    "description": "Title of the settings page regarding the backup functionality."
   },
   "settings_backup_description": "Exportación manual y automática, cifrado, importación",
   "@settings_backup_description": {
-    "description": "Description of the backup settings section."
+    "description": "Description of the backup settings page."
   },
   "settings_backup_import": "Importar",
   "@settings_backup_import": {
@@ -379,9 +371,13 @@
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_text_scaling": "Escala del texto",
+  "@settings_text_scaling": {
+    "description": "Title of the text scale setting tile."
+  },
   "settings_about": "Acerca de",
   "@settings_about": {
-    "description": "Title of the settings section regarding the information about the application."
+    "description": "Title of the settings page regarding the information about the application."
   },
   "settings_about_description": "Información, ayuda, enlaces",
   "@settings_about_description": {
@@ -485,7 +481,7 @@
   },
   "tooltip_fab_add_note": "Agregar una nota",
   "@tooltip_fab_add_note": {
-    "description": "Floating action button on the notes list to add a new note."
+    "description": "Floating action button in the notes page to add a new note."
   },
   "tooltip_fab_empty_bin": "Vaciar la papelera",
   "@tooltip_fab_empty_bin": {
@@ -616,10 +612,6 @@
   "dialog_import_encryption_password_error": "el desencriptado de la exportación falló. Por favor, compruebe que proporcionó la misma contraseña que la que utilizó para encriptar la exportación.",
   "@dialog_import_encryption_password_error": {
     "description": "Error when the decryption of an encrypted import failed."
-  },
-  "button_sort_date": "Fecha",
-  "@button_sort_date": {
-    "description": "Text of the button to sort the notes list by date."
   },
   "placeholder_notes": "No hay notas",
   "@placeholder_notes": {

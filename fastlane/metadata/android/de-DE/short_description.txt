@@ -1,1 +1,1 @@
-Einfache, lokale Materialdesign-Notiz-App
+Einfache, lokale Notizen-App im Material-Design
