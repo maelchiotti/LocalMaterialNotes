@@ -1,4 +1,4 @@
-AJOUT
+AJOUTÉ
 - Possibilité de catégoriser les notes avec des étiquettes
 - Possibilité de trier les notes en fonction de leur date de création
 - Possibilité d'utiliser un texte blanc avec le thème sombre

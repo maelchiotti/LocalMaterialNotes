@@ -6,7 +6,6 @@ import 'package:localmaterialnotes/common/extensions/string_extension.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_frequency_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_password_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/manual_export_dialog.dart';
@@ -97,14 +96,14 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
   /// Toggles the setting to enable the automatic export.
   Future<void> _toggleEnableAutoExport(bool toggled) async {
-    await PreferencesUtils().set<bool>(PreferenceKey.enableAutoExport, toggled);
+    await PreferenceKey.enableAutoExport.set<bool>(toggled);
 
     setState(() {});
 
     if (!toggled) {
-      PreferencesUtils().remove(PreferenceKey.lastAutoExportDate);
-      PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption, false);
-      PreferencesUtils().remove(PreferenceKey.autoExportPassword);
+      PreferenceKey.lastAutoExportDate.remove();
+      PreferenceKey.autoExportEncryption.set<bool>(false);
+      PreferenceKey.autoExportPassword.remove();
 
       return;
     }
@@ -118,10 +117,10 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   /// If enabled, asks the user for the password used for the encryption.
   Future<void> _toggleAutoExportEncryption(bool toggled) async {
     if (!toggled) {
-      PreferencesUtils().remove(PreferenceKey.autoExportPassword);
+      PreferenceKey.autoExportPassword.remove();
 
       setState(() {
-        PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption, false);
+        PreferenceKey.autoExportEncryption.set<bool>(false);
       });
 
       return;
@@ -140,10 +139,10 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         return;
       }
 
-      PreferencesUtils().set(PreferenceKey.autoExportPassword, autoExportPassword);
+      PreferenceKey.autoExportPassword.set(autoExportPassword);
 
       setState(() {
-        PreferencesUtils().set<bool>(PreferenceKey.autoExportEncryption, true);
+        PreferenceKey.autoExportEncryption.set<bool>(true);
       });
     });
   }
@@ -160,7 +159,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       }
 
       setState(() {
-        PreferencesUtils().set<int>(PreferenceKey.autoExportFrequency, autoExportFrequency);
+        PreferenceKey.autoExportFrequency.set<int>(autoExportFrequency);
       });
     });
   }
@@ -173,7 +172,8 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       return;
     }
 
-    PreferencesUtils().set<String>(PreferenceKey.autoExportDirectory, autoExportDirectory);
+    PreferenceKey.autoExportDirectory.set<String>(autoExportDirectory);
+
     await AutoExportUtils().setAutoExportDirectory();
 
     setState(() {});
@@ -181,7 +181,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
   /// Resets the directory of the automatic export to its default value.
   Future<void> _resetAutoExportDirectory() async {
-    await PreferencesUtils().remove(PreferenceKey.autoExportDirectory);
+    await PreferenceKey.autoExportDirectory.remove();
 
     await AutoExportUtils().setAutoExportDirectory();
 

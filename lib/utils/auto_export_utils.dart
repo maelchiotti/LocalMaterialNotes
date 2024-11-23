@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
 import 'package:path/path.dart';
@@ -55,7 +54,7 @@ class AutoExportUtils {
 
       // URIs for SAF used before v1.7.1 are not compatible and need to be discarded
       log("[Auto export] Discarding an URI in the old format for the SAF auto export directory.");
-      await PreferencesUtils().remove(PreferenceKey.autoExportDirectory);
+      await PreferenceKey.autoExportDirectory.remove();
 
       return setAutoExportDirectoryToDefault();
     }
@@ -120,9 +119,6 @@ class AutoExportUtils {
 
     DatabaseUtils().autoExportAsJson(encrypt, password);
 
-    PreferencesUtils().set<String>(
-      PreferenceKey.lastAutoExportDate,
-      DateTime.now().toIso8601String(),
-    );
+    PreferenceKey.lastAutoExportDate.set<String>(DateTime.now().toIso8601String());
   }
 }

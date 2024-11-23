@@ -8,7 +8,6 @@ import 'package:localmaterialnotes/common/enums/localization_completion.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
@@ -58,7 +57,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the dynamic theming.
   void _toggleDynamicTheming(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.dynamicTheming, toggled);
+      PreferenceKey.dynamicTheming.set<bool>(toggled);
     });
 
     dynamicThemingNotifier.value = toggled;
@@ -67,7 +66,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the black theming.
   void _toggleBlackTheming(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.blackTheming, toggled);
+      PreferenceKey.blackTheming.set<bool>(toggled);
     });
 
     blackThemingNotifier.value = toggled;
@@ -76,7 +75,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTitlesOnly(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showTitlesOnly, toggled);
+      PreferenceKey.showTitlesOnly.set<bool>(toggled);
     });
 
     showTitlesOnlyNotifier.value = toggled;
@@ -85,21 +84,21 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTitlesOnlyDisableInSearchView(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showTitlesOnlyDisableInSearchView, toggled);
+      PreferenceKey.showTitlesOnlyDisableInSearchView.set<bool>(toggled);
     });
   }
 
   /// Toggles the setting to show background of the notes tiles.
   void _toggleDisableSubduedNoteContentPreview(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.disableSubduedNoteContentPreview, toggled);
+      PreferenceKey.disableSubduedNoteContentPreview.set<bool>(toggled);
     });
   }
 
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTilesBackground(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showTilesBackground, toggled);
+      PreferenceKey.showTilesBackground.set<bool>(toggled);
     });
 
     showTilesBackgroundNotifier.value = toggled;
@@ -108,7 +107,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the setting to show the separators between the notes tiles.
   void _toggleShowSeparators(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showSeparators, toggled);
+      PreferenceKey.showSeparators.set<bool>(toggled);
     });
 
     showSeparatorsNotifier.value = toggled;

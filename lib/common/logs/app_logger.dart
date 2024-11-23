@@ -80,13 +80,13 @@ class AppLogger {
   }
 
   /// Logs an information message.
-  void i(String message, {Object? exception, StackTrace? stackTrace}) {
+  void i(String message, [Object? exception, StackTrace? stackTrace]) {
     _consoleLogger.i(message, error: exception, stackTrace: stackTrace);
     _fileLogger.i(message.firstLine, error: exception, stackTrace: stackTrace);
   }
 
   /// Logs a warning message.
-  void w(String message, {Object? exception, StackTrace? stackTrace}) {
+  void w(String message, [Object? exception, StackTrace? stackTrace]) {
     _consoleLogger.w(message, error: exception, stackTrace: stackTrace);
     _fileLogger.w(message.firstLine, error: exception, stackTrace: stackTrace);
   }
@@ -98,7 +98,7 @@ class AppLogger {
   }
 
   /// Logs a fatal message.
-  void f(String message, {Object? exception, StackTrace? stackTrace}) {
+  void f(String message, [Object? exception, StackTrace? stackTrace]) {
     _consoleLogger.f(message, error: exception, stackTrace: stackTrace);
     _fileLogger.f(message.firstLine, error: exception, stackTrace: stackTrace);
   }

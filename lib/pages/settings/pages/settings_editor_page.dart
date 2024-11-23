@@ -4,7 +4,6 @@ import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
@@ -21,7 +20,7 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
   /// Toggles the setting to show the undo/redo buttons in the editor's app bar.
   void _toggleShowUndoRedoButtons(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showUndoRedoButtons, toggled);
+      PreferenceKey.showUndoRedoButtons.set<bool>(toggled);
     });
   }
 
@@ -31,42 +30,42 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
   /// Otherwise, it's shown in the editor's app bar.
   void _toggleShowChecklistButton(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showChecklistButton, toggled);
+      PreferenceKey.showChecklistButton.set<bool>(toggled);
     });
   }
 
   /// Toggles the setting to show the editor's toolbar.
   void _toggleShowToolbar(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.showToolbar, toggled);
+      PreferenceKey.showToolbar.set<bool>(toggled);
     });
   }
 
   /// Toggles the setting to use the editor mode button.
   void _toggleShowEditorModeButton(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.editorModeButton, toggled);
+      PreferenceKey.editorModeButton.set<bool>(toggled);
     });
   }
 
   /// Toggles the setting to open the editor in reading mode by default.
   void _toggleOpenEditorInReadMode(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.openEditorReadingMode, toggled);
+      PreferenceKey.openEditorReadingMode.set<bool>(toggled);
     });
   }
 
   /// Toggles the setting to use spacing between the paragraphs.
   void _toggleFocusTitleOnNewNote(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.focusTitleOnNewNote, toggled);
+      PreferenceKey.focusTitleOnNewNote.set<bool>(toggled);
     });
   }
 
   /// Toggles the setting to use spacing between the paragraphs.
   void _toggleUseParagraphSpacing(bool toggled) {
     setState(() {
-      PreferencesUtils().set<bool>(PreferenceKey.useParagraphsSpacing, toggled);
+      PreferenceKey.useParagraphsSpacing.set<bool>(toggled);
     });
   }
 
