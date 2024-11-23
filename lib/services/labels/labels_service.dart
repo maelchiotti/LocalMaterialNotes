@@ -1,5 +1,6 @@
 import 'package:isar/isar.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
+import 'package:localmaterialnotes/pages/labels/enums/labels_filter.dart';
 import 'package:localmaterialnotes/services/database_service.dart';
 
 /// Service for the labels database.
@@ -29,15 +30,16 @@ class LabelsService {
   }
 
   /// Returns all the labels.
-  Future<List<Label>> getAllFiltered(bool onlyPinned, bool onlyHidden) async {
-    if (onlyPinned && onlyHidden) {
-      return [];
-    } else if (onlyPinned) {
-      return _labels.filter().pinnedEqualTo(true).findAll();
-    } else if (onlyHidden) {
-      return _labels.filter().visibleEqualTo(false).findAll();
-    } else {
-      return getAll();
+  Future<List<Label>> getAllFiltered(LabelsFilter labelsFilter) async {
+    switch (labelsFilter) {
+      case LabelsFilter.all:
+        return getAll();
+      case LabelsFilter.visible:
+        return _labels.filter().visibleEqualTo(true).findAll();
+      case LabelsFilter.pinned:
+        return _labels.filter().pinnedEqualTo(true).findAll();
+      case LabelsFilter.hidden:
+        return _labels.filter().visibleEqualTo(false).findAll();
     }
   }
 

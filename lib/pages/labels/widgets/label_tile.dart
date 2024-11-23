@@ -134,8 +134,13 @@ class _LabelTileState extends ConsumerState<LabelTile> {
     return false;
   }
 
+  /// Selects the label.
+  void onTap() {
+    toggleSelectLabel(ref, widget.label);
+  }
+
   /// Enters the selection mode and selects this tile.
-  void enterSelectionMode() {
+  void onLongPress() {
     isLabelsSelectionModeNotifier.value = true;
 
     toggleSelectLabel(ref, widget.label);
@@ -156,8 +161,8 @@ class _LabelTileState extends ConsumerState<LabelTile> {
         child: Ink(
           color: getBackgroundColor,
           child: InkWell(
-            onTap: () => toggleSelectLabel(ref, widget.label),
-            onLongPress: enterSelectionMode,
+            onTap: isLabelsSelectionModeNotifier.value ? onTap : null,
+            onLongPress: onLongPress,
             child: ListTile(
               leading: VariedIcon.varied(
                 widget.label.pinned ? Icons.label_important : Icons.label,

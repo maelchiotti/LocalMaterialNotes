@@ -110,13 +110,21 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
 
           fleatherControllerNotifier.value = editorController;
 
+          final showLabelsList =
+              enableLabels && showLabelsListInEditorPage && currentNote.labelsVisibleSorted.isNotEmpty;
+
           return Scaffold(
             appBar: const TopNavigation(
               appbar: EditorAppBar(
                 key: Keys.appBarEditor,
               ),
             ),
-            floatingActionButton: showEditorModeButton && !currentNote.deleted ? const FabToggleEditorMode() : null,
+            floatingActionButton: showEditorModeButton && !currentNote.deleted
+                ? FabToggleEditorMode(
+                    isToolbarShown: showToolbar,
+                    isLabelsListShown: showLabelsList,
+                  )
+                : null,
             body: ValueListenableBuilder(
               valueListenable: isFleatherEditorEditMode,
               builder: (context, isEditMode, child) {
@@ -160,7 +168,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                     SafeArea(
                       child: Column(
                         children: [
-                          if (enableLabels && showLabelsListInEditorPage) EditorLabelsList(readOnly: widget.readOnly),
+                          if (showLabelsList) EditorLabelsList(readOnly: widget.readOnly),
                           if (showToolbar && isEditMode && !currentNote.deleted)
                             EditorToolbar(editorController: editorController)
                         ],
