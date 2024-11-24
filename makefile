@@ -24,3 +24,21 @@ gen_full_descriptions:
 
 test_all:
 	patrol test -t integration_test --dart-define=INTEGRATION_TEST=true
+
+# Build
+.PHONY: build_apk_release
+
+build_apk_release:
+	flutter build apk --release
+
+# GitHub Actions (act)
+.PHONY: act_release
+
+act_release:
+	act -W .github/workflows/release.yaml
+
+# Miscellaneous
+.PHONY: clean
+
+clean:
+	flutter clean
