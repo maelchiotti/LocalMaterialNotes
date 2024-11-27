@@ -29,9 +29,10 @@ Future<bool> deleteLabel(BuildContext context, WidgetRef ref, Label? label) asyn
 
   if (!await askForConfirmation(
     context,
-    l.dialog_delete,
-    l.dialog_delete_body(1),
-    l.dialog_delete,
+    l.dialog_delete_label,
+    l.dialog_delete_label_body(1),
+    l.dialog_delete_label,
+    irreversible: true,
   )) {
     return false;
   }
@@ -47,9 +48,10 @@ Future<bool> deleteLabel(BuildContext context, WidgetRef ref, Label? label) asyn
 Future<bool> deleteLabels(BuildContext context, WidgetRef ref, List<Label> labels) async {
   if (!await askForConfirmation(
     context,
-    l.dialog_delete,
-    l.dialog_delete_body(labels.length),
-    l.dialog_delete,
+    l.dialog_delete_label,
+    l.dialog_delete_label_body(labels.length),
+    l.dialog_delete_label,
+    irreversible: true,
   )) {
     return false;
   }

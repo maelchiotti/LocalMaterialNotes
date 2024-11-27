@@ -729,6 +729,20 @@
   "@dialog_empty_bin_body": {
     "description": "Text for the dialog to confirm emptying the bin."
   },
+  "dialog_delete_label": "Delete",
+  "@dialog_delete_label": {
+    "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
+  },
+  "dialog_delete_label_body": "Do you really want to delete {count} {count, plural, zero{} one{label} other{labels}}? {count, plural, zero{} one{It} other{They}} will be removed from the notes where you added {count, plural, zero{} one{it} other{them}}.",
+  "@dialog_delete_label_body": {
+    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
+  },
   "dialog_export_encryption_switch": "Encrypt the JSON export",
   "@dialog_export_encryption_switch": {
     "description": "Text for the switch to toggle the encryption of the export in the dialog to manually or automatically exporting the notes as JSON."

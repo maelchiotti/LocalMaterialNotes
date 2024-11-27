@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:localmaterialnotes/common/actions/labels/delete.dart';
+import 'package:localmaterialnotes/common/actions/labels/edit.dart';
+import 'package:localmaterialnotes/common/actions/labels/pin.dart';
 import 'package:localmaterialnotes/common/actions/labels/select.dart';
+import 'package:localmaterialnotes/common/actions/labels/visible.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/extensions/color_extension.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/pages/labels/dialogs/label_dialog.dart';
 import 'package:localmaterialnotes/pages/labels/widgets/label_menu_option.dart';
-import 'package:localmaterialnotes/providers/labels/labels/labels_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
@@ -29,36 +31,6 @@ class LabelTile extends ConsumerStatefulWidget {
 class _LabelTileState extends ConsumerState<LabelTile> {
   Color? get getBackgroundColor {
     return widget.label.selected ? Theme.of(context).colorScheme.secondaryContainer : null;
-  }
-
-  Future<void> edit() async {
-    final editedLabel = await showAdaptiveDialog<Label>(
-      context: context,
-      builder: (context) {
-        return LabelDialog(
-          title: l.dialog_label_edit,
-          label: widget.label,
-        );
-      },
-    );
-
-    if (editedLabel == null) {
-      return;
-    }
-
-    await ref.read(labelsProvider.notifier).edit(editedLabel);
-  }
-
-  Future<void> delete() async {
-    await ref.read(labelsProvider.notifier).delete(widget.label);
-  }
-
-  Future<void> togglePin() async {
-    await ref.read(labelsProvider.notifier).togglePin(widget.label);
-  }
-
-  Future<void> toggleVisible() async {
-    await ref.read(labelsProvider.notifier).toggleVisible(widget.label);
   }
 
   Widget get getDismissibleBackground {
@@ -114,9 +86,9 @@ class _LabelTileState extends ConsumerState<LabelTile> {
   Future<void> onMenuOptionSelected(LabelMenuOption labelMenuOption) async {
     switch (labelMenuOption) {
       case LabelMenuOption.edit:
-        edit();
+        await editLabel(context, ref, widget.label);
       case LabelMenuOption.delete:
-        delete();
+        await deleteLabel(context, ref, widget.label);
     }
   }
 
@@ -124,9 +96,9 @@ class _LabelTileState extends ConsumerState<LabelTile> {
   Future<bool> onDismissed(DismissDirection direction) async {
     switch (direction) {
       case DismissDirection.startToEnd:
-        await delete();
+        await deleteLabel(context, ref, widget.label);
       case DismissDirection.endToStart:
-        await edit();
+        await editLabel(context, ref, widget.label);
       default:
         throw Exception('Unexpected dismiss direction after swiping on label tile: $direction');
     }
@@ -184,12 +156,12 @@ class _LabelTileState extends ConsumerState<LabelTile> {
                 children: [
                   if (widget.label.visible)
                     IconButton(
-                      onPressed: togglePin,
+                      onPressed: () => togglePinLabel(context, ref, widget.label),
                       icon: Icon(widget.label.pinned ? Icons.push_pin_outlined : Icons.push_pin),
                     ),
                   if (!widget.label.pinned)
                     IconButton(
-                      onPressed: toggleVisible,
+                      onPressed: () => toggleVisibleLabel(ref, widget.label),
                       icon: Icon(widget.label.visible ? Icons.visibility_off : Icons.visibility),
                     ),
                   PopupMenuButton<LabelMenuOption>(
