@@ -353,7 +353,7 @@
   "@settings_enable_labels": {
     "description": "Title of the setting tile to enable the labels."
   },
-  "settings_enable_labels_description": "Allow to categorize the notes with labels",
+  "settings_enable_labels_description": "Allow to categorize the notes with labels (disabling it doesn''t delete labels nor remove them from the notes, it only hides them)",
   "@settings_enable_labels_description": {
     "description": "Description of the setting tile to enable the labels."
   },

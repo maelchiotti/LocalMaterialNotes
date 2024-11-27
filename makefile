@@ -1,5 +1,8 @@
 # Code generation
-.PHONY: gen_build gen_watch gen_icon gen_splash gen_full_descriptions test_all
+.PHONY: gen_l10n gen_build gen_watch gen_icon gen_splash gen_full_descriptions test_all
+
+gen_l10n:
+	flutter gen-l10n
 
 gen_build:
 	dart run build_runner build --delete-conflicting-outputs
