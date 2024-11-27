@@ -1,5 +1,5 @@
 ADDED
-- Spanish localization
+- Spanish translation
 - Toggleable background for notes tiles
 
 CHANGED
