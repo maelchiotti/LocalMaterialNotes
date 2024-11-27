@@ -893,6 +893,10 @@
   "@snack_bar_logs_exported": {
     "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
   },
+  "snack_bar_no_labels": "There are no labels.",
+  "@snack_bar_no_labels": {
+    "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
+  },
   "action_add_note_title": "Add a note",
   "@action_add_note_title": {
     "description": "Title of the home screen action to add a new note."
