@@ -2,6 +2,7 @@ ADDED
 - Ability to categorize the notes with labels
 - Allow to sort the notes by their creation date
 - Allow to use a white text in dark theme
+- Polish translation
 
 CHANGED
 - Improve logs

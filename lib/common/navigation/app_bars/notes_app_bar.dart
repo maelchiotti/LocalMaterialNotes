@@ -81,12 +81,20 @@ class NotesAppBar extends ConsumerWidget {
       PreferenceKey.sortAscending.set<bool>(!oldAscendingPreference);
     }
 
-    // The 'Date' or 'Title' menu items were taped
+    // The 'Creation date', 'Edited date' or 'Title' menu items were taped
     else if (sortMethod != null) {
-      final forceAscending = sortMethod == SortMethod.title;
+      final oldSortMethod = SortMethod.fromPreference();
 
       PreferenceKey.sortMethod.set<String>(sortMethod.name);
-      PreferenceKey.sortAscending.set<bool>(forceAscending);
+
+      // Force the ascending sort when sorting by title
+      if (sortMethod == SortMethod.title) {
+        PreferenceKey.sortAscending.set<bool>(true);
+      }
+      // Force the descending sort when sorting by a date and if the previous sort was not based on a date
+      else if (!oldSortMethod.onDate && sortMethod.onDate) {
+        PreferenceKey.sortAscending.set<bool>(false);
+      }
     }
 
     // The checkbox of the 'Ascending' menu item was toggled
