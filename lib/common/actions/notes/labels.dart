@@ -10,6 +10,7 @@ import 'package:localmaterialnotes/providers/notifiers.dart';
 Future<List<Label>?> selectLabels(BuildContext context, WidgetRef ref, Note note) async {
   final selectedLabels = await showAdaptiveDialog<List<Label>>(
     context: context,
+    useRootNavigator: false,
     builder: (context) {
       return LabelsSelectionDialog(
         note: note,
