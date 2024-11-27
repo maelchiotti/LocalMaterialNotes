@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 
@@ -28,6 +29,8 @@ class AboutSheet extends StatelessWidget {
     final wordCount = RegExp(r'[\w-]+').allMatches(note.contentPreview).length;
     final charactersCount = note.contentPreview.length;
 
+    final isLabelsEnabled = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
+
     return ListView(
       shrinkWrap: true,
       children: [
@@ -39,10 +42,11 @@ class AboutSheet extends StatelessWidget {
           title: Text(l.about_last_edited),
           trailing: Text(note.editedTime.yMMMMd_at_Hm),
         ),
-        ListTile(
-          title: Text(l.about_labels),
-          trailing: Text('$labelsCount'),
-        ),
+        if (isLabelsEnabled)
+          ListTile(
+            title: Text(l.about_labels),
+            trailing: Text('$labelsCount'),
+          ),
         ListTile(
           title: Text(l.about_words),
           trailing: Text('$wordCount'),
