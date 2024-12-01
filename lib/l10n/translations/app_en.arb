@@ -603,6 +603,14 @@
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
   },
+  "tooltip_undo": "Undo the last action",
+  "@tooltip_undo": {
+    "description": "Tooltip for the button to undo the last action in the editor."
+  },
+  "tooltip_redo": "Redo the last action",
+  "@tooltip_redo": {
+    "description": "Tooltip for the button to redo the last action in the editor."
+  },
   "tooltip_toggle_checkbox": "Toggle checkbox",
   "@tooltip_toggle_checkbox": {
     "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
