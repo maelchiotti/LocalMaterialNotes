@@ -14,7 +14,6 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_field.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_labels_list.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_toolbar.dart';
-import 'package:localmaterialnotes/pages/editor/widgets/fab_toggle_editor_mode.dart';
 import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
@@ -119,12 +118,6 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                 key: Keys.appBarEditor,
               ),
             ),
-            floatingActionButton: showEditorModeButton && !currentNote.deleted
-                ? FabToggleEditorMode(
-                    isToolbarShown: showToolbar,
-                    isLabelsListShown: showLabelsList,
-                  )
-                : null,
             body: ValueListenableBuilder(
               valueListenable: isFleatherEditorEditMode,
               builder: (context, isEditMode, child) {
