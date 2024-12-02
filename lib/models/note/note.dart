@@ -16,6 +16,10 @@ part 'note.g.dart';
 
 // ignore_for_file: must_be_immutable
 
+List<String> _labelToJson(IsarLinks<Label> labels) {
+  return labels.map((label) => label.name).toList();
+}
+
 /// Rich text note with title, content and metadata.
 @JsonSerializable()
 @Collection(inheritance: false)
@@ -25,13 +29,13 @@ class Note extends Equatable implements Comparable<Note> {
 
   /// The ID of the note.
   ///
-  /// It's excluded from the JSON because it's fully managed by Isar.
+  /// Excluded from JSON because it's fully managed by Isar.
   @JsonKey(includeFromJson: false, includeToJson: false)
   Id id = Isar.autoIncrement;
 
   /// Whether the note is selected.
   ///
-  /// It's excluded from the JSON because it's only needed temporarily during multi-selection.
+  /// Excluded from JSON because it's only needed temporarily during multi-selection.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @ignore
   bool selected = false;
@@ -57,7 +61,7 @@ class Note extends Equatable implements Comparable<Note> {
   String content;
 
   /// The labels used to categorize the note.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(includeFromJson: false, includeToJson: true, toJson: _labelToJson)
   IsarLinks<Label> labels = IsarLinks<Label>();
 
   /// Default constructor of a note.

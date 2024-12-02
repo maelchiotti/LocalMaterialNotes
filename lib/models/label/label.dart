@@ -14,6 +14,7 @@ part 'label.g.dart';
 ///
 /// It can be [pinned], in which case it is always shown first.
 /// It can also be hidden, it which case it is not displayed outside the page to manage labels.
+@JsonSerializable()
 @Collection(inheritance: false)
 class Label extends Equatable implements Comparable<Label> {
   /// The ID of the label.
@@ -22,7 +23,7 @@ class Label extends Equatable implements Comparable<Label> {
 
   /// Whether the note is selected.
   ///
-  /// It's excluded from the JSON because it's only needed temporarily during multi-selection.
+  /// Excluded from JSON because it's only needed temporarily during multi-selection.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @ignore
   bool selected = false;
@@ -63,6 +64,12 @@ class Label extends Equatable implements Comparable<Label> {
     required this.colorHex,
   })  : visible = true,
         pinned = false;
+
+  /// Label from [json] data.
+  factory Label.fromJson(Map<String, dynamic> json) => _$LabelFromJson(json);
+
+  /// Label to JSON.
+  Map<String, dynamic> toJson() => _$LabelToJson(this);
 
   /// Labels are sorted according to:
   ///   1. Their pin state.

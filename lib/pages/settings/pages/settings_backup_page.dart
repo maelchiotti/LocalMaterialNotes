@@ -10,6 +10,9 @@ import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_frequency_
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_password_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/manual_export_dialog.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
+import 'package:localmaterialnotes/providers/labels/labels/labels_provider.dart';
+import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
+import 'package:localmaterialnotes/providers/labels/labels_navigation/labels_navigation_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
@@ -38,6 +41,9 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       final imported = await DatabaseUtils().import(context);
 
       if (imported) {
+        await ref.read(labelsProvider.notifier).get();
+        await ref.read(labelsListProvider.notifier).get();
+        await ref.read(labelsNavigationProvider.notifier).get();
         await ref.read(notesProvider.notifier).get();
         await ref.read(binProvider.notifier).get();
 
