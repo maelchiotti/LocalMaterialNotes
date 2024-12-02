@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/enums/mime_type.dart';
 import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
+import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_password_dialog.dart';
+import 'package:localmaterialnotes/services/labels/labels_service.dart';
 import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
@@ -20,6 +22,7 @@ import 'package:sanitize_filename/sanitize_filename.dart';
 /// This class is a singleton.
 class DatabaseUtils {
   final _notesService = NotesService();
+  final _labelsService = LabelsService();
 
   /// Returns the file name of the export file depending of the current date and time and its [extension].
   String _exportFileName(String extension) {
@@ -39,15 +42,50 @@ class DatabaseUtils {
     final importedString = await importFile.readAsString();
     var importedJson = jsonDecode(utf8.decode(importedString.codeUnits));
 
-    List<Note>? notes;
-
     // If the imported JSON is just a list, then it's the old export format (before v1.5.0) that just contains
     // the notes list. Otherwise, it's the new export format (after v1.5.0) that contains other data.
-    if (importedJson is List) {
+    final isOldFormat = importedJson is List;
+
+    // Import the labels
+    if (!isOldFormat) {
+      await _importLabels(importedJson);
+    }
+
+    if (!context.mounted) {
+      return false;
+    }
+
+    // Import the notes
+    return _importNotes(context, isOldFormat, importedJson);
+  }
+
+  Future<bool> _importLabels(importedJson) async {
+    final labelsAsJson = importedJson['labels'] as List;
+
+    final labels = labelsAsJson.map((labelAsJson) {
+      return Label.fromJson(labelAsJson as Map<String, dynamic>);
+    }).toList();
+
+    await _labelsService.putAllNew(labels);
+
+    return true;
+  }
+
+  Future<bool> _importNotes(BuildContext context, bool isOldFormat, importedJson) async {
+    List<Note> notes = [];
+    List<List<Label>> notesLabels = [];
+
+    // Only handle notes
+    if (isOldFormat) {
+      importedJson = importedJson as List;
+
       notes = importedJson.map((noteAsJson) {
         return Note.fromJson(noteAsJson as Map<String, dynamic>);
       }).toList();
-    } else {
+    }
+
+    // Handle notes and notes labels
+    else {
       importedJson = importedJson as Map<String, dynamic>;
 
       final encrypted = importedJson['encrypted'] as bool;
@@ -68,12 +106,12 @@ class DatabaseUtils {
         }
 
         try {
-          notes = notesAsJson.map((noteAsJsonEncrypted) {
-            return Note.fromJsonEncrypted(
+          for (final noteAsJsonEncrypted in notesAsJson) {
+            notes.add(Note.fromJsonEncrypted(
               noteAsJsonEncrypted as Map<String, dynamic>,
               password,
-            );
-          }).toList();
+            ));
+          }
         } catch (exception, stackTrace) {
           logger.e(exception.toString(), exception, stackTrace);
 
@@ -85,13 +123,26 @@ class DatabaseUtils {
           return false;
         }
       } else {
-        notes = notesAsJson.map((noteAsJson) {
-          return Note.fromJson(noteAsJson as Map<String, dynamic>);
+        for (final noteAsJson in notesAsJson) {
+          notes.add(Note.fromJson(noteAsJson as Map<String, dynamic>));
+        }
+      }
+
+      // Handle notes labels
+      List<Label> databaseLabels = await _labelsService.getAll();
+      for (final noteAsJson in notesAsJson) {
+        final labelsString = noteAsJson['labels'] as List;
+        final labels = databaseLabels.where((label) {
+          return labelsString.contains(label.name);
         }).toList();
+
+        notesLabels.add(labels);
       }
     }
 
+    // Add notes and labels to the database
     await _notesService.putAll(notes);
+    await _notesService.putAllLabels(notes, notesLabels);
 
     return true;
   }
@@ -105,18 +156,20 @@ class DatabaseUtils {
     required String directory,
     required String fileName,
   }) async {
-    var notes = await _notesService.getAll();
+    final version = InfoUtils().appVersion;
 
+    var notes = await _notesService.getAll();
     if (encrypt && password != null && password.isNotEmpty) {
       notes = notes.map((note) => note.encrypted(password)).toList();
     }
 
-    final version = InfoUtils().appVersion;
+    final labels = await _labelsService.getAll();
 
     final exportData = {
       'version': version,
       'encrypted': encrypt,
       'notes': notes,
+      'labels': labels,
     };
     final exportDataAsJson = utf8.encode(jsonEncode(exportData));
 
