@@ -20,10 +20,10 @@ class EncryptPasswordForm extends StatefulWidget {
   /// Called when the text has changed in the password field.
   ///
   /// Returns whether to [encrypt] the JSON export, and in that case the [password] to use.
-  final Function(bool encrypt, String? password) onChanged;
+  final void Function(bool encrypt, String? password) onChanged;
 
   /// Called when the user validates the form.
-  final Function() onEditingComplete;
+  final void Function() onEditingComplete;
 
   @override
   State<EncryptPasswordForm> createState() => _EncryptPasswordFormState();

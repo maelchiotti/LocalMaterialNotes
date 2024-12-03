@@ -59,7 +59,7 @@ class DatabaseUtils {
     return _importNotes(context, isOldFormat, importedJson);
   }
 
-  Future<bool> _importLabels(importedJson) async {
+  Future<bool> _importLabels(dynamic importedJson) async {
     final labelsAsJson = importedJson['labels'] as List;
 
     final labels = labelsAsJson.map((labelAsJson) {
@@ -71,7 +71,7 @@ class DatabaseUtils {
     return true;
   }
 
-  Future<bool> _importNotes(BuildContext context, bool isOldFormat, importedJson) async {
+  Future<bool> _importNotes(BuildContext context, bool isOldFormat, dynamic importedJson) async {
     List<Note> notes = [];
     List<List<Label>> notesLabels = [];
 

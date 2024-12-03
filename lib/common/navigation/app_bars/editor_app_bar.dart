@@ -66,7 +66,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       case MenuOption.deletePermanently:
         await permanentlyDeleteNote(context, ref, note);
       case MenuOption.about:
-        await showModalBottomSheet(
+        await showModalBottomSheet<void>(
           context: context,
           clipBehavior: Clip.hardEdge,
           showDragHandle: true,

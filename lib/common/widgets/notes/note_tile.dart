@@ -177,7 +177,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     } else {
       currentNoteNotifier.value = widget.note;
 
-      NotesEditorRoute(readOnly: widget.note.deleted, autoFocus: false).push(context);
+      NotesEditorRoute(readOnly: widget.note.deleted, autoFocus: false).push<void>(context);
 
       // If the note was opened from the search view, it needs to be closed.
       if (widget.searchView) {

@@ -24,5 +24,5 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) asy
 
   currentNoteNotifier.value = note;
 
-  NotesEditorRoute(readOnly: false, autoFocus: true).push(context);
+  NotesEditorRoute(readOnly: false, autoFocus: true).push<void>(context);
 }
