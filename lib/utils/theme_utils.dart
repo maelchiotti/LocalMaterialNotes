@@ -30,17 +30,17 @@ class ThemeUtils {
 
   /// Whether dynamic theming should be used.
   bool get useDynamicTheming {
-    return PreferenceKey.dynamicTheming.getPreferenceOrDefault<bool>();
+    return PreferenceKey.dynamicTheming.getPreferenceOrDefault();
   }
 
   /// Whether black theming should be used.
   bool get useBlackTheming {
-    return PreferenceKey.blackTheming.getPreferenceOrDefault<bool>();
+    return PreferenceKey.blackTheming.getPreferenceOrDefault();
   }
 
   /// Returns the [ThemeMode] of the application.
   ThemeMode get themeMode {
-    final themeModePreference = PreferenceKey.theme.getPreferenceOrDefault<int>();
+    final themeModePreference = PreferenceKey.theme.getPreferenceOrDefault();
 
     switch (themeModePreference) {
       case 0:
@@ -56,7 +56,7 @@ class ThemeUtils {
 
   /// Returns the title of the current theme mode.
   String get themeModeTitle {
-    final themeModePreference = PreferenceKey.theme.getPreferenceOrDefault<int>();
+    final themeModePreference = PreferenceKey.theme.getPreferenceOrDefault();
 
     switch (themeModePreference) {
       case 0:
@@ -178,7 +178,7 @@ class ThemeUtils {
         value = 2;
     }
 
-    PreferenceKey.theme.set<int>(value);
+    PreferenceKey.theme.set(value);
 
     themeModeNotifier.value = themeMode;
   }

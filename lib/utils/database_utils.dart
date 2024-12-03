@@ -4,8 +4,11 @@ import 'dart:typed_data';
 import 'package:archive/archive.dart';
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/enums/build_number.dart';
 import 'package:localmaterialnotes/common/enums/mime_type.dart';
 import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
+import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
@@ -48,8 +51,11 @@ class DatabaseUtils {
     final isOldFormat = importedJson is List;
 
     // Import the labels
-    if (!isOldFormat) {
-      await _importLabels(importedJson);
+    if (!isOldFormat && BuildNumber.backupLabels.isCurrentOrGreater) {
+      final importedLabels = await _importLabels(importedJson);
+      if (!importedLabels) {
+        return false;
+      }
     }
 
     if (!context.mounted) {
@@ -57,7 +63,20 @@ class DatabaseUtils {
     }
 
     // Import the notes
-    return _importNotes(context, isOldFormat, importedJson);
+    final importedNotes = await _importNotes(context, isOldFormat, importedJson);
+    if (!importedNotes) {
+      return false;
+    }
+
+    // Import the preferences
+    if (BuildNumber.backupPreferences.isCurrentOrGreater) {
+      final importedPreferences = await _importPreferences(importedJson);
+      if (!importedPreferences) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   Future<bool> _importLabels(dynamic importedJson) async {
@@ -130,20 +149,38 @@ class DatabaseUtils {
       }
 
       // Handle notes labels
-      List<Label> databaseLabels = await _labelsService.getAll();
-      for (final noteAsJson in notesAsJson) {
-        final labelsString = noteAsJson['labels'] as List;
-        final labels = databaseLabels.where((label) {
-          return labelsString.contains(label.name);
-        }).toList();
+      if (BuildNumber.backupLabels.isCurrentOrGreater) {
+        List<Label> databaseLabels = await _labelsService.getAll();
+        for (final noteAsJson in notesAsJson) {
+          final labelsString = noteAsJson['labels'] as List;
+          final labels = databaseLabels.where((label) {
+            return labelsString.contains(label.name);
+          }).toList();
 
-        notesLabels.add(labels);
+          notesLabels.add(labels);
+        }
       }
     }
 
     // Add notes and labels to the database
     await _notesService.putAll(notes);
     await _notesService.putAllLabels(notes, notesLabels);
+
+    return true;
+  }
+
+  Future<bool> _importPreferences(dynamic importedJson) async {
+    final preferencesAndValues = importedJson['preferences'] as Map<String, dynamic>;
+
+    preferencesAndValues.forEach((preference, value) {
+      final preferenceKey = PreferenceKey.values.byNameOrNull(preference);
+
+      if (preferenceKey == null) {
+        throw Exception("While restoring the preferences from JSON, the preference '$preference' doesn't exist");
+      }
+
+      preferenceKey.set(value);
+    });
 
     return true;
   }
@@ -166,7 +203,7 @@ class DatabaseUtils {
 
     final labels = await _labelsService.getAll();
 
-    final preferences = await PreferencesUtils().toJson();
+    final preferences = PreferencesUtils().toJson();
 
     final exportData = {
       'version': version,

@@ -31,7 +31,7 @@ class NotesEditorRoute extends GoRouteData {
       throw Exception('Parameters are required for the notes editor route');
     }
 
-    isFleatherEditorEditMode.value = !PreferenceKey.openEditorReadingMode.getPreferenceOrDefault<bool>();
+    isFleatherEditorEditMode.value = !PreferenceKey.openEditorReadingMode.getPreferenceOrDefault();
 
     return NoTransitionPage(
       child: NotesEditorPage(

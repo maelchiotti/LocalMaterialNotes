@@ -195,12 +195,10 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
   @override
   Widget build(BuildContext context) {
-    final showTitlesOnlyDisableInSearchView =
-        PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault<bool>();
-    final disableSubduedNoteContentPreview =
-        PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault<bool>();
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
-    final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.getPreferenceOrDefault<bool>();
+    final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
+    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
+    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
+    final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.getPreferenceOrDefault();
 
     final tile = ValueListenableBuilder(
       valueListenable: showTitlesOnlyNotifier,

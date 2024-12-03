@@ -35,7 +35,7 @@ class AutoExportUtils {
   /// Sets the directory where automatic exports are located depending on the user preference and the available
   /// permissions.
   Future<void> setAutoExportDirectory() async {
-    final autoExportDirectoryPreference = PreferenceKey.autoExportDirectory.getPreferenceOrDefault<String>();
+    final autoExportDirectoryPreference = PreferenceKey.autoExportDirectory.getPreferenceOrDefault();
 
     // Set to default if the user didn't choose a directory
     if (autoExportDirectoryPreference.isEmpty) {
@@ -85,14 +85,14 @@ class AutoExportUtils {
   /// or the time difference between now and the last automatic export is greater than the automatic export frequency
   /// chosen by the user
   bool _shouldPerformAutoExport() {
-    final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault<bool>();
-    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<int>();
+    final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault();
+    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault();
 
     if (!enableAutoExport) {
       return false;
     }
 
-    final lastAutoExportDatePreference = PreferenceKey.lastAutoExportDate.getPreferenceOrDefault<String>();
+    final lastAutoExportDatePreference = PreferenceKey.lastAutoExportDate.getPreferenceOrDefault();
     final lastAutoExportDate = DateTime.tryParse(lastAutoExportDatePreference);
 
     // If the last automatic export date is null, perform the auto first automatic export now
@@ -114,11 +114,11 @@ class AutoExportUtils {
       return;
     }
 
-    final encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
+    final encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault();
     final password = await PreferenceKey.autoExportPassword.getPreferenceOrDefaultSecure();
 
     DatabaseUtils().autoExportAsJson(encrypt, password);
 
-    PreferenceKey.lastAutoExportDate.set<String>(DateTime.now().toIso8601String());
+    PreferenceKey.lastAutoExportDate.set(DateTime.now().toIso8601String());
   }
 }

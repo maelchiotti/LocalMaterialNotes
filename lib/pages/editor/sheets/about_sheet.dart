@@ -29,7 +29,7 @@ class AboutSheet extends StatelessWidget {
     final wordCount = RegExp(r'[\w-]+').allMatches(note.contentPreview).length;
     final charactersCount = note.contentPreview.length;
 
-    final isLabelsEnabled = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
+    final isLabelsEnabled = PreferenceKey.enableLabels.getPreferenceOrDefault();
 
     return ListView(
       shrinkWrap: true,

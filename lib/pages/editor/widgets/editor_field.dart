@@ -56,7 +56,7 @@ class EditorField extends StatelessWidget {
     );
 
     // If paragraph spacing should be used, return the editor directly without modifying its default theme
-    if (PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault<bool>()) {
+    if (PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault()) {
       return fleatherField;
     }
 

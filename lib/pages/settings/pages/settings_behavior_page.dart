@@ -24,14 +24,14 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
   /// Asks the user to choose which confirmations should be shown.
   void _submittedConfirmations(Confirmations confirmations) {
     setState(() {
-      PreferenceKey.confirmations.set<String>(confirmations.name);
+      PreferenceKey.confirmations.set(confirmations.name);
     });
   }
 
   /// Sets the new right [swipeAction].
   void _submittedSwipeRightAction(SwipeAction swipeAction) {
     setState(() {
-      PreferenceKey.swipeRightAction.set<String>(swipeAction.name);
+      PreferenceKey.swipeRightAction.set(swipeAction.name);
       swipeActionsNotifier.value = (right: swipeAction, left: swipeActionsNotifier.value.left);
     });
   }
@@ -39,7 +39,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
   /// Sets the new left [swipeAction].
   void _submittedSwipeLeftAction(SwipeAction swipeAction) {
     setState(() {
-      PreferenceKey.swipeLeftAction.set<String>(swipeAction.name);
+      PreferenceKey.swipeLeftAction.set(swipeAction.name);
       swipeActionsNotifier.value = (right: swipeActionsNotifier.value.right, left: swipeAction);
     });
   }
@@ -47,7 +47,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
   /// Toggles Android's `FLAG_SECURE` to hide the app from the recent apps and prevent screenshots.
   Future<void> _setFlagSecure(bool toggled) async {
     setState(() {
-      PreferenceKey.flagSecure.set<bool>(toggled);
+      PreferenceKey.flagSecure.set(toggled);
     });
 
     toggled ? await FlagSecure.set() : await FlagSecure.unset();
@@ -56,7 +56,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
   @override
   Widget build(BuildContext context) {
     final confirmations = Confirmations.fromPreference();
-    final flagSecure = PreferenceKey.flagSecure.getPreferenceOrDefault<bool>();
+    final flagSecure = PreferenceKey.flagSecure.getPreferenceOrDefault();
 
     final swipeRightAction = swipeActionsNotifier.value.right;
     final swipeLeftAction = swipeActionsNotifier.value.left;

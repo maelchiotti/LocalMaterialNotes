@@ -17,10 +17,10 @@ final dynamicThemingNotifier = ValueNotifier(ThemeUtils().useDynamicTheming);
 final blackThemingNotifier = ValueNotifier(ThemeUtils().useBlackTheming);
 
 /// Notifier for the text scaling.
-final textScalingNotifier = ValueNotifier(PreferenceKey.textScaling.getPreferenceOrDefault<double>());
+final textScalingNotifier = ValueNotifier(PreferenceKey.textScaling.getPreferenceOrDefault());
 
 /// Notifier for the text scaling.
-final useWhiteTextDarkModeNotifier = ValueNotifier(PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault<bool>());
+final useWhiteTextDarkModeNotifier = ValueNotifier(PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault());
 
 /// Notifier for whether the notes selection mode is active.
 final isNotesSelectionModeNotifier = ValueNotifier(false);
@@ -32,13 +32,13 @@ final isLabelsSelectionModeNotifier = ValueNotifier(false);
 final layoutNotifier = ValueNotifier(Layout.fromPreference());
 
 /// Notifier for whether to show the notes titles.
-final showTitlesOnlyNotifier = ValueNotifier(PreferenceKey.showTitlesOnly.getPreferenceOrDefault<bool>());
+final showTitlesOnlyNotifier = ValueNotifier(PreferenceKey.showTitlesOnly.getPreferenceOrDefault());
 
 /// Notifier for whether to show the notes tiles background.
-final showTilesBackgroundNotifier = ValueNotifier(PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>());
+final showTilesBackgroundNotifier = ValueNotifier(PreferenceKey.showTilesBackground.getPreferenceOrDefault());
 
 /// Notifier for whether to show the separators between the notes tiles.
-final showSeparatorsNotifier = ValueNotifier(PreferenceKey.showSeparators.getPreferenceOrDefault<bool>());
+final showSeparatorsNotifier = ValueNotifier(PreferenceKey.showSeparators.getPreferenceOrDefault());
 
 /// Notifier for the swipe actions on the notes tiles.
 final ValueNotifier<({SwipeAction right, SwipeAction left})> swipeActionsNotifier = ValueNotifier((
@@ -62,4 +62,4 @@ final fleatherControllerCanRedoNotifier = ValueNotifier(false);
 final fleatherFieldHasFocusNotifier = ValueNotifier(false);
 
 /// Notifier for whether the fleather editor is in edit mode.
-final isFleatherEditorEditMode = ValueNotifier(!PreferenceKey.openEditorReadingMode.getPreferenceOrDefault<bool>());
+final isFleatherEditorEditMode = ValueNotifier(!PreferenceKey.openEditorReadingMode.getPreferenceOrDefault());

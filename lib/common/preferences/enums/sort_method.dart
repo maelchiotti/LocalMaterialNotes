@@ -21,7 +21,7 @@ enum SortMethod {
   /// Returns the value of the preference if set, or its default value otherwise.
   factory SortMethod.fromPreference() {
     final sortMethod = SortMethod.values.byNameOrNull(
-      PreferenceKey.sortMethod.getPreference<String>(),
+      PreferenceKey.sortMethod.getPreference(),
     );
 
     // Reset the malformed preference to its default value

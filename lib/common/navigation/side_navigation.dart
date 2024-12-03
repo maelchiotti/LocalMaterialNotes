@@ -212,7 +212,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
+    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
 
     if (enableLabels) {
       return ref.watch(labelsNavigationProvider).when(

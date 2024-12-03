@@ -57,7 +57,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the dynamic theming.
   void _toggleDynamicTheming(bool toggled) {
     setState(() {
-      PreferenceKey.dynamicTheming.set<bool>(toggled);
+      PreferenceKey.dynamicTheming.set(toggled);
     });
 
     dynamicThemingNotifier.value = toggled;
@@ -66,7 +66,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the black theming.
   void _toggleBlackTheming(bool toggled) {
     setState(() {
-      PreferenceKey.blackTheming.set<bool>(toggled);
+      PreferenceKey.blackTheming.set(toggled);
     });
 
     blackThemingNotifier.value = toggled;
@@ -75,7 +75,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTitlesOnly(bool toggled) {
     setState(() {
-      PreferenceKey.showTitlesOnly.set<bool>(toggled);
+      PreferenceKey.showTitlesOnly.set(toggled);
     });
 
     showTitlesOnlyNotifier.value = toggled;
@@ -84,21 +84,21 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTitlesOnlyDisableInSearchView(bool toggled) {
     setState(() {
-      PreferenceKey.showTitlesOnlyDisableInSearchView.set<bool>(toggled);
+      PreferenceKey.showTitlesOnlyDisableInSearchView.set(toggled);
     });
   }
 
   /// Toggles the setting to show background of the notes tiles.
   void _toggleDisableSubduedNoteContentPreview(bool toggled) {
     setState(() {
-      PreferenceKey.disableSubduedNoteContentPreview.set<bool>(toggled);
+      PreferenceKey.disableSubduedNoteContentPreview.set(toggled);
     });
   }
 
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTilesBackground(bool toggled) {
     setState(() {
-      PreferenceKey.showTilesBackground.set<bool>(toggled);
+      PreferenceKey.showTilesBackground.set(toggled);
     });
 
     showTilesBackgroundNotifier.value = toggled;
@@ -107,7 +107,7 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
   /// Toggles the setting to show the separators between the notes tiles.
   void _toggleShowSeparators(bool toggled) {
     setState(() {
-      PreferenceKey.showSeparators.set<bool>(toggled);
+      PreferenceKey.showSeparators.set(toggled);
     });
 
     showSeparatorsNotifier.value = toggled;
@@ -119,13 +119,11 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
     final themeMode = ThemeUtils().themeMode;
     final showUseBlackTheming = Theme.of(context).colorScheme.brightness == Brightness.dark;
 
-    final showTitlesOnly = PreferenceKey.showTitlesOnly.getPreferenceOrDefault<bool>();
-    final showTitlesOnlyDisableInSearchView =
-        PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault<bool>();
-    final disableSubduedNoteContentPreview =
-        PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault<bool>();
-    final showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();
-    final showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
+    final showTitlesOnly = PreferenceKey.showTitlesOnly.getPreferenceOrDefault();
+    final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
+    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
+    final showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault();
+    final showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault();
 
     return Scaffold(
       appBar: const TopNavigation(

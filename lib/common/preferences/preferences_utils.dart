@@ -89,14 +89,22 @@ class PreferencesUtils {
 
   /// Returns the preferences names and their values as a JSON map.
   ///
-  /// The value is null is the preference is not set.
-  Future<Map<String, dynamic>> toJson() async {
+  /// Preferences not set and secure preferences are skipped.
+  Map<String, dynamic> toJson() {
     Map<String, dynamic> preferences = {};
 
     for (PreferenceKey preferenceKey in PreferenceKey.values) {
-      final value = preferenceKey.secure
-          ? await preferenceKey.getPreferenceOrDefaultSecure()
-          : preferenceKey.getPreference<dynamic>();
+      // Skip secure preferences
+      if (preferenceKey.secure) {
+        continue;
+      }
+
+      final value = preferenceKey.getPreference();
+
+      // Skip preferences that are not set
+      if (value == null) {
+        continue;
+      }
 
       preferences[preferenceKey.name] = value;
     }

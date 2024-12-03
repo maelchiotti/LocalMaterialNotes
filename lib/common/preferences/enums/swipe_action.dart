@@ -44,7 +44,7 @@ enum SwipeAction {
   /// Returns the value of the right swipe action preference if set, or its default value otherwise.
   factory SwipeAction.rightFromPreference() {
     final swipeRightAction = SwipeAction.values.byNameOrNull(
-      PreferenceKey.swipeRightAction.getPreference<String>(),
+      PreferenceKey.swipeRightAction.getPreference(),
     );
 
     // Reset the malformed preference to its default value
@@ -60,7 +60,7 @@ enum SwipeAction {
   /// Returns the value of the left swipe action preference if set, or its default value otherwise.
   factory SwipeAction.leftFromPreference() {
     final swipeRightAction = SwipeAction.values.byNameOrNull(
-      PreferenceKey.swipeLeftAction.getPreference<String>(),
+      PreferenceKey.swipeLeftAction.getPreference(),
     );
 
     // Reset the malformed preference to its default value

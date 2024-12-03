@@ -28,7 +28,7 @@ class _SettingsAppearancePageState extends State<SettingsAccessibilityPage> {
   /// Sets the text scaling to the new [textScaling].
   void _submittedTextScaling(double textScaling) {
     setState(() {
-      PreferenceKey.textScaling.set<double>(textScaling);
+      PreferenceKey.textScaling.set(textScaling);
     });
 
     textScalingNotifier.value = textScaling;
@@ -39,13 +39,13 @@ class _SettingsAppearancePageState extends State<SettingsAccessibilityPage> {
   /// Called when the dialog to choose the text scaling is canceled, to revert changes made in real time
   /// when the slider is changed.
   void _canceledTextScaling() {
-    textScalingNotifier.value = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
+    textScalingNotifier.value = PreferenceKey.textScaling.getPreferenceOrDefault();
   }
 
   /// Toggles whether to use white text in dark mode.
   void _toggleUseWhiteTextDarkMode(bool toggled) {
     setState(() {
-      PreferenceKey.useWhiteTextDarkMode.set<bool>(toggled);
+      PreferenceKey.useWhiteTextDarkMode.set(toggled);
     });
 
     useWhiteTextDarkModeNotifier.value = toggled;
@@ -53,8 +53,8 @@ class _SettingsAppearancePageState extends State<SettingsAccessibilityPage> {
 
   @override
   Widget build(BuildContext context) {
-    final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
-    final useWhiteTextDarkMode = PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault<bool>();
+    final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault();
+    final useWhiteTextDarkMode = PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault();
 
     final darkTheme = Theme.of(context).brightness == Brightness.dark;
 

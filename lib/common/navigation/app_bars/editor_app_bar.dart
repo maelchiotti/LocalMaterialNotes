@@ -118,10 +118,10 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     final note = currentNoteNotifier.value;
     final editorController = fleatherControllerNotifier.value;
 
-    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault<bool>();
-    final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
-    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
+    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault();
+    final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault();
+    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault();
+    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
 
     return ValueListenableBuilder(
       valueListenable: fleatherFieldHasFocusNotifier,

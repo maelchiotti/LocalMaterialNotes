@@ -13,7 +13,7 @@ enum Layout {
   /// Returns the value of the preference if set, or its default value otherwise.
   factory Layout.fromPreference() {
     final layout = Layout.values.byNameOrNull(
-      PreferenceKey.layout.getPreference<String>(),
+      PreferenceKey.layout.getPreference(),
     );
 
     // Reset the malformed preference to its default value

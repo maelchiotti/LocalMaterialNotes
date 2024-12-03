@@ -67,7 +67,7 @@ class NotesAppBar extends ConsumerWidget {
   void _toggleLayout() {
     final newLayout = layoutNotifier.value == Layout.list ? Layout.grid : Layout.list;
 
-    PreferenceKey.layout.set<String>(newLayout.name);
+    PreferenceKey.layout.set(newLayout.name);
 
     layoutNotifier.value = newLayout;
   }
@@ -76,30 +76,30 @@ class NotesAppBar extends ConsumerWidget {
   void _sort(BuildContext context, WidgetRef ref, {SortMethod? sortMethod, bool? ascending}) {
     // The 'Ascending' menu item was taped
     if (sortMethod == SortMethod.ascending) {
-      final oldAscendingPreference = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
+      final oldAscendingPreference = PreferenceKey.sortAscending.getPreferenceOrDefault();
 
-      PreferenceKey.sortAscending.set<bool>(!oldAscendingPreference);
+      PreferenceKey.sortAscending.set(!oldAscendingPreference);
     }
 
     // The 'Creation date', 'Edited date' or 'Title' menu items were taped
     else if (sortMethod != null) {
       final oldSortMethod = SortMethod.fromPreference();
 
-      PreferenceKey.sortMethod.set<String>(sortMethod.name);
+      PreferenceKey.sortMethod.set(sortMethod.name);
 
       // Force the ascending sort when sorting by title
       if (sortMethod == SortMethod.title) {
-        PreferenceKey.sortAscending.set<bool>(true);
+        PreferenceKey.sortAscending.set(true);
       }
       // Force the descending sort when sorting by a date and if the previous sort was not based on a date
       else if (!oldSortMethod.onDate && sortMethod.onDate) {
-        PreferenceKey.sortAscending.set<bool>(false);
+        PreferenceKey.sortAscending.set(false);
       }
     }
 
     // The checkbox of the 'Ascending' menu item was toggled
     else if (ascending != null) {
-      PreferenceKey.sortAscending.set<bool>(ascending);
+      PreferenceKey.sortAscending.set(ascending);
 
       Navigator.pop(context);
     }
@@ -128,7 +128,7 @@ class NotesAppBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sortMethod = SortMethod.fromPreference();
-    final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
+    final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault();
 
     return AppBar(
       title: Text(context.title(context)),

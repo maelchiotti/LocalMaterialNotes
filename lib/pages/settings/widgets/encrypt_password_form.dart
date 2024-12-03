@@ -31,7 +31,7 @@ class EncryptPasswordForm extends StatefulWidget {
 
 class _EncryptPasswordFormState extends State<EncryptPasswordForm> {
   /// Whether the JSON export should be encrypted.
-  bool _encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
+  bool _encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault();
 
   /// Toggles whether to [_encrypt] the JSON export.
   void _toggleEncrypt(_) {

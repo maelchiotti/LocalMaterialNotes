@@ -7,54 +7,54 @@ import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 // ignore_for_file: public_member_api_docs
 
 /// Lists the preferences' keys.
-enum PreferenceKey {
+enum PreferenceKey<T> {
   // Appearance
-  locale('en'),
-  theme(0),
-  dynamicTheming(true),
-  blackTheming(false),
-  showTitlesOnly(false),
-  showTitlesOnlyDisableInSearchView(true),
-  disableSubduedNoteContentPreview(false),
-  showSeparators(false),
-  showTilesBackground(false),
+  locale<String>('en'),
+  theme<int>(0),
+  dynamicTheming<bool>(true),
+  blackTheming<bool>(false),
+  showTitlesOnly<bool>(false),
+  showTitlesOnlyDisableInSearchView<bool>(true),
+  disableSubduedNoteContentPreview<bool>(false),
+  showSeparators<bool>(false),
+  showTilesBackground<bool>(false),
 
   // Behavior
-  flagSecure(false),
-  confirmations(Confirmations.irreversible),
-  swipeRightAction(SwipeAction.delete),
-  swipeLeftAction(SwipeAction.togglePin),
+  flagSecure<bool>(false),
+  confirmations<String>(Confirmations.irreversible),
+  swipeRightAction<String>(SwipeAction.delete),
+  swipeLeftAction<String>(SwipeAction.togglePin),
 
   // Editor
-  showUndoRedoButtons(true),
-  showChecklistButton(true),
-  showToolbar(true),
-  editorModeButton(true),
-  openEditorReadingMode(false),
-  focusTitleOnNewNote(false),
-  useParagraphsSpacing(true),
+  showUndoRedoButtons<bool>(true),
+  showChecklistButton<bool>(true),
+  showToolbar<bool>(true),
+  editorModeButton<bool>(true),
+  openEditorReadingMode<bool>(false),
+  focusTitleOnNewNote<bool>(false),
+  useParagraphsSpacing<bool>(true),
 
   // Labels
-  enableLabels(true),
-  showLabelsListOnNoteTile(true),
-  showLabelsListInEditorPage(true),
+  enableLabels<bool>(true),
+  showLabelsListOnNoteTile<bool>(true),
+  showLabelsListInEditorPage<bool>(true),
 
   // Backup
-  enableAutoExport(false),
-  autoExportFrequency(1),
-  autoExportEncryption(false),
-  autoExportPassword('', secure: true),
-  autoExportDirectory(''),
-  lastAutoExportDate(''),
+  enableAutoExport<bool>(false),
+  autoExportFrequency<int>(1),
+  autoExportEncryption<bool>(false),
+  autoExportPassword<String>('', secure: true),
+  autoExportDirectory<String>(''),
+  lastAutoExportDate<String>(''),
 
   // Accessibility
-  textScaling(1.0),
-  useWhiteTextDarkMode(false),
+  textScaling<double>(1.0),
+  useWhiteTextDarkMode<bool>(false),
 
   // Notes
-  sortMethod(SortMethod.editedDate),
-  sortAscending(false),
-  layout(Layout.list),
+  sortMethod<String>(SortMethod.editedDate),
+  sortAscending<bool>(false),
+  layout<String>(Layout.list),
   ;
 
   /// Default value of the preference.
@@ -65,13 +65,13 @@ enum PreferenceKey {
 
   /// The key of a preference.
   ///
-  /// Every preference has a [defaultValue].
+  /// Every preference has a [defaultValue] and a type [T].
   ///
-  /// if the preference should be securely stored, it can be marked as [secure].
+  /// If the preference should be securely stored, it can be marked as [secure].
   const PreferenceKey(this.defaultValue, {this.secure = false});
 
   /// Sets the preference to the [value] with the type [T].
-  Future<void> set<T>(T value) async {
+  Future<void> set(T value) async {
     await PreferencesUtils().set<T>(this, value);
   }
 
@@ -81,17 +81,17 @@ enum PreferenceKey {
   }
 
   /// Returns the value of the preference if set, or [null] otherwise.
-  T? getPreference<T>() {
+  T? getPreference() {
     return PreferencesUtils().get<T>(this);
   }
 
   /// Returns the value of the preference if set, or its default value otherwise.
-  T getPreferenceOrDefault<T>() {
+  T getPreferenceOrDefault() {
     return PreferencesUtils().get<T>(this) ?? defaultValue as T;
   }
 
   /// Returns the value of the securely stored preference if set, or [null] otherwise.
-  T? getPreferenceSecure<T>() {
+  T? getPreferenceSecure() {
     return PreferencesUtils().get<T>(this);
   }
 
