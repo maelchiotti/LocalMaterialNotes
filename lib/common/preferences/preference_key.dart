@@ -80,7 +80,7 @@ enum PreferenceKey {
     await PreferencesUtils().set(this, defaultValue);
   }
 
-  /// Returns the value of the preference if set, or its default value otherwise.
+  /// Returns the value of the preference if set, or [null] otherwise.
   T? getPreference<T>() {
     return PreferencesUtils().get<T>(this);
   }
@@ -88,6 +88,11 @@ enum PreferenceKey {
   /// Returns the value of the preference if set, or its default value otherwise.
   T getPreferenceOrDefault<T>() {
     return PreferencesUtils().get<T>(this) ?? defaultValue as T;
+  }
+
+  /// Returns the value of the securely stored preference if set, or [null] otherwise.
+  T? getPreferenceSecure<T>() {
+    return PreferencesUtils().get<T>(this);
   }
 
   /// Returns the value of the securely stored preference if set, or its default value otherwise.

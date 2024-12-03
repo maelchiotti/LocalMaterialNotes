@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/enums/mime_type.dart';
 import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
+import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_password_dialog.dart';
@@ -165,11 +166,14 @@ class DatabaseUtils {
 
     final labels = await _labelsService.getAll();
 
+    final preferences = await PreferencesUtils().toJson();
+
     final exportData = {
       'version': version,
       'encrypted': encrypt,
       'notes': notes,
       'labels': labels,
+      'preferences': preferences,
     };
     final exportDataAsJson = utf8.encode(jsonEncode(exportData));
 
