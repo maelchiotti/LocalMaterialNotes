@@ -1,6 +1,7 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/providers/notifiers.dart';
 
@@ -40,34 +41,30 @@ class ThemeUtils {
 
   /// Returns the [ThemeMode] of the application.
   ThemeMode get themeMode {
-    final themeModePreference = PreferenceKey.theme.getPreferenceOrDefault();
+    final themeMode = ThemeMode.values.byNameOrNull(
+      PreferenceKey.theme.getPreferenceOrDefault(),
+    );
 
-    switch (themeModePreference) {
-      case 0:
-        return ThemeMode.system;
-      case 1:
-        return ThemeMode.light;
-      case 2:
-        return ThemeMode.dark;
+    // Reset the malformed preference to its default value
+    if (themeMode == null) {
+      PreferenceKey.theme.reset();
+
+      return ThemeMode.values.byName(PreferenceKey.theme.defaultValue);
     }
 
-    return ThemeMode.system;
+    return themeMode;
   }
 
   /// Returns the title of the current theme mode.
   String get themeModeTitle {
-    final themeModePreference = PreferenceKey.theme.getPreferenceOrDefault();
-
-    switch (themeModePreference) {
-      case 0:
+    switch (themeMode) {
+      case ThemeMode.system:
         return l.settings_theme_system;
-      case 1:
+      case ThemeMode.light:
         return l.settings_theme_light;
-      case 2:
+      case ThemeMode.dark:
         return l.settings_theme_dark;
     }
-
-    return l.settings_theme_system;
   }
 
   /// Returns the light theme.
@@ -168,17 +165,7 @@ class ThemeUtils {
       return;
     }
 
-    int value;
-    switch (themeMode) {
-      case ThemeMode.system:
-        value = 0;
-      case ThemeMode.light:
-        value = 1;
-      case ThemeMode.dark:
-        value = 2;
-    }
-
-    PreferenceKey.theme.set(value);
+    PreferenceKey.theme.set(ThemeMode.system.name);
 
     themeModeNotifier.value = themeMode;
   }

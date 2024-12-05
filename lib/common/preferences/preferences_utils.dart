@@ -94,8 +94,8 @@ class PreferencesUtils {
     Map<String, dynamic> preferences = {};
 
     for (PreferenceKey preferenceKey in PreferenceKey.values) {
-      // Skip secure preferences
-      if (preferenceKey.secure) {
+      // Skip secure preferences and preferences that should not be backed up
+      if (preferenceKey.secure || !preferenceKey.backup) {
         continue;
       }
 

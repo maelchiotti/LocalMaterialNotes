@@ -1,7 +1,7 @@
 import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 
-/// Lists the layouts of the notes list.
+/// Layout of the notes list.
 enum Layout {
   /// List view.
   list,
@@ -18,9 +18,9 @@ enum Layout {
 
     // Reset the malformed preference to its default value
     if (layout == null) {
-      PreferenceKey.layout.setToDefault();
+      PreferenceKey.layout.reset();
 
-      return PreferenceKey.layout.defaultValue as Layout;
+      return Layout.values.byName(PreferenceKey.layout.defaultValue);
     }
 
     return layout;

@@ -22,9 +22,9 @@ enum Confirmations {
 
     // Reset the malformed preference to its default value
     if (confirmations == null) {
-      PreferenceKey.confirmations.setToDefault();
+      PreferenceKey.confirmations.reset();
 
-      return PreferenceKey.confirmations.defaultValue as Confirmations;
+      return Confirmations.values.byName(PreferenceKey.confirmations.defaultValue);
     }
 
     return confirmations;

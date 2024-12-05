@@ -3,7 +3,7 @@ import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 
-/// Lists the actions to trigger when swiping on a note tile.
+/// Action to trigger when swiping on a note tile.
 enum SwipeAction {
   /// The swipe action is disabled.
   disabled(Icons.hide_source),
@@ -34,7 +34,7 @@ enum SwipeAction {
   /// Changes the background, text and icon colors to red.
   final bool dangerous;
 
-  /// The swipe action that can be performed on a note tile.
+  /// The swipe action that should be performed on a note tile when swiped.
   ///
   /// A swipe action is represented by an [icon] and a [title]. If it has two states, it can have an [alternativeIcon].
   ///
@@ -49,9 +49,9 @@ enum SwipeAction {
 
     // Reset the malformed preference to its default value
     if (swipeRightAction == null) {
-      PreferenceKey.swipeRightAction.setToDefault();
+      PreferenceKey.swipeRightAction.reset();
 
-      return PreferenceKey.swipeRightAction.defaultValue as SwipeAction;
+      return SwipeAction.values.byName(PreferenceKey.swipeRightAction.defaultValue);
     }
 
     return swipeRightAction;
@@ -65,9 +65,9 @@ enum SwipeAction {
 
     // Reset the malformed preference to its default value
     if (swipeRightAction == null) {
-      PreferenceKey.swipeLeftAction.setToDefault();
+      PreferenceKey.swipeLeftAction.reset();
 
-      return PreferenceKey.swipeLeftAction.defaultValue as SwipeAction;
+      return SwipeAction.values.byName(PreferenceKey.swipeLeftAction.defaultValue);
     }
 
     return swipeRightAction;
