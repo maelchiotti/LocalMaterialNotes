@@ -899,13 +899,13 @@
   "@snack_bar_copied": {
     "description": "Snack bar informing that the content of the note was copied to clipboard."
   },
-  "snack_bar_import_success": "The notes were successfully imported.",
+  "snack_bar_import_success": "The backup was successfully imported.",
   "@snack_bar_import_success": {
-    "description": "Snack bar informing that the notes were successfully imported."
+    "description": "Snack bar informing that the backup was successfully imported."
   },
-  "snack_bar_export_success": "The notes were successfully exported.",
+  "snack_bar_export_success": "The backup were successfully exported.",
   "@snack_bar_export_success": {
-    "description": "Snack bar informing that the notes were successfully manually exported."
+    "description": "Snack bar informing that the backup was successfully manually exported."
   },
   "snack_bar_logs_copied": "The logs were copied to your clipboard.",
   "@snack_bar_logs_copied": {

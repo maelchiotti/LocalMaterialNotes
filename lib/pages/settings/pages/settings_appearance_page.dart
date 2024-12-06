@@ -1,6 +1,7 @@
 import 'package:dart_helper_utils/dart_helper_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:locale_names/locale_names.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
@@ -9,7 +10,8 @@ import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/preferences/preferences_provider.dart';
+import 'package:localmaterialnotes/providers/preferences/watched_preferences.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 import 'package:localmaterialnotes/utils/theme_utils.dart';
@@ -19,15 +21,15 @@ import 'package:settings_tiles/settings_tiles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Settings related to the appearance of the application.
-class SettingsAppearancePage extends StatefulWidget {
+class SettingsAppearancePage extends ConsumerStatefulWidget {
   /// Default constructor.
   const SettingsAppearancePage({super.key});
 
   @override
-  State<SettingsAppearancePage> createState() => _SettingsAppearancePageState();
+  ConsumerState<SettingsAppearancePage> createState() => _SettingsAppearancePageState();
 }
 
-class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
+class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage> {
   /// Opens the Crowdin project.
   void _openCrowdin() {
     launchUrl(
@@ -51,81 +53,73 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
 
   /// Sets the theme to the new [themeMode].
   void _submittedTheme(ThemeMode themeMode) {
-    ThemeUtils().setThemeMode(themeMode);
+    PreferenceKey.theme.set(themeMode.name);
+
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(themeMode: themeMode));
   }
 
   /// Toggles the dynamic theming.
   void _toggleDynamicTheming(bool toggled) {
-    setState(() {
-      PreferenceKey.dynamicTheming.set<bool>(toggled);
-    });
+    PreferenceKey.dynamicTheming.set(toggled);
 
-    dynamicThemingNotifier.value = toggled;
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(dynamicTheming: toggled));
   }
 
   /// Toggles the black theming.
   void _toggleBlackTheming(bool toggled) {
-    setState(() {
-      PreferenceKey.blackTheming.set<bool>(toggled);
-    });
+    PreferenceKey.blackTheming.set(toggled);
 
-    blackThemingNotifier.value = toggled;
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(blackTheming: toggled));
   }
 
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTitlesOnly(bool toggled) {
-    setState(() {
-      PreferenceKey.showTitlesOnly.set<bool>(toggled);
-    });
+    PreferenceKey.showTitlesOnly.set(toggled);
 
-    showTitlesOnlyNotifier.value = toggled;
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showTitlesOnly: toggled));
   }
 
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTitlesOnlyDisableInSearchView(bool toggled) {
     setState(() {
-      PreferenceKey.showTitlesOnlyDisableInSearchView.set<bool>(toggled);
+      PreferenceKey.showTitlesOnlyDisableInSearchView.set(toggled);
     });
   }
 
   /// Toggles the setting to show background of the notes tiles.
   void _toggleDisableSubduedNoteContentPreview(bool toggled) {
     setState(() {
-      PreferenceKey.disableSubduedNoteContentPreview.set<bool>(toggled);
+      PreferenceKey.disableSubduedNoteContentPreview.set(toggled);
     });
   }
 
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTilesBackground(bool toggled) {
-    setState(() {
-      PreferenceKey.showTilesBackground.set<bool>(toggled);
-    });
+    PreferenceKey.showTilesBackground.set(toggled);
 
-    showTilesBackgroundNotifier.value = toggled;
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showTilesBackground: toggled));
   }
 
   /// Toggles the setting to show the separators between the notes tiles.
   void _toggleShowSeparators(bool toggled) {
-    setState(() {
-      PreferenceKey.showSeparators.set<bool>(toggled);
-    });
+    PreferenceKey.showSeparators.set(toggled);
 
-    showSeparatorsNotifier.value = toggled;
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showSeparators: toggled));
   }
 
   @override
   Widget build(BuildContext context) {
     final locale = LocaleUtils().appLocale;
-    final themeMode = ThemeUtils().themeMode;
-    final showUseBlackTheming = Theme.of(context).colorScheme.brightness == Brightness.dark;
+    final themeMode = ref.watch(preferencesProvider.select((preferences) => preferences.themeMode));
+    final dynamicTheming = ref.watch(preferencesProvider.select((preferences) => preferences.dynamicTheming));
+    final blackTheming = ref.watch(preferencesProvider.select((preferences) => preferences.blackTheming));
+    final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
+    final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
+    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
+    final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
+    final showSeparators = ref.watch(preferencesProvider.select((preferences) => preferences.showSeparators));
 
-    final showTitlesOnly = PreferenceKey.showTitlesOnly.getPreferenceOrDefault<bool>();
-    final showTitlesOnlyDisableInSearchView =
-        PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault<bool>();
-    final disableSubduedNoteContentPreview =
-        PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault<bool>();
-    final showTilesBackground = PreferenceKey.showTilesBackground.getPreferenceOrDefault<bool>();
-    final showSeparators = PreferenceKey.showSeparators.getPreferenceOrDefault<bool>();
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       appBar: const TopNavigation(
@@ -180,15 +174,15 @@ class _SettingsAppearancePageState extends State<SettingsAppearancePage> {
                     icon: Icons.bolt,
                     title: l.settings_dynamic_theming,
                     description: l.settings_dynamic_theming_description,
-                    toggled: ThemeUtils().useDynamicTheming,
+                    toggled: dynamicTheming,
                     onChanged: _toggleDynamicTheming,
                   ),
                   SettingSwitchTile(
-                    enabled: showUseBlackTheming,
+                    enabled: isDarkMode,
                     icon: Icons.nightlight,
                     title: l.settings_black_theming,
                     description: l.settings_black_theming_description,
-                    toggled: ThemeUtils().useBlackTheming,
+                    toggled: blackTheming,
                     onChanged: _toggleBlackTheming,
                   ),
                 ],

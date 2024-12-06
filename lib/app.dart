@@ -10,7 +10,7 @@ import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
 import 'package:localmaterialnotes/providers/labels/labels_navigation/labels_navigation_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/preferences/preferences_provider.dart';
 import 'package:localmaterialnotes/routing/router.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 import 'package:localmaterialnotes/utils/quick_actions_utils.dart';
@@ -58,60 +58,48 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
 
   @override
   Widget build(BuildContext context) {
+    final themeMode = ref.watch(preferencesProvider.select((preferences) => preferences.themeMode));
+    final blackTheming = ref.watch(preferencesProvider.select((preferences) => preferences.blackTheming));
+    final dynamicTheming = ref.watch(preferencesProvider.select((preferences) => preferences.dynamicTheming));
+    final textScaling = ref.watch(preferencesProvider.select((preferences) => preferences.textScaling));
+    final useWhiteTextDarkMode =
+        ref.watch(preferencesProvider.select((preferences) => preferences.useWhiteTextDarkMode));
+
     return DynamicColorBuilder(
       builder: (lightDynamicColorScheme, darkDynamicColorScheme) {
-        return ValueListenableBuilder(
-          valueListenable: dynamicThemingNotifier,
-          builder: (context, dynamicTheming, child) {
-            return ValueListenableBuilder(
-              valueListenable: blackThemingNotifier,
-              builder: (context, blackTheming, child) {
-                return ValueListenableBuilder(
-                  valueListenable: themeModeNotifier,
-                  builder: (context, themeMode, child) {
-                    return ValueListenableBuilder(
-                      valueListenable: textScalingNotifier,
-                      builder: (context, textScaling, child) {
-                        return ValueListenableBuilder(
-                            valueListenable: useWhiteTextDarkModeNotifier,
-                            builder: (context, useWhiteTextDarkMode, child) {
-                              return MediaQuery(
-                                data: MediaQuery.of(context).copyWith(
-                                  textScaler: TextScaler.linear(textScaling),
-                                ),
-                                child: MaterialApp.router(
-                                  title: 'Material Notes',
-                                  routerConfig: router,
-                                  builder: (context, child) {
-                                    // Change the widget shown when a widget building fails
-                                    ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaler: TextScaler.linear(textScaling),
+          ),
+          child: MaterialApp.router(
+            title: 'Material Notes',
+            routerConfig: router,
+            builder: (context, child) {
+              // Change the widget shown when a widget building fails
+              ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);
 
-                                    if (child == null) {
-                                      throw StateError('MaterialApp child is null');
-                                    }
+              if (child == null) {
+                throw StateError('MaterialApp child is null');
+              }
 
-                                    return Directionality(
-                                      textDirection: LocaleUtils().deviceLocale.textDirection,
-                                      child: child,
-                                    );
-                                  },
-                                  theme: ThemeUtils().getLightTheme(lightDynamicColorScheme),
-                                  darkTheme: ThemeUtils().getDarkTheme(darkDynamicColorScheme, useWhiteTextDarkMode),
-                                  themeMode: themeMode,
-                                  localizationsDelegates: AppLocalizations.localizationsDelegates,
-                                  supportedLocales: AppLocalizations.supportedLocales,
-                                  locale: LocaleUtils().appLocale,
-                                  debugShowCheckedModeBanner: false,
-                                ),
-                              );
-                            });
-                      },
-                    );
-                  },
-                );
-              },
-            );
-          },
+              return Directionality(
+                textDirection: LocaleUtils().deviceLocale.textDirection,
+                child: child,
+              );
+            },
+            theme: ThemeUtils().getLightTheme(lightDynamicColorScheme, dynamicTheming),
+            darkTheme: ThemeUtils().getDarkTheme(
+              darkDynamicColorScheme,
+              dynamicTheming,
+              blackTheming,
+              useWhiteTextDarkMode,
+            ),
+            themeMode: themeMode,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: LocaleUtils().appLocale,
+            debugShowCheckedModeBanner: false,
+          ),
         );
       },
     );

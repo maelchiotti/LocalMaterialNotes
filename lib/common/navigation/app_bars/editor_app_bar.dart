@@ -13,7 +13,7 @@ import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/navigation/menu_option.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/pages/editor/sheets/about_sheet.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
 
 /// Editor's app bar.
 ///
@@ -66,7 +66,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       case MenuOption.deletePermanently:
         await permanentlyDeleteNote(context, ref, note);
       case MenuOption.about:
-        await showModalBottomSheet(
+        await showModalBottomSheet<void>(
           context: context,
           clipBehavior: Clip.hardEdge,
           showDragHandle: true,
@@ -118,10 +118,10 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     final note = currentNoteNotifier.value;
     final editorController = fleatherControllerNotifier.value;
 
-    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault<bool>();
-    final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
-    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
+    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault();
+    final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault();
+    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault();
+    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
 
     return ValueListenableBuilder(
       valueListenable: fleatherFieldHasFocusNotifier,

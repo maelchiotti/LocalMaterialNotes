@@ -5,7 +5,7 @@ import 'package:localmaterialnotes/common/actions/notes/labels.dart';
 import 'package:localmaterialnotes/common/constants/sizes.dart';
 import 'package:localmaterialnotes/common/widgets/labels/label_badge.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
 
 /// List of labels in the editor.
 class EditorLabelsList extends ConsumerWidget {

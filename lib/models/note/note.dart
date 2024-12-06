@@ -234,7 +234,7 @@ class Note extends Equatable implements Comparable<Note> {
   @override
   int compareTo(Note other) {
     final sortMethod = SortMethod.fromPreference();
-    final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault<bool>();
+    final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault();
 
     if (pinned && !other.pinned) {
       return -1;

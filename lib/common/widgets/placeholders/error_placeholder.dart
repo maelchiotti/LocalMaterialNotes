@@ -77,7 +77,7 @@ class ErrorPlaceholder extends StatelessWidget {
     final appLocalizations = AppLocalizations.of(context);
 
     // Disable the secure flag until the next restart to allow screenshots
-    final isFlagSecureSettingEnabled = PreferenceKey.flagSecure.getPreferenceOrDefault<bool>();
+    final isFlagSecureSettingEnabled = PreferenceKey.flagSecure.getPreferenceOrDefault();
     if (isFlagSecureSettingEnabled) {
       FlagSecure.unset();
     }

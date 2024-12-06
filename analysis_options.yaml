@@ -5,6 +5,8 @@ analyzer:
     - '**.g.dart'
   plugins:
     - custom_lint
+  language:
+    strict-inference: true # Force to specify generic types
 
 linter:
   rules:

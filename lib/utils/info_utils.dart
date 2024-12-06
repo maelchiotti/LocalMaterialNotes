@@ -31,6 +31,9 @@ class InfoUtils {
   /// version of the application.
   String get appVersion => _packageInfo.version;
 
+  /// version of the application.
+  int get buildNumber => int.parse(_packageInfo.buildNumber);
+
   /// Android version of the device.
   int get androidVersion => _androidDeviceInfo.version.sdkInt;
 

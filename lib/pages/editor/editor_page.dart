@@ -14,8 +14,8 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_field.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_labels_list.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_toolbar.dart';
-import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Page displaying the note editor.
@@ -89,11 +89,11 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
 
   @override
   Widget build(BuildContext context) {
-    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault<bool>();
-    final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
-    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault<bool>();
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
-    final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.getPreferenceOrDefault<bool>();
+    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault();
+    final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault();
+    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault();
+    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
+    final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.getPreferenceOrDefault();
 
     return ValueListenableBuilder(
         valueListenable: currentNoteNotifier,

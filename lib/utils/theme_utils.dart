@@ -1,8 +1,8 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
 
 /// Utilities for the application's theme.
 ///
@@ -28,54 +28,40 @@ class ThemeUtils {
     isDynamicThemingAvailable = await DynamicColorPlugin.getCorePalette() != null;
   }
 
-  /// Whether dynamic theming should be used.
-  bool get useDynamicTheming {
-    return PreferenceKey.dynamicTheming.getPreferenceOrDefault<bool>();
-  }
-
-  /// Whether black theming should be used.
-  bool get useBlackTheming {
-    return PreferenceKey.blackTheming.getPreferenceOrDefault<bool>();
-  }
-
   /// Returns the [ThemeMode] of the application.
   ThemeMode get themeMode {
-    final themeModePreference = PreferenceKey.theme.getPreferenceOrDefault<int>();
+    final themeMode = ThemeMode.values.byNameOrNull(
+      PreferenceKey.theme.getPreferenceOrDefault(),
+    );
 
-    switch (themeModePreference) {
-      case 0:
-        return ThemeMode.system;
-      case 1:
-        return ThemeMode.light;
-      case 2:
-        return ThemeMode.dark;
+    // Reset the malformed preference to its default value
+    if (themeMode == null) {
+      PreferenceKey.theme.reset();
+
+      return ThemeMode.values.byName(PreferenceKey.theme.defaultValue);
     }
 
-    return ThemeMode.system;
+    return themeMode;
   }
 
   /// Returns the title of the current theme mode.
   String get themeModeTitle {
-    final themeModePreference = PreferenceKey.theme.getPreferenceOrDefault<int>();
-
-    switch (themeModePreference) {
-      case 0:
+    switch (themeMode) {
+      case ThemeMode.system:
         return l.settings_theme_system;
-      case 1:
+      case ThemeMode.light:
         return l.settings_theme_light;
-      case 2:
+      case ThemeMode.dark:
         return l.settings_theme_dark;
     }
-
-    return l.settings_theme_system;
   }
 
   /// Returns the light theme.
   ///
   /// Returns a dynamic light theme if [lightDynamicColorScheme] is not null, or the custom one otherwise.
-  ThemeData getLightTheme(ColorScheme? lightDynamicColorScheme) {
+  ThemeData getLightTheme(ColorScheme? lightDynamicColorScheme, bool dynamicTheming) {
     final ColorScheme colorScheme;
-    if (useDynamicTheming && lightDynamicColorScheme != null) {
+    if (dynamicTheming && lightDynamicColorScheme != null) {
       // TODO: remove when dynamic_colors is updated to support new roles
       // See https://github.com/material-foundation/flutter-packages/issues/582
       final temporaryColorScheme = ColorScheme.fromSeed(
@@ -103,10 +89,11 @@ class ThemeUtils {
   /// Returns the dark theme.
   ///
   /// Returns a dynamic dark theme if [darkDynamicColorScheme] is not null, or the custom one otherwise.
-  ThemeData getDarkTheme(ColorScheme? darkDynamicColorScheme, bool useWhiteTextDarkMode) {
+  ThemeData getDarkTheme(
+      ColorScheme? darkDynamicColorScheme, bool dynamicTheming, bool blackTheming, bool whiteTextDarkMode) {
     final ColorScheme colorScheme;
 
-    if (useDynamicTheming && darkDynamicColorScheme != null) {
+    if (dynamicTheming && darkDynamicColorScheme != null) {
       // TODO: remove when dynamic_colors is updated to support new roles
       // See https://github.com/material-foundation/flutter-packages/issues/582
       final temporaryColorScheme = ColorScheme.fromSeed(
@@ -114,7 +101,7 @@ class ThemeUtils {
         seedColor: darkDynamicColorScheme.primary,
       );
 
-      colorScheme = useBlackTheming
+      colorScheme = blackTheming
           ? darkDynamicColorScheme.copyWith(
               // TODO: remove when dynamic_colors is updated to support new roles
               // See https://github.com/material-foundation/flutter-packages/issues/582
@@ -133,7 +120,7 @@ class ThemeUtils {
               surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
             );
     } else {
-      colorScheme = useBlackTheming
+      colorScheme = blackTheming
           ? ColorScheme.fromSeed(
               brightness: Brightness.dark,
               seedColor: customPrimaryColor,
@@ -148,7 +135,7 @@ class ThemeUtils {
             );
     }
 
-    final textTheme = useWhiteTextDarkMode
+    final textTheme = whiteTextDarkMode
         ? Typography().white.apply(
               bodyColor: Colors.white,
               displayColor: Colors.white,
@@ -160,26 +147,5 @@ class ThemeUtils {
       colorScheme: colorScheme,
       textTheme: textTheme,
     );
-  }
-
-  /// Sets the application's theme mode to [themeMode].
-  void setThemeMode(ThemeMode? themeMode) {
-    if (themeMode == null) {
-      return;
-    }
-
-    int value;
-    switch (themeMode) {
-      case ThemeMode.system:
-        value = 0;
-      case ThemeMode.light:
-        value = 1;
-      case ThemeMode.dark:
-        value = 2;
-    }
-
-    PreferenceKey.theme.set<int>(value);
-
-    themeModeNotifier.value = themeMode;
   }
 }

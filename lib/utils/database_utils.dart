@@ -2,10 +2,14 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
+import 'package:dart_helper_utils/dart_helper_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/enums/mime_type.dart';
 import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
+import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
+import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_password_dialog.dart';
@@ -31,7 +35,7 @@ class DatabaseUtils {
     return 'materialnotes_export_$timestamp.$extension';
   }
 
-  /// Imports all the notes from a JSON file picked by the user.
+  /// Imports all the notes from a JSON file picked by the user and returns whether the import was successful.
   Future<bool> import(BuildContext context) async {
     final importFile = await selectFile(jsonTypeGroup);
 
@@ -42,13 +46,23 @@ class DatabaseUtils {
     final importedString = await importFile.readAsString();
     var importedJson = jsonDecode(utf8.decode(importedString.codeUnits));
 
-    // If the imported JSON is just a list, then it's the old export format (before v1.5.0) that just contains
-    // the notes list. Otherwise, it's the new export format (after v1.5.0) that contains other data.
-    final isOldFormat = importedJson is List;
+    // If the imported JSON is just a list, then it's the old export format that just contains the notes list
+    if (importedJson is List) {
+      logger.w('The imported JSON file uses the old discontinued format with just the list of notes');
+
+      return false;
+    }
+
+    importedJson = importedJson as Map<String, dynamic>;
 
     // Import the labels
-    if (!isOldFormat) {
-      await _importLabels(importedJson);
+    final importLabels = importedJson.containsKey("labels");
+    if (importLabels) {
+      final labelsAsJson = importedJson["labels"] as List<dynamic>;
+      final importedLabels = await _importLabels(labelsAsJson);
+      if (!importedLabels) {
+        return false;
+      }
     }
 
     if (!context.mounted) {
@@ -56,14 +70,28 @@ class DatabaseUtils {
     }
 
     // Import the notes
-    return _importNotes(context, isOldFormat, importedJson);
+    final notesAsJson = importedJson["notes"] as List<dynamic>;
+    final encrypted = importedJson.tryGetBool("encrypted") ?? false;
+    final importedNotes = await _importNotes(context, notesAsJson, encrypted, importLabels);
+    if (!importedNotes) {
+      return false;
+    }
+
+    // Import the preferences
+    final importPreferences = importedJson.containsKey("preferences");
+    if (importPreferences) {
+      final importedPreferences = await _importPreferences(importedJson);
+      if (!importedPreferences) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
-  Future<bool> _importLabels(importedJson) async {
-    final labelsAsJson = importedJson['labels'] as List;
-
+  Future<bool> _importLabels(List<dynamic> labelsAsJson) async {
     final labels = labelsAsJson.map((labelAsJson) {
-      return Label.fromJson(labelAsJson as Map<String, dynamic>);
+      return Label.fromJson(labelAsJson);
     }).toList();
 
     await _labelsService.putAllNew(labels);
@@ -71,65 +99,53 @@ class DatabaseUtils {
     return true;
   }
 
-  Future<bool> _importNotes(BuildContext context, bool isOldFormat, importedJson) async {
+  Future<bool> _importNotes(
+    BuildContext context,
+    List<dynamic> notesAsJson,
+    bool encrypted,
+    bool importLabels,
+  ) async {
     List<Note> notes = [];
     List<List<Label>> notesLabels = [];
 
-    // Only handle notes
-    if (isOldFormat) {
-      importedJson = importedJson as List;
+    if (encrypted && context.mounted) {
+      final password = await showAdaptiveDialog<String>(
+        context: context,
+        useRootNavigator: false,
+        builder: (context) => AutoExportPasswordDialog(
+          title: l.settings_import,
+          description: l.dialog_import_encryption_password_description,
+        ),
+      );
 
-      notes = importedJson.map((noteAsJson) {
-        return Note.fromJson(noteAsJson as Map<String, dynamic>);
-      }).toList();
-    }
-
-    // Handle notes and notes labels
-    else {
-      importedJson = importedJson as Map<String, dynamic>;
-
-      final encrypted = importedJson['encrypted'] as bool;
-      final notesAsJson = importedJson['notes'] as List;
-
-      if (encrypted && context.mounted) {
-        final password = await showAdaptiveDialog<String>(
-          context: context,
-          useRootNavigator: false,
-          builder: (context) => AutoExportPasswordDialog(
-            title: l.settings_import,
-            description: l.dialog_import_encryption_password_description,
-          ),
-        );
-
-        if (password == null) {
-          return false;
-        }
-
-        try {
-          for (final noteAsJsonEncrypted in notesAsJson) {
-            notes.add(Note.fromJsonEncrypted(
-              noteAsJsonEncrypted as Map<String, dynamic>,
-              password,
-            ));
-          }
-        } catch (exception, stackTrace) {
-          logger.e(exception.toString(), exception, stackTrace);
-
-          SnackBarUtils.error(
-            l.dialog_import_encryption_password_error,
-            duration: const Duration(seconds: 8),
-          ).show();
-
-          return false;
-        }
-      } else {
-        for (final noteAsJson in notesAsJson) {
-          notes.add(Note.fromJson(noteAsJson as Map<String, dynamic>));
-        }
+      if (password == null) {
+        return false;
       }
 
-      // Handle notes labels
+      try {
+        for (final noteAsJsonEncrypted in notesAsJson) {
+          notes.add(Note.fromJsonEncrypted(noteAsJsonEncrypted, password));
+        }
+      } catch (exception, stackTrace) {
+        logger.e(exception.toString(), exception, stackTrace);
+
+        SnackBarUtils.error(
+          l.dialog_import_encryption_password_error,
+          duration: const Duration(seconds: 8),
+        ).show();
+
+        return false;
+      }
+    } else {
+      for (final noteAsJson in notesAsJson) {
+        notes.add(Note.fromJson(noteAsJson));
+      }
+    }
+
+    // Handle notes labels
+    if (importLabels) {
       List<Label> databaseLabels = await _labelsService.getAll();
+
       for (final noteAsJson in notesAsJson) {
         final labelsString = noteAsJson['labels'] as List;
         final labels = databaseLabels.where((label) {
@@ -147,6 +163,22 @@ class DatabaseUtils {
     return true;
   }
 
+  Future<bool> _importPreferences(dynamic importedJson) async {
+    final preferencesAndValues = importedJson['preferences'] as Map<String, dynamic>;
+
+    preferencesAndValues.forEach((preference, value) {
+      final preferenceKey = PreferenceKey.values.byNameOrNull(preference);
+
+      if (preferenceKey == null) {
+        throw Exception("While restoring the preferences from JSON, the preference '$preference' doesn't exist");
+      }
+
+      preferenceKey.set(value);
+    });
+
+    return true;
+  }
+
   /// Exports all the notes in a JSON file with the [fileName] in the [directory].
   ///
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
@@ -157,6 +189,7 @@ class DatabaseUtils {
     required String fileName,
   }) async {
     final version = InfoUtils().appVersion;
+    final buildNumber = InfoUtils().buildNumber;
 
     var notes = await _notesService.getAll();
     if (encrypt && password != null && password.isNotEmpty) {
@@ -165,11 +198,15 @@ class DatabaseUtils {
 
     final labels = await _labelsService.getAll();
 
+    final preferences = PreferencesUtils().toJson();
+
     final exportData = {
       'version': version,
+      'build_number': buildNumber,
       'encrypted': encrypt,
       'notes': notes,
       'labels': labels,
+      'preferences': preferences,
     };
     final exportDataAsJson = utf8.encode(jsonEncode(exportData));
 

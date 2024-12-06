@@ -3,7 +3,7 @@ import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
 
 /// Sheets that displays information about the note.
 ///
@@ -29,7 +29,7 @@ class AboutSheet extends StatelessWidget {
     final wordCount = RegExp(r'[\w-]+').allMatches(note.contentPreview).length;
     final charactersCount = note.contentPreview.length;
 
-    final isLabelsEnabled = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
+    final isLabelsEnabled = PreferenceKey.enableLabels.getPreferenceOrDefault();
 
     return ListView(
       shrinkWrap: true,
