@@ -31,12 +31,6 @@ test_all:
 build_apk_release:
 	flutter build apk --release
 
-# GitHub Actions (act)
-.PHONY: act_release
-
-act_release:
-	act -W .github/workflows/release.yaml
-
 # Miscellaneous
 .PHONY: clean
 
