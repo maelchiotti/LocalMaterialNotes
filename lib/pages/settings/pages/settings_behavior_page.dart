@@ -1,5 +1,6 @@
 import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
@@ -7,20 +8,22 @@ import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
 import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
+import '../../../providers/preferences/preferences_provider.dart';
+import '../../../providers/preferences/watched_preferences.dart';
+
 /// Settings related to the behavior of the application.
-class SettingsBehaviorPage extends StatefulWidget {
+class SettingsBehaviorPage extends ConsumerStatefulWidget {
   /// Default constructor.
   const SettingsBehaviorPage({super.key});
 
   @override
-  State<SettingsBehaviorPage> createState() => _SettingsBehaviorPageState();
+  ConsumerState<SettingsBehaviorPage> createState() => _SettingsBehaviorPageState();
 }
 
-class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
+class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
   /// Asks the user to choose which confirmations should be shown.
   void _submittedConfirmations(Confirmations confirmations) {
     setState(() {
@@ -30,18 +33,16 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
 
   /// Sets the new right [swipeAction].
   void _submittedSwipeRightAction(SwipeAction swipeAction) {
-    setState(() {
-      PreferenceKey.swipeRightAction.set(swipeAction.name);
-      swipeActionsNotifier.value = (right: swipeAction, left: swipeActionsNotifier.value.left);
-    });
+    PreferenceKey.swipeRightAction.set(swipeAction.name);
+
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(rightSwipeAction: swipeAction));
   }
 
   /// Sets the new left [swipeAction].
   void _submittedSwipeLeftAction(SwipeAction swipeAction) {
-    setState(() {
-      PreferenceKey.swipeLeftAction.set(swipeAction.name);
-      swipeActionsNotifier.value = (right: swipeActionsNotifier.value.right, left: swipeAction);
-    });
+    PreferenceKey.swipeLeftAction.set(swipeAction.name);
+
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(leftSwipeAction: swipeAction));
   }
 
   /// Toggles Android's `FLAG_SECURE` to hide the app from the recent apps and prevent screenshots.
@@ -58,8 +59,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
     final confirmations = Confirmations.fromPreference();
     final flagSecure = PreferenceKey.flagSecure.getPreferenceOrDefault();
 
-    final swipeRightAction = swipeActionsNotifier.value.right;
-    final swipeLeftAction = swipeActionsNotifier.value.left;
+    final swipeActions = ref.read(preferencesProvider.select((preferences) => preferences.swipeActions));
 
     return Scaffold(
       appBar: const TopNavigation(
@@ -109,7 +109,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_right,
                     title: l.settings_swipe_action_right,
-                    value: swipeRightAction.title(),
+                    value: swipeActions.right.title(),
                     description: l.settings_swipe_action_right_description,
                     dialogTitle: l.settings_swipe_action_right,
                     options: SwipeAction.values.map(
@@ -121,13 +121,13 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
                         );
                       },
                     ).toList(),
-                    initialOption: swipeRightAction,
+                    initialOption: swipeActions.right,
                     onSubmitted: _submittedSwipeRightAction,
                   ),
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_left,
                     title: l.settings_swipe_action_left,
-                    value: swipeLeftAction.title(),
+                    value: swipeActions.left.title(),
                     description: l.settings_swipe_action_left_description,
                     dialogTitle: l.settings_swipe_action_left,
                     options: SwipeAction.values.map(
@@ -139,7 +139,7 @@ class _SettingsBehaviorPageState extends State<SettingsBehaviorPage> {
                         );
                       },
                     ).toList(),
-                    initialOption: swipeLeftAction,
+                    initialOption: swipeActions.left,
                     onSubmitted: _submittedSwipeLeftAction,
                   ),
                 ],

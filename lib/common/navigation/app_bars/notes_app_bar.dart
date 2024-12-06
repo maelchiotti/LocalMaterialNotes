@@ -11,11 +11,13 @@ import 'package:localmaterialnotes/common/widgets/notes/note_tile.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/empty_placeholder.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/preferences/preferences_provider.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
 import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
+
+import '../../../providers/preferences/watched_preferences.dart';
 
 /// Notes list and bin's app bar.
 ///
@@ -64,12 +66,12 @@ class NotesAppBar extends ConsumerWidget {
   }
 
   /// Toggles the notes layout.
-  void _toggleLayout() {
-    final newLayout = layoutNotifier.value == Layout.list ? Layout.grid : Layout.list;
+  void _toggleLayout(WidgetRef ref, Layout currentLayout) {
+    final newLayout = currentLayout == Layout.list ? Layout.grid : Layout.list;
 
     PreferenceKey.layout.set(newLayout.name);
 
-    layoutNotifier.value = newLayout;
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(layout: newLayout));
   }
 
   /// Sorts the notes according to the [sortMethod] and whether they should be sorted in [ascending] order.
@@ -130,21 +132,16 @@ class NotesAppBar extends ConsumerWidget {
     final sortMethod = SortMethod.fromPreference();
     final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault();
 
+    final layout = ref.read(preferencesProvider.select((preferences) => preferences.layout));
+
     return AppBar(
       title: Text(context.title(context)),
       actions: [
-        ValueListenableBuilder(
-          valueListenable: layoutNotifier,
-          builder: (context, layout, child) {
-            final isListLayout = layout == Layout.list;
-
-            return IconButton(
-              key: Keys.appBarLayoutIconButton,
-              onPressed: _toggleLayout,
-              tooltip: isListLayout ? l.tooltip_layout_grid : l.tooltip_layout_list,
-              icon: Icon(isListLayout ? Icons.grid_view : Icons.view_list),
-            );
-          },
+        IconButton(
+          key: Keys.appBarLayoutIconButton,
+          onPressed: () => _toggleLayout(ref, layout),
+          tooltip: layout == Layout.list ? l.tooltip_layout_grid : l.tooltip_layout_list,
+          icon: Icon(layout == Layout.list ? Icons.grid_view : Icons.view_list),
         ),
         PopupMenuButton<SortMethod>(
           key: Keys.appBarSortIconButton,

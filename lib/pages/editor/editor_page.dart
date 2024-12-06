@@ -14,8 +14,8 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_field.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_labels_list.dart';
 import 'package:localmaterialnotes/pages/editor/widgets/editor_toolbar.dart';
-import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Page displaying the note editor.

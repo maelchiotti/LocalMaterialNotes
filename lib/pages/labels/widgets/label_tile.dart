@@ -10,7 +10,7 @@ import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/extensions/color_extension.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/pages/labels/widgets/label_menu_option.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 /// Tile of a label.

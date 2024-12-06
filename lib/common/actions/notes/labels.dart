@@ -5,8 +5,8 @@ import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/pages/editor/dialogs/labels_selection_dialog.dart';
 import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
-import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
 import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
 
 /// Asks the user to select the labels for the [note].
