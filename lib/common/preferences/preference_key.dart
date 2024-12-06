@@ -5,7 +5,7 @@ import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 /// Keys of preferences.
 enum PreferenceKey<T> {
   // Appearance
-  locale<String>('en'),
+  locale<String>('en', backup: false),
   theme<String>('system'),
   dynamicTheming<bool>(true),
   blackTheming<bool>(false),

@@ -14,6 +14,7 @@ import 'package:localmaterialnotes/providers/labels/labels/labels_provider.dart'
 import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
 import 'package:localmaterialnotes/providers/labels/labels_navigation/labels_navigation_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/preferences/preferences_provider.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
@@ -46,6 +47,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         await ref.read(labelsNavigationProvider.notifier).get();
         await ref.read(notesProvider.notifier).get();
         await ref.read(binProvider.notifier).get();
+        ref.read(preferencesProvider.notifier).reset();
 
         SnackBarUtils.info(l.snack_bar_import_success).show();
       }
