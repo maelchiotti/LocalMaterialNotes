@@ -76,6 +76,18 @@ class LabelsService {
     });
   }
 
+  /// Puts the [labels] in the database only if they do not exist already.
+  Future<void> putAllNew(List<Label> labels) async {
+    final databaseLabels = await getAll();
+    final newLabels = labels.where((label) {
+      return !databaseLabels.contains(label);
+    }).toList();
+
+    await _database.writeTxn(() async {
+      await _labels.putAll(newLabels);
+    });
+  }
+
   /// Deletes the [label] from the database.
   Future<void> delete(Label label) async {
     await _database.writeTxn(() async {

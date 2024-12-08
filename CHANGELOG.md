@@ -23,6 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Ability to categorize the notes with labels
 - Allow to sort the notes by their creation date
 - Allow to use a white text in dark theme
+- Polish translation
 
 ### Changed
 
@@ -101,7 +102,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Setting to focus the title instead of the content when creating a new note
 - Setting to disable the subdued color of the notes content preview
 - Setting to change the text scaling
-- Chinese simplified localization
+- Chinese simplified translation
 
 ### Fixed
 
@@ -113,7 +114,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-- Portuguese localization
+- Portuguese translation
 
 ### Fixed
 
@@ -139,8 +140,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Setting to hide the app from recent apps and prevent screenshots
 - Setting to show the checklist button in the toolbar if not shown in the app bar
 - Enable high refresh rate
-- Russian localization
-- Show localizations completion as a percentage
+- Russian translation
+- Show translations completion as a percentage
 
 ### Changed
 
@@ -164,7 +165,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-- Spanish localization
+- Spanish translation
 - Toggleable background for notes tiles
 
 ### Changed
@@ -213,7 +214,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-- Turkish localization
+- Turkish translation
 - Adaptive and monochrome icons
 - Hint text in the note content text field
 

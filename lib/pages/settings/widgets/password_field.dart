@@ -21,10 +21,10 @@ class PasswordField extends StatefulWidget {
   final String? secondaryDescription;
 
   /// Called when the password has changed.
-  final Function(String? password) onChanged;
+  final void Function(String? password) onChanged;
 
   /// Called when the user validates the form.
-  final Function() onEditingComplete;
+  final void Function() onEditingComplete;
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();

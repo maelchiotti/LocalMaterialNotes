@@ -29,7 +29,7 @@ class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
   void initState() {
     super.initState();
 
-    final frequencyPreference = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<int>();
+    final frequencyPreference = PreferenceKey.autoExportFrequency.getPreferenceOrDefault();
     final frequencyIndex = _frequencyValues.indexOf(frequencyPreference);
 
     if (frequencyIndex == -1) {

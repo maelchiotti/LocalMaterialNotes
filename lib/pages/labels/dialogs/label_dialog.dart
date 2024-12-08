@@ -62,7 +62,7 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
     color = widget.label?.color ?? Theme.of(context).colorScheme.tertiaryContainer;
   }
 
-  String? _nameValidator(String? name) {
+  String? nameValidator(String? name) {
     if (name == null || name.isEmpty) {
       return l.dialog_label_name_cannot_be_empty;
     } else if (labels.map((label) => label.name).toList().contains(name) && name != widget.label?.name) {
@@ -72,16 +72,17 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
     return null;
   }
 
-  void _onNameChanged(String? name) {
+  void onNameChanged(String? name) {
     setState(() {
       ok = formKey.currentState!.validate();
     });
   }
 
-  Future<void> _pickColor() async {
+  Future<void> pickColor() async {
     Color pickedColor = color;
 
     final ok = await ColorPicker(
+      color: color,
       height: Sizes.colorIndicator.size,
       width: Sizes.colorIndicator.size,
       borderRadius: Sizes.colorIndicator.size,
@@ -108,7 +109,7 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
   }
 
   /// Pops the dialog with the entered [nameController], or nothing if it was [canceled].
-  void _pop({bool canceled = false}) {
+  void pop({bool canceled = false}) {
     if (canceled) {
       Navigator.pop(context);
 
@@ -138,7 +139,7 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
                 height: Sizes.colorIndicator.size,
                 width: Sizes.colorIndicator.size,
                 borderRadius: Sizes.colorIndicator.size,
-                onSelect: _pickColor,
+                onSelect: pickColor,
               ),
               Padding(padding: Paddings.horizontal(8.0)),
               Expanded(
@@ -148,8 +149,8 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
                     hintText: l.hint_label_name,
                   ),
                   autofocus: true,
-                  validator: _nameValidator,
-                  onChanged: _onNameChanged,
+                  validator: nameValidator,
+                  onChanged: onNameChanged,
                 ),
               ),
             ],
@@ -158,11 +159,11 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
       ),
       actions: [
         TextButton(
-          onPressed: () => _pop(canceled: true),
+          onPressed: () => pop(canceled: true),
           child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
         ),
         TextButton(
-          onPressed: ok ? _pop : null,
+          onPressed: ok ? pop : null,
           child: Text(flutterL?.okButtonLabel ?? 'OK'),
         ),
       ],

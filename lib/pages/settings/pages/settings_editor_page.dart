@@ -20,7 +20,7 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
   /// Toggles the setting to show the undo/redo buttons in the editor's app bar.
   void _toggleShowUndoRedoButtons(bool toggled) {
     setState(() {
-      PreferenceKey.showUndoRedoButtons.set<bool>(toggled);
+      PreferenceKey.showUndoRedoButtons.set(toggled);
     });
   }
 
@@ -30,56 +30,56 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
   /// Otherwise, it's shown in the editor's app bar.
   void _toggleShowChecklistButton(bool toggled) {
     setState(() {
-      PreferenceKey.showChecklistButton.set<bool>(toggled);
+      PreferenceKey.showChecklistButton.set(toggled);
     });
   }
 
   /// Toggles the setting to show the editor's toolbar.
   void _toggleShowToolbar(bool toggled) {
     setState(() {
-      PreferenceKey.showToolbar.set<bool>(toggled);
+      PreferenceKey.showToolbar.set(toggled);
     });
   }
 
   /// Toggles the setting to use the editor mode button.
   void _toggleShowEditorModeButton(bool toggled) {
     setState(() {
-      PreferenceKey.editorModeButton.set<bool>(toggled);
+      PreferenceKey.editorModeButton.set(toggled);
     });
   }
 
   /// Toggles the setting to open the editor in reading mode by default.
   void _toggleOpenEditorInReadMode(bool toggled) {
     setState(() {
-      PreferenceKey.openEditorReadingMode.set<bool>(toggled);
+      PreferenceKey.openEditorReadingMode.set(toggled);
     });
   }
 
   /// Toggles the setting to use spacing between the paragraphs.
   void _toggleFocusTitleOnNewNote(bool toggled) {
     setState(() {
-      PreferenceKey.focusTitleOnNewNote.set<bool>(toggled);
+      PreferenceKey.focusTitleOnNewNote.set(toggled);
     });
   }
 
   /// Toggles the setting to use spacing between the paragraphs.
   void _toggleUseParagraphSpacing(bool toggled) {
     setState(() {
-      PreferenceKey.useParagraphsSpacing.set<bool>(toggled);
+      PreferenceKey.useParagraphsSpacing.set(toggled);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
-    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
-    final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault<bool>();
+    final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault();
+    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault();
+    final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault();
 
-    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault<bool>();
-    final openEditorInReadMode = PreferenceKey.openEditorReadingMode.getPreferenceOrDefault<bool>();
-    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault<bool>();
+    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault();
+    final openEditorInReadMode = PreferenceKey.openEditorReadingMode.getPreferenceOrDefault();
+    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault();
 
-    final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault<bool>();
+    final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault();
 
     return Scaffold(
       appBar: const TopNavigation(

@@ -10,7 +10,11 @@ import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_frequency_
 import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_password_dialog.dart';
 import 'package:localmaterialnotes/pages/settings/dialogs/manual_export_dialog.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/labels/labels/labels_provider.dart';
+import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
+import 'package:localmaterialnotes/providers/labels/labels_navigation/labels_navigation_provider.dart';
+import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/preferences/preferences_provider.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:localmaterialnotes/utils/database_utils.dart';
 import 'package:localmaterialnotes/utils/files_utils.dart';
@@ -38,8 +42,12 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       final imported = await DatabaseUtils().import(context);
 
       if (imported) {
+        await ref.read(labelsProvider.notifier).get();
+        await ref.read(labelsListProvider.notifier).get();
+        await ref.read(labelsNavigationProvider.notifier).get();
         await ref.read(notesProvider.notifier).get();
         await ref.read(binProvider.notifier).get();
+        ref.read(preferencesProvider.notifier).reset();
 
         SnackBarUtils.info(l.snack_bar_import_success).show();
       }
@@ -96,13 +104,13 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
   /// Toggles the setting to enable the automatic export.
   Future<void> _toggleEnableAutoExport(bool toggled) async {
-    await PreferenceKey.enableAutoExport.set<bool>(toggled);
+    await PreferenceKey.enableAutoExport.set(toggled);
 
     setState(() {});
 
     if (!toggled) {
       PreferenceKey.lastAutoExportDate.remove();
-      PreferenceKey.autoExportEncryption.set<bool>(false);
+      PreferenceKey.autoExportEncryption.set(false);
       PreferenceKey.autoExportPassword.remove();
 
       return;
@@ -120,7 +128,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       PreferenceKey.autoExportPassword.remove();
 
       setState(() {
-        PreferenceKey.autoExportEncryption.set<bool>(false);
+        PreferenceKey.autoExportEncryption.set(false);
       });
 
       return;
@@ -142,7 +150,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       PreferenceKey.autoExportPassword.set(autoExportPassword);
 
       setState(() {
-        PreferenceKey.autoExportEncryption.set<bool>(true);
+        PreferenceKey.autoExportEncryption.set(true);
       });
     });
   }
@@ -159,7 +167,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       }
 
       setState(() {
-        PreferenceKey.autoExportFrequency.set<int>(autoExportFrequency);
+        PreferenceKey.autoExportFrequency.set(autoExportFrequency);
       });
     });
   }
@@ -172,7 +180,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       return;
     }
 
-    PreferenceKey.autoExportDirectory.set<String>(autoExportDirectory);
+    PreferenceKey.autoExportDirectory.set(autoExportDirectory);
 
     await AutoExportUtils().setAutoExportDirectory();
 
@@ -190,9 +198,9 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
   @override
   Widget build(BuildContext context) {
-    final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault<bool>();
-    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault<int>();
-    final autoExportEncryption = PreferenceKey.autoExportEncryption.getPreferenceOrDefault<bool>();
+    final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault();
+    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault();
+    final autoExportEncryption = PreferenceKey.autoExportEncryption.getPreferenceOrDefault();
     final autoExportDirectory = AutoExportUtils().autoExportDirectory.decoded;
 
     return Scaffold(

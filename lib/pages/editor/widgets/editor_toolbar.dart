@@ -68,7 +68,7 @@ class _EditorToolbarState extends State<EditorToolbar> {
 
   @override
   Widget build(BuildContext context) {
-    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
+    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault();
 
     return ColoredBox(
       color: Theme.of(context).colorScheme.surfaceContainerHigh,

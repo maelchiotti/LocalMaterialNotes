@@ -28,7 +28,7 @@ enum LabelMenuOption {
       case edit:
         return l.action_labels_edit;
       case delete:
-        return l.action_labels_edit;
+        return l.action_labels_delete;
     }
   }
 
