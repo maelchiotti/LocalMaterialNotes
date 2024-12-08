@@ -1,4 +1,5 @@
 import argparse
+import json
 import os
 
 apps = ["samsung_notes", "d_notes"]
@@ -11,17 +12,40 @@ def main():
     input_file = args.input_file
     output_file = args.output_file
 
+    notes = []
+    labels = []
+
     # Samsung Notes
     if app == apps[0]:
         from apps.samsung_notes import convert
 
-        convert(input_file, output_file)
+        notes, labels = convert(input_file)
 
     # DNotes
     elif app == apps[1]:
         from apps.dnotes import convert
 
-        convert(input_file, output_file)
+        notes, labels = convert(input_file)
+
+    write(output_file, notes, labels)
+
+
+def write(output_file, notes, labels):
+    notes_json = json.dumps(
+        {
+            "notes": notes,
+            "labels": labels,
+        },
+        ensure_ascii=False,
+        indent=4,
+    )
+
+    try:
+        with open(output_file, "w", encoding="utf-8") as json_file:
+            json_file.write(notes_json)
+    except Exception as e:
+        print(f"Error while writing to output file: {e}")
+        exit(-1)
 
 
 def parse_args():
