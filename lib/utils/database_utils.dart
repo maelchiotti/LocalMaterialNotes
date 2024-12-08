@@ -56,9 +56,9 @@ class DatabaseUtils {
     importedJson = importedJson as Map<String, dynamic>;
 
     // Import the labels
-    final importLabels = importedJson.containsKey("labels");
+    final importLabels = importedJson.containsKey("labels") && importedJson.getList<dynamic>("labels").isNotEmpty;
     if (importLabels) {
-      final labelsAsJson = importedJson["labels"] as List<dynamic>;
+      final labelsAsJson = importedJson.getList<dynamic>("labels");
       final importedLabels = await _importLabels(labelsAsJson);
       if (!importedLabels) {
         return false;
@@ -70,7 +70,7 @@ class DatabaseUtils {
     }
 
     // Import the notes
-    final notesAsJson = importedJson["notes"] as List<dynamic>;
+    final notesAsJson = importedJson.getList<dynamic>("notes");
     final encrypted = importedJson.tryGetBool("encrypted") ?? false;
     final importedNotes = await _importNotes(context, notesAsJson, encrypted, importLabels);
     if (!importedNotes) {

@@ -3,7 +3,7 @@ import json
 from dateutil.parser import parse
 
 
-def convert(input_file, output_file):
+def convert(input_file):
     labels = []
     notes = []
 
@@ -72,20 +72,4 @@ def convert(input_file, output_file):
         print(f"Error while reading the input file: {e}")
         exit(-1)
 
-    notes_json = json.dumps(
-        {
-            "version": "",
-            "encrypted": False,
-            "notes": notes,
-            "labels": labels,
-        },
-        ensure_ascii=False,
-        indent=4,
-    )
-
-    try:
-        with open(output_file, "w", encoding="utf-8") as json_file:
-            json_file.write(notes_json)
-    except Exception as e:
-        print(f"Error while writing to output file: {e}")
-        exit(-1)
+    return notes, labels
