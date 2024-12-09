@@ -57,6 +57,14 @@
   "@navigation_notes": {
     "description": "Title of the notes page."
   },
+  "navigation_manage_labels_destination": "Управление тегами",
+  "@navigation_manage_labels_destination": {
+    "description": "Title of the button in the side navigation drawer to got to the page to manage the labels."
+  },
+  "navigation_manage_labels_page": "Теги",
+  "@navigation_manage_labels_page": {
+    "description": "Title of the page to manage the labels."
+  },
   "navigation_bin": "Корзина",
   "@navigation_bin": {
     "description": "Title of the bin page."
@@ -77,15 +85,23 @@
   "@navigation_settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
+  "navigation_settings_labels": "Теги",
+  "@navigation_settings_labels": {
+    "description": "Title of the settings page regarding the labels."
+  },
   "navigation_settings_backup": "Резервное копирование",
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
+  },
+  "navigation_settings_accessibility": "Специальные возможности",
+  "@navigation_settings_accessibility": {
+    "description": "Title of the settings page regarding the accessibility."
   },
   "navigation_settings_about": "О приложении",
   "@navigation_settings_about": {
     "description": "Title of the settings page regarding the information about the application."
   },
-  "button_sort_title": "Заголовок",
+  "button_sort_title": "По заголовку",
   "@button_sort_title": {
     "description": "Text of the button to sort the notes list by title."
   },
@@ -96,6 +112,10 @@
   "settings_appearance": "Персонализация",
   "@settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
+  },
+  "settings_appearance_description": "Язык, тема оформления, стиль заметок",
+  "@settings_appearance_description": {
+    "description": "Description of the appearance settings page."
   },
   "settings_appearance_application": "Приложение",
   "@settings_appearance_application": {
@@ -321,6 +341,42 @@
   "@settings_use_paragraph_spacing_description": {
     "description": "Description of the setting tile to enable the spacing between paragraphs in the notes content."
   },
+  "settings_labels": "Теги",
+  "@settings_labels": {
+    "description": "Title of the settings page regarding the labels functionality."
+  },
+  "settings_labels_description": "Включить теги, персонализация",
+  "@settings_labels_description": {
+    "description": "Description of the labels settings page."
+  },
+  "settings_enable_labels": "Включить теги",
+  "@settings_enable_labels": {
+    "description": "Title of the setting tile to enable the labels."
+  },
+  "settings_enable_labels_description": "Позволяет организовывать заметки с помощью тегов (отключение не удаляет теги, а только скрывает их)",
+  "@settings_enable_labels_description": {
+    "description": "Description of the setting tile to enable the labels."
+  },
+  "settings_labels_appearance": "Персонализация",
+  "@settings_labels_appearance": {
+    "description": "Title of the settings section regarding the appearance of the labels."
+  },
+  "settings_show_labels_note_tile": "Теги в карточке с заметкой",
+  "@settings_show_labels_note_tile": {
+    "description": "Title of the setting tile to show the labels on the notes tiles."
+  },
+  "settings_show_labels_note_tile_description": "Показывать теги в карточке с заметкой",
+  "@settings_show_labels_note_tile_description": {
+    "description": "Description of the setting tile to show the labels on the notes tiles."
+  },
+  "settings_show_labels_editor": "Показывать теги в редакторе",
+  "@settings_show_labels_editor": {
+    "description": "Title of the setting tile to show the labels in the editor."
+  },
+  "settings_show_labels_editor_description": "Показывать список тегов под редактором",
+  "@settings_show_labels_editor_description": {
+    "description": "Description of the setting tile to show the labels in the editor."
+  },
   "settings_backup": "Резервное копирование",
   "@settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
@@ -337,7 +393,7 @@
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
-  "settings_import_description": "Импортировать заметки из JSON–файла",
+  "settings_import_description": "Импорт заметок, тегов и настроек из JSON файла",
   "@settings_import_description": {
     "description": "Description of the setting tile to import a backup."
   },
@@ -349,7 +405,7 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "Моментально экспортировать заметки в формате JSON (включая заметки из корзины)",
+  "settings_export_json_description": "Моментально экспортировать заметки, теги и настройки в формате JSON (включая заметки из корзины)",
   "@settings_export_json_description": {
     "description": "Description of the setting tile to manually export the notes as JSON."
   },
@@ -369,17 +425,17 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "Автоматически экспортировать заметки в формате JSON (включая заметки из корзины)",
+  "settings_auto_export_description": "Автоматически экспортировать заметки, теги и настройки в формате JSON (включая заметки из корзины)",
   "@settings_auto_export_description": {
-    "description": "Description of the settings tile to enable the automatic export of the notes."
+    "description": "Description of the settings tile to enable the automatic export."
   },
   "settings_auto_export_frequency": "Периодичность",
   "@settings_auto_export_frequency": {
-    "description": "Title of the settings tile to choose the frequency of the automatic exports of the notes."
+    "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
   "settings_auto_export_frequency_value": "{frequency, select, 1{Каждый день} 7{Каждую неделю} 14{Каждые 2 недели} 30{Каждый месяц} other{Каждые {frequency} дня}}",
   "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports of the notes.",
+    "description": "Frequency of the automatic exports.",
     "placeholders": {
       "frequency": {
         "description": "Value of the frequency (as a String to enable the select, but it's an int).",
@@ -387,7 +443,7 @@
       }
     }
   },
-  "settings_auto_export_frequency_description": "Частота автоматического экспорта заметок",
+  "settings_auto_export_frequency_description": "Частота автоматического экспорта",
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
   },
@@ -403,13 +459,29 @@
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
   },
-  "settings_auto_export_directory_description": "Каталог для сохранения автоматических экспортов заметок",
+  "settings_auto_export_directory_description": "Каталог для сохранения автоматических экспортов",
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
+  },
+  "settings_accessibility": "Специальные возможности",
+  "@settings_accessibility": {
+    "description": "Title of the settings page regarding the accessibility."
+  },
+  "settings_accessibility_description": "Цвет текста, размер текста",
+  "@settings_accessibility_description": {
+    "description": "Description of the accessibility settings page."
   },
   "settings_text_scaling": "Размер текста",
   "@settings_text_scaling": {
     "description": "Title of the text scale setting tile."
+  },
+  "settings_white_text_dark_mode": "Белый текст в тёмном режиме",
+  "@settings_white_text_dark_mode": {
+    "description": "Title of the text scale setting tile."
+  },
+  "settings_white_text_dark_mode_description": "Использовать белый цвет для текста в тёмном режиме",
+  "@settings_white_text_dark_mode_description": {
+    "description": "Description of the text scale setting tile."
   },
   "settings_about": "О приложении",
   "@settings_about": {
@@ -523,9 +595,21 @@
   "@hint_link": {
     "description": "Hint for the link text field in the dialog to add a link in the editor."
   },
+  "hint_label_name": "Название",
+  "@hint_label_name": {
+    "description": "Hint for the text field of the name of a label."
+  },
   "dialog_export_encryption_password": "Пароль",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
+  },
+  "tooltip_undo": "Отменить последнее действие",
+  "@tooltip_undo": {
+    "description": "Tooltip for the button to undo the last action in the editor."
+  },
+  "tooltip_redo": "Повторить последнее действие",
+  "@tooltip_redo": {
+    "description": "Tooltip for the button to redo the last action in the editor."
   },
   "tooltip_toggle_checkbox": "Переключить флажок",
   "@tooltip_toggle_checkbox": {
@@ -538,6 +622,10 @@
   "tooltip_fab_add_note": "Добавить заметку",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
+  },
+  "tooltip_fab_add_label": "Добавить новый тег",
+  "@tooltip_fab_add_label": {
+    "description": "Floating action button in the labels page to add a new label."
   },
   "tooltip_fab_empty_bin": "Очистить корзину",
   "@tooltip_fab_empty_bin": {
@@ -586,6 +674,14 @@
   "tooltip_reset": "Сброс",
   "@tooltip_reset": {
     "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
+  },
+  "action_labels_toggle_pins": "Закрепить/Открепить",
+  "@action_labels_toggle_pins": {
+    "description": "Tooltip for the button to toggle the pin status of the selected labels."
+  },
+  "action_labels_toggle_visibility": "Переключить видимость",
+  "@action_labels_toggle_visibility": {
+    "description": "Tooltip for the button to toggle the visibility of the selected labels."
   },
   "dialog_add_link": "Добавить ссылку",
   "@dialog_add_link": {
@@ -641,6 +737,20 @@
   "@dialog_empty_bin_body": {
     "description": "Text for the dialog to confirm emptying the bin."
   },
+  "dialog_delete_label": "Удалить",
+  "@dialog_delete_label": {
+    "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
+  },
+  "dialog_delete_label_body": "Вы действительно хотите удалить {count} {count, plural, one{тег} few {тега} many {тегов} other{}}? {count, plural, one{Он будут удален} other{Они будут удалены}} из тех заметок, в которых вы добавили {count, plural, one{этот тег} other{эти теги}}.",
+  "@dialog_delete_label_body": {
+    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
+  },
   "dialog_export_encryption_switch": "Зашифровать экспорт в формате JSON",
   "@dialog_export_encryption_switch": {
     "description": "Text for the switch to toggle the encryption of the export in the dialog to manually or automatically exporting the notes as JSON."
@@ -668,6 +778,30 @@
   "dialog_import_encryption_password_error": "не удалось расшифровать данные. Убедитесь, что вы ввели правильный пароль.",
   "@dialog_import_encryption_password_error": {
     "description": "Error when the decryption of an encrypted import failed."
+  },
+  "dialog_label_add": "Добавить новый тег",
+  "@dialog_label_add": {
+    "description": "Title of the dialog to add a label."
+  },
+  "dialog_label_edit": "Редактировать тег",
+  "@dialog_label_edit": {
+    "description": "Title of the dialog to edit a label."
+  },
+  "dialog_label_name_cannot_be_empty": "Название тега не может быть пустым.",
+  "@dialog_label_name_cannot_be_empty": {
+    "description": "Error message shown when relevant on the text field of the name of the label."
+  },
+  "dialog_label_name_already_used": "Это название тега уже используется.",
+  "@dialog_label_name_already_used": {
+    "description": "Error message shown when relevant on the text field of the name of the label."
+  },
+  "button_sort_creation_date": "По дате создания",
+  "@button_sort_creation_date": {
+    "description": "Text of the button to sort the notes list by their creation date."
+  },
+  "button_sort_edition_date": "По дате редактирования",
+  "@button_sort_edition_date": {
+    "description": "Text of the button to sort the notes list by their last edition date."
   },
   "placeholder_notes": "Нет заметок",
   "@placeholder_notes": {
@@ -717,6 +851,10 @@
   "@about_created": {
     "description": "Date when the note was created."
   },
+  "about_labels": "Количество тегов",
+  "@about_labels": {
+    "description": "Number of labels of the note."
+  },
   "about_words": "Количество слов",
   "@about_words": {
     "description": "Number of words in the content of the note."
@@ -729,17 +867,45 @@
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
+  "menu_action_labels": "Теги",
+  "@menu_action_labels": {
+    "description": "Menu action to change the labels of a note."
+  },
+  "action_labels_edit": "Редактировать",
+  "@action_labels_edit": {
+    "description": "Menu or swipe action to edit a label."
+  },
+  "action_labels_delete": "Удалить",
+  "@action_labels_delete": {
+    "description": "Menu or swipe action to delete a label."
+  },
+  "filter_labels_all": "Все",
+  "@filter_labels_all": {
+    "description": "Filter chip in the labels page to all labels."
+  },
+  "filter_labels_visible": "Видимые",
+  "@filter_labels_visible": {
+    "description": "Filter chip in the labels page to show only the visible labels."
+  },
+  "filter_labels_pinned": "Закреплённые",
+  "@filter_labels_pinned": {
+    "description": "Filter chip in the labels page to show only the pinned labels."
+  },
+  "filter_labels_hidden": "Скрытые",
+  "@filter_labels_hidden": {
+    "description": "Filter chip in the labels page to show only the hidden labels."
+  },
   "snack_bar_copied": "Содержимое заметки скопировано.",
   "@snack_bar_copied": {
     "description": "Snack bar informing that the content of the note was copied to clipboard."
   },
-  "snack_bar_import_success": "Заметки были успешно импортированы.",
+  "snack_bar_import_success": "Резервная копия была успешно импортирована.",
   "@snack_bar_import_success": {
-    "description": "Snack bar informing that the notes were successfully imported."
+    "description": "Snack bar informing that the backup was successfully imported."
   },
-  "snack_bar_export_success": "Заметки были успешно экспортированы.",
+  "snack_bar_export_success": "Резервная копия была успешно экспортирована.",
   "@snack_bar_export_success": {
-    "description": "Snack bar informing that the notes were successfully manually exported."
+    "description": "Snack bar informing that the backup was successfully manually exported."
   },
   "snack_bar_logs_copied": "Логи скопированы в буфер обмена.",
   "@snack_bar_logs_copied": {
@@ -748,6 +914,10 @@
   "snack_bar_logs_exported": "Логи были успешно экспортированы.",
   "@snack_bar_logs_exported": {
     "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
+  },
+  "snack_bar_no_labels": "Нет тегов.",
+  "@snack_bar_no_labels": {
+    "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
   },
   "action_add_note_title": "Добавить заметку",
   "@action_add_note_title": {

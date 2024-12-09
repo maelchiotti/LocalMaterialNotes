@@ -57,6 +57,14 @@
   "@navigation_notes": {
     "description": "Title of the notes page."
   },
+  "navigation_manage_labels_destination": "管理标签",
+  "@navigation_manage_labels_destination": {
+    "description": "Title of the button in the side navigation drawer to got to the page to manage the labels."
+  },
+  "navigation_manage_labels_page": "标签",
+  "@navigation_manage_labels_page": {
+    "description": "Title of the page to manage the labels."
+  },
   "navigation_bin": "回收站",
   "@navigation_bin": {
     "description": "Title of the bin page."
@@ -77,9 +85,17 @@
   "@navigation_settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
+  "navigation_settings_labels": "标签",
+  "@navigation_settings_labels": {
+    "description": "Title of the settings page regarding the labels."
+  },
   "navigation_settings_backup": "备份",
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
+  },
+  "navigation_settings_accessibility": "无障碍功能",
+  "@navigation_settings_accessibility": {
+    "description": "Title of the settings page regarding the accessibility."
   },
   "navigation_settings_about": "关于",
   "@navigation_settings_about": {
@@ -96,6 +112,10 @@
   "settings_appearance": "外观",
   "@settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
+  },
+  "settings_appearance_description": "语言、主题、笔记平铺",
+  "@settings_appearance_description": {
+    "description": "Description of the appearance settings page."
   },
   "settings_appearance_application": "应用程序",
   "@settings_appearance_application": {
@@ -321,6 +341,42 @@
   "@settings_use_paragraph_spacing_description": {
     "description": "Description of the setting tile to enable the spacing between paragraphs in the notes content."
   },
+  "settings_labels": "标签",
+  "@settings_labels": {
+    "description": "Title of the settings page regarding the labels functionality."
+  },
+  "settings_labels_description": "启用、外观",
+  "@settings_labels_description": {
+    "description": "Description of the labels settings page."
+  },
+  "settings_enable_labels": "启用",
+  "@settings_enable_labels": {
+    "description": "Title of the setting tile to enable the labels."
+  },
+  "settings_enable_labels_description": "允许使用标签对笔记进行分类（禁用后不会删除标签，也不会将其从笔记中移除，而只会隐藏标签）",
+  "@settings_enable_labels_description": {
+    "description": "Description of the setting tile to enable the labels."
+  },
+  "settings_labels_appearance": "外观",
+  "@settings_labels_appearance": {
+    "description": "Title of the settings section regarding the appearance of the labels."
+  },
+  "settings_show_labels_note_tile": "在笔记平铺上显示标签",
+  "@settings_show_labels_note_tile": {
+    "description": "Title of the setting tile to show the labels on the notes tiles."
+  },
+  "settings_show_labels_note_tile_description": "显示笔记平铺的标签列表",
+  "@settings_show_labels_note_tile_description": {
+    "description": "Description of the setting tile to show the labels on the notes tiles."
+  },
+  "settings_show_labels_editor": "在编辑器中显示标签",
+  "@settings_show_labels_editor": {
+    "description": "Title of the setting tile to show the labels in the editor."
+  },
+  "settings_show_labels_editor_description": "在编辑器底部显示标签列表",
+  "@settings_show_labels_editor_description": {
+    "description": "Description of the setting tile to show the labels in the editor."
+  },
   "settings_backup": "备份",
   "@settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
@@ -337,7 +393,7 @@
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
-  "settings_import_description": "从 JSON 文件导入笔记",
+  "settings_import_description": "从 JSON 文件导入笔记、标签和设置",
   "@settings_import_description": {
     "description": "Description of the setting tile to import a backup."
   },
@@ -349,7 +405,7 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "立即将笔记导出到 JSON 文件（包括回收站），可以重新导入",
+  "settings_export_json_description": "立即将笔记、标签和设置导出到 JSON 文件（包括回收站），然后可以将其导入",
   "@settings_export_json_description": {
     "description": "Description of the setting tile to manually export the notes as JSON."
   },
@@ -369,17 +425,17 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "自动将笔记导出到 JSON 文件（包括回收站），可以重新导入",
+  "settings_auto_export_description": "自动将笔记、标签和设置导出到 JSON 文件（包括回收站），然后可以将其导入",
   "@settings_auto_export_description": {
-    "description": "Description of the settings tile to enable the automatic export of the notes."
+    "description": "Description of the settings tile to enable the automatic export."
   },
   "settings_auto_export_frequency": "频率",
   "@settings_auto_export_frequency": {
-    "description": "Title of the settings tile to choose the frequency of the automatic exports of the notes."
+    "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
   "settings_auto_export_frequency_value": "每{frequency, select, 1{天} 7{周} 14{ 2 周} 30{月} other{ {frequency} 天}}",
   "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports of the notes.",
+    "description": "Frequency of the automatic exports.",
     "placeholders": {
       "frequency": {
         "description": "Value of the frequency (as a String to enable the select, but it's an int).",
@@ -387,7 +443,7 @@
       }
     }
   },
-  "settings_auto_export_frequency_description": "自动导出笔记的频率",
+  "settings_auto_export_frequency_description": "自动导出的频率",
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
   },
@@ -403,13 +459,29 @@
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
   },
-  "settings_auto_export_directory_description": "存储自动导出笔记的目录",
+  "settings_auto_export_directory_description": "存储自动导出的目录",
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
+  },
+  "settings_accessibility": "无障碍功能",
+  "@settings_accessibility": {
+    "description": "Title of the settings page regarding the accessibility."
+  },
+  "settings_accessibility_description": "文本颜色、文本缩放",
+  "@settings_accessibility_description": {
+    "description": "Description of the accessibility settings page."
   },
   "settings_text_scaling": "文本缩放",
   "@settings_text_scaling": {
     "description": "Title of the text scale setting tile."
+  },
+  "settings_white_text_dark_mode": "深色模式中的白色文本",
+  "@settings_white_text_dark_mode": {
+    "description": "Title of the text scale setting tile."
+  },
+  "settings_white_text_dark_mode_description": "在深色模式中为文本使用白色",
+  "@settings_white_text_dark_mode_description": {
+    "description": "Description of the text scale setting tile."
   },
   "settings_about": "关于",
   "@settings_about": {
@@ -523,9 +595,21 @@
   "@hint_link": {
     "description": "Hint for the link text field in the dialog to add a link in the editor."
   },
+  "hint_label_name": "名称",
+  "@hint_label_name": {
+    "description": "Hint for the text field of the name of a label."
+  },
   "dialog_export_encryption_password": "密码",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
+  },
+  "tooltip_undo": "撤销最后操作",
+  "@tooltip_undo": {
+    "description": "Tooltip for the button to undo the last action in the editor."
+  },
+  "tooltip_redo": "恢复最后操作",
+  "@tooltip_redo": {
+    "description": "Tooltip for the button to redo the last action in the editor."
   },
   "tooltip_toggle_checkbox": "切换复选框",
   "@tooltip_toggle_checkbox": {
@@ -538,6 +622,10 @@
   "tooltip_fab_add_note": "添加笔记",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
+  },
+  "tooltip_fab_add_label": "添加标签",
+  "@tooltip_fab_add_label": {
+    "description": "Floating action button in the labels page to add a new label."
   },
   "tooltip_fab_empty_bin": "清空回收站",
   "@tooltip_fab_empty_bin": {
@@ -586,6 +674,14 @@
   "tooltip_reset": "重置",
   "@tooltip_reset": {
     "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
+  },
+  "action_labels_toggle_pins": "切换置顶",
+  "@action_labels_toggle_pins": {
+    "description": "Tooltip for the button to toggle the pin status of the selected labels."
+  },
+  "action_labels_toggle_visibility": "切换可见性",
+  "@action_labels_toggle_visibility": {
+    "description": "Tooltip for the button to toggle the visibility of the selected labels."
   },
   "dialog_add_link": "添加链接",
   "@dialog_add_link": {
@@ -641,6 +737,20 @@
   "@dialog_empty_bin_body": {
     "description": "Text for the dialog to confirm emptying the bin."
   },
+  "dialog_delete_label": "删除",
+  "@dialog_delete_label": {
+    "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
+  },
+  "dialog_delete_label_body": "是否确定要删除 {count} {count, plural, other{个标签}}？将从您添加{count, plural, other{标签}}的笔记中移除{count, plural, other{标签}}。",
+  "@dialog_delete_label_body": {
+    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
+  },
   "dialog_export_encryption_switch": "加密 JSON 导出",
   "@dialog_export_encryption_switch": {
     "description": "Text for the switch to toggle the encryption of the export in the dialog to manually or automatically exporting the notes as JSON."
@@ -668,6 +778,30 @@
   "dialog_import_encryption_password_error": "解密导出失败。请检查您提供的密码是否与加密导出时使用的密码相同。",
   "@dialog_import_encryption_password_error": {
     "description": "Error when the decryption of an encrypted import failed."
+  },
+  "dialog_label_add": "添加标签",
+  "@dialog_label_add": {
+    "description": "Title of the dialog to add a label."
+  },
+  "dialog_label_edit": "编辑标签",
+  "@dialog_label_edit": {
+    "description": "Title of the dialog to edit a label."
+  },
+  "dialog_label_name_cannot_be_empty": "名称不能为空。",
+  "@dialog_label_name_cannot_be_empty": {
+    "description": "Error message shown when relevant on the text field of the name of the label."
+  },
+  "dialog_label_name_already_used": "此名称已经使用。",
+  "@dialog_label_name_already_used": {
+    "description": "Error message shown when relevant on the text field of the name of the label."
+  },
+  "button_sort_creation_date": "创建日期",
+  "@button_sort_creation_date": {
+    "description": "Text of the button to sort the notes list by their creation date."
+  },
+  "button_sort_edition_date": "版本日期",
+  "@button_sort_edition_date": {
+    "description": "Text of the button to sort the notes list by their last edition date."
   },
   "placeholder_notes": "无笔记",
   "@placeholder_notes": {
@@ -717,6 +851,10 @@
   "@about_created": {
     "description": "Date when the note was created."
   },
+  "about_labels": "标签",
+  "@about_labels": {
+    "description": "Number of labels of the note."
+  },
   "about_words": "词数",
   "@about_words": {
     "description": "Number of words in the content of the note."
@@ -729,17 +867,45 @@
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
+  "menu_action_labels": "标签",
+  "@menu_action_labels": {
+    "description": "Menu action to change the labels of a note."
+  },
+  "action_labels_edit": "编辑",
+  "@action_labels_edit": {
+    "description": "Menu or swipe action to edit a label."
+  },
+  "action_labels_delete": "删除",
+  "@action_labels_delete": {
+    "description": "Menu or swipe action to delete a label."
+  },
+  "filter_labels_all": "全部",
+  "@filter_labels_all": {
+    "description": "Filter chip in the labels page to all labels."
+  },
+  "filter_labels_visible": "可见的",
+  "@filter_labels_visible": {
+    "description": "Filter chip in the labels page to show only the visible labels."
+  },
+  "filter_labels_pinned": "置顶的",
+  "@filter_labels_pinned": {
+    "description": "Filter chip in the labels page to show only the pinned labels."
+  },
+  "filter_labels_hidden": "隐藏的",
+  "@filter_labels_hidden": {
+    "description": "Filter chip in the labels page to show only the hidden labels."
+  },
   "snack_bar_copied": "笔记内容已复制到剪贴板。",
   "@snack_bar_copied": {
     "description": "Snack bar informing that the content of the note was copied to clipboard."
   },
-  "snack_bar_import_success": "已成功导入笔记。",
+  "snack_bar_import_success": "已成功导入备份。",
   "@snack_bar_import_success": {
-    "description": "Snack bar informing that the notes were successfully imported."
+    "description": "Snack bar informing that the backup was successfully imported."
   },
-  "snack_bar_export_success": "已成功导出笔记。",
+  "snack_bar_export_success": "已成功导出备份。",
   "@snack_bar_export_success": {
-    "description": "Snack bar informing that the notes were successfully manually exported."
+    "description": "Snack bar informing that the backup was successfully manually exported."
   },
   "snack_bar_logs_copied": "日志已复制到剪贴板。",
   "@snack_bar_logs_copied": {
@@ -748,6 +914,10 @@
   "snack_bar_logs_exported": "日志已成功导出。",
   "@snack_bar_logs_exported": {
     "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
+  },
+  "snack_bar_no_labels": "没有标签。",
+  "@snack_bar_no_labels": {
+    "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
   },
   "action_add_note_title": "添加笔记",
   "@action_add_note_title": {

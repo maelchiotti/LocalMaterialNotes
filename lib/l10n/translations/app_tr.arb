@@ -337,10 +337,6 @@
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
-  "settings_import_description": "JSON dosyasından içe aktar",
-  "@settings_import_description": {
-    "description": "Description of the setting tile to import a backup."
-  },
   "settings_backup_manual_export": "Manuel dışa aktarma",
   "@settings_backup_manual_export": {
     "description": "Title of the settings section regarding the manual export of the notes."
@@ -348,10 +344,6 @@
   "settings_export_json": "JSON olarak dışa aktar",
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
-  },
-  "settings_export_json_description": "Notları hemen geri alınabilecek bir JSON dosyasına (bin dahil) aktarın",
-  "@settings_export_json_description": {
-    "description": "Description of the setting tile to manually export the notes as JSON."
   },
   "settings_export_markdown": "Markdown olarak dışa aktar",
   "@settings_export_markdown": {
@@ -369,27 +361,19 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "Notları hemen geri alınabilecek bir JSON dosyasına (bin dahil) aktarın",
-  "@settings_auto_export_description": {
-    "description": "Description of the settings tile to enable the automatic export of the notes."
-  },
   "settings_auto_export_frequency": "Sıklık",
   "@settings_auto_export_frequency": {
-    "description": "Title of the settings tile to choose the frequency of the automatic exports of the notes."
+    "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
   "settings_auto_export_frequency_value": "Her {frequency, select, 1{gün} 7{hafta} 14{2 haftalar} 30{ay} other{{frequency} aylar}}",
   "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports of the notes.",
+    "description": "Frequency of the automatic exports.",
     "placeholders": {
       "frequency": {
         "description": "Value of the frequency (as a String to enable the select, but it's an int).",
         "type": "String"
       }
     }
-  },
-  "settings_auto_export_frequency_description": "Notların otomatik olarak dışa aktarılma sıklığı",
-  "@settings_auto_export_frequency_description": {
-    "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
   },
   "settings_auto_export_encryption": "Parolamak",
   "@settings_auto_export_encryption": {
@@ -402,10 +386,6 @@
   "settings_auto_export_directory": "Rehber",
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
-  },
-  "settings_auto_export_directory_description": "Notların otomatik dışa aktarımlarının saklanacağı dizin",
-  "@settings_auto_export_directory_description": {
-    "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
   "settings_text_scaling": "Metin Ölçekleme",
   "@settings_text_scaling": {
@@ -732,14 +712,6 @@
   "snack_bar_copied": "Panoya kopyalanan notun içeriği.",
   "@snack_bar_copied": {
     "description": "Snack bar informing that the content of the note was copied to clipboard."
-  },
-  "snack_bar_import_success": "Notlar başarıyla içe aktarıldı.",
-  "@snack_bar_import_success": {
-    "description": "Snack bar informing that the notes were successfully imported."
-  },
-  "snack_bar_export_success": "Dışa aktarma başarılı.",
-  "@snack_bar_export_success": {
-    "description": "Snack bar informing that the notes were successfully manually exported."
   },
   "snack_bar_logs_copied": "Günlükler panonuza kopyalandı.",
   "@snack_bar_logs_copied": {
