@@ -1,6 +1,4 @@
-import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/enums/mime_type.dart';
 import 'package:localmaterialnotes/common/logs/app_logger.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
 import 'package:parchment/codecs.dart';
@@ -33,20 +31,6 @@ final safUtil = SafUtil();
 
 /// Read and write methods for files through the Storage Access Framework (SAF) APIs.
 final safStream = SafStream();
-
-/// Type group for the JSON file format.
-final jsonTypeGroup = XTypeGroup(
-  label: MimeType.json.label,
-  extensions: [MimeType.json.extension],
-  mimeTypes: [MimeType.json.value],
-);
-
-/// Type group for the ZIP file format.
-final zipTypeGroup = XTypeGroup(
-  label: MimeType.zip.label,
-  extensions: [MimeType.zip.extension],
-  mimeTypes: [MimeType.zip.value],
-);
 
 /// The value to apply to the alpha channel to get a subdued color.
 const subduedAlpha = 150;
