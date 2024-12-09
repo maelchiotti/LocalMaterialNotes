@@ -353,7 +353,7 @@
   "@settings_enable_labels": {
     "description": "Title of the setting tile to enable the labels."
   },
-  "settings_enable_labels_description": "Permettre de catégoriser les notes avec des libellés",
+  "settings_enable_labels_description": "Permettre de catégoriser les notes avec des étiquettes (le désactiver ne supprime pas les étiquettes et ne les retire pas des notes, ça les masque seulement)",
   "@settings_enable_labels_description": {
     "description": "Description of the setting tile to enable the labels."
   },
@@ -393,7 +393,7 @@
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
-  "settings_import_description": "Importer les notes depuis un fichier JSON",
+  "settings_import_description": "Importer des notes, des étiquettes et des paramètres depuis un fichier JSON",
   "@settings_import_description": {
     "description": "Description of the setting tile to import a backup."
   },
@@ -405,7 +405,7 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "Exporter immédiatement les notes vers un fichier JSON (corbeille incluse) qui peut être réimporté",
+  "settings_export_json_description": "Exporter immédiatement les notes, les étiquettes et les paramètres vers un fichier JSON (corbeille inclue) qui peut être réimporté",
   "@settings_export_json_description": {
     "description": "Description of the setting tile to manually export the notes as JSON."
   },
@@ -425,17 +425,17 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "Exporter les notes automatiquement dans un fichier JSON (corbeille incluse) qui peut être réimporté",
+  "settings_auto_export_description": "Exporter automatiquement les notes, les étiquettes et les paramètres vers un fichier JSON (corbeille inclue) qui peut être réimporté",
   "@settings_auto_export_description": {
-    "description": "Description of the settings tile to enable the automatic export of the notes."
+    "description": "Description of the settings tile to enable the automatic export."
   },
   "settings_auto_export_frequency": "Fréquence",
   "@settings_auto_export_frequency": {
-    "description": "Title of the settings tile to choose the frequency of the automatic exports of the notes."
+    "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
   "settings_auto_export_frequency_value": "{frequency, select, 1{Tous les jours} 7{Toutes les semaines} 14{Toutes les 2 semaines} 30{Tous les mois} other{Tous les {frequency} jours}}",
   "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports of the notes.",
+    "description": "Frequency of the automatic exports.",
     "placeholders": {
       "frequency": {
         "description": "Value of the frequency (as a String to enable the select, but it's an int).",
@@ -443,7 +443,7 @@
       }
     }
   },
-  "settings_auto_export_frequency_description": "Fréquence de l''export automatique des notes",
+  "settings_auto_export_frequency_description": "Fréquence de l''export automatique",
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
   },
@@ -459,7 +459,7 @@
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
   },
-  "settings_auto_export_directory_description": "Répertoire où stocker les exports automatiques des notes",
+  "settings_auto_export_directory_description": "Dossier où stocker les exports automatiques",
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
@@ -603,6 +603,14 @@
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
   },
+  "tooltip_undo": "Annuler la dernière action",
+  "@tooltip_undo": {
+    "description": "Tooltip for the button to undo the last action in the editor."
+  },
+  "tooltip_redo": "Rétablir la dernière action",
+  "@tooltip_redo": {
+    "description": "Tooltip for the button to redo the last action in the editor."
+  },
   "tooltip_toggle_checkbox": "Basculer la case à cocher",
   "@tooltip_toggle_checkbox": {
     "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
@@ -728,6 +736,20 @@
   "dialog_empty_bin_body": "Voulez-vous vraiment vider définitivement la corbeille ? Vous ne pourrez pas restaurer les notes qu''elle contient.",
   "@dialog_empty_bin_body": {
     "description": "Text for the dialog to confirm emptying the bin."
+  },
+  "dialog_delete_label": "Supprimer",
+  "@dialog_delete_label": {
+    "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
+  },
+  "dialog_delete_label_body": "Voulez-vous vraiment supprimer {count} {count, plural, one{étiquette} other{étiquettes}} ? {count, plural, one{Elle sera retirée} other{Elles seront retirées}} des notes auxquelles vous {count, plural, one{l''avez ajoutée} other{les avez ajoutées}}.",
+  "@dialog_delete_label_body": {
+    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
   },
   "dialog_export_encryption_switch": "Chiffrer l''export JSON",
   "@dialog_export_encryption_switch": {
@@ -877,13 +899,13 @@
   "@snack_bar_copied": {
     "description": "Snack bar informing that the content of the note was copied to clipboard."
   },
-  "snack_bar_import_success": "Les notes ont bien été importées.",
+  "snack_bar_import_success": "La sauvegarde a été importée avec succès.",
   "@snack_bar_import_success": {
-    "description": "Snack bar informing that the notes were successfully imported."
+    "description": "Snack bar informing that the backup was successfully imported."
   },
-  "snack_bar_export_success": "Les notes ont bien été exportées.",
+  "snack_bar_export_success": "La sauvegarde a été exportée avec succès.",
   "@snack_bar_export_success": {
-    "description": "Snack bar informing that the notes were successfully manually exported."
+    "description": "Snack bar informing that the backup was successfully manually exported."
   },
   "snack_bar_logs_copied": "Les logs ont été copiés dans votre presse-papiers.",
   "@snack_bar_logs_copied": {
@@ -892,6 +914,10 @@
   "snack_bar_logs_exported": "Les logs ont été exportés avec succès.",
   "@snack_bar_logs_exported": {
     "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
+  },
+  "snack_bar_no_labels": "Il n''y a aucune étiquette.",
+  "@snack_bar_no_labels": {
+    "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
   },
   "action_add_note_title": "Ajouter une note",
   "@action_add_note_title": {
