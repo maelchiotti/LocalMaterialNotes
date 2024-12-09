@@ -31,9 +31,9 @@ test_all:
 	patrol test -t integration_test --dart-define=INTEGRATION_TEST=true
 
 # Build
-.PHONY: build_apk_release
+.PHONY: release
 
-build_apk_release:
+release:
 	flutter build apk --release
 
 # Miscellaneous
