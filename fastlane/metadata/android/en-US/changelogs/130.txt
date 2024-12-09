@@ -5,7 +5,7 @@ ADDED
 - Choose to focus title instead of content when creating new note
 - Choose to disable subdued color of notes content preview
 - Choose to change the text scaling
-- Chinese simplified localization
+- Chinese simplified translation
 
 FIXED
 - Search view not black in black theme mode

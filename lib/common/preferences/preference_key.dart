@@ -1,100 +1,109 @@
-import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
-import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
-import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
-import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
 
 // ignore_for_file: public_member_api_docs
 
-/// Lists the preferences' keys.
-enum PreferenceKey {
+/// Keys of preferences.
+enum PreferenceKey<T> {
   // Appearance
-  locale('en'),
-  theme(0),
-  dynamicTheming(true),
-  blackTheming(false),
-  showTitlesOnly(false),
-  showTitlesOnlyDisableInSearchView(true),
-  disableSubduedNoteContentPreview(false),
-  showSeparators(false),
-  showTilesBackground(false),
+  locale<String>('en', backup: false),
+  theme<String>('system'),
+  dynamicTheming<bool>(true),
+  blackTheming<bool>(false),
+  showTitlesOnly<bool>(false),
+  showTitlesOnlyDisableInSearchView<bool>(true),
+  disableSubduedNoteContentPreview<bool>(false),
+  showSeparators<bool>(false),
+  showTilesBackground<bool>(false),
 
   // Behavior
-  flagSecure(false),
-  confirmations(Confirmations.irreversible),
-  swipeRightAction(SwipeAction.delete),
-  swipeLeftAction(SwipeAction.togglePin),
+  flagSecure<bool>(false),
+  confirmations<String>('irreversible'),
+  swipeRightAction<String>('delete'),
+  swipeLeftAction<String>('togglePin'),
 
   // Editor
-  showUndoRedoButtons(true),
-  showChecklistButton(true),
-  showToolbar(true),
-  editorModeButton(true),
-  openEditorReadingMode(false),
-  focusTitleOnNewNote(false),
-  useParagraphsSpacing(true),
+  showUndoRedoButtons<bool>(true),
+  showChecklistButton<bool>(true),
+  showToolbar<bool>(true),
+  editorModeButton<bool>(true),
+  openEditorReadingMode<bool>(false),
+  focusTitleOnNewNote<bool>(false),
+  useParagraphsSpacing<bool>(true),
 
   // Labels
-  enableLabels(true),
-  showLabelsListOnNoteTile(true),
-  showLabelsListInEditorPage(true),
+  enableLabels<bool>(true),
+  showLabelsListOnNoteTile<bool>(true),
+  showLabelsListInEditorPage<bool>(true),
 
   // Backup
-  enableAutoExport(false),
-  autoExportFrequency(1),
-  autoExportEncryption(false),
-  autoExportPassword('', secure: true),
-  autoExportDirectory(''),
-  lastAutoExportDate(''),
+  enableAutoExport<bool>(false),
+  autoExportFrequency<int>(1),
+  autoExportEncryption<bool>(false, backup: false),
+  autoExportPassword<String>('', secure: true, backup: false),
+  autoExportDirectory<String>(''),
+  lastAutoExportDate<String>(''),
 
   // Accessibility
-  textScaling(1.0),
-  useWhiteTextDarkMode(false),
+  textScaling<double>(1.0),
+  useWhiteTextDarkMode<bool>(false),
 
   // Notes
-  sortMethod(SortMethod.editedDate),
-  sortAscending(false),
-  layout(Layout.list),
+  sortMethod<String>('editedDate', backup: false),
+  sortAscending<bool>(false, backup: false),
+  layout<String>('list', backup: false),
   ;
 
-  /// Default value of the preference.
-  final Object defaultValue;
+  /// Default value of this preference.
+  final T defaultValue;
 
-  /// Whether the preference should be securely stored.
+  /// Whether this preference should be securely stored.
+  ///
+  /// Defaults to `false`.
   final bool secure;
+
+  /// Whether this preference can be included in backups.
+  ///
+  /// Defaults to `true`.
+  final bool backup;
 
   /// The key of a preference.
   ///
-  /// Every preference has a [defaultValue].
+  /// Every preference has a [defaultValue] and a type [T].
   ///
-  /// if the preference should be securely stored, it can be marked as [secure].
-  const PreferenceKey(this.defaultValue, {this.secure = false});
+  /// If the preference should be securely stored, it can be marked as [secure].
+  const PreferenceKey(this.defaultValue, {this.secure = false, this.backup = true});
 
-  /// Sets the preference to the [value] with the type [T].
-  Future<void> set<T>(T value) async {
+  /// Sets this preference to the [value] with the type [T].
+  Future<void> set(T value) async {
     await PreferencesUtils().set<T>(this, value);
   }
 
-  /// Resets the preference to its [defaultValue].
-  Future<void> setToDefault() async {
-    await PreferencesUtils().set(this, defaultValue);
+  /// Resets this preference to its [defaultValue].
+  Future<void> reset() async {
+    await PreferencesUtils().set<T>(this, defaultValue);
   }
 
-  /// Returns the value of the preference if set, or its default value otherwise.
-  T? getPreference<T>() {
+  /// Returns the value of this preference if set, or [null] otherwise.
+  T? getPreference() {
     return PreferencesUtils().get<T>(this);
   }
 
-  /// Returns the value of the preference if set, or its default value otherwise.
-  T getPreferenceOrDefault<T>() {
-    return PreferencesUtils().get<T>(this) ?? defaultValue as T;
+  /// Returns the value of this preference if set, or its default value otherwise.
+  T getPreferenceOrDefault() {
+    return PreferencesUtils().get<T>(this) ?? defaultValue;
   }
 
-  /// Returns the value of the securely stored preference if set, or its default value otherwise.
+  /// Returns the value of this securely stored preference if set, or [null] otherwise.
+  T? getPreferenceSecure() {
+    return PreferencesUtils().get<T>(this);
+  }
+
+  /// Returns the value of this securely stored preference if set, or its default value otherwise.
   Future<String> getPreferenceOrDefaultSecure() async {
     return await PreferencesUtils().getSecure(this) ?? defaultValue as String;
   }
 
+  /// Removes the value of this preference.
   Future<void> remove() async {
     await PreferencesUtils().remove(this);
   }

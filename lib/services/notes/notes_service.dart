@@ -79,13 +79,27 @@ class NotesService {
     });
   }
 
+  /// Updates the [notes] with their corresponding [notesLabels] in the database.
+  Future<void> putAllLabels(List<Note> notes, List<List<Label>> notesLabels) async {
+    assert(notes.length == notesLabels.length);
+
+    await _database.writeTxn(() async {
+      for (var i = 0; i < notes.length; i++) {
+        final note = notes[i];
+        final labels = notesLabels[i];
+
+        await note.labels.reset();
+        note.labels.addAll(labels);
+        await note.labels.save();
+      }
+    });
+  }
+
   /// Updates the [note] with the [labels] in the database.
   Future<void> putLabels(Note note, Iterable<Label> labels) async {
     await _database.writeTxn(() async {
       await note.labels.reset();
-
       note.labels.addAll(labels);
-
       await note.labels.save();
     });
   }

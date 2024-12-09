@@ -37,10 +37,6 @@ class PreferencesUtils {
       return;
     }
 
-    if (T == dynamic) {
-      throw ArgumentError('The type T is required.');
-    }
-
     if (T == bool) {
       await _preferences.setBool(preferenceKey.name, value as bool);
     } else if (T == int) {
@@ -58,14 +54,6 @@ class PreferencesUtils {
   ///
   /// The type [T] of the value should be a basic type: `bool`, `int`, `double`, `String` or `List<String>`.
   T? get<T>(PreferenceKey preferenceKey) {
-    if (T == dynamic) {
-      throw ArgumentError('The type T is required.');
-    }
-
-    if (T != bool && T != int && T != double && T != String && T != List<String>) {
-      throw ArgumentError('The type T should be a native type (bool, int, double, String or List<String>), not $T.');
-    }
-
     if (preferenceKey.secure) {
       throw ArgumentError('The preference is securely stored, use getSecure() instead');
     }
@@ -97,5 +85,30 @@ class PreferencesUtils {
   Future<void> clear() async {
     await _preferences.clear();
     await _secureStorage.deleteAll();
+  }
+
+  /// Returns the preferences names and their values as a JSON map.
+  ///
+  /// Preferences not set and secure preferences are skipped.
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> preferences = {};
+
+    for (PreferenceKey preferenceKey in PreferenceKey.values) {
+      // Skip secure preferences and preferences that should not be backed up
+      if (preferenceKey.secure || !preferenceKey.backup) {
+        continue;
+      }
+
+      final value = preferenceKey.getPreference();
+
+      // Skip preferences that are not set
+      if (value == null) {
+        continue;
+      }
+
+      preferences[preferenceKey.name] = value;
+    }
+
+    return preferences;
   }
 }

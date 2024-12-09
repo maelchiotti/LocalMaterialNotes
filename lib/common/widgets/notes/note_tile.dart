@@ -15,9 +15,11 @@ import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/widgets/notes/note_tile_dismissible.dart';
 import 'package:localmaterialnotes/common/widgets/notes/note_tile_labels_list.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
 import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
+
+import '../../../providers/preferences/preferences_provider.dart';
 
 /// List tile that displays the main info about a note.
 ///
@@ -177,7 +179,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     } else {
       currentNoteNotifier.value = widget.note;
 
-      NotesEditorRoute(readOnly: widget.note.deleted, autoFocus: false).push(context);
+      NotesEditorRoute(readOnly: widget.note.deleted, autoFocus: false).push<void>(context);
 
       // If the note was opened from the search view, it needs to be closed.
       if (widget.searchView) {
@@ -195,93 +197,88 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
   @override
   Widget build(BuildContext context) {
-    final showTitlesOnlyDisableInSearchView =
-        PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault<bool>();
-    final disableSubduedNoteContentPreview =
-        PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault<bool>();
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
-    final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.getPreferenceOrDefault<bool>();
+    final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
+    final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
+    final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
+    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
 
-    final tile = ValueListenableBuilder(
-      valueListenable: showTitlesOnlyNotifier,
-      builder: (context, showTitlesOnly, child) {
-        return ValueListenableBuilder(
-          valueListenable: showTilesBackgroundNotifier,
-          builder: (context, showTilesBackground, child) {
-            final bodyMediumTextTheme = Theme.of(context).textTheme.bodyMedium;
+    final swipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.swipeActions));
 
-            final showTitle =
-                // Do not show only the title and the preview content is not empty
-                (!showTitlesOnly && !widget.note.isContentPreviewEmpty) ||
-                    // Show only the title and the title is not empty
-                    (showTitlesOnly && widget.note.isTitleEmpty) ||
-                    // In search view, do not show only the title and the preview content is not empty
-                    (widget.searchView && showTitlesOnlyDisableInSearchView && !widget.note.isContentPreviewEmpty);
+    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
+    final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.getPreferenceOrDefault();
 
-            // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
-            // See https://github.com/flutter/flutter/issues/86584
-            return Material(
-              child: Ink(
-                color: getBackgroundColor(showTilesBackground),
-                child: InkWell(
-                  onTap: onTap,
-                  onLongPress: widget.searchView ? null : onLongPress,
-                  child: Padding(
-                    padding: Paddings.all(16),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  // Title
-                                  if (!widget.note.isTitleEmpty)
-                                    Text(
-                                      widget.note.title,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: Theme.of(context).textTheme.titleMedium,
-                                    ),
-                                  // Subtitle
-                                  if (showTitle)
-                                    Text(
-                                      widget.note.contentPreview,
-                                      maxLines: 3,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: disableSubduedNoteContentPreview
-                                          ? null
-                                          : bodyMediumTextTheme?.copyWith(
-                                              color: bodyMediumTextTheme.color?.subdued,
-                                            ),
-                                    ),
-                                ],
-                              ),
+    final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
+
+    final bodyMediumTextTheme = Theme.of(context).textTheme.bodyMedium;
+
+    final showTitle =
+        // Do not show only the title and the preview content is not empty
+        (!showTitlesOnly && !widget.note.isContentPreviewEmpty) ||
+            // Show only the title and the title is not empty
+            (showTitlesOnly && widget.note.isTitleEmpty) ||
+            // In search view, do not show only the title and the preview content is not empty
+            (widget.searchView && showTitlesOnlyDisableInSearchView && !widget.note.isContentPreviewEmpty);
+
+    // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
+    // See https://github.com/flutter/flutter/issues/86584
+    final tile = Material(
+      child: Ink(
+        color: getBackgroundColor(showTilesBackground),
+        child: InkWell(
+          onTap: onTap,
+          onLongPress: widget.searchView ? null : onLongPress,
+          child: Padding(
+            padding: Paddings.all(16),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Title
+                          if (!widget.note.isTitleEmpty)
+                            Text(
+                              widget.note.title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
-                            // Trailing
-                            if (widget.note.pinned && !widget.note.deleted) ...[
-                              Padding(padding: Paddings.horizontal(2.0)),
-                              Icon(
-                                Icons.push_pin,
-                                size: Sizes.pinIconSize.size,
-                              ),
-                            ],
-                          ],
-                        ),
-                        if (enableLabels && showLabelsListOnNoteTile) ...[
-                          Padding(padding: Paddings.vertical(2.0)),
-                          NoteTileLabelsList(note: widget.note),
-                        ]
-                      ],
+                          // Subtitle
+                          if (showTitle)
+                            Text(
+                              widget.note.contentPreview,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                              style: disableSubduedNoteContentPreview
+                                  ? null
+                                  : bodyMediumTextTheme?.copyWith(
+                                      color: bodyMediumTextTheme.color?.subdued,
+                                    ),
+                            ),
+                        ],
+                      ),
                     ),
-                  ),
+                    // Trailing
+                    if (widget.note.pinned && !widget.note.deleted) ...[
+                      Padding(padding: Paddings.horizontal(2.0)),
+                      Icon(
+                        Icons.push_pin,
+                        size: Sizes.pinIconSize.size,
+                      ),
+                    ],
+                  ],
                 ),
-              ),
-            );
-          },
-        );
-      },
+                if (enableLabels && showLabelsListOnNoteTile) ...[
+                  Padding(padding: Paddings.vertical(2.0)),
+                  NoteTileLabelsList(note: widget.note),
+                ]
+              ],
+            ),
+          ),
+        ),
+      ),
     );
 
     // In search view, just return the plain tile, without the ClipRRect or the Dismissible widgets
@@ -289,38 +286,22 @@ class _NoteTileState extends ConsumerState<NoteTile> {
       return tile;
     }
 
-    return ValueListenableBuilder(
-      valueListenable: layoutNotifier,
-      builder: (context, layout, child) {
-        return ValueListenableBuilder(
-          valueListenable: showTilesBackgroundNotifier,
-          builder: (context, showTilesBackground, child) {
-            return ValueListenableBuilder(
-              valueListenable: swipeActionsNotifier,
-              builder: (context, swipeActions, child) {
-                final rightSwipeAction = swipeActions.right;
-                final leftSwipeAction = swipeActions.left;
+    final rightSwipeAction = swipeActions.right;
+    final leftSwipeAction = swipeActions.left;
 
-                final direction = getDismissDirection(rightSwipeAction, leftSwipeAction);
-                final dismissibleWidgets = getDismissibleWidgets(direction, rightSwipeAction, leftSwipeAction);
+    final direction = getDismissDirection(rightSwipeAction, leftSwipeAction);
+    final dismissibleWidgets = getDismissibleWidgets(direction, rightSwipeAction, leftSwipeAction);
 
-                return ClipRRect(
-                  borderRadius: getBorderRadius(layout, showTilesBackground),
-                  child: Dismissible(
-                    key: Key(widget.note.id.toString()),
-                    direction: direction,
-                    background: dismissibleWidgets.main,
-                    secondaryBackground: dismissibleWidgets.secondary,
-                    confirmDismiss: (dismissDirection) =>
-                        onDismissed(dismissDirection, rightSwipeAction, leftSwipeAction),
-                    child: tile,
-                  ),
-                );
-              },
-            );
-          },
-        );
-      },
+    return ClipRRect(
+      borderRadius: getBorderRadius(layout, showTilesBackground),
+      child: Dismissible(
+        key: Key(widget.note.id.toString()),
+        direction: direction,
+        background: dismissibleWidgets.main,
+        secondaryBackground: dismissibleWidgets.secondary,
+        confirmDismiss: (dismissDirection) => onDismissed(dismissDirection, rightSwipeAction, leftSwipeAction),
+        child: tile,
+      ),
     );
   }
 }

@@ -31,11 +31,11 @@ Future<void> main() async {
   );
 
   // Initialize the utilities
+  await AppLogger().ensureInitialized();
   await PreferencesUtils().ensureInitialized();
   await InfoUtils().ensureInitialized();
   await LocalizationsUtils().ensureInitialized();
   await ThemeUtils().ensureInitialized();
-  await AppLogger().ensureInitialized();
 
   // Set the application refresh rate (only in Android 6 or later)
   // See https://github.com/flutter/flutter/issues/35162

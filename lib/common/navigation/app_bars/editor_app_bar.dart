@@ -13,7 +13,7 @@ import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/navigation/menu_option.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/pages/editor/sheets/about_sheet.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
 
 /// Editor's app bar.
 ///
@@ -34,13 +34,13 @@ class EditorAppBar extends ConsumerStatefulWidget {
 }
 
 class _BackAppBarState extends ConsumerState<EditorAppBar> {
-  /// Goes back from the editor.
-  void _pop() {
-    context.pop();
+  /// Switches the editor mode between editing and viewing.
+  void switchMode() {
+    isFleatherEditorEditMode.value = !isFleatherEditorEditMode.value;
   }
 
   /// Performs the action associated with the selected [menuOption].
-  Future<void> _onMenuOptionSelected(MenuOption menuOption) async {
+  Future<void> onMenuOptionSelected(MenuOption menuOption) async {
     // Manually close the keyboard
     FocusManager.instance.primaryFocus?.unfocus();
 
@@ -66,7 +66,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       case MenuOption.deletePermanently:
         await permanentlyDeleteNote(context, ref, note);
       case MenuOption.about:
-        await showModalBottomSheet(
+        await showModalBottomSheet<void>(
           context: context,
           clipBehavior: Clip.hardEdge,
           showDragHandle: true,
@@ -78,7 +78,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
   }
 
   /// Undoes the latest change in the editor.
-  void _undo() {
+  void undo() {
     final editorController = fleatherControllerNotifier.value;
 
     if (editorController == null || !editorController.canUndo) {
@@ -89,7 +89,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
   }
 
   /// Redoes the latest change in the editor.
-  void _redo() {
+  void redo() {
     final editorController = fleatherControllerNotifier.value;
 
     if (editorController == null || !editorController.canRedo) {
@@ -100,7 +100,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
   }
 
   /// Toggles the presence of the checklist in the currently active line of the editor.
-  void _toggleChecklist() {
+  void toggleChecklist() {
     final editorController = fleatherControllerNotifier.value;
 
     if (editorController == null) {
@@ -118,9 +118,10 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     final note = currentNoteNotifier.value;
     final editorController = fleatherControllerNotifier.value;
 
-    final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault<bool>();
-    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault<bool>();
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
+    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault();
+    final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault();
+    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault();
+    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
 
     return ValueListenableBuilder(
       valueListenable: fleatherFieldHasFocusNotifier,
@@ -130,7 +131,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
             builder: (context, isEditMode, child) {
               return AppBar(
                 leading: BackButton(
-                  onPressed: _pop,
+                  onPressed: () => context.pop(),
                 ),
                 actions: note == null
                     ? null
@@ -142,13 +143,13 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                               builder: (context, canUndo, child) {
                                 return IconButton(
                                   icon: const Icon(Icons.undo),
-                                  tooltip: l.tooltip_toggle_checkbox,
+                                  tooltip: l.tooltip_undo,
                                   onPressed: hasFocus &&
                                           canUndo &&
                                           editorController != null &&
                                           editorController.canUndo &&
                                           isEditMode
-                                      ? _undo
+                                      ? undo
                                       : null,
                                 );
                               },
@@ -159,8 +160,8 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                               builder: (context, canRedo, child) {
                                 return IconButton(
                                   icon: const Icon(Icons.redo),
-                                  tooltip: l.tooltip_toggle_checkbox,
-                                  onPressed: hasFocus && canRedo && isEditMode ? _redo : null,
+                                  tooltip: l.tooltip_redo,
+                                  onPressed: hasFocus && canRedo && isEditMode ? redo : null,
                                 );
                               },
                             ),
@@ -168,7 +169,20 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                             IconButton(
                               icon: const Icon(Icons.checklist),
                               tooltip: l.tooltip_toggle_checkbox,
-                              onPressed: hasFocus && isEditMode ? _toggleChecklist : null,
+                              onPressed: hasFocus && isEditMode ? toggleChecklist : null,
+                            ),
+                          if (showEditorModeButton)
+                            ValueListenableBuilder(
+                              valueListenable: isFleatherEditorEditMode,
+                              builder: (context, isEditMode, child) {
+                                return IconButton(
+                                  icon: Icon(isEditMode ? Icons.visibility : Icons.edit),
+                                  tooltip: isEditMode
+                                      ? l.tooltip_fab_toggle_editor_mode_read
+                                      : l.tooltip_fab_toggle_editor_mode_edit,
+                                  onPressed: switchMode,
+                                );
+                              },
                             ),
                         ],
                         PopupMenuButton<MenuOption>(
@@ -191,7 +205,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                                     MenuOption.about.popupMenuItem(context),
                                   ]);
                           },
-                          onSelected: _onMenuOptionSelected,
+                          onSelected: onMenuOptionSelected,
                         ),
                         Padding(padding: Paddings.appBarActionsEnd),
                       ],

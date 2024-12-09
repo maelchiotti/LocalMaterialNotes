@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/pages/editor/editor_page.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
 /// Route of the notes editor page.
@@ -31,7 +31,7 @@ class NotesEditorRoute extends GoRouteData {
       throw Exception('Parameters are required for the notes editor route');
     }
 
-    isFleatherEditorEditMode.value = !PreferenceKey.openEditorReadingMode.getPreferenceOrDefault<bool>();
+    isFleatherEditorEditMode.value = !PreferenceKey.openEditorReadingMode.getPreferenceOrDefault();
 
     return NoTransitionPage(
       child: NotesEditorPage(

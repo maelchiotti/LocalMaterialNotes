@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/sizes.dart';
 
 // ignore_for_file: avoid_classes_with_only_static_members
 
@@ -79,20 +78,5 @@ class Paddings {
   /// Padding for the separators in the notes list when the notes tiles have a background.
   static EdgeInsetsDirectional get notesListWithBackgroundSeparation {
     return const EdgeInsetsDirectional.symmetric(vertical: 4);
-  }
-
-  /// Padding for the separators in the notes list when the notes tiles have a background.
-  static EdgeInsetsDirectional fabToggleEditorMode(bool isEditMode, bool isToolbarShown, bool isLabelsListShown) {
-    double padding = 0;
-
-    if (isEditMode && isToolbarShown) {
-      padding += Sizes.editorToolbarHeight.size;
-    }
-
-    if (isLabelsListShown) {
-      padding += Sizes.editorLabelsListHeight.size;
-    }
-
-    return EdgeInsetsDirectional.only(bottom: padding);
   }
 }

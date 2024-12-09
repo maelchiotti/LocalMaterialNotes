@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/actions/notes/select.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 
 /// Toggles the pined status of the [note].
 ///
