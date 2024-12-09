@@ -325,10 +325,6 @@
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
-  "settings_import_description": "Importuj notatki z pliku JSON",
-  "@settings_import_description": {
-    "description": "Description of the setting tile to import a backup."
-  },
   "settings_backup_manual_export": "Eksportuj ręcznie",
   "@settings_backup_manual_export": {
     "description": "Title of the settings section regarding the manual export of the notes."
@@ -336,10 +332,6 @@
   "settings_export_json": "Eksportuj jako JSON",
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
-  },
-  "settings_export_json_description": "Natychmiast wyeksportuj notatki do pliku JSON (razem z koszem), który może zostać zaimportowany z powrotem",
-  "@settings_export_json_description": {
-    "description": "Description of the setting tile to manually export the notes as JSON."
   },
   "settings_export_markdown": "Wyeksportuj jako Markdown",
   "@settings_export_markdown": {
@@ -357,27 +349,19 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "Automatycznie eksportuj notatki do pliku JSON (razem z koszem), który może zostać zaimportowany z powrotem",
-  "@settings_auto_export_description": {
-    "description": "Description of the settings tile to enable the automatic export of the notes."
-  },
   "settings_auto_export_frequency": "Częstotliwość",
   "@settings_auto_export_frequency": {
-    "description": "Title of the settings tile to choose the frequency of the automatic exports of the notes."
+    "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
   "settings_auto_export_frequency_value": "{frequency, select, 1{Codziennie} 7{Co tydzień} 14{Co 2 tygodnie} 30{Co miesiąc} other{Co {frequency} dni}}",
   "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports of the notes.",
+    "description": "Frequency of the automatic exports.",
     "placeholders": {
       "frequency": {
         "description": "Value of the frequency (as a String to enable the select, but it's an int).",
         "type": "String"
       }
     }
-  },
-  "settings_auto_export_frequency_description": "Częstotliwość automatycznego eksportowania notatek",
-  "@settings_auto_export_frequency_description": {
-    "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
   },
   "settings_auto_export_encryption": "Szyfrowanie",
   "@settings_auto_export_encryption": {
@@ -390,10 +374,6 @@
   "settings_auto_export_directory": "Katalog",
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
-  },
-  "settings_auto_export_directory_description": "Katalog do przechowywania automatycznie wyeksportowanych notatek",
-  "@settings_auto_export_directory_description": {
-    "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
   "settings_text_scaling": "Wielkość tekstu",
   "@settings_text_scaling": {
@@ -720,14 +700,6 @@
   "snack_bar_copied": "Skopiowano treść notatki do schowka.",
   "@snack_bar_copied": {
     "description": "Snack bar informing that the content of the note was copied to clipboard."
-  },
-  "snack_bar_import_success": "Notatki zostały zaimportowane.",
-  "@snack_bar_import_success": {
-    "description": "Snack bar informing that the notes were successfully imported."
-  },
-  "snack_bar_export_success": "Notatki zostały wyeksportowane.",
-  "@snack_bar_export_success": {
-    "description": "Snack bar informing that the notes were successfully manually exported."
   },
   "snack_bar_logs_copied": "Skopiowano logi do schowka.",
   "@snack_bar_logs_copied": {

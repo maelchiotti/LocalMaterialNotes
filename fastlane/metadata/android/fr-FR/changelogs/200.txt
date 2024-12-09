@@ -1,0 +1,17 @@
+AJOUTÉ
+- Export des étiquettes
+- Export des paramètres
+- Conversion exports DNotes (voir GitHub)
+
+MODIFIÉ
+- Déplacement bouton changement mode
+
+CORRIGÉ
+- Nombre d'étiquettes affiché quand désactivées
+- Mauvaise couleur sélecteur couleurs
+- Retour après sélection d'étiquettes ferme
+- Message manquant si aucune étiquettes
+- Confirmation lors de la suppression d'étiquettes
+- Manque d'explication sur désactivation des étiquettes
+- Réinitialisation erronée ordre de tri
+- Textes erronés de boutons

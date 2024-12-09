@@ -37,14 +37,13 @@ class DatabaseUtils {
 
   /// Imports all the notes from a JSON file picked by the user and returns whether the import was successful.
   Future<bool> import(BuildContext context) async {
-    final importFile = await selectFile(jsonTypeGroup);
+    final importedFile = await selectAndReadFile(MimeType.json.value);
 
-    if (importFile == null) {
+    if (importedFile == null) {
       return false;
     }
 
-    final importedString = await importFile.readAsString();
-    var importedJson = jsonDecode(utf8.decode(importedString.codeUnits));
+    var importedJson = jsonDecode(utf8.decode(importedFile));
 
     // If the imported JSON is just a list, then it's the old export format that just contains the notes list
     if (importedJson is List) {
@@ -158,7 +157,9 @@ class DatabaseUtils {
 
     // Add notes and labels to the database
     await _notesService.putAll(notes);
-    await _notesService.putAllLabels(notes, notesLabels);
+    if (importLabels) {
+      await _notesService.putAllLabels(notes, notesLabels);
+    }
 
     return true;
   }
@@ -273,10 +274,6 @@ class DatabaseUtils {
     }
 
     final encodedArchive = ZipEncoder().encode(archive);
-
-    if (encodedArchive == null) {
-      return false;
-    }
 
     return await writeFile(
       directory: exportDirectory,

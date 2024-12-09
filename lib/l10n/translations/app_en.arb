@@ -393,7 +393,7 @@
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
-  "settings_import_description": "Import notes from a JSON file",
+  "settings_import_description": "Import notes, labels and settings from a JSON file",
   "@settings_import_description": {
     "description": "Description of the setting tile to import a backup."
   },
@@ -405,7 +405,7 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "Immediately export the notes to a JSON file (bin included) that can be imported back",
+  "settings_export_json_description": "Immediately export the notes, labels and settings to a JSON file (bin included) that can be imported back",
   "@settings_export_json_description": {
     "description": "Description of the setting tile to manually export the notes as JSON."
   },
@@ -425,17 +425,17 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "Automatically export the notes to a JSON file (bin included) that can be imported back",
+  "settings_auto_export_description": "Automatically export the notes, labels and settings to a JSON file (bin included) that can be imported back",
   "@settings_auto_export_description": {
-    "description": "Description of the settings tile to enable the automatic export of the notes."
+    "description": "Description of the settings tile to enable the automatic export."
   },
   "settings_auto_export_frequency": "Frequency",
   "@settings_auto_export_frequency": {
-    "description": "Title of the settings tile to choose the frequency of the automatic exports of the notes."
+    "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
   "settings_auto_export_frequency_value": "Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}",
   "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports of the notes.",
+    "description": "Frequency of the automatic exports.",
     "placeholders": {
       "frequency": {
         "description": "Value of the frequency (as a String to enable the select, but it's an int).",
@@ -443,7 +443,7 @@
       }
     }
   },
-  "settings_auto_export_frequency_description": "Frequency of the automatic export of the notes",
+  "settings_auto_export_frequency_description": "Frequency of the automatic export",
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
   },
@@ -459,7 +459,7 @@
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
   },
-  "settings_auto_export_directory_description": "Directory where to store the automatic exports of the notes",
+  "settings_auto_export_directory_description": "Directory where to store the automatic exports",
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
