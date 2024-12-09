@@ -50,10 +50,10 @@ packages:
     dependency: "direct main"
     description:
       name: archive
-      sha256: cb6a278ef2dbb298455e1a713bda08524a175630ec643a242c399c932a0a1f7d
+      sha256: "08064924cbf0ab88280a0c3f60db9dd24fec693927e725ecb176f16c629d1cb8"
       url: "https://pub.dev"
     source: hosted
-    version: "3.6.1"
+    version: "4.0.1"
   args:
     dependency: transitive
     description:
@@ -298,10 +298,10 @@ packages:
     dependency: "direct main"
     description:
       name: dart_helper_utils
-      sha256: "14ab5b09e505e9177a84f4bf3548226e5a7e70a01408dd32a4e41591049a9ca8"
+      sha256: "531c4a069bcc15f8d0ae5e63e6c8c0fe115025722a4044e07027ce8c2e528ddb"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.1"
+    version: "3.3.0"
   dart_style:
     dependency: transitive
     description:
@@ -519,10 +519,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_helper_utils
-      sha256: "1d578587ea357d49b0d497c78a3d7c606674116401f08f72caba1a992b29f716"
+      sha256: "185b68c61bb62edd95fab0cb2e93d0ccbe7aceabfb066ae7c3d6b55b73ca50b8"
       url: "https://pub.dev"
     source: hosted
-    version: "6.7.0"
+    version: "6.8.0"
   flutter_hooks:
     dependency: "direct main"
     description:
@@ -535,10 +535,10 @@ packages:
     dependency: "direct dev"
     description:
       name: flutter_launcher_icons
-      sha256: "619817c4b65b322b5104b6bb6dfe6cda62d9729bd7ad4303ecc8b4e690a67a77"
+      sha256: "31cd0885738e87c72d6f055564d37fabcdacee743b396b78c7636c169cac64f5"
       url: "https://pub.dev"
     source: hosted
-    version: "0.14.1"
+    version: "0.14.2"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -678,10 +678,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "8660b74171fafae4aa8202100fa2e55349e078281dadc73a241eb8e758534d9d"
+      sha256: "2fd11229f59e23e967b0775df8d5948a519cd7e1e8b6e849729e010587b46539"
       url: "https://pub.dev"
     source: hosted
-    version: "14.6.1"
+    version: "14.6.2"
   go_router_builder:
     dependency: "direct dev"
     description:
@@ -902,10 +902,10 @@ packages:
     dependency: "direct main"
     description:
       name: material_symbols_icons
-      sha256: "1dea2aef1c83434f832f14341a5ffa1254e76b68e4d90333f95f8a2643bf1024"
+      sha256: "64404f47f8e0a9d20478468e5decef867a688660bad7173adcd20418d7f892c9"
       url: "https://pub.dev"
     source: hosted
-    version: "4.2799.0"
+    version: "4.2801.0"
   meta:
     dependency: transitive
     description:
@@ -1030,10 +1030,10 @@ packages:
     dependency: "direct dev"
     description:
       name: patrol
-      sha256: "829065b7daa1307283339a2b3a2d57f29631e5178d2f9d5276b376f34efda2e8"
+      sha256: "7e7c346890fa234af948fbdf024e09e80142deef7aef572dead1001446ca853c"
       url: "https://pub.dev"
     source: hosted
-    version: "3.13.0"
+    version: "3.13.1"
   patrol_finders:
     dependency: transitive
     description:
@@ -1090,6 +1090,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
+  posix:
+    dependency: transitive
+    description:
+      name: posix
+      sha256: a0117dc2167805aa9125b82eee515cc891819bac2f538c83646d355b16f58b9a
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.1"
   pub_semver:
     dependency: transitive
     description:
@@ -1222,10 +1230,10 @@ packages:
     dependency: "direct main"
     description:
       name: saf_util
-      sha256: "23f2bd8f223835b7dd3a6abf957ca286fa896f759a63397be75b766e9601ba4b"
+      sha256: d0a3c7a023a02bc6d10f5eff02ec714b6834393ec39a9c1f7e3662ac30e5f909
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.0"
+    version: "0.6.1"
   sanitize_filename:
     dependency: "direct main"
     description:
