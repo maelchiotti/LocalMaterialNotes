@@ -17,7 +17,7 @@ import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
 import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
-import '../../../providers/preferences/watched_preferences.dart';
+import '../../preferences/watched_preferences.dart';
 
 /// Notes list and bin's app bar.
 ///

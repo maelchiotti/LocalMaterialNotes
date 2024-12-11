@@ -12,6 +12,7 @@ gen_build:
 gen_watch:
 	dart run build_runner watch --delete-conflicting-outputs
 
+
 # Assets generation
 .PHONY: gen_icon gen_splash gen_full_descriptions
 
@@ -24,17 +25,30 @@ gen_splash:
 gen_full_descriptions:
 	py scripts/generate_full_description.py
 
+
 # Tests
 .PHONY: test_all
 
 test_all:
 	patrol test -t integration_test --dart-define=INTEGRATION_TEST=true
 
+
 # Build
 .PHONY: release
 
 release:
 	flutter build apk --release
+
+
+# Update
+.PHONY: update_flutter update_fastlane
+
+update_flutter:
+	flutter upgrade --force
+
+update_fastlane:
+	bundle update fastlane
+
 
 # Miscellaneous
 .PHONY: clean

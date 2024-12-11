@@ -30,5 +30,5 @@
 
 ### Screenshots
 
-- [ ] Update [`screenshotNotes`](lib/common/constants/notes.dart)
+- [ ] Update screenshot [notes](lib/common/constants/notes.dart) and [labels](lib/common/constants/labels.dart)
 - [ ] Update fastlane screenshots
