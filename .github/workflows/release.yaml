@@ -65,7 +65,7 @@ jobs:
   release_github:
     name: Release on GitHub
     environment: release
-    needs: [ get_version, release_play_store ]
+    needs: [ get_version ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
