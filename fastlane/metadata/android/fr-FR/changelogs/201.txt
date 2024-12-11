@@ -1,0 +1,2 @@
+CORRIGÉ
+- Crash lors du chargement de la préférence du thème

@@ -1,0 +1,2 @@
+FIXED
+- Crash when loading the theming preference
