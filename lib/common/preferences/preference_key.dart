@@ -40,8 +40,8 @@ enum PreferenceKey<T> {
   autoExportFrequency<int>(1),
   autoExportEncryption<bool>(false, backup: false),
   autoExportPassword<String>('', secure: true, backup: false),
-  autoExportDirectory<String>(''),
-  lastAutoExportDate<String>(''),
+  autoExportDirectory<String>('', backup: false),
+  lastAutoExportDate<String>('', backup: false),
 
   // Accessibility
   textScaling<double>(1.0),

@@ -1,0 +1,17 @@
+ADDED
+- Backup labels
+- Backup settings
+- Convert DNotes exports (see GitHub)
+
+CHANGED
+- Moved button to change editor mode to app bar
+
+FIXED
+- Labels count shown in about dialog when disabled
+- Wrong color in label color picker when editing
+- Going back after selecting labels closes app
+- Missing message if no labels exist on selection
+- Confirmation when deleting labels
+- Missing explanation on what disabling labels does
+- Wrong sort order reset
+- Wrong texts on buttons

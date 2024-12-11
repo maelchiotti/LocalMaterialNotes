@@ -22,7 +22,7 @@ gen_splash:
 	dart run flutter_native_splash:create
 
 gen_full_descriptions:
-	py docs/scripts/generate_full_description.py
+	py scripts/generate_full_description.py
 
 # Tests
 .PHONY: test_all
@@ -31,9 +31,9 @@ test_all:
 	patrol test -t integration_test --dart-define=INTEGRATION_TEST=true
 
 # Build
-.PHONY: build_apk_release
+.PHONY: release
 
-build_apk_release:
+release:
 	flutter build apk --release
 
 # Miscellaneous

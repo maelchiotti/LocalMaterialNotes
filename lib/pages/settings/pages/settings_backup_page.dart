@@ -50,6 +50,8 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         ref.read(preferencesProvider.notifier).reset();
 
         SnackBarUtils.info(l.snack_bar_import_success).show();
+
+        setState(() {});
       }
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);

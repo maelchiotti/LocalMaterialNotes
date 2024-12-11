@@ -4,6 +4,29 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.9.0 - 2024-12-09
+
+### Added
+
+- Backup labels
+- Backup settings
+- Python script to convert exports from DNotes (see GitHub)
+
+### Changed
+
+- Moved the button to change the editor mode to the app bar
+
+### Fixed
+
+- Labels count shown in about dialog when labels are disabled
+- Wrong color in the label color picker when editing a label
+- Going back after selecting labels closes the app
+- Missing message if no labels exist when trying to select the labels of a note
+- Ask for confirmation when deleting labels
+- Missing explanation on what disabling labels does
+- Sort order reset when going from creation date to edition date (and vice-versa)
+- Wrong texts on some buttons
+
 ## 1.8.2 - 2024-11-13
 
 ### Fixed
