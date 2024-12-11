@@ -85,6 +85,7 @@ All the supported languages are listed here alphabetically. You can see more det
 - English
 - French
 - German
+- Hindi
 - Polish
 - Portuguese
 - Russian
@@ -93,11 +94,7 @@ All the supported languages are listed here alphabetically. You can see more det
 
 ## External imports
 
-The JSON import feature only supports JSON files created by the application. Scripts to convert exports from other applications to the format used by Material Notes are available in the [external_imports](docs/external_imports) directory.
-
-Currently availbale scripts:
-
-- [Samsung Notes](docs/external_imports/samsung_notes.py)
+The JSON import feature only supports JSON files created by the application. Scripts to convert exports from other applications to the format used by Material Notes are available in the [external_imports](docs/external_imports) directory. Please read [EXTERNAL_IMPORTS.md](docs/external_imports/EXTERNAL_IMPORTS.md) for more details.
 
 ## Credits
 
@@ -105,6 +102,7 @@ Currently availbale scripts:
 
 - [Material Files](https://github.com/zhanghai/MaterialFiles) for the general design inspiration, and especially the logo and its color.
 - [Simplenote](https://simplenote.com) for the general layout of the app and its basic features.
+- [Another notes app](https://github.com/maltaisn/another-notes-app/) for how to handle labels.
 
 ### Localization
 
@@ -112,9 +110,9 @@ Currently availbale scripts:
 - [newmanls](https://github.com/newmanls) for the spanish localization.
 - [xe1st](https://github.com/xe1st) for the turkish localization.
 
-### External imports scripts
+### External imports
 
-- [1ycx](https://github.com/1ycx) for the [Samsung Notes](docs/external_imports/samsung_notes.py) script.
+- [1ycx](https://github.com/1ycx) for the original version of the Samsung Notes script.
 
 ### Assets
 

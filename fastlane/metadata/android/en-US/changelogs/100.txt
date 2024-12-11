@@ -5,7 +5,7 @@ ADDED
 - Hide app from recent apps and prevent screenshots
 - Show checklist button in the toolbar
 - Enable high refresh rate
-- Russian localization
+- Russian translation
 
 CHANGED
 - New settings page layout

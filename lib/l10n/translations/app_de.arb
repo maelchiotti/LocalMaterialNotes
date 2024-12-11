@@ -57,6 +57,14 @@
   "@navigation_notes": {
     "description": "Title of the notes page."
   },
+  "navigation_manage_labels_destination": "Labels verwalten",
+  "@navigation_manage_labels_destination": {
+    "description": "Title of the button in the side navigation drawer to got to the page to manage the labels."
+  },
+  "navigation_manage_labels_page": "Labels",
+  "@navigation_manage_labels_page": {
+    "description": "Title of the page to manage the labels."
+  },
   "navigation_bin": "Papierkorb",
   "@navigation_bin": {
     "description": "Title of the bin page."
@@ -77,9 +85,17 @@
   "@navigation_settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
+  "navigation_settings_labels": "Labels",
+  "@navigation_settings_labels": {
+    "description": "Title of the settings page regarding the labels."
+  },
   "navigation_settings_backup": "Sicherheitskopie",
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
+  },
+  "navigation_settings_accessibility": "Barrierefreiheit",
+  "@navigation_settings_accessibility": {
+    "description": "Title of the settings page regarding the accessibility."
   },
   "navigation_settings_about": "Über",
   "@navigation_settings_about": {
@@ -96,6 +112,10 @@
   "settings_appearance": "Aussehen",
   "@settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
+  },
+  "settings_appearance_description": "Sprache, Gestaltung, Notizkacheln",
+  "@settings_appearance_description": {
+    "description": "Description of the appearance settings page."
   },
   "settings_appearance_application": "Anwendung",
   "@settings_appearance_application": {
@@ -321,6 +341,42 @@
   "@settings_use_paragraph_spacing_description": {
     "description": "Description of the setting tile to enable the spacing between paragraphs in the notes content."
   },
+  "settings_labels": "Labels",
+  "@settings_labels": {
+    "description": "Title of the settings page regarding the labels functionality."
+  },
+  "settings_labels_description": "Aktivierung, Aussehen",
+  "@settings_labels_description": {
+    "description": "Description of the labels settings page."
+  },
+  "settings_enable_labels": "Aktivieren",
+  "@settings_enable_labels": {
+    "description": "Title of the setting tile to enable the labels."
+  },
+  "settings_enable_labels_description": "Erlaubt das Kategorisieren der Notizen mit Beschriftungen (das Deaktivieren dieser Funktion löscht die Beschriftungen weder, noch entfernt sie sie aus den Notizen, es verbirgt sie nur)",
+  "@settings_enable_labels_description": {
+    "description": "Description of the setting tile to enable the labels."
+  },
+  "settings_labels_appearance": "Aussehen",
+  "@settings_labels_appearance": {
+    "description": "Title of the settings section regarding the appearance of the labels."
+  },
+  "settings_show_labels_note_tile": "Labels auf Notizkacheln anzeigen",
+  "@settings_show_labels_note_tile": {
+    "description": "Title of the setting tile to show the labels on the notes tiles."
+  },
+  "settings_show_labels_note_tile_description": "Auf der Startseite Notizen mit ihren Labels anzeigen",
+  "@settings_show_labels_note_tile_description": {
+    "description": "Description of the setting tile to show the labels on the notes tiles."
+  },
+  "settings_show_labels_editor": "Labels im Editor anzeigen",
+  "@settings_show_labels_editor": {
+    "description": "Title of the setting tile to show the labels in the editor."
+  },
+  "settings_show_labels_editor_description": "Liste der Labels am unteren Rand des Editors anzeigen",
+  "@settings_show_labels_editor_description": {
+    "description": "Description of the setting tile to show the labels in the editor."
+  },
   "settings_backup": "Sicherung",
   "@settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
@@ -337,7 +393,7 @@
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
-  "settings_import_description": "Notizen aus einer JSON-Datei importieren",
+  "settings_import_description": "Importieren Sie Notizen, Beschriftungen und Einstellungen aus einer JSON-Datei",
   "@settings_import_description": {
     "description": "Description of the setting tile to import a backup."
   },
@@ -349,7 +405,7 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "Exportiere die Notizen (Papierkorb enthalten) sofort als JSON Datei die zurückimportiert werden kann",
+  "settings_export_json_description": "Exportieren Sie die Notizen, Beschriftungen und Einstellungen sofort in eine JSON-Datei (bin enthalten), die wieder importiert werden kann",
   "@settings_export_json_description": {
     "description": "Description of the setting tile to manually export the notes as JSON."
   },
@@ -369,17 +425,17 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "Exportiere die Notizen (Papierkorb beinhaltet) automatisch in einer JSON Datei die zurückimportiert werden kann",
+  "settings_auto_export_description": "Exportieren Sie Notizen, Beschriftungen und Einstellungen automatisch in eine JSON-Datei (einschließlich Bin), die wieder importiert werden kann",
   "@settings_auto_export_description": {
-    "description": "Description of the settings tile to enable the automatic export of the notes."
+    "description": "Description of the settings tile to enable the automatic export."
   },
   "settings_auto_export_frequency": "Häufigkeit",
   "@settings_auto_export_frequency": {
-    "description": "Title of the settings tile to choose the frequency of the automatic exports of the notes."
+    "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
   "settings_auto_export_frequency_value": "Jeden {frequency, select, 1{Tag} 7{Woche} 14{2 Wochen} 30{Monat} other{{frequency} Tage}}",
   "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports of the notes.",
+    "description": "Frequency of the automatic exports.",
     "placeholders": {
       "frequency": {
         "description": "Value of the frequency (as a String to enable the select, but it's an int).",
@@ -387,7 +443,7 @@
       }
     }
   },
-  "settings_auto_export_frequency_description": "Häufigkeit des automatischen Exports der Notizen",
+  "settings_auto_export_frequency_description": "Häufigkeit des automatischen Exports",
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
   },
@@ -403,13 +459,25 @@
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
   },
-  "settings_auto_export_directory_description": "Ort, wo automatische Exporte gespeichert werden",
-  "@settings_auto_export_directory_description": {
-    "description": "Description of the settings tile to choose the directory where to save the automatic exports."
+  "settings_accessibility": "Barrierefreiheit",
+  "@settings_accessibility": {
+    "description": "Title of the settings page regarding the accessibility."
+  },
+  "settings_accessibility_description": "Textfarbe, Textgröße",
+  "@settings_accessibility_description": {
+    "description": "Description of the accessibility settings page."
   },
   "settings_text_scaling": "Textskalierung",
   "@settings_text_scaling": {
     "description": "Title of the text scale setting tile."
+  },
+  "settings_white_text_dark_mode": "Weißer Text im dunklen Modus",
+  "@settings_white_text_dark_mode": {
+    "description": "Title of the text scale setting tile."
+  },
+  "settings_white_text_dark_mode_description": "Verwende Weiß für den Text im dunklen Modus",
+  "@settings_white_text_dark_mode_description": {
+    "description": "Description of the text scale setting tile."
   },
   "settings_about": "Über",
   "@settings_about": {
@@ -523,6 +591,10 @@
   "@hint_link": {
     "description": "Hint for the link text field in the dialog to add a link in the editor."
   },
+  "hint_label_name": "Name",
+  "@hint_label_name": {
+    "description": "Hint for the text field of the name of a label."
+  },
   "dialog_export_encryption_password": "Passwort",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
@@ -538,6 +610,10 @@
   "tooltip_fab_add_note": "Notiz hinzufügen",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
+  },
+  "tooltip_fab_add_label": "Label hinzufügen",
+  "@tooltip_fab_add_label": {
+    "description": "Floating action button in the labels page to add a new label."
   },
   "tooltip_fab_empty_bin": "Papierkorb leeren",
   "@tooltip_fab_empty_bin": {
@@ -586,6 +662,14 @@
   "tooltip_reset": "Zurücksetzen",
   "@tooltip_reset": {
     "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
+  },
+  "action_labels_toggle_pins": "Fixierung umschalten",
+  "@action_labels_toggle_pins": {
+    "description": "Tooltip for the button to toggle the pin status of the selected labels."
+  },
+  "action_labels_toggle_visibility": "Sichtbarkeit umschalten",
+  "@action_labels_toggle_visibility": {
+    "description": "Tooltip for the button to toggle the visibility of the selected labels."
   },
   "dialog_add_link": "Verknüpfung hinzufügen",
   "@dialog_add_link": {
@@ -669,6 +753,30 @@
   "@dialog_import_encryption_password_error": {
     "description": "Error when the decryption of an encrypted import failed."
   },
+  "dialog_label_add": "Label hinzufügen",
+  "@dialog_label_add": {
+    "description": "Title of the dialog to add a label."
+  },
+  "dialog_label_edit": "Label bearbeiten",
+  "@dialog_label_edit": {
+    "description": "Title of the dialog to edit a label."
+  },
+  "dialog_label_name_cannot_be_empty": "Der Name darf nicht leer sein.",
+  "@dialog_label_name_cannot_be_empty": {
+    "description": "Error message shown when relevant on the text field of the name of the label."
+  },
+  "dialog_label_name_already_used": "Dieser Name wird bereits verwendet.",
+  "@dialog_label_name_already_used": {
+    "description": "Error message shown when relevant on the text field of the name of the label."
+  },
+  "button_sort_creation_date": "Erstellungsdatum",
+  "@button_sort_creation_date": {
+    "description": "Text of the button to sort the notes list by their creation date."
+  },
+  "button_sort_edition_date": "Datum der Bearbeitung",
+  "@button_sort_edition_date": {
+    "description": "Text of the button to sort the notes list by their last edition date."
+  },
   "placeholder_notes": "Keine Notizen",
   "@placeholder_notes": {
     "description": "Placeholder on the notes page when there are no notes."
@@ -717,6 +825,10 @@
   "@about_created": {
     "description": "Date when the note was created."
   },
+  "about_labels": "Labels",
+  "@about_labels": {
+    "description": "Number of labels of the note."
+  },
   "about_words": "Wörter",
   "@about_words": {
     "description": "Number of words in the content of the note."
@@ -729,17 +841,37 @@
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
+  "menu_action_labels": "Labels",
+  "@menu_action_labels": {
+    "description": "Menu action to change the labels of a note."
+  },
+  "action_labels_edit": "Bearbeiten",
+  "@action_labels_edit": {
+    "description": "Menu or swipe action to edit a label."
+  },
+  "action_labels_delete": "Löschen",
+  "@action_labels_delete": {
+    "description": "Menu or swipe action to delete a label."
+  },
+  "filter_labels_all": "Alle",
+  "@filter_labels_all": {
+    "description": "Filter chip in the labels page to all labels."
+  },
+  "filter_labels_visible": "Sichtbar",
+  "@filter_labels_visible": {
+    "description": "Filter chip in the labels page to show only the visible labels."
+  },
+  "filter_labels_pinned": "Fixiert",
+  "@filter_labels_pinned": {
+    "description": "Filter chip in the labels page to show only the pinned labels."
+  },
+  "filter_labels_hidden": "Verborgen",
+  "@filter_labels_hidden": {
+    "description": "Filter chip in the labels page to show only the hidden labels."
+  },
   "snack_bar_copied": "Inhalt der Notiz in die Zwischenablage kopiert.",
   "@snack_bar_copied": {
     "description": "Snack bar informing that the content of the note was copied to clipboard."
-  },
-  "snack_bar_import_success": "Die Notizen wurden erfolgreich importiert.",
-  "@snack_bar_import_success": {
-    "description": "Snack bar informing that the notes were successfully imported."
-  },
-  "snack_bar_export_success": "Die Notizen wurden erfolgreich exportiert.",
-  "@snack_bar_export_success": {
-    "description": "Snack bar informing that the notes were successfully manually exported."
   },
   "snack_bar_logs_copied": "Die Logs wurden in deine Zwischenablage kopiert.",
   "@snack_bar_logs_copied": {

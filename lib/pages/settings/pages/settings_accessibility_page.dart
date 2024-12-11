@@ -1,37 +1,37 @@
 import 'package:dart_helper_utils/dart_helper_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/preferences/preferences_provider.dart';
+import 'package:localmaterialnotes/providers/preferences/watched_preferences.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
 /// Accessibility settings.
-class SettingsAccessibilityPage extends StatefulWidget {
+class SettingsAccessibilityPage extends ConsumerStatefulWidget {
   /// Settings related to accessibility.
   const SettingsAccessibilityPage({super.key});
 
   @override
-  State<SettingsAccessibilityPage> createState() => _SettingsAppearancePageState();
+  ConsumerState<SettingsAccessibilityPage> createState() => _SettingsAppearancePageState();
 }
 
-class _SettingsAppearancePageState extends State<SettingsAccessibilityPage> {
+class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPage> {
   /// Updates the scaling of the text to the new [textScaling] when the slider of the text scaling dialog is changed.
   void _changedTextScaling(double textScaling) {
-    textScalingNotifier.value = textScaling;
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(textScaling: textScaling));
   }
 
   /// Sets the text scaling to the new [textScaling].
   void _submittedTextScaling(double textScaling) {
-    setState(() {
-      PreferenceKey.textScaling.set<double>(textScaling);
-    });
+    PreferenceKey.textScaling.set(textScaling);
 
-    textScalingNotifier.value = textScaling;
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(textScaling: textScaling));
   }
 
   /// Resets the text scaling to the preference value.
@@ -39,22 +39,20 @@ class _SettingsAppearancePageState extends State<SettingsAccessibilityPage> {
   /// Called when the dialog to choose the text scaling is canceled, to revert changes made in real time
   /// when the slider is changed.
   void _canceledTextScaling() {
-    textScalingNotifier.value = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
+    ref.read(preferencesProvider.notifier).reset();
   }
 
   /// Toggles whether to use white text in dark mode.
   void _toggleUseWhiteTextDarkMode(bool toggled) {
-    setState(() {
-      PreferenceKey.useWhiteTextDarkMode.set<bool>(toggled);
-    });
+    PreferenceKey.useWhiteTextDarkMode.set(toggled);
 
-    useWhiteTextDarkModeNotifier.value = toggled;
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(useWhiteTextDarkMode: toggled));
   }
 
   @override
   Widget build(BuildContext context) {
-    final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault<double>();
-    final useWhiteTextDarkMode = PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault<bool>();
+    final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault();
+    final useWhiteTextDarkMode = PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault();
 
     final darkTheme = Theme.of(context).brightness == Brightness.dark;
 

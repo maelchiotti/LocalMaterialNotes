@@ -1,26 +1,24 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:file_selector/file_selector.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/utils/auto_export_utils.dart';
 import 'package:path/path.dart';
 
-/// Writes a file with the [data], in the [directory], with the [filename] and the [mimeType].
+/// Writes a file with the [data], in the [directory], with the [filename].
 ///
 /// Uses the native APIs to write the file without needing any permissions,
 /// so it will only work in the application's own data directory.
 Future<bool> _writeFileNative({
   required String directory,
   required String fileName,
-  required String mimeType,
   required Uint8List data,
 }) async {
   try {
     final path = join(directory, fileName);
-    final file = XFile.fromData(data, mimeType: mimeType);
+    final file = File(path);
 
-    await file.saveTo(path);
+    await file.writeAsBytes(data);
   } catch (exception, stackTrace) {
     logger.e(exception.toString(), exception, stackTrace);
 
@@ -63,7 +61,7 @@ Future<bool> writeFile({
   final isDefaultDirectory = directory == await AutoExportUtils().autoExportDirectoryDefault;
 
   return isDefaultDirectory
-      ? await _writeFileNative(directory: directory, fileName: fileName, mimeType: mimeType, data: data)
+      ? await _writeFileNative(directory: directory, fileName: fileName, data: data)
       : await _writeFileSaf(directory: directory, fileName: fileName, mimeType: mimeType, data: data);
 }
 
@@ -83,12 +81,18 @@ Future<bool> writeFileFromString({
 
 /// Returns the URI to the directory picked by the user, with a persisted write permission.
 Future<String?> selectDirectory() async {
-  return (await safUtil.openDirectory(writePermission: true, persistablePermission: true));
+  return (await safUtil.pickDirectory(writePermission: true, persistablePermission: true))?.uri;
 }
 
-/// Returns the the file picked by the user, limiting the choice to only files of the [typeGroup].
-Future<XFile?> selectFile(XTypeGroup typeGroup) async {
-  return await openFile(acceptedTypeGroups: [typeGroup]);
+/// Returns the the file picked by the user, limiting the choice to only files of the [mimeType].
+Future<Uint8List?> selectAndReadFile(String mimeType) async {
+  final file = (await safUtil.pickFile(mimeTypes: [mimeType]))?.uri;
+
+  if (file == null) {
+    return null;
+  }
+
+  return await safStream.readFileBytes(file);
 }
 
 /// Returns whether the directory at [path] exists.

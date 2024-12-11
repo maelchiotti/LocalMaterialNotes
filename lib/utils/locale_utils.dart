@@ -13,7 +13,7 @@ class LocaleUtils {
 
   /// Locale of the application.
   Locale get appLocale {
-    final localePreferenceLanguageCode = PreferenceKey.locale.getPreferenceOrDefault<String>();
+    final localePreferenceLanguageCode = PreferenceKey.locale.getPreferenceOrDefault();
 
     return Locale(localePreferenceLanguageCode);
   }

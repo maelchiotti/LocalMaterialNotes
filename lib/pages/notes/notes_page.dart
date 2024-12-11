@@ -6,7 +6,7 @@ import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
 import 'package:localmaterialnotes/common/widgets/notes/notes_list.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/pages/notes/widgets/add_note_fab.dart';
-import 'package:localmaterialnotes/providers/notes/notes/notes_provider.dart';
+import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
 /// List of notes.

@@ -104,6 +104,7 @@ class SettingsAboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appVersion = InfoUtils().appVersion;
+    final appBuildNumber = InfoUtils().buildNumber;
 
     return Scaffold(
       appBar: const TopNavigation(
@@ -121,7 +122,7 @@ class SettingsAboutPage extends StatelessWidget {
                 tiles: [
                   SettingAboutTile(
                     title: l.app_name,
-                    description: 'v$appVersion',
+                    description: 'v$appVersion ($appBuildNumber)',
                     applicationIcon: Image.asset(
                       Asset.icon.path,
                       fit: BoxFit.fitWidth,

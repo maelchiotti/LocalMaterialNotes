@@ -1,5 +1,5 @@
 ADDED
-- Portuguese localization
+- Portuguese translation
 
 FIXED
 - Auto export settings tile not updating after disabling auto export

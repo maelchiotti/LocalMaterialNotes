@@ -8,7 +8,7 @@ import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/providers/labels/labels_navigation/labels_navigation_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers.dart';
+import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
 import 'package:localmaterialnotes/routing/routes/bin/bin_route.dart';
 import 'package:localmaterialnotes/routing/routes/labels/labels_route.dart';
 import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
@@ -95,7 +95,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
       } else if (index == 1) {
         BinRoute().go(context);
       } else if (index == 2) {
-        SettingsRoute().push(context);
+        SettingsRoute().push<void>(context);
       } else {
         throw Exception('Invalid drawer index while navigating to a new route: $index');
       }
@@ -118,7 +118,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
       } else if (index == labelsCount + 2) {
         BinRoute().go(context);
       } else if (index == labelsCount + 3) {
-        SettingsRoute().push(context);
+        SettingsRoute().push<void>(context);
       } else if (isLabelsRoute) {
         NotesRoute(
           labelName: labels[index - 1].name,
@@ -212,7 +212,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault<bool>();
+    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
 
     if (enableLabels) {
       return ref.watch(labelsNavigationProvider).when(

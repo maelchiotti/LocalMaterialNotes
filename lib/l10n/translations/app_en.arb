@@ -353,7 +353,7 @@
   "@settings_enable_labels": {
     "description": "Title of the setting tile to enable the labels."
   },
-  "settings_enable_labels_description": "Allow to categorize the notes with labels",
+  "settings_enable_labels_description": "Allow to categorize the notes with labels (disabling it doesn''t delete labels nor remove them from the notes, it only hides them)",
   "@settings_enable_labels_description": {
     "description": "Description of the setting tile to enable the labels."
   },
@@ -393,7 +393,7 @@
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
-  "settings_import_description": "Import notes from a JSON file",
+  "settings_import_description": "Import notes, labels and settings from a JSON file",
   "@settings_import_description": {
     "description": "Description of the setting tile to import a backup."
   },
@@ -405,7 +405,7 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "Immediately export the notes to a JSON file (bin included) that can be imported back",
+  "settings_export_json_description": "Immediately export the notes, labels and settings to a JSON file (bin included) that can be imported back",
   "@settings_export_json_description": {
     "description": "Description of the setting tile to manually export the notes as JSON."
   },
@@ -425,17 +425,17 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "Automatically export the notes to a JSON file (bin included) that can be imported back",
+  "settings_auto_export_description": "Automatically export the notes, labels and settings to a JSON file (bin included) that can be imported back",
   "@settings_auto_export_description": {
-    "description": "Description of the settings tile to enable the automatic export of the notes."
+    "description": "Description of the settings tile to enable the automatic export."
   },
   "settings_auto_export_frequency": "Frequency",
   "@settings_auto_export_frequency": {
-    "description": "Title of the settings tile to choose the frequency of the automatic exports of the notes."
+    "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
   "settings_auto_export_frequency_value": "Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}",
   "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports of the notes.",
+    "description": "Frequency of the automatic exports.",
     "placeholders": {
       "frequency": {
         "description": "Value of the frequency (as a String to enable the select, but it's an int).",
@@ -443,7 +443,7 @@
       }
     }
   },
-  "settings_auto_export_frequency_description": "Frequency of the automatic export of the notes",
+  "settings_auto_export_frequency_description": "Frequency of the automatic export",
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
   },
@@ -459,7 +459,7 @@
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
   },
-  "settings_auto_export_directory_description": "Directory where to store the automatic exports of the notes",
+  "settings_auto_export_directory_description": "Directory where to store the automatic exports",
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
@@ -603,6 +603,14 @@
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
   },
+  "tooltip_undo": "Undo the last action",
+  "@tooltip_undo": {
+    "description": "Tooltip for the button to undo the last action in the editor."
+  },
+  "tooltip_redo": "Redo the last action",
+  "@tooltip_redo": {
+    "description": "Tooltip for the button to redo the last action in the editor."
+  },
   "tooltip_toggle_checkbox": "Toggle checkbox",
   "@tooltip_toggle_checkbox": {
     "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
@@ -728,6 +736,20 @@
   "dialog_empty_bin_body": "Do you really want to permanently empty the bin? You will not be able to restore the notes it contains.",
   "@dialog_empty_bin_body": {
     "description": "Text for the dialog to confirm emptying the bin."
+  },
+  "dialog_delete_label": "Delete",
+  "@dialog_delete_label": {
+    "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
+  },
+  "dialog_delete_label_body": "Do you really want to delete {count} {count, plural, zero{} one{label} other{labels}}? {count, plural, zero{} one{It} other{They}} will be removed from the notes where you added {count, plural, zero{} one{it} other{them}}.",
+  "@dialog_delete_label_body": {
+    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
   },
   "dialog_export_encryption_switch": "Encrypt the JSON export",
   "@dialog_export_encryption_switch": {
@@ -877,13 +899,13 @@
   "@snack_bar_copied": {
     "description": "Snack bar informing that the content of the note was copied to clipboard."
   },
-  "snack_bar_import_success": "The notes were successfully imported.",
+  "snack_bar_import_success": "The backup was successfully imported.",
   "@snack_bar_import_success": {
-    "description": "Snack bar informing that the notes were successfully imported."
+    "description": "Snack bar informing that the backup was successfully imported."
   },
-  "snack_bar_export_success": "The notes were successfully exported.",
+  "snack_bar_export_success": "The backup were successfully exported.",
   "@snack_bar_export_success": {
-    "description": "Snack bar informing that the notes were successfully manually exported."
+    "description": "Snack bar informing that the backup was successfully manually exported."
   },
   "snack_bar_logs_copied": "The logs were copied to your clipboard.",
   "@snack_bar_logs_copied": {
@@ -892,6 +914,10 @@
   "snack_bar_logs_exported": "The logs were successfully exported.",
   "@snack_bar_logs_exported": {
     "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
+  },
+  "snack_bar_no_labels": "There are no labels.",
+  "@snack_bar_no_labels": {
+    "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
   },
   "action_add_note_title": "Add a note",
   "@action_add_note_title": {

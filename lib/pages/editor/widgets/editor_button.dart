@@ -21,7 +21,7 @@ class EditorButton extends StatelessWidget {
   final Color? iconColor;
 
   /// Called when the button is pressed.
-  final Function()? onPressed;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
