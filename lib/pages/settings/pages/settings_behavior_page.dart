@@ -11,8 +11,8 @@ import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
+import '../../../common/preferences/watched_preferences.dart';
 import '../../../providers/preferences/preferences_provider.dart';
-import '../../../providers/preferences/watched_preferences.dart';
 
 /// Settings related to the behavior of the application.
 class SettingsBehaviorPage extends ConsumerStatefulWidget {

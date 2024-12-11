@@ -1,4 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -58,7 +59,17 @@ class PreferencesUtils {
       throw ArgumentError('The preference is securely stored, use getSecure() instead');
     }
 
-    return _preferences.get(preferenceKey.name) as T?;
+    try {
+      return _preferences.get(preferenceKey.name) as T?;
+    }
+    // On type conversion error, reset the preference to its default value
+    on TypeError catch (error) {
+      logger.e('Conversion error while getting the value of a preference', error, error.stackTrace);
+
+      preferenceKey.reset();
+
+      return null;
+    }
   }
 
   /// Returns the value of the securely stored [preferenceKey].
