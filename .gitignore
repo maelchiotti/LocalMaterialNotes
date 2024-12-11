@@ -61,8 +61,5 @@ integration_test/test_bundle.dart
 # Generated files
 *.g.dart
 
-# Isar submodule
-.isar
-
 # External imports
 docs/external_imports/outputs/*.json
