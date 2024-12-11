@@ -85,6 +85,7 @@ All the supported languages are listed here alphabetically. You can see more det
 - English
 - French
 - German
+- Hindi
 - Polish
 - Portuguese
 - Russian
