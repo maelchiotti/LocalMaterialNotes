@@ -2,6 +2,7 @@ ADDED
 - Backup labels
 - Backup settings
 - Convert DNotes exports (see GitHub)
+- Hindi translation
 
 CHANGED
 - Moved button to change editor mode to app bar

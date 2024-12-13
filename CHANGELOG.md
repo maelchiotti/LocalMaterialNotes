@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Backup labels
 - Backup settings
 - Python script to convert exports from DNotes (see GitHub)
+- Hindi translation
 
 ### Changed
 

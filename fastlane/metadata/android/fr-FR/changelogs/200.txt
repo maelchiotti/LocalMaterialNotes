@@ -2,12 +2,13 @@ AJOUTÉ
 - Export des étiquettes
 - Export des paramètres
 - Conversion exports DNotes (voir GitHub)
+- Hindi
 
 MODIFIÉ
 - Déplacement bouton changement mode
 
 CORRIGÉ
-- Nombre d'étiquettes affiché quand désactivées
+- Nombre étiquettes affiché si désactivées
 - Mauvaise couleur sélecteur couleurs
 - Retour après sélection d'étiquettes ferme
 - Message manquant si aucune étiquettes
