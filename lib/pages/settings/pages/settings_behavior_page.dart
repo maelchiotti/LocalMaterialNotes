@@ -59,7 +59,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
     final confirmations = Confirmations.fromPreference();
     final flagSecure = PreferenceKey.flagSecure.getPreferenceOrDefault();
 
-    final swipeActions = ref.read(preferencesProvider.select((preferences) => preferences.swipeActions));
+    final swipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.swipeActions));
 
     return Scaffold(
       appBar: const TopNavigation(

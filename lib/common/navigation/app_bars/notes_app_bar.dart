@@ -132,7 +132,7 @@ class NotesAppBar extends ConsumerWidget {
     final sortMethod = SortMethod.fromPreference();
     final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault();
 
-    final layout = ref.read(preferencesProvider.select((preferences) => preferences.layout));
+    final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
 
     return AppBar(
       title: Text(context.title(context)),
