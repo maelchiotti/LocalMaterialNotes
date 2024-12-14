@@ -93,7 +93,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
       if (index == 0) {
         NotesRoute().go(context);
       } else if (index == 1) {
-        BinRoute().go(context);
+        BinRoute().push<void>(context);
       } else if (index == 2) {
         SettingsRoute().push<void>(context);
       } else {
@@ -114,16 +114,16 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
       if (index == 0) {
         NotesRoute().go(context);
       } else if (index == labelsCount + 1) {
-        LabelsRoute().go(context);
+        LabelsRoute().push<void>(context);
       } else if (index == labelsCount + 2) {
-        BinRoute().go(context);
+        BinRoute().push<void>(context);
       } else if (index == labelsCount + 3) {
         SettingsRoute().push<void>(context);
       } else if (isLabelsRoute) {
         NotesRoute(
           labelName: labels[index - 1].name,
           $extra: labels[index - 1],
-        ).go(context);
+        ).push<void>(context);
       } else {
         throw Exception('Invalid drawer index while navigating to a new route: $index');
       }
