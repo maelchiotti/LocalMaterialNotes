@@ -60,11 +60,11 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       case MenuOption.share:
         await shareNote(note);
       case MenuOption.delete:
-        await deleteNote(context, ref, note);
+        await deleteNote(context, ref, note, true);
       case MenuOption.restore:
-        await restoreNote(context, ref, note);
+        await restoreNote(context, ref, note, true);
       case MenuOption.deletePermanently:
-        await permanentlyDeleteNote(context, ref, note);
+        await permanentlyDeleteNote(context, ref, note, true);
       case MenuOption.about:
         await showModalBottomSheet<void>(
           context: context,
