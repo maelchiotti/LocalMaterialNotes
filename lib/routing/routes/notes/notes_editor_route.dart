@@ -14,11 +14,6 @@ class NotesEditorRoute extends GoRouteData {
     required this.autoFocus,
   });
 
-  /// Constructor without parameters used to get the location of the route.
-  const NotesEditorRoute.empty()
-      : readOnly = null,
-        autoFocus = null;
-
   /// Whether the text fields should be read only.
   final bool? readOnly;
 
