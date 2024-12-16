@@ -3,17 +3,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/constants/sizes.dart';
-import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
+import 'package:localmaterialnotes/navigation/navigation_routes.dart';
+import 'package:localmaterialnotes/navigation/navigator_utils.dart';
+import 'package:localmaterialnotes/pages/bin/bin_page.dart';
+import 'package:localmaterialnotes/pages/labels/labels_page.dart';
+import 'package:localmaterialnotes/pages/notes/notes_page.dart';
+import 'package:localmaterialnotes/pages/settings/settings_main_page.dart';
 import 'package:localmaterialnotes/providers/labels/labels_navigation/labels_navigation_provider.dart';
 import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
-import 'package:localmaterialnotes/routing/routes/bin/bin_route.dart';
-import 'package:localmaterialnotes/routing/routes/labels/labels_route.dart';
-import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
-import 'package:localmaterialnotes/routing/routes/settings/settings_route.dart';
-import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 import 'package:localmaterialnotes/utils/asset.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
@@ -29,58 +29,70 @@ class SideNavigation extends ConsumerStatefulWidget {
 
 class _SideNavigationState extends ConsumerState<SideNavigation> {
   /// Index of the currently selected drawer index.
-  int _index = 0;
+  late int _index;
 
-  void _setIndex([List<Label>? labels]) {
-    // The labels are disabled
-    if (labels == null) {
-      if (context.location == NotesRoute().location) {
-        _index = 0;
-      } else if (context.location == BinRoute().location) {
-        _index = 1;
-      } else if (context.location == SettingsRoute().location) {
-        _index = 2;
-      } else {
-        throw Exception('Unexpected route while setting the drawer index: ${context.location}');
-      }
-    }
+  /// Returns whether the [route] is the home page.
+  bool isHomeRoute(String route) {
+    return route == '/' || route == NavigationRoute.notes.name;
+  }
+
+  /// Returns whether the [route] is the home page.
+  bool isLabelRoute(String route) {
+    return route.startsWith('label-');
+  }
+
+  /// Sets the index of the navigation drawer.
+  void setIndex([List<Label>? labels]) {
+    // Get the name of the current route
+    final route = ModalRoute.of(context)?.settings.name;
+    assert(route != null, 'Missing current route while navigating');
+    route!;
+
+    final int index;
 
     // The labels are enabled
-    else {
-      final labelsCount = labels.length;
+    if (labels != null) {
+      if (isHomeRoute(route)) {
+        index = 0;
+      } else if (isLabelRoute(route)) {
+        final labelName = route.substring(6);
+        final label = labels.firstWhere(
+          (label) => label.name == labelName,
+          orElse: () {
+            throw Exception('Unknown label name while setting the index of the navigation drawer: $labelName');
+          },
+        );
 
-      if (context.location == NotesRoute().location) {
-        // Notes list
-        if (context.queryParameters.isEmpty) {
-          _index = 0;
-        }
-
-        // Notes list with a filter on a label
-        else {
-          final labelName = context.queryParameters['label-name'];
-          final label = labels.firstWhere(
-            (label) => label.name == labelName,
-            orElse: () {
-              throw Exception('Unknown label name in notes route query parameters: $labelName');
-            },
-          );
-
-          _index = labels.indexOf(label) + 1;
-        }
-      } else if (context.location == LabelsRoute().location) {
-        _index = labelsCount + 1;
-      } else if (context.location == BinRoute().location) {
-        _index = labelsCount + 2;
-      } else if (context.location == SettingsRoute().location) {
-        _index = labelsCount + 3;
+        index = labels.indexOf(label) + 1;
+      } else if (route == NavigationRoute.manageLabels.name) {
+        index = labels.length + 1;
+      } else if (route == NavigationRoute.bin.name) {
+        index = labels.length + 2;
+      } else if (route == NavigationRoute.settings.name) {
+        index = labels.length + 3;
       } else {
-        throw Exception('Unexpected route while setting the drawer index: ${context.location}');
+        throw Exception('Unknown route while setting the index of the navigation drawer: $route');
       }
     }
+
+    // The labels are disabled
+    else {
+      if (route == '/' || route == NavigationRoute.notes.name) {
+        index = 0;
+      } else if (route == NavigationRoute.bin.name) {
+        index = 1;
+      } else if (route == NavigationRoute.settings.name) {
+        index = 2;
+      } else {
+        throw Exception('Unknown route while setting the index of the navigation drawer: $route');
+      }
+    }
+
+    _index = index;
   }
 
   /// Navigates to the route corresponding to the [index].
-  void _navigate(int index, List<Label>? labels) {
+  void navigate(int index, List<Label>? labels) {
     // If the new route is the same as the current one, just close the drawer
     if (_index == index) {
       Navigator.pop(context);
@@ -88,57 +100,74 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
       return;
     }
 
-    // The labels are disabled
-    if (labels == null) {
+    // Get the name of the current route
+    final route = ModalRoute.of(context)?.settings.name;
+    assert(route != null, 'Missing current route while navigating');
+    route!;
+
+    // Close the navigation drawer
+    Navigator.pop(context);
+
+    // The labels are enabled
+    if (labels != null) {
+      final isNewRouteLabelRoute = index > 0 && index <= labels.length;
+
+      // Clear the current note if the new route is not the notes list or the labels list
+      if (index != 0 && !isNewRouteLabelRoute) {
+        currentNoteNotifier.value = null;
+      }
+
       if (index == 0) {
-        NotesRoute().go(context);
-      } else if (index == 1) {
-        BinRoute().push<void>(context);
-      } else if (index == 2) {
-        SettingsRoute().push<void>(context);
+        // If in a label route, go to the notes page
+        if (isLabelRoute(route)) {
+          NavigationRoute.notes.go(context, NotesPage());
+        }
+        // If not in a label route, pop to the notes page
+        else {
+          Navigator.pop(context);
+        }
+      } else if (isNewRouteLabelRoute) {
+        final label = labels[index - 1];
+
+        NavigatorUtils.go(
+          context,
+          '${NavigationRoute.label.name}-${label.name}',
+          NotesPage(label: label),
+        );
+      } else if (index == labels.length + 1) {
+        NavigationRoute.manageLabels.pushOrGo(context, isHomeRoute(route), LabelsPage());
+      } else if (index == labels.length + 2) {
+        NavigationRoute.bin.pushOrGo(context, isHomeRoute(route), BinPage());
+      } else if (index == labels.length + 3) {
+        NavigationRoute.settings.pushOrGo(context, isHomeRoute(route), SettingsMainPage());
       } else {
         throw Exception('Invalid drawer index while navigating to a new route: $index');
       }
     }
 
-    // The labels are enabled
+    // The labels are disabled
     else {
-      final labelsCount = labels.length;
-      final isLabelsRoute = index > 0 && index <= labelsCount;
-
-      // Clear the current note if the new route is not the notes list or the labels list
-      if (index != 0 && !isLabelsRoute) {
-        currentNoteNotifier.value = null;
-      }
-
-      if (index == 0) {
-        NotesRoute().go(context);
-      } else if (index == labelsCount + 1) {
-        LabelsRoute().push<void>(context);
-      } else if (index == labelsCount + 2) {
-        BinRoute().push<void>(context);
-      } else if (index == labelsCount + 3) {
-        SettingsRoute().push<void>(context);
-      } else if (isLabelsRoute) {
-        NotesRoute(
-          labelName: labels[index - 1].name,
-          $extra: labels[index - 1],
-        ).push<void>(context);
-      } else {
-        throw Exception('Invalid drawer index while navigating to a new route: $index');
+      switch (index) {
+        case 0:
+          Navigator.pop(context);
+        case 1:
+          NavigationRoute.bin.pushOrGo(context, isHomeRoute(route), BinPage());
+        case 2:
+          NavigationRoute.settings.pushOrGo(context, isHomeRoute(route), SettingsMainPage());
+        default:
+          throw Exception('Unknown index while navigating: $index');
       }
     }
 
     setState(() {
       _index = index;
     });
-
-    Navigator.pop(context);
   }
 
+  /// Returns the navigation drawer.
   Widget drawer(BuildContext context, [List<Label>? labels]) {
     return NavigationDrawer(
-      onDestinationSelected: (index) => _navigate(index, labels),
+      onDestinationSelected: (index) => navigate(index, labels),
       selectedIndex: _index,
       children: <Widget>[
         DrawerHeader(
@@ -217,7 +246,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
     if (enableLabels) {
       return ref.watch(labelsNavigationProvider).when(
         data: (labels) {
-          _setIndex(labels);
+          setIndex(labels);
 
           return drawer(context, labels);
         },
@@ -229,7 +258,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
         },
       );
     } else {
-      _setIndex();
+      setIndex();
 
       return drawer(context);
     }

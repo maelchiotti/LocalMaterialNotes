@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
@@ -13,8 +12,6 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/preferences/preferences_provider.dart';
-import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
-import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
 import '../../preferences/watched_preferences.dart';
@@ -28,7 +25,17 @@ import '../../preferences/watched_preferences.dart';
 ///   - The button to search through the notes.
 class NotesAppBar extends ConsumerWidget {
   /// Default constructor.
-  const NotesAppBar({super.key});
+  const NotesAppBar({
+    super.key,
+    required this.title,
+    this.notesPage = true,
+  });
+
+  /// Title to display in the app bar.
+  final String title;
+
+  /// Whether the current page is the notes list.
+  final bool notesPage;
 
   /// Returns the placeholder for the search button used when the search isn't available.
   Widget get searchButtonPlaceholder {
@@ -106,9 +113,7 @@ class NotesAppBar extends ConsumerWidget {
       Navigator.pop(context);
     }
 
-    context.location == NotesRoute().location
-        ? ref.read(notesProvider.notifier).sort()
-        : ref.read(binProvider.notifier).sort();
+    notesPage ? ref.read(notesProvider.notifier).sort() : ref.read(binProvider.notifier).sort();
   }
 
   /// Filters the [notes] according to the [search].
@@ -135,7 +140,7 @@ class NotesAppBar extends ConsumerWidget {
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
 
     return AppBar(
-      title: Text(context.title(context)),
+      title: Text(title),
       actions: [
         IconButton(
           key: Keys.appBarLayoutIconButton,
@@ -192,7 +197,7 @@ class NotesAppBar extends ConsumerWidget {
           },
           onSelected: (sortMethod) => _sort(context, ref, sortMethod: sortMethod),
         ),
-        if (context.location == NotesRoute().location)
+        if (notesPage)
           ref.watch(notesProvider).when(
             data: (notes) {
               return child(context, notes);

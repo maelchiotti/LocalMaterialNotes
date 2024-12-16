@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/side_navigation.dart';
@@ -26,8 +27,11 @@ class LabelsPage extends ConsumerWidget {
     return ref.watch(labelsProvider).when(
       data: (labels) {
         return Scaffold(
-          appBar: const TopNavigation(
-            appbar: BasicAppBar(),
+          appBar: TopNavigation(
+            appbar: BasicAppBar(
+              title: l.navigation_manage_labels_page,
+              back: true,
+            ),
           ),
           drawer: const SideNavigation(),
           floatingActionButton: const AddLabelFab(),

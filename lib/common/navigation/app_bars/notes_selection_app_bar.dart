@@ -7,15 +7,11 @@ import 'package:localmaterialnotes/common/actions/notes/select.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/constants/separators.dart';
-import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/routing/routes/bin/bin_route.dart';
-import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
-import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 /// Notes selection mode app bar.
 ///
@@ -25,20 +21,26 @@ import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 ///   - A button to select / unselects all notes.
 ///   - A button to toggle the pin status / restore the selected notes.
 ///   - A button to delete / permanently delete the selected notes.
-class NotesSelectionAppBar extends ConsumerStatefulWidget {
+class NotesSelectionAppBar extends ConsumerWidget {
   /// Default constructor.
-  const NotesSelectionAppBar({super.key});
+  const NotesSelectionAppBar({
+    super.key,
+    this.notesPage = true,
+  });
 
-  @override
-  ConsumerState<NotesSelectionAppBar> createState() => _SelectionAppBarState();
-}
+  /// Whether the current page is the notes list.
+  final bool notesPage;
 
-class _SelectionAppBarState extends ConsumerState<NotesSelectionAppBar> {
   /// Builds the app bar.
   ///
   /// The title and the behavior of the buttons can change depending on the difference between
   /// the length of the [selectedNotes] and the [totalNotesCount].
-  AppBar buildAppBar(List<Note> selectedNotes, int totalNotesCount) {
+  AppBar buildAppBar(
+    BuildContext context,
+    WidgetRef ref,
+    List<Note> selectedNotes,
+    int totalNotesCount,
+  ) {
     final allSelected = selectedNotes.length == totalNotesCount;
 
     return AppBar(
@@ -55,18 +57,7 @@ class _SelectionAppBarState extends ConsumerState<NotesSelectionAppBar> {
         Padding(padding: Paddings.appBarActionsEnd),
         Separator.divider1indent16.vertical,
         Padding(padding: Paddings.appBarActionsEnd),
-        if (context.location == BinRoute().location) ...[
-          IconButton(
-            icon: const Icon(Icons.restore_from_trash),
-            tooltip: l.tooltip_restore,
-            onPressed: selectedNotes.isNotEmpty ? () => restoreNotes(context, ref, selectedNotes) : null,
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete_forever),
-            tooltip: l.tooltip_permanently_delete,
-            onPressed: selectedNotes.isNotEmpty ? () => permanentlyDeleteNotes(context, ref, selectedNotes) : null,
-          ),
-        ] else ...[
+        if (notesPage) ...[
           IconButton(
             icon: const Icon(Icons.push_pin),
             tooltip: l.tooltip_toggle_pins,
@@ -80,6 +71,17 @@ class _SelectionAppBarState extends ConsumerState<NotesSelectionAppBar> {
             tooltip: l.tooltip_delete,
             onPressed: selectedNotes.isNotEmpty ? () => deleteNotes(context, ref, selectedNotes) : null,
           ),
+        ] else ...[
+          IconButton(
+            icon: const Icon(Icons.restore_from_trash),
+            tooltip: l.tooltip_restore,
+            onPressed: selectedNotes.isNotEmpty ? () => restoreNotes(context, ref, selectedNotes) : null,
+          ),
+          IconButton(
+            icon: const Icon(Icons.delete_forever),
+            tooltip: l.tooltip_permanently_delete,
+            onPressed: selectedNotes.isNotEmpty ? () => permanentlyDeleteNotes(context, ref, selectedNotes) : null,
+          ),
         ],
         Padding(padding: Paddings.appBarActionsEnd),
       ],
@@ -87,11 +89,16 @@ class _SelectionAppBarState extends ConsumerState<NotesSelectionAppBar> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return context.location == NotesRoute().location
+  Widget build(BuildContext context, WidgetRef ref) {
+    return notesPage
         ? ref.watch(notesProvider).when(
             data: (notes) {
-              return buildAppBar(notes.where((note) => note.selected).toList(), notes.length);
+              return buildAppBar(
+                context,
+                ref,
+                notes.where((note) => note.selected).toList(),
+                notes.length,
+              );
             },
             error: (exception, stackTrace) {
               return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
@@ -102,7 +109,12 @@ class _SelectionAppBarState extends ConsumerState<NotesSelectionAppBar> {
           )
         : ref.watch(binProvider).when(
             data: (notes) {
-              return buildAppBar(notes.where((note) => note.selected).toList(), notes.length);
+              return buildAppBar(
+                context,
+                ref,
+                notes.where((note) => note.selected).toList(),
+                notes.length,
+              );
             },
             error: (exception, stackTrace) {
               return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
