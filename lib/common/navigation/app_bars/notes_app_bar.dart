@@ -13,6 +13,7 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/preferences/preferences_provider.dart';
+import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
 import '../../preferences/watched_preferences.dart';
@@ -40,6 +41,7 @@ class NotesAppBar extends ConsumerWidget {
   final bool notesPage;
 
 
+  final bool bin;
   final Label? label;
 
   /// Returns the placeholder for the search button used when the search isn't available.
@@ -223,7 +225,7 @@ class NotesAppBar extends ConsumerWidget {
         if (notesPage)
           ref.watch(notesProvider).when(
             data: (notes) {
-              return child(context, notes, false);
+              return child(context, notes, true);
             },
             error: (error, stackTrace) {
               return const EmptyPlaceholder();
@@ -233,9 +235,9 @@ class NotesAppBar extends ConsumerWidget {
             },
           )
         else
-          ref.watch(binProvider).when(
+          ref.watch(notesProvider).when(
             data: (notes) {
-              return child(context, notes, true);
+              return child(context, notes, false);
             },
             error: (error, stackTrace) {
               return const EmptyPlaceholder();

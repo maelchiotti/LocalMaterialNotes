@@ -90,7 +90,7 @@ class NotesList extends ConsumerWidget {
               return const LoadingPlaceholder();
             },
           )
-        : ref.watch(binProvider).when(
+        : ref.watch(notesProvider).when(
             data: (notes) {
               return child(context, ref, notes);
             },

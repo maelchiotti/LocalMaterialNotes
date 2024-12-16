@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fleather/fleather.dart';
-import 'package:fuzzywuzzy/fuzzywuzzy.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
@@ -116,7 +115,19 @@ class Note extends Equatable implements Comparable<Note> {
 
   /// Returns the visible [labels] of the note as a sorted list.
   @ignore
-  List<Label> get labelsVisibleSorted => labels.toList().where((label) => label.visible).sorted();
+  List<Label> get labelsVisibleSorted {
+    return labels.toList().where((label) {
+      return label.visible;
+    }).sorted();
+  }
+
+  /// Returns the names of the visible [labels] of the note as a sorted list.
+  @ignore
+  List<String> get labelsNamesVisibleSorted {
+    return labelsVisibleSorted.map((label) {
+      return label.name;
+    }).toList();
+  }
 
   /// Note content as plain text.
   @ignore
@@ -211,21 +222,6 @@ class Note extends Equatable implements Comparable<Note> {
   @ignore
   bool get isEmpty {
     return isTitleEmpty && isContentEmpty;
-  }
-
-  /// Returns whether the [search] matches the note.
-  ///
-  /// Checks if the [search] is directly present in the title and the content,
-  /// but also uses fuzzy search in the title. This cannot be done on the content for performance reasons.
-  bool matchesSearch(String search) {
-    final searchCleaned = search.toLowerCase().trim();
-
-    final titleContains = title.toLowerCase().contains(searchCleaned);
-    final contentContains = title.toLowerCase().contains(searchCleaned);
-
-    final titleMatches = weightedRatio(plainText, searchCleaned) >= 50;
-
-    return titleContains || contentContains || titleMatches;
   }
 
   /// Notes are sorted according to:
