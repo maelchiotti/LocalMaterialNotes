@@ -12,6 +12,7 @@ environment:
 dependencies:
   after_layout: ^1.2.0
   archive: ^4.0.1
+  back_button_interceptor: ^8.0.0
   collection: ^1.18.0
   cupertino_icons: ^1.0.8
   dart_helper_utils: ^3.3.0
