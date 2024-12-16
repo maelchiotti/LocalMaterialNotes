@@ -28,7 +28,7 @@ class SideNavigation extends ConsumerStatefulWidget {
 }
 
 class _SideNavigationState extends ConsumerState<SideNavigation> {
-  /// Index of the currently selected drawer index.
+  /// Index of the currently selected drawer destination.
   late int _index;
 
   /// Returns whether the [route] is the home page.
@@ -141,7 +141,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
       } else if (index == labels.length + 3) {
         NavigationRoute.settings.pushOrGo(context, isHomeRoute(route), SettingsMainPage());
       } else {
-        throw Exception('Invalid drawer index while navigating to a new route: $index');
+        throw Exception('Invalid drawer indexes while navigating to a new route: $index');
       }
     }
 

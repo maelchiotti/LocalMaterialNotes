@@ -8,6 +8,7 @@ import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
 import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/widgets/notes/note_tile.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/empty_placeholder.dart';
+import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
@@ -28,6 +29,7 @@ class NotesAppBar extends ConsumerWidget {
   const NotesAppBar({
     super.key,
     required this.title,
+    this.label,
     this.notesPage = true,
   });
 
@@ -36,6 +38,9 @@ class NotesAppBar extends ConsumerWidget {
 
   /// Whether the current page is the notes list.
   final bool notesPage;
+
+
+  final Label? label;
 
   /// Returns the placeholder for the search button used when the search isn't available.
   Widget get searchButtonPlaceholder {
@@ -46,34 +51,9 @@ class NotesAppBar extends ConsumerWidget {
     );
   }
 
-  /// Returns the child of the widget.
-  ///
-  /// The child is either the [searchButtonPlaceholder] if the [notes] are empty, or the search anchor with the [notes]
-  /// to search otherwise.
-  Widget child(BuildContext context, List<Note> notes) {
-    if (notes.isEmpty) {
-      return searchButtonPlaceholder;
-    }
-
-    return SearchAnchor(
-      key: Keys.searchViewSearchAnchor,
-      viewHintText: l.tooltip_search,
-      searchController: SearchController(),
-      viewBackgroundColor: Theme.of(context).colorScheme.surface,
-      builder: (context, controller) {
-        return IconButton(
-          key: Keys.appBarSearchIconButton,
-          onPressed: () => controller.openView(),
-          icon: const Icon(Icons.search),
-          tooltip: l.tooltip_search,
-        );
-      },
-      suggestionsBuilder: (_, controller) => _filterNotes(controller.text, notes),
-    );
-  }
 
   /// Toggles the notes layout.
-  void _toggleLayout(WidgetRef ref, Layout currentLayout) {
+  void toggleLayout(WidgetRef ref, Layout currentLayout) {
     final newLayout = currentLayout == Layout.list ? Layout.grid : Layout.list;
 
     PreferenceKey.layout.set(newLayout.name);
@@ -82,7 +62,7 @@ class NotesAppBar extends ConsumerWidget {
   }
 
   /// Sorts the notes according to the [sortMethod] and whether they should be sorted in [ascending] order.
-  void _sort(BuildContext context, WidgetRef ref, {SortMethod? sortMethod, bool? ascending}) {
+  void sort(BuildContext context, WidgetRef ref, {SortMethod? sortMethod, bool? ascending}) {
     // The 'Ascending' menu item was taped
     if (sortMethod == SortMethod.ascending) {
       final oldAscendingPreference = PreferenceKey.sortAscending.getPreferenceOrDefault();
@@ -116,20 +96,61 @@ class NotesAppBar extends ConsumerWidget {
     notesPage ? ref.read(notesProvider.notifier).sort() : ref.read(binProvider.notifier).sort();
   }
 
-  /// Filters the [notes] according to the [search].
-  List<NoteTile> _filterNotes(String? search, List<Note> notes) {
+  /// Searches for the notes that match the [search].
+  ///
+  /// If [bin] is set to `true`, the search should be performed on the deleted notes.
+  Future<List<NoteTile>> searchNotes(String? search, bool bin) async {
     if (search == null || search.isEmpty) {
       return [];
     }
 
-    return notes.where((note) {
-      return note.matchesSearch(search);
-    }).mapIndexed((index, note) {
+    final notes = await NotesService().search(search, bin, label?.name);
+
+    return notes.mapIndexed((index, note) {
       return NoteTile.searchView(
         key: Keys.noteTile(index),
         note: note,
       );
     }).toList();
+  }
+
+  /// Returns the placeholder for the search button used when the search isn't available.
+  Widget get searchButtonPlaceholder {
+    return IconButton(
+      onPressed: null,
+      icon: const Icon(Icons.search),
+      tooltip: l.tooltip_search,
+    );
+  }
+
+  /// Returns the child of the widget.
+  ///
+  /// The child is either the [searchButtonPlaceholder] if the [notes] are empty, or the search anchor with the [notes]
+  /// to search otherwise.
+  ///
+  /// The [bin] parameter indicates if the current route is the bin.
+  Widget child(BuildContext context, List<Note> notes, bool bin) {
+    if (notes.isEmpty) {
+      return searchButtonPlaceholder;
+    }
+
+    return SearchAnchor(
+      key: Keys.searchViewSearchAnchor,
+      viewHintText: l.tooltip_search,
+      searchController: SearchController(),
+      viewBackgroundColor: Theme.of(context).colorScheme.surface,
+      builder: (context, controller) {
+        return IconButton(
+          key: Keys.appBarSearchIconButton,
+          onPressed: () => controller.openView(),
+          icon: const Icon(Icons.search),
+          tooltip: l.tooltip_search,
+        );
+      },
+      suggestionsBuilder: (context, controller) {
+        return searchNotes(controller.text, bin);
+      },
+    );
   }
 
   @override
@@ -139,12 +160,14 @@ class NotesAppBar extends ConsumerWidget {
 
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
 
+    final title = label != null ? label!.name : context.title;
+
     return AppBar(
       title: Text(title),
       actions: [
         IconButton(
           key: Keys.appBarLayoutIconButton,
-          onPressed: () => _toggleLayout(ref, layout),
+          onPressed: () => toggleLayout(ref, layout),
           tooltip: layout == Layout.list ? l.tooltip_layout_grid : l.tooltip_layout_list,
           icon: Icon(layout == Layout.list ? Icons.grid_view : Icons.view_list),
         ),
@@ -189,18 +212,18 @@ class NotesAppBar extends ConsumerWidget {
                   title: Text(l.button_sort_ascending),
                   trailing: Checkbox(
                     value: sortAscending,
-                    onChanged: (ascending) => _sort(context, ref, ascending: ascending),
+                    onChanged: (ascending) => sort(context, ref, ascending: ascending),
                   ),
                 ),
               ),
             ];
           },
-          onSelected: (sortMethod) => _sort(context, ref, sortMethod: sortMethod),
+          onSelected: (sortMethod) => sort(context, ref, sortMethod: sortMethod),
         ),
         if (notesPage)
           ref.watch(notesProvider).when(
             data: (notes) {
-              return child(context, notes);
+              return child(context, notes, false);
             },
             error: (error, stackTrace) {
               return const EmptyPlaceholder();
@@ -212,7 +235,7 @@ class NotesAppBar extends ConsumerWidget {
         else
           ref.watch(binProvider).when(
             data: (notes) {
-              return child(context, notes);
+              return child(context, notes, true);
             },
             error: (error, stackTrace) {
               return const EmptyPlaceholder();
