@@ -17,7 +17,7 @@ class NotesPage extends ConsumerWidget {
   /// The notes can optionally be filtered by a [label].
   const NotesPage({
     super.key,
-    required this.label,
+    this.label,
   });
 
   /// The label to use to filter the notes.

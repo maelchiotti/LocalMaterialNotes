@@ -32,8 +32,13 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
   late int _index;
 
   /// Returns whether the [route] is the home page.
-  bool getIsHomePage(String route) {
+  bool isHomeRoute(String route) {
     return route == '/' || route == NavigationRoute.notes.name;
+  }
+
+  /// Returns whether the [route] is the home page.
+  bool isLabelRoute(String route) {
+    return route.startsWith('label-');
   }
 
   /// Sets the index of the navigation drawer.
@@ -47,9 +52,9 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
 
     // The labels are enabled
     if (labels != null) {
-      if (getIsHomePage(route)) {
+      if (isHomeRoute(route)) {
         index = 0;
-      } else if (route.startsWith('label-')) {
+      } else if (isLabelRoute(route)) {
         final labelName = route.substring(6);
         final label = labels.firstWhere(
           (label) => label.name == labelName,
@@ -100,36 +105,39 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
     assert(route != null, 'Missing current route while navigating');
     route!;
 
-    final isHomePage = getIsHomePage(route);
-
     // Close the navigation drawer
     Navigator.pop(context);
 
     // The labels are enabled
     if (labels != null) {
-      final isLabelRoute = index > 0 && index <= labels.length;
+      final isNewRouteLabelRoute = index > 0 && index <= labels.length;
 
       // Clear the current note if the new route is not the notes list or the labels list
-      if (index != 0 && !isLabelRoute) {
+      if (index != 0 && !isNewRouteLabelRoute) {
         currentNoteNotifier.value = null;
       }
 
       if (index == 0) {
-        NavigatorUtils.popToHome(context);
-      } else if (isLabelRoute) {
+        if (isLabelRoute(route)) {
+          NavigationRoute.notes.go(context, NotesPage());
+        } else {
+          // If not in a label route, pop all the pages until the notes page
+          NavigatorUtils.popToHome(context);
+        }
+      } else if (isNewRouteLabelRoute) {
         final label = labels[index - 1];
 
-        if (isHomePage) {
-          NavigatorUtils.push(context, '${NavigationRoute.label.name}-${label.name}', NotesPage(label: label));
-        } else {
-          NavigatorUtils.go(context, '${NavigationRoute.label.name}-${label.name}', NotesPage(label: label));
-        }
+        NavigatorUtils.go(
+          context,
+          '${NavigationRoute.label.name}-${label.name}',
+          NotesPage(label: label),
+        );
       } else if (index == labels.length + 1) {
-        NavigationRoute.manageLabels.pushOrGo(context, isHomePage, LabelsPage());
+        NavigationRoute.manageLabels.pushOrGo(context, isHomeRoute(route), LabelsPage());
       } else if (index == labels.length + 2) {
-        NavigationRoute.bin.pushOrGo(context, isHomePage, BinPage());
+        NavigationRoute.bin.pushOrGo(context, isHomeRoute(route), BinPage());
       } else if (index == labels.length + 3) {
-        NavigationRoute.settings.pushOrGo(context, isHomePage, SettingsMainPage());
+        NavigationRoute.settings.pushOrGo(context, isHomeRoute(route), SettingsMainPage());
       } else {
         throw Exception('Invalid drawer index while navigating to a new route: $index');
       }
@@ -141,9 +149,9 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
         case 0:
           NavigatorUtils.popToHome(context);
         case 1:
-          NavigationRoute.bin.pushOrGo(context, isHomePage, BinPage());
+          NavigationRoute.bin.pushOrGo(context, isHomeRoute(route), BinPage());
         case 2:
-          NavigationRoute.settings.pushOrGo(context, isHomePage, SettingsMainPage());
+          NavigationRoute.settings.pushOrGo(context, isHomeRoute(route), SettingsMainPage());
         default:
           throw Exception('Unknown index while navigating: $index');
       }
