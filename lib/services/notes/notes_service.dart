@@ -79,7 +79,6 @@ class NotesService {
   ///
   /// If [label] is set, the search should be performed on the notes that have that label.
   Future<List<Note>> search(String search, bool notesPage, String? label) async {
-    print(label);
     final searchFilter = Mimir.and(
       [
         Mimir.where('deleted', isEqualTo: (!notesPage).toString()),
