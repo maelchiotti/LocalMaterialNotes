@@ -34,7 +34,8 @@ class NotesPage extends ConsumerWidget {
       appBar: TopNavigation(
         appbar: NotesAppBar(
           key: Keys.appBarNotesBin,
-          title: l.navigation_notes,
+          title: label?.name ?? l.navigation_notes,
+          label: label,
         ),
       ),
       drawer: SideNavigation(),

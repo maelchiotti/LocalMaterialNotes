@@ -40,8 +40,7 @@ class NotesAppBar extends ConsumerWidget {
   /// Whether the current page is the notes list.
   final bool notesPage;
 
-
-  final bool bin;
+  /// The label on which the notes are filtered if in a label page.
   final Label? label;
 
   /// Returns the placeholder for the search button used when the search isn't available.
@@ -52,7 +51,6 @@ class NotesAppBar extends ConsumerWidget {
       tooltip: l.tooltip_search,
     );
   }
-
 
   /// Toggles the notes layout.
   void toggleLayout(WidgetRef ref, Layout currentLayout) {
@@ -99,14 +97,12 @@ class NotesAppBar extends ConsumerWidget {
   }
 
   /// Searches for the notes that match the [search].
-  ///
-  /// If [bin] is set to `true`, the search should be performed on the deleted notes.
-  Future<List<NoteTile>> searchNotes(String? search, bool bin) async {
+  Future<List<NoteTile>> searchNotes(String? search) async {
     if (search == null || search.isEmpty) {
       return [];
     }
 
-    final notes = await NotesService().search(search, bin, label?.name);
+    final notes = await NotesService().search(search, notesPage, label?.name);
 
     return notes.mapIndexed((index, note) {
       return NoteTile.searchView(
@@ -116,22 +112,11 @@ class NotesAppBar extends ConsumerWidget {
     }).toList();
   }
 
-  /// Returns the placeholder for the search button used when the search isn't available.
-  Widget get searchButtonPlaceholder {
-    return IconButton(
-      onPressed: null,
-      icon: const Icon(Icons.search),
-      tooltip: l.tooltip_search,
-    );
-  }
-
   /// Returns the child of the widget.
   ///
   /// The child is either the [searchButtonPlaceholder] if the [notes] are empty, or the search anchor with the [notes]
   /// to search otherwise.
-  ///
-  /// The [bin] parameter indicates if the current route is the bin.
-  Widget child(BuildContext context, List<Note> notes, bool bin) {
+  Widget child(BuildContext context, List<Note> notes) {
     if (notes.isEmpty) {
       return searchButtonPlaceholder;
     }
@@ -150,7 +135,7 @@ class NotesAppBar extends ConsumerWidget {
         );
       },
       suggestionsBuilder: (context, controller) {
-        return searchNotes(controller.text, bin);
+        return searchNotes(controller.text);
       },
     );
   }
@@ -159,10 +144,7 @@ class NotesAppBar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final sortMethod = SortMethod.fromPreference();
     final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault();
-
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
-
-    final title = label != null ? label!.name : context.title;
 
     return AppBar(
       title: Text(title),
@@ -225,7 +207,7 @@ class NotesAppBar extends ConsumerWidget {
         if (notesPage)
           ref.watch(notesProvider).when(
             data: (notes) {
-              return child(context, notes, true);
+              return child(context, notes);
             },
             error: (error, stackTrace) {
               return const EmptyPlaceholder();
@@ -237,7 +219,7 @@ class NotesAppBar extends ConsumerWidget {
         else
           ref.watch(notesProvider).when(
             data: (notes) {
-              return child(context, notes, false);
+              return child(context, notes);
             },
             error: (error, stackTrace) {
               return const EmptyPlaceholder();
