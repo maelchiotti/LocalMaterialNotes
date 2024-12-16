@@ -30,4 +30,10 @@ class LabelsList extends _$LabelsList {
 
     return labels.sorted();
   }
+
+  Label getByName(String name) {
+    assert(state.value != null, 'The value of the labels list provider is null');
+
+    return state.value!.firstWhere((label) => label.name == name);
+  }
 }
