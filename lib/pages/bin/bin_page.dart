@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/navigation/app_bars/notes_app_bar.dart';
 import 'package:localmaterialnotes/common/navigation/side_navigation.dart';
 import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
@@ -23,10 +24,11 @@ class BinPage extends ConsumerStatefulWidget {
 class _BinPageState extends ConsumerState<BinPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: TopNavigation(
         appbar: NotesAppBar(
           key: Keys.appBarNotesBin,
+          title: l.navigation_bin,
         ),
       ),
       drawer: SideNavigation(),

@@ -82,9 +82,12 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
     final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault();
 
     return Scaffold(
-      appBar: const TopNavigation(
+      appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar.back(),
+        appbar: BasicAppBar(
+          title: l.navigation_settings_editor,
+          back: true,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

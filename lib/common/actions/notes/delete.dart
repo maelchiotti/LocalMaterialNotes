@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/actions/notes/select.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/dialogs/confirmation_dialog.dart';
@@ -30,7 +29,7 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note, [bool p
   }
 
   if (context.mounted && pop) {
-    context.pop();
+    Navigator.pop(context);
   }
 
   currentNoteNotifier.value = null;
@@ -90,7 +89,7 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
   }
 
   if (context.mounted && pop) {
-    context.pop();
+    Navigator.pop(context);
   }
 
   currentNoteNotifier.value = null;

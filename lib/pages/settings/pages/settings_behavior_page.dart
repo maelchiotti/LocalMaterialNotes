@@ -62,9 +62,12 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
     final swipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.swipeActions));
 
     return Scaffold(
-      appBar: const TopNavigation(
+      appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar.back(),
+        appbar: BasicAppBar(
+          title: l.navigation_settings_behavior,
+          back: true,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

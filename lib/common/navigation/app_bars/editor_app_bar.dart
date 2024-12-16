@@ -1,7 +1,6 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/actions/notes/copy.dart';
 import 'package:localmaterialnotes/common/actions/notes/delete.dart';
 import 'package:localmaterialnotes/common/actions/notes/labels.dart';
@@ -130,9 +129,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
             valueListenable: isFleatherEditorEditMode,
             builder: (context, isEditMode, child) {
               return AppBar(
-                leading: BackButton(
-                  onPressed: () => context.pop(),
-                ),
+                leading: BackButton(),
                 actions: note == null
                     ? null
                     : [

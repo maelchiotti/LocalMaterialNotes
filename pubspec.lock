@@ -610,22 +610,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
-  go_router:
-    dependency: "direct main"
-    description:
-      name: go_router
-      sha256: "2fd11229f59e23e967b0775df8d5948a519cd7e1e8b6e849729e010587b46539"
-      url: "https://pub.dev"
-    source: hosted
-    version: "14.6.2"
-  go_router_builder:
-    dependency: "direct dev"
-    description:
-      name: go_router_builder
-      sha256: "3425b72dea69209754ac6b71b4da34165dcd4d4a2934713029945709a246427a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.7.1"
   graphs:
     dependency: transitive
     description:

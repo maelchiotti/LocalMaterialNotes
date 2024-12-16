@@ -8,10 +8,10 @@ import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/extensions/locale_extension.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
+import 'package:localmaterialnotes/pages/notes/notes_page.dart';
 import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
 import 'package:localmaterialnotes/providers/labels/labels_navigation/labels_navigation_provider.dart';
 import 'package:localmaterialnotes/providers/preferences/preferences_provider.dart';
-import 'package:localmaterialnotes/routing/router.dart';
 import 'package:localmaterialnotes/utils/locale_utils.dart';
 import 'package:localmaterialnotes/utils/quick_actions_utils.dart';
 import 'package:localmaterialnotes/utils/share_utils.dart';
@@ -71,9 +71,10 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
           data: MediaQuery.of(context).copyWith(
             textScaler: TextScaler.linear(textScaling),
           ),
-          child: MaterialApp.router(
+          child: MaterialApp(
             title: 'Material Notes',
-            routerConfig: router,
+            home: NotesPage(label: null),
+            navigatorKey: rootNavigatorKey,
             builder: (context, child) {
               // Change the widget shown when a widget building fails
               ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);

@@ -7,15 +7,11 @@ import 'package:localmaterialnotes/common/actions/notes/select.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/constants/separators.dart';
-import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/routing/routes/bin/bin_route.dart';
-import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
-import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 /// Notes selection mode app bar.
 ///
@@ -27,7 +23,12 @@ import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 ///   - A button to delete / permanently delete the selected notes.
 class NotesSelectionAppBar extends ConsumerStatefulWidget {
   /// Default constructor.
-  const NotesSelectionAppBar({super.key});
+  const NotesSelectionAppBar({
+    super.key,
+    this.notesPage = true,
+  });
+
+  final bool notesPage;
 
   @override
   ConsumerState<NotesSelectionAppBar> createState() => _SelectionAppBarState();
@@ -55,7 +56,7 @@ class _SelectionAppBarState extends ConsumerState<NotesSelectionAppBar> {
         Padding(padding: Paddings.appBarActionsEnd),
         Separator.divider1indent16.vertical,
         Padding(padding: Paddings.appBarActionsEnd),
-        if (context.location == BinRoute().location) ...[
+        if (widget.notesPage) ...[
           IconButton(
             icon: const Icon(Icons.restore_from_trash),
             tooltip: l.tooltip_restore,
@@ -88,7 +89,7 @@ class _SelectionAppBarState extends ConsumerState<NotesSelectionAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return context.location == NotesRoute().location
+    return widget.notesPage
         ? ref.watch(notesProvider).when(
             data: (notes) {
               return buildAppBar(notes.where((note) => note.selected).toList(), notes.length);
