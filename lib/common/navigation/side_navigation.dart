@@ -31,10 +31,12 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
   /// Index of the currently selected drawer index.
   late int _index;
 
+  /// Returns whether the [route] is the home page.
   bool getIsHomePage(String route) {
     return route == '/' || route == NavigationRoute.notes.name;
   }
 
+  /// Sets the index of the navigation drawer.
   void setIndex([List<Label>? labels]) {
     // Get the name of the current route
     final route = ModalRoute.of(context)?.settings.name;
@@ -152,6 +154,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
     });
   }
 
+  /// Returns the navigation drawer.
   Widget drawer(BuildContext context, [List<Label>? labels]) {
     return NavigationDrawer(
       onDestinationSelected: (index) => navigate(index, labels),

@@ -31,7 +31,10 @@ class NotesAppBar extends ConsumerWidget {
     this.notesPage = true,
   });
 
+  /// Title to display in the app bar.
   final String title;
+
+  /// Whether the current page is the notes list.
   final bool notesPage;
 
   /// Returns the placeholder for the search button used when the search isn't available.

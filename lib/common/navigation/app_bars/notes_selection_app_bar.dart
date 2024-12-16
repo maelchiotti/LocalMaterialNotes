@@ -28,6 +28,7 @@ class NotesSelectionAppBar extends ConsumerStatefulWidget {
     this.notesPage = true,
   });
 
+  /// Whether the current page is the notes list.
   final bool notesPage;
 
   @override

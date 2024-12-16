@@ -13,6 +13,7 @@ class BasicAppBar extends StatelessWidget {
     this.back = false,
   });
 
+  /// Title to display in the app bar.
   final String title;
 
   /// Whether to show the back button.

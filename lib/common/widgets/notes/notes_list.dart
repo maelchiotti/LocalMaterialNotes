@@ -23,6 +23,7 @@ class NotesList extends ConsumerWidget {
     this.notesPage = true,
   });
 
+  /// Whether the current page is the notes list.
   final bool notesPage;
 
   /// Returns the child of the widget.
