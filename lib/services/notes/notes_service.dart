@@ -75,13 +75,14 @@ class NotesService {
 
   /// Returns all the notes that match the [search].
   ///
-  /// If [bin] is set to `true`, the search should be performed on the deleted notes.
+  /// If [notesPage] is set to `true`, the search should be performed on the deleted notes.
   ///
   /// If [label] is set, the search should be performed on the notes that have that label.
-  Future<List<Note>> search(String search, bool bin, String? label) async {
+  Future<List<Note>> search(String search, bool notesPage, String? label) async {
+    print(label);
     final searchFilter = Mimir.and(
       [
-        Mimir.where('deleted', isEqualTo: bin.toString()),
+        Mimir.where('deleted', isEqualTo: (!notesPage).toString()),
         if (label != null) Mimir.where('labels', containsAtLeastOneOf: [label])
       ],
     );

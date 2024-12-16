@@ -178,12 +178,12 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     } else {
       currentNoteNotifier.value = widget.note;
 
-      NavigatorUtils.pushNotesEditor(context, widget.note.deleted, false);
-
-      // If the note was opened from the search view, it needs to be closed.
+      // If the note was opened from the search view, it needs to be closed
       if (widget.searchView) {
         Navigator.pop(context);
       }
+
+      NavigatorUtils.pushNotesEditor(context, widget.note.deleted, false);
     }
   }
 
