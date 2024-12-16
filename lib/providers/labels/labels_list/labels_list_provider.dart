@@ -31,6 +31,7 @@ class LabelsList extends _$LabelsList {
     return labels.sorted();
   }
 
+  /// Returns the label with the [name].
   Label getByName(String name) {
     assert(state.value != null, 'The value of the labels list provider is null');
 
