@@ -21,7 +21,7 @@ import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 ///   - A button to select / unselects all notes.
 ///   - A button to toggle the pin status / restore the selected notes.
 ///   - A button to delete / permanently delete the selected notes.
-class NotesSelectionAppBar extends ConsumerStatefulWidget {
+class NotesSelectionAppBar extends ConsumerWidget {
   /// Default constructor.
   const NotesSelectionAppBar({
     super.key,
@@ -31,16 +31,16 @@ class NotesSelectionAppBar extends ConsumerStatefulWidget {
   /// Whether the current page is the notes list.
   final bool notesPage;
 
-  @override
-  ConsumerState<NotesSelectionAppBar> createState() => _SelectionAppBarState();
-}
-
-class _SelectionAppBarState extends ConsumerState<NotesSelectionAppBar> {
   /// Builds the app bar.
   ///
   /// The title and the behavior of the buttons can change depending on the difference between
   /// the length of the [selectedNotes] and the [totalNotesCount].
-  AppBar buildAppBar(List<Note> selectedNotes, int totalNotesCount) {
+  AppBar buildAppBar(
+    BuildContext context,
+    WidgetRef ref,
+    List<Note> selectedNotes,
+    int totalNotesCount,
+  ) {
     final allSelected = selectedNotes.length == totalNotesCount;
 
     return AppBar(
@@ -57,18 +57,7 @@ class _SelectionAppBarState extends ConsumerState<NotesSelectionAppBar> {
         Padding(padding: Paddings.appBarActionsEnd),
         Separator.divider1indent16.vertical,
         Padding(padding: Paddings.appBarActionsEnd),
-        if (widget.notesPage) ...[
-          IconButton(
-            icon: const Icon(Icons.restore_from_trash),
-            tooltip: l.tooltip_restore,
-            onPressed: selectedNotes.isNotEmpty ? () => restoreNotes(context, ref, selectedNotes) : null,
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete_forever),
-            tooltip: l.tooltip_permanently_delete,
-            onPressed: selectedNotes.isNotEmpty ? () => permanentlyDeleteNotes(context, ref, selectedNotes) : null,
-          ),
-        ] else ...[
+        if (notesPage) ...[
           IconButton(
             icon: const Icon(Icons.push_pin),
             tooltip: l.tooltip_toggle_pins,
@@ -82,6 +71,17 @@ class _SelectionAppBarState extends ConsumerState<NotesSelectionAppBar> {
             tooltip: l.tooltip_delete,
             onPressed: selectedNotes.isNotEmpty ? () => deleteNotes(context, ref, selectedNotes) : null,
           ),
+        ] else ...[
+          IconButton(
+            icon: const Icon(Icons.restore_from_trash),
+            tooltip: l.tooltip_restore,
+            onPressed: selectedNotes.isNotEmpty ? () => restoreNotes(context, ref, selectedNotes) : null,
+          ),
+          IconButton(
+            icon: const Icon(Icons.delete_forever),
+            tooltip: l.tooltip_permanently_delete,
+            onPressed: selectedNotes.isNotEmpty ? () => permanentlyDeleteNotes(context, ref, selectedNotes) : null,
+          ),
         ],
         Padding(padding: Paddings.appBarActionsEnd),
       ],
@@ -89,11 +89,16 @@ class _SelectionAppBarState extends ConsumerState<NotesSelectionAppBar> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return widget.notesPage
+  Widget build(BuildContext context, WidgetRef ref) {
+    return notesPage
         ? ref.watch(notesProvider).when(
             data: (notes) {
-              return buildAppBar(notes.where((note) => note.selected).toList(), notes.length);
+              return buildAppBar(
+                context,
+                ref,
+                notes.where((note) => note.selected).toList(),
+                notes.length,
+              );
             },
             error: (exception, stackTrace) {
               return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
@@ -104,7 +109,12 @@ class _SelectionAppBarState extends ConsumerState<NotesSelectionAppBar> {
           )
         : ref.watch(binProvider).when(
             data: (notes) {
-              return buildAppBar(notes.where((note) => note.selected).toList(), notes.length);
+              return buildAppBar(
+                context,
+                ref,
+                notes.where((note) => note.selected).toList(),
+                notes.length,
+              );
             },
             error: (exception, stackTrace) {
               return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
