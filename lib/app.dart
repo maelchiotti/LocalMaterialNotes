@@ -109,13 +109,11 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
               // Change the widget shown when a widget building fails
               ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);
 
-              if (child == null) {
-                throw StateError('MaterialApp child is null');
-              }
+              assert(child != null, 'MaterialApp child is null');
 
               return Directionality(
                 textDirection: LocaleUtils().deviceLocale.textDirection,
-                child: child,
+                child: child!,
               );
             },
             theme: ThemeUtils().getLightTheme(lightDynamicColorScheme, dynamicTheming),
