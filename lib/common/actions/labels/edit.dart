@@ -9,6 +9,7 @@ import 'package:localmaterialnotes/providers/labels/labels/labels_provider.dart'
 Future<void> editLabel(BuildContext context, WidgetRef ref, Label label) async {
   final editedLabel = await showAdaptiveDialog<Label>(
     context: context,
+    useRootNavigator: false,
     builder: (context) {
       return LabelDialog(
         title: l.dialog_label_edit,

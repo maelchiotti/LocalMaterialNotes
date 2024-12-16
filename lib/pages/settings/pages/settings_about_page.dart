@@ -107,9 +107,12 @@ class SettingsAboutPage extends StatelessWidget {
     final appBuildNumber = InfoUtils().buildNumber;
 
     return Scaffold(
-      appBar: const TopNavigation(
+      appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar.back(),
+        appbar: BasicAppBar(
+          title: l.navigation_settings_about,
+          back: true,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

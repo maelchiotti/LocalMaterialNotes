@@ -206,9 +206,12 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     final autoExportDirectory = AutoExportUtils().autoExportDirectory.decoded;
 
     return Scaffold(
-      appBar: const TopNavigation(
+      appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar.back(),
+        appbar: BasicAppBar(
+          title: l.navigation_settings_backup,
+          back: true,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

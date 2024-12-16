@@ -4,7 +4,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:localmaterialnotes/common/constants/paddings.dart';
 import 'package:localmaterialnotes/common/constants/separators.dart';
 import 'package:localmaterialnotes/common/constants/sizes.dart';
-import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
 import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
 import 'package:localmaterialnotes/common/widgets/notes/note_tile.dart';
 import 'package:localmaterialnotes/common/widgets/placeholders/empty_placeholder.dart';
@@ -14,21 +13,25 @@ import 'package:localmaterialnotes/models/note/note.dart';
 import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
 import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
 import 'package:localmaterialnotes/providers/preferences/preferences_provider.dart';
-import 'package:localmaterialnotes/routing/routes/notes/notes_route.dart';
-import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 import 'package:localmaterialnotes/utils/keys.dart';
 
 /// List of notes.
 class NotesList extends ConsumerWidget {
   /// Default constructor.
-  const NotesList({super.key});
+  const NotesList({
+    super.key,
+    this.notesPage = true,
+  });
+
+  /// Whether the current page is the notes list.
+  final bool notesPage;
 
   /// Returns the child of the widget.
   ///
   /// The child is either an empty placeholder if the [notes] are empty, are the [notes] list otherwise.
   Widget child(BuildContext context, WidgetRef ref, List<Note> notes) {
     if (notes.isEmpty) {
-      return context.location == NotesRoute().location ? EmptyPlaceholder.notes() : EmptyPlaceholder.bin();
+      return notesPage ? EmptyPlaceholder.notes() : EmptyPlaceholder.bin();
     }
 
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
@@ -75,7 +78,7 @@ class NotesList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return context.location == NotesRoute().location
+    return notesPage
         ? ref.watch(notesProvider).when(
             data: (notes) {
               return child(context, ref, notes);

@@ -15,9 +15,8 @@ import 'package:localmaterialnotes/common/preferences/preference_key.dart';
 import 'package:localmaterialnotes/common/widgets/notes/note_tile_dismissible.dart';
 import 'package:localmaterialnotes/common/widgets/notes/note_tile_labels_list.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
+import 'package:localmaterialnotes/navigation/navigator_utils.dart';
 import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
-import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
-import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 
 import '../../../providers/preferences/preferences_provider.dart';
 
@@ -179,7 +178,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     } else {
       currentNoteNotifier.value = widget.note;
 
-      NotesEditorRoute(readOnly: widget.note.deleted, autoFocus: false).push<void>(context);
+      NavigatorUtils.pushNotesEditor(context, widget.note.deleted, false);
 
       // If the note was opened from the search view, it needs to be closed.
       if (widget.searchView) {

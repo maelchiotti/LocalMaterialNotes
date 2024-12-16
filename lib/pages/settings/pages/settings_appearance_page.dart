@@ -122,9 +122,12 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      appBar: const TopNavigation(
+      appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar.back(),
+        appbar: BasicAppBar(
+          title: l.navigation_settings_appearance,
+          //back: true,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

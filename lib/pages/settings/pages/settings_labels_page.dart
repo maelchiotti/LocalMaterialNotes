@@ -53,9 +53,12 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
     final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.getPreferenceOrDefault();
 
     return Scaffold(
-      appBar: const TopNavigation(
+      appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar.back(),
+        appbar: BasicAppBar(
+          title: l.navigation_settings_labels,
+          back: true,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

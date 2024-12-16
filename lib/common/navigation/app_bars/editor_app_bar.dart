@@ -1,7 +1,6 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:localmaterialnotes/common/actions/notes/copy.dart';
 import 'package:localmaterialnotes/common/actions/notes/delete.dart';
 import 'package:localmaterialnotes/common/actions/notes/labels.dart';
@@ -60,11 +59,11 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       case MenuOption.share:
         await shareNote(note);
       case MenuOption.delete:
-        await deleteNote(context, ref, note);
+        await deleteNote(context, ref, note, true);
       case MenuOption.restore:
-        await restoreNote(context, ref, note);
+        await restoreNote(context, ref, note, true);
       case MenuOption.deletePermanently:
-        await permanentlyDeleteNote(context, ref, note);
+        await permanentlyDeleteNote(context, ref, note, true);
       case MenuOption.about:
         await showModalBottomSheet<void>(
           context: context,
@@ -130,9 +129,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
             valueListenable: isFleatherEditorEditMode,
             builder: (context, isEditMode, child) {
               return AppBar(
-                leading: BackButton(
-                  onPressed: () => context.pop(),
-                ),
+                leading: BackButton(),
                 actions: note == null
                     ? null
                     : [
