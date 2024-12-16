@@ -118,11 +118,13 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
       }
 
       if (index == 0) {
+        // If in a label route, go to the notes page
         if (isLabelRoute(route)) {
           NavigationRoute.notes.go(context, NotesPage());
-        } else {
-          // If not in a label route, pop all the pages until the notes page
-          NavigatorUtils.popToHome(context);
+        }
+        // If not in a label route, pop to the notes page
+        else {
+          Navigator.pop(context);
         }
       } else if (isNewRouteLabelRoute) {
         final label = labels[index - 1];
@@ -147,7 +149,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
     else {
       switch (index) {
         case 0:
-          NavigatorUtils.popToHome(context);
+          Navigator.pop(context);
         case 1:
           NavigationRoute.bin.pushOrGo(context, isHomeRoute(route), BinPage());
         case 2:

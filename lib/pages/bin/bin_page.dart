@@ -35,7 +35,10 @@ class _BinPageState extends ConsumerState<BinPage> {
       floatingActionButton: EmptyBinFab(
         key: Keys.fabEmptyBin,
       ),
-      body: NotesList(key: Keys.notesPageNotesList),
+      body: NotesList(
+        key: Keys.notesPageNotesList,
+        notesPage: false,
+      ),
     );
   }
 }
