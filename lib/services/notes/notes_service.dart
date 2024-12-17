@@ -31,7 +31,11 @@ class NotesService {
 
   /// Ensures the notes service is initialized.
   Future<void> ensureInitialized() async {
-    _index = DatabaseService().mimir.getIndex('notes');
+    _index = await DatabaseService().mimir.openIndex(
+      'notes',
+      primaryKey: 'id',
+      searchableFields: ['title', 'content'],
+    );
 
     // If the app runs with the 'INTEGRATION_TEST' environment parameter,
     // clear all the notes and add the notes for the integration tests
@@ -52,6 +56,29 @@ class NotesService {
     else if (await IsFirstRun.isFirstCall()) {
       await put(welcomeNote);
     }
+  }
+
+  Future<void> _updateIndex(Note note) async {
+    final document = NoteIndex.fromNote(note).toJson();
+    await _index.addDocument(document);
+  }
+
+  Future<void> _updateAllIndexes(List<Note> notes) async {
+    final documents = notes.map((note) {
+      return NoteIndex.fromNote(note).toJson();
+    }).toList();
+    await _index.addDocuments(documents);
+  }
+
+  Future<void> _deleteIndex(Note note) async {
+    await _index.deleteDocument(note.id.toString());
+  }
+
+  Future<void> _deleteAllIndexes(List<Note> notes) async {
+    final notesIds = notes.map((note) {
+      return note.id.toString();
+    }).toList();
+    await _index.deleteDocuments(notesIds);
   }
 
   /// Returns all the notes.
@@ -111,8 +138,7 @@ class NotesService {
       await _notes.put(note);
     });
 
-    final document = NoteIndex.fromNote(note).toJson();
-    await _index.addDocument(document);
+    await _updateIndex(note);
   }
 
   /// Puts the [notes] in the database.
@@ -121,10 +147,18 @@ class NotesService {
       await _notes.putAll(notes);
     });
 
-    final documents = notes.map((note) {
-      return NoteIndex.fromNote(note).toJson();
-    }).toList();
-    await _index.addDocuments(documents);
+    await _updateAllIndexes(notes);
+  }
+
+  /// Updates the [note] with the [labels] in the database.
+  Future<void> putLabels(Note note, Iterable<Label> labels) async {
+    await _database.writeTxn(() async {
+      await note.labels.reset();
+      note.labels.addAll(labels);
+      await note.labels.save();
+    });
+
+    await _updateIndex(note);
   }
 
   /// Updates the [notes] with their corresponding [notesLabels] in the database.
@@ -141,15 +175,8 @@ class NotesService {
         await note.labels.save();
       }
     });
-  }
 
-  /// Updates the [note] with the [labels] in the database.
-  Future<void> putLabels(Note note, Iterable<Label> labels) async {
-    await _database.writeTxn(() async {
-      await note.labels.reset();
-      note.labels.addAll(labels);
-      await note.labels.save();
-    });
+    await _updateAllIndexes(notes);
   }
 
   /// Deletes the [note] from the database.
@@ -158,7 +185,7 @@ class NotesService {
       await _notes.delete(note.id);
     });
 
-    await _index.deleteDocument(note.id.toString());
+    await _deleteIndex(note);
   }
 
   /// Deletes the [notes] from the database.
@@ -167,23 +194,28 @@ class NotesService {
       await _notes.deleteAll(notes.map((note) => note.id).toList());
     });
 
-    final notesIds = notes.map((note) {
-      return note.id.toString();
-    }).toList();
-    await _index.deleteDocuments(notesIds);
+    await _deleteAllIndexes(notes);
   }
 
   /// Deletes all the deleted notes from the database.
   Future<void> emptyBin() async {
+    final notes = await getAll(deleted: true);
+
     await _database.writeTxn(() async {
       await _notes.where().deletedEqualTo(true).deleteAll();
     });
+
+    _deleteAllIndexes(notes);
   }
 
   /// Deletes all the notes from the database.
   Future<void> clear() async {
+    final notes = await getAll();
+
     await _database.writeTxn(() async {
       await _notes.where().deleteAll();
     });
+
+    _deleteAllIndexes(notes);
   }
 }
