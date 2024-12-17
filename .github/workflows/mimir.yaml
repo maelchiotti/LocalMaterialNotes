@@ -82,7 +82,7 @@ jobs:
           dart run build_runner build
           flutter gen-l10n
       - name: Build app (fat APK)
-        run: flutter build apk --release
+        run: flutter build apk --debug
       - name: Archive APK
         uses: actions/upload-artifact@v4
         with:
