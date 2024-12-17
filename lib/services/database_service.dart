@@ -1,3 +1,4 @@
+import 'package:flutter_mimir/flutter_mimir.dart';
 import 'package:isar/isar.dart';
 import 'package:localmaterialnotes/models/label/label.dart';
 import 'package:localmaterialnotes/models/note/note.dart';
@@ -6,6 +7,8 @@ import 'package:localmaterialnotes/services/notes/notes_service.dart';
 import 'package:path_provider/path_provider.dart';
 
 /// Abstract service for the database.
+///
+/// This class is a singleton.
 class DatabaseService {
   static final DatabaseService _singleton = DatabaseService._internal();
 
@@ -17,7 +20,10 @@ class DatabaseService {
   DatabaseService._internal();
 
   /// Isar database instance.
-  late Isar database;
+  late final Isar database;
+
+  /// Mimir index instance.
+  late final MimirInstance mimir;
 
   /// Ensures the service is initialized.
   Future<void> ensureInitialized() async {
@@ -29,6 +35,8 @@ class DatabaseService {
       name: databaseName,
       directory: databaseDirectory,
     );
+
+    mimir = await Mimir.defaultInstance;
 
     // Initialize the models services
     await LabelsService().ensureInitialized();
