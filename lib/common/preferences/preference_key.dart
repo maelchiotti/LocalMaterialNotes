@@ -11,7 +11,6 @@ enum PreferenceKey<T> {
   blackTheming<bool>(false),
   showTitlesOnly<bool>(false),
   showTitlesOnlyDisableInSearchView<bool>(true),
-  disableSubduedNoteContentPreview<bool>(false),
   showSeparators<bool>(false),
   showTilesBackground<bool>(false),
 
@@ -47,6 +46,7 @@ enum PreferenceKey<T> {
   textScaling<double>(1.0),
   useWhiteTextDarkMode<bool>(false),
   biggerTitles(false),
+  disableSubduedNoteContentPreview<bool>(false),
 
   // Notes
   sortMethod<String>('editedDate', backup: false),

@@ -58,11 +58,19 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
     });
   }
 
+  /// Toggles the setting to show background of the notes tiles.
+  void _toggleDisableSubduedNoteContentPreview(bool toggled) {
+    setState(() {
+      PreferenceKey.disableSubduedNoteContentPreview.set(toggled);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault();
     final useWhiteTextDarkMode = PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault();
     final biggerTitles = PreferenceKey.biggerTitles.getPreferenceOrDefault();
+    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
 
     final darkTheme = Theme.of(context).brightness == Brightness.dark;
 
@@ -112,6 +120,13 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
                     description: l.settings_white_text_dark_mode_description,
                     toggled: biggerTitles,
                     onChanged: _toggleBiggerTitles,
+                  ),
+                  SettingSwitchTile(
+                    icon: Icons.format_color_text,
+                    title: l.settings_disable_subdued_note_content_preview,
+                    description: l.settings_disable_subdued_note_content_preview_description,
+                    toggled: disableSubduedNoteContentPreview,
+                    onChanged: _toggleDisableSubduedNoteContentPreview,
                   ),
                 ],
               ),

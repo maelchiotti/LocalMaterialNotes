@@ -87,13 +87,6 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
   }
 
   /// Toggles the setting to show background of the notes tiles.
-  void _toggleDisableSubduedNoteContentPreview(bool toggled) {
-    setState(() {
-      PreferenceKey.disableSubduedNoteContentPreview.set(toggled);
-    });
-  }
-
-  /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTilesBackground(bool toggled) {
     PreferenceKey.showTilesBackground.set(toggled);
 
@@ -115,7 +108,6 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
     final blackTheming = ref.watch(preferencesProvider.select((preferences) => preferences.blackTheming));
     final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
     final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
-    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
     final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
     final showSeparators = ref.watch(preferencesProvider.select((preferences) => preferences.showSeparators));
 
@@ -208,13 +200,6 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                     description: l.settings_show_titles_only_disable_in_search_view_description,
                     toggled: showTitlesOnlyDisableInSearchView,
                     onChanged: _toggleShowTitlesOnlyDisableInSearchView,
-                  ),
-                  SettingSwitchTile(
-                    icon: Icons.format_color_text,
-                    title: l.settings_disable_subdued_note_content_preview,
-                    description: l.settings_disable_subdued_note_content_preview_description,
-                    toggled: disableSubduedNoteContentPreview,
-                    onChanged: _toggleDisableSubduedNoteContentPreview,
                   ),
                   SettingSwitchTile(
                     icon: Icons.safety_divider,
