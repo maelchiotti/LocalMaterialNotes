@@ -46,6 +46,7 @@ enum PreferenceKey<T> {
   // Accessibility
   textScaling<double>(1.0),
   useWhiteTextDarkMode<bool>(false),
+  biggerTitles(false),
 
   // Notes
   sortMethod<String>('editedDate', backup: false),

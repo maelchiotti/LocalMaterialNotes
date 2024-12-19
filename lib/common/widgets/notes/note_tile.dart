@@ -206,6 +206,8 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
     final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.getPreferenceOrDefault();
 
+    final biggerTitles = ref.watch(preferencesProvider.select((preferences) => preferences.biggerTitles));
+
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
 
     final bodyMediumTextTheme = Theme.of(context).textTheme.bodyMedium;
@@ -242,7 +244,9 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                               widget.note.title,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.titleMedium,
+                              style: biggerTitles
+                                  ? Theme.of(context).textTheme.titleLarge
+                                  : Theme.of(context).textTheme.titleMedium,
                             ),
                           // Subtitle
                           if (showTitle)

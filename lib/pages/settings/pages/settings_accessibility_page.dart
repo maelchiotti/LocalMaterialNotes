@@ -49,10 +49,20 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(useWhiteTextDarkMode: toggled));
   }
 
+  /// Toggles whether to use bigger titles.
+  void _toggleBiggerTitles(bool toggled) {
+    PreferenceKey.biggerTitles.set(toggled);
+
+    setState(() {
+      ref.read(preferencesProvider.notifier).update(WatchedPreferences(biggerTitles: toggled));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault();
     final useWhiteTextDarkMode = PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault();
+    final biggerTitles = PreferenceKey.biggerTitles.getPreferenceOrDefault();
 
     final darkTheme = Theme.of(context).brightness == Brightness.dark;
 
@@ -95,6 +105,13 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
                     description: l.settings_white_text_dark_mode_description,
                     toggled: useWhiteTextDarkMode,
                     onChanged: _toggleUseWhiteTextDarkMode,
+                  ),
+                  SettingSwitchTile(
+                    icon: Icons.title,
+                    title: l.settings_white_text_dark_mode,
+                    description: l.settings_white_text_dark_mode_description,
+                    toggled: biggerTitles,
+                    onChanged: _toggleBiggerTitles,
                   ),
                 ],
               ),
