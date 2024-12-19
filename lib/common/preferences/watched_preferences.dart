@@ -21,8 +21,9 @@ class WatchedPreferences {
 
   // Accessibility
   late double textScaling;
-  late bool useWhiteTextDarkMode;
   late bool biggerTitles;
+  late bool useWhiteTextDarkMode;
+  late bool disableSubduedNoteContentPreview;
 
   // Notes
   late Layout layout;
@@ -38,8 +39,9 @@ class WatchedPreferences {
     SwipeAction? rightSwipeAction,
     SwipeAction? leftSwipeAction,
     double? textScaling,
-    bool? useWhiteTextDarkMode,
     bool? biggerTitles,
+    bool? useWhiteTextDarkMode,
+    bool? disableSubduedNoteContentPreview,
     Layout? layout,
   }) {
     this.themeMode = themeMode ?? ThemeUtils().themeMode;
@@ -55,8 +57,10 @@ class WatchedPreferences {
     );
 
     this.textScaling = textScaling ?? PreferenceKey.textScaling.getPreferenceOrDefault();
-    this.useWhiteTextDarkMode = useWhiteTextDarkMode ?? PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault();
     this.biggerTitles = biggerTitles ?? PreferenceKey.biggerTitles.getPreferenceOrDefault();
+    this.useWhiteTextDarkMode = useWhiteTextDarkMode ?? PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault();
+    this.disableSubduedNoteContentPreview =
+        disableSubduedNoteContentPreview ?? PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
 
     this.layout = layout ?? Layout.fromPreference();
   }

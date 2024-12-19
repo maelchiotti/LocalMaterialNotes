@@ -73,20 +73,6 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
   }
 
   /// Toggles the setting to show background of the notes tiles.
-  void _toggleShowTitlesOnly(bool toggled) {
-    PreferenceKey.showTitlesOnly.set(toggled);
-
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showTitlesOnly: toggled));
-  }
-
-  /// Toggles the setting to show background of the notes tiles.
-  void _toggleShowTitlesOnlyDisableInSearchView(bool toggled) {
-    setState(() {
-      PreferenceKey.showTitlesOnlyDisableInSearchView.set(toggled);
-    });
-  }
-
-  /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTilesBackground(bool toggled) {
     PreferenceKey.showTilesBackground.set(toggled);
 
@@ -100,16 +86,31 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(showSeparators: toggled));
   }
 
+  /// Toggles the setting to show background of the notes tiles.
+  void _toggleShowTitlesOnly(bool toggled) {
+    PreferenceKey.showTitlesOnly.set(toggled);
+
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showTitlesOnly: toggled));
+  }
+
+  /// Toggles the setting to show background of the notes tiles.
+  void _toggleShowTitlesOnlyDisableInSearchView(bool toggled) {
+    setState(() {
+      PreferenceKey.showTitlesOnlyDisableInSearchView.set(toggled);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final locale = LocaleUtils().appLocale;
     final themeMode = ref.watch(preferencesProvider.select((preferences) => preferences.themeMode));
     final dynamicTheming = ref.watch(preferencesProvider.select((preferences) => preferences.dynamicTheming));
     final blackTheming = ref.watch(preferencesProvider.select((preferences) => preferences.blackTheming));
-    final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
-    final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
+
     final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
     final showSeparators = ref.watch(preferencesProvider.select((preferences) => preferences.showSeparators));
+    final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
+    final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
 
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
@@ -187,6 +188,20 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                 title: l.settings_appearance_notes_tiles,
                 tiles: [
                   SettingSwitchTile(
+                    icon: Icons.gradient,
+                    title: l.settings_show_tiles_background,
+                    description: l.settings_show_tiles_background_description,
+                    toggled: showTilesBackground,
+                    onChanged: _toggleShowTilesBackground,
+                  ),
+                  SettingSwitchTile(
+                    icon: Icons.safety_divider,
+                    title: l.settings_show_separators,
+                    description: l.settings_show_separators_description,
+                    toggled: showSeparators,
+                    onChanged: _toggleShowSeparators,
+                  ),
+                  SettingSwitchTile(
                     icon: Icons.title,
                     title: l.settings_show_titles_only,
                     description: l.settings_show_titles_only_description,
@@ -200,20 +215,6 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                     description: l.settings_show_titles_only_disable_in_search_view_description,
                     toggled: showTitlesOnlyDisableInSearchView,
                     onChanged: _toggleShowTitlesOnlyDisableInSearchView,
-                  ),
-                  SettingSwitchTile(
-                    icon: Icons.safety_divider,
-                    title: l.settings_show_separators,
-                    description: l.settings_show_separators_description,
-                    toggled: showSeparators,
-                    onChanged: _toggleShowSeparators,
-                  ),
-                  SettingSwitchTile(
-                    icon: Icons.gradient,
-                    title: l.settings_show_tiles_background,
-                    description: l.settings_show_tiles_background_description,
-                    toggled: showTilesBackground,
-                    onChanged: _toggleShowTilesBackground,
                   ),
                 ],
               ),

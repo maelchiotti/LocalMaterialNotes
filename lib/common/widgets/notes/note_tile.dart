@@ -199,7 +199,8 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
     final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
     final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
-    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
+    final disableSubduedNoteContentPreview =
+        ref.watch(preferencesProvider.select((preferences) => preferences.disableSubduedNoteContentPreview));
 
     final swipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.swipeActions));
 

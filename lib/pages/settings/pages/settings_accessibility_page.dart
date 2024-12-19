@@ -42,13 +42,6 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
     ref.read(preferencesProvider.notifier).reset();
   }
 
-  /// Toggles whether to use white text in dark mode.
-  void _toggleUseWhiteTextDarkMode(bool toggled) {
-    PreferenceKey.useWhiteTextDarkMode.set(toggled);
-
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(useWhiteTextDarkMode: toggled));
-  }
-
   /// Toggles whether to use bigger titles.
   void _toggleBiggerTitles(bool toggled) {
     PreferenceKey.biggerTitles.set(toggled);
@@ -58,18 +51,27 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
     });
   }
 
+  /// Toggles whether to use white text in dark mode.
+  void _toggleUseWhiteTextDarkMode(bool toggled) {
+    PreferenceKey.useWhiteTextDarkMode.set(toggled);
+
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(useWhiteTextDarkMode: toggled));
+  }
+
   /// Toggles the setting to show background of the notes tiles.
   void _toggleDisableSubduedNoteContentPreview(bool toggled) {
     setState(() {
       PreferenceKey.disableSubduedNoteContentPreview.set(toggled);
     });
+
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(disableSubduedNoteContentPreview: toggled));
   }
 
   @override
   Widget build(BuildContext context) {
     final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault();
-    final useWhiteTextDarkMode = PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault();
     final biggerTitles = PreferenceKey.biggerTitles.getPreferenceOrDefault();
+    final useWhiteTextDarkMode = PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault();
     final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
 
     final darkTheme = Theme.of(context).brightness == Brightness.dark;
@@ -88,6 +90,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
           child: Column(
             children: [
               SettingSection(
+                title: l.settings_accessibility_text_size,
                 divider: null,
                 tiles: [
                   SettingSliderTile(
@@ -107,6 +110,19 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
                     onCanceled: _canceledTextScaling,
                   ),
                   SettingSwitchTile(
+                    icon: Icons.title,
+                    title: l.settings_bigger_titles,
+                    description: l.settings_bigger_titles_description,
+                    toggled: biggerTitles,
+                    onChanged: _toggleBiggerTitles,
+                  ),
+                ],
+              ),
+              SettingSection(
+                title: l.settings_accessibility_text_color,
+                divider: null,
+                tiles: [
+                  SettingSwitchTile(
                     enabled: darkTheme,
                     icon: Icons.format_color_text,
                     title: l.settings_white_text_dark_mode,
@@ -115,14 +131,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
                     onChanged: _toggleUseWhiteTextDarkMode,
                   ),
                   SettingSwitchTile(
-                    icon: Icons.title,
-                    title: l.settings_white_text_dark_mode,
-                    description: l.settings_white_text_dark_mode_description,
-                    toggled: biggerTitles,
-                    onChanged: _toggleBiggerTitles,
-                  ),
-                  SettingSwitchTile(
-                    icon: Icons.format_color_text,
+                    icon: Icons.opacity,
                     title: l.settings_disable_subdued_note_content_preview,
                     description: l.settings_disable_subdued_note_content_preview_description,
                     toggled: disableSubduedNoteContentPreview,
