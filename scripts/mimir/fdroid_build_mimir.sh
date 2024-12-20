@@ -7,7 +7,8 @@ test -d .mimir || exit
   echo "Building mimir"
 
   for dir in "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*; do
-      mkdir "$dir"/android/src/main/jniLibs
+    echo "Creating directory $dir/android/src/main/jniLibs"
+    mkdir "$dir"/android/src/main/jniLibs
   done
 
   bash scripts/build-android.sh
