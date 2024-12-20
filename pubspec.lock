@@ -508,10 +508,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_mimir
-      sha256: "4cca0625ccee95b61fb1299de390e3a4e868bd8412bdcd1491b47f1ab9bdb3ed"
+      sha256: dc002bfcb682a640aca77562b7a7b12a710d0408f0dc09cc8cd2d62612b93392
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.5"
+    version: "0.1.6"
   flutter_native_splash:
     dependency: "direct main"
     description:
@@ -870,10 +870,10 @@ packages:
     dependency: transitive
     description:
       name: mimir
-      sha256: "478f6cb276c3a7194ec6e5a338706d9a8735c2656105fbd90bac5e70a8cae7ac"
+      sha256: "81766c7db42c973e414cd2a374a9e8dae6936a3d7394e6926e8123a7407bf36a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.5"
+    version: "0.1.6"
   node_preamble:
     dependency: transitive
     description:
