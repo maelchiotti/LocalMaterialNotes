@@ -66,7 +66,7 @@ jobs:
         run: |
           export PUB_CACHE=$HOME/.pub-cache
           flutter pub get
-          ls -r $PUB_CACHE/hosted/pub.dev/flutter_mimir-*
+          tree $PUB_CACHE/hosted/pub.dev/flutter_mimir-*
       - name: Setup mimir
         run: bash scripts/mimir/fdroid_build_mimir.sh
       - name: Add keystore
