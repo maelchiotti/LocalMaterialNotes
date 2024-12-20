@@ -508,10 +508,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_mimir
-      sha256: "3a4b56f9f9c15234cf751096b45437a3d42ebbfd1a48f6e9ccc336ebdd3dd799"
+      sha256: "4cca0625ccee95b61fb1299de390e3a4e868bd8412bdcd1491b47f1ab9bdb3ed"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.3"
+    version: "0.1.5"
   flutter_native_splash:
     dependency: "direct main"
     description:
@@ -532,10 +532,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_rust_bridge
-      sha256: fb9d3c9395eae3c71d4fe3ec343b9f30636c9988150c8bb33b60047549b34e3d
+      sha256: "35c257fc7f98e34c1314d6c145e5ed54e7c94e8a9f469947e31c9298177d546f"
       url: "https://pub.dev"
     source: hosted
-    version: "2.6.0"
+    version: "2.7.0"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -870,10 +870,10 @@ packages:
     dependency: transitive
     description:
       name: mimir
-      sha256: "0333484a404e8b3ef73ad1d27def47bf39f20b49e4d12b799a891345e9fa84d4"
+      sha256: "478f6cb276c3a7194ec6e5a338706d9a8735c2656105fbd90bac5e70a8cae7ac"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.3"
+    version: "0.1.5"
   node_preamble:
     dependency: transitive
     description:
