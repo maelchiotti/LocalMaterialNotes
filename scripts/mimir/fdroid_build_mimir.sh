@@ -8,6 +8,8 @@ test -d .mimir || exit
 
   bash scripts/build-android.sh
 
-  mkdir "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*/android/src/main/jniLibs
+  for dir in "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*; do
+      mkdir "$dir"/android/src/main/jniLibs
+  done
   mv platform-build/EmbeddedMilliAndroid.tar.gz "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*/android/src/main/jniLibs/
 )
