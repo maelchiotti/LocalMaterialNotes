@@ -113,11 +113,25 @@ class Notes extends _$Notes {
     return true;
   }
 
-  /// Toggles the pin status of the [note] in the database.
-  Future<bool> togglePin(Note note) async {
-    note.pinned = !note.pinned;
+  /// Toggles the pin status of the [noteToToggle] in the database.
+  Future<bool> togglePin(Note noteToToggle) async {
+    noteToToggle.pinned = !noteToToggle.pinned;
 
-    return await edit(note);
+    try {
+      await _notesService.put(noteToToggle);
+    } catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
+
+      return false;
+    }
+
+    final notes = (state.value ?? [])
+      ..remove(noteToToggle)
+      ..add(noteToToggle);
+
+    state = AsyncData(notes.sorted());
+
+    return true;
   }
 
   /// Toggles the pin status of the [notesToToggle] in the database.
@@ -135,9 +149,7 @@ class Notes extends _$Notes {
     }
 
     final notes = (state.value ?? [])
-      ..removeWhere(
-        (note) => notesToToggle.contains(note),
-      )
+      ..removeWhere((note) => notesToToggle.contains(note))
       ..addAll(notesToToggle);
 
     state = AsyncData(notes.sorted());
@@ -172,10 +184,7 @@ class Notes extends _$Notes {
       return false;
     }
 
-    final notes = (state.value ?? [])
-      ..removeWhere(
-        (note) => notesToDelete.contains(note),
-      );
+    final notes = (state.value ?? [])..removeWhere((note) => notesToDelete.contains(note));
 
     state = AsyncData(notes);
 
