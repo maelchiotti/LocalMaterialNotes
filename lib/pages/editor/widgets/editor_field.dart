@@ -31,10 +31,7 @@ class EditorField extends StatelessWidget {
       return;
     }
 
-    // Force the https scheme to handle the case where the URL does not contain 'http://' or 'https://' at the beginning
-    final uri = Uri(scheme: 'https', path: url);
-
-    launchUrl(uri);
+    launchUrl(Uri.parse(url));
   }
 
   @override
