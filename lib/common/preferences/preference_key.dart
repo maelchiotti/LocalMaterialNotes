@@ -9,11 +9,10 @@ enum PreferenceKey<T> {
   theme<String>('system'),
   dynamicTheming<bool>(true),
   blackTheming<bool>(false),
+  showTilesBackground<bool>(false),
+  showSeparators<bool>(false),
   showTitlesOnly<bool>(false),
   showTitlesOnlyDisableInSearchView<bool>(true),
-  disableSubduedNoteContentPreview<bool>(false),
-  showSeparators<bool>(false),
-  showTilesBackground<bool>(false),
 
   // Behavior
   flagSecure<bool>(false),
@@ -45,7 +44,9 @@ enum PreferenceKey<T> {
 
   // Accessibility
   textScaling<double>(1.0),
+  biggerTitles(false),
   useWhiteTextDarkMode<bool>(false),
+  disableSubduedNoteContentPreview<bool>(false),
 
   // Notes
   sortMethod<String>('editedDate', backup: false),

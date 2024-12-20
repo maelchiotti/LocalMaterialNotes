@@ -199,12 +199,15 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
     final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
     final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
-    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
+    final disableSubduedNoteContentPreview =
+        ref.watch(preferencesProvider.select((preferences) => preferences.disableSubduedNoteContentPreview));
 
     final swipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.swipeActions));
 
     final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
     final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.getPreferenceOrDefault();
+
+    final biggerTitles = ref.watch(preferencesProvider.select((preferences) => preferences.biggerTitles));
 
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
 
@@ -242,7 +245,9 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                               widget.note.title,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.titleMedium,
+                              style: biggerTitles
+                                  ? Theme.of(context).textTheme.titleLarge
+                                  : Theme.of(context).textTheme.titleMedium,
                             ),
                           // Subtitle
                           if (showTitle)
