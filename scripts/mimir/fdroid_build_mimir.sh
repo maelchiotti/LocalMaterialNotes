@@ -6,10 +6,12 @@ test -d .mimir || exit
 
   echo "Building mimir"
 
-  bash scripts/build-android.sh
-
   for dir in "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*; do
       mkdir "$dir"/android/src/main/jniLibs
   done
+
+  bash scripts/build-android.sh
+
+
   mv platform-build/EmbeddedMilliAndroid.tar.gz "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*/android/src/main/jniLibs/
 )
