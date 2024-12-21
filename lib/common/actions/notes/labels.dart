@@ -20,11 +20,9 @@ Future<List<Label>?> selectLabels(BuildContext context, WidgetRef ref, Note note
   final selectedLabels = await showAdaptiveDialog<List<Label>>(
     context: context,
     useRootNavigator: false,
-    builder: (context) {
-      return LabelsSelectionDialog(
-        note: note,
-      );
-    },
+    builder: (context) => LabelsSelectionDialog(
+      note: note,
+    ),
   );
 
   if (selectedLabels == null) {

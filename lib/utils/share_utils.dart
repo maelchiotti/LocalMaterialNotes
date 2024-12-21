@@ -8,11 +8,9 @@ import 'package:parchment_delta/parchment_delta.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 /// Listens to any data shared from other applications.
-StreamSubscription listenSharedData(WidgetRef ref) {
-  return ReceiveSharingIntent.instance.getMediaStream().listen((data) {
-    _processSharedData(ref, data);
-  });
-}
+StreamSubscription listenSharedData(WidgetRef ref) => ReceiveSharingIntent.instance.getMediaStream().listen((data) {
+      _processSharedData(ref, data);
+    });
 
 /// Reads the data shared from other applications.
 void readSharedData(WidgetRef ref) {

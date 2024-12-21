@@ -15,9 +15,7 @@ part 'note.g.dart';
 
 // ignore_for_file: must_be_immutable
 
-List<String> _labelToJson(IsarLinks<Label> labels) {
-  return labels.map((label) => label.name).toList();
-}
+List<String> _labelToJson(IsarLinks<Label> labels) => labels.map((label) => label.name).toList();
 
 /// Rich text note with title, content and metadata.
 @JsonSerializable()
@@ -97,43 +95,29 @@ class Note extends Equatable implements Comparable<Note> {
   factory Note.fromJson(Map<String, dynamic> json) => _$NoteFromJson(json);
 
   /// Note from [json] data, encrypted with [password].
-  factory Note.fromJsonEncrypted(Map<String, dynamic> json, String password) {
-    return _$NoteFromJson(json)
-      ..title = (json['title'] as String).isEmpty ? '' : EncryptionUtils().decrypt(password, json['title'] as String)
-      ..content = EncryptionUtils().decrypt(password, json['content'] as String);
-  }
+  factory Note.fromJsonEncrypted(Map<String, dynamic> json, String password) => _$NoteFromJson(json)
+    ..title = (json['title'] as String).isEmpty ? '' : EncryptionUtils().decrypt(password, json['title'] as String)
+    ..content = EncryptionUtils().decrypt(password, json['content'] as String);
 
   /// Note to JSON.
   Map<String, dynamic> toJson() => _$NoteToJson(this);
 
   /// Returns this note with the [title] and the [content] encrypted with the [password].
-  Note encrypted(String password) {
-    return this
-      ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
-      ..content = EncryptionUtils().encrypt(password, content);
-  }
+  Note encrypted(String password) => this
+    ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
+    ..content = EncryptionUtils().encrypt(password, content);
 
   /// Returns the visible [labels] of the note as a sorted list.
   @ignore
-  List<Label> get labelsVisibleSorted {
-    return labels.toList().where((label) {
-      return label.visible;
-    }).sorted();
-  }
+  List<Label> get labelsVisibleSorted => labels.toList().where((label) => label.visible).sorted();
 
   /// Returns the names of the visible [labels] of the note as a sorted list.
   @ignore
-  List<String> get labelsNamesVisibleSorted {
-    return labelsVisibleSorted.map((label) {
-      return label.name;
-    }).toList();
-  }
+  List<String> get labelsNamesVisibleSorted => labelsVisibleSorted.map((label) => label.name).toList();
 
   /// Note content as plain text.
   @ignore
-  String get plainText {
-    return document.toPlainText();
-  }
+  String get plainText => document.toPlainText();
 
   /// Note content for the preview of the notes tiles.
   ///
@@ -180,49 +164,35 @@ class Note extends Equatable implements Comparable<Note> {
 
   /// Note content as markdown.
   @ignore
-  String get markdown {
-    return parchmentMarkdownCodec.encode(document);
-  }
+  String get markdown => parchmentMarkdownCodec.encode(document);
 
   /// Note title and content to be shared as a single text.
   ///
   /// Uses the [contentPreview] for the content.
   @ignore
-  String get shareText {
-    return '$title\n\n$contentPreview';
-  }
+  String get shareText => '$title\n\n$contentPreview';
 
   /// Document containing the fleather content representation.
   @ignore
-  ParchmentDocument get document {
-    return ParchmentDocument.fromJson(jsonDecode(content) as List);
-  }
+  ParchmentDocument get document => ParchmentDocument.fromJson(jsonDecode(content) as List);
 
   /// Whether the title is empty.
   @ignore
-  bool get isTitleEmpty {
-    return title.isEmpty;
-  }
+  bool get isTitleEmpty => title.isEmpty;
 
   /// Whether the content is empty.
   @ignore
-  bool get isContentEmpty {
-    return content == _emptyContent;
-  }
+  bool get isContentEmpty => content == _emptyContent;
 
   /// Whether the preview of the content is empty.
   @ignore
-  bool get isContentPreviewEmpty {
-    return contentPreview.isEmpty;
-  }
+  bool get isContentPreviewEmpty => contentPreview.isEmpty;
 
   /// Whether the note is empty.
   ///
   /// Checks both the title and the content.
   @ignore
-  bool get isEmpty {
-    return isTitleEmpty && isContentEmpty;
-  }
+  bool get isEmpty => isTitleEmpty && isContentEmpty;
 
   /// Notes are sorted according to:
   ///   1. Their pin state.

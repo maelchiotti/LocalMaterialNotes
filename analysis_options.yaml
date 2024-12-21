@@ -12,5 +12,6 @@ linter:
   rules:
     - public_member_api_docs
     - prefer_relative_imports
+    - prefer_expression_function_bodies
     - always_put_control_body_on_new_line
     - curly_braces_in_flow_control_structures

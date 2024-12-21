@@ -37,27 +37,25 @@ class _LinkDialogState extends State<LinkDialog> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return AlertDialog.adaptive(
-      title: Text(l.dialog_add_link),
-      content: TextField(
-        controller: _linkController,
-        autofocus: true,
-        decoration: InputDecoration(
-          labelText: l.hint_link,
+  Widget build(BuildContext context) => AlertDialog.adaptive(
+        title: Text(l.dialog_add_link),
+        content: TextField(
+          controller: _linkController,
+          autofocus: true,
+          decoration: InputDecoration(
+            labelText: l.hint_link,
+          ),
+          onChanged: _onChanged,
         ),
-        onChanged: _onChanged,
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => _pop(canceled: true),
-          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
-        ),
-        TextButton(
-          onPressed: _isLinkValid ? _pop : null,
-          child: Text(flutterL?.okButtonLabel ?? 'OK'),
-        ),
-      ],
-    );
-  }
+        actions: [
+          TextButton(
+            onPressed: () => _pop(canceled: true),
+            child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
+          ),
+          TextButton(
+            onPressed: _isLinkValid ? _pop : null,
+            child: Text(flutterL?.okButtonLabel ?? 'OK'),
+          ),
+        ],
+      );
 }

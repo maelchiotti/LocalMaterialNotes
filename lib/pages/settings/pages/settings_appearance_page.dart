@@ -140,15 +140,15 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                     ),
                     value: locale.nativeDisplayLanguage.capitalizeFirstLetter,
                     dialogTitle: l.settings_language,
-                    options: AppLocalizations.supportedLocales.map(
-                      (locale) {
-                        return (
-                          value: locale,
-                          title: locale.nativeDisplayLanguage.capitalizeFirstLetter,
-                          subtitle: LocalizationCompletion.getFormattedPercentage(locale),
-                        );
-                      },
-                    ).toList(),
+                    options: AppLocalizations.supportedLocales
+                        .map(
+                          (locale) => (
+                            value: locale,
+                            title: locale.nativeDisplayLanguage.capitalizeFirstLetter,
+                            subtitle: LocalizationCompletion.getFormattedPercentage(locale),
+                          ),
+                        )
+                        .toList(),
                     initialOption: locale,
                     onSubmitted: _submittedLanguage,
                   ),

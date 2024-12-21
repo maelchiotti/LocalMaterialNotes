@@ -35,7 +35,5 @@ enum SortMethod {
   }
 
   /// Returns whether this sort method is based on a date.
-  bool get onDate {
-    return [createdDate, editedDate].contains(this);
-  }
+  bool get onDate => [createdDate, editedDate].contains(this);
 }

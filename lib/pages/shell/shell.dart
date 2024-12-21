@@ -12,7 +12,5 @@ class ShellPage extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
-    return child;
-  }
+  Widget build(BuildContext context) => child;
 }

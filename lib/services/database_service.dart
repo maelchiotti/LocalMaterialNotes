@@ -13,9 +13,7 @@ class DatabaseService {
   static final DatabaseService _singleton = DatabaseService._internal();
 
   /// Default constructor.
-  factory DatabaseService() {
-    return _singleton;
-  }
+  factory DatabaseService() => _singleton;
 
   DatabaseService._internal();
 

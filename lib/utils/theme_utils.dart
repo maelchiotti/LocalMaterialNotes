@@ -11,9 +11,7 @@ class ThemeUtils {
   static final ThemeUtils _singleton = ThemeUtils._internal();
 
   /// Default constructor.
-  factory ThemeUtils() {
-    return _singleton;
-  }
+  factory ThemeUtils() => _singleton;
 
   ThemeUtils._internal();
 

@@ -15,9 +15,7 @@ class AutoExportUtils {
   static final AutoExportUtils _singleton = AutoExportUtils._internal();
 
   /// Default constructor.
-  factory AutoExportUtils() {
-    return _singleton;
-  }
+  factory AutoExportUtils() => _singleton;
 
   AutoExportUtils._internal();
 

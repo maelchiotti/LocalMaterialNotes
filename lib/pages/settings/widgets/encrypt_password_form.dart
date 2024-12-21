@@ -53,32 +53,30 @@ class _EncryptPasswordFormState extends State<EncryptPasswordForm> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: Text(l.dialog_export_encryption_switch),
-            ),
-            Switch(
-              value: _encrypt,
-              onChanged: _toggleEncrypt,
+  Widget build(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(l.dialog_export_encryption_switch),
+              ),
+              Switch(
+                value: _encrypt,
+                onChanged: _toggleEncrypt,
+              ),
+            ],
+          ),
+          if (_encrypt) ...[
+            Padding(padding: Paddings.vertical(8)),
+            PasswordField(
+              description: l.dialog_export_encryption_description,
+              secondaryDescription: widget.secondaryDescription,
+              onChanged: _onChanged,
+              onEditingComplete: _onEditingComplete,
             ),
           ],
-        ),
-        if (_encrypt) ...[
-          Padding(padding: Paddings.vertical(8)),
-          PasswordField(
-            description: l.dialog_export_encryption_description,
-            secondaryDescription: widget.secondaryDescription,
-            onChanged: _onChanged,
-            onEditingComplete: _onEditingComplete,
-          ),
         ],
-      ],
-    );
-  }
+      );
 }

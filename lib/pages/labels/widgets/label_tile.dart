@@ -29,59 +29,53 @@ class LabelTile extends ConsumerStatefulWidget {
 }
 
 class _LabelTileState extends ConsumerState<LabelTile> {
-  Color? get getBackgroundColor {
-    return widget.label.selected ? Theme.of(context).colorScheme.secondaryContainer : null;
-  }
+  Color? get getBackgroundColor => widget.label.selected ? Theme.of(context).colorScheme.secondaryContainer : null;
 
-  Widget get getDismissibleBackground {
-    return ColoredBox(
-      color: Theme.of(context).colorScheme.errorContainer,
-      child: Padding(
-        padding: Paddings.horizontal(16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Icon(
-              Icons.delete,
-              color: Theme.of(context).colorScheme.onErrorContainer,
-            ),
-            Padding(padding: Paddings.horizontal(4)),
-            Text(
-              l.action_labels_delete,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onErrorContainer,
-                  ),
-            ),
-          ],
+  Widget get getDismissibleBackground => ColoredBox(
+        color: Theme.of(context).colorScheme.errorContainer,
+        child: Padding(
+          padding: Paddings.horizontal(16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(
+                Icons.delete,
+                color: Theme.of(context).colorScheme.onErrorContainer,
+              ),
+              Padding(padding: Paddings.horizontal(4)),
+              Text(
+                l.action_labels_delete,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onErrorContainer,
+                    ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 
-  Widget get getDismissibleSecondaryBackground {
-    return ColoredBox(
-      color: Theme.of(context).colorScheme.secondaryContainer,
-      child: Padding(
-        padding: Paddings.horizontal(16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              l.action_labels_edit,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onSecondaryContainer,
-                  ),
-            ),
-            Padding(padding: Paddings.horizontal(4)),
-            Icon(
-              Icons.edit,
-              color: Theme.of(context).colorScheme.onSecondaryContainer,
-            ),
-          ],
+  Widget get getDismissibleSecondaryBackground => ColoredBox(
+        color: Theme.of(context).colorScheme.secondaryContainer,
+        child: Padding(
+          padding: Paddings.horizontal(16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                l.action_labels_edit,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
+                    ),
+              ),
+              Padding(padding: Paddings.horizontal(4)),
+              Icon(
+                Icons.edit,
+                color: Theme.of(context).colorScheme.onSecondaryContainer,
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 
   Future<void> onMenuOptionSelected(LabelMenuOption labelMenuOption) async {
     switch (labelMenuOption) {
@@ -165,13 +159,11 @@ class _LabelTileState extends ConsumerState<LabelTile> {
                       icon: Icon(widget.label.visible ? Icons.visibility_off : Icons.visibility),
                     ),
                   PopupMenuButton<LabelMenuOption>(
-                    itemBuilder: (context) {
-                      return LabelMenuOption.values.map(
-                        (labelMenuOption) {
-                          return labelMenuOption.popupMenuItem(context);
-                        },
-                      ).toList();
-                    },
+                    itemBuilder: (context) => LabelMenuOption.values
+                        .map(
+                          (labelMenuOption) => labelMenuOption.popupMenuItem(context),
+                        )
+                        .toList(),
                     onSelected: onMenuOptionSelected,
                   ),
                 ],

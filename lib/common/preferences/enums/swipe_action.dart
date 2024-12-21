@@ -74,14 +74,10 @@ enum SwipeAction {
   }
 
   /// Returns whether the swipe action is enabled.
-  bool get isEnabled {
-    return this != disabled;
-  }
+  bool get isEnabled => this != disabled;
 
   /// Returns whether the swipe action is disabled.
-  bool get isDisabled {
-    return this == disabled;
-  }
+  bool get isDisabled => this == disabled;
 
   /// Returns the title of the swipe action.
   ///

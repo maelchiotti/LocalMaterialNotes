@@ -35,9 +35,7 @@ class _NoteTileWidgetsState extends ConsumerState<NoteTileLabelsList> {
         alignment: WrapAlignment.start,
         crossAxisAlignment: WrapCrossAlignment.start,
         children: [
-          ...noteLabels.take(maxLabels).map((label) {
-            return LabelBadge(label: label);
-          }),
+          ...noteLabels.take(maxLabels).map((label) => LabelBadge(label: label)),
           if (noteLabels.length > maxLabels) LabelPlaceholderBadge(text: '+ ${noteLabels.length - maxLabels}')
         ],
       ),

@@ -58,9 +58,7 @@ class _LinkButtonState extends State<LinkButton> {
     final link = await showAdaptiveDialog<String>(
       context: context,
       useRootNavigator: false,
-      builder: (context) {
-        return const LinkDialog();
-      },
+      builder: (context) => const LinkDialog(),
     );
 
     if (link == null || link.isEmpty) {
@@ -71,11 +69,9 @@ class _LinkButtonState extends State<LinkButton> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return EditorButton(
-      icon: Icons.link,
-      iconColor: _enabled ? Theme.of(context).iconTheme.color : Theme.of(context).disabledColor,
-      onPressed: _enabled ? _enterLink : null,
-    );
-  }
+  Widget build(BuildContext context) => EditorButton(
+        icon: Icons.link,
+        iconColor: _enabled ? Theme.of(context).iconTheme.color : Theme.of(context).disabledColor,
+        onPressed: _enabled ? _enterLink : null,
+      );
 }
