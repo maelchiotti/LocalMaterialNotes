@@ -13,9 +13,7 @@ class Bin extends _$Bin {
   final _notesService = NotesService();
 
   @override
-  FutureOr<List<Note>> build() {
-    return get();
-  }
+  FutureOr<List<Note>> build() => get();
 
   /// Returns the list of deleted notes.
   Future<List<Note>> get() async {

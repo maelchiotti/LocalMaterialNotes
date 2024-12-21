@@ -33,23 +33,21 @@ enum LabelMenuOption {
   }
 
   /// Returns the `PopupMenuItem` widget of the menu option.
-  PopupMenuItem<LabelMenuOption> popupMenuItem(BuildContext context) {
-    return PopupMenuItem(
-      value: this,
-      child: ListTile(
-        leading: Icon(
-          icon,
-          color: dangerous ? Theme.of(context).colorScheme.error : null,
+  PopupMenuItem<LabelMenuOption> popupMenuItem(BuildContext context) => PopupMenuItem(
+        value: this,
+        child: ListTile(
+          leading: Icon(
+            icon,
+            color: dangerous ? Theme.of(context).colorScheme.error : null,
+          ),
+          title: Text(
+            title,
+            style: dangerous
+                ? Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: Theme.of(context).colorScheme.error,
+                    )
+                : null,
+          ),
         ),
-        title: Text(
-          title,
-          style: dangerous
-              ? Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: Theme.of(context).colorScheme.error,
-                  )
-              : null,
-        ),
-      ),
-    );
-  }
+      );
 }

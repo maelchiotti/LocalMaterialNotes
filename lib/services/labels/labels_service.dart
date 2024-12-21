@@ -12,9 +12,7 @@ class LabelsService {
   static final LabelsService _singleton = LabelsService._internal();
 
   /// Default constructor.
-  factory LabelsService() {
-    return _singleton;
-  }
+  factory LabelsService() => _singleton;
 
   LabelsService._internal();
 
@@ -39,14 +37,10 @@ class LabelsService {
   }
 
   /// Returns all the labels.
-  Future<List<Label>> getAll() async {
-    return _labels.where().findAll();
-  }
+  Future<List<Label>> getAll() async => _labels.where().findAll();
 
   /// Returns all the labels.
-  Future<List<Label>> getAllVisible() async {
-    return _labels.filter().visibleEqualTo(true).findAll();
-  }
+  Future<List<Label>> getAllVisible() async => _labels.filter().visibleEqualTo(true).findAll();
 
   /// Returns all the labels.
   Future<List<Label>> getAllFiltered(LabelsFilter labelsFilter) async {
@@ -79,9 +73,7 @@ class LabelsService {
   /// Puts the [labels] in the database only if they do not exist already.
   Future<void> putAllNew(List<Label> labels) async {
     final databaseLabels = await getAll();
-    final newLabels = labels.where((label) {
-      return !databaseLabels.contains(label);
-    }).toList();
+    final newLabels = labels.where((label) => !databaseLabels.contains(label)).toList();
 
     await _database.writeTxn(() async {
       await _labels.putAll(newLabels);

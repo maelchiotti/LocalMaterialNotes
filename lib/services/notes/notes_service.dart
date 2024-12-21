@@ -18,9 +18,7 @@ class NotesService {
   static final NotesService _singleton = NotesService._internal();
 
   /// Default constructor.
-  factory NotesService() {
-    return _singleton;
-  }
+  factory NotesService() => _singleton;
 
   NotesService._internal();
 
@@ -64,9 +62,7 @@ class NotesService {
   }
 
   Future<void> _updateAllIndexes(List<Note> notes) async {
-    final documents = notes.map((note) {
-      return NoteIndex.fromNote(note).toJson();
-    }).toList();
+    final documents = notes.map((note) => NoteIndex.fromNote(note).toJson()).toList();
     await _index.addDocuments(documents);
   }
 
@@ -75,18 +71,14 @@ class NotesService {
   }
 
   Future<void> _deleteAllIndexes(List<Note> notes) async {
-    final notesIds = notes.map((note) {
-      return note.id.toString();
-    }).toList();
+    final notesIds = notes.map((note) => note.id.toString()).toList();
     await _index.deleteDocuments(notesIds);
   }
 
   /// Returns all the notes.
   ///
   /// Returns the not deleted notes by default, or the deleted ones if [deleted] is set to `true`.
-  Future<List<Note>> getAll({bool deleted = false}) async {
-    return _notes.where().deletedEqualTo(deleted).findAll();
-  }
+  Future<List<Note>> getAll({bool deleted = false}) async => _notes.where().deletedEqualTo(deleted).findAll();
 
   /// Returns all the notes containing the [label].
   Future<List<Note>> filterByLabel(Label label) async {
@@ -116,9 +108,7 @@ class NotesService {
       query: search,
       filter: searchFilter,
     );
-    final notesIds = searchResults.map((Map<String, dynamic> noteIndex) {
-      return noteIndex['id'] as int;
-    }).toList();
+    final notesIds = searchResults.map((Map<String, dynamic> noteIndex) => noteIndex['id'] as int).toList();
 
     final notes = (await _notes.getAll(notesIds));
     final notesNotNull = notes.whereNotNull().toList();

@@ -23,22 +23,20 @@ class BinPage extends ConsumerStatefulWidget {
 
 class _BinPageState extends ConsumerState<BinPage> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: TopNavigation(
-        appbar: NotesAppBar(
-          key: Keys.appBarNotesBin,
-          title: l.navigation_bin,
+  Widget build(BuildContext context) => Scaffold(
+        appBar: TopNavigation(
+          appbar: NotesAppBar(
+            key: Keys.appBarNotesBin,
+            title: l.navigation_bin,
+          ),
         ),
-      ),
-      drawer: SideNavigation(),
-      floatingActionButton: EmptyBinFab(
-        key: Keys.fabEmptyBin,
-      ),
-      body: NotesList(
-        key: Keys.notesPageNotesList,
-        notesPage: false,
-      ),
-    );
-  }
+        drawer: SideNavigation(),
+        floatingActionButton: EmptyBinFab(
+          key: Keys.fabEmptyBin,
+        ),
+        body: NotesList(
+          key: Keys.notesPageNotesList,
+          notesPage: false,
+        ),
+      );
 }

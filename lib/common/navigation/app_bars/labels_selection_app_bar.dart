@@ -74,17 +74,9 @@ class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return ref.watch(labelsProvider).when(
-      data: (labels) {
-        return buildAppBar(labels.where((label) => label.selected).toList(), labels.length);
-      },
-      error: (exception, stackTrace) {
-        return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
-      },
-      loading: () {
-        return const LoadingPlaceholder();
-      },
-    );
-  }
+  Widget build(BuildContext context) => ref.watch(labelsProvider).when(
+        data: (labels) => buildAppBar(labels.where((label) => label.selected).toList(), labels.length),
+        error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
+        loading: () => const LoadingPlaceholder(),
+      );
 }

@@ -10,9 +10,7 @@ class InfoUtils {
   static final InfoUtils _singleton = InfoUtils._internal();
 
   /// Default constructor.
-  factory InfoUtils() {
-    return _singleton;
-  }
+  factory InfoUtils() => _singleton;
 
   InfoUtils._internal();
 

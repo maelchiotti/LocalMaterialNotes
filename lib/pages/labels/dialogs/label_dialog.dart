@@ -126,47 +126,45 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return AlertDialog.adaptive(
-      title: Text(widget.title),
-      content: SingleChildScrollView(
-        child: Form(
-          key: formKey,
-          child: Row(
-            children: [
-              ColorIndicator(
-                color: color,
-                height: Sizes.colorIndicator.size,
-                width: Sizes.colorIndicator.size,
-                borderRadius: Sizes.colorIndicator.size,
-                onSelect: pickColor,
-              ),
-              Padding(padding: Paddings.horizontal(8.0)),
-              Expanded(
-                child: TextFormField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    hintText: l.hint_label_name,
-                  ),
-                  autofocus: true,
-                  validator: nameValidator,
-                  onChanged: onNameChanged,
+  Widget build(BuildContext context) => AlertDialog.adaptive(
+        title: Text(widget.title),
+        content: SingleChildScrollView(
+          child: Form(
+            key: formKey,
+            child: Row(
+              children: [
+                ColorIndicator(
+                  color: color,
+                  height: Sizes.colorIndicator.size,
+                  width: Sizes.colorIndicator.size,
+                  borderRadius: Sizes.colorIndicator.size,
+                  onSelect: pickColor,
                 ),
-              ),
-            ],
+                Padding(padding: Paddings.horizontal(8.0)),
+                Expanded(
+                  child: TextFormField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      hintText: l.hint_label_name,
+                    ),
+                    autofocus: true,
+                    validator: nameValidator,
+                    onChanged: onNameChanged,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => pop(canceled: true),
-          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
-        ),
-        TextButton(
-          onPressed: ok ? pop : null,
-          child: Text(flutterL?.okButtonLabel ?? 'OK'),
-        ),
-      ],
-    );
-  }
+        actions: [
+          TextButton(
+            onPressed: () => pop(canceled: true),
+            child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
+          ),
+          TextButton(
+            onPressed: ok ? pop : null,
+            child: Text(flutterL?.okButtonLabel ?? 'OK'),
+          ),
+        ],
+      );
 }

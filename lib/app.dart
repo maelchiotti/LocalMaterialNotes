@@ -96,41 +96,39 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
         ref.watch(preferencesProvider.select((preferences) => preferences.useWhiteTextDarkMode));
 
     return DynamicColorBuilder(
-      builder: (lightDynamicColorScheme, darkDynamicColorScheme) {
-        return MediaQuery(
-          data: MediaQuery.of(context).copyWith(
-            textScaler: TextScaler.linear(textScaling),
-          ),
-          child: MaterialApp(
-            title: 'Material Notes',
-            home: NotesPage(),
-            navigatorKey: rootNavigatorKey,
-            builder: (context, child) {
-              // Change the widget shown when a widget building fails
-              ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);
+      builder: (lightDynamicColorScheme, darkDynamicColorScheme) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(
+          textScaler: TextScaler.linear(textScaling),
+        ),
+        child: MaterialApp(
+          title: 'Material Notes',
+          home: NotesPage(),
+          navigatorKey: rootNavigatorKey,
+          builder: (context, child) {
+            // Change the widget shown when a widget building fails
+            ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);
 
-              assert(child != null, 'MaterialApp child is null');
+            assert(child != null, 'MaterialApp child is null');
 
-              return Directionality(
-                textDirection: LocaleUtils().deviceLocale.textDirection,
-                child: child!,
-              );
-            },
-            theme: ThemeUtils().getLightTheme(lightDynamicColorScheme, dynamicTheming),
-            darkTheme: ThemeUtils().getDarkTheme(
-              darkDynamicColorScheme,
-              dynamicTheming,
-              blackTheming,
-              useWhiteTextDarkMode,
-            ),
-            themeMode: themeMode,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            locale: LocaleUtils().appLocale,
-            debugShowCheckedModeBanner: false,
+            return Directionality(
+              textDirection: LocaleUtils().deviceLocale.textDirection,
+              child: child!,
+            );
+          },
+          theme: ThemeUtils().getLightTheme(lightDynamicColorScheme, dynamicTheming),
+          darkTheme: ThemeUtils().getDarkTheme(
+            darkDynamicColorScheme,
+            dynamicTheming,
+            blackTheming,
+            useWhiteTextDarkMode,
           ),
-        );
-      },
+          themeMode: themeMode,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: LocaleUtils().appLocale,
+          debugShowCheckedModeBanner: false,
+        ),
+      ),
     );
   }
 }

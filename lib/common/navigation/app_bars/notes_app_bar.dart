@@ -44,13 +44,11 @@ class NotesAppBar extends ConsumerWidget {
   final Label? label;
 
   /// Returns the placeholder for the search button used when the search isn't available.
-  Widget get searchButtonPlaceholder {
-    return IconButton(
-      onPressed: null,
-      icon: const Icon(Icons.search),
-      tooltip: l.tooltip_search,
-    );
-  }
+  Widget get searchButtonPlaceholder => IconButton(
+        onPressed: null,
+        icon: const Icon(Icons.search),
+        tooltip: l.tooltip_search,
+      );
 
   /// Toggles the notes layout.
   void toggleLayout(WidgetRef ref, Layout currentLayout) {
@@ -104,12 +102,12 @@ class NotesAppBar extends ConsumerWidget {
 
     final notes = await NotesService().search(search, notesPage, label?.name);
 
-    return notes.mapIndexed((index, note) {
-      return NoteTile.searchView(
-        key: Keys.noteTile(index),
-        note: note,
-      );
-    }).toList();
+    return notes
+        .mapIndexed((index, note) => NoteTile.searchView(
+              key: Keys.noteTile(index),
+              note: note,
+            ))
+        .toList();
   }
 
   /// Returns the child of the widget.
@@ -126,17 +124,13 @@ class NotesAppBar extends ConsumerWidget {
       viewHintText: l.tooltip_search,
       searchController: SearchController(),
       viewBackgroundColor: Theme.of(context).colorScheme.surface,
-      builder: (context, controller) {
-        return IconButton(
-          key: Keys.appBarSearchIconButton,
-          onPressed: () => controller.openView(),
-          icon: const Icon(Icons.search),
-          tooltip: l.tooltip_search,
-        );
-      },
-      suggestionsBuilder: (context, controller) {
-        return searchNotes(controller.text);
-      },
+      builder: (context, controller) => IconButton(
+        key: Keys.appBarSearchIconButton,
+        onPressed: () => controller.openView(),
+        icon: const Icon(Icons.search),
+        tooltip: l.tooltip_search,
+      ),
+      suggestionsBuilder: (context, controller) => searchNotes(controller.text),
     );
   }
 
@@ -159,75 +153,61 @@ class NotesAppBar extends ConsumerWidget {
           key: Keys.appBarSortIconButton,
           icon: const Icon(Icons.sort),
           tooltip: l.tooltip_sort,
-          itemBuilder: (context) {
-            return [
-              PopupMenuItem(
-                key: Keys.sortCreatedDateMenuItem,
-                value: SortMethod.createdDate,
-                child: ListTile(
-                  selected: sortMethod == SortMethod.createdDate,
-                  leading: const Icon(Icons.calendar_month),
-                  title: Text(l.button_sort_creation_date),
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              key: Keys.sortCreatedDateMenuItem,
+              value: SortMethod.createdDate,
+              child: ListTile(
+                selected: sortMethod == SortMethod.createdDate,
+                leading: const Icon(Icons.calendar_month),
+                title: Text(l.button_sort_creation_date),
+              ),
+            ),
+            PopupMenuItem(
+              key: Keys.sortEditedDateMenuItem,
+              value: SortMethod.editedDate,
+              child: ListTile(
+                selected: sortMethod == SortMethod.editedDate,
+                leading: const Icon(Icons.edit_calendar),
+                title: Text(l.button_sort_edition_date),
+              ),
+            ),
+            PopupMenuItem(
+              key: Keys.sortTitleMenuItem,
+              value: SortMethod.title,
+              child: ListTile(
+                selected: sortMethod == SortMethod.title,
+                leading: const Icon(Icons.sort_by_alpha),
+                title: Text(l.button_sort_title),
+              ),
+            ),
+            const PopupMenuDivider(),
+            PopupMenuItem(
+              key: Keys.sortAscendingMenuItem,
+              value: SortMethod.ascending,
+              child: ListTile(
+                title: Text(l.button_sort_ascending),
+                trailing: Checkbox(
+                  value: sortAscending,
+                  onChanged: (ascending) => sort(context, ref, ascending: ascending),
                 ),
               ),
-              PopupMenuItem(
-                key: Keys.sortEditedDateMenuItem,
-                value: SortMethod.editedDate,
-                child: ListTile(
-                  selected: sortMethod == SortMethod.editedDate,
-                  leading: const Icon(Icons.edit_calendar),
-                  title: Text(l.button_sort_edition_date),
-                ),
-              ),
-              PopupMenuItem(
-                key: Keys.sortTitleMenuItem,
-                value: SortMethod.title,
-                child: ListTile(
-                  selected: sortMethod == SortMethod.title,
-                  leading: const Icon(Icons.sort_by_alpha),
-                  title: Text(l.button_sort_title),
-                ),
-              ),
-              const PopupMenuDivider(),
-              PopupMenuItem(
-                key: Keys.sortAscendingMenuItem,
-                value: SortMethod.ascending,
-                child: ListTile(
-                  title: Text(l.button_sort_ascending),
-                  trailing: Checkbox(
-                    value: sortAscending,
-                    onChanged: (ascending) => sort(context, ref, ascending: ascending),
-                  ),
-                ),
-              ),
-            ];
-          },
+            ),
+          ],
           onSelected: (sortMethod) => sort(context, ref, sortMethod: sortMethod),
         ),
         if (notesPage)
           ref.watch(notesProvider).when(
-            data: (notes) {
-              return child(context, notes);
-            },
-            error: (error, stackTrace) {
-              return const EmptyPlaceholder();
-            },
-            loading: () {
-              return searchButtonPlaceholder;
-            },
-          )
+                data: (notes) => child(context, notes),
+                error: (error, stackTrace) => const EmptyPlaceholder(),
+                loading: () => searchButtonPlaceholder,
+              )
         else
           ref.watch(notesProvider).when(
-            data: (notes) {
-              return child(context, notes);
-            },
-            error: (error, stackTrace) {
-              return const EmptyPlaceholder();
-            },
-            loading: () {
-              return searchButtonPlaceholder;
-            },
-          ),
+                data: (notes) => child(context, notes),
+                error: (error, stackTrace) => const EmptyPlaceholder(),
+                loading: () => searchButtonPlaceholder,
+              ),
         Padding(padding: Paddings.appBarActionsEnd),
       ],
     );

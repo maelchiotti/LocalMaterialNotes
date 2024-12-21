@@ -22,9 +22,7 @@ class AppLogger {
   static final AppLogger _singleton = AppLogger._internal();
 
   /// Logger that outputs all exceptions to the console or a log file.
-  factory AppLogger() {
-    return _singleton;
-  }
+  factory AppLogger() => _singleton;
 
   AppLogger._internal();
 

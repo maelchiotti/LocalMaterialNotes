@@ -12,9 +12,7 @@ class LabelsList extends _$LabelsList {
   final _labelsService = LabelsService();
 
   @override
-  FutureOr<List<Label>> build() {
-    return get();
-  }
+  FutureOr<List<Label>> build() => get();
 
   /// Returns the list of labels.
   Future<List<Label>> get() async {

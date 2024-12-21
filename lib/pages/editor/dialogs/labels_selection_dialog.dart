@@ -68,27 +68,27 @@ class _LabelsSelectionDialogState extends ConsumerState<LabelsSelectionDialog> {
       title: Text('Select labels'),
       content: SingleChildScrollView(
         child: ListBody(
-          children: labels.mapIndexed((index, label) {
-            return CheckboxListTile(
-              value: label.selected,
-              secondary: VariedIcon.varied(
-                label.pinned ? Icons.label_important : Icons.label,
-                fill: 1.0,
-                color: label.color,
-              ),
-              title: Text(
-                label.name,
-                style: label.visible
-                    ? null
-                    : bodyLarge?.copyWith(
-                        color: bodyLarge.color?.subdued,
-                      ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              onChanged: (value) => onChanged(index, value),
-            );
-          }).toList(),
+          children: labels
+              .mapIndexed((index, label) => CheckboxListTile(
+                    value: label.selected,
+                    secondary: VariedIcon.varied(
+                      label.pinned ? Icons.label_important : Icons.label,
+                      fill: 1.0,
+                      color: label.color,
+                    ),
+                    title: Text(
+                      label.name,
+                      style: label.visible
+                          ? null
+                          : bodyLarge?.copyWith(
+                              color: bodyLarge.color?.subdued,
+                            ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    onChanged: (value) => onChanged(index, value),
+                  ))
+              .toList(),
         ),
       ),
       actions: [

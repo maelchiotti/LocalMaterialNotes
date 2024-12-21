@@ -23,10 +23,8 @@ class LabelsPage extends ConsumerWidget {
   const LabelsPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(labelsProvider).when(
-      data: (labels) {
-        return Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) => ref.watch(labelsProvider).when(
+        data: (labels) => Scaffold(
           appBar: TopNavigation(
             appbar: BasicAppBar(
               title: l.navigation_manage_labels_page,
@@ -53,14 +51,8 @@ class LabelsPage extends ConsumerWidget {
               ),
             ],
           ),
-        );
-      },
-      error: (exception, stackTrace) {
-        return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
-      },
-      loading: () {
-        return const LoadingPlaceholder();
-      },
-    );
-  }
+        ),
+        error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
+        loading: () => const LoadingPlaceholder(),
+      );
 }

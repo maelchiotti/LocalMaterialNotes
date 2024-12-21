@@ -18,9 +18,7 @@ class Labels extends _$Labels {
   final _labelsService = LabelsService();
 
   @override
-  FutureOr<List<Label>> build() {
-    return get();
-  }
+  FutureOr<List<Label>> build() => get();
 
   Future<void> _updateProviders() async {
     await ref.read(labelsNavigationProvider.notifier).get();

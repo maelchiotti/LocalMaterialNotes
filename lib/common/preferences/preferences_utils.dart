@@ -8,9 +8,7 @@ class PreferencesUtils {
   static final PreferencesUtils _singleton = PreferencesUtils._internal();
 
   /// Default constructor.
-  factory PreferencesUtils() {
-    return _singleton;
-  }
+  factory PreferencesUtils() => _singleton;
 
   PreferencesUtils._internal();
 

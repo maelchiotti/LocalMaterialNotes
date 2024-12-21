@@ -98,9 +98,8 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
                     title: l.settings_text_scaling,
                     value: (textScaling as num).formatAsPercentage(locale: LocaleUtils().appLocaleLanguageCode),
                     dialogTitle: l.settings_text_scaling,
-                    label: (textScaling) {
-                      return (textScaling as num).formatAsPercentage(locale: LocaleUtils().appLocaleLanguageCode);
-                    },
+                    label: (textScaling) =>
+                        (textScaling as num).formatAsPercentage(locale: LocaleUtils().appLocaleLanguageCode),
                     min: 0.5,
                     max: 2.0,
                     divisions: 15,

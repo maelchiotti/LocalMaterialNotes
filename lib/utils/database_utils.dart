@@ -89,9 +89,7 @@ class DatabaseUtils {
   }
 
   Future<bool> _importLabels(List<dynamic> labelsAsJson) async {
-    final labels = labelsAsJson.map((labelAsJson) {
-      return Label.fromJson(labelAsJson);
-    }).toList();
+    final labels = labelsAsJson.map((labelAsJson) => Label.fromJson(labelAsJson)).toList();
 
     await _labelsService.putAllNew(labels);
 
@@ -147,9 +145,7 @@ class DatabaseUtils {
 
       for (final noteAsJson in notesAsJson) {
         final labelsString = noteAsJson['labels'] as List;
-        final labels = databaseLabels.where((label) {
-          return labelsString.contains(label.name);
-        }).toList();
+        final labels = databaseLabels.where((label) => labelsString.contains(label.name)).toList();
 
         notesLabels.add(labels);
       }
@@ -222,14 +218,12 @@ class DatabaseUtils {
   /// Automatically exports all the notes in a JSON file.
   ///
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
-  Future<bool> autoExportAsJson(bool encrypt, String password) async {
-    return await _exportAsJson(
-      encrypt: encrypt,
-      password: password,
-      directory: AutoExportUtils().autoExportDirectory,
-      fileName: _exportFileName(MimeType.json.extension),
-    );
-  }
+  Future<bool> autoExportAsJson(bool encrypt, String password) async => await _exportAsJson(
+        encrypt: encrypt,
+        password: password,
+        directory: AutoExportUtils().autoExportDirectory,
+        fileName: _exportFileName(MimeType.json.extension),
+      );
 
   /// Manually exports all the notes in a JSON file.
   ///

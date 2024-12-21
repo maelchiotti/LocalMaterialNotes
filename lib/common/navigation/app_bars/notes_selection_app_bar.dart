@@ -89,39 +89,25 @@ class NotesSelectionAppBar extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return notesPage
-        ? ref.watch(notesProvider).when(
-            data: (notes) {
-              return buildAppBar(
-                context,
-                ref,
-                notes.where((note) => note.selected).toList(),
-                notes.length,
-              );
-            },
-            error: (exception, stackTrace) {
-              return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
-            },
-            loading: () {
-              return const LoadingPlaceholder();
-            },
+  Widget build(BuildContext context, WidgetRef ref) => notesPage
+      ? ref.watch(notesProvider).when(
+            data: (notes) => buildAppBar(
+              context,
+              ref,
+              notes.where((note) => note.selected).toList(),
+              notes.length,
+            ),
+            error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
+            loading: () => const LoadingPlaceholder(),
           )
-        : ref.watch(binProvider).when(
-            data: (notes) {
-              return buildAppBar(
-                context,
-                ref,
-                notes.where((note) => note.selected).toList(),
-                notes.length,
-              );
-            },
-            error: (exception, stackTrace) {
-              return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
-            },
-            loading: () {
-              return const LoadingPlaceholder();
-            },
+      : ref.watch(binProvider).when(
+            data: (notes) => buildAppBar(
+              context,
+              ref,
+              notes.where((note) => note.selected).toList(),
+              notes.length,
+            ),
+            error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
+            loading: () => const LoadingPlaceholder(),
           );
-  }
 }

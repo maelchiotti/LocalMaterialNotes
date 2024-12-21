@@ -10,9 +10,7 @@ Future<void> addLabel(BuildContext context, WidgetRef ref) async {
   final label = await showAdaptiveDialog<Label>(
     context: context,
     useRootNavigator: false,
-    builder: (context) {
-      return LabelDialog(title: l.dialog_label_add);
-    },
+    builder: (context) => LabelDialog(title: l.dialog_label_add),
   );
 
   if (label == null) {

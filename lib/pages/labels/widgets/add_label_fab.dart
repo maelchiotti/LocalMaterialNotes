@@ -9,11 +9,9 @@ class AddLabelFab extends ConsumerWidget {
   const AddLabelFab({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return FloatingActionButton(
-      tooltip: l.tooltip_fab_add_label,
-      onPressed: () => addLabel(context, ref),
-      child: const Icon(Icons.add),
-    );
-  }
+  Widget build(BuildContext context, WidgetRef ref) => FloatingActionButton(
+        tooltip: l.tooltip_fab_add_label,
+        onPressed: () => addLabel(context, ref),
+        child: const Icon(Icons.add),
+      );
 }

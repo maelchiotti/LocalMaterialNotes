@@ -120,56 +120,54 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
             ),
             body: ValueListenableBuilder(
               valueListenable: isFleatherEditorEditMode,
-              builder: (context, isEditMode, child) {
-                return Column(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: Paddings.pageButBottom,
-                        child: Column(
-                          children: [
-                            TextField(
-                              key: Keys.editorTitleTextField,
-                              readOnly: widget.readOnly,
-                              autofocus: widget.isNewNote && focusTitleOnNewNote,
-                              textCapitalization: TextCapitalization.sentences,
-                              textInputAction: TextInputAction.next,
-                              style: Theme.of(context).textTheme.titleLarge,
-                              decoration: InputDecoration.collapsed(
-                                hintText: l.hint_title,
-                              ),
-                              controller: titleController,
-                              onChanged: (text) => _synchronizeTitle(currentNote, text),
-                              onSubmitted: _requestEditorFocus,
-                            ),
-                            Gap(8.0),
-                            Expanded(
-                              child: Focus(
-                                onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,
-                                child: EditorField(
-                                  key: Keys.editorContentTextField,
-                                  fleatherController: editorController,
-                                  readOnly: widget.readOnly || (showEditorModeButton && !isEditMode),
-                                  autofocus: widget.isNewNote && !focusTitleOnNewNote,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SafeArea(
+              builder: (context, isEditMode, child) => Column(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: Paddings.pageButBottom,
                       child: Column(
                         children: [
-                          if (showLabelsList) EditorLabelsList(readOnly: widget.readOnly),
-                          if (showToolbar && isEditMode && !currentNote.deleted)
-                            EditorToolbar(editorController: editorController)
+                          TextField(
+                            key: Keys.editorTitleTextField,
+                            readOnly: widget.readOnly,
+                            autofocus: widget.isNewNote && focusTitleOnNewNote,
+                            textCapitalization: TextCapitalization.sentences,
+                            textInputAction: TextInputAction.next,
+                            style: Theme.of(context).textTheme.titleLarge,
+                            decoration: InputDecoration.collapsed(
+                              hintText: l.hint_title,
+                            ),
+                            controller: titleController,
+                            onChanged: (text) => _synchronizeTitle(currentNote, text),
+                            onSubmitted: _requestEditorFocus,
+                          ),
+                          Gap(8.0),
+                          Expanded(
+                            child: Focus(
+                              onFocusChange: (hasFocus) => fleatherFieldHasFocusNotifier.value = hasFocus,
+                              child: EditorField(
+                                key: Keys.editorContentTextField,
+                                fleatherController: editorController,
+                                readOnly: widget.readOnly || (showEditorModeButton && !isEditMode),
+                                autofocus: widget.isNewNote && !focusTitleOnNewNote,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                  ],
-                );
-              },
+                  ),
+                  SafeArea(
+                    child: Column(
+                      children: [
+                        if (showLabelsList) EditorLabelsList(readOnly: widget.readOnly),
+                        if (showToolbar && isEditMode && !currentNote.deleted)
+                          EditorToolbar(editorController: editorController)
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         });

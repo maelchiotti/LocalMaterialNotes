@@ -34,36 +34,34 @@ class _LabelsFiltersState extends ConsumerState<LabelsFilters> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return ListView(
-      scrollDirection: Axis.horizontal,
-      children: [
-        Gap(8.0),
-        ChoiceChip(
-          label: Text(l.filter_labels_all),
-          selected: labelsFilter == LabelsFilter.all,
-          onSelected: (selected) => _changeFilter(LabelsFilter.all, selected),
-        ),
-        Gap(8.0),
-        ChoiceChip(
-          label: Text(l.filter_labels_visible),
-          selected: labelsFilter == LabelsFilter.visible,
-          onSelected: (selected) => _changeFilter(LabelsFilter.visible, selected),
-        ),
-        Gap(8.0),
-        ChoiceChip(
-          label: Text(l.filter_labels_pinned),
-          selected: labelsFilter == LabelsFilter.pinned,
-          onSelected: (selected) => _changeFilter(LabelsFilter.pinned, selected),
-        ),
-        Gap(8.0),
-        ChoiceChip(
-          label: Text(l.filter_labels_hidden),
-          selected: labelsFilter == LabelsFilter.hidden,
-          onSelected: (selected) => _changeFilter(LabelsFilter.hidden, selected),
-        ),
-        Gap(8.0),
-      ],
-    );
-  }
+  Widget build(BuildContext context) => ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          Gap(8.0),
+          ChoiceChip(
+            label: Text(l.filter_labels_all),
+            selected: labelsFilter == LabelsFilter.all,
+            onSelected: (selected) => _changeFilter(LabelsFilter.all, selected),
+          ),
+          Gap(8.0),
+          ChoiceChip(
+            label: Text(l.filter_labels_visible),
+            selected: labelsFilter == LabelsFilter.visible,
+            onSelected: (selected) => _changeFilter(LabelsFilter.visible, selected),
+          ),
+          Gap(8.0),
+          ChoiceChip(
+            label: Text(l.filter_labels_pinned),
+            selected: labelsFilter == LabelsFilter.pinned,
+            onSelected: (selected) => _changeFilter(LabelsFilter.pinned, selected),
+          ),
+          Gap(8.0),
+          ChoiceChip(
+            label: Text(l.filter_labels_hidden),
+            selected: labelsFilter == LabelsFilter.hidden,
+            onSelected: (selected) => _changeFilter(LabelsFilter.hidden, selected),
+          ),
+          Gap(8.0),
+        ],
+      );
 }
