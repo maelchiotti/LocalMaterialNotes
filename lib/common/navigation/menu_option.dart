@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
+import '../constants/constants.dart';
 
 // ignore_for_file: public_member_api_docs
 

@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:intl/intl.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
+import '../constants/constants.dart';
 
 /// Extends the [DateTime] class with some utilities functions.
 extension DateTimeExtensions on DateTime {

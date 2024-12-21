@@ -1,9 +1,9 @@
 import 'package:flutter_mimir/flutter_mimir.dart';
 import 'package:isar/isar.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/services/labels/labels_service.dart';
-import 'package:localmaterialnotes/services/notes/notes_service.dart';
+import '../models/label/label.dart';
+import '../models/note/note.dart';
+import 'labels/labels_service.dart';
+import 'notes/notes_service.dart';
 import 'package:path_provider/path_provider.dart';
 
 /// Abstract service for the database.

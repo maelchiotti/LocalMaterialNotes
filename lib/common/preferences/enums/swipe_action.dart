@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import '../../constants/constants.dart';
+import '../../extensions/iterable_extension.dart';
+import '../preference_key.dart';
 
 /// Action to trigger when swiping on a note tile.
 enum SwipeAction {

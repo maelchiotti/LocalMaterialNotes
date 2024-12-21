@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/pages/editor/dialogs/labels_selection_dialog.dart';
-import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
-import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
+import '../../constants/constants.dart';
+import '../../../models/label/label.dart';
+import '../../../models/note/note.dart';
+import '../../../pages/editor/dialogs/labels_selection_dialog.dart';
+import '../../../providers/labels/labels_list/labels_list_provider.dart';
+import '../../../providers/notes/notes_provider.dart';
+import '../../../providers/notifiers/notifiers.dart';
+import '../../../utils/snack_bar_utils.dart';
 
 /// Asks the user to select the labels for the [note].
 Future<List<Label>?> selectLabels(BuildContext context, WidgetRef ref, Note note) async {

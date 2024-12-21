@@ -5,11 +5,11 @@ import 'package:equatable/equatable.dart';
 import 'package:fleather/fleather.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/preferences/enums/sort_method.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/utils/encryption_utils.dart';
+import '../../common/constants/constants.dart';
+import '../../common/preferences/enums/sort_method.dart';
+import '../../common/preferences/preference_key.dart';
+import '../label/label.dart';
+import '../../utils/encryption_utils.dart';
 
 part 'note.g.dart';
 

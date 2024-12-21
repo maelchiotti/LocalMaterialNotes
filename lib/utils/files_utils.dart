@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/utils/auto_export_utils.dart';
+import '../common/constants/constants.dart';
+import 'auto_export_utils.dart';
 import 'package:path/path.dart';
 
 /// Writes a file with the [data], in the [directory], with the [filename].

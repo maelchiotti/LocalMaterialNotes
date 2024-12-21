@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/notes/add.dart';
-import 'package:localmaterialnotes/utils/localizations_utils.dart';
+import '../common/actions/notes/add.dart';
+import 'localizations_utils.dart';
 import 'package:quick_actions/quick_actions.dart';
 
 /// Utilities for the quick actions.

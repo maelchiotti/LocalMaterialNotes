@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/widgets/labels/label_badge.dart';
+import 'label_badge.dart';
 
 /// Placeholder badge for the labels.
 class LabelPlaceholderBadge extends StatelessWidget {

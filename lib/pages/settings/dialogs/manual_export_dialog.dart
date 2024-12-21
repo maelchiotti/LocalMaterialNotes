@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/string_extension.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/pages/settings/widgets/encrypt_password_form.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/extensions/string_extension.dart';
+import '../../../common/preferences/preference_key.dart';
+import '../widgets/encrypt_password_form.dart';
 
 /// Dialog to configure the manual export.
 class ManualExportDialog extends StatefulWidget {

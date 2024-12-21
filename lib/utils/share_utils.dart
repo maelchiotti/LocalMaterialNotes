@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/notes/add.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
+import '../common/actions/notes/add.dart';
+import '../common/constants/constants.dart';
 import 'package:parchment_delta/parchment_delta.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 

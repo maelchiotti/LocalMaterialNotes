@@ -1,4 +1,4 @@
-import 'package:localmaterialnotes/common/preferences/watched_preferences.dart';
+import '../../common/preferences/watched_preferences.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'preferences_provider.g.dart';

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/labels/delete.dart';
-import 'package:localmaterialnotes/common/actions/labels/edit.dart';
-import 'package:localmaterialnotes/common/actions/labels/pin.dart';
-import 'package:localmaterialnotes/common/actions/labels/select.dart';
-import 'package:localmaterialnotes/common/actions/labels/visible.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/extensions/color_extension.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/pages/labels/widgets/label_menu_option.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
+import '../../../common/actions/labels/delete.dart';
+import '../../../common/actions/labels/edit.dart';
+import '../../../common/actions/labels/pin.dart';
+import '../../../common/actions/labels/select.dart';
+import '../../../common/actions/labels/visible.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/constants/paddings.dart';
+import '../../../common/extensions/color_extension.dart';
+import '../../../models/label/label.dart';
+import 'label_menu_option.dart';
+import '../../../providers/notifiers/notifiers.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 /// Tile of a label.

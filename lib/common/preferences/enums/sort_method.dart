@@ -1,5 +1,5 @@
-import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import '../../extensions/iterable_extension.dart';
+import '../preference_key.dart';
 
 /// Sort method of the notes list.
 enum SortMethod {

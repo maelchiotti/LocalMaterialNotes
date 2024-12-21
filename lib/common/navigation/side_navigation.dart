@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/constants/sizes.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/navigation/navigation_routes.dart';
-import 'package:localmaterialnotes/navigation/navigator_utils.dart';
-import 'package:localmaterialnotes/pages/bin/bin_page.dart';
-import 'package:localmaterialnotes/pages/labels/labels_page.dart';
-import 'package:localmaterialnotes/pages/notes/notes_page.dart';
-import 'package:localmaterialnotes/pages/settings/settings_main_page.dart';
-import 'package:localmaterialnotes/providers/labels/labels_navigation/labels_navigation_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
-import 'package:localmaterialnotes/utils/asset.dart';
-import 'package:localmaterialnotes/utils/keys.dart';
+import '../constants/constants.dart';
+import '../constants/paddings.dart';
+import '../constants/sizes.dart';
+import '../preferences/preference_key.dart';
+import '../widgets/placeholders/error_placeholder.dart';
+import '../../models/label/label.dart';
+import '../../navigation/navigation_routes.dart';
+import '../../navigation/navigator_utils.dart';
+import '../../pages/bin/bin_page.dart';
+import '../../pages/labels/labels_page.dart';
+import '../../pages/notes/notes_page.dart';
+import '../../pages/settings/settings_main_page.dart';
+import '../../providers/labels/labels_navigation/labels_navigation_provider.dart';
+import '../../providers/notifiers/notifiers.dart';
+import '../../utils/asset.dart';
+import '../../utils/keys.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 /// Side navigation with the drawer.

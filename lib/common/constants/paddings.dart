@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
+import 'constants.dart';
 
 // ignore_for_file: avoid_classes_with_only_static_members
 

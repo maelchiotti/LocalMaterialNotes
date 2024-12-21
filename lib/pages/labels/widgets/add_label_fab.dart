@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/labels/add.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
+import '../../../common/actions/labels/add.dart';
+import '../../../common/constants/constants.dart';
 
 /// FAB to add a label.
 class AddLabelFab extends ConsumerWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
-import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
+import '../../constants/paddings.dart';
+import '../../preferences/enums/swipe_action.dart';
+import '../../preferences/enums/swipe_direction.dart';
 
 /// Dismissible widget for the note swipe actions.
 class NoteTileDismissible extends StatefulWidget {

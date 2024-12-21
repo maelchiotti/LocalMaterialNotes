@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/services/labels/labels_service.dart';
+import '../../../common/constants/constants.dart';
+import '../../../models/label/label.dart';
+import '../../../services/labels/labels_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'labels_list_provider.g.dart';

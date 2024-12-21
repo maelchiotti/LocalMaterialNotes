@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
+import '../note.dart';
 
 part 'note_index.g.dart';
 

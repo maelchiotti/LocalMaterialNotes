@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/side_navigation.dart';
-import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
-import 'package:localmaterialnotes/navigation/navigation_routes.dart';
-import 'package:localmaterialnotes/pages/settings/pages/settings_about_page.dart';
-import 'package:localmaterialnotes/pages/settings/pages/settings_accessibility_page.dart';
-import 'package:localmaterialnotes/pages/settings/pages/settings_appearance_page.dart';
-import 'package:localmaterialnotes/pages/settings/pages/settings_backup_page.dart';
-import 'package:localmaterialnotes/pages/settings/pages/settings_behavior_page.dart';
-import 'package:localmaterialnotes/pages/settings/pages/settings_editor_page.dart';
-import 'package:localmaterialnotes/pages/settings/pages/settings_labels_page.dart';
-import 'package:localmaterialnotes/utils/keys.dart';
+import '../../common/constants/constants.dart';
+import '../../common/navigation/app_bars/basic_app_bar.dart';
+import '../../common/navigation/side_navigation.dart';
+import '../../common/navigation/top_navigation.dart';
+import '../../navigation/navigation_routes.dart';
+import 'pages/settings_about_page.dart';
+import 'pages/settings_accessibility_page.dart';
+import 'pages/settings_appearance_page.dart';
+import 'pages/settings_backup_page.dart';
+import 'pages/settings_behavior_page.dart';
+import 'pages/settings_editor_page.dart';
+import 'pages/settings_labels_page.dart';
+import '../../utils/keys.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
 /// Page for the settings of the application.

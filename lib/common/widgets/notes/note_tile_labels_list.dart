@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/widgets/labels/label_badge.dart';
-import 'package:localmaterialnotes/common/widgets/labels/label_placeholder_badge.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
+import '../labels/label_badge.dart';
+import '../labels/label_placeholder_badge.dart';
+import '../../../models/note/note.dart';
 
 /// List of labels on note tiles.
 class NoteTileLabelsList extends ConsumerStatefulWidget {

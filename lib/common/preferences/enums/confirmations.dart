@@ -1,6 +1,6 @@
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import '../../constants/constants.dart';
+import '../../extensions/iterable_extension.dart';
+import '../preference_key.dart';
 
 /// Lists the options for the confirmations asked for user actions such as pining and deleting notes.
 enum Confirmations {

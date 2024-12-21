@@ -5,21 +5,21 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/labels/select.dart';
-import 'package:localmaterialnotes/common/actions/notes/select.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/locale_extension.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
-import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
-import 'package:localmaterialnotes/pages/notes/notes_page.dart';
-import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
-import 'package:localmaterialnotes/providers/labels/labels_navigation/labels_navigation_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
-import 'package:localmaterialnotes/providers/preferences/preferences_provider.dart';
-import 'package:localmaterialnotes/utils/locale_utils.dart';
-import 'package:localmaterialnotes/utils/quick_actions_utils.dart';
-import 'package:localmaterialnotes/utils/share_utils.dart';
-import 'package:localmaterialnotes/utils/theme_utils.dart';
+import 'common/actions/labels/select.dart';
+import 'common/actions/notes/select.dart';
+import 'common/constants/constants.dart';
+import 'common/extensions/locale_extension.dart';
+import 'common/widgets/placeholders/error_placeholder.dart';
+import 'l10n/app_localizations/app_localizations.g.dart';
+import 'pages/notes/notes_page.dart';
+import 'providers/labels/labels_list/labels_list_provider.dart';
+import 'providers/labels/labels_navigation/labels_navigation_provider.dart';
+import 'providers/notifiers/notifiers.dart';
+import 'providers/preferences/preferences_provider.dart';
+import 'utils/locale_utils.dart';
+import 'utils/quick_actions_utils.dart';
+import 'utils/share_utils.dart';
+import 'utils/theme_utils.dart';
 
 /// MaterialNotes application.
 class App extends ConsumerStatefulWidget {
