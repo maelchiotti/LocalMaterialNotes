@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
+import '../note/note.dart';
 
 part 'label.g.dart';
 

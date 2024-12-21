@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
+import '../../constants/constants.dart';
 
 /// Error app bar.
 class ErrorAppBar extends StatefulWidget {

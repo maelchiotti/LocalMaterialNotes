@@ -2,14 +2,14 @@ import 'package:collection/collection.dart';
 import 'package:flutter_mimir/flutter_mimir.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/environment.dart';
-import 'package:localmaterialnotes/common/constants/labels.dart';
-import 'package:localmaterialnotes/common/constants/notes.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/models/note/index/note_index.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/services/database_service.dart';
+import '../../common/constants/constants.dart';
+import '../../common/constants/environment.dart';
+import '../../common/constants/labels.dart';
+import '../../common/constants/notes.dart';
+import '../../models/label/label.dart';
+import '../../models/note/index/note_index.dart';
+import '../../models/note/note.dart';
+import '../database_service.dart';
 
 /// Service for the notes database.
 ///

@@ -1,16 +1,16 @@
 import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/error_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/side_navigation.dart';
-import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
-import 'package:localmaterialnotes/utils/database_utils.dart';
-import 'package:localmaterialnotes/utils/info_utils.dart';
-import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
-import 'package:localmaterialnotes/utils/utils.dart';
+import '../../constants/constants.dart';
+import '../../constants/paddings.dart';
+import '../../navigation/app_bars/error_app_bar.dart';
+import '../../navigation/side_navigation.dart';
+import '../../navigation/top_navigation.dart';
+import '../../preferences/preference_key.dart';
+import '../../../l10n/app_localizations/app_localizations.g.dart';
+import '../../../utils/database_utils.dart';
+import '../../../utils/info_utils.dart';
+import '../../../utils/snack_bar_utils.dart';
+import '../../../utils/utils.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 

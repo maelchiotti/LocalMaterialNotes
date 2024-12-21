@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/notes/add.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
+import '../../../common/actions/notes/add.dart';
+import '../../../common/constants/constants.dart';
 
 /// Floating action button to add a note.
 class AddNoteFab extends ConsumerWidget {

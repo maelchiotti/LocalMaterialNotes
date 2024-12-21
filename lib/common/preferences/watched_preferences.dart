@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
-import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/theme_utils.dart';
+import 'enums/layout.dart';
+import 'enums/swipe_action.dart';
+import 'preference_key.dart';
+import '../../utils/theme_utils.dart';
 
 // ignore_for_file: public_member_api_docs
 

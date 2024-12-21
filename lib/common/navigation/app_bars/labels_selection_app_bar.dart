@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/labels/delete.dart';
-import 'package:localmaterialnotes/common/actions/labels/pin.dart';
-import 'package:localmaterialnotes/common/actions/labels/select.dart';
-import 'package:localmaterialnotes/common/actions/labels/visible.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/constants/separators.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/providers/labels/labels/labels_provider.dart';
+import '../../actions/labels/delete.dart';
+import '../../actions/labels/pin.dart';
+import '../../actions/labels/select.dart';
+import '../../actions/labels/visible.dart';
+import '../../constants/constants.dart';
+import '../../constants/paddings.dart';
+import '../../constants/separators.dart';
+import '../../widgets/placeholders/error_placeholder.dart';
+import '../../widgets/placeholders/loading_placeholder.dart';
+import '../../../models/label/label.dart';
+import '../../../providers/labels/labels/labels_provider.dart';
 
 /// Labels selection mode app bar.
 ///

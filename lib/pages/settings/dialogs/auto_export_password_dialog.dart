@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/string_extension.dart';
-import 'package:localmaterialnotes/pages/settings/widgets/password_field.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/extensions/string_extension.dart';
+import '../widgets/password_field.dart';
 
 /// Dialog to enter the password for the auto exports.
 class AutoExportPasswordDialog extends StatefulWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/navigation/navigation_routes.dart';
-import 'package:localmaterialnotes/pages/editor/editor_page.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
+import '../common/preferences/preference_key.dart';
+import 'navigation_routes.dart';
+import '../pages/editor/editor_page.dart';
+import '../providers/notifiers/notifiers.dart';
 
 /// Utilities for the navigation.
 class NavigatorUtils {

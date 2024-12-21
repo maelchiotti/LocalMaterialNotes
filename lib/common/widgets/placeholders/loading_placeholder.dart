@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
+import '../../constants/paddings.dart';
 
 /// Placeholder widget for loading content.
 class LoadingPlaceholder extends StatelessWidget {

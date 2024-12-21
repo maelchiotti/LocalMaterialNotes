@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/side_navigation.dart';
-import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/empty_placeholder.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
-import 'package:localmaterialnotes/pages/labels/widgets/add_label_fab.dart';
-import 'package:localmaterialnotes/pages/labels/widgets/label_tile.dart';
-import 'package:localmaterialnotes/pages/labels/widgets/labels_filters.dart';
-import 'package:localmaterialnotes/providers/labels/labels/labels_provider.dart';
+import '../../common/constants/constants.dart';
+import '../../common/constants/paddings.dart';
+import '../../common/navigation/app_bars/basic_app_bar.dart';
+import '../../common/navigation/side_navigation.dart';
+import '../../common/navigation/top_navigation.dart';
+import '../../common/widgets/placeholders/empty_placeholder.dart';
+import '../../common/widgets/placeholders/error_placeholder.dart';
+import '../../common/widgets/placeholders/loading_placeholder.dart';
+import 'widgets/add_label_fab.dart';
+import 'widgets/label_tile.dart';
+import 'widgets/labels_filters.dart';
+import '../../providers/labels/labels/labels_provider.dart';
 
 /// Page displaying the labels.
 ///

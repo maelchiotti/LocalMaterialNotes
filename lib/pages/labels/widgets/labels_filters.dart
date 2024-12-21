@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/pages/labels/enums/labels_filter.dart';
-import 'package:localmaterialnotes/providers/labels/labels/labels_provider.dart';
+import '../../../common/constants/constants.dart';
+import '../enums/labels_filter.dart';
+import '../../../providers/labels/labels/labels_provider.dart';
 
 /// Filters for the labels.
 class LabelsFilters extends ConsumerStatefulWidget {

@@ -4,19 +4,19 @@ import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/editor_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/pages/editor/widgets/editor_field.dart';
-import 'package:localmaterialnotes/pages/editor/widgets/editor_labels_list.dart';
-import 'package:localmaterialnotes/pages/editor/widgets/editor_toolbar.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
-import 'package:localmaterialnotes/utils/keys.dart';
+import '../../common/constants/constants.dart';
+import '../../common/constants/paddings.dart';
+import '../../common/navigation/app_bars/editor_app_bar.dart';
+import '../../common/navigation/top_navigation.dart';
+import '../../common/preferences/preference_key.dart';
+import '../../common/widgets/placeholders/loading_placeholder.dart';
+import '../../models/note/note.dart';
+import 'widgets/editor_field.dart';
+import 'widgets/editor_labels_list.dart';
+import 'widgets/editor_toolbar.dart';
+import '../../providers/notes/notes_provider.dart';
+import '../../providers/notifiers/notifiers.dart';
+import '../../utils/keys.dart';
 
 /// Page displaying the note editor.
 ///

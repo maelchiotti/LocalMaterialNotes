@@ -1,11 +1,11 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/color_extension.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/extensions/color_extension.dart';
+import '../../../models/label/label.dart';
+import '../../../models/note/note.dart';
+import '../../../providers/labels/labels_list/labels_list_provider.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 /// Dialog to select the labels.

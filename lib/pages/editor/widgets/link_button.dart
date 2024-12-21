@@ -1,7 +1,7 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/pages/editor/dialogs/link_dialog.dart';
-import 'package:localmaterialnotes/pages/editor/widgets/editor_button.dart';
+import '../dialogs/link_dialog.dart';
+import 'editor_button.dart';
 
 /// Custom toolbar button to add a link.
 class LinkButton extends StatefulWidget {

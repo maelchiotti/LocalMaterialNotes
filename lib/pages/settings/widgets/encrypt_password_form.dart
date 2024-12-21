@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/pages/settings/widgets/password_field.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/constants/paddings.dart';
+import '../../../common/preferences/preference_key.dart';
+import 'password_field.dart';
 
 /// Form to choose whether to encrypt the JSON exports and to provide the password.
 class EncryptPasswordForm extends StatefulWidget {

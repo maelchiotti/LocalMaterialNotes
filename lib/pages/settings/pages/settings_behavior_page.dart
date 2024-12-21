@@ -1,14 +1,14 @@
 import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
-import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
-import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/keys.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/constants/paddings.dart';
+import '../../../common/navigation/app_bars/basic_app_bar.dart';
+import '../../../common/navigation/top_navigation.dart';
+import '../../../common/preferences/enums/confirmations.dart';
+import '../../../common/preferences/enums/swipe_action.dart';
+import '../../../common/preferences/preference_key.dart';
+import '../../../utils/keys.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
 import '../../../common/preferences/watched_preferences.dart';

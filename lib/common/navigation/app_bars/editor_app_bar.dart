@@ -1,18 +1,18 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/notes/copy.dart';
-import 'package:localmaterialnotes/common/actions/notes/delete.dart';
-import 'package:localmaterialnotes/common/actions/notes/labels.dart';
-import 'package:localmaterialnotes/common/actions/notes/pin.dart';
-import 'package:localmaterialnotes/common/actions/notes/restore.dart';
-import 'package:localmaterialnotes/common/actions/notes/share.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/navigation/menu_option.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/pages/editor/sheets/about_sheet.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
+import '../../actions/notes/copy.dart';
+import '../../actions/notes/delete.dart';
+import '../../actions/notes/labels.dart';
+import '../../actions/notes/pin.dart';
+import '../../actions/notes/restore.dart';
+import '../../actions/notes/share.dart';
+import '../../constants/constants.dart';
+import '../../constants/paddings.dart';
+import '../menu_option.dart';
+import '../../preferences/preference_key.dart';
+import '../../../pages/editor/sheets/about_sheet.dart';
+import '../../../providers/notifiers/notifiers.dart';
 
 /// Editor's app bar.
 ///

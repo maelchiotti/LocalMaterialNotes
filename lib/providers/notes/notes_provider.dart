@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/list_extension.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/services/notes/notes_service.dart';
+import '../../common/constants/constants.dart';
+import '../../common/extensions/list_extension.dart';
+import '../../models/label/label.dart';
+import '../../models/note/note.dart';
+import '../bin/bin_provider.dart';
+import '../../services/notes/notes_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'notes_provider.g.dart';

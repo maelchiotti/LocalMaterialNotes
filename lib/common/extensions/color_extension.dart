@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
+import '../constants/constants.dart';
 
 /// Extensions on the [Color] class.
 extension ColorExtension on Color {

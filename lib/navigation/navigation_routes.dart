@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:localmaterialnotes/navigation/navigator_utils.dart';
+import 'navigator_utils.dart';
 
 // ignore_for_file: public_member_api_docs
 

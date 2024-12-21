@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
+import '../../../common/constants/constants.dart';
 import 'package:string_validator/string_validator.dart';
 
 /// Dialog to add a link in the editor.

@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/localizations_utils.dart';
+import '../common/preferences/preference_key.dart';
+import 'localizations_utils.dart';
 
 /// Utilities for the application's locale.
 class LocaleUtils {

@@ -1,8 +1,8 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import '../common/constants/constants.dart';
+import '../common/extensions/iterable_extension.dart';
+import '../common/preferences/preference_key.dart';
 
 /// Utilities for the application's theme.
 ///

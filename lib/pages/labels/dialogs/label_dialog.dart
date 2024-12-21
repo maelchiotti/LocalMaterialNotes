@@ -1,11 +1,11 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/constants/sizes.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/constants/paddings.dart';
+import '../../../common/constants/sizes.dart';
+import '../../../models/label/label.dart';
+import '../../../providers/labels/labels_list/labels_list_provider.dart';
 
 /// Dialog to add or edit a label.
 class LabelDialog extends ConsumerStatefulWidget {

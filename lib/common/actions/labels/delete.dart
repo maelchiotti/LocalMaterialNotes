@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/labels/select.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/dialogs/confirmation_dialog.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/providers/labels/labels/labels_provider.dart';
+import 'select.dart';
+import '../../constants/constants.dart';
+import '../../dialogs/confirmation_dialog.dart';
+import '../../../models/label/label.dart';
+import '../../../providers/labels/labels/labels_provider.dart';
 
 /// Deletes the [label].
 ///

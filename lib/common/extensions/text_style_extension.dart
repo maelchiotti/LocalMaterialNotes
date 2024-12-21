@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/extensions/color_extension.dart';
+import 'color_extension.dart';
 
 /// Extensions on the [TextStyle] class.
 extension TextStyleExtension on TextStyle {

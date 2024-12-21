@@ -1,9 +1,9 @@
 import 'package:isar/isar.dart';
-import 'package:localmaterialnotes/common/constants/environment.dart';
-import 'package:localmaterialnotes/common/constants/labels.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/pages/labels/enums/labels_filter.dart';
-import 'package:localmaterialnotes/services/database_service.dart';
+import '../../common/constants/environment.dart';
+import '../../common/constants/labels.dart';
+import '../../models/label/label.dart';
+import '../../pages/labels/enums/labels_filter.dart';
+import '../database_service.dart';
 
 /// Service for the labels database.
 ///

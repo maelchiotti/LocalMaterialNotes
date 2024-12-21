@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:localmaterialnotes/common/actions/notes/labels.dart';
-import 'package:localmaterialnotes/common/constants/sizes.dart';
-import 'package:localmaterialnotes/common/widgets/labels/label_badge.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
+import '../../../common/actions/notes/labels.dart';
+import '../../../common/constants/sizes.dart';
+import '../../../common/widgets/labels/label_badge.dart';
+import '../../../common/widgets/placeholders/loading_placeholder.dart';
+import '../../../providers/notifiers/notifiers.dart';
 
 /// List of labels in the editor.
 class EditorLabelsList extends ConsumerWidget {

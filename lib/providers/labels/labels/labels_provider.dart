@@ -1,11 +1,11 @@
 import 'package:collection/collection.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/list_extension.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/pages/labels/enums/labels_filter.dart';
-import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/providers/labels/labels_list/labels_list_provider.dart';
-import 'package:localmaterialnotes/services/labels/labels_service.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/extensions/list_extension.dart';
+import '../../../models/label/label.dart';
+import '../../../pages/labels/enums/labels_filter.dart';
+import '../../bin/bin_provider.dart';
+import '../labels_list/labels_list_provider.dart';
+import '../../../services/labels/labels_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../labels_navigation/labels_navigation_provider.dart';
