@@ -42,6 +42,21 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - name: Read Android NDK version
+        run: |
+          VERSION=$(cat .ndk-version)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      - name: Setup Android NDK
+        id: setup-ndk
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: ${{ env.VERSION }}
+          add-to-path: false
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          cache: false
+          rustflags: ""
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -51,6 +66,13 @@ jobs:
         run: |
           export PUB_CACHE=$HOME/.pub-cache
           flutter pub get
+      - name: Setup Isar
+        run: |
+          sudo apt-get install -y tofrodos
+          fromdos .isar/tool/build_android.sh
+          bash scripts/isar/fdroid_build_isar.sh x64 armv7 arm64
+        env:
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
       - name: Setup mimir
         run: bash scripts/mimir/fdroid_build_mimir.sh
       - name: Add keystore
@@ -62,7 +84,7 @@ jobs:
           dart run build_runner build
           flutter gen-l10n
       - name: Build app (fat APK)
-        run: flutter build apk --debug
+        run: flutter build apk --release
       - name: Archive APK
         uses: actions/upload-artifact@v4
         with:
