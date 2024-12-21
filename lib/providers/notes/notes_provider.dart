@@ -44,7 +44,7 @@ class Notes extends _$Notes {
     List<Note> notes = [];
 
     try {
-      notes = await _notesService.getAllFilteredByLabel(label);
+      notes = await _notesService.filterByLabel(label);
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
     }
