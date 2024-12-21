@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/constants/sizes.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/navigation/navigation_routes.dart';
-import 'package:localmaterialnotes/navigation/navigator_utils.dart';
-import 'package:localmaterialnotes/pages/bin/bin_page.dart';
-import 'package:localmaterialnotes/pages/labels/labels_page.dart';
-import 'package:localmaterialnotes/pages/notes/notes_page.dart';
-import 'package:localmaterialnotes/pages/settings/settings_main_page.dart';
-import 'package:localmaterialnotes/providers/labels/labels_navigation/labels_navigation_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
-import 'package:localmaterialnotes/utils/asset.dart';
-import 'package:localmaterialnotes/utils/keys.dart';
+import '../constants/constants.dart';
+import '../constants/paddings.dart';
+import '../constants/sizes.dart';
+import '../preferences/preference_key.dart';
+import '../widgets/placeholders/error_placeholder.dart';
+import '../../models/label/label.dart';
+import '../../navigation/navigation_routes.dart';
+import '../../navigation/navigator_utils.dart';
+import '../../pages/bin/bin_page.dart';
+import '../../pages/labels/labels_page.dart';
+import '../../pages/notes/notes_page.dart';
+import '../../pages/settings/settings_main_page.dart';
+import '../../providers/labels/labels_navigation/labels_navigation_provider.dart';
+import '../../providers/notifiers/notifiers.dart';
+import '../../utils/asset.dart';
+import '../../utils/keys.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 /// Side navigation with the drawer.
@@ -32,14 +32,10 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
   late int _index;
 
   /// Returns whether the [route] is the home page.
-  bool isHomeRoute(String route) {
-    return route == '/' || route == NavigationRoute.notes.name;
-  }
+  bool isHomeRoute(String route) => route == '/' || route == NavigationRoute.notes.name;
 
   /// Returns whether the [route] is the home page.
-  bool isLabelRoute(String route) {
-    return route.startsWith('label-');
-  }
+  bool isLabelRoute(String route) => route.startsWith('label-');
 
   /// Sets the index of the navigation drawer.
   void setIndex([List<Label>? labels]) {
@@ -165,79 +161,77 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
   }
 
   /// Returns the navigation drawer.
-  Widget drawer(BuildContext context, [List<Label>? labels]) {
-    return NavigationDrawer(
-      onDestinationSelected: (index) => navigate(index, labels),
-      selectedIndex: _index,
-      children: <Widget>[
-        DrawerHeader(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                Asset.icon.path,
-                fit: BoxFit.fitWidth,
-                width: Sizes.iconSize.size,
-              ),
-              Padding(padding: Paddings.vertical(8)),
-              Text(
-                l.app_name,
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-            ],
+  Widget drawer(BuildContext context, [List<Label>? labels]) => NavigationDrawer(
+        onDestinationSelected: (index) => navigate(index, labels),
+        selectedIndex: _index,
+        children: <Widget>[
+          DrawerHeader(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  Asset.icon.path,
+                  fit: BoxFit.fitWidth,
+                  width: Sizes.iconSize.size,
+                ),
+                Padding(padding: Paddings.vertical(8)),
+                Text(
+                  l.app_name,
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+              ],
+            ),
           ),
-        ),
-        NavigationDrawerDestination(
-          key: Keys.drawerNotesTab,
-          icon: const Icon(Icons.notes_outlined),
-          selectedIcon: const Icon(Icons.notes),
-          label: Text(l.navigation_notes),
-        ),
-        if (labels != null) ...[
-          Divider(indent: 24, endIndent: 24),
-          for (final label in labels)
-            NavigationDrawerDestination(
-              icon: Icon(
-                label.pinned ? Icons.label_important_outline : Icons.label_outline,
-                color: label.color,
-              ),
-              selectedIcon: Icon(
-                label.pinned ? Icons.label_important : Icons.label,
-                color: label.color,
-              ),
-              label: Expanded(
-                child: Text(
-                  label.name,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+          NavigationDrawerDestination(
+            key: Keys.drawerNotesTab,
+            icon: const Icon(Icons.notes_outlined),
+            selectedIcon: const Icon(Icons.notes),
+            label: Text(l.navigation_notes),
+          ),
+          if (labels != null) ...[
+            Divider(indent: 24, endIndent: 24),
+            for (final label in labels)
+              NavigationDrawerDestination(
+                icon: Icon(
+                  label.pinned ? Icons.label_important_outline : Icons.label_outline,
+                  color: label.color,
+                ),
+                selectedIcon: Icon(
+                  label.pinned ? Icons.label_important : Icons.label,
+                  color: label.color,
+                ),
+                label: Expanded(
+                  child: Text(
+                    label.name,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
+          ],
+          if (labels != null) ...[
+            NavigationDrawerDestination(
+              icon: const Icon(Symbols.auto_label),
+              selectedIcon: VariedIcon.varied(Symbols.auto_label, fill: 1.0),
+              label: Text(l.navigation_manage_labels_destination),
             ),
-        ],
-        if (labels != null) ...[
+            Divider(indent: 24, endIndent: 24),
+          ],
           NavigationDrawerDestination(
-            icon: const Icon(Symbols.auto_label),
-            selectedIcon: VariedIcon.varied(Symbols.auto_label, fill: 1.0),
-            label: Text(l.navigation_manage_labels_destination),
+            key: Keys.drawerNotesTab,
+            icon: const Icon(Icons.delete_outline),
+            selectedIcon: const Icon(Icons.delete),
+            label: Text(l.navigation_bin),
           ),
-          Divider(indent: 24, endIndent: 24),
+          // Divider(indent: 24, endIndent: 24),
+          NavigationDrawerDestination(
+            key: Keys.drawerSettingsTab,
+            icon: const Icon(Icons.settings_outlined),
+            selectedIcon: const Icon(Icons.settings),
+            label: Text(l.navigation_settings),
+          ),
         ],
-        NavigationDrawerDestination(
-          key: Keys.drawerNotesTab,
-          icon: const Icon(Icons.delete_outline),
-          selectedIcon: const Icon(Icons.delete),
-          label: Text(l.navigation_bin),
-        ),
-        // Divider(indent: 24, endIndent: 24),
-        NavigationDrawerDestination(
-          key: Keys.drawerSettingsTab,
-          icon: const Icon(Icons.settings_outlined),
-          selectedIcon: const Icon(Icons.settings),
-          label: Text(l.navigation_settings),
-        ),
-      ],
-    );
-  }
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -245,18 +239,14 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
 
     if (enableLabels) {
       return ref.watch(labelsNavigationProvider).when(
-        data: (labels) {
-          setIndex(labels);
+            data: (labels) {
+              setIndex(labels);
 
-          return drawer(context, labels);
-        },
-        error: (exception, stackTrace) {
-          return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
-        },
-        loading: () {
-          return drawer(context);
-        },
-      );
+              return drawer(context, labels);
+            },
+            error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
+            loading: () => drawer(context),
+          );
     } else {
       setIndex();
 

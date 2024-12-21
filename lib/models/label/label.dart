@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
+import '../note/note.dart';
 
 part 'label.g.dart';
 
@@ -52,11 +52,9 @@ class Label extends Equatable implements Comparable<Label> {
   bool get hidden => !visible;
 
   /// Returns the color of the [name] text when displayed on the [color], depending on its luminance.
-  Color getTextColor(BuildContext context) {
-    return Color(colorHex).computeLuminance() > 0.5
-        ? Theme.of(context).colorScheme.onInverseSurface
-        : Theme.of(context).colorScheme.onSurface;
-  }
+  Color getTextColor(BuildContext context) => Color(colorHex).computeLuminance() > 0.5
+      ? Theme.of(context).colorScheme.onInverseSurface
+      : Theme.of(context).colorScheme.onSurface;
 
   /// Default constructor of a label.
   Label({

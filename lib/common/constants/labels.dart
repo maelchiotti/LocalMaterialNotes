@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
+import '../../models/label/label.dart';
 
 /// Labels used when running integration tests.
 final integrationTestLabels = <Label>[];

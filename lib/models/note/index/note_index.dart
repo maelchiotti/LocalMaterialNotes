@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
+import '../note.dart';
 
 part 'note_index.g.dart';
 
@@ -32,15 +32,13 @@ class NoteIndex {
   });
 
   /// Creates a [NoteIndex] from a [Note].
-  factory NoteIndex.fromNote(Note note) {
-    return NoteIndex(
-      id: note.id,
-      deleted: note.deleted,
-      title: note.title,
-      content: note.plainText,
-      labels: note.labelsNamesVisibleSorted,
-    );
-  }
+  factory NoteIndex.fromNote(Note note) => NoteIndex(
+        id: note.id,
+        deleted: note.deleted,
+        title: note.title,
+        content: note.plainText,
+        labels: note.labelsNamesVisibleSorted,
+      );
 
   /// Returns this [NoteIndex] as JSON.
   Map<String, dynamic> toJson() => _$NoteIndexToJson(this);

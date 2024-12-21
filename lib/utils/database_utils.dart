@@ -4,21 +4,21 @@ import 'dart:typed_data';
 import 'package:archive/archive.dart';
 import 'package:dart_helper_utils/dart_helper_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/enums/mime_type.dart';
-import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
-import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/pages/settings/dialogs/auto_export_password_dialog.dart';
-import 'package:localmaterialnotes/services/labels/labels_service.dart';
-import 'package:localmaterialnotes/services/notes/notes_service.dart';
-import 'package:localmaterialnotes/utils/auto_export_utils.dart';
-import 'package:localmaterialnotes/utils/files_utils.dart';
-import 'package:localmaterialnotes/utils/info_utils.dart';
-import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
+import '../common/constants/constants.dart';
+import '../common/enums/mime_type.dart';
+import '../common/extensions/date_time_extensions.dart';
+import '../common/extensions/iterable_extension.dart';
+import '../common/preferences/preference_key.dart';
+import '../common/preferences/preferences_utils.dart';
+import '../models/label/label.dart';
+import '../models/note/note.dart';
+import '../pages/settings/dialogs/auto_export_password_dialog.dart';
+import '../services/labels/labels_service.dart';
+import '../services/notes/notes_service.dart';
+import 'auto_export_utils.dart';
+import 'files_utils.dart';
+import 'info_utils.dart';
+import 'snack_bar_utils.dart';
 import 'package:sanitize_filename/sanitize_filename.dart';
 
 /// Utilities for the database.
@@ -89,9 +89,7 @@ class DatabaseUtils {
   }
 
   Future<bool> _importLabels(List<dynamic> labelsAsJson) async {
-    final labels = labelsAsJson.map((labelAsJson) {
-      return Label.fromJson(labelAsJson);
-    }).toList();
+    final labels = labelsAsJson.map((labelAsJson) => Label.fromJson(labelAsJson)).toList();
 
     await _labelsService.putAllNew(labels);
 
@@ -147,9 +145,7 @@ class DatabaseUtils {
 
       for (final noteAsJson in notesAsJson) {
         final labelsString = noteAsJson['labels'] as List;
-        final labels = databaseLabels.where((label) {
-          return labelsString.contains(label.name);
-        }).toList();
+        final labels = databaseLabels.where((label) => labelsString.contains(label.name)).toList();
 
         notesLabels.add(labels);
       }
@@ -222,14 +218,12 @@ class DatabaseUtils {
   /// Automatically exports all the notes in a JSON file.
   ///
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
-  Future<bool> autoExportAsJson(bool encrypt, String password) async {
-    return await _exportAsJson(
-      encrypt: encrypt,
-      password: password,
-      directory: AutoExportUtils().autoExportDirectory,
-      fileName: _exportFileName(MimeType.json.extension),
-    );
-  }
+  Future<bool> autoExportAsJson(bool encrypt, String password) async => await _exportAsJson(
+        encrypt: encrypt,
+        password: password,
+        directory: AutoExportUtils().autoExportDirectory,
+        fileName: _exportFileName(MimeType.json.extension),
+      );
 
   /// Manually exports all the notes in a JSON file.
   ///

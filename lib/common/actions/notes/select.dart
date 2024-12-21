@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
+import '../../../models/note/note.dart';
+import '../../../providers/bin/bin_provider.dart';
+import '../../../providers/notes/notes_provider.dart';
+import '../../../providers/notifiers/notifiers.dart';
 
 /// Toggles the select status of the [note].
 void toggleSelectNote(WidgetRef ref, Note note) {

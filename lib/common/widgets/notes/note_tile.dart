@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/notes/copy.dart';
-import 'package:localmaterialnotes/common/actions/notes/delete.dart';
-import 'package:localmaterialnotes/common/actions/notes/pin.dart';
-import 'package:localmaterialnotes/common/actions/notes/select.dart';
-import 'package:localmaterialnotes/common/actions/notes/share.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/constants/sizes.dart';
-import 'package:localmaterialnotes/common/extensions/color_extension.dart';
-import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
-import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
-import 'package:localmaterialnotes/common/preferences/enums/swipe_direction.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/widgets/notes/note_tile_dismissible.dart';
-import 'package:localmaterialnotes/common/widgets/notes/note_tile_labels_list.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/navigation/navigator_utils.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
+import '../../actions/notes/copy.dart';
+import '../../actions/notes/delete.dart';
+import '../../actions/notes/pin.dart';
+import '../../actions/notes/select.dart';
+import '../../actions/notes/share.dart';
+import '../../constants/paddings.dart';
+import '../../constants/sizes.dart';
+import '../../extensions/color_extension.dart';
+import '../../preferences/enums/layout.dart';
+import '../../preferences/enums/swipe_action.dart';
+import '../../preferences/enums/swipe_direction.dart';
+import '../../preferences/preference_key.dart';
+import 'note_tile_dismissible.dart';
+import 'note_tile_labels_list.dart';
+import '../../../models/note/note.dart';
+import '../../../navigation/navigator_utils.dart';
+import '../../../providers/notifiers/notifiers.dart';
 
 import '../../../providers/preferences/preferences_provider.dart';
 
@@ -74,9 +74,8 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   ///   - Whether the [showTilesBackground] setting is enabled.
   ///
   /// If neither are `true`, then [BorderRadius.zero] is returned.
-  BorderRadius getBorderRadius(Layout layout, bool showTilesBackground) {
-    return layout == Layout.grid || showTilesBackground ? BorderRadius.circular(16) : BorderRadius.zero;
-  }
+  BorderRadius getBorderRadius(Layout layout, bool showTilesBackground) =>
+      layout == Layout.grid || showTilesBackground ? BorderRadius.circular(16) : BorderRadius.zero;
 
   /// Returns the [DismissDirection] of the note tile, depending on the [rightSwipeAction] and the [leftSwipeAction].
   ///
@@ -132,13 +131,11 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   }
 
   /// Returns the dismissible widget for the [swipeAction] in the [swipeDirection].
-  Widget getDismissibleWidget(SwipeAction swipeAction, SwipeDirection swipeDirection) {
-    return NoteTileDismissible(
-      swipeAction: swipeAction,
-      swipeDirection: swipeDirection,
-      alternative: widget.note.pinned,
-    );
-  }
+  Widget getDismissibleWidget(SwipeAction swipeAction, SwipeDirection swipeDirection) => NoteTileDismissible(
+        swipeAction: swipeAction,
+        swipeDirection: swipeDirection,
+        alternative: widget.note.pinned,
+      );
 
   /// Executes the [rightSwipeAction] or the [leftSwipeAction] depending on the [direction] that was swiped.
   Future<bool> onDismissed(DismissDirection direction, SwipeAction rightSwipeAction, SwipeAction leftSwipeAction) {

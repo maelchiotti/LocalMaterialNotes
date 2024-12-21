@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/utils/auto_export_utils.dart';
+import '../common/constants/constants.dart';
+import 'auto_export_utils.dart';
 import 'package:path/path.dart';
 
 /// Writes a file with the [data], in the [directory], with the [filename].
@@ -80,9 +80,8 @@ Future<bool> writeFileFromString({
 }
 
 /// Returns the URI to the directory picked by the user, with a persisted write permission.
-Future<String?> selectDirectory() async {
-  return (await safUtil.pickDirectory(writePermission: true, persistablePermission: true))?.uri;
-}
+Future<String?> selectDirectory() async =>
+    (await safUtil.pickDirectory(writePermission: true, persistablePermission: true))?.uri;
 
 /// Returns the the file picked by the user, limiting the choice to only files of the [mimeType].
 Future<Uint8List?> selectAndReadFile(String mimeType) async {
@@ -96,9 +95,7 @@ Future<Uint8List?> selectAndReadFile(String mimeType) async {
 }
 
 /// Returns whether the directory at [path] exists.
-Future<bool> doesDirectoryExist(String path) async {
-  return await safUtil.exists(path, true);
-}
+Future<bool> doesDirectoryExist(String path) async => await safUtil.exists(path, true);
 
 /// Creates the directory at [path], recursively creating the parent directories if necessary.
 Future<void> createDirectory(String path) async {

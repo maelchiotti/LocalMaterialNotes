@@ -1,14 +1,14 @@
 import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
-import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
-import 'package:localmaterialnotes/common/preferences/enums/swipe_action.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/keys.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/constants/paddings.dart';
+import '../../../common/navigation/app_bars/basic_app_bar.dart';
+import '../../../common/navigation/top_navigation.dart';
+import '../../../common/preferences/enums/confirmations.dart';
+import '../../../common/preferences/enums/swipe_action.dart';
+import '../../../common/preferences/preference_key.dart';
+import '../../../utils/keys.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
 import '../../../common/preferences/watched_preferences.dart';
@@ -84,15 +84,15 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                     value: confirmations.title,
                     description: l.settings_confirmations_description,
                     dialogTitle: l.settings_confirmations,
-                    options: Confirmations.values.map(
-                      (confirmation) {
-                        return (
-                          value: confirmation,
-                          title: confirmation.title,
-                          subtitle: null,
-                        );
-                      },
-                    ).toList(),
+                    options: Confirmations.values
+                        .map(
+                          (confirmation) => (
+                            value: confirmation,
+                            title: confirmation.title,
+                            subtitle: null,
+                          ),
+                        )
+                        .toList(),
                     initialOption: confirmations,
                     onSubmitted: _submittedConfirmations,
                   ),
@@ -115,15 +115,15 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                     value: swipeActions.right.title(),
                     description: l.settings_swipe_action_right_description,
                     dialogTitle: l.settings_swipe_action_right,
-                    options: SwipeAction.values.map(
-                      (swipeAction) {
-                        return (
-                          value: swipeAction,
-                          title: swipeAction.title(),
-                          subtitle: null,
-                        );
-                      },
-                    ).toList(),
+                    options: SwipeAction.values
+                        .map(
+                          (swipeAction) => (
+                            value: swipeAction,
+                            title: swipeAction.title(),
+                            subtitle: null,
+                          ),
+                        )
+                        .toList(),
                     initialOption: swipeActions.right,
                     onSubmitted: _submittedSwipeRightAction,
                   ),
@@ -133,15 +133,15 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                     value: swipeActions.left.title(),
                     description: l.settings_swipe_action_left_description,
                     dialogTitle: l.settings_swipe_action_left,
-                    options: SwipeAction.values.map(
-                      (swipeAction) {
-                        return (
-                          value: swipeAction,
-                          title: swipeAction.title(),
-                          subtitle: null,
-                        );
-                      },
-                    ).toList(),
+                    options: SwipeAction.values
+                        .map(
+                          (swipeAction) => (
+                            value: swipeAction,
+                            title: swipeAction.title(),
+                            subtitle: null,
+                          ),
+                        )
+                        .toList(),
                     initialOption: swipeActions.left,
                     onSubmitted: _submittedSwipeLeftAction,
                   ),

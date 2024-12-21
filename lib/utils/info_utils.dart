@@ -1,6 +1,6 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
+import '../common/constants/constants.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 /// Utilities for information about the application.
@@ -10,9 +10,7 @@ class InfoUtils {
   static final InfoUtils _singleton = InfoUtils._internal();
 
   /// Default constructor.
-  factory InfoUtils() {
-    return _singleton;
-  }
+  factory InfoUtils() => _singleton;
 
   InfoUtils._internal();
 

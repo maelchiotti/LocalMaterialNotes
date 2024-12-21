@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/notes/select.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/navigation/navigator_utils.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
+import 'select.dart';
+import '../../../models/note/note.dart';
+import '../../../navigation/navigator_utils.dart';
+import '../../../providers/notes/notes_provider.dart';
+import '../../../providers/notifiers/notifiers.dart';
 
 /// Adds a note.
 ///

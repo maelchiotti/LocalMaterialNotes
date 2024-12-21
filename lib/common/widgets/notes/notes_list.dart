@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/constants/separators.dart';
-import 'package:localmaterialnotes/common/constants/sizes.dart';
-import 'package:localmaterialnotes/common/preferences/enums/layout.dart';
-import 'package:localmaterialnotes/common/widgets/notes/note_tile.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/empty_placeholder.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/providers/preferences/preferences_provider.dart';
-import 'package:localmaterialnotes/utils/keys.dart';
+import '../../constants/paddings.dart';
+import '../../constants/separators.dart';
+import '../../constants/sizes.dart';
+import '../../preferences/enums/layout.dart';
+import 'note_tile.dart';
+import '../placeholders/empty_placeholder.dart';
+import '../placeholders/error_placeholder.dart';
+import '../placeholders/loading_placeholder.dart';
+import '../../../models/note/note.dart';
+import '../../../providers/notes/notes_provider.dart';
+import '../../../providers/preferences/preferences_provider.dart';
+import '../../../utils/keys.dart';
 
 /// List of notes.
 class NotesList extends ConsumerWidget {
@@ -46,18 +46,14 @@ class NotesList extends ConsumerWidget {
             key: Keys.notesPageNotesListListLayout,
             padding: showTilesBackground ? Paddings.notesWithBackground : Paddings.fab,
             itemCount: notes.length,
-            itemBuilder: (context, index) {
-              return NoteTile(
-                key: Keys.noteTile(index),
-                note: notes[index],
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: showTilesBackground ? Paddings.notesListWithBackgroundSeparation : EdgeInsetsDirectional.zero,
-                child: showSeparators ? Separator.divider1indent8.horizontal : null,
-              );
-            },
+            itemBuilder: (context, index) => NoteTile(
+              key: Keys.noteTile(index),
+              note: notes[index],
+            ),
+            separatorBuilder: (BuildContext context, int index) => Padding(
+              padding: showTilesBackground ? Paddings.notesListWithBackgroundSeparation : EdgeInsetsDirectional.zero,
+              child: showSeparators ? Separator.divider1indent8.horizontal : null,
+            ),
           )
         : AlignedGridView.count(
             key: Keys.notesPageNotesListGridLayout,
@@ -66,39 +62,23 @@ class NotesList extends ConsumerWidget {
             crossAxisSpacing: Sizes.notesGridLayoutSpacing.size,
             crossAxisCount: crossAxisCount,
             itemCount: notes.length,
-            itemBuilder: (context, index) {
-              return NoteTile(
-                key: Keys.noteTile(index),
-                note: notes[index],
-              );
-            },
+            itemBuilder: (context, index) => NoteTile(
+              key: Keys.noteTile(index),
+              note: notes[index],
+            ),
           );
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return notesPage
-        ? ref.watch(notesProvider).when(
-            data: (notes) {
-              return child(context, ref, notes);
-            },
-            error: (exception, stackTrace) {
-              return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
-            },
-            loading: () {
-              return const LoadingPlaceholder();
-            },
+  Widget build(BuildContext context, WidgetRef ref) => notesPage
+      ? ref.watch(notesProvider).when(
+            data: (notes) => child(context, ref, notes),
+            error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
+            loading: () => const LoadingPlaceholder(),
           )
-        : ref.watch(notesProvider).when(
-            data: (notes) {
-              return child(context, ref, notes);
-            },
-            error: (exception, stackTrace) {
-              return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
-            },
-            loading: () {
-              return const LoadingPlaceholder();
-            },
+      : ref.watch(notesProvider).when(
+            data: (notes) => child(context, ref, notes),
+            error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
+            loading: () => const LoadingPlaceholder(),
           );
-  }
 }

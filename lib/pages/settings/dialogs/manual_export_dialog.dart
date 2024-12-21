@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/string_extension.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/pages/settings/widgets/encrypt_password_form.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/extensions/string_extension.dart';
+import '../../../common/preferences/preference_key.dart';
+import '../widgets/encrypt_password_form.dart';
 
 /// Dialog to configure the manual export.
 class ManualExportDialog extends StatefulWidget {
@@ -58,26 +58,24 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return AlertDialog.adaptive(
-      title: Text(l.settings_export_json),
-      content: SingleChildScrollView(
-        child: EncryptPasswordForm(
-          secondaryDescription: l.dialog_export_encryption_secondary_description_manual,
-          onChanged: _onChanged,
-          onEditingComplete: _pop,
+  Widget build(BuildContext context) => AlertDialog.adaptive(
+        title: Text(l.settings_export_json),
+        content: SingleChildScrollView(
+          child: EncryptPasswordForm(
+            secondaryDescription: l.dialog_export_encryption_secondary_description_manual,
+            onChanged: _onChanged,
+            onEditingComplete: _pop,
+          ),
         ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => _pop(canceled: true),
-          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
-        ),
-        TextButton(
-          onPressed: ok ? _pop : null,
-          child: Text(flutterL?.okButtonLabel ?? 'OK'),
-        ),
-      ],
-    );
-  }
+        actions: [
+          TextButton(
+            onPressed: () => _pop(canceled: true),
+            child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
+          ),
+          TextButton(
+            onPressed: ok ? _pop : null,
+            child: Text(flutterL?.okButtonLabel ?? 'OK'),
+          ),
+        ],
+      );
 }

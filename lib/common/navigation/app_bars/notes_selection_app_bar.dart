@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/notes/delete.dart';
-import 'package:localmaterialnotes/common/actions/notes/pin.dart';
-import 'package:localmaterialnotes/common/actions/notes/restore.dart';
-import 'package:localmaterialnotes/common/actions/notes/select.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/constants/separators.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/error_placeholder.dart';
-import 'package:localmaterialnotes/common/widgets/placeholders/loading_placeholder.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
+import '../../actions/notes/delete.dart';
+import '../../actions/notes/pin.dart';
+import '../../actions/notes/restore.dart';
+import '../../actions/notes/select.dart';
+import '../../constants/constants.dart';
+import '../../constants/paddings.dart';
+import '../../constants/separators.dart';
+import '../../widgets/placeholders/error_placeholder.dart';
+import '../../widgets/placeholders/loading_placeholder.dart';
+import '../../../models/note/note.dart';
+import '../../../providers/bin/bin_provider.dart';
+import '../../../providers/notes/notes_provider.dart';
 
 /// Notes selection mode app bar.
 ///
@@ -89,39 +89,25 @@ class NotesSelectionAppBar extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return notesPage
-        ? ref.watch(notesProvider).when(
-            data: (notes) {
-              return buildAppBar(
-                context,
-                ref,
-                notes.where((note) => note.selected).toList(),
-                notes.length,
-              );
-            },
-            error: (exception, stackTrace) {
-              return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
-            },
-            loading: () {
-              return const LoadingPlaceholder();
-            },
+  Widget build(BuildContext context, WidgetRef ref) => notesPage
+      ? ref.watch(notesProvider).when(
+            data: (notes) => buildAppBar(
+              context,
+              ref,
+              notes.where((note) => note.selected).toList(),
+              notes.length,
+            ),
+            error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
+            loading: () => const LoadingPlaceholder(),
           )
-        : ref.watch(binProvider).when(
-            data: (notes) {
-              return buildAppBar(
-                context,
-                ref,
-                notes.where((note) => note.selected).toList(),
-                notes.length,
-              );
-            },
-            error: (exception, stackTrace) {
-              return ErrorPlaceholder(exception: exception, stackTrace: stackTrace);
-            },
-            loading: () {
-              return const LoadingPlaceholder();
-            },
+      : ref.watch(binProvider).when(
+            data: (notes) => buildAppBar(
+              context,
+              ref,
+              notes.where((note) => note.selected).toList(),
+              notes.length,
+            ),
+            error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
+            loading: () => const LoadingPlaceholder(),
           );
-  }
 }

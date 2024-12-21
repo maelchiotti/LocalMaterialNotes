@@ -3,15 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/app.dart';
-import 'package:localmaterialnotes/common/logs/app_logger.dart';
-import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
-import 'package:localmaterialnotes/services/database_service.dart';
-import 'package:localmaterialnotes/utils/auto_export_utils.dart';
-import 'package:localmaterialnotes/utils/flag_secure_utils.dart';
-import 'package:localmaterialnotes/utils/info_utils.dart';
-import 'package:localmaterialnotes/utils/localizations_utils.dart';
-import 'package:localmaterialnotes/utils/theme_utils.dart';
+import 'app.dart';
+import 'common/logs/app_logger.dart';
+import 'common/preferences/preferences_utils.dart';
+import 'services/database_service.dart';
+import 'utils/auto_export_utils.dart';
+import 'utils/flag_secure_utils.dart';
+import 'utils/info_utils.dart';
+import 'utils/localizations_utils.dart';
+import 'utils/theme_utils.dart';
 
 /// Main entry point of the application.
 Future<void> main() async {
