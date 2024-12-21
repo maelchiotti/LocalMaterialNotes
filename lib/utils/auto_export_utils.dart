@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/database_utils.dart';
-import 'package:localmaterialnotes/utils/files_utils.dart';
+import '../common/constants/constants.dart';
+import '../common/preferences/preference_key.dart';
+import 'database_utils.dart';
+import 'files_utils.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:saf_util/saf_util.dart';
@@ -15,9 +15,7 @@ class AutoExportUtils {
   static final AutoExportUtils _singleton = AutoExportUtils._internal();
 
   /// Default constructor.
-  factory AutoExportUtils() {
-    return _singleton;
-  }
+  factory AutoExportUtils() => _singleton;
 
   AutoExportUtils._internal();
 

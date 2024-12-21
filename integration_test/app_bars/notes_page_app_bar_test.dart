@@ -233,9 +233,8 @@ void main() {
 
       // The search text in the search anchor should be empty
       expect(
-        $(#searchViewSearchAnchor).which<SearchAnchor>((searchAnchor) {
-          return searchAnchor.searchController != null && searchAnchor.searchController!.text == '';
-        }),
+        $(#searchViewSearchAnchor).which<SearchAnchor>(
+            (searchAnchor) => searchAnchor.searchController != null && searchAnchor.searchController!.text == ''),
         findsOne,
       );
 
@@ -244,9 +243,8 @@ void main() {
 
       // The search text in the search anchor should have changed
       expect(
-        $(#searchViewSearchAnchor).which<SearchAnchor>((searchAnchor) {
-          return searchAnchor.searchController != null && searchAnchor.searchController!.text == '1';
-        }),
+        $(#searchViewSearchAnchor).which<SearchAnchor>(
+            (searchAnchor) => searchAnchor.searchController != null && searchAnchor.searchController!.text == '1'),
         findsOne,
       );
 
@@ -266,9 +264,8 @@ void main() {
 
       // The search text in the search anchor should have changed again
       expect(
-        $(#searchViewSearchAnchor).which<SearchAnchor>((searchAnchor) {
-          return searchAnchor.searchController != null && searchAnchor.searchController!.text == '10';
-        }),
+        $(#searchViewSearchAnchor).which<SearchAnchor>(
+            (searchAnchor) => searchAnchor.searchController != null && searchAnchor.searchController!.text == '10'),
         findsOne,
       );
 

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/side_navigation.dart';
-import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
-import 'package:localmaterialnotes/routing/routes/settings/settings_about_route.dart';
-import 'package:localmaterialnotes/routing/routes/settings/settings_accessibility_route.dart';
-import 'package:localmaterialnotes/routing/routes/settings/settings_appearance_route.dart';
-import 'package:localmaterialnotes/routing/routes/settings/settings_backup_route.dart';
-import 'package:localmaterialnotes/routing/routes/settings/settings_behavior_route.dart';
-import 'package:localmaterialnotes/routing/routes/settings/settings_editor_route.dart';
-import 'package:localmaterialnotes/routing/routes/settings/settings_labels_route.dart';
-import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
-import 'package:localmaterialnotes/utils/keys.dart';
+import '../../common/constants/constants.dart';
+import '../../common/navigation/app_bars/basic_app_bar.dart';
+import '../../common/navigation/side_navigation.dart';
+import '../../common/navigation/top_navigation.dart';
+import '../../navigation/navigation_routes.dart';
+import 'pages/settings_about_page.dart';
+import 'pages/settings_accessibility_page.dart';
+import 'pages/settings_appearance_page.dart';
+import 'pages/settings_backup_page.dart';
+import 'pages/settings_behavior_page.dart';
+import 'pages/settings_editor_page.dart';
+import 'pages/settings_labels_page.dart';
+import '../../utils/keys.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
 /// Page for the settings of the application.
@@ -20,66 +20,67 @@ class SettingsMainPage extends StatelessWidget {
   const SettingsMainPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const TopNavigation(
-        key: Keys.appBarSettingsMain,
-        appbar: BasicAppBar(),
-      ),
-      drawer: const SideNavigation(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SettingSection(
-              divider: null,
-              tiles: [
-                SettingActionTile(
-                  icon: Icons.palette,
-                  title: l.settings_appearance,
-                  description: l.settings_appearance_description,
-                  onTap: () => SettingsAppearanceRoute().push<void>(context),
-                ),
-                SettingActionTile(
-                  icon: Icons.swipe,
-                  title: l.settings_behavior,
-                  description: l.settings_behavior_description,
-                  onTap: () => SettingsBehaviorRoute().push<void>(context),
-                ),
-                SettingActionTile(
-                  icon: Icons.format_color_text,
-                  title: l.settings_editor,
-                  description: l.settings_editor_description,
-                  onTap: () => SettingsEditorRoute().push<void>(context),
-                ),
-                SettingActionTile(
-                  icon: Icons.label,
-                  title: l.settings_labels,
-                  description: l.settings_labels_description,
-                  onTap: () => SettingsLabelsRoute().push<void>(context),
-                ),
-                SettingActionTile(
-                  icon: Icons.settings_backup_restore,
-                  title: l.settings_backup,
-                  description: l.settings_backup_description,
-                  onTap: () => SettingsBackupRoute().push<void>(context),
-                ),
-                SettingActionTile(
-                  icon: Icons.accessibility,
-                  title: l.settings_accessibility,
-                  description: l.settings_accessibility_description,
-                  onTap: () => SettingsAccessibilityRoute().push<void>(context),
-                ),
-                SettingActionTile(
-                  icon: Icons.info,
-                  title: l.settings_about,
-                  description: l.settings_about_description,
-                  onTap: () => SettingsAboutRoute().push<void>(context),
-                ),
-              ],
-            ),
-          ],
+  Widget build(BuildContext context) => Scaffold(
+        appBar: TopNavigation(
+          key: Keys.appBarSettingsMain,
+          appbar: BasicAppBar(
+            title: l.navigation_settings,
+            //back: true,
+          ),
         ),
-      ),
-    );
-  }
+        drawer: const SideNavigation(),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SettingSection(
+                divider: null,
+                tiles: [
+                  SettingActionTile(
+                    icon: Icons.palette,
+                    title: l.settings_appearance,
+                    description: l.settings_appearance_description,
+                    onTap: () => NavigationRoute.settingsAppearance.push(context, SettingsAppearancePage()),
+                  ),
+                  SettingActionTile(
+                    icon: Icons.swipe,
+                    title: l.settings_behavior,
+                    description: l.settings_behavior_description,
+                    onTap: () => NavigationRoute.settingsBehavior.push(context, SettingsBehaviorPage()),
+                  ),
+                  SettingActionTile(
+                    icon: Icons.format_color_text,
+                    title: l.settings_editor,
+                    description: l.settings_editor_description,
+                    onTap: () => NavigationRoute.settingsEditor.push(context, SettingsEditorPage()),
+                  ),
+                  SettingActionTile(
+                    icon: Icons.label,
+                    title: l.settings_labels,
+                    description: l.settings_labels_description,
+                    onTap: () => NavigationRoute.settingsLabels.push(context, SettingsLabelsPage()),
+                  ),
+                  SettingActionTile(
+                    icon: Icons.settings_backup_restore,
+                    title: l.settings_backup,
+                    description: l.settings_backup_description,
+                    onTap: () => NavigationRoute.settingsBackup.push(context, SettingsBackupPage()),
+                  ),
+                  SettingActionTile(
+                    icon: Icons.accessibility,
+                    title: l.settings_accessibility,
+                    description: l.settings_accessibility_description,
+                    onTap: () => NavigationRoute.settingsAccessibility.push(context, SettingsAccessibilityPage()),
+                  ),
+                  SettingActionTile(
+                    icon: Icons.info,
+                    title: l.settings_about,
+                    description: l.settings_about_description,
+                    onTap: () => NavigationRoute.settingsAbout.push(context, SettingsAboutPage()),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
 }

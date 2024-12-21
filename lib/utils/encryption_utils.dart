@@ -3,9 +3,7 @@ import 'package:encrypt/encrypt.dart';
 /// Utilities for AES encryption and decryption of strings based on a user provided password.
 class EncryptionUtils {
   /// Generates a random initialization vector.
-  IV get generateIv {
-    return IV.fromSecureRandom(16);
-  }
+  IV get generateIv => IV.fromSecureRandom(16);
 
   /// Generates a key based on the user provided [password].
   ///

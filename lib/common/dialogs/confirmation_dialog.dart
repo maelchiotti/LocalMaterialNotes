@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/preferences/enums/confirmations.dart';
-import 'package:localmaterialnotes/utils/keys.dart';
+import '../constants/constants.dart';
+import '../preferences/enums/confirmations.dart';
+import '../../utils/keys.dart';
 
 /// Shows the confirmation dialog to ask the user for a confirmation on an action.
 ///
@@ -13,37 +13,34 @@ Future<bool> _showConfirmationDialog(
   String title,
   String body,
   String confirmText,
-) async {
-  return await showAdaptiveDialog<bool>(
-        context: context,
-        useRootNavigator: false,
-        builder: (context) {
-          return AlertDialog.adaptive(
-            title: Text(title),
-            content: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text(body),
-                ],
-              ),
-            ),
-            actions: [
-              TextButton(
-                key: Keys.dialogCancelButton,
-                onPressed: () => Navigator.pop(context, false),
-                child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
-              ),
-              TextButton(
-                key: Keys.dialogConfirmButton,
-                onPressed: () => Navigator.pop(context, true),
-                child: Text(confirmText),
-              ),
+) async =>
+    await showAdaptiveDialog<bool>(
+      context: context,
+      useRootNavigator: false,
+      builder: (context) => AlertDialog.adaptive(
+        title: Text(title),
+        content: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(body),
             ],
-          );
-        },
-      ) ??
-      false;
-}
+          ),
+        ),
+        actions: [
+          TextButton(
+            key: Keys.dialogCancelButton,
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
+          ),
+          TextButton(
+            key: Keys.dialogConfirmButton,
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(confirmText),
+          ),
+        ],
+      ),
+    ) ??
+    false;
 
 /// Asks the user for a confirmation on an action.
 ///

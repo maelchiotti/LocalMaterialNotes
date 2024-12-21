@@ -1,15 +1,15 @@
 import 'package:dart_helper_utils/dart_helper_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/preferences/watched_preferences.dart';
-import 'package:localmaterialnotes/providers/preferences/preferences_provider.dart';
-import 'package:localmaterialnotes/utils/keys.dart';
-import 'package:localmaterialnotes/utils/locale_utils.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/constants/paddings.dart';
+import '../../../common/navigation/app_bars/basic_app_bar.dart';
+import '../../../common/navigation/top_navigation.dart';
+import '../../../common/preferences/preference_key.dart';
+import '../../../common/preferences/watched_preferences.dart';
+import '../../../providers/preferences/preferences_provider.dart';
+import '../../../utils/keys.dart';
+import '../../../utils/locale_utils.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
 /// Accessibility settings.
@@ -42,6 +42,15 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
     ref.read(preferencesProvider.notifier).reset();
   }
 
+  /// Toggles whether to use bigger titles.
+  void _toggleBiggerTitles(bool toggled) {
+    PreferenceKey.biggerTitles.set(toggled);
+
+    setState(() {
+      ref.read(preferencesProvider.notifier).update(WatchedPreferences(biggerTitles: toggled));
+    });
+  }
+
   /// Toggles whether to use white text in dark mode.
   void _toggleUseWhiteTextDarkMode(bool toggled) {
     PreferenceKey.useWhiteTextDarkMode.set(toggled);
@@ -49,17 +58,31 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(useWhiteTextDarkMode: toggled));
   }
 
+  /// Toggles the setting to show background of the notes tiles.
+  void _toggleDisableSubduedNoteContentPreview(bool toggled) {
+    setState(() {
+      PreferenceKey.disableSubduedNoteContentPreview.set(toggled);
+    });
+
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(disableSubduedNoteContentPreview: toggled));
+  }
+
   @override
   Widget build(BuildContext context) {
     final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault();
+    final biggerTitles = PreferenceKey.biggerTitles.getPreferenceOrDefault();
     final useWhiteTextDarkMode = PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault();
+    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
 
     final darkTheme = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      appBar: const TopNavigation(
+      appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar.back(),
+        appbar: BasicAppBar(
+          title: l.navigation_settings_accessibility,
+          back: true,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -67,6 +90,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
           child: Column(
             children: [
               SettingSection(
+                title: l.settings_accessibility_text_size,
                 divider: null,
                 tiles: [
                   SettingSliderTile(
@@ -74,9 +98,8 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
                     title: l.settings_text_scaling,
                     value: (textScaling as num).formatAsPercentage(locale: LocaleUtils().appLocaleLanguageCode),
                     dialogTitle: l.settings_text_scaling,
-                    label: (textScaling) {
-                      return (textScaling as num).formatAsPercentage(locale: LocaleUtils().appLocaleLanguageCode);
-                    },
+                    label: (textScaling) =>
+                        (textScaling as num).formatAsPercentage(locale: LocaleUtils().appLocaleLanguageCode),
                     min: 0.5,
                     max: 2.0,
                     divisions: 15,
@@ -86,12 +109,32 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
                     onCanceled: _canceledTextScaling,
                   ),
                   SettingSwitchTile(
+                    icon: Icons.title,
+                    title: l.settings_bigger_titles,
+                    description: l.settings_bigger_titles_description,
+                    toggled: biggerTitles,
+                    onChanged: _toggleBiggerTitles,
+                  ),
+                ],
+              ),
+              SettingSection(
+                title: l.settings_accessibility_text_color,
+                divider: null,
+                tiles: [
+                  SettingSwitchTile(
                     enabled: darkTheme,
                     icon: Icons.format_color_text,
                     title: l.settings_white_text_dark_mode,
                     description: l.settings_white_text_dark_mode_description,
                     toggled: useWhiteTextDarkMode,
                     onChanged: _toggleUseWhiteTextDarkMode,
+                  ),
+                  SettingSwitchTile(
+                    icon: Icons.opacity,
+                    title: l.settings_disable_subdued_note_content_preview,
+                    description: l.settings_disable_subdued_note_content_preview_description,
+                    toggled: disableSubduedNoteContentPreview,
+                    onChanged: _toggleDisableSubduedNoteContentPreview,
                   ),
                 ],
               ),

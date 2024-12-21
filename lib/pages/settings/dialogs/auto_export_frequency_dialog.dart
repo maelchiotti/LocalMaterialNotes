@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/preferences/preference_key.dart';
 
 /// Dialog to choose the frequency of the automatic export.
 ///
@@ -21,9 +21,7 @@ class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
   final _frequencyValues = [1, 3, 7, 14, 30];
 
   /// Current frequency value.
-  int get _frequencyValue {
-    return _frequencyValues[_frequencyIndex];
-  }
+  int get _frequencyValue => _frequencyValues[_frequencyIndex];
 
   @override
   void initState() {
@@ -58,34 +56,32 @@ class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return AlertDialog.adaptive(
-      title: Text(l.settings_auto_export_frequency),
-      content: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Slider(
-              value: _frequencyIndex.toDouble(),
-              max: _frequencyValues.length - 1,
-              divisions: _frequencyValues.length - 1,
-              label: l.settings_auto_export_frequency_value(_frequencyValue.toString()),
-              onChanged: _onFrequencyChanged,
-            ),
-          ],
+  Widget build(BuildContext context) => AlertDialog.adaptive(
+        title: Text(l.settings_auto_export_frequency),
+        content: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Slider(
+                value: _frequencyIndex.toDouble(),
+                max: _frequencyValues.length - 1,
+                divisions: _frequencyValues.length - 1,
+                label: l.settings_auto_export_frequency_value(_frequencyValue.toString()),
+                onChanged: _onFrequencyChanged,
+              ),
+            ],
+          ),
         ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => _pop(canceled: true),
-          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
-        ),
-        TextButton(
-          onPressed: _pop,
-          child: Text(flutterL?.okButtonLabel ?? 'OK'),
-        ),
-      ],
-    );
-  }
+        actions: [
+          TextButton(
+            onPressed: () => _pop(canceled: true),
+            child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
+          ),
+          TextButton(
+            onPressed: _pop,
+            child: Text(flutterL?.okButtonLabel ?? 'OK'),
+          ),
+        ],
+      );
 }

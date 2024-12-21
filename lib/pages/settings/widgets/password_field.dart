@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/extensions/string_extension.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/constants/paddings.dart';
+import '../../../common/extensions/string_extension.dart';
 
 /// Text field to enter the password to use to encrypt the JSON exports.
 class PasswordField extends StatefulWidget {
@@ -83,43 +83,41 @@ class _PasswordFieldState extends State<PasswordField> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          if (widget.description != null) ...[
-            Text(widget.description!),
-            Padding(padding: Paddings.vertical(8)),
-          ],
-          if (widget.secondaryDescription != null) ...[
-            Text(widget.secondaryDescription!),
-            Padding(padding: Paddings.vertical(8)),
-          ],
-          AutofillGroup(
-            child: TextFormField(
-              controller: _passwordController,
-              keyboardType: TextInputType.visiblePassword,
-              textInputAction: TextInputAction.done,
-              autofillHints: const [AutofillHints.password],
-              decoration: InputDecoration(
-                suffixIcon: IconButton(
-                  icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
-                  onPressed: _toggleObscurePassword,
+  Widget build(BuildContext context) => Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            if (widget.description != null) ...[
+              Text(widget.description!),
+              Padding(padding: Paddings.vertical(8)),
+            ],
+            if (widget.secondaryDescription != null) ...[
+              Text(widget.secondaryDescription!),
+              Padding(padding: Paddings.vertical(8)),
+            ],
+            AutofillGroup(
+              child: TextFormField(
+                controller: _passwordController,
+                keyboardType: TextInputType.visiblePassword,
+                textInputAction: TextInputAction.done,
+                autofillHints: const [AutofillHints.password],
+                decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                    icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
+                    onPressed: _toggleObscurePassword,
+                  ),
+                  hintText: l.dialog_export_encryption_password,
                 ),
-                hintText: l.dialog_export_encryption_password,
+                obscureText: _obscurePassword,
+                autocorrect: false,
+                enableSuggestions: false,
+                maxLength: 32,
+                validator: _validatePassword,
+                onChanged: (_) => _onChanged(),
+                onEditingComplete: _onEditingComplete,
               ),
-              obscureText: _obscurePassword,
-              autocorrect: false,
-              enableSuggestions: false,
-              maxLength: 32,
-              validator: _validatePassword,
-              onChanged: (_) => _onChanged(),
-              onEditingComplete: _onEditingComplete,
             ),
-          ),
-        ],
-      ),
-    );
-  }
+          ],
+        ),
+      );
 }

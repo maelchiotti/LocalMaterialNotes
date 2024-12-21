@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:localmaterialnotes/common/actions/notes/select.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
-import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
-import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
+import 'select.dart';
+import '../../../models/note/note.dart';
+import '../../../navigation/navigator_utils.dart';
+import '../../../providers/notes/notes_provider.dart';
+import '../../../providers/notifiers/notifiers.dart';
 
 /// Adds a note.
 ///
@@ -24,5 +23,5 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) asy
 
   currentNoteNotifier.value = note;
 
-  NotesEditorRoute(readOnly: false, autoFocus: true).push<void>(context);
+  NavigatorUtils.pushNotesEditor(context, false, true);
 }

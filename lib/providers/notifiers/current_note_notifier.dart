@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
+import '../../models/note/note.dart';
 
 /// Current note notifier.
 class CurrentNoteNotifier extends ValueNotifier<Note?> {

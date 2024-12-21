@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/services/labels/labels_service.dart';
+import '../../../common/constants/constants.dart';
+import '../../../models/label/label.dart';
+import '../../../services/labels/labels_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'labels_list_provider.g.dart';
@@ -12,9 +12,7 @@ class LabelsList extends _$LabelsList {
   final _labelsService = LabelsService();
 
   @override
-  FutureOr<List<Label>> build() {
-    return get();
-  }
+  FutureOr<List<Label>> build() => get();
 
   /// Returns the list of labels.
   Future<List<Label>> get() async {
@@ -29,5 +27,12 @@ class LabelsList extends _$LabelsList {
     state = AsyncData(labels.sorted());
 
     return labels.sorted();
+  }
+
+  /// Returns the label with the [name].
+  Label getByName(String name) {
+    assert(state.value != null, 'The value of the labels list provider is null');
+
+    return state.value!.firstWhere((label) => label.name == name);
   }
 }

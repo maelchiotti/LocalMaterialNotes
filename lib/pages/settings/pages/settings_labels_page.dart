@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/utils/keys.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/constants/paddings.dart';
+import '../../../common/navigation/app_bars/basic_app_bar.dart';
+import '../../../common/navigation/top_navigation.dart';
+import '../../../common/preferences/preference_key.dart';
+import '../../../utils/keys.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:settings_tiles/settings_tiles.dart';
@@ -53,9 +53,12 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
     final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.getPreferenceOrDefault();
 
     return Scaffold(
-      appBar: const TopNavigation(
+      appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar.back(),
+        appbar: BasicAppBar(
+          title: l.navigation_settings_labels,
+          back: true,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

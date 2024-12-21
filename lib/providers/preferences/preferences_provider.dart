@@ -1,4 +1,4 @@
-import 'package:localmaterialnotes/common/preferences/watched_preferences.dart';
+import '../../common/preferences/watched_preferences.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'preferences_provider.g.dart';
@@ -7,9 +7,7 @@ part 'preferences_provider.g.dart';
 @Riverpod(keepAlive: true)
 class Preferences extends _$Preferences {
   @override
-  WatchedPreferences build() {
-    return WatchedPreferences();
-  }
+  WatchedPreferences build() => WatchedPreferences();
 
   /// Updates the watched preferences with the new [preferences].
   void update(WatchedPreferences preferences) {

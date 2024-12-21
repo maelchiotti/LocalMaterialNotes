@@ -45,8 +45,7 @@ android {
     }
 
     kotlinOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
     sourceSets {
@@ -60,10 +59,10 @@ android {
 
     defaultConfig {
         applicationId "com.maelchiotti.localmaterialnotes"
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
-        versionCode flutter.versionCode
-        versionName flutter.versionName
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
         testInstrumentationRunner "pl.leancode.patrol.PatrolJUnitRunner"
         testInstrumentationRunnerArguments clearPackageData: "true"
     }
@@ -98,5 +97,5 @@ flutter {
 
 dependencies {
     implementation 'com.android.support:multidex:2.0.1'
-    androidTestUtil 'androidx.test:orchestrator:1.4.2'
+    androidTestUtil 'androidx.test:orchestrator:1.5.1'
 }

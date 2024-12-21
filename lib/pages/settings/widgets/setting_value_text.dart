@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/constants/sizes.dart';
+import '../../../common/constants/paddings.dart';
+import '../../../common/constants/sizes.dart';
 
 /// Body of a navigation setting tile.
 ///

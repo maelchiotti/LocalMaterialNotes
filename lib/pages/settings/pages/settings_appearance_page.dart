@@ -3,18 +3,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:locale_names/locale_names.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/enums/localization_completion.dart';
-import 'package:localmaterialnotes/common/navigation/app_bars/basic_app_bar.dart';
-import 'package:localmaterialnotes/common/navigation/top_navigation.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/common/preferences/watched_preferences.dart';
-import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
-import 'package:localmaterialnotes/providers/preferences/preferences_provider.dart';
-import 'package:localmaterialnotes/utils/keys.dart';
-import 'package:localmaterialnotes/utils/locale_utils.dart';
-import 'package:localmaterialnotes/utils/theme_utils.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/constants/paddings.dart';
+import '../../../common/enums/localization_completion.dart';
+import '../../../common/navigation/app_bars/basic_app_bar.dart';
+import '../../../common/navigation/top_navigation.dart';
+import '../../../common/preferences/preference_key.dart';
+import '../../../common/preferences/watched_preferences.dart';
+import '../../../l10n/app_localizations/app_localizations.g.dart';
+import '../../../providers/preferences/preferences_provider.dart';
+import '../../../utils/keys.dart';
+import '../../../utils/locale_utils.dart';
+import '../../../utils/theme_utils.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:settings_tiles/settings_tiles.dart';
@@ -73,27 +73,6 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
   }
 
   /// Toggles the setting to show background of the notes tiles.
-  void _toggleShowTitlesOnly(bool toggled) {
-    PreferenceKey.showTitlesOnly.set(toggled);
-
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showTitlesOnly: toggled));
-  }
-
-  /// Toggles the setting to show background of the notes tiles.
-  void _toggleShowTitlesOnlyDisableInSearchView(bool toggled) {
-    setState(() {
-      PreferenceKey.showTitlesOnlyDisableInSearchView.set(toggled);
-    });
-  }
-
-  /// Toggles the setting to show background of the notes tiles.
-  void _toggleDisableSubduedNoteContentPreview(bool toggled) {
-    setState(() {
-      PreferenceKey.disableSubduedNoteContentPreview.set(toggled);
-    });
-  }
-
-  /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTilesBackground(bool toggled) {
     PreferenceKey.showTilesBackground.set(toggled);
 
@@ -107,24 +86,41 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(showSeparators: toggled));
   }
 
+  /// Toggles the setting to show background of the notes tiles.
+  void _toggleShowTitlesOnly(bool toggled) {
+    PreferenceKey.showTitlesOnly.set(toggled);
+
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showTitlesOnly: toggled));
+  }
+
+  /// Toggles the setting to show background of the notes tiles.
+  void _toggleShowTitlesOnlyDisableInSearchView(bool toggled) {
+    setState(() {
+      PreferenceKey.showTitlesOnlyDisableInSearchView.set(toggled);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final locale = LocaleUtils().appLocale;
     final themeMode = ref.watch(preferencesProvider.select((preferences) => preferences.themeMode));
     final dynamicTheming = ref.watch(preferencesProvider.select((preferences) => preferences.dynamicTheming));
     final blackTheming = ref.watch(preferencesProvider.select((preferences) => preferences.blackTheming));
-    final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
-    final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
-    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
+
     final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
     final showSeparators = ref.watch(preferencesProvider.select((preferences) => preferences.showSeparators));
+    final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
+    final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
 
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      appBar: const TopNavigation(
+      appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar.back(),
+        appbar: BasicAppBar(
+          title: l.navigation_settings_appearance,
+          //back: true,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -144,15 +140,15 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                     ),
                     value: locale.nativeDisplayLanguage.capitalizeFirstLetter,
                     dialogTitle: l.settings_language,
-                    options: AppLocalizations.supportedLocales.map(
-                      (locale) {
-                        return (
-                          value: locale,
-                          title: locale.nativeDisplayLanguage.capitalizeFirstLetter,
-                          subtitle: LocalizationCompletion.getFormattedPercentage(locale),
-                        );
-                      },
-                    ).toList(),
+                    options: AppLocalizations.supportedLocales
+                        .map(
+                          (locale) => (
+                            value: locale,
+                            title: locale.nativeDisplayLanguage.capitalizeFirstLetter,
+                            subtitle: LocalizationCompletion.getFormattedPercentage(locale),
+                          ),
+                        )
+                        .toList(),
                     initialOption: locale,
                     onSubmitted: _submittedLanguage,
                   ),
@@ -192,6 +188,20 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                 title: l.settings_appearance_notes_tiles,
                 tiles: [
                   SettingSwitchTile(
+                    icon: Icons.gradient,
+                    title: l.settings_show_tiles_background,
+                    description: l.settings_show_tiles_background_description,
+                    toggled: showTilesBackground,
+                    onChanged: _toggleShowTilesBackground,
+                  ),
+                  SettingSwitchTile(
+                    icon: Icons.safety_divider,
+                    title: l.settings_show_separators,
+                    description: l.settings_show_separators_description,
+                    toggled: showSeparators,
+                    onChanged: _toggleShowSeparators,
+                  ),
+                  SettingSwitchTile(
                     icon: Icons.title,
                     title: l.settings_show_titles_only,
                     description: l.settings_show_titles_only_description,
@@ -205,27 +215,6 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                     description: l.settings_show_titles_only_disable_in_search_view_description,
                     toggled: showTitlesOnlyDisableInSearchView,
                     onChanged: _toggleShowTitlesOnlyDisableInSearchView,
-                  ),
-                  SettingSwitchTile(
-                    icon: Icons.format_color_text,
-                    title: l.settings_disable_subdued_note_content_preview,
-                    description: l.settings_disable_subdued_note_content_preview_description,
-                    toggled: disableSubduedNoteContentPreview,
-                    onChanged: _toggleDisableSubduedNoteContentPreview,
-                  ),
-                  SettingSwitchTile(
-                    icon: Icons.safety_divider,
-                    title: l.settings_show_separators,
-                    description: l.settings_show_separators_description,
-                    toggled: showSeparators,
-                    onChanged: _toggleShowSeparators,
-                  ),
-                  SettingSwitchTile(
-                    icon: Icons.gradient,
-                    title: l.settings_show_tiles_background,
-                    description: l.settings_show_tiles_background_description,
-                    toggled: showTilesBackground,
-                    onChanged: _toggleShowTilesBackground,
                   ),
                 ],
               ),

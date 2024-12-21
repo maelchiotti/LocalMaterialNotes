@@ -1,5 +1,5 @@
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/utils/localizations_utils.dart';
+import '../../models/note/note.dart';
+import '../../utils/localizations_utils.dart';
 
 /// Note displayed on the very first run of the application to welcome the user.
 final welcomeNote = Note(

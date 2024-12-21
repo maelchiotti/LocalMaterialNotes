@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/constants/sizes.dart';
+import '../../constants/constants.dart';
+import '../../constants/paddings.dart';
+import '../../constants/sizes.dart';
 
 /// Placeholder widget for empty content.
 class EmptyPlaceholder extends StatelessWidget {

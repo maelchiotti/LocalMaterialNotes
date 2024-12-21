@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
+import '../constants/constants.dart';
 
 // ignore_for_file: public_member_api_docs
 
@@ -58,23 +58,21 @@ enum MenuOption {
   /// Returns the `PopupMenuItem` widget of the menu option.
   ///
   /// Uses the alternative icon if [alternative] is set to `true`.
-  PopupMenuItem<MenuOption> popupMenuItem(BuildContext context, {bool alternative = false}) {
-    return PopupMenuItem(
-      value: this,
-      child: ListTile(
-        leading: Icon(
-          alternative ? alternativeIcon : icon,
-          color: dangerous ? Theme.of(context).colorScheme.error : null,
+  PopupMenuItem<MenuOption> popupMenuItem(BuildContext context, {bool alternative = false}) => PopupMenuItem(
+        value: this,
+        child: ListTile(
+          leading: Icon(
+            alternative ? alternativeIcon : icon,
+            color: dangerous ? Theme.of(context).colorScheme.error : null,
+          ),
+          title: Text(
+            title(alternative),
+            style: dangerous
+                ? Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: Theme.of(context).colorScheme.error,
+                    )
+                : null,
+          ),
         ),
-        title: Text(
-          title(alternative),
-          style: dangerous
-              ? Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: Theme.of(context).colorScheme.error,
-                  )
-              : null,
-        ),
-      ),
-    );
-  }
+      );
 }

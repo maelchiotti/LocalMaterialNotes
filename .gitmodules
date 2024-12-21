@@ -1,3 +1,7 @@
 [submodule ".isar"]
 	path = .isar
 	url = https://github.com/isar-community/isar
+
+[submodule ".mimir"]
+	path = .mimir
+	url = https://github.com/GregoryConrad/mimir

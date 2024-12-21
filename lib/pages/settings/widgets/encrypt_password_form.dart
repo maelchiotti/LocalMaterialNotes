@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/pages/settings/widgets/password_field.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/constants/paddings.dart';
+import '../../../common/preferences/preference_key.dart';
+import 'password_field.dart';
 
 /// Form to choose whether to encrypt the JSON exports and to provide the password.
 class EncryptPasswordForm extends StatefulWidget {
@@ -53,32 +53,30 @@ class _EncryptPasswordFormState extends State<EncryptPasswordForm> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: Text(l.dialog_export_encryption_switch),
-            ),
-            Switch(
-              value: _encrypt,
-              onChanged: _toggleEncrypt,
+  Widget build(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(l.dialog_export_encryption_switch),
+              ),
+              Switch(
+                value: _encrypt,
+                onChanged: _toggleEncrypt,
+              ),
+            ],
+          ),
+          if (_encrypt) ...[
+            Padding(padding: Paddings.vertical(8)),
+            PasswordField(
+              description: l.dialog_export_encryption_description,
+              secondaryDescription: widget.secondaryDescription,
+              onChanged: _onChanged,
+              onEditingComplete: _onEditingComplete,
             ),
           ],
-        ),
-        if (_encrypt) ...[
-          Padding(padding: Paddings.vertical(8)),
-          PasswordField(
-            description: l.dialog_export_encryption_description,
-            secondaryDescription: widget.secondaryDescription,
-            onChanged: _onChanged,
-            onEditingComplete: _onEditingComplete,
-          ),
         ],
-      ],
-    );
-  }
+      );
 }

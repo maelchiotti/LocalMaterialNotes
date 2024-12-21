@@ -49,9 +49,7 @@ enum LocalizationCompletion {
 
   /// Returns the percentage of strings that are localized for the [locale], formatted as a [String] for the [locale].
   static String getFormattedPercentage(Locale locale) {
-    final percentage = values.firstWhere((localizationSupport) {
-      return localizationSupport.locale == locale;
-    }).percentage;
+    final percentage = values.firstWhere((localizationSupport) => localizationSupport.locale == locale).percentage;
 
     return percentage.formatAsPercentage(locale: locale.languageCode);
   }

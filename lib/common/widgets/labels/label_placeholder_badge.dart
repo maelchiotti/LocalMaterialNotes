@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/widgets/labels/label_badge.dart';
+import 'label_badge.dart';
 
 /// Placeholder badge for the labels.
 class LabelPlaceholderBadge extends StatelessWidget {
@@ -13,12 +13,10 @@ class LabelPlaceholderBadge extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(BuildContext context) {
-    return Badge(
-      label: Text(text),
-      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
-      textColor: Theme.of(context).colorScheme.onSurface,
-      padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
-    );
-  }
+  Widget build(BuildContext context) => Badge(
+        label: Text(text),
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+        textColor: Theme.of(context).colorScheme.onSurface,
+        padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
+      );
 }

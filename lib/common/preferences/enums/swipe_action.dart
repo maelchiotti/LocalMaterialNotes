@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import '../../constants/constants.dart';
+import '../../extensions/iterable_extension.dart';
+import '../preference_key.dart';
 
 /// Action to trigger when swiping on a note tile.
 enum SwipeAction {
@@ -74,14 +74,10 @@ enum SwipeAction {
   }
 
   /// Returns whether the swipe action is enabled.
-  bool get isEnabled {
-    return this != disabled;
-  }
+  bool get isEnabled => this != disabled;
 
   /// Returns whether the swipe action is disabled.
-  bool get isDisabled {
-    return this == disabled;
-  }
+  bool get isDisabled => this == disabled;
 
   /// Returns the title of the swipe action.
   ///

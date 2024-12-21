@@ -1,8 +1,8 @@
 import 'package:collection/collection.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/services/notes/notes_service.dart';
+import '../../common/constants/constants.dart';
+import '../../models/note/note.dart';
+import '../notes/notes_provider.dart';
+import '../../services/notes/notes_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'bin_provider.g.dart';
@@ -13,9 +13,7 @@ class Bin extends _$Bin {
   final _notesService = NotesService();
 
   @override
-  FutureOr<List<Note>> build() {
-    return get();
-  }
+  FutureOr<List<Note>> build() => get();
 
   /// Returns the list of deleted notes.
   Future<List<Note>> get() async {

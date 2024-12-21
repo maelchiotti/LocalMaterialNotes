@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/constants/sizes.dart';
+import '../../../common/constants/paddings.dart';
+import '../../../common/constants/sizes.dart';
 
 /// Custom toolbar button.
 class EditorButton extends StatelessWidget {
@@ -24,25 +24,23 @@ class EditorButton extends StatelessWidget {
   final void Function()? onPressed;
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: Paddings.horizontal(2),
-      child: ConstrainedBox(
-        constraints: BoxConstraints.tightFor(
-          width: Sizes.editorToolbarButtonHeight.size,
-          height: Sizes.editorToolbarButtonWidth.size,
-        ),
-        child: RawMaterialButton(
-          shape: const CircleBorder(),
-          visualDensity: VisualDensity.compact,
-          elevation: 0,
-          onPressed: onPressed,
-          child: Icon(
-            icon,
-            color: iconColor,
+  Widget build(BuildContext context) => Padding(
+        padding: Paddings.horizontal(2),
+        child: ConstrainedBox(
+          constraints: BoxConstraints.tightFor(
+            width: Sizes.editorToolbarButtonHeight.size,
+            height: Sizes.editorToolbarButtonWidth.size,
+          ),
+          child: RawMaterialButton(
+            shape: const CircleBorder(),
+            visualDensity: VisualDensity.compact,
+            elevation: 0,
+            onPressed: onPressed,
+            child: Icon(
+              icon,
+              color: iconColor,
+            ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }
