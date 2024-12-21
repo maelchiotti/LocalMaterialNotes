@@ -1,12 +1,13 @@
 #!/usr/bin/env sh
 
-isar_version="$(awk '/isar: /{gsub(/\^/, "", $2); print $2}' pubspec.yaml)"
+isar_version="$(yq -r '.dependencies.isar.version' pubspec.yaml | cut -d '^' -f 2)"
 checked_out_version="$(git -C .isar describe --tags)"
 
 if [ "$isar_version" = "$checked_out_version" ]; then
   echo "isar is up-to-date."
   exit 0
 fi
+
 echo "Updating from version $checked_out_version to $isar_version."
 
 git -C .isar checkout "$isar_version"
