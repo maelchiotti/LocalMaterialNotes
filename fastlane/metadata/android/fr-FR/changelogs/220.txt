@@ -1,0 +1,14 @@
+AJOUTÉ
+- Amélioration des performances de recherche avec tolérance des fautes de frappe
+- Réglage pour agrandir titres des notes
+- Traduction tchèque
+
+MODIFIÉ
+- Mise en page / balayage ne se mettent pas à jour correctement
+- Retour depuis les étiquettes ramène à la liste des notes
+- Organisation des paramètres
+
+CORRIGÉ
+- Date de dernière modification d'une note est modifiée lorsque la note est épinglée ou désépinglée
+- Écran noir après suppression/restauration de note
+- URL malformée des liens

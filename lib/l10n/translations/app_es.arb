@@ -181,14 +181,6 @@
   "@settings_show_titles_only_disable_in_search_view_description": {
     "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
   },
-  "settings_disable_subdued_note_content_preview": "No subrayado en vista previa",
-  "@settings_disable_subdued_note_content_preview": {
-    "description": "Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
-  },
-  "settings_disable_subdued_note_content_preview_description": "Desactiva el color de texto subrayado de la vista previa del contenido de las notas",
-  "@settings_disable_subdued_note_content_preview_description": {
-    "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
-  },
   "settings_show_tiles_background": "Fondo",
   "@settings_show_tiles_background": {
     "description": "Title of the setting tile to show the background of the notes tiles."
@@ -458,6 +450,14 @@
   "settings_white_text_dark_mode_description": "Usar un color blanco para el texto en modo oscuro",
   "@settings_white_text_dark_mode_description": {
     "description": "Description of the text scale setting tile."
+  },
+  "settings_disable_subdued_note_content_preview": "No subrayado en vista previa",
+  "@settings_disable_subdued_note_content_preview": {
+    "description": "Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
+  },
+  "settings_disable_subdued_note_content_preview_description": "Desactiva el color de texto subrayado de la vista previa del contenido de las notas",
+  "@settings_disable_subdued_note_content_preview_description": {
+    "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
   "settings_about": "Acerca de",
   "@settings_about": {

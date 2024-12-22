@@ -1,13 +1,13 @@
 {
-  "app_name": "मटेरियल नोट्स",
+  "app_name": "Material Notes",
   "@app_name": {
     "description": "Name of the application."
   },
-  "app_tagline": "सरल, स्थानीय, मैटेरियल डिज़ाइन नोट्स",
+  "app_tagline": "Jednoduché, lokální poznámky s material designem",
   "@app_tagline": {
     "description": "Tagline of the application, shown in the about popup."
   },
-  "app_about": "{appName} यह एक टेक्स्ट-आधारित नोट लेने वाला एप्लिकेशन है, जो सरलता के लिए डिज़ाइन किया गया है। यह मैटेरियल डिज़ाइन का पालन करता है। यह नोट्स को स्थानीय रूप से संग्रहीत करता है और इसमें कोई इंटरनेट अनुमति नहीं है, इसलिए केवल आप ही नोट्स तक पहुँच सकते हैं।",
+  "app_about": "{appName} je textová aplikace pro psaní poznámek, jejímž cílem je jednoduchost. Používá material design. Ukládá poznámky lokálně a nemá žádná oprávnění k internetu, takže jste jediný, který má k poznámkám přístup.",
   "@app_about": {
     "description": "Description of the application, shown in the about popup.",
     "placeholders": {
@@ -17,415 +17,415 @@
       }
     }
   },
-  "error_snack_bar": "त्रुटी:",
+  "error_snack_bar": "Chyba:",
   "@error_snack_bar": {
     "description": "Prefix for the error message shown in the error snack bar, before the actual error message."
   },
-  "error_widget_title": "एक त्रुटी हो गई है।",
+  "error_widget_title": "Došlo k chybě.",
   "@error_widget_title": {
     "description": "Message shown in the error widget shown when a widget fails to build."
   },
-  "error_widget_description": "कृपया इस समस्या की रिपोर्ट GitHub या मेल के ज़रिए करें। इस पेज और लॉग का स्क्रीनशॉट संलग्न करें जिसे आप नीचे कॉपी या एक्सपोर्ट कर सकते हैं। सावधानी के लिए आपको अपने नोट्स भी एक्सपोर्ट कर लेने चाहिए।",
+  "error_widget_description": "Prosím nahlaste tento problém na GitHub nebo prostřednictvím e-mailu. Připojte snímek této stránky a logy, které můžete zkopírovat nebo exportovat níže. Jako preventivní opatření byste také měli exportovat své poznámky.",
   "@error_widget_description": {
     "description": "Message shown in the error widget shown when a widget fails to build."
   },
-  "error_widget_disabled_secure_flag": "ऐप को सुरक्षित के रूप में चिह्नित करने की सेटिंग अगले पुनः आरंभ तक अक्षम कर दी गई है, ताकि स्क्रीनशॉट सक्षम हो सके।",
+  "error_widget_disabled_secure_flag": "Nastavení označující aplikaci jako bezpečnou je zakázáno, dokud nedojde k dalšímu restartu pro povolení snímků obrazovky.",
   "@error_widget_disabled_secure_flag": {
     "description": "Label shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
   },
-  "error_widget_button_export_notes": "निर्यात नोट्स",
+  "error_widget_button_export_notes": "Exportovat poznámky",
   "@error_widget_button_export_notes": {
     "description": "Title of the button to export the notes as JSON on the error widget."
   },
-  "error_widget_button_copy_logs": "कॉपी लाॅग",
+  "error_widget_button_copy_logs": "Kopírovat logy",
   "@error_widget_button_copy_logs": {
     "description": "Title of the button to copy the logs to the clipboard on the error widget."
   },
-  "error_widget_button_export_logs": "निर्यात लाॅग",
+  "error_widget_button_export_logs": "Exportovat logy",
   "@error_widget_button_export_logs": {
     "description": "Title of the button to export the logs in a text file on the error widget."
   },
-  "error_widget_button_create_github_issue": "GitHub समस्या बनाएँ",
+  "error_widget_button_create_github_issue": "Oznámit chybu na GitHubu",
   "@error_widget_button_create_github_issue": {
     "description": "Title of the button to create a new GitHub issue on the error widget."
   },
-  "error_widget_button_send_mail": "मेल भेजें",
+  "error_widget_button_send_mail": "Poslat e-mail",
   "@error_widget_button_send_mail": {
     "description": "Title of the button to end a bug report mail on the error widget."
   },
-  "navigation_notes": "नोट्स",
+  "navigation_notes": "Poznámky",
   "@navigation_notes": {
     "description": "Title of the notes page."
   },
-  "navigation_manage_labels_destination": "लेबल प्रबंधन",
+  "navigation_manage_labels_destination": "Spravovat štítky",
   "@navigation_manage_labels_destination": {
     "description": "Title of the button in the side navigation drawer to got to the page to manage the labels."
   },
-  "navigation_manage_labels_page": "लेबल",
+  "navigation_manage_labels_page": "Štítky",
   "@navigation_manage_labels_page": {
     "description": "Title of the page to manage the labels."
   },
-  "navigation_bin": "बिन",
+  "navigation_bin": "Koš",
   "@navigation_bin": {
     "description": "Title of the bin page."
   },
-  "navigation_settings": "सेटिंग्स",
+  "navigation_settings": "Nastavení",
   "@navigation_settings": {
     "description": "Title of the settings page."
   },
-  "navigation_settings_appearance": "दिखावट",
+  "navigation_settings_appearance": "Vzhled",
   "@navigation_settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
-  "navigation_settings_behavior": "व्यवहार",
+  "navigation_settings_behavior": "Chování",
   "@navigation_settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
-  "navigation_settings_editor": "संपादक",
+  "navigation_settings_editor": "Editor",
   "@navigation_settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
-  "navigation_settings_labels": "लेबल",
+  "navigation_settings_labels": "Štítky",
   "@navigation_settings_labels": {
     "description": "Title of the settings page regarding the labels."
   },
-  "navigation_settings_backup": "बैकअप",
+  "navigation_settings_backup": "Záloha",
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
   },
-  "navigation_settings_accessibility": "सुगम्यता",
+  "navigation_settings_accessibility": "Přístupnost",
   "@navigation_settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
   },
-  "navigation_settings_about": "के बारे में",
+  "navigation_settings_about": "O aplikaci",
   "@navigation_settings_about": {
     "description": "Title of the settings page regarding the information about the application."
   },
-  "button_sort_title": "शीर्षक",
+  "button_sort_title": "Název",
   "@button_sort_title": {
     "description": "Text of the button to sort the notes list by title."
   },
-  "button_sort_ascending": "आरोही",
+  "button_sort_ascending": "Vzestupně",
   "@button_sort_ascending": {
     "description": "Text of the button to sort the notes list in ascending order."
   },
-  "settings_appearance": "दिखावट",
+  "settings_appearance": "Vzhled",
   "@settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
-  "settings_appearance_description": "भाषा, थीम, नोट्स टाइल",
+  "settings_appearance_description": "Jazyk, motiv, dlaždice poznámek",
   "@settings_appearance_description": {
     "description": "Description of the appearance settings page."
   },
-  "settings_appearance_application": "एप्लिकेशन",
+  "settings_appearance_application": "Aplikace",
   "@settings_appearance_application": {
     "description": "Title of the sub-section regarding the application under the appearance settings."
   },
-  "settings_language": "भाषा",
+  "settings_language": "Jazyk",
   "@settings_language": {
     "description": "Title of the language setting tile."
   },
-  "settings_language_contribute": "योगदान",
+  "settings_language_contribute": "Zapojte se",
   "@settings_language_contribute": {
     "description": "Button to contribute to the localizations, shown on the language setting tile."
   },
-  "settings_theme": "थीम",
+  "settings_theme": "Motiv",
   "@settings_theme": {
     "description": "Title of the theming setting tile."
   },
-  "settings_theme_system": "सिस्टम",
+  "settings_theme_system": "Systémový",
   "@settings_theme_system": {
     "description": "Theming setting to use the theme of the system."
   },
-  "settings_theme_light": "श्वेत",
+  "settings_theme_light": "Světlý",
   "@settings_theme_light": {
     "description": "Theming setting to use the light theme."
   },
-  "settings_theme_dark": "श्याम",
+  "settings_theme_dark": "Tmavý",
   "@settings_theme_dark": {
     "description": "Theming setting to use the dark theme."
   },
-  "settings_dynamic_theming": "गतिशील थीमिंग",
+  "settings_dynamic_theming": "Dynamický motiv",
   "@settings_dynamic_theming": {
     "description": "Title of the dynamic theming setting tile (to use colors generated from the system)."
   },
-  "settings_dynamic_theming_description": "सिस्टम से रंग उत्पन्न करें",
+  "settings_dynamic_theming_description": "Generovat barvy ze systému",
   "@settings_dynamic_theming_description": {
     "description": "Description of the dynamic theming setting tile."
   },
-  "settings_black_theming": "काला थीमिंग",
+  "settings_black_theming": "Černý motiv",
   "@settings_black_theming": {
     "description": "Title of the black theming setting tile (to use a black background in dark mode)."
   },
-  "settings_black_theming_description": "श्याम मोड में काली पृष्ठभूमि का उपयोग करें",
+  "settings_black_theming_description": "Použít černé pozadí v tmavém režimu",
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
   },
-  "settings_appearance_notes_tiles": "नोट्स टाइल्स",
+  "settings_appearance_notes_tiles": "Dlaždice poznámek",
   "@settings_appearance_notes_tiles": {
     "description": "Title of the sub-section regarding the notes tiles under the appearance settings."
   },
-  "settings_show_titles_only": "केवल शीर्षक",
+  "settings_show_titles_only": "Pouze názvy",
   "@settings_show_titles_only": {
     "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
   },
-  "settings_show_titles_only_description": "केवल नोट्स के शीर्षक दिखाएं",
+  "settings_show_titles_only_description": "Zobrazit pouze názvy poznámek",
   "@settings_show_titles_only_description": {
     "description": "Description of the setting tile to only show the titles of the notes in the notes tiles."
   },
-  "settings_show_titles_only_disable_in_search_view": "केवल खोज दृश्य में शीर्षक अक्षम करें",
+  "settings_show_titles_only_disable_in_search_view": "Zakázat zobrazování pouze názvů při hledání",
   "@settings_show_titles_only_disable_in_search_view": {
     "description": "Title of the setting tile to disable only showing the titles of the notes in the search view."
   },
-  "settings_show_titles_only_disable_in_search_view_description": "केवल खोज दृश्य में शीर्षक अक्षम करें",
+  "settings_show_titles_only_disable_in_search_view_description": "Zakázat možnost zobrazující pouze názvy při vyhledávání",
   "@settings_show_titles_only_disable_in_search_view_description": {
     "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
   },
-  "settings_show_tiles_background": "पृष्ठभूमि",
+  "settings_show_tiles_background": "Pozadí",
   "@settings_show_tiles_background": {
     "description": "Title of the setting tile to show the background of the notes tiles."
   },
-  "settings_show_tiles_background_description": "नोट्स टाइल्स की पृष्ठभूमि दिखाएं",
+  "settings_show_tiles_background_description": "Zobrazit pozadí dlaždic poznámek",
   "@settings_show_tiles_background_description": {
     "description": "Description of the setting tile to show the background of the notes tiles."
   },
-  "settings_show_separators": "विभाजक",
+  "settings_show_separators": "Oddělovače",
   "@settings_show_separators": {
     "description": "Title of the setting tile to show the separators between the notes tiles."
   },
-  "settings_show_separators_description": "नोट्स टाइल्स के बीच विभाजक दिखाएं",
+  "settings_show_separators_description": "Zobrazit oddělovač mezi dlaždicemi poznámek",
   "@settings_show_separators_description": {
     "description": "Description of the setting tile to show the separators between the notes tiles."
   },
-  "settings_behavior": "व्यवहार",
+  "settings_behavior": "Chování",
   "@settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
-  "settings_behavior_description": "पुष्टि, सुरक्षा फ़्लैग, स्वाइप क्रियाएँ",
+  "settings_behavior_description": "Potvrzení, označit zabezpečeně, akce přejetím",
   "@settings_behavior_description": {
     "description": "Description of the behavior settings page."
   },
-  "settings_behavior_application": "एप्लिकेशन",
+  "settings_behavior_application": "Aplikace",
   "@settings_behavior_application": {
     "description": "Title of the sub-section regarding the application under the behavior settings."
   },
-  "settings_confirmations": "पुष्टिकरण संवाद",
+  "settings_confirmations": "Potvrzovací dialog",
   "@settings_confirmations": {
     "description": "Title of the setting tile to choose when to show the confirmation dialog when performing an action on a note."
   },
-  "settings_confirmations_description": "नोट पर कोई कार्रवाई करते समय पुष्टिकरण संवाद कब दिखाना है",
+  "settings_confirmations_description": "Kdy zobrazit dialogové okno s potvrzením při provádění akce na poznámce",
   "@settings_confirmations_description": {
     "description": "Description of the setting tile to choose when to show the confirmation dialog when performing an action on a note."
   },
-  "settings_confirmations_title_none": "कभी नहीं",
+  "settings_confirmations_title_none": "Nikdy",
   "@settings_confirmations_title_none": {
     "description": "Value of the setting to never show a confirmation dialog when performing an action on a note."
   },
-  "settings_confirmations_title_irreversible": "केवल अपरिवर्तनीय क्रियाएँ",
+  "settings_confirmations_title_irreversible": "Pouze nevratné akce",
   "@settings_confirmations_title_irreversible": {
     "description": "Value of the setting to only show a confirmation dialog when performing an action on a note if it is irreversible."
   },
-  "settings_confirmations_title_all": "सदैव",
+  "settings_confirmations_title_all": "Vždy",
   "@settings_confirmations_title_all": {
     "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
   },
-  "settings_flag_secure": "ऐप को सुरक्षित के रूप में चिह्नित करें",
+  "settings_flag_secure": "Označit aplikaci jako zabezpečenou",
   "@settings_flag_secure": {
     "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
   },
-  "settings_flag_secure_description": "ऐप को हाल के ऐप्स से छिपाएं और स्क्रीनशॉट लेने से रोकें",
+  "settings_flag_secure_description": "Skryje aplikaci z nedávných aplikací a zabrání snímkům obrazovky",
   "@settings_flag_secure_description": {
     "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
   },
-  "settings_behavior_swipe_actions": "स्वाइप क्रियाएँ",
+  "settings_behavior_swipe_actions": "Akce přejetím",
   "@settings_behavior_swipe_actions": {
     "description": "Title of the sub-section regarding the swipe actions under the behavior settings."
   },
-  "settings_swipe_action_right": "दायाँ स्वाइप क्रिया",
+  "settings_swipe_action_right": "Akce přejetím doprava",
   "@settings_swipe_action_right": {
     "description": "Title of the setting tile to choose which action to trigger when a right swapping a note tile."
   },
-  "settings_swipe_action_right_description": "नोट टाइल पर दायाँ स्वाइप करने पर ट्रिगर होने वाली क्रिया",
+  "settings_swipe_action_right_description": "Akce spuštěná po přejetí po dlaždici poznámky prstem doprava",
   "@settings_swipe_action_right_description": {
     "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile."
   },
-  "settings_swipe_action_left": "बाएँ स्वाइप क्रिया",
+  "settings_swipe_action_left": "Akce přejetím doleva",
   "@settings_swipe_action_left": {
     "description": "Title of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
   },
-  "settings_swipe_action_left_description": "नोट टाइल पर बाईं ओर स्वाइप करने पर ट्रिगर होने वाली क्रिया",
+  "settings_swipe_action_left_description": "Akce spuštěná po přejetí po dlaždici poznámky prstem doleva",
   "@settings_swipe_action_left_description": {
     "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
   },
-  "settings_editor": "संपादक",
+  "settings_editor": "Editor",
   "@settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
-  "settings_editor_description": "बटन, टूलबार, रीडिंग मोड, स्पेसिंग",
+  "settings_editor_description": "Tlačítka, panel nástrojů, režim čtení, mezery",
   "@settings_editor_description": {
     "description": "Description of the editor settings page."
   },
-  "settings_editor_formatting": "प्रारूपण",
+  "settings_editor_formatting": "Formátování",
   "@settings_editor_formatting": {
     "description": "Title of the settings section regarding the notes content formatting in the editor."
   },
-  "settings_show_undo_redo_buttons": "पूर्ववत करें/पुनः करें बटन",
+  "settings_show_undo_redo_buttons": "Tlačítka zpět/vpřed",
   "@settings_show_undo_redo_buttons": {
     "description": "Title of the setting tile to enable the the undo and redo buttons in the editor."
   },
-  "settings_show_undo_redo_buttons_description": "संपादक के ऐप बार में परिवर्तनों को पूर्ववत करने और पुनः करने के लिए बटन दिखाएँ",
+  "settings_show_undo_redo_buttons_description": "Zobrazit tlačítka pro vrácení a opětovné provedení změn v horním panelu editoru",
   "@settings_show_undo_redo_buttons_description": {
     "description": "Description of the setting tile to enable the the undo and redo buttons in the editor."
   },
-  "settings_show_checklist_button": "जाँच-सूची बटन",
+  "settings_show_checklist_button": "Tlačítko seznamu",
   "@settings_show_checklist_button": {
     "description": "Title of the setting tile to enable the checklist button in the editor."
   },
-  "settings_show_checklist_button_description": "संपादक के ऐप बार में जाँचसूची करने के लिए बटन दिखाएं, यदि सक्षम हो तो इसे संपादक के टूलबार से छिपाएं",
+  "settings_show_checklist_button_description": "Zobrazit tlačítko pro přepnutí odškrtávacího seznamu v horním panelu editoru. Skryje ho z panelu nástrojů pokud povoleno",
   "@settings_show_checklist_button_description": {
     "description": "Description of the setting tile to enable the checklist button in the editor."
   },
-  "settings_show_toolbar": "टूलबार",
+  "settings_show_toolbar": "Panel nástrojů",
   "@settings_show_toolbar": {
     "description": "Title of the setting tile to enable the toolbar for advanced formatting options in the editor."
   },
-  "settings_show_toolbar_description": "उन्नत पाठ स्वरूपण सक्षम करने के लिए संपादक का टूलबार दिखाएँ",
+  "settings_show_toolbar_description": "Zobrazit v editoru panel nástrojů pro pokročilé formátování textu",
   "@settings_show_toolbar_description": {
     "description": "Description of the setting tile to enable the toolbar for advanced formatting options in the editor."
   },
-  "settings_editor_behavior": "व्यवहार",
+  "settings_editor_behavior": "Chování",
   "@settings_editor_behavior": {
     "description": "Title of the settings section regarding the behavior of the editor"
   },
-  "settings_show_editor_mode_button": "संपादक मोड बटन",
+  "settings_show_editor_mode_button": "Tlačítko režimu editoru",
   "@settings_show_editor_mode_button": {
     "description": "Title of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
   },
-  "settings_show_editor_mode_button_description": "संपादन मोड और पठन मोड के बीच संपादक को टॉगल करने के लिए बटन को सक्षम करें",
+  "settings_show_editor_mode_button_description": "Povolit tlačítko pro přepnutí editoru mezi režimem úpravy a čtení",
   "@settings_show_editor_mode_button_description": {
     "description": "Description of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
   },
-  "settings_open_editor_reading_mode": "पठन मोड में खोलें",
+  "settings_open_editor_reading_mode": "Otevřít v režimu čtení",
   "@settings_open_editor_reading_mode": {
     "description": "Title of the setting tile to enable opening the editor in reading mode by default."
   },
-  "settings_open_editor_reading_mode_description": "संपादक को डिफ़ॉल्ट रूप से पठन मोड में खोलें",
+  "settings_open_editor_reading_mode_description": "Ve výchozím nastavení otevírat editor v režimu čtení",
   "@settings_open_editor_reading_mode_description": {
     "description": "Description of the setting tile to enable opening the editor in reading mode by default."
   },
-  "settings_focus_title_on_new_note": "शीर्षक पर ध्यान करें",
+  "settings_focus_title_on_new_note": "Zaměřit název",
   "@settings_focus_title_on_new_note": {
     "description": "Title of the setting tile to enable focusing the title when creating a new note by default."
   },
-  "settings_focus_title_on_new_note_description": "नया नोट बनाते समय विषय-वस्तु के बजाय शीर्षक पर ध्यान",
+  "settings_focus_title_on_new_note_description": "Zaměřit název namísto obsahu při vytvoření nové poznámky",
   "@settings_focus_title_on_new_note_description": {
     "description": "Description of the setting tile to enable focusing the title when creating a new note by default."
   },
-  "settings_editor_appearance": "दिखावट",
+  "settings_editor_appearance": "Vzhled",
   "@settings_editor_appearance": {
     "description": "Title of the settings section regarding the appearance of the editor"
   },
-  "settings_use_paragraph_spacing": "पैराग्राफ़ स्पेसिंग",
+  "settings_use_paragraph_spacing": "Rozestup mezi odstavci",
   "@settings_use_paragraph_spacing": {
     "description": "Title of the setting tile to enable the spacing between paragraphs in the notes content."
   },
-  "settings_use_paragraph_spacing_description": "पैराग्राफ़ के बीच स्पेसिंग का उपयोग करें",
+  "settings_use_paragraph_spacing_description": "Používat odstup mezi odstavci",
   "@settings_use_paragraph_spacing_description": {
     "description": "Description of the setting tile to enable the spacing between paragraphs in the notes content."
   },
-  "settings_labels": "लेबल",
+  "settings_labels": "Štítky",
   "@settings_labels": {
     "description": "Title of the settings page regarding the labels functionality."
   },
-  "settings_labels_description": "सक्षम, दिखावट",
+  "settings_labels_description": "Povolit, vzhled",
   "@settings_labels_description": {
     "description": "Description of the labels settings page."
   },
-  "settings_enable_labels": "सक्षम",
+  "settings_enable_labels": "Povolit",
   "@settings_enable_labels": {
     "description": "Title of the setting tile to enable the labels."
   },
-  "settings_enable_labels_description": "नोट्स को लेबल्स के साथ वर्गीकृत करने की अनुमति दें (इसे अक्षम करने से लेबल नहीं हटते हैं और न ही उन्हें नोट्स से हटाया जाता है, यह केवल उन्हें छिपाता है)",
+  "settings_enable_labels_description": "Povolit kategorizaci poznámek pomocí štítků (vypnutí neodstraní štítky ani je neodstraní z poznámek, pouze je skryje)",
   "@settings_enable_labels_description": {
     "description": "Description of the setting tile to enable the labels."
   },
-  "settings_labels_appearance": "दिखावट",
+  "settings_labels_appearance": "Vzhled",
   "@settings_labels_appearance": {
     "description": "Title of the settings section regarding the appearance of the labels."
   },
-  "settings_show_labels_note_tile": "नोट टाइल पर लेबल दिखाएं",
+  "settings_show_labels_note_tile": "Zobrazit štítky na dlaždici poznámky",
   "@settings_show_labels_note_tile": {
     "description": "Title of the setting tile to show the labels on the notes tiles."
   },
-  "settings_show_labels_note_tile_description": "नोट टाइल्स के लेबल की सूची दिखाएं",
+  "settings_show_labels_note_tile_description": "Zobrazit seznam štítků na dlaždicích poznámek",
   "@settings_show_labels_note_tile_description": {
     "description": "Description of the setting tile to show the labels on the notes tiles."
   },
-  "settings_show_labels_editor": "संपादक में लेबल दिखाएं",
+  "settings_show_labels_editor": "Zobrazit štítky v editoru",
   "@settings_show_labels_editor": {
     "description": "Title of the setting tile to show the labels in the editor."
   },
-  "settings_show_labels_editor_description": "लेबल की सूची संपादक के निचले भाग में दिखाएँ",
+  "settings_show_labels_editor_description": "Zobrazit seznam štítků na spodní části editoru",
   "@settings_show_labels_editor_description": {
     "description": "Description of the setting tile to show the labels in the editor."
   },
-  "settings_backup": "बैकअप",
+  "settings_backup": "Zálohování",
   "@settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
   },
-  "settings_backup_description": "मैनुअल और स्वचालित निर्यात, एन्क्रिप्शन, आयात",
+  "settings_backup_description": "Manuální a automatický export, šifrování, import",
   "@settings_backup_description": {
     "description": "Description of the backup settings page."
   },
-  "settings_backup_import": "आयात",
+  "settings_backup_import": "Import",
   "@settings_backup_import": {
     "description": "Title of the settings section regarding the import of a backup."
   },
-  "settings_import": "आयात",
+  "settings_import": "Import",
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
-  "settings_import_description": "JSON फ़ाइल से नोट्स, लेबल्स और सेटिंग्स आयात करें",
+  "settings_import_description": "Importovat poznámky, štítky a nastavení ze souboru JSON",
   "@settings_import_description": {
     "description": "Description of the setting tile to import a backup."
   },
-  "settings_backup_manual_export": "मैनुअल निर्यात",
+  "settings_backup_manual_export": "Manuální export",
   "@settings_backup_manual_export": {
     "description": "Title of the settings section regarding the manual export of the notes."
   },
-  "settings_export_json": "JSON के रूप में निर्यात करें",
+  "settings_export_json": "Exportovat jako JSON",
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "नोट्स, लेबल्स और सेटिंग्स को तुरंत JSON फ़ाइल (बिन शामिल) में निर्यात करें जिसे वापस आयात किया जा सकता है",
+  "settings_export_json_description": "Okamžitě exportovat poznámky, štítky a nastavení (včetně koše) do JSON souboru, který lze importovat zpět",
   "@settings_export_json_description": {
     "description": "Description of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_markdown": "मार्कडाउन के रूप में निर्यात करें",
+  "settings_export_markdown": "Exportovat jako Markdown",
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
   },
-  "settings_export_markdown_description": "नोट्स को तुरंत मार्कडाउन फ़ाइल में निर्यात करें (बिन सहित)",
+  "settings_export_markdown_description": "Okamžitě exportovat poznámky (i ty v koši) do Markdown souboru",
   "@settings_export_markdown_description": {
     "description": "Description of the setting tile to manually export the notes as Markdown."
   },
-  "settings_backup_auto_export": "स्वचालित निर्यात",
+  "settings_backup_auto_export": "Automatický export",
   "@settings_backup_auto_export": {
     "description": "Title of the settings section regarding the automatic export of the notes."
   },
-  "settings_auto_export": "स्वचालित निर्यात",
+  "settings_auto_export": "Automatický export",
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "नोट्स, लेबल्स और सेटिंग्स को स्वचालित रूप से JSON फ़ाइल (बिन शामिल) में निर्यात करें जिसे वापस आयात किया जा सकता है",
+  "settings_auto_export_description": "Automaticky exportovat poznámky, štítky a nastavení (včetně koše) do JSON souboru, který lze importovat zpět",
   "@settings_auto_export_description": {
     "description": "Description of the settings tile to enable the automatic export."
   },
-  "settings_auto_export_frequency": "आवृत्ति",
+  "settings_auto_export_frequency": "Frekvence",
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "हर {frequency,  select, 1{दिन} 7{सप्ताह} 14{2 सप्ताह} 30{माह} other{{frequency} दिन}}",
+  "settings_auto_export_frequency_value": "Jednou za {frequency, select, 1{den} 7{týden} 14{2 týdny} 30{měsíc} other{{frequency} dny}}",
   "@settings_auto_export_frequency_value": {
     "description": "Frequency of the automatic exports.",
     "placeholders": {
@@ -435,107 +435,123 @@
       }
     }
   },
-  "settings_auto_export_frequency_description": "स्वचालित निर्यात की आवृत्ति",
+  "settings_auto_export_frequency_description": "Frekvence automatického exportu",
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
   },
-  "settings_auto_export_encryption": "एन्क्रिप्शन",
+  "settings_auto_export_encryption": "Šifrování",
   "@settings_auto_export_encryption": {
     "description": "Title of the settings tile to enable the encryption of the automatic exports."
   },
-  "settings_auto_export_encryption_description": "नोट्स के शीर्षक और सामग्री को पासवर्ड से एन्क्रिप्ट करें",
+  "settings_auto_export_encryption_description": "Šifrovat názvy a obsah poznámek heslem",
   "@settings_auto_export_encryption_description": {
     "description": "Description of the settings tile to enable the encryption of the automatic exports."
   },
-  "settings_auto_export_directory": "निर्देशिका",
+  "settings_auto_export_directory": "Složka",
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
   },
-  "settings_auto_export_directory_description": "निर्देशिका जहां स्वचालित निर्यात को संग्रहीत किया जाना है",
+  "settings_auto_export_directory_description": "Složka, kam ukládat automatické exporty",
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
-  "settings_accessibility": "सुगम्यता",
+  "settings_accessibility": "Přístupnost",
   "@settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
   },
-  "settings_accessibility_description": "पाठ का रंग, पाठ का आकार",
+  "settings_accessibility_text_size": "Velikost písma",
+  "@settings_accessibility_text_size": {
+    "description": "Title of the accessibility settings section regarding the text size."
+  },
+  "settings_accessibility_text_color": "Barva textu",
+  "@settings_accessibility_text_color": {
+    "description": "Title of the accessibility settings section regarding the text color."
+  },
+  "settings_accessibility_description": "Barva textu, měřítko textu",
   "@settings_accessibility_description": {
     "description": "Description of the accessibility settings page."
   },
-  "settings_text_scaling": "पाठ का आकार",
+  "settings_text_scaling": "Měřítko textu",
   "@settings_text_scaling": {
     "description": "Title of the text scale setting tile."
   },
-  "settings_white_text_dark_mode": "डार्क मोड में सफ़ेद टेक्स्ट",
+  "settings_bigger_titles": "Větší názvy",
+  "@settings_bigger_titles": {
+    "description": "Title of the setting tile to use bigger titles on the notes tiles."
+  },
+  "settings_bigger_titles_description": "Zobrazit větší názvy na dlaždicích poznámek",
+  "@settings_bigger_titles_description": {
+    "description": "Description of the setting tile to use bigger titles on the notes tiles."
+  },
+  "settings_white_text_dark_mode": "Bílý text v tmavém režimu",
   "@settings_white_text_dark_mode": {
     "description": "Title of the text scale setting tile."
   },
-  "settings_white_text_dark_mode_description": "डार्क मोड में टेक्स्ट के लिए सफ़ेद रंग का उपयोग करें",
+  "settings_white_text_dark_mode_description": "Použít v tmavém režimu bílou barvu pro text",
   "@settings_white_text_dark_mode_description": {
     "description": "Description of the text scale setting tile."
   },
-  "settings_disable_subdued_note_content_preview": "उज्ज्वल पूर्वावलोकन",
+  "settings_disable_subdued_note_content_preview": "Neutlumený náhled",
   "@settings_disable_subdued_note_content_preview": {
     "description": "Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
-  "settings_disable_subdued_note_content_preview_description": "नोट्स सामग्री पूर्वावलोकन के हल्के अक्षर रंग को अक्षम करें",
+  "settings_disable_subdued_note_content_preview_description": "Zakázat utlumenou barvu textu v náhledu poznámek",
   "@settings_disable_subdued_note_content_preview_description": {
     "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
-  "settings_about": "के बारे में",
+  "settings_about": "O aplikaci",
   "@settings_about": {
     "description": "Title of the settings page regarding the information about the application."
   },
-  "settings_about_description": "जानकारी, सहायता, लिंक",
+  "settings_about_description": "Informace, pomoc, odkazy",
   "@settings_about_description": {
     "description": "Description of the about settings section."
   },
-  "settings_about_application": "एप्लिकेशन",
+  "settings_about_application": "Aplikace",
   "@settings_about_application": {
     "description": "Title of the settings section regarding the information about the application."
   },
-  "settings_build_mode": "निर्माण मोड",
+  "settings_build_mode": "Režim sestavení",
   "@settings_build_mode": {
     "description": "Title of the settings tile displaying the build mode of the application."
   },
-  "settings_build_mode_release": "संस्करण",
+  "settings_build_mode_release": "Vydání",
   "@settings_build_mode_release": {
     "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
   },
-  "settings_build_mode_debug": "त्रुटि निवारण",
+  "settings_build_mode_debug": "Ladění",
   "@settings_build_mode_debug": {
     "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
   },
-  "settings_about_help": "मदद",
+  "settings_about_help": "Pomoc",
   "@settings_about_help": {
     "description": "Title of the settings section regarding how to get help for the application."
   },
-  "settings_github_issues": "त्रुटि की रिपोर्ट करें या सुविधा का अनुरोध करें",
+  "settings_github_issues": "Nahlásit chybu nebo požádat o funkci",
   "@settings_github_issues": {
     "description": "Title of the settings tile to open the GitHub issues and report a bug or request a feature."
   },
-  "settings_github_issues_description": "GitHub समस्या बनाकर त्रुटि की रिपोर्ट करें या सुविधा का अनुरोध करें",
+  "settings_github_issues_description": "Nahlásit chybu nebo požádat o funkci vytvořením problému na GitHubu",
   "@settings_github_issues_description": {
     "description": "Description of the settings tile to open the GitHub issues and report a bug or request a feature."
   },
-  "settings_github_discussions": "प्रश्न पूछें",
+  "settings_github_discussions": "Zeptejte se",
   "@settings_github_discussions": {
     "description": "Title of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_github_discussions_description": "GitHub चर्चाओं पर प्रश्न पूछें",
+  "settings_github_discussions_description": "Položit otázku v diskuzi na GitHubu",
   "@settings_github_discussions_description": {
     "description": "Description of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_get_in_touch": "निर्माणक से संपर्क करें",
+  "settings_get_in_touch": "Kontaktovat vývojáře",
   "@settings_get_in_touch": {
     "description": "Title of the settings tile to contact the developer via mail."
   },
-  "settings_get_in_touch_description": "निर्माणक से {email} पर मेल द्वारा संपर्क करें",
+  "settings_get_in_touch_description": "Kontaktujte vývojáře e-mailem na {email}",
   "@settings_get_in_touch_description": {
     "description": "Description of the settings tile to contact the developer via mail."
   },
-  "settings_about_links": "लिंक",
+  "settings_about_links": "Odkazy",
   "@settings_about_links": {
     "description": "Title of the settings section regarding the outside links related to the application."
   },
@@ -543,19 +559,19 @@
   "@settings_github": {
     "description": "Title of the settings tile to open the GitHub repository of the application."
   },
-  "settings_github_description": "स्रोत कोड पर एक नज़र डालें",
+  "settings_github_description": "Prohlédněte si zdrojový kód",
   "@settings_github_description": {
     "description": "Description of the settings tile to open the GitHub repository of the application."
   },
-  "settings_localizations": "क्राउडिन",
+  "settings_localizations": "Crowdin",
   "@settings_localizations": {
     "description": "Title of the settings tile to open the Crowdin project managing the localization of the application."
   },
-  "settings_localizations_description": "क्राउडिन परियोजना पर स्थानीयकरण जोड़ें या सुधारें",
+  "settings_localizations_description": "Přidat nebo vylepšit lokalizaci na projektu Crowdin",
   "@settings_localizations_description": {
     "description": "Description of the settings tile to open the Crowdin project managing the localization of the application."
   },
-  "settings_licence": "लाइसेंस",
+  "settings_licence": "Licence",
   "@settings_licence": {
     "description": "Title of the settings tile to open the license of the application."
   },
@@ -563,135 +579,135 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
-  "settings_about_logs": "लॉग",
+  "settings_about_logs": "Logy",
   "@settings_about_logs": {
     "description": "Title of the settings section regarding the logs of the application."
   },
-  "settings_copy_logs": "लॉग कॉपी करें",
+  "settings_copy_logs": "Zkopírovat logy",
   "@settings_copy_logs": {
     "description": "Title of the settings tile to copy the logs of the application to the clipboard."
   },
-  "settings_copy_logs_description": "एप्लिकेशन के लॉग को क्लिपबोर्ड पर कॉपी करें",
+  "settings_copy_logs_description": "Zkopírovat logy aplikace do schránky",
   "@settings_copy_logs_description": {
     "description": "Description of the settings tile to copy the logs of the application to the clipboard."
   },
-  "settings_export_logs": "लॉग निर्यात करें",
+  "settings_export_logs": "Exportovat logy",
   "@settings_export_logs": {
     "description": "Title of the settings tile to export the logs of the application to a text file."
   },
-  "settings_export_logs_description": "एप्लिकेशन के लॉग को टेक्स्ट फ़ाइल में निर्यात करें",
+  "settings_export_logs_description": "Exportovat logy aplikace do textového souboru",
   "@settings_export_logs_description": {
     "description": "Description of the settings tile to export the logs of the application to a text file."
   },
-  "hint_title": "शीर्षक",
+  "hint_title": "Nadpis",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
   },
-  "hint_note": "नोट",
+  "hint_note": "Poznámka",
   "@hint_note": {
     "description": "Hint for the text field of the content of the notes."
   },
-  "hint_link": "लिंक",
+  "hint_link": "Odkaz",
   "@hint_link": {
     "description": "Hint for the link text field in the dialog to add a link in the editor."
   },
-  "hint_label_name": "नाम",
+  "hint_label_name": "Název",
   "@hint_label_name": {
     "description": "Hint for the text field of the name of a label."
   },
-  "dialog_export_encryption_password": "पासवर्ड",
+  "dialog_export_encryption_password": "Heslo",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
   },
-  "tooltip_undo": "अंतिम क्रिया पूर्ववत करें",
+  "tooltip_undo": "Vrátit poslední akci",
   "@tooltip_undo": {
     "description": "Tooltip for the button to undo the last action in the editor."
   },
-  "tooltip_redo": "अंतिम क्रिया पुनः करें",
+  "tooltip_redo": "Opakovat poslední akci",
   "@tooltip_redo": {
     "description": "Tooltip for the button to redo the last action in the editor."
   },
-  "tooltip_toggle_checkbox": "टॉगल जाँच-सूची",
+  "tooltip_toggle_checkbox": "Přepnout zaškrtávací políčko",
   "@tooltip_toggle_checkbox": {
     "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
   },
-  "tooltip_toggle_pins": "टॉगल पिन",
+  "tooltip_toggle_pins": "Přepnout připnutí",
   "@tooltip_toggle_pins": {
     "description": "Tooltip for the button to toggle the pining state of the selected notes in selection mode (the pinned notes will be unpinned, and the not pinned ones will be pinned)."
   },
-  "tooltip_fab_add_note": "नोट जोड़े",
+  "tooltip_fab_add_note": "Přidat poznámku",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
   },
-  "tooltip_fab_add_label": "लेबल जोड़ें",
+  "tooltip_fab_add_label": "Přidat štítek",
   "@tooltip_fab_add_label": {
     "description": "Floating action button in the labels page to add a new label."
   },
-  "tooltip_fab_empty_bin": "बिन खाली करें",
+  "tooltip_fab_empty_bin": "Vysypat koš",
   "@tooltip_fab_empty_bin": {
     "description": "Floating action button in the bin to empty it."
   },
-  "tooltip_fab_toggle_editor_mode_edit": "संपादन मोड पर स्विच करें",
+  "tooltip_fab_toggle_editor_mode_edit": "Přepnout do režimu úprav",
   "@tooltip_fab_toggle_editor_mode_edit": {
     "description": "Floating action button in the notes editor to switch to editing mode."
   },
-  "tooltip_fab_toggle_editor_mode_read": "रीडिंग मोड पर स्विच करें",
+  "tooltip_fab_toggle_editor_mode_read": "Přepnout do režimu čtení",
   "@tooltip_fab_toggle_editor_mode_read": {
     "description": "Floating action button in the notes editor to switch to reading mode."
   },
-  "tooltip_layout_list": "सूची व्यू",
+  "tooltip_layout_list": "Zobrazit jako seznam",
   "@tooltip_layout_list": {
     "description": "Tooltip for the button to use the list layout in the notes list."
   },
-  "tooltip_layout_grid": "ग्रिड व्यू",
+  "tooltip_layout_grid": "Zobrazit jako mřížku",
   "@tooltip_layout_grid": {
     "description": "Tooltip for the button to use the grid layout in the notes list."
   },
-  "tooltip_sort": "नोट्स को क्रमबद्ध करें",
+  "tooltip_sort": "Řazení poznámek",
   "@tooltip_sort": {
     "description": "Tooltip for the button to open the menu to choose the sorting method of the notes list."
   },
-  "tooltip_search": "नोट्स खोजें",
+  "tooltip_search": "Hledat poznámky",
   "@tooltip_search": {
     "description": "Tooltip for the button to open the search view to search through the notes."
   },
-  "tooltip_unselect_all": "सभी अचयनित",
+  "tooltip_unselect_all": "Zrušit výběr",
   "@tooltip_unselect_all": {
     "description": "Tooltip for the button to unselect all the notes while in selection mode in the notes list."
   },
-  "tooltip_delete": "मिटाए",
+  "tooltip_delete": "Odstranit",
   "@tooltip_delete": {
     "description": "Tooltip for the button to delete a note (moving it to bin)."
   },
-  "tooltip_permanently_delete": "स्थायी रूप से मिटाए",
+  "tooltip_permanently_delete": "Odstranit natrvalo",
   "@tooltip_permanently_delete": {
     "description": "Tooltip for the button to permanently delete a note."
   },
-  "tooltip_restore": "पुनर्स्थापित",
+  "tooltip_restore": "Obnovit",
   "@tooltip_restore": {
     "description": "Tooltip for the button to restore a note from the bin."
   },
-  "tooltip_reset": "रीसेट",
+  "tooltip_reset": "Výchozí",
   "@tooltip_reset": {
     "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
   },
-  "action_labels_toggle_pins": "टॉगल पिन",
+  "action_labels_toggle_pins": "Přepnout připnutí",
   "@action_labels_toggle_pins": {
     "description": "Tooltip for the button to toggle the pin status of the selected labels."
   },
-  "action_labels_toggle_visibility": "दृश्यता टॉगल करें",
+  "action_labels_toggle_visibility": "Přepnout viditelnost",
   "@action_labels_toggle_visibility": {
     "description": "Tooltip for the button to toggle the visibility of the selected labels."
   },
-  "dialog_add_link": "लिंक जोड़ें",
+  "dialog_add_link": "Přidat odkaz",
   "@dialog_add_link": {
     "description": "Tooltip for the button to validate the dialog to add a link in the note editor."
   },
-  "dialog_delete": "मिटाए",
+  "dialog_delete": "Odstranit",
   "@dialog_delete": {
     "description": "Title of the the dialog to delete one or multiple notes (moving them to the bin), and text for the confirmation button."
   },
-  "dialog_delete_body": "क्या आप वाकई {count} {count, plural, zero{} one{नोट} other{नोट्स}} को हटाना चाहते हैं? आप बिन से {count, plural, zero{} one{इसे} other{इन्हें}} पुनर्स्थापित कर सकते हैं।",
+  "dialog_delete_body": "Opravdu chcete odstranit {count} {count, plural, one{poznámku} few{poznámky}other{poznámek}}? Můžete {count, plural, one{ji} other{je}} obnovit z koše.",
   "@dialog_delete_body": {
     "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
     "placeholders": {
@@ -701,11 +717,11 @@
       }
     }
   },
-  "dialog_permanently_delete": "स्थायी रूप से मिटाए",
+  "dialog_permanently_delete": "Trvale odstranit",
   "@dialog_permanently_delete": {
     "description": "Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button."
   },
-  "dialog_permanently_delete_body": "क्या आप वाकई {count} {count, plural, zero{} one{नोट} other{नोट्स}} को स्थायी रूप से हटाना चाहते हैं? आप {count, plural, zero{} one{इसे} other{इन्हें}} पुनर्स्थापित नहीं कर पाएँगे।",
+  "dialog_permanently_delete_body": "Opravdu chcete trvale odstranit {count} {count, plural, one{poznámku} few{poznámky}other{poznámek}}? Už {count, plural, one{ji} other{je}} nebudete moci obnovit z koše.",
   "@dialog_permanently_delete_body": {
     "description": "Text for the dialog to confirm the permanent deletion of one or multiple notes.",
     "placeholders": {
@@ -715,11 +731,11 @@
       }
     }
   },
-  "dialog_restore": "पुनर्स्थापित करें",
+  "dialog_restore": "Obnovit",
   "@dialog_restore": {
     "description": "Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button."
   },
-  "dialog_restore_body": "क्या आप वास्तव में {count} {count, plural, zero{} one{नोट} other{नोट्स}} को पुनर्स्थापित करना चाहते हैं?",
+  "dialog_restore_body": "Opravdu chcete obnovit {count} {count, plural, one{poznámku} few {poznámky} many {poznámek} other{poznámek}}?",
   "@dialog_restore_body": {
     "description": "Text for the dialog to confirm restoring one or multiple notes from the bin.",
     "placeholders": {
@@ -729,19 +745,19 @@
       }
     }
   },
-  "dialog_empty_bin": "बिन खाली करें",
+  "dialog_empty_bin": "Vysypat koš",
   "@dialog_empty_bin": {
     "description": "Title of the the dialog to empty the bin, and text for the confirmation button."
   },
-  "dialog_empty_bin_body": "क्या आप वाकई बिन को हमेशा के लिए खाली करना चाहते हैं? आप उसमें मौजूद नोट्स को वापस नहीं ला पाएंगे।",
+  "dialog_empty_bin_body": "Opravdu chcete trvale vyprázdnit koš? Nebudete moci obnovit poznámky, které obsahuje.",
   "@dialog_empty_bin_body": {
     "description": "Text for the dialog to confirm emptying the bin."
   },
-  "dialog_delete_label": "मिटाए",
+  "dialog_delete_label": "Odstranit",
   "@dialog_delete_label": {
     "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
   },
-  "dialog_delete_label_body": "क्या आप वास्तव में {count} {count, plural, zero{} one{लेबल} other{लेबल्स}} हटाना चाहते हैं? {count, plural, zero{} one{इसे} other{इन्हें}} उन नोट्स से हटा दिया जाएगा जहाँ आपने {count, plural, zero{} one{इसे} other{इन्हें}} जोड़ा था।",
+  "dialog_delete_label_body": "Opravdu chcete odstranit {count} {count, plural, one{štítek} few {štítky} many {štítků} other{štítků}}? {count, plural, one{Bude odstraněn} other{Budou odstraněny}} ze všech poznámek na které jste {count, plural, one{ho} other{je}} přidali.",
   "@dialog_delete_label_body": {
     "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
     "placeholders": {
@@ -751,183 +767,183 @@
       }
     }
   },
-  "dialog_export_encryption_switch": "JSON निर्यात एन्क्रिप्ट करें",
+  "dialog_export_encryption_switch": "Šifrovat export JSON",
   "@dialog_export_encryption_switch": {
     "description": "Text for the switch to toggle the encryption of the export in the dialog to manually or automatically exporting the notes as JSON."
   },
-  "dialog_export_encryption_description": "नोट्स का शीर्षक और सामग्री आपके पासवर्ड का उपयोग करके एन्क्रिप्ट की जाएगी। यह यादृच्छिक रूप से उत्पन्न होना चाहिए, ठीक 32 अक्षर लंबा, मजबूत (कम से कम 1 लोअरकेस, 1 अपरकेस, 1 नंबर और 1 विशेष वर्ण) और सुरक्षित रूप से संग्रहीत होना चाहिए।",
+  "dialog_export_encryption_description": "Název a obsah poznámek bude šifrován pomocí vašeho hesla. Mělo by být náhodně vygenerované, přesně 32 znaků dlouhé, silné (alespoň 1 malé písmeno, 1 velké písmeno, 1 číslo a 1 speciální znak) a bezpečně uložené.",
   "@dialog_export_encryption_description": {
     "description": "Description for the encryption feature when the switch to toggle the encryption of the export is enabled."
   },
-  "dialog_export_encryption_secondary_description_auto": "इस पासवर्ड का उपयोग भविष्य में सभी स्वचालित निर्यातों के लिए किया जाएगा।",
+  "dialog_export_encryption_secondary_description_auto": "Toto heslo bude použito pro všechny budoucí automatické exporty.",
   "@dialog_export_encryption_secondary_description_auto": {
     "description": "Secondary description for the encryption feature in the case of an automatic export."
   },
-  "dialog_export_encryption_secondary_description_manual": "इस पासवर्ड का उपयोग केवल इस निर्यात के लिए किया जाएगा।",
+  "dialog_export_encryption_secondary_description_manual": "Toto heslo bude použito pouze pro tento export.",
   "@dialog_export_encryption_secondary_description_manual": {
     "description": "Secondary description for the encryption feature in the case of a manual export."
   },
-  "dialog_export_encryption_password_invalid": "अमान्य",
+  "dialog_export_encryption_password_invalid": "Neplatné",
   "@dialog_export_encryption_password_invalid": {
     "description": "Error message displayed under the text field for the encryption password if it does not meet the strength requirements."
   },
-  "dialog_import_encryption_password_description": "यह निर्यात एन्क्रिप्टेड है। इसे आयात करने के लिए, आपको इसे एन्क्रिप्ट करने के लिए उपयोग किया गया पासवर्ड प्रदान करना होगा।",
+  "dialog_import_encryption_password_description": "Tento export je zašifrovaný. Chcete-li jej importovat, musíte zadat heslo použité k jeho šifrování.",
   "@dialog_import_encryption_password_description": {
     "description": "Description in the import dialog when an import is encrypted and the password is needed."
   },
-  "dialog_import_encryption_password_error": "निर्यात को डिक्रिप्ट करना विफल रहा। कृपया जाँच लें कि आपने वही पासवर्ड दिया है जो आपने निर्यात को एन्क्रिप्ट करने के लिए इस्तेमाल किया था।",
+  "dialog_import_encryption_password_error": "dešifrování exportu se nezdařilo. Zkontrolujte, zda jste zadali stejné heslo, které jste použili pro šifrování exportu.",
   "@dialog_import_encryption_password_error": {
     "description": "Error when the decryption of an encrypted import failed."
   },
-  "dialog_label_add": "लेबल जोड़ें",
+  "dialog_label_add": "Přidat štítek",
   "@dialog_label_add": {
     "description": "Title of the dialog to add a label."
   },
-  "dialog_label_edit": "लेबल संपादित करें",
+  "dialog_label_edit": "Upravit štítek",
   "@dialog_label_edit": {
     "description": "Title of the dialog to edit a label."
   },
-  "dialog_label_name_cannot_be_empty": "नाम रिक्त नहीं रह सकता।",
+  "dialog_label_name_cannot_be_empty": "Název nemůže být prázdný.",
   "@dialog_label_name_cannot_be_empty": {
     "description": "Error message shown when relevant on the text field of the name of the label."
   },
-  "dialog_label_name_already_used": "यह नाम पहले से ही प्रयोग किया जा रहा है।",
+  "dialog_label_name_already_used": "Tento název se již používá.",
   "@dialog_label_name_already_used": {
     "description": "Error message shown when relevant on the text field of the name of the label."
   },
-  "button_sort_creation_date": "निर्माण तिथि",
+  "button_sort_creation_date": "Datum vytvoření",
   "@button_sort_creation_date": {
     "description": "Text of the button to sort the notes list by their creation date."
   },
-  "button_sort_edition_date": "संस्करण तिथि",
+  "button_sort_edition_date": "Datum úpravy",
   "@button_sort_edition_date": {
     "description": "Text of the button to sort the notes list by their last edition date."
   },
-  "placeholder_notes": "कोई नोट्स नहीं",
+  "placeholder_notes": "Žádné poznámky",
   "@placeholder_notes": {
     "description": "Placeholder on the notes page when there are no notes."
   },
-  "placeholder_bin": "कोई भी नोट्स मिटाया नहीं गया",
+  "placeholder_bin": "Žádné odstraněné poznámky",
   "@placeholder_bin": {
     "description": "Placeholder on the bin page when there are no notes."
   },
-  "action_disabled": "अक्षम",
+  "action_disabled": "Vypnuto",
   "@action_disabled": {
     "description": "Swipe action that is disabled in the settings."
   },
-  "action_pin": "पिन",
+  "action_pin": "Připnout",
   "@action_pin": {
     "description": "Swipe or menu action to pin a note."
   },
-  "action_unpin": "अनपिन",
+  "action_unpin": "Odepnout",
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
   },
-  "action_share": "शेयर",
+  "action_share": "Sdílet",
   "@action_share": {
     "description": "Swipe or menu action to share a note."
   },
-  "action_delete": "मिटाए",
+  "action_delete": "Odstranit",
   "@action_delete": {
     "description": "Swipe or menu action to delete a note (moving it to the bin)."
   },
-  "action_restore": "पुनर्स्थापित",
+  "action_restore": "Obnovit",
   "@action_restore": {
     "description": "Swipe or menu action to restore a note from the bin."
   },
-  "action_delete_permanently": "स्थायी रूप से मिटाए",
+  "action_delete_permanently": "Trvale odstranit",
   "@action_delete_permanently": {
     "description": "Swipe or menu action to permanently delete a note."
   },
-  "action_about": "के बारे में",
+  "action_about": "Informace",
   "@action_about": {
     "description": "Swipe or menu action to show information about a note."
   },
-  "about_last_edited": "अंतिम संपादन",
+  "about_last_edited": "Naposledy upraveno",
   "@about_last_edited": {
     "description": "Date when the note was edited for the last time."
   },
-  "about_created": "बनाया था",
+  "about_created": "Vytvořeno",
   "@about_created": {
     "description": "Date when the note was created."
   },
-  "about_labels": "लेबल्स",
+  "about_labels": "Štítky",
   "@about_labels": {
     "description": "Number of labels of the note."
   },
-  "about_words": "शब्द",
+  "about_words": "Počet slov",
   "@about_words": {
     "description": "Number of words in the content of the note."
   },
-  "about_characters": "वर्ण",
+  "about_characters": "Znaky",
   "@about_characters": {
     "description": "Number of characters in the content of the note."
   },
-  "about_time_at": "पर",
+  "about_time_at": "v",
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
-  "menu_action_labels": "लेबल्स",
+  "menu_action_labels": "Štítky",
   "@menu_action_labels": {
     "description": "Menu action to change the labels of a note."
   },
-  "action_labels_edit": "संपादन",
+  "action_labels_edit": "Upravit",
   "@action_labels_edit": {
     "description": "Menu or swipe action to edit a label."
   },
-  "action_labels_delete": "मिटाए",
+  "action_labels_delete": "Odstranit",
   "@action_labels_delete": {
     "description": "Menu or swipe action to delete a label."
   },
-  "filter_labels_all": "सभी",
+  "filter_labels_all": "Vše",
   "@filter_labels_all": {
     "description": "Filter chip in the labels page to all labels."
   },
-  "filter_labels_visible": "दृश्यमान",
+  "filter_labels_visible": "Viditelné",
   "@filter_labels_visible": {
     "description": "Filter chip in the labels page to show only the visible labels."
   },
-  "filter_labels_pinned": "पिन किया गया",
+  "filter_labels_pinned": "Připnuté",
   "@filter_labels_pinned": {
     "description": "Filter chip in the labels page to show only the pinned labels."
   },
-  "filter_labels_hidden": "छिपाया गया",
+  "filter_labels_hidden": "Skryté",
   "@filter_labels_hidden": {
     "description": "Filter chip in the labels page to show only the hidden labels."
   },
-  "snack_bar_copied": "नोट की सामग्री क्लिपबोर्ड पर कॉपी कर दी गई।",
+  "snack_bar_copied": "Obsah poznámky zkopírován do schránky.",
   "@snack_bar_copied": {
     "description": "Snack bar informing that the content of the note was copied to clipboard."
   },
-  "snack_bar_import_success": "बैकअप सफलतापूर्वक आयात किया गया।",
+  "snack_bar_import_success": "Záloha byla úspěšně importována.",
   "@snack_bar_import_success": {
     "description": "Snack bar informing that the backup was successfully imported."
   },
-  "snack_bar_export_success": "बैकअप सफलतापूर्वक निर्यात किया गया।",
+  "snack_bar_export_success": "Záloha byla úspěšně exportována.",
   "@snack_bar_export_success": {
     "description": "Snack bar informing that the backup was successfully manually exported."
   },
-  "snack_bar_logs_copied": "लॉग आपके क्लिपबोर्ड पर कॉपी कर दिए गए हैं।",
+  "snack_bar_logs_copied": "Logy byly zkopírovány do schránky.",
   "@snack_bar_logs_copied": {
     "description": "Snack bar message shown when the logs where copied to the clipboard from the error widget."
   },
-  "snack_bar_logs_exported": "लॉग सफलतापूर्वक निर्यात किए गए।",
+  "snack_bar_logs_exported": "Logy byly úspěšně exportovány.",
   "@snack_bar_logs_exported": {
     "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
   },
-  "snack_bar_no_labels": "कोई लेबल्स नहीं है।",
+  "snack_bar_no_labels": "Nemáte žádné štítky.",
   "@snack_bar_no_labels": {
     "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
   },
-  "action_add_note_title": "एक नोट जोड़े",
+  "action_add_note_title": "Přidat poznámku",
   "@action_add_note_title": {
     "description": "Title of the home screen action to add a new note."
   },
-  "welcome_note_title": "मैटेरियल नोट्स में आपका स्वागत है!",
+  "welcome_note_title": "Vítejte v Material Notes!",
   "@welcome_note_title": {
     "description": "Title of the welcome note automatically created on the first run of the application."
   },
-  "welcome_note_content": "सरल, स्थानीय, मैटेरियल डिज़ाइन नोट्स",
+  "welcome_note_content": "Jednoduché, lokální poznámky s material designem",
   "@welcome_note_content": {
     "description": "Content of the welcome note automatically created on the first run of the application."
   }

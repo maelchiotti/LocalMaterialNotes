@@ -1,0 +1,54 @@
+full_description: |
+  <p>
+      <b>Material Notes</b> je textová aplikace pro psaní poznámek zaměřená na jednoduchost. Používá Material Design.
+      Ukládá poznámky lokálně a nemá přístup k internetu, takže jste jediným kdo k nim má přístup.
+  </p>
+
+  <p>
+      <b>Pište poznámky</b>
+  </p>
+  <ul>
+      <li>Vytvářejte textové poznámky (název a obsah)</li>
+      <li>Využijte pokročilé možností formátování, včetně zaškrtávacích seznamů</li>
+      <li>Vracejte při editování změny, nebo je znovu proveďte (undo, redo)</li>
+      <li>Použijte rychlou akci z domovské obrazovky pro rychlé vytvoření poznámky</li>
+  </ul>
+
+  <p>
+      <b>Organizujte</b>
+  </p>
+  <ul>
+      <li>Vyhledávejte ve vašich poznámkách</li>
+      <li>Seřaďte své poznámky podle data či názvu, sestupně nebo vzestupně</li>
+      <li>Zobrazte své poznámky v seznamu nebo jako dlaždice</li>
+      <li>Připínejte své poznámky</li>
+      <li>Obnovte své poznámky z koše</li>
+  </ul>
+
+  <p>
+      <b>Sdílejte a zálohujte</b>
+  </p>
+  <ul>
+      <li>Sdílejte text z jiných aplikací pro jeho přidání přímo do poznámky</li>
+      <li>Sdílejte své poznámky jako text</li>
+      <li>Exportujte své poznámky jako JSON, manuálně nebo automaticky, a importujte je zpět</li>
+      <li>Exportujte své poznámky jako Markdown</li>
+  </ul>
+
+  <p>
+      <b>Chraňte</b>
+  </p>
+  <ul>
+      <li>Nedělejte si starosti s tím jak je s vašimi daty zacházeno: nikdy nemohou opustit vaše zařízení, jelikož aplikace nemá oprávnění pro přístup k internetu.</li>
+      <li>Šifrujte své JSON exporty</li>
+  </ul>
+
+  <p>
+      <b>Přizpůsobte</b>
+  </p>
+  <ul>
+      <li>Zvolte si svůj jazyk</li>
+      <li>Zvolte si téma (světlé, tmavé nebo černé)</li>
+      <li>Zvolte si zda chcete dynamické téma (s barvami z vaší tapety)</li>
+      <li>Zvolte si zda chcete povolit pokročilé formátování, pouze odškrtávací seznamy, nebo nechat vaše poznámky jednoduché</li>
+  </ul>

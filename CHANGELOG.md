@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.10.0 - 2024-12-21
+
+### Added
+
+- Drastically better search performance with typo tolerance
+- Setting to make the titles of the notes bigger
+- Czech translation
+
+### Changed
+
+- Layout and swipe action preferences not updating correctly
+- Going back from a label page or the Manage labels page goes back to the notes list
+- Organization of some settings
+
+### Fixed
+
+- Last edited date of a note being changed when the note is pinned or unpinned
+- Black screen when deleting or restoring a note from the editor
+- Malformed URL when opening a link from the editor
+
 ## 1.9.1 - 2024-12-11
 
 ### Fixed

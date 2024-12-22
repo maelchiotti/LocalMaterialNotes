@@ -181,14 +181,6 @@
   "@settings_show_titles_only_disable_in_search_view_description": {
     "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
   },
-  "settings_disable_subdued_note_content_preview": "Ungedämpfte Notiz Vorschau",
-  "@settings_disable_subdued_note_content_preview": {
-    "description": "Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
-  },
-  "settings_disable_subdued_note_content_preview_description": "Blassere Textfarbe der Notizvorschau deaktivieren",
-  "@settings_disable_subdued_note_content_preview_description": {
-    "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
-  },
   "settings_show_tiles_background": "Hintergrund",
   "@settings_show_tiles_background": {
     "description": "Title of the setting tile to show the background of the notes tiles."
@@ -478,6 +470,14 @@
   "settings_white_text_dark_mode_description": "Verwende Weiß für den Text im dunklen Modus",
   "@settings_white_text_dark_mode_description": {
     "description": "Description of the text scale setting tile."
+  },
+  "settings_disable_subdued_note_content_preview": "Ungedämpfte Notiz Vorschau",
+  "@settings_disable_subdued_note_content_preview": {
+    "description": "Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
+  },
+  "settings_disable_subdued_note_content_preview_description": "Blassere Textfarbe der Notizvorschau deaktivieren",
+  "@settings_disable_subdued_note_content_preview_description": {
+    "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
   "settings_about": "Über",
   "@settings_about": {
