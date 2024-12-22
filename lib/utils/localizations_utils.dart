@@ -1,5 +1,5 @@
-import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
-import 'package:localmaterialnotes/utils/locale_utils.dart';
+import '../l10n/app_localizations/app_localizations.g.dart';
+import 'locale_utils.dart';
 
 /// Utilities for the hardcoded application's localizations.
 ///
@@ -8,9 +8,7 @@ class LocalizationsUtils {
   static final LocalizationsUtils _singleton = LocalizationsUtils._internal();
 
   /// Default constructor.
-  factory LocalizationsUtils() {
-    return _singleton;
-  }
+  factory LocalizationsUtils() => _singleton;
 
   LocalizationsUtils._internal();
 

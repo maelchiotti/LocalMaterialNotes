@@ -1,5 +1,5 @@
-import 'package:localmaterialnotes/common/extensions/iterable_extension.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import '../../extensions/iterable_extension.dart';
+import '../preference_key.dart';
 
 /// Sort method of the notes list.
 enum SortMethod {
@@ -35,7 +35,5 @@ enum SortMethod {
   }
 
   /// Returns whether this sort method is based on a date.
-  bool get onDate {
-    return [createdDate, editedDate].contains(this);
-  }
+  bool get onDate => [createdDate, editedDate].contains(this);
 }

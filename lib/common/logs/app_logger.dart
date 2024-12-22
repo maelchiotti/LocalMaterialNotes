@@ -3,13 +3,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/enums/mime_type.dart';
-import 'package:localmaterialnotes/common/extensions/date_time_extensions.dart';
-import 'package:localmaterialnotes/common/extensions/string_extension.dart';
-import 'package:localmaterialnotes/l10n/app_localizations/app_localizations.g.dart';
-import 'package:localmaterialnotes/utils/files_utils.dart';
-import 'package:localmaterialnotes/utils/snack_bar_utils.dart';
+import '../constants/constants.dart';
+import '../enums/mime_type.dart';
+import '../extensions/date_time_extensions.dart';
+import '../extensions/string_extension.dart';
+import '../../l10n/app_localizations/app_localizations.g.dart';
+import '../../utils/files_utils.dart';
+import '../../utils/snack_bar_utils.dart';
 import 'package:logger/logger.dart' hide FileOutput;
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -22,9 +22,7 @@ class AppLogger {
   static final AppLogger _singleton = AppLogger._internal();
 
   /// Logger that outputs all exceptions to the console or a log file.
-  factory AppLogger() {
-    return _singleton;
-  }
+  factory AppLogger() => _singleton;
 
   AppLogger._internal();
 

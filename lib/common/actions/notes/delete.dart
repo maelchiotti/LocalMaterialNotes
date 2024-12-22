@@ -1,18 +1,12 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:localmaterialnotes/common/actions/notes/select.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/dialogs/confirmation_dialog.dart';
-import 'package:localmaterialnotes/common/extensions/build_context_extension.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/providers/notes/notes_provider.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
-import 'package:localmaterialnotes/routing/routes/notes/notes_editor_route.dart';
-import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
+import 'select.dart';
+import '../../constants/constants.dart';
+import '../../dialogs/confirmation_dialog.dart';
+import '../../../models/note/note.dart';
+import '../../../providers/bin/bin_provider.dart';
+import '../../../providers/notes/notes_provider.dart';
+import '../../../providers/notifiers/notifiers.dart';
 
 /// Deletes the [note].
 ///
@@ -20,7 +14,7 @@ import 'package:localmaterialnotes/routing/routes/shell/shell_route.dart';
 ///
 /// First, asks for a confirmation if needed.
 /// Finally, pops the route if the note was deleted from the editor page.
-Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
+Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note, [bool pop = false]) async {
   if (note == null) {
     return false;
   }
@@ -34,15 +28,19 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note) async {
     return false;
   }
 
+  if (context.mounted && pop) {
+    Navigator.pop(context);
+  }
+
   currentNoteNotifier.value = null;
 
   final succeeded = await ref.read(notesProvider.notifier).delete(note);
 
-  if (context.mounted && context.location == const NotesEditorRoute.empty().location) {
-    context.pop();
+  if (!succeeded) {
+    return false;
   }
 
-  return succeeded;
+  return true;
 }
 
 /// Deletes the [notes].
@@ -75,7 +73,7 @@ Future<bool> deleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) 
 ///
 /// First, asks for a confirmation if needed.
 /// Finally, pops the route if the note was deleted from the editor page.
-Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? note) async {
+Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? note, [bool pop = false]) async {
   if (note == null) {
     return false;
   }
@@ -90,15 +88,19 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
     return false;
   }
 
+  if (context.mounted && pop) {
+    Navigator.pop(context);
+  }
+
   currentNoteNotifier.value = null;
 
   final succeeded = await ref.read(binProvider.notifier).permanentlyDelete(note);
 
-  if (context.mounted && context.location == const NotesEditorRoute.empty().location) {
-    context.pop();
+  if (!succeeded) {
+    return false;
   }
 
-  return succeeded;
+  return true;
 }
 
 /// Permanently deletes the [notes].

@@ -1,6 +1,6 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
+import '../../common/preferences/preference_key.dart';
 
 import 'current_note_notifier.dart';
 

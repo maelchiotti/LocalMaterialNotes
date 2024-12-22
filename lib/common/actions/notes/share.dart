@@ -1,4 +1,4 @@
-import 'package:localmaterialnotes/models/note/note.dart';
+import '../../../models/note/note.dart';
 import 'package:share_plus/share_plus.dart';
 
 /// Shares the [note] as text (title and content).

@@ -1,19 +1,18 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:localmaterialnotes/common/actions/notes/copy.dart';
-import 'package:localmaterialnotes/common/actions/notes/delete.dart';
-import 'package:localmaterialnotes/common/actions/notes/labels.dart';
-import 'package:localmaterialnotes/common/actions/notes/pin.dart';
-import 'package:localmaterialnotes/common/actions/notes/restore.dart';
-import 'package:localmaterialnotes/common/actions/notes/share.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/navigation/menu_option.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/pages/editor/sheets/about_sheet.dart';
-import 'package:localmaterialnotes/providers/notifiers/notifiers.dart';
+import '../../actions/notes/copy.dart';
+import '../../actions/notes/delete.dart';
+import '../../actions/notes/labels.dart';
+import '../../actions/notes/pin.dart';
+import '../../actions/notes/restore.dart';
+import '../../actions/notes/share.dart';
+import '../../constants/constants.dart';
+import '../../constants/paddings.dart';
+import '../menu_option.dart';
+import '../../preferences/preference_key.dart';
+import '../../../pages/editor/sheets/about_sheet.dart';
+import '../../../providers/notifiers/notifiers.dart';
 
 /// Editor's app bar.
 ///
@@ -60,11 +59,11 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       case MenuOption.share:
         await shareNote(note);
       case MenuOption.delete:
-        await deleteNote(context, ref, note);
+        await deleteNote(context, ref, note, true);
       case MenuOption.restore:
-        await restoreNote(context, ref, note);
+        await restoreNote(context, ref, note, true);
       case MenuOption.deletePermanently:
-        await permanentlyDeleteNote(context, ref, note);
+        await permanentlyDeleteNote(context, ref, note, true);
       case MenuOption.about:
         await showModalBottomSheet<void>(
           context: context,
@@ -125,14 +124,10 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
     return ValueListenableBuilder(
       valueListenable: fleatherFieldHasFocusNotifier,
-      builder: (context, hasFocus, child) {
-        return ValueListenableBuilder(
-            valueListenable: isFleatherEditorEditMode,
-            builder: (context, isEditMode, child) {
-              return AppBar(
-                leading: BackButton(
-                  onPressed: () => context.pop(),
-                ),
+      builder: (context, hasFocus, child) => ValueListenableBuilder(
+          valueListenable: isFleatherEditorEditMode,
+          builder: (context, isEditMode, child) => AppBar(
+                leading: BackButton(),
                 actions: note == null
                     ? null
                     : [
@@ -140,30 +135,26 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                           if (showUndoRedoButtons)
                             ValueListenableBuilder(
                               valueListenable: fleatherControllerCanUndoNotifier,
-                              builder: (context, canUndo, child) {
-                                return IconButton(
-                                  icon: const Icon(Icons.undo),
-                                  tooltip: l.tooltip_undo,
-                                  onPressed: hasFocus &&
-                                          canUndo &&
-                                          editorController != null &&
-                                          editorController.canUndo &&
-                                          isEditMode
-                                      ? undo
-                                      : null,
-                                );
-                              },
+                              builder: (context, canUndo, child) => IconButton(
+                                icon: const Icon(Icons.undo),
+                                tooltip: l.tooltip_undo,
+                                onPressed: hasFocus &&
+                                        canUndo &&
+                                        editorController != null &&
+                                        editorController.canUndo &&
+                                        isEditMode
+                                    ? undo
+                                    : null,
+                              ),
                             ),
                           if (showUndoRedoButtons)
                             ValueListenableBuilder(
                               valueListenable: fleatherControllerCanRedoNotifier,
-                              builder: (context, canRedo, child) {
-                                return IconButton(
-                                  icon: const Icon(Icons.redo),
-                                  tooltip: l.tooltip_redo,
-                                  onPressed: hasFocus && canRedo && isEditMode ? redo : null,
-                                );
-                              },
+                              builder: (context, canRedo, child) => IconButton(
+                                icon: const Icon(Icons.redo),
+                                tooltip: l.tooltip_redo,
+                                onPressed: hasFocus && canRedo && isEditMode ? redo : null,
+                              ),
                             ),
                           if (showChecklistButton)
                             IconButton(
@@ -174,44 +165,38 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                           if (showEditorModeButton)
                             ValueListenableBuilder(
                               valueListenable: isFleatherEditorEditMode,
-                              builder: (context, isEditMode, child) {
-                                return IconButton(
-                                  icon: Icon(isEditMode ? Icons.visibility : Icons.edit),
-                                  tooltip: isEditMode
-                                      ? l.tooltip_fab_toggle_editor_mode_read
-                                      : l.tooltip_fab_toggle_editor_mode_edit,
-                                  onPressed: switchMode,
-                                );
-                              },
+                              builder: (context, isEditMode, child) => IconButton(
+                                icon: Icon(isEditMode ? Icons.visibility : Icons.edit),
+                                tooltip: isEditMode
+                                    ? l.tooltip_fab_toggle_editor_mode_read
+                                    : l.tooltip_fab_toggle_editor_mode_edit,
+                                onPressed: switchMode,
+                              ),
                             ),
                         ],
                         PopupMenuButton<MenuOption>(
-                          itemBuilder: (context) {
-                            return (note.deleted
-                                ? [
-                                    MenuOption.restore.popupMenuItem(context),
-                                    MenuOption.deletePermanently.popupMenuItem(context),
-                                    const PopupMenuDivider(),
-                                    MenuOption.about.popupMenuItem(context),
-                                  ]
-                                : [
-                                    MenuOption.copy.popupMenuItem(context),
-                                    MenuOption.share.popupMenuItem(context),
-                                    const PopupMenuDivider(),
-                                    MenuOption.togglePin.popupMenuItem(context, alternative: note.pinned),
-                                    if (enableLabels) MenuOption.selectLabels.popupMenuItem(context),
-                                    MenuOption.delete.popupMenuItem(context),
-                                    const PopupMenuDivider(),
-                                    MenuOption.about.popupMenuItem(context),
-                                  ]);
-                          },
+                          itemBuilder: (context) => (note.deleted
+                              ? [
+                                  MenuOption.restore.popupMenuItem(context),
+                                  MenuOption.deletePermanently.popupMenuItem(context),
+                                  const PopupMenuDivider(),
+                                  MenuOption.about.popupMenuItem(context),
+                                ]
+                              : [
+                                  MenuOption.copy.popupMenuItem(context),
+                                  MenuOption.share.popupMenuItem(context),
+                                  const PopupMenuDivider(),
+                                  MenuOption.togglePin.popupMenuItem(context, alternative: note.pinned),
+                                  if (enableLabels) MenuOption.selectLabels.popupMenuItem(context),
+                                  MenuOption.delete.popupMenuItem(context),
+                                  const PopupMenuDivider(),
+                                  MenuOption.about.popupMenuItem(context),
+                                ]),
                           onSelected: onMenuOptionSelected,
                         ),
                         Padding(padding: Paddings.appBarActionsEnd),
                       ],
-              );
-            });
-      },
+              )),
     );
   }
 }

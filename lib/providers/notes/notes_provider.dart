@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
-import 'package:localmaterialnotes/common/constants/constants.dart';
-import 'package:localmaterialnotes/common/extensions/list_extension.dart';
-import 'package:localmaterialnotes/models/label/label.dart';
-import 'package:localmaterialnotes/models/note/note.dart';
-import 'package:localmaterialnotes/providers/bin/bin_provider.dart';
-import 'package:localmaterialnotes/services/notes/notes_service.dart';
+import '../../common/constants/constants.dart';
+import '../../common/extensions/list_extension.dart';
+import '../../models/label/label.dart';
+import '../../models/note/note.dart';
+import '../bin/bin_provider.dart';
+import '../../services/notes/notes_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'notes_provider.g.dart';
@@ -15,9 +15,7 @@ class Notes extends _$Notes {
   final _notesService = NotesService();
 
   @override
-  FutureOr<List<Note>> build() {
-    return get();
-  }
+  FutureOr<List<Note>> build() => get();
 
   /// Returns the list of not deleted notes.
   Future<List<Note>> get() async {
@@ -44,7 +42,7 @@ class Notes extends _$Notes {
     List<Note> notes = [];
 
     try {
-      notes = await _notesService.getAllFilteredByLabel(label);
+      notes = await _notesService.filterByLabel(label);
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
     }
@@ -113,11 +111,25 @@ class Notes extends _$Notes {
     return true;
   }
 
-  /// Toggles the pin status of the [note] in the database.
-  Future<bool> togglePin(Note note) async {
-    note.pinned = !note.pinned;
+  /// Toggles the pin status of the [noteToToggle] in the database.
+  Future<bool> togglePin(Note noteToToggle) async {
+    noteToToggle.pinned = !noteToToggle.pinned;
 
-    return await edit(note);
+    try {
+      await _notesService.put(noteToToggle);
+    } catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
+
+      return false;
+    }
+
+    final notes = (state.value ?? [])
+      ..remove(noteToToggle)
+      ..add(noteToToggle);
+
+    state = AsyncData(notes.sorted());
+
+    return true;
   }
 
   /// Toggles the pin status of the [notesToToggle] in the database.
@@ -135,9 +147,7 @@ class Notes extends _$Notes {
     }
 
     final notes = (state.value ?? [])
-      ..removeWhere(
-        (note) => notesToToggle.contains(note),
-      )
+      ..removeWhere((note) => notesToToggle.contains(note))
       ..addAll(notesToToggle);
 
     state = AsyncData(notes.sorted());
@@ -172,10 +182,7 @@ class Notes extends _$Notes {
       return false;
     }
 
-    final notes = (state.value ?? [])
-      ..removeWhere(
-        (note) => notesToDelete.contains(note),
-      );
+    final notes = (state.value ?? [])..removeWhere((note) => notesToDelete.contains(note));
 
     state = AsyncData(notes);
 

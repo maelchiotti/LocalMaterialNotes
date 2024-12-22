@@ -181,14 +181,6 @@
   "@settings_show_titles_only_disable_in_search_view_description": {
     "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
   },
-  "settings_disable_subdued_note_content_preview": "उज्ज्वल पूर्वावलोकन",
-  "@settings_disable_subdued_note_content_preview": {
-    "description": "Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
-  },
-  "settings_disable_subdued_note_content_preview_description": "नोट्स सामग्री पूर्वावलोकन के हल्के अक्षर रंग को अक्षम करें",
-  "@settings_disable_subdued_note_content_preview_description": {
-    "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
-  },
   "settings_show_tiles_background": "पृष्ठभूमि",
   "@settings_show_tiles_background": {
     "description": "Title of the setting tile to show the background of the notes tiles."
@@ -353,6 +345,10 @@
   "@settings_enable_labels": {
     "description": "Title of the setting tile to enable the labels."
   },
+  "settings_enable_labels_description": "नोट्स को लेबल्स के साथ वर्गीकृत करने की अनुमति दें (इसे अक्षम करने से लेबल नहीं हटते हैं और न ही उन्हें नोट्स से हटाया जाता है, यह केवल उन्हें छिपाता है)",
+  "@settings_enable_labels_description": {
+    "description": "Description of the setting tile to enable the labels."
+  },
   "settings_labels_appearance": "दिखावट",
   "@settings_labels_appearance": {
     "description": "Title of the settings section regarding the appearance of the labels."
@@ -389,6 +385,10 @@
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
+  "settings_import_description": "JSON फ़ाइल से नोट्स, लेबल्स और सेटिंग्स आयात करें",
+  "@settings_import_description": {
+    "description": "Description of the setting tile to import a backup."
+  },
   "settings_backup_manual_export": "मैनुअल निर्यात",
   "@settings_backup_manual_export": {
     "description": "Title of the settings section regarding the manual export of the notes."
@@ -396,6 +396,10 @@
   "settings_export_json": "JSON के रूप में निर्यात करें",
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
+  },
+  "settings_export_json_description": "नोट्स, लेबल्स और सेटिंग्स को तुरंत JSON फ़ाइल (बिन शामिल) में निर्यात करें जिसे वापस आयात किया जा सकता है",
+  "@settings_export_json_description": {
+    "description": "Description of the setting tile to manually export the notes as JSON."
   },
   "settings_export_markdown": "मार्कडाउन के रूप में निर्यात करें",
   "@settings_export_markdown": {
@@ -413,6 +417,10 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
+  "settings_auto_export_description": "नोट्स, लेबल्स और सेटिंग्स को स्वचालित रूप से JSON फ़ाइल (बिन शामिल) में निर्यात करें जिसे वापस आयात किया जा सकता है",
+  "@settings_auto_export_description": {
+    "description": "Description of the settings tile to enable the automatic export."
+  },
   "settings_auto_export_frequency": "आवृत्ति",
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
@@ -427,6 +435,10 @@
       }
     }
   },
+  "settings_auto_export_frequency_description": "स्वचालित निर्यात की आवृत्ति",
+  "@settings_auto_export_frequency_description": {
+    "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
+  },
   "settings_auto_export_encryption": "एन्क्रिप्शन",
   "@settings_auto_export_encryption": {
     "description": "Title of the settings tile to enable the encryption of the automatic exports."
@@ -438,6 +450,10 @@
   "settings_auto_export_directory": "निर्देशिका",
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
+  },
+  "settings_auto_export_directory_description": "निर्देशिका जहां स्वचालित निर्यात को संग्रहीत किया जाना है",
+  "@settings_auto_export_directory_description": {
+    "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
   "settings_accessibility": "सुगम्यता",
   "@settings_accessibility": {
@@ -458,6 +474,14 @@
   "settings_white_text_dark_mode_description": "डार्क मोड में टेक्स्ट के लिए सफ़ेद रंग का उपयोग करें",
   "@settings_white_text_dark_mode_description": {
     "description": "Description of the text scale setting tile."
+  },
+  "settings_disable_subdued_note_content_preview": "उज्ज्वल पूर्वावलोकन",
+  "@settings_disable_subdued_note_content_preview": {
+    "description": "Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
+  },
+  "settings_disable_subdued_note_content_preview_description": "नोट्स सामग्री पूर्वावलोकन के हल्के अक्षर रंग को अक्षम करें",
+  "@settings_disable_subdued_note_content_preview_description": {
+    "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
   "settings_about": "के बारे में",
   "@settings_about": {
@@ -578,6 +602,14 @@
   "dialog_export_encryption_password": "पासवर्ड",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
+  },
+  "tooltip_undo": "अंतिम क्रिया पूर्ववत करें",
+  "@tooltip_undo": {
+    "description": "Tooltip for the button to undo the last action in the editor."
+  },
+  "tooltip_redo": "अंतिम क्रिया पुनः करें",
+  "@tooltip_redo": {
+    "description": "Tooltip for the button to redo the last action in the editor."
   },
   "tooltip_toggle_checkbox": "टॉगल जाँच-सूची",
   "@tooltip_toggle_checkbox": {
@@ -705,6 +737,20 @@
   "@dialog_empty_bin_body": {
     "description": "Text for the dialog to confirm emptying the bin."
   },
+  "dialog_delete_label": "मिटाए",
+  "@dialog_delete_label": {
+    "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
+  },
+  "dialog_delete_label_body": "क्या आप वास्तव में {count} {count, plural, zero{} one{लेबल} other{लेबल्स}} हटाना चाहते हैं? {count, plural, zero{} one{इसे} other{इन्हें}} उन नोट्स से हटा दिया जाएगा जहाँ आपने {count, plural, zero{} one{इसे} other{इन्हें}} जोड़ा था।",
+  "@dialog_delete_label_body": {
+    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
+  },
   "dialog_export_encryption_switch": "JSON निर्यात एन्क्रिप्ट करें",
   "@dialog_export_encryption_switch": {
     "description": "Text for the switch to toggle the encryption of the export in the dialog to manually or automatically exporting the notes as JSON."
@@ -805,7 +851,7 @@
   "@about_created": {
     "description": "Date when the note was created."
   },
-  "about_labels": "लेबल",
+  "about_labels": "लेबल्स",
   "@about_labels": {
     "description": "Number of labels of the note."
   },
@@ -821,7 +867,7 @@
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
-  "menu_action_labels": "लेबल",
+  "menu_action_labels": "लेबल्स",
   "@menu_action_labels": {
     "description": "Menu action to change the labels of a note."
   },
@@ -841,17 +887,25 @@
   "@filter_labels_visible": {
     "description": "Filter chip in the labels page to show only the visible labels."
   },
-  "filter_labels_pinned": "पिन की गई",
+  "filter_labels_pinned": "पिन किया गया",
   "@filter_labels_pinned": {
     "description": "Filter chip in the labels page to show only the pinned labels."
   },
-  "filter_labels_hidden": "छिपा हुआ",
+  "filter_labels_hidden": "छिपाया गया",
   "@filter_labels_hidden": {
     "description": "Filter chip in the labels page to show only the hidden labels."
   },
   "snack_bar_copied": "नोट की सामग्री क्लिपबोर्ड पर कॉपी कर दी गई।",
   "@snack_bar_copied": {
     "description": "Snack bar informing that the content of the note was copied to clipboard."
+  },
+  "snack_bar_import_success": "बैकअप सफलतापूर्वक आयात किया गया।",
+  "@snack_bar_import_success": {
+    "description": "Snack bar informing that the backup was successfully imported."
+  },
+  "snack_bar_export_success": "बैकअप सफलतापूर्वक निर्यात किया गया।",
+  "@snack_bar_export_success": {
+    "description": "Snack bar informing that the backup was successfully manually exported."
   },
   "snack_bar_logs_copied": "लॉग आपके क्लिपबोर्ड पर कॉपी कर दिए गए हैं।",
   "@snack_bar_logs_copied": {
@@ -860,6 +914,10 @@
   "snack_bar_logs_exported": "लॉग सफलतापूर्वक निर्यात किए गए।",
   "@snack_bar_logs_exported": {
     "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
+  },
+  "snack_bar_no_labels": "कोई लेबल्स नहीं है।",
+  "@snack_bar_no_labels": {
+    "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
   },
   "action_add_note_title": "एक नोट जोड़े",
   "@action_add_note_title": {

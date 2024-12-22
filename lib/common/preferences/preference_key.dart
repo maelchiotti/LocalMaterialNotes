@@ -1,4 +1,4 @@
-import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
+import 'preferences_utils.dart';
 
 // ignore_for_file: public_member_api_docs
 
@@ -9,11 +9,10 @@ enum PreferenceKey<T> {
   theme<String>('system'),
   dynamicTheming<bool>(true),
   blackTheming<bool>(false),
+  showTilesBackground<bool>(false),
+  showSeparators<bool>(false),
   showTitlesOnly<bool>(false),
   showTitlesOnlyDisableInSearchView<bool>(true),
-  disableSubduedNoteContentPreview<bool>(false),
-  showSeparators<bool>(false),
-  showTilesBackground<bool>(false),
 
   // Behavior
   flagSecure<bool>(false),
@@ -45,7 +44,9 @@ enum PreferenceKey<T> {
 
   // Accessibility
   textScaling<double>(1.0),
+  biggerTitles(false),
   useWhiteTextDarkMode<bool>(false),
+  disableSubduedNoteContentPreview<bool>(false),
 
   // Notes
   sortMethod<String>('editedDate', backup: false),
@@ -84,24 +85,17 @@ enum PreferenceKey<T> {
   }
 
   /// Returns the value of this preference if set, or [null] otherwise.
-  T? getPreference() {
-    return PreferencesUtils().get<T>(this);
-  }
+  T? getPreference() => PreferencesUtils().get<T>(this);
 
   /// Returns the value of this preference if set, or its default value otherwise.
-  T getPreferenceOrDefault() {
-    return PreferencesUtils().get<T>(this) ?? defaultValue;
-  }
+  T getPreferenceOrDefault() => PreferencesUtils().get<T>(this) ?? defaultValue;
 
   /// Returns the value of this securely stored preference if set, or [null] otherwise.
-  T? getPreferenceSecure() {
-    return PreferencesUtils().get<T>(this);
-  }
+  T? getPreferenceSecure() => PreferencesUtils().get<T>(this);
 
   /// Returns the value of this securely stored preference if set, or its default value otherwise.
-  Future<String> getPreferenceOrDefaultSecure() async {
-    return await PreferencesUtils().getSecure(this) ?? defaultValue as String;
-  }
+  Future<String> getPreferenceOrDefaultSecure() async =>
+      await PreferencesUtils().getSecure(this) ?? defaultValue as String;
 
   /// Removes the value of this preference.
   Future<void> remove() async {

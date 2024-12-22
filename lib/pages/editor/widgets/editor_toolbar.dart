@@ -1,10 +1,10 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
-import 'package:localmaterialnotes/common/constants/paddings.dart';
-import 'package:localmaterialnotes/common/constants/sizes.dart';
-import 'package:localmaterialnotes/common/preferences/preference_key.dart';
-import 'package:localmaterialnotes/pages/editor/widgets/editor_button.dart';
-import 'package:localmaterialnotes/pages/editor/widgets/link_button.dart';
+import '../../../common/constants/paddings.dart';
+import '../../../common/constants/sizes.dart';
+import '../../../common/preferences/preference_key.dart';
+import 'editor_button.dart';
+import 'link_button.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 /// Toolbar for the content text field that enables advanced formatting options.
@@ -32,25 +32,24 @@ class _EditorToolbarState extends State<EditorToolbar> {
     IconData icon,
     bool isToggled,
     VoidCallback? onPressed,
-  ) {
-    return Padding(
-      padding: Paddings.vertical(2),
-      child: ConstrainedBox(
-        constraints: BoxConstraints.tightFor(
-          width: Sizes.editorToolbarButtonHeight.size,
-          height: Sizes.editorToolbarButtonWidth.size,
+  ) =>
+      Padding(
+        padding: Paddings.vertical(2),
+        child: ConstrainedBox(
+          constraints: BoxConstraints.tightFor(
+            width: Sizes.editorToolbarButtonHeight.size,
+            height: Sizes.editorToolbarButtonWidth.size,
+          ),
+          child: RawMaterialButton(
+            shape: const CircleBorder(),
+            visualDensity: VisualDensity.compact,
+            fillColor: isToggled ? Theme.of(context).colorScheme.secondary : null,
+            elevation: 0,
+            onPressed: onPressed,
+            child: Icon(icon),
+          ),
         ),
-        child: RawMaterialButton(
-          shape: const CircleBorder(),
-          visualDensity: VisualDensity.compact,
-          fillColor: isToggled ? Theme.of(context).colorScheme.secondary : null,
-          elevation: 0,
-          onPressed: onPressed,
-          child: Icon(icon),
-        ),
-      ),
-    );
-  }
+      );
 
   /// Inserts a rule in the content.
   ///
