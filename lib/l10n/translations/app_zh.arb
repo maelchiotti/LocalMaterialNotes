@@ -181,14 +181,6 @@
   "@settings_show_titles_only_disable_in_search_view_description": {
     "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
   },
-  "settings_disable_subdued_note_content_preview": "非柔和预览",
-  "@settings_disable_subdued_note_content_preview": {
-    "description": "Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
-  },
-  "settings_disable_subdued_note_content_preview_description": "禁用笔记内容预览的柔和文本颜色",
-  "@settings_disable_subdued_note_content_preview_description": {
-    "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
-  },
   "settings_show_tiles_background": "背景",
   "@settings_show_tiles_background": {
     "description": "Title of the setting tile to show the background of the notes tiles."
@@ -467,6 +459,14 @@
   "@settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
   },
+  "settings_accessibility_text_size": "文本大小",
+  "@settings_accessibility_text_size": {
+    "description": "Title of the accessibility settings section regarding the text size."
+  },
+  "settings_accessibility_text_color": "文本颜色",
+  "@settings_accessibility_text_color": {
+    "description": "Title of the accessibility settings section regarding the text color."
+  },
   "settings_accessibility_description": "文本颜色、文本缩放",
   "@settings_accessibility_description": {
     "description": "Description of the accessibility settings page."
@@ -475,6 +475,14 @@
   "@settings_text_scaling": {
     "description": "Title of the text scale setting tile."
   },
+  "settings_bigger_titles": "更大的标题",
+  "@settings_bigger_titles": {
+    "description": "Title of the setting tile to use bigger titles on the notes tiles."
+  },
+  "settings_bigger_titles_description": "在笔记平铺上显示更大的标题",
+  "@settings_bigger_titles_description": {
+    "description": "Description of the setting tile to use bigger titles on the notes tiles."
+  },
   "settings_white_text_dark_mode": "深色模式中的白色文本",
   "@settings_white_text_dark_mode": {
     "description": "Title of the text scale setting tile."
@@ -482,6 +490,14 @@
   "settings_white_text_dark_mode_description": "在深色模式中为文本使用白色",
   "@settings_white_text_dark_mode_description": {
     "description": "Description of the text scale setting tile."
+  },
+  "settings_disable_subdued_note_content_preview": "非柔和预览",
+  "@settings_disable_subdued_note_content_preview": {
+    "description": "Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
+  },
+  "settings_disable_subdued_note_content_preview_description": "禁用笔记内容预览的柔和文本颜色",
+  "@settings_disable_subdued_note_content_preview_description": {
+    "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
   "settings_about": "关于",
   "@settings_about": {

@@ -5,35 +5,38 @@ import 'package:flutter/material.dart';
 
 /// Lists the localization completion for every supported language.
 enum LocalizationCompletion {
+  /// Czech.
+  cs(Locale('cs'), 1),
+
   /// English.
   en(Locale('en'), 1),
 
   /// Spanish.
-  es(Locale('es'), .87),
+  es(Locale('es'), .85),
 
   /// French.
   fr(Locale('fr'), 1),
 
   /// German.
-  de(Locale('de'), 1),
+  de(Locale('de'), .92),
 
   /// Hindi.
-  hi(Locale('hi'), .87),
+  hi(Locale('hi'), .98),
 
   /// Polish.
-  pl(Locale('pl'), .75),
+  pl(Locale('pl'), .74),
 
   /// Portuguese.
-  pt(Locale('pt'), .75),
+  pt(Locale('pt'), .74),
 
   /// Russian.
-  ru(Locale('ru'), .87),
+  ru(Locale('ru'), .98),
 
   /// Turkish.
-  tr(Locale('tr'), .78),
+  tr(Locale('tr'), .98),
 
   /// Chinese Simplified.
-  zh(Locale('zh'), .87),
+  zh(Locale('zh'), 1),
   ;
 
   /// The locale of this localization.
