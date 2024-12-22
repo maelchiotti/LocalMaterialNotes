@@ -1,9 +1,10 @@
 AJOUTÉ
 - Amélioration des performances de recherche avec tolérance des fautes de frappe
-- Réglage pour agrandir les titres des notes
+- Réglage pour agrandir titres des notes
+- Traduction tchèque
 
 MODIFIÉ
-- Préférences de mise en page et balayage ne se mettent pas à jour correctement
+- Mise en page / balayage ne se mettent pas à jour correctement
 - Retour depuis les étiquettes ramène à la liste des notes
 - Organisation des paramètres
 

@@ -11,6 +11,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Drastically better search performance with typo tolerance
 - Setting to make the titles of the notes bigger
+- Czech translation
 
 ### Changed
 

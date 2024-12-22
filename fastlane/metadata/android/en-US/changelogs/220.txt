@@ -1,9 +1,10 @@
 ADDED
 - Drastically better search performance with typo tolerance
-- Setting to make the titles of the notes bigger
+- Setting to make titles of notes bigger
+- Czech translation
 
 CHANGED
-- Layout and swipe action preferences not updating correctly
+- Layout / swipe action not updating correctly
 - Going back from a label page or the Manage labels page goes back to the notes list
 - Organization of settings
 
