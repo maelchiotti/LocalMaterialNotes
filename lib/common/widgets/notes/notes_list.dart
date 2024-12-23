@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import '../../../providers/bin/bin_provider.dart';
 import '../../constants/paddings.dart';
 import '../../constants/separators.dart';
 import '../../constants/sizes.dart';
@@ -76,7 +77,7 @@ class NotesList extends ConsumerWidget {
             error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
             loading: () => const LoadingPlaceholder(),
           )
-      : ref.watch(notesProvider).when(
+      : ref.watch(binProvider).when(
             data: (notes) => child(context, ref, notes),
             error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
             loading: () => const LoadingPlaceholder(),
