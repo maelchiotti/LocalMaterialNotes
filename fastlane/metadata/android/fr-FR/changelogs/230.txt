@@ -1,0 +1,3 @@
+CORRIGÉ
+- Corbeille n'affiche pas les notes supprimées
+- Traduction manquante pour le texte "Pas d'étiquette"

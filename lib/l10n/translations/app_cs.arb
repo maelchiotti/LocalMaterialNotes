@@ -823,6 +823,10 @@
   "@placeholder_notes": {
     "description": "Placeholder on the notes page when there are no notes."
   },
+  "placeholder_labels": "Žádné štítky",
+  "@placeholder_labels": {
+    "description": "Placeholder on the labels page when there are no labels."
+  },
   "placeholder_bin": "Žádné odstraněné poznámky",
   "@placeholder_bin": {
     "description": "Placeholder on the bin page when there are no notes."

@@ -1,0 +1,3 @@
+FIXED
+- Bin page not displaying the deleted notes
+- Missing translation for "No labels" placeholder
