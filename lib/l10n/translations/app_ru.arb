@@ -459,6 +459,14 @@
   "@settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
   },
+  "settings_accessibility_text_size": "Размер шрифта",
+  "@settings_accessibility_text_size": {
+    "description": "Title of the accessibility settings section regarding the text size."
+  },
+  "settings_accessibility_text_color": "Цвет текста",
+  "@settings_accessibility_text_color": {
+    "description": "Title of the accessibility settings section regarding the text color."
+  },
   "settings_accessibility_description": "Цвет текста, размер текста",
   "@settings_accessibility_description": {
     "description": "Description of the accessibility settings page."
@@ -466,6 +474,14 @@
   "settings_text_scaling": "Размер текста",
   "@settings_text_scaling": {
     "description": "Title of the text scale setting tile."
+  },
+  "settings_bigger_titles": "Увеличенный заголовок",
+  "@settings_bigger_titles": {
+    "description": "Title of the setting tile to use bigger titles on the notes tiles."
+  },
+  "settings_bigger_titles_description": "Увеличить размер заголовка у заметки",
+  "@settings_bigger_titles_description": {
+    "description": "Description of the setting tile to use bigger titles on the notes tiles."
   },
   "settings_white_text_dark_mode": "Белый текст в тёмном режиме",
   "@settings_white_text_dark_mode": {
