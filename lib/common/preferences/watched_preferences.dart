@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'enums/font.dart';
 import 'enums/layout.dart';
 import 'enums/swipe_action.dart';
 import 'preference_key.dart';
@@ -12,6 +13,7 @@ class WatchedPreferences {
   late ThemeMode themeMode;
   late bool dynamicTheming;
   late bool blackTheming;
+  late Font appFont;
   late bool showTitlesOnly;
   late bool showTilesBackground;
   late bool showSeparators;
@@ -33,6 +35,7 @@ class WatchedPreferences {
     ThemeMode? themeMode,
     bool? dynamicTheming,
     bool? blackTheming,
+    Font? appFont,
     bool? showTitlesOnly,
     bool? showTilesBackground,
     bool? showSeparators,
@@ -47,6 +50,7 @@ class WatchedPreferences {
     this.themeMode = themeMode ?? ThemeUtils().themeMode;
     this.dynamicTheming = dynamicTheming ?? PreferenceKey.dynamicTheming.getPreferenceOrDefault();
     this.blackTheming = blackTheming ?? PreferenceKey.blackTheming.getPreferenceOrDefault();
+    this.appFont = appFont ?? Font.appFromPreference();
     this.showTitlesOnly = showTitlesOnly ?? PreferenceKey.showTitlesOnly.getPreferenceOrDefault();
     this.showTilesBackground = showTilesBackground ?? PreferenceKey.showTilesBackground.getPreferenceOrDefault();
     this.showSeparators = showSeparators ?? PreferenceKey.showSeparators.getPreferenceOrDefault();

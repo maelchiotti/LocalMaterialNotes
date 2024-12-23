@@ -8,6 +8,7 @@ import '../../../common/constants/paddings.dart';
 import '../../../common/enums/localization_completion.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
+import '../../../common/preferences/enums/font.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
 import '../../../l10n/app_localizations/app_localizations.g.dart';
@@ -72,6 +73,13 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(blackTheming: toggled));
   }
 
+  /// Sets the app font to the new [font].
+  Future<void> _submittedAppFont(Font font) async {
+    PreferenceKey.appFont.set(font.name);
+
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(appFont: font));
+  }
+
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTilesBackground(bool toggled) {
     PreferenceKey.showTilesBackground.set(toggled);
@@ -103,9 +111,12 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
   @override
   Widget build(BuildContext context) {
     final locale = LocaleUtils().appLocale;
+
     final themeMode = ref.watch(preferencesProvider.select((preferences) => preferences.themeMode));
     final dynamicTheming = ref.watch(preferencesProvider.select((preferences) => preferences.dynamicTheming));
     final blackTheming = ref.watch(preferencesProvider.select((preferences) => preferences.blackTheming));
+
+    final appFont = ref.watch(preferencesProvider.select((preferences) => preferences.appFont));
 
     final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
     final showSeparators = ref.watch(preferencesProvider.select((preferences) => preferences.showSeparators));
@@ -180,6 +191,23 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                     description: l.settings_black_theming_description,
                     toggled: blackTheming,
                     onChanged: _toggleBlackTheming,
+                  ),
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.font_download,
+                    title: 'App font',
+                    value: appFont.displayName,
+                    dialogTitle: 'App font',
+                    options: Font.values
+                        .map(
+                          (font) => (
+                            value: font,
+                            title: font.displayName,
+                            subtitle: null,
+                          ),
+                        )
+                        .toList(),
+                    initialOption: appFont,
+                    onSubmitted: _submittedAppFont,
                   ),
                 ],
               ),

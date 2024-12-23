@@ -91,44 +91,55 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
     final themeMode = ref.watch(preferencesProvider.select((preferences) => preferences.themeMode));
     final blackTheming = ref.watch(preferencesProvider.select((preferences) => preferences.blackTheming));
     final dynamicTheming = ref.watch(preferencesProvider.select((preferences) => preferences.dynamicTheming));
+    final appFont = ref.watch(preferencesProvider.select((preferences) => preferences.appFont));
     final textScaling = ref.watch(preferencesProvider.select((preferences) => preferences.textScaling));
     final useWhiteTextDarkMode =
         ref.watch(preferencesProvider.select((preferences) => preferences.useWhiteTextDarkMode));
 
     return DynamicColorBuilder(
-      builder: (lightDynamicColorScheme, darkDynamicColorScheme) => MediaQuery(
-        data: MediaQuery.of(context).copyWith(
-          textScaler: TextScaler.linear(textScaling),
-        ),
-        child: MaterialApp(
-          title: 'Material Notes',
-          home: NotesPage(),
-          navigatorKey: rootNavigatorKey,
-          builder: (context, child) {
-            // Change the widget shown when a widget building fails
-            ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);
+      builder: (lightDynamicColorScheme, darkDynamicColorScheme) {
+        final lightTheme = ThemeUtils().getLightTheme(
+          lightDynamicColorScheme,
+          dynamicTheming,
+          appFont,
+        );
+        final darkTheme = ThemeUtils().getDarkTheme(
+          darkDynamicColorScheme,
+          dynamicTheming,
+          blackTheming,
+          appFont,
+          useWhiteTextDarkMode,
+        );
 
-            assert(child != null, 'MaterialApp child is null');
-
-            return Directionality(
-              textDirection: LocaleUtils().deviceLocale.textDirection,
-              child: child!,
-            );
-          },
-          theme: ThemeUtils().getLightTheme(lightDynamicColorScheme, dynamicTheming),
-          darkTheme: ThemeUtils().getDarkTheme(
-            darkDynamicColorScheme,
-            dynamicTheming,
-            blackTheming,
-            useWhiteTextDarkMode,
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaler: TextScaler.linear(textScaling),
           ),
-          themeMode: themeMode,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          locale: LocaleUtils().appLocale,
-          debugShowCheckedModeBanner: false,
-        ),
-      ),
+          child: MaterialApp(
+            title: 'Material Notes',
+            home: NotesPage(),
+            navigatorKey: rootNavigatorKey,
+            builder: (context, child) {
+              // Change the widget shown when a widget building fails
+              ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);
+
+              assert(child != null, 'MaterialApp child is null');
+
+              return Directionality(
+                textDirection: LocaleUtils().deviceLocale.textDirection,
+                child: child!,
+              );
+            },
+            theme: lightTheme,
+            darkTheme: darkTheme,
+            themeMode: themeMode,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: LocaleUtils().appLocale,
+            debugShowCheckedModeBanner: false,
+          ),
+        );
+      },
     );
   }
 }

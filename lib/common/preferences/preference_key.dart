@@ -9,6 +9,7 @@ enum PreferenceKey<T> {
   theme<String>('system'),
   dynamicTheming<bool>(true),
   blackTheming<bool>(false),
+  appFont<String>('systemDefault'),
   showTilesBackground<bool>(false),
   showSeparators<bool>(false),
   showTitlesOnly<bool>(false),

@@ -89,6 +89,81 @@ flutter:
   generate: true
   assets:
     - assets/icons/
+  fonts:
+    - family: Barlow
+      fonts:
+        - asset: assets/fonts/Barlow/Barlow-Black.ttf
+        - asset: assets/fonts/Barlow/Barlow-BlackItalic.ttf
+        - asset: assets/fonts/Barlow/Barlow-Bold.ttf
+        - asset: assets/fonts/Barlow/Barlow-BoldItalic.ttf
+        - asset: assets/fonts/Barlow/Barlow-ExtraBold.ttf
+        - asset: assets/fonts/Barlow/Barlow-ExtraBoldItalic.ttf
+        - asset: assets/fonts/Barlow/Barlow-ExtraLight.ttf
+        - asset: assets/fonts/Barlow/Barlow-ExtraLightItalic.ttf
+        - asset: assets/fonts/Barlow/Barlow-Italic.ttf
+        - asset: assets/fonts/Barlow/Barlow-Light.ttf
+        - asset: assets/fonts/Barlow/Barlow-LightItalic.ttf
+        - asset: assets/fonts/Barlow/Barlow-Medium.ttf
+        - asset: assets/fonts/Barlow/Barlow-MediumItalic.ttf
+        - asset: assets/fonts/Barlow/Barlow-Regular.ttf
+        - asset: assets/fonts/Barlow/Barlow-SemiBold.ttf
+        - asset: assets/fonts/Barlow/Barlow-SemiBoldItalic.ttf
+        - asset: assets/fonts/Barlow/Barlow-Thin.ttf
+        - asset: assets/fonts/Barlow/Barlow-ThinItalic.ttf
+    - family: Comic Sans MS
+      fonts:
+        - asset: assets/fonts/Comic_Sans_MS/ComicSansMS.ttf
+    - family: Dancing Script
+      fonts:
+        - asset: assets/fonts/Dancing_Script/DancingScript-VariableFont_wght.ttf
+    - family: JetBrains Mono
+      fonts:
+        - asset: assets/fonts/JetBrains_Mono/JetBrainsMono-Italic-VariableFont_wght.ttf
+        - asset: assets/fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.ttf
+    - family: Merriweather
+      fonts:
+        - asset: assets/fonts/Merriweather/Merriweather-Black.ttf
+        - asset: assets/fonts/Merriweather/Merriweather-BlackItalic.ttf
+        - asset: assets/fonts/Merriweather/Merriweather-Bold.ttf
+        - asset: assets/fonts/Merriweather/Merriweather-BoldItalic.ttf
+        - asset: assets/fonts/Merriweather/Merriweather-Italic.ttf
+        - asset: assets/fonts/Merriweather/Merriweather-Light.ttf
+        - asset: assets/fonts/Merriweather/Merriweather-LightItalic.ttf
+        - asset: assets/fonts/Merriweather/Merriweather-Regular.ttf
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf
+        - asset: assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf
+    - family: Noto Sans
+      fonts:
+        - asset: assets/fonts/Noto_Sans/NotoSans-Italic-VariableFont_wdth,wght.ttf
+        - asset: assets/fonts/Noto_Sans/NotoSans-VariableFont_wdth,wght.ttf
+    - family: Open Sans
+      fonts:
+        - asset: assets/fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.ttf
+        - asset: assets/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf
+    - family: Playfair Display
+      fonts:
+        - asset: assets/fonts/Playfair_Display/PlayfairDisplay-Italic-VariableFont_wght.ttf
+        - asset: assets/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf
+    - family: Raleway
+      fonts:
+        - asset: assets/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf
+        - asset: assets/fonts/Raleway/Raleway-VariableFont_wght.ttf
+    - family: Roboto Mono
+      fonts:
+        - asset: assets/fonts/Roboto_Mono/RobotoMono-Italic-VariableFont_wght.ttf
+        - asset: assets/fonts/Roboto_Mono/RobotoMono-VariableFont_wght.ttf
+    - family: Ubuntu
+      fonts:
+        - asset: assets/fonts/Ubuntu/Ubuntu-Bold.ttf
+        - asset: assets/fonts/Ubuntu/Ubuntu-BoldItalic.ttf
+        - asset: assets/fonts/Ubuntu/Ubuntu-Italic.ttf
+        - asset: assets/fonts/Ubuntu/Ubuntu-Light.ttf
+        - asset: assets/fonts/Ubuntu/Ubuntu-LightItalic.ttf
+        - asset: assets/fonts/Ubuntu/Ubuntu-Medium.ttf
+        - asset: assets/fonts/Ubuntu/Ubuntu-MediumItalic.ttf
+        - asset: assets/fonts/Ubuntu/Ubuntu-Regular.ttf
 
 patrol:
   android:
