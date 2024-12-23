@@ -823,6 +823,10 @@
   "@placeholder_notes": {
     "description": "Placeholder on the notes page when there are no notes."
   },
+  "placeholder_labels": "No labels",
+  "@placeholder_labels": {
+    "description": "Placeholder on the labels page when there are no labels."
+  },
   "placeholder_bin": "No deleted notes",
   "@placeholder_bin": {
     "description": "Placeholder on the bin page when there are no notes."
