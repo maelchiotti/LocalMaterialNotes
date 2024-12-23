@@ -3,9 +3,11 @@ import '../../constants/constants.dart';
 import '../../constants/paddings.dart';
 import '../../constants/sizes.dart';
 
-/// Placeholder widget for empty content.
+/// Placeholder.
 class EmptyPlaceholder extends StatelessWidget {
-  /// Default constructor.
+  /// Placeholder widget for pages with an empty content (no notes, labels or empty bin).
+  ///
+  /// Displays a big icon and a short text indicating that the page is empty.
   const EmptyPlaceholder({super.key, this.icon, this.text});
 
   /// Empty notes lists.
@@ -13,15 +15,15 @@ class EmptyPlaceholder extends StatelessWidget {
       : icon = Icons.notes,
         text = l.placeholder_notes;
 
+  /// Empty labels.
+  EmptyPlaceholder.labels({super.key})
+      : icon = Icons.label_outline,
+        text = l.placeholder_labels;
+
   /// Empty bin.
   EmptyPlaceholder.bin({super.key})
       : icon = Icons.delete_outline,
         text = l.placeholder_bin;
-
-  /// Empty labels.
-  const EmptyPlaceholder.labels({super.key})
-      : icon = Icons.label_outline,
-        text = 'No labels';
 
   /// Icon to display.
   final IconData? icon;
