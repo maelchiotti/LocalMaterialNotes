@@ -24,13 +24,13 @@ enum LocalizationCompletion {
   hi(Locale('hi'), .98),
 
   /// Polish.
-  pl(Locale('pl'), .74),
+  pl(Locale('pl'), .73),
 
   /// Portuguese.
   pt(Locale('pt'), .74),
 
   /// Russian.
-  ru(Locale('ru'), .98),
+  ru(Locale('ru'), .99),
 
   /// Turkish.
   tr(Locale('tr'), .98),

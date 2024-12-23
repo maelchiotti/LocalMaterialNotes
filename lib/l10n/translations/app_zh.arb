@@ -823,6 +823,10 @@
   "@placeholder_notes": {
     "description": "Placeholder on the notes page when there are no notes."
   },
+  "placeholder_labels": "无标签",
+  "@placeholder_labels": {
+    "description": "Placeholder on the labels page when there are no labels."
+  },
   "placeholder_bin": "没有删除的笔记",
   "@placeholder_bin": {
     "description": "Placeholder on the bin page when there are no notes."
