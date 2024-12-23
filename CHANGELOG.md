@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## 1.10.1 - 2024-12-23
 
-## Fixed
+### Fixed
 
 - Bin page not displaying the deleted notes
 - Missing translation for "No labels" placeholder
