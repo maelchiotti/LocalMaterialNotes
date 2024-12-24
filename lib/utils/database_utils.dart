@@ -188,7 +188,7 @@ class DatabaseUtils {
     final version = InfoUtils().appVersion;
     final buildNumber = InfoUtils().buildNumber;
 
-    var notes = await _notesService.getAll();
+    var notes = await _notesService.getAllNotDeleted();
     if (encrypt && password != null && password.isNotEmpty) {
       notes = notes.map((note) => note.encrypted(password)).toList();
     }
@@ -255,7 +255,7 @@ class DatabaseUtils {
       return false;
     }
 
-    final notes = await _notesService.getAll();
+    final notes = await _notesService.getAllNotDeleted();
     final archive = Archive();
 
     for (final note in notes) {
