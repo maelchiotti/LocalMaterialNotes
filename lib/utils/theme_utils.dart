@@ -2,6 +2,7 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import '../common/constants/constants.dart';
 import '../common/extensions/iterable_extension.dart';
+import '../common/preferences/enums/font.dart';
 import '../common/preferences/preference_key.dart';
 
 /// Utilities for the application's theme.
@@ -57,7 +58,11 @@ class ThemeUtils {
   /// Returns the light theme.
   ///
   /// Returns a dynamic light theme if [lightDynamicColorScheme] is not null, or the custom one otherwise.
-  ThemeData getLightTheme(ColorScheme? lightDynamicColorScheme, bool dynamicTheming) {
+  ThemeData getLightTheme(
+    ColorScheme? lightDynamicColorScheme,
+    bool dynamicTheming,
+    Font appFont,
+  ) {
     final ColorScheme colorScheme;
     if (dynamicTheming && lightDynamicColorScheme != null) {
       // TODO: remove when dynamic_colors is updated to support new roles
@@ -81,6 +86,7 @@ class ThemeUtils {
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
+      fontFamily: appFont.familyName,
     );
   }
 
@@ -88,7 +94,12 @@ class ThemeUtils {
   ///
   /// Returns a dynamic dark theme if [darkDynamicColorScheme] is not null, or the custom one otherwise.
   ThemeData getDarkTheme(
-      ColorScheme? darkDynamicColorScheme, bool dynamicTheming, bool blackTheming, bool whiteTextDarkMode) {
+    ColorScheme? darkDynamicColorScheme,
+    bool dynamicTheming,
+    bool blackTheming,
+    Font appFont,
+    bool whiteTextDarkMode,
+  ) {
     final ColorScheme colorScheme;
 
     if (dynamicTheming && darkDynamicColorScheme != null) {
@@ -144,6 +155,7 @@ class ThemeUtils {
       useMaterial3: true,
       colorScheme: colorScheme,
       textTheme: textTheme,
+      fontFamily: appFont.familyName,
     );
   }
 }
