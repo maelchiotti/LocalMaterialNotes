@@ -37,8 +37,8 @@ class SettingsMainPage extends StatelessWidget {
                 tiles: [
                   SettingActionTile(
                     icon: Icons.palette,
-                    title: l.settings_appearance,
-                    description: l.settings_appearance_description,
+                    title: l.settings_page_appearance,
+                    description: l.settings_page_appearance_description,
                     onTap: () => NavigationRoute.settingsAppearance.push(context, SettingsAppearancePage()),
                   ),
                   SettingActionTile(

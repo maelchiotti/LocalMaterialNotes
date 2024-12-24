@@ -109,17 +109,13 @@
   "@button_sort_ascending": {
     "description": "Text of the button to sort the notes list in ascending order."
   },
-  "settings_appearance": "Appearance",
-  "@settings_appearance": {
+  "settings_page_appearance": "Appearance",
+  "@settings_page_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
-  "settings_appearance_description": "Language, theme, notes tiles",
-  "@settings_appearance_description": {
+  "settings_page_appearance_description": "Language, theming, fonts, notes tiles",
+  "@settings_page_appearance_description": {
     "description": "Description of the appearance settings page."
-  },
-  "settings_appearance_application": "Application",
-  "@settings_appearance_application": {
-    "description": "Title of the sub-section regarding the application under the appearance settings."
   },
   "settings_language": "Language",
   "@settings_language": {
@@ -128,6 +124,10 @@
   "settings_language_contribute": "Contribute",
   "@settings_language_contribute": {
     "description": "Button to contribute to the localizations, shown on the language setting tile."
+  },
+  "settings_appearance_section_theming": "Theming",
+  "@settings_appearance_section_theming": {
+    "description": "Title of the section regarding the theming under the appearance settings."
   },
   "settings_theme": "Theme",
   "@settings_theme": {
@@ -161,9 +161,29 @@
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
   },
-  "settings_appearance_notes_tiles": "Notes tiles",
-  "@settings_appearance_notes_tiles": {
-    "description": "Title of the sub-section regarding the notes tiles under the appearance settings."
+  "settings_appearance_section_fonts": "Fonts",
+  "@settings_appearance_section_fonts": {
+    "description": "Title of the section regarding the theming under the appearance settings."
+  },
+  "settings_app_font": "App font",
+  "@settings_app_font": {
+    "description": "Title of the setting tile to choose the font of the app."
+  },
+  "settings_app_font_description": "Font used for all the texts in the application, except in the notes editor",
+  "@settings_app_font_description": {
+    "description": "Description of the setting tile to choose the font of the app."
+  },
+  "settings_editor_font": "Editor font",
+  "@settings_editor_font": {
+    "description": "Title of the setting tile to choose the font of the notes."
+  },
+  "settings_editor_font_description": "Font used only for the text in the notes editor",
+  "@settings_editor_font_description": {
+    "description": "Description of the setting tile to choose the font of the app."
+  },
+  "settings_appearance_section_notes_tiles": "Notes tiles",
+  "@settings_appearance_section_notes_tiles": {
+    "description": "Title of the section regarding the notes tiles under the appearance settings."
   },
   "settings_show_titles_only": "Titles only",
   "@settings_show_titles_only": {

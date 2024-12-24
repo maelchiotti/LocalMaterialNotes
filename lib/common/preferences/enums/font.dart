@@ -5,7 +5,7 @@ import '../preference_key.dart';
 
 /// List of fonts.
 enum Font {
-  systemDefault(null, 'System Default'),
+  systemDefault('Roboto', 'System default'),
   barlow('Barlow', 'Barlow'),
   comicSansMS('Comic Sans MS', 'Comic Sans MS'),
   dancingScript('Dancing Script', 'Dancing Script'),
@@ -40,6 +40,22 @@ enum Font {
       PreferenceKey.appFont.reset();
 
       return Font.values.byName(PreferenceKey.appFont.defaultValue);
+    }
+
+    return font;
+  }
+
+  /// Returns the value of the preference if set, or its default value otherwise.
+  factory Font.editorFromPreference() {
+    final font = Font.values.byNameOrNull(
+      PreferenceKey.editorFont.getPreference(),
+    );
+
+    // Reset the malformed preference to its default value
+    if (font == null) {
+      PreferenceKey.editorFont.reset();
+
+      return Font.values.byName(PreferenceKey.editorFont.defaultValue);
     }
 
     return font;
