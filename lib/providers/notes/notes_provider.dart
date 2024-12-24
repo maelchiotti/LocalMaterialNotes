@@ -22,7 +22,7 @@ class Notes extends _$Notes {
     List<Note> notes = [];
 
     try {
-      notes = await _notesService.getAll();
+      notes = await _notesService.getAllNotDeleted();
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
     }

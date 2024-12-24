@@ -20,7 +20,7 @@ class Bin extends _$Bin {
     List<Note> notes = [];
 
     try {
-      notes = await _notesService.getAll(deleted: true);
+      notes = await _notesService.getAllDeleted();
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
     }
