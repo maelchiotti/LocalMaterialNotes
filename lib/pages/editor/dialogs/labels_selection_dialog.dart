@@ -14,11 +14,11 @@ class LabelsSelectionDialog extends ConsumerStatefulWidget {
   /// A dialog allowing the user to select the labels of a note.
   const LabelsSelectionDialog({
     super.key,
-    required this.note,
+    this.note,
   });
 
   /// The note for which to select the labels.
-  final Note note;
+  final Note? note;
 
   @override
   ConsumerState<LabelsSelectionDialog> createState() => _LabelsSelectionDialogState();
@@ -32,8 +32,10 @@ class _LabelsSelectionDialogState extends ConsumerState<LabelsSelectionDialog> {
     super.initState();
 
     labels = ref.read(labelsListProvider).value ?? [];
+
+    // Set the checkboxes to the selected state if the dialog is used to select the labels of a single note
     for (var label in labels) {
-      label.selected = widget.note.labels.contains(label);
+      label.selected = widget.note != null && widget.note!.labels.contains(label);
     }
   }
 
@@ -66,7 +68,7 @@ class _LabelsSelectionDialogState extends ConsumerState<LabelsSelectionDialog> {
 
     return AlertDialog(
       contentPadding: EdgeInsets.symmetric(vertical: 16.0),
-      title: Text('Select labels'),
+      title: Text(widget.note == null ? l.dialog_select_labels_to_add : l.dialog_select_labels),
       content: SingleChildScrollView(
         child: ListBody(
           children: labels
@@ -80,11 +82,9 @@ class _LabelsSelectionDialogState extends ConsumerState<LabelsSelectionDialog> {
                   ),
                   title: Text(
                     label.name,
-                    style: label.visible
-                        ? null
-                        : bodyLarge?.copyWith(
-                            color: bodyLarge.color?.subdued,
-                          ),
+                    style: bodyLarge?.copyWith(
+                      color: !label.visible ? bodyLarge.color?.subdued : null,
+                    ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),

@@ -1,11 +1,12 @@
 import 'package:collection/collection.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import '../../common/constants/constants.dart';
 import '../../common/extensions/list_extension.dart';
 import '../../models/label/label.dart';
 import '../../models/note/note.dart';
-import '../bin/bin_provider.dart';
 import '../../services/notes/notes_service.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../bin/bin_provider.dart';
 
 part 'notes_provider.g.dart';
 
@@ -89,8 +90,6 @@ class Notes extends _$Notes {
 
   /// Saves the [note] with the new [selectedLabels] to the database.
   Future<bool> editLabels(Note note, Iterable<Label> selectedLabels) async {
-    note.editedTime = DateTime.now();
-
     try {
       await _notesService.putLabels(note, selectedLabels);
     } catch (exception, stackTrace) {
@@ -105,6 +104,25 @@ class Notes extends _$Notes {
     } else {
       notes.remove(note);
     }
+
+    state = AsyncData(notes.sorted());
+
+    return true;
+  }
+
+  /// Saves the [notes] with the added [selectedLabels] to the database.
+  Future<bool> addLabels(List<Note> notesWhereToAdd, Iterable<Label> selectedLabels) async {
+    try {
+      await _notesService.addLabels(notesWhereToAdd, selectedLabels);
+    } catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
+
+      return false;
+    }
+
+    final notes = (state.value ?? [])
+      ..removeWhere((note) => notesWhereToAdd.contains(note))
+      ..addAll(notesWhereToAdd);
 
     state = AsyncData(notes.sorted());
 

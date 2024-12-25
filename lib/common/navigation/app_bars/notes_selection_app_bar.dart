@@ -5,6 +5,7 @@ import '../../../models/note/note.dart';
 import '../../../providers/bin/bin_provider.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../actions/notes/delete.dart';
+import '../../actions/notes/labels.dart';
 import '../../actions/notes/pin.dart';
 import '../../actions/notes/restore.dart';
 import '../../actions/notes/select.dart';
@@ -64,6 +65,11 @@ class NotesSelectionAppBar extends ConsumerWidget {
             icon: const Icon(Icons.push_pin),
             tooltip: l.tooltip_toggle_pins,
             onPressed: selectedNotes.isNotEmpty ? () => togglePinNotes(context, ref, selectedNotes) : null,
+          ),
+          IconButton(
+            icon: const Icon(Icons.new_label),
+            tooltip: 'Add labels',
+            onPressed: selectedNotes.isNotEmpty ? () => addLabels(context, ref, selectedNotes) : null,
           ),
           IconButton(
             icon: Icon(

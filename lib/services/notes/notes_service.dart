@@ -169,6 +169,18 @@ class NotesService {
     await _updateIndex(note);
   }
 
+  /// Updates the [note] with the added [labels] in the database.
+  Future<void> addLabels(List<Note> notes, Iterable<Label> labels) async {
+    await _database.writeTxn(() async {
+      for (final note in notes) {
+        note.labels.addAll(labels);
+        await note.labels.save();
+      }
+    });
+
+    await _updateAllIndexes(notes);
+  }
+
   /// Updates the [notes] with their corresponding [notesLabels] in the database.
   Future<void> putAllLabels(List<Note> notes, List<List<Label>> notesLabels) async {
     assert(notes.length == notesLabels.length);
