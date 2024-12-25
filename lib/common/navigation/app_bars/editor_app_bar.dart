@@ -1,6 +1,9 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../pages/editor/sheets/about_sheet.dart';
+import '../../../providers/notifiers/notifiers.dart';
 import '../../actions/notes/copy.dart';
 import '../../actions/notes/delete.dart';
 import '../../actions/notes/labels.dart';
@@ -9,10 +12,9 @@ import '../../actions/notes/restore.dart';
 import '../../actions/notes/share.dart';
 import '../../constants/constants.dart';
 import '../../constants/paddings.dart';
-import '../menu_option.dart';
 import '../../preferences/preference_key.dart';
-import '../../../pages/editor/sheets/about_sheet.dart';
-import '../../../providers/notifiers/notifiers.dart';
+import '../enums/bin_menu_option.dart';
+import '../enums/note_menu_option.dart';
 
 /// Editor's app bar.
 ///
@@ -38,8 +40,8 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     isFleatherEditorEditMode.value = !isFleatherEditorEditMode.value;
   }
 
-  /// Performs the action associated with the selected [menuOption].
-  Future<void> onMenuOptionSelected(MenuOption menuOption) async {
+  /// Performs the action associated with the selected [menuOption] on the not deleted note.
+  Future<void> onNoteMenuOptionSelected(NoteMenuOption menuOption) async {
     // Manually close the keyboard
     FocusManager.instance.primaryFocus?.unfocus();
 
@@ -50,21 +52,45 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     }
 
     switch (menuOption) {
-      case MenuOption.togglePin:
+      case NoteMenuOption.togglePin:
         await togglePinNote(context, ref, note);
-      case MenuOption.selectLabels:
+      case NoteMenuOption.selectLabels:
         selectLabels(context, ref, note);
-      case MenuOption.copy:
+      case NoteMenuOption.copy:
         await copyNote(note);
-      case MenuOption.share:
+      case NoteMenuOption.share:
         await shareNote(note);
-      case MenuOption.delete:
+      case NoteMenuOption.delete:
         await deleteNote(context, ref, note, true);
-      case MenuOption.restore:
+      case NoteMenuOption.about:
+        await showModalBottomSheet<void>(
+          context: context,
+          clipBehavior: Clip.hardEdge,
+          showDragHandle: true,
+          isScrollControlled: true,
+          useSafeArea: true,
+          builder: (context) => const AboutSheet(),
+        );
+    }
+  }
+
+  /// Performs the action associated with the selected [menuOption] on the deleted note.
+  Future<void> onBinMenuOptionSelected(BinMenuOption menuOption) async {
+    // Manually close the keyboard
+    FocusManager.instance.primaryFocus?.unfocus();
+
+    final note = currentNoteNotifier.value;
+
+    if (note == null) {
+      return;
+    }
+
+    switch (menuOption) {
+      case BinMenuOption.restore:
         await restoreNote(context, ref, note, true);
-      case MenuOption.deletePermanently:
+      case BinMenuOption.deletePermanently:
         await permanentlyDeleteNote(context, ref, note, true);
-      case MenuOption.about:
+      case BinMenuOption.about:
         await showModalBottomSheet<void>(
           context: context,
           clipBehavior: Clip.hardEdge,
@@ -125,78 +151,79 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     return ValueListenableBuilder(
       valueListenable: fleatherFieldHasFocusNotifier,
       builder: (context, hasFocus, child) => ValueListenableBuilder(
-          valueListenable: isFleatherEditorEditMode,
-          builder: (context, isEditMode, child) => AppBar(
-                leading: BackButton(),
-                actions: note == null
-                    ? null
-                    : [
-                        if (!note.deleted) ...[
-                          if (showUndoRedoButtons)
-                            ValueListenableBuilder(
-                              valueListenable: fleatherControllerCanUndoNotifier,
-                              builder: (context, canUndo, child) => IconButton(
-                                icon: const Icon(Icons.undo),
-                                tooltip: l.tooltip_undo,
-                                onPressed: hasFocus &&
-                                        canUndo &&
-                                        editorController != null &&
-                                        editorController.canUndo &&
-                                        isEditMode
-                                    ? undo
-                                    : null,
-                              ),
-                            ),
-                          if (showUndoRedoButtons)
-                            ValueListenableBuilder(
-                              valueListenable: fleatherControllerCanRedoNotifier,
-                              builder: (context, canRedo, child) => IconButton(
-                                icon: const Icon(Icons.redo),
-                                tooltip: l.tooltip_redo,
-                                onPressed: hasFocus && canRedo && isEditMode ? redo : null,
-                              ),
-                            ),
-                          if (showChecklistButton)
-                            IconButton(
-                              icon: const Icon(Icons.checklist),
-                              tooltip: l.tooltip_toggle_checkbox,
-                              onPressed: hasFocus && isEditMode ? toggleChecklist : null,
-                            ),
-                          if (showEditorModeButton)
-                            ValueListenableBuilder(
-                              valueListenable: isFleatherEditorEditMode,
-                              builder: (context, isEditMode, child) => IconButton(
-                                icon: Icon(isEditMode ? Icons.visibility : Icons.edit),
-                                tooltip: isEditMode
-                                    ? l.tooltip_fab_toggle_editor_mode_read
-                                    : l.tooltip_fab_toggle_editor_mode_edit,
-                                onPressed: switchMode,
-                              ),
-                            ),
-                        ],
-                        PopupMenuButton<MenuOption>(
-                          itemBuilder: (context) => (note.deleted
-                              ? [
-                                  MenuOption.restore.popupMenuItem(context),
-                                  MenuOption.deletePermanently.popupMenuItem(context),
-                                  const PopupMenuDivider(),
-                                  MenuOption.about.popupMenuItem(context),
-                                ]
-                              : [
-                                  MenuOption.copy.popupMenuItem(context),
-                                  MenuOption.share.popupMenuItem(context),
-                                  const PopupMenuDivider(),
-                                  MenuOption.togglePin.popupMenuItem(context, alternative: note.pinned),
-                                  if (enableLabels) MenuOption.selectLabels.popupMenuItem(context),
-                                  MenuOption.delete.popupMenuItem(context),
-                                  const PopupMenuDivider(),
-                                  MenuOption.about.popupMenuItem(context),
-                                ]),
-                          onSelected: onMenuOptionSelected,
+        valueListenable: isFleatherEditorEditMode,
+        builder: (context, isEditMode, child) => AppBar(
+          leading: BackButton(),
+          actions: note == null
+              ? null
+              : [
+                  if (!note.deleted) ...[
+                    if (showUndoRedoButtons)
+                      ValueListenableBuilder(
+                        valueListenable: fleatherControllerCanUndoNotifier,
+                        builder: (context, canUndo, child) => IconButton(
+                          icon: const Icon(Icons.undo),
+                          tooltip: l.tooltip_undo,
+                          onPressed:
+                              hasFocus && canUndo && editorController != null && editorController.canUndo && isEditMode
+                                  ? undo
+                                  : null,
                         ),
-                        Padding(padding: Paddings.appBarActionsEnd),
-                      ],
-              )),
+                      ),
+                    if (showUndoRedoButtons)
+                      ValueListenableBuilder(
+                        valueListenable: fleatherControllerCanRedoNotifier,
+                        builder: (context, canRedo, child) => IconButton(
+                          icon: const Icon(Icons.redo),
+                          tooltip: l.tooltip_redo,
+                          onPressed: hasFocus && canRedo && isEditMode ? redo : null,
+                        ),
+                      ),
+                    if (showChecklistButton)
+                      IconButton(
+                        icon: const Icon(Icons.checklist),
+                        tooltip: l.tooltip_toggle_checkbox,
+                        onPressed: hasFocus && isEditMode ? toggleChecklist : null,
+                      ),
+                    if (showEditorModeButton)
+                      ValueListenableBuilder(
+                        valueListenable: isFleatherEditorEditMode,
+                        builder: (context, isEditMode, child) => IconButton(
+                          icon: Icon(isEditMode ? Icons.visibility : Icons.edit),
+                          tooltip: isEditMode
+                              ? l.tooltip_fab_toggle_editor_mode_read
+                              : l.tooltip_fab_toggle_editor_mode_edit,
+                          onPressed: switchMode,
+                        ),
+                      ),
+                  ],
+                  note.deleted
+                      ? PopupMenuButton<BinMenuOption>(
+                          itemBuilder: (context) => ([
+                            BinMenuOption.restore.popupMenuItem(context),
+                            BinMenuOption.deletePermanently.popupMenuItem(context),
+                            const PopupMenuDivider(),
+                            BinMenuOption.about.popupMenuItem(context),
+                          ]),
+                          onSelected: onBinMenuOptionSelected,
+                        )
+                      : PopupMenuButton<NoteMenuOption>(
+                          itemBuilder: (context) => ([
+                            NoteMenuOption.copy.popupMenuItem(context),
+                            NoteMenuOption.share.popupMenuItem(context),
+                            const PopupMenuDivider(),
+                            NoteMenuOption.togglePin.popupMenuItem(context, alternative: note.pinned),
+                            if (enableLabels) NoteMenuOption.selectLabels.popupMenuItem(context),
+                            NoteMenuOption.delete.popupMenuItem(context),
+                            const PopupMenuDivider(),
+                            NoteMenuOption.about.popupMenuItem(context),
+                          ]),
+                          onSelected: onNoteMenuOptionSelected,
+                        ),
+                  Padding(padding: Paddings.appBarActionsEnd),
+                ],
+        ),
+      ),
     );
   }
 }

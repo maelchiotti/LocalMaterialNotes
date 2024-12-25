@@ -1,13 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../constants/constants.dart';
-import '../../constants/paddings.dart';
-import '../../preferences/enums/layout.dart';
-import '../../preferences/enums/sort_method.dart';
-import '../../preferences/preference_key.dart';
-import '../../widgets/notes/note_tile.dart';
-import '../../widgets/placeholders/empty_placeholder.dart';
+
 import '../../../models/label/label.dart';
 import '../../../models/note/note.dart';
 import '../../../providers/bin/bin_provider.dart';
@@ -15,8 +9,14 @@ import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 import '../../../services/notes/notes_service.dart';
 import '../../../utils/keys.dart';
-
+import '../../constants/constants.dart';
+import '../../constants/paddings.dart';
+import '../../preferences/enums/layout.dart';
+import '../../preferences/enums/sort_method.dart';
+import '../../preferences/preference_key.dart';
 import '../../preferences/watched_preferences.dart';
+import '../../widgets/notes/note_tile.dart';
+import '../../widgets/placeholders/empty_placeholder.dart';
 
 /// Notes list and bin's app bar.
 ///
@@ -103,10 +103,12 @@ class NotesAppBar extends ConsumerWidget {
     final notes = await NotesService().search(search, notesPage, label?.name);
 
     return notes
-        .mapIndexed((index, note) => NoteTile.searchView(
-              key: Keys.noteTile(index),
-              note: note,
-            ))
+        .mapIndexed(
+          (index, note) => NoteTile.searchView(
+            key: Keys.noteTile(index),
+            note: note,
+          ),
+        )
         .toList();
   }
 

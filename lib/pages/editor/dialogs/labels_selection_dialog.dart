@@ -1,12 +1,13 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/extensions/color_extension.dart';
 import '../../../models/label/label.dart';
 import '../../../models/note/note.dart';
 import '../../../providers/labels/labels_list/labels_list_provider.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 /// Dialog to select the labels.
 class LabelsSelectionDialog extends ConsumerStatefulWidget {
@@ -69,25 +70,27 @@ class _LabelsSelectionDialogState extends ConsumerState<LabelsSelectionDialog> {
       content: SingleChildScrollView(
         child: ListBody(
           children: labels
-              .mapIndexed((index, label) => CheckboxListTile(
-                    value: label.selected,
-                    secondary: VariedIcon.varied(
-                      label.pinned ? Icons.label_important : Icons.label,
-                      fill: 1.0,
-                      color: label.color,
-                    ),
-                    title: Text(
-                      label.name,
-                      style: label.visible
-                          ? null
-                          : bodyLarge?.copyWith(
-                              color: bodyLarge.color?.subdued,
-                            ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    onChanged: (value) => onChanged(index, value),
-                  ))
+              .mapIndexed(
+                (index, label) => CheckboxListTile(
+                  value: label.selected,
+                  secondary: VariedIcon.varied(
+                    label.pinned ? Icons.label_important : Icons.label,
+                    fill: 1.0,
+                    color: label.color,
+                  ),
+                  title: Text(
+                    label.name,
+                    style: label.visible
+                        ? null
+                        : bodyLarge?.copyWith(
+                            color: bodyLarge.color?.subdued,
+                          ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  onChanged: (value) => onChanged(index, value),
+                ),
+              )
               .toList(),
         ),
       ),

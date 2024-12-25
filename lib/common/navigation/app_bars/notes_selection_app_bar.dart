@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../models/note/note.dart';
+import '../../../providers/bin/bin_provider.dart';
+import '../../../providers/notes/notes_provider.dart';
 import '../../actions/notes/delete.dart';
 import '../../actions/notes/pin.dart';
 import '../../actions/notes/restore.dart';
 import '../../actions/notes/select.dart';
+import '../../actions/notes/share.dart';
 import '../../constants/constants.dart';
 import '../../constants/paddings.dart';
 import '../../constants/separators.dart';
 import '../../widgets/placeholders/error_placeholder.dart';
 import '../../widgets/placeholders/loading_placeholder.dart';
-import '../../../models/note/note.dart';
-import '../../../providers/bin/bin_provider.dart';
-import '../../../providers/notes/notes_provider.dart';
 
-/// Notes selection mode app bar.
-///
-/// Contains (sometimes depending on whether the current route is the notes list or the bin):
-///   - A back button.
-///   - The number of currently selected notes.
-///   - A button to select / unselects all notes.
-///   - A button to toggle the pin status / restore the selected notes.
-///   - A button to delete / permanently delete the selected notes.
+/// Selection mode app bar.
 class NotesSelectionAppBar extends ConsumerWidget {
-  /// Default constructor.
+  /// App bar shown when the notes are being selected, in the notes list or in the bin.
   const NotesSelectionAppBar({
     super.key,
-    this.notesPage = true,
+    required this.notesPage,
   });
 
   /// Whether the current page is the notes list.
@@ -52,12 +47,19 @@ class NotesSelectionAppBar extends ConsumerWidget {
         IconButton(
           icon: Icon(allSelected ? Icons.deselect : Icons.select_all),
           tooltip: allSelected ? l.tooltip_unselect_all : flutterL?.selectAllButtonLabel ?? 'Select all',
-          onPressed: () => allSelected ? unselectAllNotes(context, ref) : selectAllNotes(context, ref),
+          onPressed: () => allSelected
+              ? unselectAllNotes(context, ref, notesPage: notesPage)
+              : selectAllNotes(context, ref, notesPage: notesPage),
         ),
         Padding(padding: Paddings.appBarActionsEnd),
         Separator.divider1indent16.vertical,
         Padding(padding: Paddings.appBarActionsEnd),
         if (notesPage) ...[
+          IconButton(
+            icon: const Icon(Icons.share),
+            tooltip: 'Share',
+            onPressed: selectedNotes.isNotEmpty ? () => shareNotes(selectedNotes) : null,
+          ),
           IconButton(
             icon: const Icon(Icons.push_pin),
             tooltip: l.tooltip_toggle_pins,
@@ -66,7 +68,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
           IconButton(
             icon: Icon(
               Icons.delete,
-              color: Theme.of(context).colorScheme.error,
+              color: selectedNotes.isNotEmpty ? Theme.of(context).colorScheme.error : null,
             ),
             tooltip: l.tooltip_delete,
             onPressed: selectedNotes.isNotEmpty ? () => deleteNotes(context, ref, selectedNotes) : null,
@@ -78,7 +80,10 @@ class NotesSelectionAppBar extends ConsumerWidget {
             onPressed: selectedNotes.isNotEmpty ? () => restoreNotes(context, ref, selectedNotes) : null,
           ),
           IconButton(
-            icon: const Icon(Icons.delete_forever),
+            icon: Icon(
+              Icons.delete_forever,
+              color: selectedNotes.isNotEmpty ? Theme.of(context).colorScheme.error : null,
+            ),
             tooltip: l.tooltip_permanently_delete,
             onPressed: selectedNotes.isNotEmpty ? () => permanentlyDeleteNotes(context, ref, selectedNotes) : null,
           ),

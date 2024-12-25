@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../models/note/note.dart';
 import '../../../providers/bin/bin_provider.dart';
 import '../../../providers/notes/notes_provider.dart';
@@ -31,8 +32,8 @@ void unselectAllNotes(BuildContext context, WidgetRef ref, {bool notesPage = tru
 /// Exits the notes selection mode.
 ///
 /// First unselects all the notes.
-void exitNotesSelectionMode(BuildContext context, WidgetRef ref) {
-  unselectAllNotes(context, ref);
+void exitNotesSelectionMode(BuildContext context, WidgetRef ref, {bool notesPage = true}) {
+  unselectAllNotes(context, ref, notesPage: notesPage);
 
   isNotesSelectionModeNotifier.value = false;
 }
