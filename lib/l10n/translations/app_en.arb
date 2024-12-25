@@ -639,6 +639,14 @@
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
   },
+  "dialog_select_labels": "Select labels",
+  "@dialog_select_labels": {
+    "description": "Title of the dialog to select the labels of a note."
+  },
+  "dialog_select_labels_to_add": "Select labels to add",
+  "@dialog_select_labels_to_add": {
+    "description": "Title of the dialog to select the labels to add to the currently selected notes."
+  },
   "tooltip_undo": "Undo the last action",
   "@tooltip_undo": {
     "description": "Tooltip for the button to undo the last action in the editor."
@@ -866,6 +874,16 @@
   "action_share": "Share",
   "@action_share": {
     "description": "Swipe or menu action to share a note."
+  },
+  "action_share_subject": "{count} notes shared from Material Notes",
+  "@action_share_subject": {
+    "description": "Subject of the text that is shared when multiple notes are shared at the same time.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes being shared.",
+        "type": "int"
+      }
+    }
   },
   "action_delete": "Delete",
   "@action_delete": {

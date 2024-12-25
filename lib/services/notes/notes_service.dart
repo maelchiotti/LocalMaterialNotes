@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_mimir/flutter_mimir.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
+
 import '../../common/constants/constants.dart';
 import '../../common/constants/environment.dart';
 import '../../common/constants/labels.dart';
@@ -118,7 +119,7 @@ class NotesService {
     final searchFilter = Mimir.and(
       [
         Mimir.where('deleted', isEqualTo: (!notesPage).toString()),
-        if (label != null) Mimir.where('labels', containsAtLeastOneOf: [label])
+        if (label != null) Mimir.where('labels', containsAtLeastOneOf: [label]),
       ],
     );
     final searchResults = await _index.search(
@@ -166,6 +167,18 @@ class NotesService {
     });
 
     await _updateIndex(note);
+  }
+
+  /// Updates the [note] with the added [labels] in the database.
+  Future<void> addLabels(List<Note> notes, Iterable<Label> labels) async {
+    await _database.writeTxn(() async {
+      for (final note in notes) {
+        note.labels.addAll(labels);
+        await note.labels.save();
+      }
+    });
+
+    await _updateAllIndexes(notes);
   }
 
   /// Updates the [notes] with their corresponding [notesLabels] in the database.

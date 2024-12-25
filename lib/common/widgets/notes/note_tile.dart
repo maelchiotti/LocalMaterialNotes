@@ -274,7 +274,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                 if (enableLabels && showLabelsListOnNoteTile) ...[
                   Padding(padding: Paddings.vertical(2.0)),
                   NoteTileLabelsList(note: widget.note),
-                ]
+                ],
               ],
             ),
           ),

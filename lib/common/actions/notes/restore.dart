@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'select.dart';
-import '../../constants/constants.dart';
-import '../../dialogs/confirmation_dialog.dart';
+
 import '../../../models/note/note.dart';
 import '../../../providers/bin/bin_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
+import '../../constants/constants.dart';
+import '../../dialogs/confirmation_dialog.dart';
+import 'select.dart';
 
 /// Restores the [note].
 ///
@@ -60,7 +61,7 @@ Future<bool> restoreNotes(BuildContext context, WidgetRef ref, List<Note> notes)
   final succeeded = await ref.read(binProvider.notifier).restoreAll(notes);
 
   if (context.mounted) {
-    exitNotesSelectionMode(context, ref);
+    exitNotesSelectionMode(context, ref, notesPage: false);
   }
 
   return succeeded;
