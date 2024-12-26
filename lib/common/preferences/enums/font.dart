@@ -21,7 +21,7 @@ enum Font {
   ;
 
   /// The name of the font family.
-  final String? familyName;
+  final String familyName;
 
   /// The name of the font family to display.
   final String displayName;
