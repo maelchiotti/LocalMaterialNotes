@@ -3,11 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'app.dart';
 import 'common/logs/app_logger.dart';
 import 'common/preferences/preferences_utils.dart';
+import 'services/backup/auto_backup_service.dart';
 import 'services/database_service.dart';
-import 'utils/auto_export_utils.dart';
 import 'utils/flag_secure_utils.dart';
 import 'utils/info_utils.dart';
 import 'utils/localizations_utils.dart';

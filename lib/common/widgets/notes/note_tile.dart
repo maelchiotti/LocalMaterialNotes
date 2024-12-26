@@ -194,7 +194,6 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   ) {
     switch (direction) {
       case DismissDirection.startToEnd:
-        print("ui");
         return performBinDismissAction(rightSwipeAction);
       case DismissDirection.endToStart:
         return performBinDismissAction(leftSwipeAction);
@@ -225,7 +224,6 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   Future<bool> performBinDismissAction(BinSwipeAction swipeAction) async {
     switch (swipeAction) {
       case BinSwipeAction.restore:
-        print('???');
         return await restoreNote(context, ref, widget.note);
       case BinSwipeAction.permanentlyDelete:
         return await permanentlyDeleteNote(context, ref, widget.note);

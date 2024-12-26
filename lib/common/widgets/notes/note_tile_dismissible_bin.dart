@@ -53,7 +53,6 @@ class _NoteTileDismissibleBinState extends State<NoteTileDismissibleBin> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.swipeAction);
     return ColoredBox(
       color: backgroundColor,
       child: Padding(
