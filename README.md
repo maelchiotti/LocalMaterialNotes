@@ -97,6 +97,19 @@ All the supported languages are listed here alphabetically. You can see more det
 
 The JSON import feature only supports JSON files created by the application. Scripts to convert exports from other applications to the format used by Material Notes are available in the [external_imports](docs/external_imports) directory. Please read [EXTERNAL_IMPORTS.md](docs/external_imports/EXTERNAL_IMPORTS.md) for more details.
 
+## Pre-releases
+
+> [!CAUTION]
+> Pre-release versions can be buggy. Some features may not work. You might even loose all your data. That's why they are only meant to be installed manually, after making a backup from the settings.
+
+Pre-release versions of the application are available on [GitHub releases](https://github.com/maelchiotti/LocalMaterialNotes/releases). You can filter by pre-releases only by typing `prerelease:true` in the search box.
+
+When using a pre-release version, please report any issue you encounter in the [GitHub issues](https://github.com/maelchiotti/LocalMaterialNotes/issues).
+
+## Contributing
+
+Please see [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Credits
 
 ### Inspiration
@@ -118,7 +131,3 @@ The JSON import feature only supports JSON files created by the application. Scr
 ### Assets
 
 - [Material Design Icons](https://github.com/google/material-design-icons) for the [notes](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:notes) icon used for the logo.
-
-## Contributing
-
-Please see [CONTRIBUTING.md](CONTRIBUTING.md).
