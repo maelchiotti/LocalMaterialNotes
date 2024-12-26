@@ -95,6 +95,9 @@ All the supported languages are listed here alphabetically. You can see more det
 
 ## External imports
 
+> [!NOTE]
+> The conversion scripts are not part of the application at the moment, they must be run on a computer.
+
 The JSON import feature only supports JSON files created by the application. Scripts to convert exports from other applications to the format used by Material Notes are available in the [external_imports](docs/external_imports) directory. Please read [EXTERNAL_IMPORTS.md](docs/external_imports/EXTERNAL_IMPORTS.md) for more details.
 
 ## Pre-releases
