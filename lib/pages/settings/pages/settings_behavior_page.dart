@@ -35,14 +35,14 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
   void _submittedSwipeRightAction(NoteSwipeAction swipeAction) {
     PreferenceKey.swipeRightAction.set(swipeAction.name);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(rightSwipeAction: swipeAction));
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(noteRightSwipeAction: swipeAction));
   }
 
   /// Sets the new left [swipeAction].
   void _submittedSwipeLeftAction(NoteSwipeAction swipeAction) {
     PreferenceKey.swipeLeftAction.set(swipeAction.name);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(leftSwipeAction: swipeAction));
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(noteLeftSwipeAction: swipeAction));
   }
 
   /// Toggles Android's `FLAG_SECURE` to hide the app from the recent apps and prevent screenshots.
@@ -59,7 +59,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
     final confirmations = Confirmations.fromPreference();
     final flagSecure = PreferenceKey.flagSecure.getPreferenceOrDefault();
 
-    final swipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.swipeActions));
+    final swipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.notesSwipeActions));
 
     return Scaffold(
       appBar: TopNavigation(
@@ -112,14 +112,14 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_right,
                     title: l.settings_swipe_action_right,
-                    value: swipeActions.right.title(),
+                    value: swipeActions.right.title(false),
                     description: l.settings_swipe_action_right_description,
                     dialogTitle: l.settings_swipe_action_right,
                     options: NoteSwipeAction.values
                         .map(
                           (swipeAction) => (
                             value: swipeAction,
-                            title: swipeAction.title(),
+                            title: swipeAction.title(false),
                             subtitle: null,
                           ),
                         )
@@ -130,14 +130,14 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_left,
                     title: l.settings_swipe_action_left,
-                    value: swipeActions.left.title(),
+                    value: swipeActions.left.title(false),
                     description: l.settings_swipe_action_left_description,
                     dialogTitle: l.settings_swipe_action_left,
                     options: NoteSwipeAction.values
                         .map(
                           (swipeAction) => (
                             value: swipeAction,
-                            title: swipeAction.title(),
+                            title: swipeAction.title(false),
                             subtitle: null,
                           ),
                         )

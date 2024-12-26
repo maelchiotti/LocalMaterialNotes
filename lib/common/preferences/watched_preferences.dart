@@ -4,7 +4,7 @@ import '../../utils/theme_utils.dart';
 import 'enums/bin_swipe_action.dart';
 import 'enums/font.dart';
 import 'enums/layout.dart';
-import 'enums/note_swipe_action.dart';
+import 'enums/swipe_action.dart';
 import 'preference_key.dart';
 
 // ignore_for_file: public_member_api_docs
@@ -21,7 +21,7 @@ class WatchedPreferences {
   late bool showSeparators;
 
   // Behavior
-  late ({NoteSwipeAction right, NoteSwipeAction left}) swipeActions;
+  late ({SwipeAction right, SwipeAction left}) swipeActions;
 
   late ({BinSwipeAction right, BinSwipeAction left}) binSwipeActions;
 
@@ -43,8 +43,8 @@ class WatchedPreferences {
     bool? showTitlesOnly,
     bool? showTilesBackground,
     bool? showSeparators,
-    NoteSwipeAction? rightSwipeAction,
-    NoteSwipeAction? leftSwipeAction,
+    SwipeAction? rightSwipeAction,
+    SwipeAction? leftSwipeAction,
     BinSwipeAction? binRightSwipeAction,
     BinSwipeAction? binLeftSwipeAction,
     double? textScaling,
@@ -62,8 +62,8 @@ class WatchedPreferences {
     this.showSeparators = showSeparators ?? PreferenceKey.showSeparators.getPreferenceOrDefault();
 
     swipeActions = (
-      right: rightSwipeAction ?? NoteSwipeAction.rightFromPreference(),
-      left: leftSwipeAction ?? NoteSwipeAction.leftFromPreference(),
+      right: rightSwipeAction ?? SwipeAction.rightFromPreference(),
+      left: leftSwipeAction ?? SwipeAction.leftFromPreference(),
     );
     binSwipeActions = (
       right: binRightSwipeAction ?? BinSwipeAction.rightFromPreference(),

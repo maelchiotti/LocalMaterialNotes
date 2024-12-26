@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../models/note/note.dart';
+import '../../actions/notes/delete.dart';
+import '../../actions/notes/restore.dart';
 import '../../constants/constants.dart';
 import '../../extensions/iterable_extension.dart';
 import '../preference_key.dart';
@@ -80,6 +84,45 @@ enum BinSwipeAction {
         return l.action_restore;
       case permanentlyDelete:
         return l.action_delete_permanently;
+    }
+  }
+
+  /// Icon of the swipe action to display.
+  Widget iconWidget(BuildContext context) {
+    return Icon(
+      icon,
+      color: dangerous
+          ? Theme.of(context).colorScheme.onErrorContainer
+          : Theme.of(context).colorScheme.onTertiaryContainer,
+    );
+  }
+
+  /// Text of the swipe action to display.
+  Widget titleWidget(BuildContext context) {
+    return Text(
+      title,
+      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            color: dangerous
+                ? Theme.of(context).colorScheme.onErrorContainer
+                : Theme.of(context).colorScheme.onTertiaryContainer,
+          ),
+    );
+  }
+
+  /// Background color of the widget.
+  Color backgroundColor(BuildContext context) {
+    return dangerous ? Theme.of(context).colorScheme.errorContainer : Theme.of(context).colorScheme.tertiaryContainer;
+  }
+
+  /// Executes the action corresponding to this swipe action on the [note].
+  Future<bool> execute(BuildContext context, WidgetRef ref, Note note) async {
+    switch (this) {
+      case restore:
+        return await restoreNote(context, ref, note);
+      case permanentlyDelete:
+        return await permanentlyDeleteNote(context, ref, note);
+      default:
+        throw Exception('Unexpected swipe action when swiping on deleted note tile: $this');
     }
   }
 }
