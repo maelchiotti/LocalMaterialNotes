@@ -56,6 +56,9 @@ enum PreferenceKey<T> {
   sortMethod<String>('editedDate', backup: false),
   sortAscending<bool>(false, backup: false),
   layout<String>('list', backup: false),
+
+  // Database
+  databaseVersion(1),
   ;
 
   /// Default value of this preference.

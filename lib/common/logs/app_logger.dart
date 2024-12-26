@@ -3,17 +3,17 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../constants/constants.dart';
-import '../enums/mime_type.dart';
-import '../extensions/date_time_extensions.dart';
-import '../extensions/string_extension.dart';
-import '../../l10n/app_localizations/app_localizations.g.dart';
-import '../../utils/files_utils.dart';
-import '../../utils/snack_bar_utils.dart';
 import 'package:logger/logger.dart' hide FileOutput;
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../l10n/app_localizations/app_localizations.g.dart';
+import '../../utils/files_utils.dart';
+import '../../utils/snack_bar_utils.dart';
+import '../constants/constants.dart';
+import '../enums/mime_type.dart';
+import '../extensions/date_time_extensions.dart';
+import '../extensions/string_extension.dart';
 import 'filters/debug_filter.dart';
 import 'filters/release_filter.dart';
 
@@ -71,7 +71,7 @@ class AppLogger {
       _fileLogger.e(details.exceptionAsString().firstLine, error: details.exception, stackTrace: details.stack);
     };
     PlatformDispatcher.instance.onError = (exception, stackTrace) {
-      _fileLogger.e(exception.toString().firstLine, error: exception, stackTrace: stackTrace);
+      e(exception.toString().firstLine ?? 'Unknown exception', exception, stackTrace);
 
       return true;
     };
