@@ -120,7 +120,7 @@ class ManualBackupService {
 
       try {
         for (final noteAsJsonEncrypted in notesAsJson) {
-          notes.add(Note.fromJsonEncrypted(noteAsJsonEncrypted, password));
+          notes.add(RichTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
         }
       } catch (exception, stackTrace) {
         logger.e(exception.toString(), exception, stackTrace);
@@ -134,7 +134,7 @@ class ManualBackupService {
       }
     } else {
       for (final noteAsJson in notesAsJson) {
-        notes.add(Note.fromJson(noteAsJson));
+        notes.add(RichTextNote.fromJson(noteAsJson));
       }
     }
 
