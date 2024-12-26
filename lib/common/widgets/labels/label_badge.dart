@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../models/label/label.dart';
 
 /// Badge of a label.
@@ -13,14 +14,16 @@ class LabelBadge extends StatelessWidget {
   final Label label;
 
   @override
-  Widget build(BuildContext context) => Badge(
-        label: Text(
-          label.name,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-        backgroundColor: label.color,
-        textColor: label.getTextColor(context),
-        padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
-      );
+  Widget build(BuildContext context) {
+    return Badge(
+      label: Text(
+        label.name,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
+      backgroundColor: label.color,
+      textColor: label.getTextColor(context),
+      padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
+    );
+  }
 }

@@ -23,19 +23,21 @@ class TopNavigation extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
-  Widget build(BuildContext context) => ValueListenableBuilder(
-        valueListenable: isNotesSelectionModeNotifier,
-        builder: (context, isNotesSelectionMode, child) => ValueListenableBuilder(
-          valueListenable: isLabelsSelectionModeNotifier,
-          builder: (context, isLabelsSelectionMode, child) {
-            if (isNotesSelectionMode) {
-              return NotesSelectionAppBar(notesPage: notesPage);
-            } else if (isLabelsSelectionMode) {
-              return const LabelsSelectionAppBar();
-            }
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: isNotesSelectionModeNotifier,
+      builder: (context, isNotesSelectionMode, child) => ValueListenableBuilder(
+        valueListenable: isLabelsSelectionModeNotifier,
+        builder: (context, isLabelsSelectionMode, child) {
+          if (isNotesSelectionMode) {
+            return NotesSelectionAppBar(notesPage: notesPage);
+          } else if (isLabelsSelectionMode) {
+            return const LabelsSelectionAppBar();
+          }
 
-            return appbar;
-          },
-        ),
-      );
+          return appbar;
+        },
+      ),
+    );
+  }
 }

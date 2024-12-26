@@ -20,7 +20,9 @@ class BasicAppBar extends StatelessWidget {
   final bool back;
 
   @override
-  Widget build(BuildContext context) => AppBar(
-        title: Text(title),
-      );
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: Text(title),
+    );
+  }
 }
