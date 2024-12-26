@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../models/note/note.dart';
+import '../../../navigation/navigator_utils.dart';
+import '../../../providers/notifiers/notifiers.dart';
+import '../../../providers/preferences/preferences_provider.dart';
 import '../../actions/notes/copy.dart';
 import '../../actions/notes/delete.dart';
 import '../../actions/notes/pin.dart';
+import '../../actions/notes/restore.dart';
 import '../../actions/notes/select.dart';
 import '../../actions/notes/share.dart';
 import '../../constants/paddings.dart';
 import '../../constants/sizes.dart';
+import '../../enums/swipe_direction.dart';
 import '../../extensions/color_extension.dart';
+import '../../preferences/enums/bin_swipe_action.dart';
 import '../../preferences/enums/layout.dart';
-import '../../preferences/enums/swipe_action.dart';
-import '../../preferences/enums/swipe_direction.dart';
+import '../../preferences/enums/note_swipe_action.dart';
 import '../../preferences/preference_key.dart';
 import 'note_tile_dismissible.dart';
+import 'note_tile_dismissible_bin.dart';
 import 'note_tile_labels_list.dart';
-import '../../../models/note/note.dart';
-import '../../../navigation/navigator_utils.dart';
-import '../../../providers/notifiers/notifiers.dart';
-
-import '../../../providers/preferences/preferences_provider.dart';
 
 /// List tile that displays the main info about a note.
 ///
@@ -77,19 +80,23 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   BorderRadius getBorderRadius(Layout layout, bool showTilesBackground) =>
       layout == Layout.grid || showTilesBackground ? BorderRadius.circular(16) : BorderRadius.zero;
 
-  /// Returns the [DismissDirection] of the note tile, depending on the [rightSwipeAction] and the [leftSwipeAction].
-  ///
-  /// There are 4 possible outputs:
-  ///   - right and left : [DismissDirection.horizontal]
-  ///   - right only : [DismissDirection.startToEnd]
-  ///   - left only : [DismissDirection.endToStart]
-  ///   - none : [DismissDirection.none]
-  DismissDirection getDismissDirection(SwipeAction rightSwipeAction, SwipeAction leftSwipeAction) {
-    // If the note is deleted, no swipe actions are available
-    if (widget.note.deleted) {
+  /// Returns the [DismissDirection] of the note tile for a note deleted note, depending on the [rightSwipeAction]
+  /// and the [leftSwipeAction].
+  DismissDirection getNoteDismissDirection(NoteSwipeAction rightSwipeAction, NoteSwipeAction leftSwipeAction) {
+    if (rightSwipeAction.isEnabled && leftSwipeAction.isEnabled) {
+      return DismissDirection.horizontal;
+    } else if (rightSwipeAction.isEnabled && leftSwipeAction.isDisabled) {
+      return DismissDirection.startToEnd;
+    } else if (leftSwipeAction.isEnabled && rightSwipeAction.isDisabled) {
+      return DismissDirection.endToStart;
+    } else {
       return DismissDirection.none;
     }
+  }
 
+  /// Returns the [DismissDirection] of the note tile for a deleted note, depending on the [rightSwipeAction]
+  /// and the [leftSwipeAction].
+  DismissDirection getBinDismissDirection(BinSwipeAction rightSwipeAction, BinSwipeAction leftSwipeAction) {
     if (rightSwipeAction.isEnabled && leftSwipeAction.isEnabled) {
       return DismissDirection.horizontal;
     } else if (rightSwipeAction.isEnabled && leftSwipeAction.isDisabled) {
@@ -102,69 +109,128 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   }
 
   /// Returns the main and the secondary dismissible widgets for the [rightSwipeAction] and the [leftSwipeAction],
-  /// depending on the [direction].
-  ({Widget? main, Widget? secondary}) getDismissibleWidgets(
+  /// depending on the [direction], for a not deleted note.
+  ({Widget? main, Widget? secondary}) getNoteDismissibleWidgets(
     DismissDirection direction,
-    SwipeAction rightSwipeAction,
-    SwipeAction leftSwipeAction,
+    NoteSwipeAction rightSwipeAction,
+    NoteSwipeAction leftSwipeAction,
   ) {
-    // If the note is deleted, the swipe actions are not available
-    if (widget.note.deleted) {
-      return (main: null, secondary: null);
-    }
-
     switch (direction) {
       case DismissDirection.none:
         return (main: null, secondary: null);
       case DismissDirection.horizontal:
         return (
-          main: getDismissibleWidget(rightSwipeAction, SwipeDirection.right),
-          secondary: getDismissibleWidget(leftSwipeAction, SwipeDirection.left)
+          main: getNoteDismissibleWidget(rightSwipeAction, SwipeDirection.right),
+          secondary: getNoteDismissibleWidget(leftSwipeAction, SwipeDirection.left)
         );
       case DismissDirection.startToEnd:
-        return (main: getDismissibleWidget(rightSwipeAction, SwipeDirection.right), secondary: null);
+        return (main: getNoteDismissibleWidget(rightSwipeAction, SwipeDirection.right), secondary: null);
       case DismissDirection.endToStart:
-        return (main: getDismissibleWidget(leftSwipeAction, SwipeDirection.left), secondary: null);
+        return (main: getNoteDismissibleWidget(leftSwipeAction, SwipeDirection.left), secondary: null);
+      default:
+        throw Exception('Unexpected dismiss direction while building dismissible widgets: $direction');
+    }
+  }
+
+  /// Returns the main and the secondary dismissible widgets for the [rightSwipeAction] and the [leftSwipeAction],
+  /// depending on the [direction], for a deleted note.
+  ({Widget? main, Widget? secondary}) getBinDismissibleWidgets(
+    DismissDirection direction,
+    BinSwipeAction rightSwipeAction,
+    BinSwipeAction leftSwipeAction,
+  ) {
+    switch (direction) {
+      case DismissDirection.none:
+        return (main: null, secondary: null);
+      case DismissDirection.horizontal:
+        return (
+          main: getBinDismissibleWidget(rightSwipeAction, SwipeDirection.right),
+          secondary: getBinDismissibleWidget(leftSwipeAction, SwipeDirection.left)
+        );
+      case DismissDirection.startToEnd:
+        return (main: getBinDismissibleWidget(rightSwipeAction, SwipeDirection.right), secondary: null);
+      case DismissDirection.endToStart:
+        return (main: getBinDismissibleWidget(leftSwipeAction, SwipeDirection.left), secondary: null);
       default:
         throw Exception('Unexpected dismiss direction while building dismissible widgets: $direction');
     }
   }
 
   /// Returns the dismissible widget for the [swipeAction] in the [swipeDirection].
-  Widget getDismissibleWidget(SwipeAction swipeAction, SwipeDirection swipeDirection) => NoteTileDismissible(
+  Widget getNoteDismissibleWidget(NoteSwipeAction swipeAction, SwipeDirection swipeDirection) => NoteTileDismissible(
+        swipeAction: swipeAction,
+        swipeDirection: swipeDirection,
+        alternative: widget.note.pinned,
+      );
+
+  /// Returns the dismissible widget for the [swipeAction] in the [swipeDirection].
+  Widget getBinDismissibleWidget(BinSwipeAction swipeAction, SwipeDirection swipeDirection) => NoteTileDismissibleBin(
         swipeAction: swipeAction,
         swipeDirection: swipeDirection,
         alternative: widget.note.pinned,
       );
 
   /// Executes the [rightSwipeAction] or the [leftSwipeAction] depending on the [direction] that was swiped.
-  Future<bool> onDismissed(DismissDirection direction, SwipeAction rightSwipeAction, SwipeAction leftSwipeAction) {
+  Future<bool> onNoteDismissed(
+    DismissDirection direction,
+    NoteSwipeAction rightSwipeAction,
+    NoteSwipeAction leftSwipeAction,
+  ) {
     switch (direction) {
       case DismissDirection.startToEnd:
-        return performDismissAction(rightSwipeAction);
+        return performNoteDismissAction(rightSwipeAction);
       case DismissDirection.endToStart:
-        return performDismissAction(leftSwipeAction);
+        return performNoteDismissAction(leftSwipeAction);
       default:
         throw Exception('Unexpected dismiss direction after swiping on note tile: $direction');
     }
   }
 
-  Future<bool> performDismissAction(SwipeAction swipeAction) async {
+  /// Executes the [rightSwipeAction] or the [leftSwipeAction] depending on the [direction] that was swiped.
+  Future<bool> onBinDismissed(
+    DismissDirection direction,
+    BinSwipeAction rightSwipeAction,
+    BinSwipeAction leftSwipeAction,
+  ) {
+    switch (direction) {
+      case DismissDirection.startToEnd:
+        print("ui");
+        return performBinDismissAction(rightSwipeAction);
+      case DismissDirection.endToStart:
+        return performBinDismissAction(leftSwipeAction);
+      default:
+        throw Exception('Unexpected dismiss direction after swiping on note tile: $direction');
+    }
+  }
+
+  Future<bool> performNoteDismissAction(NoteSwipeAction swipeAction) async {
     switch (swipeAction) {
-      case SwipeAction.delete:
+      case NoteSwipeAction.delete:
         return deleteNote(context, ref, widget.note);
-      case SwipeAction.togglePin:
+      case NoteSwipeAction.togglePin:
         return togglePinNote(context, ref, widget.note);
-      case SwipeAction.share:
+      case NoteSwipeAction.share:
         await shareNote(widget.note);
 
         return false;
-      case SwipeAction.copy:
+      case NoteSwipeAction.copy:
         await copyNote(widget.note);
 
         return false;
       default:
         throw Exception('Unexpected swipe action when swiping on note tile: $swipeAction');
+    }
+  }
+
+  Future<bool> performBinDismissAction(BinSwipeAction swipeAction) async {
+    switch (swipeAction) {
+      case BinSwipeAction.restore:
+        print('???');
+        return await restoreNote(context, ref, widget.note);
+      case BinSwipeAction.permanentlyDelete:
+        return await permanentlyDeleteNote(context, ref, widget.note);
+      default:
+        throw Exception('Unexpected swipe action when swiping on deleted note tile: $swipeAction');
     }
   }
 
@@ -200,6 +266,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
         ref.watch(preferencesProvider.select((preferences) => preferences.disableSubduedNoteContentPreview));
 
     final swipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.swipeActions));
+    final binSwipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.binSwipeActions));
 
     final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
     final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.getPreferenceOrDefault();
@@ -289,9 +356,13 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
     final rightSwipeAction = swipeActions.right;
     final leftSwipeAction = swipeActions.left;
+    final binRightSwipeAction = binSwipeActions.right;
+    final binLeftSwipeAction = binSwipeActions.left;
 
-    final direction = getDismissDirection(rightSwipeAction, leftSwipeAction);
-    final dismissibleWidgets = getDismissibleWidgets(direction, rightSwipeAction, leftSwipeAction);
+    final direction = getNoteDismissDirection(rightSwipeAction, leftSwipeAction);
+    final dismissibleWidgets = widget.note.deleted
+        ? getBinDismissibleWidgets(direction, binRightSwipeAction, binLeftSwipeAction)
+        : getNoteDismissibleWidgets(direction, rightSwipeAction, leftSwipeAction);
 
     return ClipRRect(
       borderRadius: getBorderRadius(layout, showTilesBackground),
@@ -300,7 +371,9 @@ class _NoteTileState extends ConsumerState<NoteTile> {
         direction: direction,
         background: dismissibleWidgets.main,
         secondaryBackground: dismissibleWidgets.secondary,
-        confirmDismiss: (dismissDirection) => onDismissed(dismissDirection, rightSwipeAction, leftSwipeAction),
+        confirmDismiss: (dismissDirection) => widget.note.deleted
+            ? onBinDismissed(dismissDirection, binRightSwipeAction, binLeftSwipeAction)
+            : onNoteDismissed(dismissDirection, rightSwipeAction, leftSwipeAction),
         child: tile,
       ),
     );

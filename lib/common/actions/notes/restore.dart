@@ -29,10 +29,9 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note, [bool 
   }
 
   if (context.mounted && pop) {
+    currentNoteNotifier.value = null;
     Navigator.pop(context);
   }
-
-  currentNoteNotifier.value = null;
 
   final succeeded = await ref.read(binProvider.notifier).restore(note);
 

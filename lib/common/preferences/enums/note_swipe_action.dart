@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 import '../../constants/constants.dart';
 import '../../extensions/iterable_extension.dart';
 import '../preference_key.dart';
 
-/// Action to trigger when swiping on a note tile.
-enum SwipeAction {
+/// Action to trigger when swiping on a note tile of a not deleted note.
+enum NoteSwipeAction {
   /// The swipe action is disabled.
   disabled(Icons.hide_source),
 
@@ -39,11 +40,11 @@ enum SwipeAction {
   /// A swipe action is represented by an [icon] and a [title]. If it has two states, it can have an [alternativeIcon].
   ///
   /// If it performs a dangerous action, is can be marked as [dangerous].
-  const SwipeAction(this.icon, {this.alternativeIcon, this.dangerous = false});
+  const NoteSwipeAction(this.icon, {this.alternativeIcon, this.dangerous = false});
 
   /// Returns the value of the right swipe action preference if set, or its default value otherwise.
-  factory SwipeAction.rightFromPreference() {
-    final swipeRightAction = SwipeAction.values.byNameOrNull(
+  factory NoteSwipeAction.rightFromPreference() {
+    final swipeRightAction = NoteSwipeAction.values.byNameOrNull(
       PreferenceKey.swipeRightAction.getPreference(),
     );
 
@@ -51,15 +52,15 @@ enum SwipeAction {
     if (swipeRightAction == null) {
       PreferenceKey.swipeRightAction.reset();
 
-      return SwipeAction.values.byName(PreferenceKey.swipeRightAction.defaultValue);
+      return NoteSwipeAction.values.byName(PreferenceKey.swipeRightAction.defaultValue);
     }
 
     return swipeRightAction;
   }
 
   /// Returns the value of the left swipe action preference if set, or its default value otherwise.
-  factory SwipeAction.leftFromPreference() {
-    final swipeRightAction = SwipeAction.values.byNameOrNull(
+  factory NoteSwipeAction.leftFromPreference() {
+    final swipeRightAction = NoteSwipeAction.values.byNameOrNull(
       PreferenceKey.swipeLeftAction.getPreference(),
     );
 
@@ -67,7 +68,7 @@ enum SwipeAction {
     if (swipeRightAction == null) {
       PreferenceKey.swipeLeftAction.reset();
 
-      return SwipeAction.values.byName(PreferenceKey.swipeLeftAction.defaultValue);
+      return NoteSwipeAction.values.byName(PreferenceKey.swipeLeftAction.defaultValue);
     }
 
     return swipeRightAction;

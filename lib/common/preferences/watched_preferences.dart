@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
+import '../../utils/theme_utils.dart';
+import 'enums/bin_swipe_action.dart';
 import 'enums/font.dart';
 import 'enums/layout.dart';
-import 'enums/swipe_action.dart';
+import 'enums/note_swipe_action.dart';
 import 'preference_key.dart';
-import '../../utils/theme_utils.dart';
 
 // ignore_for_file: public_member_api_docs
 
@@ -19,7 +21,9 @@ class WatchedPreferences {
   late bool showSeparators;
 
   // Behavior
-  late ({SwipeAction right, SwipeAction left}) swipeActions;
+  late ({NoteSwipeAction right, NoteSwipeAction left}) swipeActions;
+
+  late ({BinSwipeAction right, BinSwipeAction left}) binSwipeActions;
 
   // Accessibility
   late double textScaling;
@@ -39,8 +43,10 @@ class WatchedPreferences {
     bool? showTitlesOnly,
     bool? showTilesBackground,
     bool? showSeparators,
-    SwipeAction? rightSwipeAction,
-    SwipeAction? leftSwipeAction,
+    NoteSwipeAction? rightSwipeAction,
+    NoteSwipeAction? leftSwipeAction,
+    BinSwipeAction? binRightSwipeAction,
+    BinSwipeAction? binLeftSwipeAction,
     double? textScaling,
     bool? biggerTitles,
     bool? useWhiteTextDarkMode,
@@ -56,8 +62,12 @@ class WatchedPreferences {
     this.showSeparators = showSeparators ?? PreferenceKey.showSeparators.getPreferenceOrDefault();
 
     swipeActions = (
-      right: rightSwipeAction ?? SwipeAction.rightFromPreference(),
-      left: leftSwipeAction ?? SwipeAction.leftFromPreference(),
+      right: rightSwipeAction ?? NoteSwipeAction.rightFromPreference(),
+      left: leftSwipeAction ?? NoteSwipeAction.leftFromPreference(),
+    );
+    binSwipeActions = (
+      right: binRightSwipeAction ?? BinSwipeAction.rightFromPreference(),
+      left: binLeftSwipeAction ?? BinSwipeAction.leftFromPreference(),
     );
 
     this.textScaling = textScaling ?? PreferenceKey.textScaling.getPreferenceOrDefault();
