@@ -76,7 +76,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
 
     final swipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.swipeActions));
     final binSwipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.binSwipeActions));
-    print(binSwipeActions);
+
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,

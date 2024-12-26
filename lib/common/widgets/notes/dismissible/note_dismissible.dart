@@ -34,7 +34,6 @@ class _NoteDismissibleState extends ConsumerState<NoteDismissible> {
 
     final swipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.swipeActions));
     swipeAction = widget.direction == SwipeDirection.right ? swipeActions.right : swipeActions.left;
-    print(swipeAction);
   }
 
   @override
