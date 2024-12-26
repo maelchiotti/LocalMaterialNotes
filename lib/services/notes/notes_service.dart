@@ -155,7 +155,7 @@ class NotesService {
       await _notes.putAll(notes);
     });
 
-    //await _updateAllIndexes(notes);
+    await _updateAllIndexes(notes);
   }
 
   /// Updates the [note] with the [labels] in the database.
