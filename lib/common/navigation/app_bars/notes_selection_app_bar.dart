@@ -41,7 +41,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
 
     return AppBar(
       leading: BackButton(
-        onPressed: () => exitNotesSelectionMode(context, ref),
+        onPressed: () => exitNotesSelectionMode(context, ref, notesPage: notesPage),
       ),
       title: Text('${selectedNotes.length}'),
       actions: [

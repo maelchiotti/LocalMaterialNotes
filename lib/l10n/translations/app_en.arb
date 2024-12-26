@@ -259,7 +259,11 @@
   },
   "settings_behavior_swipe_actions": "Swipe actions",
   "@settings_behavior_swipe_actions": {
-    "description": "Title of the sub-section regarding the swipe actions under the behavior settings."
+    "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
+  },
+  "settings_behavior_swipe_actions_bin": "Swipe actions (bin)",
+  "@settings_behavior_swipe_actions_bin": {
+    "description": "Title of the section regarding the swipe actions on the notes tiles in the bin under the behavior settings."
   },
   "settings_swipe_action_right": "Right swipe action",
   "@settings_swipe_action_right": {
@@ -269,6 +273,10 @@
   "@settings_swipe_action_right_description": {
     "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile."
   },
+  "settings_bin_swipe_action_right_description": "Action to trigger when a right swipe is performed on a note tile in the bin",
+  "@settings_bin_swipe_action_right_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile in the bin."
+  },
   "settings_swipe_action_left": "Left swipe action",
   "@settings_swipe_action_left": {
     "description": "Title of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
@@ -276,6 +284,10 @@
   "settings_swipe_action_left_description": "Action to trigger when a left swipe is performed on a note tile",
   "@settings_swipe_action_left_description": {
     "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
+  },
+  "settings_bin_swipe_action_left_description": "Action to trigger when a left swipe is performed on a note tile in the bin",
+  "@settings_bin_swipe_action_left_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile in the bin."
   },
   "settings_editor": "Editor",
   "@settings_editor": {

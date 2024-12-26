@@ -21,6 +21,8 @@ enum PreferenceKey<T> {
   confirmations<String>('irreversible'),
   swipeRightAction<String>('delete'),
   swipeLeftAction<String>('togglePin'),
+  binSwipeRightAction<String>('permanentlyDelete'),
+  binSwipeLeftAction<String>('restore'),
 
   // Editor
   showUndoRedoButtons<bool>(true),

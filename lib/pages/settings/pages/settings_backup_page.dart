@@ -6,6 +6,7 @@ import '../../../common/extensions/string_extension.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
+import '../../../services/backup/backup_service.dart';
 import '../dialogs/auto_export_frequency_dialog.dart';
 import '../dialogs/auto_export_password_dialog.dart';
 import '../dialogs/manual_export_dialog.dart';
@@ -15,8 +16,7 @@ import '../../../providers/labels/labels_list/labels_list_provider.dart';
 import '../../../providers/labels/labels_navigation/labels_navigation_provider.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/preferences/preferences_provider.dart';
-import '../../../utils/auto_export_utils.dart';
-import '../../../utils/database_utils.dart';
+import '../../../services/backup/auto_backup_service.dart';
 import '../../../utils/files_utils.dart';
 import '../../../utils/keys.dart';
 import '../../../utils/snack_bar_utils.dart';
@@ -39,7 +39,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   /// If the file is encrypted, asks for the password used to encrypt it.
   Future<void> _import() async {
     try {
-      final imported = await DatabaseUtils().import(context);
+      final imported = await ManualBackupService().import(context);
 
       if (imported) {
         await ref.read(labelsProvider.notifier).get();
@@ -78,7 +78,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       try {
         final password = shouldEncrypt.$2;
 
-        if (await DatabaseUtils().manuallyExportAsJson(encrypt: encrypt, password: password)) {
+        if (await ManualBackupService().manuallyExportAsJson(encrypt: encrypt, password: password)) {
           SnackBarUtils.info(l.snack_bar_export_success).show();
         }
       } catch (exception, stackTrace) {
@@ -94,7 +94,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   /// Asks where to store the export file.
   Future<void> _exportAsMarkdown() async {
     try {
-      if (await DatabaseUtils().exportAsMarkdown()) {
+      if (await ManualBackupService().exportAsMarkdown()) {
         SnackBarUtils.info(l.snack_bar_export_success).show();
       }
     } catch (exception, stackTrace) {

@@ -4,27 +4,26 @@ import 'dart:typed_data';
 import 'package:archive/archive.dart';
 import 'package:dart_helper_utils/dart_helper_utils.dart';
 import 'package:flutter/material.dart';
-import '../common/constants/constants.dart';
-import '../common/enums/mime_type.dart';
-import '../common/extensions/date_time_extensions.dart';
-import '../common/extensions/iterable_extension.dart';
-import '../common/preferences/preference_key.dart';
-import '../common/preferences/preferences_utils.dart';
-import '../models/label/label.dart';
-import '../models/note/note.dart';
-import '../pages/settings/dialogs/auto_export_password_dialog.dart';
-import '../services/labels/labels_service.dart';
-import '../services/notes/notes_service.dart';
-import 'auto_export_utils.dart';
-import 'files_utils.dart';
-import 'info_utils.dart';
-import 'snack_bar_utils.dart';
 import 'package:sanitize_filename/sanitize_filename.dart';
 
-/// Utilities for the database.
-///
-/// This class is a singleton.
-class DatabaseUtils {
+import '../../common/constants/constants.dart';
+import '../../common/enums/mime_type.dart';
+import '../../common/extensions/date_time_extensions.dart';
+import '../../common/extensions/iterable_extension.dart';
+import '../../common/preferences/preference_key.dart';
+import '../../common/preferences/preferences_utils.dart';
+import '../../models/label/label.dart';
+import '../../models/note/note.dart';
+import '../../pages/settings/dialogs/auto_export_password_dialog.dart';
+import '../../utils/files_utils.dart';
+import '../../utils/info_utils.dart';
+import '../../utils/snack_bar_utils.dart';
+import '../labels/labels_service.dart';
+import '../notes/notes_service.dart';
+import 'auto_backup_service.dart';
+
+/// Service for the manual backup (export and import) of the database.
+class ManualBackupService {
   final _notesService = NotesService();
   final _labelsService = LabelsService();
 

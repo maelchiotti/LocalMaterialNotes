@@ -2,39 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../models/note/note.dart';
-import '../../actions/notes/copy.dart';
 import '../../actions/notes/delete.dart';
-import '../../actions/notes/pin.dart';
-import '../../actions/notes/share.dart';
+import '../../actions/notes/restore.dart';
 import '../../constants/constants.dart';
 import '../../extensions/iterable_extension.dart';
 import '../preference_key.dart';
 
-/// Action to trigger when swiping on a note tile of a not deleted note.
-enum SwipeAction {
+/// Action to trigger when swiping on a note tile of a deleted note.
+enum BinSwipeAction {
   /// The swipe action is disabled.
   disabled(Icons.hide_source),
 
-  /// Toggle the pin status of the note.
-  togglePin(Icons.push_pin, alternativeIcon: Icons.push_pin_outlined),
+  /// Restore the note.
+  restore(Icons.restore_from_trash),
 
-  /// Delete the note.
+  /// Permanently delete the note.
   ///
   /// This action is [dangerous].
-  delete(Icons.delete, dangerous: true),
-
-  /// Share the note.
-  share(Icons.share),
-
-  /// Copy the note to the clipboard.
-  copy(Icons.copy),
+  permanentlyDelete(Icons.delete_forever, dangerous: true),
   ;
 
   /// Icon of the swipe action.
   final IconData icon;
-
-  /// Alternative icon of the swipe action if the action has two states.
-  final IconData? alternativeIcon;
 
   /// Whether the swipe action is a dangerous one.
   ///
@@ -43,38 +32,38 @@ enum SwipeAction {
 
   /// The swipe action that should be performed on a note tile when swiped.
   ///
-  /// A swipe action is represented by an [icon] and a [title]. If it has two states, it can have an [alternativeIcon].
+  /// A swipe action is represented by an [icon] and a [title].
   ///
   /// If it performs a dangerous action, is can be marked as [dangerous].
-  const SwipeAction(this.icon, {this.alternativeIcon, this.dangerous = false});
+  const BinSwipeAction(this.icon, {this.dangerous = false});
 
   /// Returns the value of the right swipe action preference if set, or its default value otherwise.
-  factory SwipeAction.rightFromPreference() {
-    final swipeRightAction = SwipeAction.values.byNameOrNull(
-      PreferenceKey.swipeRightAction.getPreference(),
+  factory BinSwipeAction.rightFromPreference() {
+    final swipeRightAction = BinSwipeAction.values.byNameOrNull(
+      PreferenceKey.binSwipeRightAction.getPreference(),
     );
 
     // Reset the malformed preference to its default value
     if (swipeRightAction == null) {
-      PreferenceKey.swipeRightAction.reset();
+      PreferenceKey.binSwipeRightAction.reset();
 
-      return SwipeAction.values.byName(PreferenceKey.swipeRightAction.defaultValue);
+      return BinSwipeAction.values.byName(PreferenceKey.binSwipeRightAction.defaultValue);
     }
 
     return swipeRightAction;
   }
 
   /// Returns the value of the left swipe action preference if set, or its default value otherwise.
-  factory SwipeAction.leftFromPreference() {
-    final swipeRightAction = SwipeAction.values.byNameOrNull(
-      PreferenceKey.swipeLeftAction.getPreference(),
+  factory BinSwipeAction.leftFromPreference() {
+    final swipeRightAction = BinSwipeAction.values.byNameOrNull(
+      PreferenceKey.binSwipeLeftAction.getPreference(),
     );
 
     // Reset the malformed preference to its default value
     if (swipeRightAction == null) {
-      PreferenceKey.swipeLeftAction.reset();
+      PreferenceKey.binSwipeLeftAction.reset();
 
-      return SwipeAction.values.byName(PreferenceKey.swipeLeftAction.defaultValue);
+      return BinSwipeAction.values.byName(PreferenceKey.binSwipeLeftAction.defaultValue);
     }
 
     return swipeRightAction;
@@ -87,27 +76,21 @@ enum SwipeAction {
   bool get isDisabled => this == disabled;
 
   /// Returns the title of the swipe action.
-  ///
-  /// Returns the alternative title if [alternative] is set to `true`.
-  String title(bool alternative) {
+  String get title {
     switch (this) {
       case disabled:
         return l.action_disabled;
-      case delete:
-        return l.action_delete;
-      case togglePin:
-        return alternative ? l.action_unpin : l.action_pin;
-      case share:
-        return l.action_share;
-      case copy:
-        return flutterL?.copyButtonLabel ?? 'Copy';
+      case restore:
+        return l.action_restore;
+      case permanentlyDelete:
+        return l.action_delete_permanently;
     }
   }
 
   /// Icon of the swipe action to display.
-  Widget iconWidget(BuildContext context, bool alternative) {
+  Widget iconWidget(BuildContext context) {
     return Icon(
-      alternative && alternativeIcon != null ? alternativeIcon : icon,
+      icon,
       color: dangerous
           ? Theme.of(context).colorScheme.onErrorContainer
           : Theme.of(context).colorScheme.onTertiaryContainer,
@@ -115,9 +98,9 @@ enum SwipeAction {
   }
 
   /// Text of the swipe action to display.
-  Widget titleWidget(BuildContext context, bool alternative) {
+  Widget titleWidget(BuildContext context) {
     return Text(
-      title(alternative),
+      title,
       style: Theme.of(context).textTheme.titleMedium?.copyWith(
             color: dangerous
                 ? Theme.of(context).colorScheme.onErrorContainer
@@ -134,20 +117,12 @@ enum SwipeAction {
   /// Executes the action corresponding to this swipe action on the [note].
   Future<bool> execute(BuildContext context, WidgetRef ref, Note note) async {
     switch (this) {
-      case delete:
-        return deleteNote(context, ref, note);
-      case togglePin:
-        return togglePinNote(context, ref, note);
-      case share:
-        await shareNote(note);
-
-        return false;
-      case copy:
-        await copyNote(note);
-
-        return false;
+      case restore:
+        return await restoreNote(context, ref, note);
+      case permanentlyDelete:
+        return await permanentlyDeleteNote(context, ref, note);
       default:
-        throw Exception('Unexpected swipe action when swiping on note tile: $this');
+        throw Exception('Unexpected swipe action when swiping on deleted note tile: $this');
     }
   }
 }

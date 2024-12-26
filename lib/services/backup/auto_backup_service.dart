@@ -1,14 +1,15 @@
 import 'dart:developer';
 
-import '../common/constants/constants.dart';
-import '../common/preferences/preference_key.dart';
-import 'database_utils.dart';
-import 'files_utils.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:saf_util/saf_util.dart';
 
-/// Utilities for the automatic export functionality.
+import '../../common/constants/constants.dart';
+import '../../common/preferences/preference_key.dart';
+import '../../utils/files_utils.dart';
+import 'backup_service.dart';
+
+/// Service for the automatic backup (export and import) of the database.
 ///
 /// This class is a singleton.
 class AutoExportUtils {
@@ -115,7 +116,7 @@ class AutoExportUtils {
     final encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault();
     final password = await PreferenceKey.autoExportPassword.getPreferenceOrDefaultSecure();
 
-    DatabaseUtils().autoExportAsJson(encrypt, password);
+    ManualBackupService().autoExportAsJson(encrypt, password);
 
     PreferenceKey.lastAutoExportDate.set(DateTime.now().toIso8601String());
   }
