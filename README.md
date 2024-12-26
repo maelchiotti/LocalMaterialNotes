@@ -107,7 +107,7 @@ The JSON import feature only supports JSON files created by the application. Scr
 
 Pre-release versions of the application are available on [GitHub releases](https://github.com/maelchiotti/LocalMaterialNotes/releases). You can filter by pre-releases only by typing `prerelease:true` in the search box.
 
-When using a pre-release version, please report any issue you encounter in the [GitHub issues](https://github.com/maelchiotti/LocalMaterialNotes/issues).
+When using a pre-release version, please report any issue you encounter in the discussion linked to that pre-release.
 
 ## Contributing
 
