@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
+
 import '../../../common/actions/labels/delete.dart';
 import '../../../common/actions/labels/edit.dart';
 import '../../../common/actions/labels/pin.dart';
@@ -9,9 +11,8 @@ import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/extensions/color_extension.dart';
 import '../../../models/label/label.dart';
-import 'label_menu_option.dart';
 import '../../../providers/notifiers/notifiers.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'label_menu_option.dart';
 
 /// Tile of a label.
 class LabelTile extends ConsumerStatefulWidget {
@@ -116,6 +117,13 @@ class _LabelTileState extends ConsumerState<LabelTile> {
   Widget build(BuildContext context) {
     final bodyLarge = Theme.of(context).textTheme.bodyLarge;
 
+    var icon = Icons.label;
+    if (widget.label.pinned) {
+      icon = Icons.label_important;
+    } else if (widget.label.hidden) {
+      icon = Icons.label_outline;
+    }
+
     // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
     // See https://github.com/flutter/flutter/issues/86584
     return Dismissible(
@@ -131,7 +139,7 @@ class _LabelTileState extends ConsumerState<LabelTile> {
             onLongPress: onLongPress,
             child: ListTile(
               leading: VariedIcon.varied(
-                widget.label.pinned ? Icons.label_important : Icons.label,
+                icon,
                 fill: 1.0,
                 color: widget.label.color,
               ),
