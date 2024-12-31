@@ -23,6 +23,7 @@ x64() {
   echo "Building mimir for x64"
 
   bash scripts/build-android.sh x64
+  ls -l -R
 
   mkdirJniLibs x86_64
   mv platform-build/jniLibs/x86_64/libembedded_milli.so "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*/android/src/main/jniLibs/x86_64/

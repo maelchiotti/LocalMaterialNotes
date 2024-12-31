@@ -747,7 +747,7 @@
   "@dialog_delete": {
     "description": "Title of the the dialog to delete one or multiple notes (moving them to the bin), and text for the confirmation button."
   },
-  "dialog_delete_body": "Do you really want to delete {count} {count, plural, zero{} one{note} other{notes}}? You can restore {count, plural, zero{} one{it} other{them}} from the bin.",
+  "dialog_delete_body": "Do you really want to delete {count} {count, plural, one{note} other{notes}}? You can restore {count, plural, one{it} other{them}} from the bin.",
   "@dialog_delete_body": {
     "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
     "placeholders": {
@@ -761,7 +761,7 @@
   "@dialog_permanently_delete": {
     "description": "Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button."
   },
-  "dialog_permanently_delete_body": "Do you really want to permanently delete {count} {count, plural, zero{} one{note} other{notes}}? You will not be able to restore {count, plural, zero{} one{it} other{them}}.",
+  "dialog_permanently_delete_body": "Do you really want to permanently delete {count} {count, plural, one{note} other{notes}}? You will not be able to restore {count, plural, one{it} other{them}}.",
   "@dialog_permanently_delete_body": {
     "description": "Text for the dialog to confirm the permanent deletion of one or multiple notes.",
     "placeholders": {
@@ -775,7 +775,7 @@
   "@dialog_restore": {
     "description": "Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button."
   },
-  "dialog_restore_body": "Do you really want to restore {count} {count, plural, zero{} one{note} other{notes}}?",
+  "dialog_restore_body": "Do you really want to restore {count} {count, plural, one{note} other{notes}}?",
   "@dialog_restore_body": {
     "description": "Text for the dialog to confirm restoring one or multiple notes from the bin.",
     "placeholders": {
@@ -797,7 +797,7 @@
   "@dialog_delete_label": {
     "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
   },
-  "dialog_delete_label_body": "Do you really want to delete {count} {count, plural, zero{} one{label} other{labels}}? {count, plural, zero{} one{It} other{They}} will be removed from the notes where you added {count, plural, zero{} one{it} other{them}}.",
+  "dialog_delete_label_body": "Do you really want to delete {count} {count, plural, one{label} other{labels}}? {count, plural, one{It} other{They}} will be removed from the notes where you added {count, plural, one{it} other{them}}.",
   "@dialog_delete_label_body": {
     "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
     "placeholders": {
@@ -887,7 +887,7 @@
   "@action_share": {
     "description": "Swipe or menu action to share a note."
   },
-  "action_share_subject": "{count} notes shared from Material Notes",
+  "action_share_subject": "{count} {count, plural, one{note} other{notes}} shared from Material Notes",
   "@action_share_subject": {
     "description": "Subject of the text that is shared when multiple notes are shared at the same time.",
     "placeholders": {
