@@ -7,7 +7,7 @@ publish_to: none
 
 environment:
   sdk: ">=3.5.4 <4.0.0"
-  flutter: 3.24.5
+  flutter: 3.27.1
 
 dependencies:
   after_layout: ^1.2.0
@@ -52,7 +52,10 @@ dependencies:
   path: ^1.9.0
   path_provider: ^2.1.5
   quick_actions: ^1.1.0
-  receive_sharing_intent: ^1.8.1
+  receive_sharing_intent: # TODO: change when the fix is released
+    git:
+      url: https://github.com/KasemJaffer/receive_sharing_intent
+      ref: 2cea396843cd3ab1b5ec4334be4233864637874e
   restart_app: ^1.3.2
   riverpod_annotation: ^2.6.1
   saf_stream: ^0.10.0
