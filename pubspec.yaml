@@ -28,10 +28,7 @@ dependencies:
   flutter_helper_utils: ^6.8.0
   flutter_localizations:
     sdk: flutter
-  flutter_mimir:
-    git:
-      url: https://github.com/maelchiotti/mimir
-      path: packages/flutter_mimir
+  flutter_mimir: ^0.1.6
   flutter_native_splash: ^2.4.3
   flutter_riverpod: ^2.6.1
   flutter_secure_storage: ^9.2.2
