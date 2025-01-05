@@ -51,7 +51,6 @@ class RichTextNote extends Note {
   /// Rich text note to JSON.
   Map<String, dynamic> toJson() => _$RichTextNoteToJson(this);
 
-  /// Returns this note with the [title] and the [content] encrypted with the [password].
   @override
   Note encrypted(String password) => this
     ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
@@ -105,10 +104,6 @@ class RichTextNote extends Note {
 
     return content.trim();
   }
-
-  @ignore
-  @override
-  String get shareText => '$title\n\n$contentPreview';
 
   @ignore
   @override

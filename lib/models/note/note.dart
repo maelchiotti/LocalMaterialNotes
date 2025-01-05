@@ -13,6 +13,8 @@ import '../label/label.dart';
 
 part 'note.g.dart';
 
+part 'plain_text/plain_text_note.dart';
+
 part 'rich_text/rich_text_note.dart';
 
 /// Converts the [labels] to a JSON-compatible list of strings.
@@ -63,7 +65,7 @@ sealed class Note implements Comparable<Note> {
     required this.title,
   });
 
-  /// Returns this note with title and the content encrypted using the [password].
+  /// Returns this note with the [title] and the content encrypted using the [password].
   Note encrypted(String password);
 
   /// Note content as plain text.
@@ -80,7 +82,7 @@ sealed class Note implements Comparable<Note> {
 
   /// Note title and content to be shared as a single text.
   @ignore
-  String get shareText;
+  String get shareText => '$title\n\n$contentPreview';
 
   /// Whether the title is empty.
   @ignore

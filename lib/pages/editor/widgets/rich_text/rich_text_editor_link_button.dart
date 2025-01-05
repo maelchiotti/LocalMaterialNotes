@@ -1,13 +1,13 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 
-import '../dialogs/link_dialog.dart';
-import 'editor_button.dart';
+import '../../dialogs/rich_text_editor_link_dialog.dart';
+import 'rich_text_editor_button.dart';
 
 /// Custom toolbar button to add a link.
-class LinkButton extends StatefulWidget {
+class RichTextEditorLinkButton extends StatefulWidget {
   /// Default constructor.
-  const LinkButton({
+  const RichTextEditorLinkButton({
     super.key,
     required this.controller,
   });
@@ -16,10 +16,10 @@ class LinkButton extends StatefulWidget {
   final FleatherController controller;
 
   @override
-  State<LinkButton> createState() => _LinkButtonState();
+  State<RichTextEditorLinkButton> createState() => _RichTextEditorLinkButtonState();
 }
 
-class _LinkButtonState extends State<LinkButton> {
+class _RichTextEditorLinkButtonState extends State<RichTextEditorLinkButton> {
   /// Whether the button is enabled.
   var _enabled = false;
 
@@ -31,7 +31,7 @@ class _LinkButtonState extends State<LinkButton> {
   }
 
   @override
-  void didUpdateWidget(covariant LinkButton oldWidget) {
+  void didUpdateWidget(covariant RichTextEditorLinkButton oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.controller != widget.controller) {
@@ -59,7 +59,7 @@ class _LinkButtonState extends State<LinkButton> {
     final link = await showAdaptiveDialog<String>(
       context: context,
       useRootNavigator: false,
-      builder: (context) => const LinkDialog(),
+      builder: (context) => const RichTextEditorLinkDialog(),
     );
 
     if (link == null || link.isEmpty) {
@@ -71,7 +71,7 @@ class _LinkButtonState extends State<LinkButton> {
 
   @override
   Widget build(BuildContext context) {
-    return EditorButton(
+    return RichTextEditorButton(
       icon: Icons.link,
       iconColor: _enabled ? Theme.of(context).iconTheme.color : Theme.of(context).disabledColor,
       onPressed: _enabled ? _enterLink : null,
