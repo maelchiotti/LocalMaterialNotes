@@ -37,7 +37,7 @@ class EditorAppBar extends ConsumerStatefulWidget {
 class _BackAppBarState extends ConsumerState<EditorAppBar> {
   /// Switches the editor mode between editing and viewing.
   void switchMode() {
-    isFleatherEditorEditMode.value = !isFleatherEditorEditMode.value;
+    isEditorInEditModeNotifier.value = !isEditorInEditModeNotifier.value;
   }
 
   /// Performs the action associated with the selected [menuOption] on the not deleted note.
@@ -149,9 +149,9 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
 
     return ValueListenableBuilder(
-      valueListenable: fleatherFieldHasFocusNotifier,
-      builder: (context, hasFocus, child) => ValueListenableBuilder(
-        valueListenable: isFleatherEditorEditMode,
+      valueListenable: editorHasFocusNotifier,
+      builder: (context, editorHasFocus, child) => ValueListenableBuilder(
+        valueListenable: isEditorInEditModeNotifier,
         builder: (context, isEditMode, child) => AppBar(
           leading: BackButton(),
           actions: note == null
@@ -164,10 +164,13 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                         builder: (context, canUndo, child) => IconButton(
                           icon: const Icon(Icons.undo),
                           tooltip: l.tooltip_undo,
-                          onPressed:
-                              hasFocus && canUndo && editorController != null && editorController.canUndo && isEditMode
-                                  ? undo
-                                  : null,
+                          onPressed: editorHasFocus &&
+                                  canUndo &&
+                                  editorController != null &&
+                                  editorController.canUndo &&
+                                  isEditMode
+                              ? undo
+                              : null,
                         ),
                       ),
                     if (showUndoRedoButtons)
@@ -176,18 +179,18 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                         builder: (context, canRedo, child) => IconButton(
                           icon: const Icon(Icons.redo),
                           tooltip: l.tooltip_redo,
-                          onPressed: hasFocus && canRedo && isEditMode ? redo : null,
+                          onPressed: editorHasFocus && canRedo && isEditMode ? redo : null,
                         ),
                       ),
                     if (showChecklistButton)
                       IconButton(
                         icon: const Icon(Icons.checklist),
                         tooltip: l.tooltip_toggle_checkbox,
-                        onPressed: hasFocus && isEditMode ? toggleChecklist : null,
+                        onPressed: editorHasFocus && isEditMode ? toggleChecklist : null,
                       ),
                     if (showEditorModeButton)
                       ValueListenableBuilder(
-                        valueListenable: isFleatherEditorEditMode,
+                        valueListenable: isEditorInEditModeNotifier,
                         builder: (context, isEditMode, child) => IconButton(
                           icon: Icon(isEditMode ? Icons.visibility : Icons.edit),
                           tooltip: isEditMode

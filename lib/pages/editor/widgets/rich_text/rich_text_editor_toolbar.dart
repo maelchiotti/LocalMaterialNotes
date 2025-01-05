@@ -1,68 +1,64 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
-import '../../../common/constants/paddings.dart';
-import '../../../common/constants/sizes.dart';
-import '../../../common/preferences/preference_key.dart';
-import 'editor_button.dart';
-import 'link_button.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
+import '../../../../common/constants/paddings.dart';
+import '../../../../common/constants/sizes.dart';
+import '../../../../common/preferences/preference_key.dart';
+import 'rich_text_editor_button.dart';
+import 'rich_text_editor_link_button.dart';
+
 /// Toolbar for the content text field that enables advanced formatting options.
-class EditorToolbar extends StatefulWidget {
+class RichTextEditorToolbar extends StatelessWidget {
   /// Default constructor.
-  const EditorToolbar({
+  const RichTextEditorToolbar({
     super.key,
-    required this.editorController,
+    required this.fleatherController,
   });
 
-  /// Controller of the content text field.
-  final FleatherController editorController;
+  final FleatherController fleatherController;
 
-  @override
-  State<EditorToolbar> createState() => _EditorToolbarState();
-}
-
-class _EditorToolbarState extends State<EditorToolbar> {
   /// Builds a button of the toolbar.
   ///
   /// Overrides the default button style of fleather.
-  Widget _buttonBuilder(
+  Widget buttonBuilder(
     BuildContext context,
     ParchmentAttribute attribute,
     IconData icon,
     bool isToggled,
     VoidCallback? onPressed,
-  ) =>
-      Padding(
-        padding: Paddings.vertical(2),
-        child: ConstrainedBox(
-          constraints: BoxConstraints.tightFor(
-            width: Sizes.editorToolbarButtonHeight.size,
-            height: Sizes.editorToolbarButtonWidth.size,
-          ),
-          child: RawMaterialButton(
-            shape: const CircleBorder(),
-            visualDensity: VisualDensity.compact,
-            fillColor: isToggled ? Theme.of(context).colorScheme.secondary : null,
-            elevation: 0,
-            onPressed: onPressed,
-            child: Icon(icon),
-          ),
+  ) {
+    return Padding(
+      padding: Paddings.vertical(2),
+      child: ConstrainedBox(
+        constraints: BoxConstraints.tightFor(
+          width: Sizes.editorToolbarButtonHeight.size,
+          height: Sizes.editorToolbarButtonWidth.size,
         ),
-      );
+        child: RawMaterialButton(
+          shape: const CircleBorder(),
+          visualDensity: VisualDensity.compact,
+          fillColor: isToggled ? Theme.of(context).colorScheme.secondary : null,
+          elevation: 0,
+          onPressed: onPressed,
+          child: Icon(icon),
+        ),
+      ),
+    );
+  }
 
   /// Inserts a rule in the content.
   ///
   /// Copied from the fleather source code to allow using a custom button.
-  void _insertRule() {
-    final index = widget.editorController.selection.baseOffset;
-    final length = widget.editorController.selection.extentOffset - index;
-    final newSelection = widget.editorController.selection.copyWith(
+  void insertRule(FleatherController fleatherController) {
+    final index = fleatherController.selection.baseOffset;
+    final length = fleatherController.selection.extentOffset - index;
+    final newSelection = fleatherController.selection.copyWith(
       baseOffset: index + 2,
       extentOffset: index + 2,
     );
 
-    widget.editorController.replaceText(index, length, BlockEmbed.horizontalRule, selection: newSelection);
+    fleatherController.replaceText(index, length, BlockEmbed.horizontalRule, selection: newSelection);
   }
 
   @override
@@ -80,70 +76,70 @@ class _EditorToolbarState extends State<EditorToolbar> {
             ToggleStyleButton(
               attribute: ParchmentAttribute.bold,
               icon: Icons.format_bold,
-              controller: widget.editorController,
-              childBuilder: _buttonBuilder,
+              controller: fleatherController,
+              childBuilder: buttonBuilder,
             ),
             ToggleStyleButton(
               attribute: ParchmentAttribute.italic,
               icon: Icons.format_italic,
-              controller: widget.editorController,
-              childBuilder: _buttonBuilder,
+              controller: fleatherController,
+              childBuilder: buttonBuilder,
             ),
             ToggleStyleButton(
               attribute: ParchmentAttribute.underline,
               icon: Icons.format_underline,
-              controller: widget.editorController,
-              childBuilder: _buttonBuilder,
+              controller: fleatherController,
+              childBuilder: buttonBuilder,
             ),
             ToggleStyleButton(
               attribute: ParchmentAttribute.strikethrough,
               icon: Icons.format_strikethrough,
-              controller: widget.editorController,
-              childBuilder: _buttonBuilder,
+              controller: fleatherController,
+              childBuilder: buttonBuilder,
             ),
             if (!showChecklistButton)
               ToggleStyleButton(
                 attribute: ParchmentAttribute.block.checkList,
                 icon: Icons.checklist,
-                controller: widget.editorController,
-                childBuilder: _buttonBuilder,
+                controller: fleatherController,
+                childBuilder: buttonBuilder,
               ),
             ToggleStyleButton(
               attribute: ParchmentAttribute.block.bulletList,
               icon: Icons.format_list_bulleted,
-              controller: widget.editorController,
-              childBuilder: _buttonBuilder,
+              controller: fleatherController,
+              childBuilder: buttonBuilder,
             ),
             ToggleStyleButton(
               attribute: ParchmentAttribute.block.numberList,
               icon: Icons.format_list_numbered,
-              controller: widget.editorController,
-              childBuilder: _buttonBuilder,
+              controller: fleatherController,
+              childBuilder: buttonBuilder,
             ),
             ToggleStyleButton(
               attribute: ParchmentAttribute.inlineCode,
               icon: Icons.code,
-              controller: widget.editorController,
-              childBuilder: _buttonBuilder,
+              controller: fleatherController,
+              childBuilder: buttonBuilder,
             ),
             ToggleStyleButton(
               attribute: ParchmentAttribute.block.code,
               icon: Symbols.code_blocks,
-              controller: widget.editorController,
-              childBuilder: _buttonBuilder,
+              controller: fleatherController,
+              childBuilder: buttonBuilder,
             ),
             ToggleStyleButton(
               attribute: ParchmentAttribute.block.quote,
               icon: Icons.format_quote,
-              controller: widget.editorController,
-              childBuilder: _buttonBuilder,
+              controller: fleatherController,
+              childBuilder: buttonBuilder,
             ),
-            LinkButton(
-              controller: widget.editorController,
+            RichTextEditorLinkButton(
+              controller: fleatherController,
             ),
-            EditorButton(
+            RichTextEditorButton(
               icon: Icons.horizontal_rule,
-              onPressed: _insertRule,
+              onPressed: () => insertRule(fleatherController),
             ),
             Padding(padding: Paddings.vertical(2)),
           ],

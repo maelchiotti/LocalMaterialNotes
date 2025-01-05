@@ -22,13 +22,20 @@ class NotesService {
 
   NotesService._internal();
 
-  final Isar _database = DatabaseService().database;
-  final _richTextNotes = DatabaseService().database.richTextNotes;
+  late final Isar _database;
+
+  late final IsarCollection<PlainTextNote> _plainTextNotes;
+  late final IsarCollection<RichTextNote> _richTextNotes;
 
   late final MimirIndex _index;
 
   /// Ensures the notes service is initialized.
   Future<void> ensureInitialized() async {
+    _database = DatabaseService().database;
+
+    _plainTextNotes = DatabaseService().database.plainTextNotes;
+    _richTextNotes = DatabaseService().database.richTextNotes;
+
     _index = await DatabaseService().mimir.openIndex(
       'notes',
       primaryKey: 'id',
@@ -135,6 +142,8 @@ class NotesService {
   Future<void> put(Note note) async {
     await _database.writeTxn(() async {
       switch (note) {
+        case final PlainTextNote note:
+          await _plainTextNotes.put(note);
         case final RichTextNote note:
           await _richTextNotes.put(note);
       }
@@ -145,13 +154,12 @@ class NotesService {
 
   /// Puts the [notes] in the database.
   Future<void> putAll(List<Note> notes) async {
+    final plainTextNotes = notes.whereType<PlainTextNote>().toList();
+    final richTextNotes = notes.whereType<RichTextNote>().toList();
+
     await _database.writeTxn(() async {
-      for (final note in notes) {
-        switch (note) {
-          case final RichTextNote note:
-            await _richTextNotes.put(note);
-        }
-      }
+      await _plainTextNotes.putAll(plainTextNotes);
+      await _richTextNotes.putAll(richTextNotes);
     });
 
     await _updateAllIndexes(notes);
