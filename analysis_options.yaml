@@ -6,7 +6,7 @@ analyzer:
   plugins:
     - custom_lint
   language:
-    strict-inference: true # Force to specify generic rich_text
+    strict-inference: true # Force to specify generic types
 
 linter:
   rules:
