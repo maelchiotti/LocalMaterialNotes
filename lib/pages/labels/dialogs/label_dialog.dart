@@ -7,6 +7,9 @@ import '../../../common/constants/sizes.dart';
 import '../../../models/label/label.dart';
 import '../../../providers/labels/labels_list/labels_list_provider.dart';
 
+// TODO: remove on next Flutter release
+// ignore_for_file: deprecated_member_use
+
 /// Dialog to add or edit a label.
 class LabelDialog extends ConsumerStatefulWidget {
   /// A dialog allowing the user to add a label providing its name and color, or to edit an existing one.

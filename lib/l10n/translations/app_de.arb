@@ -109,18 +109,6 @@
   "@button_sort_ascending": {
     "description": "Text of the button to sort the notes list in ascending order."
   },
-  "settings_appearance": "Aussehen",
-  "@settings_appearance": {
-    "description": "Title of the settings page regarding the application's appearance."
-  },
-  "settings_appearance_description": "Sprache, Gestaltung, Notizkacheln",
-  "@settings_appearance_description": {
-    "description": "Description of the appearance settings page."
-  },
-  "settings_appearance_application": "Anwendung",
-  "@settings_appearance_application": {
-    "description": "Title of the sub-section regarding the application under the appearance settings."
-  },
   "settings_language": "Sprache",
   "@settings_language": {
     "description": "Title of the language setting tile."
@@ -160,10 +148,6 @@
   "settings_black_theming_description": "Nutze einen schwarzen Hintergrund im dunklen Modus",
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
-  },
-  "settings_appearance_notes_tiles": "Notizenfelder",
-  "@settings_appearance_notes_tiles": {
-    "description": "Title of the sub-section regarding the notes tiles under the appearance settings."
   },
   "settings_show_titles_only": "Nur Titel",
   "@settings_show_titles_only": {
@@ -239,7 +223,7 @@
   },
   "settings_behavior_swipe_actions": "Wischgesten",
   "@settings_behavior_swipe_actions": {
-    "description": "Title of the sub-section regarding the swipe actions under the behavior settings."
+    "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
   },
   "settings_swipe_action_right": "Aktion für Rechtswischen",
   "@settings_swipe_action_right": {
@@ -679,43 +663,13 @@
   "@dialog_delete": {
     "description": "Title of the the dialog to delete one or multiple notes (moving them to the bin), and text for the confirmation button."
   },
-  "dialog_delete_body": "Willst du diese {count} {count, plural,zero{} one{Notiz} other{Notizen}} wirklich löschen? Du kannst {count, plural,zero{} one{diese} other{diese}} aus dem Papierkorb wiederherstellen.",
-  "@dialog_delete_body": {
-    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
-  },
   "dialog_permanently_delete": "Dauerhaft löschen",
   "@dialog_permanently_delete": {
     "description": "Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button."
   },
-  "dialog_permanently_delete_body": "Willst du die {count} {count, plural, zero{} one{Notiz} other{Notizen}} dauerhaft löschen? Du kannst {count, plural, zero{} one{diese} other{diese}} nicht wiederherstellen.",
-  "@dialog_permanently_delete_body": {
-    "description": "Text for the dialog to confirm the permanent deletion of one or multiple notes.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
-  },
   "dialog_restore": "Wiederherstellen",
   "@dialog_restore": {
     "description": "Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button."
-  },
-  "dialog_restore_body": "Willst du diese {count} {count, plural, zero{} one{Notiz} other{Notizen}} wirklich wiederherstellen?",
-  "@dialog_restore_body": {
-    "description": "Text for the dialog to confirm restoring one or multiple notes from the bin.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
   },
   "dialog_empty_bin": "Papierkorb leeren",
   "@dialog_empty_bin": {

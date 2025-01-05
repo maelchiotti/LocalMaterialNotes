@@ -1,0 +1,9 @@
+ADDED
+- Choose the font of the application and the notes editor
+- More actions on multi-selection: share and add labels
+- Swipe actions in the bin
+
+FIXED
+- Already existing notes missing while searching
+- Back action from the labels pages
+- Wrong icon for hidden labels

@@ -133,9 +133,6 @@ class ThemeUtils {
           ? ColorScheme.fromSeed(
               brightness: Brightness.dark,
               seedColor: customPrimaryColor,
-              // TODO: remove when not required anymore, can't figure out why it's needed since it's not an issue of dynamic_colors
-              // ignore: deprecated_member_use
-              background: Colors.black,
               surface: Colors.black,
             )
           : ColorScheme.fromSeed(

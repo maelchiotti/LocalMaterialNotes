@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter_mimir/flutter_mimir.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
@@ -129,7 +128,7 @@ class NotesService {
     final notesIds = searchResults.map((Map<String, dynamic> noteIndex) => noteIndex['id'] as int).toList();
 
     final notes = (await _notes.getAll(notesIds));
-    final notesNotNull = notes.whereNotNull().toList();
+    final notesNotNull = notes.nonNulls.toList();
 
     // Check that all search results correspond to an existing note
     if (notes.length != notesNotNull.length) {

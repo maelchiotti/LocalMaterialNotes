@@ -1,11 +1,12 @@
 // ignore_for_file: public_member_api_docs
 
+import '../../constants/constants.dart';
 import '../../extensions/iterable_extension.dart';
 import '../preference_key.dart';
 
 /// List of fonts.
 enum Font {
-  systemDefault('Roboto', 'System default'),
+  systemDefault('Roboto'),
   barlow('Barlow', 'Barlow'),
   comicSansMS('Comic Sans MS', 'Comic Sans MS'),
   dancingScript('Dancing Script', 'Dancing Script'),
@@ -24,10 +25,10 @@ enum Font {
   final String familyName;
 
   /// The name of the font family to display.
-  final String displayName;
+  final String? _displayName;
 
   /// A font identified by its [familyName] that can be used in the application.
-  const Font(this.familyName, this.displayName);
+  const Font(this.familyName, [this._displayName]);
 
   /// Returns the value of the preference if set, or its default value otherwise.
   factory Font.appFromPreference() {
@@ -59,5 +60,15 @@ enum Font {
     }
 
     return font;
+  }
+
+  /// Returns the display name of this font.
+  String get displayName {
+    // Return the localized display name for the system default font
+    if (this == systemDefault) {
+      return l.font_system_default;
+    }
+
+    return _displayName!;
   }
 }
