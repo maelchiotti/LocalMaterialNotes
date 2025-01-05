@@ -1000,5 +1000,9 @@
   "welcome_note_content": "Simple, local, material design notes",
   "@welcome_note_content": {
     "description": "Content of the welcome note automatically created on the first run of the application."
+  },
+  "font_system_default": "System default",
+  "@font_system_default": {
+    "description": "Name of the font settings that uses the default font of the system."
   }
 }

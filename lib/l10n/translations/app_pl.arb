@@ -89,14 +89,6 @@
   "@button_sort_ascending": {
     "description": "Text of the button to sort the notes list in ascending order."
   },
-  "settings_appearance": "Wygląd",
-  "@settings_appearance": {
-    "description": "Title of the settings page regarding the application's appearance."
-  },
-  "settings_appearance_application": "Aplikacja",
-  "@settings_appearance_application": {
-    "description": "Title of the sub-section regarding the application under the appearance settings."
-  },
   "settings_language": "Język",
   "@settings_language": {
     "description": "Title of the language setting tile."
@@ -136,10 +128,6 @@
   "settings_black_theming_description": "Użyj czarnego tła w ciemnym motywie",
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
-  },
-  "settings_appearance_notes_tiles": "Kafelki notatek",
-  "@settings_appearance_notes_tiles": {
-    "description": "Title of the sub-section regarding the notes tiles under the appearance settings."
   },
   "settings_show_titles_only": "Tylko tytuł",
   "@settings_show_titles_only": {
@@ -215,7 +203,7 @@
   },
   "settings_behavior_swipe_actions": "Gesty przesunięcia palcem",
   "@settings_behavior_swipe_actions": {
-    "description": "Title of the sub-section regarding the swipe actions under the behavior settings."
+    "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
   },
   "settings_swipe_action_right": "Akcja przesunięcia w prawo",
   "@settings_swipe_action_right": {
@@ -563,43 +551,13 @@
   "@dialog_delete": {
     "description": "Title of the the dialog to delete one or multiple notes (moving them to the bin), and text for the confirmation button."
   },
-  "dialog_delete_body": "Usunąć {count} {count, plural, one{notatkę} few{notatek} many{notatki} other{notatki}}? Możesz później przywrócić {count, plural, one{ją} other{je}} z kosza.",
-  "@dialog_delete_body": {
-    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
-  },
   "dialog_permanently_delete": "Usuń trwale",
   "@dialog_permanently_delete": {
     "description": "Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button."
   },
-  "dialog_permanently_delete_body": "Usunąć trwale {count} {count, plural, one{notatkę} few {notatek} many {notatki} other{notatki}}? Tego nie da się cofnąć{count, plural, other{}}.",
-  "@dialog_permanently_delete_body": {
-    "description": "Text for the dialog to confirm the permanent deletion of one or multiple notes.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
-  },
   "dialog_restore": "Przywróć",
   "@dialog_restore": {
     "description": "Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button."
-  },
-  "dialog_restore_body": "Przywrócić {count} {count, plural, one{notatkę} few {notatki} many {notatek} other{notatek}}?",
-  "@dialog_restore_body": {
-    "description": "Text for the dialog to confirm restoring one or multiple notes from the bin.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
   },
   "dialog_empty_bin": "Opróżnij kosz",
   "@dialog_empty_bin": {

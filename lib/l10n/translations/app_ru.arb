@@ -109,17 +109,13 @@
   "@button_sort_ascending": {
     "description": "Text of the button to sort the notes list in ascending order."
   },
-  "settings_appearance": "Персонализация",
-  "@settings_appearance": {
+  "settings_page_appearance": "Персонализация",
+  "@settings_page_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
-  "settings_appearance_description": "Язык, тема оформления, стиль заметок",
-  "@settings_appearance_description": {
+  "settings_page_appearance_description": "Язык, тема оформления, шрифты, стиль заметок",
+  "@settings_page_appearance_description": {
     "description": "Description of the appearance settings page."
-  },
-  "settings_appearance_application": "Приложение",
-  "@settings_appearance_application": {
-    "description": "Title of the sub-section regarding the application under the appearance settings."
   },
   "settings_language": "Язык",
   "@settings_language": {
@@ -128,6 +124,10 @@
   "settings_language_contribute": "Поддержать",
   "@settings_language_contribute": {
     "description": "Button to contribute to the localizations, shown on the language setting tile."
+  },
+  "settings_appearance_section_theming": "Тема оформления",
+  "@settings_appearance_section_theming": {
+    "description": "Title of the section regarding the theming under the appearance settings."
   },
   "settings_theme": "Тема оформления",
   "@settings_theme": {
@@ -161,9 +161,29 @@
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
   },
-  "settings_appearance_notes_tiles": "Стиль заметок",
-  "@settings_appearance_notes_tiles": {
-    "description": "Title of the sub-section regarding the notes tiles under the appearance settings."
+  "settings_appearance_section_fonts": "Шрифты",
+  "@settings_appearance_section_fonts": {
+    "description": "Title of the section regarding the theming under the appearance settings."
+  },
+  "settings_app_font": "Шрифт приложения",
+  "@settings_app_font": {
+    "description": "Title of the setting tile to choose the font of the app."
+  },
+  "settings_app_font_description": "Шрифт, который будет использоваться в приложении",
+  "@settings_app_font_description": {
+    "description": "Description of the setting tile to choose the font of the app."
+  },
+  "settings_editor_font": "Шрифт редактора",
+  "@settings_editor_font": {
+    "description": "Title of the setting tile to choose the font of the notes."
+  },
+  "settings_editor_font_description": "Шрифт, который будет использоваться в редакторе",
+  "@settings_editor_font_description": {
+    "description": "Description of the setting tile to choose the font of the app."
+  },
+  "settings_appearance_section_notes_tiles": "Стиль заметок",
+  "@settings_appearance_section_notes_tiles": {
+    "description": "Title of the section regarding the notes tiles under the appearance settings."
   },
   "settings_show_titles_only": "Только заголовки",
   "@settings_show_titles_only": {
@@ -239,7 +259,11 @@
   },
   "settings_behavior_swipe_actions": "Действия при свайпе",
   "@settings_behavior_swipe_actions": {
-    "description": "Title of the sub-section regarding the swipe actions under the behavior settings."
+    "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
+  },
+  "settings_behavior_swipe_actions_bin": "Действия при свайпе (в корзине)",
+  "@settings_behavior_swipe_actions_bin": {
+    "description": "Title of the section regarding the swipe actions on the notes tiles in the bin under the behavior settings."
   },
   "settings_swipe_action_right": "Действие при свайпе вправо",
   "@settings_swipe_action_right": {
@@ -249,6 +273,10 @@
   "@settings_swipe_action_right_description": {
     "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile."
   },
+  "settings_bin_swipe_action_right_description": "Действие, которое будет выполняться при свайпе вправо по заметке в корзине",
+  "@settings_bin_swipe_action_right_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile in the bin."
+  },
   "settings_swipe_action_left": "Действие при свайпе влево",
   "@settings_swipe_action_left": {
     "description": "Title of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
@@ -256,6 +284,10 @@
   "settings_swipe_action_left_description": "Действие, которое будет выполняться при свайпе влево по заметке",
   "@settings_swipe_action_left_description": {
     "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
+  },
+  "settings_bin_swipe_action_left_description": "Действие, которое будет выполняться при свайпе влево по заметке в корзине",
+  "@settings_bin_swipe_action_left_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile in the bin."
   },
   "settings_editor": "Редактор",
   "@settings_editor": {
@@ -619,6 +651,14 @@
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
   },
+  "dialog_select_labels": "Выберите теги",
+  "@dialog_select_labels": {
+    "description": "Title of the dialog to select the labels of a note."
+  },
+  "dialog_select_labels_to_add": "Выберите теги для добавления",
+  "@dialog_select_labels_to_add": {
+    "description": "Title of the dialog to select the labels to add to the currently selected notes."
+  },
   "tooltip_undo": "Отменить последнее действие",
   "@tooltip_undo": {
     "description": "Tooltip for the button to undo the last action in the editor."
@@ -707,43 +747,13 @@
   "@dialog_delete": {
     "description": "Title of the the dialog to delete one or multiple notes (moving them to the bin), and text for the confirmation button."
   },
-  "dialog_delete_body": "Вы действительно хотите удалить {count} {count, plural, one{заметку} few {заметки} many {заметок} other{заметки}}? Вы можете восстановить {count, plural, one{её} other{их}} из корзины.",
-  "@dialog_delete_body": {
-    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
-  },
   "dialog_permanently_delete": "Удалить",
   "@dialog_permanently_delete": {
     "description": "Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button."
   },
-  "dialog_permanently_delete_body": "Вы действительно хотите навсегда удалить {count} {count, plural, one{заметку} few {заметки} many {заметок} other{заметки}}? Вы не сможете {count, plural, one{её} other{их}} восстановить.",
-  "@dialog_permanently_delete_body": {
-    "description": "Text for the dialog to confirm the permanent deletion of one or multiple notes.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
-  },
   "dialog_restore": "Восстановить",
   "@dialog_restore": {
     "description": "Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button."
-  },
-  "dialog_restore_body": "Вы действительно хотите восстановить {count} {count, plural, one{заметку} few {заметки} many {заметок} other{заметки}}?",
-  "@dialog_restore_body": {
-    "description": "Text for the dialog to confirm restoring one or multiple notes from the bin.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
   },
   "dialog_empty_bin": "Очистить корзину",
   "@dialog_empty_bin": {
@@ -756,16 +766,6 @@
   "dialog_delete_label": "Удалить",
   "@dialog_delete_label": {
     "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
-  },
-  "dialog_delete_label_body": "Вы действительно хотите удалить {count} {count, plural, one{тег} few {тега} many {тегов} other{}}? {count, plural, one{Он будут удален} other{Они будут удалены}} из тех заметок, в которых вы добавили {count, plural, one{этот тег} other{эти теги}}.",
-  "@dialog_delete_label_body": {
-    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
   },
   "dialog_export_encryption_switch": "Зашифровать экспорт в формате JSON",
   "@dialog_export_encryption_switch": {
@@ -822,6 +822,10 @@
   "placeholder_notes": "Нет заметок",
   "@placeholder_notes": {
     "description": "Placeholder on the notes page when there are no notes."
+  },
+  "placeholder_labels": "Тегов нет",
+  "@placeholder_labels": {
+    "description": "Placeholder on the labels page when there are no labels."
   },
   "placeholder_bin": "Нет удаленных заметок",
   "@placeholder_bin": {

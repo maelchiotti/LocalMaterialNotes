@@ -93,14 +93,6 @@
   "@button_sort_ascending": {
     "description": "Text of the button to sort the notes list in ascending order."
   },
-  "settings_appearance": "Aparência",
-  "@settings_appearance": {
-    "description": "Title of the settings page regarding the application's appearance."
-  },
-  "settings_appearance_application": "Aplicativo",
-  "@settings_appearance_application": {
-    "description": "Title of the sub-section regarding the application under the appearance settings."
-  },
   "settings_language": "Idioma",
   "@settings_language": {
     "description": "Title of the language setting tile."
@@ -140,10 +132,6 @@
   "settings_black_theming_description": "Use um fundo preto no modo escuro",
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
-  },
-  "settings_appearance_notes_tiles": "Blocos de notas",
-  "@settings_appearance_notes_tiles": {
-    "description": "Title of the sub-section regarding the notes tiles under the appearance settings."
   },
   "settings_show_titles_only": "Títulos apenas",
   "@settings_show_titles_only": {
@@ -215,7 +203,7 @@
   },
   "settings_behavior_swipe_actions": "Ações de deslizar",
   "@settings_behavior_swipe_actions": {
-    "description": "Title of the sub-section regarding the swipe actions under the behavior settings."
+    "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
   },
   "settings_swipe_action_right": "Ação de deslizar para a direita",
   "@settings_swipe_action_right": {
@@ -563,43 +551,13 @@
   "@dialog_delete": {
     "description": "Title of the the dialog to delete one or multiple notes (moving them to the bin), and text for the confirmation button."
   },
-  "dialog_delete_body": "Você realmente deseja excluir {count} {count, plural, one{anotação} other{anotações}}? Você pode restaurar {count, plural, one{ela} other{elas}} na lixeira.",
-  "@dialog_delete_body": {
-    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
-  },
   "dialog_permanently_delete": "Excluir permanentemente",
   "@dialog_permanently_delete": {
     "description": "Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button."
   },
-  "dialog_permanently_delete_body": "Você realmente deseja excluir permanentemente {count} {count, plural, one{anotação} other{anotações}}? Você não poderá restaurar {count, plural, one{ela} other{elas}}.",
-  "@dialog_permanently_delete_body": {
-    "description": "Text for the dialog to confirm the permanent deletion of one or multiple notes.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
-  },
   "dialog_restore": "Restaurar",
   "@dialog_restore": {
     "description": "Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button."
-  },
-  "dialog_restore_body": "Você realmente deseja restaurar {count} {count, plural, one{anotação} other{anotações}}?",
-  "@dialog_restore_body": {
-    "description": "Text for the dialog to confirm restoring one or multiple notes from the bin.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
   },
   "dialog_empty_bin": "Esvaziar a lixeira",
   "@dialog_empty_bin": {
