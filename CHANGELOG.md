@@ -4,9 +4,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.11.0 - 2025-01-05
+
+### Added
+
+- Choose the font of the application and the notes editor
+- More actions on multi-selection: share and add labels
+- Swipe actions in the bin
+
+### Fixed
+
+- Already existing notes missing while searching
+- Back action from the labels pages
+- Wrong icon for hidden labels
+
 ## 1.10.1 - 2024-12-23
 
-## Fixed
+### Fixed
 
 - Bin page not displaying the deleted notes
 - Missing translation for "No labels" placeholder

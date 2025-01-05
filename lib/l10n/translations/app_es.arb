@@ -109,17 +109,13 @@
   "@button_sort_ascending": {
     "description": "Text of the button to sort the notes list in ascending order."
   },
-  "settings_appearance": "Apariencia",
-  "@settings_appearance": {
+  "settings_page_appearance": "Apariencia",
+  "@settings_page_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
-  "settings_appearance_description": "Idioma, Tema, títulos de notas",
-  "@settings_appearance_description": {
+  "settings_page_appearance_description": "Idioma, tema, fuentes, tarjetas de notas",
+  "@settings_page_appearance_description": {
     "description": "Description of the appearance settings page."
-  },
-  "settings_appearance_application": "Aplicación",
-  "@settings_appearance_application": {
-    "description": "Title of the sub-section regarding the application under the appearance settings."
   },
   "settings_language": "Idioma",
   "@settings_language": {
@@ -128,6 +124,10 @@
   "settings_language_contribute": "Contribuir",
   "@settings_language_contribute": {
     "description": "Button to contribute to the localizations, shown on the language setting tile."
+  },
+  "settings_appearance_section_theming": "Tematización",
+  "@settings_appearance_section_theming": {
+    "description": "Title of the section regarding the theming under the appearance settings."
   },
   "settings_theme": "Tema",
   "@settings_theme": {
@@ -161,9 +161,29 @@
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
   },
-  "settings_appearance_notes_tiles": "Fichas de las notas",
-  "@settings_appearance_notes_tiles": {
-    "description": "Title of the sub-section regarding the notes tiles under the appearance settings."
+  "settings_appearance_section_fonts": "Fuentes",
+  "@settings_appearance_section_fonts": {
+    "description": "Title of the section regarding the theming under the appearance settings."
+  },
+  "settings_app_font": "Fuente de la aplicación",
+  "@settings_app_font": {
+    "description": "Title of the setting tile to choose the font of the app."
+  },
+  "settings_app_font_description": "Fuente utilizada para todos los textos de la aplicación, excepto en el editor de notas",
+  "@settings_app_font_description": {
+    "description": "Description of the setting tile to choose the font of the app."
+  },
+  "settings_editor_font": "Fuente del editor",
+  "@settings_editor_font": {
+    "description": "Title of the setting tile to choose the font of the notes."
+  },
+  "settings_editor_font_description": "Fuente utilizada sólo para el texto en el editor de notas",
+  "@settings_editor_font_description": {
+    "description": "Description of the setting tile to choose the font of the app."
+  },
+  "settings_appearance_section_notes_tiles": "Tarjetas de notas",
+  "@settings_appearance_section_notes_tiles": {
+    "description": "Title of the section regarding the notes tiles under the appearance settings."
   },
   "settings_show_titles_only": "Sólo títulos",
   "@settings_show_titles_only": {
@@ -239,7 +259,11 @@
   },
   "settings_behavior_swipe_actions": "Acciones de deslizamiento",
   "@settings_behavior_swipe_actions": {
-    "description": "Title of the sub-section regarding the swipe actions under the behavior settings."
+    "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
+  },
+  "settings_behavior_swipe_actions_bin": "Acciones de deslizamiento (papelera)",
+  "@settings_behavior_swipe_actions_bin": {
+    "description": "Title of the section regarding the swipe actions on the notes tiles in the bin under the behavior settings."
   },
   "settings_swipe_action_right": "Deslizar a la derecha",
   "@settings_swipe_action_right": {
@@ -249,6 +273,10 @@
   "@settings_swipe_action_right_description": {
     "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile."
   },
+  "settings_bin_swipe_action_right_description": "Acción a realizar cuando se desliza a la derecha la tarjeta de una nota en la papelera",
+  "@settings_bin_swipe_action_right_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile in the bin."
+  },
   "settings_swipe_action_left": "Desliza a la izquierda",
   "@settings_swipe_action_left": {
     "description": "Title of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
@@ -256,6 +284,10 @@
   "settings_swipe_action_left_description": "Acción a realizar al deslizar a la izquierda la tarjeta de una nota",
   "@settings_swipe_action_left_description": {
     "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
+  },
+  "settings_bin_swipe_action_left_description": "Acción a realizar al deslizar a la izquierda la tarjeta de una nota",
+  "@settings_bin_swipe_action_left_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile in the bin."
   },
   "settings_editor": "Editor",
   "@settings_editor": {
@@ -345,6 +377,10 @@
   "@settings_enable_labels": {
     "description": "Title of the setting tile to enable the labels."
   },
+  "settings_enable_labels_description": "Permitir categorizar las notas con etiquetas (deshabilitarlo no elimina etiquetas ni las elimina de las notas, solo las oculta)",
+  "@settings_enable_labels_description": {
+    "description": "Description of the setting tile to enable the labels."
+  },
   "settings_labels_appearance": "Apariencia",
   "@settings_labels_appearance": {
     "description": "Title of the settings section regarding the appearance of the labels."
@@ -381,6 +417,10 @@
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
+  "settings_import_description": "Importar notas, etiquetas y configuraciones desde un archivo JSON",
+  "@settings_import_description": {
+    "description": "Description of the setting tile to import a backup."
+  },
   "settings_backup_manual_export": "Exportar manualmente",
   "@settings_backup_manual_export": {
     "description": "Title of the settings section regarding the manual export of the notes."
@@ -388,6 +428,10 @@
   "settings_export_json": "Exportar a JSON",
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
+  },
+  "settings_export_json_description": "Exporte inmediatamente las notas, etiquetas y configuraciones a un archivo JSON (bin incluido) que se pueda importar de vuelta",
+  "@settings_export_json_description": {
+    "description": "Description of the setting tile to manually export the notes as JSON."
   },
   "settings_export_markdown": "Exportar a Markdown",
   "@settings_export_markdown": {
@@ -405,6 +449,10 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
+  "settings_auto_export_description": "Exporta automáticamente las notas, etiquetas y configuraciones a un archivo JSON (bin incluido) que se puede importar de vuelta",
+  "@settings_auto_export_description": {
+    "description": "Description of the settings tile to enable the automatic export."
+  },
   "settings_auto_export_frequency": "Frecuencia",
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
@@ -419,6 +467,10 @@
       }
     }
   },
+  "settings_auto_export_frequency_description": "Frecuencia de la exportación automática",
+  "@settings_auto_export_frequency_description": {
+    "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
+  },
   "settings_auto_export_encryption": "Encriptación",
   "@settings_auto_export_encryption": {
     "description": "Title of the settings tile to enable the encryption of the automatic exports."
@@ -431,9 +483,21 @@
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_auto_export_directory_description": "Directorio donde almacenar las exportaciones automáticas",
+  "@settings_auto_export_directory_description": {
+    "description": "Description of the settings tile to choose the directory where to save the automatic exports."
+  },
   "settings_accessibility": "Accesibilidad",
   "@settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
+  },
+  "settings_accessibility_text_size": "Tamaño del texto",
+  "@settings_accessibility_text_size": {
+    "description": "Title of the accessibility settings section regarding the text size."
+  },
+  "settings_accessibility_text_color": "Color del texto",
+  "@settings_accessibility_text_color": {
+    "description": "Title of the accessibility settings section regarding the text color."
   },
   "settings_accessibility_description": "Color de texto, escala del texto",
   "@settings_accessibility_description": {
@@ -442,6 +506,14 @@
   "settings_text_scaling": "Escala del texto",
   "@settings_text_scaling": {
     "description": "Title of the text scale setting tile."
+  },
+  "settings_bigger_titles": "Títulos grandes",
+  "@settings_bigger_titles": {
+    "description": "Title of the setting tile to use bigger titles on the notes tiles."
+  },
+  "settings_bigger_titles_description": "Mostrar títulos más grandes en las tarjetas de notas",
+  "@settings_bigger_titles_description": {
+    "description": "Description of the setting tile to use bigger titles on the notes tiles."
   },
   "settings_white_text_dark_mode": "Texto blanco en el modo oscuro",
   "@settings_white_text_dark_mode": {
@@ -579,6 +651,22 @@
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
   },
+  "dialog_select_labels": "Seleccionar etiquetas",
+  "@dialog_select_labels": {
+    "description": "Title of the dialog to select the labels of a note."
+  },
+  "dialog_select_labels_to_add": "Seleccionar etiquetas a añadir",
+  "@dialog_select_labels_to_add": {
+    "description": "Title of the dialog to select the labels to add to the currently selected notes."
+  },
+  "tooltip_undo": "Deshacer la última acción",
+  "@tooltip_undo": {
+    "description": "Tooltip for the button to undo the last action in the editor."
+  },
+  "tooltip_redo": "Rehacer la última acción",
+  "@tooltip_redo": {
+    "description": "Tooltip for the button to redo the last action in the editor."
+  },
   "tooltip_toggle_checkbox": "Alternar casilla",
   "@tooltip_toggle_checkbox": {
     "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
@@ -659,7 +747,7 @@
   "@dialog_delete": {
     "description": "Title of the the dialog to delete one or multiple notes (moving them to the bin), and text for the confirmation button."
   },
-  "dialog_delete_body": "¿Realmente quieres eliminar {count} {count, plural, zero{} one{nota} other{notas}}? Puedes restaurar{count, plural, zero{} one{la} other{las}} desde la papelera.",
+  "dialog_delete_body": "¿Realmente quieres eliminar {count} {count, plural, one{nota} other{notas}}? ¡Puedes restaurar{count, plural, one{la} other{las}} de la papelera.",
   "@dialog_delete_body": {
     "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
     "placeholders": {
@@ -673,7 +761,7 @@
   "@dialog_permanently_delete": {
     "description": "Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button."
   },
-  "dialog_permanently_delete_body": "¿Realmente quieres eliminar permanentemente {count} {count, plural, zero{} one{nota} other{notas}}? No podrás restaurar{count, plural, zero{} one{la} other{las}}.",
+  "dialog_permanently_delete_body": "¿Realmente quieres eliminar permanentemente {count} {count, plural, one{nota} other{notas}}? No podrás restaurar{count, plural, one{la} other{las}}.",
   "@dialog_permanently_delete_body": {
     "description": "Text for the dialog to confirm the permanent deletion of one or multiple notes.",
     "placeholders": {
@@ -687,7 +775,7 @@
   "@dialog_restore": {
     "description": "Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button."
   },
-  "dialog_restore_body": "¿Realmente quieres restaurar {count} {count, plural, zero{} one{nota} other{notas}}?",
+  "dialog_restore_body": "¿Realmente quieres restaurar {count} {count, plural, one{nota} other{notas}}?",
   "@dialog_restore_body": {
     "description": "Text for the dialog to confirm restoring one or multiple notes from the bin.",
     "placeholders": {
@@ -704,6 +792,20 @@
   "dialog_empty_bin_body": "¿Realmente quieres restaurar la papelera? No podrás restaurar las notas en ella.",
   "@dialog_empty_bin_body": {
     "description": "Text for the dialog to confirm emptying the bin."
+  },
+  "dialog_delete_label": "Eliminar",
+  "@dialog_delete_label": {
+    "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
+  },
+  "dialog_delete_label_body": "¿Estás seguro de que quieres eliminar {count} {count, plural, one{etiqueta} other{etiquetas}}? {count, plural, one{Esta} other{Estas}} serán removidas de las notas donde las agregaste{count, plural, other{}}.",
+  "@dialog_delete_label_body": {
+    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
   },
   "dialog_export_encryption_switch": "Encriptar la exportación JSON",
   "@dialog_export_encryption_switch": {
@@ -761,6 +863,10 @@
   "@placeholder_notes": {
     "description": "Placeholder on the notes page when there are no notes."
   },
+  "placeholder_labels": "Sin etiquetas",
+  "@placeholder_labels": {
+    "description": "Placeholder on the labels page when there are no labels."
+  },
   "placeholder_bin": "No hay notas eliminadas",
   "@placeholder_bin": {
     "description": "Placeholder on the bin page when there are no notes."
@@ -780,6 +886,16 @@
   "action_share": "Compartir",
   "@action_share": {
     "description": "Swipe or menu action to share a note."
+  },
+  "action_share_subject": "{count} {count, plural, one{nota} other{notas}} compartidas de Notas Material",
+  "@action_share_subject": {
+    "description": "Subject of the text that is shared when multiple notes are shared at the same time.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes being shared.",
+        "type": "int"
+      }
+    }
   },
   "action_delete": "Eliminar",
   "@action_delete": {
@@ -853,6 +969,14 @@
   "@snack_bar_copied": {
     "description": "Snack bar informing that the content of the note was copied to clipboard."
   },
+  "snack_bar_import_success": "La copia de seguridad se ha importado correctamente.",
+  "@snack_bar_import_success": {
+    "description": "Snack bar informing that the backup was successfully imported."
+  },
+  "snack_bar_export_success": "La copia de seguridad se ha exportado correctamente.",
+  "@snack_bar_export_success": {
+    "description": "Snack bar informing that the backup was successfully manually exported."
+  },
   "snack_bar_logs_copied": "Los registros han sido copiados al portapapeles.",
   "@snack_bar_logs_copied": {
     "description": "Snack bar message shown when the logs where copied to the clipboard from the error widget."
@@ -860,6 +984,10 @@
   "snack_bar_logs_exported": "Los registros se exportaron correctamente.",
   "@snack_bar_logs_exported": {
     "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
+  },
+  "snack_bar_no_labels": "No hay etiquetas.",
+  "@snack_bar_no_labels": {
+    "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
   },
   "action_add_note_title": "Agregar una nota",
   "@action_add_note_title": {

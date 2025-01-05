@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'select.dart';
-import '../../constants/constants.dart';
-import '../../dialogs/confirmation_dialog.dart';
+
 import '../../../models/note/note.dart';
 import '../../../providers/bin/bin_provider.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
+import '../../constants/constants.dart';
+import '../../dialogs/confirmation_dialog.dart';
+import 'select.dart';
 
 /// Deletes the [note].
 ///
@@ -122,7 +123,7 @@ Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, List<No
   final succeeded = await ref.read(binProvider.notifier).permanentlyDeleteAll(notes);
 
   if (context.mounted) {
-    exitNotesSelectionMode(context, ref);
+    exitNotesSelectionMode(context, ref, notesPage: false);
   }
 
   return succeeded;

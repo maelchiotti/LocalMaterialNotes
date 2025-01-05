@@ -9,6 +9,8 @@ enum PreferenceKey<T> {
   theme<String>('system'),
   dynamicTheming<bool>(true),
   blackTheming<bool>(false),
+  appFont<String>('systemDefault'),
+  editorFont<String>('systemDefault'),
   showTilesBackground<bool>(false),
   showSeparators<bool>(false),
   showTitlesOnly<bool>(false),
@@ -19,6 +21,8 @@ enum PreferenceKey<T> {
   confirmations<String>('irreversible'),
   swipeRightAction<String>('delete'),
   swipeLeftAction<String>('togglePin'),
+  binSwipeRightAction<String>('permanentlyDelete'),
+  binSwipeLeftAction<String>('restore'),
 
   // Editor
   showUndoRedoButtons<bool>(true),

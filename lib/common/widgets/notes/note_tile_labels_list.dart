@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../models/note/note.dart';
 import '../labels/label_badge.dart';
 import '../labels/label_placeholder_badge.dart';
-import '../../../models/note/note.dart';
 
 /// List of labels on note tiles.
 class NoteTileLabelsList extends ConsumerStatefulWidget {
@@ -36,7 +37,7 @@ class _NoteTileWidgetsState extends ConsumerState<NoteTileLabelsList> {
         crossAxisAlignment: WrapCrossAlignment.start,
         children: [
           ...noteLabels.take(maxLabels).map((label) => LabelBadge(label: label)),
-          if (noteLabels.length > maxLabels) LabelPlaceholderBadge(text: '+ ${noteLabels.length - maxLabels}')
+          if (noteLabels.length > maxLabels) LabelPlaceholderBadge(text: '+ ${noteLabels.length - maxLabels}'),
         ],
       ),
     );

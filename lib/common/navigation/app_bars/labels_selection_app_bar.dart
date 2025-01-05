@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../models/label/label.dart';
+import '../../../providers/labels/labels/labels_provider.dart';
 import '../../actions/labels/delete.dart';
 import '../../actions/labels/pin.dart';
 import '../../actions/labels/select.dart';
@@ -9,8 +12,6 @@ import '../../constants/paddings.dart';
 import '../../constants/separators.dart';
 import '../../widgets/placeholders/error_placeholder.dart';
 import '../../widgets/placeholders/loading_placeholder.dart';
-import '../../../models/label/label.dart';
-import '../../../providers/labels/labels/labels_provider.dart';
 
 /// Labels selection mode app bar.
 ///
@@ -74,9 +75,11 @@ class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
   }
 
   @override
-  Widget build(BuildContext context) => ref.watch(labelsProvider).when(
-        data: (labels) => buildAppBar(labels.where((label) => label.selected).toList(), labels.length),
-        error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
-        loading: () => const LoadingPlaceholder(),
-      );
+  Widget build(BuildContext context) {
+    return ref.watch(labelsProvider).when(
+          data: (labels) => buildAppBar(labels.where((label) => label.selected).toList(), labels.length),
+          error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
+          loading: () => const LoadingPlaceholder(),
+        );
+  }
 }

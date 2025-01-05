@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+
 import '../../../common/actions/notes/labels.dart';
 import '../../../common/constants/sizes.dart';
 import '../../../common/widgets/labels/label_badge.dart';
@@ -20,35 +21,36 @@ class EditorLabelsList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => ValueListenableBuilder(
-      valueListenable: currentNoteNotifier,
-      builder: (context, currentNote, child) {
-        if (currentNote == null) {
-          return LoadingPlaceholder();
-        }
+        valueListenable: currentNoteNotifier,
+        builder: (context, currentNote, child) {
+          if (currentNote == null) {
+            return LoadingPlaceholder();
+          }
 
-        final labels = currentNote.labelsVisibleSorted;
+          final labels = currentNote.labelsVisibleSorted;
 
-        return ColoredBox(
-          color: Theme.of(context).colorScheme.surfaceContainerHigh,
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: readOnly ? null : () => selectLabels(context, ref, currentNote),
-              child: SizedBox(
-                height: Sizes.editorLabelsListHeight.size,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.symmetric(horizontal: 8.0),
-                    itemBuilder: (context, index) => LabelBadge(label: labels[index]),
-                    separatorBuilder: (context, index) => Gap(4.0),
-                    itemCount: labels.length,
+          return ColoredBox(
+            color: Theme.of(context).colorScheme.surfaceContainerHigh,
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: readOnly ? null : () => selectLabels(context, ref, currentNote),
+                child: SizedBox(
+                  height: Sizes.editorLabelsListHeight.size,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      itemBuilder: (context, index) => LabelBadge(label: labels[index]),
+                      separatorBuilder: (context, index) => Gap(4.0),
+                      itemCount: labels.length,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        );
-      });
+          );
+        },
+      );
 }

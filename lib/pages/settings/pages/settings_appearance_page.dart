@@ -8,6 +8,7 @@ import '../../../common/constants/paddings.dart';
 import '../../../common/enums/localization_completion.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
+import '../../../common/preferences/enums/font.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
 import '../../../l10n/app_localizations/app_localizations.g.dart';
@@ -72,6 +73,20 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(blackTheming: toggled));
   }
 
+  /// Sets the app font to the new [font].
+  void _submittedAppFont(Font font) async {
+    PreferenceKey.appFont.set(font.name);
+
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(appFont: font));
+  }
+
+  /// Sets the editor font to the new [font].
+  void _submittedEditorFont(Font font) {
+    setState(() {
+      PreferenceKey.editorFont.set(font.name);
+    });
+  }
+
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTilesBackground(bool toggled) {
     PreferenceKey.showTilesBackground.set(toggled);
@@ -103,9 +118,13 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
   @override
   Widget build(BuildContext context) {
     final locale = LocaleUtils().appLocale;
+
     final themeMode = ref.watch(preferencesProvider.select((preferences) => preferences.themeMode));
     final dynamicTheming = ref.watch(preferencesProvider.select((preferences) => preferences.dynamicTheming));
     final blackTheming = ref.watch(preferencesProvider.select((preferences) => preferences.blackTheming));
+
+    final appFont = ref.watch(preferencesProvider.select((preferences) => preferences.appFont));
+    final editorFont = Font.editorFromPreference();
 
     final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
     final showSeparators = ref.watch(preferencesProvider.select((preferences) => preferences.showSeparators));
@@ -127,31 +146,31 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
           padding: Paddings.bottomSystemUi,
           child: Column(
             children: [
+              SettingSingleOptionTile.detailed(
+                icon: Icons.language,
+                title: l.settings_language,
+                trailing: TextButton.icon(
+                  onPressed: _openCrowdin,
+                  label: Text(l.settings_language_contribute),
+                ),
+                value: locale.nativeDisplayLanguage.capitalizeFirstLetter,
+                dialogTitle: l.settings_language,
+                options: AppLocalizations.supportedLocales
+                    .map(
+                      (locale) => (
+                        value: locale,
+                        title: locale.nativeDisplayLanguage.capitalizeFirstLetter,
+                        subtitle: LocalizationCompletion.getFormattedPercentage(locale),
+                      ),
+                    )
+                    .toList(),
+                initialOption: locale,
+                onSubmitted: _submittedLanguage,
+              ),
               SettingSection(
                 divider: null,
-                title: l.settings_appearance_application,
+                title: l.settings_appearance_section_theming,
                 tiles: [
-                  SettingSingleOptionTile.detailed(
-                    icon: Icons.language,
-                    title: l.settings_language,
-                    trailing: TextButton.icon(
-                      onPressed: _openCrowdin,
-                      label: Text(l.settings_language_contribute),
-                    ),
-                    value: locale.nativeDisplayLanguage.capitalizeFirstLetter,
-                    dialogTitle: l.settings_language,
-                    options: AppLocalizations.supportedLocales
-                        .map(
-                          (locale) => (
-                            value: locale,
-                            title: locale.nativeDisplayLanguage.capitalizeFirstLetter,
-                            subtitle: LocalizationCompletion.getFormattedPercentage(locale),
-                          ),
-                        )
-                        .toList(),
-                    initialOption: locale,
-                    onSubmitted: _submittedLanguage,
-                  ),
                   SettingSingleOptionTile.detailed(
                     icon: Icons.palette,
                     title: l.settings_theme,
@@ -185,7 +204,49 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
               ),
               SettingSection(
                 divider: null,
-                title: l.settings_appearance_notes_tiles,
+                title: l.settings_appearance_section_fonts,
+                tiles: [
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.font_download,
+                    title: l.settings_app_font,
+                    description: l.settings_app_font_description,
+                    value: appFont.displayName,
+                    dialogTitle: l.settings_app_font,
+                    options: Font.values
+                        .map(
+                          (font) => (
+                            value: font,
+                            title: font.displayName,
+                            subtitle: null,
+                          ),
+                        )
+                        .toList(),
+                    initialOption: appFont,
+                    onSubmitted: _submittedAppFont,
+                  ),
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.font_download,
+                    title: l.settings_editor_font,
+                    description: l.settings_editor_font_description,
+                    value: editorFont.displayName,
+                    dialogTitle: l.settings_editor_font,
+                    options: Font.values
+                        .map(
+                          (font) => (
+                            value: font,
+                            title: font.displayName,
+                            subtitle: null,
+                          ),
+                        )
+                        .toList(),
+                    initialOption: editorFont,
+                    onSubmitted: _submittedEditorFont,
+                  ),
+                ],
+              ),
+              SettingSection(
+                divider: null,
+                title: l.settings_appearance_section_notes_tiles,
                 tiles: [
                   SettingSwitchTile(
                     icon: Icons.gradient,

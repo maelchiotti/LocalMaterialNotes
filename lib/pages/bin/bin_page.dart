@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../common/constants/constants.dart';
 import '../../common/navigation/app_bars/notes_app_bar.dart';
 import '../../common/navigation/side_navigation.dart';
 import '../../common/navigation/top_navigation.dart';
 import '../../common/widgets/notes/notes_list.dart';
-import 'widgets/empty_bin_fab.dart';
 import '../../utils/keys.dart';
+import 'widgets/empty_bin_fab.dart';
 
 /// Page displaying the deleted notes.
 ///
@@ -23,20 +24,24 @@ class BinPage extends ConsumerStatefulWidget {
 
 class _BinPageState extends ConsumerState<BinPage> {
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: TopNavigation(
-          appbar: NotesAppBar(
-            key: Keys.appBarNotesBin,
-            title: l.navigation_bin,
-          ),
-        ),
-        drawer: SideNavigation(),
-        floatingActionButton: EmptyBinFab(
-          key: Keys.fabEmptyBin,
-        ),
-        body: NotesList(
-          key: Keys.notesPageNotesList,
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: TopNavigation(
+        appbar: NotesAppBar(
+          key: Keys.appBarNotesBin,
+          title: l.navigation_bin,
           notesPage: false,
         ),
-      );
+        notesPage: false,
+      ),
+      drawer: SideNavigation(),
+      floatingActionButton: EmptyBinFab(
+        key: Keys.fabEmptyBin,
+      ),
+      body: NotesList(
+        key: Keys.notesPageNotesList,
+        notesPage: false,
+      ),
+    );
+  }
 }

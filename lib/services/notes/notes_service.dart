@@ -1,7 +1,7 @@
-import 'package:collection/collection.dart';
 import 'package:flutter_mimir/flutter_mimir.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar/isar.dart';
+
 import '../../common/constants/constants.dart';
 import '../../common/constants/environment.dart';
 import '../../common/constants/labels.dart';
@@ -34,6 +34,16 @@ class NotesService {
       primaryKey: 'id',
       searchableFields: ['title', 'content'],
     );
+
+    // If the number of indexed notes is different from the total number of notes, re-index them all
+    // (this should only be needed on the first launch after updating from a version that didn't have the index feature)
+    final indexNotesCount = (await _index.numberOfDocuments).toInt();
+    final notesCount = await count;
+    if (indexNotesCount != notesCount) {
+      logger.i('Re-indexing all notes (only $indexNotesCount notes were indexed out of $notesCount');
+
+      await _updateAllIndexes(await getAll());
+    }
 
     // If the app runs with the 'INTEGRATION_TEST' environment parameter,
     // clear all the notes and add the notes for the integration tests
@@ -75,14 +85,21 @@ class NotesService {
     await _index.deleteDocuments(notesIds);
   }
 
+  /// Returns the total number of notes.
+  Future<int> get count async => await _notes.count();
+
   /// Returns all the notes.
-  ///
-  /// Returns the not deleted notes by default, or the deleted ones if [deleted] is set to `true`.
-  Future<List<Note>> getAll({bool deleted = false}) async => _notes.where().deletedEqualTo(deleted).findAll();
+  Future<List<Note>> getAll() async => _notes.where().findAll();
+
+  /// Returns all the notes that are not deleted.
+  Future<List<Note>> getAllNotDeleted() async => _notes.where().deletedEqualTo(false).findAll();
+
+  /// Returns all the notes that are deleted.
+  Future<List<Note>> getAllDeleted() async => _notes.where().deletedEqualTo(true).findAll();
 
   /// Returns all the notes containing the [label].
   Future<List<Note>> filterByLabel(Label label) async {
-    final notes = await getAll();
+    final notes = await getAllNotDeleted();
 
     return notes.where((note) {
       // Load the list of labels of the note.
@@ -101,7 +118,7 @@ class NotesService {
     final searchFilter = Mimir.and(
       [
         Mimir.where('deleted', isEqualTo: (!notesPage).toString()),
-        if (label != null) Mimir.where('labels', containsAtLeastOneOf: [label])
+        if (label != null) Mimir.where('labels', containsAtLeastOneOf: [label]),
       ],
     );
     final searchResults = await _index.search(
@@ -111,7 +128,7 @@ class NotesService {
     final notesIds = searchResults.map((Map<String, dynamic> noteIndex) => noteIndex['id'] as int).toList();
 
     final notes = (await _notes.getAll(notesIds));
-    final notesNotNull = notes.whereNotNull().toList();
+    final notesNotNull = notes.nonNulls.toList();
 
     // Check that all search results correspond to an existing note
     if (notes.length != notesNotNull.length) {
@@ -149,6 +166,18 @@ class NotesService {
     });
 
     await _updateIndex(note);
+  }
+
+  /// Updates the [note] with the added [labels] in the database.
+  Future<void> addLabels(List<Note> notes, Iterable<Label> labels) async {
+    await _database.writeTxn(() async {
+      for (final note in notes) {
+        note.labels.addAll(labels);
+        await note.labels.save();
+      }
+    });
+
+    await _updateAllIndexes(notes);
   }
 
   /// Updates the [notes] with their corresponding [notesLabels] in the database.
@@ -189,7 +218,7 @@ class NotesService {
 
   /// Deletes all the deleted notes from the database.
   Future<void> emptyBin() async {
-    final notes = await getAll(deleted: true);
+    final notes = await getAllDeleted();
 
     await _database.writeTxn(() async {
       await _notes.where().deletedEqualTo(true).deleteAll();
@@ -200,7 +229,7 @@ class NotesService {
 
   /// Deletes all the notes from the database.
   Future<void> clear() async {
-    final notes = await getAll();
+    final notes = await getAllNotDeleted();
 
     await _database.writeTxn(() async {
       await _notes.where().deleteAll();

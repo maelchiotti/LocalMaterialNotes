@@ -109,18 +109,6 @@
   "@button_sort_ascending": {
     "description": "Text of the button to sort the notes list in ascending order."
   },
-  "settings_appearance": "दिखावट",
-  "@settings_appearance": {
-    "description": "Title of the settings page regarding the application's appearance."
-  },
-  "settings_appearance_description": "भाषा, थीम, नोट्स टाइल",
-  "@settings_appearance_description": {
-    "description": "Description of the appearance settings page."
-  },
-  "settings_appearance_application": "एप्लिकेशन",
-  "@settings_appearance_application": {
-    "description": "Title of the sub-section regarding the application under the appearance settings."
-  },
   "settings_language": "भाषा",
   "@settings_language": {
     "description": "Title of the language setting tile."
@@ -160,10 +148,6 @@
   "settings_black_theming_description": "श्याम मोड में काली पृष्ठभूमि का उपयोग करें",
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
-  },
-  "settings_appearance_notes_tiles": "नोट्स टाइल्स",
-  "@settings_appearance_notes_tiles": {
-    "description": "Title of the sub-section regarding the notes tiles under the appearance settings."
   },
   "settings_show_titles_only": "केवल शीर्षक",
   "@settings_show_titles_only": {
@@ -239,7 +223,7 @@
   },
   "settings_behavior_swipe_actions": "स्वाइप क्रियाएँ",
   "@settings_behavior_swipe_actions": {
-    "description": "Title of the sub-section regarding the swipe actions under the behavior settings."
+    "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
   },
   "settings_swipe_action_right": "दायाँ स्वाइप क्रिया",
   "@settings_swipe_action_right": {
@@ -691,43 +675,13 @@
   "@dialog_delete": {
     "description": "Title of the the dialog to delete one or multiple notes (moving them to the bin), and text for the confirmation button."
   },
-  "dialog_delete_body": "क्या आप वाकई {count} {count, plural, zero{} one{नोट} other{नोट्स}} को हटाना चाहते हैं? आप बिन से {count, plural, zero{} one{इसे} other{इन्हें}} पुनर्स्थापित कर सकते हैं।",
-  "@dialog_delete_body": {
-    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
-  },
   "dialog_permanently_delete": "स्थायी रूप से मिटाए",
   "@dialog_permanently_delete": {
     "description": "Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button."
   },
-  "dialog_permanently_delete_body": "क्या आप वाकई {count} {count, plural, zero{} one{नोट} other{नोट्स}} को स्थायी रूप से हटाना चाहते हैं? आप {count, plural, zero{} one{इसे} other{इन्हें}} पुनर्स्थापित नहीं कर पाएँगे।",
-  "@dialog_permanently_delete_body": {
-    "description": "Text for the dialog to confirm the permanent deletion of one or multiple notes.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
-  },
   "dialog_restore": "पुनर्स्थापित करें",
   "@dialog_restore": {
     "description": "Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button."
-  },
-  "dialog_restore_body": "क्या आप वास्तव में {count} {count, plural, zero{} one{नोट} other{नोट्स}} को पुनर्स्थापित करना चाहते हैं?",
-  "@dialog_restore_body": {
-    "description": "Text for the dialog to confirm restoring one or multiple notes from the bin.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
   },
   "dialog_empty_bin": "बिन खाली करें",
   "@dialog_empty_bin": {
@@ -740,16 +694,6 @@
   "dialog_delete_label": "मिटाए",
   "@dialog_delete_label": {
     "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
-  },
-  "dialog_delete_label_body": "क्या आप वास्तव में {count} {count, plural, zero{} one{लेबल} other{लेबल्स}} हटाना चाहते हैं? {count, plural, zero{} one{इसे} other{इन्हें}} उन नोट्स से हटा दिया जाएगा जहाँ आपने {count, plural, zero{} one{इसे} other{इन्हें}} जोड़ा था।",
-  "@dialog_delete_label_body": {
-    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
-    "placeholders": {
-      "count": {
-        "description": "Number of notes to delete.",
-        "type": "int"
-      }
-    }
   },
   "dialog_export_encryption_switch": "JSON निर्यात एन्क्रिप्ट करें",
   "@dialog_export_encryption_switch": {

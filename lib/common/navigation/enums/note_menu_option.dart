@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
-import '../constants/constants.dart';
 
-// ignore_for_file: public_member_api_docs
+import '../../constants/constants.dart';
 
-/// Lists the options available in the menu of the editor's app bar.
-enum MenuOption {
+/// Lists the options available in the menu of the editor app bar for the notes that are not deleted.
+enum NoteMenuOption {
+  /// Toggle whether the note is pinned.
   togglePin(Icons.push_pin, alternativeIcon: Icons.push_pin_outlined),
+
+  /// Select the labels of the note.
   selectLabels(Icons.label),
+
+  /// Copy the note to the clipboard.
   copy(Icons.copy),
+
+  /// Share the note.
   share(Icons.share),
+
+  /// Delete the note.
+  ///
+  /// This action is [dangerous].
   delete(Icons.delete, dangerous: true),
-  restore(Icons.restore_from_trash),
-  deletePermanently(Icons.delete_forever, dangerous: true),
+
+  /// Show information about the note.
   about(Icons.info),
   ;
 
@@ -29,7 +39,7 @@ enum MenuOption {
   /// An option displayed in the editor's menu.
   ///
   /// An action is represented by an [icon] and a [title]. If it has two states, it can have an [alternativeIcon].
-  const MenuOption(this.icon, {this.alternativeIcon, this.dangerous = false});
+  const NoteMenuOption(this.icon, {this.alternativeIcon, this.dangerous = false});
 
   /// Returns the title of the menu option.
   ///
@@ -46,10 +56,6 @@ enum MenuOption {
         return flutterL?.shareButtonLabel ?? 'Share';
       case delete:
         return l.action_delete;
-      case restore:
-        return l.action_restore;
-      case deletePermanently:
-        return l.action_delete_permanently;
       case about:
         return l.action_about;
     }
@@ -58,7 +64,7 @@ enum MenuOption {
   /// Returns the `PopupMenuItem` widget of the menu option.
   ///
   /// Uses the alternative icon if [alternative] is set to `true`.
-  PopupMenuItem<MenuOption> popupMenuItem(BuildContext context, {bool alternative = false}) => PopupMenuItem(
+  PopupMenuItem<NoteMenuOption> popupMenuItem(BuildContext context, {bool alternative = false}) => PopupMenuItem(
         value: this,
         child: ListTile(
           leading: Icon(
@@ -67,11 +73,9 @@ enum MenuOption {
           ),
           title: Text(
             title(alternative),
-            style: dangerous
-                ? Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: Theme.of(context).colorScheme.error,
-                    )
-                : null,
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: dangerous ? Theme.of(context).colorScheme.error : null,
+                ),
           ),
         ),
       );

@@ -1,9 +1,10 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import '../common/constants/constants.dart';
-import 'auto_export_utils.dart';
 import 'package:path/path.dart';
+
+import '../common/constants/constants.dart';
+import '../services/backup/auto_backup_service.dart';
 
 /// Writes a file with the [data], in the [directory], with the [filename].
 ///

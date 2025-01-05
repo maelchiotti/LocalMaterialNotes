@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
+import '../../../common/preferences/enums/font.dart';
 import '../../../common/preferences/preference_key.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -36,37 +37,34 @@ class EditorField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fleatherField = FleatherField(
-      controller: fleatherController,
-      focusNode: editorFocusNode,
-      autofocus: autofocus,
-      readOnly: readOnly,
-      expands: true,
-      decoration: InputDecoration.collapsed(
-        hintText: l.hint_note,
-      ),
-      onLaunchUrl: _launchUrl,
-      spellCheckConfiguration: SpellCheckConfiguration(
-        spellCheckService: DefaultSpellCheckService(),
-      ),
-      padding: Paddings.bottomSystemUi,
-    );
-
-    // If paragraph spacing should be used, return the editor directly without modifying its default theme
-    if (PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault()) {
-      return fleatherField;
-    }
+    final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault();
+    final editorFont = Font.editorFromPreference();
 
     final fleatherThemeFallback = FleatherThemeData.fallback(context);
+    final fleatherThemeParagraph = TextBlockTheme(
+      style: fleatherThemeFallback.paragraph.style.copyWith(fontFamily: editorFont.familyName),
+      spacing: useParagraphsSpacing ? fleatherThemeFallback.paragraph.spacing : const VerticalSpacing.zero(),
+    );
 
     return FleatherTheme(
       data: fleatherThemeFallback.copyWith(
-        paragraph: TextBlockTheme(
-          style: fleatherThemeFallback.paragraph.style,
-          spacing: const VerticalSpacing.zero(),
-        ),
+        paragraph: fleatherThemeParagraph,
       ),
-      child: fleatherField,
+      child: FleatherField(
+        controller: fleatherController,
+        focusNode: editorFocusNode,
+        autofocus: autofocus,
+        readOnly: readOnly,
+        expands: true,
+        decoration: InputDecoration.collapsed(
+          hintText: l.hint_note,
+        ),
+        onLaunchUrl: _launchUrl,
+        spellCheckConfiguration: SpellCheckConfiguration(
+          spellCheckService: DefaultSpellCheckService(),
+        ),
+        padding: Paddings.bottomSystemUi,
+      ),
     );
   }
 }

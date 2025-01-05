@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../models/note/note.dart';
+import '../../actions/notes/copy.dart';
+import '../../actions/notes/delete.dart';
+import '../../actions/notes/pin.dart';
+import '../../actions/notes/share.dart';
 import '../../constants/constants.dart';
 import '../../extensions/iterable_extension.dart';
 import '../preference_key.dart';
 
-/// Action to trigger when swiping on a note tile.
+/// Action to trigger when swiping on a note tile of a not deleted note.
 enum SwipeAction {
   /// The swipe action is disabled.
   disabled(Icons.hide_source),
@@ -82,7 +89,7 @@ enum SwipeAction {
   /// Returns the title of the swipe action.
   ///
   /// Returns the alternative title if [alternative] is set to `true`.
-  String title([bool alternative = false]) {
+  String title(bool alternative) {
     switch (this) {
       case disabled:
         return l.action_disabled;
@@ -94,6 +101,53 @@ enum SwipeAction {
         return l.action_share;
       case copy:
         return flutterL?.copyButtonLabel ?? 'Copy';
+    }
+  }
+
+  /// Icon of the swipe action to display.
+  Widget iconWidget(BuildContext context, bool alternative) {
+    return Icon(
+      alternative && alternativeIcon != null ? alternativeIcon : icon,
+      color: dangerous
+          ? Theme.of(context).colorScheme.onErrorContainer
+          : Theme.of(context).colorScheme.onTertiaryContainer,
+    );
+  }
+
+  /// Text of the swipe action to display.
+  Widget titleWidget(BuildContext context, bool alternative) {
+    return Text(
+      title(alternative),
+      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            color: dangerous
+                ? Theme.of(context).colorScheme.onErrorContainer
+                : Theme.of(context).colorScheme.onTertiaryContainer,
+          ),
+    );
+  }
+
+  /// Background color of the widget.
+  Color backgroundColor(BuildContext context) {
+    return dangerous ? Theme.of(context).colorScheme.errorContainer : Theme.of(context).colorScheme.tertiaryContainer;
+  }
+
+  /// Executes the action corresponding to this swipe action on the [note].
+  Future<bool> execute(BuildContext context, WidgetRef ref, Note note) async {
+    switch (this) {
+      case delete:
+        return deleteNote(context, ref, note);
+      case togglePin:
+        return togglePinNote(context, ref, note);
+      case share:
+        await shareNote(note);
+
+        return false;
+      case copy:
+        await copyNote(note);
+
+        return false;
+      default:
+        throw Exception('Unexpected swipe action when swiping on note tile: $this');
     }
   }
 }
