@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../models/label/label.dart';
 
+// TODO: remove on next Flutter release
+// ignore_for_file: deprecated_member_use
+
 /// Labels used when running integration tests.
 final integrationTestLabels = <Label>[];
 
