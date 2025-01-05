@@ -1,0 +1,9 @@
+AJOUTÉ
+- Choix de la police de l'application et de l'éditeur de notes
+- Plus d'actions en multi-sélection : partager et ajouter des étiquettes
+- Actions de balayage dans la corbeille
+
+CORRIGÉ
+- Absence des notes déjà existantes lors de la recherche
+- Action de retour depuis les pages d'étiquettes
+- Mauvaise icône pour les étiquettes cachées
