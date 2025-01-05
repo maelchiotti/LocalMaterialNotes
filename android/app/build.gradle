@@ -95,4 +95,8 @@ flutter {
 dependencies {
     implementation 'com.android.support:multidex:2.0.1'
     androidTestUtil 'androidx.test:orchestrator:1.5.1'
+    // required by flutter_secure_storage
+    implementation 'com.google.errorprone:error_prone_annotations:2.36.0'
+    // required by flutter_secure_storage
+    implementation 'com.github.spotbugs:spotbugs-annotations:4.8.6'
 }
