@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../common/preferences/preference_key.dart';
-import 'navigation_routes.dart';
 import '../pages/editor/editor_page.dart';
 import '../providers/notifiers/notifiers.dart';
+import 'navigation_routes.dart';
 
 /// Utilities for the navigation.
 class NavigatorUtils {
@@ -28,7 +29,7 @@ class NavigatorUtils {
 
   /// Pushes the notes editor route with its parameters [readOnly] and a [isNewNote].
   static void pushNotesEditor(BuildContext context, bool readOnly, bool isNewNote) {
-    isFleatherEditorEditMode.value = !PreferenceKey.openEditorReadingMode.getPreferenceOrDefault();
+    isEditorInEditModeNotifier.value = !PreferenceKey.openEditorReadingMode.getPreferenceOrDefault();
 
     push(
       context,
