@@ -1,6 +1,7 @@
 <component name="ProjectRunConfigurationManager">
     <configuration name="debug" default="false" factoryName="Flutter"
         type="FlutterRunConfigurationType">
+        <option name="additionalArgs" value="--no-enable-impeller" />
         <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
         <method v="2" />
     </configuration>

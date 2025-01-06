@@ -12,7 +12,7 @@ import '../../constants/constants.dart';
 import 'select.dart';
 
 /// Asks the user to select the labels for the [note].
-Future<List<Label>?> selectLabels(BuildContext context, WidgetRef ref, Note note) async {
+Future<List<Label>?> selectLabels(BuildContext context, WidgetRef ref, {required Note note}) async {
   if (ref.read(labelsListProvider).value == null || ref.read(labelsListProvider).value!.isEmpty) {
     SnackBarUtils.info(l.snack_bar_no_labels).show();
 
@@ -39,7 +39,7 @@ Future<List<Label>?> selectLabels(BuildContext context, WidgetRef ref, Note note
 }
 
 /// Asks the user to select the labels to add to the [notes].
-Future<List<Label>?> addLabels(BuildContext context, WidgetRef ref, List<Note> notes) async {
+Future<List<Label>?> addLabels(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
   if (ref.read(labelsListProvider).value == null || ref.read(labelsListProvider).value!.isEmpty) {
     SnackBarUtils.info(l.snack_bar_no_labels).show();
 

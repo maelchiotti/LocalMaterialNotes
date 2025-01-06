@@ -7,7 +7,7 @@ import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 
 /// Toggles the select status of the [note].
-void toggleSelectNote(WidgetRef ref, Note note) {
+void toggleSelectNote(WidgetRef ref, {required Note note}) {
   if (note.deleted) {
     note.selected ? ref.read(binProvider.notifier).unselect(note) : ref.read(binProvider.notifier).select(note);
   } else {

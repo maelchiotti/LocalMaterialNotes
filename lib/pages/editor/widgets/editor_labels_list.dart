@@ -35,7 +35,7 @@ class EditorLabelsList extends ConsumerWidget {
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: readOnly ? null : () => selectLabels(context, ref, currentNote),
+              onTap: readOnly ? null : () => selectLabels(context, ref, note: currentNote),
               child: SizedBox(
                 height: Sizes.editorLabelsListHeight.size,
                 child: Padding(

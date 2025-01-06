@@ -15,7 +15,7 @@ import 'select.dart';
 ///
 /// First, asks for a confirmation if needed.
 /// Finally, pops the route if the note was deleted from the editor page.
-Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note, [bool pop = false]) async {
+Future<bool> deleteNote(BuildContext context, WidgetRef ref, {Note? note, bool pop = false}) async {
   if (note == null) {
     return false;
   }
@@ -49,7 +49,7 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note, [bool p
 /// Returns `true` if the [notes] were deleted, `false` otherwise.
 ///
 /// First, asks for a confirmation if needed.
-Future<bool> deleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
+Future<bool> deleteNotes(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
   if (!await askForConfirmation(
     context,
     l.dialog_delete,
@@ -74,7 +74,7 @@ Future<bool> deleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) 
 ///
 /// First, asks for a confirmation if needed.
 /// Finally, pops the route if the note was deleted from the editor page.
-Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? note, [bool pop = false]) async {
+Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, {Note? note, bool pop = false}) async {
   if (note == null) {
     return false;
   }
@@ -109,7 +109,7 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, Note? no
 /// Returns `true` if the [notes] were permanently deleted, `false` otherwise.
 ///
 /// First, asks for a confirmation if needed.
-Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
+Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
   if (!await askForConfirmation(
     context,
     l.dialog_permanently_delete,

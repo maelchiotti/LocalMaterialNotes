@@ -14,7 +14,7 @@ import 'select.dart';
 ///
 /// First, asks for a confirmation if needed.
 /// Finally, pops the route if the note was restored from the editor page.
-Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note, [bool pop = false]) async {
+Future<bool> restoreNote(BuildContext context, WidgetRef ref, {Note? note, bool pop = false}) async {
   if (note == null) {
     return false;
   }
@@ -47,7 +47,7 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, Note? note, [bool 
 /// Returns `true` if the [notes] were restored, `false` otherwise.
 ///
 /// First, asks for a confirmation if needed.
-Future<bool> restoreNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
+Future<bool> restoreNotes(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
   if (!await askForConfirmation(
     context,
     l.dialog_restore,

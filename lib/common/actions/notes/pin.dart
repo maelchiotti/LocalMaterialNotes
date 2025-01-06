@@ -9,7 +9,7 @@ import 'select.dart';
 /// Toggles the pined status of the [note].
 ///
 /// Returns `true` if the pined status of the [note] was toggled, `false` otherwise.
-Future<bool> togglePinNote(BuildContext context, WidgetRef ref, Note? note) async {
+Future<bool> togglePinNote(BuildContext context, WidgetRef ref, {Note? note}) async {
   if (note == null) {
     return false;
   }
@@ -20,7 +20,7 @@ Future<bool> togglePinNote(BuildContext context, WidgetRef ref, Note? note) asyn
 }
 
 /// Toggles the pined status of the [notes].
-Future<void> togglePinNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
+Future<void> togglePinNotes(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
   await ref.read(notesProvider(label: currentLabelFilter).notifier).togglePinAll(notes);
 
   if (context.mounted) {
