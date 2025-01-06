@@ -35,7 +35,7 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, Note? note, [bool p
 
   currentNoteNotifier.value = null;
 
-  final succeeded = await ref.read(notesProvider.notifier).delete(note);
+  final succeeded = await ref.read(notesProvider(label: currentLabelFilter).notifier).delete(note);
 
   if (!succeeded) {
     return false;
@@ -59,7 +59,7 @@ Future<bool> deleteNotes(BuildContext context, WidgetRef ref, List<Note> notes) 
     return false;
   }
 
-  final succeeded = await ref.read(notesProvider.notifier).deleteAll(notes);
+  final succeeded = await ref.read(notesProvider(label: currentLabelFilter).notifier).deleteAll(notes);
 
   if (context.mounted) {
     exitNotesSelectionMode(context, ref);

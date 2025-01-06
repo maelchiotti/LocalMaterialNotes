@@ -19,7 +19,7 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) asy
 
   // If some content was provided, immediately save the note without waiting for changes in the editor
   if (content != null) {
-    ref.read(notesProvider.notifier).edit(note);
+    ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
   }
 
   currentNoteNotifier.value = note;

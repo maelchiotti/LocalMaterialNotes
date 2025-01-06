@@ -11,19 +11,19 @@ import '../bin/bin_provider.dart';
 part 'notes_provider.g.dart';
 
 /// Provider for the notes.
-@Riverpod(keepAlive: true)
+@riverpod
 class Notes extends _$Notes {
   final _notesService = NotesService();
 
   @override
-  FutureOr<List<Note>> build() => get();
+  FutureOr<List<Note>> build({Label? label}) => get();
 
   /// Returns the list of not deleted notes.
   Future<List<Note>> get() async {
     List<Note> notes = [];
 
     try {
-      notes = await _notesService.getAllNotDeleted();
+      notes = await _notesService.getAllNotDeleted(label: label);
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
     }
@@ -34,21 +34,6 @@ class Notes extends _$Notes {
     }
 
     state = AsyncData(sortedNotes);
-
-    return notes.sorted();
-  }
-
-  /// Returns the list of not deleted notes.
-  Future<List<Note>> filter(Label label) async {
-    List<Note> notes = [];
-
-    try {
-      notes = await _notesService.filterByLabel(label);
-    } catch (exception, stackTrace) {
-      logger.e(exception.toString(), exception, stackTrace);
-    }
-
-    state = AsyncData(notes.sorted());
 
     return notes.sorted();
   }
@@ -84,6 +69,7 @@ class Notes extends _$Notes {
     }
 
     state = AsyncData(notes.sorted());
+    _updateMainProvider();
 
     return true;
   }
@@ -106,6 +92,7 @@ class Notes extends _$Notes {
     }
 
     state = AsyncData(notes.sorted());
+    _updateMainProvider();
 
     return true;
   }
@@ -125,6 +112,7 @@ class Notes extends _$Notes {
       ..addAll(notesWhereToAdd);
 
     state = AsyncData(notes.sorted());
+    _updateMainProvider();
 
     return true;
   }
@@ -146,6 +134,7 @@ class Notes extends _$Notes {
       ..add(noteToToggle);
 
     state = AsyncData(notes.sorted());
+    _updateMainProvider();
 
     return true;
   }
@@ -169,6 +158,7 @@ class Notes extends _$Notes {
       ..addAll(notesToToggle);
 
     state = AsyncData(notes.sorted());
+    _updateMainProvider();
 
     return true;
   }
@@ -181,6 +171,7 @@ class Notes extends _$Notes {
     final succeeded = await edit(note);
 
     ref.read(binProvider.notifier).get();
+    _updateMainProvider();
 
     return succeeded;
   }
@@ -205,6 +196,7 @@ class Notes extends _$Notes {
     state = AsyncData(notes);
 
     ref.read(binProvider.notifier).get();
+    _updateMainProvider();
 
     return true;
   }
@@ -241,5 +233,12 @@ class Notes extends _$Notes {
           note.selected = false;
         }),
     ]);
+  }
+
+  /// Updates the main notes provider if this provider is a provider filtered by a label.
+  void _updateMainProvider() {
+    if (label != null) {
+      ref.read(notesProvider().notifier).get();
+    }
   }
 }

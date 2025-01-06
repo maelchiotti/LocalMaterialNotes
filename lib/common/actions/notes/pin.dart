@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'select.dart';
+
 import '../../../models/note/note.dart';
 import '../../../providers/notes/notes_provider.dart';
+import '../../../providers/notifiers/notifiers.dart';
+import 'select.dart';
 
 /// Toggles the pined status of the [note].
 ///
@@ -12,14 +14,14 @@ Future<bool> togglePinNote(BuildContext context, WidgetRef ref, Note? note) asyn
     return false;
   }
 
-  await ref.read(notesProvider.notifier).togglePin(note);
+  await ref.read(notesProvider(label: currentLabelFilter).notifier).togglePin(note);
 
   return false;
 }
 
 /// Toggles the pined status of the [notes].
 Future<void> togglePinNotes(BuildContext context, WidgetRef ref, List<Note> notes) async {
-  await ref.read(notesProvider.notifier).togglePinAll(notes);
+  await ref.read(notesProvider(label: currentLabelFilter).notifier).togglePinAll(notes);
 
   if (context.mounted) {
     exitNotesSelectionMode(context, ref);

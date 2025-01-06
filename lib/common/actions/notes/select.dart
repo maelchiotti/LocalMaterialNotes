@@ -11,7 +11,9 @@ void toggleSelectNote(WidgetRef ref, Note note) {
   if (note.deleted) {
     note.selected ? ref.read(binProvider.notifier).unselect(note) : ref.read(binProvider.notifier).select(note);
   } else {
-    note.selected ? ref.read(notesProvider.notifier).unselect(note) : ref.read(notesProvider.notifier).select(note);
+    note.selected
+        ? ref.read(notesProvider(label: currentLabelFilter).notifier).unselect(note)
+        : ref.read(notesProvider(label: currentLabelFilter).notifier).select(note);
   }
 }
 
@@ -19,14 +21,18 @@ void toggleSelectNote(WidgetRef ref, Note note) {
 ///
 /// Depending on the current route, selects either the notes from the notes page or those from the bin page.
 void selectAllNotes(BuildContext context, WidgetRef ref, {bool notesPage = true}) {
-  notesPage ? ref.read(notesProvider.notifier).selectAll() : ref.read(binProvider.notifier).selectAll();
+  notesPage
+      ? ref.read(notesProvider(label: currentLabelFilter).notifier).selectAll()
+      : ref.read(binProvider.notifier).selectAll();
 }
 
 /// Unselects all the notes.
 ///
 /// Depending on the current route, unselects either the notes from the notes page or those from the bin page.
 void unselectAllNotes(BuildContext context, WidgetRef ref, {bool notesPage = true}) {
-  notesPage ? ref.read(notesProvider.notifier).unselectAll() : ref.read(binProvider.notifier).unselectAll();
+  notesPage
+      ? ref.read(notesProvider(label: currentLabelFilter).notifier).unselectAll()
+      : ref.read(binProvider.notifier).unselectAll();
 }
 
 /// Exits the notes selection mode.

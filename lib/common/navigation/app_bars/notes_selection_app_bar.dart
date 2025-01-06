@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../models/note/note.dart';
 import '../../../providers/bin/bin_provider.dart';
 import '../../../providers/notes/notes_provider.dart';
+import '../../../providers/notifiers/notifiers.dart';
 import '../../actions/notes/delete.dart';
 import '../../actions/notes/labels.dart';
 import '../../actions/notes/pin.dart';
@@ -101,7 +102,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => notesPage
-      ? ref.watch(notesProvider).when(
+      ? ref.watch(notesProvider(label: currentLabelFilter)).when(
             data: (notes) => buildAppBar(
               context,
               ref,

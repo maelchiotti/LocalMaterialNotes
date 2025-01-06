@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../common/constants/constants.dart';
 import '../../common/navigation/app_bars/notes_app_bar.dart';
 import '../../common/navigation/side_navigation.dart';
 import '../../common/navigation/top_navigation.dart';
@@ -29,7 +28,6 @@ class _BinPageState extends ConsumerState<BinPage> {
       appBar: TopNavigation(
         appbar: NotesAppBar(
           key: Keys.appBarNotesBin,
-          title: l.navigation_bin,
           notesPage: false,
         ),
         notesPage: false,

@@ -29,7 +29,7 @@ Future<List<Label>?> selectLabels(BuildContext context, WidgetRef ref, Note note
     return null;
   }
 
-  await ref.read(notesProvider.notifier).editLabels(note, selectedLabels);
+  await ref.read(notesProvider(label: currentLabelFilter).notifier).editLabels(note, selectedLabels);
 
   // Forcefully notify the listeners because only the labels of the note have changed
   currentNoteNotifier.value = note;
@@ -56,7 +56,7 @@ Future<List<Label>?> addLabels(BuildContext context, WidgetRef ref, List<Note> n
     return null;
   }
 
-  await ref.read(notesProvider.notifier).addLabels(notes, selectedLabels);
+  await ref.read(notesProvider(label: currentLabelFilter).notifier).addLabels(notes, selectedLabels);
 
   if (context.mounted) {
     exitNotesSelectionMode(context, ref);

@@ -118,17 +118,18 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
         Navigator.popUntil(context, ModalRoute.withName('/'));
       } else if (isNewRouteLabelRoute) {
         final label = labels[index - 1];
+        currentLabelFilter = label;
 
         isHomeRoute(route)
             ? NavigatorUtils.push(
                 context,
                 '${NavigationRoute.label.name}-${label.name}',
-                NotesPage(label: label),
+                NotesPage(),
               )
             : NavigatorUtils.go(
                 context,
                 '${NavigationRoute.label.name}-${label.name}',
-                NotesPage(label: label),
+                NotesPage(),
               );
       } else if (index == labels.length + 1) {
         NavigationRoute.manageLabels.pushOrGo(context, isHomeRoute(route), LabelsPage());

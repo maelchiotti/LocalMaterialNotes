@@ -68,7 +68,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
 
     note.title = newTitle;
 
-    ref.read(notesProvider.notifier).edit(note);
+    ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
   }
 
   /// Saves the new content of the [note] in the database.
@@ -83,7 +83,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
         note.content = jsonEncode(editorController.document.toDelta().toJson());
     }
 
-    ref.read(notesProvider.notifier).edit(note);
+    ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
   }
 
   /// Request focus on the content editor.
