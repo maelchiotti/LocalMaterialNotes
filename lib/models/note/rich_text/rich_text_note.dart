@@ -62,6 +62,10 @@ class RichTextNote extends Note {
 
   @ignore
   @override
+  String get type => l.note_type_rich_text;
+
+  @ignore
+  @override
   String get plainText => document.toPlainText();
 
   @ignore

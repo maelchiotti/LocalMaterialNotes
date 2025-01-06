@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import '../../dialogs/rich_text_editor_link_dialog.dart';
 import 'rich_text_editor_button.dart';
 
-/// Custom toolbar button to add a link.
+/// Rich text editor link toolbar button.
 class RichTextEditorLinkButton extends StatefulWidget {
-  /// Default constructor.
+  /// Custom link button for the toolbar of the rich text editor.
   const RichTextEditorLinkButton({
     super.key,
     required this.controller,
   });
 
-  /// Editor controller.
+  /// The controller of the Fleather text field.
   final FleatherController controller;
 
   @override
@@ -20,14 +20,15 @@ class RichTextEditorLinkButton extends StatefulWidget {
 }
 
 class _RichTextEditorLinkButtonState extends State<RichTextEditorLinkButton> {
-  /// Whether the button is enabled.
-  var _enabled = false;
+  late bool enabled;
 
   @override
   void initState() {
     super.initState();
 
-    widget.controller.addListener(_selectionChanged);
+    enabled = false;
+
+    widget.controller.addListener(selectionChanged);
   }
 
   @override
@@ -35,8 +36,8 @@ class _RichTextEditorLinkButtonState extends State<RichTextEditorLinkButton> {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.controller != widget.controller) {
-      oldWidget.controller.removeListener(_selectionChanged);
-      widget.controller.addListener(_selectionChanged);
+      oldWidget.controller.removeListener(selectionChanged);
+      widget.controller.addListener(selectionChanged);
     }
   }
 
@@ -44,18 +45,16 @@ class _RichTextEditorLinkButtonState extends State<RichTextEditorLinkButton> {
   void dispose() {
     super.dispose();
 
-    widget.controller.removeListener(_selectionChanged);
+    widget.controller.removeListener(selectionChanged);
   }
 
-  /// Updates [_enabled] when the text selection changes.
-  void _selectionChanged() {
+  void selectionChanged() {
     setState(() {
-      _enabled = !widget.controller.selection.isCollapsed;
+      enabled = !widget.controller.selection.isCollapsed;
     });
   }
 
-  /// Asks the user to enter the link to add.
-  Future<void> _enterLink() async {
+  Future<void> onPressed() async {
     final link = await showAdaptiveDialog<String>(
       context: context,
       useRootNavigator: false,
@@ -73,8 +72,8 @@ class _RichTextEditorLinkButtonState extends State<RichTextEditorLinkButton> {
   Widget build(BuildContext context) {
     return RichTextEditorButton(
       icon: Icons.link,
-      iconColor: _enabled ? Theme.of(context).iconTheme.color : Theme.of(context).disabledColor,
-      onPressed: _enabled ? _enterLink : null,
+      iconColor: enabled ? Theme.of(context).iconTheme.color : Theme.of(context).disabledColor,
+      onPressed: enabled ? onPressed : null,
     );
   }
 }

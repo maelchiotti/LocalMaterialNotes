@@ -55,6 +55,10 @@ class PlainTextNote extends Note {
 
   @ignore
   @override
+  String get type => l.note_type_plain_text;
+
+  @ignore
+  @override
   String get plainText => content;
 
   @ignore
@@ -63,9 +67,7 @@ class PlainTextNote extends Note {
 
   @ignore
   @override
-  String get contentPreview {
-    return content.trim();
-  }
+  String get contentPreview => content.trim();
 
   @ignore
   @override

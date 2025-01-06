@@ -8,19 +8,18 @@ import '../../../../common/preferences/preference_key.dart';
 import 'rich_text_editor_button.dart';
 import 'rich_text_editor_link_button.dart';
 
-/// Toolbar for the content text field that enables advanced formatting options.
+/// Rich text editor toolbar.
 class RichTextEditorToolbar extends StatelessWidget {
-  /// Default constructor.
+  /// Toolbar of the rich text editor.
   const RichTextEditorToolbar({
     super.key,
     required this.fleatherController,
   });
 
+  /// The controller of the Fleather text field.
   final FleatherController fleatherController;
 
-  /// Builds a button of the toolbar.
-  ///
-  /// Overrides the default button style of fleather.
+  /// Builds a custom button of the toolbar.
   Widget buttonBuilder(
     BuildContext context,
     ParchmentAttribute attribute,
@@ -48,8 +47,6 @@ class RichTextEditorToolbar extends StatelessWidget {
   }
 
   /// Inserts a rule in the content.
-  ///
-  /// Copied from the fleather source code to allow using a custom button.
   void insertRule(FleatherController fleatherController) {
     final index = fleatherController.selection.baseOffset;
     final length = fleatherController.selection.extentOffset - index;

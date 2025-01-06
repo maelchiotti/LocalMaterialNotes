@@ -20,9 +20,9 @@ import 'widgets/rich_text/rich_text_editor.dart';
 import 'widgets/rich_text/rich_text_editor_toolbar.dart';
 import 'widgets/title_editor.dart';
 
-/// Page displaying the note editor.
+/// Editor page.
 class NotesEditorPage extends ConsumerStatefulWidget {
-  /// Default constructor.
+  /// Page allowing to edit a note.
   const NotesEditorPage({
     super.key,
     required this.readOnly,
@@ -32,8 +32,7 @@ class NotesEditorPage extends ConsumerStatefulWidget {
   /// Whether the page is read only.
   final bool readOnly;
 
-  /// Whether this is a new note, so the title or content field should be auto focused
-  /// and the editor mode should be forced to editing.
+  /// Whether the note was just created.
   final bool isNewNote;
 
   @override
@@ -41,7 +40,6 @@ class NotesEditorPage extends ConsumerStatefulWidget {
 }
 
 class _EditorState extends ConsumerState<NotesEditorPage> {
-  /// Request focus on the content editor.
   void requestEditorFocus() {
     editorFocusNode.requestFocus();
   }

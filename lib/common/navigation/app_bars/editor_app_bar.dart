@@ -2,6 +2,7 @@ import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../models/note/note.dart';
 import '../../../pages/editor/sheets/about_sheet.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../actions/notes/copy.dart';
@@ -16,16 +17,9 @@ import '../../preferences/preference_key.dart';
 import '../enums/bin_menu_option.dart';
 import '../enums/note_menu_option.dart';
 
-/// Editor's app bar.
-///
-/// Contains:
-///   - A back button.
-///   - The title of the editor route.
-///   - The undo/redo buttons if enabled by the user.
-///   - The checklist button if enabled by the user.
-///   - The menu with further actions.
+/// Editor app bar.
 class EditorAppBar extends ConsumerStatefulWidget {
-  /// Default constructor.
+  /// App bar of the editor page allowing to perform actions on the note.
   const EditorAppBar({
     super.key,
   });
@@ -35,12 +29,10 @@ class EditorAppBar extends ConsumerStatefulWidget {
 }
 
 class _BackAppBarState extends ConsumerState<EditorAppBar> {
-  /// Switches the editor mode between editing and viewing.
   void switchMode() {
     isEditorInEditModeNotifier.value = !isEditorInEditModeNotifier.value;
   }
 
-  /// Performs the action associated with the selected [menuOption] on the not deleted note.
   Future<void> onNoteMenuOptionSelected(NoteMenuOption menuOption) async {
     // Manually close the keyboard
     FocusManager.instance.primaryFocus?.unfocus();
@@ -74,7 +66,6 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     }
   }
 
-  /// Performs the action associated with the selected [menuOption] on the deleted note.
   Future<void> onBinMenuOptionSelected(BinMenuOption menuOption) async {
     // Manually close the keyboard
     FocusManager.instance.primaryFocus?.unfocus();
@@ -102,7 +93,6 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     }
   }
 
-  /// Undoes the latest change in the editor.
   void undo() {
     final editorController = fleatherControllerNotifier.value;
 
@@ -113,7 +103,6 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     editorController.undo();
   }
 
-  /// Redoes the latest change in the editor.
   void redo() {
     final editorController = fleatherControllerNotifier.value;
 
@@ -124,7 +113,6 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     editorController.redo();
   }
 
-  /// Toggles the presence of the checklist in the currently active line of the editor.
   void toggleChecklist() {
     final editorController = fleatherControllerNotifier.value;
 
@@ -158,7 +146,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
               ? null
               : [
                   if (!note.deleted) ...[
-                    if (showUndoRedoButtons)
+                    if (note is RichTextNote && showUndoRedoButtons)
                       ValueListenableBuilder(
                         valueListenable: fleatherControllerCanUndoNotifier,
                         builder: (context, canUndo, child) => IconButton(
@@ -173,7 +161,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                               : null,
                         ),
                       ),
-                    if (showUndoRedoButtons)
+                    if (note is RichTextNote && showUndoRedoButtons)
                       ValueListenableBuilder(
                         valueListenable: fleatherControllerCanRedoNotifier,
                         builder: (context, canRedo, child) => IconButton(
@@ -182,7 +170,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                           onPressed: editorHasFocus && canRedo && isEditMode ? redo : null,
                         ),
                       ),
-                    if (showChecklistButton)
+                    if (note is RichTextNote && showChecklistButton)
                       IconButton(
                         icon: const Icon(Icons.checklist),
                         tooltip: l.tooltip_toggle_checkbox,

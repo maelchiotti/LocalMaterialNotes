@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../common/constants/paddings.dart';
 import '../../../../common/constants/sizes.dart';
 
-/// Custom toolbar button.
+/// Rich text editor custom toolbar button.
 class RichTextEditorButton extends StatelessWidget {
-  /// Default constructor.
+  /// Custom button for the toolbar of the rich text editor.
   const RichTextEditorButton({
     super.key,
     required this.icon,

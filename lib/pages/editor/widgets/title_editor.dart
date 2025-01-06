@@ -7,7 +7,9 @@ import '../../../models/note/note.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 
+/// Title editor.
 class TitleEditor extends ConsumerStatefulWidget {
+  /// Text field allowing to edit the title of a note.
   const TitleEditor({
     super.key,
     required this.readOnly,
@@ -18,10 +20,10 @@ class TitleEditor extends ConsumerStatefulWidget {
   /// Whether the page is read only.
   final bool readOnly;
 
-  /// Whether this is a new note, so the title or content field should be auto focused
-  /// and the editor mode should be forced to editing.
+  /// Whether the note was just created.
   final bool isNewNote;
 
+  /// Called when the title is submitted.
   final VoidCallback onSubmitted;
 
   @override

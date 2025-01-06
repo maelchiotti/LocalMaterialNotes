@@ -102,25 +102,27 @@ class NotesSelectionAppBar extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) => notesPage
-      ? ref.watch(notesProvider(label: currentLabelFilter)).when(
-            data: (notes) => buildAppBar(
-              context,
-              ref,
-              notes.where((note) => note.selected).toList(),
-              notes.length,
-            ),
-            error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
-            loading: () => const LoadingPlaceholder(),
-          )
-      : ref.watch(binProvider).when(
-            data: (notes) => buildAppBar(
-              context,
-              ref,
-              notes.where((note) => note.selected).toList(),
-              notes.length,
-            ),
-            error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
-            loading: () => const LoadingPlaceholder(),
-          );
+  Widget build(BuildContext context, WidgetRef ref) {
+    return notesPage
+        ? ref.watch(notesProvider(label: currentLabelFilter)).when(
+              data: (notes) => buildAppBar(
+                context,
+                ref,
+                notes.where((note) => note.selected).toList(),
+                notes.length,
+              ),
+              error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
+              loading: () => const LoadingPlaceholder(),
+            )
+        : ref.watch(binProvider).when(
+              data: (notes) => buildAppBar(
+                context,
+                ref,
+                notes.where((note) => note.selected).toList(),
+                notes.length,
+              ),
+              error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
+              loading: () => const LoadingPlaceholder(),
+            );
+  }
 }

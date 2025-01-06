@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import '../note.dart';
 
 part 'note_index.g.dart';
@@ -7,7 +8,7 @@ part 'note_index.g.dart';
 @JsonSerializable()
 class NoteIndex {
   /// The ID of the note.
-  final int id;
+  final String id;
 
   /// Whether the note is deleted.
   final bool deleted;
