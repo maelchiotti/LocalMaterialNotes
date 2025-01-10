@@ -19,7 +19,7 @@ class WatchedPreferences {
   late bool showTitlesOnly;
   late bool showTilesBackground;
   late bool showSeparators;
-  late int noteContentPreviewMaxLines;
+  late int maximumContentPreviewLines;
 
   // Behavior
   late ({SwipeAction right, SwipeAction left}) swipeActions;
@@ -44,7 +44,7 @@ class WatchedPreferences {
     bool? showTitlesOnly,
     bool? showTilesBackground,
     bool? showSeparators,
-    int? noteContentPreviewMaxLines,
+    int? maximumContentPreviewLines,
     SwipeAction? rightSwipeAction,
     SwipeAction? leftSwipeAction,
     BinSwipeAction? binRightSwipeAction,
@@ -62,8 +62,8 @@ class WatchedPreferences {
     this.showTitlesOnly = showTitlesOnly ?? PreferenceKey.showTitlesOnly.getPreferenceOrDefault();
     this.showTilesBackground = showTilesBackground ?? PreferenceKey.showTilesBackground.getPreferenceOrDefault();
     this.showSeparators = showSeparators ?? PreferenceKey.showSeparators.getPreferenceOrDefault();
-    this.noteContentPreviewMaxLines =
-        noteContentPreviewMaxLines ?? PreferenceKey.noteContentPreviewMaxLines.getPreferenceOrDefault();
+    this.maximumContentPreviewLines =
+        maximumContentPreviewLines ?? PreferenceKey.maximumContentPreviewLines.getPreferenceOrDefault();
 
     swipeActions = (
       right: rightSwipeAction ?? SwipeAction.rightFromPreference(),

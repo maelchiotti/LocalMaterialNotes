@@ -50,12 +50,12 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
     });
   }
 
-  /// Sets the note content preview maximum lines count to the new [noteContentPreviewMaxLines].
-  void _submittedNoteContentPreviewMaxLines(double noteContentPreviewMaxLines) {
-    PreferenceKey.noteContentPreviewMaxLines.set(noteContentPreviewMaxLines.toInt());
+  /// Sets the note content preview maximum lines count to the new [maximumContentPreviewLines].
+  void _submittedmaximumContentPreviewLines(double maximumContentPreviewLines) {
+    PreferenceKey.maximumContentPreviewLines.set(maximumContentPreviewLines.toInt());
 
     ref.read(preferencesProvider.notifier).update(
-          WatchedPreferences(noteContentPreviewMaxLines: noteContentPreviewMaxLines.toInt()),
+          WatchedPreferences(maximumContentPreviewLines: maximumContentPreviewLines.toInt()),
         );
   }
 
@@ -65,8 +65,8 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
     final showSeparators = ref.watch(preferencesProvider.select((preferences) => preferences.showSeparators));
     final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
     final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
-    final noteContentPreviewMaxLines =
-        ref.watch(preferencesProvider.select((preferences) => preferences.noteContentPreviewMaxLines));
+    final maximumContentPreviewLines =
+        ref.watch(preferencesProvider.select((preferences) => preferences.maximumContentPreviewLines));
 
     return Scaffold(
       appBar: TopNavigation(
@@ -124,14 +124,14 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
                     icon: Icons.short_text,
                     title: l.settings_content_preview_max_lines,
                     description: l.settings_content_preview_max_lines_description,
-                    value: '$noteContentPreviewMaxLines',
+                    value: '$maximumContentPreviewLines',
                     dialogTitle: l.settings_content_preview_max_lines,
-                    label: (noteContentPreviewMaxLines) => '${noteContentPreviewMaxLines.toInt()}',
+                    label: (maximumContentPreviewLines) => '${maximumContentPreviewLines.toInt()}',
                     min: 1.0,
                     max: 10.0,
                     divisions: 9,
-                    initialValue: noteContentPreviewMaxLines.toDouble(),
-                    onSubmitted: _submittedNoteContentPreviewMaxLines,
+                    initialValue: maximumContentPreviewLines.toDouble(),
+                    onSubmitted: _submittedmaximumContentPreviewLines,
                   ),
                 ],
               ),
