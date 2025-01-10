@@ -84,9 +84,9 @@ class Notes extends _$Notes {
     }
 
     final notes = (state.value ?? []);
-    if (!note.deleted && !note.isEmpty) {
-      notes.addOrUpdate(note);
-    } else {
+
+    // If this provider is labeled and the label was removed from the note, then remove it from the state
+    if (label != null && !note.labels.contains(label)) {
       notes.remove(note);
     }
 

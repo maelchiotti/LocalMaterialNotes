@@ -5,6 +5,7 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'common/actions/labels/select.dart';
 import 'common/actions/notes/select.dart';
 import 'common/constants/constants.dart';
@@ -117,7 +118,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
           ),
           child: MaterialApp(
             title: 'Material Notes',
-            home: NotesPage(),
+            home: NotesPage(label: null),
             navigatorKey: rootNavigatorKey,
             builder: (context, child) {
               // Change the widget shown when a widget building fails
