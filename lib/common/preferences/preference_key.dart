@@ -15,6 +15,7 @@ enum PreferenceKey<T> {
   showSeparators<bool>(false),
   showTitlesOnly<bool>(false),
   showTitlesOnlyDisableInSearchView<bool>(true),
+  noteContentPreviewMaxLines<int>(3),
 
   // Behavior
   flagSecure<bool>(false),

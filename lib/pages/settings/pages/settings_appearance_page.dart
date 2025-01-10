@@ -3,6 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:locale_names/locale_names.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:restart_app/restart_app.dart';
+import 'package:settings_tiles/settings_tiles.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/enums/localization_completion.dart';
@@ -16,10 +21,6 @@ import '../../../providers/preferences/preferences_provider.dart';
 import '../../../utils/keys.dart';
 import '../../../utils/locale_utils.dart';
 import '../../../utils/theme_utils.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
-import 'package:restart_app/restart_app.dart';
-import 'package:settings_tiles/settings_tiles.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 /// Settings related to the appearance of the application.
 class SettingsAppearancePage extends ConsumerStatefulWidget {
@@ -115,6 +116,15 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
     });
   }
 
+  /// Sets the note content preview maximum lines count to the new [noteContentPreviewMaxLines].
+  void _submittedNoteContentPreviewMaxLines(double noteContentPreviewMaxLines) {
+    PreferenceKey.noteContentPreviewMaxLines.set(noteContentPreviewMaxLines.toInt());
+
+    ref.read(preferencesProvider.notifier).update(
+          WatchedPreferences(noteContentPreviewMaxLines: noteContentPreviewMaxLines.toInt()),
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     final locale = LocaleUtils().appLocale;
@@ -130,6 +140,8 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
     final showSeparators = ref.watch(preferencesProvider.select((preferences) => preferences.showSeparators));
     final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
     final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
+    final noteContentPreviewMaxLines =
+        ref.watch(preferencesProvider.select((preferences) => preferences.noteContentPreviewMaxLines));
 
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
@@ -276,6 +288,19 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                     description: l.settings_show_titles_only_disable_in_search_view_description,
                     toggled: showTitlesOnlyDisableInSearchView,
                     onChanged: _toggleShowTitlesOnlyDisableInSearchView,
+                  ),
+                  SettingSliderTile(
+                    icon: Icons.format_size,
+                    title: 'Preview max lines',
+                    description: 'Maximum number of lines shown for the preview of the content',
+                    value: '$noteContentPreviewMaxLines',
+                    dialogTitle: 'Preview max lines',
+                    label: (noteContentPreviewMaxLines) => '${noteContentPreviewMaxLines.toInt()}',
+                    min: 1.0,
+                    max: 10.0,
+                    divisions: 9,
+                    initialValue: noteContentPreviewMaxLines.toDouble(),
+                    onSubmitted: _submittedNoteContentPreviewMaxLines,
                   ),
                 ],
               ),

@@ -155,6 +155,8 @@ class _NoteTileState extends ConsumerState<NoteTile> {
         ref.watch(preferencesProvider.select((preferences) => preferences.disableSubduedNoteContentPreview));
     final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
     final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.getPreferenceOrDefault();
+    final noteContentPreviewMaxLines =
+        ref.watch(preferencesProvider.select((preferences) => preferences.noteContentPreviewMaxLines));
 
     final biggerTitles = ref.watch(preferencesProvider.select((preferences) => preferences.biggerTitles));
 
@@ -202,7 +204,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                           if (showTitle)
                             Text(
                               widget.note.contentPreview,
-                              maxLines: 3,
+                              maxLines: noteContentPreviewMaxLines,
                               overflow: TextOverflow.ellipsis,
                               style: disableSubduedNoteContentPreview
                                   ? null
