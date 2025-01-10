@@ -118,9 +118,9 @@ enum BinSwipeAction {
   Future<bool> execute(BuildContext context, WidgetRef ref, Note note) async {
     switch (this) {
       case restore:
-        return await restoreNote(context, ref, note);
+        return await restoreNote(context, ref, note: note);
       case permanentlyDelete:
-        return await permanentlyDeleteNote(context, ref, note);
+        return await permanentlyDeleteNote(context, ref, note: note);
       default:
         throw Exception('Unexpected swipe action when swiping on deleted note tile: $this');
     }

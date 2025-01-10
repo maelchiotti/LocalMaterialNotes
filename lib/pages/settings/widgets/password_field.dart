@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/extensions/string_extension.dart';
@@ -83,41 +84,43 @@ class _PasswordFieldState extends State<PasswordField> {
   }
 
   @override
-  Widget build(BuildContext context) => Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            if (widget.description != null) ...[
-              Text(widget.description!),
-              Padding(padding: Paddings.vertical(8)),
-            ],
-            if (widget.secondaryDescription != null) ...[
-              Text(widget.secondaryDescription!),
-              Padding(padding: Paddings.vertical(8)),
-            ],
-            AutofillGroup(
-              child: TextFormField(
-                controller: _passwordController,
-                keyboardType: TextInputType.visiblePassword,
-                textInputAction: TextInputAction.done,
-                autofillHints: const [AutofillHints.password],
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
-                    onPressed: _toggleObscurePassword,
-                  ),
-                  hintText: l.dialog_export_encryption_password,
-                ),
-                obscureText: _obscurePassword,
-                autocorrect: false,
-                enableSuggestions: false,
-                maxLength: 32,
-                validator: _validatePassword,
-                onChanged: (_) => _onChanged(),
-                onEditingComplete: _onEditingComplete,
-              ),
-            ),
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          if (widget.description != null) ...[
+            Text(widget.description!),
+            Padding(padding: Paddings.vertical(8)),
           ],
-        ),
-      );
+          if (widget.secondaryDescription != null) ...[
+            Text(widget.secondaryDescription!),
+            Padding(padding: Paddings.vertical(8)),
+          ],
+          AutofillGroup(
+            child: TextFormField(
+              controller: _passwordController,
+              keyboardType: TextInputType.visiblePassword,
+              textInputAction: TextInputAction.done,
+              autofillHints: const [AutofillHints.password],
+              decoration: InputDecoration(
+                suffixIcon: IconButton(
+                  icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
+                  onPressed: _toggleObscurePassword,
+                ),
+                hintText: l.dialog_export_encryption_password,
+              ),
+              obscureText: _obscurePassword,
+              autocorrect: false,
+              enableSuggestions: false,
+              maxLength: 32,
+              validator: _validatePassword,
+              onChanged: (_) => _onChanged(),
+              onEditingComplete: _onEditingComplete,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

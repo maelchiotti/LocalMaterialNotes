@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/extensions/string_extension.dart';
 import '../widgets/password_field.dart';
@@ -65,25 +66,27 @@ class _AutoExportPasswordDialogState extends State<AutoExportPasswordDialog> {
   }
 
   @override
-  Widget build(BuildContext context) => AlertDialog.adaptive(
-        title: Text(widget.title),
-        content: SingleChildScrollView(
-          child: PasswordField(
-            description: widget.description,
-            secondaryDescription: widget.secondaryDescription,
-            onChanged: _onChanged,
-            onEditingComplete: _pop,
-          ),
+  Widget build(BuildContext context) {
+    return AlertDialog.adaptive(
+      title: Text(widget.title),
+      content: SingleChildScrollView(
+        child: PasswordField(
+          description: widget.description,
+          secondaryDescription: widget.secondaryDescription,
+          onChanged: _onChanged,
+          onEditingComplete: _pop,
         ),
-        actions: [
-          TextButton(
-            onPressed: () => _pop(canceled: true),
-            child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
-          ),
-          TextButton(
-            onPressed: ok ? _pop : null,
-            child: Text(flutterL?.okButtonLabel ?? 'OK'),
-          ),
-        ],
-      );
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => _pop(canceled: true),
+          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
+        ),
+        TextButton(
+          onPressed: ok ? _pop : null,
+          child: Text(flutterL?.okButtonLabel ?? 'OK'),
+        ),
+      ],
+    );
+  }
 }

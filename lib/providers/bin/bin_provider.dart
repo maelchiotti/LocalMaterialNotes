@@ -1,14 +1,16 @@
 import 'package:collection/collection.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import '../../common/constants/constants.dart';
 import '../../models/note/note.dart';
-import '../notes/notes_provider.dart';
 import '../../services/notes/notes_service.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../notes/notes_provider.dart';
+import '../notifiers/notifiers.dart';
 
 part 'bin_provider.g.dart';
 
 /// Provider for the deleted notes.
-@Riverpod(keepAlive: true)
+@riverpod
 class Bin extends _$Bin {
   final _notesService = NotesService();
 
@@ -109,7 +111,7 @@ class Bin extends _$Bin {
       (state.value ?? [])..remove(noteToRestore),
     );
 
-    ref.read(notesProvider.notifier).get();
+    ref.read(notesProvider(label: currentLabelFilter).notifier).get();
 
     return true;
   }
@@ -135,7 +137,7 @@ class Bin extends _$Bin {
         ),
     );
 
-    ref.read(notesProvider.notifier).get();
+    ref.read(notesProvider(label: currentLabelFilter).notifier).get();
 
     return true;
   }

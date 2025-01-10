@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../common/constants/constants.dart';
 import 'package:string_validator/string_validator.dart';
+
+import '../../../common/constants/constants.dart';
 
 /// Dialog to add a link in the editor.
 class LinkDialog extends StatefulWidget {
@@ -37,25 +38,27 @@ class _LinkDialogState extends State<LinkDialog> {
   }
 
   @override
-  Widget build(BuildContext context) => AlertDialog.adaptive(
-        title: Text(l.dialog_add_link),
-        content: TextField(
-          controller: _linkController,
-          autofocus: true,
-          decoration: InputDecoration(
-            labelText: l.hint_link,
-          ),
-          onChanged: _onChanged,
+  Widget build(BuildContext context) {
+    return AlertDialog.adaptive(
+      title: Text(l.dialog_add_link),
+      content: TextField(
+        controller: _linkController,
+        autofocus: true,
+        decoration: InputDecoration(
+          labelText: l.hint_link,
         ),
-        actions: [
-          TextButton(
-            onPressed: () => _pop(canceled: true),
-            child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
-          ),
-          TextButton(
-            onPressed: _isLinkValid ? _pop : null,
-            child: Text(flutterL?.okButtonLabel ?? 'OK'),
-          ),
-        ],
-      );
+        onChanged: _onChanged,
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => _pop(canceled: true),
+          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
+        ),
+        TextButton(
+          onPressed: _isLinkValid ? _pop : null,
+          child: Text(flutterL?.okButtonLabel ?? 'OK'),
+        ),
+      ],
+    );
+  }
 }

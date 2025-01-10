@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../common/actions/notes/add.dart';
 import '../../../common/constants/constants.dart';
 
@@ -9,9 +10,11 @@ class AddNoteFab extends ConsumerWidget {
   const AddNoteFab({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) => FloatingActionButton(
-        tooltip: l.tooltip_fab_add_note,
-        onPressed: () => addNote(context, ref),
-        child: const Icon(Icons.add),
-      );
+  Widget build(BuildContext context, WidgetRef ref) {
+    return FloatingActionButton(
+      tooltip: l.tooltip_fab_add_note,
+      onPressed: () => addNote(context, ref),
+      child: const Icon(Icons.add),
+    );
+  }
 }

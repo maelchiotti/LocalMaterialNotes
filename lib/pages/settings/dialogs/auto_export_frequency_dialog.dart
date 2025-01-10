@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/preferences/preference_key.dart';
 
@@ -56,32 +57,34 @@ class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
   }
 
   @override
-  Widget build(BuildContext context) => AlertDialog.adaptive(
-        title: Text(l.settings_auto_export_frequency),
-        content: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Slider(
-                value: _frequencyIndex.toDouble(),
-                max: _frequencyValues.length - 1,
-                divisions: _frequencyValues.length - 1,
-                label: l.settings_auto_export_frequency_value(_frequencyValue.toString()),
-                onChanged: _onFrequencyChanged,
-              ),
-            ],
-          ),
+  Widget build(BuildContext context) {
+    return AlertDialog.adaptive(
+      title: Text(l.settings_auto_export_frequency),
+      content: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Slider(
+              value: _frequencyIndex.toDouble(),
+              max: _frequencyValues.length - 1,
+              divisions: _frequencyValues.length - 1,
+              label: l.settings_auto_export_frequency_value(_frequencyValue.toString()),
+              onChanged: _onFrequencyChanged,
+            ),
+          ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => _pop(canceled: true),
-            child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
-          ),
-          TextButton(
-            onPressed: _pop,
-            child: Text(flutterL?.okButtonLabel ?? 'OK'),
-          ),
-        ],
-      );
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => _pop(canceled: true),
+          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
+        ),
+        TextButton(
+          onPressed: _pop,
+          child: Text(flutterL?.okButtonLabel ?? 'OK'),
+        ),
+      ],
+    );
+  }
 }

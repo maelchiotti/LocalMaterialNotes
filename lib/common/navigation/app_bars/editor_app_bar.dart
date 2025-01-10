@@ -53,15 +53,15 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
     switch (menuOption) {
       case NoteMenuOption.togglePin:
-        await togglePinNote(context, ref, note);
+        await togglePinNote(context, ref, note: note);
       case NoteMenuOption.selectLabels:
-        selectLabels(context, ref, note);
+        selectLabels(context, ref, note: note);
       case NoteMenuOption.copy:
-        await copyNote(note);
+        await copyNote(note: note);
       case NoteMenuOption.share:
-        await shareNote(note);
+        await shareNote(note: note);
       case NoteMenuOption.delete:
-        await deleteNote(context, ref, note, true);
+        await deleteNote(context, ref, note: note, pop: true);
       case NoteMenuOption.about:
         await showModalBottomSheet<void>(
           context: context,
@@ -87,9 +87,9 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
     switch (menuOption) {
       case BinMenuOption.restore:
-        await restoreNote(context, ref, note, true);
+        await restoreNote(context, ref, note: note, pop: true);
       case BinMenuOption.deletePermanently:
-        await permanentlyDeleteNote(context, ref, note, true);
+        await permanentlyDeleteNote(context, ref, note: note, pop: true);
       case BinMenuOption.about:
         await showModalBottomSheet<void>(
           context: context,

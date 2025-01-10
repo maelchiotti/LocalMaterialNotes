@@ -1,5 +1,6 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
+
 import '../dialogs/link_dialog.dart';
 import 'editor_button.dart';
 
@@ -69,9 +70,11 @@ class _LinkButtonState extends State<LinkButton> {
   }
 
   @override
-  Widget build(BuildContext context) => EditorButton(
-        icon: Icons.link,
-        iconColor: _enabled ? Theme.of(context).iconTheme.color : Theme.of(context).disabledColor,
-        onPressed: _enabled ? _enterLink : null,
-      );
+  Widget build(BuildContext context) {
+    return EditorButton(
+      icon: Icons.link,
+      iconColor: _enabled ? Theme.of(context).iconTheme.color : Theme.of(context).disabledColor,
+      onPressed: _enabled ? _enterLink : null,
+    );
+  }
 }
