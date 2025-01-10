@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -75,7 +76,7 @@ Future<bool> writeFileFromString({
   required String mimeType,
   required String content,
 }) async {
-  final data = Uint8List.fromList(content.codeUnits);
+  final data = utf8.encode(content);
 
   return await writeFile(directory: directory, fileName: fileName, mimeType: mimeType, data: data);
 }

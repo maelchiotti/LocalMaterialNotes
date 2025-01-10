@@ -1,11 +1,12 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/preferences/enums/font.dart';
 import '../../../common/preferences/preference_key.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 /// Text field to edit the content of a note.
 class EditorField extends StatelessWidget {
@@ -50,15 +51,12 @@ class EditorField extends StatelessWidget {
       data: fleatherThemeFallback.copyWith(
         paragraph: fleatherThemeParagraph,
       ),
-      child: FleatherField(
+      child: FleatherEditor(
         controller: fleatherController,
         focusNode: editorFocusNode,
         autofocus: autofocus,
         readOnly: readOnly,
         expands: true,
-        decoration: InputDecoration.collapsed(
-          hintText: l.hint_note,
-        ),
         onLaunchUrl: _launchUrl,
         spellCheckConfiguration: SpellCheckConfiguration(
           spellCheckService: DefaultSpellCheckService(),
