@@ -42,7 +42,7 @@ class _TitleEditorState extends ConsumerState<TitleEditor> {
 
     note.title = newTitle;
 
-    ref.read(notesProvider.notifier).edit(note);
+    ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
   }
 
   @override
