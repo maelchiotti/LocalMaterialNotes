@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../models/note/notes_types.dart';
 import '../ui/theme_utils.dart';
 import 'enums/bin_swipe_action.dart';
 import 'enums/font.dart';
@@ -16,6 +17,11 @@ class WatchedPreferences {
   late bool dynamicTheming;
   late bool blackTheming;
   late Font appFont;
+
+  // Notes types
+  late List<Type> availableNotesTypes;
+
+  // Notes tiles
   late bool showTitlesOnly;
   late bool showTilesBackground;
   late bool showSeparators;
@@ -41,6 +47,7 @@ class WatchedPreferences {
     bool? dynamicTheming,
     bool? blackTheming,
     Font? appFont,
+    List<Type>? availableNotesTypes,
     bool? showTitlesOnly,
     bool? showTilesBackground,
     bool? showSeparators,
@@ -59,6 +66,9 @@ class WatchedPreferences {
     this.dynamicTheming = dynamicTheming ?? PreferenceKey.dynamicTheming.getPreferenceOrDefault();
     this.blackTheming = blackTheming ?? PreferenceKey.blackTheming.getPreferenceOrDefault();
     this.appFont = appFont ?? Font.appFromPreference();
+
+    this.availableNotesTypes = availableNotesTypes ?? NotesTypes.fromPreference();
+
     this.showTitlesOnly = showTitlesOnly ?? PreferenceKey.showTitlesOnly.getPreferenceOrDefault();
     this.showTilesBackground = showTilesBackground ?? PreferenceKey.showTilesBackground.getPreferenceOrDefault();
     this.showSeparators = showSeparators ?? PreferenceKey.showSeparators.getPreferenceOrDefault();

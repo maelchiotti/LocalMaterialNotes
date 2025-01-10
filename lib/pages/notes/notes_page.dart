@@ -9,6 +9,8 @@ import '../../common/widgets/keys.dart';
 import '../../common/widgets/notes/notes_list.dart';
 import '../../models/label/label.dart';
 import '../../providers/notifiers/notifiers.dart';
+import '../../providers/preferences/preferences_provider.dart';
+import '../../utils/keys.dart';
 import 'widgets/add_note_fab.dart';
 
 /// List of notes.
@@ -37,6 +39,10 @@ class _NotesPageState extends ConsumerState<NotesPage> {
 
   @override
   Widget build(BuildContext context) {
+    final availableNotesTypes = ref.watch(
+      preferencesProvider.select((preferences) => preferences.availableNotesTypes),
+    );
+
     return Scaffold(
       appBar: TopNavigation(
         appbar: NotesAppBar(
@@ -45,7 +51,7 @@ class _NotesPageState extends ConsumerState<NotesPage> {
         ),
       ),
       drawer: SideNavigation(),
-      floatingActionButtonLocation: ExpandableFab.location,
+      floatingActionButtonLocation: availableNotesTypes.length > 1 ? ExpandableFab.location : null,
       floatingActionButton: AddNoteFab(
         key: Keys.fabAddNote,
       ),

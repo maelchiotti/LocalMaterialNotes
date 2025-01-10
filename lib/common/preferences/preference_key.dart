@@ -3,7 +3,7 @@ import 'preferences_utils.dart';
 // ignore_for_file: public_member_api_docs
 
 /// Keys of preferences.
-enum PreferenceKey<T> {
+enum PreferenceKey<T extends Object> {
   // Appearance
   locale<String>('en', backup: false),
   theme<String>('system'),
@@ -11,6 +11,14 @@ enum PreferenceKey<T> {
   blackTheming<bool>(false),
   appFont<String>('systemDefault'),
   editorFont<String>('systemDefault'),
+
+  // Notes creation
+  availableNotesTypes<List<String>>([
+    'PlainTextNote',
+    'RichTextNote',
+  ]),
+
+  // Notes tiles
   showTilesBackground<bool>(false),
   showSeparators<bool>(false),
   showTitlesOnly<bool>(false),
