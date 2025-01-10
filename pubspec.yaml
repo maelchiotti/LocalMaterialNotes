@@ -25,6 +25,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_displaymode: ^0.6.0
+  flutter_expandable_fab: ^2.3.0
   flutter_helper_utils: ^6.10.0
   flutter_localizations:
     sdk: flutter

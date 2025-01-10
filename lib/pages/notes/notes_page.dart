@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../common/navigation/app_bars/notes_app_bar.dart';
@@ -44,6 +45,7 @@ class _NotesPageState extends ConsumerState<NotesPage> {
         ),
       ),
       drawer: SideNavigation(),
+      floatingActionButtonLocation: ExpandableFab.location,
       floatingActionButton: AddNoteFab(
         key: Keys.fabAddNote,
       ),

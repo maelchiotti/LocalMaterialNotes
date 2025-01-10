@@ -65,6 +65,7 @@ class _PlainTextEditorState extends ConsumerState<PlainTextEditor> {
         autofocus: widget.autofocus,
         maxLines: null,
         expands: true,
+        decoration: InputDecoration.collapsed(hintText: ''),
         spellCheckConfiguration: SpellCheckConfiguration(
           spellCheckService: DefaultSpellCheckService(),
         ),
