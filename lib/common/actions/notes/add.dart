@@ -10,12 +10,20 @@ import 'select.dart';
 /// Adds a note.
 ///
 /// A [content] can be specified when the note is created from a sharing intent.
-Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) async {
+Future<void> addNote<NoteType>(BuildContext context, WidgetRef ref, {String? content}) async {
   if (isNotesSelectionModeNotifier.value) {
     exitNotesSelectionMode(context, ref);
   }
 
-  final note = content == null ? RichTextNote.empty() : RichTextNote.content(content);
+  final Note note;
+  switch (NoteType) {
+    case == PlainTextNote:
+      note = content == null ? PlainTextNote.empty() : PlainTextNote.content(content);
+    case == RichTextNote:
+      note = content == null ? RichTextNote.empty() : RichTextNote.content(content);
+    default:
+      throw Exception('Unknown note type when creating a new note: $NoteType');
+  }
 
   // If some content was provided, immediately save the note without waiting for changes in the editor
   if (content != null) {
