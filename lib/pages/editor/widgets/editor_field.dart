@@ -38,7 +38,6 @@ class EditorField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    throw Exception("JAJ");
     final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault();
     final editorFont = Font.editorFromPreference();
 
