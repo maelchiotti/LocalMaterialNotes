@@ -73,7 +73,7 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
 
     RichTextNote note = widget.note..content = jsonEncode(widget.fleatherController.document.toDelta().toJson());
 
-    ref.read(notesProvider.notifier).edit(note);
+    ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
   }
 
   @override
@@ -95,15 +95,12 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
         data: fleatherThemeFallback.copyWith(
           paragraph: fleatherThemeParagraph,
         ),
-        child: FleatherField(
+        child: FleatherEditor(
           controller: widget.fleatherController,
           focusNode: editorFocusNode,
           readOnly: widget.readOnly,
           autofocus: widget.autofocus,
           expands: true,
-          decoration: InputDecoration.collapsed(
-            hintText: l.hint_note,
-          ),
           onLaunchUrl: launchUrl,
           spellCheckConfiguration: SpellCheckConfiguration(
             spellCheckService: DefaultSpellCheckService(),

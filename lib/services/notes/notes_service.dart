@@ -109,10 +109,26 @@ class NotesService {
         ...(await (_richTextNotes.getAll(ids))).nonNulls,
       ];
 
-  /// Returns all the notes that are not deleted, optionally filtered by the [label].
-  Future<List<Note>> getAllNotDeleted({Label? label}) async => [
-        ...await (_plainTextNotes.where().deletedEqualTo(false).filter().labels((q) => q.nameEqualTo(label.name)).findAll()),
-        ...await (_richTextNotes.where().deletedEqualTo(false).filter().labels((q) => q.nameEqualTo(label.name)).findAll()),
+  /// Returns all the notes that are not deleted.
+  Future<List<Note>> getAllNotDeleted() async => [
+        ...await (_plainTextNotes.where().deletedEqualTo(false).findAll()),
+        ...await (_richTextNotes.where().deletedEqualTo(false).findAll()),
+      ];
+
+  /// Returns all the notes that are not deleted filtered by the [label].
+  Future<List<Note>> getAllNotDeletedFilteredByLabel({required Label label}) async => [
+        ...await (_plainTextNotes
+            .where()
+            .deletedEqualTo(false)
+            .filter()
+            .labels((q) => q.nameEqualTo(label.name))
+            .findAll()),
+        ...await (_richTextNotes
+            .where()
+            .deletedEqualTo(false)
+            .filter()
+            .labels((q) => q.nameEqualTo(label.name))
+            .findAll()),
       ];
 
   /// Returns all the notes that are deleted.

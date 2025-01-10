@@ -23,15 +23,14 @@ class Notes extends _$Notes {
     List<Note> notes = [];
 
     try {
-      notes = await _notesService.getAllNotDeleted(label: label);
+      notes = label != null
+          ? await _notesService.getAllNotDeletedFilteredByLabel(label: label!)
+          : await _notesService.getAllNotDeleted();
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
     }
 
     final sortedNotes = notes.sorted();
-    for (final sortedNote in sortedNotes) {
-      sortedNote.labels.sorted();
-    }
 
     state = AsyncData(sortedNotes);
 
