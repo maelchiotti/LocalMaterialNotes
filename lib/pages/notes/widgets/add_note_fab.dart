@@ -49,14 +49,14 @@ class _AddNoteFabState extends ConsumerState<AddNoteFab> {
       children: [
         FloatingActionButton.extended(
           heroTag: '<add plain text note hero tag>',
-          tooltip: l.tooltip_fab_add_note,
+          tooltip: l.tooltip_fab_add_plain_text_note,
           onPressed: onPressed<PlainTextNote>,
           icon: const Icon(Icons.text_fields),
           label: Text('Plain text'),
         ),
         FloatingActionButton.extended(
           heroTag: '<add rich text note hero tag>',
-          tooltip: l.tooltip_fab_add_note,
+          tooltip: l.tooltip_fab_add_rich_text_note,
           onPressed: onPressed<RichTextNote>,
           icon: const Icon(Icons.format_paint),
           label: Text('Rich text'),
