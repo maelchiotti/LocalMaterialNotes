@@ -119,7 +119,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
           ),
           child: MaterialApp(
             title: 'Material Notes',
-            home: NotesPage(),
+            home: NotesPage(label: null),
             navigatorKey: rootNavigatorKey,
             builder: (context, child) {
               // Change the widget shown when a widget building fails
