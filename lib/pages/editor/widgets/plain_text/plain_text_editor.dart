@@ -51,7 +51,7 @@ class _PlainTextEditorState extends ConsumerState<PlainTextEditor> {
   void onChanged(String content) {
     PlainTextNote note = widget.note..content = content;
 
-    ref.read(notesProvider.notifier).edit(note);
+    ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
   }
 
   @override
@@ -65,9 +65,6 @@ class _PlainTextEditorState extends ConsumerState<PlainTextEditor> {
         autofocus: widget.autofocus,
         maxLines: null,
         expands: true,
-        decoration: InputDecoration.collapsed(
-          hintText: l.hint_note,
-        ),
         spellCheckConfiguration: SpellCheckConfiguration(
           spellCheckService: DefaultSpellCheckService(),
         ),
