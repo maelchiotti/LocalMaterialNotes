@@ -28,10 +28,7 @@ class LabelsPage extends ConsumerWidget {
     return ref.watch(labelsProvider).when(
           data: (labels) => Scaffold(
             appBar: TopNavigation(
-              appbar: BasicAppBar(
-                title: l.navigation_manage_labels_page,
-                back: true,
-              ),
+              appbar: BasicAppBar(title: l.navigation_manage_labels_page),
             ),
             drawer: const SideNavigation(),
             floatingActionButton: const AddLabelFab(),

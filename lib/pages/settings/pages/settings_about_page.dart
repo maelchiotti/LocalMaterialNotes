@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:settings_tiles/settings_tiles.dart';
+import 'package:simple_icons/simple_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/constants/sizes.dart';
@@ -8,10 +13,6 @@ import '../../../utils/asset.dart';
 import '../../../utils/info_utils.dart';
 import '../../../utils/keys.dart';
 import '../../../utils/utils.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
-import 'package:settings_tiles/settings_tiles.dart';
-import 'package:simple_icons/simple_icons.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 /// Settings providing information about the application.
 class SettingsAboutPage extends StatelessWidget {
@@ -109,10 +110,7 @@ class SettingsAboutPage extends StatelessWidget {
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_about,
-          back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings_about),
       ),
       body: SingleChildScrollView(
         child: Padding(
