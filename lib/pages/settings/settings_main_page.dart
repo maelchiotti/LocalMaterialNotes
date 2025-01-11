@@ -48,7 +48,7 @@ class SettingsMainPage extends StatelessWidget {
                 SettingActionTile(
                   icon: Icons.edit_note,
                   title: 'Notes types',
-                  description: '',
+                  description: 'Available types',
                   onTap: () => NavigationRoute.settingsAppearance.push(context, SettingsNotesTypesPage()),
                 ),
                 SettingActionTile(
