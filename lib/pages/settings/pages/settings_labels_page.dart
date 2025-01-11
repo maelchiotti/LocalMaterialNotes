@@ -1,14 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:restart_app/restart_app.dart';
+import 'package:settings_tiles/settings_tiles.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../utils/keys.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
-import 'package:restart_app/restart_app.dart';
-import 'package:settings_tiles/settings_tiles.dart';
 
 /// Settings related to the labels.
 class SettingsLabelsPage extends StatefulWidget {
@@ -55,10 +56,7 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_labels,
-          back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings_labels),
       ),
       body: SingleChildScrollView(
         child: Padding(

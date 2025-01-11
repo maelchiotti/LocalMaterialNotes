@@ -14,6 +14,7 @@ enum PreferenceKey<T extends Object> {
 
   // Notes creation
   availableNotesTypes<List<String>>(['plainText', 'richText']),
+  defaultShortcutNoteType<String>('plainText'),
 
   // Notes tiles
   showTilesBackground<bool>(false),
