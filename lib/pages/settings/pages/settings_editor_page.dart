@@ -85,10 +85,7 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_editor,
-          back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings_editor),
       ),
       body: SingleChildScrollView(
         child: Padding(

@@ -77,6 +77,10 @@
   "@navigation_settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
+  "navigation_settings_notes_types": "Notes types",
+  "@navigation_settings_notes_types": {
+    "description": "Title of the settings page regarding the notes types."
+  },
   "navigation_settings_notes_tiles": "Notes tiles",
   "@navigation_settings_notes_tiles": {
     "description": "Title of the settings page regarding the notes tiles appearance."

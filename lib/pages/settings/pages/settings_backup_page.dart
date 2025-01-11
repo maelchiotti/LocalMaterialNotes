@@ -210,10 +210,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_backup,
-          back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings_backup),
       ),
       body: SingleChildScrollView(
         child: Padding(

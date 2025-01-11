@@ -23,31 +23,38 @@ class SettingsNotesTypesPage extends ConsumerStatefulWidget {
 
 class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage> {
   /// Sets the setting for the available notes types to [availableNotesTypes].
-  void _onSubmittedAvailableNotesTypes(List<NoteType> availableNotesTypes) {
+  void onSubmittedAvailableNotesTypes(List<NoteType> availableNotesTypes) {
     PreferenceKey.availableNotesTypes.set(NoteType.toPreference(availableNotesTypes));
 
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(availableNotesTypes: availableNotesTypes));
   }
 
+  /// Sets the setting for the default shortcut note type to [defaultShortcutNoteType].
+  void onSubmittedDefaultShortcutNoteType(NoteType defaultShortcutNoteType) {
+    setState(() {
+      PreferenceKey.defaultShortcutNoteType.set(defaultShortcutNoteType.name);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final notesTypes = NoteType.values
-        .map(
-          (type) => (value: type, title: type.title, subtitle: null),
-        )
-        .toList();
+    final notesTypes = NoteType.values.map((type) {
+      return (value: type, title: type.title, subtitle: null);
+    }).toList();
     final availableNotesTypes = ref.watch(
       preferencesProvider.select((preferences) => preferences.availableNotesTypes),
     );
     final availableNotesTypesString = NoteType.availableTypesAsString;
 
+    final shortcutNotesTypes = NoteType.shortcutTypes.map((type) {
+      return (value: type, title: type.title, subtitle: null);
+    }).toList();
+    final defaultShortcutNoteType = NoteType.defaultShortcutType;
+
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_notes_tiles,
-          //back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings_notes_types),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -67,7 +74,17 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
                     options: notesTypes,
                     initialOptions: availableNotesTypes,
                     minOptions: 1,
-                    onSubmitted: _onSubmittedAvailableNotesTypes,
+                    onSubmitted: onSubmittedAvailableNotesTypes,
+                  ),
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.app_shortcut,
+                    title: 'Default shortcut type',
+                    value: defaultShortcutNoteType.title,
+                    description: 'The default note type to use when creating a note from a shortcut',
+                    dialogTitle: 'Default shortcut type',
+                    options: shortcutNotesTypes,
+                    initialOption: defaultShortcutNoteType,
+                    onSubmitted: onSubmittedDefaultShortcutNoteType,
                   ),
                 ],
               ),

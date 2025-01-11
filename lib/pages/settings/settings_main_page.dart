@@ -27,10 +27,7 @@ class SettingsMainPage extends StatelessWidget {
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMain,
-        appbar: BasicAppBar(
-          title: l.navigation_settings,
-          //back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings),
       ),
       drawer: const SideNavigation(),
       body: SingleChildScrollView(

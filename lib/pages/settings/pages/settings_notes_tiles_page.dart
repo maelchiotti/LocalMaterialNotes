@@ -71,10 +71,7 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_notes_tiles,
-          //back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings_notes_tiles),
       ),
       body: SingleChildScrollView(
         child: Padding(
