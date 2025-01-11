@@ -19,7 +19,7 @@ class WatchedPreferences {
   late Font appFont;
 
   // Notes types
-  late List<Type> availableNotesTypes;
+  late List<NoteType> availableNotesTypes;
 
   // Notes tiles
   late bool showTitlesOnly;
@@ -47,7 +47,7 @@ class WatchedPreferences {
     bool? dynamicTheming,
     bool? blackTheming,
     Font? appFont,
-    List<Type>? availableNotesTypes,
+    List<NoteType>? availableNotesTypes,
     bool? showTitlesOnly,
     bool? showTilesBackground,
     bool? showSeparators,
@@ -67,7 +67,7 @@ class WatchedPreferences {
     this.blackTheming = blackTheming ?? PreferenceKey.blackTheming.getPreferenceOrDefault();
     this.appFont = appFont ?? Font.appFromPreference();
 
-    this.availableNotesTypes = availableNotesTypes ?? NotesTypes.fromPreference();
+    this.availableNotesTypes = availableNotesTypes ?? NoteType.availableTypes;
 
     this.showTitlesOnly = showTitlesOnly ?? PreferenceKey.showTitlesOnly.getPreferenceOrDefault();
     this.showTilesBackground = showTilesBackground ?? PreferenceKey.showTilesBackground.getPreferenceOrDefault();
