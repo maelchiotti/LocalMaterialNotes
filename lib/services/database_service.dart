@@ -38,14 +38,14 @@ class DatabaseService {
       directory: databaseDirectory,
     );
 
-    // Perform migrations if needed
-    await MigrationService().migrateIfNeeded();
-
     // Initialize mimir
     mimir = await Mimir.defaultInstance;
 
     // Initialize the models services
     await LabelsService().ensureInitialized();
     await NotesService().ensureInitialized();
+
+    // Perform migrations if needed
+    await MigrationService().migrateIfNeeded();
   }
 }

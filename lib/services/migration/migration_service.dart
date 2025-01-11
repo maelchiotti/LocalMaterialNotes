@@ -5,10 +5,12 @@ import '../../common/preferences/preference_key.dart';
 import '../../models/deprecated/note.dart';
 import '../../models/note/note.dart';
 import '../database_service.dart';
+import '../notes/notes_service.dart';
 
 /// Database migration service.
 class MigrationService {
   final _databaseService = DatabaseService();
+  final _notesService = NotesService();
 
   /// Migrates the database to the latest version if needed.
   Future<void> migrateIfNeeded() async {
@@ -27,41 +29,35 @@ class MigrationService {
   Future<void> _migrateToV2() async {
     logger.i('Migrating the database from version 1 to version 2');
 
-    final database = _databaseService.database;
+    // Get the old notes and their labels
+    final oldNotes = await _databaseService.database.notes.where().findAll();
+    final oldLabels = oldNotes.map((note) => note.labels.toList()).toList();
 
-    // Convert the legacy notes to rich text notes
-    final legacyNotes = await database.notes.where().findAll();
-    final richTextNotes = legacyNotes
+    // Convert the old notes to rich text notes
+    final richTextNotes = oldNotes
         .map(
-          (legacyNote) => RichTextNote(
-            deleted: legacyNote.deleted,
-            pinned: legacyNote.pinned,
-            createdTime: legacyNote.createdTime,
-            editedTime: legacyNote.editedTime,
-            title: legacyNote.title,
-            content: legacyNote.content,
+          (oldNote) => RichTextNote(
+            deleted: oldNote.deleted,
+            pinned: oldNote.pinned,
+            createdTime: oldNote.createdTime,
+            editedTime: oldNote.editedTime,
+            title: oldNote.title,
+            content: oldNote.content,
           ),
         )
         .toList();
 
-    // Add all the notes to the new collection
-    var addedRichTextNotes = <int>[];
-    await database.writeTxn(() async {
-      addedRichTextNotes = await database.richTextNotes.putAll(richTextNotes);
-    });
+    // Add the new notes to the new collection with their labels
+    await _notesService.putAll(richTextNotes);
+    await _notesService.putAllLabels(richTextNotes, oldLabels);
 
     // Check that the migration succeeded
-    final legacyNotesCount = await database.notes.count();
-    final addedRichTextNotesCount = addedRichTextNotes.length;
+    final oldNotesCount = await _databaseService.database.notes.count();
+    final addedRichTextNotesCount = richTextNotes.length;
     assert(
-      legacyNotesCount == addedRichTextNotesCount,
-      'The count of legacy notes ($legacyNotesCount) is different from the count of rich text notes ($addedRichTextNotesCount) after the migration to v2',
+      oldNotesCount == addedRichTextNotesCount,
+      'The count of legacy notes ($oldNotesCount) is different from the count of rich text notes ($addedRichTextNotesCount) after the migration to v2',
     );
-
-    // Remove all the legacy notes
-    await database.writeTxn(() async {
-      await database.notes.clear();
-    });
 
     // Update the database version
     await PreferenceKey.databaseVersion.set(2);
