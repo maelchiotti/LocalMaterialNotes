@@ -23,19 +23,23 @@ class SettingsNotesTypesPage extends ConsumerStatefulWidget {
 
 class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage> {
   /// Sets the setting for the available notes types to [availableNotesTypes].
-  void _onSubmittedAvailableNotesTypes(List<Type> availableNotesTypes) {
-    PreferenceKey.availableNotesTypes.set(NotesTypes.toPreference(availableNotesTypes));
+  void _onSubmittedAvailableNotesTypes(List<NoteType> availableNotesTypes) {
+    PreferenceKey.availableNotesTypes.set(NoteType.toPreference(availableNotesTypes));
 
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(availableNotesTypes: availableNotesTypes));
   }
 
   @override
   Widget build(BuildContext context) {
-    final allNotesTypes = NotesTypes.all();
+    final notesTypes = NoteType.values
+        .map(
+          (type) => (value: type, title: type.title, subtitle: null),
+        )
+        .toList();
     final availableNotesTypes = ref.watch(
       preferencesProvider.select((preferences) => preferences.availableNotesTypes),
     );
-    final availableNotesTypesString = NotesTypes.fromPreferenceAsString();
+    final availableNotesTypesString = NoteType.availableTypesAsString;
 
     return Scaffold(
       appBar: TopNavigation(
@@ -53,14 +57,14 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
               SettingSection(
                 divider: null,
                 tiles: [
-                  SettingMultipleOptionsTile<Type>.detailed(
+                  SettingMultipleOptionsTile.detailed(
                     icon: Icons.edit_note,
                     title: 'Available notes types',
                     value: availableNotesTypesString,
                     description:
                         'The list of notes types that can be created, either from the notes page or with a shortcut. When removing a type, already existing notes with that type are not deleted and can still be used normally.',
                     dialogTitle: 'Available notes types',
-                    options: allNotesTypes,
+                    options: notesTypes,
                     initialOptions: availableNotesTypes,
                     minOptions: 1,
                     onSubmitted: _onSubmittedAvailableNotesTypes,
