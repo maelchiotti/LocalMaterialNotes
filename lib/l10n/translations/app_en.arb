@@ -937,6 +937,10 @@
   "@about_last_edited": {
     "description": "Date when the note was edited for the last time."
   },
+  "about_type": "Type",
+  "@about_type": {
+    "description": "Type of the note."
+  },
   "about_created": "Created",
   "@about_created": {
     "description": "Date when the note was created."
@@ -1024,5 +1028,13 @@
   "font_system_default": "System default",
   "@font_system_default": {
     "description": "Name of the font settings that uses the default font of the system."
+  },
+  "note_type_plain_text": "Plain text",
+  "@note_type_plain_text": {
+    "description": "Note with plain text."
+  },
+  "note_type_rich_text": "Rich text",
+  "@note_type_rich_text": {
+    "description": "Note with rich text."
   }
 }

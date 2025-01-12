@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.12.0 - 2025-01-12
+
+### Added
+
+- Setting to choose the maximum number of content preview lines to show in the notes tiles
+- Italian translation
+
+### Fixed
+
+- Main notes page not displaying all the notes after going back from a labels page
+- Crash when using an horizontal line in the the first line of the editor
+
 ## 1.11.0 - 2025-01-05
 
 ### Added

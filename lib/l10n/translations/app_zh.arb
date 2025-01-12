@@ -7,7 +7,7 @@
   "@app_tagline": {
     "description": "Tagline of the application, shown in the about popup."
   },
-  "app_about": "{appName} 是基于文本的笔记应用程序，旨在简单。它包含 Material 设计。它在本地存储笔记，并且没有任何互联网权限，因此您是唯一可以访问笔记的人。",
+  "app_about": "{appName} 是基于文本的笔记应用程序，旨在简单。它包含 Material 设计。它在本地存储笔记，并且没有任何互联网权限，因此只有您可以访问笔记。",
   "@app_about": {
     "description": "Description of the application, shown in the about popup.",
     "placeholders": {
@@ -77,6 +77,10 @@
   "@navigation_settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
+  "navigation_settings_notes_tiles": "笔记磁贴",
+  "@navigation_settings_notes_tiles": {
+    "description": "Title of the settings page regarding the notes tiles appearance."
+  },
   "navigation_settings_behavior": "行为",
   "@navigation_settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
@@ -93,7 +97,7 @@
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
   },
-  "navigation_settings_accessibility": "无障碍功能",
+  "navigation_settings_accessibility": "无障碍",
   "@navigation_settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
   },
@@ -113,7 +117,7 @@
   "@settings_page_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
-  "settings_page_appearance_description": "语言、主题、字体、笔记磁贴",
+  "settings_page_appearance_description": "语言、主题、字体",
   "@settings_page_appearance_description": {
     "description": "Description of the appearance settings page."
   },
@@ -149,7 +153,7 @@
   "@settings_dynamic_theming": {
     "description": "Title of the dynamic theming setting tile (to use colors generated from the system)."
   },
-  "settings_dynamic_theming_description": "从系统生成颜色",
+  "settings_dynamic_theming_description": "从系统生成配色",
   "@settings_dynamic_theming_description": {
     "description": "Description of the dynamic theming setting tile."
   },
@@ -181,9 +185,37 @@
   "@settings_editor_font_description": {
     "description": "Description of the setting tile to choose the font of the app."
   },
-  "settings_appearance_section_notes_tiles": "笔记磁贴",
-  "@settings_appearance_section_notes_tiles": {
-    "description": "Title of the section regarding the notes tiles under the appearance settings."
+  "settings_page_notes_tiles": "笔记磁贴",
+  "@settings_page_notes_tiles": {
+    "description": "Title of the settings page regarding the notes tiles."
+  },
+  "settings_page_notes_tiles_description": "外观、内容",
+  "@settings_page_notes_tiles_description": {
+    "description": "Description of the notes tiles settings page."
+  },
+  "settings_page_notes_tiles_appearance_section": "外观",
+  "@settings_page_notes_tiles_appearance_section": {
+    "description": "Title of the section regarding the appearance under the notes tiles settings."
+  },
+  "settings_page_notes_tiles_content_section": "内容",
+  "@settings_page_notes_tiles_content_section": {
+    "description": "Title of the section regarding the content under the notes tiles settings."
+  },
+  "settings_show_tiles_background": "背景",
+  "@settings_show_tiles_background": {
+    "description": "Title of the setting tile to show the background of the notes tiles."
+  },
+  "settings_show_tiles_background_description": "显示笔记磁贴的背景",
+  "@settings_show_tiles_background_description": {
+    "description": "Description of the setting tile to show the background of the notes tiles."
+  },
+  "settings_show_separators": "分隔符",
+  "@settings_show_separators": {
+    "description": "Title of the setting tile to show the separators between the notes tiles."
+  },
+  "settings_show_separators_description": "在笔记磁贴之间显示分隔符",
+  "@settings_show_separators_description": {
+    "description": "Description of the setting tile to show the separators between the notes tiles."
   },
   "settings_show_titles_only": "仅标题",
   "@settings_show_titles_only": {
@@ -201,21 +233,13 @@
   "@settings_show_titles_only_disable_in_search_view_description": {
     "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
   },
-  "settings_show_tiles_background": "背景",
-  "@settings_show_tiles_background": {
-    "description": "Title of the setting tile to show the background of the notes tiles."
+  "settings_content_preview_max_lines": "最大预览行数",
+  "@settings_content_preview_max_lines": {
+    "description": "Title of the setting tile to choose the maximum number of content preview lines to show."
   },
-  "settings_show_tiles_background_description": "显示笔记磁贴的背景",
-  "@settings_show_tiles_background_description": {
-    "description": "Description of the setting tile to show the background of the notes tiles."
-  },
-  "settings_show_separators": "分隔符",
-  "@settings_show_separators": {
-    "description": "Title of the setting tile to show the separators between the notes tiles."
-  },
-  "settings_show_separators_description": "在笔记磁贴之间显示分隔符",
-  "@settings_show_separators_description": {
-    "description": "Description of the setting tile to show the separators between the notes tiles."
+  "settings_content_preview_max_lines_description": "要显示的内容预览的最大行数",
+  "@settings_content_preview_max_lines_description": {
+    "description": "Description of the setting tile to choose the maximum number of content preview lines to show."
   },
   "settings_behavior": "行为",
   "@settings_behavior": {
@@ -487,7 +511,7 @@
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
-  "settings_accessibility": "无障碍功能",
+  "settings_accessibility": "无障碍",
   "@settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
   },
@@ -634,10 +658,6 @@
   "hint_title": "标题",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
-  },
-  "hint_note": "笔记",
-  "@hint_note": {
-    "description": "Hint for the text field of the content of the notes."
   },
   "hint_link": "链接",
   "@hint_link": {
@@ -917,6 +937,10 @@
   "@about_last_edited": {
     "description": "Date when the note was edited for the last time."
   },
+  "about_type": "类型",
+  "@about_type": {
+    "description": "Type of the note."
+  },
   "about_created": "创建时间",
   "@about_created": {
     "description": "Date when the note was created."
@@ -1000,5 +1024,17 @@
   "welcome_note_content": "简单、本地、Material 设计笔记",
   "@welcome_note_content": {
     "description": "Content of the welcome note automatically created on the first run of the application."
+  },
+  "font_system_default": "系统默认",
+  "@font_system_default": {
+    "description": "Name of the font settings that uses the default font of the system."
+  },
+  "note_type_plain_text": "纯文本",
+  "@note_type_plain_text": {
+    "description": "Note with plain text."
+  },
+  "note_type_rich_text": "富文本",
+  "@note_type_rich_text": {
+    "description": "Note with rich text."
   }
 }

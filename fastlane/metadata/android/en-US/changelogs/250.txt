@@ -1,0 +1,7 @@
+ADDED
+- Setting to choose the maximum number of content preview lines to show in the notes tiles
+- Italian translation
+
+FIXED
+- Main notes page not displaying all the notes after going back from a labels page
+- Crash when using an horizontal line in the the first line of the editor

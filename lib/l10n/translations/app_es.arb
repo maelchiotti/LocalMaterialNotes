@@ -113,10 +113,6 @@
   "@settings_page_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
-  "settings_page_appearance_description": "Idioma, tema, fuentes, tarjetas de notas",
-  "@settings_page_appearance_description": {
-    "description": "Description of the appearance settings page."
-  },
   "settings_language": "Idioma",
   "@settings_language": {
     "description": "Title of the language setting tile."
@@ -181,9 +177,21 @@
   "@settings_editor_font_description": {
     "description": "Description of the setting tile to choose the font of the app."
   },
-  "settings_appearance_section_notes_tiles": "Tarjetas de notas",
-  "@settings_appearance_section_notes_tiles": {
-    "description": "Title of the section regarding the notes tiles under the appearance settings."
+  "settings_show_tiles_background": "Fondo",
+  "@settings_show_tiles_background": {
+    "description": "Title of the setting tile to show the background of the notes tiles."
+  },
+  "settings_show_tiles_background_description": "Muestra el fondo de tarjetas en las notas",
+  "@settings_show_tiles_background_description": {
+    "description": "Description of the setting tile to show the background of the notes tiles."
+  },
+  "settings_show_separators": "Separadores",
+  "@settings_show_separators": {
+    "description": "Title of the setting tile to show the separators between the notes tiles."
+  },
+  "settings_show_separators_description": "Mostrar un separador entre las notas",
+  "@settings_show_separators_description": {
+    "description": "Description of the setting tile to show the separators between the notes tiles."
   },
   "settings_show_titles_only": "Sólo títulos",
   "@settings_show_titles_only": {
@@ -200,22 +208,6 @@
   "settings_show_titles_only_disable_in_search_view_description": "Deshabilitar la opción de sólo mostrar los títulos cuando se muestra la vista de búsqueda",
   "@settings_show_titles_only_disable_in_search_view_description": {
     "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
-  },
-  "settings_show_tiles_background": "Fondo",
-  "@settings_show_tiles_background": {
-    "description": "Title of the setting tile to show the background of the notes tiles."
-  },
-  "settings_show_tiles_background_description": "Muestra el fondo de tarjetas en las notas",
-  "@settings_show_tiles_background_description": {
-    "description": "Description of the setting tile to show the background of the notes tiles."
-  },
-  "settings_show_separators": "Separadores",
-  "@settings_show_separators": {
-    "description": "Title of the setting tile to show the separators between the notes tiles."
-  },
-  "settings_show_separators_description": "Mostrar un separador entre las notas",
-  "@settings_show_separators_description": {
-    "description": "Description of the setting tile to show the separators between the notes tiles."
   },
   "settings_behavior": "Comportamiento",
   "@settings_behavior": {
@@ -634,10 +626,6 @@
   "hint_title": "Título",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
-  },
-  "hint_note": "Nota",
-  "@hint_note": {
-    "description": "Hint for the text field of the content of the notes."
   },
   "hint_link": "Enlace",
   "@hint_link": {

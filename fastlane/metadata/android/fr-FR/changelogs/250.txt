@@ -1,0 +1,7 @@
+AJOUTÉ
+- Paramètre permettant de choisir le nombre maximum de lignes de l'aperçu du contenu à afficher dans les tuiles de notes
+- Traduction en italien
+
+CORRIGÉ
+- La page principale des notes n'affiche pas toutes les notes après un retour depuis une page d'étiquettes
+- Crash lors de l'utilisation d'une ligne horizontale dans la première ligne de l'éditeur

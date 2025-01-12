@@ -149,22 +149,6 @@
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
   },
-  "settings_show_titles_only": "Sadece başlıklar",
-  "@settings_show_titles_only": {
-    "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
-  },
-  "settings_show_titles_only_description": "Yalnızca notların başlıklarını gösterin",
-  "@settings_show_titles_only_description": {
-    "description": "Description of the setting tile to only show the titles of the notes in the notes tiles."
-  },
-  "settings_show_titles_only_disable_in_search_view": "Başlıkları yalnızca arama görünümünde devre dışı bırak",
-  "@settings_show_titles_only_disable_in_search_view": {
-    "description": "Title of the setting tile to disable only showing the titles of the notes in the search view."
-  },
-  "settings_show_titles_only_disable_in_search_view_description": "Arama görünümündeyken yalnızca başlıkları gösterme seçeneğini devre dışı bırakın",
-  "@settings_show_titles_only_disable_in_search_view_description": {
-    "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
-  },
   "settings_show_tiles_background": "Arkaplan",
   "@settings_show_tiles_background": {
     "description": "Title of the setting tile to show the background of the notes tiles."
@@ -180,6 +164,22 @@
   "settings_show_separators_description": "Not kutucukları arasında bir ayırıcı göster",
   "@settings_show_separators_description": {
     "description": "Description of the setting tile to show the separators between the notes tiles."
+  },
+  "settings_show_titles_only": "Sadece başlıklar",
+  "@settings_show_titles_only": {
+    "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
+  },
+  "settings_show_titles_only_description": "Yalnızca notların başlıklarını gösterin",
+  "@settings_show_titles_only_description": {
+    "description": "Description of the setting tile to only show the titles of the notes in the notes tiles."
+  },
+  "settings_show_titles_only_disable_in_search_view": "Başlıkları yalnızca arama görünümünde devre dışı bırak",
+  "@settings_show_titles_only_disable_in_search_view": {
+    "description": "Title of the setting tile to disable only showing the titles of the notes in the search view."
+  },
+  "settings_show_titles_only_disable_in_search_view_description": "Arama görünümündeyken yalnızca başlıkları gösterme seçeneğini devre dışı bırakın",
+  "@settings_show_titles_only_disable_in_search_view_description": {
+    "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
   },
   "settings_behavior": "Davranış",
   "@settings_behavior": {
@@ -570,10 +570,6 @@
   "hint_title": "Başlık",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
-  },
-  "hint_note": "Not",
-  "@hint_note": {
-    "description": "Hint for the text field of the content of the notes."
   },
   "hint_link": "Bağlantı",
   "@hint_link": {
