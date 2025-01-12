@@ -56,7 +56,7 @@ class MigrationService {
     final addedRichTextNotesCount = richTextNotes.length;
     assert(
       oldNotesCount == addedRichTextNotesCount,
-      'The count of legacy notes ($oldNotesCount) is different from the count of rich text notes ($addedRichTextNotesCount) after the migration to v2',
+      'The count of old notes ($oldNotesCount) is different from the count of rich text notes ($addedRichTextNotesCount) after the migration to v2',
     );
 
     // Update the database version
