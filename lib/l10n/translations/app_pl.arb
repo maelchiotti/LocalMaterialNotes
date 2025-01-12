@@ -129,22 +129,6 @@
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
   },
-  "settings_show_titles_only": "Tylko tytuł",
-  "@settings_show_titles_only": {
-    "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
-  },
-  "settings_show_titles_only_description": "Pokazuj tylko tytuły notatek",
-  "@settings_show_titles_only_description": {
-    "description": "Description of the setting tile to only show the titles of the notes in the notes tiles."
-  },
-  "settings_show_titles_only_disable_in_search_view": "Pokazuj fragmenty notatek podczas wyszukiwania",
-  "@settings_show_titles_only_disable_in_search_view": {
-    "description": "Title of the setting tile to disable only showing the titles of the notes in the search view."
-  },
-  "settings_show_titles_only_disable_in_search_view_description": "Ignoruj opcję \"Tylko tytuły\" podczas wyszukiwania",
-  "@settings_show_titles_only_disable_in_search_view_description": {
-    "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
-  },
   "settings_show_tiles_background": "Tło",
   "@settings_show_tiles_background": {
     "description": "Title of the setting tile to show the background of the notes tiles."
@@ -160,6 +144,22 @@
   "settings_show_separators_description": "Pokaż separatory między kafelkami notatek",
   "@settings_show_separators_description": {
     "description": "Description of the setting tile to show the separators between the notes tiles."
+  },
+  "settings_show_titles_only": "Tylko tytuł",
+  "@settings_show_titles_only": {
+    "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
+  },
+  "settings_show_titles_only_description": "Pokazuj tylko tytuły notatek",
+  "@settings_show_titles_only_description": {
+    "description": "Description of the setting tile to only show the titles of the notes in the notes tiles."
+  },
+  "settings_show_titles_only_disable_in_search_view": "Pokazuj fragmenty notatek podczas wyszukiwania",
+  "@settings_show_titles_only_disable_in_search_view": {
+    "description": "Title of the setting tile to disable only showing the titles of the notes in the search view."
+  },
+  "settings_show_titles_only_disable_in_search_view_description": "Ignoruj opcję \"Tylko tytuły\" podczas wyszukiwania",
+  "@settings_show_titles_only_disable_in_search_view_description": {
+    "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
   },
   "settings_behavior": "Zachowanie",
   "@settings_behavior": {
@@ -470,10 +470,6 @@
   "hint_title": "Tytuł",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
-  },
-  "hint_note": "Notatka",
-  "@hint_note": {
-    "description": "Hint for the text field of the content of the notes."
   },
   "hint_link": "Odnośnik",
   "@hint_link": {
