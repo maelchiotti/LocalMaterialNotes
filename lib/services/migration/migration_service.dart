@@ -36,14 +36,15 @@ class MigrationService {
     // Convert the old notes to rich text notes
     final richTextNotes = oldNotes
         .map(
-          (oldNote) => RichTextNote(
-        deleted: oldNote.deleted,
-        pinned: oldNote.pinned,
-        createdTime: oldNote.createdTime,
-        editedTime: oldNote.editedTime,
-        title: oldNote.title,
-        content: oldNote.content,
-      ),
+          (oldNote) =>
+          RichTextNote(
+            deleted: oldNote.deleted,
+            pinned: oldNote.pinned,
+            createdTime: oldNote.createdTime,
+            editedTime: oldNote.editedTime,
+            title: oldNote.title,
+            content: oldNote.content,
+          ),
     )
         .toList();
 
