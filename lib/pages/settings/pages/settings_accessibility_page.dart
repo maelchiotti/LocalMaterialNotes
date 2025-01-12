@@ -1,6 +1,8 @@
 import 'package:dart_helper_utils/dart_helper_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:settings_tiles/settings_tiles.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
@@ -10,7 +12,6 @@ import '../../../common/preferences/watched_preferences.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 import '../../../utils/keys.dart';
 import '../../../utils/locale_utils.dart';
-import 'package:settings_tiles/settings_tiles.dart';
 
 /// Accessibility settings.
 class SettingsAccessibilityPage extends ConsumerStatefulWidget {
@@ -79,10 +80,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_accessibility,
-          back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings_accessibility),
       ),
       body: SingleChildScrollView(
         child: Padding(

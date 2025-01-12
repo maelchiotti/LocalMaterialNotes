@@ -1,7 +1,8 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../constants/constants.dart';
 import 'preference_key.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 /// Manages user preferences.
 class PreferencesUtils {
@@ -36,16 +37,19 @@ class PreferencesUtils {
       return;
     }
 
-    if (T == bool) {
-      await _preferences.setBool(preferenceKey.name, value as bool);
-    } else if (T == int) {
-      await _preferences.setInt(preferenceKey.name, value as int);
-    } else if (T == double) {
-      await _preferences.setDouble(preferenceKey.name, value as double);
-    } else if (T == String) {
-      await _preferences.setString(preferenceKey.name, value as String);
-    } else if (T == List<String>) {
-      await _preferences.setStringList(preferenceKey.name, value as List<String>);
+    switch (T) {
+      case == bool:
+        await _preferences.setBool(preferenceKey.name, value as bool);
+      case == int:
+        await _preferences.setInt(preferenceKey.name, value as int);
+      case == double:
+        await _preferences.setDouble(preferenceKey.name, value as double);
+      case == String:
+        await _preferences.setString(preferenceKey.name, value as String);
+      case == List<String>:
+        await _preferences.setStringList(preferenceKey.name, value as List<String>);
+      default:
+        throw ArgumentError('Invalid preference type: $T');
     }
   }
 
@@ -58,7 +62,17 @@ class PreferencesUtils {
     }
 
     try {
-      return _preferences.get(preferenceKey.name) as T?;
+      if (T == List<String>) {
+        return _preferences.getStringList(preferenceKey.name) as T?;
+      }
+
+      return switch (T) {
+        == bool => _preferences.getBool(preferenceKey.name),
+        == int => _preferences.getInt(preferenceKey.name),
+        == double => _preferences.getDouble(preferenceKey.name),
+        == String => _preferences.getString(preferenceKey.name),
+        _ => throw ArgumentError('Invalid preference type: $T'),
+      } as T?;
     }
     // On type conversion error, reset the preference to its default value
     on TypeError catch (error) {
