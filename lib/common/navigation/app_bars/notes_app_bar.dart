@@ -2,10 +2,10 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../models/label/label.dart';
 import '../../../models/note/note.dart';
 import '../../../providers/bin/bin_provider.dart';
 import '../../../providers/notes/notes_provider.dart';
+import '../../../providers/notifiers/notifiers.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 import '../../../services/notes/notes_service.dart';
 import '../../../utils/keys.dart';
@@ -29,19 +29,20 @@ class NotesAppBar extends ConsumerWidget {
   /// Default constructor.
   const NotesAppBar({
     super.key,
-    required this.title,
-    this.label,
     this.notesPage = true,
   });
-
-  /// Title to display in the app bar.
-  final String title;
 
   /// Whether the current page is the notes list.
   final bool notesPage;
 
-  /// The label on which the notes are filtered if in a label page.
-  final Label? label;
+  /// Returns the title of the app bar.
+  String get title {
+    if (notesPage) {
+      return currentLabelFilter?.name ?? l.navigation_notes;
+    } else {
+      return l.navigation_bin;
+    }
+  }
 
   /// Returns the placeholder for the search button used when the search isn't available.
   Widget get searchButtonPlaceholder => IconButton(
@@ -91,7 +92,9 @@ class NotesAppBar extends ConsumerWidget {
       Navigator.pop(context);
     }
 
-    notesPage ? ref.read(notesProvider.notifier).sort() : ref.read(binProvider.notifier).sort();
+    notesPage
+        ? ref.read(notesProvider(label: currentLabelFilter).notifier).sort()
+        : ref.read(binProvider.notifier).sort();
   }
 
   /// Searches for the notes that match the [search].
@@ -100,7 +103,7 @@ class NotesAppBar extends ConsumerWidget {
       return [];
     }
 
-    final notes = await NotesService().search(search, notesPage, label?.name);
+    final notes = await NotesService().search(search, notesPage, currentLabelFilter?.name);
 
     return notes
         .mapIndexed(
@@ -199,13 +202,13 @@ class NotesAppBar extends ConsumerWidget {
           onSelected: (sortMethod) => sort(context, ref, sortMethod: sortMethod),
         ),
         if (notesPage)
-          ref.watch(notesProvider).when(
+          ref.watch(notesProvider(label: currentLabelFilter)).when(
                 data: (notes) => child(context, notes),
                 error: (error, stackTrace) => const EmptyPlaceholder(),
                 loading: () => searchButtonPlaceholder,
               )
         else
-          ref.watch(notesProvider).when(
+          ref.watch(notesProvider(label: currentLabelFilter)).when(
                 data: (notes) => child(context, notes),
                 error: (error, stackTrace) => const EmptyPlaceholder(),
                 loading: () => searchButtonPlaceholder,

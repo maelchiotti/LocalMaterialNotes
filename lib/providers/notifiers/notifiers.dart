@@ -1,8 +1,12 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
-import '../../common/preferences/preference_key.dart';
 
+import '../../common/preferences/preference_key.dart';
+import '../../models/label/label.dart';
 import 'current_note_notifier.dart';
+
+/// Value of the current label filter on the notes.
+Label? currentLabelFilter;
 
 /// Notifier for whether the notes selection mode is active.
 final isNotesSelectionModeNotifier = ValueNotifier(false);

@@ -3,6 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:locale_names/locale_names.dart';
+import 'package:restart_app/restart_app.dart';
+import 'package:settings_tiles/settings_tiles.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/enums/localization_completion.dart';
@@ -16,10 +20,6 @@ import '../../../providers/preferences/preferences_provider.dart';
 import '../../../utils/keys.dart';
 import '../../../utils/locale_utils.dart';
 import '../../../utils/theme_utils.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
-import 'package:restart_app/restart_app.dart';
-import 'package:settings_tiles/settings_tiles.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 /// Settings related to the appearance of the application.
 class SettingsAppearancePage extends ConsumerStatefulWidget {
@@ -87,34 +87,6 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
     });
   }
 
-  /// Toggles the setting to show background of the notes tiles.
-  void _toggleShowTilesBackground(bool toggled) {
-    PreferenceKey.showTilesBackground.set(toggled);
-
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showTilesBackground: toggled));
-  }
-
-  /// Toggles the setting to show the separators between the notes tiles.
-  void _toggleShowSeparators(bool toggled) {
-    PreferenceKey.showSeparators.set(toggled);
-
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showSeparators: toggled));
-  }
-
-  /// Toggles the setting to show background of the notes tiles.
-  void _toggleShowTitlesOnly(bool toggled) {
-    PreferenceKey.showTitlesOnly.set(toggled);
-
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showTitlesOnly: toggled));
-  }
-
-  /// Toggles the setting to show background of the notes tiles.
-  void _toggleShowTitlesOnlyDisableInSearchView(bool toggled) {
-    setState(() {
-      PreferenceKey.showTitlesOnlyDisableInSearchView.set(toggled);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final locale = LocaleUtils().appLocale;
@@ -125,11 +97,6 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
 
     final appFont = ref.watch(preferencesProvider.select((preferences) => preferences.appFont));
     final editorFont = Font.editorFromPreference();
-
-    final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
-    final showSeparators = ref.watch(preferencesProvider.select((preferences) => preferences.showSeparators));
-    final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
-    final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
 
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
@@ -241,41 +208,6 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                         .toList(),
                     initialOption: editorFont,
                     onSubmitted: _submittedEditorFont,
-                  ),
-                ],
-              ),
-              SettingSection(
-                divider: null,
-                title: l.settings_appearance_section_notes_tiles,
-                tiles: [
-                  SettingSwitchTile(
-                    icon: Icons.gradient,
-                    title: l.settings_show_tiles_background,
-                    description: l.settings_show_tiles_background_description,
-                    toggled: showTilesBackground,
-                    onChanged: _toggleShowTilesBackground,
-                  ),
-                  SettingSwitchTile(
-                    icon: Icons.safety_divider,
-                    title: l.settings_show_separators,
-                    description: l.settings_show_separators_description,
-                    toggled: showSeparators,
-                    onChanged: _toggleShowSeparators,
-                  ),
-                  SettingSwitchTile(
-                    icon: Icons.title,
-                    title: l.settings_show_titles_only,
-                    description: l.settings_show_titles_only_description,
-                    toggled: showTitlesOnly,
-                    onChanged: _toggleShowTitlesOnly,
-                  ),
-                  SettingSwitchTile(
-                    enabled: showTitlesOnly,
-                    icon: Symbols.feature_search,
-                    title: l.settings_show_titles_only_disable_in_search_view,
-                    description: l.settings_show_titles_only_disable_in_search_view_description,
-                    toggled: showTitlesOnlyDisableInSearchView,
-                    onChanged: _toggleShowTitlesOnlyDisableInSearchView,
                   ),
                 ],
               ),

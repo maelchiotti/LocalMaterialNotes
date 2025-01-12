@@ -1,10 +1,13 @@
 import 'package:flutter_mimir/flutter_mimir.dart';
 import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
+
+import '../models/deprecated/note.dart';
 import '../models/label/label.dart';
 import '../models/note/note.dart';
 import 'labels/labels_service.dart';
+import 'migration/migration_service.dart';
 import 'notes/notes_service.dart';
-import 'package:path_provider/path_provider.dart';
 
 /// Abstract service for the database.
 ///
@@ -28,16 +31,21 @@ class DatabaseService {
     final databaseName = 'materialnotes';
     final databaseDirectory = (await getApplicationDocumentsDirectory()).path;
 
+    // Initialize the database
     database = await Isar.open(
-      [NoteSchema, LabelSchema],
+      [NoteSchema, RichTextNoteSchema, LabelSchema],
       name: databaseName,
       directory: databaseDirectory,
     );
 
+    // Initialize mimir
     mimir = await Mimir.defaultInstance;
 
     // Initialize the models services
     await LabelsService().ensureInitialized();
     await NotesService().ensureInitialized();
+
+    // Perform migrations if needed
+    await MigrationService().migrateIfNeeded();
   }
 }

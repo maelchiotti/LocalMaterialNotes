@@ -135,15 +135,15 @@ enum SwipeAction {
   Future<bool> execute(BuildContext context, WidgetRef ref, Note note) async {
     switch (this) {
       case delete:
-        return deleteNote(context, ref, note);
+        return deleteNote(context, ref, note: note);
       case togglePin:
-        return togglePinNote(context, ref, note);
+        return togglePinNote(context, ref, note: note);
       case share:
-        await shareNote(note);
+        await shareNote(note: note);
 
         return false;
       case copy:
-        await copyNote(note);
+        await copyNote(note: note);
 
         return false;
       default:

@@ -109,6 +109,10 @@
   "@button_sort_ascending": {
     "description": "Text of the button to sort the notes list in ascending order."
   },
+  "settings_page_appearance": "Aussehen",
+  "@settings_page_appearance": {
+    "description": "Title of the settings page regarding the application's appearance."
+  },
   "settings_language": "Sprache",
   "@settings_language": {
     "description": "Title of the language setting tile."
@@ -116,6 +120,10 @@
   "settings_language_contribute": "Mitwirken",
   "@settings_language_contribute": {
     "description": "Button to contribute to the localizations, shown on the language setting tile."
+  },
+  "settings_appearance_section_theming": "Design",
+  "@settings_appearance_section_theming": {
+    "description": "Title of the section regarding the theming under the appearance settings."
   },
   "settings_theme": "Gestaltung",
   "@settings_theme": {
@@ -149,21 +157,25 @@
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
   },
-  "settings_show_titles_only": "Nur Titel",
-  "@settings_show_titles_only": {
-    "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
+  "settings_appearance_section_fonts": "Schriftart",
+  "@settings_appearance_section_fonts": {
+    "description": "Title of the section regarding the theming under the appearance settings."
   },
-  "settings_show_titles_only_description": "Nur Notiztitel anzeigen",
-  "@settings_show_titles_only_description": {
-    "description": "Description of the setting tile to only show the titles of the notes in the notes tiles."
+  "settings_app_font": "App Schriftart",
+  "@settings_app_font": {
+    "description": "Title of the setting tile to choose the font of the app."
   },
-  "settings_show_titles_only_disable_in_search_view": "Nur Titel in Suche deaktivieren",
-  "@settings_show_titles_only_disable_in_search_view": {
-    "description": "Title of the setting tile to disable only showing the titles of the notes in the search view."
+  "settings_app_font_description": "Schriftart, die für alles in der App außer für den Notizen Editor benutzt wird",
+  "@settings_app_font_description": {
+    "description": "Description of the setting tile to choose the font of the app."
   },
-  "settings_show_titles_only_disable_in_search_view_description": "\"Nur Titel anzeigen\" deaktivieren, wenn Du Dich in der Suchansicht befindest",
-  "@settings_show_titles_only_disable_in_search_view_description": {
-    "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
+  "settings_editor_font": "Editor Schriftart",
+  "@settings_editor_font": {
+    "description": "Title of the setting tile to choose the font of the notes."
+  },
+  "settings_editor_font_description": "Schriftart die nur für den Text im Notizen Editor benutzt wird",
+  "@settings_editor_font_description": {
+    "description": "Description of the setting tile to choose the font of the app."
   },
   "settings_show_tiles_background": "Hintergrund",
   "@settings_show_tiles_background": {
@@ -180,6 +192,22 @@
   "settings_show_separators_description": "Trennlinie zwischen den Notizkacheln anzeigen",
   "@settings_show_separators_description": {
     "description": "Description of the setting tile to show the separators between the notes tiles."
+  },
+  "settings_show_titles_only": "Nur Titel",
+  "@settings_show_titles_only": {
+    "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
+  },
+  "settings_show_titles_only_description": "Nur Notiztitel anzeigen",
+  "@settings_show_titles_only_description": {
+    "description": "Description of the setting tile to only show the titles of the notes in the notes tiles."
+  },
+  "settings_show_titles_only_disable_in_search_view": "Nur Titel in Suche deaktivieren",
+  "@settings_show_titles_only_disable_in_search_view": {
+    "description": "Title of the setting tile to disable only showing the titles of the notes in the search view."
+  },
+  "settings_show_titles_only_disable_in_search_view_description": "\"Nur Titel anzeigen\" deaktivieren, wenn Du Dich in der Suchansicht befindest",
+  "@settings_show_titles_only_disable_in_search_view_description": {
+    "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
   },
   "settings_behavior": "Verhalten",
   "@settings_behavior": {
@@ -225,6 +253,10 @@
   "@settings_behavior_swipe_actions": {
     "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
   },
+  "settings_behavior_swipe_actions_bin": "Wischgesten (Papierkorb)",
+  "@settings_behavior_swipe_actions_bin": {
+    "description": "Title of the section regarding the swipe actions on the notes tiles in the bin under the behavior settings."
+  },
   "settings_swipe_action_right": "Aktion für Rechtswischen",
   "@settings_swipe_action_right": {
     "description": "Title of the setting tile to choose which action to trigger when a right swapping a note tile."
@@ -233,6 +265,10 @@
   "@settings_swipe_action_right_description": {
     "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile."
   },
+  "settings_bin_swipe_action_right_description": "Aktion, die ausgelöst wird, wenn man auf einer Notizkachel im Papierkorb nach rechts wischt",
+  "@settings_bin_swipe_action_right_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile in the bin."
+  },
   "settings_swipe_action_left": "Aktion für Linkswischen",
   "@settings_swipe_action_left": {
     "description": "Title of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
@@ -240,6 +276,10 @@
   "settings_swipe_action_left_description": "Aktion bei Nach-Links-Wischen",
   "@settings_swipe_action_left_description": {
     "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
+  },
+  "settings_bin_swipe_action_left_description": "Aktion, die ausgelöst wird, wenn man auf einer Notizkachel im Papierkorb nach links wischt",
+  "@settings_bin_swipe_action_left_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile in the bin."
   },
   "settings_editor": "Editor",
   "@settings_editor": {
@@ -435,9 +475,21 @@
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_auto_export_directory_description": "Verzeichnis für automatische Exports",
+  "@settings_auto_export_directory_description": {
+    "description": "Description of the settings tile to choose the directory where to save the automatic exports."
+  },
   "settings_accessibility": "Barrierefreiheit",
   "@settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
+  },
+  "settings_accessibility_text_size": "Textgröße",
+  "@settings_accessibility_text_size": {
+    "description": "Title of the accessibility settings section regarding the text size."
+  },
+  "settings_accessibility_text_color": "Textfarbe",
+  "@settings_accessibility_text_color": {
+    "description": "Title of the accessibility settings section regarding the text color."
   },
   "settings_accessibility_description": "Textfarbe, Textgröße",
   "@settings_accessibility_description": {
@@ -446,6 +498,14 @@
   "settings_text_scaling": "Textskalierung",
   "@settings_text_scaling": {
     "description": "Title of the text scale setting tile."
+  },
+  "settings_bigger_titles": "Größere Titel",
+  "@settings_bigger_titles": {
+    "description": "Title of the setting tile to use bigger titles on the notes tiles."
+  },
+  "settings_bigger_titles_description": "Größere Titel auf den Notizkacheln anzeigen",
+  "@settings_bigger_titles_description": {
+    "description": "Description of the setting tile to use bigger titles on the notes tiles."
   },
   "settings_white_text_dark_mode": "Weißer Text im dunklen Modus",
   "@settings_white_text_dark_mode": {
@@ -567,10 +627,6 @@
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
   },
-  "hint_note": "Notiz",
-  "@hint_note": {
-    "description": "Hint for the text field of the content of the notes."
-  },
   "hint_link": "Verknüpfung",
   "@hint_link": {
     "description": "Hint for the link text field in the dialog to add a link in the editor."
@@ -582,6 +638,22 @@
   "dialog_export_encryption_password": "Passwort",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
+  },
+  "dialog_select_labels": "Labels auswählen",
+  "@dialog_select_labels": {
+    "description": "Title of the dialog to select the labels of a note."
+  },
+  "dialog_select_labels_to_add": "Labels zum hinzufügen auswählen",
+  "@dialog_select_labels_to_add": {
+    "description": "Title of the dialog to select the labels to add to the currently selected notes."
+  },
+  "tooltip_undo": "Letzte Aktion rückgängig machen",
+  "@tooltip_undo": {
+    "description": "Tooltip for the button to undo the last action in the editor."
+  },
+  "tooltip_redo": "Letzte Aktion wiederholen",
+  "@tooltip_redo": {
+    "description": "Tooltip for the button to redo the last action in the editor."
   },
   "tooltip_toggle_checkbox": "Checkbox umschalten",
   "@tooltip_toggle_checkbox": {
@@ -663,13 +735,43 @@
   "@dialog_delete": {
     "description": "Title of the the dialog to delete one or multiple notes (moving them to the bin), and text for the confirmation button."
   },
+  "dialog_delete_body": "Willst du wirklich {count} {count, plural, one{Notiz} other{Notizen}} löschen? Du kannst {count, plural, one{diese} other{diese}} aus dem Papierkorb wiederherstellen.",
+  "@dialog_delete_body": {
+    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
+  },
   "dialog_permanently_delete": "Dauerhaft löschen",
   "@dialog_permanently_delete": {
     "description": "Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button."
   },
+  "dialog_permanently_delete_body": "Willst du wirklich {count} {count, plural, one{Notiz} other{Notizen}} dauerhaft löschen? Du kannst {count, plural, one{diese} other{diese}} nicht mehr wiederherstellen.",
+  "@dialog_permanently_delete_body": {
+    "description": "Text for the dialog to confirm the permanent deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
+  },
   "dialog_restore": "Wiederherstellen",
   "@dialog_restore": {
     "description": "Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button."
+  },
+  "dialog_restore_body": "Willst du wirklich {count} {count, plural, one{Notiz} other{Notizen}} wiederherstellen?",
+  "@dialog_restore_body": {
+    "description": "Text for the dialog to confirm restoring one or multiple notes from the bin.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
   },
   "dialog_empty_bin": "Papierkorb leeren",
   "@dialog_empty_bin": {
@@ -678,6 +780,20 @@
   "dialog_empty_bin_body": "Willst du den Papierkorb wirklich dauerhaft leeren? Du kannst die enthaltenen Notizen nicht wiederherstellen.",
   "@dialog_empty_bin_body": {
     "description": "Text for the dialog to confirm emptying the bin."
+  },
+  "dialog_delete_label": "Löschen",
+  "@dialog_delete_label": {
+    "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
+  },
+  "dialog_delete_label_body": "Willst du wirklich {count} {count, plural, one{Label} other{Labels}} löschen? {count, plural, one{Es wird} other{Sie werden}} von den Notizen entfernt, denen du {count, plural, one{es} other{diese}} hinzugefügt hast.",
+  "@dialog_delete_label_body": {
+    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
   },
   "dialog_export_encryption_switch": "Verschlüssele den JSON Export",
   "@dialog_export_encryption_switch": {
@@ -735,6 +851,10 @@
   "@placeholder_notes": {
     "description": "Placeholder on the notes page when there are no notes."
   },
+  "placeholder_labels": "Keine Labels",
+  "@placeholder_labels": {
+    "description": "Placeholder on the labels page when there are no labels."
+  },
   "placeholder_bin": "Keine gelöschten Notizen",
   "@placeholder_bin": {
     "description": "Placeholder on the bin page when there are no notes."
@@ -754,6 +874,16 @@
   "action_share": "Teilen",
   "@action_share": {
     "description": "Swipe or menu action to share a note."
+  },
+  "action_share_subject": "{count} {count, plural, one{Notiz} other{Notizen}} von Material Notes geteilt",
+  "@action_share_subject": {
+    "description": "Subject of the text that is shared when multiple notes are shared at the same time.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes being shared.",
+        "type": "int"
+      }
+    }
   },
   "action_delete": "Löschen",
   "@action_delete": {
@@ -827,6 +957,14 @@
   "@snack_bar_copied": {
     "description": "Snack bar informing that the content of the note was copied to clipboard."
   },
+  "snack_bar_import_success": "Das Backup wurde erfolgreich importiert.",
+  "@snack_bar_import_success": {
+    "description": "Snack bar informing that the backup was successfully imported."
+  },
+  "snack_bar_export_success": "Das Backup wurde erfolgreich exportiert.",
+  "@snack_bar_export_success": {
+    "description": "Snack bar informing that the backup was successfully manually exported."
+  },
   "snack_bar_logs_copied": "Die Logs wurden in deine Zwischenablage kopiert.",
   "@snack_bar_logs_copied": {
     "description": "Snack bar message shown when the logs where copied to the clipboard from the error widget."
@@ -834,6 +972,10 @@
   "snack_bar_logs_exported": "Die Logs wurden erfolgreich exportiert.",
   "@snack_bar_logs_exported": {
     "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
+  },
+  "snack_bar_no_labels": "Es gibt keine Labels.",
+  "@snack_bar_no_labels": {
+    "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
   },
   "action_add_note_title": "Notiz erstellen",
   "@action_add_note_title": {
@@ -846,5 +988,9 @@
   "welcome_note_content": "Einfache, lokale, materiell designte Notizen",
   "@welcome_note_content": {
     "description": "Content of the welcome note automatically created on the first run of the application."
+  },
+  "font_system_default": "System Standard",
+  "@font_system_default": {
+    "description": "Name of the font settings that uses the default font of the system."
   }
 }

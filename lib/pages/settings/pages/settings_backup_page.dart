@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:settings_tiles/settings_tiles.dart';
+import 'package:simple_icons/simple_icons.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/extensions/string_extension.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
-import '../../../services/backup/backup_service.dart';
-import '../dialogs/auto_export_frequency_dialog.dart';
-import '../dialogs/auto_export_password_dialog.dart';
-import '../dialogs/manual_export_dialog.dart';
 import '../../../providers/bin/bin_provider.dart';
 import '../../../providers/labels/labels/labels_provider.dart';
 import '../../../providers/labels/labels_list/labels_list_provider.dart';
 import '../../../providers/labels/labels_navigation/labels_navigation_provider.dart';
 import '../../../providers/notes/notes_provider.dart';
+import '../../../providers/notifiers/notifiers.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 import '../../../services/backup/auto_backup_service.dart';
+import '../../../services/backup/backup_service.dart';
 import '../../../utils/files_utils.dart';
 import '../../../utils/keys.dart';
 import '../../../utils/snack_bar_utils.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
-import 'package:settings_tiles/settings_tiles.dart';
-import 'package:simple_icons/simple_icons.dart';
+import '../dialogs/auto_export_frequency_dialog.dart';
+import '../dialogs/auto_export_password_dialog.dart';
+import '../dialogs/manual_export_dialog.dart';
 
 /// Settings related to the backup of the notes.
 class SettingsBackupPage extends ConsumerStatefulWidget {
@@ -45,7 +47,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         await ref.read(labelsProvider.notifier).get();
         await ref.read(labelsListProvider.notifier).get();
         await ref.read(labelsNavigationProvider.notifier).get();
-        await ref.read(notesProvider.notifier).get();
+        await ref.read(notesProvider(label: currentLabelFilter).notifier).get();
         await ref.read(binProvider.notifier).get();
         ref.read(preferencesProvider.notifier).reset();
 

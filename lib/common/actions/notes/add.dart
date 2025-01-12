@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'select.dart';
+
 import '../../../models/note/note.dart';
 import '../../../navigation/navigator_utils.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
+import 'select.dart';
 
 /// Adds a note.
 ///
@@ -14,11 +15,11 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {String? content}) asy
     exitNotesSelectionMode(context, ref);
   }
 
-  final note = content == null ? Note.empty() : Note.content(content);
+  final note = content == null ? RichTextNote.empty() : RichTextNote.content(content);
 
   // If some content was provided, immediately save the note without waiting for changes in the editor
   if (content != null) {
-    ref.read(notesProvider.notifier).edit(note);
+    ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
   }
 
   currentNoteNotifier.value = note;

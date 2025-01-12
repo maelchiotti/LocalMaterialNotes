@@ -68,7 +68,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
 
     note.title = newTitle;
 
-    ref.read(notesProvider.notifier).edit(note);
+    ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
   }
 
   /// Saves the new content of the [note] in the database.
@@ -78,9 +78,12 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
     fleatherControllerCanUndoNotifier.value = editorController.canUndo;
     fleatherControllerCanRedoNotifier.value = editorController.canRedo;
 
-    note.content = jsonEncode(editorController.document.toDelta().toJson());
+    switch (note) {
+      case RichTextNote note:
+        note.content = jsonEncode(editorController.document.toDelta().toJson());
+    }
 
-    ref.read(notesProvider.notifier).edit(note);
+    ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
   }
 
   /// Request focus on the content editor.
@@ -105,7 +108,11 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
 
         titleController = TextEditingController(text: currentNote.title);
 
-        editorController = FleatherController(document: currentNote.document);
+        switch (currentNote) {
+          case final RichTextNote note:
+            editorController = FleatherController(document: note.document);
+        }
+
         editorController.addListener(() => _synchronizeContent(currentNote));
 
         fleatherControllerNotifier.value = editorController;

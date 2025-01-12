@@ -15,6 +15,7 @@ enum PreferenceKey<T> {
   showSeparators<bool>(false),
   showTitlesOnly<bool>(false),
   showTitlesOnlyDisableInSearchView<bool>(true),
+  maximumContentPreviewLines<int>(3),
 
   // Behavior
   flagSecure<bool>(false),
@@ -56,6 +57,9 @@ enum PreferenceKey<T> {
   sortMethod<String>('editedDate', backup: false),
   sortAscending<bool>(false, backup: false),
   layout<String>('list', backup: false),
+
+  // Database
+  databaseVersion(1),
   ;
 
   /// Default value of this preference.

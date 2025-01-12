@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../models/note/note.dart';
 import '../../../providers/bin/bin_provider.dart';
 import '../../../providers/notes/notes_provider.dart';
+import '../../../providers/notifiers/notifiers.dart';
 import '../../actions/notes/delete.dart';
 import '../../actions/notes/labels.dart';
 import '../../actions/notes/pin.dart';
@@ -59,17 +60,17 @@ class NotesSelectionAppBar extends ConsumerWidget {
           IconButton(
             icon: const Icon(Icons.share),
             tooltip: 'Share',
-            onPressed: selectedNotes.isNotEmpty ? () => shareNotes(selectedNotes) : null,
+            onPressed: selectedNotes.isNotEmpty ? () => shareNotes(notes: selectedNotes) : null,
           ),
           IconButton(
             icon: const Icon(Icons.push_pin),
             tooltip: l.tooltip_toggle_pins,
-            onPressed: selectedNotes.isNotEmpty ? () => togglePinNotes(context, ref, selectedNotes) : null,
+            onPressed: selectedNotes.isNotEmpty ? () => togglePinNotes(context, ref, notes: selectedNotes) : null,
           ),
           IconButton(
             icon: const Icon(Icons.new_label),
             tooltip: 'Add labels',
-            onPressed: selectedNotes.isNotEmpty ? () => addLabels(context, ref, selectedNotes) : null,
+            onPressed: selectedNotes.isNotEmpty ? () => addLabels(context, ref, notes: selectedNotes) : null,
           ),
           IconButton(
             icon: Icon(
@@ -77,13 +78,13 @@ class NotesSelectionAppBar extends ConsumerWidget {
               color: selectedNotes.isNotEmpty ? Theme.of(context).colorScheme.error : null,
             ),
             tooltip: l.tooltip_delete,
-            onPressed: selectedNotes.isNotEmpty ? () => deleteNotes(context, ref, selectedNotes) : null,
+            onPressed: selectedNotes.isNotEmpty ? () => deleteNotes(context, ref, notes: selectedNotes) : null,
           ),
         ] else ...[
           IconButton(
             icon: const Icon(Icons.restore_from_trash),
             tooltip: l.tooltip_restore,
-            onPressed: selectedNotes.isNotEmpty ? () => restoreNotes(context, ref, selectedNotes) : null,
+            onPressed: selectedNotes.isNotEmpty ? () => restoreNotes(context, ref, notes: selectedNotes) : null,
           ),
           IconButton(
             icon: Icon(
@@ -91,7 +92,8 @@ class NotesSelectionAppBar extends ConsumerWidget {
               color: selectedNotes.isNotEmpty ? Theme.of(context).colorScheme.error : null,
             ),
             tooltip: l.tooltip_permanently_delete,
-            onPressed: selectedNotes.isNotEmpty ? () => permanentlyDeleteNotes(context, ref, selectedNotes) : null,
+            onPressed:
+                selectedNotes.isNotEmpty ? () => permanentlyDeleteNotes(context, ref, notes: selectedNotes) : null,
           ),
         ],
         Padding(padding: Paddings.appBarActionsEnd),
@@ -101,7 +103,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => notesPage
-      ? ref.watch(notesProvider).when(
+      ? ref.watch(notesProvider(label: currentLabelFilter)).when(
             data: (notes) => buildAppBar(
               context,
               ref,
