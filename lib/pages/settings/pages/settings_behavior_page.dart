@@ -80,10 +80,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_behavior,
-          back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings_behavior),
       ),
       body: SingleChildScrollView(
         child: Padding(

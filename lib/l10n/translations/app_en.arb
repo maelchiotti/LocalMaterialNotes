@@ -77,6 +77,10 @@
   "@navigation_settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
+  "navigation_settings_notes_types": "Notes types",
+  "@navigation_settings_notes_types": {
+    "description": "Title of the settings page regarding the notes types."
+  },
   "navigation_settings_notes_tiles": "Notes tiles",
   "@navigation_settings_notes_tiles": {
     "description": "Title of the settings page regarding the notes tiles appearance."
@@ -698,6 +702,14 @@
   "tooltip_fab_add_note": "Add a note",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
+  },
+  "tooltip_fab_add_plain_text_note": "Add a plain text note",
+  "@tooltip_fab_add_plain_text_note": {
+    "description": "Floating action button in the notes page to add a new plain text note."
+  },
+  "tooltip_fab_add_rich_text_note": "Add a rich text note",
+  "@tooltip_fab_add_rich_text_note": {
+    "description": "Floating action button in the notes page to add a new rich text note."
   },
   "tooltip_fab_add_label": "Add a label",
   "@tooltip_fab_add_label": {

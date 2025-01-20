@@ -15,6 +15,7 @@ import 'pages/settings_behavior_page.dart';
 import 'pages/settings_editor_page.dart';
 import 'pages/settings_labels_page.dart';
 import 'pages/settings_notes_tiles_page.dart';
+import 'pages/settings_notes_types_page.dart';
 
 /// Page for the settings of the application.
 class SettingsMainPage extends StatelessWidget {
@@ -26,10 +27,7 @@ class SettingsMainPage extends StatelessWidget {
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMain,
-        appbar: BasicAppBar(
-          title: l.navigation_settings,
-          //back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings),
       ),
       drawer: const SideNavigation(),
       body: SingleChildScrollView(
@@ -43,6 +41,12 @@ class SettingsMainPage extends StatelessWidget {
                   title: l.settings_page_appearance,
                   description: l.settings_page_appearance_description,
                   onTap: () => NavigationRoute.settingsAppearance.push(context, SettingsAppearancePage()),
+                ),
+                SettingActionTile(
+                  icon: Icons.edit_note,
+                  title: 'Notes types',
+                  description: 'Available types',
+                  onTap: () => NavigationRoute.settingsAppearance.push(context, SettingsNotesTypesPage()),
                 ),
                 SettingActionTile(
                   icon: Icons.dashboard,

@@ -77,6 +77,10 @@
   "@navigation_settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
+  "navigation_settings_notes_tiles": "Notizkacheln",
+  "@navigation_settings_notes_tiles": {
+    "description": "Title of the settings page regarding the notes tiles appearance."
+  },
   "navigation_settings_behavior": "Verhalten",
   "@navigation_settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
@@ -112,6 +116,10 @@
   "settings_page_appearance": "Aussehen",
   "@settings_page_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
+  },
+  "settings_page_appearance_description": "Sprache, Aussehen, Schrift",
+  "@settings_page_appearance_description": {
+    "description": "Description of the appearance settings page."
   },
   "settings_language": "Sprache",
   "@settings_language": {
@@ -177,6 +185,22 @@
   "@settings_editor_font_description": {
     "description": "Description of the setting tile to choose the font of the app."
   },
+  "settings_page_notes_tiles": "Notizkacheln",
+  "@settings_page_notes_tiles": {
+    "description": "Title of the settings page regarding the notes tiles."
+  },
+  "settings_page_notes_tiles_description": "Aussehen, Inhalt",
+  "@settings_page_notes_tiles_description": {
+    "description": "Description of the notes tiles settings page."
+  },
+  "settings_page_notes_tiles_appearance_section": "Aussehen",
+  "@settings_page_notes_tiles_appearance_section": {
+    "description": "Title of the section regarding the appearance under the notes tiles settings."
+  },
+  "settings_page_notes_tiles_content_section": "Inhalt",
+  "@settings_page_notes_tiles_content_section": {
+    "description": "Title of the section regarding the content under the notes tiles settings."
+  },
   "settings_show_tiles_background": "Hintergrund",
   "@settings_show_tiles_background": {
     "description": "Title of the setting tile to show the background of the notes tiles."
@@ -208,6 +232,14 @@
   "settings_show_titles_only_disable_in_search_view_description": "\"Nur Titel anzeigen\" deaktivieren, wenn Du Dich in der Suchansicht befindest",
   "@settings_show_titles_only_disable_in_search_view_description": {
     "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
+  },
+  "settings_content_preview_max_lines": "Maximale Vorschauzeilen",
+  "@settings_content_preview_max_lines": {
+    "description": "Title of the setting tile to choose the maximum number of content preview lines to show."
+  },
+  "settings_content_preview_max_lines_description": "Maximale Anzahl an Zeilen der Inhaltsvorschau",
+  "@settings_content_preview_max_lines_description": {
+    "description": "Description of the setting tile to choose the maximum number of content preview lines to show."
   },
   "settings_behavior": "Verhalten",
   "@settings_behavior": {
@@ -905,6 +937,10 @@
   "@about_last_edited": {
     "description": "Date when the note was edited for the last time."
   },
+  "about_type": "Typ",
+  "@about_type": {
+    "description": "Type of the note."
+  },
   "about_created": "Erstellt",
   "@about_created": {
     "description": "Date when the note was created."
@@ -992,5 +1028,13 @@
   "font_system_default": "System Standard",
   "@font_system_default": {
     "description": "Name of the font settings that uses the default font of the system."
+  },
+  "note_type_plain_text": "Unformatierter Text",
+  "@note_type_plain_text": {
+    "description": "Note with plain text."
+  },
+  "note_type_rich_text": "Formatierter Text",
+  "@note_type_rich_text": {
+    "description": "Note with rich text."
   }
 }

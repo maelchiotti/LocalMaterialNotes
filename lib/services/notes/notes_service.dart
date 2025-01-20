@@ -22,13 +22,20 @@ class NotesService {
 
   NotesService._internal();
 
-  final Isar _database = DatabaseService().database;
-  final _richTextNotes = DatabaseService().database.richTextNotes;
+  late final Isar _database;
+
+  late final IsarCollection<PlainTextNote> _plainTextNotes;
+  late final IsarCollection<RichTextNote> _richTextNotes;
 
   late final MimirIndex _index;
 
   /// Ensures the notes service is initialized.
   Future<void> ensureInitialized() async {
+    _database = DatabaseService().database;
+
+    _plainTextNotes = DatabaseService().database.plainTextNotes;
+    _richTextNotes = DatabaseService().database.richTextNotes;
+
     _index = await DatabaseService().mimir.openIndex(
       'notes',
       primaryKey: 'id',
@@ -40,7 +47,7 @@ class NotesService {
     final indexNotesCount = (await _index.numberOfDocuments).toInt();
     final notesCount = await count;
     if (indexNotesCount != notesCount) {
-      logger.i('Re-indexing all notes (only $indexNotesCount notes were indexed out of $notesCount');
+      logger.i('Re-indexing all notes ($indexNotesCount notes were indexed out of $notesCount)');
 
       await _updateAllIndexes(await getAll());
     }
@@ -86,20 +93,49 @@ class NotesService {
   }
 
   /// Returns the total number of notes.
-  Future<int> get count async => await _richTextNotes.count();
-
-  /// Returns all the notes.
-  Future<List<Note>> getAll() async => _richTextNotes.where().findAll();
-
-  /// Returns all the notes that are not deleted, optionally filtered by the [label].
-  Future<List<Note>> getAllNotDeleted({Label? label}) async {
-    return label != null
-        ? _richTextNotes.where().deletedEqualTo(false).filter().labels((q) => q.nameEqualTo(label.name)).findAll()
-        : _richTextNotes.where().deletedEqualTo(false).findAll();
+  Future<int> get count async {
+    return await _plainTextNotes.count() + await _richTextNotes.count();
   }
 
+  /// Returns all the notes.
+  Future<List<Note>> getAll() async => [
+        ...await (_plainTextNotes.where().findAll()),
+        ...await (_richTextNotes.where().findAll()),
+      ];
+
+  /// Returns all the notes with the [ids].
+  Future<List<Note>> getAllByIds(List<int> ids) async => [
+        ...(await (_plainTextNotes.getAll(ids))).nonNulls,
+        ...(await (_richTextNotes.getAll(ids))).nonNulls,
+      ];
+
+  /// Returns all the notes that are not deleted.
+  Future<List<Note>> getAllNotDeleted() async => [
+        ...await (_plainTextNotes.where().deletedEqualTo(false).findAll()),
+        ...await (_richTextNotes.where().deletedEqualTo(false).findAll()),
+      ];
+
+  /// Returns all the notes that are not deleted filtered by the [label].
+  Future<List<Note>> getAllNotDeletedFilteredByLabel({required Label label}) async => [
+        ...await (_plainTextNotes
+            .where()
+            .deletedEqualTo(false)
+            .filter()
+            .labels((q) => q.nameEqualTo(label.name))
+            .findAll()),
+        ...await (_richTextNotes
+            .where()
+            .deletedEqualTo(false)
+            .filter()
+            .labels((q) => q.nameEqualTo(label.name))
+            .findAll()),
+      ];
+
   /// Returns all the notes that are deleted.
-  Future<List<Note>> getAllDeleted() async => _richTextNotes.where().deletedEqualTo(true).findAll();
+  Future<List<Note>> getAllDeleted() async => [
+        ...await (_plainTextNotes.where().deletedEqualTo(true).findAll()),
+        ...await (_richTextNotes.where().deletedEqualTo(true).findAll()),
+      ];
 
   /// Returns all the notes that match the [search].
   ///
@@ -119,23 +155,24 @@ class NotesService {
     );
     final notesIds = searchResults.map((Map<String, dynamic> noteIndex) => noteIndex['id'] as int).toList();
 
-    final notes = (await _richTextNotes.getAll(notesIds));
-    final notesNotNull = notes.nonNulls.toList();
+    final notes = (await getAllByIds(notesIds));
 
     // Check that all search results correspond to an existing note
-    if (notes.length != notesNotNull.length) {
-      final cases = notes.length - notesNotNull.length;
+    if (notesIds.length != notes.length) {
+      final cases = notesIds.length - notes.length;
       logger.w('Some notes search results have an ID that does not correspond to an existing note ($cases cases)');
     }
 
-    return notesNotNull;
+    return notes;
   }
 
   /// Puts the [note] in the database.
   Future<void> put(Note note) async {
     await _database.writeTxn(() async {
       switch (note) {
-        case final RichTextNote note:
+        case final PlainTextNote _:
+          await _plainTextNotes.put(note);
+        case final RichTextNote _:
           await _richTextNotes.put(note);
       }
     });
@@ -145,13 +182,12 @@ class NotesService {
 
   /// Puts the [notes] in the database.
   Future<void> putAll(List<Note> notes) async {
+    final plainTextNotes = notes.whereType<PlainTextNote>().toList();
+    final richTextNotes = notes.whereType<RichTextNote>().toList();
+
     await _database.writeTxn(() async {
-      for (final note in notes) {
-        switch (note) {
-          case final RichTextNote note:
-            await _richTextNotes.put(note);
-        }
-      }
+      await _plainTextNotes.putAll(plainTextNotes);
+      await _richTextNotes.putAll(richTextNotes);
     });
 
     await _updateAllIndexes(notes);
@@ -182,7 +218,10 @@ class NotesService {
 
   /// Updates the [notes] with their corresponding [notesLabels] in the database.
   Future<void> putAllLabels(List<Note> notes, List<List<Label>> notesLabels) async {
-    assert(notes.length == notesLabels.length);
+    assert(
+      notes.length == notesLabels.length,
+      'The list of labels (${notesLabels.length} items) should be the same length as the list of notes (${notes.length} notes)',
+    );
 
     await _database.writeTxn(() async {
       for (var i = 0; i < notes.length; i++) {
@@ -201,7 +240,12 @@ class NotesService {
   /// Deletes the [note] from the database.
   Future<void> delete(Note note) async {
     await _database.writeTxn(() async {
-      await _richTextNotes.delete(note.id);
+      switch (note) {
+        case final PlainTextNote _:
+          await _plainTextNotes.delete(note.isarId);
+        case final RichTextNote _:
+          await _richTextNotes.delete(note.isarId);
+      }
     });
 
     await _deleteIndex(note);
@@ -209,8 +253,12 @@ class NotesService {
 
   /// Deletes the [notes] from the database.
   Future<void> deleteAll(List<Note> notes) async {
+    final plainTextNotesIds = notes.whereType<PlainTextNote>().map((note) => note.isarId).toList();
+    final richTextNotesIds = notes.whereType<RichTextNote>().map((note) => note.isarId).toList();
+
     await _database.writeTxn(() async {
-      await _richTextNotes.deleteAll(notes.map((note) => note.id).toList());
+      await _plainTextNotes.deleteAll(plainTextNotesIds);
+      await _richTextNotes.deleteAll(richTextNotesIds);
     });
 
     await _deleteAllIndexes(notes);
@@ -221,6 +269,7 @@ class NotesService {
     final notes = await getAllDeleted();
 
     await _database.writeTxn(() async {
+      await _plainTextNotes.where().deletedEqualTo(true).deleteAll();
       await _richTextNotes.where().deletedEqualTo(true).deleteAll();
     });
 
@@ -229,12 +278,11 @@ class NotesService {
 
   /// Deletes all the notes from the database.
   Future<void> clear() async {
-    final notes = await getAllNotDeleted();
-
     await _database.writeTxn(() async {
-      await _richTextNotes.where().deleteAll();
+      await _plainTextNotes.clear();
+      await _richTextNotes.clear();
     });
 
-    _deleteAllIndexes(notes);
+    _index.deleteAllDocuments();
   }
 }

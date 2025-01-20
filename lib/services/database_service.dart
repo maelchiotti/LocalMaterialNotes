@@ -33,7 +33,12 @@ class DatabaseService {
 
     // Initialize the database
     database = await Isar.open(
-      [NoteSchema, RichTextNoteSchema, LabelSchema],
+      [
+        NoteSchema,
+        PlainTextNoteSchema,
+        RichTextNoteSchema,
+        LabelSchema,
+      ],
       name: databaseName,
       directory: databaseDirectory,
     );

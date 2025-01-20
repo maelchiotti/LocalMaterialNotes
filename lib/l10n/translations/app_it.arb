@@ -1032,5 +1032,9 @@
   "note_type_plain_text": "Testo semplice",
   "@note_type_plain_text": {
     "description": "Note with plain text."
+  },
+  "note_type_rich_text": "Rich text",
+  "@note_type_rich_text": {
+    "description": "Note with rich text."
   }
 }

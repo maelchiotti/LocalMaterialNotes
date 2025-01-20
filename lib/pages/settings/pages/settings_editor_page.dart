@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:settings_tiles/settings_tiles.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../utils/keys.dart';
-import 'package:settings_tiles/settings_tiles.dart';
 
 /// Settings related to the notes editor.
 class SettingsEditorPage extends StatefulWidget {
@@ -84,10 +85,7 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_editor,
-          back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings_editor),
       ),
       body: SingleChildScrollView(
         child: Padding(

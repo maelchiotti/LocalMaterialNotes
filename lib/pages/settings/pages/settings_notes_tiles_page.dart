@@ -12,9 +12,9 @@ import '../../../common/preferences/watched_preferences.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 import '../../../utils/keys.dart';
 
-/// Settings related to the appearance of the application.
+/// Notes tiles settings.
 class SettingsNotesTilesPage extends ConsumerStatefulWidget {
-  /// Default constructor.
+  /// Settings page related to the notes tiles.
   const SettingsNotesTilesPage({super.key});
 
   @override
@@ -71,10 +71,7 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_notes_tiles,
-          //back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings_notes_tiles),
       ),
       body: SingleChildScrollView(
         child: Padding(

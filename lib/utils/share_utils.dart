@@ -2,10 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../common/actions/notes/add.dart';
-import '../common/constants/constants.dart';
 import 'package:parchment_delta/parchment_delta.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+
+import '../common/actions/notes/add.dart';
+import '../common/constants/constants.dart';
+import '../models/note/note.dart';
+import '../models/note/notes_types.dart';
 
 /// Listens to any data shared from other applications.
 StreamSubscription listenSharedData(WidgetRef ref) => ReceiveSharingIntent.instance.getMediaStream().listen((data) {
@@ -37,5 +40,14 @@ void _processSharedData(WidgetRef ref, List<SharedMediaFile> data) {
     delta.insert('$line\n');
   }
 
-  addNote(rootNavigatorKey.currentContext!, ref, content: jsonEncode(delta));
+  final defaultShortcutNoteType = NoteType.defaultShortcutType;
+  final context = rootNavigatorKey.currentContext!;
+  final content = jsonEncode(delta);
+
+  switch (defaultShortcutNoteType) {
+    case NoteType.plainText:
+      addNote<PlainTextNote>(context, ref, content: content);
+    case NoteType.richText:
+      addNote<RichTextNote>(context, ref, content: content);
+  }
 }

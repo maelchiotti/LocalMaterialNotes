@@ -1,8 +1,9 @@
 import 'package:dart_helper_utils/dart_helper_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:locale_names/locale_names.dart';
 
-/// Lists the localization completion for every supported language.
-enum LocalizationCompletion {
+/// Languages supported by the application.
+enum SupportedLanguage {
   /// Czech.
   cs(Locale('cs'), 1),
 
@@ -38,23 +39,26 @@ enum LocalizationCompletion {
 
   /// Chinese Simplified.
   zh(Locale('zh'), 1),
+
+  /// Chinese Traditional.
+  zhTW(Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'), 0),
   ;
 
-  /// The locale of this localization.
+  /// The locale completion of this language.
   final Locale locale;
 
-  /// The percentage of strings that are localized for this [locale].
-  ///
-  /// The value is a double contained between 0 and 1.
-  final num percentage;
+  /// The translation completion of this language.
+  final num completion;
 
-  /// The completion of the localization for the [locale] as a [percentage].
-  const LocalizationCompletion(this.locale, this.percentage);
+  /// A language supported by the application with its [locale] and its translation [completion].
+  const SupportedLanguage(this.locale, this.completion);
 
-  /// Returns the percentage of strings that are localized for the [locale], formatted as a [String] for the [locale].
-  static String getFormattedPercentage(Locale locale) {
-    final percentage = values.firstWhere((localizationSupport) => localizationSupport.locale == locale).percentage;
+  /// Returns the list of [locale] supported by the application.
+  static List<Locale> locales = values.map((language) => language.locale).toList();
 
-    return percentage.formatAsPercentage(locale: locale.languageCode);
-  }
+  /// Returns the native name of this language.
+  String get nativeName => locale.nativeDisplayLanguage.capitalizeFirstLetter;
+
+  /// Returns the translation completion of this language formatted as a percentage according to the [locale].
+  String get completionFormatted => completion.formatAsPercentage(locale: locale.languageCode);
 }
