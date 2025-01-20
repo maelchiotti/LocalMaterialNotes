@@ -2,6 +2,7 @@ format: true
 use-escaping: true
 nullable-getter: false
 synthetic-package: false
+required-resource-attributes: true
 
 arb-dir: lib/l10n/translations
 template-arb-file: app_en.arb

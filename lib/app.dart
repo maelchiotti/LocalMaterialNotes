@@ -5,9 +5,11 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'common/actions/labels/select.dart';
 import 'common/actions/notes/select.dart';
 import 'common/constants/constants.dart';
+import 'common/enums/localization_completion.dart';
 import 'common/extensions/locale_extension.dart';
 import 'common/widgets/placeholders/error_placeholder.dart';
 import 'l10n/app_localizations/app_localizations.g.dart';
@@ -134,7 +136,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
             darkTheme: darkTheme,
             themeMode: themeMode,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
+            supportedLocales: SupportedLanguage.locales,
             locale: LocaleUtils().appLocale,
             debugShowCheckedModeBanner: false,
           ),

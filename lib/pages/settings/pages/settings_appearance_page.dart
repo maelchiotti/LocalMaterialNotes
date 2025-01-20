@@ -15,7 +15,6 @@ import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/enums/font.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
-import '../../../l10n/app_localizations/app_localizations.g.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 import '../../../utils/keys.dart';
 import '../../../utils/locale_utils.dart';
@@ -122,12 +121,12 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                 ),
                 value: locale.nativeDisplayLanguage.capitalizeFirstLetter,
                 dialogTitle: l.settings_language,
-                options: AppLocalizations.supportedLocales
+                options: SupportedLanguage.values
                     .map(
-                      (locale) => (
-                        value: locale,
-                        title: locale.nativeDisplayLanguage.capitalizeFirstLetter,
-                        subtitle: LocalizationCompletion.getFormattedPercentage(locale),
+                      (language) => (
+                        value: language.locale,
+                        title: language.nativeName,
+                        subtitle: language.completionFormatted,
                       ),
                     )
                     .toList(),
