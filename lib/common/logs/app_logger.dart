@@ -8,13 +8,13 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../l10n/app_localizations/app_localizations.g.dart';
-import '../../utils/files_utils.dart';
-import '../../utils/snack_bar_utils.dart';
 import '../constants/constants.dart';
 import '../enums/mime_type.dart';
 import '../extensions/date_time_extensions.dart';
 import '../extensions/string_extension.dart';
-import 'filters/debug_filter.dart';
+import '../files/files_utils.dart';
+import '../ui/snack_bar_utils.dart';
+import 'filters/default_filter.dart';
 import 'filters/release_filter.dart';
 
 /// Exceptions logger.
@@ -42,11 +42,13 @@ class AppLogger {
     _logFilesDirectory = join((await getApplicationSupportDirectory()).path, 'logs');
 
     _consoleLogger = Logger(
-      filter: DebugFilter(),
+      filter: DefaultFilter(),
       printer: PrettyPrinter(
         methodCount: 5,
-        errorMethodCount: 20,
-        dateTimeFormat: DateTimeFormat.onlyTime,
+        errorMethodCount: 25,
+        colors: false,
+        printEmojis: false,
+        dateTimeFormat: DateTimeFormat.dateAndTime,
       ),
     );
     _fileLogger = Logger(
