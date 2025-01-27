@@ -1,7 +1,8 @@
 import 'dart:ui';
 
 import 'package:intl/intl.dart' as intl;
-import '../../utils/locale_utils.dart';
+
+import '../localization/locale_utils.dart';
 
 /// Extends the [Locale] class with some utilities functions.
 extension LocaleExtension on Locale {

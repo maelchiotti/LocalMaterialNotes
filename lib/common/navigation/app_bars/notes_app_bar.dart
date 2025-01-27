@@ -8,13 +8,13 @@ import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 import '../../../services/notes/notes_service.dart';
-import '../../../utils/keys.dart';
 import '../../constants/constants.dart';
 import '../../constants/paddings.dart';
 import '../../preferences/enums/layout.dart';
 import '../../preferences/enums/sort_method.dart';
 import '../../preferences/preference_key.dart';
 import '../../preferences/watched_preferences.dart';
+import '../../widgets/keys.dart';
 import '../../widgets/notes/note_tile.dart';
 import '../../widgets/placeholders/empty_placeholder.dart';
 

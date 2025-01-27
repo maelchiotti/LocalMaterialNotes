@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import '../constants/constants.dart';
 import '../preferences/enums/confirmations.dart';
-import '../../utils/keys.dart';
+import '../widgets/keys.dart';
 
 /// Shows the confirmation dialog to ask the user for a confirmation on an action.
 ///

@@ -1,8 +1,8 @@
 import 'package:flutter/services.dart';
 
 import '../../../models/note/note.dart';
-import '../../../utils/snack_bar_utils.dart';
 import '../../constants/constants.dart';
+import '../../ui/snack_bar_utils.dart';
 
 /// Copies the content of the [note] to the clipboard.
 Future<void> copyNote({required Note note}) async {
