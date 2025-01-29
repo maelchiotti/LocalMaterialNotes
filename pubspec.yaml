@@ -6,8 +6,8 @@ version: 1.12.0+25
 publish_to: none
 
 environment:
-  sdk: ">=3.6.0 <4.0.0"
-  flutter: 3.27.1
+  sdk: ">=3.6.1 <4.0.0"
+  flutter: 3.27.3
 
 dependencies:
   after_layout: ^1.2.0
