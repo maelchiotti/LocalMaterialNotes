@@ -1,4 +1,4 @@
-import '../l10n/app_localizations/app_localizations.g.dart';
+import '../../l10n/app_localizations/app_localizations.g.dart';
 import 'locale_utils.dart';
 
 /// Utilities for the hardcoded application's localizations.

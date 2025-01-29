@@ -5,8 +5,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:saf_util/saf_util.dart';
 
 import '../../common/constants/constants.dart';
+import '../../common/files/files_utils.dart';
 import '../../common/preferences/preference_key.dart';
-import '../../utils/files_utils.dart';
 import 'backup_service.dart';
 
 /// Service for the automatic backup (export and import) of the database.

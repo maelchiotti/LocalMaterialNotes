@@ -11,6 +11,10 @@ import 'common/actions/notes/select.dart';
 import 'common/constants/constants.dart';
 import 'common/enums/localization_completion.dart';
 import 'common/extensions/locale_extension.dart';
+import 'common/localization/locale_utils.dart';
+import 'common/system/quick_actions_utils.dart';
+import 'common/system/share_utils.dart';
+import 'common/ui/theme_utils.dart';
 import 'common/widgets/placeholders/error_placeholder.dart';
 import 'l10n/app_localizations/app_localizations.g.dart';
 import 'pages/notes/notes_page.dart';
@@ -18,10 +22,6 @@ import 'providers/labels/labels_list/labels_list_provider.dart';
 import 'providers/labels/labels_navigation/labels_navigation_provider.dart';
 import 'providers/notifiers/notifiers.dart';
 import 'providers/preferences/preferences_provider.dart';
-import 'utils/locale_utils.dart';
-import 'utils/quick_actions_utils.dart';
-import 'utils/share_utils.dart';
-import 'utils/theme_utils.dart';
 
 /// MaterialNotes application.
 class App extends ConsumerStatefulWidget {

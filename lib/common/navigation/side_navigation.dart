@@ -11,12 +11,12 @@ import '../../pages/notes/notes_page.dart';
 import '../../pages/settings/settings_main_page.dart';
 import '../../providers/labels/labels_navigation/labels_navigation_provider.dart';
 import '../../providers/notifiers/notifiers.dart';
-import '../../utils/asset.dart';
-import '../../utils/keys.dart';
 import '../constants/constants.dart';
 import '../constants/paddings.dart';
 import '../constants/sizes.dart';
 import '../preferences/preference_key.dart';
+import '../widgets/asset.dart';
+import '../widgets/keys.dart';
 import '../widgets/placeholders/error_placeholder.dart';
 
 /// Side navigation with the drawer.

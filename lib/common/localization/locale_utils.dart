@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import '../common/preferences/preference_key.dart';
+import '../preferences/preference_key.dart';
 import 'localizations_utils.dart';
 
 /// Utilities for the application's locale.

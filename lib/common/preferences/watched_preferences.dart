@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/theme_utils.dart';
+import '../ui/theme_utils.dart';
 import 'enums/bin_swipe_action.dart';
 import 'enums/font.dart';
 import 'enums/layout.dart';

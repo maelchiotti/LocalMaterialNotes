@@ -4,15 +4,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:localmaterialnotes/app.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
+import 'package:localmaterialnotes/common/system/flag_secure_utils.dart';
+import 'package:localmaterialnotes/common/system/info_utils.dart';
+import 'package:localmaterialnotes/common/ui/theme_utils.dart';
 import 'package:localmaterialnotes/navigation/navigation_routes.dart';
 import 'package:localmaterialnotes/pages/bin/bin_page.dart';
 import 'package:localmaterialnotes/pages/settings/settings_main_page.dart';
 import 'package:localmaterialnotes/services/backup/auto_backup_service.dart';
 import 'package:localmaterialnotes/services/labels/labels_service.dart';
 import 'package:localmaterialnotes/services/notes/notes_service.dart';
-import 'package:localmaterialnotes/utils/flag_secure_utils.dart';
-import 'package:localmaterialnotes/utils/info_utils.dart';
-import 'package:localmaterialnotes/utils/theme_utils.dart';
 import 'package:patrol/patrol.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

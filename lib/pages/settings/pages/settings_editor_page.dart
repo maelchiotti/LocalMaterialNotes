@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:settings_tiles/settings_tiles.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
-import '../../../utils/keys.dart';
-import 'package:settings_tiles/settings_tiles.dart';
+import '../../../common/widgets/keys.dart';
 
 /// Settings related to the notes editor.
 class SettingsEditorPage extends StatefulWidget {

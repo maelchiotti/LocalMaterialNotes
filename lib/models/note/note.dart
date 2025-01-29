@@ -6,7 +6,7 @@ import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../common/constants/constants.dart';
-import '../../../utils/encryption_utils.dart';
+import '../../common/files/encryption_utils.dart';
 import '../../common/preferences/enums/sort_method.dart';
 import '../../common/preferences/preference_key.dart';
 import '../label/label.dart';

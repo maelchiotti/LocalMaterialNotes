@@ -1,7 +1,8 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
-import '../common/constants/constants.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+
+import '../constants/constants.dart';
 
 /// Utilities for information about the application.
 ///
