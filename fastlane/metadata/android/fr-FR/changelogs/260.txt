@@ -1,0 +1,6 @@
+AJOUTÉ
+- Traduction en chinois traditionnel
+
+MODIFIÉ
+- L'arrière-plan des tuiles de notes est légèrement plus foncé (comme les tuiles de la vue de recherche)
+- Logs affichés dans la console en production
