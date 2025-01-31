@@ -9,17 +9,16 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
-import '../../../common/enums/localization_completion.dart';
+import '../../../common/enums/supported_language.dart';
+import '../../../common/localization/locale_utils.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/enums/font.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
-import '../../../l10n/app_localizations/app_localizations.g.dart';
+import '../../../common/ui/theme_utils.dart';
+import '../../../common/widgets/keys.dart';
 import '../../../providers/preferences/preferences_provider.dart';
-import '../../../utils/keys.dart';
-import '../../../utils/locale_utils.dart';
-import '../../../utils/theme_utils.dart';
 
 /// Settings related to the appearance of the application.
 class SettingsAppearancePage extends ConsumerStatefulWidget {
@@ -122,12 +121,12 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                 ),
                 value: locale.nativeDisplayLanguage.capitalizeFirstLetter,
                 dialogTitle: l.settings_language,
-                options: AppLocalizations.supportedLocales
+                options: SupportedLanguage.values
                     .map(
-                      (locale) => (
-                        value: locale,
-                        title: locale.nativeDisplayLanguage.capitalizeFirstLetter,
-                        subtitle: LocalizationCompletion.getFormattedPercentage(locale),
+                      (language) => (
+                        value: language.locale,
+                        title: language.nativeName,
+                        subtitle: language.completionFormatted,
                       ),
                     )
                     .toList(),

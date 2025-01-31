@@ -1,0 +1,10 @@
+AJOUTÉ
+- Traduction en chinois traditionnel
+
+MODIFIÉ
+- Activation des exports automatiques par défault
+- L'arrière-plan des tuiles de notes est légèrement plus foncé (comme les tuiles de la vue de recherche)
+- Logs affichés dans la console en production
+
+CORRIGÉ
+- Police personnalisée non appliquée dans l'éditeur

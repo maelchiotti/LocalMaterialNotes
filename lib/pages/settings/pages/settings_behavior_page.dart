@@ -12,8 +12,8 @@ import '../../../common/preferences/enums/confirmations.dart';
 import '../../../common/preferences/enums/swipe_action.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
+import '../../../common/widgets/keys.dart';
 import '../../../providers/preferences/preferences_provider.dart';
-import '../../../utils/keys.dart';
 
 /// Settings related to the behavior of the application.
 class SettingsBehaviorPage extends ConsumerStatefulWidget {

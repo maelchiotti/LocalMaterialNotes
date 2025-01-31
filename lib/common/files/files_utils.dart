@@ -4,8 +4,8 @@ import 'dart:typed_data';
 
 import 'package:path/path.dart';
 
-import '../common/constants/constants.dart';
-import '../services/backup/auto_backup_service.dart';
+import '../../services/backup/auto_backup_service.dart';
+import '../constants/constants.dart';
 
 /// Writes a file with the [data], in the [directory], with the [filename].
 ///

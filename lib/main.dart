@@ -5,14 +5,14 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app.dart';
+import 'common/localization/localizations_utils.dart';
 import 'common/logs/app_logger.dart';
 import 'common/preferences/preferences_utils.dart';
+import 'common/system/flag_secure_utils.dart';
+import 'common/system/info_utils.dart';
+import 'common/ui/theme_utils.dart';
 import 'services/backup/auto_backup_service.dart';
 import 'services/database_service.dart';
-import 'utils/flag_secure_utils.dart';
-import 'utils/info_utils.dart';
-import 'utils/localizations_utils.dart';
-import 'utils/theme_utils.dart';
 
 /// Main entry point of the application.
 Future<void> main() async {

@@ -59,7 +59,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     } else if (widget.note.selected) {
       return Theme.of(context).colorScheme.secondaryContainer;
     } else if (showTilesBackground) {
-      return Theme.of(context).colorScheme.surfaceContainerHighest;
+      return Theme.of(context).colorScheme.surfaceContainerHigh;
     } else {
       return null;
     }

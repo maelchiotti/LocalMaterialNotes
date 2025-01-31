@@ -5,15 +5,15 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../l10n/app_localizations/app_localizations.g.dart';
 import '../../../services/backup/backup_service.dart';
-import '../../../utils/info_utils.dart';
-import '../../../utils/snack_bar_utils.dart';
-import '../../../utils/utils.dart';
 import '../../constants/constants.dart';
 import '../../constants/paddings.dart';
 import '../../navigation/app_bars/error_app_bar.dart';
 import '../../navigation/side_navigation.dart';
 import '../../navigation/top_navigation.dart';
 import '../../preferences/preference_key.dart';
+import '../../system/info_utils.dart';
+import '../../ui/snack_bar_utils.dart';
+import '../../utils.dart';
 
 /// Placeholder widget for an error.
 class ErrorPlaceholder extends StatelessWidget {

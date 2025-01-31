@@ -41,27 +41,41 @@ class EditorField extends StatelessWidget {
     final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault();
     final editorFont = Font.editorFromPreference();
 
-    final fleatherThemeFallback = FleatherThemeData.fallback(context);
-    final fleatherThemeParagraph = TextBlockTheme(
-      style: fleatherThemeFallback.paragraph.style.copyWith(fontFamily: editorFont.familyName),
-      spacing: useParagraphsSpacing ? fleatherThemeFallback.paragraph.spacing : const VerticalSpacing.zero(),
-    );
-
-    return FleatherTheme(
-      data: fleatherThemeFallback.copyWith(
-        paragraph: fleatherThemeParagraph,
+    return DefaultTextStyle.merge(
+      style: TextStyle(
+        fontFamily: editorFont.familyName,
       ),
-      child: FleatherEditor(
-        controller: fleatherController,
-        focusNode: editorFocusNode,
-        autofocus: autofocus,
-        readOnly: readOnly,
-        expands: true,
-        onLaunchUrl: _launchUrl,
-        spellCheckConfiguration: SpellCheckConfiguration(
-          spellCheckService: DefaultSpellCheckService(),
-        ),
-        padding: Paddings.bottomSystemUi,
+      child: Builder(
+        builder: (context) {
+          final fleatherThemeFallback = FleatherThemeData.fallback(context);
+          final FleatherThemeData fleatherTheme;
+          if (useParagraphsSpacing) {
+            fleatherTheme = fleatherThemeFallback;
+          } else {
+            fleatherTheme = fleatherThemeFallback.copyWith(
+              paragraph: TextBlockTheme(
+                style: fleatherThemeFallback.paragraph.style,
+                spacing: const VerticalSpacing.zero(),
+              ),
+            );
+          }
+
+          return FleatherTheme(
+            data: fleatherTheme,
+            child: FleatherEditor(
+              controller: fleatherController,
+              focusNode: editorFocusNode,
+              autofocus: autofocus,
+              readOnly: readOnly,
+              expands: true,
+              onLaunchUrl: _launchUrl,
+              spellCheckConfiguration: SpellCheckConfiguration(
+                spellCheckService: DefaultSpellCheckService(),
+              ),
+              padding: Paddings.bottomSystemUi,
+            ),
+          );
+        },
       ),
     );
   }

@@ -4,9 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../common/navigation/app_bars/notes_app_bar.dart';
 import '../../common/navigation/side_navigation.dart';
 import '../../common/navigation/top_navigation.dart';
+import '../../common/widgets/keys.dart';
 import '../../common/widgets/notes/notes_list.dart';
 import '../../providers/notifiers/notifiers.dart';
-import '../../utils/keys.dart';
 import 'widgets/add_note_fab.dart';
 
 /// List of notes.

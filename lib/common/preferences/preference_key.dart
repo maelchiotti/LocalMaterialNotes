@@ -40,8 +40,8 @@ enum PreferenceKey<T> {
   showLabelsListInEditorPage<bool>(true),
 
   // Backup
-  enableAutoExport<bool>(false),
-  autoExportFrequency<int>(1),
+  enableAutoExport<bool>(true),
+  autoExportFrequency<int>(3),
   autoExportEncryption<bool>(false, backup: false),
   autoExportPassword<String>('', secure: true, backup: false),
   autoExportDirectory<String>('', backup: false),

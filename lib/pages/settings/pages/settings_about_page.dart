@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:settings_tiles/settings_tiles.dart';
+import 'package:simple_icons/simple_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/constants/sizes.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
-import '../../../utils/asset.dart';
-import '../../../utils/info_utils.dart';
-import '../../../utils/keys.dart';
-import '../../../utils/utils.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
-import 'package:settings_tiles/settings_tiles.dart';
-import 'package:simple_icons/simple_icons.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../../../common/system/info_utils.dart';
+import '../../../common/utils.dart';
+import '../../../common/widgets/asset.dart';
+import '../../../common/widgets/keys.dart';
 
 /// Settings providing information about the application.
 class SettingsAboutPage extends StatelessWidget {
