@@ -82,6 +82,7 @@ Simple, local, material design notes.
 All the supported languages are listed here alphabetically. You can see more details on the [Crowdin project](https://crowdin.com/project/localmaterialnotes). To improve a language or add support for a new one, please see [CONTRIBUTING.md](CONTRIBUTING.md#localization).
 
 - Chinese Simplified
+- Chinese Traditional
 - Czech
 - English
 - French

@@ -25,8 +25,8 @@
 ### Localizations
 
 - [ ] Update the localizations from [Crowdin](https://crowdin.com/project/localmaterialnotes)
-- [ ] Update the [README.md](README.md) supported languages
-- [ ] Update the [localizations completion](lib/common/enums/localization_completion.dart)
+- [ ] Update the [supported languages](lib/common/enums/supported_language.dart)
+- [ ] Update the [README.md](README.md) list of supported languages
 
 ### Screenshots
 

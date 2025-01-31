@@ -9,7 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
-import '../../../common/enums/localization_completion.dart';
+import '../../../common/enums/supported_language.dart';
 import '../../../common/localization/locale_utils.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';

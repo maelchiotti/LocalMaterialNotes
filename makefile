@@ -14,7 +14,7 @@ gen_watch:
 
 
 # Assets generation
-.PHONY: gen_icon gen_splash gen_full_descriptions
+.PHONY: gen_icon gen_splash gen_desc
 
 gen_icon:
 	dart run flutter_launcher_icons
@@ -22,7 +22,7 @@ gen_icon:
 gen_splash:
 	dart run flutter_native_splash:create
 
-gen_full_descriptions:
+gen_desc:
 	py scripts/generate_full_description.py
 
 
