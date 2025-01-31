@@ -12,8 +12,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- Enable automatic export by default
 - Background of the notes tiles is slightly darker (like the tiles in the search view)
 - Print logs to the console in release mode
+
+### Fixed
+
+- Custom font not applied to lists in the editor
 
 ## 1.12.0 - 2025-01-12
 
