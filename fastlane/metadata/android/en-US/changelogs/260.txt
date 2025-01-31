@@ -1,0 +1,6 @@
+ADDED
+- Chinese Traditional translation
+
+CHANGED
+- Background of the notes tiles is slightly darker (like the tiles in the search view)
+- Print logs to the console in release mode

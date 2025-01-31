@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'common/actions/labels/select.dart';
 import 'common/actions/notes/select.dart';
 import 'common/constants/constants.dart';
-import 'common/enums/localization_completion.dart';
+import 'common/enums/supported_language.dart';
 import 'common/extensions/locale_extension.dart';
 import 'common/localization/locale_utils.dart';
 import 'common/system/quick_actions_utils.dart';

@@ -1,13 +1,13 @@
 {
-  "app_name": "मटेरियल नोट्स",
+  "app_name": "Material Notes",
   "@app_name": {
     "description": "Name of the application."
   },
-  "app_tagline": "सरल, स्थानीय, मैटेरियल डिज़ाइन नोट्स",
+  "app_tagline": "簡單易用、本機操作、Material 設計之筆記",
   "@app_tagline": {
     "description": "Tagline of the application, shown in the about popup."
   },
-  "app_about": "{appName} यह एक टेक्स्ट-आधारित नोट लेने वाला एप्लिकेशन है, जो सरलता के लिए डिज़ाइन किया गया है। यह मैटेरियल डिज़ाइन का पालन करता है। यह नोट्स को स्थानीय रूप से संग्रहीत करता है और इसमें कोई इंटरनेट अनुमति नहीं है, इसलिए केवल आप ही नोट्स तक पहुँच सकते हैं।",
+  "app_about": "{appName} 乃一款以文字為本的筆記應用程式，秉承簡約之風，擁抱 Material 設計。筆記於本機儲存，並不索取任何網際網路權限，只有您可以存取筆記。",
   "@app_about": {
     "description": "Description of the application, shown in the about popup.",
     "placeholders": {
@@ -17,439 +17,471 @@
       }
     }
   },
-  "error_snack_bar": "त्रुटी:",
+  "error_snack_bar": "錯誤：",
   "@error_snack_bar": {
     "description": "Prefix for the error message shown in the error snack bar, before the actual error message."
   },
-  "error_widget_title": "एक त्रुटी हो गई है।",
+  "error_widget_title": "發生錯誤。",
   "@error_widget_title": {
     "description": "Message shown in the error widget shown when a widget fails to build."
   },
-  "error_widget_description": "कृपया इस समस्या की रिपोर्ट GitHub या मेल के ज़रिए करें। इस पेज और लॉग का स्क्रीनशॉट संलग्न करें जिसे आप नीचे कॉपी या एक्सपोर्ट कर सकते हैं। सावधानी के लिए आपको अपने नोट्स भी एक्सपोर्ट कर लेने चाहिए।",
+  "error_widget_description": "請到 GitHub 或寄送郵件報告此問題，並附上此頁面之截圖，以及下方可供複製或匯出的記錄檔。以防萬一，您亦該匯出您的筆記。",
   "@error_widget_description": {
     "description": "Message shown in the error widget shown when a widget fails to build."
   },
-  "error_widget_disabled_secure_flag": "ऐप को सुरक्षित के रूप में चिह्नित करने की सेटिंग अगले पुनः आरंभ तक अक्षम कर दी गई है, ताकि स्क्रीनशॉट सक्षम हो सके।",
+  "error_widget_disabled_secure_flag": "標記應用程式為安全的設定已停用，直至下一次重新啟動，以便截圖。",
   "@error_widget_disabled_secure_flag": {
     "description": "Label shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
   },
-  "error_widget_button_export_notes": "निर्यात नोट्स",
+  "error_widget_button_export_notes": "匯出筆記",
   "@error_widget_button_export_notes": {
     "description": "Title of the button to export the notes as JSON on the error widget."
   },
-  "error_widget_button_copy_logs": "कॉपी लाॅग",
+  "error_widget_button_copy_logs": "複製記錄檔",
   "@error_widget_button_copy_logs": {
     "description": "Title of the button to copy the logs to the clipboard on the error widget."
   },
-  "error_widget_button_export_logs": "निर्यात लाॅग",
+  "error_widget_button_export_logs": "匯出記錄檔",
   "@error_widget_button_export_logs": {
     "description": "Title of the button to export the logs in a text file on the error widget."
   },
-  "error_widget_button_create_github_issue": "GitHub समस्या बनाएँ",
+  "error_widget_button_create_github_issue": "建立 GitHub 議題",
   "@error_widget_button_create_github_issue": {
     "description": "Title of the button to create a new GitHub issue on the error widget."
   },
-  "error_widget_button_send_mail": "मेल भेजें",
+  "error_widget_button_send_mail": "傳送郵件",
   "@error_widget_button_send_mail": {
     "description": "Title of the button to end a bug report mail on the error widget."
   },
-  "navigation_notes": "नोट्स",
+  "navigation_notes": "筆記",
   "@navigation_notes": {
     "description": "Title of the notes page."
   },
-  "navigation_manage_labels_destination": "लेबल प्रबंधन",
+  "navigation_manage_labels_destination": "管理標籤",
   "@navigation_manage_labels_destination": {
     "description": "Title of the button in the side navigation drawer to got to the page to manage the labels."
   },
-  "navigation_manage_labels_page": "लेबल",
+  "navigation_manage_labels_page": "標籤",
   "@navigation_manage_labels_page": {
     "description": "Title of the page to manage the labels."
   },
-  "navigation_bin": "बिन",
+  "navigation_bin": "垃圾桶",
   "@navigation_bin": {
     "description": "Title of the bin page."
   },
-  "navigation_settings": "सेटिंग्स",
+  "navigation_settings": "設定",
   "@navigation_settings": {
     "description": "Title of the settings page."
   },
-  "navigation_settings_appearance": "दिखावट",
+  "navigation_settings_appearance": "外觀",
   "@navigation_settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
-  "navigation_settings_notes_tiles": "नोट्स टाइल्स",
+  "navigation_settings_notes_tiles": "筆記方塊",
   "@navigation_settings_notes_tiles": {
     "description": "Title of the settings page regarding the notes tiles appearance."
   },
-  "navigation_settings_behavior": "व्यवहार",
+  "navigation_settings_behavior": "行為",
   "@navigation_settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
-  "navigation_settings_editor": "संपादक",
+  "navigation_settings_editor": "編輯器",
   "@navigation_settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
-  "navigation_settings_labels": "लेबल",
+  "navigation_settings_labels": "標籤",
   "@navigation_settings_labels": {
     "description": "Title of the settings page regarding the labels."
   },
-  "navigation_settings_backup": "बैकअप",
+  "navigation_settings_backup": "備份",
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
   },
-  "navigation_settings_accessibility": "सुगम्यता",
+  "navigation_settings_accessibility": "輔助",
   "@navigation_settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
   },
-  "navigation_settings_about": "के बारे में",
+  "navigation_settings_about": "關於",
   "@navigation_settings_about": {
     "description": "Title of the settings page regarding the information about the application."
   },
-  "button_sort_title": "शीर्षक",
+  "button_sort_title": "標題",
   "@button_sort_title": {
     "description": "Text of the button to sort the notes list by title."
   },
-  "button_sort_ascending": "आरोही",
+  "button_sort_ascending": "順序",
   "@button_sort_ascending": {
     "description": "Text of the button to sort the notes list in ascending order."
   },
-  "settings_language": "भाषा",
+  "settings_page_appearance": "外觀",
+  "@settings_page_appearance": {
+    "description": "Title of the settings page regarding the application's appearance."
+  },
+  "settings_page_appearance_description": "語言、佈景配置、字型",
+  "@settings_page_appearance_description": {
+    "description": "Description of the appearance settings page."
+  },
+  "settings_language": "語言",
   "@settings_language": {
     "description": "Title of the language setting tile."
   },
-  "settings_language_contribute": "योगदान",
+  "settings_language_contribute": "貢獻",
   "@settings_language_contribute": {
     "description": "Button to contribute to the localizations, shown on the language setting tile."
   },
-  "settings_theme": "थीम",
+  "settings_appearance_section_theming": "佈景配置",
+  "@settings_appearance_section_theming": {
+    "description": "Title of the section regarding the theming under the appearance settings."
+  },
+  "settings_theme": "佈景主題",
   "@settings_theme": {
     "description": "Title of the theming setting tile."
   },
-  "settings_theme_system": "सिस्टम",
+  "settings_theme_system": "系統",
   "@settings_theme_system": {
     "description": "Theming setting to use the theme of the system."
   },
-  "settings_theme_light": "श्वेत",
+  "settings_theme_light": "淺色",
   "@settings_theme_light": {
     "description": "Theming setting to use the light theme."
   },
-  "settings_theme_dark": "श्याम",
+  "settings_theme_dark": "深色",
   "@settings_theme_dark": {
     "description": "Theming setting to use the dark theme."
   },
-  "settings_dynamic_theming": "गतिशील थीमिंग",
+  "settings_dynamic_theming": "動態佈景配置",
   "@settings_dynamic_theming": {
     "description": "Title of the dynamic theming setting tile (to use colors generated from the system)."
   },
-  "settings_dynamic_theming_description": "सिस्टम से रंग उत्पन्न करें",
+  "settings_dynamic_theming_description": "從系統產生色彩",
   "@settings_dynamic_theming_description": {
     "description": "Description of the dynamic theming setting tile."
   },
-  "settings_black_theming": "काला थीमिंग",
+  "settings_black_theming": "黑色佈景配置",
   "@settings_black_theming": {
     "description": "Title of the black theming setting tile (to use a black background in dark mode)."
   },
-  "settings_black_theming_description": "श्याम मोड में काली पृष्ठभूमि का उपयोग करें",
+  "settings_black_theming_description": "深色模式使用黑色背景",
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
   },
-  "settings_appearance_section_fonts": "फ़ॉन्ट्स",
+  "settings_appearance_section_fonts": "字型",
   "@settings_appearance_section_fonts": {
     "description": "Title of the section regarding the theming under the appearance settings."
   },
-  "settings_app_font": "ऐप फ़ॉन्ट",
+  "settings_app_font": "應用程式字型",
   "@settings_app_font": {
     "description": "Title of the setting tile to choose the font of the app."
   },
-  "settings_app_font_description": "एप्लिकेशन में सभी टेक्स्ट के लिए उपयोग किया जाने वाला फ़ॉन्ट, नोट्स संपादक को छोड़कर",
+  "settings_app_font_description": "應用程式中所有文字使用的字型 (筆記編輯器除外)",
   "@settings_app_font_description": {
     "description": "Description of the setting tile to choose the font of the app."
   },
-  "settings_editor_font": "संपादक फ़ॉन्ट",
+  "settings_editor_font": "編輯器字型",
   "@settings_editor_font": {
     "description": "Title of the setting tile to choose the font of the notes."
   },
-  "settings_page_notes_tiles": "नोट्स टाइल्स",
+  "settings_editor_font_description": "僅限筆記編輯器中的文字使用的字型",
+  "@settings_editor_font_description": {
+    "description": "Description of the setting tile to choose the font of the app."
+  },
+  "settings_page_notes_tiles": "筆記方塊",
   "@settings_page_notes_tiles": {
     "description": "Title of the settings page regarding the notes tiles."
   },
-  "settings_show_tiles_background": "पृष्ठभूमि",
+  "settings_page_notes_tiles_description": "外觀、內容",
+  "@settings_page_notes_tiles_description": {
+    "description": "Description of the notes tiles settings page."
+  },
+  "settings_page_notes_tiles_appearance_section": "外觀",
+  "@settings_page_notes_tiles_appearance_section": {
+    "description": "Title of the section regarding the appearance under the notes tiles settings."
+  },
+  "settings_page_notes_tiles_content_section": "內容",
+  "@settings_page_notes_tiles_content_section": {
+    "description": "Title of the section regarding the content under the notes tiles settings."
+  },
+  "settings_show_tiles_background": "背景",
   "@settings_show_tiles_background": {
     "description": "Title of the setting tile to show the background of the notes tiles."
   },
-  "settings_show_tiles_background_description": "नोट्स टाइल्स की पृष्ठभूमि दिखाएं",
+  "settings_show_tiles_background_description": "顯示筆記方塊的背景",
   "@settings_show_tiles_background_description": {
     "description": "Description of the setting tile to show the background of the notes tiles."
   },
-  "settings_show_separators": "विभाजक",
+  "settings_show_separators": "分隔線",
   "@settings_show_separators": {
     "description": "Title of the setting tile to show the separators between the notes tiles."
   },
-  "settings_show_separators_description": "नोट्स टाइल्स के बीच विभाजक दिखाएं",
+  "settings_show_separators_description": "顯示筆記方塊之間的分隔線",
   "@settings_show_separators_description": {
     "description": "Description of the setting tile to show the separators between the notes tiles."
   },
-  "settings_show_titles_only": "केवल शीर्षक",
+  "settings_show_titles_only": "僅顯示標題",
   "@settings_show_titles_only": {
     "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
   },
-  "settings_show_titles_only_description": "केवल नोट्स के शीर्षक दिखाएं",
+  "settings_show_titles_only_description": "僅顯示筆記的標題",
   "@settings_show_titles_only_description": {
     "description": "Description of the setting tile to only show the titles of the notes in the notes tiles."
   },
-  "settings_show_titles_only_disable_in_search_view": "केवल खोज दृश्य में शीर्षक अक्षम करें",
+  "settings_show_titles_only_disable_in_search_view": "搜尋檢視中停用僅顯示標題",
   "@settings_show_titles_only_disable_in_search_view": {
     "description": "Title of the setting tile to disable only showing the titles of the notes in the search view."
   },
-  "settings_show_titles_only_disable_in_search_view_description": "केवल खोज दृश्य में शीर्षक अक्षम करें",
+  "settings_show_titles_only_disable_in_search_view_description": "在搜尋檢視中停用僅顯示標題的選項",
   "@settings_show_titles_only_disable_in_search_view_description": {
     "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
   },
-  "settings_content_preview_max_lines": "अधिकतम पूर्वावलोकन पंक्तियाँ",
+  "settings_content_preview_max_lines": "預覽行數上限",
   "@settings_content_preview_max_lines": {
     "description": "Title of the setting tile to choose the maximum number of content preview lines to show."
   },
-  "settings_behavior": "व्यवहार",
+  "settings_content_preview_max_lines_description": "內容預覽最多顯示幾多行",
+  "@settings_content_preview_max_lines_description": {
+    "description": "Description of the setting tile to choose the maximum number of content preview lines to show."
+  },
+  "settings_behavior": "行為",
   "@settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
-  "settings_behavior_description": "पुष्टि, सुरक्षा फ़्लैग, स्वाइप क्रियाएँ",
+  "settings_behavior_description": "確認、安全旗標、滑動動作",
   "@settings_behavior_description": {
     "description": "Description of the behavior settings page."
   },
-  "settings_behavior_application": "एप्लिकेशन",
+  "settings_behavior_application": "應用程式",
   "@settings_behavior_application": {
     "description": "Title of the sub-section regarding the application under the behavior settings."
   },
-  "settings_confirmations": "पुष्टिकरण संवाद",
+  "settings_confirmations": "確認對話方塊",
   "@settings_confirmations": {
     "description": "Title of the setting tile to choose when to show the confirmation dialog when performing an action on a note."
   },
-  "settings_confirmations_description": "नोट पर कोई कार्रवाई करते समय पुष्टिकरण संवाद कब दिखाना है",
+  "settings_confirmations_description": "執行筆記動作時該顯示確認對話方塊的時機",
   "@settings_confirmations_description": {
     "description": "Description of the setting tile to choose when to show the confirmation dialog when performing an action on a note."
   },
-  "settings_confirmations_title_none": "कभी नहीं",
+  "settings_confirmations_title_none": "永不",
   "@settings_confirmations_title_none": {
     "description": "Value of the setting to never show a confirmation dialog when performing an action on a note."
   },
-  "settings_confirmations_title_irreversible": "केवल अपरिवर्तनीय क्रियाएँ",
+  "settings_confirmations_title_irreversible": "僅限不可逆轉的動作",
   "@settings_confirmations_title_irreversible": {
     "description": "Value of the setting to only show a confirmation dialog when performing an action on a note if it is irreversible."
   },
-  "settings_confirmations_title_all": "सदैव",
+  "settings_confirmations_title_all": "一律",
   "@settings_confirmations_title_all": {
     "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
   },
-  "settings_flag_secure": "ऐप को सुरक्षित के रूप में चिह्नित करें",
+  "settings_flag_secure": "標記應用程式為安全",
   "@settings_flag_secure": {
     "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
   },
-  "settings_flag_secure_description": "ऐप को हाल के ऐप्स से छिपाएं और स्क्रीनशॉट लेने से रोकें",
+  "settings_flag_secure_description": "從最近使用應用程式中隱藏並阻止截圖",
   "@settings_flag_secure_description": {
     "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
   },
-  "settings_behavior_swipe_actions": "स्वाइप क्रियाएँ",
+  "settings_behavior_swipe_actions": "滑動動作",
   "@settings_behavior_swipe_actions": {
     "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
   },
-  "settings_behavior_swipe_actions_bin": "स्वाइप क्रियाएँ (बिन)",
+  "settings_behavior_swipe_actions_bin": "滑動動作 (垃圾桶)",
   "@settings_behavior_swipe_actions_bin": {
     "description": "Title of the section regarding the swipe actions on the notes tiles in the bin under the behavior settings."
   },
-  "settings_swipe_action_right": "दायाँ स्वाइप क्रिया",
+  "settings_swipe_action_right": "向右滑動動作",
   "@settings_swipe_action_right": {
     "description": "Title of the setting tile to choose which action to trigger when a right swapping a note tile."
   },
-  "settings_swipe_action_right_description": "नोट टाइल पर दायाँ स्वाइप करने पर ट्रिगर होने वाली क्रिया",
+  "settings_swipe_action_right_description": "向右滑動筆記方塊時要觸發的動作",
   "@settings_swipe_action_right_description": {
     "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile."
   },
-  "settings_bin_swipe_action_right_description": "बिन में नोट टाइल पर दायाँ स्वाइप करने पर ट्रिगर होने वाली क्रिया",
+  "settings_bin_swipe_action_right_description": "在垃圾桶中向右滑動筆記方塊時要觸發的動作",
   "@settings_bin_swipe_action_right_description": {
     "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile in the bin."
   },
-  "settings_swipe_action_left": "बाएँ स्वाइप क्रिया",
+  "settings_swipe_action_left": "向左滑動動作",
   "@settings_swipe_action_left": {
     "description": "Title of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
   },
-  "settings_swipe_action_left_description": "नोट टाइल पर बाईं ओर स्वाइप करने पर ट्रिगर होने वाली क्रिया",
+  "settings_swipe_action_left_description": "向左滑動筆記方塊時要觸發的動作",
   "@settings_swipe_action_left_description": {
     "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
   },
-  "settings_bin_swipe_action_left_description": "बिन में नोट टाइल पर बाईं स्वाइप करने पर ट्रिगर होने वाली क्रिया",
+  "settings_bin_swipe_action_left_description": "在垃圾桶中向左滑動筆記方塊時要觸發的動作",
   "@settings_bin_swipe_action_left_description": {
     "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile in the bin."
   },
-  "settings_editor": "संपादक",
+  "settings_editor": "編輯器",
   "@settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
-  "settings_editor_description": "बटन, टूलबार, रीडिंग मोड, स्पेसिंग",
+  "settings_editor_description": "按鈕、工具列、閱讀模式、留白",
   "@settings_editor_description": {
     "description": "Description of the editor settings page."
   },
-  "settings_editor_formatting": "प्रारूपण",
+  "settings_editor_formatting": "格式設定",
   "@settings_editor_formatting": {
     "description": "Title of the settings section regarding the notes content formatting in the editor."
   },
-  "settings_show_undo_redo_buttons": "पूर्ववत करें/पुनः करें बटन",
+  "settings_show_undo_redo_buttons": "復原/重做按鈕",
   "@settings_show_undo_redo_buttons": {
     "description": "Title of the setting tile to enable the the undo and redo buttons in the editor."
   },
-  "settings_show_undo_redo_buttons_description": "संपादक के ऐप बार में परिवर्तनों को पूर्ववत करने और पुनः करने के लिए बटन दिखाएँ",
+  "settings_show_undo_redo_buttons_description": "在編輯器的應用程式列中顯示復原及重做變更的按鈕",
   "@settings_show_undo_redo_buttons_description": {
     "description": "Description of the setting tile to enable the the undo and redo buttons in the editor."
   },
-  "settings_show_checklist_button": "जाँच-सूची बटन",
+  "settings_show_checklist_button": "核選清單按鈕",
   "@settings_show_checklist_button": {
     "description": "Title of the setting tile to enable the checklist button in the editor."
   },
-  "settings_show_checklist_button_description": "संपादक के ऐप बार में जाँचसूची करने के लिए बटन दिखाएं, यदि सक्षम हो तो इसे संपादक के टूलबार से छिपाएं",
+  "settings_show_checklist_button_description": "在編輯器的應用程式列中顯示切換核選清單的按鈕，啟用時則從編輯器的工具列中隱藏相關按鈕",
   "@settings_show_checklist_button_description": {
     "description": "Description of the setting tile to enable the checklist button in the editor."
   },
-  "settings_show_toolbar": "टूलबार",
+  "settings_show_toolbar": "工具列",
   "@settings_show_toolbar": {
     "description": "Title of the setting tile to enable the toolbar for advanced formatting options in the editor."
   },
-  "settings_show_toolbar_description": "उन्नत पाठ स्वरूपण सक्षम करने के लिए संपादक का टूलबार दिखाएँ",
+  "settings_show_toolbar_description": "顯示編輯器的工具列，以便啟用進階文字格式設定",
   "@settings_show_toolbar_description": {
     "description": "Description of the setting tile to enable the toolbar for advanced formatting options in the editor."
   },
-  "settings_editor_behavior": "व्यवहार",
+  "settings_editor_behavior": "行為",
   "@settings_editor_behavior": {
     "description": "Title of the settings section regarding the behavior of the editor"
   },
-  "settings_show_editor_mode_button": "संपादक मोड बटन",
+  "settings_show_editor_mode_button": "編輯器模式按鈕",
   "@settings_show_editor_mode_button": {
     "description": "Title of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
   },
-  "settings_show_editor_mode_button_description": "संपादन मोड और पठन मोड के बीच संपादक को टॉगल करने के लिए बटन को सक्षम करें",
+  "settings_show_editor_mode_button_description": "啟用切換編輯器編輯與閱讀模式的按鈕",
   "@settings_show_editor_mode_button_description": {
     "description": "Description of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
   },
-  "settings_open_editor_reading_mode": "पठन मोड में खोलें",
+  "settings_open_editor_reading_mode": "以閱讀模式開啟",
   "@settings_open_editor_reading_mode": {
     "description": "Title of the setting tile to enable opening the editor in reading mode by default."
   },
-  "settings_open_editor_reading_mode_description": "संपादक को डिफ़ॉल्ट रूप से पठन मोड में खोलें",
+  "settings_open_editor_reading_mode_description": "預設以閱讀模式開啟編輯器",
   "@settings_open_editor_reading_mode_description": {
     "description": "Description of the setting tile to enable opening the editor in reading mode by default."
   },
-  "settings_focus_title_on_new_note": "शीर्षक पर ध्यान करें",
+  "settings_focus_title_on_new_note": "標題聚焦",
   "@settings_focus_title_on_new_note": {
     "description": "Title of the setting tile to enable focusing the title when creating a new note by default."
   },
-  "settings_focus_title_on_new_note_description": "नया नोट बनाते समय विषय-वस्तु के बजाय शीर्षक पर ध्यान",
+  "settings_focus_title_on_new_note_description": "建立新的筆記時聚焦標題而非內容",
   "@settings_focus_title_on_new_note_description": {
     "description": "Description of the setting tile to enable focusing the title when creating a new note by default."
   },
-  "settings_editor_appearance": "दिखावट",
+  "settings_editor_appearance": "外觀",
   "@settings_editor_appearance": {
     "description": "Title of the settings section regarding the appearance of the editor"
   },
-  "settings_use_paragraph_spacing": "पैराग्राफ़ स्पेसिंग",
+  "settings_use_paragraph_spacing": "分段留白",
   "@settings_use_paragraph_spacing": {
     "description": "Title of the setting tile to enable the spacing between paragraphs in the notes content."
   },
-  "settings_use_paragraph_spacing_description": "पैराग्राफ़ के बीच स्पेसिंग का उपयोग करें",
+  "settings_use_paragraph_spacing_description": "段落之間留白",
   "@settings_use_paragraph_spacing_description": {
     "description": "Description of the setting tile to enable the spacing between paragraphs in the notes content."
   },
-  "settings_labels": "लेबल",
+  "settings_labels": "標籤",
   "@settings_labels": {
     "description": "Title of the settings page regarding the labels functionality."
   },
-  "settings_labels_description": "सक्षम, दिखावट",
+  "settings_labels_description": "啟用、外觀",
   "@settings_labels_description": {
     "description": "Description of the labels settings page."
   },
-  "settings_enable_labels": "सक्षम",
+  "settings_enable_labels": "啟用",
   "@settings_enable_labels": {
     "description": "Title of the setting tile to enable the labels."
   },
-  "settings_enable_labels_description": "नोट्स को लेबल्स के साथ वर्गीकृत करने की अनुमति दें (इसे अक्षम करने से लेबल नहीं हटते हैं और न ही उन्हें नोट्स से हटाया जाता है, यह केवल उन्हें छिपाता है)",
+  "settings_enable_labels_description": "允許以標籤分類筆記 (停用僅隱藏標籤，不會刪除或從筆記移除標籤)",
   "@settings_enable_labels_description": {
     "description": "Description of the setting tile to enable the labels."
   },
-  "settings_labels_appearance": "दिखावट",
+  "settings_labels_appearance": "外觀",
   "@settings_labels_appearance": {
     "description": "Title of the settings section regarding the appearance of the labels."
   },
-  "settings_show_labels_note_tile": "नोट टाइल पर लेबल दिखाएं",
+  "settings_show_labels_note_tile": "筆記方塊上顯示標籤",
   "@settings_show_labels_note_tile": {
     "description": "Title of the setting tile to show the labels on the notes tiles."
   },
-  "settings_show_labels_note_tile_description": "नोट टाइल्स के लेबल की सूची दिखाएं",
+  "settings_show_labels_note_tile_description": "顯示筆記方塊的標籤清單",
   "@settings_show_labels_note_tile_description": {
     "description": "Description of the setting tile to show the labels on the notes tiles."
   },
-  "settings_show_labels_editor": "संपादक में लेबल दिखाएं",
+  "settings_show_labels_editor": "編輯器中顯示標籤",
   "@settings_show_labels_editor": {
     "description": "Title of the setting tile to show the labels in the editor."
   },
-  "settings_show_labels_editor_description": "लेबल की सूची संपादक के निचले भाग में दिखाएँ",
+  "settings_show_labels_editor_description": "編輯器底部顯示標籤清單",
   "@settings_show_labels_editor_description": {
     "description": "Description of the setting tile to show the labels in the editor."
   },
-  "settings_backup": "बैकअप",
+  "settings_backup": "備份",
   "@settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
   },
-  "settings_backup_description": "मैनुअल और स्वचालित निर्यात, एन्क्रिप्शन, आयात",
+  "settings_backup_description": "手動與自動匯出、加密、匯入",
   "@settings_backup_description": {
     "description": "Description of the backup settings page."
   },
-  "settings_backup_import": "आयात",
+  "settings_backup_import": "匯入",
   "@settings_backup_import": {
     "description": "Title of the settings section regarding the import of a backup."
   },
-  "settings_import": "आयात",
+  "settings_import": "匯入",
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
-  "settings_import_description": "JSON फ़ाइल से नोट्स, लेबल्स और सेटिंग्स आयात करें",
+  "settings_import_description": "從 JSON 檔案匯入筆記、標籤和設定",
   "@settings_import_description": {
     "description": "Description of the setting tile to import a backup."
   },
-  "settings_backup_manual_export": "मैनुअल निर्यात",
+  "settings_backup_manual_export": "手動匯出",
   "@settings_backup_manual_export": {
     "description": "Title of the settings section regarding the manual export of the notes."
   },
-  "settings_export_json": "JSON के रूप में निर्यात करें",
+  "settings_export_json": "匯出成 JSON",
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "नोट्स, लेबल्स और सेटिंग्स को तुरंत JSON फ़ाइल (बिन शामिल) में निर्यात करें जिसे वापस आयात किया जा सकता है",
+  "settings_export_json_description": "立即將筆記、標籤和設定匯出成 JSON 檔案 (連同垃圾桶)，以便日後可重新匯入",
   "@settings_export_json_description": {
     "description": "Description of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_markdown": "मार्कडाउन के रूप में निर्यात करें",
+  "settings_export_markdown": "匯出成 Markdown",
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
   },
-  "settings_export_markdown_description": "नोट्स को तुरंत मार्कडाउन फ़ाइल में निर्यात करें (बिन सहित)",
+  "settings_export_markdown_description": "立即將筆記匯出成 Markdown 檔案 (連同垃圾桶)",
   "@settings_export_markdown_description": {
     "description": "Description of the setting tile to manually export the notes as Markdown."
   },
-  "settings_backup_auto_export": "स्वचालित निर्यात",
+  "settings_backup_auto_export": "自動匯出",
   "@settings_backup_auto_export": {
     "description": "Title of the settings section regarding the automatic export of the notes."
   },
-  "settings_auto_export": "स्वचालित निर्यात",
+  "settings_auto_export": "自動匯出",
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "नोट्स, लेबल्स और सेटिंग्स को स्वचालित रूप से JSON फ़ाइल (बिन शामिल) में निर्यात करें जिसे वापस आयात किया जा सकता है",
+  "settings_auto_export_description": "自動將筆記、標籤和設定匯出成 JSON 檔案 (連同垃圾桶)，以便日後可重新匯入",
   "@settings_auto_export_description": {
     "description": "Description of the settings tile to enable the automatic export."
   },
-  "settings_auto_export_frequency": "आवृत्ति",
+  "settings_auto_export_frequency": "頻率",
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "हर {frequency,  select, 1{दिन} 7{सप्ताह} 14{2 सप्ताह} 30{माह} other{{frequency} दिन}}",
+  "settings_auto_export_frequency_value": "每{frequency, select, 1{天} 7{週} 14{兩星期} 30{月} other{ {frequency} 天}}",
   "@settings_auto_export_frequency_value": {
     "description": "Frequency of the automatic exports.",
     "placeholders": {
@@ -459,115 +491,123 @@
       }
     }
   },
-  "settings_auto_export_frequency_description": "स्वचालित निर्यात की आवृत्ति",
+  "settings_auto_export_frequency_description": "自動匯出的頻率",
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
   },
-  "settings_auto_export_encryption": "एन्क्रिप्शन",
+  "settings_auto_export_encryption": "加密",
   "@settings_auto_export_encryption": {
     "description": "Title of the settings tile to enable the encryption of the automatic exports."
   },
-  "settings_auto_export_encryption_description": "नोट्स के शीर्षक और सामग्री को पासवर्ड से एन्क्रिप्ट करें",
+  "settings_auto_export_encryption_description": "以密碼加密筆記的標題和內容",
   "@settings_auto_export_encryption_description": {
     "description": "Description of the settings tile to enable the encryption of the automatic exports."
   },
-  "settings_auto_export_directory": "निर्देशिका",
+  "settings_auto_export_directory": "目錄",
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
   },
-  "settings_auto_export_directory_description": "निर्देशिका जहां स्वचालित निर्यात को संग्रहीत किया जाना है",
+  "settings_auto_export_directory_description": "要儲存自動匯出的目錄",
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
-  "settings_accessibility": "सुगम्यता",
+  "settings_accessibility": "輔助",
   "@settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
   },
-  "settings_accessibility_description": "पाठ का रंग, पाठ का आकार",
+  "settings_accessibility_text_size": "文字大小",
+  "@settings_accessibility_text_size": {
+    "description": "Title of the accessibility settings section regarding the text size."
+  },
+  "settings_accessibility_text_color": "文字色彩",
+  "@settings_accessibility_text_color": {
+    "description": "Title of the accessibility settings section regarding the text color."
+  },
+  "settings_accessibility_description": "文字色彩、文字縮放",
   "@settings_accessibility_description": {
     "description": "Description of the accessibility settings page."
   },
-  "settings_text_scaling": "पाठ का आकार",
+  "settings_text_scaling": "文字縮放",
   "@settings_text_scaling": {
     "description": "Title of the text scale setting tile."
   },
-  "settings_bigger_titles": "बड़े शीर्षक",
+  "settings_bigger_titles": "標題放大",
   "@settings_bigger_titles": {
     "description": "Title of the setting tile to use bigger titles on the notes tiles."
   },
-  "settings_bigger_titles_description": "नोट्स टाइल्स पर बड़े शीर्षक दिखाएं",
+  "settings_bigger_titles_description": "放大筆記方塊的標題",
   "@settings_bigger_titles_description": {
     "description": "Description of the setting tile to use bigger titles on the notes tiles."
   },
-  "settings_white_text_dark_mode": "डार्क मोड में सफ़ेद टेक्स्ट",
+  "settings_white_text_dark_mode": "深色模式白字顯示",
   "@settings_white_text_dark_mode": {
     "description": "Title of the text scale setting tile."
   },
-  "settings_white_text_dark_mode_description": "डार्क मोड में टेक्स्ट के लिए सफ़ेद रंग का उपयोग करें",
+  "settings_white_text_dark_mode_description": "深色模式時文字使用白色",
   "@settings_white_text_dark_mode_description": {
     "description": "Description of the text scale setting tile."
   },
-  "settings_disable_subdued_note_content_preview": "उज्ज्वल पूर्वावलोकन",
+  "settings_disable_subdued_note_content_preview": "預覽不調暗",
   "@settings_disable_subdued_note_content_preview": {
     "description": "Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
-  "settings_disable_subdued_note_content_preview_description": "नोट्स सामग्री पूर्वावलोकन के हल्के अक्षर रंग को अक्षम करें",
+  "settings_disable_subdued_note_content_preview_description": "筆記內容預覽停用調暗的文字色彩",
   "@settings_disable_subdued_note_content_preview_description": {
     "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
-  "settings_about": "के बारे में",
+  "settings_about": "關於",
   "@settings_about": {
     "description": "Title of the settings page regarding the information about the application."
   },
-  "settings_about_description": "जानकारी, सहायता, लिंक",
+  "settings_about_description": "資訊、說明、連結",
   "@settings_about_description": {
     "description": "Description of the about settings section."
   },
-  "settings_about_application": "एप्लिकेशन",
+  "settings_about_application": "應用程式",
   "@settings_about_application": {
     "description": "Title of the settings section regarding the information about the application."
   },
-  "settings_build_mode": "निर्माण मोड",
+  "settings_build_mode": "組建模式",
   "@settings_build_mode": {
     "description": "Title of the settings tile displaying the build mode of the application."
   },
-  "settings_build_mode_release": "संस्करण",
+  "settings_build_mode_release": "發行版",
   "@settings_build_mode_release": {
     "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
   },
-  "settings_build_mode_debug": "त्रुटि निवारण",
+  "settings_build_mode_debug": "除錯版",
   "@settings_build_mode_debug": {
     "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
   },
-  "settings_about_help": "मदद",
+  "settings_about_help": "說明",
   "@settings_about_help": {
     "description": "Title of the settings section regarding how to get help for the application."
   },
-  "settings_github_issues": "त्रुटि की रिपोर्ट करें या सुविधा का अनुरोध करें",
+  "settings_github_issues": "報告問題或功能請求",
   "@settings_github_issues": {
     "description": "Title of the settings tile to open the GitHub issues and report a bug or request a feature."
   },
-  "settings_github_issues_description": "GitHub समस्या बनाकर त्रुटि की रिपोर्ट करें या सुविधा का अनुरोध करें",
+  "settings_github_issues_description": "建立 GitHub 議題以便報告問題或請求新功能",
   "@settings_github_issues_description": {
     "description": "Description of the settings tile to open the GitHub issues and report a bug or request a feature."
   },
-  "settings_github_discussions": "प्रश्न पूछें",
+  "settings_github_discussions": "發問",
   "@settings_github_discussions": {
     "description": "Title of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_github_discussions_description": "GitHub चर्चाओं पर प्रश्न पूछें",
+  "settings_github_discussions_description": "到 GitHub 討論區發問",
   "@settings_github_discussions_description": {
     "description": "Description of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_get_in_touch": "निर्माणक से संपर्क करें",
+  "settings_get_in_touch": "聯絡開發者",
   "@settings_get_in_touch": {
     "description": "Title of the settings tile to contact the developer via mail."
   },
-  "settings_get_in_touch_description": "निर्माणक से {email} पर मेल द्वारा संपर्क करें",
+  "settings_get_in_touch_description": "寄送郵件聯絡開發者：{email}",
   "@settings_get_in_touch_description": {
     "description": "Description of the settings tile to contact the developer via mail."
   },
-  "settings_about_links": "लिंक",
+  "settings_about_links": "連結",
   "@settings_about_links": {
     "description": "Title of the settings section regarding the outside links related to the application."
   },
@@ -575,19 +615,19 @@
   "@settings_github": {
     "description": "Title of the settings tile to open the GitHub repository of the application."
   },
-  "settings_github_description": "स्रोत कोड पर एक नज़र डालें",
+  "settings_github_description": "查看原始碼",
   "@settings_github_description": {
     "description": "Description of the settings tile to open the GitHub repository of the application."
   },
-  "settings_localizations": "क्राउडिन",
+  "settings_localizations": "Crowdin",
   "@settings_localizations": {
     "description": "Title of the settings tile to open the Crowdin project managing the localization of the application."
   },
-  "settings_localizations_description": "क्राउडिन परियोजना पर स्थानीयकरण जोड़ें या सुधारें",
+  "settings_localizations_description": "到 Crowdin 專案新增或改進翻譯",
   "@settings_localizations_description": {
     "description": "Description of the settings tile to open the Crowdin project managing the localization of the application."
   },
-  "settings_licence": "लाइसेंस",
+  "settings_licence": "授權協議",
   "@settings_licence": {
     "description": "Title of the settings tile to open the license of the application."
   },
@@ -595,348 +635,406 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
-  "settings_about_logs": "लॉग",
+  "settings_about_logs": "記錄檔",
   "@settings_about_logs": {
     "description": "Title of the settings section regarding the logs of the application."
   },
-  "settings_copy_logs": "लॉग कॉपी करें",
+  "settings_copy_logs": "複製記錄檔",
   "@settings_copy_logs": {
     "description": "Title of the settings tile to copy the logs of the application to the clipboard."
   },
-  "settings_copy_logs_description": "एप्लिकेशन के लॉग को क्लिपबोर्ड पर कॉपी करें",
+  "settings_copy_logs_description": "將應用程式的記錄檔複製至剪貼簿",
   "@settings_copy_logs_description": {
     "description": "Description of the settings tile to copy the logs of the application to the clipboard."
   },
-  "settings_export_logs": "लॉग निर्यात करें",
+  "settings_export_logs": "匯出記錄檔",
   "@settings_export_logs": {
     "description": "Title of the settings tile to export the logs of the application to a text file."
   },
-  "settings_export_logs_description": "एप्लिकेशन के लॉग को टेक्स्ट फ़ाइल में निर्यात करें",
+  "settings_export_logs_description": "將應用程式的記錄檔匯出至文字檔",
   "@settings_export_logs_description": {
     "description": "Description of the settings tile to export the logs of the application to a text file."
   },
-  "hint_title": "शीर्षक",
+  "hint_title": "標題",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
   },
-  "hint_link": "लिंक",
+  "hint_link": "連結",
   "@hint_link": {
     "description": "Hint for the link text field in the dialog to add a link in the editor."
   },
-  "hint_label_name": "नाम",
+  "hint_label_name": "名稱",
   "@hint_label_name": {
     "description": "Hint for the text field of the name of a label."
   },
-  "dialog_export_encryption_password": "पासवर्ड",
+  "dialog_export_encryption_password": "密碼",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
   },
-  "dialog_select_labels": "लेबल्स चुनें",
+  "dialog_select_labels": "選取標籤",
   "@dialog_select_labels": {
     "description": "Title of the dialog to select the labels of a note."
   },
-  "dialog_select_labels_to_add": "जोड़ने के लिए लेबल्स चुनें",
+  "dialog_select_labels_to_add": "選取要新增的標籤",
   "@dialog_select_labels_to_add": {
     "description": "Title of the dialog to select the labels to add to the currently selected notes."
   },
-  "tooltip_undo": "अंतिम क्रिया पूर्ववत करें",
+  "tooltip_undo": "復原最後一個動作",
   "@tooltip_undo": {
     "description": "Tooltip for the button to undo the last action in the editor."
   },
-  "tooltip_redo": "अंतिम क्रिया पुनः करें",
+  "tooltip_redo": "重做最後一個動作",
   "@tooltip_redo": {
     "description": "Tooltip for the button to redo the last action in the editor."
   },
-  "tooltip_toggle_checkbox": "टॉगल जाँच-सूची",
+  "tooltip_toggle_checkbox": "切換核選方塊",
   "@tooltip_toggle_checkbox": {
     "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
   },
-  "tooltip_toggle_pins": "टॉगल पिन",
+  "tooltip_toggle_pins": "切換釘選",
   "@tooltip_toggle_pins": {
     "description": "Tooltip for the button to toggle the pining state of the selected notes in selection mode (the pinned notes will be unpinned, and the not pinned ones will be pinned)."
   },
-  "tooltip_fab_add_note": "नोट जोड़े",
+  "tooltip_fab_add_note": "新增筆記",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
   },
-  "tooltip_fab_add_label": "लेबल जोड़ें",
+  "tooltip_fab_add_label": "新增標籤",
   "@tooltip_fab_add_label": {
     "description": "Floating action button in the labels page to add a new label."
   },
-  "tooltip_fab_empty_bin": "बिन खाली करें",
+  "tooltip_fab_empty_bin": "清空垃圾桶",
   "@tooltip_fab_empty_bin": {
     "description": "Floating action button in the bin to empty it."
   },
-  "tooltip_fab_toggle_editor_mode_edit": "संपादन मोड पर स्विच करें",
+  "tooltip_fab_toggle_editor_mode_edit": "切換至編輯模式",
   "@tooltip_fab_toggle_editor_mode_edit": {
     "description": "Floating action button in the notes editor to switch to editing mode."
   },
-  "tooltip_fab_toggle_editor_mode_read": "रीडिंग मोड पर स्विच करें",
+  "tooltip_fab_toggle_editor_mode_read": "切換至閱讀模式",
   "@tooltip_fab_toggle_editor_mode_read": {
     "description": "Floating action button in the notes editor to switch to reading mode."
   },
-  "tooltip_layout_list": "सूची व्यू",
+  "tooltip_layout_list": "清單檢視",
   "@tooltip_layout_list": {
     "description": "Tooltip for the button to use the list layout in the notes list."
   },
-  "tooltip_layout_grid": "ग्रिड व्यू",
+  "tooltip_layout_grid": "網格檢視",
   "@tooltip_layout_grid": {
     "description": "Tooltip for the button to use the grid layout in the notes list."
   },
-  "tooltip_sort": "नोट्स को क्रमबद्ध करें",
+  "tooltip_sort": "排序筆記",
   "@tooltip_sort": {
     "description": "Tooltip for the button to open the menu to choose the sorting method of the notes list."
   },
-  "tooltip_search": "नोट्स खोजें",
+  "tooltip_search": "搜尋筆記",
   "@tooltip_search": {
     "description": "Tooltip for the button to open the search view to search through the notes."
   },
-  "tooltip_unselect_all": "सभी अचयनित",
+  "tooltip_unselect_all": "全部取消選取",
   "@tooltip_unselect_all": {
     "description": "Tooltip for the button to unselect all the notes while in selection mode in the notes list."
   },
-  "tooltip_delete": "मिटाए",
+  "tooltip_delete": "刪除",
   "@tooltip_delete": {
     "description": "Tooltip for the button to delete a note (moving it to bin)."
   },
-  "tooltip_permanently_delete": "स्थायी रूप से मिटाए",
+  "tooltip_permanently_delete": "永久刪除",
   "@tooltip_permanently_delete": {
     "description": "Tooltip for the button to permanently delete a note."
   },
-  "tooltip_restore": "पुनर्स्थापित",
+  "tooltip_restore": "還原",
   "@tooltip_restore": {
     "description": "Tooltip for the button to restore a note from the bin."
   },
-  "tooltip_reset": "रीसेट",
+  "tooltip_reset": "重設",
   "@tooltip_reset": {
     "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
   },
-  "action_labels_toggle_pins": "टॉगल पिन",
+  "action_labels_toggle_pins": "切換釘選",
   "@action_labels_toggle_pins": {
     "description": "Tooltip for the button to toggle the pin status of the selected labels."
   },
-  "action_labels_toggle_visibility": "दृश्यता टॉगल करें",
+  "action_labels_toggle_visibility": "切換可見",
   "@action_labels_toggle_visibility": {
     "description": "Tooltip for the button to toggle the visibility of the selected labels."
   },
-  "dialog_add_link": "लिंक जोड़ें",
+  "dialog_add_link": "新增連結",
   "@dialog_add_link": {
     "description": "Tooltip for the button to validate the dialog to add a link in the note editor."
   },
-  "dialog_delete": "मिटाए",
+  "dialog_delete": "刪除",
   "@dialog_delete": {
     "description": "Title of the the dialog to delete one or multiple notes (moving them to the bin), and text for the confirmation button."
   },
-  "dialog_permanently_delete": "स्थायी रूप से मिटाए",
+  "dialog_delete_body": "您確定要刪除 {count} {count, plural, other{個筆記}}嗎？之後可從垃圾桶中將{count, plural, other{其}}還原。",
+  "@dialog_delete_body": {
+    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
+  },
+  "dialog_permanently_delete": "永久刪除",
   "@dialog_permanently_delete": {
     "description": "Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button."
   },
-  "dialog_restore": "पुनर्स्थापित करें",
+  "dialog_permanently_delete_body": "您確定要永久刪除 {count} {count, plural, other{個筆記}}嗎？您之後將無法{count, plural, other{}}還原。",
+  "@dialog_permanently_delete_body": {
+    "description": "Text for the dialog to confirm the permanent deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
+  },
+  "dialog_restore": "還原",
   "@dialog_restore": {
     "description": "Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button."
   },
-  "dialog_empty_bin": "बिन खाली करें",
+  "dialog_restore_body": "您確定要還原 {count} {count, plural, other{個筆記}}嗎？",
+  "@dialog_restore_body": {
+    "description": "Text for the dialog to confirm restoring one or multiple notes from the bin.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
+  },
+  "dialog_empty_bin": "清空垃圾桶",
   "@dialog_empty_bin": {
     "description": "Title of the the dialog to empty the bin, and text for the confirmation button."
   },
-  "dialog_empty_bin_body": "क्या आप वाकई बिन को हमेशा के लिए खाली करना चाहते हैं? आप उसमें मौजूद नोट्स को वापस नहीं ला पाएंगे।",
+  "dialog_empty_bin_body": "您確定要永久清空垃圾桶嗎？您將無法還原當中所載的筆記。",
   "@dialog_empty_bin_body": {
     "description": "Text for the dialog to confirm emptying the bin."
   },
-  "dialog_delete_label": "मिटाए",
+  "dialog_delete_label": "刪除",
   "@dialog_delete_label": {
     "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
   },
-  "dialog_export_encryption_switch": "JSON निर्यात एन्क्रिप्ट करें",
+  "dialog_delete_label_body": "您確定要刪除 {count} {count, plural, other{個標籤}}嗎？{count, plural, other{標籤}}將一併從筆記移除{count, plural, other{}}。",
+  "@dialog_delete_label_body": {
+    "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to delete.",
+        "type": "int"
+      }
+    }
+  },
+  "dialog_export_encryption_switch": "將 JSON 匯出加密",
   "@dialog_export_encryption_switch": {
     "description": "Text for the switch to toggle the encryption of the export in the dialog to manually or automatically exporting the notes as JSON."
   },
-  "dialog_export_encryption_description": "नोट्स का शीर्षक और सामग्री आपके पासवर्ड का उपयोग करके एन्क्रिप्ट की जाएगी। यह यादृच्छिक रूप से उत्पन्न होना चाहिए, ठीक 32 अक्षर लंबा, मजबूत (कम से कम 1 लोअरकेस, 1 अपरकेस, 1 नंबर और 1 विशेष वर्ण) और सुरक्षित रूप से संग्रहीत होना चाहिए।",
+  "dialog_export_encryption_description": "筆記的標題和內容將使用您的密碼加密。密碼應該隨機產生、長度恰好 32 個字元、高強度 (包含至少 1 個小寫、1 個大寫、1 個數字和 1 個特殊字元) 並安全地妥為保管。",
   "@dialog_export_encryption_description": {
     "description": "Description for the encryption feature when the switch to toggle the encryption of the export is enabled."
   },
-  "dialog_export_encryption_secondary_description_auto": "इस पासवर्ड का उपयोग भविष्य में सभी स्वचालित निर्यातों के लिए किया जाएगा।",
+  "dialog_export_encryption_secondary_description_auto": "此後所有自動匯出皆將使用此密碼。",
   "@dialog_export_encryption_secondary_description_auto": {
     "description": "Secondary description for the encryption feature in the case of an automatic export."
   },
-  "dialog_export_encryption_secondary_description_manual": "इस पासवर्ड का उपयोग केवल इस निर्यात के लिए किया जाएगा।",
+  "dialog_export_encryption_secondary_description_manual": "此密碼僅限此次匯出使用。",
   "@dialog_export_encryption_secondary_description_manual": {
     "description": "Secondary description for the encryption feature in the case of a manual export."
   },
-  "dialog_export_encryption_password_invalid": "अमान्य",
+  "dialog_export_encryption_password_invalid": "無效",
   "@dialog_export_encryption_password_invalid": {
     "description": "Error message displayed under the text field for the encryption password if it does not meet the strength requirements."
   },
-  "dialog_import_encryption_password_description": "यह निर्यात एन्क्रिप्टेड है। इसे आयात करने के लिए, आपको इसे एन्क्रिप्ट करने के लिए उपयोग किया गया पासवर्ड प्रदान करना होगा।",
+  "dialog_import_encryption_password_description": "此匯出已經加密。若要匯入，您需要提供用以加密的密碼。",
   "@dialog_import_encryption_password_description": {
     "description": "Description in the import dialog when an import is encrypted and the password is needed."
   },
-  "dialog_import_encryption_password_error": "निर्यात को डिक्रिप्ट करना विफल रहा। कृपया जाँच लें कि आपने वही पासवर्ड दिया है जो आपने निर्यात को एन्क्रिप्ट करने के लिए इस्तेमाल किया था।",
+  "dialog_import_encryption_password_error": "解密匯出失敗。請檢查用以加密匯出的密碼與您所提供的是否相同。",
   "@dialog_import_encryption_password_error": {
     "description": "Error when the decryption of an encrypted import failed."
   },
-  "dialog_label_add": "लेबल जोड़ें",
+  "dialog_label_add": "新增標籤",
   "@dialog_label_add": {
     "description": "Title of the dialog to add a label."
   },
-  "dialog_label_edit": "लेबल संपादित करें",
+  "dialog_label_edit": "編輯標籤",
   "@dialog_label_edit": {
     "description": "Title of the dialog to edit a label."
   },
-  "dialog_label_name_cannot_be_empty": "नाम रिक्त नहीं रह सकता।",
+  "dialog_label_name_cannot_be_empty": "名稱不得留空。",
   "@dialog_label_name_cannot_be_empty": {
     "description": "Error message shown when relevant on the text field of the name of the label."
   },
-  "dialog_label_name_already_used": "यह नाम पहले से ही प्रयोग किया जा रहा है।",
+  "dialog_label_name_already_used": "此名稱已在使用。",
   "@dialog_label_name_already_used": {
     "description": "Error message shown when relevant on the text field of the name of the label."
   },
-  "button_sort_creation_date": "निर्माण तिथि",
+  "button_sort_creation_date": "建立日期",
   "@button_sort_creation_date": {
     "description": "Text of the button to sort the notes list by their creation date."
   },
-  "button_sort_edition_date": "संस्करण तिथि",
+  "button_sort_edition_date": "編輯日期",
   "@button_sort_edition_date": {
     "description": "Text of the button to sort the notes list by their last edition date."
   },
-  "placeholder_notes": "कोई नोट्स नहीं",
+  "placeholder_notes": "無筆記",
   "@placeholder_notes": {
     "description": "Placeholder on the notes page when there are no notes."
   },
-  "placeholder_labels": "कोई लेबल्स नहीं",
+  "placeholder_labels": "無標籤",
   "@placeholder_labels": {
     "description": "Placeholder on the labels page when there are no labels."
   },
-  "placeholder_bin": "कोई भी नोट्स मिटाया नहीं गया",
+  "placeholder_bin": "無已刪除的筆記",
   "@placeholder_bin": {
     "description": "Placeholder on the bin page when there are no notes."
   },
-  "action_disabled": "अक्षम",
+  "action_disabled": "已停用",
   "@action_disabled": {
     "description": "Swipe action that is disabled in the settings."
   },
-  "action_pin": "पिन",
+  "action_pin": "釘選",
   "@action_pin": {
     "description": "Swipe or menu action to pin a note."
   },
-  "action_unpin": "अनपिन",
+  "action_unpin": "取消釘選",
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
   },
-  "action_share": "शेयर",
+  "action_share": "分享",
   "@action_share": {
     "description": "Swipe or menu action to share a note."
   },
-  "action_delete": "मिटाए",
+  "action_share_subject": "{count} {count, plural, other{個筆記}}分享自 Material Notes",
+  "@action_share_subject": {
+    "description": "Subject of the text that is shared when multiple notes are shared at the same time.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes being shared.",
+        "type": "int"
+      }
+    }
+  },
+  "action_delete": "刪除",
   "@action_delete": {
     "description": "Swipe or menu action to delete a note (moving it to the bin)."
   },
-  "action_restore": "पुनर्स्थापित",
+  "action_restore": "還原",
   "@action_restore": {
     "description": "Swipe or menu action to restore a note from the bin."
   },
-  "action_delete_permanently": "स्थायी रूप से मिटाए",
+  "action_delete_permanently": "永久刪除",
   "@action_delete_permanently": {
     "description": "Swipe or menu action to permanently delete a note."
   },
-  "action_about": "के बारे में",
+  "action_about": "關於",
   "@action_about": {
     "description": "Swipe or menu action to show information about a note."
   },
-  "about_last_edited": "अंतिम संपादन",
+  "about_last_edited": "最後編輯日期",
   "@about_last_edited": {
     "description": "Date when the note was edited for the last time."
   },
-  "about_type": "प्रकार",
+  "about_type": "類型",
   "@about_type": {
     "description": "Type of the note."
   },
-  "about_created": "बनाया था",
+  "about_created": "建立日期",
   "@about_created": {
     "description": "Date when the note was created."
   },
-  "about_labels": "लेबल्स",
+  "about_labels": "標籤數目",
   "@about_labels": {
     "description": "Number of labels of the note."
   },
-  "about_words": "शब्द",
+  "about_words": "字詞數目",
   "@about_words": {
     "description": "Number of words in the content of the note."
   },
-  "about_characters": "वर्ण",
+  "about_characters": "字元數目",
   "@about_characters": {
     "description": "Number of characters in the content of the note."
   },
-  "about_time_at": "पर",
+  "about_time_at": "於",
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
-  "menu_action_labels": "लेबल्स",
+  "menu_action_labels": "標籤",
   "@menu_action_labels": {
     "description": "Menu action to change the labels of a note."
   },
-  "action_labels_edit": "संपादन",
+  "action_labels_edit": "編輯",
   "@action_labels_edit": {
     "description": "Menu or swipe action to edit a label."
   },
-  "action_labels_delete": "मिटाए",
+  "action_labels_delete": "刪除",
   "@action_labels_delete": {
     "description": "Menu or swipe action to delete a label."
   },
-  "filter_labels_all": "सभी",
+  "filter_labels_all": "全部",
   "@filter_labels_all": {
     "description": "Filter chip in the labels page to all labels."
   },
-  "filter_labels_visible": "दृश्यमान",
+  "filter_labels_visible": "可見",
   "@filter_labels_visible": {
     "description": "Filter chip in the labels page to show only the visible labels."
   },
-  "filter_labels_pinned": "पिन किया गया",
+  "filter_labels_pinned": "已釘選",
   "@filter_labels_pinned": {
     "description": "Filter chip in the labels page to show only the pinned labels."
   },
-  "filter_labels_hidden": "छिपाया गया",
+  "filter_labels_hidden": "已隱藏",
   "@filter_labels_hidden": {
     "description": "Filter chip in the labels page to show only the hidden labels."
   },
-  "snack_bar_copied": "नोट की सामग्री क्लिपबोर्ड पर कॉपी कर दी गई।",
+  "snack_bar_copied": "筆記內容已複製至剪貼簿。",
   "@snack_bar_copied": {
     "description": "Snack bar informing that the content of the note was copied to clipboard."
   },
-  "snack_bar_import_success": "बैकअप सफलतापूर्वक आयात किया गया।",
+  "snack_bar_import_success": "備份已成功匯入。",
   "@snack_bar_import_success": {
     "description": "Snack bar informing that the backup was successfully imported."
   },
-  "snack_bar_export_success": "बैकअप सफलतापूर्वक निर्यात किया गया।",
+  "snack_bar_export_success": "備份已成功匯出。",
   "@snack_bar_export_success": {
     "description": "Snack bar informing that the backup was successfully manually exported."
   },
-  "snack_bar_logs_copied": "लॉग आपके क्लिपबोर्ड पर कॉपी कर दिए गए हैं।",
+  "snack_bar_logs_copied": "記錄檔已複製至您的剪貼簿。",
   "@snack_bar_logs_copied": {
     "description": "Snack bar message shown when the logs where copied to the clipboard from the error widget."
   },
-  "snack_bar_logs_exported": "लॉग सफलतापूर्वक निर्यात किए गए।",
+  "snack_bar_logs_exported": "記錄檔已成功匯出。",
   "@snack_bar_logs_exported": {
     "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
   },
-  "snack_bar_no_labels": "कोई लेबल्स नहीं है।",
+  "snack_bar_no_labels": "未有任何標籤。",
   "@snack_bar_no_labels": {
     "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
   },
-  "action_add_note_title": "एक नोट जोड़े",
+  "action_add_note_title": "新增筆記",
   "@action_add_note_title": {
     "description": "Title of the home screen action to add a new note."
   },
-  "welcome_note_title": "मैटेरियल नोट्स में आपका स्वागत है!",
+  "welcome_note_title": "歡迎使用 Material Notes！",
   "@welcome_note_title": {
     "description": "Title of the welcome note automatically created on the first run of the application."
   },
-  "welcome_note_content": "सरल, स्थानीय, मैटेरियल डिज़ाइन नोट्स",
+  "welcome_note_content": "簡單易用、本機操作、Material 設計之筆記",
   "@welcome_note_content": {
     "description": "Content of the welcome note automatically created on the first run of the application."
   },
-  "font_system_default": "सिस्टम डिफॉल्ट",
+  "font_system_default": "系統預設值",
   "@font_system_default": {
     "description": "Name of the font settings that uses the default font of the system."
+  },
+  "note_type_plain_text": "純文字",
+  "@note_type_plain_text": {
+    "description": "Note with plain text."
+  },
+  "note_type_rich_text": "格式化文字",
+  "@note_type_rich_text": {
+    "description": "Note with rich text."
   }
 }
