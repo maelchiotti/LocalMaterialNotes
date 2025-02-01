@@ -12,8 +12,6 @@ import '../../common/widgets/keys.dart';
 import '../../common/widgets/placeholders/loading_placeholder.dart';
 import '../../models/note/note.dart';
 import '../../providers/notifiers/notifiers.dart';
-import 'widgets/editor_field.dart';
-import '../../utils/keys.dart';
 import 'widgets/editor_labels_list.dart';
 import 'widgets/plain_text/plain_text_editor.dart';
 import 'widgets/rich_text/rich_text_editor.dart';

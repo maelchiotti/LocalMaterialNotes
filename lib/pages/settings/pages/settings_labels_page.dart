@@ -56,10 +56,7 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_labels,
-          back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings_labels),
       ),
       body: SingleChildScrollView(
         child: Padding(

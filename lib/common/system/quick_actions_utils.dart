@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quick_actions/quick_actions.dart';
 
+import '../../models/note/note.dart';
+import '../../models/note/notes_types.dart';
 import '../actions/notes/add.dart';
 import '../localization/localizations_utils.dart';
 
@@ -16,7 +18,14 @@ class QuickActionsUtils {
 
     quickActions.initialize((action) {
       if (action == 'add_note') {
-        addNote(context, ref);
+        final defaultShortcutNoteType = NoteType.defaultShortcutType;
+
+        switch (defaultShortcutNoteType) {
+          case NoteType.plainText:
+            addNote<PlainTextNote>(context, ref);
+          case NoteType.richText:
+            addNote<RichTextNote>(context, ref);
+        }
       }
     });
 

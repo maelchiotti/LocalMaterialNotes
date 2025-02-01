@@ -5,10 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:parchment_delta/parchment_delta.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
+import '../../models/note/note.dart';
+import '../../models/note/notes_types.dart';
 import '../actions/notes/add.dart';
 import '../constants/constants.dart';
-import '../models/note/note.dart';
-import '../models/note/notes_types.dart';
 
 /// Listens to any data shared from other applications.
 StreamSubscription listenSharedData(WidgetRef ref) => ReceiveSharingIntent.instance.getMediaStream().listen((data) {

@@ -80,10 +80,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_accessibility,
-          back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings_accessibility),
       ),
       body: SingleChildScrollView(
         child: Padding(

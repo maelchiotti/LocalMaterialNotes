@@ -59,12 +59,12 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
     editorHasFocusNotifier.value = hasFocus;
   }
 
-  void launchUrl(String? url) {
+  void onLaunchUrl(String? url) {
     if (url == null) {
       return;
     }
 
-    launchUrl(url);
+    onLaunchUrl(url);
   }
 
   void onChanged() {
@@ -81,32 +81,43 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
     final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault();
     final editorFont = Font.editorFromPreference();
 
-    final fleatherThemeFallback = FleatherThemeData.fallback(context);
-    final fleatherThemeParagraph = TextBlockTheme(
-      style: fleatherThemeFallback.paragraph.style.copyWith(fontFamily: editorFont.familyName),
-      spacing: useParagraphsSpacing ? fleatherThemeFallback.paragraph.spacing : const VerticalSpacing.zero(),
-    );
-
     widget.fleatherController.addListener(() => onChanged());
 
-    return Focus(
-      onFocusChange: onFocusChange,
-      child: FleatherTheme(
-        data: fleatherThemeFallback.copyWith(
-          paragraph: fleatherThemeParagraph,
-        ),
-        child: FleatherEditor(
-          controller: widget.fleatherController,
-          focusNode: editorFocusNode,
-          readOnly: widget.readOnly,
-          autofocus: widget.autofocus,
-          expands: true,
-          onLaunchUrl: launchUrl,
-          spellCheckConfiguration: SpellCheckConfiguration(
-            spellCheckService: DefaultSpellCheckService(),
-          ),
-          padding: Paddings.bottomSystemUi,
-        ),
+    return DefaultTextStyle.merge(
+      style: TextStyle(
+        fontFamily: editorFont.familyName,
+      ),
+      child: Builder(
+        builder: (context) {
+          final fleatherThemeFallback = FleatherThemeData.fallback(context);
+          final FleatherThemeData fleatherTheme;
+          if (useParagraphsSpacing) {
+            fleatherTheme = fleatherThemeFallback;
+          } else {
+            fleatherTheme = fleatherThemeFallback.copyWith(
+              paragraph: TextBlockTheme(
+                style: fleatherThemeFallback.paragraph.style,
+                spacing: const VerticalSpacing.zero(),
+              ),
+            );
+          }
+
+          return FleatherTheme(
+            data: fleatherTheme,
+            child: FleatherEditor(
+              controller: widget.fleatherController,
+              focusNode: editorFocusNode,
+              autofocus: widget.autofocus,
+              readOnly: widget.readOnly,
+              expands: true,
+              onLaunchUrl: onLaunchUrl,
+              spellCheckConfiguration: SpellCheckConfiguration(
+                spellCheckService: DefaultSpellCheckService(),
+              ),
+              padding: Paddings.bottomSystemUi,
+            ),
+          );
+        },
       ),
     );
   }

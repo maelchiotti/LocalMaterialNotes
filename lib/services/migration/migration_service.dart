@@ -36,8 +36,7 @@ class MigrationService {
     // Convert the old notes to rich text notes
     final richTextNotes = oldNotes
         .map(
-          (oldNote) =>
-          RichTextNote(
+          (oldNote) => RichTextNote(
             deleted: oldNote.deleted,
             pinned: oldNote.pinned,
             createdTime: oldNote.createdTime,
@@ -45,7 +44,7 @@ class MigrationService {
             title: oldNote.title,
             content: oldNote.content,
           ),
-    )
+        )
         .toList();
 
     // Add the new notes to the new collection with their labels
@@ -56,8 +55,8 @@ class MigrationService {
     final oldNotesCount = await _databaseService.database.notes.count();
     final addedRichTextNotesCount = richTextNotes.length;
     assert(
-    oldNotesCount == addedRichTextNotesCount,
-    'The count of old notes ($oldNotesCount) is different from the count of rich text notes ($addedRichTextNotesCount) after the migration to v2',
+      oldNotesCount == addedRichTextNotesCount,
+      'The count of old notes ($oldNotesCount) is different from the count of rich text notes ($addedRichTextNotesCount) after the migration to v2',
     );
 
     // Update the database version

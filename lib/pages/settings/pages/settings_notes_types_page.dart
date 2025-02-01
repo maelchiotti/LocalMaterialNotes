@@ -8,9 +8,9 @@ import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
+import '../../../common/widgets/keys.dart';
 import '../../../models/note/notes_types.dart';
 import '../../../providers/preferences/preferences_provider.dart';
-import '../../../utils/keys.dart';
 
 /// Notes types settings.
 class SettingsNotesTypesPage extends ConsumerStatefulWidget {
