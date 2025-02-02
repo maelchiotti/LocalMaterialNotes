@@ -731,6 +731,10 @@
   "@tooltip_fab_add_rich_text_note": {
     "description": "Floating action button in the notes page to add a new rich text note."
   },
+  "tooltip_fab_add_checklist_note": "Add a checklist note",
+  "@tooltip_fab_add_checklist_note": {
+    "description": "Floating action button in the notes page to add a new checklist note."
+  },
   "tooltip_fab_add_label": "Add a label",
   "@tooltip_fab_add_label": {
     "description": "Floating action button in the labels page to add a new label."
@@ -1068,5 +1072,9 @@
   "note_type_rich_text": "Rich text",
   "@note_type_rich_text": {
     "description": "Note with rich text."
+  },
+  "note_type_checklist": "Checklist",
+  "@note_type_checklist": {
+    "description": "Note with a checklist."
   }
 }

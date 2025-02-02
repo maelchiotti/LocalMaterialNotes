@@ -2,7 +2,7 @@ import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../models/note/notes_types.dart';
+import '../../../models/note/types/note_type.dart';
 import '../../../pages/editor/sheets/about_sheet.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../actions/notes/copy.dart';

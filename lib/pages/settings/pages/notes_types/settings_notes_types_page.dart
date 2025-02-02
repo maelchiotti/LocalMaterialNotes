@@ -9,7 +9,7 @@ import '../../../../common/navigation/top_navigation.dart';
 import '../../../../common/preferences/preference_key.dart';
 import '../../../../common/preferences/watched_preferences.dart';
 import '../../../../common/widgets/keys.dart';
-import '../../../../models/note/notes_types.dart';
+import '../../../../models/note/types/note_type.dart';
 import '../../../../navigation/navigation_routes.dart';
 import '../../../../providers/preferences/preferences_provider.dart';
 import 'settings_notes_types_rich_text_page.dart';

@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
 import '../../common/constants/constants.dart';
-import '../../common/constants/paddings.dart';
 import '../../common/navigation/app_bars/editor_app_bar.dart';
 import '../../common/navigation/top_navigation.dart';
 import '../../common/preferences/preference_key.dart';
@@ -12,6 +11,7 @@ import '../../common/widgets/keys.dart';
 import '../../common/widgets/placeholders/loading_placeholder.dart';
 import '../../models/note/note.dart';
 import '../../providers/notifiers/notifiers.dart';
+import 'widgets/checklist_editor/checklist_editor.dart';
 import 'widgets/editor_labels_list.dart';
 import 'widgets/plain_text/plain_text_editor.dart';
 import 'widgets/rich_text/rich_text_editor.dart';
@@ -87,6 +87,11 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                 toolbar = RichTextEditorToolbar(
                   fleatherController: fleatherController,
                 );
+              case ChecklistNote note:
+                contentEditor = ChecklistEditor(
+                  note: note,
+                  readOnly: readOnly,
+                );
             }
 
             return Scaffold(
@@ -98,21 +103,18 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
               body: Column(
                 children: [
                   Expanded(
-                    child: Padding(
-                      padding: Paddings.pageButBottom,
-                      child: Column(
-                        children: [
-                          TitleEditor(
-                            readOnly: widget.readOnly,
-                            isNewNote: widget.isNewNote,
-                            onSubmitted: requestEditorFocus,
-                          ),
-                          Gap(8.0),
-                          Expanded(
-                            child: contentEditor,
-                          ),
-                        ],
-                      ),
+                    child: Column(
+                      children: [
+                        TitleEditor(
+                          readOnly: widget.readOnly,
+                          isNewNote: widget.isNewNote,
+                          onSubmitted: requestEditorFocus,
+                        ),
+                        Gap(8.0),
+                        Expanded(
+                          child: contentEditor,
+                        ),
+                      ],
                     ),
                   ),
                   SafeArea(

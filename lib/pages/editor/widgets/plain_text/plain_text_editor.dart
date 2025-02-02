@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../common/constants/constants.dart';
+import '../../../../common/constants/paddings.dart';
 import '../../../../models/note/note.dart';
 import '../../../../providers/notes/notes_provider.dart';
 import '../../../../providers/notifiers/notifiers.dart';
@@ -56,20 +57,23 @@ class _PlainTextEditorState extends ConsumerState<PlainTextEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return Focus(
-      onFocusChange: onFocusChange,
-      child: TextField(
-        controller: contentTextController,
-        focusNode: editorFocusNode,
-        readOnly: widget.readOnly,
-        autofocus: widget.autofocus,
-        maxLines: null,
-        expands: true,
-        decoration: InputDecoration.collapsed(hintText: ''),
-        spellCheckConfiguration: SpellCheckConfiguration(
-          spellCheckService: DefaultSpellCheckService(),
+    return Padding(
+      padding: Paddings.pageHorizontal,
+      child: Focus(
+        onFocusChange: onFocusChange,
+        child: TextField(
+          controller: contentTextController,
+          focusNode: editorFocusNode,
+          readOnly: widget.readOnly,
+          autofocus: widget.autofocus,
+          maxLines: null,
+          expands: true,
+          decoration: InputDecoration.collapsed(hintText: ''),
+          spellCheckConfiguration: SpellCheckConfiguration(
+            spellCheckService: DefaultSpellCheckService(),
+          ),
+          onChanged: onChanged,
         ),
-        onChanged: onChanged,
       ),
     );
   }

@@ -21,6 +21,8 @@ Future<void> addNote<NoteType>(BuildContext context, WidgetRef ref, {String? con
       note = content == null ? PlainTextNote.empty() : PlainTextNote.content(content);
     case == RichTextNote:
       note = content == null ? RichTextNote.empty() : RichTextNote.content(content);
+    case == ChecklistNote:
+      note = ChecklistNote.empty();
     default:
       throw Exception('Unknown note type when creating a new note: $NoteType');
   }

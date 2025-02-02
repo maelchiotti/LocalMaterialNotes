@@ -38,6 +38,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.11.3"
+  animated_reorderable_list:
+    dependency: transitive
+    description:
+      name: animated_reorderable_list
+      sha256: "12c6d498a6a33a6341d5c1184b3616ddf6b9d3823f1501e3b0a2af8ebfc9548b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.5"
   ansicolor:
     dependency: transitive
     description:
@@ -451,6 +459,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_checklist:
+    dependency: "direct main"
+    description:
+      name: flutter_checklist
+      sha256: "1cbeddff0feb58b742435351cbdd64fd7069fd666a3e5cdff886ac0635bcae06"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   flutter_displaymode:
     dependency: "direct main"
     description:

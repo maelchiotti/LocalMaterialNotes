@@ -7,13 +7,14 @@ class PlainTextNote extends Note {
   /// The content of the note.
   String content;
 
-  /// Note with plain text content.
+  /// A note with plain text content.
   PlainTextNote({
     required super.deleted,
     required super.pinned,
     required super.createdTime,
     required super.editedTime,
     required super.title,
+    super.type = NoteType.plainText,
     required this.content,
   });
 
@@ -55,10 +56,6 @@ class PlainTextNote extends Note {
 
   @ignore
   @override
-  NoteType get type => NoteType.plainText;
-
-  @ignore
-  @override
   String get plainText => content;
 
   @ignore
@@ -67,7 +64,7 @@ class PlainTextNote extends Note {
 
   @ignore
   @override
-  String get contentPreview => content.trim();
+  String get contentPreview => plainText.trim();
 
   @ignore
   @override

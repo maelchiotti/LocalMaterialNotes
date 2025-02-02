@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/note/notes_types.dart';
+import '../../models/note/types/note_type.dart';
 import '../ui/theme_utils.dart';
 import 'enums/bin_swipe_action.dart';
 import 'enums/font.dart';

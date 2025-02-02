@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_utils/flutter_helper_utils.dart';
 
-import '../../common/constants/constants.dart';
-import '../../common/preferences/preference_key.dart';
-import 'note.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/preferences/preference_key.dart';
+import '../note.dart';
 
 /// The types of notes.
 enum NoteType<T extends Note> {
@@ -12,6 +12,9 @@ enum NoteType<T extends Note> {
 
   /// Rich text note.
   richText<RichTextNote>(Icons.format_paint),
+
+  /// Checklist note.
+  checklist<ChecklistNote>(Icons.checklist),
   ;
 
   /// Icon representing this note type.
@@ -24,6 +27,7 @@ enum NoteType<T extends Note> {
     return switch (T) {
       == PlainTextNote => l.note_type_plain_text,
       == RichTextNote => l.note_type_rich_text,
+      == ChecklistNote => l.note_type_checklist,
       _ => throw Exception('Unknown note type: $T'),
     };
   }

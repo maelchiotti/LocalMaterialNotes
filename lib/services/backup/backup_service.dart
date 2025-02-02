@@ -17,6 +17,7 @@ import '../../common/system/info_utils.dart';
 import '../../common/ui/snack_bar_utils.dart';
 import '../../models/label/label.dart';
 import '../../models/note/note.dart';
+import '../../models/note/types/note_type.dart';
 import '../../pages/settings/dialogs/auto_export_password_dialog.dart';
 import '../labels/labels_service.dart';
 import '../notes/notes_service.dart';
@@ -44,7 +45,7 @@ class ManualBackupService {
 
     var importedJson = jsonDecode(utf8.decode(importedFile));
 
-    // If the imported JSON is just a list, then it's the old export format that just contains the notes list
+    // If the imported JSON is just a list, it's an export from before v1. that just contains the notes list
     if (importedJson is List) {
       logger.w('The imported JSON file uses the old discontinued format with just the list of notes');
 
@@ -120,7 +121,21 @@ class ManualBackupService {
 
       try {
         for (final noteAsJsonEncrypted in notesAsJson) {
-          notes.add(RichTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+          final noteType = NoteType.values.byNameOrNull(noteAsJsonEncrypted['type']);
+
+          // If the note type is null, it's an export from before v2.0.0 when only rich text notes were available
+          if (noteType == null) {
+            notes.add(RichTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+          } else {
+            switch (noteType) {
+              case NoteType.plainText:
+                notes.add(PlainTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+              case NoteType.richText:
+                notes.add(RichTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+              case NoteType.checklist:
+                notes.add(ChecklistNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+            }
+          }
         }
       } catch (exception, stackTrace) {
         logger.e(exception.toString(), exception, stackTrace);
@@ -134,7 +149,21 @@ class ManualBackupService {
       }
     } else {
       for (final noteAsJson in notesAsJson) {
-        notes.add(RichTextNote.fromJson(noteAsJson));
+        final noteType = NoteType.values.byNameOrNull(noteAsJson['type']);
+
+        // If the note type is null, it's an export from before v2.0.0 when only rich text notes were available
+        if (noteType == null) {
+          notes.add(RichTextNote.fromJson(noteAsJson));
+        } else {
+          switch (noteType) {
+            case NoteType.plainText:
+              notes.add(PlainTextNote.fromJson(noteAsJson));
+            case NoteType.richText:
+              notes.add(RichTextNote.fromJson(noteAsJson));
+            case NoteType.checklist:
+              notes.add(ChecklistNote.fromJson(noteAsJson));
+          }
+        }
       }
     }
 
@@ -169,7 +198,12 @@ class ManualBackupService {
         throw Exception("While restoring the preferences from JSON, the preference '$preference' doesn't exist");
       }
 
-      preferenceKey.set(value);
+      // If the preference value is a list, the it's a list of String (the only type of list that can be stored in the preferences)
+      if (value is List) {
+        preferenceKey.set(value.cast<String>());
+      } else {
+        preferenceKey.set(value);
+      }
     });
 
     return true;

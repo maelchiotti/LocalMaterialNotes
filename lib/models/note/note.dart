@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:fleather/fleather.dart';
+import 'package:flutter_checklist/checklist.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -10,13 +11,15 @@ import '../../common/files/encryption_utils.dart';
 import '../../common/preferences/enums/sort_method.dart';
 import '../../common/preferences/preference_key.dart';
 import '../label/label.dart';
-import 'notes_types.dart';
+import 'types/note_type.dart';
 
 part 'note.g.dart';
 
-part 'plain_text/plain_text_note.dart';
+part 'types/checklist_note.dart';
 
-part 'rich_text/rich_text_note.dart';
+part 'types/plain_text_note.dart';
+
+part 'types/rich_text_note.dart';
 
 /// Converts the [labels] to a JSON-compatible list of strings.
 List<String> labelToJson(IsarLinks<Label> labels) => labels.map((label) => label.name).toList();
@@ -68,6 +71,7 @@ sealed class Note implements Comparable<Note> {
     required this.createdTime,
     required this.editedTime,
     required this.title,
+    required this.type,
   });
 
   /// Returns this note with the [title] and the content encrypted using the [password].
@@ -75,7 +79,7 @@ sealed class Note implements Comparable<Note> {
 
   /// The type of the note.
   @ignore
-  NoteType get type;
+  NoteType type;
 
   /// The content as plain text.
   @ignore

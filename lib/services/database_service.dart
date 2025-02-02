@@ -37,6 +37,7 @@ class DatabaseService {
         NoteSchema,
         PlainTextNoteSchema,
         RichTextNoteSchema,
+        ChecklistNoteSchema,
         LabelSchema,
       ],
       name: databaseName,
