@@ -13,7 +13,7 @@ enum PreferenceKey<T extends Object> {
   editorFont<String>('systemDefault'),
 
   // Notes types
-  availableNotesTypes<List<String>>(['plainText', 'richText']),
+  availableNotesTypes<List<String>>(['plainText', 'richText', 'checklist']),
   defaultShortcutNoteType<String>('plainText'),
 
   // Rich text notes

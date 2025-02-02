@@ -83,41 +83,44 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
 
     widget.fleatherController.addListener(() => onChanged());
 
-    return DefaultTextStyle.merge(
-      style: TextStyle(
-        fontFamily: editorFont.familyName,
-      ),
-      child: Builder(
-        builder: (context) {
-          final fleatherThemeFallback = FleatherThemeData.fallback(context);
-          final FleatherThemeData fleatherTheme;
-          if (useParagraphsSpacing) {
-            fleatherTheme = fleatherThemeFallback;
-          } else {
-            fleatherTheme = fleatherThemeFallback.copyWith(
-              paragraph: TextBlockTheme(
-                style: fleatherThemeFallback.paragraph.style,
-                spacing: const VerticalSpacing.zero(),
+    return Padding(
+      padding: Paddings.pageHorizontal,
+      child: DefaultTextStyle.merge(
+        style: TextStyle(
+          fontFamily: editorFont.familyName,
+        ),
+        child: Builder(
+          builder: (context) {
+            final fleatherThemeFallback = FleatherThemeData.fallback(context);
+            final FleatherThemeData fleatherTheme;
+            if (useParagraphsSpacing) {
+              fleatherTheme = fleatherThemeFallback;
+            } else {
+              fleatherTheme = fleatherThemeFallback.copyWith(
+                paragraph: TextBlockTheme(
+                  style: fleatherThemeFallback.paragraph.style,
+                  spacing: const VerticalSpacing.zero(),
+                ),
+              );
+            }
+
+            return FleatherTheme(
+              data: fleatherTheme,
+              child: FleatherEditor(
+                controller: widget.fleatherController,
+                focusNode: editorFocusNode,
+                autofocus: widget.autofocus,
+                readOnly: widget.readOnly,
+                expands: true,
+                onLaunchUrl: onLaunchUrl,
+                spellCheckConfiguration: SpellCheckConfiguration(
+                  spellCheckService: DefaultSpellCheckService(),
+                ),
+                padding: Paddings.bottomSystemUi,
               ),
             );
-          }
-
-          return FleatherTheme(
-            data: fleatherTheme,
-            child: FleatherEditor(
-              controller: widget.fleatherController,
-              focusNode: editorFocusNode,
-              autofocus: widget.autofocus,
-              readOnly: widget.readOnly,
-              expands: true,
-              onLaunchUrl: onLaunchUrl,
-              spellCheckConfiguration: SpellCheckConfiguration(
-                spellCheckService: DefaultSpellCheckService(),
-              ),
-              padding: Paddings.bottomSystemUi,
-            ),
-          );
-        },
+          },
+        ),
       ),
     );
   }

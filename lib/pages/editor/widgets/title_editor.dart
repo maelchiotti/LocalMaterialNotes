@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common/constants/constants.dart';
+import '../../../common/constants/paddings.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../models/note/note.dart';
 import '../../../providers/notes/notes_provider.dart';
@@ -49,25 +50,28 @@ class _TitleEditorState extends ConsumerState<TitleEditor> {
   Widget build(BuildContext context) {
     final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault();
 
-    return ValueListenableBuilder(
-      valueListenable: currentNoteNotifier,
-      builder: (context, currentNote, child) {
-        titleController = TextEditingController(text: currentNote?.title);
+    return Padding(
+      padding: Paddings.pageHorizontal,
+      child: ValueListenableBuilder(
+        valueListenable: currentNoteNotifier,
+        builder: (context, currentNote, child) {
+          titleController = TextEditingController(text: currentNote?.title);
 
-        return TextField(
-          readOnly: widget.readOnly,
-          autofocus: widget.isNewNote && focusTitleOnNewNote,
-          textCapitalization: TextCapitalization.sentences,
-          textInputAction: TextInputAction.next,
-          style: Theme.of(context).textTheme.titleLarge,
-          decoration: InputDecoration.collapsed(
-            hintText: l.hint_title,
-          ),
-          controller: titleController,
-          onChanged: (text) => onChanged(currentNote, text),
-          onSubmitted: (_) => widget.onSubmitted,
-        );
-      },
+          return TextField(
+            readOnly: widget.readOnly,
+            autofocus: widget.isNewNote && focusTitleOnNewNote,
+            textCapitalization: TextCapitalization.sentences,
+            textInputAction: TextInputAction.next,
+            style: Theme.of(context).textTheme.titleLarge,
+            decoration: InputDecoration.collapsed(
+              hintText: l.hint_title,
+            ),
+            controller: titleController,
+            onChanged: (text) => onChanged(currentNote, text),
+            onSubmitted: (_) => widget.onSubmitted,
+          );
+        },
+      ),
     );
   }
 }

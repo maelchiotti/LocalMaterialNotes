@@ -10,13 +10,14 @@ class RichTextNote extends Note {
   /// The content of the note, as rich text in the fleather representation.
   String content;
 
-  /// Note with rich text content.
+  /// A note with rich text content.
   RichTextNote({
     required super.deleted,
     required super.pinned,
     required super.createdTime,
     required super.editedTime,
     required super.title,
+    super.type = NoteType.richText,
     required this.content,
   });
 
@@ -59,10 +60,6 @@ class RichTextNote extends Note {
   /// Document containing the fleather content representation.
   @ignore
   ParchmentDocument get document => ParchmentDocument.fromJson(jsonDecode(content) as List);
-
-  @ignore
-  @override
-  NoteType get type => NoteType.richText;
 
   @ignore
   @override

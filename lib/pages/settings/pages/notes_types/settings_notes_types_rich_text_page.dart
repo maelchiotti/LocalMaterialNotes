@@ -7,7 +7,7 @@ import '../../../../common/constants/paddings.dart';
 import '../../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../../common/navigation/top_navigation.dart';
 import '../../../../common/preferences/preference_key.dart';
-import '../../../../models/note/notes_types.dart';
+import '../../../../models/note/types/note_type.dart';
 
 /// Rich text notes settings.
 class SettingsNotesTypesRichTextPage extends ConsumerStatefulWidget {

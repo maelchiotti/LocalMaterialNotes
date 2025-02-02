@@ -6,7 +6,7 @@ import 'package:parchment_delta/parchment_delta.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 import '../../models/note/note.dart';
-import '../../models/note/notes_types.dart';
+import '../../models/note/types/note_type.dart';
 import '../actions/notes/add.dart';
 import '../constants/constants.dart';
 
@@ -49,5 +49,7 @@ void _processSharedData(WidgetRef ref, List<SharedMediaFile> data) {
       addNote<PlainTextNote>(context, ref, content: content);
     case NoteType.richText:
       addNote<RichTextNote>(context, ref, content: content);
+    default:
+      throw Exception('This note type cannot be created from a shortcut: $defaultShortcutNoteType');
   }
 }
