@@ -12,7 +12,6 @@ import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/ui/snack_bar_utils.dart';
-import '../../../common/widgets/keys.dart';
 import '../../../providers/bin/bin_provider.dart';
 import '../../../providers/labels/labels/labels_provider.dart';
 import '../../../providers/labels/labels_list/labels_list_provider.dart';
@@ -209,7 +208,6 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
     return Scaffold(
       appBar: TopNavigation(
-        key: Keys.appBarSettingsMainSubpage,
         appbar: BasicAppBar(title: l.navigation_settings_backup),
       ),
       body: SingleChildScrollView(

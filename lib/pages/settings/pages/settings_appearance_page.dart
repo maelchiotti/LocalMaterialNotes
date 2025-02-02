@@ -17,7 +17,6 @@ import '../../../common/preferences/enums/font.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
 import '../../../common/ui/theme_utils.dart';
-import '../../../common/widgets/keys.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 
 /// Settings related to the appearance of the application.
@@ -101,7 +100,6 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
 
     return Scaffold(
       appBar: TopNavigation(
-        key: Keys.appBarSettingsMainSubpage,
         appbar: BasicAppBar(title: l.navigation_settings_appearance),
       ),
       body: SingleChildScrollView(

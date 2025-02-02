@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_helper_utils/flutter_helper_utils.dart';
 
 import '../../common/constants/constants.dart';
@@ -7,13 +8,16 @@ import 'note.dart';
 /// The types of notes.
 enum NoteType<T extends Note> {
   /// Plain text note.
-  plainText<PlainTextNote>(),
+  plainText<PlainTextNote>(Icons.text_fields),
 
   /// Rich text note.
-  richText<RichTextNote>(),
+  richText<RichTextNote>(Icons.format_paint),
   ;
 
-  const NoteType();
+  /// Icon representing this note type.
+  final IconData icon;
+
+  const NoteType(this.icon);
 
   /// The title of this type.
   String get title {

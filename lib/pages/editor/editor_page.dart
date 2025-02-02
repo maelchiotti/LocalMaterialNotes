@@ -46,7 +46,6 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
   Widget build(BuildContext context) {
     final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault();
     final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault();
-    final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault();
     final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
     final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.getPreferenceOrDefault();
 
@@ -120,7 +119,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                     child: Column(
                       children: [
                         if (showLabelsList) EditorLabelsList(readOnly: widget.readOnly),
-                        if (toolbar != null && showToolbar && isEditorInEditMode && !currentNote.deleted) toolbar,
+                        if (toolbar != null && isEditorInEditMode && !currentNote.deleted) toolbar,
                       ],
                     ),
                   ),

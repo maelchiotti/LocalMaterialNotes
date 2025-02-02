@@ -12,7 +12,6 @@ import '../../../common/preferences/enums/confirmations.dart';
 import '../../../common/preferences/enums/swipe_action.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
-import '../../../common/widgets/keys.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 
 /// Settings related to the behavior of the application.
@@ -79,7 +78,6 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
 
     return Scaffold(
       appBar: TopNavigation(
-        key: Keys.appBarSettingsMainSubpage,
         appbar: BasicAppBar(title: l.navigation_settings_behavior),
       ),
       body: SingleChildScrollView(

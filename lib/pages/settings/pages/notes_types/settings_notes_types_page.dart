@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
-import '../../../common/constants/constants.dart';
-import '../../../common/constants/paddings.dart';
-import '../../../common/navigation/app_bars/basic_app_bar.dart';
-import '../../../common/navigation/top_navigation.dart';
-import '../../../common/preferences/preference_key.dart';
-import '../../../common/preferences/watched_preferences.dart';
-import '../../../common/widgets/keys.dart';
-import '../../../models/note/notes_types.dart';
-import '../../../providers/preferences/preferences_provider.dart';
+import '../../../../common/constants/constants.dart';
+import '../../../../common/constants/paddings.dart';
+import '../../../../common/navigation/app_bars/basic_app_bar.dart';
+import '../../../../common/navigation/top_navigation.dart';
+import '../../../../common/preferences/preference_key.dart';
+import '../../../../common/preferences/watched_preferences.dart';
+import '../../../../common/widgets/keys.dart';
+import '../../../../models/note/notes_types.dart';
+import '../../../../navigation/navigation_routes.dart';
+import '../../../../providers/preferences/preferences_provider.dart';
+import 'settings_notes_types_rich_text_page.dart';
 
 /// Notes types settings.
 class SettingsNotesTypesPage extends ConsumerStatefulWidget {
@@ -63,14 +65,14 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
             children: [
               SettingSection(
                 divider: null,
+                title: l.settings_section_types_to_use,
                 tiles: [
                   SettingMultipleOptionsTile.detailed(
                     icon: Icons.edit_note,
-                    title: 'Available notes types',
+                    title: l.settings_available_notes_types_title,
                     value: availableNotesTypesString,
-                    description:
-                        'The list of notes types that can be created, either from the notes page or with a shortcut. When removing a type, already existing notes with that type are not deleted and can still be used normally.',
-                    dialogTitle: 'Available notes types',
+                    description: l.settings_available_notes_types_description,
+                    dialogTitle: l.settings_available_notes_types_title,
                     options: notesTypes,
                     initialOptions: availableNotesTypes,
                     minOptions: 1,
@@ -78,13 +80,27 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
                   ),
                   SettingSingleOptionTile.detailed(
                     icon: Icons.app_shortcut,
-                    title: 'Default shortcut type',
+                    title: l.settings_available_default_shortcut_type_title,
                     value: defaultShortcutNoteType.title,
-                    description: 'The default note type to use when creating a note from a shortcut',
-                    dialogTitle: 'Default shortcut type',
+                    description: l.settings_available_default_shortcut_type_description,
+                    dialogTitle: l.settings_available_default_shortcut_type_title,
                     options: shortcutNotesTypes,
                     initialOption: defaultShortcutNoteType,
                     onSubmitted: onSubmittedDefaultShortcutNoteType,
+                  ),
+                ],
+              ),
+              SettingSection(
+                title: l.settings_section_per_type_settings,
+                tiles: [
+                  SettingActionTile(
+                    icon: NoteType.richText.icon,
+                    title: NoteType.richText.title,
+                    description: l.settings_page_rich_text_notes_description,
+                    onTap: () => NavigationRoute.settingsNotesTypesRichText.push(
+                      context,
+                      SettingsNotesTypesRichTextPage(),
+                    ),
                   ),
                 ],
               ),

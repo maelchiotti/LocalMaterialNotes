@@ -9,7 +9,6 @@ import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
-import '../../../common/widgets/keys.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 
 /// Notes tiles settings.
@@ -70,7 +69,6 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
 
     return Scaffold(
       appBar: TopNavigation(
-        key: Keys.appBarSettingsMainSubpage,
         appbar: BasicAppBar(title: l.navigation_settings_notes_tiles),
       ),
       body: SingleChildScrollView(

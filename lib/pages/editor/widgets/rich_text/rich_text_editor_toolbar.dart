@@ -4,7 +4,6 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 import '../../../../common/constants/paddings.dart';
 import '../../../../common/constants/sizes.dart';
-import '../../../../common/preferences/preference_key.dart';
 import 'rich_text_editor_button.dart';
 import 'rich_text_editor_link_button.dart';
 
@@ -60,8 +59,6 @@ class RichTextEditorToolbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault();
-
     return ColoredBox(
       color: Theme.of(context).colorScheme.surfaceContainerHigh,
       child: SizedBox(
@@ -94,13 +91,12 @@ class RichTextEditorToolbar extends StatelessWidget {
               controller: fleatherController,
               childBuilder: buttonBuilder,
             ),
-            if (!showChecklistButton)
-              ToggleStyleButton(
-                attribute: ParchmentAttribute.block.checkList,
-                icon: Icons.checklist,
-                controller: fleatherController,
-                childBuilder: buttonBuilder,
-              ),
+            ToggleStyleButton(
+              attribute: ParchmentAttribute.block.checkList,
+              icon: Icons.checklist,
+              controller: fleatherController,
+              childBuilder: buttonBuilder,
+            ),
             ToggleStyleButton(
               attribute: ParchmentAttribute.block.bulletList,
               icon: Icons.format_list_bulleted,

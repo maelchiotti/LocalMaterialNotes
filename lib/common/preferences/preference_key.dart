@@ -12,9 +12,12 @@ enum PreferenceKey<T extends Object> {
   appFont<String>('systemDefault'),
   editorFont<String>('systemDefault'),
 
-  // Notes creation
+  // Notes types
   availableNotesTypes<List<String>>(['plainText', 'richText']),
   defaultShortcutNoteType<String>('plainText'),
+
+  // Rich text notes
+  useParagraphsSpacing<bool>(true),
 
   // Notes tiles
   showTilesBackground<bool>(false),
@@ -32,13 +35,9 @@ enum PreferenceKey<T extends Object> {
   binSwipeLeftAction<String>('restore'),
 
   // Editor
-  showUndoRedoButtons<bool>(true),
-  showChecklistButton<bool>(true),
-  showToolbar<bool>(true),
   editorModeButton<bool>(true),
   openEditorReadingMode<bool>(false),
   focusTitleOnNewNote<bool>(false),
-  useParagraphsSpacing<bool>(true),
 
   // Labels
   enableLabels<bool>(true),
