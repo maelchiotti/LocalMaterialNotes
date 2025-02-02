@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/constants/paddings.dart';
-import '../../../common/constants/sizes.dart';
+import '../../../../common/constants/paddings.dart';
+import '../../../../common/constants/sizes.dart';
 
-/// Custom toolbar button.
-class EditorButton extends StatelessWidget {
-  /// Default constructor.
-  const EditorButton({
+/// Rich text editor custom toolbar button.
+class RichTextEditorButton extends StatelessWidget {
+  /// Custom button for the toolbar of the rich text editor.
+  const RichTextEditorButton({
     super.key,
     required this.icon,
     required this.onPressed,

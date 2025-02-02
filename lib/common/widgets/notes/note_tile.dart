@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 
 import '../../../models/note/note.dart';
 import '../../../navigation/navigator_utils.dart';
@@ -150,6 +151,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   Widget build(BuildContext context) {
     final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
     final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
+    final showNoteTypeIcon = ref.watch(preferencesProvider.select((preferences) => preferences.showNoteTypeIcon));
     final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
     final disableSubduedNoteContentPreview =
         ref.watch(preferencesProvider.select((preferences) => preferences.disableSubduedNoteContentPreview));
@@ -215,14 +217,25 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                         ],
                       ),
                     ),
+                    Column(
+                      children: [
+                        if (widget.note.pinned && !widget.note.deleted) ...[
+                          Padding(padding: Paddings.horizontal(2.0)),
+                          Icon(
+                            Icons.push_pin,
+                            size: Sizes.pinIconSize.size,
+                          ),
+                        ],
+                        if (showNoteTypeIcon) ...[
+                          Gap(8.0),
+                          Icon(
+                            widget.note.type.icon,
+                            size: Sizes.pinIconSize.size,
+                          ),
+                        ],
+                      ],
+                    ),
                     // Trailing
-                    if (widget.note.pinned && !widget.note.deleted) ...[
-                      Padding(padding: Paddings.horizontal(2.0)),
-                      Icon(
-                        Icons.push_pin,
-                        size: Sizes.pinIconSize.size,
-                      ),
-                    ],
                   ],
                 ),
                 if (enableLabels && showLabelsListOnNoteTile) ...[

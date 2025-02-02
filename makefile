@@ -51,7 +51,10 @@ update_fastlane:
 
 
 # Miscellaneous
-.PHONY: clean
+.PHONY: format clean
+
+format:
+	dart format -l 120 .
 
 clean:
 	flutter clean

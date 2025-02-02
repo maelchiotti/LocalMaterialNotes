@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../models/note/notes_types.dart';
 import '../ui/theme_utils.dart';
 import 'enums/bin_swipe_action.dart';
 import 'enums/font.dart';
@@ -16,9 +17,15 @@ class WatchedPreferences {
   late bool dynamicTheming;
   late bool blackTheming;
   late Font appFont;
-  late bool showTitlesOnly;
+
+  // Notes types
+  late List<NoteType> availableNotesTypes;
+
+  // Notes tiles
   late bool showTilesBackground;
   late bool showSeparators;
+  late bool showNoteTypeIcon;
+  late bool showTitlesOnly;
   late int maximumContentPreviewLines;
 
   // Behavior
@@ -41,8 +48,10 @@ class WatchedPreferences {
     bool? dynamicTheming,
     bool? blackTheming,
     Font? appFont,
+    List<NoteType>? availableNotesTypes,
     bool? showTitlesOnly,
     bool? showTilesBackground,
+    bool? showNoteTypeIcon,
     bool? showSeparators,
     int? maximumContentPreviewLines,
     SwipeAction? rightSwipeAction,
@@ -59,8 +68,12 @@ class WatchedPreferences {
     this.dynamicTheming = dynamicTheming ?? PreferenceKey.dynamicTheming.getPreferenceOrDefault();
     this.blackTheming = blackTheming ?? PreferenceKey.blackTheming.getPreferenceOrDefault();
     this.appFont = appFont ?? Font.appFromPreference();
+
+    this.availableNotesTypes = availableNotesTypes ?? NoteType.availableTypes;
+
     this.showTitlesOnly = showTitlesOnly ?? PreferenceKey.showTitlesOnly.getPreferenceOrDefault();
     this.showTilesBackground = showTilesBackground ?? PreferenceKey.showTilesBackground.getPreferenceOrDefault();
+    this.showNoteTypeIcon = showNoteTypeIcon ?? PreferenceKey.showNoteTypeIcon.getPreferenceOrDefault();
     this.showSeparators = showSeparators ?? PreferenceKey.showSeparators.getPreferenceOrDefault();
     this.maximumContentPreviewLines =
         maximumContentPreviewLines ?? PreferenceKey.maximumContentPreviewLines.getPreferenceOrDefault();

@@ -10,8 +10,11 @@ import '../../common/files/encryption_utils.dart';
 import '../../common/preferences/enums/sort_method.dart';
 import '../../common/preferences/preference_key.dart';
 import '../label/label.dart';
+import 'notes_types.dart';
 
 part 'note.g.dart';
+
+part 'plain_text/plain_text_note.dart';
 
 part 'rich_text/rich_text_note.dart';
 
@@ -20,11 +23,15 @@ List<String> labelToJson(IsarLinks<Label> labels) => labels.map((label) => label
 
 /// Base class of the notes.
 sealed class Note implements Comparable<Note> {
-  /// The ID of the note.
-  ///
-  /// Excluded from JSON because it's fully managed by Isar.
+  /// The regex expression used to count the number of words in the content of the note.
+  final RegExp _wordsCountRegex = RegExp(r'[\w-]+');
+
+  /// The ID of the note as a [String] used by the application.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  Id id = Isar.autoIncrement;
+  String id = uuid.v4();
+
+  /// The ID of the note as an [int] used by isar.
+  Id get isarId => _idHash;
 
   /// Whether the note is selected.
   ///
@@ -63,24 +70,36 @@ sealed class Note implements Comparable<Note> {
     required this.title,
   });
 
-  /// Returns this note with title and the content encrypted using the [password].
+  /// Returns this note with the [title] and the content encrypted using the [password].
   Note encrypted(String password);
 
-  /// Note content as plain text.
+  /// The type of the note.
+  @ignore
+  NoteType get type;
+
+  /// The content as plain text.
   @ignore
   String get plainText;
 
-  /// Note content as markdown.
+  /// The content as markdown.
   @ignore
   String get markdown;
 
-  /// Note content for the preview of the notes tiles.
+  /// The content for the preview of the notes tiles.
   @ignore
   String get contentPreview;
 
-  /// Note title and content to be shared as a single text.
+  /// The title and the content joined together to be shared as a single text.
   @ignore
-  String get shareText;
+  String get shareText => '$title\n\n$contentPreview';
+
+  /// The number of words in the content.
+  @ignore
+  int get wordsCount => _wordsCountRegex.allMatches(plainText).length;
+
+  /// The number of characters in the content.
+  @ignore
+  int get charactersCount => plainText.length;
 
   /// Whether the title is empty.
   @ignore
@@ -105,6 +124,10 @@ sealed class Note implements Comparable<Note> {
   /// Returns the names of the visible [labels] of the note as a sorted list.
   @ignore
   List<String> get labelsNamesVisibleSorted => labelsVisibleSorted.map((label) => label.name).toList();
+
+  /// The number of labels of the note.
+  @ignore
+  int get labelsCount => labels.toList().length;
 
   /// Notes are sorted according to:
   ///   1. Their pin state.
@@ -138,4 +161,20 @@ sealed class Note implements Comparable<Note> {
   @ignore
   @override
   int get hashCode => id.hashCode;
+
+  @ignore
+  int get _idHash {
+    var hash = 0xcbf29ce484222325;
+
+    var i = 0;
+    while (i < id.length) {
+      final codeUnit = id.codeUnitAt(i++);
+      hash ^= codeUnit >> 8;
+      hash *= 0x100000001b3;
+      hash ^= codeUnit & 0xFF;
+      hash *= 0x100000001b3;
+    }
+
+    return hash;
+  }
 }

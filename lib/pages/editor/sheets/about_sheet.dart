@@ -1,61 +1,58 @@
 import 'package:flutter/material.dart';
+
 import '../../../common/constants/constants.dart';
 import '../../../common/extensions/date_time_extensions.dart';
 import '../../../common/preferences/preference_key.dart';
-import '../../../common/widgets/placeholders/error_placeholder.dart';
+import '../../../common/widgets/placeholders/loading_placeholder.dart';
 import '../../../providers/notifiers/notifiers.dart';
 
-/// Sheets that displays information about the note.
-///
-/// Contains:
-///   - Creation time.
-///   - Last edit time.
-///   - Number of words.
-///   - Number of characters.
+/// Note about sheet.
 class AboutSheet extends StatelessWidget {
-  /// Default constructor.
+  /// Bottom sheet that displays information about a note.
   const AboutSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final note = currentNoteNotifier.value;
+    return ValueListenableBuilder(
+      valueListenable: currentNoteNotifier,
+      builder: (context, currentNote, child) {
+        if (currentNote == null) {
+          return const LoadingPlaceholder();
+        }
 
-    if (note == null) {
-      return const ErrorPlaceholder(exception: 'The note is null in the about sheet');
-    }
+        final areLabelsEnabled = PreferenceKey.enableLabels.getPreferenceOrDefault();
 
-    final labelsCount = note.labels.toList().length;
-
-    final wordCount = RegExp(r'[\w-]+').allMatches(note.contentPreview).length;
-    final charactersCount = note.contentPreview.length;
-
-    final isLabelsEnabled = PreferenceKey.enableLabels.getPreferenceOrDefault();
-
-    return ListView(
-      shrinkWrap: true,
-      children: [
-        ListTile(
-          title: Text(l.about_created),
-          trailing: Text(note.createdTime.yMMMMd_at_Hm),
-        ),
-        ListTile(
-          title: Text(l.about_last_edited),
-          trailing: Text(note.editedTime.yMMMMd_at_Hm),
-        ),
-        if (isLabelsEnabled)
-          ListTile(
-            title: Text(l.about_labels),
-            trailing: Text('$labelsCount'),
-          ),
-        ListTile(
-          title: Text(l.about_words),
-          trailing: Text('$wordCount'),
-        ),
-        ListTile(
-          title: Text(l.about_characters),
-          trailing: Text('$charactersCount'),
-        ),
-      ],
+        return ListView(
+          shrinkWrap: true,
+          children: [
+            ListTile(
+              title: Text(l.about_type),
+              trailing: Text(currentNote.type.title),
+            ),
+            ListTile(
+              title: Text(l.about_created),
+              trailing: Text(currentNote.createdTime.yMMMMd_at_Hm),
+            ),
+            ListTile(
+              title: Text(l.about_last_edited),
+              trailing: Text(currentNote.editedTime.yMMMMd_at_Hm),
+            ),
+            if (areLabelsEnabled)
+              ListTile(
+                title: Text(l.about_labels),
+                trailing: Text('${currentNote.labelsCount}'),
+              ),
+            ListTile(
+              title: Text(l.about_words),
+              trailing: Text('${currentNote.wordsCount}'),
+            ),
+            ListTile(
+              title: Text(l.about_characters),
+              trailing: Text('${currentNote.charactersCount}'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

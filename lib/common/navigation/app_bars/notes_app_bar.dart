@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../models/label/label.dart';
 import '../../../models/note/note.dart';
 import '../../../providers/bin/bin_provider.dart';
 import '../../../providers/notes/notes_provider.dart';
@@ -29,8 +30,12 @@ class NotesAppBar extends ConsumerWidget {
   /// Default constructor.
   const NotesAppBar({
     super.key,
+    this.label,
     this.notesPage = true,
   });
+
+  /// The label used to filter the notes.
+  final Label? label;
 
   /// Whether the current page is the notes list.
   final bool notesPage;
@@ -38,7 +43,7 @@ class NotesAppBar extends ConsumerWidget {
   /// Returns the title of the app bar.
   String get title {
     if (notesPage) {
-      return currentLabelFilter?.name ?? l.navigation_notes;
+      return label?.name ?? l.navigation_notes;
     } else {
       return l.navigation_bin;
     }
