@@ -10,6 +10,7 @@ import '../../common/files/encryption_utils.dart';
 import '../../common/preferences/enums/sort_method.dart';
 import '../../common/preferences/preference_key.dart';
 import '../label/label.dart';
+import 'notes_types.dart';
 
 part 'note.g.dart';
 
@@ -74,7 +75,7 @@ sealed class Note implements Comparable<Note> {
 
   /// The type of the note.
   @ignore
-  String get type;
+  NoteType get type;
 
   /// The content as plain text.
   @ignore

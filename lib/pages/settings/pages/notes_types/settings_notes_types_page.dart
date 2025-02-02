@@ -69,10 +69,10 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
                 tiles: [
                   SettingMultipleOptionsTile.detailed(
                     icon: Icons.edit_note,
-                    title: l.settings_available_notes_types_title,
+                    title: l.settings_available_notes_types,
                     value: availableNotesTypesString,
                     description: l.settings_available_notes_types_description,
-                    dialogTitle: l.settings_available_notes_types_title,
+                    dialogTitle: l.settings_available_notes_types,
                     options: notesTypes,
                     initialOptions: availableNotesTypes,
                     minOptions: 1,
@@ -80,10 +80,10 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
                   ),
                   SettingSingleOptionTile.detailed(
                     icon: Icons.app_shortcut,
-                    title: l.settings_available_default_shortcut_type_title,
+                    title: l.settings_available_default_shortcut_type,
                     value: defaultShortcutNoteType.title,
                     description: l.settings_available_default_shortcut_type_description,
-                    dialogTitle: l.settings_available_default_shortcut_type_title,
+                    dialogTitle: l.settings_available_default_shortcut_type,
                     options: shortcutNotesTypes,
                     initialOption: defaultShortcutNoteType,
                     onSubmitted: onSubmittedDefaultShortcutNoteType,

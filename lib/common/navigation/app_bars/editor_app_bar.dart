@@ -2,6 +2,7 @@ import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../models/note/notes_types.dart';
 import '../../../pages/editor/sheets/about_sheet.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../actions/notes/copy.dart';
@@ -143,28 +144,30 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
               ? null
               : [
                   if (!note.deleted) ...[
-                    ValueListenableBuilder(
-                      valueListenable: fleatherControllerCanUndoNotifier,
-                      builder: (context, canUndo, child) => IconButton(
-                        icon: const Icon(Icons.undo),
-                        tooltip: l.tooltip_undo,
-                        onPressed: editorHasFocus &&
-                                canUndo &&
-                                editorController != null &&
-                                editorController.canUndo &&
-                                isEditMode
-                            ? undo
-                            : null,
+                    if (note.type == NoteType.richText) ...[
+                      ValueListenableBuilder(
+                        valueListenable: fleatherControllerCanUndoNotifier,
+                        builder: (context, canUndo, child) => IconButton(
+                          icon: const Icon(Icons.undo),
+                          tooltip: l.tooltip_undo,
+                          onPressed: editorHasFocus &&
+                                  canUndo &&
+                                  editorController != null &&
+                                  editorController.canUndo &&
+                                  isEditMode
+                              ? undo
+                              : null,
+                        ),
                       ),
-                    ),
-                    ValueListenableBuilder(
-                      valueListenable: fleatherControllerCanRedoNotifier,
-                      builder: (context, canRedo, child) => IconButton(
-                        icon: const Icon(Icons.redo),
-                        tooltip: l.tooltip_redo,
-                        onPressed: editorHasFocus && canRedo && isEditMode ? redo : null,
+                      ValueListenableBuilder(
+                        valueListenable: fleatherControllerCanRedoNotifier,
+                        builder: (context, canRedo, child) => IconButton(
+                          icon: const Icon(Icons.redo),
+                          tooltip: l.tooltip_redo,
+                          onPressed: editorHasFocus && canRedo && isEditMode ? redo : null,
+                        ),
                       ),
-                    ),
+                    ],
                     if (showEditorModeButton)
                       ValueListenableBuilder(
                         valueListenable: isEditorInEditModeNotifier,

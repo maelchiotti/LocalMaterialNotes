@@ -27,7 +27,7 @@ class AboutSheet extends StatelessWidget {
           children: [
             ListTile(
               title: Text(l.about_type),
-              trailing: Text(currentNote.type),
+              trailing: Text(currentNote.type.title),
             ),
             ListTile(
               title: Text(l.about_created),

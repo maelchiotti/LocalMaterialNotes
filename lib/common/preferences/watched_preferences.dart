@@ -22,9 +22,10 @@ class WatchedPreferences {
   late List<NoteType> availableNotesTypes;
 
   // Notes tiles
-  late bool showTitlesOnly;
   late bool showTilesBackground;
   late bool showSeparators;
+  late bool showNoteTypeIcon;
+  late bool showTitlesOnly;
   late int maximumContentPreviewLines;
 
   // Behavior
@@ -50,6 +51,7 @@ class WatchedPreferences {
     List<NoteType>? availableNotesTypes,
     bool? showTitlesOnly,
     bool? showTilesBackground,
+    bool? showNoteTypeIcon,
     bool? showSeparators,
     int? maximumContentPreviewLines,
     SwipeAction? rightSwipeAction,
@@ -71,6 +73,7 @@ class WatchedPreferences {
 
     this.showTitlesOnly = showTitlesOnly ?? PreferenceKey.showTitlesOnly.getPreferenceOrDefault();
     this.showTilesBackground = showTilesBackground ?? PreferenceKey.showTilesBackground.getPreferenceOrDefault();
+    this.showNoteTypeIcon = showNoteTypeIcon ?? PreferenceKey.showNoteTypeIcon.getPreferenceOrDefault();
     this.showSeparators = showSeparators ?? PreferenceKey.showSeparators.getPreferenceOrDefault();
     this.maximumContentPreviewLines =
         maximumContentPreviewLines ?? PreferenceKey.maximumContentPreviewLines.getPreferenceOrDefault();

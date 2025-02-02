@@ -55,7 +55,7 @@ class PlainTextNote extends Note {
 
   @ignore
   @override
-  String get type => l.note_type_plain_text;
+  NoteType get type => NoteType.plainText;
 
   @ignore
   @override

@@ -62,7 +62,7 @@ class RichTextNote extends Note {
 
   @ignore
   @override
-  String get type => l.note_type_rich_text;
+  NoteType get type => NoteType.richText;
 
   @ignore
   @override
