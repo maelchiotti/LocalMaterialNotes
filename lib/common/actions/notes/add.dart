@@ -27,7 +27,7 @@ Future<void> addNote<NoteType>(BuildContext context, WidgetRef ref, {String? con
       throw Exception('Unknown note type when creating a new note: $NoteType');
   }
 
-  // If some content was provided, immediately save the note without waiting for changes in the editor
+  // If some content was provided, then immediately save the note without waiting for changes in the editor
   if (content != null) {
     ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
   }
