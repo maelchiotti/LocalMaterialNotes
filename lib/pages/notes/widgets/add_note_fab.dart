@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common/actions/notes/add.dart';
 import '../../../common/constants/constants.dart';
-import '../../../common/ui/snack_bar_utils.dart';
 import '../../../models/note/note.dart';
 import '../../../models/note/types/note_type.dart';
 import '../../../providers/preferences/preferences_provider.dart';
@@ -36,8 +35,6 @@ class _AddNoteFabState extends ConsumerState<AddNoteFab> {
   }
 
   void onPressed<NoteType>() {
-    SnackBarUtils.info('message').show();
-
     addNote<NoteType>(context, ref);
 
     if (fabKey.currentState != null && fabKey.currentState!.isOpen) {
