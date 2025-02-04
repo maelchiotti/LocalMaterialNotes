@@ -124,12 +124,12 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
             ? NavigatorUtils.push(
                 context,
                 '${NavigationRoute.label.name}-${label.name}',
-                NotesPage(),
+                NotesPage(label: currentLabelFilter),
               )
             : NavigatorUtils.go(
                 context,
                 '${NavigationRoute.label.name}-${label.name}',
-                NotesPage(),
+                NotesPage(label: currentLabelFilter),
               );
       } else if (index == labels.length + 1) {
         NavigationRoute.manageLabels.pushOrGo(context, isHomeRoute(route), LabelsPage());

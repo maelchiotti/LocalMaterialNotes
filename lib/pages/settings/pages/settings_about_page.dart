@@ -12,7 +12,6 @@ import '../../../common/navigation/top_navigation.dart';
 import '../../../common/system/info_utils.dart';
 import '../../../common/utils.dart';
 import '../../../common/widgets/asset.dart';
-import '../../../common/widgets/keys.dart';
 
 /// Settings providing information about the application.
 class SettingsAboutPage extends StatelessWidget {
@@ -109,11 +108,7 @@ class SettingsAboutPage extends StatelessWidget {
 
     return Scaffold(
       appBar: TopNavigation(
-        key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_about,
-          back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings_about),
       ),
       body: SingleChildScrollView(
         child: Padding(

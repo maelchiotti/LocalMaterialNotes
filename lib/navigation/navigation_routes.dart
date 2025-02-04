@@ -1,18 +1,29 @@
 import 'package:flutter/cupertino.dart';
+
 import 'navigator_utils.dart';
 
 // ignore_for_file: public_member_api_docs
 
 /// Navigation routes of the application.
 enum NavigationRoute {
+  // Notes
   notes,
   notesEditor,
+
+  // Labels
   manageLabels,
   label,
+
+  // Bin
   bin,
+
+  // Settings
   settings,
   settingsAppearance,
+  settingsNotesTiles,
   settingsBehavior,
+  settingsNotesTypes,
+  settingsNotesTypesRichText,
   settingsEditor,
   settingsLabels,
   settingsBackup,

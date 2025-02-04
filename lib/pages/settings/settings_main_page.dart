@@ -7,6 +7,7 @@ import '../../common/navigation/side_navigation.dart';
 import '../../common/navigation/top_navigation.dart';
 import '../../common/widgets/keys.dart';
 import '../../navigation/navigation_routes.dart';
+import 'pages/notes_types/settings_notes_types_page.dart';
 import 'pages/settings_about_page.dart';
 import 'pages/settings_accessibility_page.dart';
 import 'pages/settings_appearance_page.dart';
@@ -26,10 +27,7 @@ class SettingsMainPage extends StatelessWidget {
     return Scaffold(
       appBar: TopNavigation(
         key: Keys.appBarSettingsMain,
-        appbar: BasicAppBar(
-          title: l.navigation_settings,
-          //back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings),
       ),
       drawer: const SideNavigation(),
       body: SingleChildScrollView(
@@ -48,7 +46,7 @@ class SettingsMainPage extends StatelessWidget {
                   icon: Icons.dashboard,
                   title: l.settings_page_notes_tiles,
                   description: l.settings_page_notes_tiles_description,
-                  onTap: () => NavigationRoute.settingsAppearance.push(context, SettingsNotesTilesPage()),
+                  onTap: () => NavigationRoute.settingsNotesTiles.push(context, SettingsNotesTilesPage()),
                 ),
                 SettingActionTile(
                   icon: Icons.swipe,
@@ -57,7 +55,13 @@ class SettingsMainPage extends StatelessWidget {
                   onTap: () => NavigationRoute.settingsBehavior.push(context, SettingsBehaviorPage()),
                 ),
                 SettingActionTile(
-                  icon: Icons.format_color_text,
+                  icon: Icons.edit_note,
+                  title: l.settings_page_notes_types,
+                  description: l.settings_page_notes_types_description,
+                  onTap: () => NavigationRoute.settingsNotesTypes.push(context, SettingsNotesTypesPage()),
+                ),
+                SettingActionTile(
+                  icon: Icons.edit,
                   title: l.settings_editor,
                   description: l.settings_editor_description,
                   onTap: () => NavigationRoute.settingsEditor.push(context, SettingsEditorPage()),

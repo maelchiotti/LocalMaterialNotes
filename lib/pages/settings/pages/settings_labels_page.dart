@@ -9,7 +9,6 @@ import '../../../common/constants/paddings.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
-import '../../../common/widgets/keys.dart';
 
 /// Settings related to the labels.
 class SettingsLabelsPage extends StatefulWidget {
@@ -55,11 +54,7 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
 
     return Scaffold(
       appBar: TopNavigation(
-        key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_labels,
-          back: true,
-        ),
+        appbar: BasicAppBar(title: l.navigation_settings_labels),
       ),
       body: SingleChildScrollView(
         child: Padding(

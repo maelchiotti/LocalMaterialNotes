@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import '../logs/app_logger.dart';
-import '../../l10n/app_localizations/app_localizations.g.dart';
 import 'package:parchment/codecs.dart';
 import 'package:saf_stream/saf_stream.dart';
 import 'package:saf_util/saf_util.dart';
+import 'package:uuid/uuid.dart';
+
+import '../../l10n/app_localizations/app_localizations.g.dart';
+import '../logs/app_logger.dart';
+
+/// An UUID generator.
+final uuid = Uuid();
 
 /// Contact email address.
 const contactEmail = 'contact@maelchiotti.dev';

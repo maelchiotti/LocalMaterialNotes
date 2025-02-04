@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'constants.dart';
 
 // ignore_for_file: avoid_classes_with_only_static_members
@@ -40,7 +41,10 @@ class Paddings {
   /// Padding for a page.
   static EdgeInsetsDirectional get page => const EdgeInsetsDirectional.all(16);
 
-  /// Padding for a page except the bottom.
+  /// Padding for a page (horizontal).
+  static EdgeInsetsDirectional get pageHorizontal => const EdgeInsetsDirectional.symmetric(horizontal: 16);
+
+  /// Padding for a page (except the bottom).
   static EdgeInsetsDirectional get pageButBottom => const EdgeInsetsDirectional.only(top: 16, start: 16, end: 16);
 
   /// Padding for the end of the app bar.

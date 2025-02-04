@@ -10,13 +10,14 @@ class RichTextNote extends Note {
   /// The content of the note, as rich text in the fleather representation.
   String content;
 
-  /// Note with rich text content.
+  /// A note with rich text content.
   RichTextNote({
     required super.deleted,
     required super.pinned,
     required super.createdTime,
     required super.editedTime,
     required super.title,
+    super.type = NoteType.richText,
     required this.content,
   });
 
@@ -51,7 +52,6 @@ class RichTextNote extends Note {
   /// Rich text note to JSON.
   Map<String, dynamic> toJson() => _$RichTextNoteToJson(this);
 
-  /// Returns this note with the [title] and the [content] encrypted with the [password].
   @override
   Note encrypted(String password) => this
     ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
@@ -105,10 +105,6 @@ class RichTextNote extends Note {
 
     return content.trim();
   }
-
-  @ignore
-  @override
-  String get shareText => '$title\n\n$contentPreview';
 
   @ignore
   @override
