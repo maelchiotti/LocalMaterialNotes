@@ -45,11 +45,13 @@ class Notes extends _$Notes {
   }
 
   /// Saves the [editedNote] to the database.
-  Future<bool> edit(Note editedNote) async {
+  ///
+  /// The note can be forcefully put into the database even it it's empty using [forcePut].
+  Future<bool> edit(Note editedNote, {bool forcePut = false}) async {
     editedNote.editedTime = DateTime.now();
 
     try {
-      if (editedNote.isEmpty) {
+      if (editedNote.isEmpty && !forcePut) {
         await _notesService.delete(editedNote);
       } else {
         await _notesService.put(editedNote);
@@ -61,7 +63,7 @@ class Notes extends _$Notes {
     }
 
     final notes = (state.value ?? []);
-    if (!editedNote.deleted && !editedNote.isEmpty) {
+    if (!editedNote.deleted && (!editedNote.isEmpty || forcePut)) {
       notes.addOrUpdate(editedNote);
     } else {
       notes.remove(editedNote);
@@ -77,6 +79,11 @@ class Notes extends _$Notes {
   Future<bool> editLabels(Note note, Iterable<Label> selectedLabels) async {
     try {
       await _notesService.putLabels(note, selectedLabels);
+
+      // If the note is empty and has no labels, then delete it
+      if (note.isEmpty && selectedLabels.isEmpty) {
+        await _notesService.delete(note);
+      }
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
 
@@ -87,6 +94,11 @@ class Notes extends _$Notes {
 
     // If this provider is labeled and the label was removed from the note, then remove it from the state
     if (label != null && !note.labels.contains(label)) {
+      notes.remove(note);
+    }
+
+    // If the note is empty and has no labels, then remove it from the state
+    if (note.isEmpty && selectedLabels.isEmpty) {
       notes.remove(note);
     }
 

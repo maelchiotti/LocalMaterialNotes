@@ -19,6 +19,15 @@ Future<List<Label>?> selectLabels(BuildContext context, WidgetRef ref, {required
     return null;
   }
 
+  // If the note is empty and thus not saved into the database, then forcefully save it to allow adding labels to it
+  if (note.isEmpty) {
+    await ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note, forcePut: true);
+  }
+
+  if (!context.mounted) {
+    return null;
+  }
+
   final selectedLabels = await showAdaptiveDialog<List<Label>>(
     context: context,
     useRootNavigator: false,
