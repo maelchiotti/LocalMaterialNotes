@@ -2,13 +2,13 @@ import '../../models/note/note.dart';
 import '../localization/localizations_utils.dart';
 
 /// Note displayed on the very first run of the application to welcome the user.
-final welcomeNote = RichTextNote(
+final welcomeNote = PlainTextNote(
   deleted: false,
   pinned: true,
   createdTime: DateTime.now(),
   editedTime: DateTime.now(),
   title: LocalizationsUtils().welcomeNoteTitle,
-  content: '[{"insert":"${LocalizationsUtils().welcomeNoteContent}\\n"}]',
+  content: LocalizationsUtils().welcomeNoteContent,
 );
 
 /// Notes used when running integration tests.

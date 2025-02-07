@@ -71,7 +71,7 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
     fleatherControllerCanUndoNotifier.value = widget.fleatherController.canUndo;
     fleatherControllerCanRedoNotifier.value = widget.fleatherController.canRedo;
 
-    RichTextNote note = widget.note..content = jsonEncode(widget.fleatherController.document.toDelta().toJson());
+    RichTextNote note = widget.note..content = jsonEncode(widget.fleatherController.document.toJson());
 
     ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
   }

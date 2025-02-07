@@ -130,6 +130,8 @@ class ManualBackupService {
             switch (noteType) {
               case NoteType.plainText:
                 notes.add(PlainTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+              case NoteType.markdown:
+                notes.add(MarkdownNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
               case NoteType.richText:
                 notes.add(RichTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
               case NoteType.checklist:
@@ -158,6 +160,8 @@ class ManualBackupService {
           switch (noteType) {
             case NoteType.plainText:
               notes.add(PlainTextNote.fromJson(noteAsJson));
+            case NoteType.markdown:
+              notes.add(MarkdownNote.fromJson(noteAsJson));
             case NoteType.richText:
               notes.add(RichTextNote.fromJson(noteAsJson));
             case NoteType.checklist:

@@ -223,14 +223,14 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                           Padding(padding: Paddings.horizontal(2.0)),
                           Icon(
                             Icons.push_pin,
-                            size: Sizes.pinIconSize.size,
+                            size: Sizes.iconSmall.size,
                           ),
                         ],
                         if (showNoteTypeIcon) ...[
                           Gap(8.0),
                           Icon(
                             widget.note.type.icon,
-                            size: Sizes.pinIconSize.size,
+                            size: Sizes.iconSmall.size,
                           ),
                         ],
                       ],

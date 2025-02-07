@@ -5,6 +5,7 @@ import 'package:fleather/fleather.dart';
 import 'package:flutter_checklist/checklist.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:remove_markdown/remove_markdown.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../common/files/encryption_utils.dart';
@@ -16,6 +17,8 @@ import 'types/note_type.dart';
 part 'note.g.dart';
 
 part 'types/checklist_note.dart';
+
+part 'types/markdown_note.dart';
 
 part 'types/plain_text_note.dart';
 

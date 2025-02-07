@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_utils/flutter_helper_utils.dart';
+import 'package:simple_icons/simple_icons.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../../common/preferences/preference_key.dart';
-import '../note.dart';
 
 /// The types of notes.
-enum NoteType<T extends Note> {
+enum NoteType {
   /// Plain text note.
-  plainText<PlainTextNote>(Icons.text_fields),
+  plainText(Icons.text_fields),
+
+  /// Markdown.
+  markdown(SimpleIcons.markdown),
 
   /// Rich text note.
-  richText<RichTextNote>(Icons.format_paint),
+  richText(Icons.format_paint),
 
   /// Checklist note.
-  checklist<ChecklistNote>(Icons.checklist),
+  checklist(Icons.checklist),
   ;
 
   /// Icon representing this note type.
@@ -24,16 +27,16 @@ enum NoteType<T extends Note> {
 
   /// The title of this type.
   String get title {
-    return switch (T) {
-      == PlainTextNote => l.note_type_plain_text,
-      == RichTextNote => l.note_type_rich_text,
-      == ChecklistNote => l.note_type_checklist,
-      _ => throw Exception('Unknown note type: $T'),
+    return switch (this) {
+      plainText => l.note_type_plain_text,
+      markdown => l.note_type_markdown,
+      richText => l.note_type_rich_text,
+      checklist => l.note_type_checklist,
     };
   }
 
   /// The types that can be used when creating a new note from a shortcut.
-  static List<NoteType> get shortcutTypes => [plainText, richText];
+  static List<NoteType> get shortcutTypes => [plainText, markdown, richText];
 
   /// The list of types available when creating a new note from the notes list.
   static List<NoteType> get availableTypes {
