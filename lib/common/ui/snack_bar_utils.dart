@@ -28,7 +28,6 @@ class SnackBarUtils {
   void show({BuildContext? context}) {
     ScaffoldMessenger.of(context ?? rootNavigatorKey.currentContext!).showSnackBar(
       SnackBar(
-        behavior: SnackBarBehavior.floating,
         duration: duration,
         content: Text(text),
       ),
