@@ -727,6 +727,10 @@
   "@tooltip_fab_add_plain_text_note": {
     "description": "Floating action button in the notes page to add a new plain text note."
   },
+  "tooltip_fab_add_markdown_note": "Add a markdown note",
+  "@tooltip_fab_add_markdown_note": {
+    "description": "Floating action button in the notes page to add a new markdown note."
+  },
   "tooltip_fab_add_rich_text_note": "Add a rich text note",
   "@tooltip_fab_add_rich_text_note": {
     "description": "Floating action button in the notes page to add a new rich text note."
@@ -1068,6 +1072,10 @@
   "note_type_plain_text": "Plain text",
   "@note_type_plain_text": {
     "description": "Note with plain text."
+  },
+  "note_type_markdown": "Markdown",
+  "@note_type_markdown": {
+    "description": "Note with markdown text."
   },
   "note_type_rich_text": "Rich text",
   "@note_type_rich_text": {

@@ -12,7 +12,7 @@ enum Sizes {
   settingValueIconSize(16),
 
   /// The size of the pin icon in a note tile.
-  pinIconSize(16),
+  iconSmall(16),
 
   /// The size of the empty placeholder icon.
   placeholderIcon(64),

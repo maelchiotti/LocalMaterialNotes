@@ -26,6 +26,7 @@ class NotesService {
 
   late final IsarCollection<PlainTextNote> _plainTextNotes;
   late final IsarCollection<RichTextNote> _richTextNotes;
+  late final IsarCollection<MarkdownNote> _markdownNotes;
   late final IsarCollection<ChecklistNote> _checklistNotes;
 
   late final MimirIndex _index;
@@ -36,6 +37,7 @@ class NotesService {
 
     _plainTextNotes = DatabaseService().database.plainTextNotes;
     _richTextNotes = DatabaseService().database.richTextNotes;
+    _markdownNotes = DatabaseService().database.markdownNotes;
     _checklistNotes = DatabaseService().database.checklistNotes;
 
     _index = await DatabaseService().mimir.openIndex(
@@ -96,13 +98,17 @@ class NotesService {
 
   /// Returns the total number of notes.
   Future<int> get count async {
-    return await _plainTextNotes.count() + await _richTextNotes.count() + await _checklistNotes.count();
+    return await _plainTextNotes.count() +
+        await _richTextNotes.count() +
+        await _markdownNotes.count() +
+        await _checklistNotes.count();
   }
 
   /// Returns all the notes.
   Future<List<Note>> getAll() async => [
         ...await (_plainTextNotes.where().findAll()),
         ...await (_richTextNotes.where().findAll()),
+        ...await (_markdownNotes.where().findAll()),
         ...await (_checklistNotes.where().findAll()),
       ];
 
@@ -110,6 +116,7 @@ class NotesService {
   Future<List<Note>> getAllByIds(List<int> ids) async => [
         ...(await (_plainTextNotes.getAll(ids))).nonNulls,
         ...(await (_richTextNotes.getAll(ids))).nonNulls,
+        ...(await (_markdownNotes.getAll(ids))).nonNulls,
         ...(await (_checklistNotes.getAll(ids))).nonNulls,
       ];
 
@@ -117,6 +124,7 @@ class NotesService {
   Future<List<Note>> getAllNotDeleted() async => [
         ...await (_plainTextNotes.where().deletedEqualTo(false).findAll()),
         ...await (_richTextNotes.where().deletedEqualTo(false).findAll()),
+        ...await (_markdownNotes.where().deletedEqualTo(false).findAll()),
         ...await (_checklistNotes.where().deletedEqualTo(false).findAll()),
       ];
 
@@ -134,6 +142,12 @@ class NotesService {
             .filter()
             .labels((q) => q.nameEqualTo(label.name))
             .findAll()),
+        ...await (_markdownNotes
+            .where()
+            .deletedEqualTo(false)
+            .filter()
+            .labels((q) => q.nameEqualTo(label.name))
+            .findAll()),
         ...await (_checklistNotes
             .where()
             .deletedEqualTo(false)
@@ -146,6 +160,7 @@ class NotesService {
   Future<List<Note>> getAllDeleted() async => [
         ...await (_plainTextNotes.where().deletedEqualTo(true).findAll()),
         ...await (_richTextNotes.where().deletedEqualTo(true).findAll()),
+        ...await (_markdownNotes.where().deletedEqualTo(true).findAll()),
         ...await (_checklistNotes.where().deletedEqualTo(true).findAll()),
       ];
 
@@ -186,6 +201,8 @@ class NotesService {
           await _plainTextNotes.put(note);
         case final RichTextNote _:
           await _richTextNotes.put(note);
+        case final MarkdownNote _:
+          await _markdownNotes.put(note);
         case final ChecklistNote _:
           await _checklistNotes.put(note);
       }
@@ -198,11 +215,13 @@ class NotesService {
   Future<void> putAll(List<Note> notes) async {
     final plainTextNotes = notes.whereType<PlainTextNote>().toList();
     final richTextNotes = notes.whereType<RichTextNote>().toList();
+    final markdownNotes = notes.whereType<MarkdownNote>().toList();
     final checklistNotes = notes.whereType<ChecklistNote>().toList();
 
     await _database.writeTxn(() async {
       await _plainTextNotes.putAll(plainTextNotes);
       await _richTextNotes.putAll(richTextNotes);
+      await _markdownNotes.putAll(markdownNotes);
       await _checklistNotes.putAll(checklistNotes);
     });
 
@@ -261,6 +280,8 @@ class NotesService {
           await _plainTextNotes.delete(note.isarId);
         case final RichTextNote _:
           await _richTextNotes.delete(note.isarId);
+        case final MarkdownNote _:
+          await _markdownNotes.delete(note.isarId);
         case final ChecklistNote _:
           await _checklistNotes.delete(note.isarId);
       }
@@ -278,6 +299,7 @@ class NotesService {
     await _database.writeTxn(() async {
       await _plainTextNotes.deleteAll(plainTextNotesIds);
       await _richTextNotes.deleteAll(richTextNotesIds);
+      await _markdownNotes.deleteAll(richTextNotesIds);
       await _checklistNotes.deleteAll(checklistNotesIds);
     });
 
@@ -291,6 +313,7 @@ class NotesService {
     await _database.writeTxn(() async {
       await _plainTextNotes.where().deletedEqualTo(true).deleteAll();
       await _richTextNotes.where().deletedEqualTo(true).deleteAll();
+      await _markdownNotes.where().deletedEqualTo(true).deleteAll();
       await _checklistNotes.where().deletedEqualTo(true).deleteAll();
     });
 
@@ -302,6 +325,7 @@ class NotesService {
     await _database.writeTxn(() async {
       await _plainTextNotes.clear();
       await _richTextNotes.clear();
+      await _markdownNotes.clear();
       await _checklistNotes.clear();
     });
 

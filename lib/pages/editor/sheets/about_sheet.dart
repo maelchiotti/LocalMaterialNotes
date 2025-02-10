@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 import '../../../common/constants/constants.dart';
+import '../../../common/constants/sizes.dart';
 import '../../../common/extensions/date_time_extensions.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/widgets/placeholders/loading_placeholder.dart';
@@ -27,7 +29,17 @@ class AboutSheet extends StatelessWidget {
           children: [
             ListTile(
               title: Text(l.about_type),
-              trailing: Text(currentNote.type.title),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    currentNote.type.icon,
+                    size: Sizes.iconSmall.size,
+                  ),
+                  Gap(8.0),
+                  Text(currentNote.type.title),
+                ],
+              ),
             ),
             ListTile(
               title: Text(l.about_created),

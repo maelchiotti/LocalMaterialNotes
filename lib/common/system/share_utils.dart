@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:parchment_delta/parchment_delta.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
-import '../../models/note/note.dart';
 import '../../models/note/types/note_type.dart';
 import '../actions/notes/add.dart';
 import '../constants/constants.dart';
@@ -44,12 +43,5 @@ void _processSharedData(WidgetRef ref, List<SharedMediaFile> data) {
   final context = rootNavigatorKey.currentContext!;
   final content = jsonEncode(delta);
 
-  switch (defaultShortcutNoteType) {
-    case NoteType.plainText:
-      addNote<PlainTextNote>(context, ref, content: content);
-    case NoteType.richText:
-      addNote<RichTextNote>(context, ref, content: content);
-    default:
-      throw Exception('This note type cannot be created from a shortcut: $defaultShortcutNoteType');
-  }
+  addNote(context, ref, noteType: defaultShortcutNoteType, content: content);
 }

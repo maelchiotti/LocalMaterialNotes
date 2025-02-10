@@ -11,8 +11,9 @@ import '../../common/widgets/keys.dart';
 import '../../common/widgets/placeholders/loading_placeholder.dart';
 import '../../models/note/note.dart';
 import '../../providers/notifiers/notifiers.dart';
-import 'widgets/checklist_editor/checklist_editor.dart';
+import 'widgets/checklist/checklist_editor.dart';
 import 'widgets/editor_labels_list.dart';
+import 'widgets/markdown/markdown_editor.dart';
 import 'widgets/plain_text/plain_text_editor.dart';
 import 'widgets/rich_text/rich_text_editor.dart';
 import 'widgets/rich_text/rich_text_editor_toolbar.dart';
@@ -86,6 +87,13 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                 );
                 toolbar = RichTextEditorToolbar(
                   fleatherController: fleatherController,
+                );
+              case MarkdownNote note:
+                contentEditor = MarkdownEditor(
+                  note: note,
+                  isNewNote: widget.isNewNote,
+                  readOnly: readOnly,
+                  autofocus: autofocus,
                 );
               case ChecklistNote note:
                 contentEditor = ChecklistEditor(
