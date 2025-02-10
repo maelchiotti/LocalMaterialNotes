@@ -683,6 +683,10 @@
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
   },
+  "hint_content": "Note",
+  "@hint_content": {
+    "description": "Hint for the text field of the content of the notes."
+  },
   "hint_link": "Link",
   "@hint_link": {
     "description": "Hint for the link text field in the dialog to add a link in the editor."
