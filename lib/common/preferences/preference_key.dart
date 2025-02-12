@@ -22,10 +22,10 @@ enum PreferenceKey<T extends Object> {
   // Notes tiles
   showTilesBackground<bool>(false),
   showSeparators<bool>(false),
-  showNoteTypeIcon<bool>(true),
   showTitlesOnly<bool>(false),
   showTitlesOnlyDisableInSearchView<bool>(true),
   maximumContentPreviewLines<int>(3),
+  showNoteTypeIcon<bool>(true),
 
   // Behavior
   flagSecure<bool>(false),

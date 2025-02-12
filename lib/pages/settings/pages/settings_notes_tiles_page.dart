@@ -35,13 +35,6 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(showSeparators: toggled));
   }
 
-  /// Toggles the setting to show the note type icon on the notes tiles.
-  void _toggleShowNoteTypeIcon(bool toggled) {
-    PreferenceKey.showNoteTypeIcon.set(toggled);
-
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showNoteTypeIcon: toggled));
-  }
-
   /// Toggles the setting to show background of the notes tiles.
   void _toggleShowTitlesOnly(bool toggled) {
     PreferenceKey.showTitlesOnly.set(toggled);
@@ -65,15 +58,22 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
         );
   }
 
+  /// Toggles the setting to show the note type icon on the notes tiles.
+  void _toggleShowNoteTypeIcon(bool toggled) {
+    PreferenceKey.showNoteTypeIcon.set(toggled);
+
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showNoteTypeIcon: toggled));
+  }
+
   @override
   Widget build(BuildContext context) {
     final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
     final showSeparators = ref.watch(preferencesProvider.select((preferences) => preferences.showSeparators));
-    final showNoteTypeIcon = ref.watch(preferencesProvider.select((preferences) => preferences.showNoteTypeIcon));
     final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
     final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
     final maximumContentPreviewLines =
         ref.watch(preferencesProvider.select((preferences) => preferences.maximumContentPreviewLines));
+    final showNoteTypeIcon = ref.watch(preferencesProvider.select((preferences) => preferences.showNoteTypeIcon));
 
     return Scaffold(
       appBar: TopNavigation(
@@ -101,13 +101,6 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
                     description: l.settings_show_separators_description,
                     toggled: showSeparators,
                     onChanged: _toggleShowSeparators,
-                  ),
-                  SettingSwitchTile(
-                    icon: Icons.edit_note,
-                    title: l.settings_show_note_type_icon,
-                    description: l.settings_show_note_type_icon_description,
-                    toggled: showNoteTypeIcon,
-                    onChanged: _toggleShowNoteTypeIcon,
                   ),
                 ],
               ),
@@ -142,6 +135,13 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
                     divisions: 9,
                     initialValue: maximumContentPreviewLines.toDouble(),
                     onSubmitted: _submittedMaximumContentPreviewLines,
+                  ),
+                  SettingSwitchTile(
+                    icon: Icons.edit_note,
+                    title: l.settings_show_note_type_icon,
+                    description: l.settings_show_note_type_icon_description,
+                    toggled: showNoteTypeIcon,
+                    onChanged: _toggleShowNoteTypeIcon,
                   ),
                 ],
               ),
