@@ -59,7 +59,7 @@ class _AddNoteFabState extends ConsumerState<AddNoteFab> {
               key: fabKey,
               type: ExpandableFabType.up,
               childrenAnimation: ExpandableFabAnimation.none,
-              distance: 75,
+              distance: 64,
               openButtonBuilder: RotateFloatingActionButtonBuilder(
                 heroTag: '<open add note FAB hero tag>',
                 child: const Icon(Icons.add),

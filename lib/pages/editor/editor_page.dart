@@ -98,6 +98,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
               case ChecklistNote note:
                 contentEditor = ChecklistEditor(
                   note: note,
+                  isNewNote: widget.isNewNote,
                   readOnly: readOnly,
                 );
             }

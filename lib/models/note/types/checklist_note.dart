@@ -25,15 +25,15 @@ class ChecklistNote extends Note {
           'The lists of checkboxes and texts of a checklist note are different: ${checkboxes.length} and ${texts.length}',
         );
 
-  /// Checklist note with empty title and content.
+  /// Checklist note with empty title and 1 empty checklist item.
   factory ChecklistNote.empty() => ChecklistNote(
         deleted: false,
         pinned: false,
         createdTime: DateTime.now(),
         editedTime: DateTime.now(),
         title: '',
-        checkboxes: [],
-        texts: [],
+        checkboxes: [false],
+        texts: [''],
       );
 
   /// Checklist note with the provided [content].
