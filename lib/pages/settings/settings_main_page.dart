@@ -55,7 +55,7 @@ class SettingsMainPage extends StatelessWidget {
                   onTap: () => NavigationRoute.settingsBehavior.push(context, SettingsBehaviorPage()),
                 ),
                 SettingActionTile(
-                  icon: Icons.edit_note,
+                  icon: Icons.category,
                   title: l.settings_page_notes_types,
                   description: l.settings_page_notes_types_description,
                   onTap: () => NavigationRoute.settingsNotesTypes.push(context, SettingsNotesTypesPage()),

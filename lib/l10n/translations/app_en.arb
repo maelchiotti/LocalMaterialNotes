@@ -329,17 +329,13 @@
   "@settings_page_notes_types": {
     "description": "Title of the settings page regarding the notes types."
   },
-  "settings_page_notes_types_description": "Types to use, per-type settings",
+  "settings_page_notes_types_description": "Types to use, rich text",
   "@settings_page_notes_types_description": {
     "description": "Description of the settings page regarding the notes types."
   },
   "settings_section_types_to_use": "Types to use",
   "@settings_section_types_to_use": {
     "description": "Title of the settings section regarding the notes types to use."
-  },
-  "settings_section_per_type_settings": "Per-type settings",
-  "@settings_section_per_type_settings": {
-    "description": "Title of the settings section regarding the per-type settings."
   },
   "settings_available_notes_types": "Available notes types",
   "@settings_available_notes_types": {
@@ -356,14 +352,6 @@
   "settings_available_default_shortcut_type_description": "The default note type to use when creating a note from a shortcut. It can be a type that is not available from the \"Add\" button",
   "@settings_available_default_shortcut_type_description": {
     "description": "Description of the setting tile to choose the default note type to use when creating a note from a shortcut."
-  },
-  "settings_page_rich_text_notes_description": "Appearance",
-  "@settings_page_rich_text_notes_description": {
-    "description": "Description of the settings page regarding the rich text notes."
-  },
-  "settings_section_rich_text_notes_appearance": "Appearance",
-  "@settings_section_rich_text_notes_appearance": {
-    "description": "Description of the settings page regarding the rich text notes."
   },
   "settings_editor": "Editor",
   "@settings_editor": {
@@ -682,6 +670,10 @@
   "hint_title": "Title",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
+  },
+  "hint_content": "Note",
+  "@hint_content": {
+    "description": "Hint for the text field of the content of the notes."
   },
   "hint_link": "Link",
   "@hint_link": {

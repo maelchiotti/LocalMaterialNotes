@@ -23,7 +23,6 @@ enum NavigationRoute {
   settingsNotesTiles,
   settingsBehavior,
   settingsNotesTypes,
-  settingsNotesTypesRichText,
   settingsEditor,
   settingsLabels,
   settingsBackup,

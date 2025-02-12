@@ -63,7 +63,7 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
 
     return Padding(
       padding: Paddings.pageHorizontal,
-      child: widget.readOnly
+      child: widget.readOnly && !widget.note.isContentEmpty
           ? Markdown(
               data: widget.note.content,
               padding: EdgeInsets.zero,
@@ -85,11 +85,11 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
               child: TextField(
                 controller: contentTextController,
                 focusNode: editorFocusNode,
-                readOnly: widget.readOnly,
+                readOnly: widget.readOnly && widget.note.isContentEmpty,
                 autofocus: widget.autofocus,
                 maxLines: null,
                 expands: true,
-                decoration: InputDecoration.collapsed(hintText: ''),
+                decoration: InputDecoration.collapsed(hintText: l.hint_content),
                 spellCheckConfiguration: SpellCheckConfiguration(
                   spellCheckService: DefaultSpellCheckService(),
                 ),

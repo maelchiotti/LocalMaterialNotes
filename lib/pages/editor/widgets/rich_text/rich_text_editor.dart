@@ -106,13 +106,14 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
 
             return FleatherTheme(
               data: fleatherTheme,
-              child: FleatherEditor(
+              child: FleatherField(
                 controller: widget.fleatherController,
                 focusNode: editorFocusNode,
                 autofocus: widget.autofocus,
                 readOnly: widget.readOnly,
                 expands: true,
                 onLaunchUrl: onLaunchUrl,
+                decoration: InputDecoration.collapsed(hintText: l.hint_content),
                 spellCheckConfiguration: SpellCheckConfiguration(
                   spellCheckService: DefaultSpellCheckService(),
                 ),

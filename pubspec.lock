@@ -463,10 +463,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_checklist
-      sha256: "1cbeddff0feb58b742435351cbdd64fd7069fd666a3e5cdff886ac0635bcae06"
+      sha256: afd023bad490315c41ce1549139a74659002e6ec8e1e916a80dd7cca02634860
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.0"
+    version: "1.5.0"
   flutter_displaymode:
     dependency: "direct main"
     description:
