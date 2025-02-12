@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:substring_highlight/substring_highlight.dart';
 
 import '../../../models/note/note.dart';
 import '../../../navigation/navigator_utils.dart';
@@ -27,19 +28,14 @@ class NoteTile extends ConsumerStatefulWidget {
   const NoteTile({
     super.key,
     required this.note,
-  }) : searchView = false;
-
-  /// Note tile shown in the search view.
-  const NoteTile.searchView({
-    super.key,
-    required this.note,
-  }) : searchView = true;
+    this.search,
+  });
 
   /// Note to display.
   final Note note;
 
-  /// Whether the note tile is shown in the search view.
-  final bool searchView;
+  /// Search text if this tile is shown in the search view.
+  final String? search;
 
   @override
   ConsumerState<NoteTile> createState() => _NoteTileState();
@@ -55,7 +51,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   ///
   /// If none are `true`, then `null` is returned.
   Color? getBackgroundColor(bool showTilesBackground) {
-    if (widget.searchView) {
+    if (widget.search != null) {
       return Theme.of(context).colorScheme.surfaceContainerHigh;
     } else if (widget.note.selected) {
       return Theme.of(context).colorScheme.secondaryContainer;
@@ -132,7 +128,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
       currentNoteNotifier.value = widget.note;
 
       // If the note was opened from the search view, it needs to be closed
-      if (widget.searchView) {
+      if (widget.search != null) {
         Navigator.pop(context);
       }
 
@@ -164,15 +160,30 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
 
-    final bodyMediumTextTheme = Theme.of(context).textTheme.bodyMedium;
-
-    final showTitle =
+    final showContent =
         // Do not show only the title and the preview content is not empty
         (!showTitlesOnly && !widget.note.isContentPreviewEmpty) ||
             // Show only the title and the title is not empty
             (showTitlesOnly && widget.note.isTitleEmpty) ||
             // In search view, do not show only the title and the preview content is not empty
-            (widget.searchView && showTitlesOnlyDisableInSearchView && !widget.note.isContentPreviewEmpty);
+            (widget.search != null && showTitlesOnlyDisableInSearchView && !widget.note.isContentPreviewEmpty);
+
+    var titleStyle = biggerTitles ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium;
+    titleStyle ??= TextStyle();
+    final titleStyleHighlighted = titleStyle.copyWith(
+      color: Theme.of(context).colorScheme.primary,
+      fontWeight: FontWeight.w900,
+    );
+
+    final bodyMediumTextTheme = Theme.of(context).textTheme.bodyMedium;
+    var contentStyle = bodyMediumTextTheme?.copyWith(
+      color: disableSubduedNoteContentPreview ? null : bodyMediumTextTheme.color?.subdued,
+    );
+    contentStyle ??= TextStyle();
+    final contentStyleHighlighted = contentStyle.copyWith(
+      color: Theme.of(context).colorScheme.primary,
+      fontWeight: FontWeight.bold,
+    );
 
     // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
     // See https://github.com/flutter/flutter/issues/86584
@@ -181,7 +192,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
         color: getBackgroundColor(showTilesBackground),
         child: InkWell(
           onTap: onTap,
-          onLongPress: widget.searchView ? null : onLongPress,
+          onLongPress: widget.search != null ? null : onLongPress,
           child: Padding(
             padding: Paddings.all(16),
             child: Column(
@@ -194,26 +205,40 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                         children: [
                           // Title
                           if (!widget.note.isTitleEmpty)
-                            Text(
-                              widget.note.title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: biggerTitles
-                                  ? Theme.of(context).textTheme.titleLarge
-                                  : Theme.of(context).textTheme.titleMedium,
-                            ),
+                            widget.search != null
+                                ? SubstringHighlight(
+                                    text: widget.note.title,
+                                    terms: widget.search?.split(' '),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    textStyle: titleStyle,
+                                    textStyleHighlight: titleStyleHighlighted,
+                                  )
+                                : Text(
+                                    widget.note.title,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: biggerTitles
+                                        ? Theme.of(context).textTheme.titleLarge
+                                        : Theme.of(context).textTheme.titleMedium,
+                                  ),
                           // Subtitle
-                          if (showTitle)
-                            Text(
-                              widget.note.contentPreview,
-                              maxLines: maximumContentPreviewLines,
-                              overflow: TextOverflow.ellipsis,
-                              style: disableSubduedNoteContentPreview
-                                  ? null
-                                  : bodyMediumTextTheme?.copyWith(
-                                      color: bodyMediumTextTheme.color?.subdued,
-                                    ),
-                            ),
+                          if (showContent)
+                            widget.search != null
+                                ? SubstringHighlight(
+                                    text: widget.note.contentPreview,
+                                    terms: widget.search?.split(' '),
+                                    maxLines: maximumContentPreviewLines,
+                                    overflow: TextOverflow.ellipsis,
+                                    textStyle: contentStyle,
+                                    textStyleHighlight: contentStyleHighlighted,
+                                  )
+                                : Text(
+                                    widget.note.contentPreview,
+                                    maxLines: maximumContentPreviewLines,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: contentStyle,
+                                  ),
                         ],
                       ),
                     ),
@@ -250,7 +275,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     );
 
     // In search view, just return the plain tile, without the ClipRRect or the Dismissible widgets
-    if (widget.searchView) {
+    if (widget.search != null) {
       return tile;
     }
 

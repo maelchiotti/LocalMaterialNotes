@@ -112,9 +112,10 @@ class NotesAppBar extends ConsumerWidget {
 
     return notes
         .mapIndexed(
-          (index, note) => NoteTile.searchView(
+          (index, note) => NoteTile(
             key: Keys.noteTile(index),
             note: note,
+            search: search,
           ),
         )
         .toList();
