@@ -10,9 +10,7 @@ import '../../../../common/preferences/preference_key.dart';
 import '../../../../common/preferences/watched_preferences.dart';
 import '../../../../common/widgets/keys.dart';
 import '../../../../models/note/types/note_type.dart';
-import '../../../../navigation/navigation_routes.dart';
 import '../../../../providers/preferences/preferences_provider.dart';
-import 'settings_notes_types_rich_text_page.dart';
 
 /// Notes types settings.
 class SettingsNotesTypesPage extends ConsumerStatefulWidget {
@@ -38,6 +36,13 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
     });
   }
 
+  /// Toggles the setting to use spacing between the paragraphs.
+  void _toggleUseParagraphSpacing(bool toggled) {
+    setState(() {
+      PreferenceKey.useParagraphsSpacing.set(toggled);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final notesTypes = NoteType.values.map((type) {
@@ -52,6 +57,8 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
       return (value: type, title: type.title, subtitle: null);
     }).toList();
     final defaultShortcutNoteType = NoteType.defaultShortcutType;
+
+    final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault();
 
     return Scaffold(
       appBar: TopNavigation(
@@ -91,16 +98,14 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
                 ],
               ),
               SettingSection(
-                title: l.settings_section_per_type_settings,
+                title: NoteType.richText.title,
                 tiles: [
-                  SettingActionTile(
-                    icon: NoteType.richText.icon,
-                    title: NoteType.richText.title,
-                    description: l.settings_page_rich_text_notes_description,
-                    onTap: () => NavigationRoute.settingsNotesTypesRichText.push(
-                      context,
-                      SettingsNotesTypesRichTextPage(),
-                    ),
+                  SettingSwitchTile(
+                    icon: Icons.format_line_spacing,
+                    title: l.settings_use_paragraph_spacing,
+                    description: l.settings_use_paragraph_spacing_description,
+                    toggled: useParagraphsSpacing,
+                    onChanged: _toggleUseParagraphSpacing,
                   ),
                 ],
               ),
