@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
-import '../../../../common/constants/constants.dart';
-import '../../../../common/constants/paddings.dart';
-import '../../../../common/navigation/app_bars/basic_app_bar.dart';
-import '../../../../common/navigation/top_navigation.dart';
-import '../../../../common/preferences/preference_key.dart';
-import '../../../../common/preferences/watched_preferences.dart';
-import '../../../../common/widgets/keys.dart';
-import '../../../../models/note/types/note_type.dart';
-import '../../../../providers/preferences/preferences_provider.dart';
+import '../../../common/constants/constants.dart';
+import '../../../common/constants/paddings.dart';
+import '../../../common/navigation/app_bars/basic_app_bar.dart';
+import '../../../common/navigation/top_navigation.dart';
+import '../../../common/preferences/preference_key.dart';
+import '../../../common/preferences/watched_preferences.dart';
+import '../../../common/system/quick_actions_utils.dart';
+import '../../../common/widgets/keys.dart';
+import '../../../models/note/types/note_type.dart';
+import '../../../providers/preferences/preferences_provider.dart';
 
 /// Notes types settings.
 class SettingsNotesTypesPage extends ConsumerStatefulWidget {
@@ -27,12 +28,14 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
     PreferenceKey.availableNotesTypes.set(NoteType.toPreference(availableNotesTypes));
 
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(availableNotesTypes: availableNotesTypes));
+
+    QuickActionsUtils().setQuickActions(context, ref);
   }
 
-  /// Sets the setting for the default shortcut note type to [defaultShortcutNoteType].
-  void onSubmittedDefaultShortcutNoteType(NoteType defaultShortcutNoteType) {
+  /// Sets the setting for the default share note type to [defaultShareNoteType].
+  void onSubmittedDefaultShareNoteType(NoteType defaultShareNoteType) {
     setState(() {
-      PreferenceKey.defaultShortcutNoteType.set(defaultShortcutNoteType.name);
+      PreferenceKey.defaultShareNoteType.set(defaultShareNoteType.name);
     });
   }
 
@@ -53,10 +56,10 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
     );
     final availableNotesTypesString = NoteType.availableTypesAsString;
 
-    final shortcutNotesTypes = NoteType.shortcutTypes.map((type) {
+    final shareNotesTypes = NoteType.shareTypes.map((type) {
       return (value: type, title: type.title, subtitle: null);
     }).toList();
-    final defaultShortcutNoteType = NoteType.defaultShortcutType;
+    final defaultShareNoteType = NoteType.defaultShareType;
 
     final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault();
 
@@ -86,14 +89,14 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
                     onSubmitted: onSubmittedAvailableNotesTypes,
                   ),
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.app_shortcut,
-                    title: l.settings_available_default_shortcut_type,
-                    value: defaultShortcutNoteType.title,
-                    description: l.settings_available_default_shortcut_type_description,
-                    dialogTitle: l.settings_available_default_shortcut_type,
-                    options: shortcutNotesTypes,
-                    initialOption: defaultShortcutNoteType,
-                    onSubmitted: onSubmittedDefaultShortcutNoteType,
+                    icon: Icons.share,
+                    title: l.settings_available_default_share_type,
+                    value: defaultShareNoteType.title,
+                    description: l.settings_available_default_share_type_description,
+                    dialogTitle: l.settings_available_default_share_type,
+                    options: shareNotesTypes,
+                    initialOption: defaultShareNoteType,
+                    onSubmitted: onSubmittedDefaultShareNoteType,
                   ),
                 ],
               ),
