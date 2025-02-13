@@ -7,7 +7,6 @@ import '../../common/navigation/side_navigation.dart';
 import '../../common/navigation/top_navigation.dart';
 import '../../common/widgets/keys.dart';
 import '../../navigation/navigation_routes.dart';
-import 'pages/notes_types/settings_notes_types_page.dart';
 import 'pages/settings_about_page.dart';
 import 'pages/settings_accessibility_page.dart';
 import 'pages/settings_appearance_page.dart';
@@ -16,6 +15,7 @@ import 'pages/settings_behavior_page.dart';
 import 'pages/settings_editor_page.dart';
 import 'pages/settings_labels_page.dart';
 import 'pages/settings_notes_tiles_page.dart';
+import 'pages/settings_notes_types_page.dart';
 
 /// Page for the settings of the application.
 class SettingsMainPage extends StatelessWidget {

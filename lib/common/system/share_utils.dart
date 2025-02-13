@@ -39,7 +39,7 @@ void _processSharedData(WidgetRef ref, List<SharedMediaFile> data) {
     delta.insert('$line\n');
   }
 
-  final defaultShortcutNoteType = NoteType.defaultShortcutType;
+  final defaultShortcutNoteType = NoteType.defaultShareType;
   final context = rootNavigatorKey.currentContext!;
   final content = jsonEncode(delta);
 

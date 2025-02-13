@@ -14,7 +14,7 @@ enum PreferenceKey<T extends Object> {
 
   // Notes types
   availableNotesTypes<List<String>>(['plainText', 'richText', 'markdown', 'checklist']),
-  defaultShortcutNoteType<String>('plainText'),
+  defaultShareNoteType<String>('plainText'),
 
   // Rich text notes
   useParagraphsSpacing<bool>(true),

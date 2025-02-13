@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_helper_utils/flutter_helper_utils.dart';
-import 'package:simple_icons/simple_icons.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../../common/preferences/preference_key.dart';
@@ -11,7 +11,7 @@ enum NoteType {
   plainText(Icons.text_fields),
 
   /// Markdown.
-  markdown(SimpleIcons.markdown),
+  markdown(Symbols.markdown),
 
   /// Rich text note.
   richText(Icons.format_paint),
@@ -36,7 +36,7 @@ enum NoteType {
   }
 
   /// The types that can be used when creating a new note from a shortcut.
-  static List<NoteType> get shortcutTypes => [plainText, markdown, richText];
+  static List<NoteType> get shareTypes => [plainText, markdown, richText];
 
   /// The list of types available when creating a new note from the notes list.
   static List<NoteType> get availableTypes {
@@ -52,9 +52,9 @@ enum NoteType {
     return availableTypes.map((type) => type.title).join(', ').capitalizeFirstLowerRest;
   }
 
-  /// The default note type to used when creating a new note from a shortcut.
-  static NoteType get defaultShortcutType {
-    final defaultShortcutType = PreferenceKey.defaultShortcutNoteType.getPreferenceOrDefault();
+  /// The default note type to used when creating a new note via a share action.
+  static NoteType get defaultShareType {
+    final defaultShortcutType = PreferenceKey.defaultShareNoteType.getPreferenceOrDefault();
 
     return values.byName(defaultShortcutType);
   }

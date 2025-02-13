@@ -19,9 +19,6 @@ class LocalizationsUtils {
     _appLocalizations = await AppLocalizations.delegate.load(LocaleUtils().appLocale);
   }
 
-  /// Title of the quick action to add a note.
-  String get actionAddNoteTitle => _appLocalizations.action_add_note_title;
-
   /// Title of the welcome note.
   String get welcomeNoteTitle => _appLocalizations.welcome_note_title;
 
