@@ -2,18 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../models/note/note.dart';
-import '../../../providers/bin/bin_provider.dart';
+import '../../../models/note/note_status.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 
 /// Toggles the select status of the [note].
 void toggleSelectNote(WidgetRef ref, {required Note note}) {
   if (note.deleted) {
-    note.selected ? ref.read(binProvider.notifier).unselect(note) : ref.read(binProvider.notifier).select(note);
+    note.selected
+        ? ref.read(notesProvider(status: NoteStatus.deleted).notifier).unselect(note)
+        : ref.read(notesProvider(status: NoteStatus.deleted).notifier).select(note);
   } else {
     note.selected
-        ? ref.read(notesProvider(label: currentLabelFilter).notifier).unselect(note)
-        : ref.read(notesProvider(label: currentLabelFilter).notifier).select(note);
+        ? ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).unselect(note)
+        : ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).select(note);
   }
 }
 
@@ -22,8 +24,8 @@ void toggleSelectNote(WidgetRef ref, {required Note note}) {
 /// Depending on the current route, selects either the notes from the notes page or those from the bin page.
 void selectAllNotes(BuildContext context, WidgetRef ref, {bool notesPage = true}) {
   notesPage
-      ? ref.read(notesProvider(label: currentLabelFilter).notifier).selectAll()
-      : ref.read(binProvider.notifier).selectAll();
+      ? ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).selectAll()
+      : ref.read(notesProvider(status: NoteStatus.deleted).notifier).selectAll();
 }
 
 /// Unselects all the notes.
@@ -31,8 +33,8 @@ void selectAllNotes(BuildContext context, WidgetRef ref, {bool notesPage = true}
 /// Depending on the current route, unselects either the notes from the notes page or those from the bin page.
 void unselectAllNotes(BuildContext context, WidgetRef ref, {bool notesPage = true}) {
   notesPage
-      ? ref.read(notesProvider(label: currentLabelFilter).notifier).unselectAll()
-      : ref.read(binProvider.notifier).unselectAll();
+      ? ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).unselectAll()
+      : ref.read(notesProvider(status: NoteStatus.deleted).notifier).unselectAll();
 }
 
 /// Exits the notes selection mode.

@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../models/label/label.dart';
 import '../../../models/note/note.dart';
-import '../../../providers/bin/bin_provider.dart';
+import '../../../models/note/note_status.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../../providers/preferences/preferences_provider.dart';
@@ -98,8 +98,8 @@ class NotesAppBar extends ConsumerWidget {
     }
 
     notesPage
-        ? ref.read(notesProvider(label: currentLabelFilter).notifier).sort()
-        : ref.read(binProvider.notifier).sort();
+        ? ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).sort()
+        : ref.read(notesProvider(status: NoteStatus.deleted).notifier).sort();
   }
 
   /// Searches for the notes that match the [search].
@@ -208,13 +208,13 @@ class NotesAppBar extends ConsumerWidget {
           onSelected: (sortMethod) => sort(context, ref, sortMethod: sortMethod),
         ),
         if (notesPage)
-          ref.watch(notesProvider(label: currentLabelFilter)).when(
+          ref.watch(notesProvider(status: NoteStatus.available, label: currentLabelFilter)).when(
                 data: (notes) => child(context, notes),
                 error: (error, stackTrace) => const EmptyPlaceholder(),
                 loading: () => searchButtonPlaceholder,
               )
         else
-          ref.watch(notesProvider(label: currentLabelFilter)).when(
+          ref.watch(notesProvider(status: NoteStatus.available, label: currentLabelFilter)).when(
                 data: (notes) => child(context, notes),
                 error: (error, stackTrace) => const EmptyPlaceholder(),
                 loading: () => searchButtonPlaceholder,

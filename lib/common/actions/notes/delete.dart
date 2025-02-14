@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../models/note/note.dart';
-import '../../../providers/bin/bin_provider.dart';
+import '../../../models/note/note_status.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../constants/constants.dart';
@@ -35,7 +35,8 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, {Note? note, bool p
 
   currentNoteNotifier.value = null;
 
-  final succeeded = await ref.read(notesProvider(label: currentLabelFilter).notifier).delete(note);
+  final succeeded =
+      await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).delete(note);
 
   if (!succeeded) {
     return false;
@@ -59,7 +60,8 @@ Future<bool> deleteNotes(BuildContext context, WidgetRef ref, {required List<Not
     return false;
   }
 
-  final succeeded = await ref.read(notesProvider(label: currentLabelFilter).notifier).deleteAll(notes);
+  final succeeded =
+      await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).deleteAll(notes);
 
   if (context.mounted) {
     exitNotesSelectionMode(context, ref);
@@ -95,7 +97,7 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, {Note? n
 
   currentNoteNotifier.value = null;
 
-  final succeeded = await ref.read(binProvider.notifier).permanentlyDelete(note);
+  final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).permanentlyDelete(note);
 
   if (!succeeded) {
     return false;
@@ -120,7 +122,7 @@ Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, {requir
     return false;
   }
 
-  final succeeded = await ref.read(binProvider.notifier).permanentlyDeleteAll(notes);
+  final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).permanentlyDeleteAll(notes);
 
   if (context.mounted) {
     exitNotesSelectionMode(context, ref, notesPage: false);
@@ -146,7 +148,7 @@ Future<bool> emptyBin(BuildContext context, WidgetRef ref) async {
 
   isNotesSelectionModeNotifier.value = false;
 
-  final succeeded = await ref.read(binProvider.notifier).empty();
+  final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).emptyBin();
 
   return succeeded;
 }

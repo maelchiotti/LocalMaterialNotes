@@ -7,6 +7,7 @@ import 'package:markdown/markdown.dart';
 import '../../../../common/constants/constants.dart';
 import '../../../../common/constants/paddings.dart';
 import '../../../../models/note/note.dart';
+import '../../../../models/note/note_status.dart';
 import '../../../../providers/notes/notes_provider.dart';
 import '../../../../providers/notifiers/notifiers.dart';
 
@@ -54,7 +55,7 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
   void onChanged(String content) {
     MarkdownNote note = widget.note..content = content;
 
-    ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
+    ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
   }
 
   @override

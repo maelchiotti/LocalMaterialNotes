@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../models/note/note.dart';
-import '../../../providers/bin/bin_provider.dart';
+import '../../../models/note/note_status.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../actions/notes/delete.dart';
@@ -104,7 +104,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return notesPage
-        ? ref.watch(notesProvider(label: currentLabelFilter)).when(
+        ? ref.watch(notesProvider(status: NoteStatus.available, label: currentLabelFilter)).when(
               data: (notes) => buildAppBar(
                 context,
                 ref,
@@ -114,7 +114,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
               error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
               loading: () => const LoadingPlaceholder(),
             )
-        : ref.watch(binProvider).when(
+        : ref.watch(notesProvider(status: NoteStatus.deleted)).when(
               data: (notes) => buildAppBar(
                 context,
                 ref,

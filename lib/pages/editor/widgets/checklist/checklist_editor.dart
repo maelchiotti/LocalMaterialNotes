@@ -3,6 +3,7 @@ import 'package:flutter_checklist/checklist.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../models/note/note.dart';
+import '../../../../models/note/note_status.dart';
 import '../../../../providers/notes/notes_provider.dart';
 import '../../../../providers/notifiers/notifiers.dart';
 
@@ -31,7 +32,7 @@ class ChecklistEditor extends ConsumerWidget {
       ..checkboxes = checklistLines.map((checklistLine) => checklistLine.toggled).toList()
       ..texts = checklistLines.map((checklistLine) => checklistLine.text).toList();
 
-    ref.read(notesProvider(label: currentLabelFilter).notifier).edit(newNote);
+    ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(newNote);
   }
 
   @override

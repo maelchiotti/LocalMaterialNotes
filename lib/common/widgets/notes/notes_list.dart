@@ -4,7 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../models/label/label.dart';
 import '../../../models/note/note.dart';
-import '../../../providers/bin/bin_provider.dart';
+import '../../../models/note/note_status.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 import '../../constants/paddings.dart';
@@ -81,12 +81,12 @@ class NotesList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return notesPage
-        ? ref.watch(notesProvider(label: label)).when(
+        ? ref.watch(notesProvider(status: NoteStatus.available, label: label)).when(
               data: (notes) => child(context, ref, notes),
               error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
               loading: () => const LoadingPlaceholder(),
             )
-        : ref.watch(binProvider).when(
+        : ref.watch(notesProvider(status: NoteStatus.deleted)).when(
               data: (notes) => child(context, ref, notes),
               error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
               loading: () => const LoadingPlaceholder(),

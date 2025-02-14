@@ -12,7 +12,7 @@ import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/ui/snack_bar_utils.dart';
-import '../../../providers/bin/bin_provider.dart';
+import '../../../models/note/note_status.dart';
 import '../../../providers/labels/labels/labels_provider.dart';
 import '../../../providers/labels/labels_list/labels_list_provider.dart';
 import '../../../providers/labels/labels_navigation/labels_navigation_provider.dart';
@@ -46,8 +46,8 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         await ref.read(labelsProvider.notifier).get();
         await ref.read(labelsListProvider.notifier).get();
         await ref.read(labelsNavigationProvider.notifier).get();
-        await ref.read(notesProvider(label: currentLabelFilter).notifier).get();
-        await ref.read(binProvider.notifier).get();
+        await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).get();
+        await ref.read(notesProvider(status: NoteStatus.deleted).notifier).get();
         ref.read(preferencesProvider.notifier).reset();
 
         SnackBarUtils.info(l.snack_bar_import_success).show();

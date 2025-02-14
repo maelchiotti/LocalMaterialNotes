@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../models/note/note.dart';
-import '../../../providers/bin/bin_provider.dart';
+import '../../../models/note/note_status.dart';
+import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../constants/constants.dart';
 import '../../dialogs/confirmation_dialog.dart';
@@ -33,7 +34,7 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, {Note? note, bool 
     Navigator.pop(context);
   }
 
-  final succeeded = await ref.read(binProvider.notifier).restore(note);
+  final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).restore(note);
 
   if (!succeeded) {
     return false;
@@ -57,7 +58,7 @@ Future<bool> restoreNotes(BuildContext context, WidgetRef ref, {required List<No
     return false;
   }
 
-  final succeeded = await ref.read(binProvider.notifier).restoreAll(notes);
+  final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).restoreAll(notes);
 
   if (context.mounted) {
     exitNotesSelectionMode(context, ref, notesPage: false);

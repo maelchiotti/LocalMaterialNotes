@@ -4,9 +4,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../common/constants/constants.dart';
 import '../../../common/extensions/list_extension.dart';
 import '../../../models/label/label.dart';
+import '../../../models/note/note_status.dart';
 import '../../../pages/labels/enums/labels_filter.dart';
 import '../../../services/labels/labels_service.dart';
-import '../../bin/bin_provider.dart';
+import '../../notes/notes_provider.dart';
 import '../labels_list/labels_list_provider.dart';
 import '../labels_navigation/labels_navigation_provider.dart';
 
@@ -23,7 +24,7 @@ class Labels extends _$Labels {
   Future<void> _updateProviders() async {
     await ref.read(labelsNavigationProvider.notifier).get();
     await ref.read(labelsListProvider.notifier).get();
-    await ref.read(binProvider.notifier).get();
+    await ref.read(notesProvider(status: NoteStatus.deleted).notifier).get();
   }
 
   /// Filters the labels to show the [onlyPinned] ones or the [onlyHidden] ones.
