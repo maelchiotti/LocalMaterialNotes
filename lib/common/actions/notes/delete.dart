@@ -15,11 +15,7 @@ import 'select.dart';
 ///
 /// First, asks for a confirmation if needed.
 /// Finally, pops the route if the note was deleted from the editor page.
-Future<bool> deleteNote(BuildContext context, WidgetRef ref, {Note? note, bool pop = false}) async {
-  if (note == null) {
-    return false;
-  }
-
+Future<bool> deleteNote(BuildContext context, WidgetRef ref, {required Note note, bool pop = false}) async {
   if (!await askForConfirmation(
     context,
     l.dialog_delete,
@@ -35,8 +31,9 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, {Note? note, bool p
 
   currentNoteNotifier.value = null;
 
-  final succeeded =
-      await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).delete([note]);
+  final succeeded = await ref
+      .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
+      .setDeleted([note], true);
 
   if (!succeeded) {
     return false;
@@ -60,8 +57,9 @@ Future<bool> deleteNotes(BuildContext context, WidgetRef ref, {required List<Not
     return false;
   }
 
-  final succeeded =
-      await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).delete(notes);
+  final succeeded = await ref
+      .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
+      .setDeleted(notes, true);
 
   if (context.mounted) {
     exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.available);

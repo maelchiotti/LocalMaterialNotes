@@ -14,7 +14,7 @@ enum SortMethod {
 
   /// Sort in ascending order.
   ///
-  /// This is only used to create the `PopupMenuItem` in the sort menu.
+  /// This is only used to create the [PopupMenuItem] in the sort menu.
   ascending,
   ;
 

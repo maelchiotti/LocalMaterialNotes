@@ -5,17 +5,24 @@ import '../../../models/note/note.dart';
 import '../../../models/note/note_status.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
+import '../../actions/notes/archive.dart';
+import '../../actions/notes/copy.dart';
 import '../../actions/notes/delete.dart';
 import '../../actions/notes/labels.dart';
 import '../../actions/notes/pin.dart';
 import '../../actions/notes/restore.dart';
 import '../../actions/notes/select.dart';
 import '../../actions/notes/share.dart';
+import '../../actions/notes/unarchive.dart';
 import '../../constants/constants.dart';
 import '../../constants/paddings.dart';
 import '../../constants/separators.dart';
+import '../../preferences/preference_key.dart';
 import '../../widgets/placeholders/error_placeholder.dart';
 import '../../widgets/placeholders/loading_placeholder.dart';
+import '../enums/archives_menu_option.dart';
+import '../enums/bin_menu_option.dart';
+import '../enums/notes_menu_option.dart';
 
 /// Selection mode app bar.
 class NotesSelectionAppBar extends ConsumerWidget {
@@ -28,6 +35,61 @@ class NotesSelectionAppBar extends ConsumerWidget {
   /// The status of the notes in the page.
   final NoteStatus notesStatus;
 
+  /// Action to perform on the available [notes] depending on the selected [menuOption].
+  Future<void> onNotesMenuOptionSelected(
+    BuildContext context,
+    WidgetRef ref,
+    List<Note> notes,
+    NotesMenuOption menuOption,
+  ) async {
+    switch (menuOption) {
+      case NotesMenuOption.copy:
+        await copyNotes(notes: notes);
+      case NotesMenuOption.share:
+        await shareNotes(notes: notes);
+      case NotesMenuOption.togglePin:
+        await togglePinNotes(context, ref, notes: notes);
+      case NotesMenuOption.addLabels:
+        addLabels(context, ref, notes: notes);
+      case NotesMenuOption.archive:
+        await archiveNote(context, ref);
+      case NotesMenuOption.delete:
+        await deleteNotes(context, ref, notes: notes);
+    }
+  }
+
+  /// Action to perform on the archived [notes] depending on the selected [menuOption].
+  Future<void> onArchivesMenuOptionSelected(
+    BuildContext context,
+    WidgetRef ref,
+    List<Note> notes,
+    ArchivesMenuOption menuOption,
+  ) async {
+    switch (menuOption) {
+      case ArchivesMenuOption.unarchive:
+        await unarchiveNotes(context, ref, notes: notes);
+      default:
+        throw Exception('This action cannot be performed in the notes selection app bar: $menuOption');
+    }
+  }
+
+  /// Action to perform on the deleted [notes] depending on the selected [menuOption].
+  Future<void> onBinMenuOptionSelected(
+    BuildContext context,
+    WidgetRef ref,
+    List<Note> notes,
+    BinMenuOption menuOption,
+  ) async {
+    switch (menuOption) {
+      case BinMenuOption.restore:
+        await restoreNotes(context, ref, notes: notes);
+      case BinMenuOption.deletePermanently:
+        await permanentlyDeleteNotes(context, ref, notes: notes);
+      default:
+        throw Exception('This action cannot be performed in the notes selection app bar: $menuOption');
+    }
+  }
+
   /// Builds the app bar.
   ///
   /// The title and the behavior of the buttons can change depending on the difference between
@@ -38,6 +100,8 @@ class NotesSelectionAppBar extends ConsumerWidget {
     List<Note> selectedNotes,
     int totalNotesCount,
   ) {
+    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
+
     final allSelected = selectedNotes.length == totalNotesCount;
 
     return AppBar(
@@ -53,49 +117,39 @@ class NotesSelectionAppBar extends ConsumerWidget {
               ? unselectAllNotes(context, ref, notesStatus: notesStatus)
               : selectAllNotes(context, ref, notesStatus: notesStatus),
         ),
-        Padding(padding: Paddings.appBarActionsEnd),
-        Separator.divider1indent16.vertical,
-        Padding(padding: Paddings.appBarActionsEnd),
-        if (notesStatus == NoteStatus.available) ...[
-          IconButton(
-            icon: const Icon(Icons.share),
-            tooltip: 'Share',
-            onPressed: selectedNotes.isNotEmpty ? () => shareNotes(notes: selectedNotes) : null,
+        Padding(
+          padding: Paddings.appBarSeparator,
+          child: Separator.divider1indent16.vertical,
+        ),
+        if (notesStatus == NoteStatus.available)
+          PopupMenuButton<NotesMenuOption>(
+            itemBuilder: (context) => ([
+              NotesMenuOption.copy.popupMenuItem(context),
+              NotesMenuOption.share.popupMenuItem(context),
+              const PopupMenuDivider(),
+              NotesMenuOption.togglePin.popupMenuItem(context),
+              if (enableLabels) NotesMenuOption.addLabels.popupMenuItem(context),
+              const PopupMenuDivider(),
+              NotesMenuOption.archive.popupMenuItem(context),
+              NotesMenuOption.delete.popupMenuItem(context),
+            ]),
+            onSelected: (menuOption) => onNotesMenuOptionSelected(context, ref, selectedNotes, menuOption),
           ),
-          IconButton(
-            icon: const Icon(Icons.push_pin),
-            tooltip: l.tooltip_toggle_pins,
-            onPressed: selectedNotes.isNotEmpty ? () => togglePinNotes(context, ref, notes: selectedNotes) : null,
+        if (notesStatus == NoteStatus.archived)
+          PopupMenuButton<ArchivesMenuOption>(
+            itemBuilder: (context) => ([
+              ArchivesMenuOption.unarchive.popupMenuItem(context),
+            ]),
+            onSelected: (menuOption) => onArchivesMenuOptionSelected(context, ref, selectedNotes, menuOption),
           ),
-          IconButton(
-            icon: const Icon(Icons.new_label),
-            tooltip: 'Add labels',
-            onPressed: selectedNotes.isNotEmpty ? () => addLabels(context, ref, notes: selectedNotes) : null,
+        if (notesStatus == NoteStatus.deleted)
+          PopupMenuButton<BinMenuOption>(
+            itemBuilder: (context) => ([
+              BinMenuOption.restore.popupMenuItem(context),
+              BinMenuOption.deletePermanently.popupMenuItem(context),
+            ]),
+            onSelected: (menuOption) => onBinMenuOptionSelected(context, ref, selectedNotes, menuOption),
           ),
-          IconButton(
-            icon: Icon(
-              Icons.delete,
-              color: selectedNotes.isNotEmpty ? Theme.of(context).colorScheme.error : null,
-            ),
-            tooltip: l.tooltip_delete,
-            onPressed: selectedNotes.isNotEmpty ? () => deleteNotes(context, ref, notes: selectedNotes) : null,
-          ),
-        ] else if (notesStatus == NoteStatus.deleted) ...[
-          IconButton(
-            icon: const Icon(Icons.restore_from_trash),
-            tooltip: l.tooltip_restore,
-            onPressed: selectedNotes.isNotEmpty ? () => restoreNotes(context, ref, notes: selectedNotes) : null,
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.delete_forever,
-              color: selectedNotes.isNotEmpty ? Theme.of(context).colorScheme.error : null,
-            ),
-            tooltip: l.tooltip_permanently_delete,
-            onPressed:
-                selectedNotes.isNotEmpty ? () => permanentlyDeleteNotes(context, ref, notes: selectedNotes) : null,
-          ),
-        ],
         Padding(padding: Paddings.appBarActionsEnd),
       ],
     );

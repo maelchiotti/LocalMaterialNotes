@@ -47,6 +47,9 @@ class Paddings {
   /// Padding for a page (except the bottom).
   static EdgeInsetsDirectional get pageButBottom => const EdgeInsetsDirectional.only(top: 16, start: 16, end: 16);
 
+  /// Padding for the separator of the app bar.
+  static EdgeInsetsDirectional get appBarSeparator => const EdgeInsetsDirectional.symmetric(horizontal: 8);
+
   /// Padding for the end of the app bar.
   static EdgeInsetsDirectional get appBarActionsEnd => const EdgeInsetsDirectional.only(end: 8);
 

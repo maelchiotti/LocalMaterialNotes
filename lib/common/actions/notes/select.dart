@@ -15,14 +15,14 @@ void toggleSelectNote(WidgetRef ref, {required Note note}) {
 ///
 /// Depending on the current route, selects either the notes from the notes page or those from the bin page.
 void selectAllNotes(BuildContext context, WidgetRef ref, {required NoteStatus notesStatus}) {
-  ref.read(notesProvider(status: notesStatus, label: currentLabelFilter).notifier).toggleSelectAll(true);
+  ref.read(notesProvider(status: notesStatus, label: currentLabelFilter).notifier).setSelectAll(true);
 }
 
 /// Unselects all the notes.
 ///
 /// Depending on the current route, unselects either the notes from the notes page or those from the bin page.
 void unselectAllNotes(BuildContext context, WidgetRef ref, {required NoteStatus notesStatus}) {
-  ref.read(notesProvider(status: notesStatus, label: currentLabelFilter).notifier).toggleSelectAll(false);
+  ref.read(notesProvider(status: notesStatus, label: currentLabelFilter).notifier).setSelectAll(false);
 }
 
 /// Exits the notes selection mode.

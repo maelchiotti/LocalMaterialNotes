@@ -12,7 +12,7 @@ import '../../../common/constants/paddings.dart';
 import '../../../common/extensions/color_extension.dart';
 import '../../../models/label/label.dart';
 import '../../../providers/notifiers/notifiers.dart';
-import 'label_menu_option.dart';
+import '../enums/label_tile_menu_option.dart';
 
 /// Tile of a label.
 class LabelTile extends ConsumerStatefulWidget {
@@ -78,12 +78,12 @@ class _LabelTileState extends ConsumerState<LabelTile> {
         ),
       );
 
-  Future<void> onMenuOptionSelected(LabelMenuOption labelMenuOption) async {
+  Future<void> onMenuOptionSelected(LabelTileMenuOption labelMenuOption) async {
     switch (labelMenuOption) {
-      case LabelMenuOption.edit:
-        await editLabel(context, ref, widget.label);
-      case LabelMenuOption.delete:
-        await deleteLabel(context, ref, widget.label);
+      case LabelTileMenuOption.edit:
+        await editLabel(context, ref, label: widget.label);
+      case LabelTileMenuOption.delete:
+        await deleteLabel(context, ref, label: widget.label);
     }
   }
 
@@ -91,9 +91,9 @@ class _LabelTileState extends ConsumerState<LabelTile> {
   Future<bool> onDismissed(DismissDirection direction) async {
     switch (direction) {
       case DismissDirection.startToEnd:
-        await deleteLabel(context, ref, widget.label);
+        await deleteLabel(context, ref, label: widget.label);
       case DismissDirection.endToStart:
-        await editLabel(context, ref, widget.label);
+        await editLabel(context, ref, label: widget.label);
       default:
         throw Exception('Unexpected dismiss direction after swiping on label tile: $direction');
     }
@@ -103,14 +103,14 @@ class _LabelTileState extends ConsumerState<LabelTile> {
 
   /// Selects the label.
   void onTap() {
-    toggleSelectLabel(ref, widget.label);
+    toggleSelectLabel(ref, label: widget.label);
   }
 
   /// Enters the selection mode and selects this tile.
   void onLongPress() {
     isLabelsSelectionModeNotifier.value = true;
 
-    toggleSelectLabel(ref, widget.label);
+    toggleSelectLabel(ref, label: widget.label);
   }
 
   @override
@@ -138,11 +138,8 @@ class _LabelTileState extends ConsumerState<LabelTile> {
             onTap: isLabelsSelectionModeNotifier.value ? onTap : null,
             onLongPress: onLongPress,
             child: ListTile(
-              leading: VariedIcon.varied(
-                icon,
-                fill: 1.0,
-                color: widget.label.color,
-              ),
+              contentPadding: EdgeInsets.only(left: 16.0, right: 8.0),
+              leading: VariedIcon.varied(icon, fill: 1.0, color: widget.label.color),
               title: Text(
                 widget.label.name,
                 style: widget.label.visible
@@ -158,19 +155,17 @@ class _LabelTileState extends ConsumerState<LabelTile> {
                 children: [
                   if (widget.label.visible)
                     IconButton(
-                      onPressed: () => togglePinLabel(context, ref, widget.label),
+                      onPressed: () => togglePinLabel(context, ref, label: widget.label),
                       icon: Icon(widget.label.pinned ? Icons.push_pin_outlined : Icons.push_pin),
                     ),
                   if (!widget.label.pinned)
                     IconButton(
-                      onPressed: () => toggleVisibleLabel(ref, widget.label),
+                      onPressed: () => toggleVisibleLabel(ref, label: widget.label),
                       icon: Icon(widget.label.visible ? Icons.visibility_off : Icons.visibility),
                     ),
-                  PopupMenuButton<LabelMenuOption>(
-                    itemBuilder: (context) => LabelMenuOption.values
-                        .map(
-                          (labelMenuOption) => labelMenuOption.popupMenuItem(context),
-                        )
+                  PopupMenuButton<LabelTileMenuOption>(
+                    itemBuilder: (context) => LabelTileMenuOption.values
+                        .map((labelMenuOption) => labelMenuOption.popupMenuItem(context))
                         .toList(),
                     onSelected: onMenuOptionSelected,
                   ),

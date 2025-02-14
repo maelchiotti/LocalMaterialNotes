@@ -12,6 +12,7 @@ import '../../constants/paddings.dart';
 import '../../constants/separators.dart';
 import '../../widgets/placeholders/error_placeholder.dart';
 import '../../widgets/placeholders/loading_placeholder.dart';
+import '../enums/labels_menu_option.dart';
 
 /// Labels selection mode app bar.
 ///
@@ -30,6 +31,22 @@ class LabelsSelectionAppBar extends ConsumerStatefulWidget {
 }
 
 class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
+  Future<void> onLabelsMenuOptionSelected(
+    BuildContext context,
+    WidgetRef ref,
+    List<Label> labels,
+    LabelsMenuOption menuOption,
+  ) async {
+    switch (menuOption) {
+      case LabelsMenuOption.togglePin:
+        await togglePinLabels(ref, labels: labels);
+      case LabelsMenuOption.toggleVisibility:
+        await toggleVisibleLabels(ref, labels: labels);
+      case LabelsMenuOption.delete:
+        await deleteLabels(context, ref, labels: labels);
+    }
+  }
+
   /// Builds the app bar.
   ///
   /// The title and the behavior of the buttons can change depending on the difference between
@@ -48,26 +65,18 @@ class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
           tooltip: allSelected ? l.tooltip_unselect_all : flutterL?.selectAllButtonLabel ?? 'Select all',
           onPressed: () => allSelected ? unselectAllLabels(ref) : selectAllLabels(ref),
         ),
-        Padding(padding: Paddings.appBarActionsEnd),
-        Separator.divider1indent16.vertical,
-        Padding(padding: Paddings.appBarActionsEnd),
-        IconButton(
-          icon: const Icon(Icons.push_pin),
-          tooltip: l.action_labels_toggle_pins,
-          onPressed: selectedLabels.isNotEmpty ? () => togglePinLabels(ref, selectedLabels) : null,
+        Padding(
+          padding: Paddings.appBarSeparator,
+          child: Separator.divider1indent16.vertical,
         ),
-        IconButton(
-          icon: const Icon(Icons.visibility),
-          tooltip: l.action_labels_toggle_visibility,
-          onPressed: selectedLabels.isNotEmpty ? () => toggleVisibleLabels(ref, selectedLabels) : null,
-        ),
-        IconButton(
-          icon: Icon(
-            Icons.delete,
-            color: Theme.of(context).colorScheme.error,
-          ),
-          tooltip: l.tooltip_delete,
-          onPressed: selectedLabels.isNotEmpty ? () => deleteLabels(context, ref, selectedLabels) : null,
+        PopupMenuButton<LabelsMenuOption>(
+          itemBuilder: (context) => ([
+            LabelsMenuOption.togglePin.popupMenuItem(context),
+            LabelsMenuOption.toggleVisibility.popupMenuItem(context),
+            const PopupMenuDivider(),
+            LabelsMenuOption.delete.popupMenuItem(context),
+          ]),
+          onSelected: (menuOption) => onLabelsMenuOptionSelected(context, ref, selectedLabels, menuOption),
         ),
         Padding(padding: Paddings.appBarActionsEnd),
       ],

@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
 
-/// Lists the options available in the menus for the deleted notes.
-enum BinMenuOption {
-  /// Restore the note.
-  restore(Icons.restore_from_trash),
+/// Lists the options available for the menus on the labels.
+enum LabelsMenuOption {
+  /// Toggle whether the note is pinned.
+  togglePin(Icons.push_pin),
 
-  /// Permanently delete the note.
+  /// Toggle whether the note is visible.
+  toggleVisibility(Icons.label),
+
+  /// Delete the note.
   ///
   /// This action is [dangerous].
-  deletePermanently(Icons.delete_forever, dangerous: true),
-
-  /// Show information about the note.
-  about(Icons.info),
+  delete(Icons.delete, dangerous: true),
   ;
 
   /// Icon of the menu option.
@@ -24,27 +24,27 @@ enum BinMenuOption {
   /// Changes the text and icon colors to red.
   final bool dangerous;
 
-  /// An option displayed in the menu for the deleted notes.
+  /// An option displayed in the menu for the labels.
   ///
   /// An action is represented by an [icon] and a [title].
   ///
   /// If [dangerous] is `true`, the icon and the title are shown in red.
-  const BinMenuOption(this.icon, {this.dangerous = false});
+  const LabelsMenuOption(this.icon, {this.dangerous = false});
 
   /// Returns the title of the menu option.
   String get title {
     switch (this) {
-      case restore:
-        return l.action_restore;
-      case deletePermanently:
-        return l.action_delete_permanently;
-      case about:
-        return l.action_about;
+      case togglePin:
+        return l.action_labels_toggle_pins;
+      case toggleVisibility:
+        return l.action_labels_toggle_visibility;
+      case delete:
+        return l.action_delete;
     }
   }
 
   /// Returns the [PopupMenuItem] widget of the menu option.
-  PopupMenuItem<BinMenuOption> popupMenuItem(BuildContext context) {
+  PopupMenuItem<LabelsMenuOption> popupMenuItem(BuildContext context) {
     return PopupMenuItem(
       value: this,
       child: ListTile(

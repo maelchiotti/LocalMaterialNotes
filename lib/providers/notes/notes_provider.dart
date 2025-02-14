@@ -141,7 +141,7 @@ class Notes extends _$Notes {
     return true;
   }
 
-  /// Toggles the pin status of the [notesToToggle] in the database.
+  /// Toggles whether the [notesToToggle] are pinned in the database.
   Future<bool> togglePin(List<Note> notesToToggle) async {
     _checkEditableStatus();
 
@@ -167,29 +167,56 @@ class Notes extends _$Notes {
     return true;
   }
 
-  /// Sets the [notes] as deleted in the database.
-  Future<bool> delete(List<Note> notesToDelete) async {
+  /// Sets whether the [notesToSet] are archived to [archived] in the database.
+  Future<bool> setArchived(List<Note> notesToSet, bool archived) async {
     _checkEditableStatus();
 
-    for (final note in notesToDelete) {
+    for (final note in notesToSet) {
       note.pinned = false;
-      note.deleted = true;
+      note.archived = true;
     }
 
     try {
-      await _notesService.putAll(notesToDelete);
+      await _notesService.putAll(notesToSet);
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
 
       return false;
     }
 
-    final notes = (state.value ?? [])..removeWhere((note) => notesToDelete.contains(note));
+    final notes = (state.value ?? [])..removeWhere((note) => notesToSet.contains(note));
 
     state = AsyncData(notes);
 
     _updateUnlabeledProvider();
-    _updateStatusProvider(NoteStatus.deleted);
+    _updateStatusProvider(NoteStatus.archived);
+
+    return true;
+  }
+
+  /// Sets whether the [notesToSet] are deleted to [deleted] in the database.
+  Future<bool> setDeleted(List<Note> notesToSet, bool deleted) async {
+    _checkEditableStatus();
+
+    for (final note in notesToSet) {
+      note.pinned = false;
+      note.deleted = !note.deleted;
+    }
+
+    try {
+      await _notesService.putAll(notesToSet);
+    } catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
+
+      return false;
+    }
+
+    final notes = (state.value ?? [])..removeWhere((note) => notesToSet.contains(note));
+
+    state = AsyncData(notes);
+
+    _updateUnlabeledProvider();
+    _updateStatusProvider(deleted ? NoteStatus.deleted : NoteStatus.available);
 
     return true;
   }
@@ -197,10 +224,6 @@ class Notes extends _$Notes {
   /// Removes the [notesToPermanentlyDelete] from the database.
   Future<bool> permanentlyDelete(List<Note> notesToPermanentlyDelete) async {
     _checkDeletedStatus();
-
-    for (final note in notesToPermanentlyDelete) {
-      note.deleted = false;
-    }
 
     try {
       await _notesService.deleteAll(notesToPermanentlyDelete);
@@ -216,35 +239,6 @@ class Notes extends _$Notes {
           (note) => notesToPermanentlyDelete.contains(note),
         ),
     );
-
-    return true;
-  }
-
-  /// Sets the [notesToRestore] as available in the database.
-  Future<bool> restore(List<Note> notesToRestore) async {
-    _checkDeletedStatus();
-
-    for (final note in notesToRestore) {
-      note.deleted = false;
-    }
-
-    try {
-      await _notesService.putAll(notesToRestore);
-    } catch (exception, stackTrace) {
-      logger.e(exception.toString(), exception, stackTrace);
-
-      return false;
-    }
-
-    state = AsyncData(
-      (state.value ?? [])
-        ..removeWhere(
-          (note) => notesToRestore.contains(note),
-        ),
-    );
-
-    _updateUnlabeledProvider();
-    _updateStatusProvider(NoteStatus.available);
 
     return true;
   }
@@ -266,16 +260,16 @@ class Notes extends _$Notes {
     return true;
   }
 
-  /// Toggles whether the [noteToSelect] is selected.
-  void toggleSelect(Note noteToSelect) {
+  /// Toggles whether the [noteToToggle] is selected.
+  void toggleSelect(Note noteToToggle) {
     state = AsyncData([
       for (final Note note in state.value ?? [])
-        note == noteToSelect ? (noteToSelect..selected = !noteToSelect.selected) : note,
+        note == noteToToggle ? (noteToToggle..selected = !noteToToggle.selected) : note,
     ]);
   }
 
   /// Sets whether all the notes are selected to [selected].
-  void toggleSelectAll(bool selected) {
+  void setSelectAll(bool selected) {
     state = AsyncData([
       ...?state.value
         ?..forEach((note) {

@@ -15,11 +15,7 @@ import 'select.dart';
 ///
 /// First, asks for a confirmation if needed.
 /// Finally, pops the route if the note was restored from the editor page.
-Future<bool> restoreNote(BuildContext context, WidgetRef ref, {Note? note, bool pop = false}) async {
-  if (note == null) {
-    return false;
-  }
-
+Future<bool> restoreNote(BuildContext context, WidgetRef ref, {required Note note, bool pop = false}) async {
   if (!await askForConfirmation(
     context,
     l.dialog_restore,
@@ -34,7 +30,7 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, {Note? note, bool 
     Navigator.pop(context);
   }
 
-  final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).restore([note]);
+  final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).setDeleted([note], false);
 
   if (!succeeded) {
     return false;
@@ -58,7 +54,7 @@ Future<bool> restoreNotes(BuildContext context, WidgetRef ref, {required List<No
     return false;
   }
 
-  final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).restore(notes);
+  final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).setDeleted(notes, false);
 
   if (context.mounted) {
     exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.deleted);

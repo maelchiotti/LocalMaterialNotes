@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+
+import '../../constants/constants.dart';
+
+/// Lists the options available in the menu for the available notes.
+enum NotesMenuOption {
+  /// Copy the notes to the clipboard.
+  copy(Icons.copy),
+
+  /// Share the notes.
+  share(Icons.share),
+
+  /// Toggle whether the notes are pinned.
+  togglePin(Icons.push_pin),
+
+  /// Add labels to the notes.
+  addLabels(Icons.label),
+
+  /// Archive the notes.
+  archive(Icons.archive),
+
+  /// Delete the notes.
+  delete(Icons.delete),
+  ;
+
+  /// Icon of the menu option.
+  final IconData icon;
+
+  /// An option displayed in the menu for the available notes.
+  ///
+  /// An action is represented by an [icon] and a [title].
+  const NotesMenuOption(this.icon);
+
+  /// Returns the title of the menu option.
+  String get title {
+    switch (this) {
+      case togglePin:
+        return l.action_toggle_pins;
+      case addLabels:
+        return l.menu_action_add_labels;
+      case copy:
+        return flutterL?.copyButtonLabel ?? 'Copy';
+      case share:
+        return flutterL?.shareButtonLabel ?? 'Share';
+      case archive:
+        return l.action_archive;
+      case delete:
+        return l.action_delete;
+    }
+  }
+
+  /// Returns the [PopupMenuItem] widget of the menu option.
+  PopupMenuItem<NotesMenuOption> popupMenuItem(BuildContext context) {
+    return PopupMenuItem(
+      value: this,
+      child: ListTile(
+        leading: Icon(icon),
+        title: Text(title),
+      ),
+    );
+  }
+}
