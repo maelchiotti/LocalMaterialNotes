@@ -120,16 +120,16 @@ class NotesService {
         ...(await (_checklistNotes.getAll(ids))).nonNulls,
       ];
 
-  /// Returns all the notes that are not deleted.
-  Future<List<Note>> getAllNotDeleted() async => [
+  /// Returns all the notes that are available.
+  Future<List<Note>> getAllAvailable() async => [
         ...await (_plainTextNotes.where().deletedEqualTo(false).findAll()),
         ...await (_richTextNotes.where().deletedEqualTo(false).findAll()),
         ...await (_markdownNotes.where().deletedEqualTo(false).findAll()),
         ...await (_checklistNotes.where().deletedEqualTo(false).findAll()),
       ];
 
-  /// Returns all the notes that are not deleted filtered by the [label].
-  Future<List<Note>> getAllNotDeletedFilteredByLabel({required Label label}) async => [
+  /// Returns all the notes that are available filtered by the [label].
+  Future<List<Note>> getAllAvailableFilteredByLabel({required Label label}) async => [
         ...await (_plainTextNotes
             .where()
             .deletedEqualTo(false)
@@ -154,6 +154,14 @@ class NotesService {
             .filter()
             .labels((q) => q.nameEqualTo(label.name))
             .findAll()),
+      ];
+
+  /// Returns all the notes that are archived.
+  Future<List<Note>> getAllArchived() async => [
+        ...await (_plainTextNotes.where().archivedEqualTo(true).findAll()),
+        ...await (_richTextNotes.where().archivedEqualTo(true).findAll()),
+        ...await (_markdownNotes.where().archivedEqualTo(true).findAll()),
+        ...await (_checklistNotes.where().archivedEqualTo(true).findAll()),
       ];
 
   /// Returns all the notes that are deleted.

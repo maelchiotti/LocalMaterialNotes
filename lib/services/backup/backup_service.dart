@@ -225,7 +225,7 @@ class ManualBackupService {
     final version = InfoUtils().appVersion;
     final buildNumber = InfoUtils().buildNumber;
 
-    var notes = await _notesService.getAllNotDeleted();
+    var notes = await _notesService.getAllAvailable();
     if (encrypt && password != null && password.isNotEmpty) {
       notes = notes.map((note) => note.encrypted(password)).toList();
     }
@@ -292,7 +292,7 @@ class ManualBackupService {
       return false;
     }
 
-    final notes = await _notesService.getAllNotDeleted();
+    final notes = await _notesService.getAllAvailable();
     final archive = Archive();
 
     for (final note in notes) {

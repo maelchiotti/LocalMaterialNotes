@@ -12,6 +12,7 @@ class ChecklistNote extends Note {
 
   /// A note with checklist content.
   ChecklistNote({
+    required super.archived,
     required super.deleted,
     required super.pinned,
     required super.createdTime,
@@ -27,6 +28,7 @@ class ChecklistNote extends Note {
 
   /// Checklist note with empty title and 1 empty checklist item.
   factory ChecklistNote.empty() => ChecklistNote(
+        archived: false,
         deleted: false,
         pinned: false,
         createdTime: DateTime.now(),
@@ -38,6 +40,7 @@ class ChecklistNote extends Note {
 
   /// Checklist note with the provided [content].
   factory ChecklistNote.content(List<ChecklistLine> content) => ChecklistNote(
+        archived: false,
         deleted: false,
         pinned: false,
         createdTime: DateTime.now(),

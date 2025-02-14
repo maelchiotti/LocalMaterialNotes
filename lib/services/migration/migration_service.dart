@@ -37,6 +37,7 @@ class MigrationService {
     final richTextNotes = oldNotes
         .map(
           (oldNote) => RichTextNote(
+            archived: false,
             deleted: oldNote.deleted,
             pinned: oldNote.pinned,
             createdTime: oldNote.createdTime,

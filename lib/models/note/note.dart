@@ -44,6 +44,10 @@ sealed class Note implements Comparable<Note> {
   @ignore
   NoteType type;
 
+  /// Whether the note is archived.
+  @Index()
+  bool archived;
+
   /// Whether the note is deleted.
   @Index()
   bool deleted;
@@ -74,6 +78,7 @@ sealed class Note implements Comparable<Note> {
 
   /// Default constructor of a note.
   Note({
+    required this.archived,
     required this.deleted,
     required this.pinned,
     required this.createdTime,
@@ -88,7 +93,9 @@ sealed class Note implements Comparable<Note> {
   /// The status of the note.
   @ignore
   NoteStatus get status {
-    if (deleted) {
+    if (archived) {
+      return NoteStatus.archived;
+    } else if (deleted) {
       return NoteStatus.deleted;
     }
 

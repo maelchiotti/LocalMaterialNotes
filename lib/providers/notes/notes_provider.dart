@@ -18,7 +18,7 @@ class Notes extends _$Notes {
   @override
   FutureOr<List<Note>> build({required NoteStatus status, Label? label}) => get();
 
-  /// Returns the list of notes depending on their [status].
+  /// Returns the list of notes depending on the provider's [status] and [label].
   Future<List<Note>> get() async {
     List<Note> notes = [];
 
@@ -26,8 +26,10 @@ class Notes extends _$Notes {
       switch (status) {
         case NoteStatus.available:
           notes = label != null
-              ? await _notesService.getAllNotDeletedFilteredByLabel(label: label!)
-              : await _notesService.getAllNotDeleted();
+              ? await _notesService.getAllAvailableFilteredByLabel(label: label!)
+              : await _notesService.getAllAvailable();
+        case NoteStatus.archived:
+          notes = await _notesService.getAllArchived();
         case NoteStatus.deleted:
           notes = await _notesService.getAllDeleted();
       }
