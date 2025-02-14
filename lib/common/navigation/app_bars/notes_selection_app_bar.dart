@@ -22,11 +22,11 @@ class NotesSelectionAppBar extends ConsumerWidget {
   /// App bar shown when the notes are being selected, in the notes list or in the bin.
   const NotesSelectionAppBar({
     super.key,
-    required this.notesPage,
+    required this.notesStatus,
   });
 
-  /// Whether the current page is the notes list.
-  final bool notesPage;
+  /// The status of the notes in the page.
+  final NoteStatus notesStatus;
 
   /// Builds the app bar.
   ///
@@ -42,7 +42,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
 
     return AppBar(
       leading: BackButton(
-        onPressed: () => exitNotesSelectionMode(context, ref, notesPage: notesPage),
+        onPressed: () => exitNotesSelectionMode(context, ref, notesStatus: notesStatus),
       ),
       title: Text('${selectedNotes.length}'),
       actions: [
@@ -50,13 +50,13 @@ class NotesSelectionAppBar extends ConsumerWidget {
           icon: Icon(allSelected ? Icons.deselect : Icons.select_all),
           tooltip: allSelected ? l.tooltip_unselect_all : flutterL?.selectAllButtonLabel ?? 'Select all',
           onPressed: () => allSelected
-              ? unselectAllNotes(context, ref, notesPage: notesPage)
-              : selectAllNotes(context, ref, notesPage: notesPage),
+              ? unselectAllNotes(context, ref, notesStatus: notesStatus)
+              : selectAllNotes(context, ref, notesStatus: notesStatus),
         ),
         Padding(padding: Paddings.appBarActionsEnd),
         Separator.divider1indent16.vertical,
         Padding(padding: Paddings.appBarActionsEnd),
-        if (notesPage) ...[
+        if (notesStatus == NoteStatus.available) ...[
           IconButton(
             icon: const Icon(Icons.share),
             tooltip: 'Share',
@@ -80,7 +80,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
             tooltip: l.tooltip_delete,
             onPressed: selectedNotes.isNotEmpty ? () => deleteNotes(context, ref, notes: selectedNotes) : null,
           ),
-        ] else ...[
+        ] else if (notesStatus == NoteStatus.deleted) ...[
           IconButton(
             icon: const Icon(Icons.restore_from_trash),
             tooltip: l.tooltip_restore,
@@ -103,26 +103,17 @@ class NotesSelectionAppBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return notesPage
-        ? ref.watch(notesProvider(status: NoteStatus.available, label: currentLabelFilter)).when(
-              data: (notes) => buildAppBar(
-                context,
-                ref,
-                notes.where((note) => note.selected).toList(),
-                notes.length,
-              ),
-              error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
-              loading: () => const LoadingPlaceholder(),
-            )
-        : ref.watch(notesProvider(status: NoteStatus.deleted)).when(
-              data: (notes) => buildAppBar(
-                context,
-                ref,
-                notes.where((note) => note.selected).toList(),
-                notes.length,
-              ),
-              error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
-              loading: () => const LoadingPlaceholder(),
+    return ref.watch(notesProvider(status: notesStatus, label: currentLabelFilter)).when(
+          data: (notes) {
+            return buildAppBar(
+              context,
+              ref,
+              notes.where((note) => note.selected).toList(),
+              notes.length,
             );
+          },
+          error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
+          loading: () => const LoadingPlaceholder(),
+        );
   }
 }

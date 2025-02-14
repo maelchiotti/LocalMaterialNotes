@@ -15,16 +15,16 @@ Future<bool> togglePinNote(BuildContext context, WidgetRef ref, {Note? note}) as
     return false;
   }
 
-  await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).togglePin(note);
+  await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).togglePin([note]);
 
   return false;
 }
 
 /// Toggles the pined status of the [notes].
 Future<void> togglePinNotes(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
-  await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).togglePinAll(notes);
+  await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).togglePin(notes);
 
   if (context.mounted) {
-    exitNotesSelectionMode(context, ref);
+    exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.available);
   }
 }

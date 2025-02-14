@@ -141,32 +141,8 @@ class Notes extends _$Notes {
     return true;
   }
 
-  /// Toggles the pin status of the [noteToToggle] in the database.
-  Future<bool> togglePin(Note noteToToggle) async {
-    _checkEditableStatus();
-
-    noteToToggle.pinned = !noteToToggle.pinned;
-
-    try {
-      await _notesService.put(noteToToggle);
-    } catch (exception, stackTrace) {
-      logger.e(exception.toString(), exception, stackTrace);
-
-      return false;
-    }
-
-    final notes = (state.value ?? [])
-      ..remove(noteToToggle)
-      ..add(noteToToggle);
-
-    state = AsyncData(notes.sorted());
-    _updateUnlabeledProvider();
-
-    return true;
-  }
-
   /// Toggles the pin status of the [notesToToggle] in the database.
-  Future<bool> togglePinAll(List<Note> notesToToggle) async {
+  Future<bool> togglePin(List<Note> notesToToggle) async {
     _checkEditableStatus();
 
     for (final note in notesToToggle) {
@@ -191,23 +167,8 @@ class Notes extends _$Notes {
     return true;
   }
 
-  /// Sets the [note] as deleted in the database.
-  Future<bool> delete(Note note) async {
-    _checkEditableStatus();
-
-    note.pinned = false;
-    note.deleted = true;
-
-    final succeeded = await edit(note);
-
-    _updateUnlabeledProvider();
-    _updateStatusProvider(NoteStatus.deleted);
-
-    return succeeded;
-  }
-
   /// Sets the [notes] as deleted in the database.
-  Future<bool> deleteAll(List<Note> notesToDelete) async {
+  Future<bool> delete(List<Note> notesToDelete) async {
     _checkEditableStatus();
 
     for (final note in notesToDelete) {
@@ -233,44 +194,8 @@ class Notes extends _$Notes {
     return true;
   }
 
-  /// Removes all the deleted notes from the database.
-  Future<bool> emptyBin() async {
-    _checkDeletedStatus();
-
-    try {
-      await _notesService.emptyBin();
-    } catch (exception, stackTrace) {
-      logger.e(exception.toString(), exception, stackTrace);
-
-      return false;
-    }
-
-    state = const AsyncData([]);
-
-    return true;
-  }
-
-  /// Removes the [noteToPermanentlyDelete] from the database.
-  Future<bool> permanentlyDelete(Note noteToPermanentlyDelete) async {
-    _checkDeletedStatus();
-
-    try {
-      await _notesService.delete(noteToPermanentlyDelete);
-    } catch (exception, stackTrace) {
-      logger.e(exception.toString(), exception, stackTrace);
-
-      return false;
-    }
-
-    state = AsyncData(
-      (state.value ?? [])..remove(noteToPermanentlyDelete),
-    );
-
-    return true;
-  }
-
   /// Removes the [notesToPermanentlyDelete] from the database.
-  Future<bool> permanentlyDeleteAll(List<Note> notesToPermanentlyDelete) async {
+  Future<bool> permanentlyDelete(List<Note> notesToPermanentlyDelete) async {
     _checkDeletedStatus();
 
     for (final note in notesToPermanentlyDelete) {
@@ -295,32 +220,8 @@ class Notes extends _$Notes {
     return true;
   }
 
-  /// Sets the [noteToRestore] as not deleted in the database.
-  Future<bool> restore(Note noteToRestore) async {
-    _checkDeletedStatus();
-
-    noteToRestore.deleted = false;
-
-    try {
-      await _notesService.put(noteToRestore);
-    } catch (exception, stackTrace) {
-      logger.e(exception.toString(), exception, stackTrace);
-
-      return false;
-    }
-
-    state = AsyncData(
-      (state.value ?? [])..remove(noteToRestore),
-    );
-
-    _updateUnlabeledProvider();
-    _updateStatusProvider(NoteStatus.available);
-
-    return true;
-  }
-
-  /// Sets the [notesToRestore] as not deleted in the database.
-  Future<bool> restoreAll(List<Note> notesToRestore) async {
+  /// Sets the [notesToRestore] as available in the database.
+  Future<bool> restore(List<Note> notesToRestore) async {
     _checkDeletedStatus();
 
     for (final note in notesToRestore) {
@@ -348,36 +249,37 @@ class Notes extends _$Notes {
     return true;
   }
 
-  /// Selects the [noteToSelect].
-  void select(Note noteToSelect) {
+  /// Removes all the deleted notes from the database.
+  Future<bool> emptyBin() async {
+    _checkDeletedStatus();
+
+    try {
+      await _notesService.emptyBin();
+    } catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
+
+      return false;
+    }
+
+    state = const AsyncData([]);
+
+    return true;
+  }
+
+  /// Toggles whether the [noteToSelect] is selected.
+  void toggleSelect(Note noteToSelect) {
     state = AsyncData([
-      for (final Note note in state.value ?? []) note == noteToSelect ? (noteToSelect..selected = true) : note,
+      for (final Note note in state.value ?? [])
+        note == noteToSelect ? (noteToSelect..selected = !noteToSelect.selected) : note,
     ]);
   }
 
-  /// Unselects the [noteToSelect].
-  void unselect(Note noteToUnselect) {
-    state = AsyncData([
-      for (final Note note in state.value ?? []) note == noteToUnselect ? (noteToUnselect..selected = false) : note,
-    ]);
-  }
-
-  /// Selects all the not deleted notes.
-  void selectAll() {
+  /// Sets whether all the notes are selected to [selected].
+  void toggleSelectAll(bool selected) {
     state = AsyncData([
       ...?state.value
         ?..forEach((note) {
-          note.selected = true;
-        }),
-    ]);
-  }
-
-  /// Unselects all the not deleted notes.
-  void unselectAll() {
-    state = AsyncData([
-      ...?state.value
-        ?..forEach((note) {
-          note.selected = false;
+          note.selected = selected;
         }),
     ]);
   }

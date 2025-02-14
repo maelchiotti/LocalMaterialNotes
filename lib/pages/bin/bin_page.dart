@@ -6,6 +6,7 @@ import '../../common/navigation/side_navigation.dart';
 import '../../common/navigation/top_navigation.dart';
 import '../../common/widgets/keys.dart';
 import '../../common/widgets/notes/notes_list.dart';
+import '../../models/note/note_status.dart';
 import 'widgets/empty_bin_fab.dart';
 
 /// Page displaying the deleted notes.
@@ -28,9 +29,9 @@ class _BinPageState extends ConsumerState<BinPage> {
       appBar: TopNavigation(
         appbar: NotesAppBar(
           key: Keys.appBarNotesBin,
-          notesPage: false,
+          notesStatus: NoteStatus.deleted,
         ),
-        notesPage: false,
+        notesStatus: NoteStatus.deleted,
       ),
       drawer: SideNavigation(),
       floatingActionButton: EmptyBinFab(
@@ -38,7 +39,7 @@ class _BinPageState extends ConsumerState<BinPage> {
       ),
       body: NotesList(
         key: Keys.notesPageNotesList,
-        notesPage: false,
+        notesStatus: NoteStatus.deleted,
       ),
     );
   }

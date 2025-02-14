@@ -75,7 +75,7 @@ Future<List<Label>?> addLabels(BuildContext context, WidgetRef ref, {required Li
       .addLabels(notes, selectedLabels);
 
   if (context.mounted) {
-    exitNotesSelectionMode(context, ref);
+    exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.available);
   }
 
   return selectedLabels;

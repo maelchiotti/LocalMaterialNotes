@@ -34,7 +34,7 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, {Note? note, bool 
     Navigator.pop(context);
   }
 
-  final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).restore(note);
+  final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).restore([note]);
 
   if (!succeeded) {
     return false;
@@ -58,10 +58,10 @@ Future<bool> restoreNotes(BuildContext context, WidgetRef ref, {required List<No
     return false;
   }
 
-  final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).restoreAll(notes);
+  final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).restore(notes);
 
   if (context.mounted) {
-    exitNotesSelectionMode(context, ref, notesPage: false);
+    exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.deleted);
   }
 
   return succeeded;

@@ -65,6 +65,10 @@
   "@navigation_manage_labels_page": {
     "description": "Title of the page to manage the labels."
   },
+  "navigation_archives": "Archives",
+  "@navigation_archives": {
+    "description": "Title of the archives page."
+  },
   "navigation_bin": "Bin",
   "@navigation_bin": {
     "description": "Title of the bin page."

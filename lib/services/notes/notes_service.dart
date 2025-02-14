@@ -9,6 +9,7 @@ import '../../common/constants/notes.dart';
 import '../../models/label/label.dart';
 import '../../models/note/index/note_index.dart';
 import '../../models/note/note.dart';
+import '../../models/note/note_status.dart';
 import '../database_service.dart';
 
 /// Service for the notes database.
@@ -172,24 +173,32 @@ class NotesService {
         ...await (_checklistNotes.where().deletedEqualTo(true).findAll()),
       ];
 
-  /// Returns all the notes that match the [search].
-  ///
-  /// If [notesPage] is set to `true`, the search should be performed on the deleted notes.
+  /// Returns all the notes with the [notesStatus] that match the [search].
   ///
   /// If [label] is set, the search should be performed on the notes that have that label.
-  Future<List<Note>> search(String search, bool notesPage, String? label) async {
-    final searchFilter = Mimir.and(
-      [
-        Mimir.where('deleted', isEqualTo: (!notesPage).toString()),
-        if (label != null) Mimir.where('labels', containsAtLeastOneOf: [label]),
-      ],
-    );
+  Future<List<Note>> search(String search, NoteStatus notesStatus, String? label) async {
+    final searchFilter = Mimir.and([
+      ...switch (notesStatus) {
+        NoteStatus.available => [
+            Mimir.where('deleted', isEqualTo: false.toString()),
+            Mimir.where('archived', isEqualTo: false.toString()),
+          ],
+        NoteStatus.archived => [
+            Mimir.where('archived', isEqualTo: (true).toString()),
+          ],
+        NoteStatus.deleted => [
+            Mimir.where('deleted', isEqualTo: (true).toString()),
+          ],
+      },
+      if (label != null) Mimir.where('labels', containsAtLeastOneOf: [label]),
+    ]);
+
     final searchResults = await _index.search(
       query: search,
       filter: searchFilter,
     );
-    final notesIds = searchResults.map((Map<String, dynamic> noteIndex) => noteIndex['id'] as int).toList();
 
+    final notesIds = searchResults.map((Map<String, dynamic> noteIndex) => noteIndex['id'] as int).toList();
     final notes = (await getAllByIds(notesIds));
 
     // Check that all search results correspond to an existing note

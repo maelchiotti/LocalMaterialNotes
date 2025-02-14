@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../models/note/note_status.dart';
 import '../../providers/notifiers/notifiers.dart';
 import 'app_bars/labels_selection_app_bar.dart';
 import 'app_bars/notes_selection_app_bar.dart';
@@ -10,14 +11,14 @@ class TopNavigation extends StatelessWidget implements PreferredSizeWidget {
   const TopNavigation({
     super.key,
     required this.appbar,
-    this.notesPage = true,
+    this.notesStatus,
   });
 
   /// App bar depending on the current route and whether the selection mode is enabled.
   final Widget appbar;
 
   /// Whether the current page is the notes list.
-  final bool notesPage;
+  final NoteStatus? notesStatus;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -29,8 +30,8 @@ class TopNavigation extends StatelessWidget implements PreferredSizeWidget {
       builder: (context, isNotesSelectionMode, child) => ValueListenableBuilder(
         valueListenable: isLabelsSelectionModeNotifier,
         builder: (context, isLabelsSelectionMode, child) {
-          if (isNotesSelectionMode) {
-            return NotesSelectionAppBar(notesPage: notesPage);
+          if (isNotesSelectionMode && notesStatus != null) {
+            return NotesSelectionAppBar(notesStatus: notesStatus!);
           } else if (isLabelsSelectionMode) {
             return const LabelsSelectionAppBar();
           }

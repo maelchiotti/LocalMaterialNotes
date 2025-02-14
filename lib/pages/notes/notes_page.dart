@@ -8,6 +8,7 @@ import '../../common/navigation/top_navigation.dart';
 import '../../common/widgets/keys.dart';
 import '../../common/widgets/notes/notes_list.dart';
 import '../../models/label/label.dart';
+import '../../models/note/note_status.dart';
 import '../../providers/notifiers/notifiers.dart';
 import '../../providers/preferences/preferences_provider.dart';
 import 'widgets/add_note_fab.dart';
@@ -47,7 +48,9 @@ class _NotesPageState extends ConsumerState<NotesPage> {
         appbar: NotesAppBar(
           key: Keys.appBarNotesBin,
           label: widget.label,
+          notesStatus: NoteStatus.available,
         ),
+        notesStatus: NoteStatus.available,
       ),
       drawer: SideNavigation(),
       floatingActionButtonLocation: availableNotesTypes.length > 1 ? ExpandableFab.location : null,
@@ -56,6 +59,7 @@ class _NotesPageState extends ConsumerState<NotesPage> {
       ),
       body: NotesList(
         key: Keys.notesPageNotesList,
+        notesStatus: NoteStatus.available,
         label: widget.label,
       ),
     );

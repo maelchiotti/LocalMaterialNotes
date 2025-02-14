@@ -22,24 +22,28 @@ class NotesList extends ConsumerWidget {
   /// Default constructor.
   const NotesList({
     super.key,
+    required this.notesStatus,
     this.label,
-    this.notesPage = true,
   });
+
+  /// The status of the notes in the page.
+  final NoteStatus notesStatus;
 
   /// The current label filter.
   ///
   /// Used instead of [currentLabelFilter] to avoid a provider rebuild when it changes.
   final Label? label;
 
-  /// Whether the current page is the notes list.
-  final bool notesPage;
-
   /// Returns the child of the widget.
   ///
   /// The child is either an empty placeholder if the [notes] are empty, are the [notes] list otherwise.
   Widget child(BuildContext context, WidgetRef ref, List<Note> notes) {
     if (notes.isEmpty) {
-      return notesPage ? EmptyPlaceholder.notes() : EmptyPlaceholder.bin();
+      return switch (notesStatus) {
+        NoteStatus.available => EmptyPlaceholder.available(),
+        NoteStatus.archived => EmptyPlaceholder.archived(),
+        NoteStatus.deleted => EmptyPlaceholder.deleted(),
+      };
     }
 
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
@@ -80,16 +84,10 @@ class NotesList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return notesPage
-        ? ref.watch(notesProvider(status: NoteStatus.available, label: label)).when(
-              data: (notes) => child(context, ref, notes),
-              error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
-              loading: () => const LoadingPlaceholder(),
-            )
-        : ref.watch(notesProvider(status: NoteStatus.deleted)).when(
-              data: (notes) => child(context, ref, notes),
-              error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
-              loading: () => const LoadingPlaceholder(),
-            );
+    return ref.watch(notesProvider(status: notesStatus, label: label)).when(
+          data: (notes) => child(context, ref, notes),
+          error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
+          loading: () => const LoadingPlaceholder(),
+        );
   }
 }

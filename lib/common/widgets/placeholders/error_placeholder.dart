@@ -7,9 +7,7 @@ import '../../../l10n/app_localizations/app_localizations.g.dart';
 import '../../../services/backup/backup_service.dart';
 import '../../constants/constants.dart';
 import '../../constants/paddings.dart';
-import '../../navigation/app_bars/error_app_bar.dart';
 import '../../navigation/side_navigation.dart';
-import '../../navigation/top_navigation.dart';
 import '../../preferences/preference_key.dart';
 import '../../system/info_utils.dart';
 import '../../ui/snack_bar_utils.dart';
@@ -76,6 +74,7 @@ class ErrorPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context);
+    final textTheme = Theme.of(context).textTheme;
 
     // Disable the secure flag until the next restart to allow screenshots
     final isFlagSecureSettingEnabled = PreferenceKey.flagSecure.getPreferenceOrDefault();
@@ -83,11 +82,9 @@ class ErrorPlaceholder extends StatelessWidget {
       FlagSecure.unset();
     }
 
-    final textTheme = Theme.of(context).textTheme;
-
     return Scaffold(
-      appBar: const TopNavigation(
-        appbar: ErrorAppBar(),
+      appBar: AppBar(
+        title: Text(l.error_widget_title),
       ),
       drawer: const SideNavigation(),
       body: Center(

@@ -8,40 +8,28 @@ import '../../../providers/notifiers/notifiers.dart';
 
 /// Toggles the select status of the [note].
 void toggleSelectNote(WidgetRef ref, {required Note note}) {
-  if (note.deleted) {
-    note.selected
-        ? ref.read(notesProvider(status: NoteStatus.deleted).notifier).unselect(note)
-        : ref.read(notesProvider(status: NoteStatus.deleted).notifier).select(note);
-  } else {
-    note.selected
-        ? ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).unselect(note)
-        : ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).select(note);
-  }
+  ref.read(notesProvider(status: note.status, label: currentLabelFilter).notifier).toggleSelect(note);
 }
 
 /// Selects all the notes.
 ///
 /// Depending on the current route, selects either the notes from the notes page or those from the bin page.
-void selectAllNotes(BuildContext context, WidgetRef ref, {bool notesPage = true}) {
-  notesPage
-      ? ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).selectAll()
-      : ref.read(notesProvider(status: NoteStatus.deleted).notifier).selectAll();
+void selectAllNotes(BuildContext context, WidgetRef ref, {required NoteStatus notesStatus}) {
+  ref.read(notesProvider(status: notesStatus, label: currentLabelFilter).notifier).toggleSelectAll(true);
 }
 
 /// Unselects all the notes.
 ///
 /// Depending on the current route, unselects either the notes from the notes page or those from the bin page.
-void unselectAllNotes(BuildContext context, WidgetRef ref, {bool notesPage = true}) {
-  notesPage
-      ? ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).unselectAll()
-      : ref.read(notesProvider(status: NoteStatus.deleted).notifier).unselectAll();
+void unselectAllNotes(BuildContext context, WidgetRef ref, {required NoteStatus notesStatus}) {
+  ref.read(notesProvider(status: notesStatus, label: currentLabelFilter).notifier).toggleSelectAll(false);
 }
 
 /// Exits the notes selection mode.
 ///
 /// First unselects all the notes.
-void exitNotesSelectionMode(BuildContext context, WidgetRef ref, {bool notesPage = true}) {
-  unselectAllNotes(context, ref, notesPage: notesPage);
+void exitNotesSelectionMode(BuildContext context, WidgetRef ref, {required NoteStatus notesStatus}) {
+  unselectAllNotes(context, ref, notesStatus: notesStatus);
 
   isNotesSelectionModeNotifier.value = false;
 }

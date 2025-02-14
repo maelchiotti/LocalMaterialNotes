@@ -14,7 +14,7 @@ import 'select.dart';
 /// A [content] can be specified when the note is created from a sharing intent.
 Future<void> addNote(BuildContext context, WidgetRef ref, {required NoteType noteType, String? content}) async {
   if (isNotesSelectionModeNotifier.value) {
-    exitNotesSelectionMode(context, ref);
+    exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.available);
   }
 
   final Note note;

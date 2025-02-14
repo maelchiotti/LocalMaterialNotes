@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../constants/constants.dart';
 import '../../constants/paddings.dart';
 import '../../constants/sizes.dart';
@@ -10,20 +11,25 @@ class EmptyPlaceholder extends StatelessWidget {
   /// Displays a big icon and a short text indicating that the page is empty.
   const EmptyPlaceholder({super.key, this.icon, this.text});
 
-  /// Empty notes lists.
-  EmptyPlaceholder.notes({super.key})
+  /// Empty available notes list.
+  EmptyPlaceholder.available({super.key})
       : icon = Icons.notes,
         text = l.placeholder_notes;
+
+  /// Empty archived notes list.
+  EmptyPlaceholder.archived({super.key})
+      : icon = Icons.archive_outlined,
+        text = l.placeholder_bin;
+
+  /// Empty deleted notes list.
+  EmptyPlaceholder.deleted({super.key})
+      : icon = Icons.delete_outline,
+        text = l.placeholder_bin;
 
   /// Empty labels.
   EmptyPlaceholder.labels({super.key})
       : icon = Icons.label_outline,
         text = l.placeholder_labels;
-
-  /// Empty bin.
-  EmptyPlaceholder.bin({super.key})
-      : icon = Icons.delete_outline,
-        text = l.placeholder_bin;
 
   /// Icon to display.
   final IconData? icon;
