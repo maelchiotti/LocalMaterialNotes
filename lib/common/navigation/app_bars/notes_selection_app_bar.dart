@@ -50,9 +50,9 @@ class NotesSelectionAppBar extends ConsumerWidget {
       case NotesMenuOption.togglePin:
         await togglePinNotes(context, ref, notes: notes);
       case NotesMenuOption.addLabels:
-        addLabels(context, ref, notes: notes);
+        await addLabels(context, ref, notes: notes);
       case NotesMenuOption.archive:
-        await archiveNote(context, ref);
+        await archiveNotes(context, ref, notes: notes);
       case NotesMenuOption.delete:
         await deleteNotes(context, ref, notes: notes);
     }

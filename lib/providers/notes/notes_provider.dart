@@ -55,7 +55,7 @@ class Notes extends _$Notes {
   ///
   /// The note can be forcefully put into the database even it it's empty using [forcePut].
   Future<bool> edit(Note editedNote, {bool forcePut = false}) async {
-    _checkEditableStatus();
+    _checkStatus([NoteStatus.available, NoteStatus.archived]);
 
     editedNote.editedTime = DateTime.now();
 
@@ -86,7 +86,7 @@ class Notes extends _$Notes {
 
   /// Saves the [note] with the new [selectedLabels] to the database.
   Future<bool> editLabels(Note note, Iterable<Label> selectedLabels) async {
-    _checkEditableStatus();
+    _checkStatus([NoteStatus.available, NoteStatus.archived]);
 
     try {
       await _notesService.putLabels(note, selectedLabels);
@@ -121,7 +121,7 @@ class Notes extends _$Notes {
 
   /// Saves the [notes] with the added [selectedLabels] to the database.
   Future<bool> addLabels(List<Note> notesWhereToAdd, Iterable<Label> selectedLabels) async {
-    _checkEditableStatus();
+    _checkStatus([NoteStatus.available, NoteStatus.archived]);
 
     try {
       await _notesService.addLabels(notesWhereToAdd, selectedLabels);
@@ -143,7 +143,7 @@ class Notes extends _$Notes {
 
   /// Toggles whether the [notesToToggle] are pinned in the database.
   Future<bool> togglePin(List<Note> notesToToggle) async {
-    _checkEditableStatus();
+    _checkStatus([NoteStatus.available, NoteStatus.archived]);
 
     for (final note in notesToToggle) {
       note.pinned = !note.pinned;
@@ -169,11 +169,11 @@ class Notes extends _$Notes {
 
   /// Sets whether the [notesToSet] are archived to [archived] in the database.
   Future<bool> setArchived(List<Note> notesToSet, bool archived) async {
-    _checkEditableStatus();
+    _checkStatus([NoteStatus.available, NoteStatus.archived]);
 
     for (final note in notesToSet) {
       note.pinned = false;
-      note.archived = true;
+      note.archived = archived;
     }
 
     try {
@@ -189,14 +189,14 @@ class Notes extends _$Notes {
     state = AsyncData(notes);
 
     _updateUnlabeledProvider();
-    _updateStatusProvider(NoteStatus.archived);
+    archived ? _updateStatusProvider(NoteStatus.archived) : _updateStatusProvider(NoteStatus.available);
 
     return true;
   }
 
   /// Sets whether the [notesToSet] are deleted to [deleted] in the database.
   Future<bool> setDeleted(List<Note> notesToSet, bool deleted) async {
-    _checkEditableStatus();
+    _checkStatus([NoteStatus.available, NoteStatus.deleted]);
 
     for (final note in notesToSet) {
       note.pinned = false;
@@ -223,7 +223,7 @@ class Notes extends _$Notes {
 
   /// Removes the [notesToPermanentlyDelete] from the database.
   Future<bool> permanentlyDelete(List<Note> notesToPermanentlyDelete) async {
-    _checkDeletedStatus();
+    _checkStatus([NoteStatus.deleted]);
 
     try {
       await _notesService.deleteAll(notesToPermanentlyDelete);
@@ -245,7 +245,7 @@ class Notes extends _$Notes {
 
   /// Removes all the deleted notes from the database.
   Future<bool> emptyBin() async {
-    _checkDeletedStatus();
+    _checkStatus([NoteStatus.deleted]);
 
     try {
       await _notesService.emptyBin();
@@ -278,19 +278,11 @@ class Notes extends _$Notes {
     ]);
   }
 
-  /// Checks that the current [status] is editable.
-  void _checkEditableStatus() {
+  /// Checks that the current [status] is one of [statuses].
+  void _checkStatus(List<NoteStatus> statuses) {
     assert(
-      NoteStatus.editable.contains(status),
+      statuses.contains(status),
       'This method of the notes provider cannot be called when its status is not editable: $status',
-    );
-  }
-
-  /// Checks that the current [status] is [NoteStatus.deleted].
-  void _checkDeletedStatus() {
-    assert(
-      status == NoteStatus.deleted,
-      'This method method of the notes provider cannot be called when its status is not deleted',
     );
   }
 

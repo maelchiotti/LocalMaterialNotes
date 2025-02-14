@@ -939,9 +939,13 @@
   "@placeholder_labels": {
     "description": "Placeholder on the labels page when there are no labels."
   },
+  "placeholder_archives": "No archived notes",
+  "@placeholder_archives": {
+    "description": "Placeholder on the archives notes page when there are no archived notes."
+  },
   "placeholder_bin": "No deleted notes",
   "@placeholder_bin": {
-    "description": "Placeholder on the bin page when there are no notes."
+    "description": "Placeholder on the bin page when there are no deleted notes."
   },
   "action_disabled": "Disabled",
   "@action_disabled": {

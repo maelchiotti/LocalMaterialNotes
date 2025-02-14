@@ -6,28 +6,26 @@ import '../../common/navigation/side_navigation.dart';
 import '../../common/navigation/top_navigation.dart';
 import '../../common/widgets/notes/notes_list.dart';
 import '../../models/note/note_status.dart';
-import 'widgets/empty_bin_fab.dart';
 
-/// List of deleted notes.
-class BinPage extends ConsumerStatefulWidget {
+/// List of archived notes.
+class ArchivesPage extends ConsumerStatefulWidget {
   /// Default constructor.
-  const BinPage({super.key});
+  const ArchivesPage({super.key});
 
   @override
-  ConsumerState<BinPage> createState() => _BinPageState();
+  ConsumerState<ArchivesPage> createState() => _ArchivesPageState();
 }
 
-class _BinPageState extends ConsumerState<BinPage> {
+class _ArchivesPageState extends ConsumerState<ArchivesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TopNavigation(
-        appbar: NotesAppBar(notesStatus: NoteStatus.deleted),
-        notesStatus: NoteStatus.deleted,
+        appbar: NotesAppBar(notesStatus: NoteStatus.archived),
+        notesStatus: NoteStatus.archived,
       ),
       drawer: SideNavigation(),
-      floatingActionButton: EmptyBinFab(),
-      body: NotesList(notesStatus: NoteStatus.deleted),
+      body: NotesList(notesStatus: NoteStatus.archived),
     );
   }
 }

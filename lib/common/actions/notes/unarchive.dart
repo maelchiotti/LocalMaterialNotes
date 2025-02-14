@@ -15,11 +15,7 @@ import 'select.dart';
 ///
 /// First, asks for a confirmation if needed.
 /// Finally, pops the route if the note was unarchived from the editor page.
-Future<bool> unarchiveNote(BuildContext context, WidgetRef ref, {Note? note, bool pop = false}) async {
-  if (note == null) {
-    return false;
-  }
-
+Future<bool> unarchiveNote(BuildContext context, WidgetRef ref, {required Note note, bool pop = false}) async {
   if (!await askForConfirmation(
     context,
     l.dialog_unarchive,

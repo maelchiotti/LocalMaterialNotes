@@ -18,6 +18,7 @@ import '../../constants/constants.dart';
 import '../../constants/paddings.dart';
 import '../../preferences/preference_key.dart';
 import '../../utils.dart';
+import '../../widgets/placeholders/empty_placeholder.dart';
 import '../enums/archives_menu_option.dart';
 import '../enums/bin_menu_option.dart';
 import '../enums/editor_menu_option.dart';
@@ -58,7 +59,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       case EditorMenuOption.share:
         await shareNote(note: note);
       case EditorMenuOption.archive:
-        await archiveNote(context, ref);
+        await archiveNote(context, ref, note: note);
       case EditorMenuOption.delete:
         await deleteNote(context, ref, note: note, pop: true);
       case EditorMenuOption.about:
@@ -145,7 +146,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     final note = currentNoteNotifier.value;
 
     if (note == null) {
-      return SizedBox.shrink();
+      return EmptyPlaceholder();
     }
 
     final editorController = fleatherControllerNotifier.value;

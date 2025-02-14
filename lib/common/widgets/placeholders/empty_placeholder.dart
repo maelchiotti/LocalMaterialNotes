@@ -19,7 +19,7 @@ class EmptyPlaceholder extends StatelessWidget {
   /// Empty archived notes list.
   EmptyPlaceholder.archived({super.key})
       : icon = Icons.archive_outlined,
-        text = l.placeholder_bin;
+        text = l.placeholder_archives;
 
   /// Empty deleted notes list.
   EmptyPlaceholder.deleted({super.key})

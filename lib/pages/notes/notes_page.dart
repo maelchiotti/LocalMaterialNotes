@@ -13,7 +13,7 @@ import '../../providers/notifiers/notifiers.dart';
 import '../../providers/preferences/preferences_provider.dart';
 import 'widgets/add_note_fab.dart';
 
-/// List of notes.
+/// List of available notes.
 class NotesPage extends ConsumerStatefulWidget {
   /// The list of the notes and the FAB to add a new note.
   ///

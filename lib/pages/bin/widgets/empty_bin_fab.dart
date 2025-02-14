@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common/actions/notes/delete.dart';
 import '../../../common/constants/constants.dart';
+import '../../../common/widgets/placeholders/empty_placeholder.dart';
 import '../../../models/note/note_status.dart';
 import '../../../providers/notes/notes_provider.dart';
 
@@ -21,6 +22,6 @@ class EmptyBinFab extends ConsumerWidget {
             onPressed: () => emptyBin(context, ref),
             child: const Icon(Icons.delete_forever),
           )
-        : SizedBox.shrink();
+        : EmptyPlaceholder();
   }
 }
