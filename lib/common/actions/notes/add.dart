@@ -31,10 +31,14 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {required NoteType not
 
   // If some content was provided, then immediately save the note without waiting for changes in the editor
   if (content != null) {
-    ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
+    await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
   }
 
   currentNoteNotifier.value = note;
+
+  if (!context.mounted) {
+    return;
+  }
 
   NavigatorUtils.pushNotesEditor(context, false, true);
 }

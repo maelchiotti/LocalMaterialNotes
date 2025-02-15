@@ -7,9 +7,10 @@ import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
-import '../../../common/preferences/enums/bin_swipe_action.dart';
 import '../../../common/preferences/enums/confirmations.dart';
-import '../../../common/preferences/enums/swipe_action.dart';
+import '../../../common/preferences/enums/swipe_actions/archived_swipe_action.dart';
+import '../../../common/preferences/enums/swipe_actions/available_swipe_action.dart';
+import '../../../common/preferences/enums/swipe_actions/deleted_swipe_action.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
 import '../../../providers/preferences/preferences_provider.dart';
@@ -31,32 +32,46 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
     });
   }
 
-  /// Sets the new right [swipeAction].
-  void _submittedRightSwipeAction(SwipeAction swipeAction) {
+  /// Sets the new available right [swipeAction].
+  void _submittedAvailableSwipeRightAction(AvailableSwipeAction swipeAction) {
     PreferenceKey.swipeRightAction.set(swipeAction.name);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(rightSwipeAction: swipeAction));
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(availableSwipeRightAction: swipeAction));
   }
 
-  /// Sets the new left [swipeAction].
-  void _submittedLeftSwipeAction(SwipeAction swipeAction) {
+  /// Sets the new available left [swipeAction].
+  void _submittedAvailableSwipeLeftAction(AvailableSwipeAction swipeAction) {
     PreferenceKey.swipeLeftAction.set(swipeAction.name);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(leftSwipeAction: swipeAction));
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(availableSwipeLeftAction: swipeAction));
   }
 
-  /// Sets the new bin right [swipeAction].
-  void _submittedBinRightSwipeAction(BinSwipeAction swipeAction) {
+  /// Sets the new archived right [swipeAction].
+  void _submittedArchivedSwipeRightAction(ArchivedSwipeAction swipeAction) {
+    PreferenceKey.archivedSwipeRightAction.set(swipeAction.name);
+
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(archivedSwipeRightAction: swipeAction));
+  }
+
+  /// Sets the new archived left [swipeAction].
+  void _submittedArchivedSwipeLeftAction(ArchivedSwipeAction swipeAction) {
+    PreferenceKey.archivedSwipeLeftAction.set(swipeAction.name);
+
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(archivedSwipeLeftAction: swipeAction));
+  }
+
+  /// Sets the new deleted right [swipeAction].
+  void _submittedDeletedSwipeRightAction(DeletedSwipeAction swipeAction) {
     PreferenceKey.binSwipeRightAction.set(swipeAction.name);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(binRightSwipeAction: swipeAction));
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(deletedSwipeRightAction: swipeAction));
   }
 
-  /// Sets the new bin left [swipeAction].
-  void _submittedBinLeftSwipeAction(BinSwipeAction swipeAction) {
+  /// Sets the new deleted left [swipeAction].
+  void _submittedDeletedSwipeLeftAction(DeletedSwipeAction swipeAction) {
     PreferenceKey.binSwipeLeftAction.set(swipeAction.name);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(binLeftSwipeAction: swipeAction));
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(deletedSwipeLeftAction: swipeAction));
   }
 
   /// Toggles Android's `FLAG_SECURE` to hide the app from the recent apps and prevent screenshots.
@@ -73,8 +88,15 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
     final confirmations = Confirmations.fromPreference();
     final flagSecure = PreferenceKey.flagSecure.getPreferenceOrDefault();
 
-    final swipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.swipeActions));
-    final binSwipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.binSwipeActions));
+    final availableSwipeActions = ref.watch(
+      preferencesProvider.select((preferences) => preferences.availableSwipeActions),
+    );
+    final archivedSwipeActions = ref.watch(
+      preferencesProvider.select((preferences) => preferences.archivedSwipeActions),
+    );
+    final deletedSwipeActions = ref.watch(
+      preferencesProvider.select((preferences) => preferences.deletedSwipeActions),
+    );
 
     return Scaffold(
       appBar: TopNavigation(
@@ -123,10 +145,10 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_right,
                     title: l.settings_swipe_action_right,
-                    value: swipeActions.right.title(false),
+                    value: availableSwipeActions.right.title(false),
                     description: l.settings_swipe_action_right_description,
                     dialogTitle: l.settings_swipe_action_right,
-                    options: SwipeAction.values
+                    options: AvailableSwipeAction.values
                         .map(
                           (swipeAction) => (
                             value: swipeAction,
@@ -135,16 +157,16 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                           ),
                         )
                         .toList(),
-                    initialOption: swipeActions.right,
-                    onSubmitted: _submittedRightSwipeAction,
+                    initialOption: availableSwipeActions.right,
+                    onSubmitted: _submittedAvailableSwipeRightAction,
                   ),
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_left,
                     title: l.settings_swipe_action_left,
-                    value: swipeActions.left.title(false),
+                    value: availableSwipeActions.left.title(false),
                     description: l.settings_swipe_action_left_description,
                     dialogTitle: l.settings_swipe_action_left,
-                    options: SwipeAction.values
+                    options: AvailableSwipeAction.values
                         .map(
                           (swipeAction) => (
                             value: swipeAction,
@@ -153,8 +175,50 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                           ),
                         )
                         .toList(),
-                    initialOption: swipeActions.left,
-                    onSubmitted: _submittedLeftSwipeAction,
+                    initialOption: availableSwipeActions.left,
+                    onSubmitted: _submittedAvailableSwipeLeftAction,
+                  ),
+                ],
+              ),
+              SettingSection(
+                divider: null,
+                title: l.settings_behavior_swipe_actions_archives,
+                tiles: [
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.swipe_right,
+                    title: l.settings_swipe_action_right,
+                    value: archivedSwipeActions.right.title,
+                    description: l.settings_swipe_action_right_description,
+                    dialogTitle: l.settings_swipe_action_right,
+                    options: ArchivedSwipeAction.values
+                        .map(
+                          (swipeAction) => (
+                            value: swipeAction,
+                            title: swipeAction.title,
+                            subtitle: null,
+                          ),
+                        )
+                        .toList(),
+                    initialOption: archivedSwipeActions.right,
+                    onSubmitted: _submittedArchivedSwipeRightAction,
+                  ),
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.swipe_left,
+                    title: l.settings_swipe_action_left,
+                    value: archivedSwipeActions.left.title,
+                    description: l.settings_swipe_action_left_description,
+                    dialogTitle: l.settings_swipe_action_left,
+                    options: ArchivedSwipeAction.values
+                        .map(
+                          (swipeAction) => (
+                            value: swipeAction,
+                            title: swipeAction.title,
+                            subtitle: null,
+                          ),
+                        )
+                        .toList(),
+                    initialOption: archivedSwipeActions.left,
+                    onSubmitted: _submittedArchivedSwipeLeftAction,
                   ),
                 ],
               ),
@@ -165,10 +229,10 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_right,
                     title: l.settings_swipe_action_right,
-                    value: binSwipeActions.right.title,
+                    value: deletedSwipeActions.right.title,
                     description: l.settings_bin_swipe_action_right_description,
                     dialogTitle: l.settings_swipe_action_right,
-                    options: BinSwipeAction.values
+                    options: DeletedSwipeAction.values
                         .map(
                           (swipeAction) => (
                             value: swipeAction,
@@ -177,16 +241,16 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                           ),
                         )
                         .toList(),
-                    initialOption: binSwipeActions.right,
-                    onSubmitted: _submittedBinRightSwipeAction,
+                    initialOption: deletedSwipeActions.right,
+                    onSubmitted: _submittedDeletedSwipeRightAction,
                   ),
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_left,
                     title: l.settings_swipe_action_left,
-                    value: binSwipeActions.left.title,
+                    value: deletedSwipeActions.left.title,
                     description: l.settings_bin_swipe_action_left_description,
                     dialogTitle: l.settings_swipe_action_left,
-                    options: BinSwipeAction.values
+                    options: DeletedSwipeAction.values
                         .map(
                           (swipeAction) => (
                             value: swipeAction,
@@ -195,8 +259,8 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                           ),
                         )
                         .toList(),
-                    initialOption: binSwipeActions.left,
-                    onSubmitted: _submittedBinLeftSwipeAction,
+                    initialOption: deletedSwipeActions.left,
+                    onSubmitted: _submittedDeletedSwipeLeftAction,
                   ),
                 ],
               ),

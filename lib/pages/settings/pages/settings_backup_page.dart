@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
@@ -112,15 +114,15 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     setState(() {});
 
     if (!toggled) {
-      PreferenceKey.lastAutoExportDate.remove();
-      PreferenceKey.autoExportEncryption.set(false);
-      PreferenceKey.autoExportPassword.remove();
+      await PreferenceKey.lastAutoExportDate.remove();
+      await PreferenceKey.autoExportEncryption.set(false);
+      await PreferenceKey.autoExportPassword.remove();
 
       return;
     }
 
-    // No need to await
-    AutoExportUtils().performAutoExportIfNeeded();
+    // No need to await this, it can be performed in the background
+    unawaited(AutoExportUtils().performAutoExportIfNeeded());
   }
 
   /// Toggles the setting to enable the automatic export encryption.
@@ -128,11 +130,10 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   /// If enabled, asks the user for the password used for the encryption.
   Future<void> _toggleAutoExportEncryption(bool toggled) async {
     if (!toggled) {
-      PreferenceKey.autoExportPassword.remove();
+      await PreferenceKey.autoExportPassword.remove();
+      await PreferenceKey.autoExportEncryption.set(false);
 
-      setState(() {
-        PreferenceKey.autoExportEncryption.set(false);
-      });
+      setState(() {});
 
       return;
     }
@@ -150,11 +151,10 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         return;
       }
 
-      PreferenceKey.autoExportPassword.set(autoExportPassword);
+      await PreferenceKey.autoExportPassword.set(autoExportPassword);
+      await PreferenceKey.autoExportEncryption.set(true);
 
-      setState(() {
-        PreferenceKey.autoExportEncryption.set(true);
-      });
+      setState(() {});
     });
   }
 
@@ -183,8 +183,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       return;
     }
 
-    PreferenceKey.autoExportDirectory.set(autoExportDirectory);
-
+    await PreferenceKey.autoExportDirectory.set(autoExportDirectory);
     await AutoExportUtils().setAutoExportDirectory();
 
     setState(() {});

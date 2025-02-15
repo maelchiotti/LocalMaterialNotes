@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:path/path.dart';
@@ -116,8 +117,8 @@ class AutoExportUtils {
     final encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault();
     final password = await PreferenceKey.autoExportPassword.getPreferenceOrDefaultSecure();
 
-    ManualBackupService().autoExportAsJson(encrypt, password);
+    unawaited(ManualBackupService().autoExportAsJson(encrypt, password));
 
-    PreferenceKey.lastAutoExportDate.set(DateTime.now().toIso8601String());
+    unawaited(PreferenceKey.lastAutoExportDate.set(DateTime.now().toIso8601String()));
   }
 }

@@ -32,7 +32,7 @@ class PreferencesUtils {
   /// The type [T] of the value should be a basic type: `bool`, `int`, `double`, `String` or `List<String>`.
   Future<void> set<T>(PreferenceKey preferenceKey, T value) async {
     if (preferenceKey.secure) {
-      _secureStorage.write(key: preferenceKey.name, value: value as String);
+      await _secureStorage.write(key: preferenceKey.name, value: value as String);
 
       return;
     }

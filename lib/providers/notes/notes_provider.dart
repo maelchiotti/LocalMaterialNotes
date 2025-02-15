@@ -173,6 +173,7 @@ class Notes extends _$Notes {
 
     for (final note in notesToSet) {
       note.pinned = false;
+      note.deleted = false;
       note.archived = archived;
     }
 
@@ -200,6 +201,7 @@ class Notes extends _$Notes {
 
     for (final note in notesToSet) {
       note.pinned = false;
+      note.archived = false;
       note.deleted = !note.deleted;
     }
 

@@ -301,6 +301,10 @@
   "@settings_behavior_swipe_actions": {
     "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
   },
+  "settings_behavior_swipe_actions_archives": "Swipe actions (archives)",
+  "@settings_behavior_swipe_actions_archives": {
+    "description": "Title of the section regarding the swipe actions on the notes tiles in the archives under the behavior settings."
+  },
   "settings_behavior_swipe_actions_bin": "Swipe actions (bin)",
   "@settings_behavior_swipe_actions_bin": {
     "description": "Title of the section regarding the swipe actions on the notes tiles in the bin under the behavior settings."

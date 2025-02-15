@@ -57,7 +57,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       case EditorAvailableMenuOption.togglePin:
         await togglePinNote(context, ref, note: note);
       case EditorAvailableMenuOption.selectLabels:
-        selectLabels(context, ref, note: note);
+        await selectLabels(context, ref, note: note);
       case EditorAvailableMenuOption.archive:
         await archiveNote(context, ref, note: note);
       case EditorAvailableMenuOption.delete:
@@ -202,17 +202,15 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                   if (showEditorModeButton)
                     ValueListenableBuilder(
                       valueListenable: isEditorInEditModeNotifier,
-                      builder: (context, isEditMode, child) =>
-                          IconButton(
-                            icon: Icon(isEditMode ? Icons.visibility : Icons.edit),
-                            tooltip:
+                      builder: (context, isEditMode, child) => IconButton(
+                        icon: Icon(isEditMode ? Icons.visibility : Icons.edit),
+                        tooltip:
                             isEditMode ? l.tooltip_fab_toggle_editor_mode_read : l.tooltip_fab_toggle_editor_mode_edit,
-                            onPressed: switchMode,
-                          ),
+                        onPressed: switchMode,
+                      ),
                     ),
                   PopupMenuButton<EditorAvailableMenuOption>(
-                    itemBuilder: (context) =>
-                    ([
+                    itemBuilder: (context) => ([
                       EditorAvailableMenuOption.copy.popupMenuItem(context),
                       EditorAvailableMenuOption.share.popupMenuItem(context),
                       const PopupMenuDivider(),
@@ -229,8 +227,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                 ],
                 if (note.status == NoteStatus.archived)
                   PopupMenuButton<EditorArchivedMenuOption>(
-                    itemBuilder: (context) =>
-                    ([
+                    itemBuilder: (context) => ([
                       EditorArchivedMenuOption.copy.popupMenuItem(context),
                       EditorArchivedMenuOption.share.popupMenuItem(context),
                       const PopupMenuDivider(),
@@ -242,8 +239,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                   ),
                 if (note.status == NoteStatus.deleted)
                   PopupMenuButton<EditorDeletedMenuOption>(
-                    itemBuilder: (context) =>
-                    ([
+                    itemBuilder: (context) => ([
                       EditorDeletedMenuOption.restore.popupMenuItem(context),
                       EditorDeletedMenuOption.deletePermanently.popupMenuItem(context),
                       const PopupMenuDivider(),

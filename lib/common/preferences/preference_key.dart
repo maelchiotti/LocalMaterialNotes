@@ -31,7 +31,9 @@ enum PreferenceKey<T extends Object> {
   flagSecure<bool>(false),
   confirmations<String>('irreversible'),
   swipeRightAction<String>('delete'),
-  swipeLeftAction<String>('togglePin'),
+  swipeLeftAction<String>('archive'),
+  archivedSwipeRightAction<String>('delete'),
+  archivedSwipeLeftAction<String>('unarchive'),
   binSwipeRightAction<String>('permanentlyDelete'),
   binSwipeLeftAction<String>('restore'),
 

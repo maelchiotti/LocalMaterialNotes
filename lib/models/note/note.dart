@@ -85,7 +85,10 @@ sealed class Note implements Comparable<Note> {
     required this.editedTime,
     required this.title,
     required this.type,
-  });
+  }) : assert(
+          !(archived && deleted),
+          'A note cannot be archived and deleted at the same time',
+        );
 
   /// Returns this note with the [title] and the content encrypted using the [password].
   Note encrypted(String password);

@@ -87,7 +87,7 @@ class NotesService {
 
   /// Deletes the indexes of the [notes].
   Future<void> _deleteIndexes(List<Note> notes) async {
-    final notesIds = notes.map((note) => note.id.toString()).toList();
+    final notesIds = notes.map((note) => note.id).toList();
     await _index.deleteDocuments(notesIds);
   }
 
@@ -346,7 +346,7 @@ class NotesService {
       await _checklistNotes.where().deletedEqualTo(true).deleteAll();
     });
 
-    _deleteIndexes(notes);
+    await _deleteIndexes(notes);
   }
 
   /// Deletes all the notes from the database.
@@ -358,6 +358,6 @@ class NotesService {
       await _checklistNotes.clear();
     });
 
-    _index.deleteAllDocuments();
+    await _index.deleteAllDocuments();
   }
 }

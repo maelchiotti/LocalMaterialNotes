@@ -59,7 +59,7 @@ void main() {
       );
 
       // Close the sort method menu
-      $.native.pressBack();
+      await $.native.pressBack();
 
       // The 1st note should be the most recent
       expect(
@@ -105,7 +105,7 @@ void main() {
       );
 
       // Close the sort method menu
-      $.native.pressBack();
+      await $.native.pressBack();
 
       // The 1st note should be the first in alphabetical order
       expect(
@@ -151,7 +151,7 @@ void main() {
       );
 
       // Close the sort method menu
-      $.native.pressBack();
+      await $.native.pressBack();
 
       // The 1st note should be the least recent
       expect(
@@ -203,7 +203,7 @@ void main() {
       );
 
       // Close the sort method menu
-      $.native.pressBack();
+      await $.native.pressBack();
 
       // The 1st note should be the last in alphabetical order
       expect(

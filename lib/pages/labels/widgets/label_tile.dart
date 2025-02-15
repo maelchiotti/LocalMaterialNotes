@@ -32,51 +32,55 @@ class LabelTile extends ConsumerStatefulWidget {
 class _LabelTileState extends ConsumerState<LabelTile> {
   Color? get getBackgroundColor => widget.label.selected ? Theme.of(context).colorScheme.secondaryContainer : null;
 
-  Widget get getDismissibleBackground => ColoredBox(
-        color: Theme.of(context).colorScheme.errorContainer,
-        child: Padding(
-          padding: Paddings.horizontal(16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Icon(
-                Icons.delete,
-                color: Theme.of(context).colorScheme.onErrorContainer,
-              ),
-              Padding(padding: Paddings.horizontal(4)),
-              Text(
-                l.action_labels_delete,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onErrorContainer,
-                    ),
-              ),
-            ],
-          ),
+  Widget get getDismissibleBackground {
+    return ColoredBox(
+      color: Theme.of(context).colorScheme.errorContainer,
+      child: Padding(
+        padding: Paddings.horizontal(16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(
+              Icons.delete,
+              color: Theme.of(context).colorScheme.onErrorContainer,
+            ),
+            Padding(padding: Paddings.horizontal(4)),
+            Text(
+              l.action_labels_delete,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.onErrorContainer,
+                  ),
+            ),
+          ],
         ),
-      );
+      ),
+    );
+  }
 
-  Widget get getDismissibleSecondaryBackground => ColoredBox(
-        color: Theme.of(context).colorScheme.secondaryContainer,
-        child: Padding(
-          padding: Paddings.horizontal(16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                l.action_labels_edit,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSecondaryContainer,
-                    ),
-              ),
-              Padding(padding: Paddings.horizontal(4)),
-              Icon(
-                Icons.edit,
-                color: Theme.of(context).colorScheme.onSecondaryContainer,
-              ),
-            ],
-          ),
+  Widget get getDismissibleSecondaryBackground {
+    return ColoredBox(
+      color: Theme.of(context).colorScheme.secondaryContainer,
+      child: Padding(
+        padding: Paddings.horizontal(16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              l.action_labels_edit,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.onSecondaryContainer,
+                  ),
+            ),
+            Padding(padding: Paddings.horizontal(4)),
+            Icon(
+              Icons.edit,
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
+            ),
+          ],
         ),
-      );
+      ),
+    );
+  }
 
   Future<void> onMenuOptionSelected(LabelTileMenuOption labelMenuOption) async {
     switch (labelMenuOption) {
