@@ -12,6 +12,7 @@ import '../../common/files/encryption_utils.dart';
 import '../../common/preferences/enums/sort_method.dart';
 import '../../common/preferences/preference_key.dart';
 import '../label/label.dart';
+import 'note_status.dart';
 import 'types/note_type.dart';
 
 part 'note.g.dart';
@@ -39,12 +40,13 @@ sealed class Note implements Comparable<Note> {
   /// The ID of the note as an [int] used by isar.
   Id get isarId => _idHash;
 
-  /// Whether the note is selected.
-  ///
-  /// Excluded from JSON because it's only needed temporarily during multi-selection.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  /// The type of the note.
   @ignore
-  bool selected = false;
+  NoteType type;
+
+  /// Whether the note is archived.
+  @Index()
+  bool archived;
 
   /// Whether the note is deleted.
   @Index()
@@ -67,22 +69,41 @@ sealed class Note implements Comparable<Note> {
   @JsonKey(includeFromJson: false, includeToJson: true, toJson: labelToJson)
   IsarLinks<Label> labels = IsarLinks<Label>();
 
+  /// Whether the note is selected.
+  ///
+  /// Excluded from JSON and the database because it's only needed temporarily during multi-selection.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @ignore
+  bool selected = false;
+
   /// Default constructor of a note.
   Note({
+    required this.archived,
     required this.deleted,
     required this.pinned,
     required this.createdTime,
     required this.editedTime,
     required this.title,
     required this.type,
-  });
+  }) : assert(
+          !(archived && deleted),
+          'A note cannot be archived and deleted at the same time',
+        );
 
   /// Returns this note with the [title] and the content encrypted using the [password].
   Note encrypted(String password);
 
-  /// The type of the note.
+  /// The status of the note.
   @ignore
-  NoteType type;
+  NoteStatus get status {
+    if (archived) {
+      return NoteStatus.archived;
+    } else if (deleted) {
+      return NoteStatus.deleted;
+    }
+
+    return NoteStatus.available;
+  }
 
   /// The content as plain text.
   @ignore

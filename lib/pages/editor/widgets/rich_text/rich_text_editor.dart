@@ -10,6 +10,7 @@ import '../../../../common/constants/paddings.dart';
 import '../../../../common/preferences/enums/font.dart';
 import '../../../../common/preferences/preference_key.dart';
 import '../../../../models/note/note.dart';
+import '../../../../models/note/note_status.dart';
 import '../../../../providers/notes/notes_provider.dart';
 import '../../../../providers/notifiers/notifiers.dart';
 
@@ -73,7 +74,7 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
 
     RichTextNote note = widget.note..content = jsonEncode(widget.fleatherController.document.toJson());
 
-    ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
+    ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
   }
 
   @override

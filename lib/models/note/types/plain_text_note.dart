@@ -9,6 +9,7 @@ class PlainTextNote extends Note {
 
   /// A note with plain text content.
   PlainTextNote({
+    required super.archived,
     required super.deleted,
     required super.pinned,
     required super.createdTime,
@@ -20,6 +21,7 @@ class PlainTextNote extends Note {
 
   /// Plain text note with empty title and content.
   factory PlainTextNote.empty() => PlainTextNote(
+        archived: false,
         deleted: false,
         pinned: false,
         createdTime: DateTime.now(),
@@ -30,6 +32,7 @@ class PlainTextNote extends Note {
 
   /// Plain text note with the provided [content].
   factory PlainTextNote.content(String content) => PlainTextNote(
+        archived: false,
         deleted: false,
         pinned: false,
         createdTime: DateTime.now(),

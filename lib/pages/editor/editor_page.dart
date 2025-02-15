@@ -4,12 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
 import '../../common/constants/constants.dart';
-import '../../common/navigation/app_bars/editor_app_bar.dart';
+import '../../common/navigation/app_bars/notes/editor_app_bar.dart';
 import '../../common/navigation/top_navigation.dart';
 import '../../common/preferences/preference_key.dart';
 import '../../common/widgets/keys.dart';
 import '../../common/widgets/placeholders/loading_placeholder.dart';
 import '../../models/note/note.dart';
+import '../../models/note/note_status.dart';
 import '../../providers/notifiers/notifiers.dart';
 import 'widgets/checklist/checklist_editor.dart';
 import 'widgets/editor_labels_list.dart';
@@ -108,6 +109,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                 appbar: EditorAppBar(
                   key: Keys.appBarEditor,
                 ),
+                notesStatus: NoteStatus.available,
               ),
               body: Column(
                 children: [

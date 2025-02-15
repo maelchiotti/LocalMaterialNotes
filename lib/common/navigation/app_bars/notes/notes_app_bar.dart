@@ -2,22 +2,22 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../models/label/label.dart';
-import '../../../models/note/note.dart';
-import '../../../providers/bin/bin_provider.dart';
-import '../../../providers/notes/notes_provider.dart';
-import '../../../providers/notifiers/notifiers.dart';
-import '../../../providers/preferences/preferences_provider.dart';
-import '../../../services/notes/notes_service.dart';
-import '../../constants/constants.dart';
-import '../../constants/paddings.dart';
-import '../../preferences/enums/layout.dart';
-import '../../preferences/enums/sort_method.dart';
-import '../../preferences/preference_key.dart';
-import '../../preferences/watched_preferences.dart';
-import '../../widgets/keys.dart';
-import '../../widgets/notes/note_tile.dart';
-import '../../widgets/placeholders/empty_placeholder.dart';
+import '../../../../models/label/label.dart';
+import '../../../../models/note/note.dart';
+import '../../../../models/note/note_status.dart';
+import '../../../../providers/notes/notes_provider.dart';
+import '../../../../providers/notifiers/notifiers.dart';
+import '../../../../providers/preferences/preferences_provider.dart';
+import '../../../../services/notes/notes_service.dart';
+import '../../../constants/constants.dart';
+import '../../../constants/paddings.dart';
+import '../../../preferences/enums/layout.dart';
+import '../../../preferences/enums/sort_method.dart';
+import '../../../preferences/preference_key.dart';
+import '../../../preferences/watched_preferences.dart';
+import '../../../widgets/keys.dart';
+import '../../../widgets/notes/note_tile.dart';
+import '../../../widgets/placeholders/empty_placeholder.dart';
 
 /// Notes list and bin's app bar.
 ///
@@ -30,31 +30,36 @@ class NotesAppBar extends ConsumerWidget {
   /// Default constructor.
   const NotesAppBar({
     super.key,
+    required this.notesStatus,
     this.label,
-    this.notesPage = true,
   });
+
+  /// Whether the current page is the notes list.
+  final NoteStatus notesStatus;
 
   /// The label used to filter the notes.
   final Label? label;
 
-  /// Whether the current page is the notes list.
-  final bool notesPage;
-
   /// Returns the title of the app bar.
   String get title {
-    if (notesPage) {
-      return label?.name ?? l.navigation_notes;
-    } else {
-      return l.navigation_bin;
+    switch (notesStatus) {
+      case NoteStatus.available:
+        return label?.name ?? l.navigation_notes;
+      case NoteStatus.archived:
+        return l.navigation_archives;
+      case NoteStatus.deleted:
+        return l.navigation_bin;
     }
   }
 
   /// Returns the placeholder for the search button used when the search isn't available.
-  Widget get searchButtonPlaceholder => IconButton(
-        onPressed: null,
-        icon: const Icon(Icons.search),
-        tooltip: l.tooltip_search,
-      );
+  Widget get searchButtonPlaceholder {
+    return IconButton(
+      onPressed: null,
+      icon: const Icon(Icons.search),
+      tooltip: l.tooltip_search,
+    );
+  }
 
   /// Toggles the notes layout.
   void toggleLayout(WidgetRef ref, Layout currentLayout) {
@@ -97,9 +102,7 @@ class NotesAppBar extends ConsumerWidget {
       Navigator.pop(context);
     }
 
-    notesPage
-        ? ref.read(notesProvider(label: currentLabelFilter).notifier).sort()
-        : ref.read(binProvider.notifier).sort();
+    ref.read(notesProvider(status: notesStatus, label: currentLabelFilter).notifier).sort();
   }
 
   /// Searches for the notes that match the [search].
@@ -108,7 +111,7 @@ class NotesAppBar extends ConsumerWidget {
       return [];
     }
 
-    final notes = await NotesService().search(search, notesPage, currentLabelFilter?.name);
+    final notes = await NotesService().search(search, notesStatus, currentLabelFilter?.name);
 
     return notes
         .mapIndexed(
@@ -207,18 +210,11 @@ class NotesAppBar extends ConsumerWidget {
           ],
           onSelected: (sortMethod) => sort(context, ref, sortMethod: sortMethod),
         ),
-        if (notesPage)
-          ref.watch(notesProvider(label: currentLabelFilter)).when(
-                data: (notes) => child(context, notes),
-                error: (error, stackTrace) => const EmptyPlaceholder(),
-                loading: () => searchButtonPlaceholder,
-              )
-        else
-          ref.watch(notesProvider(label: currentLabelFilter)).when(
-                data: (notes) => child(context, notes),
-                error: (error, stackTrace) => const EmptyPlaceholder(),
-                loading: () => searchButtonPlaceholder,
-              ),
+        ref.watch(notesProvider(status: notesStatus, label: currentLabelFilter)).when(
+              data: (notes) => child(context, notes),
+              error: (error, stackTrace) => const EmptyPlaceholder(),
+              loading: () => searchButtonPlaceholder,
+            ),
         Padding(padding: Paddings.appBarActionsEnd),
       ],
     );

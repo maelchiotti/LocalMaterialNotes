@@ -1,6 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:localmaterialnotes/app.dart';
 import 'package:localmaterialnotes/common/constants/constants.dart';
 import 'package:localmaterialnotes/common/preferences/preferences_utils.dart';
@@ -30,7 +31,7 @@ Future<Widget> get app async {
   await LabelsService().ensureInitialized();
 
   // No need to await this, it can be performed in the background
-  AutoExportUtils().ensureInitialized();
+  unawaited(AutoExportUtils().ensureInitialized());
 
   // Set FLAG_SECURE if needed
   await setFlagSecureIfNeeded();

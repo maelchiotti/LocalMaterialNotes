@@ -5,8 +5,8 @@ import '../../common/constants/constants.dart';
 import '../../common/extensions/list_extension.dart';
 import '../../models/label/label.dart';
 import '../../models/note/note.dart';
+import '../../models/note/note_status.dart';
 import '../../services/notes/notes_service.dart';
-import '../bin/bin_provider.dart';
 
 part 'notes_provider.g.dart';
 
@@ -16,16 +16,23 @@ class Notes extends _$Notes {
   final _notesService = NotesService();
 
   @override
-  FutureOr<List<Note>> build({Label? label}) => get();
+  FutureOr<List<Note>> build({required NoteStatus status, Label? label}) => get();
 
-  /// Returns the list of not deleted notes.
+  /// Returns the list of notes depending on the provider's [status] and [label].
   Future<List<Note>> get() async {
     List<Note> notes = [];
 
     try {
-      notes = label != null
-          ? await _notesService.getAllNotDeletedFilteredByLabel(label: label!)
-          : await _notesService.getAllNotDeleted();
+      switch (status) {
+        case NoteStatus.available:
+          notes = label != null
+              ? await _notesService.getAllAvailableFilteredByLabel(label: label!)
+              : await _notesService.getAllAvailable();
+        case NoteStatus.archived:
+          notes = await _notesService.getAllArchived();
+        case NoteStatus.deleted:
+          notes = await _notesService.getAllDeleted();
+      }
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
     }
@@ -37,7 +44,7 @@ class Notes extends _$Notes {
     return notes.sorted();
   }
 
-  /// Sorts the not deleted notes.
+  /// Sorts the notes.
   void sort() {
     final sortedNotes = (state.value ?? []).sorted();
 
@@ -48,6 +55,8 @@ class Notes extends _$Notes {
   ///
   /// The note can be forcefully put into the database even it it's empty using [forcePut].
   Future<bool> edit(Note editedNote, {bool forcePut = false}) async {
+    _checkStatus([NoteStatus.available, NoteStatus.archived]);
+
     editedNote.editedTime = DateTime.now();
 
     try {
@@ -70,13 +79,15 @@ class Notes extends _$Notes {
     }
 
     state = AsyncData(notes.sorted());
-    _updateMainProvider();
+    _updateUnlabeledProvider();
 
     return true;
   }
 
   /// Saves the [note] with the new [selectedLabels] to the database.
   Future<bool> editLabels(Note note, Iterable<Label> selectedLabels) async {
+    _checkStatus([NoteStatus.available, NoteStatus.archived]);
+
     try {
       await _notesService.putLabels(note, selectedLabels);
 
@@ -103,13 +114,15 @@ class Notes extends _$Notes {
     }
 
     state = AsyncData(notes.sorted());
-    _updateMainProvider();
+    _updateUnlabeledProvider();
 
     return true;
   }
 
   /// Saves the [notes] with the added [selectedLabels] to the database.
   Future<bool> addLabels(List<Note> notesWhereToAdd, Iterable<Label> selectedLabels) async {
+    _checkStatus([NoteStatus.available, NoteStatus.archived]);
+
     try {
       await _notesService.addLabels(notesWhereToAdd, selectedLabels);
     } catch (exception, stackTrace) {
@@ -123,35 +136,15 @@ class Notes extends _$Notes {
       ..addAll(notesWhereToAdd);
 
     state = AsyncData(notes.sorted());
-    _updateMainProvider();
+    _updateUnlabeledProvider();
 
     return true;
   }
 
-  /// Toggles the pin status of the [noteToToggle] in the database.
-  Future<bool> togglePin(Note noteToToggle) async {
-    noteToToggle.pinned = !noteToToggle.pinned;
+  /// Toggles whether the [notesToToggle] are pinned in the database.
+  Future<bool> togglePin(List<Note> notesToToggle) async {
+    _checkStatus([NoteStatus.available, NoteStatus.archived]);
 
-    try {
-      await _notesService.put(noteToToggle);
-    } catch (exception, stackTrace) {
-      logger.e(exception.toString(), exception, stackTrace);
-
-      return false;
-    }
-
-    final notes = (state.value ?? [])
-      ..remove(noteToToggle)
-      ..add(noteToToggle);
-
-    state = AsyncData(notes.sorted());
-    _updateMainProvider();
-
-    return true;
-  }
-
-  /// Toggles the pin status of the [notesToToggle] in the database.
-  Future<bool> togglePinAll(List<Note> notesToToggle) async {
     for (final note in notesToToggle) {
       note.pinned = !note.pinned;
     }
@@ -169,87 +162,141 @@ class Notes extends _$Notes {
       ..addAll(notesToToggle);
 
     state = AsyncData(notes.sorted());
-    _updateMainProvider();
+    _updateUnlabeledProvider();
 
     return true;
   }
 
-  /// Sets the [note] as deleted in the database.
-  Future<bool> delete(Note note) async {
-    note.pinned = false;
-    note.deleted = true;
+  /// Sets whether the [notesToSet] are archived to [archived] in the database.
+  Future<bool> setArchived(List<Note> notesToSet, bool archived) async {
+    _checkStatus([NoteStatus.available, NoteStatus.archived]);
 
-    final succeeded = await edit(note);
-
-    ref.read(binProvider.notifier).get();
-    _updateMainProvider();
-
-    return succeeded;
-  }
-
-  /// Sets the [notes] as deleted in the database.
-  Future<bool> deleteAll(List<Note> notesToDelete) async {
-    for (final note in notesToDelete) {
+    for (final note in notesToSet) {
       note.pinned = false;
-      note.deleted = true;
+      note.deleted = false;
+      note.archived = archived;
     }
 
     try {
-      await _notesService.putAll(notesToDelete);
+      await _notesService.putAll(notesToSet);
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
 
       return false;
     }
 
-    final notes = (state.value ?? [])..removeWhere((note) => notesToDelete.contains(note));
+    final notes = (state.value ?? [])..removeWhere((note) => notesToSet.contains(note));
 
     state = AsyncData(notes);
 
-    ref.read(binProvider.notifier).get();
-    _updateMainProvider();
+    _updateUnlabeledProvider();
+    archived ? _updateStatusProvider(NoteStatus.archived) : _updateStatusProvider(NoteStatus.available);
 
     return true;
   }
 
-  /// Selects the [noteToSelect].
-  void select(Note noteToSelect) {
-    state = AsyncData([
-      for (final Note note in state.value ?? []) note == noteToSelect ? (noteToSelect..selected = true) : note,
-    ]);
-  }
+  /// Sets whether the [notesToSet] are deleted to [deleted] in the database.
+  Future<bool> setDeleted(List<Note> notesToSet, bool deleted) async {
+    _checkStatus([NoteStatus.available, NoteStatus.deleted]);
 
-  /// Unselects the [noteToSelect].
-  void unselect(Note noteToUnselect) {
-    state = AsyncData([
-      for (final Note note in state.value ?? []) note == noteToUnselect ? (noteToUnselect..selected = false) : note,
-    ]);
-  }
-
-  /// Selects all the not deleted notes.
-  void selectAll() {
-    state = AsyncData([
-      ...?state.value
-        ?..forEach((note) {
-          note.selected = true;
-        }),
-    ]);
-  }
-
-  /// Unselects all the not deleted notes.
-  void unselectAll() {
-    state = AsyncData([
-      ...?state.value
-        ?..forEach((note) {
-          note.selected = false;
-        }),
-    ]);
-  }
-
-  /// Updates the main notes provider if this provider is a provider filtered by a label.
-  void _updateMainProvider() {
-    if (label != null) {
-      ref.read(notesProvider().notifier).get();
+    for (final note in notesToSet) {
+      note.pinned = false;
+      note.archived = false;
+      note.deleted = !note.deleted;
     }
+
+    try {
+      await _notesService.putAll(notesToSet);
+    } catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
+
+      return false;
+    }
+
+    final notes = (state.value ?? [])..removeWhere((note) => notesToSet.contains(note));
+
+    state = AsyncData(notes);
+
+    _updateUnlabeledProvider();
+    _updateStatusProvider(deleted ? NoteStatus.deleted : NoteStatus.available);
+
+    return true;
+  }
+
+  /// Removes the [notesToPermanentlyDelete] from the database.
+  Future<bool> permanentlyDelete(List<Note> notesToPermanentlyDelete) async {
+    _checkStatus([NoteStatus.deleted]);
+
+    try {
+      await _notesService.deleteAll(notesToPermanentlyDelete);
+    } catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
+
+      return false;
+    }
+
+    state = AsyncData(
+      (state.value ?? [])
+        ..removeWhere(
+          (note) => notesToPermanentlyDelete.contains(note),
+        ),
+    );
+
+    return true;
+  }
+
+  /// Removes all the deleted notes from the database.
+  Future<bool> emptyBin() async {
+    _checkStatus([NoteStatus.deleted]);
+
+    try {
+      await _notesService.emptyBin();
+    } catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
+
+      return false;
+    }
+
+    state = const AsyncData([]);
+
+    return true;
+  }
+
+  /// Toggles whether the [noteToToggle] is selected.
+  void toggleSelect(Note noteToToggle) {
+    state = AsyncData([
+      for (final Note note in state.value ?? [])
+        note == noteToToggle ? (noteToToggle..selected = !noteToToggle.selected) : note,
+    ]);
+  }
+
+  /// Sets whether all the notes are selected to [selected].
+  void setSelectAll(bool selected) {
+    state = AsyncData([
+      ...?state.value
+        ?..forEach((note) {
+          note.selected = selected;
+        }),
+    ]);
+  }
+
+  /// Checks that the current [status] is one of [statuses].
+  void _checkStatus(List<NoteStatus> statuses) {
+    assert(
+      statuses.contains(status),
+      'This method of the notes provider cannot be called when its status is not editable: $status',
+    );
+  }
+
+  /// Updates the unlabeled notes provider if this provider is a provider filtered by a label.
+  void _updateUnlabeledProvider() {
+    if (label != null) {
+      ref.read(notesProvider(status: status).notifier).get();
+    }
+  }
+
+  /// Updates the notes provider with the [status].
+  void _updateStatusProvider(NoteStatus status) {
+    ref.read(notesProvider(status: status).notifier).get();
   }
 }

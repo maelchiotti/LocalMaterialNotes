@@ -4,12 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../providers/preferences/preferences_provider.dart';
 import '../../../constants/paddings.dart';
 import '../../../enums/swipe_direction.dart';
-import '../../../preferences/enums/swipe_action.dart';
+import '../../../preferences/enums/swipe_actions/available_swipe_action.dart';
 
-/// Note tile dismissible widget.
-class NoteDismissible extends ConsumerStatefulWidget {
-  /// Dismissible widget for the note tile.
-  const NoteDismissible({
+/// Available note tile dismissible widget.
+class AvailableDismissible extends ConsumerStatefulWidget {
+  /// Dismissible widget shown of the note tile of an available note.
+  const AvailableDismissible({
     super.key,
     required this.direction,
     this.alternative = false,
@@ -22,17 +22,19 @@ class NoteDismissible extends ConsumerStatefulWidget {
   final bool alternative;
 
   @override
-  ConsumerState<NoteDismissible> createState() => _NoteDismissibleState();
+  ConsumerState<AvailableDismissible> createState() => _AvailableDismissibleState();
 }
 
-class _NoteDismissibleState extends ConsumerState<NoteDismissible> {
-  late final SwipeAction swipeAction;
+class _AvailableDismissibleState extends ConsumerState<AvailableDismissible> {
+  late final AvailableSwipeAction swipeAction;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final swipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.swipeActions));
+    final swipeActions = ref.watch(
+      preferencesProvider.select((preferences) => preferences.availableSwipeActions),
+    );
     swipeAction = widget.direction == SwipeDirection.right ? swipeActions.right : swipeActions.left;
   }
 
@@ -42,7 +44,7 @@ class _NoteDismissibleState extends ConsumerState<NoteDismissible> {
     final titleWidget = swipeAction.titleWidget(context, widget.alternative);
 
     return ColoredBox(
-      color: swipeAction.backgroundColor(context),
+      color: Theme.of(context).colorScheme.tertiaryContainer,
       child: Padding(
         padding: Paddings.horizontal(16),
         child: Row(

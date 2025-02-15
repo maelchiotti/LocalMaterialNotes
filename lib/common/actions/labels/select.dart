@@ -1,10 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../models/label/label.dart';
 import '../../../providers/labels/labels/labels_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 
 /// Toggles the select status of the [label].
-void toggleSelectLabel(WidgetRef ref, Label label) {
+void toggleSelectLabel(WidgetRef ref, {required Label label}) {
   label.selected ? ref.read(labelsProvider.notifier).unselect(label) : ref.read(labelsProvider.notifier).select(label);
 }
 

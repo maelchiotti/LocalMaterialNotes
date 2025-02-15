@@ -14,6 +14,9 @@ enum NavigationRoute {
   manageLabels,
   label,
 
+  // Archives
+  archives,
+
   // Bin
   bin,
 

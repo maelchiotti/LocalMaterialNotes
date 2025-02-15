@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../common/constants/constants.dart';
 import '../../../../common/constants/paddings.dart';
 import '../../../../models/note/note.dart';
+import '../../../../models/note/note_status.dart';
 import '../../../../providers/notes/notes_provider.dart';
 import '../../../../providers/notifiers/notifiers.dart';
 
@@ -52,7 +53,7 @@ class _PlainTextEditorState extends ConsumerState<PlainTextEditor> {
   void onChanged(String content) {
     PlainTextNote note = widget.note..content = content;
 
-    ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
+    ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
   }
 
   @override

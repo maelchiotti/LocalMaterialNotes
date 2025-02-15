@@ -73,7 +73,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
 
   /// Sets the app font to the new [font].
   void _submittedAppFont(Font font) async {
-    PreferenceKey.appFont.set(font.name);
+    await PreferenceKey.appFont.set(font.name);
 
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(appFont: font));
   }

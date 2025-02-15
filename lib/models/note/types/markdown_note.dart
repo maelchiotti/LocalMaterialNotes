@@ -9,6 +9,7 @@ class MarkdownNote extends Note {
 
   /// A note with plain text content.
   MarkdownNote({
+    required super.archived,
     required super.deleted,
     required super.pinned,
     required super.createdTime,
@@ -20,6 +21,7 @@ class MarkdownNote extends Note {
 
   /// Plain text note with empty title and content.
   factory MarkdownNote.empty() => MarkdownNote(
+        archived: false,
         deleted: false,
         pinned: false,
         createdTime: DateTime.now(),
@@ -30,6 +32,7 @@ class MarkdownNote extends Note {
 
   /// Plain text note with the provided [content].
   factory MarkdownNote.content(String content) => MarkdownNote(
+        archived: false,
         deleted: false,
         pinned: false,
         createdTime: DateTime.now(),

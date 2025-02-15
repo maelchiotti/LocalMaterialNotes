@@ -65,6 +65,10 @@
   "@navigation_manage_labels_page": {
     "description": "Title of the page to manage the labels."
   },
+  "navigation_archives": "Archives",
+  "@navigation_archives": {
+    "description": "Title of the archives page."
+  },
   "navigation_bin": "Bin",
   "@navigation_bin": {
     "description": "Title of the bin page."
@@ -296,6 +300,10 @@
   "settings_behavior_swipe_actions": "Swipe actions",
   "@settings_behavior_swipe_actions": {
     "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
+  },
+  "settings_behavior_swipe_actions_archives": "Swipe actions (archives)",
+  "@settings_behavior_swipe_actions_archives": {
+    "description": "Title of the section regarding the swipe actions on the notes tiles in the archives under the behavior settings."
   },
   "settings_behavior_swipe_actions_bin": "Swipe actions (bin)",
   "@settings_behavior_swipe_actions_bin": {
@@ -767,18 +775,6 @@
   "@tooltip_unselect_all": {
     "description": "Tooltip for the button to unselect all the notes while in selection mode in the notes list."
   },
-  "tooltip_delete": "Delete",
-  "@tooltip_delete": {
-    "description": "Tooltip for the button to delete a note (moving it to bin)."
-  },
-  "tooltip_permanently_delete": "Permanently delete",
-  "@tooltip_permanently_delete": {
-    "description": "Tooltip for the button to permanently delete a note."
-  },
-  "tooltip_restore": "Restore",
-  "@tooltip_restore": {
-    "description": "Tooltip for the button to restore a note from the bin."
-  },
   "tooltip_reset": "Reset",
   "@tooltip_reset": {
     "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
@@ -794,6 +790,34 @@
   "dialog_add_link": "Add a link",
   "@dialog_add_link": {
     "description": "Tooltip for the button to validate the dialog to add a link in the note editor."
+  },
+  "dialog_archive": "Archive",
+  "@dialog_archive": {
+    "description": "Title of the the dialog to archive one or multiple notes (moving them to the archives), and text for the confirmation button."
+  },
+  "dialog_archive_body": "Do you really want to archive {count} {count, plural, one{note} other{notes}}?",
+  "@dialog_archive_body": {
+    "description": "Text for the dialog to confirm the archival of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to archive.",
+        "type": "int"
+      }
+    }
+  },
+  "dialog_unarchive": "Unarchive",
+  "@dialog_unarchive": {
+    "description": "Title of the the dialog to unarchive one or multiple notes, and text for the confirmation button."
+  },
+  "dialog_unarchive_body": "Do you really want to unarchive {count} {count, plural, one{note} other{notes}}?",
+  "@dialog_unarchive_body": {
+    "description": "Text for the dialog to confirm the unarchival of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to unarchive.",
+        "type": "int"
+      }
+    }
   },
   "dialog_delete": "Delete",
   "@dialog_delete": {
@@ -919,13 +943,21 @@
   "@placeholder_labels": {
     "description": "Placeholder on the labels page when there are no labels."
   },
+  "placeholder_archives": "No archived notes",
+  "@placeholder_archives": {
+    "description": "Placeholder on the archives notes page when there are no archived notes."
+  },
   "placeholder_bin": "No deleted notes",
   "@placeholder_bin": {
-    "description": "Placeholder on the bin page when there are no notes."
+    "description": "Placeholder on the bin page when there are no deleted notes."
   },
   "action_disabled": "Disabled",
   "@action_disabled": {
     "description": "Swipe action that is disabled in the settings."
+  },
+  "action_toggle_pins": "Toggles pins",
+  "@action_toggle_pins": {
+    "description": "Menu action to toggles the pins of multiple notes."
   },
   "action_pin": "Pin",
   "@action_pin": {
@@ -948,6 +980,14 @@
         "type": "int"
       }
     }
+  },
+  "action_archive": "Archive",
+  "@action_archive": {
+    "description": "Swipe or menu action to archive a note (moving it to the archives)."
+  },
+  "action_unarchive": "Unarchive",
+  "@action_unarchive": {
+    "description": "Swipe or menu action to unarchive a note."
   },
   "action_delete": "Delete",
   "@action_delete": {
@@ -993,9 +1033,13 @@
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
-  "menu_action_labels": "Labels",
-  "@menu_action_labels": {
-    "description": "Menu action to change the labels of a note."
+  "menu_action_select_labels": "Labels",
+  "@menu_action_select_labels": {
+    "description": "Menu action to select the labels of a note."
+  },
+  "menu_action_add_labels": "Add labels",
+  "@menu_action_add_labels": {
+    "description": "Menu action to add labels to multiple notes."
   },
   "action_labels_edit": "Edit",
   "@action_labels_edit": {
@@ -1021,9 +1065,15 @@
   "@filter_labels_hidden": {
     "description": "Filter chip in the labels page to show only the hidden labels."
   },
-  "snack_bar_copied": "Content of the note copied to the clipboard.",
+  "snack_bar_copied": "Content of the {count, plural, one{note} other{notes}} copied to the clipboard.",
   "@snack_bar_copied": {
-    "description": "Snack bar informing that the content of the note was copied to clipboard."
+    "description": "Snack bar informing that the content of the note was copied to clipboard.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to copy.",
+        "type": "int"
+      }
+    }
   },
   "snack_bar_import_success": "The backup was successfully imported.",
   "@snack_bar_import_success": {

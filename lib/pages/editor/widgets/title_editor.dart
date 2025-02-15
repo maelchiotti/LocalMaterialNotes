@@ -5,6 +5,7 @@ import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../models/note/note.dart';
+import '../../../models/note/note_status.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 
@@ -43,7 +44,7 @@ class _TitleEditorState extends ConsumerState<TitleEditor> {
 
     note.title = newTitle;
 
-    ref.read(notesProvider(label: currentLabelFilter).notifier).edit(note);
+    ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
   }
 
   @override

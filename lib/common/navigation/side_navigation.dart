@@ -5,6 +5,7 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 import '../../models/label/label.dart';
 import '../../navigation/navigation_routes.dart';
 import '../../navigation/navigator_utils.dart';
+import '../../pages/archives/archives_page.dart';
 import '../../pages/bin/bin_page.dart';
 import '../../pages/labels/labels_page.dart';
 import '../../pages/notes/notes_page.dart';
@@ -63,10 +64,12 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
         index = labels.indexOf(label) + 1;
       } else if (route == NavigationRoute.manageLabels.name) {
         index = labels.length + 1;
-      } else if (route == NavigationRoute.bin.name) {
+      } else if (route == NavigationRoute.archives.name) {
         index = labels.length + 2;
-      } else if (route == NavigationRoute.settings.name) {
+      } else if (route == NavigationRoute.bin.name) {
         index = labels.length + 3;
+      } else if (route == NavigationRoute.settings.name) {
+        index = labels.length + 4;
       } else {
         throw Exception('Unknown route while setting the index of the navigation drawer: $route');
       }
@@ -76,10 +79,12 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
     else {
       if (route == '/' || route == NavigationRoute.notes.name) {
         index = 0;
-      } else if (route == NavigationRoute.bin.name) {
+      } else if (route == NavigationRoute.archives.name) {
         index = 1;
-      } else if (route == NavigationRoute.settings.name) {
+      } else if (route == NavigationRoute.bin.name) {
         index = 2;
+      } else if (route == NavigationRoute.settings.name) {
+        index = 3;
       } else {
         throw Exception('Unknown route while setting the index of the navigation drawer: $route');
       }
@@ -134,8 +139,10 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
       } else if (index == labels.length + 1) {
         NavigationRoute.manageLabels.pushOrGo(context, isHomeRoute(route), LabelsPage());
       } else if (index == labels.length + 2) {
-        NavigationRoute.bin.pushOrGo(context, isHomeRoute(route), BinPage());
+        NavigationRoute.archives.pushOrGo(context, isHomeRoute(route), ArchivesPage());
       } else if (index == labels.length + 3) {
+        NavigationRoute.bin.pushOrGo(context, isHomeRoute(route), BinPage());
+      } else if (index == labels.length + 4) {
         NavigationRoute.settings.pushOrGo(context, isHomeRoute(route), SettingsMainPage());
       } else {
         throw Exception('Invalid drawer index while navigating to a new route: $index');
@@ -219,12 +226,16 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
             Divider(indent: 24, endIndent: 24),
           ],
           NavigationDrawerDestination(
-            key: Keys.drawerNotesTab,
+            icon: const Icon(Icons.archive_outlined),
+            selectedIcon: const Icon(Icons.archive),
+            label: Text(l.navigation_archives),
+          ),
+          NavigationDrawerDestination(
             icon: const Icon(Icons.delete_outline),
             selectedIcon: const Icon(Icons.delete),
             label: Text(l.navigation_bin),
           ),
-          // Divider(indent: 24, endIndent: 24),
+          Divider(indent: 24, endIndent: 24),
           NavigationDrawerDestination(
             key: Keys.drawerSettingsTab,
             icon: const Icon(Icons.settings_outlined),

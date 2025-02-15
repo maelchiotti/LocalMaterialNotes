@@ -12,6 +12,7 @@ class RichTextNote extends Note {
 
   /// A note with rich text content.
   RichTextNote({
+    required super.archived,
     required super.deleted,
     required super.pinned,
     required super.createdTime,
@@ -23,6 +24,7 @@ class RichTextNote extends Note {
 
   /// Rich text note with empty title and content.
   factory RichTextNote.empty() => RichTextNote(
+        archived: false,
         deleted: false,
         pinned: false,
         createdTime: DateTime.now(),
@@ -33,6 +35,7 @@ class RichTextNote extends Note {
 
   /// Rich text note with the provided [content].
   factory RichTextNote.content(String content) => RichTextNote(
+        archived: false,
         deleted: false,
         pinned: false,
         createdTime: DateTime.now(),

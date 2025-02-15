@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../models/note/types/note_type.dart';
 import '../ui/theme_utils.dart';
-import 'enums/bin_swipe_action.dart';
 import 'enums/font.dart';
 import 'enums/layout.dart';
-import 'enums/swipe_action.dart';
+import 'enums/swipe_actions/archived_swipe_action.dart';
+import 'enums/swipe_actions/available_swipe_action.dart';
+import 'enums/swipe_actions/deleted_swipe_action.dart';
 import 'preference_key.dart';
 
 // ignore_for_file: public_member_api_docs
@@ -29,9 +30,11 @@ class WatchedPreferences {
   late bool showNoteTypeIcon;
 
   // Behavior
-  late ({SwipeAction right, SwipeAction left}) swipeActions;
+  late ({AvailableSwipeAction right, AvailableSwipeAction left}) availableSwipeActions;
 
-  late ({BinSwipeAction right, BinSwipeAction left}) binSwipeActions;
+  late ({ArchivedSwipeAction right, ArchivedSwipeAction left}) archivedSwipeActions;
+
+  late ({DeletedSwipeAction right, DeletedSwipeAction left}) deletedSwipeActions;
 
   // Accessibility
   late double textScaling;
@@ -54,10 +57,12 @@ class WatchedPreferences {
     bool? showSeparators,
     int? maximumContentPreviewLines,
     bool? showNoteTypeIcon,
-    SwipeAction? rightSwipeAction,
-    SwipeAction? leftSwipeAction,
-    BinSwipeAction? binRightSwipeAction,
-    BinSwipeAction? binLeftSwipeAction,
+    AvailableSwipeAction? availableSwipeRightAction,
+    AvailableSwipeAction? availableSwipeLeftAction,
+    ArchivedSwipeAction? archivedSwipeRightAction,
+    ArchivedSwipeAction? archivedSwipeLeftAction,
+    DeletedSwipeAction? deletedSwipeRightAction,
+    DeletedSwipeAction? deletedSwipeLeftAction,
     double? textScaling,
     bool? biggerTitles,
     bool? useWhiteTextDarkMode,
@@ -78,13 +83,17 @@ class WatchedPreferences {
         maximumContentPreviewLines ?? PreferenceKey.maximumContentPreviewLines.getPreferenceOrDefault();
     this.showNoteTypeIcon = showNoteTypeIcon ?? PreferenceKey.showNoteTypeIcon.getPreferenceOrDefault();
 
-    swipeActions = (
-      right: rightSwipeAction ?? SwipeAction.rightFromPreference(),
-      left: leftSwipeAction ?? SwipeAction.leftFromPreference(),
+    availableSwipeActions = (
+      right: availableSwipeRightAction ?? AvailableSwipeAction.rightFromPreference(),
+      left: availableSwipeLeftAction ?? AvailableSwipeAction.leftFromPreference(),
     );
-    binSwipeActions = (
-      right: binRightSwipeAction ?? BinSwipeAction.rightFromPreference(),
-      left: binLeftSwipeAction ?? BinSwipeAction.leftFromPreference(),
+    archivedSwipeActions = (
+      right: archivedSwipeRightAction ?? ArchivedSwipeAction.rightFromPreference(),
+      left: archivedSwipeLeftAction ?? ArchivedSwipeAction.leftFromPreference(),
+    );
+    deletedSwipeActions = (
+      right: deletedSwipeRightAction ?? DeletedSwipeAction.rightFromPreference(),
+      left: deletedSwipeLeftAction ?? DeletedSwipeAction.leftFromPreference(),
     );
 
     this.textScaling = textScaling ?? PreferenceKey.textScaling.getPreferenceOrDefault();

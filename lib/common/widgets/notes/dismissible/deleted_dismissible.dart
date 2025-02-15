@@ -4,12 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../providers/preferences/preferences_provider.dart';
 import '../../../constants/paddings.dart';
 import '../../../enums/swipe_direction.dart';
-import '../../../preferences/enums/bin_swipe_action.dart';
+import '../../../preferences/enums/swipe_actions/deleted_swipe_action.dart';
 
-/// Note tile dismissible widget.
-class BinNoteDismissible extends ConsumerStatefulWidget {
-  /// Dismissible widget for the note tile in the bin.
-  const BinNoteDismissible({
+/// Deleted note tile dismissible widget.
+class DeletedDismissible extends ConsumerStatefulWidget {
+  /// Dismissible widget shown of the note tile of a deleted note.
+  const DeletedDismissible({
     super.key,
     required this.direction,
   });
@@ -18,17 +18,19 @@ class BinNoteDismissible extends ConsumerStatefulWidget {
   final SwipeDirection direction;
 
   @override
-  ConsumerState<BinNoteDismissible> createState() => _NoteTileDismissibleBinState();
+  ConsumerState<DeletedDismissible> createState() => _DeletedDismissibleState();
 }
 
-class _NoteTileDismissibleBinState extends ConsumerState<BinNoteDismissible> {
-  late final BinSwipeAction swipeAction;
+class _DeletedDismissibleState extends ConsumerState<DeletedDismissible> {
+  late final DeletedSwipeAction swipeAction;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final swipeActions = ref.watch(preferencesProvider.select((preferences) => preferences.binSwipeActions));
+    final swipeActions = ref.watch(
+      preferencesProvider.select((preferences) => preferences.deletedSwipeActions),
+    );
     swipeAction = widget.direction == SwipeDirection.right ? swipeActions.right : swipeActions.left;
   }
 

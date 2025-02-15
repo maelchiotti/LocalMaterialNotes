@@ -18,6 +18,7 @@ import 'common/system/share_utils.dart';
 import 'common/ui/theme_utils.dart';
 import 'common/widgets/placeholders/error_placeholder.dart';
 import 'l10n/app_localizations/app_localizations.g.dart';
+import 'models/note/note_status.dart';
 import 'pages/notes/notes_page.dart';
 import 'providers/labels/labels_list/labels_list_provider.dart';
 import 'providers/labels/labels_navigation/labels_navigation_provider.dart';
@@ -73,8 +74,9 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
 
     // Unselects all notes
     if (isNotesSelectionModeNotifier.value) {
-      unselectAllNotes(context, ref);
-      unselectAllNotes(context, ref, notesPage: false);
+      unselectAllNotes(context, ref, notesStatus: NoteStatus.available);
+      unselectAllNotes(context, ref, notesStatus: NoteStatus.archived);
+      unselectAllNotes(context, ref, notesStatus: NoteStatus.deleted);
       isNotesSelectionModeNotifier.value = false;
       intercept = true;
     }

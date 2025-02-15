@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../constants/constants.dart';
+
 import '../../../models/label/label.dart';
 import '../../../pages/labels/dialogs/label_dialog.dart';
 import '../../../providers/labels/labels/labels_provider.dart';
+import '../../constants/constants.dart';
 
 /// Adds a label.
 Future<void> addLabel(BuildContext context, WidgetRef ref) async {
@@ -17,5 +18,5 @@ Future<void> addLabel(BuildContext context, WidgetRef ref) async {
     return;
   }
 
-  ref.read(labelsProvider.notifier).edit(label);
+  await ref.read(labelsProvider.notifier).edit(label);
 }

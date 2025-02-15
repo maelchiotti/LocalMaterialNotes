@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
@@ -24,7 +26,7 @@ Future<void> main() async {
   // Display the application behind the system's notifications bar and navigation bar
   // See https://github.com/flutter/flutter/issues/40974
   // See https://github.com/flutter/flutter/issues/34678
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.transparent,
@@ -48,7 +50,7 @@ Future<void> main() async {
   await DatabaseService().ensureInitialized();
 
   // No need to await this, it can be performed in the background
-  AutoExportUtils().ensureInitialized();
+  unawaited(AutoExportUtils().ensureInitialized());
 
   // Set FLAG_SECURE if needed
   await setFlagSecureIfNeeded();

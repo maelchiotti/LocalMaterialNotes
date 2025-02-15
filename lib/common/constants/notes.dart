@@ -3,6 +3,7 @@ import '../localization/localizations_utils.dart';
 
 /// Note displayed on the very first run of the application to welcome the user.
 final welcomeNote = PlainTextNote(
+  archived: false,
   deleted: false,
   pinned: true,
   createdTime: DateTime.now(),
@@ -15,6 +16,7 @@ final welcomeNote = PlainTextNote(
 final integrationTestNotes = List.generate(
   100,
   (index) => RichTextNote(
+    archived: false,
     deleted: false,
     pinned: false,
     createdTime: DateTime(2000, 01, 01, 12).subtract(Duration(minutes: index)),
@@ -26,6 +28,7 @@ final integrationTestNotes = List.generate(
     List.generate(
       100,
       (index) => RichTextNote(
+        archived: false,
         deleted: true,
         pinned: false,
         createdTime: DateTime(2000, 01, 01, 12).subtract(Duration(minutes: index)),
@@ -39,6 +42,7 @@ final integrationTestNotes = List.generate(
 /// Notes used when taking screenshots of the application for the stores.
 final screenshotNotes = [
   RichTextNote(
+    archived: false,
     deleted: false,
     pinned: true,
     createdTime: DateTime(2000, 01, 01, 12),
@@ -48,6 +52,7 @@ final screenshotNotes = [
         '[{"insert":"Simple","attributes":{"b":true}},{"insert":", "},{"insert":"local","attributes":{"i":true}},{"insert":", "},{"insert":"material design","attributes":{"u":true}},{"insert":" notes\\n"}]',
   ),
   RichTextNote(
+    archived: false,
     deleted: false,
     pinned: false,
     createdTime: DateTime(2000, 01, 01, 11, 55),
@@ -57,6 +62,7 @@ final screenshotNotes = [
         '[{"insert":"Write text notes"},{"insert":"\\n","attributes":{"block":"cl","checked":true}},{"insert":"Use formatting options and undo/redo"},{"insert":"\\n","attributes":{"block":"cl","checked":true}},{"insert":"Use quick action to add from your homescreen"},{"insert":"\\n","attributes":{"block":"cl","checked":true}}]',
   ),
   RichTextNote(
+    archived: false,
     deleted: false,
     pinned: false,
     createdTime: DateTime(2000, 01, 01, 11, 50),
@@ -65,6 +71,7 @@ final screenshotNotes = [
     content: '[{"insert":"Search, sort and display in a list or a grid\\nPin and recover from the bin\\n"}]',
   ),
   RichTextNote(
+    archived: false,
     deleted: false,
     pinned: false,
     createdTime: DateTime(2000, 01, 01, 11, 50),
@@ -73,6 +80,7 @@ final screenshotNotes = [
     content: '[{"insert":"Categorize notes with labels\\nPin, hide and colorize labels\\n"}]',
   ),
   RichTextNote(
+    archived: false,
     deleted: false,
     pinned: false,
     createdTime: DateTime(2000, 01, 01, 11, 45),
@@ -82,6 +90,7 @@ final screenshotNotes = [
         '[{"insert":"Create a note from shared text\\nShare notes as text and export as Markdown\\nBackup notes as JSON\\n"}]',
   ),
   RichTextNote(
+    archived: false,
     deleted: false,
     pinned: false,
     createdTime: DateTime(2000, 01, 01, 11, 40),
@@ -91,6 +100,7 @@ final screenshotNotes = [
         "[{\"insert\":\"Choose your language\\nChoose your theme (including black and dynamic)\\nHide features you don't need\\n\"}]",
   ),
   RichTextNote(
+    archived: false,
     deleted: false,
     pinned: false,
     createdTime: DateTime(2000, 01, 01, 11, 35),
@@ -99,6 +109,7 @@ final screenshotNotes = [
     content: '[{"insert":"Your data never leaves your device\\nEncrypt your exports\\n"}]',
   ),
   RichTextNote(
+    archived: false,
     deleted: true,
     pinned: false,
     createdTime: DateTime(2000, 01, 01, 12),
