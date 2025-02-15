@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../common/navigation/app_bars/notes_app_bar.dart';
+import '../../common/navigation/app_bars/notes/notes_app_bar.dart';
 import '../../common/navigation/side_navigation.dart';
 import '../../common/navigation/top_navigation.dart';
 import '../../common/widgets/notes/notes_list.dart';

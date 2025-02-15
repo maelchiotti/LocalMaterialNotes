@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../../constants/constants.dart';
 
-/// Lists the options available in the menu for the available notes.
-enum NotesMenuOption {
+/// Lists the options available in the selection menu for the available notes.
+enum SelectionAvailableMenuOption {
   /// Copy the notes to the clipboard.
   copy(Icons.copy),
 
@@ -29,19 +29,19 @@ enum NotesMenuOption {
   /// An option displayed in the menu for the available notes.
   ///
   /// An action is represented by an [icon] and a [title].
-  const NotesMenuOption(this.icon);
+  const SelectionAvailableMenuOption(this.icon);
 
   /// Returns the title of the menu option.
   String get title {
     switch (this) {
-      case togglePin:
-        return l.action_toggle_pins;
-      case addLabels:
-        return l.menu_action_add_labels;
       case copy:
         return flutterL?.copyButtonLabel ?? 'Copy';
       case share:
         return flutterL?.shareButtonLabel ?? 'Share';
+      case togglePin:
+        return l.action_toggle_pins;
+      case addLabels:
+        return l.menu_action_add_labels;
       case archive:
         return l.action_archive;
       case delete:
@@ -50,7 +50,7 @@ enum NotesMenuOption {
   }
 
   /// Returns the [PopupMenuItem] widget of the menu option.
-  PopupMenuItem<NotesMenuOption> popupMenuItem(BuildContext context) {
+  PopupMenuItem<SelectionAvailableMenuOption> popupMenuItem(BuildContext context) {
     return PopupMenuItem(
       value: this,
       child: ListTile(

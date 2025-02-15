@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../../constants/constants.dart';
 
-/// Lists the options available for the menus on the labels.
-enum LabelsMenuOption {
-  /// Toggle whether the note is pinned.
-  togglePin(Icons.push_pin),
+/// Lists the options available in the selection menu for the deleted notes.
+enum SelectionDeletedMenuOption {
+  /// Restore the note.
+  restore(Icons.restore_from_trash),
 
-  /// Toggle whether the note is visible.
-  toggleVisibility(Icons.label),
-
-  /// Delete the note.
+  /// Permanently delete the note.
   ///
   /// This action is [dangerous].
-  delete(Icons.delete, dangerous: true),
+  deletePermanently(Icons.delete_forever, dangerous: true),
   ;
 
   /// Icon of the menu option.
@@ -24,27 +21,25 @@ enum LabelsMenuOption {
   /// Changes the text and icon colors to red.
   final bool dangerous;
 
-  /// An option displayed in the menu for the labels.
+  /// An option displayed in the menu for the deleted notes.
   ///
   /// An action is represented by an [icon] and a [title].
   ///
   /// If [dangerous] is `true`, the icon and the title are shown in red.
-  const LabelsMenuOption(this.icon, {this.dangerous = false});
+  const SelectionDeletedMenuOption(this.icon, {this.dangerous = false});
 
   /// Returns the title of the menu option.
   String get title {
     switch (this) {
-      case togglePin:
-        return l.action_labels_toggle_pins;
-      case toggleVisibility:
-        return l.action_labels_toggle_visibility;
-      case delete:
-        return l.action_delete;
+      case restore:
+        return l.action_restore;
+      case deletePermanently:
+        return l.action_delete_permanently;
     }
   }
 
   /// Returns the [PopupMenuItem] widget of the menu option.
-  PopupMenuItem<LabelsMenuOption> popupMenuItem(BuildContext context) {
+  PopupMenuItem<SelectionDeletedMenuOption> popupMenuItem(BuildContext context) {
     return PopupMenuItem(
       value: this,
       child: ListTile(

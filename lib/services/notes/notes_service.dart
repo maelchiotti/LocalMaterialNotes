@@ -105,72 +105,84 @@ class NotesService {
   }
 
   /// Returns all the notes.
-  Future<List<Note>> getAll() async => [
-        ...await (_plainTextNotes.where().findAll()),
-        ...await (_markdownNotes.where().findAll()),
-        ...await (_richTextNotes.where().findAll()),
-        ...await (_checklistNotes.where().findAll()),
-      ];
+  Future<List<Note>> getAll() async {
+    return [
+      ...await (_plainTextNotes.where().findAll()),
+      ...await (_markdownNotes.where().findAll()),
+      ...await (_richTextNotes.where().findAll()),
+      ...await (_checklistNotes.where().findAll()),
+    ];
+  }
 
   /// Returns all the notes with the [ids].
-  Future<List<Note>> getAllByIds(List<int> ids) async => [
-        ...(await (_plainTextNotes.getAll(ids))).nonNulls,
-        ...(await (_markdownNotes.getAll(ids))).nonNulls,
-        ...(await (_richTextNotes.getAll(ids))).nonNulls,
-        ...(await (_checklistNotes.getAll(ids))).nonNulls,
-      ];
+  Future<List<Note>> getAllByIds(List<int> ids) async {
+    return [
+      ...(await (_plainTextNotes.getAll(ids))).nonNulls,
+      ...(await (_markdownNotes.getAll(ids))).nonNulls,
+      ...(await (_richTextNotes.getAll(ids))).nonNulls,
+      ...(await (_checklistNotes.getAll(ids))).nonNulls,
+    ];
+  }
 
   /// Returns all the notes that are available.
-  Future<List<Note>> getAllAvailable() async => [
-        ...await (_plainTextNotes.where().deletedEqualTo(false).findAll()),
-        ...await (_markdownNotes.where().deletedEqualTo(false).findAll()),
-        ...await (_richTextNotes.where().deletedEqualTo(false).findAll()),
-        ...await (_checklistNotes.where().deletedEqualTo(false).findAll()),
-      ];
+  Future<List<Note>> getAllAvailable() async {
+    return [
+      ...await (_plainTextNotes.filter().archivedEqualTo(false).deletedEqualTo(false).findAll()),
+      ...await (_markdownNotes.filter().archivedEqualTo(false).deletedEqualTo(false).findAll()),
+      ...await (_richTextNotes.filter().archivedEqualTo(false).deletedEqualTo(false).findAll()),
+      ...await (_checklistNotes.filter().archivedEqualTo(false).deletedEqualTo(false).findAll()),
+    ];
+  }
 
   /// Returns all the notes that are available filtered by the [label].
-  Future<List<Note>> getAllAvailableFilteredByLabel({required Label label}) async => [
-        ...await (_plainTextNotes
-            .where()
-            .deletedEqualTo(false)
-            .filter()
-            .labels((q) => q.nameEqualTo(label.name))
-            .findAll()),
-        ...await (_markdownNotes
-            .where()
-            .deletedEqualTo(false)
-            .filter()
-            .labels((q) => q.nameEqualTo(label.name))
-            .findAll()),
-        ...await (_richTextNotes
-            .where()
-            .deletedEqualTo(false)
-            .filter()
-            .labels((q) => q.nameEqualTo(label.name))
-            .findAll()),
-        ...await (_checklistNotes
-            .where()
-            .deletedEqualTo(false)
-            .filter()
-            .labels((q) => q.nameEqualTo(label.name))
-            .findAll()),
-      ];
+  Future<List<Note>> getAllAvailableFilteredByLabel({required Label label}) async {
+    return [
+      ...await (_plainTextNotes
+          .filter()
+          .archivedEqualTo(false)
+          .deletedEqualTo(false)
+          .labels((q) => q.nameEqualTo(label.name))
+          .findAll()),
+      ...await (_markdownNotes
+          .filter()
+          .archivedEqualTo(false)
+          .deletedEqualTo(false)
+          .labels((q) => q.nameEqualTo(label.name))
+          .findAll()),
+      ...await (_richTextNotes
+          .filter()
+          .archivedEqualTo(false)
+          .deletedEqualTo(false)
+          .labels((q) => q.nameEqualTo(label.name))
+          .findAll()),
+      ...await (_checklistNotes
+          .filter()
+          .archivedEqualTo(false)
+          .deletedEqualTo(false)
+          .labels((q) => q.nameEqualTo(label.name))
+          .findAll()),
+    ];
+  }
 
   /// Returns all the notes that are archived.
-  Future<List<Note>> getAllArchived() async => [
-        ...await (_plainTextNotes.where().archivedEqualTo(true).findAll()),
-        ...await (_markdownNotes.where().archivedEqualTo(true).findAll()),
-        ...await (_richTextNotes.where().archivedEqualTo(true).findAll()),
-        ...await (_checklistNotes.where().archivedEqualTo(true).findAll()),
-      ];
+  Future<List<Note>> getAllArchived() async {
+    return [
+      ...await (_plainTextNotes.where().archivedEqualTo(true).findAll()),
+      ...await (_markdownNotes.where().archivedEqualTo(true).findAll()),
+      ...await (_richTextNotes.where().archivedEqualTo(true).findAll()),
+      ...await (_checklistNotes.where().archivedEqualTo(true).findAll()),
+    ];
+  }
 
   /// Returns all the notes that are deleted.
-  Future<List<Note>> getAllDeleted() async => [
-        ...await (_plainTextNotes.where().deletedEqualTo(true).findAll()),
-        ...await (_markdownNotes.where().deletedEqualTo(true).findAll()),
-        ...await (_richTextNotes.where().deletedEqualTo(true).findAll()),
-        ...await (_checklistNotes.where().deletedEqualTo(true).findAll()),
-      ];
+  Future<List<Note>> getAllDeleted() async {
+    return [
+      ...await (_plainTextNotes.where().deletedEqualTo(true).findAll()),
+      ...await (_markdownNotes.where().deletedEqualTo(true).findAll()),
+      ...await (_richTextNotes.where().deletedEqualTo(true).findAll()),
+      ...await (_checklistNotes.where().deletedEqualTo(true).findAll()),
+    ];
+  }
 
   /// Returns all the notes with the [notesStatus] that match the [search].
   ///

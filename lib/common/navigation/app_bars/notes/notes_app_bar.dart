@@ -2,22 +2,22 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../models/label/label.dart';
-import '../../../models/note/note.dart';
-import '../../../models/note/note_status.dart';
-import '../../../providers/notes/notes_provider.dart';
-import '../../../providers/notifiers/notifiers.dart';
-import '../../../providers/preferences/preferences_provider.dart';
-import '../../../services/notes/notes_service.dart';
-import '../../constants/constants.dart';
-import '../../constants/paddings.dart';
-import '../../preferences/enums/layout.dart';
-import '../../preferences/enums/sort_method.dart';
-import '../../preferences/preference_key.dart';
-import '../../preferences/watched_preferences.dart';
-import '../../widgets/keys.dart';
-import '../../widgets/notes/note_tile.dart';
-import '../../widgets/placeholders/empty_placeholder.dart';
+import '../../../../models/label/label.dart';
+import '../../../../models/note/note.dart';
+import '../../../../models/note/note_status.dart';
+import '../../../../providers/notes/notes_provider.dart';
+import '../../../../providers/notifiers/notifiers.dart';
+import '../../../../providers/preferences/preferences_provider.dart';
+import '../../../../services/notes/notes_service.dart';
+import '../../../constants/constants.dart';
+import '../../../constants/paddings.dart';
+import '../../../preferences/enums/layout.dart';
+import '../../../preferences/enums/sort_method.dart';
+import '../../../preferences/preference_key.dart';
+import '../../../preferences/watched_preferences.dart';
+import '../../../widgets/keys.dart';
+import '../../../widgets/notes/note_tile.dart';
+import '../../../widgets/placeholders/empty_placeholder.dart';
 
 /// Notes list and bin's app bar.
 ///

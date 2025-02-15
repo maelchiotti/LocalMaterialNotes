@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../../constants/constants.dart';
 
-/// Lists the options available in the menus for the archived notes.
-enum ArchivesMenuOption {
+/// Lists the options available in the editor's menu for the archived notes.
+enum EditorArchivedMenuOption {
+  /// Copy the notes to the clipboard.
+  copy(Icons.copy),
+
+  /// Share the notes.
+  share(Icons.share),
+
+  /// Select the labels of the note.
+  selectLabels(Icons.label),
+
   /// Unarchive the note.
   unarchive(Icons.unarchive),
 
@@ -17,11 +26,17 @@ enum ArchivesMenuOption {
   /// An option displayed in the menu for the archived notes.
   ///
   /// An action is represented by an [icon] and a [title].
-  const ArchivesMenuOption(this.icon);
+  const EditorArchivedMenuOption(this.icon);
 
   /// Returns the title of the menu option.
   String get title {
     switch (this) {
+      case copy:
+        return flutterL?.copyButtonLabel ?? 'Copy';
+      case share:
+        return flutterL?.shareButtonLabel ?? 'Share';
+      case selectLabels:
+        return l.menu_action_select_labels;
       case unarchive:
         return l.action_unarchive;
       case about:
@@ -32,7 +47,7 @@ enum ArchivesMenuOption {
   /// Returns the [PopupMenuItem] widget of the menu option.
   ///
   /// Uses the alternative icon if [alternative] is set to `true`.
-  PopupMenuItem<ArchivesMenuOption> popupMenuItem(BuildContext context) {
+  PopupMenuItem<EditorArchivedMenuOption> popupMenuItem(BuildContext context) {
     return PopupMenuItem(
       value: this,
       child: ListTile(

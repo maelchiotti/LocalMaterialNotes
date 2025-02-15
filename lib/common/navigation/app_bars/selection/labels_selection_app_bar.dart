@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../models/label/label.dart';
-import '../../../providers/labels/labels/labels_provider.dart';
-import '../../actions/labels/delete.dart';
-import '../../actions/labels/pin.dart';
-import '../../actions/labels/select.dart';
-import '../../actions/labels/visible.dart';
-import '../../constants/constants.dart';
-import '../../constants/paddings.dart';
-import '../../constants/separators.dart';
-import '../../widgets/placeholders/error_placeholder.dart';
-import '../../widgets/placeholders/loading_placeholder.dart';
-import '../enums/labels_menu_option.dart';
+import '../../../../models/label/label.dart';
+import '../../../../providers/labels/labels/labels_provider.dart';
+import '../../../actions/labels/delete.dart';
+import '../../../actions/labels/pin.dart';
+import '../../../actions/labels/select.dart';
+import '../../../actions/labels/visible.dart';
+import '../../../constants/constants.dart';
+import '../../../constants/paddings.dart';
+import '../../../constants/separators.dart';
+import '../../../widgets/placeholders/error_placeholder.dart';
+import '../../../widgets/placeholders/loading_placeholder.dart';
+import '../../enums/labels/selection_labels_menu_option.dart';
 
 /// Labels selection mode app bar.
 ///
@@ -35,14 +35,14 @@ class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
     BuildContext context,
     WidgetRef ref,
     List<Label> labels,
-    LabelsMenuOption menuOption,
+    SelectionLabelsMenuOption menuOption,
   ) async {
     switch (menuOption) {
-      case LabelsMenuOption.togglePin:
+      case SelectionLabelsMenuOption.togglePin:
         await togglePinLabels(ref, labels: labels);
-      case LabelsMenuOption.toggleVisibility:
+      case SelectionLabelsMenuOption.toggleVisibility:
         await toggleVisibleLabels(ref, labels: labels);
-      case LabelsMenuOption.delete:
+      case SelectionLabelsMenuOption.delete:
         await deleteLabels(context, ref, labels: labels);
     }
   }
@@ -69,12 +69,12 @@ class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
           padding: Paddings.appBarSeparator,
           child: Separator.divider1indent16.vertical,
         ),
-        PopupMenuButton<LabelsMenuOption>(
+        PopupMenuButton<SelectionLabelsMenuOption>(
           itemBuilder: (context) => ([
-            LabelsMenuOption.togglePin.popupMenuItem(context),
-            LabelsMenuOption.toggleVisibility.popupMenuItem(context),
+            SelectionLabelsMenuOption.togglePin.popupMenuItem(context),
+            SelectionLabelsMenuOption.toggleVisibility.popupMenuItem(context),
             const PopupMenuDivider(),
-            LabelsMenuOption.delete.popupMenuItem(context),
+            SelectionLabelsMenuOption.delete.popupMenuItem(context),
           ]),
           onSelected: (menuOption) => onLabelsMenuOptionSelected(context, ref, selectedLabels, menuOption),
         ),

@@ -2,26 +2,26 @@ import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../models/note/note_status.dart';
-import '../../../models/note/types/note_type.dart';
-import '../../../providers/notifiers/notifiers.dart';
-import '../../actions/notes/about.dart';
-import '../../actions/notes/archive.dart';
-import '../../actions/notes/copy.dart';
-import '../../actions/notes/delete.dart';
-import '../../actions/notes/labels.dart';
-import '../../actions/notes/pin.dart';
-import '../../actions/notes/restore.dart';
-import '../../actions/notes/share.dart';
-import '../../actions/notes/unarchive.dart';
-import '../../constants/constants.dart';
-import '../../constants/paddings.dart';
-import '../../preferences/preference_key.dart';
-import '../../utils.dart';
-import '../../widgets/placeholders/empty_placeholder.dart';
-import '../enums/archives_menu_option.dart';
-import '../enums/bin_menu_option.dart';
-import '../enums/editor_menu_option.dart';
+import '../../../../models/note/note_status.dart';
+import '../../../../models/note/types/note_type.dart';
+import '../../../../providers/notifiers/notifiers.dart';
+import '../../../actions/notes/about.dart';
+import '../../../actions/notes/archive.dart';
+import '../../../actions/notes/copy.dart';
+import '../../../actions/notes/delete.dart';
+import '../../../actions/notes/labels.dart';
+import '../../../actions/notes/pin.dart';
+import '../../../actions/notes/restore.dart';
+import '../../../actions/notes/share.dart';
+import '../../../actions/notes/unarchive.dart';
+import '../../../constants/constants.dart';
+import '../../../constants/paddings.dart';
+import '../../../preferences/preference_key.dart';
+import '../../../utils.dart';
+import '../../../widgets/placeholders/empty_placeholder.dart';
+import '../../enums/editor/editor_archived_menu_option.dart';
+import '../../enums/editor/editor_available_menu_option.dart';
+import '../../enums/editor/editor_deleted_menu_option.dart';
 
 /// Editor app bar.
 class EditorAppBar extends ConsumerStatefulWidget {
@@ -40,7 +40,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
   }
 
   /// Action to perform on the available [notes] depending on the selected [menuOption].
-  Future<void> onNoteMenuOptionSelected(EditorMenuOption menuOption) async {
+  Future<void> onAvailableMenuOptionSelected(EditorAvailableMenuOption menuOption) async {
     closeKeyboard();
 
     final note = currentNoteNotifier.value;
@@ -50,25 +50,25 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     }
 
     switch (menuOption) {
-      case EditorMenuOption.togglePin:
-        await togglePinNote(context, ref, note: note);
-      case EditorMenuOption.selectLabels:
-        selectLabels(context, ref, note: note);
-      case EditorMenuOption.copy:
+      case EditorAvailableMenuOption.copy:
         await copyNote(note: note);
-      case EditorMenuOption.share:
+      case EditorAvailableMenuOption.share:
         await shareNote(note: note);
-      case EditorMenuOption.archive:
+      case EditorAvailableMenuOption.togglePin:
+        await togglePinNote(context, ref, note: note);
+      case EditorAvailableMenuOption.selectLabels:
+        selectLabels(context, ref, note: note);
+      case EditorAvailableMenuOption.archive:
         await archiveNote(context, ref, note: note);
-      case EditorMenuOption.delete:
+      case EditorAvailableMenuOption.delete:
         await deleteNote(context, ref, note: note, pop: true);
-      case EditorMenuOption.about:
+      case EditorAvailableMenuOption.about:
         await showNoteAbout(context);
     }
   }
 
   /// Action to perform on the archived [notes] depending on the selected [menuOption].
-  Future<void> onArchivesMenuOptionSelected(ArchivesMenuOption menuOption) async {
+  Future<void> onArchivedMenuOptionSelected(EditorArchivedMenuOption menuOption) async {
     closeKeyboard();
 
     final note = currentNoteNotifier.value;
@@ -78,15 +78,21 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     }
 
     switch (menuOption) {
-      case ArchivesMenuOption.unarchive:
+      case EditorArchivedMenuOption.copy:
+        await copyNote(note: note);
+      case EditorArchivedMenuOption.share:
+        await shareNote(note: note);
+      case EditorArchivedMenuOption.selectLabels:
+        await selectLabels(context, ref, note: note);
+      case EditorArchivedMenuOption.unarchive:
         await unarchiveNote(context, ref, note: note, pop: true);
-      case ArchivesMenuOption.about:
+      case EditorArchivedMenuOption.about:
         await showNoteAbout(context);
     }
   }
 
   /// Action to perform on the deleted [notes] depending on the selected [menuOption].
-  Future<void> onBinMenuOptionSelected(BinMenuOption menuOption) async {
+  Future<void> onDeletedMenuOptionSelected(EditorDeletedMenuOption menuOption) async {
     closeKeyboard();
 
     final note = currentNoteNotifier.value;
@@ -96,11 +102,11 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     }
 
     switch (menuOption) {
-      case BinMenuOption.restore:
+      case EditorDeletedMenuOption.restore:
         await restoreNote(context, ref, note: note, pop: true);
-      case BinMenuOption.deletePermanently:
+      case EditorDeletedMenuOption.deletePermanently:
         await permanentlyDeleteNote(context, ref, note: note, pop: true);
-      case BinMenuOption.about:
+      case EditorDeletedMenuOption.about:
         await showNoteAbout(context);
     }
   }
@@ -196,47 +202,54 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                   if (showEditorModeButton)
                     ValueListenableBuilder(
                       valueListenable: isEditorInEditModeNotifier,
-                      builder: (context, isEditMode, child) => IconButton(
-                        icon: Icon(isEditMode ? Icons.visibility : Icons.edit),
-                        tooltip:
+                      builder: (context, isEditMode, child) =>
+                          IconButton(
+                            icon: Icon(isEditMode ? Icons.visibility : Icons.edit),
+                            tooltip:
                             isEditMode ? l.tooltip_fab_toggle_editor_mode_read : l.tooltip_fab_toggle_editor_mode_edit,
-                        onPressed: switchMode,
-                      ),
+                            onPressed: switchMode,
+                          ),
                     ),
-                  PopupMenuButton<EditorMenuOption>(
-                    itemBuilder: (context) => ([
-                      EditorMenuOption.copy.popupMenuItem(context),
-                      EditorMenuOption.share.popupMenuItem(context),
+                  PopupMenuButton<EditorAvailableMenuOption>(
+                    itemBuilder: (context) =>
+                    ([
+                      EditorAvailableMenuOption.copy.popupMenuItem(context),
+                      EditorAvailableMenuOption.share.popupMenuItem(context),
                       const PopupMenuDivider(),
-                      EditorMenuOption.togglePin.popupMenuItem(context, alternative: note.pinned),
-                      if (enableLabels) EditorMenuOption.selectLabels.popupMenuItem(context),
+                      EditorAvailableMenuOption.togglePin.popupMenuItem(context, alternative: note.pinned),
+                      if (enableLabels) EditorAvailableMenuOption.selectLabels.popupMenuItem(context),
                       const PopupMenuDivider(),
-                      EditorMenuOption.archive.popupMenuItem(context),
-                      EditorMenuOption.delete.popupMenuItem(context),
+                      EditorAvailableMenuOption.archive.popupMenuItem(context),
+                      EditorAvailableMenuOption.delete.popupMenuItem(context),
                       const PopupMenuDivider(),
-                      EditorMenuOption.about.popupMenuItem(context),
+                      EditorAvailableMenuOption.about.popupMenuItem(context),
                     ]),
-                    onSelected: onNoteMenuOptionSelected,
+                    onSelected: onAvailableMenuOptionSelected,
                   ),
                 ],
                 if (note.status == NoteStatus.archived)
-                  PopupMenuButton<ArchivesMenuOption>(
-                    itemBuilder: (context) => ([
-                      ArchivesMenuOption.unarchive.popupMenuItem(context),
+                  PopupMenuButton<EditorArchivedMenuOption>(
+                    itemBuilder: (context) =>
+                    ([
+                      EditorArchivedMenuOption.copy.popupMenuItem(context),
+                      EditorArchivedMenuOption.share.popupMenuItem(context),
                       const PopupMenuDivider(),
-                      ArchivesMenuOption.about.popupMenuItem(context),
+                      EditorArchivedMenuOption.unarchive.popupMenuItem(context),
+                      const PopupMenuDivider(),
+                      EditorArchivedMenuOption.about.popupMenuItem(context),
                     ]),
-                    onSelected: onArchivesMenuOptionSelected,
+                    onSelected: onArchivedMenuOptionSelected,
                   ),
                 if (note.status == NoteStatus.deleted)
-                  PopupMenuButton<BinMenuOption>(
-                    itemBuilder: (context) => ([
-                      BinMenuOption.restore.popupMenuItem(context),
-                      BinMenuOption.deletePermanently.popupMenuItem(context),
+                  PopupMenuButton<EditorDeletedMenuOption>(
+                    itemBuilder: (context) =>
+                    ([
+                      EditorDeletedMenuOption.restore.popupMenuItem(context),
+                      EditorDeletedMenuOption.deletePermanently.popupMenuItem(context),
                       const PopupMenuDivider(),
-                      BinMenuOption.about.popupMenuItem(context),
+                      EditorDeletedMenuOption.about.popupMenuItem(context),
                     ]),
-                    onSelected: onBinMenuOptionSelected,
+                    onSelected: onDeletedMenuOptionSelected,
                   ),
                 Padding(padding: Paddings.appBarActionsEnd),
               ],

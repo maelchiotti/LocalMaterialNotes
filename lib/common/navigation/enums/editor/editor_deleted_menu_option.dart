@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../../constants/constants.dart';
 
-/// Lists the options available in the menus for the deleted notes.
-enum BinMenuOption {
+/// Lists the options available in the editor's menu for the deleted notes.
+enum EditorDeletedMenuOption {
   /// Restore the note.
   restore(Icons.restore_from_trash),
 
@@ -29,7 +29,7 @@ enum BinMenuOption {
   /// An action is represented by an [icon] and a [title].
   ///
   /// If [dangerous] is `true`, the icon and the title are shown in red.
-  const BinMenuOption(this.icon, {this.dangerous = false});
+  const EditorDeletedMenuOption(this.icon, {this.dangerous = false});
 
   /// Returns the title of the menu option.
   String get title {
@@ -44,7 +44,7 @@ enum BinMenuOption {
   }
 
   /// Returns the [PopupMenuItem] widget of the menu option.
-  PopupMenuItem<BinMenuOption> popupMenuItem(BuildContext context) {
+  PopupMenuItem<EditorDeletedMenuOption> popupMenuItem(BuildContext context) {
     return PopupMenuItem(
       value: this,
       child: ListTile(
