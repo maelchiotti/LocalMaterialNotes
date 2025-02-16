@@ -81,13 +81,10 @@ dev_dependencies:
   custom_lint: ^0.7.0
   flutter_launcher_icons: ^0.14.3
   flutter_lints: ^5.0.0
-  flutter_test:
-    sdk: flutter
   isar_generator:
     version: ^3.1.8
     hosted: https://pub.isar-community.dev/
   json_serializable: ^6.9.0
-  patrol: ^3.14.0
   riverpod_generator: ^2.6.3
   riverpod_lint: ^2.6.3
 
@@ -171,7 +168,3 @@ flutter:
         - asset: assets/fonts/Ubuntu/Ubuntu-Medium.ttf
         - asset: assets/fonts/Ubuntu/Ubuntu-MediumItalic.ttf
         - asset: assets/fonts/Ubuntu/Ubuntu-Regular.ttf
-
-patrol:
-  android:
-    package_name: com.maelchiotti.localmaterialnotes
