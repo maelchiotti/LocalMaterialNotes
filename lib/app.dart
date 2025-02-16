@@ -15,6 +15,7 @@ import 'common/extensions/locale_extension.dart';
 import 'common/localization/locale_utils.dart';
 import 'common/system/quick_actions_utils.dart';
 import 'common/system/share_utils.dart';
+import 'common/ui/snack_bar_utils.dart';
 import 'common/ui/theme_utils.dart';
 import 'common/widgets/placeholders/error_placeholder.dart';
 import 'l10n/app_localizations/app_localizations.g.dart';
@@ -41,6 +42,8 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
   @override
   void initState() {
     super.initState();
+
+    SnackBarUtils().ensureInitialized(ref);
 
     BackButtonInterceptor.add(backButtonInterceptor);
 

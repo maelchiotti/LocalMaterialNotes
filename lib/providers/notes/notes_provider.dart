@@ -199,6 +199,8 @@ class Notes extends _$Notes {
   Future<bool> setDeleted(List<Note> notesToSet, bool deleted) async {
     _checkStatus([NoteStatus.available, NoteStatus.deleted]);
 
+    final wereArchived = notesToSet.first.archived;
+
     for (final note in notesToSet) {
       note.pinned = false;
       note.archived = false;
@@ -218,7 +220,11 @@ class Notes extends _$Notes {
     state = AsyncData(notes);
 
     _updateUnlabeledProvider();
-    _updateStatusProvider(deleted ? NoteStatus.deleted : NoteStatus.available);
+    if (deleted) {
+      _updateStatusProvider(wereArchived ? NoteStatus.archived : NoteStatus.available);
+    } else {
+      _updateStatusProvider(NoteStatus.deleted);
+    }
 
     return true;
   }

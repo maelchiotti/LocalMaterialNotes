@@ -59,14 +59,18 @@ class NotesList extends ConsumerWidget {
             key: Keys.notesPageNotesListListLayout,
             padding: showTilesBackground ? Paddings.notesWithBackground : Paddings.fab,
             itemCount: notes.length,
-            itemBuilder: (context, index) => NoteTile(
-              key: Keys.noteTile(index),
-              note: notes[index],
-            ),
-            separatorBuilder: (BuildContext context, int index) => Padding(
-              padding: showTilesBackground ? Paddings.notesListWithBackgroundSeparation : EdgeInsetsDirectional.zero,
-              child: showSeparators ? Separator.divider1indent8.horizontal : null,
-            ),
+            itemBuilder: (context, index) {
+              return NoteTile(
+                key: Keys.noteTile(index),
+                note: notes[index],
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: showTilesBackground ? Paddings.notesListWithBackgroundSeparation : EdgeInsetsDirectional.zero,
+                child: showSeparators ? Separator.divider1indent8.horizontal : null,
+              );
+            },
           )
         : AlignedGridView.count(
             key: Keys.notesPageNotesListGridLayout,

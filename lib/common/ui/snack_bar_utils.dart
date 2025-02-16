@@ -1,35 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../constants/constants.dart';
 
 /// Utilities for the snack bars.
+///
+/// This class is a singleton.
 class SnackBarUtils {
-  /// A snack bar that holds an informative [message].
-  SnackBarUtils.info(
-    String message, {
-    this.duration = const Duration(milliseconds: 4000),
-  }) : text = message;
+  static final SnackBarUtils _singleton = SnackBarUtils._internal();
 
-  /// A snack bar that holds an [error] message.
+  /// Default constructor.
+  factory SnackBarUtils() => _singleton;
+
+  SnackBarUtils._internal();
+
+  /// Global [WidgetRef] from used to access the providers even after a page has been removed from the widget tree.
+  late final WidgetRef globalRef;
+
+  /// Ensures the utility is initialized.
+  Future<void> ensureInitialized(WidgetRef ref) async {
+    globalRef = ref;
+  }
+
+  /// Shows a snack bar with the [text].
   ///
-  /// The message is prefixed with the string `Error: `. Thus, the message should start with a lowercase.
-  SnackBarUtils.error(
-    String error, {
-    this.duration = const Duration(milliseconds: 4000),
-  }) : text = '${l.error_snack_bar} $error';
+  /// If [context] is `null`, the current context of [rootNavigatorKey] is used instead.
+  ///
+  /// if [error] is `true`, the [text] is prefixed with `Error:`.
+  ///
+  /// If [onCancel] is set, an action that calls it when tapped is shown.
+  void show({
+    BuildContext? context,
+    required String text,
+    bool error = false,
+    void Function(WidgetRef globalRef)? onCancel,
+  }) {
+    if (error) {
+      text = '${l.error_snack_bar} $text';
+    }
 
-  /// Text to display in the snack bar;
-  final String text;
+    context ??= rootNavigatorKey.currentContext!;
 
-  /// Duration of the snack bar.
-  final Duration duration;
-
-  /// Shows the snack bar.
-  void show({BuildContext? context}) {
-    ScaffoldMessenger.of(context ?? rootNavigatorKey.currentContext!).showSnackBar(
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: duration,
         content: Text(text),
+        action: onCancel != null
+            ? SnackBarAction(
+                label: flutterL?.cancelButtonLabel ?? 'Cancel',
+                onPressed: () => onCancel(globalRef),
+              )
+            : null,
       ),
     );
   }

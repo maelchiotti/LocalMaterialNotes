@@ -52,14 +52,14 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         await ref.read(notesProvider(status: NoteStatus.deleted).notifier).get();
         ref.read(preferencesProvider.notifier).reset();
 
-        SnackBarUtils.info(l.snack_bar_import_success).show();
+        SnackBarUtils().show(text: l.snack_bar_import_success);
 
         setState(() {});
       }
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
 
-      SnackBarUtils.info(exception.toString()).show();
+      SnackBarUtils().show(text: exception.toString());
     }
   }
 
@@ -82,12 +82,12 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         final password = shouldEncrypt.$2;
 
         if (await ManualBackupService().manuallyExportAsJson(encrypt: encrypt, password: password)) {
-          SnackBarUtils.info(l.snack_bar_export_success).show();
+          SnackBarUtils().show(text: l.snack_bar_export_success);
         }
       } catch (exception, stackTrace) {
         logger.e(exception.toString(), exception, stackTrace);
 
-        SnackBarUtils.info(exception.toString()).show();
+        SnackBarUtils().show(text: exception.toString());
       }
     });
   }
@@ -98,12 +98,12 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   Future<void> _exportAsMarkdown() async {
     try {
       if (await ManualBackupService().exportAsMarkdown()) {
-        SnackBarUtils.info(l.snack_bar_export_success).show();
+        SnackBarUtils().show(text: l.snack_bar_export_success);
       }
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
 
-      SnackBarUtils.info(exception.toString()).show();
+      SnackBarUtils().show(text: exception.toString());
     }
   }
 

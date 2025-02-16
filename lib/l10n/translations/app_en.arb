@@ -1065,6 +1065,46 @@
   "@filter_labels_hidden": {
     "description": "Filter chip in the labels page to show only the hidden labels."
   },
+  "snack_bar_archived": "The {count, plural, one{note was} other{notes were}} archived",
+  "@snack_bar_archived": {
+    "description": "Snack bar informing that the note was archived.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were archived.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_unarchived": "The {count, plural, one{note was} other{notes were}} unarchived",
+  "@snack_bar_unarchived": {
+    "description": "Snack bar informing that the note was unarchived.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were unarchived.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_deleted": "The {count, plural, one{note was} other{notes were}} deleted",
+  "@snack_bar_deleted": {
+    "description": "Snack bar informing that the note was deleted.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were deleted.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_restored": "The {count, plural, one{note was} other{notes were}} restored",
+  "@snack_bar_restored": {
+    "description": "Snack bar informing that the note was restored.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were restored.",
+        "type": "int"
+      }
+    }
+  },
   "snack_bar_copied": "Content of the {count, plural, one{note} other{notes}} copied to the clipboard.",
   "@snack_bar_copied": {
     "description": "Snack bar informing that the content of the note was copied to clipboard.",

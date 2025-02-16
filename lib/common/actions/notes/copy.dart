@@ -8,7 +8,7 @@ import '../../ui/snack_bar_utils.dart';
 Future<void> copyNote({required Note note}) async {
   await Clipboard.setData(ClipboardData(text: note.contentPreview));
 
-  SnackBarUtils.info(l.snack_bar_copied(1)).show();
+  SnackBarUtils().show(text: l.snack_bar_copied(1));
 }
 
 /// Copies the content of the [notes] to the clipboard.
@@ -17,5 +17,5 @@ Future<void> copyNotes({required List<Note> notes}) async {
 
   await Clipboard.setData(ClipboardData(text: text));
 
-  SnackBarUtils.info(l.snack_bar_copied(notes.length)).show();
+  SnackBarUtils().show(text: l.snack_bar_copied(notes.length));
 }
