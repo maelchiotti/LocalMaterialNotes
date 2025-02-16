@@ -7,15 +7,21 @@ import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../constants/constants.dart';
 import '../../dialogs/confirmation_dialog.dart';
+import '../../ui/snack_bar_utils.dart';
+import 'archive.dart';
+import 'restore.dart';
 import 'select.dart';
 
 /// Deletes the [note].
 ///
 /// Returns `true` if the [note] was deleted, `false` otherwise.
-///
-/// First, asks for a confirmation if needed.
-/// Finally, pops the route if the note was deleted from the editor page.
-Future<bool> deleteNote(BuildContext context, WidgetRef ref, {required Note note, bool pop = false}) async {
+Future<bool> deleteNote(
+  BuildContext context,
+  WidgetRef ref, {
+  required Note note,
+  bool pop = false,
+  bool cancel = true,
+}) async {
   if (!await askForConfirmation(
     context,
     l.dialog_delete,
@@ -31,23 +37,33 @@ Future<bool> deleteNote(BuildContext context, WidgetRef ref, {required Note note
 
   currentNoteNotifier.value = null;
 
+  final wasArchived = note.archived;
+
   final succeeded = await ref
       .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
       .setDeleted([note], true);
 
-  if (!succeeded) {
-    return false;
+  if (succeeded && cancel) {
+    SnackBarUtils().show(
+      text: l.snack_bar_deleted(1),
+      onCancel: (globalRef) async => wasArchived
+          ? await archiveNote(context, globalRef, note: note, cancel: false)
+          : await restoreNote(context, globalRef, note: note, cancel: false),
+    );
   }
 
-  return true;
+  return succeeded;
 }
 
 /// Deletes the [notes].
 ///
 /// Returns `true` if the [notes] were deleted, `false` otherwise.
-///
-/// First, asks for a confirmation if needed.
-Future<bool> deleteNotes(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
+Future<bool> deleteNotes(
+  BuildContext context,
+  WidgetRef ref, {
+  required List<Note> notes,
+  bool cancel = true,
+}) async {
   if (!await askForConfirmation(
     context,
     l.dialog_delete,
@@ -57,6 +73,8 @@ Future<bool> deleteNotes(BuildContext context, WidgetRef ref, {required List<Not
     return false;
   }
 
+  final wereArchived = notes.first.archived;
+
   final succeeded = await ref
       .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
       .setDeleted(notes, true);
@@ -65,15 +83,21 @@ Future<bool> deleteNotes(BuildContext context, WidgetRef ref, {required List<Not
     exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.available);
   }
 
+  if (succeeded && cancel) {
+    SnackBarUtils().show(
+      text: l.snack_bar_deleted(notes.length),
+      onCancel: (globalRef) async => wereArchived
+          ? await archiveNotes(context, ref, notes: notes)
+          : await restoreNotes(context, globalRef, notes: notes, cancel: false),
+    );
+  }
+
   return succeeded;
 }
 
 /// Permanently deletes the [note].
 ///
 /// Returns `true` if the [note] was permanently deleted, `false` otherwise.
-///
-/// First, asks for a confirmation if needed.
-/// Finally, pops the route if the note was deleted from the editor page.
 Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, {Note? note, bool pop = false}) async {
   if (note == null) {
     return false;
@@ -107,8 +131,6 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, {Note? n
 /// Permanently deletes the [notes].
 ///
 /// Returns `true` if the [notes] were permanently deleted, `false` otherwise.
-///
-/// First, asks for a confirmation if needed.
 Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
   if (!await askForConfirmation(
     context,
@@ -130,9 +152,6 @@ Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, {requir
 }
 
 /// Empties the bin by deleting every note inside.
-///
-/// First, asks for a confirmation if needed.
-/// Exits the selection mode.
 Future<bool> emptyBin(BuildContext context, WidgetRef ref) async {
   if (!await askForConfirmation(
     context,

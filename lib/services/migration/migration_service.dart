@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:isar/isar.dart';
 
 import '../../common/constants/constants.dart';
@@ -76,7 +74,6 @@ class MigrationService {
 
     // Get the rich text notes
     final richTextNotes = await _databaseService.database.richTextNotes.where().findAll();
-    log(richTextNotes.map((n) => n.toJson()).toString());
 
     // Set the rich text notes 'id' and 'archived' fields
     for (final note in richTextNotes) {

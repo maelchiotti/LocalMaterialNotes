@@ -36,7 +36,7 @@ class ErrorPlaceholder extends StatelessWidget {
   /// Exports the notes as JSON.
   Future<void> _exportNotes(AppLocalizations localizations) async {
     if (await ManualBackupService().manuallyExportAsJson(encrypt: false)) {
-      SnackBarUtils.info(localizations.snack_bar_export_success).show();
+      SnackBarUtils().show(text: localizations.snack_bar_export_success);
     }
   }
 

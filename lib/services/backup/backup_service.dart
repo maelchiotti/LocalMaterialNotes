@@ -142,10 +142,7 @@ class ManualBackupService {
       } catch (exception, stackTrace) {
         logger.e(exception.toString(), exception, stackTrace);
 
-        SnackBarUtils.error(
-          l.dialog_import_encryption_password_error,
-          duration: const Duration(seconds: 8),
-        ).show();
+        SnackBarUtils().show(text: l.dialog_import_encryption_password_error);
 
         return false;
       }

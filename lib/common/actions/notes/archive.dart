@@ -7,15 +7,20 @@ import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../constants/constants.dart';
 import '../../dialogs/confirmation_dialog.dart';
+import '../../ui/snack_bar_utils.dart';
 import 'select.dart';
+import 'unarchive.dart';
 
 /// Archives the [note].
 ///
 /// Returns `true` if the [note] was archived, `false` otherwise.
-///
-/// First, asks for a confirmation if needed.
-/// Finally, pops the route if the note was archived from the editor page.
-Future<bool> archiveNote(BuildContext context, WidgetRef ref, {required Note note, bool pop = false}) async {
+Future<bool> archiveNote(
+  BuildContext context,
+  WidgetRef ref, {
+  required Note note,
+  bool pop = false,
+  bool cancel = true,
+}) async {
   if (!await askForConfirmation(
     context,
     l.dialog_archive,
@@ -35,19 +40,25 @@ Future<bool> archiveNote(BuildContext context, WidgetRef ref, {required Note not
       .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
       .setArchived([note], true);
 
-  if (!succeeded) {
-    return false;
+  if (succeeded && cancel) {
+    SnackBarUtils().show(
+      text: l.snack_bar_archived(1),
+      onCancel: (globalRef) async => await unarchiveNote(context, globalRef, note: note, cancel: false),
+    );
   }
 
-  return true;
+  return succeeded;
 }
 
 /// Archives the [notes].
 ///
 /// Returns `true` if the [notes] were archived, `false` otherwise.
-///
-/// First, asks for a confirmation if needed.
-Future<bool> archiveNotes(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
+Future<bool> archiveNotes(
+  BuildContext context,
+  WidgetRef ref, {
+  required List<Note> notes,
+  bool cancel = true,
+}) async {
   if (!await askForConfirmation(
     context,
     l.dialog_archive,
@@ -63,6 +74,13 @@ Future<bool> archiveNotes(BuildContext context, WidgetRef ref, {required List<No
 
   if (context.mounted) {
     exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.available);
+  }
+
+  if (succeeded && cancel) {
+    SnackBarUtils().show(
+      text: l.snack_bar_archived(notes.length),
+      onCancel: (globalRef) async => await unarchiveNotes(context, globalRef, notes: notes, cancel: false),
+    );
   }
 
   return succeeded;

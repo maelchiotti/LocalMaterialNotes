@@ -116,7 +116,7 @@ class AppLogger {
     final clipboardData = ClipboardData(text: logs);
     await Clipboard.setData(clipboardData);
 
-    SnackBarUtils.info(localizations.snack_bar_logs_copied).show();
+    SnackBarUtils().show(text: localizations.snack_bar_logs_copied);
   }
 
   /// Exports the logs to a text file into a directory chosen by the user.
@@ -143,7 +143,7 @@ class AppLogger {
     );
 
     if (exported) {
-      SnackBarUtils.info(localizations.snack_bar_logs_exported).show();
+      SnackBarUtils().show(text: localizations.snack_bar_logs_exported);
     }
 
     return exported;

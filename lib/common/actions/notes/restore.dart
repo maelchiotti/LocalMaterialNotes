@@ -7,15 +7,20 @@ import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../constants/constants.dart';
 import '../../dialogs/confirmation_dialog.dart';
+import '../../ui/snack_bar_utils.dart';
+import 'delete.dart';
 import 'select.dart';
 
 /// Restores the [note].
 ///
 /// Returns `true` if the [note] was restored, `false` otherwise.
-///
-/// First, asks for a confirmation if needed.
-/// Finally, pops the route if the note was restored from the editor page.
-Future<bool> restoreNote(BuildContext context, WidgetRef ref, {required Note note, bool pop = false}) async {
+Future<bool> restoreNote(
+  BuildContext context,
+  WidgetRef ref, {
+  required Note note,
+  bool pop = false,
+  bool cancel = true,
+}) async {
   if (!await askForConfirmation(
     context,
     l.dialog_restore,
@@ -32,19 +37,25 @@ Future<bool> restoreNote(BuildContext context, WidgetRef ref, {required Note not
 
   final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).setDeleted([note], false);
 
-  if (!succeeded) {
-    return false;
+  if (succeeded && cancel) {
+    SnackBarUtils().show(
+      text: l.snack_bar_restored(1),
+      onCancel: (globalRef) async => await deleteNote(context, globalRef, note: note, cancel: false),
+    );
   }
 
-  return true;
+  return succeeded;
 }
 
 /// Restores the [notes].
 ///
 /// Returns `true` if the [notes] were restored, `false` otherwise.
-///
-/// First, asks for a confirmation if needed.
-Future<bool> restoreNotes(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
+Future<bool> restoreNotes(
+  BuildContext context,
+  WidgetRef ref, {
+  required List<Note> notes,
+  bool cancel = true,
+}) async {
   if (!await askForConfirmation(
     context,
     l.dialog_restore,
@@ -58,6 +69,13 @@ Future<bool> restoreNotes(BuildContext context, WidgetRef ref, {required List<No
 
   if (context.mounted) {
     exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.deleted);
+  }
+
+  if (succeeded && cancel) {
+    SnackBarUtils().show(
+      text: l.snack_bar_restored(notes.length),
+      onCancel: (globalRef) async => await deleteNotes(context, globalRef, notes: notes, cancel: false),
+    );
   }
 
   return succeeded;
