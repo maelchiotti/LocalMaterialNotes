@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../models/note/types/note_type.dart';
 import '../constants/constants.dart';
 
 /// Utilities for the snack bars.
@@ -41,9 +42,13 @@ class SnackBarUtils {
 
     context ??= rootNavigatorKey.currentContext!;
 
+    final availableNotesTypes = NoteType.availableTypes;
+    final behavior = availableNotesTypes.length == 1 ? SnackBarBehavior.floating : SnackBarBehavior.fixed;
+
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        behavior: behavior,
         content: Text(text),
         action: onCancel != null
             ? SnackBarAction(
