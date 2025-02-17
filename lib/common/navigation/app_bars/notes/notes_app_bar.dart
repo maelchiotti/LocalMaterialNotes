@@ -15,7 +15,6 @@ import '../../../preferences/enums/layout.dart';
 import '../../../preferences/enums/sort_method.dart';
 import '../../../preferences/preference_key.dart';
 import '../../../preferences/watched_preferences.dart';
-import '../../../widgets/keys.dart';
 import '../../../widgets/notes/note_tile.dart';
 import '../../../widgets/placeholders/empty_placeholder.dart';
 
@@ -113,15 +112,7 @@ class NotesAppBar extends ConsumerWidget {
 
     final notes = await NotesService().search(search, notesStatus, currentLabelFilter?.name);
 
-    return notes
-        .mapIndexed(
-          (index, note) => NoteTile(
-            key: Keys.noteTile(index),
-            note: note,
-            search: search,
-          ),
-        )
-        .toList();
+    return notes.mapIndexed((index, note) => NoteTile(note: note, search: search)).toList();
   }
 
   /// Returns the child of the widget.
@@ -134,12 +125,10 @@ class NotesAppBar extends ConsumerWidget {
     }
 
     return SearchAnchor(
-      key: Keys.searchViewSearchAnchor,
       viewHintText: l.tooltip_search,
       searchController: SearchController(),
       viewBackgroundColor: Theme.of(context).colorScheme.surface,
       builder: (context, controller) => IconButton(
-        key: Keys.appBarSearchIconButton,
         onPressed: () => controller.openView(),
         icon: const Icon(Icons.search),
         tooltip: l.tooltip_search,
@@ -158,18 +147,15 @@ class NotesAppBar extends ConsumerWidget {
       title: Text(title),
       actions: [
         IconButton(
-          key: Keys.appBarLayoutIconButton,
           onPressed: () => toggleLayout(ref, layout),
           tooltip: layout == Layout.list ? l.tooltip_layout_grid : l.tooltip_layout_list,
           icon: Icon(layout == Layout.list ? Icons.grid_view : Icons.view_list),
         ),
         PopupMenuButton<SortMethod>(
-          key: Keys.appBarSortIconButton,
           icon: const Icon(Icons.sort),
           tooltip: l.tooltip_sort,
           itemBuilder: (context) => [
             PopupMenuItem(
-              key: Keys.sortCreatedDateMenuItem,
               value: SortMethod.createdDate,
               child: ListTile(
                 selected: sortMethod == SortMethod.createdDate,
@@ -178,7 +164,6 @@ class NotesAppBar extends ConsumerWidget {
               ),
             ),
             PopupMenuItem(
-              key: Keys.sortEditedDateMenuItem,
               value: SortMethod.editedDate,
               child: ListTile(
                 selected: sortMethod == SortMethod.editedDate,
@@ -187,7 +172,6 @@ class NotesAppBar extends ConsumerWidget {
               ),
             ),
             PopupMenuItem(
-              key: Keys.sortTitleMenuItem,
               value: SortMethod.title,
               child: ListTile(
                 selected: sortMethod == SortMethod.title,
@@ -197,7 +181,6 @@ class NotesAppBar extends ConsumerWidget {
             ),
             const PopupMenuDivider(),
             PopupMenuItem(
-              key: Keys.sortAscendingMenuItem,
               value: SortMethod.ascending,
               child: ListTile(
                 title: Text(l.button_sort_ascending),

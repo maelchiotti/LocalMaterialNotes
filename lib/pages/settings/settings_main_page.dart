@@ -5,7 +5,6 @@ import '../../common/constants/constants.dart';
 import '../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../common/navigation/side_navigation.dart';
 import '../../common/navigation/top_navigation.dart';
-import '../../common/widgets/keys.dart';
 import '../../navigation/navigation_routes.dart';
 import 'pages/settings_about_page.dart';
 import 'pages/settings_accessibility_page.dart';
@@ -27,7 +26,6 @@ class SettingsMainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TopNavigation(
-        key: Keys.appBarSettingsMain,
         appbar: BasicAppBar(title: l.navigation_settings),
       ),
       drawer: const SideNavigation(),

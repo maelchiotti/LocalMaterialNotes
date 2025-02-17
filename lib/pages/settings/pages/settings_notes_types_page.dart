@@ -9,7 +9,6 @@ import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
 import '../../../common/system/quick_actions_utils.dart';
-import '../../../common/widgets/keys.dart';
 import '../../../models/note/types/note_type.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 
@@ -65,7 +64,6 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
 
     return Scaffold(
       appBar: TopNavigation(
-        key: Keys.appBarSettingsMainSubpage,
         appbar: BasicAppBar(title: l.navigation_settings_notes_types),
       ),
       body: SingleChildScrollView(

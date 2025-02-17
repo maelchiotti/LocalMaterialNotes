@@ -11,7 +11,6 @@ import '../../constants/paddings.dart';
 import '../../constants/separators.dart';
 import '../../constants/sizes.dart';
 import '../../preferences/enums/layout.dart';
-import '../keys.dart';
 import '../placeholders/empty_placeholder.dart';
 import '../placeholders/error_placeholder.dart';
 import '../placeholders/loading_placeholder.dart';
@@ -56,14 +55,10 @@ class NotesList extends ConsumerWidget {
 
     return layout == Layout.list
         ? ListView.separated(
-            key: Keys.notesPageNotesListListLayout,
             padding: showTilesBackground ? Paddings.notesWithBackground : Paddings.fab,
             itemCount: notes.length,
             itemBuilder: (context, index) {
-              return NoteTile(
-                key: Keys.noteTile(index),
-                note: notes[index],
-              );
+              return NoteTile(note: notes[index]);
             },
             separatorBuilder: (BuildContext context, int index) {
               return Padding(
@@ -73,16 +68,12 @@ class NotesList extends ConsumerWidget {
             },
           )
         : AlignedGridView.count(
-            key: Keys.notesPageNotesListGridLayout,
             padding: Paddings.notesWithBackground,
             mainAxisSpacing: Sizes.notesGridLayoutSpacing.size,
             crossAxisSpacing: Sizes.notesGridLayoutSpacing.size,
             crossAxisCount: crossAxisCount,
             itemCount: notes.length,
-            itemBuilder: (context, index) => NoteTile(
-              key: Keys.noteTile(index),
-              note: notes[index],
-            ),
+            itemBuilder: (context, index) => NoteTile(note: notes[index]),
           );
   }
 

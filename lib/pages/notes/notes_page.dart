@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../common/navigation/app_bars/notes/notes_app_bar.dart';
 import '../../common/navigation/side_navigation.dart';
 import '../../common/navigation/top_navigation.dart';
-import '../../common/widgets/keys.dart';
 import '../../common/widgets/notes/notes_list.dart';
 import '../../models/label/label.dart';
 import '../../models/note/note_status.dart';
@@ -46,7 +45,6 @@ class _NotesPageState extends ConsumerState<NotesPage> {
     return Scaffold(
       appBar: TopNavigation(
         appbar: NotesAppBar(
-          key: Keys.appBarNotesBin,
           label: widget.label,
           notesStatus: NoteStatus.available,
         ),
@@ -54,11 +52,8 @@ class _NotesPageState extends ConsumerState<NotesPage> {
       ),
       drawer: SideNavigation(),
       floatingActionButtonLocation: availableNotesTypes.length > 1 ? ExpandableFab.location : null,
-      floatingActionButton: AddNoteFab(
-        key: Keys.fabAddNote,
-      ),
+      floatingActionButton: AddNoteFab(),
       body: NotesList(
-        key: Keys.notesPageNotesList,
         notesStatus: NoteStatus.available,
         label: widget.label,
       ),
