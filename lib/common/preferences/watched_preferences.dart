@@ -70,18 +70,18 @@ class WatchedPreferences {
     Layout? layout,
   }) {
     this.themeMode = themeMode ?? ThemeUtils().themeMode;
-    this.dynamicTheming = dynamicTheming ?? PreferenceKey.dynamicTheming.getPreferenceOrDefault();
-    this.blackTheming = blackTheming ?? PreferenceKey.blackTheming.getPreferenceOrDefault();
+    this.dynamicTheming = dynamicTheming ?? PreferenceKey.dynamicTheming.preferenceOrDefault;
+    this.blackTheming = blackTheming ?? PreferenceKey.blackTheming.preferenceOrDefault;
     this.appFont = appFont ?? Font.appFromPreference();
 
     this.availableNotesTypes = availableNotesTypes ?? NoteType.availableTypes;
 
-    this.showTitlesOnly = showTitlesOnly ?? PreferenceKey.showTitlesOnly.getPreferenceOrDefault();
-    this.showTilesBackground = showTilesBackground ?? PreferenceKey.showTilesBackground.getPreferenceOrDefault();
-    this.showSeparators = showSeparators ?? PreferenceKey.showSeparators.getPreferenceOrDefault();
+    this.showTitlesOnly = showTitlesOnly ?? PreferenceKey.showTitlesOnly.preferenceOrDefault;
+    this.showTilesBackground = showTilesBackground ?? PreferenceKey.showTilesBackground.preferenceOrDefault;
+    this.showSeparators = showSeparators ?? PreferenceKey.showSeparators.preferenceOrDefault;
     this.maximumContentPreviewLines =
-        maximumContentPreviewLines ?? PreferenceKey.maximumContentPreviewLines.getPreferenceOrDefault();
-    this.showNoteTypeIcon = showNoteTypeIcon ?? PreferenceKey.showNoteTypeIcon.getPreferenceOrDefault();
+        maximumContentPreviewLines ?? PreferenceKey.maximumContentPreviewLines.preferenceOrDefault;
+    this.showNoteTypeIcon = showNoteTypeIcon ?? PreferenceKey.showNoteTypeIcon.preferenceOrDefault;
 
     availableSwipeActions = (
       right: availableSwipeRightAction ?? AvailableSwipeAction.rightFromPreference(),
@@ -96,11 +96,11 @@ class WatchedPreferences {
       left: deletedSwipeLeftAction ?? DeletedSwipeAction.leftFromPreference(),
     );
 
-    this.textScaling = textScaling ?? PreferenceKey.textScaling.getPreferenceOrDefault();
-    this.biggerTitles = biggerTitles ?? PreferenceKey.biggerTitles.getPreferenceOrDefault();
-    this.useWhiteTextDarkMode = useWhiteTextDarkMode ?? PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault();
+    this.textScaling = textScaling ?? PreferenceKey.textScaling.preferenceOrDefault;
+    this.biggerTitles = biggerTitles ?? PreferenceKey.biggerTitles.preferenceOrDefault;
+    this.useWhiteTextDarkMode = useWhiteTextDarkMode ?? PreferenceKey.useWhiteTextDarkMode.preferenceOrDefault;
     this.disableSubduedNoteContentPreview =
-        disableSubduedNoteContentPreview ?? PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
+        disableSubduedNoteContentPreview ?? PreferenceKey.disableSubduedNoteContentPreview.preferenceOrDefault;
 
     this.layout = layout ?? Layout.fromPreference();
   }

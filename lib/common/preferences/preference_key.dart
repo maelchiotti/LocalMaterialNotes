@@ -28,7 +28,6 @@ enum PreferenceKey<T extends Object> {
   showNoteTypeIcon<bool>(true),
 
   // Behavior
-  flagSecure<bool>(false),
   confirmations<String>('irreversible'),
   swipeRightAction<String>('delete'),
   swipeLeftAction<String>('archive'),
@@ -55,6 +54,11 @@ enum PreferenceKey<T extends Object> {
   autoExportDirectory<String>('', backup: false),
   lastAutoExportDate<String>('', backup: false),
 
+  // Security
+  flagSecure<bool>(false),
+  lockApp<bool>(true, backup: false),
+  lockAppDelay<int>(10),
+
   // Accessibility
   textScaling<double>(1.0),
   biggerTitles(false),
@@ -67,7 +71,7 @@ enum PreferenceKey<T extends Object> {
   layout<String>('list', backup: false),
 
   // Database
-  databaseVersion(1, backup: false),
+  databaseVersion<int>(1, backup: false),
   ;
 
   /// Default value of this preference.
@@ -101,16 +105,16 @@ enum PreferenceKey<T extends Object> {
   }
 
   /// Returns the value of this preference if set, or [null] otherwise.
-  T? getPreference() => PreferencesUtils().get<T>(this);
+  T? get preference => PreferencesUtils().get<T>(this);
 
   /// Returns the value of this preference if set, or its default value otherwise.
-  T getPreferenceOrDefault() => PreferencesUtils().get<T>(this) ?? defaultValue;
+  T get preferenceOrDefault => PreferencesUtils().get<T>(this) ?? defaultValue;
 
   /// Returns the value of this securely stored preference if set, or [null] otherwise.
-  T? getPreferenceSecure() => PreferencesUtils().get<T>(this);
+  T? get preferenceSecure => PreferencesUtils().get<T>(this);
 
   /// Returns the value of this securely stored preference if set, or its default value otherwise.
-  Future<String> getPreferenceOrDefaultSecure() async =>
+  Future<String> get preferenceOrDefaultSecure async =>
       await PreferencesUtils().getSecure(this) ?? defaultValue as String;
 
   /// Removes the value of this preference.

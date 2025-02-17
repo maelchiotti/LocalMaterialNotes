@@ -49,7 +49,7 @@ class _TitleEditorState extends ConsumerState<TitleEditor> {
 
   @override
   Widget build(BuildContext context) {
-    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault();
+    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.preferenceOrDefault;
 
     return Padding(
       padding: Paddings.pageHorizontal,

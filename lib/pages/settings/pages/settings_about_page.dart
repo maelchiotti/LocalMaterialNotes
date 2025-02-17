@@ -125,7 +125,7 @@ class SettingsAboutPage extends StatelessWidget {
                     applicationIcon: Image.asset(
                       Asset.icon.path,
                       fit: BoxFit.fitWidth,
-                      width: Sizes.iconSize.size,
+                      width: Sizes.appIcon.size,
                     ),
                     applicationLegalese: l.settings_licence_description,
                     dialogChildren: [

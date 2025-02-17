@@ -79,7 +79,7 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
 
   @override
   Widget build(BuildContext context) {
-    final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault();
+    final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.preferenceOrDefault;
     final editorFont = Font.editorFromPreference();
 
     widget.fleatherController.addListener(() => onChanged());

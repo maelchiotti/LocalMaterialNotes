@@ -16,6 +16,7 @@ import 'pages/settings_editor_page.dart';
 import 'pages/settings_labels_page.dart';
 import 'pages/settings_notes_tiles_page.dart';
 import 'pages/settings_notes_types_page.dart';
+import 'pages/settings_security_page.dart';
 
 /// Page for the settings of the application.
 class SettingsMainPage extends StatelessWidget {
@@ -77,6 +78,12 @@ class SettingsMainPage extends StatelessWidget {
                   title: l.settings_backup,
                   description: l.settings_backup_description,
                   onTap: () => NavigationRoute.settingsBackup.push(context, SettingsBackupPage()),
+                ),
+                SettingActionTile(
+                  icon: Icons.security,
+                  title: l.settings_security,
+                  description: l.settings_security_description,
+                  onTap: () => NavigationRoute.settingsSecurity.push(context, SettingsSecurityPage()),
                 ),
                 SettingActionTile(
                   icon: Icons.accessibility,

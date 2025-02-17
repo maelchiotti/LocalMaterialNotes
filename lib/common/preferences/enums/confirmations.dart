@@ -17,7 +17,7 @@ enum Confirmations {
   /// The value of the preference if set, or its default value otherwise.
   factory Confirmations.fromPreference() {
     final confirmations = Confirmations.values.byNameOrNull(
-      PreferenceKey.confirmations.getPreference(),
+      PreferenceKey.confirmations.preference,
     );
 
     // Reset the malformed preference to its default value

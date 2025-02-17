@@ -22,7 +22,7 @@ class AboutSheet extends StatelessWidget {
           return const LoadingPlaceholder();
         }
 
-        final areLabelsEnabled = PreferenceKey.enableLabels.getPreferenceOrDefault();
+        final areLabelsEnabled = PreferenceKey.enableLabels.preferenceOrDefault;
 
         return ListView(
           shrinkWrap: true,

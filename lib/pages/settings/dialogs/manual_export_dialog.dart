@@ -18,7 +18,7 @@ class ManualExportDialog extends StatefulWidget {
 
 class _ManualExportDialogState extends State<ManualExportDialog> {
   /// Whether to encrypt the export.
-  bool _encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault();
+  bool _encrypt = PreferenceKey.autoExportEncryption.preferenceOrDefault;
 
   /// Password to encrypt the export.
   String? _password;

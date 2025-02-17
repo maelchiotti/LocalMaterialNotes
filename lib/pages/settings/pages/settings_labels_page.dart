@@ -22,9 +22,9 @@ class SettingsLabelsPage extends StatefulWidget {
 class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
   /// Toggles whether to enable the labels.
   Future<void> _toggleEnableLabels(bool toggled) async {
-    setState(() {
-      PreferenceKey.enableLabels.set(toggled);
-    });
+    await PreferenceKey.enableLabels.set(toggled);
+
+    setState(() {});
 
     // The Restart package crashes the app if used in debug mode
     if (kReleaseMode) {
@@ -34,23 +34,23 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
 
   /// Toggles whether to show the labels list in the editor.
   Future<void> _toggleShowLabelsListOnNoteTile(bool toggled) async {
-    setState(() {
-      PreferenceKey.showLabelsListOnNoteTile.set(toggled);
-    });
+    await PreferenceKey.showLabelsListOnNoteTile.set(toggled);
+
+    setState(() {});
   }
 
   /// Toggles whether to show the labels list in the editor.
   Future<void> _toggleShowLabelsListInEditor(bool toggled) async {
-    setState(() {
-      PreferenceKey.showLabelsListInEditorPage.set(toggled);
-    });
+    await PreferenceKey.showLabelsListInEditorPage.set(toggled);
+
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final isLabelsEnabled = PreferenceKey.enableLabels.getPreferenceOrDefault();
-    final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.getPreferenceOrDefault();
-    final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.getPreferenceOrDefault();
+    final isLabelsEnabled = PreferenceKey.enableLabels.preferenceOrDefault;
+    final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.preferenceOrDefault;
+    final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.preferenceOrDefault;
 
     return Scaffold(
       appBar: TopNavigation(

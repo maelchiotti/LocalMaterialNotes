@@ -156,8 +156,8 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     }
 
     final editorController = fleatherControllerNotifier.value;
-    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault();
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
+    final showEditorModeButton = PreferenceKey.editorModeButton.preferenceOrDefault;
+    final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
 
     return ValueListenableBuilder(
       valueListenable: editorHasFocusNotifier,

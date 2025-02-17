@@ -79,10 +79,10 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
   }
 
   /// Sets the editor font to the new [font].
-  void _submittedEditorFont(Font font) {
-    setState(() {
-      PreferenceKey.editorFont.set(font.name);
-    });
+  Future<void> _submittedEditorFont(Font font) async {
+    await PreferenceKey.editorFont.set(font.name);
+
+    setState(() {});
   }
 
   @override

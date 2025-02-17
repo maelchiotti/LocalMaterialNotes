@@ -39,7 +39,7 @@ enum ArchivedSwipeAction {
   /// Returns the value of the right swipe action preference if set, or its default value otherwise.
   factory ArchivedSwipeAction.rightFromPreference() {
     final swipeRightAction = ArchivedSwipeAction.values.byNameOrNull(
-      PreferenceKey.archivedSwipeRightAction.getPreference(),
+      PreferenceKey.archivedSwipeRightAction.preference,
     );
 
     // Reset the malformed preference to its default value
@@ -55,7 +55,7 @@ enum ArchivedSwipeAction {
   /// Returns the value of the left swipe action preference if set, or its default value otherwise.
   factory ArchivedSwipeAction.leftFromPreference() {
     final swipeRightAction = ArchivedSwipeAction.values.byNameOrNull(
-      PreferenceKey.archivedSwipeLeftAction.getPreference(),
+      PreferenceKey.archivedSwipeLeftAction.preference,
     );
 
     // Reset the malformed preference to its default value

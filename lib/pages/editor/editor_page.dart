@@ -46,10 +46,10 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
 
   @override
   Widget build(BuildContext context) {
-    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault();
-    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault();
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
-    final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.getPreferenceOrDefault();
+    final showEditorModeButton = PreferenceKey.editorModeButton.preferenceOrDefault;
+    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.preferenceOrDefault;
+    final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
+    final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.preferenceOrDefault;
 
     return ValueListenableBuilder(
       valueListenable: currentNoteNotifier,

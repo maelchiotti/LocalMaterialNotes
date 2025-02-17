@@ -6,7 +6,10 @@ enum Sizes {
   infinity(double.infinity),
 
   /// The size of the icon.
-  iconSize(64),
+  appIcon(64),
+
+  /// The large size of the icon.
+  appIconLarge(128),
 
   /// The size of the icon in a settings page when displaying the value of a setting.
   settingValueIconSize(16),

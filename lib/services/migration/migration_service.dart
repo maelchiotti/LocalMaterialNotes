@@ -14,7 +14,7 @@ class MigrationService {
 
   /// Migrates the database to the latest version if needed.
   Future<void> migrateIfNeeded() async {
-    final databaseVersion = PreferenceKey.databaseVersion.getPreferenceOrDefault();
+    final databaseVersion = PreferenceKey.databaseVersion.preferenceOrDefault;
 
     switch (databaseVersion) {
       case 1:

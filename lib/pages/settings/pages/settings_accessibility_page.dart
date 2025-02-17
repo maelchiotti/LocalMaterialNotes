@@ -46,9 +46,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
   void _toggleBiggerTitles(bool toggled) {
     PreferenceKey.biggerTitles.set(toggled);
 
-    setState(() {
-      ref.read(preferencesProvider.notifier).update(WatchedPreferences(biggerTitles: toggled));
-    });
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(biggerTitles: toggled));
   }
 
   /// Toggles whether to use white text in dark mode.
@@ -59,20 +57,22 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
   }
 
   /// Toggles the setting to show background of the notes tiles.
-  void _toggleDisableSubduedNoteContentPreview(bool toggled) {
-    setState(() {
-      PreferenceKey.disableSubduedNoteContentPreview.set(toggled);
-    });
+  Future<void> _toggleDisableSubduedNoteContentPreview(bool toggled) async {
+    await PreferenceKey.disableSubduedNoteContentPreview.set(toggled);
 
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(disableSubduedNoteContentPreview: toggled));
   }
 
   @override
   Widget build(BuildContext context) {
-    final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault();
-    final biggerTitles = PreferenceKey.biggerTitles.getPreferenceOrDefault();
-    final useWhiteTextDarkMode = PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault();
-    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
+    final textScaling = ref.watch(preferencesProvider.select((preferences) => preferences.textScaling));
+    final biggerTitles = ref.watch(preferencesProvider.select((preferences) => preferences.biggerTitles));
+    final useWhiteTextDarkMode = ref.watch(
+      preferencesProvider.select((preferences) => preferences.useWhiteTextDarkMode),
+    );
+    final disableSubduedNoteContentPreview = ref.watch(
+      preferencesProvider.select((preferences) => preferences.disableSubduedNoteContentPreview),
+    );
 
     final darkTheme = Theme.of(context).brightness == Brightness.dark;
 
@@ -92,10 +92,13 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
                   SettingSliderTile(
                     icon: Icons.format_size,
                     title: l.settings_text_scaling,
-                    value: (textScaling as num).formatAsPercentage(locale: LocaleUtils().appLocaleLanguageCode),
+                    value: (textScaling as num).formatAsPercentage(
+                      locale: LocaleUtils().appLocaleLanguageCode,
+                    ),
                     dialogTitle: l.settings_text_scaling,
-                    label: (textScaling) =>
-                        (textScaling as num).formatAsPercentage(locale: LocaleUtils().appLocaleLanguageCode),
+                    label: (textScaling) => (textScaling as num).formatAsPercentage(
+                      locale: LocaleUtils().appLocaleLanguageCode,
+                    ),
                     min: 0.5,
                     max: 2.0,
                     divisions: 15,

@@ -12,6 +12,7 @@ import 'common/logs/app_logger.dart';
 import 'common/preferences/preferences_utils.dart';
 import 'common/system/flag_secure_utils.dart';
 import 'common/system/info_utils.dart';
+import 'common/system/quick_actions_utils.dart';
 import 'common/ui/theme_utils.dart';
 import 'services/backup/auto_backup_service.dart';
 import 'services/database_service.dart';
@@ -39,6 +40,7 @@ Future<void> main() async {
   await InfoUtils().ensureInitialized();
   await LocalizationsUtils().ensureInitialized();
   await ThemeUtils().ensureInitialized();
+  QuickActionsUtils().ensureInitialized();
 
   // Set the application refresh rate (only in Android 6 or later)
   // See https://github.com/flutter/flutter/issues/35162

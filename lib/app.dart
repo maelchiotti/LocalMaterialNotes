@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import 'package:after_layout/after_layout.dart';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:dynamic_color/dynamic_color.dart';
+import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_checklist/checklist.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,6 +14,7 @@ import 'common/constants/constants.dart';
 import 'common/enums/supported_language.dart';
 import 'common/extensions/locale_extension.dart';
 import 'common/localization/locale_utils.dart';
+import 'common/preferences/preference_key.dart';
 import 'common/system/quick_actions_utils.dart';
 import 'common/system/share_utils.dart';
 import 'common/ui/snack_bar_utils.dart';
@@ -20,6 +22,7 @@ import 'common/ui/theme_utils.dart';
 import 'common/widgets/placeholders/error_placeholder.dart';
 import 'l10n/app_localizations/app_localizations.g.dart';
 import 'models/note/note_status.dart';
+import 'pages/lock/lock_page.dart';
 import 'pages/notes/notes_page.dart';
 import 'providers/labels/labels_list/labels_list_provider.dart';
 import 'providers/labels/labels_navigation/labels_navigation_provider.dart';
@@ -35,7 +38,7 @@ class App extends ConsumerStatefulWidget {
   ConsumerState<App> createState() => _AppState();
 }
 
-class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
+class _AppState extends ConsumerState<App> {
   /// Stream of data shared from other applications.
   late StreamSubscription _stream;
 
@@ -54,12 +57,6 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
     // Eagerly get the labels for the full list and the navigation
     ref.read(labelsListProvider.notifier).get();
     ref.read(labelsNavigationProvider.notifier).get();
-  }
-
-  @override
-  void afterFirstLayout(BuildContext context) {
-    // When the app is built, initialize the quick actions
-    QuickActionsUtils().ensureInitialized(rootNavigatorKey.currentContext!, ref);
   }
 
   @override
@@ -101,8 +98,11 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
     final dynamicTheming = ref.watch(preferencesProvider.select((preferences) => preferences.dynamicTheming));
     final appFont = ref.watch(preferencesProvider.select((preferences) => preferences.appFont));
     final textScaling = ref.watch(preferencesProvider.select((preferences) => preferences.textScaling));
-    final useWhiteTextDarkMode =
-        ref.watch(preferencesProvider.select((preferences) => preferences.useWhiteTextDarkMode));
+    final useWhiteTextDarkMode = ref.watch(
+      preferencesProvider.select((preferences) => preferences.useWhiteTextDarkMode),
+    );
+    final lockApp = PreferenceKey.lockApp.preferenceOrDefault;
+    final lockAppDelay = PreferenceKey.lockAppDelay.preferenceOrDefault;
 
     return DynamicColorBuilder(
       builder: (lightDynamicColorScheme, darkDynamicColorScheme) {
@@ -131,11 +131,24 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
               // Change the widget shown when a widget building fails
               ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);
 
-              assert(child != null, 'MaterialApp child is null');
+              if (child == null) {
+                throw Exception('MaterialApp child is null');
+              }
 
               return Directionality(
                 textDirection: LocaleUtils().deviceLocale.textDirection,
-                child: child!,
+                child: AppLock(
+                  initiallyEnabled: lockApp,
+                  initialBackgroundLockLatency: Duration(seconds: lockAppDelay),
+                  builder: (BuildContext context, Object? launchArg) {
+                    QuickActionsUtils().setQuickActions(context, ref);
+
+                    return child;
+                  },
+                  lockScreenBuilder: (BuildContext context) {
+                    return LockPage();
+                  },
+                ),
               );
             },
             theme: lightTheme,
@@ -144,6 +157,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
             localizationsDelegates: [
               ...AppLocalizations.localizationsDelegates,
               ChecklistLocalizations.delegate,
+              FleatherLocalizations.delegate,
             ],
             supportedLocales: SupportedLanguage.locales,
             locale: LocaleUtils().appLocale,

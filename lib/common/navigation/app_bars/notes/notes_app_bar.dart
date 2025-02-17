@@ -74,7 +74,7 @@ class NotesAppBar extends ConsumerWidget {
   void sort(BuildContext context, WidgetRef ref, {SortMethod? sortMethod, bool? ascending}) {
     // The 'Ascending' menu item was taped
     if (sortMethod == SortMethod.ascending) {
-      final oldAscendingPreference = PreferenceKey.sortAscending.getPreferenceOrDefault();
+      final oldAscendingPreference = PreferenceKey.sortAscending.preferenceOrDefault;
 
       PreferenceKey.sortAscending.set(!oldAscendingPreference);
     }
@@ -151,7 +151,7 @@ class NotesAppBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sortMethod = SortMethod.fromPreference();
-    final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault();
+    final sortAscending = PreferenceKey.sortAscending.preferenceOrDefault;
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
 
     return AppBar(

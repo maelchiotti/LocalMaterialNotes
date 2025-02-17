@@ -31,7 +31,7 @@ class ThemeUtils {
   /// Returns the [ThemeMode] of the application.
   ThemeMode get themeMode {
     final themeMode = ThemeMode.values.byNameOrNull(
-      PreferenceKey.theme.getPreferenceOrDefault(),
+      PreferenceKey.theme.preferenceOrDefault,
     );
 
     // Reset the malformed preference to its default value

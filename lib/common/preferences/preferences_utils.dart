@@ -122,7 +122,7 @@ class PreferencesUtils {
         continue;
       }
 
-      final value = preferenceKey.getPreference();
+      final value = preferenceKey.preference;
 
       // Skip preferences that are not set
       if (value == null) {

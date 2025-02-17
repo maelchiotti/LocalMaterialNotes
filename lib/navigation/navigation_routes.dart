@@ -29,6 +29,7 @@ enum NavigationRoute {
   settingsEditor,
   settingsLabels,
   settingsBackup,
+  settingsSecurity,
   settingsAccessibility,
   settingsAbout,
   ;

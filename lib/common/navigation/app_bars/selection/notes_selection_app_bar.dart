@@ -100,7 +100,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
     List<Note> selectedNotes,
     int totalNotesCount,
   ) {
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
+    final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
 
     final allSelected = selectedNotes.length == totalNotesCount;
 

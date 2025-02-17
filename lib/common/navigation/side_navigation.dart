@@ -180,7 +180,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
                 Image.asset(
                   Asset.icon.path,
                   fit: BoxFit.fitWidth,
-                  width: Sizes.iconSize.size,
+                  width: Sizes.appIcon.size,
                 ),
                 Padding(padding: Paddings.vertical(8)),
                 Text(
@@ -247,7 +247,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
+    final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
 
     if (enableLabels) {
       return ref.watch(labelsNavigationProvider).when(

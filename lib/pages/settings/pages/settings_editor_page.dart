@@ -18,31 +18,31 @@ class SettingsEditorPage extends StatefulWidget {
 
 class _SettingsEditorPageState extends State<SettingsEditorPage> {
   /// Toggles the setting to use the editor mode button.
-  void _toggleShowEditorModeButton(bool toggled) {
-    setState(() {
-      PreferenceKey.editorModeButton.set(toggled);
-    });
+  Future<void> _toggleShowEditorModeButton(bool toggled) async {
+    await PreferenceKey.editorModeButton.set(toggled);
+
+    setState(() {});
   }
 
   /// Toggles the setting to open the editor in reading mode by default.
-  void _toggleOpenEditorInReadMode(bool toggled) {
-    setState(() {
-      PreferenceKey.openEditorReadingMode.set(toggled);
-    });
+  Future<void> _toggleOpenEditorInReadMode(bool toggled) async {
+    await PreferenceKey.openEditorReadingMode.set(toggled);
+
+    setState(() {});
   }
 
   /// Toggles the setting to use spacing between the paragraphs.
-  void _toggleFocusTitleOnNewNote(bool toggled) {
-    setState(() {
-      PreferenceKey.focusTitleOnNewNote.set(toggled);
-    });
+  Future<void> _toggleFocusTitleOnNewNote(bool toggled) async {
+    await PreferenceKey.focusTitleOnNewNote.set(toggled);
+
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault();
-    final openEditorInReadMode = PreferenceKey.openEditorReadingMode.getPreferenceOrDefault();
-    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault();
+    final showEditorModeButton = PreferenceKey.editorModeButton.preferenceOrDefault;
+    final openEditorInReadMode = PreferenceKey.openEditorReadingMode.preferenceOrDefault;
+    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.preferenceOrDefault;
 
     return Scaffold(
       appBar: TopNavigation(

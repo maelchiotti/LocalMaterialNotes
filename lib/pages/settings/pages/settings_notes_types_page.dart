@@ -33,17 +33,17 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
   }
 
   /// Sets the setting for the default share note type to [defaultShareNoteType].
-  void onSubmittedDefaultShareNoteType(NoteType defaultShareNoteType) {
-    setState(() {
-      PreferenceKey.defaultShareNoteType.set(defaultShareNoteType.name);
-    });
+  Future<void> onSubmittedDefaultShareNoteType(NoteType defaultShareNoteType) async {
+    await PreferenceKey.defaultShareNoteType.set(defaultShareNoteType.name);
+
+    setState(() {});
   }
 
   /// Toggles the setting to use spacing between the paragraphs.
-  void _toggleUseParagraphSpacing(bool toggled) {
-    setState(() {
-      PreferenceKey.useParagraphsSpacing.set(toggled);
-    });
+  Future<void> _toggleUseParagraphSpacing(bool toggled) async {
+    await PreferenceKey.useParagraphsSpacing.set(toggled);
+
+    setState(() {});
   }
 
   @override
@@ -61,7 +61,7 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
     }).toList();
     final defaultShareNoteType = NoteType.defaultShareType;
 
-    final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault();
+    final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.preferenceOrDefault;
 
     return Scaffold(
       appBar: TopNavigation(
