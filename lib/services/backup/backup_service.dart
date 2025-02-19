@@ -12,8 +12,8 @@ import '../../common/extensions/date_time_extensions.dart';
 import '../../common/extensions/iterable_extension.dart';
 import '../../common/files/files_utils.dart';
 import '../../common/preferences/preference_key.dart';
-import '../../common/preferences/preferences_utils.dart';
-import '../../common/system/info_utils.dart';
+import '../../common/preferences/preferences_wrapper.dart';
+import '../../common/system_utils.dart';
 import '../../common/ui/snack_bar_utils.dart';
 import '../../models/label/label.dart';
 import '../../models/note/note.dart';
@@ -219,8 +219,8 @@ class ManualBackupService {
     required String directory,
     required String fileName,
   }) async {
-    final version = InfoUtils().appVersion;
-    final buildNumber = InfoUtils().buildNumber;
+    final version = SystemUtils().appVersion;
+    final buildNumber = SystemUtils().buildNumber;
 
     var notes = await _notesService.getAllAvailable();
     if (encrypt && password != null && password.isNotEmpty) {
@@ -229,7 +229,7 @@ class ManualBackupService {
 
     final labels = await _labelsService.getAll();
 
-    final preferences = PreferencesUtils().toJson();
+    final preferences = PreferencesWrapper().toJson();
 
     final exportData = {
       'version': version,

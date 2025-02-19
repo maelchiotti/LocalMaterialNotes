@@ -58,13 +58,6 @@ class NotesService {
       await _updateIndexes(await getAll());
     }
 
-    // If the app runs with the 'INTEGRATION_TEST' environment parameter,
-    // clear all the notes and add the notes for the integration tests
-    if (Environment.integrationTest) {
-      await clear();
-      await putAll(integrationTestNotes);
-    }
-
     // If the app runs with the 'SCREENSHOTS' environment parameter,
     // clear all the notes and add the notes for the screenshots
     else if (Environment.screenshots) {

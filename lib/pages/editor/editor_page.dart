@@ -1,5 +1,6 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
@@ -11,6 +12,7 @@ import '../../common/widgets/placeholders/loading_placeholder.dart';
 import '../../models/note/note.dart';
 import '../../models/note/note_status.dart';
 import '../../providers/notifiers/notifiers.dart';
+import '../lock/lock_page.dart';
 import 'widgets/checklist/checklist_editor.dart';
 import 'widgets/editor_labels_list.dart';
 import 'widgets/markdown/markdown_editor.dart';
@@ -45,11 +47,6 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
 
   @override
   Widget build(BuildContext context) {
-    final showEditorModeButton = PreferenceKey.editorModeButton.preferenceOrDefault;
-    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.preferenceOrDefault;
-    final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
-    final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.preferenceOrDefault;
-
     return ValueListenableBuilder(
       valueListenable: currentNoteNotifier,
       builder: (context, currentNote, child) {
@@ -59,6 +56,14 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
             if (currentNote == null) {
               return const LoadingPlaceholder();
             }
+
+            final lock = PreferenceKey.lockNote.preferenceOrDefault;
+            final lockDelay = PreferenceKey.lockNoteDelay.preferenceOrDefault;
+
+            final showEditorModeButton = PreferenceKey.editorModeButton.preferenceOrDefault;
+            final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.preferenceOrDefault;
+            final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
+            final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.preferenceOrDefault;
 
             final readOnly = widget.readOnly || (showEditorModeButton && !isEditorInEditMode);
             final autofocus = widget.isNewNote && !focusTitleOnNewNote;
@@ -103,38 +108,51 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                 );
             }
 
-            return Scaffold(
-              appBar: const TopNavigation(
-                appbar: EditorAppBar(),
-                notesStatus: NoteStatus.available,
-              ),
-              body: Column(
-                children: [
-                  Expanded(
-                    child: Column(
-                      children: [
-                        TitleEditor(
-                          readOnly: widget.readOnly,
-                          isNewNote: widget.isNewNote,
-                          onSubmitted: requestEditorFocus,
-                        ),
-                        Gap(8.0),
-                        Expanded(
-                          child: contentEditor,
-                        ),
-                      ],
-                    ),
+            return AppLock(
+              initiallyEnabled: lock,
+              initialBackgroundLockLatency: Duration(seconds: lockDelay),
+              builder: (BuildContext context, Object? launchArg) {
+                return Scaffold(
+                  appBar: const TopNavigation(
+                    appbar: EditorAppBar(),
+                    notesStatus: NoteStatus.available,
                   ),
-                  SafeArea(
-                    child: Column(
-                      children: [
-                        if (showLabelsList) EditorLabelsList(readOnly: widget.readOnly),
-                        if (toolbar != null && isEditorInEditMode && !currentNote.deleted) toolbar,
-                      ],
-                    ),
+                  body: Column(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          children: [
+                            TitleEditor(
+                              readOnly: widget.readOnly,
+                              isNewNote: widget.isNewNote,
+                              onSubmitted: requestEditorFocus,
+                            ),
+                            Gap(8.0),
+                            Expanded(
+                              child: contentEditor,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SafeArea(
+                        child: Column(
+                          children: [
+                            if (showLabelsList) EditorLabelsList(readOnly: widget.readOnly),
+                            if (toolbar != null && isEditorInEditMode && !currentNote.deleted) toolbar,
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                );
+              },
+              lockScreenBuilder: (BuildContext context) {
+                return LockPage(
+                  back: true,
+                  description: l.lock_page_description_note,
+                  reason: l.lock_page_reason_note,
+                );
+              },
             );
           },
         );

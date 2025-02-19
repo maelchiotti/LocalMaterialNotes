@@ -1,43 +1,17 @@
 import '../../models/note/note.dart';
-import '../localization/localizations_utils.dart';
+import '../system_utils.dart';
 
 /// Note displayed on the very first run of the application to welcome the user.
 final welcomeNote = PlainTextNote(
   archived: false,
   deleted: false,
   pinned: true,
+  locked: false,
   createdTime: DateTime.now(),
   editedTime: DateTime.now(),
-  title: LocalizationsUtils().welcomeNoteTitle,
-  content: LocalizationsUtils().welcomeNoteContent,
+  title: SystemUtils().welcomeNoteTitle,
+  content: SystemUtils().welcomeNoteContent,
 );
-
-/// Notes used when running integration tests.
-final integrationTestNotes = List.generate(
-  100,
-  (index) => RichTextNote(
-    archived: false,
-    deleted: false,
-    pinned: false,
-    createdTime: DateTime(2000, 01, 01, 12).subtract(Duration(minutes: index)),
-    editedTime: DateTime(2000, 01, 01, 12).subtract(Duration(minutes: index)),
-    title: "Note $index",
-    content: '[{"insert":"This is note $index.\\n"}]',
-  ),
-)..addAll(
-    List.generate(
-      100,
-      (index) => RichTextNote(
-        archived: false,
-        deleted: true,
-        pinned: false,
-        createdTime: DateTime(2000, 01, 01, 12).subtract(Duration(minutes: index)),
-        editedTime: DateTime(2000, 01, 01, 12).subtract(Duration(minutes: index)),
-        title: "Deleted note $index",
-        content: '[{"insert":"This is deleted note $index.\\n"}]',
-      ),
-    ),
-  );
 
 /// Notes used when taking screenshots of the application for the stores.
 final screenshotNotes = [
@@ -45,6 +19,7 @@ final screenshotNotes = [
     archived: false,
     deleted: false,
     pinned: true,
+    locked: false,
     createdTime: DateTime(2000, 01, 01, 12),
     editedTime: DateTime(2000, 01, 01, 12),
     title: "Welcome to Material Notes",
@@ -55,6 +30,7 @@ final screenshotNotes = [
     archived: false,
     deleted: false,
     pinned: false,
+    locked: false,
     createdTime: DateTime(2000, 01, 01, 11, 55),
     editedTime: DateTime(2000, 01, 01, 11, 55),
     title: "Take notes",
@@ -65,6 +41,7 @@ final screenshotNotes = [
     archived: false,
     deleted: false,
     pinned: false,
+    locked: false,
     createdTime: DateTime(2000, 01, 01, 11, 50),
     editedTime: DateTime(2000, 01, 01, 11, 50),
     title: "Organize",
@@ -74,6 +51,7 @@ final screenshotNotes = [
     archived: false,
     deleted: false,
     pinned: false,
+    locked: false,
     createdTime: DateTime(2000, 01, 01, 11, 50),
     editedTime: DateTime(2000, 01, 01, 11, 50),
     title: "Categorize",
@@ -83,6 +61,7 @@ final screenshotNotes = [
     archived: false,
     deleted: false,
     pinned: false,
+    locked: false,
     createdTime: DateTime(2000, 01, 01, 11, 45),
     editedTime: DateTime(2000, 01, 01, 11, 45),
     title: "Share & backup",
@@ -93,6 +72,7 @@ final screenshotNotes = [
     archived: false,
     deleted: false,
     pinned: false,
+    locked: false,
     createdTime: DateTime(2000, 01, 01, 11, 40),
     editedTime: DateTime(2000, 01, 01, 11, 40),
     title: "Customize",
@@ -103,6 +83,7 @@ final screenshotNotes = [
     archived: false,
     deleted: false,
     pinned: false,
+    locked: false,
     createdTime: DateTime(2000, 01, 01, 11, 35),
     editedTime: DateTime(2000, 01, 01, 11, 35),
     title: "Protect",
@@ -112,6 +93,7 @@ final screenshotNotes = [
     archived: false,
     deleted: true,
     pinned: false,
+    locked: false,
     createdTime: DateTime(2000, 01, 01, 12),
     editedTime: DateTime(2000, 01, 01, 12),
     title: "Recover notes from the bin!",

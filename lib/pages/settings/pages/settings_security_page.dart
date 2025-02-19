@@ -2,6 +2,7 @@ import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
 import '../../../common/constants/constants.dart';
@@ -9,7 +10,6 @@ import '../../../common/constants/paddings.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
-import '../dialogs/lock_delay_dialog.dart';
 
 /// Settings related to the security of the application.
 class SettingsSecurityPage extends ConsumerStatefulWidget {
@@ -21,6 +21,15 @@ class SettingsSecurityPage extends ConsumerStatefulWidget {
 }
 
 class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
+  late final LocalAuthentication localAuthentication;
+
+  @override
+  void initState() {
+    super.initState();
+
+    localAuthentication = LocalAuthentication();
+  }
+
   /// Toggles whether Android's `FLAG_SECURE` is enabled to [toggled].
   Future<void> toggledFlagSecure(bool toggled) async {
     await PreferenceKey.flagSecure.set(toggled);
@@ -43,28 +52,38 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
     setState(() {});
   }
 
-  /// Asks the user to configure the lock delay.
-  Future<void> setLockDelay() async {
-    await showAdaptiveDialog<int>(
-      context: context,
-      useRootNavigator: false,
-      builder: (context) => const LockDelayDialog(),
-    ).then((lockDelay) async {
-      if (lockDelay == null) {
-        return;
-      }
+  /// Toggles whether the notes is locked to [toggled].
+  Future<void> toggledLockNotes(bool toggled) async {
+    await PreferenceKey.lockNote.set(toggled);
 
-      setState(() {
-        PreferenceKey.lockAppDelay.set(lockDelay);
-      });
+    setState(() {});
+  }
+
+  /// Sets the application lock delay to [delay].
+  Future<void> submittedLockAppDelay(double delay) async {
+    setState(() {
+      PreferenceKey.lockAppDelay.set(delay.toInt());
+    });
+
+    AppLock.of(context)?.setBackgroundLockLatency(Duration(seconds: delay.toInt()));
+  }
+
+  /// Sets the note lock delay to [delay].
+  Future<void> submittedLockNoteDelay(double delay) async {
+    setState(() {
+      PreferenceKey.lockNoteDelay.set(delay.toInt());
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final flagSecure = PreferenceKey.flagSecure.preferenceOrDefault;
+
     final lockApp = PreferenceKey.lockApp.preferenceOrDefault;
     final lockAppDelay = PreferenceKey.lockAppDelay.preferenceOrDefault;
+
+    final lockNotes = PreferenceKey.lockNote.preferenceOrDefault;
+    final lockNoteDelay = PreferenceKey.lockNoteDelay.preferenceOrDefault;
 
     return Scaffold(
       appBar: TopNavigation(
@@ -99,13 +118,42 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
                     toggled: lockApp,
                     onChanged: toggledLockApp,
                   ),
-                  SettingActionTile(
+                  SettingCustomSliderTile(
                     enabled: lockApp,
                     icon: Icons.timelapse,
                     title: l.settings_application_lock_delay_title,
-                    value: lockAppDelay.toString(),
+                    value: l.settings_lock_delay_value(lockAppDelay.toString()),
                     description: l.settings_application_lock_delay_description,
-                    onTap: setLockDelay,
+                    dialogTitle: l.settings_application_lock_delay_title,
+                    label: (delay) => l.settings_lock_delay_value(delay.toInt().toString()),
+                    values: lockDelayValues,
+                    initialValue: lockAppDelay.toDouble(),
+                    onSubmitted: submittedLockAppDelay,
+                  ),
+                ],
+              ),
+              SettingSection(
+                divider: null,
+                title: l.settings_security_note_lock,
+                tiles: [
+                  SettingSwitchTile(
+                    icon: Icons.lock,
+                    title: l.settings_note_lock_title,
+                    description: l.settings_note_lock_description,
+                    toggled: lockNotes,
+                    onChanged: toggledLockNotes,
+                  ),
+                  SettingCustomSliderTile(
+                    enabled: lockNotes,
+                    icon: Icons.timelapse,
+                    title: l.settings_note_lock_delay_title,
+                    value: l.settings_lock_delay_value(lockNoteDelay.toString()),
+                    description: l.settings_note_lock_delay_description,
+                    dialogTitle: l.settings_note_lock_delay_title,
+                    label: (delay) => l.settings_lock_delay_value(delay.toInt().toString()),
+                    values: lockDelayValues,
+                    initialValue: lockNoteDelay.toDouble(),
+                    onSubmitted: submittedLockNoteDelay,
                   ),
                 ],
               ),

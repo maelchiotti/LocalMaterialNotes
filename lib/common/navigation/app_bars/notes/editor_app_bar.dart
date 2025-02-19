@@ -17,7 +17,7 @@ import '../../../actions/notes/unarchive.dart';
 import '../../../constants/constants.dart';
 import '../../../constants/paddings.dart';
 import '../../../preferences/preference_key.dart';
-import '../../../utils.dart';
+import '../../../system_utils.dart';
 import '../../../widgets/placeholders/empty_placeholder.dart';
 import '../../enums/editor/editor_archived_menu_option.dart';
 import '../../enums/editor/editor_available_menu_option.dart';
@@ -41,7 +41,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
   /// Action to perform on the available [notes] depending on the selected [menuOption].
   Future<void> onAvailableMenuOptionSelected(EditorAvailableMenuOption menuOption) async {
-    closeKeyboard();
+    SystemUtils().closeKeyboard();
 
     final note = currentNoteNotifier.value;
 
@@ -69,7 +69,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
   /// Action to perform on the archived [notes] depending on the selected [menuOption].
   Future<void> onArchivedMenuOptionSelected(EditorArchivedMenuOption menuOption) async {
-    closeKeyboard();
+    SystemUtils().closeKeyboard();
 
     final note = currentNoteNotifier.value;
 
@@ -93,7 +93,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
   /// Action to perform on the deleted [notes] depending on the selected [menuOption].
   Future<void> onDeletedMenuOptionSelected(EditorDeletedMenuOption menuOption) async {
-    closeKeyboard();
+    SystemUtils().closeKeyboard();
 
     final note = currentNoteNotifier.value;
 
@@ -133,20 +133,6 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     editorController.redo();
   }
 
-  /// Toggle whether a checklist is present at the current line in the rich text editor.
-  void toggleChecklist() {
-    final editorController = fleatherControllerNotifier.value;
-
-    if (editorController == null) {
-      return;
-    }
-
-    final isToggled = editorController.getSelectionStyle().containsSame(ParchmentAttribute.block.checkList);
-    editorController.formatSelection(
-      isToggled ? ParchmentAttribute.block.checkList.unset : ParchmentAttribute.block.checkList,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final note = currentNoteNotifier.value;
@@ -166,7 +152,9 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
           valueListenable: isEditorInEditModeNotifier,
           builder: (context, isEditMode, child) {
             return AppBar(
-              leading: BackButton(),
+              leading: BackButton(
+                onPressed: () => Navigator.of(rootNavigatorKey.currentContext!).pop(),
+              ),
               actions: [
                 if (note.status == NoteStatus.available) ...[
                   if (note.type == NoteType.richText) ...[

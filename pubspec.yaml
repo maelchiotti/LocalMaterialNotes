@@ -68,7 +68,7 @@ dependencies:
   saf_stream: ^0.11.1
   saf_util: ^0.6.2
   sanitize_filename: ^1.0.5
-  settings_tiles: ^4.0.0
+  settings_tiles: ^4.1.0
   share_plus: ^10.1.4
   shared_preferences: ^2.4.0
   simple_icons: ^10.1.3

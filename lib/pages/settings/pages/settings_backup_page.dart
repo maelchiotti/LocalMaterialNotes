@@ -23,7 +23,6 @@ import '../../../providers/notifiers/notifiers.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 import '../../../services/backup/auto_backup_service.dart';
 import '../../../services/backup/backup_service.dart';
-import '../dialogs/auto_export_frequency_dialog.dart';
 import '../dialogs/auto_export_password_dialog.dart';
 import '../dialogs/manual_export_dialog.dart';
 
@@ -158,20 +157,10 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     });
   }
 
-  /// Asks the user to configure the automatic export frequency.
-  Future<void> _setAutoExportFrequency() async {
-    await showAdaptiveDialog<int>(
-      context: context,
-      useRootNavigator: false,
-      builder: (context) => const AutoExportFrequencyDialog(),
-    ).then((autoExportFrequency) async {
-      if (autoExportFrequency == null) {
-        return;
-      }
-
-      setState(() {
-        PreferenceKey.autoExportFrequency.set(autoExportFrequency);
-      });
+  /// Sets automatic export frequency to [frequency].
+  Future<void> _submittedAutoExportFrequency(double frequency) async {
+    setState(() {
+      PreferenceKey.autoExportFrequency.set(frequency.toInt());
     });
   }
 
@@ -263,13 +252,17 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                     toggled: autoExportEncryption,
                     onChanged: _toggleAutoExportEncryption,
                   ),
-                  SettingActionTile(
+                  SettingCustomSliderTile(
                     enabled: enableAutoExport,
                     icon: Symbols.calendar_clock,
                     title: l.settings_auto_export_frequency,
                     value: l.settings_auto_export_frequency_value(autoExportFrequency.toString()),
                     description: l.settings_auto_export_frequency_description,
-                    onTap: _setAutoExportFrequency,
+                    dialogTitle: l.settings_auto_export_frequency,
+                    label: (frequency) => l.settings_auto_export_frequency_value(frequency.toInt().toString()),
+                    values: automaticExportFrequenciesValues,
+                    initialValue: autoExportFrequency.toDouble(),
+                    onSubmitted: _submittedAutoExportFrequency,
                   ),
                   SettingActionTile(
                     enabled: enableAutoExport,

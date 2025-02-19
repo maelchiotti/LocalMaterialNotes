@@ -7,6 +7,7 @@ import 'package:gap/gap.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:restart_app/restart_app.dart';
 
+import '../../common/constants/constants.dart';
 import '../../common/constants/sizes.dart';
 import '../../common/preferences/preference_key.dart';
 import '../../common/ui/snack_bar_utils.dart';
@@ -16,7 +17,21 @@ import '../../l10n/app_localizations/app_localizations.g.dart';
 /// Lock page.
 class LockPage extends ConsumerStatefulWidget {
   /// Lock page shown when the application starts if the application lock is enabled in the settings.
-  const LockPage({super.key});
+  const LockPage({
+    super.key,
+    required this.back,
+    required this.description,
+    required this.reason,
+  });
+
+  /// Whether to show an [AppBar] with a [BackButton].
+  final bool back;
+
+  /// The description explaining why this lock page is shown.
+  final String description;
+
+  /// The reason why the lock page is requesting a system authentication.
+  final String reason;
 
   @override
   ConsumerState<LockPage> createState() => _LockPageState();
@@ -57,7 +72,7 @@ class _LockPageState extends ConsumerState<LockPage> with AfterLayoutMixin<LockP
       return;
     }
 
-    final bool authenticated = await localAuthentication.authenticate(localizedReason: l.lock_page_reason);
+    final bool authenticated = await localAuthentication.authenticate(localizedReason: widget.reason);
 
     // The authentication failed
     if (!authenticated) {
@@ -82,30 +97,39 @@ class _LockPageState extends ConsumerState<LockPage> with AfterLayoutMixin<LockP
     final l = AppLocalizations.of(context);
 
     return Scaffold(
+      appBar: widget.back
+          ? AppBar(
+              leading: BackButton(
+                onPressed: () => Navigator.of(rootNavigatorKey.currentContext!).pop(),
+              ),
+            )
+          : null,
       body: SafeArea(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                Asset.icon.path,
-                fit: BoxFit.fitWidth,
-                width: Sizes.appIconLarge.size,
-              ),
-              Gap(32),
-              Text(
-                l.app_name,
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-              Gap(128),
-              Text(l.lock_page_title),
-              Gap(16),
-              FilledButton.icon(
-                onPressed: () => unlock(l),
-                icon: Icon(Icons.lock_open),
-                label: Text(l.lock_page_unlock),
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  Asset.icon.path,
+                  fit: BoxFit.fitWidth,
+                  width: Sizes.appIconLarge.size,
+                ),
+                Gap(32),
+                Text(
+                  l.app_name,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                Gap(128),
+                Text(widget.description),
+                Gap(16),
+                FilledButton.icon(
+                  onPressed: () => unlock(l),
+                  icon: Icon(Icons.lock_open),
+                  label: Text(l.lock_page_unlock),
+                ),
+              ],
+            ),
           ),
         ),
       ),

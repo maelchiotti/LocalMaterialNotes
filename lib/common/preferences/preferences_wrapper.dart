@@ -5,13 +5,13 @@ import '../constants/constants.dart';
 import 'preference_key.dart';
 
 /// Manages user preferences.
-class PreferencesUtils {
-  static final PreferencesUtils _singleton = PreferencesUtils._internal();
+class PreferencesWrapper {
+  static final PreferencesWrapper _singleton = PreferencesWrapper._internal();
 
   /// Default constructor.
-  factory PreferencesUtils() => _singleton;
+  factory PreferencesWrapper() => _singleton;
 
-  PreferencesUtils._internal();
+  PreferencesWrapper._internal();
 
   /// Normal preferences.
   late final SharedPreferences _preferences;

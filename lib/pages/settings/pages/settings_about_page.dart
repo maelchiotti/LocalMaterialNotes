@@ -9,8 +9,7 @@ import '../../../common/constants/paddings.dart';
 import '../../../common/constants/sizes.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
-import '../../../common/system/info_utils.dart';
-import '../../../common/utils.dart';
+import '../../../common/system_utils.dart';
 import '../../../common/widgets/asset.dart';
 
 /// Settings providing information about the application.
@@ -53,17 +52,19 @@ class SettingsAboutPage extends StatelessWidget {
 
   /// Sends an email to the contact email with some basic information.
   void _sendMail() {
-    final appVersion = InfoUtils().appVersion;
-    final buildMode = InfoUtils().buildMode;
-    final androidVersion = InfoUtils().androidVersion;
-    final brand = InfoUtils().brand;
-    final model = InfoUtils().model;
+    final systemUtils = SystemUtils();
+
+    final appVersion = systemUtils.appVersion;
+    final buildMode = systemUtils.buildMode;
+    final androidVersion = systemUtils.androidVersion;
+    final brand = systemUtils.brand;
+    final model = systemUtils.model;
 
     launchUrl(
       Uri(
         scheme: 'mailto',
         path: contactEmail,
-        query: encodeQueryParameters({
+        query: systemUtils.encodeQueryParameters({
           'subject': '[Material Notes] ',
           'body': '\n\n\n----------\nv$appVersion\n$buildMode mode\nAndroid $androidVersion\n$brand $model',
         }),
@@ -103,8 +104,8 @@ class SettingsAboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appVersion = InfoUtils().appVersion;
-    final appBuildNumber = InfoUtils().buildNumber;
+    final appVersion = SystemUtils().appVersion;
+    final appBuildNumber = SystemUtils().buildNumber;
 
     return Scaffold(
       appBar: TopNavigation(
@@ -141,7 +142,7 @@ class SettingsAboutPage extends StatelessWidget {
                   SettingTextTile(
                     icon: Icons.build,
                     title: l.settings_build_mode,
-                    description: InfoUtils().buildMode,
+                    description: SystemUtils().buildMode,
                   ),
                 ],
               ),
