@@ -40,7 +40,7 @@ enum NoteType {
 
   /// The list of types available when creating a new note from the notes list.
   static List<NoteType> get availableTypes {
-    final availableTypesPreference = PreferenceKey.availableNotesTypes.getPreferenceOrDefault();
+    final availableTypesPreference = PreferenceKey.availableNotesTypes.preferenceOrDefault;
 
     return availableTypesPreference.map((type) {
       return values.byName(type);
@@ -54,7 +54,7 @@ enum NoteType {
 
   /// The default note type to used when creating a new note via a share action.
   static NoteType get defaultShareType {
-    final defaultShortcutType = PreferenceKey.defaultShareNoteType.getPreferenceOrDefault();
+    final defaultShortcutType = PreferenceKey.defaultShareNoteType.preferenceOrDefault;
 
     return values.byName(defaultShortcutType);
   }

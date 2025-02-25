@@ -21,7 +21,7 @@ class LocaleUtils {
 
   /// Locale of the application.
   Locale get appLocale {
-    final localeCodes = PreferenceKey.locale.getPreferenceOrDefault().split('-');
+    final localeCodes = PreferenceKey.locale.preferenceOrDefault.split('-');
     final languageCode = localeCodes.first;
     String? scriptCode;
     if (localeCodes.length == 2) {

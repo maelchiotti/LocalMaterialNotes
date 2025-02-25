@@ -70,7 +70,7 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
     final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
     final showSeparators = ref.watch(preferencesProvider.select((preferences) => preferences.showSeparators));
     final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
-    final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
+    final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.preferenceOrDefault;
     final maximumContentPreviewLines =
         ref.watch(preferencesProvider.select((preferences) => preferences.maximumContentPreviewLines));
     final showNoteTypeIcon = ref.watch(preferencesProvider.select((preferences) => preferences.showNoteTypeIcon));

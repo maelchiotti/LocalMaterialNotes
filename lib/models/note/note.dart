@@ -163,7 +163,7 @@ sealed class Note implements Comparable<Note> {
   @override
   int compareTo(Note other) {
     final sortMethod = SortMethod.fromPreference();
-    final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault();
+    final sortAscending = PreferenceKey.sortAscending.preferenceOrDefault;
 
     if (pinned && !other.pinned) {
       return -1;

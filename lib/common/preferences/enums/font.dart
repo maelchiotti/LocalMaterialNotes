@@ -33,7 +33,7 @@ enum Font {
   /// Returns the value of the preference if set, or its default value otherwise.
   factory Font.appFromPreference() {
     final font = Font.values.byNameOrNull(
-      PreferenceKey.appFont.getPreference(),
+      PreferenceKey.appFont.preference,
     );
 
     // Reset the malformed preference to its default value
@@ -49,7 +49,7 @@ enum Font {
   /// Returns the value of the preference if set, or its default value otherwise.
   factory Font.editorFromPreference() {
     final font = Font.values.byNameOrNull(
-      PreferenceKey.editorFont.getPreference(),
+      PreferenceKey.editorFont.preference,
     );
 
     // Reset the malformed preference to its default value

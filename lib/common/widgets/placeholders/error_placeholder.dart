@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../l10n/app_localizations/app_localizations.g.dart';
 import '../../../services/backup/backup_service.dart';
-import '../../constants/constants.dart';
+import '../../constants/constants.dart' hide l;
 import '../../constants/paddings.dart';
 import '../../navigation/side_navigation.dart';
 import '../../preferences/preference_key.dart';
@@ -73,11 +73,11 @@ class ErrorPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appLocalizations = AppLocalizations.of(context);
+    final l = AppLocalizations.of(context);
     final textTheme = Theme.of(context).textTheme;
 
     // Disable the secure flag until the next restart to allow screenshots
-    final isFlagSecureSettingEnabled = PreferenceKey.flagSecure.getPreferenceOrDefault();
+    final isFlagSecureSettingEnabled = PreferenceKey.flagSecure.preferenceOrDefault;
     if (isFlagSecureSettingEnabled) {
       FlagSecure.unset();
     }
@@ -94,19 +94,19 @@ class ErrorPlaceholder extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  appLocalizations.error_widget_title,
+                  l.error_widget_title,
                   textAlign: TextAlign.center,
                   style: textTheme.titleMedium,
                 ),
                 Padding(padding: Paddings.vertical(4.0)),
                 Text(
-                  appLocalizations.error_widget_description,
+                  l.error_widget_description,
                   textAlign: TextAlign.center,
                 ),
                 if (isFlagSecureSettingEnabled) ...[
                   Padding(padding: Paddings.vertical(4.0)),
                   Text(
-                    appLocalizations.error_widget_disabled_secure_flag,
+                    l.error_widget_disabled_secure_flag,
                     textAlign: TextAlign.center,
                     style: textTheme.labelMedium,
                   ),
@@ -114,8 +114,8 @@ class ErrorPlaceholder extends StatelessWidget {
                 Padding(padding: Paddings.vertical(16.0)),
                 ElevatedButton.icon(
                   icon: const Icon(Icons.settings_backup_restore),
-                  label: Text(appLocalizations.error_widget_button_export_notes),
-                  onPressed: () => _exportNotes(appLocalizations),
+                  label: Text(l.error_widget_button_export_notes),
+                  onPressed: () => _exportNotes(l),
                 ),
                 Padding(padding: Paddings.vertical(16.0)),
                 Column(
@@ -123,14 +123,14 @@ class ErrorPlaceholder extends StatelessWidget {
                   children: [
                     ElevatedButton.icon(
                       icon: const Icon(Icons.copy),
-                      label: Text(appLocalizations.error_widget_button_copy_logs),
-                      onPressed: () => logger.copyLogs(overrideLocalizations: appLocalizations),
+                      label: Text(l.error_widget_button_copy_logs),
+                      onPressed: () => logger.copyLogs(overrideLocalizations: l),
                     ),
                     Padding(padding: Paddings.horizontal(8.0)),
                     ElevatedButton.icon(
                       icon: const Icon(Icons.file_download),
-                      label: Text(appLocalizations.error_widget_button_export_logs),
-                      onPressed: () => logger.exportLogs(overrideLocalizations: appLocalizations),
+                      label: Text(l.error_widget_button_export_logs),
+                      onPressed: () => logger.exportLogs(overrideLocalizations: l),
                     ),
                   ],
                 ),
@@ -140,13 +140,13 @@ class ErrorPlaceholder extends StatelessWidget {
                   children: [
                     FilledButton.icon(
                       icon: const Icon(SimpleIcons.github),
-                      label: Text(appLocalizations.error_widget_button_create_github_issue),
+                      label: Text(l.error_widget_button_create_github_issue),
                       onPressed: _createGitHubIssue,
                     ),
                     Padding(padding: Paddings.horizontal(8.0)),
                     FilledButton.icon(
                       icon: const Icon(Icons.mail),
-                      label: Text(appLocalizations.error_widget_button_send_mail),
+                      label: Text(l.error_widget_button_send_mail),
                       onPressed: _sendMail,
                     ),
                   ],

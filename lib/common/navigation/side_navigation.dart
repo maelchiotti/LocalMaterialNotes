@@ -17,7 +17,6 @@ import '../constants/paddings.dart';
 import '../constants/sizes.dart';
 import '../preferences/preference_key.dart';
 import '../widgets/asset.dart';
-import '../widgets/keys.dart';
 import '../widgets/placeholders/error_placeholder.dart';
 
 /// Side navigation with the drawer.
@@ -180,7 +179,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
                 Image.asset(
                   Asset.icon.path,
                   fit: BoxFit.fitWidth,
-                  width: Sizes.iconSize.size,
+                  width: Sizes.appIcon.size,
                 ),
                 Padding(padding: Paddings.vertical(8)),
                 Text(
@@ -191,7 +190,6 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
             ),
           ),
           NavigationDrawerDestination(
-            key: Keys.drawerNotesTab,
             icon: const Icon(Icons.notes_outlined),
             selectedIcon: const Icon(Icons.notes),
             label: Text(l.navigation_notes),
@@ -237,7 +235,6 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
           ),
           Divider(indent: 24, endIndent: 24),
           NavigationDrawerDestination(
-            key: Keys.drawerSettingsTab,
             icon: const Icon(Icons.settings_outlined),
             selectedIcon: const Icon(Icons.settings),
             label: Text(l.navigation_settings),
@@ -247,7 +244,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
+    final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
 
     if (enableLabels) {
       return ref.watch(labelsNavigationProvider).when(

@@ -1,41 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:settings_tiles/settings_tiles.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../../common/preferences/preference_key.dart';
 
-/// Dialog to choose the frequency of the automatic export.
-///
-/// This is used instead of a `SettingSliderTile` to use custom values for the slider.
-class AutoExportFrequencyDialog extends StatefulWidget {
-  /// Default constructor.
-  const AutoExportFrequencyDialog({super.key});
+/// Lock delay setting dialog.
+class LockDelayDialog extends StatefulWidget {
+  /// Setting dialog to choose after which time the application should be locked if the application lock is enabled.
+  ///
+  /// This is used instead of a [SettingSliderTile] to use custom values for the slider.
+  const LockDelayDialog({super.key});
 
   @override
-  State<AutoExportFrequencyDialog> createState() => _AutoExportFrequencyDialogState();
+  State<LockDelayDialog> createState() => _LockDelayDialogState();
 }
 
-class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
-  /// The index of the current frequency value in [values].
+class _LockDelayDialogState extends State<LockDelayDialog> {
+  /// The index of the current delay value in [values].
   late int index;
 
-  /// The allowed frequency values.
-  final values = [1, 3, 7, 14, 30];
+  /// The allowed delay values.
+  final values = [0, 3, 5, 10, 30, 60, 120, 300, 999];
 
-  /// Returns the current frequency value.
+  /// Returns the current delay value.
   int get value => values[index];
 
   @override
   void initState() {
     super.initState();
 
-    final frequencyPreference = PreferenceKey.autoExportFrequency.preferenceOrDefault;
-    final frequencyIndex = values.indexOf(frequencyPreference);
+    final delayPreference = PreferenceKey.lockAppDelay.preferenceOrDefault;
+    final delayIndex = values.indexOf(delayPreference);
 
-    if (frequencyIndex == -1) {
-      throw Exception("Frequency preference isn't one of the allowed values: $frequencyIndex");
+    if (delayIndex == -1) {
+      throw Exception("Delay preference isn't one of the allowed values: $delayIndex");
     }
 
-    index = frequencyIndex;
+    index = delayIndex;
   }
 
   /// Updates the [value] of the current [index].
@@ -59,7 +60,7 @@ class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog.adaptive(
-      title: Text(l.settings_auto_export_frequency),
+      title: Text(l.settings_application_lock_delay_title),
       content: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +70,7 @@ class _AutoExportFrequencyDialogState extends State<AutoExportFrequencyDialog> {
               value: index.toDouble(),
               max: values.length - 1,
               divisions: values.length - 1,
-              label: l.settings_auto_export_frequency_value(value.toString()),
+              label: value.toString(),
               onChanged: onValueChanged,
             ),
           ],

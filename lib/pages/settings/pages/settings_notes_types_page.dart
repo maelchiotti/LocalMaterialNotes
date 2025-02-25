@@ -9,7 +9,6 @@ import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
 import '../../../common/system/quick_actions_utils.dart';
-import '../../../common/widgets/keys.dart';
 import '../../../models/note/types/note_type.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 
@@ -33,17 +32,17 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
   }
 
   /// Sets the setting for the default share note type to [defaultShareNoteType].
-  void onSubmittedDefaultShareNoteType(NoteType defaultShareNoteType) {
-    setState(() {
-      PreferenceKey.defaultShareNoteType.set(defaultShareNoteType.name);
-    });
+  Future<void> onSubmittedDefaultShareNoteType(NoteType defaultShareNoteType) async {
+    await PreferenceKey.defaultShareNoteType.set(defaultShareNoteType.name);
+
+    setState(() {});
   }
 
   /// Toggles the setting to use spacing between the paragraphs.
-  void _toggleUseParagraphSpacing(bool toggled) {
-    setState(() {
-      PreferenceKey.useParagraphsSpacing.set(toggled);
-    });
+  Future<void> _toggleUseParagraphSpacing(bool toggled) async {
+    await PreferenceKey.useParagraphsSpacing.set(toggled);
+
+    setState(() {});
   }
 
   @override
@@ -61,11 +60,10 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
     }).toList();
     final defaultShareNoteType = NoteType.defaultShareType;
 
-    final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault();
+    final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.preferenceOrDefault;
 
     return Scaffold(
       appBar: TopNavigation(
-        key: Keys.appBarSettingsMainSubpage,
         appbar: BasicAppBar(title: l.navigation_settings_notes_types),
       ),
       body: SingleChildScrollView(

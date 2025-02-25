@@ -29,7 +29,7 @@ class NavigatorUtils {
 
   /// Pushes the notes editor route with its parameters [readOnly] and a [isNewNote].
   static void pushNotesEditor(BuildContext context, bool readOnly, bool isNewNote) {
-    isEditorInEditModeNotifier.value = !PreferenceKey.openEditorReadingMode.getPreferenceOrDefault();
+    isEditorInEditModeNotifier.value = !PreferenceKey.openEditorReadingMode.preferenceOrDefault;
 
     push(
       context,

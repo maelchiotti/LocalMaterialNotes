@@ -7,7 +7,6 @@ import '../../common/constants/constants.dart';
 import '../../common/navigation/app_bars/notes/editor_app_bar.dart';
 import '../../common/navigation/top_navigation.dart';
 import '../../common/preferences/preference_key.dart';
-import '../../common/widgets/keys.dart';
 import '../../common/widgets/placeholders/loading_placeholder.dart';
 import '../../models/note/note.dart';
 import '../../models/note/note_status.dart';
@@ -46,10 +45,10 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
 
   @override
   Widget build(BuildContext context) {
-    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault();
-    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault();
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
-    final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.getPreferenceOrDefault();
+    final showEditorModeButton = PreferenceKey.editorModeButton.preferenceOrDefault;
+    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.preferenceOrDefault;
+    final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
+    final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.preferenceOrDefault;
 
     return ValueListenableBuilder(
       valueListenable: currentNoteNotifier,
@@ -106,9 +105,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
 
             return Scaffold(
               appBar: const TopNavigation(
-                appbar: EditorAppBar(
-                  key: Keys.appBarEditor,
-                ),
+                appbar: EditorAppBar(),
                 notesStatus: NoteStatus.available,
               ),
               body: Column(

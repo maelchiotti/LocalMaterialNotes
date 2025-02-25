@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quick_actions/quick_actions.dart';
 
+import '../../l10n/app_localizations/app_localizations.g.dart';
 import '../../models/note/types/note_type.dart';
 import '../actions/notes/add.dart';
-import '../constants/constants.dart';
 
 /// Utilities for the quick actions.
 ///
@@ -21,14 +21,13 @@ class QuickActionsUtils {
   late final QuickActions quickActions;
 
   /// Ensures the utility is initialized.
-  void ensureInitialized(BuildContext context, WidgetRef ref) {
+  void ensureInitialized() {
     quickActions = const QuickActions();
-
-    setQuickActions(context, ref);
   }
 
   /// Sets the quick actions.
   void setQuickActions(BuildContext context, WidgetRef ref) {
+    final l = AppLocalizations.of(context);
     final availableNotesTypes = NoteType.availableTypes;
 
     final addPlainTextNoteAction = ShortcutItem(

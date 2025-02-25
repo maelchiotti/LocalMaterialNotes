@@ -5,7 +5,6 @@ import '../../common/constants/constants.dart';
 import '../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../common/navigation/side_navigation.dart';
 import '../../common/navigation/top_navigation.dart';
-import '../../common/widgets/keys.dart';
 import '../../navigation/navigation_routes.dart';
 import 'pages/settings_about_page.dart';
 import 'pages/settings_accessibility_page.dart';
@@ -16,6 +15,7 @@ import 'pages/settings_editor_page.dart';
 import 'pages/settings_labels_page.dart';
 import 'pages/settings_notes_tiles_page.dart';
 import 'pages/settings_notes_types_page.dart';
+import 'pages/settings_security_page.dart';
 
 /// Page for the settings of the application.
 class SettingsMainPage extends StatelessWidget {
@@ -26,7 +26,6 @@ class SettingsMainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TopNavigation(
-        key: Keys.appBarSettingsMain,
         appbar: BasicAppBar(title: l.navigation_settings),
       ),
       drawer: const SideNavigation(),
@@ -77,6 +76,12 @@ class SettingsMainPage extends StatelessWidget {
                   title: l.settings_backup,
                   description: l.settings_backup_description,
                   onTap: () => NavigationRoute.settingsBackup.push(context, SettingsBackupPage()),
+                ),
+                SettingActionTile(
+                  icon: Icons.security,
+                  title: l.settings_security,
+                  description: l.settings_security_description,
+                  onTap: () => NavigationRoute.settingsSecurity.push(context, SettingsSecurityPage()),
                 ),
                 SettingActionTile(
                   icon: Icons.accessibility,

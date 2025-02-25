@@ -40,7 +40,7 @@ enum DeletedSwipeAction {
   /// Returns the value of the right swipe action preference if set, or its default value otherwise.
   factory DeletedSwipeAction.rightFromPreference() {
     final swipeRightAction = DeletedSwipeAction.values.byNameOrNull(
-      PreferenceKey.binSwipeRightAction.getPreference(),
+      PreferenceKey.binSwipeRightAction.preference,
     );
 
     // Reset the malformed preference to its default value
@@ -56,7 +56,7 @@ enum DeletedSwipeAction {
   /// Returns the value of the left swipe action preference if set, or its default value otherwise.
   factory DeletedSwipeAction.leftFromPreference() {
     final swipeRightAction = DeletedSwipeAction.values.byNameOrNull(
-      PreferenceKey.binSwipeLeftAction.getPreference(),
+      PreferenceKey.binSwipeLeftAction.preference,
     );
 
     // Reset the malformed preference to its default value

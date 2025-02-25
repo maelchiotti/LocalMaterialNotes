@@ -190,11 +190,11 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
     final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
     final showNoteTypeIcon = ref.watch(preferencesProvider.select((preferences) => preferences.showNoteTypeIcon));
-    final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.getPreferenceOrDefault();
+    final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.preferenceOrDefault;
     final disableSubduedNoteContentPreview =
         ref.watch(preferencesProvider.select((preferences) => preferences.disableSubduedNoteContentPreview));
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
-    final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.getPreferenceOrDefault();
+    final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
+    final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.preferenceOrDefault;
     final maximumContentPreviewLines =
         ref.watch(preferencesProvider.select((preferences) => preferences.maximumContentPreviewLines));
 

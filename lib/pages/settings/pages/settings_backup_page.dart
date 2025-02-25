@@ -200,9 +200,9 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
   @override
   Widget build(BuildContext context) {
-    final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault();
-    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault();
-    final autoExportEncryption = PreferenceKey.autoExportEncryption.getPreferenceOrDefault();
+    final enableAutoExport = PreferenceKey.enableAutoExport.preferenceOrDefault;
+    final autoExportFrequency = PreferenceKey.autoExportFrequency.preferenceOrDefault;
+    final autoExportEncryption = PreferenceKey.autoExportEncryption.preferenceOrDefault;
     final autoExportDirectory = AutoExportUtils().autoExportDirectory.decoded;
 
     return Scaffold(
