@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
@@ -9,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:parchment_delta/parchment_delta.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
@@ -198,14 +196,9 @@ class SystemUtils {
       return;
     }
 
-    final delta = Delta();
-    for (final line in data.first.path.split('\n')) {
-      delta.insert('$line\n');
-    }
-
     final defaultShortcutNoteType = NoteType.defaultShareType;
     final context = rootNavigatorKey.currentContext!;
-    final content = jsonEncode(delta);
+    final content = data.first.path;
 
     addNote(context, ref, noteType: defaultShortcutNoteType, content: content);
   }
