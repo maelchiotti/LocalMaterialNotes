@@ -62,7 +62,7 @@ class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
       actions: [
         IconButton(
           icon: Icon(allSelected ? Icons.deselect : Icons.select_all),
-          tooltip: allSelected ? l.tooltip_unselect_all : flutterL?.selectAllButtonLabel ?? 'Select all',
+          tooltip: allSelected ? l.tooltip_unselect_all : fl?.selectAllButtonLabel ?? 'Select all',
           onPressed: () => allSelected ? unselectAllLabels(ref) : selectAllLabels(ref),
         ),
         Padding(

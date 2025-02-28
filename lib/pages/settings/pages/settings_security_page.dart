@@ -9,7 +9,11 @@ import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
+import '../../../common/preferences/enums/swipe_actions/available_swipe_action.dart';
 import '../../../common/preferences/preference_key.dart';
+import '../../../common/preferences/watched_preferences.dart';
+import '../../../common/system_utils.dart';
+import '../../../providers/preferences/preferences_provider.dart';
 
 /// Settings related to the security of the application.
 class SettingsSecurityPage extends ConsumerStatefulWidget {
@@ -49,12 +53,41 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
 
     toggled ? AppLock.of(context)?.enable() : AppLock.of(context)?.disable();
 
+    // If the application lock is enabled, disable the note lock because it's redundant
+    if (toggled) {
+      await toggledLockNote(false);
+    }
+
     setState(() {});
   }
 
   /// Toggles whether the notes is locked to [toggled].
-  Future<void> toggledLockNotes(bool toggled) async {
+  Future<void> toggledLockNote(bool toggled) async {
     await PreferenceKey.lockNote.set(toggled);
+
+    // If the note lock is disabled and the available swipe actions are 'Lock / Unlock', set them to disabled
+    if (!toggled) {
+      final availableSwipeActionsPreferences = ref.read(
+        preferencesProvider.select((preferences) => preferences.availableSwipeActions),
+      );
+      final availableSwipeActions = (
+        right: AvailableSwipeAction.rightFromPreference(preference: availableSwipeActionsPreferences.right),
+        left: AvailableSwipeAction.leftFromPreference(preference: availableSwipeActionsPreferences.left),
+      );
+
+      if (availableSwipeActions.right == AvailableSwipeAction.toggleLock) {
+        await PreferenceKey.swipeRightAction.set(AvailableSwipeAction.disabled.name);
+        ref
+            .read(preferencesProvider.notifier)
+            .update(WatchedPreferences(availableSwipeRightAction: AvailableSwipeAction.disabled.name));
+      }
+      if (availableSwipeActions.left == AvailableSwipeAction.toggleLock) {
+        await PreferenceKey.swipeLeftAction.set(AvailableSwipeAction.disabled.name);
+        ref
+            .read(preferencesProvider.notifier)
+            .update(WatchedPreferences(availableSwipeRightAction: AvailableSwipeAction.disabled.name));
+      }
+    }
 
     setState(() {});
   }
@@ -82,8 +115,11 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
     final lockApp = PreferenceKey.lockApp.preferenceOrDefault;
     final lockAppDelay = PreferenceKey.lockAppDelay.preferenceOrDefault;
 
-    final lockNotes = PreferenceKey.lockNote.preferenceOrDefault;
+    final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
     final lockNoteDelay = PreferenceKey.lockNoteDelay.preferenceOrDefault;
+
+    final isLockAppAvailable = SystemUtils().isSystemAuthenticationAvailable;
+    final isLockNoteAvailable = SystemUtils().isSystemAuthenticationAvailable && !lockApp;
 
     return Scaffold(
       appBar: TopNavigation(
@@ -112,6 +148,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
                 title: l.settings_security_application_lock,
                 tiles: [
                   SettingSwitchTile(
+                    enabled: isLockAppAvailable,
                     icon: Icons.lock,
                     title: l.settings_application_lock_title,
                     description: l.settings_application_lock_description,
@@ -119,7 +156,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
                     onChanged: toggledLockApp,
                   ),
                   SettingCustomSliderTile(
-                    enabled: lockApp,
+                    enabled: isLockAppAvailable && lockApp,
                     icon: Icons.timelapse,
                     title: l.settings_application_lock_delay_title,
                     value: l.settings_lock_delay_value(lockAppDelay.toString()),
@@ -137,14 +174,15 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
                 title: l.settings_security_note_lock,
                 tiles: [
                   SettingSwitchTile(
+                    enabled: isLockNoteAvailable,
                     icon: Icons.lock,
                     title: l.settings_note_lock_title,
                     description: l.settings_note_lock_description,
-                    toggled: lockNotes,
-                    onChanged: toggledLockNotes,
+                    toggled: lockNote,
+                    onChanged: toggledLockNote,
                   ),
                   SettingCustomSliderTile(
-                    enabled: lockNotes,
+                    enabled: isLockNoteAvailable && lockNote,
                     icon: Icons.timelapse,
                     title: l.settings_note_lock_delay_title,
                     value: l.settings_lock_delay_value(lockNoteDelay.toString()),

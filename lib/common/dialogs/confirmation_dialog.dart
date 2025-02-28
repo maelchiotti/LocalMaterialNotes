@@ -29,7 +29,7 @@ Future<bool> _showConfirmationDialog(
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
+            child: Text(fl?.cancelButtonLabel ?? 'Cancel'),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),

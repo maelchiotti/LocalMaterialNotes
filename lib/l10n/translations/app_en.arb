@@ -1025,6 +1025,10 @@
   "@action_toggle_pins": {
     "description": "Menu action to toggles the pins of multiple notes."
   },
+  "action_pin_unpin": "Pin / Unpin",
+  "@action_pin_unpin": {
+    "description": "Swipe action to pin or unpin a note."
+  },
   "action_pin": "Pin",
   "@action_pin": {
     "description": "Swipe or menu action to pin a note."
@@ -1032,6 +1036,18 @@
   "action_unpin": "Unpin",
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
+  },
+  "action_lock_unlock": "Lock / Unlock",
+  "@action_lock_unlock": {
+    "description": "Swipe action to lock or unlock a note."
+  },
+  "action_lock": "Lock",
+  "@action_lock": {
+    "description": "Swipe or menu action to lock a note."
+  },
+  "action_unlock": "Unlock",
+  "@action_unlock": {
+    "description": "Swipe or menu action to unlock a note."
   },
   "action_share": "Share",
   "@action_share": {

@@ -52,11 +52,11 @@ class _RichTextEditorLinkDialogState extends State<RichTextEditorLinkDialog> {
       actions: [
         TextButton(
           onPressed: () => _pop(canceled: true),
-          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
+          child: Text(fl?.cancelButtonLabel ?? 'Cancel'),
         ),
         TextButton(
           onPressed: _isLinkValid ? _pop : null,
-          child: Text(flutterL?.okButtonLabel ?? 'OK'),
+          child: Text(fl?.okButtonLabel ?? 'OK'),
         ),
       ],
     );

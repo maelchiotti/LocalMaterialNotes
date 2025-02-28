@@ -5,7 +5,6 @@ import '../ui/theme_utils.dart';
 import 'enums/font.dart';
 import 'enums/layout.dart';
 import 'enums/swipe_actions/archived_swipe_action.dart';
-import 'enums/swipe_actions/available_swipe_action.dart';
 import 'enums/swipe_actions/deleted_swipe_action.dart';
 import 'preference_key.dart';
 
@@ -30,10 +29,8 @@ class WatchedPreferences {
   late bool showNoteTypeIcon;
 
   // Behavior
-  late ({AvailableSwipeAction right, AvailableSwipeAction left}) availableSwipeActions;
-
+  late ({String right, String left}) availableSwipeActions;
   late ({ArchivedSwipeAction right, ArchivedSwipeAction left}) archivedSwipeActions;
-
   late ({DeletedSwipeAction right, DeletedSwipeAction left}) deletedSwipeActions;
 
   // Accessibility
@@ -57,8 +54,8 @@ class WatchedPreferences {
     bool? showSeparators,
     int? maximumContentPreviewLines,
     bool? showNoteTypeIcon,
-    AvailableSwipeAction? availableSwipeRightAction,
-    AvailableSwipeAction? availableSwipeLeftAction,
+    String? availableSwipeRightAction,
+    String? availableSwipeLeftAction,
     ArchivedSwipeAction? archivedSwipeRightAction,
     ArchivedSwipeAction? archivedSwipeLeftAction,
     DeletedSwipeAction? deletedSwipeRightAction,
@@ -84,8 +81,8 @@ class WatchedPreferences {
     this.showNoteTypeIcon = showNoteTypeIcon ?? PreferenceKey.showNoteTypeIcon.preferenceOrDefault;
 
     availableSwipeActions = (
-      right: availableSwipeRightAction ?? AvailableSwipeAction.rightFromPreference(),
-      left: availableSwipeLeftAction ?? AvailableSwipeAction.leftFromPreference(),
+      right: availableSwipeRightAction ?? PreferenceKey.swipeRightAction.preferenceOrDefault,
+      left: availableSwipeLeftAction ?? PreferenceKey.swipeLeftAction.preferenceOrDefault,
     );
     archivedSwipeActions = (
       right: archivedSwipeRightAction ?? ArchivedSwipeAction.rightFromPreference(),

@@ -25,50 +25,50 @@ class SettingsBehaviorPage extends ConsumerStatefulWidget {
 
 class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
   /// Asks the user to choose which confirmations should be shown.
-  void _submittedConfirmations(Confirmations confirmations) {
-    setState(() {
-      PreferenceKey.confirmations.set(confirmations.name);
-    });
+  Future<void> _submittedConfirmations(Confirmations confirmations) async {
+    await PreferenceKey.confirmations.set(confirmations.name);
+
+    setState(() {});
   }
 
   /// Sets the new available right [swipeAction].
-  void _submittedAvailableSwipeRightAction(AvailableSwipeAction swipeAction) {
-    PreferenceKey.swipeRightAction.set(swipeAction.name);
+  Future<void> _submittedAvailableSwipeRightAction(AvailableSwipeAction swipeAction) async {
+    await PreferenceKey.swipeRightAction.set(swipeAction.name);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(availableSwipeRightAction: swipeAction));
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(availableSwipeRightAction: swipeAction.name));
   }
 
   /// Sets the new available left [swipeAction].
-  void _submittedAvailableSwipeLeftAction(AvailableSwipeAction swipeAction) {
-    PreferenceKey.swipeLeftAction.set(swipeAction.name);
+  Future<void> _submittedAvailableSwipeLeftAction(AvailableSwipeAction swipeAction) async {
+    await PreferenceKey.swipeLeftAction.set(swipeAction.name);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(availableSwipeLeftAction: swipeAction));
+    ref.read(preferencesProvider.notifier).update(WatchedPreferences(availableSwipeLeftAction: swipeAction.name));
   }
 
   /// Sets the new archived right [swipeAction].
-  void _submittedArchivedSwipeRightAction(ArchivedSwipeAction swipeAction) {
-    PreferenceKey.archivedSwipeRightAction.set(swipeAction.name);
+  Future<void> _submittedArchivedSwipeRightAction(ArchivedSwipeAction swipeAction) async {
+    await PreferenceKey.archivedSwipeRightAction.set(swipeAction.name);
 
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(archivedSwipeRightAction: swipeAction));
   }
 
   /// Sets the new archived left [swipeAction].
-  void _submittedArchivedSwipeLeftAction(ArchivedSwipeAction swipeAction) {
-    PreferenceKey.archivedSwipeLeftAction.set(swipeAction.name);
+  Future<void> _submittedArchivedSwipeLeftAction(ArchivedSwipeAction swipeAction) async {
+    await PreferenceKey.archivedSwipeLeftAction.set(swipeAction.name);
 
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(archivedSwipeLeftAction: swipeAction));
   }
 
   /// Sets the new deleted right [swipeAction].
-  void _submittedDeletedSwipeRightAction(DeletedSwipeAction swipeAction) {
-    PreferenceKey.binSwipeRightAction.set(swipeAction.name);
+  Future<void> _submittedDeletedSwipeRightAction(DeletedSwipeAction swipeAction) async {
+    await PreferenceKey.binSwipeRightAction.set(swipeAction.name);
 
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(deletedSwipeRightAction: swipeAction));
   }
 
   /// Sets the new deleted left [swipeAction].
-  void _submittedDeletedSwipeLeftAction(DeletedSwipeAction swipeAction) {
-    PreferenceKey.binSwipeLeftAction.set(swipeAction.name);
+  Future<void> _submittedDeletedSwipeLeftAction(DeletedSwipeAction swipeAction) async {
+    await PreferenceKey.binSwipeLeftAction.set(swipeAction.name);
 
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(deletedSwipeLeftAction: swipeAction));
   }
@@ -77,9 +77,13 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
   Widget build(BuildContext context) {
     final confirmations = Confirmations.fromPreference();
 
-    final availableSwipeActions = ref.watch(
-      preferencesProvider.select((preferences) => preferences.availableSwipeActions),
+    final availableSwipeActionsPreferences =
+        ref.watch(preferencesProvider.select((preferences) => preferences.availableSwipeActions));
+    final availableSwipeActions = (
+      right: AvailableSwipeAction.rightFromPreference(preference: availableSwipeActionsPreferences.right),
+      left: AvailableSwipeAction.leftFromPreference(preference: availableSwipeActionsPreferences.left),
     );
+
     final archivedSwipeActions = ref.watch(
       preferencesProvider.select((preferences) => preferences.archivedSwipeActions),
     );
@@ -127,14 +131,14 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_right,
                     title: l.settings_swipe_action_right,
-                    value: availableSwipeActions.right.title(false),
+                    value: availableSwipeActions.right.title,
                     description: l.settings_swipe_action_right_description,
                     dialogTitle: l.settings_swipe_action_right,
-                    options: AvailableSwipeAction.values
+                    options: AvailableSwipeAction.settings
                         .map(
                           (swipeAction) => (
                             value: swipeAction,
-                            title: swipeAction.title(false),
+                            title: swipeAction.title,
                             subtitle: null,
                           ),
                         )
@@ -145,14 +149,14 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_left,
                     title: l.settings_swipe_action_left,
-                    value: availableSwipeActions.left.title(false),
+                    value: availableSwipeActions.left.title,
                     description: l.settings_swipe_action_left_description,
                     dialogTitle: l.settings_swipe_action_left,
-                    options: AvailableSwipeAction.values
+                    options: AvailableSwipeAction.settings
                         .map(
                           (swipeAction) => (
                             value: swipeAction,
-                            title: swipeAction.title(false),
+                            title: swipeAction.title,
                             subtitle: null,
                           ),
                         )

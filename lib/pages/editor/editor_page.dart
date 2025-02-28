@@ -57,7 +57,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
               return const LoadingPlaceholder();
             }
 
-            final lock = PreferenceKey.lockNote.preferenceOrDefault;
+            final lockNote = PreferenceKey.lockNote.preferenceOrDefault && currentNote.locked;
             final lockDelay = PreferenceKey.lockNoteDelay.preferenceOrDefault;
 
             final showEditorModeButton = PreferenceKey.editorModeButton.preferenceOrDefault;
@@ -109,7 +109,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
             }
 
             return AppLock(
-              initiallyEnabled: lock,
+              initiallyEnabled: lockNote,
               initialBackgroundLockLatency: Duration(seconds: lockDelay),
               builder: (BuildContext context, Object? launchArg) {
                 return Scaffold(

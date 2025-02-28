@@ -167,6 +167,32 @@ class Notes extends _$Notes {
     return true;
   }
 
+  /// Toggles whether the [notesToToggle] are locked in the database.
+  Future<bool> toggleLock(List<Note> notesToToggle) async {
+    _checkStatus([NoteStatus.available, NoteStatus.archived, NoteStatus.deleted]);
+
+    for (final note in notesToToggle) {
+      note.locked = !note.locked;
+    }
+
+    try {
+      await _notesService.putAll(notesToToggle);
+    } catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
+
+      return false;
+    }
+
+    final notes = (state.value ?? [])
+      ..removeWhere((note) => notesToToggle.contains(note))
+      ..addAll(notesToToggle);
+
+    state = AsyncData(notes.sorted());
+    _updateUnlabeledProvider();
+
+    return true;
+  }
+
   /// Sets whether the [notesToSet] are archived to [archived] in the database.
   Future<bool> setArchived(List<Note> notesToSet, bool archived) async {
     _checkStatus([NoteStatus.available, NoteStatus.archived]);
@@ -190,7 +216,7 @@ class Notes extends _$Notes {
     state = AsyncData(notes);
 
     _updateUnlabeledProvider();
-    archived ? _updateStatusProvider(NoteStatus.archived) : _updateStatusProvider(NoteStatus.available);
+    _updateStatusProvider(archived ? NoteStatus.archived : NoteStatus.available);
 
     return true;
   }
@@ -221,9 +247,9 @@ class Notes extends _$Notes {
 
     _updateUnlabeledProvider();
     if (deleted) {
-      _updateStatusProvider(wereArchived ? NoteStatus.archived : NoteStatus.available);
-    } else {
       _updateStatusProvider(NoteStatus.deleted);
+    } else {
+      _updateStatusProvider(wereArchived ? NoteStatus.archived : NoteStatus.available);
     }
 
     return true;

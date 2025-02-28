@@ -10,6 +10,7 @@ import '../../../actions/notes/archive.dart';
 import '../../../actions/notes/copy.dart';
 import '../../../actions/notes/delete.dart';
 import '../../../actions/notes/labels.dart';
+import '../../../actions/notes/lock.dart';
 import '../../../actions/notes/pin.dart';
 import '../../../actions/notes/restore.dart';
 import '../../../actions/notes/share.dart';
@@ -54,8 +55,12 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
         await copyNote(note: note);
       case EditorAvailableMenuOption.share:
         await shareNote(note: note);
-      case EditorAvailableMenuOption.togglePin:
-        await togglePinNote(context, ref, note: note);
+      case EditorAvailableMenuOption.pin:
+      case EditorAvailableMenuOption.unpin:
+        await togglePinNotes(context, ref, notes: [note]);
+      case EditorAvailableMenuOption.lock:
+      case EditorAvailableMenuOption.unlock:
+        await toggleLockNotes(context, ref, notes: [note]);
       case EditorAvailableMenuOption.selectLabels:
         await selectLabels(context, ref, note: note);
       case EditorAvailableMenuOption.archive:
@@ -63,7 +68,8 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       case EditorAvailableMenuOption.delete:
         await deleteNote(context, ref, note: note, pop: true);
       case EditorAvailableMenuOption.about:
-        await showNoteAbout(context);
+        // Use the root navigator key to avoid popping to the lock screen
+        await showAboutNote();
     }
   }
 
@@ -87,7 +93,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       case EditorArchivedMenuOption.unarchive:
         await unarchiveNote(context, ref, note: note, pop: true);
       case EditorArchivedMenuOption.about:
-        await showNoteAbout(context);
+        await showAboutNote();
     }
   }
 
@@ -107,7 +113,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       case EditorDeletedMenuOption.deletePermanently:
         await permanentlyDeleteNote(context, ref, note: note, pop: true);
       case EditorDeletedMenuOption.about:
-        await showNoteAbout(context);
+        await showAboutNote();
     }
   }
 
@@ -202,7 +208,10 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                       EditorAvailableMenuOption.copy.popupMenuItem(context),
                       EditorAvailableMenuOption.share.popupMenuItem(context),
                       const PopupMenuDivider(),
-                      EditorAvailableMenuOption.togglePin.popupMenuItem(context, alternative: note.pinned),
+                      if (note.pinned) EditorAvailableMenuOption.unpin.popupMenuItem(context),
+                      if (!note.pinned) EditorAvailableMenuOption.pin.popupMenuItem(context),
+                      if (note.locked) EditorAvailableMenuOption.unlock.popupMenuItem(context),
+                      if (!note.locked) EditorAvailableMenuOption.lock.popupMenuItem(context),
                       if (enableLabels) EditorAvailableMenuOption.selectLabels.popupMenuItem(context),
                       const PopupMenuDivider(),
                       EditorAvailableMenuOption.archive.popupMenuItem(context),

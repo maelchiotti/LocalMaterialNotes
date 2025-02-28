@@ -26,8 +26,6 @@ enum EditorDeletedMenuOption {
 
   /// An option displayed in the menu for the deleted notes.
   ///
-  /// An action is represented by an [icon] and a [title].
-  ///
   /// If [dangerous] is `true`, the icon and the title are shown in red.
   const EditorDeletedMenuOption(this.icon, {this.dangerous = false});
 

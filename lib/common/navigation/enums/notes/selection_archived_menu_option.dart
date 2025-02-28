@@ -26,9 +26,9 @@ enum SelectionArchivedMenuOption {
   String get title {
     switch (this) {
       case copy:
-        return flutterL?.copyButtonLabel ?? 'Copy';
+        return fl?.copyButtonLabel ?? 'Copy';
       case share:
-        return flutterL?.shareButtonLabel ?? 'Share';
+        return fl?.shareButtonLabel ?? 'Share';
       case unarchive:
         return l.action_unarchive;
     }

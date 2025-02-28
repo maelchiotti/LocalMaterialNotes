@@ -97,11 +97,11 @@ class _LabelsSelectionDialogState extends ConsumerState<LabelsSelectionDialog> {
       actions: [
         TextButton(
           onPressed: () => pop(canceled: true),
-          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
+          child: Text(fl?.cancelButtonLabel ?? 'Cancel'),
         ),
         TextButton(
           onPressed: pop,
-          child: Text(flutterL?.okButtonLabel ?? 'OK'),
+          child: Text(fl?.okButtonLabel ?? 'OK'),
         ),
       ],
     );

@@ -7,6 +7,7 @@ import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:parchment_delta/parchment_delta.dart';
 import 'package:quick_actions/quick_actions.dart';
@@ -39,6 +40,9 @@ class SystemUtils {
   /// Application's quick actions.
   late final QuickActions quickActions;
 
+  /// Is system authentication available.
+  late bool isSystemAuthenticationAvailable;
+
   /// Ensures the utility is initialized.
   Future<void> ensureInitialized() async {
     _packageInfo = await PackageInfo.fromPlatform();
@@ -47,6 +51,8 @@ class SystemUtils {
     _appLocalizations = await AppLocalizations.delegate.load(appLocale);
 
     quickActions = const QuickActions();
+
+    isSystemAuthenticationAvailable = await LocalAuthentication().isDeviceSupported();
   }
 
   /// version of the application.

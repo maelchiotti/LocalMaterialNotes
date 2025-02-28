@@ -164,11 +164,11 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
       actions: [
         TextButton(
           onPressed: () => pop(canceled: true),
-          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
+          child: Text(fl?.cancelButtonLabel ?? 'Cancel'),
         ),
         TextButton(
           onPressed: ok ? pop : null,
-          child: Text(flutterL?.okButtonLabel ?? 'OK'),
+          child: Text(fl?.okButtonLabel ?? 'OK'),
         ),
       ],
     );

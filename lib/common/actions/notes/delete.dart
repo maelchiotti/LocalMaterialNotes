@@ -32,7 +32,8 @@ Future<bool> deleteNote(
   }
 
   if (context.mounted && pop) {
-    Navigator.pop(context);
+    // Use the root navigator key to avoid popping to the lock screen
+    Navigator.pop(rootNavigatorKey.currentContext!);
   }
 
   currentNoteNotifier.value = null;
@@ -114,7 +115,8 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, {Note? n
   }
 
   if (context.mounted && pop) {
-    Navigator.pop(context);
+    // Use the root navigator key to avoid popping to the lock screen
+    Navigator.pop(rootNavigatorKey.currentContext!);
   }
 
   currentNoteNotifier.value = null;

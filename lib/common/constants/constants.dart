@@ -20,7 +20,7 @@ final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Root navigator k
 final l = AppLocalizations.of(rootNavigatorKey.currentContext!);
 
 /// Flutter's localizations.
-final flutterL = Localizations.of<MaterialLocalizations>(rootNavigatorKey.currentContext!, MaterialLocalizations);
+final fl = Localizations.of<MaterialLocalizations>(rootNavigatorKey.currentContext!, MaterialLocalizations);
 
 /// Console and file logger.
 final logger = AppLogger();

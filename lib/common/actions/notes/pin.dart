@@ -7,24 +7,14 @@ import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import 'select.dart';
 
-/// Toggles the pined status of the [note].
-///
-/// Returns `true` if the pined status of the [note] was toggled, `false` otherwise.
-Future<bool> togglePinNote(BuildContext context, WidgetRef ref, {Note? note}) async {
-  if (note == null) {
-    return false;
-  }
-
-  await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).togglePin([note]);
-
-  return false;
-}
-
 /// Toggles the pined status of the [notes].
-Future<void> togglePinNotes(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
-  await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).togglePin(notes);
+Future<bool> togglePinNotes(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
+  final toggled =
+      await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).togglePin(notes);
 
-  if (context.mounted) {
+  if (context.mounted && notes.length > 1) {
     exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.available);
   }
+
+  return toggled;
 }
