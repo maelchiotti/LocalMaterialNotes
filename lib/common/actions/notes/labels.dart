@@ -22,9 +22,7 @@ Future<List<Label>?> selectLabels(BuildContext context, WidgetRef ref, {required
 
   // If the note is empty and thus not saved into the database, then forcefully save it to allow adding labels to it
   if (note.isEmpty) {
-    await ref
-        .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
-        .edit(note, forcePut: true);
+    await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
   }
 
   if (!context.mounted) {

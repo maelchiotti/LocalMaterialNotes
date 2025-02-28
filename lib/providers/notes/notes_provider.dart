@@ -52,19 +52,13 @@ class Notes extends _$Notes {
   }
 
   /// Saves the [editedNote] to the database.
-  ///
-  /// The note can be forcefully put into the database even it it's empty using [forcePut].
-  Future<bool> edit(Note editedNote, {bool forcePut = false}) async {
+  Future<bool> edit(Note editedNote) async {
     _checkStatus([NoteStatus.available, NoteStatus.archived]);
 
     editedNote.editedTime = DateTime.now();
 
     try {
-      if (editedNote.isEmpty && !forcePut) {
-        await _notesService.delete(editedNote);
-      } else {
-        await _notesService.put(editedNote);
-      }
+      await _notesService.put(editedNote);
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
 
@@ -72,10 +66,10 @@ class Notes extends _$Notes {
     }
 
     final notes = (state.value ?? []);
-    if (!editedNote.deleted && (!editedNote.isEmpty || forcePut)) {
-      notes.addOrUpdate(editedNote);
-    } else {
+    if (editedNote.deleted) {
       notes.remove(editedNote);
+    } else {
+      notes.addOrUpdate(editedNote);
     }
 
     state = AsyncData(notes.sorted());
@@ -90,11 +84,6 @@ class Notes extends _$Notes {
 
     try {
       await _notesService.putLabels(note, selectedLabels);
-
-      // If the note is empty and has no labels, then delete it
-      if (note.isEmpty && selectedLabels.isEmpty) {
-        await _notesService.delete(note);
-      }
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
 
@@ -171,6 +160,9 @@ class Notes extends _$Notes {
   Future<bool> toggleLock(List<Note> notesToToggle) async {
     _checkStatus([NoteStatus.available, NoteStatus.archived, NoteStatus.deleted]);
 
+    // Ignore empty notes
+    notesToToggle.removeWhere((note) => note.isEmpty);
+
     for (final note in notesToToggle) {
       note.locked = !note.locked;
     }
@@ -196,6 +188,9 @@ class Notes extends _$Notes {
   /// Sets whether the [notesToSet] are archived to [archived] in the database.
   Future<bool> setArchived(List<Note> notesToSet, bool archived) async {
     _checkStatus([NoteStatus.available, NoteStatus.archived]);
+
+    // Ignore empty notes
+    notesToSet.removeWhere((note) => note.isEmpty);
 
     for (final note in notesToSet) {
       note.pinned = false;
@@ -292,6 +287,21 @@ class Notes extends _$Notes {
     state = const AsyncData([]);
 
     return true;
+  }
+
+  /// Removes the empty notes.
+  Future<void> removeEmpty() async {
+    final emptyNotes = state.value?.where((note) => note.isEmpty).toList() ?? [];
+
+    try {
+      await _notesService.deleteAll(emptyNotes);
+    } catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
+    }
+
+    state = AsyncData(
+      (state.value ?? [])..removeWhere((note) => emptyNotes.contains(note)),
+    );
   }
 
   /// Toggles whether the [noteToToggle] is selected.

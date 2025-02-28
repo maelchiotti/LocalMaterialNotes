@@ -8,21 +8,6 @@ import '../constants/constants.dart';
 ///
 /// This class is a singleton.
 class SnackBarUtils {
-  static final SnackBarUtils _singleton = SnackBarUtils._internal();
-
-  /// Default constructor.
-  factory SnackBarUtils() => _singleton;
-
-  SnackBarUtils._internal();
-
-  /// Global [WidgetRef] from used to access the providers even after a page has been removed from the widget tree.
-  late final WidgetRef globalRef;
-
-  /// Ensures the utility is initialized.
-  Future<void> ensureInitialized(WidgetRef ref) async {
-    globalRef = ref;
-  }
-
   /// Shows a snack bar with the [text].
   ///
   /// If [context] is `null`, the current context of [rootNavigatorKey] is used instead.

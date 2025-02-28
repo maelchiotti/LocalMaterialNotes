@@ -64,7 +64,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       case EditorAvailableMenuOption.selectLabels:
         await selectLabels(context, ref, note: note);
       case EditorAvailableMenuOption.archive:
-        await archiveNote(context, ref, note: note);
+        await archiveNote(context, ref, note: note, pop: true);
       case EditorAvailableMenuOption.delete:
         await deleteNote(context, ref, note: note, pop: true);
       case EditorAvailableMenuOption.about:
