@@ -23,7 +23,7 @@ Future<bool> deleteLabel(BuildContext context, WidgetRef ref, {required Label la
     return false;
   }
 
-  return await ref.read(labelsProvider.notifier).delete(label);
+  return await ref.read(labelsProvider.notifier).delete([label]);
 }
 
 /// Deletes the [labels].
@@ -42,7 +42,7 @@ Future<bool> deleteLabels(BuildContext context, WidgetRef ref, {required List<La
     return false;
   }
 
-  final succeeded = await ref.read(labelsProvider.notifier).deleteAll(labels);
+  final succeeded = await ref.read(labelsProvider.notifier).delete(labels);
 
   if (context.mounted) {
     exitLabelsSelectionMode(ref);
