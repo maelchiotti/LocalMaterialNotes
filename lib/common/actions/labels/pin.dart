@@ -9,14 +9,14 @@ import 'select.dart';
 ///
 /// Returns `true` if the pined status of the [label] was toggled, `false` otherwise.
 Future<bool> togglePinLabel(BuildContext context, WidgetRef ref, {required Label label}) async {
-  await ref.read(labelsProvider.notifier).togglePin(label);
+  await ref.read(labelsProvider.notifier).togglePin([label]);
 
   return false;
 }
 
 /// Toggles the pined status of the [labels].
 Future<void> togglePinLabels(WidgetRef ref, {required List<Label> labels}) async {
-  await ref.read(labelsProvider.notifier).togglePinAll(labels);
+  await ref.read(labelsProvider.notifier).togglePin(labels);
 
   exitLabelsSelectionMode(ref);
 }

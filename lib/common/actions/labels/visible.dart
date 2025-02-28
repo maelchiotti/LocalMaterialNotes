@@ -8,14 +8,14 @@ import 'select.dart';
 ///
 /// Returns `true` if the visible status of the [label] was toggled, `false` otherwise.
 Future<bool> toggleVisibleLabel(WidgetRef ref, {required Label label}) async {
-  await ref.read(labelsProvider.notifier).toggleVisible(label);
+  await ref.read(labelsProvider.notifier).toggleVisible([label]);
 
   return false;
 }
 
 /// Toggles the visible status of the [labels].
 Future<void> toggleVisibleLabels(WidgetRef ref, {required List<Label> labels}) async {
-  await ref.read(labelsProvider.notifier).toggleVisibleAll(labels);
+  await ref.read(labelsProvider.notifier).toggleVisible(labels);
 
   exitLabelsSelectionMode(ref);
 }

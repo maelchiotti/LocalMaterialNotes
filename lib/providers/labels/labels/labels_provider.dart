@@ -21,12 +21,6 @@ class Labels extends _$Labels {
   @override
   FutureOr<List<Label>> build() => get();
 
-  Future<void> _updateProviders() async {
-    await ref.read(labelsNavigationProvider.notifier).get();
-    await ref.read(labelsListProvider.notifier).get();
-    await ref.read(notesProvider(status: NoteStatus.deleted).notifier).get();
-  }
-
   /// Filters the labels to show the [onlyPinned] ones or the [onlyHidden] ones.
   Future<void> filter(LabelsFilter labelsFilter) async {
     List<Label> filteredLabels = [];
@@ -72,18 +66,8 @@ class Labels extends _$Labels {
     return true;
   }
 
-  /// Toggles the pin status of the [label] in the database.
-  Future<bool> togglePin(Label label) async {
-    label.pinned = !label.pinned;
-    if (label.pinned) {
-      label.visible = true;
-    }
-
-    return await edit(label);
-  }
-
   /// Toggles the pin status of the [labelsToToggle] in the database.
-  Future<bool> togglePinAll(List<Label> labelsToToggle) async {
+  Future<bool> togglePin(List<Label> labelsToToggle) async {
     for (final label in labelsToToggle) {
       label.pinned = !label.pinned;
       if (label.pinned) {
@@ -112,18 +96,8 @@ class Labels extends _$Labels {
     return true;
   }
 
-  /// Toggles the visible status of the [label] in the database.
-  Future<bool> toggleVisible(Label label) async {
-    label.visible = !label.visible;
-    if (!label.visible) {
-      label.pinned = false;
-    }
-
-    return await edit(label);
-  }
-
   /// Toggles the visible status of the [labelsToToggle] in the database.
-  Future<bool> toggleVisibleAll(List<Label> labelsToToggle) async {
+  Future<bool> toggleVisible(List<Label> labelsToToggle) async {
     for (final label in labelsToToggle) {
       label.visible = !label.visible;
       if (!label.visible) {
@@ -152,27 +126,8 @@ class Labels extends _$Labels {
     return true;
   }
 
-  /// Deletes the [labelToDelete] from the database.
-  Future<bool> delete(Label labelToDelete) async {
-    try {
-      await _labelsService.delete(labelToDelete);
-    } catch (exception, stackTrace) {
-      logger.e(exception.toString(), exception, stackTrace);
-
-      return false;
-    }
-
-    state = AsyncData(
-      (state.value ?? [])..remove(labelToDelete),
-    );
-
-    await _updateProviders();
-
-    return true;
-  }
-
   /// Deletes the [labelsToDelete] from the database.
-  Future<bool> deleteAll(List<Label> labelsToDelete) async {
+  Future<bool> delete(List<Label> labelsToDelete) async {
     try {
       await _labelsService.deleteAll(labelsToDelete);
     } catch (exception, stackTrace) {
@@ -225,5 +180,14 @@ class Labels extends _$Labels {
           label.selected = false;
         }),
     ]);
+  }
+
+  Future<void> _updateProviders() async {
+    await ref.read(labelsNavigationProvider.notifier).get();
+    await ref.read(labelsListProvider.notifier).get();
+
+    await ref.read(notesProvider(status: NoteStatus.available).notifier).get();
+    await ref.read(notesProvider(status: NoteStatus.archived).notifier).get();
+    await ref.read(notesProvider(status: NoteStatus.deleted).notifier).get();
   }
 }
