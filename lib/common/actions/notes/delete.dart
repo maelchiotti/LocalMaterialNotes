@@ -99,11 +99,7 @@ Future<bool> deleteNotes(
 /// Permanently deletes the [note].
 ///
 /// Returns `true` if the [note] was permanently deleted, `false` otherwise.
-Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, {Note? note, bool pop = false}) async {
-  if (note == null) {
-    return false;
-  }
-
+Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, {required Note note, bool pop = false}) async {
   if (!await askForConfirmation(
     context,
     l.dialog_permanently_delete,

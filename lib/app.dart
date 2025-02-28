@@ -15,7 +15,6 @@ import 'common/enums/supported_language.dart';
 import 'common/extensions/locale_extension.dart';
 import 'common/preferences/preference_key.dart';
 import 'common/system_utils.dart';
-import 'common/ui/snack_bar_utils.dart';
 import 'common/ui/theme_utils.dart';
 import 'common/widgets/placeholders/error_placeholder.dart';
 import 'l10n/app_localizations/app_localizations.g.dart';
@@ -44,9 +43,9 @@ class _AppState extends ConsumerState<App> {
   void initState() {
     super.initState();
 
-    SnackBarUtils().ensureInitialized(ref);
-
     BackButtonInterceptor.add(backButtonInterceptor);
+
+    globalRef = ref;
 
     // Read the potential data shared from other applications
     SystemUtils().readSharedData(ref);

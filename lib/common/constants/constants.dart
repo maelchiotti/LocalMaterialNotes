@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:parchment/codecs.dart';
 import 'package:saf_stream/saf_stream.dart';
 import 'package:saf_util/saf_util.dart';
@@ -12,6 +13,9 @@ final uuid = Uuid();
 
 /// Contact email address.
 const contactEmail = 'contact@maelchiotti.dev';
+
+/// Global [WidgetRef] used to access the providers even after a page has been removed from the widget tree.
+late WidgetRef globalRef;
 
 /// Key of the application's root navigator.
 final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Root navigator key');

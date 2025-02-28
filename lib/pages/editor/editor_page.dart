@@ -11,6 +11,7 @@ import '../../common/preferences/preference_key.dart';
 import '../../common/widgets/placeholders/loading_placeholder.dart';
 import '../../models/note/note.dart';
 import '../../models/note/note_status.dart';
+import '../../providers/notes/notes_provider.dart';
 import '../../providers/notifiers/notifiers.dart';
 import '../lock/lock_page.dart';
 import 'widgets/checklist/checklist_editor.dart';
@@ -41,6 +42,16 @@ class NotesEditorPage extends ConsumerStatefulWidget {
 }
 
 class _EditorState extends ConsumerState<NotesEditorPage> {
+  @override
+  void dispose() {
+    super.dispose();
+
+    // ignore: avoid_ref_inside_state_dispose
+    globalRef.read(notesProvider(status: NoteStatus.available).notifier).removeEmpty();
+    // ignore: avoid_ref_inside_state_dispose
+    globalRef.read(notesProvider(status: NoteStatus.archived).notifier).removeEmpty();
+  }
+
   void requestEditorFocus() {
     editorFocusNode.requestFocus();
   }

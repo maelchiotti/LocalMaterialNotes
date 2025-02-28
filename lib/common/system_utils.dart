@@ -19,7 +19,7 @@ import 'actions/notes/add.dart';
 import 'constants/constants.dart';
 import 'preferences/preference_key.dart';
 
-/// System information.
+/// System utilities.
 class SystemUtils {
   static final SystemUtils _singleton = SystemUtils._internal();
 
