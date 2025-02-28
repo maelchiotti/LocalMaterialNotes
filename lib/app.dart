@@ -98,8 +98,8 @@ class _AppState extends ConsumerState<App> {
     final useWhiteTextDarkMode = ref.watch(
       preferencesProvider.select((preferences) => preferences.useWhiteTextDarkMode),
     );
-    final lock = PreferenceKey.lockApp.preferenceOrDefault;
-    final lockDelay = PreferenceKey.lockAppDelay.preferenceOrDefault;
+    final lockApp = PreferenceKey.lockApp.preferenceOrDefault;
+    final lockAppDelay = PreferenceKey.lockAppDelay.preferenceOrDefault;
 
     return DynamicColorBuilder(
       builder: (lightDynamicColorScheme, darkDynamicColorScheme) {
@@ -134,24 +134,26 @@ class _AppState extends ConsumerState<App> {
 
               return Directionality(
                 textDirection: SystemUtils().deviceLocale.textDirection,
-                child: AppLock(
-                  initiallyEnabled: lock,
-                  initialBackgroundLockLatency: Duration(seconds: lockDelay),
-                  builder: (BuildContext context, Object? launchArg) {
-                    SystemUtils().setQuickActions(context, ref);
+                child: lockApp
+                    ? AppLock(
+                        initiallyEnabled: lockApp,
+                        initialBackgroundLockLatency: Duration(seconds: lockAppDelay),
+                        builder: (BuildContext context, Object? launchArg) {
+                          SystemUtils().setQuickActions(context, ref);
 
-                    return child;
-                  },
-                  lockScreenBuilder: (BuildContext context) {
-                    final l = AppLocalizations.of(context);
+                          return child;
+                        },
+                        lockScreenBuilder: (BuildContext context) {
+                          final l = AppLocalizations.of(context);
 
-                    return LockPage(
-                      back: false,
-                      description: l.lock_page_description_app,
-                      reason: l.lock_page_reason_app,
-                    );
-                  },
-                ),
+                          return LockPage(
+                            back: false,
+                            description: l.lock_page_description_app,
+                            reason: l.lock_page_reason_app,
+                          );
+                        },
+                      )
+                    : child,
               );
             },
             theme: lightTheme,

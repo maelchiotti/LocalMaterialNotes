@@ -119,52 +119,56 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
                 );
             }
 
-            return AppLock(
-              initiallyEnabled: lockNote,
-              initialBackgroundLockLatency: Duration(seconds: lockDelay),
-              builder: (BuildContext context, Object? launchArg) {
-                return Scaffold(
-                  appBar: const TopNavigation(
-                    appbar: EditorAppBar(),
-                    notesStatus: NoteStatus.available,
-                  ),
-                  body: Column(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            TitleEditor(
-                              readOnly: widget.readOnly,
-                              isNewNote: widget.isNewNote,
-                              onSubmitted: requestEditorFocus,
-                            ),
-                            Gap(8.0),
-                            Expanded(
-                              child: contentEditor,
-                            ),
-                          ],
+            final editor = Scaffold(
+              appBar: const TopNavigation(
+                appbar: EditorAppBar(),
+                notesStatus: NoteStatus.available,
+              ),
+              body: Column(
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        TitleEditor(
+                          readOnly: widget.readOnly,
+                          isNewNote: widget.isNewNote,
+                          onSubmitted: requestEditorFocus,
                         ),
-                      ),
-                      SafeArea(
-                        child: Column(
-                          children: [
-                            if (showLabelsList) EditorLabelsList(readOnly: widget.readOnly),
-                            if (toolbar != null && isEditorInEditMode && !currentNote.deleted) toolbar,
-                          ],
+                        Gap(8.0),
+                        Expanded(
+                          child: contentEditor,
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                );
-              },
-              lockScreenBuilder: (BuildContext context) {
-                return LockPage(
-                  back: true,
-                  description: l.lock_page_description_note,
-                  reason: l.lock_page_reason_note,
-                );
-              },
+                  SafeArea(
+                    child: Column(
+                      children: [
+                        if (showLabelsList) EditorLabelsList(readOnly: widget.readOnly),
+                        if (toolbar != null && isEditorInEditMode && !currentNote.deleted) toolbar,
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             );
+
+            return lockNote
+                ? AppLock(
+                    initiallyEnabled: lockNote,
+                    initialBackgroundLockLatency: Duration(seconds: lockDelay),
+                    builder: (BuildContext context, Object? launchArg) {
+                      return editor;
+                    },
+                    lockScreenBuilder: (BuildContext context) {
+                      return LockPage(
+                        back: true,
+                        description: l.lock_page_description_note,
+                        reason: l.lock_page_reason_note,
+                      );
+                    },
+                  )
+                : editor;
           },
         );
       },
