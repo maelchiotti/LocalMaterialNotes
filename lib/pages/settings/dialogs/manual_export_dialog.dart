@@ -72,11 +72,11 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
       actions: [
         TextButton(
           onPressed: () => _pop(canceled: true),
-          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
+          child: Text(fl?.cancelButtonLabel ?? 'Cancel'),
         ),
         TextButton(
           onPressed: ok ? _pop : null,
-          child: Text(flutterL?.okButtonLabel ?? 'OK'),
+          child: Text(fl?.okButtonLabel ?? 'OK'),
         ),
       ],
     );

@@ -8,7 +8,7 @@ import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
-import '../../../common/system/quick_actions_utils.dart';
+import '../../../common/system_utils.dart';
 import '../../../models/note/types/note_type.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 
@@ -28,7 +28,7 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
 
     ref.read(preferencesProvider.notifier).update(WatchedPreferences(availableNotesTypes: availableNotesTypes));
 
-    QuickActionsUtils().setQuickActions(context, ref);
+    SystemUtils().setQuickActions(context, ref);
   }
 
   /// Sets the setting for the default share note type to [defaultShareNoteType].

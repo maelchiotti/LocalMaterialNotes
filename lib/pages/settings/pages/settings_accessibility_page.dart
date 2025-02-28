@@ -5,11 +5,11 @@ import 'package:settings_tiles/settings_tiles.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
-import '../../../common/localization/locale_utils.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
+import '../../../common/system_utils.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 
 /// Accessibility settings.
@@ -93,11 +93,11 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
                     icon: Icons.format_size,
                     title: l.settings_text_scaling,
                     value: (textScaling as num).formatAsPercentage(
-                      locale: LocaleUtils().appLocaleLanguageCode,
+                      locale: SystemUtils().appLocaleLanguageCode,
                     ),
                     dialogTitle: l.settings_text_scaling,
                     label: (textScaling) => (textScaling as num).formatAsPercentage(
-                      locale: LocaleUtils().appLocaleLanguageCode,
+                      locale: SystemUtils().appLocaleLanguageCode,
                     ),
                     min: 0.5,
                     max: 2.0,

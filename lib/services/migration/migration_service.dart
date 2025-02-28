@@ -16,11 +16,12 @@ class MigrationService {
   Future<void> migrateIfNeeded() async {
     final databaseVersion = PreferenceKey.databaseVersion.preferenceOrDefault;
 
-    switch (databaseVersion) {
-      case 1:
-        await _migrateToV2();
-      case 2:
-        await _migrateToV3();
+    if (databaseVersion < 2) {
+      await _migrateToV2();
+    }
+
+    if (databaseVersion < 3) {
+      await _migrateToV3();
     }
   }
 
@@ -42,6 +43,7 @@ class MigrationService {
             archived: false,
             deleted: oldNote.deleted,
             pinned: oldNote.pinned,
+            locked: false,
             createdTime: oldNote.createdTime,
             editedTime: oldNote.editedTime,
             title: oldNote.title,

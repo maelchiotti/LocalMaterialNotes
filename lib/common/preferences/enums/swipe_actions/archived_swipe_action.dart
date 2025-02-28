@@ -80,7 +80,7 @@ enum ArchivedSwipeAction {
       case disabled:
         return l.action_disabled;
       case copy:
-        return flutterL?.copyButtonLabel ?? 'Copy';
+        return fl?.copyButtonLabel ?? 'Copy';
       case share:
         return l.action_share;
       case unarchive:

@@ -265,7 +265,7 @@
   "@settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
-  "settings_behavior_description": "Confirmations, secure flag, swipe actions",
+  "settings_behavior_description": "Confirmations, swipe actions",
   "@settings_behavior_description": {
     "description": "Description of the behavior settings page."
   },
@@ -531,6 +531,10 @@
   "@settings_security": {
     "description": "Title of the settings page regarding the security."
   },
+  "settings_security_description": "Secure flag, application lock, note lock",
+  "@settings_security_description": {
+    "description": "Description of the settings page regarding the security."
+  },
   "settings_security_application": "Application",
   "@settings_security_application": {
     "description": "Title of the sub-section regarding the application under the security settings."
@@ -539,9 +543,9 @@
   "@settings_security_application_lock": {
     "description": "Title of the sub-section regarding the application lock under the security settings."
   },
-  "settings_security_description": "Secure flag, app lock",
-  "@settings_security_description": {
-    "description": "Description of the settings page regarding the security."
+  "settings_security_note_lock": "Note lock",
+  "@settings_security_note_lock": {
+    "description": "Title of the sub-section regarding the note lock under the security settings."
   },
   "settings_flag_secure": "Flag the app as secure",
   "@settings_flag_secure": {
@@ -563,9 +567,35 @@
   "@settings_application_lock_delay_title": {
     "description": "Title of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
   },
-  "settings_application_lock_delay_description": "Delay after which the application will be locked when moved to the background",
+  "settings_application_lock_delay_description": "Delay after which the application locks itself when moved to the background",
   "@settings_application_lock_delay_description": {
     "description": "Description of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
+  },
+  "settings_lock_delay_value": "{delay, select, 0{Immediately} 3{3 seconds} 5{5 seconds} 10{10 seconds} 30{30 seconds} 60{1 minute} 120{2 minutes} 300{5 minutes} 99999{Never} other{}}",
+  "@settings_lock_delay_value": {
+    "description": "Value of the setting tile to choose after which amount of time the application/note/label locks itself after the application was moved to the background.",
+    "placeholders": {
+      "delay": {
+        "type": "String",
+        "description": "Delay in seconds"
+      }
+    }
+  },
+  "settings_note_lock_title": "Lock",
+  "@settings_note_lock_title": {
+    "description": "Title of the setting tile to toggle whether the note is locked."
+  },
+  "settings_note_lock_description": "Lock the note and require to authenticate with the device to view and edit it",
+  "@settings_note_lock_description": {
+    "description": "Description of the setting tile to toggle whether the note is locked."
+  },
+  "settings_note_lock_delay_title": "Lock delay",
+  "@settings_note_lock_delay_title": {
+    "description": "Title of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
+  },
+  "settings_note_lock_delay_description": "Delay after which the note locks itself when the application is moved to the background",
+  "@settings_note_lock_delay_description": {
+    "description": "Description of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
   },
   "settings_accessibility": "Accessibility",
   "@settings_accessibility": {
@@ -995,6 +1025,10 @@
   "@action_toggle_pins": {
     "description": "Menu action to toggles the pins of multiple notes."
   },
+  "action_pin_unpin": "Pin / Unpin",
+  "@action_pin_unpin": {
+    "description": "Swipe action to pin or unpin a note."
+  },
   "action_pin": "Pin",
   "@action_pin": {
     "description": "Swipe or menu action to pin a note."
@@ -1002,6 +1036,18 @@
   "action_unpin": "Unpin",
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
+  },
+  "action_lock_unlock": "Lock / Unlock",
+  "@action_lock_unlock": {
+    "description": "Swipe action to lock or unlock a note."
+  },
+  "action_lock": "Lock",
+  "@action_lock": {
+    "description": "Swipe or menu action to lock a note."
+  },
+  "action_unlock": "Unlock",
+  "@action_unlock": {
+    "description": "Swipe or menu action to unlock a note."
   },
   "action_share": "Share",
   "@action_share": {
@@ -1219,13 +1265,21 @@
   "@note_type_checklist": {
     "description": "Note with a checklist."
   },
-  "lock_page_reason": "Unlock Material Notes",
-  "@lock_page_reason": {
-    "description": "Reason for the lock screen to request a system authentication."
+  "lock_page_reason_app": "Unlock Material Notes",
+  "@lock_page_reason_app": {
+    "description": "Reason for the lock screen of the application to request a system authentication."
   },
-  "lock_page_title": "The application is locked.",
-  "@lock_page_title": {
-    "description": "Title shown in the lock page informing that the application is locked."
+  "lock_page_reason_note": "Unlock this note",
+  "@lock_page_reason_note": {
+    "description": "Reason for the lock screen of a locked note to request a system authentication."
+  },
+  "lock_page_description_app": "The application is locked.",
+  "@lock_page_description_app": {
+    "description": "Description shown in the lock page for the application."
+  },
+  "lock_page_description_note": "This note is locked.",
+  "@lock_page_description_note": {
+    "description": "Description shown in the lock page for a locked note."
   },
   "lock_page_unlock": "Unlock",
   "@lock_page_unlock": {

@@ -10,12 +10,12 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/enums/supported_language.dart';
-import '../../../common/localization/locale_utils.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/enums/font.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
+import '../../../common/system_utils.dart';
 import '../../../common/ui/theme_utils.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 
@@ -42,7 +42,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
 
   /// Sets the language to the new [locale].
   Future<void> _submittedLanguage(Locale locale) async {
-    await LocaleUtils().setLocale(locale);
+    await SystemUtils().setLocale(locale);
 
     // The Restart package crashes the app if used in debug mode
     if (kReleaseMode) {
@@ -87,7 +87,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
 
   @override
   Widget build(BuildContext context) {
-    final locale = LocaleUtils().appLocale;
+    final locale = SystemUtils().appLocale;
 
     final themeMode = ref.watch(preferencesProvider.select((preferences) => preferences.themeMode));
     final dynamicTheming = ref.watch(preferencesProvider.select((preferences) => preferences.dynamicTheming));

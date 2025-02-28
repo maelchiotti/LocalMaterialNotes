@@ -24,17 +24,15 @@ enum EditorArchivedMenuOption {
   final IconData icon;
 
   /// An option displayed in the menu for the archived notes.
-  ///
-  /// An action is represented by an [icon] and a [title].
   const EditorArchivedMenuOption(this.icon);
 
   /// Returns the title of the menu option.
   String get title {
     switch (this) {
       case copy:
-        return flutterL?.copyButtonLabel ?? 'Copy';
+        return fl?.copyButtonLabel ?? 'Copy';
       case share:
-        return flutterL?.shareButtonLabel ?? 'Share';
+        return fl?.shareButtonLabel ?? 'Share';
       case selectLabels:
         return l.menu_action_select_labels;
       case unarchive:

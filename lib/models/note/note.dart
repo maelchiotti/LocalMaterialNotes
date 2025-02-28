@@ -56,6 +56,9 @@ sealed class Note implements Comparable<Note> {
   @Index()
   bool pinned;
 
+  /// Whether the note is locked.
+  bool locked;
+
   /// The date of creation of the note.
   DateTime createdTime;
 
@@ -81,6 +84,7 @@ sealed class Note implements Comparable<Note> {
     required this.archived,
     required this.deleted,
     required this.pinned,
+    required this.locked,
     required this.createdTime,
     required this.editedTime,
     required this.title,

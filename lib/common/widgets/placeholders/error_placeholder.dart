@@ -9,9 +9,8 @@ import '../../constants/constants.dart' hide l;
 import '../../constants/paddings.dart';
 import '../../navigation/side_navigation.dart';
 import '../../preferences/preference_key.dart';
-import '../../system/info_utils.dart';
+import '../../system_utils.dart';
 import '../../ui/snack_bar_utils.dart';
-import '../../utils.dart';
 
 /// Placeholder widget for an error.
 class ErrorPlaceholder extends StatelessWidget {
@@ -53,17 +52,19 @@ class ErrorPlaceholder extends StatelessWidget {
 
   /// Sends a bug report mail.
   void _sendMail() {
-    final appVersion = InfoUtils().appVersion;
-    final buildMode = InfoUtils().buildMode;
-    final androidVersion = InfoUtils().androidVersion;
-    final brand = InfoUtils().brand;
-    final model = InfoUtils().model;
+    final systemUtils = SystemUtils();
+
+    final appVersion = systemUtils.appVersion;
+    final buildMode = systemUtils.buildMode;
+    final androidVersion = systemUtils.androidVersion;
+    final brand = systemUtils.brand;
+    final model = systemUtils.model;
 
     launchUrl(
       Uri(
         scheme: 'mailto',
         path: contactEmail,
-        query: encodeQueryParameters({
+        query: systemUtils.encodeQueryParameters({
           'subject': '[Material Notes] Bug report',
           'body': '\n\n\n----------\nv$appVersion\n$buildMode mode\nAndroid $androidVersion\n$brand $model',
         }),

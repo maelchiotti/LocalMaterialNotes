@@ -31,9 +31,11 @@ Future<bool> restoreNote(
   }
 
   if (context.mounted && pop) {
-    currentNoteNotifier.value = null;
-    Navigator.pop(context);
+    // Use the root navigator key to avoid popping to the lock screen
+    Navigator.pop(rootNavigatorKey.currentContext!);
   }
+
+  currentNoteNotifier.value = null;
 
   final succeeded = await ref.read(notesProvider(status: NoteStatus.deleted).notifier).setDeleted([note], false);
 

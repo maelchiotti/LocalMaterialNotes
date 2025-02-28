@@ -13,10 +13,8 @@ import 'common/actions/notes/select.dart';
 import 'common/constants/constants.dart';
 import 'common/enums/supported_language.dart';
 import 'common/extensions/locale_extension.dart';
-import 'common/localization/locale_utils.dart';
 import 'common/preferences/preference_key.dart';
-import 'common/system/quick_actions_utils.dart';
-import 'common/system/share_utils.dart';
+import 'common/system_utils.dart';
 import 'common/ui/snack_bar_utils.dart';
 import 'common/ui/theme_utils.dart';
 import 'common/widgets/placeholders/error_placeholder.dart';
@@ -51,8 +49,8 @@ class _AppState extends ConsumerState<App> {
     BackButtonInterceptor.add(backButtonInterceptor);
 
     // Read the potential data shared from other applications
-    readSharedData(ref);
-    _stream = listenSharedData(ref);
+    SystemUtils().readSharedData(ref);
+    _stream = SystemUtils().listenSharedData(ref);
 
     // Eagerly get the labels for the full list and the navigation
     ref.read(labelsListProvider.notifier).get();
@@ -101,8 +99,8 @@ class _AppState extends ConsumerState<App> {
     final useWhiteTextDarkMode = ref.watch(
       preferencesProvider.select((preferences) => preferences.useWhiteTextDarkMode),
     );
-    final lockApp = PreferenceKey.lockApp.preferenceOrDefault;
-    final lockAppDelay = PreferenceKey.lockAppDelay.preferenceOrDefault;
+    final lock = PreferenceKey.lockApp.preferenceOrDefault;
+    final lockDelay = PreferenceKey.lockAppDelay.preferenceOrDefault;
 
     return DynamicColorBuilder(
       builder: (lightDynamicColorScheme, darkDynamicColorScheme) {
@@ -136,17 +134,23 @@ class _AppState extends ConsumerState<App> {
               }
 
               return Directionality(
-                textDirection: LocaleUtils().deviceLocale.textDirection,
+                textDirection: SystemUtils().deviceLocale.textDirection,
                 child: AppLock(
-                  initiallyEnabled: lockApp,
-                  initialBackgroundLockLatency: Duration(seconds: lockAppDelay),
+                  initiallyEnabled: lock,
+                  initialBackgroundLockLatency: Duration(seconds: lockDelay),
                   builder: (BuildContext context, Object? launchArg) {
-                    QuickActionsUtils().setQuickActions(context, ref);
+                    SystemUtils().setQuickActions(context, ref);
 
                     return child;
                   },
                   lockScreenBuilder: (BuildContext context) {
-                    return LockPage();
+                    final l = AppLocalizations.of(context);
+
+                    return LockPage(
+                      back: false,
+                      description: l.lock_page_description_app,
+                      reason: l.lock_page_reason_app,
+                    );
                   },
                 ),
               );
@@ -160,7 +164,7 @@ class _AppState extends ConsumerState<App> {
               FleatherLocalizations.delegate,
             ],
             supportedLocales: SupportedLanguage.locales,
-            locale: LocaleUtils().appLocale,
+            locale: SystemUtils().appLocale,
             debugShowCheckedModeBanner: false,
           ),
         );

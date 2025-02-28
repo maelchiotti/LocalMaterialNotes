@@ -52,7 +52,7 @@ class SnackBarUtils {
         content: Text(text),
         action: onCancel != null
             ? SnackBarAction(
-                label: flutterL?.cancelButtonLabel ?? 'Cancel',
+                label: fl?.cancelButtonLabel ?? 'Cancel',
                 onPressed: () => onCancel(globalRef),
               )
             : null,

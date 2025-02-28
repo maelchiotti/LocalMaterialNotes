@@ -281,22 +281,35 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                                     overflow: TextOverflow.ellipsis,
                                     style: contentStyle,
                                   ),
+
+                          if (enableLabels && showLabelsListOnNoteTile) ...[
+                            Gap(4),
+                            NoteTileLabelsList(note: widget.note),
+                          ],
                         ],
                       ),
                     ),
+                    Gap(8),
                     Column(
                       children: [
+                        if (showNoteTypeIcon) ...[
+                          Gap(2),
+                          Icon(
+                            widget.note.type.icon,
+                            size: Sizes.iconSmall.size,
+                          ),
+                        ],
                         if (widget.note.pinned && !widget.note.deleted) ...[
-                          Padding(padding: Paddings.horizontal(2.0)),
+                          Gap(2),
                           Icon(
                             Icons.push_pin,
                             size: Sizes.iconSmall.size,
                           ),
                         ],
-                        if (showNoteTypeIcon) ...[
-                          Gap(8.0),
+                        if (widget.note.locked) ...[
+                          Gap(2),
                           Icon(
-                            widget.note.type.icon,
+                            Icons.lock,
                             size: Sizes.iconSmall.size,
                           ),
                         ],
@@ -305,10 +318,6 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                     // Trailing
                   ],
                 ),
-                if (enableLabels && showLabelsListOnNoteTile) ...[
-                  Padding(padding: Paddings.vertical(2.0)),
-                  NoteTileLabelsList(note: widget.note),
-                ],
               ],
             ),
           ),
@@ -330,8 +339,18 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     switch (widget.note.status) {
       // Build the available dismissible widgets
       case NoteStatus.available:
-        final availableSwipeActions = ref.watch(
+        final availableSwipeActionsPreferences = ref.watch(
           preferencesProvider.select((preferences) => preferences.availableSwipeActions),
+        );
+        final availableSwipeActions = (
+          right: AvailableSwipeAction.rightFromPreference(
+            preference: availableSwipeActionsPreferences.right,
+            note: widget.note,
+          ),
+          left: AvailableSwipeAction.leftFromPreference(
+            preference: availableSwipeActionsPreferences.left,
+            note: widget.note,
+          ),
         );
 
         dismissDirection = getAvailableDismissDirection(availableSwipeActions.right, availableSwipeActions.left);
@@ -339,20 +358,24 @@ class _NoteTileState extends ConsumerState<NoteTile> {
           case DismissDirection.horizontal:
             mainDismissibleWidget = AvailableDismissible(
               key: UniqueKey(),
+              swipeAction: availableSwipeActions.right,
               direction: SwipeDirection.right,
-              alternative: widget.note.pinned,
             );
             secondaryDismissibleWidget = AvailableDismissible(
               key: UniqueKey(),
+              swipeAction: availableSwipeActions.left,
               direction: SwipeDirection.left,
-              alternative: widget.note.pinned,
             );
           case DismissDirection.startToEnd:
-            mainDismissibleWidget =
-                AvailableDismissible(direction: SwipeDirection.right, alternative: widget.note.pinned);
+            mainDismissibleWidget = AvailableDismissible(
+              swipeAction: availableSwipeActions.right,
+              direction: SwipeDirection.right,
+            );
           case DismissDirection.endToStart:
-            mainDismissibleWidget =
-                AvailableDismissible(direction: SwipeDirection.left, alternative: widget.note.pinned);
+            mainDismissibleWidget = AvailableDismissible(
+              swipeAction: availableSwipeActions.left,
+              direction: SwipeDirection.left,
+            );
           case DismissDirection.none:
             break;
           default:
