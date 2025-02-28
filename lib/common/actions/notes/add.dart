@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:parchment_delta/parchment_delta.dart';
 
 import '../../../models/note/note.dart';
 import '../../../models/note/note_status.dart';
@@ -24,7 +27,17 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {required NoteType not
     case NoteType.markdown:
       note = content == null ? MarkdownNote.empty() : MarkdownNote.content(content);
     case NoteType.richText:
-      note = content == null ? RichTextNote.empty() : RichTextNote.content(content);
+      if (content != null) {
+        final delta = Delta();
+        for (final line in content.split('\n')) {
+          delta.insert('$line\n');
+        }
+
+        note = RichTextNote.content(jsonEncode(delta));
+      } else {
+        note = RichTextNote.empty();
+      }
+
     case NoteType.checklist:
       note = ChecklistNote.empty();
   }
