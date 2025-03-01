@@ -4,6 +4,7 @@ import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../common/constants/constants.dart';
 import '../../../../common/constants/paddings.dart';
@@ -65,7 +66,14 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
       return;
     }
 
-    onLaunchUrl(url);
+    final uri = Uri.tryParse(url);
+    if (uri == null) {
+      logger.w('The URL opened in the rich text editor could not be parsed: $url');
+
+      return;
+    }
+
+    launchUrl(uri);
   }
 
   void onChanged() {
@@ -93,17 +101,17 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
         child: Builder(
           builder: (context) {
             final fleatherThemeFallback = FleatherThemeData.fallback(context);
-            final FleatherThemeData fleatherTheme;
-            if (useParagraphsSpacing) {
-              fleatherTheme = fleatherThemeFallback;
-            } else {
-              fleatherTheme = fleatherThemeFallback.copyWith(
-                paragraph: TextBlockTheme(
-                  style: fleatherThemeFallback.paragraph.style,
-                  spacing: const VerticalSpacing.zero(),
-                ),
-              );
-            }
+            final fleatherTheme = fleatherThemeFallback.copyWith(
+              paragraph: useParagraphsSpacing
+                  ? TextBlockTheme(
+                      style: fleatherThemeFallback.paragraph.style,
+                      spacing: const VerticalSpacing.zero(),
+                    )
+                  : null,
+              link: fleatherThemeFallback.link.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            );
 
             return FleatherTheme(
               data: fleatherTheme,

@@ -36,7 +36,7 @@ class RichTextEditorToolbar extends StatelessWidget {
         child: RawMaterialButton(
           shape: const CircleBorder(),
           visualDensity: VisualDensity.compact,
-          fillColor: isToggled ? Theme.of(context).colorScheme.secondary : null,
+          fillColor: isToggled ? Theme.of(context).colorScheme.surfaceContainerHighest : null,
           elevation: 0,
           onPressed: onPressed,
           child: Icon(icon),
