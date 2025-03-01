@@ -619,11 +619,11 @@
   },
   "settings_bigger_titles": "Bigger titles",
   "@settings_bigger_titles": {
-    "description": "Title of the setting tile to use bigger titles on the notes tiles."
+    "description": "Title of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
-  "settings_bigger_titles_description": "Show bigger titles on the the notes tiles",
+  "settings_bigger_titles_description": "Show bigger titles on the the notes tiles and in the editor",
   "@settings_bigger_titles_description": {
-    "description": "Description of the setting tile to use bigger titles on the notes tiles."
+    "description": "Description of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
   "settings_white_text_dark_mode": "White text in dark mode",
   "@settings_white_text_dark_mode": {
