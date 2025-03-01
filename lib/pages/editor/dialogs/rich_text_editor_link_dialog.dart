@@ -22,7 +22,12 @@ class _RichTextEditorLinkDialogState extends State<RichTextEditorLinkDialog> {
   /// Update [_isLinkValid] when the link has changed.
   void _onChanged(_) {
     setState(() {
-      _isLinkValid = isURL(_linkController.text);
+      _isLinkValid = isURL(_linkController.text, {
+        'protocols': ['http', 'https'],
+        'require_tld': true,
+        'require_protocol': true,
+        'allow_underscores': false,
+      });
     });
   }
 
