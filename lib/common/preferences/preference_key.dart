@@ -56,9 +56,9 @@ enum PreferenceKey<T extends Object> {
 
   // Security
   flagSecure<bool>(false),
-  lockApp<bool>(false),
+  lockApp<bool>(false, backup: false),
   lockAppDelay<int>(10),
-  lockNote<bool>(false),
+  lockNote<bool>(false, backup: false),
   lockNoteDelay<int>(10),
 
   // Accessibility
