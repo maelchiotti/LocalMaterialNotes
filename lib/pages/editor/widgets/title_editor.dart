@@ -50,6 +50,9 @@ class _TitleEditorState extends ConsumerState<TitleEditor> {
   @override
   Widget build(BuildContext context) {
     final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.preferenceOrDefault;
+    final biggerTitles = PreferenceKey.biggerTitles.preferenceOrDefault;
+
+    var titleStyle = biggerTitles ? Theme.of(context).textTheme.headlineSmall : Theme.of(context).textTheme.titleLarge;
 
     return Padding(
       padding: Paddings.pageHorizontal,
@@ -63,7 +66,7 @@ class _TitleEditorState extends ConsumerState<TitleEditor> {
             autofocus: widget.isNewNote && focusTitleOnNewNote,
             textCapitalization: TextCapitalization.sentences,
             textInputAction: TextInputAction.next,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: titleStyle,
             decoration: InputDecoration.collapsed(
               hintText: l.hint_title,
             ),
