@@ -31,7 +31,7 @@ dependencies:
   flutter_helper_utils: ^6.10.0
   flutter_localizations:
     sdk: flutter
-  flutter_markdown: ^0.7.6+1
+  flutter_markdown_plus: ^1.0.0+1
   flutter_mimir: ^0.1.6
   flutter_native_splash: ^2.4.4
   flutter_riverpod: ^2.6.1
