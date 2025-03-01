@@ -31,6 +31,7 @@ enum NavigationRoute {
   settingsBackup,
   settingsSecurity,
   settingsAccessibility,
+  settingsHelp,
   settingsAbout,
   ;
 

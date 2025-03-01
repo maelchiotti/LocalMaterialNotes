@@ -113,6 +113,10 @@
   "@navigation_settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
   },
+  "navigation_settings_help": "Help",
+  "@navigation_settings_help": {
+    "description": "Title of the settings page to receive help."
+  },
   "navigation_settings_about": "About",
   "@navigation_settings_about": {
     "description": "Title of the settings page regarding the information about the application."
@@ -641,33 +645,9 @@
   "@settings_disable_subdued_note_content_preview_description": {
     "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
-  "settings_about": "About",
-  "@settings_about": {
-    "description": "Title of the settings page regarding the information about the application."
-  },
-  "settings_about_description": "Information, help, links",
-  "@settings_about_description": {
-    "description": "Description of the about settings section."
-  },
-  "settings_about_application": "Application",
-  "@settings_about_application": {
-    "description": "Title of the settings section regarding the information about the application."
-  },
-  "settings_build_mode": "Build mode",
-  "@settings_build_mode": {
-    "description": "Title of the settings tile displaying the build mode of the application."
-  },
-  "settings_build_mode_release": "Release",
-  "@settings_build_mode_release": {
-    "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
-  },
-  "settings_build_mode_debug": "Debug",
-  "@settings_build_mode_debug": {
-    "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
-  },
-  "settings_about_help": "Help",
-  "@settings_about_help": {
-    "description": "Title of the settings section regarding how to get help for the application."
+  "settings_help_section_contact": "Contact",
+  "@settings_help_section_contact": {
+    "description": "Title of the settings section regarding how to get in contact."
   },
   "settings_github_issues": "Report a bug or request a feature",
   "@settings_github_issues": {
@@ -685,13 +665,65 @@
   "@settings_github_discussions_description": {
     "description": "Description of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_get_in_touch": "Contact the developer",
-  "@settings_get_in_touch": {
+  "settings_contact_developer": "Contact the developer",
+  "@settings_contact_developer": {
     "description": "Title of the settings tile to contact the developer via mail."
   },
   "settings_get_in_touch_description": "Contact the developer via mail at {email}",
   "@settings_get_in_touch_description": {
     "description": "Description of the settings tile to contact the developer via mail."
+  },
+  "settings_help": "Help",
+  "@settings_help": {
+    "description": "Title of the settings page to receive help."
+  },
+  "settings_help_description": "Contact, logs",
+  "@settings_help_description": {
+    "description": "Description of the settings page to receive help."
+  },
+  "settings_help_section_logs": "Logs",
+  "@settings_help_section_logs": {
+    "description": "Title of the settings section regarding the logs of the application."
+  },
+  "settings_copy_logs": "Copy the logs",
+  "@settings_copy_logs": {
+    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_copy_logs_description": "Copy the logs of the application to the clipboard",
+  "@settings_copy_logs_description": {
+    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_export_logs": "Export the logs",
+  "@settings_export_logs": {
+    "description": "Title of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_export_logs_description": "Export the logs of the application to a text file",
+  "@settings_export_logs_description": {
+    "description": "Description of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_about": "About",
+  "@settings_about": {
+    "description": "Title of the settings page regarding the information about the application."
+  },
+  "settings_about_description": "Information, links, donate",
+  "@settings_about_description": {
+    "description": "Description of the settings page regarding the information about the application."
+  },
+  "settings_about_application": "Application",
+  "@settings_about_application": {
+    "description": "Title of the settings section regarding the information about the application."
+  },
+  "settings_build_mode": "Build mode",
+  "@settings_build_mode": {
+    "description": "Title of the settings tile displaying the build mode of the application."
+  },
+  "settings_build_mode_release": "Release",
+  "@settings_build_mode_release": {
+    "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
+  },
+  "settings_build_mode_debug": "Debug",
+  "@settings_build_mode_debug": {
+    "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
   },
   "settings_about_links": "Links",
   "@settings_about_links": {
@@ -721,25 +753,17 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
-  "settings_about_logs": "Logs",
-  "@settings_about_logs": {
-    "description": "Title of the settings section regarding the logs of the application."
+  "settings_about_section_donate": "Donate",
+  "@settings_about_section_donate": {
+    "description": "Title of the settings section to donate."
   },
-  "settings_copy_logs": "Copy the logs",
-  "@settings_copy_logs": {
-    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
+  "settings_donate_kofi": "Ko-fi",
+  "@settings_donate_kofi": {
+    "description": "Title of the settings tile to donate via Ko-fi."
   },
-  "settings_copy_logs_description": "Copy the logs of the application to the clipboard",
-  "@settings_copy_logs_description": {
-    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
-  },
-  "settings_export_logs": "Export the logs",
-  "@settings_export_logs": {
-    "description": "Title of the settings tile to export the logs of the application to a text file."
-  },
-  "settings_export_logs_description": "Export the logs of the application to a text file",
-  "@settings_export_logs_description": {
-    "description": "Description of the settings tile to export the logs of the application to a text file."
+  "settings_donate_paypal": "PayPal",
+  "@settings_donate_paypal": {
+    "description": "Title of the settings tile to donate via PayPal."
   },
   "hint_title": "Title",
   "@hint_title": {
