@@ -115,6 +115,13 @@ When using a pre-release version, please report any issue you encounter in the d
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Donate
+
+You can support the project by making a donation using these platforms:
+
+- [PayPal](https://www.paypal.me/maelchiotti)
+- [Ko-fi](https://ko-fi.com/maelchiotti)
+
 ## Credits
 
 ### Inspiration

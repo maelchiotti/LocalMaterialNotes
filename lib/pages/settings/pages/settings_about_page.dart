@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -18,7 +17,7 @@ class SettingsAboutPage extends StatelessWidget {
   const SettingsAboutPage({super.key});
 
   /// Opens the Crowdin project.
-  void _openCrowdin() {
+  void openCrowdin() {
     launchUrl(
       Uri(
         scheme: 'https',
@@ -28,52 +27,8 @@ class SettingsAboutPage extends StatelessWidget {
     );
   }
 
-  /// Opens the application's GitHub issues.
-  void _openGitHubIssues() {
-    launchUrl(
-      Uri(
-        scheme: 'https',
-        host: 'github.com',
-        path: 'maelchiotti/LocalMaterialNotes/issues',
-      ),
-    );
-  }
-
-  /// Opens the application's GitHub discussions.
-  void _openGitHubDiscussions() {
-    launchUrl(
-      Uri(
-        scheme: 'https',
-        host: 'github.com',
-        path: 'maelchiotti/LocalMaterialNotes/discussions',
-      ),
-    );
-  }
-
-  /// Sends an email to the contact email with some basic information.
-  void _sendMail() {
-    final systemUtils = SystemUtils();
-
-    final appVersion = systemUtils.appVersion;
-    final buildMode = systemUtils.buildMode;
-    final androidVersion = systemUtils.androidVersion;
-    final brand = systemUtils.brand;
-    final model = systemUtils.model;
-
-    launchUrl(
-      Uri(
-        scheme: 'mailto',
-        path: contactEmail,
-        query: systemUtils.encodeQueryParameters({
-          'subject': '[Material Notes] ',
-          'body': '\n\n\n----------\nv$appVersion\n$buildMode mode\nAndroid $androidVersion\n$brand $model',
-        }),
-      ),
-    );
-  }
-
   /// Opens the application's GitHub repository.
-  void _openGitHub() {
+  void openGitHub() {
     launchUrl(
       Uri(
         scheme: 'https',
@@ -84,7 +39,7 @@ class SettingsAboutPage extends StatelessWidget {
   }
 
   /// Opens the application's license file.
-  void _openLicense() {
+  void openLicense() {
     launchUrl(
       Uri(
         scheme: 'https',
@@ -94,12 +49,26 @@ class SettingsAboutPage extends StatelessWidget {
     );
   }
 
-  Future<void> _copyLogs() async {
-    await logger.copyLogs();
+  /// Opens the PayPal donation page.
+  Future<void> donatePayPal() async {
+    await launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'paypal.me',
+        path: 'maelchiotti',
+      ),
+    );
   }
 
-  Future<void> _exportLogs() async {
-    await logger.exportLogs();
+  /// Opens the Ko-fi donation page.
+  Future<void> donateKoFi() async {
+    await launchUrl(
+      Uri(
+        scheme: 'https',
+        host: 'ko-fi.com',
+        path: 'maelchiotti',
+      ),
+    );
   }
 
   @override
@@ -148,67 +117,41 @@ class SettingsAboutPage extends StatelessWidget {
               ),
               SettingSection(
                 divider: null,
-                title: l.settings_about_help,
-                tiles: [
-                  SettingActionTile(
-                    icon: Icons.bug_report,
-                    title: l.settings_github_issues,
-                    description: l.settings_github_issues_description,
-                    onTap: _openGitHubIssues,
-                  ),
-                  SettingActionTile(
-                    icon: Icons.forum,
-                    title: l.settings_github_discussions,
-                    description: l.settings_github_discussions_description,
-                    onTap: _openGitHubDiscussions,
-                  ),
-                  SettingActionTile(
-                    icon: Icons.mail,
-                    title: l.settings_get_in_touch,
-                    description: l.settings_get_in_touch_description(contactEmail),
-                    onTap: _sendMail,
-                  ),
-                ],
-              ),
-              SettingSection(
-                divider: null,
                 title: l.settings_about_links,
                 tiles: [
                   SettingActionTile(
                     icon: SimpleIcons.github,
                     title: l.settings_github,
                     description: l.settings_github_description,
-                    onTap: _openGitHub,
+                    onTap: openGitHub,
                   ),
                   SettingActionTile(
                     icon: SimpleIcons.crowdin,
                     title: l.settings_localizations,
                     description: l.settings_localizations_description,
-                    onTap: _openCrowdin,
+                    onTap: openCrowdin,
                   ),
                   SettingActionTile(
                     icon: Icons.balance,
                     title: l.settings_licence,
                     description: l.settings_licence_description,
-                    onTap: _openLicense,
+                    onTap: openLicense,
                   ),
                 ],
               ),
               SettingSection(
                 divider: null,
-                title: l.settings_about_logs,
+                title: l.settings_about_section_donate,
                 tiles: [
                   SettingActionTile(
-                    icon: Icons.copy_all,
-                    title: l.settings_copy_logs,
-                    description: l.settings_copy_logs_description,
-                    onTap: _copyLogs,
+                    icon: SimpleIcons.kofi,
+                    title: l.settings_donate_kofi,
+                    onTap: donateKoFi,
                   ),
                   SettingActionTile(
-                    icon: Symbols.file_save,
-                    title: l.settings_export_logs,
-                    description: l.settings_export_logs_description,
-                    onTap: _exportLogs,
+                    icon: SimpleIcons.paypal,
+                    title: l.settings_donate_paypal,
+                    onTap: donatePayPal,
                   ),
                 ],
               ),
