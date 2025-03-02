@@ -1,15 +1,18 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:parchment_delta/parchment_delta.dart';
 
 import '../../../models/note/note.dart';
 import '../../../models/note/note_status.dart';
 import '../../../models/note/types/note_type.dart';
-import '../../../navigation/navigator_utils.dart';
+import '../../../navigation/navigation_routes.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
+import '../../types.dart';
 import 'select.dart';
 
 /// Adds a note.
@@ -53,5 +56,6 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {required NoteType not
     return;
   }
 
-  NavigatorUtils.pushNotesEditor(context, false, true);
+  final EditorPageExtra extra = (readOnly: false, isNewNote: true);
+  unawaited(context.pushNamed(NavigationRoute.editor.name, extra: extra));
 }

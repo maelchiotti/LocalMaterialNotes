@@ -158,9 +158,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
           valueListenable: isEditorInEditModeNotifier,
           builder: (context, isEditMode, child) {
             return AppBar(
-              leading: BackButton(
-                onPressed: () => Navigator.of(rootNavigatorKey.currentContext!).pop(),
-              ),
+              leading: BackButton(),
               actions: [
                 if (note.status == NoteStatus.available) ...[
                   if (note.type == NoteType.richText) ...[

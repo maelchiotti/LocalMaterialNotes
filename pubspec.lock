@@ -451,14 +451,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_app_lock:
-    dependency: "direct main"
-    description:
-      name: flutter_app_lock
-      sha256: a3a9ae9ded7dc3851c0cdfb3386e73271a86ecb84c8af0802730c818a595ce59
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.2.0+2"
   flutter_checklist:
     dependency: "direct main"
     description:
@@ -483,6 +475,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  flutter_fgbg:
+    dependency: "direct main"
+    description:
+      name: flutter_fgbg
+      sha256: eb6da9b2047372566a6e17b505975fe5bace94af01f6fc825c4b6f81baa6c447
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.1"
   flutter_helper_utils:
     dependency: "direct main"
     description:
@@ -658,6 +658,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  go_router:
+    dependency: "direct main"
+    description:
+      name: go_router
+      sha256: f02fd7d2a4dc512fec615529824fdd217fecb3a3d3de68360293a551f21634b3
+      url: "https://pub.dev"
+    source: hosted
+    version: "14.8.1"
   graphs:
     dependency: transitive
     description:

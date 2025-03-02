@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:substring_highlight/substring_highlight.dart';
 
 import '../../../models/note/note.dart';
 import '../../../models/note/note_status.dart';
-import '../../../navigation/navigator_utils.dart';
+import '../../../navigation/navigation_routes.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 import '../../actions/notes/select.dart';
@@ -18,6 +19,7 @@ import '../../preferences/enums/swipe_actions/archived_swipe_action.dart';
 import '../../preferences/enums/swipe_actions/available_swipe_action.dart';
 import '../../preferences/enums/swipe_actions/deleted_swipe_action.dart';
 import '../../preferences/preference_key.dart';
+import '../../types.dart';
 import 'dismissible/archived_dismissible.dart';
 import 'dismissible/available_dismissible.dart';
 import 'dismissible/deleted_dismissible.dart';
@@ -174,7 +176,13 @@ class _NoteTileState extends ConsumerState<NoteTile> {
         Navigator.pop(context);
       }
 
-      NavigatorUtils.pushNotesEditor(context, widget.note.deleted, false);
+      final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
+      if (lockNote) {
+        lockNoteNotifier.value = widget.note.locked;
+      }
+
+      final EditorPageExtra extra = (readOnly: widget.note.deleted, isNewNote: false);
+      context.pushNamed(NavigationRoute.editor.name, extra: extra);
     }
   }
 

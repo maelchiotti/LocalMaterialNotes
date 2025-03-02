@@ -1,6 +1,5 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
@@ -23,9 +22,9 @@ import 'widgets/rich_text/rich_text_editor_toolbar.dart';
 import 'widgets/title_editor.dart';
 
 /// Editor page.
-class NotesEditorPage extends ConsumerStatefulWidget {
+class EditorPage extends ConsumerStatefulWidget {
   /// Page allowing to edit a note.
-  const NotesEditorPage({
+  const EditorPage({
     super.key,
     required this.readOnly,
     required this.isNewNote,
@@ -38,10 +37,10 @@ class NotesEditorPage extends ConsumerStatefulWidget {
   final bool isNewNote;
 
   @override
-  ConsumerState<NotesEditorPage> createState() => _EditorState();
+  ConsumerState<EditorPage> createState() => _EditorState();
 }
 
-class _EditorState extends ConsumerState<NotesEditorPage> {
+class _EditorState extends ConsumerState<EditorPage> {
   @override
   void dispose() {
     super.dispose();
@@ -68,8 +67,7 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
               return const LoadingPlaceholder();
             }
 
-            final lockNote = PreferenceKey.lockNote.preferenceOrDefault && currentNote.locked;
-            final lockDelay = PreferenceKey.lockNoteDelay.preferenceOrDefault;
+            final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
 
             final showEditorModeButton = PreferenceKey.editorModeButton.preferenceOrDefault;
             final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.preferenceOrDefault;
@@ -153,22 +151,24 @@ class _EditorState extends ConsumerState<NotesEditorPage> {
               ),
             );
 
-            return lockNote
-                ? AppLock(
-                    initiallyEnabled: lockNote,
-                    initialBackgroundLockLatency: Duration(seconds: lockDelay),
-                    builder: (BuildContext context, Object? launchArg) {
-                      return editor;
-                    },
-                    lockScreenBuilder: (BuildContext context) {
-                      return LockPage(
-                        back: true,
+            // If the note lock setting is disabled or the note isn't locked, directly return the editor
+            if (!lockNote || (lockNote && !currentNote.locked)) {
+              return editor;
+            }
+
+            return ValueListenableBuilder(
+              valueListenable: lockNoteNotifier,
+              builder: (context, locked, child) {
+                return locked
+                    ? LockPage(
+                        back: false,
+                        lockNotifier: lockNoteNotifier,
                         description: l.lock_page_description_note,
                         reason: l.lock_page_reason_note,
-                      );
-                    },
-                  )
-                : editor;
+                      )
+                    : editor;
+              },
+            );
           },
         );
       },
