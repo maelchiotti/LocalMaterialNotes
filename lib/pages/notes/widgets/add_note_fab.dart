@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../common/actions/notes/add.dart';
 import '../../../common/constants/constants.dart';
 import '../../../models/note/types/note_type.dart';
-import '../../../providers/preferences/preferences_provider.dart';
 
 /// Floating action button to add a note.
 class AddNoteFab extends ConsumerStatefulWidget {
@@ -43,9 +42,7 @@ class _AddNoteFabState extends ConsumerState<AddNoteFab> {
 
   @override
   Widget build(BuildContext context) {
-    final availableNotesTypes = ref.watch(
-      preferencesProvider.select((preferences) => preferences.availableNotesTypes),
-    );
+    final availableNotesTypes = NoteType.available;
 
     return availableNotesTypes.length == 1
         ? FloatingActionButton(

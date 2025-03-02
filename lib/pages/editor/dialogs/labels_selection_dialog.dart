@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 import '../../../common/constants/constants.dart';
+import '../../../common/constants/sizes.dart';
 import '../../../common/extensions/color_extension.dart';
 import '../../../models/label/label.dart';
 import '../../../models/note/note.dart';
@@ -71,27 +72,38 @@ class _LabelsSelectionDialogState extends ConsumerState<LabelsSelectionDialog> {
       title: Text(widget.note == null ? l.dialog_select_labels_to_add : l.dialog_select_labels),
       content: SingleChildScrollView(
         child: ListBody(
-          children: labels
-              .mapIndexed(
-                (index, label) => CheckboxListTile(
-                  value: label.selected,
-                  secondary: VariedIcon.varied(
-                    label.pinned ? Icons.label_important : Icons.label,
-                    fill: 1.0,
-                    color: label.color,
-                  ),
-                  title: Text(
-                    label.name,
-                    style: bodyLarge?.copyWith(
-                      color: !label.visible ? bodyLarge.color?.subdued : null,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  onChanged: (value) => onChanged(index, value),
+          children: labels.mapIndexed(
+            (index, label) {
+              return CheckboxListTile(
+                value: label.selected,
+                secondary: VariedIcon.varied(
+                  label.pinned ? Icons.label_important : Icons.label,
+                  fill: 1.0,
+                  color: label.color,
                 ),
-              )
-              .toList(),
+                title: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        label.name,
+                        style: bodyLarge?.copyWith(
+                          color: !label.visible ? bodyLarge.color?.subdued : null,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    if (label.locked)
+                      Icon(
+                        Icons.lock,
+                        size: Sizes.iconSmall.size,
+                      ),
+                  ],
+                ),
+                onChanged: (value) => onChanged(index, value),
+              );
+            },
+          ).toList(),
         ),
       ),
       actions: [

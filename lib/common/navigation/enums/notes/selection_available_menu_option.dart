@@ -13,6 +13,9 @@ enum SelectionAvailableMenuOption {
   /// Toggle whether the notes are pinned.
   togglePin(Icons.push_pin),
 
+  /// Toggle whether the notes are locked.
+  toggleLock(Icons.lock),
+
   /// Add labels to the notes.
   addLabels(Icons.label),
 
@@ -39,7 +42,9 @@ enum SelectionAvailableMenuOption {
       case share:
         return fl?.shareButtonLabel ?? 'Share';
       case togglePin:
-        return l.action_toggle_pins;
+        return l.action_toggle_pin;
+      case toggleLock:
+        return l.action_toggle_lock;
       case addLabels:
         return l.menu_action_add_labels;
       case archive:

@@ -130,7 +130,7 @@ class Notes extends _$Notes {
     return true;
   }
 
-  /// Toggles whether the [notesToToggle] are pinned in the database.
+  /// Toggles whether the [notesToToggle] are pinned.
   Future<bool> togglePin(List<Note> notesToToggle) async {
     _checkStatus([NoteStatus.available, NoteStatus.archived]);
 
@@ -156,7 +156,7 @@ class Notes extends _$Notes {
     return true;
   }
 
-  /// Toggles whether the [notesToToggle] are locked in the database.
+  /// Toggles whether the [notesToToggle] are locked.
   Future<bool> toggleLock(List<Note> notesToToggle) async {
     _checkStatus([NoteStatus.available, NoteStatus.archived, NoteStatus.deleted]);
 

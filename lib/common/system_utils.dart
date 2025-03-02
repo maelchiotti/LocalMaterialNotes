@@ -126,7 +126,7 @@ class SystemUtils {
   /// Sets the quick actions.
   void setQuickActions(BuildContext context, WidgetRef ref) {
     final l = AppLocalizations.of(context);
-    final availableNotesTypes = NoteType.availableTypes;
+    final availableNotesTypes = NoteType.available;
 
     final addPlainTextNoteAction = ShortcutItem(
       type: 'add_plain_text_note',
@@ -196,7 +196,7 @@ class SystemUtils {
       return;
     }
 
-    final defaultShortcutNoteType = NoteType.defaultShareType;
+    final defaultShortcutNoteType = NoteType.defaultShare;
     final context = rootNavigatorKey.currentContext!;
     final content = data.first.path;
 

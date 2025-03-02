@@ -8,8 +8,6 @@ import '../../../common/constants/paddings.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
-import '../../../common/preferences/watched_preferences.dart';
-import '../../../providers/preferences/preferences_provider.dart';
 
 /// Notes tiles settings.
 class SettingsNotesTilesPage extends ConsumerStatefulWidget {
@@ -22,58 +20,55 @@ class SettingsNotesTilesPage extends ConsumerStatefulWidget {
 
 class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage> {
   /// Toggles the setting to show background of the notes tiles.
-  void _toggleShowTilesBackground(bool toggled) {
-    PreferenceKey.showTilesBackground.set(toggled);
+  Future<void> _toggleShowTilesBackground(bool toggled) async {
+    await PreferenceKey.showTilesBackground.set(toggled);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showTilesBackground: toggled));
+    setState(() {});
   }
 
   /// Toggles the setting to show the separators between the notes tiles.
-  void _toggleShowSeparators(bool toggled) {
-    PreferenceKey.showSeparators.set(toggled);
+  Future<void> _toggleShowSeparators(bool toggled) async {
+    await PreferenceKey.showSeparators.set(toggled);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showSeparators: toggled));
+    setState(() {});
   }
 
   /// Toggles the setting to show background of the notes tiles.
-  void _toggleShowTitlesOnly(bool toggled) {
-    PreferenceKey.showTitlesOnly.set(toggled);
+  Future<void> _toggleShowTitlesOnly(bool toggled) async {
+    await PreferenceKey.showTitlesOnly.set(toggled);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showTitlesOnly: toggled));
+    setState(() {});
   }
 
   /// Toggles the setting to show background of the notes tiles.
-  void _toggleShowTitlesOnlyDisableInSearchView(bool toggled) {
-    setState(() {
-      PreferenceKey.showTitlesOnlyDisableInSearchView.set(toggled);
-    });
+  Future<void> _toggleShowTitlesOnlyDisableInSearchView(bool toggled) async {
+    await PreferenceKey.showTitlesOnlyDisableInSearchView.set(toggled);
+
+    setState(() {});
   }
 
   /// Sets the note content preview maximum lines count to the new [maximumContentPreviewLines].
-  void _submittedMaximumContentPreviewLines(double maximumContentPreviewLines) {
-    PreferenceKey.maximumContentPreviewLines.set(maximumContentPreviewLines.toInt());
+  Future<void> _submittedMaximumContentPreviewLines(double maximumContentPreviewLines) async {
+    await PreferenceKey.maximumContentPreviewLines.set(maximumContentPreviewLines.toInt());
 
-    ref.read(preferencesProvider.notifier).update(
-          WatchedPreferences(maximumContentPreviewLines: maximumContentPreviewLines.toInt()),
-        );
+    setState(() {});
   }
 
   /// Toggles the setting to show the note type icon on the notes tiles.
-  void _toggleShowNoteTypeIcon(bool toggled) {
-    PreferenceKey.showNoteTypeIcon.set(toggled);
+  Future<void> _toggleShowNoteTypeIcon(bool toggled) async {
+    await PreferenceKey.showNoteTypeIcon.set(toggled);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(showNoteTypeIcon: toggled));
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
-    final showSeparators = ref.watch(preferencesProvider.select((preferences) => preferences.showSeparators));
-    final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
+    final showTilesBackground = PreferenceKey.showTilesBackground.preferenceOrDefault;
+    final showSeparators = PreferenceKey.showSeparators.preferenceOrDefault;
+    final showTitlesOnly = PreferenceKey.showTitlesOnly.preferenceOrDefault;
     final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.preferenceOrDefault;
-    final maximumContentPreviewLines =
-        ref.watch(preferencesProvider.select((preferences) => preferences.maximumContentPreviewLines));
-    final showNoteTypeIcon = ref.watch(preferencesProvider.select((preferences) => preferences.showNoteTypeIcon));
+    final maximumContentPreviewLines = PreferenceKey.maximumContentPreviewLines.preferenceOrDefault;
+    final showNoteTypeIcon = PreferenceKey.showNoteTypeIcon.preferenceOrDefault;
 
     return Scaffold(
       appBar: TopNavigation(

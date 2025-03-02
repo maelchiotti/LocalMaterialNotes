@@ -9,6 +9,7 @@ import '../../../actions/notes/archive.dart';
 import '../../../actions/notes/copy.dart';
 import '../../../actions/notes/delete.dart';
 import '../../../actions/notes/labels.dart';
+import '../../../actions/notes/lock.dart';
 import '../../../actions/notes/pin.dart';
 import '../../../actions/notes/restore.dart';
 import '../../../actions/notes/select.dart';
@@ -49,6 +50,8 @@ class NotesSelectionAppBar extends ConsumerWidget {
         await shareNotes(notes: notes);
       case SelectionAvailableMenuOption.togglePin:
         await togglePinNotes(context, ref, notes: notes);
+      case SelectionAvailableMenuOption.toggleLock:
+        await toggleLockNotes(context, ref, notes: notes);
       case SelectionAvailableMenuOption.addLabels:
         await addLabels(context, ref, notes: notes);
       case SelectionAvailableMenuOption.archive:
@@ -101,6 +104,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
     int totalNotesCount,
   ) {
     final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
+    final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
 
     final allSelected = selectedNotes.length == totalNotesCount;
 
@@ -128,6 +132,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
               SelectionAvailableMenuOption.share.popupMenuItem(context),
               const PopupMenuDivider(),
               SelectionAvailableMenuOption.togglePin.popupMenuItem(context),
+              if (lockNote) SelectionAvailableMenuOption.toggleLock.popupMenuItem(context),
               if (enableLabels) SelectionAvailableMenuOption.addLabels.popupMenuItem(context),
               const PopupMenuDivider(),
               SelectionAvailableMenuOption.archive.popupMenuItem(context),

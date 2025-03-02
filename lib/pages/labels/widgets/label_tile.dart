@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 import '../../../common/actions/labels/delete.dart';
 import '../../../common/actions/labels/edit.dart';
+import '../../../common/actions/labels/lock.dart';
 import '../../../common/actions/labels/pin.dart';
 import '../../../common/actions/labels/select.dart';
 import '../../../common/actions/labels/visible.dart';
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
+import '../../../common/constants/sizes.dart';
 import '../../../common/extensions/color_extension.dart';
+import '../../../common/preferences/preference_key.dart';
 import '../../../models/label/label.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../enums/label_tile_menu_option.dart';
@@ -84,6 +88,15 @@ class _LabelTileState extends ConsumerState<LabelTile> {
 
   Future<void> onMenuOptionSelected(LabelTileMenuOption labelMenuOption) async {
     switch (labelMenuOption) {
+      case LabelTileMenuOption.show:
+      case LabelTileMenuOption.hide:
+        await toggleVisibleLabels(ref, labels: [widget.label]);
+      case LabelTileMenuOption.pin:
+      case LabelTileMenuOption.unpin:
+        await togglePinLabels(ref, labels: [widget.label]);
+      case LabelTileMenuOption.lock:
+      case LabelTileMenuOption.unlock:
+        await toggleLockLabels(ref, labels: [widget.label]);
       case LabelTileMenuOption.edit:
         await editLabel(context, ref, label: widget.label);
       case LabelTileMenuOption.delete:
@@ -119,6 +132,8 @@ class _LabelTileState extends ConsumerState<LabelTile> {
 
   @override
   Widget build(BuildContext context) {
+    final lockLabel = PreferenceKey.lockLabel.preferenceOrDefault;
+
     final bodyLarge = Theme.of(context).textTheme.bodyLarge;
 
     var icon = Icons.label;
@@ -157,20 +172,27 @@ class _LabelTileState extends ConsumerState<LabelTile> {
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (widget.label.visible)
-                    IconButton(
-                      onPressed: () => togglePinLabel(context, ref, label: widget.label),
-                      icon: Icon(widget.label.pinned ? Icons.push_pin_outlined : Icons.push_pin),
+                  if (widget.label.locked) ...[
+                    Icon(
+                      Icons.lock,
+                      size: Sizes.iconSmall.size,
                     ),
-                  if (!widget.label.pinned)
-                    IconButton(
-                      onPressed: () => toggleVisibleLabel(ref, label: widget.label),
-                      icon: Icon(widget.label.visible ? Icons.visibility_off : Icons.visibility),
-                    ),
+                    Gap(2),
+                  ],
                   PopupMenuButton<LabelTileMenuOption>(
-                    itemBuilder: (context) => LabelTileMenuOption.values
-                        .map((labelMenuOption) => labelMenuOption.popupMenuItem(context))
-                        .toList(),
+                    itemBuilder: (context) {
+                      return [
+                        if (widget.label.pinned) LabelTileMenuOption.unpin.popupMenuItem(context),
+                        if (!widget.label.pinned) LabelTileMenuOption.pin.popupMenuItem(context),
+                        if (widget.label.visible) LabelTileMenuOption.hide.popupMenuItem(context),
+                        if (!widget.label.visible) LabelTileMenuOption.show.popupMenuItem(context),
+                        if (lockLabel && widget.label.locked) LabelTileMenuOption.unlock.popupMenuItem(context),
+                        if (lockLabel && !widget.label.locked) LabelTileMenuOption.lock.popupMenuItem(context),
+                        PopupMenuDivider(),
+                        LabelTileMenuOption.edit.popupMenuItem(context),
+                        LabelTileMenuOption.delete.popupMenuItem(context),
+                      ];
+                    },
                     onSelected: onMenuOptionSelected,
                   ),
                 ],

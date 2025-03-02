@@ -150,6 +150,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     final editorController = fleatherControllerNotifier.value;
     final showEditorModeButton = PreferenceKey.editorModeButton.preferenceOrDefault;
     final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
+    final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
 
     return ValueListenableBuilder(
       valueListenable: editorHasFocusNotifier,
@@ -208,8 +209,8 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                       const PopupMenuDivider(),
                       if (note.pinned) EditorAvailableMenuOption.unpin.popupMenuItem(context),
                       if (!note.pinned) EditorAvailableMenuOption.pin.popupMenuItem(context),
-                      if (note.locked) EditorAvailableMenuOption.unlock.popupMenuItem(context),
-                      if (!note.locked) EditorAvailableMenuOption.lock.popupMenuItem(context),
+                      if (lockNote && note.locked) EditorAvailableMenuOption.unlock.popupMenuItem(context),
+                      if (lockNote && !note.locked) EditorAvailableMenuOption.lock.popupMenuItem(context),
                       if (enableLabels) EditorAvailableMenuOption.selectLabels.popupMenuItem(context),
                       const PopupMenuDivider(),
                       EditorAvailableMenuOption.archive.popupMenuItem(context),

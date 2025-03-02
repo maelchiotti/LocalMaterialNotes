@@ -41,7 +41,9 @@ enum NavigationRoute {
   const NavigationRoute(this.path);
 
   static String getLabelRouteName(Label label) {
-    return 'label_${label.name}';
+    final uri = Uri.encodeComponent(label.name);
+
+    return 'label_$uri';
   }
 
   static String getLabelRoutePath(Label label) {

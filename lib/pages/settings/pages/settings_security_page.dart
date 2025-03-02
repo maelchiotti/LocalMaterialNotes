@@ -10,10 +10,8 @@ import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/enums/swipe_actions/available_swipe_action.dart';
 import '../../../common/preferences/preference_key.dart';
-import '../../../common/preferences/watched_preferences.dart';
 import '../../../common/system_utils.dart';
 import '../../../providers/notifiers/notifiers.dart';
-import '../../../providers/preferences/preferences_provider.dart';
 
 /// Settings related to the security of the application.
 class SettingsSecurityPage extends ConsumerStatefulWidget {
@@ -47,6 +45,8 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
   Future<void> toggledLockApp(bool toggled) async {
     await PreferenceKey.lockApp.set(toggled);
 
+    lockAppNotifier.value = toggled;
+
     if (!mounted) {
       return;
     }
@@ -54,16 +54,15 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
     setState(() {});
   }
 
-  /// Toggles whether the notes is locked to [toggled].
+  /// Toggles whether the notes can be locked to [toggled].
   Future<void> toggledLockNote(bool toggled) async {
     await PreferenceKey.lockNote.set(toggled);
 
-    lockAppNotifier.value = toggled;
-
     // If the note lock is disabled and the available swipe actions are 'Lock / Unlock', set them to disabled
     if (!toggled) {
-      final availableSwipeActionsPreferences = ref.read(
-        preferencesProvider.select((preferences) => preferences.availableSwipeActions),
+      final availableSwipeActionsPreferences = (
+        right: PreferenceKey.swipeRightAction.preferenceOrDefault,
+        left: PreferenceKey.swipeLeftAction.preferenceOrDefault,
       );
       final availableSwipeActions = (
         right: AvailableSwipeAction.rightFromPreference(preference: availableSwipeActionsPreferences.right),
@@ -72,17 +71,18 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
 
       if (availableSwipeActions.right == AvailableSwipeAction.toggleLock) {
         await PreferenceKey.swipeRightAction.set(AvailableSwipeAction.disabled.name);
-        ref
-            .read(preferencesProvider.notifier)
-            .update(WatchedPreferences(availableSwipeRightAction: AvailableSwipeAction.disabled.name));
       }
       if (availableSwipeActions.left == AvailableSwipeAction.toggleLock) {
         await PreferenceKey.swipeLeftAction.set(AvailableSwipeAction.disabled.name);
-        ref
-            .read(preferencesProvider.notifier)
-            .update(WatchedPreferences(availableSwipeRightAction: AvailableSwipeAction.disabled.name));
       }
     }
+
+    setState(() {});
+  }
+
+  /// Toggles whether the labels can be locked to [toggled].
+  Future<void> toggledLockLabel(bool toggled) async {
+    await PreferenceKey.lockLabel.set(toggled);
 
     setState(() {});
   }
@@ -109,6 +109,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
     final lockAppDelay = PreferenceKey.lockAppDelay.preferenceOrDefault;
 
     final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
+    final lockLabel = PreferenceKey.lockLabel.preferenceOrDefault;
     final lockNoteDelay = PreferenceKey.lockNoteDelay.preferenceOrDefault;
 
     final isSystemAuthenticationAvailable = SystemUtils().isSystemAuthenticationAvailable;
@@ -167,11 +168,19 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
                 tiles: [
                   SettingSwitchTile(
                     enabled: isSystemAuthenticationAvailable,
-                    icon: Icons.lock,
+                    icon: Icons.notes,
                     title: l.settings_note_lock_title,
                     description: l.settings_note_lock_description,
                     toggled: lockNote,
                     onChanged: toggledLockNote,
+                  ),
+                  SettingSwitchTile(
+                    enabled: isSystemAuthenticationAvailable,
+                    icon: Icons.label,
+                    title: l.settings_label_lock_title,
+                    description: l.settings_label_lock_description,
+                    toggled: lockLabel,
+                    onChanged: toggledLockLabel,
                   ),
                   SettingCustomSliderTile(
                     enabled: isSystemAuthenticationAvailable && lockNote,

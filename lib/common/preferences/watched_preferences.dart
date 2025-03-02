@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../models/note/types/note_type.dart';
 import '../ui/theme_utils.dart';
 import 'enums/font.dart';
 import 'enums/layout.dart';
-import 'enums/swipe_actions/archived_swipe_action.dart';
-import 'enums/swipe_actions/deleted_swipe_action.dart';
 import 'preference_key.dart';
 
 // ignore_for_file: public_member_api_docs
@@ -18,26 +15,9 @@ class WatchedPreferences {
   late bool blackTheming;
   late Font appFont;
 
-  // Notes types
-  late List<NoteType> availableNotesTypes;
-
-  // Notes tiles
-  late bool showTilesBackground;
-  late bool showSeparators;
-  late bool showTitlesOnly;
-  late int maximumContentPreviewLines;
-  late bool showNoteTypeIcon;
-
-  // Behavior
-  late ({String right, String left}) availableSwipeActions;
-  late ({ArchivedSwipeAction right, ArchivedSwipeAction left}) archivedSwipeActions;
-  late ({DeletedSwipeAction right, DeletedSwipeAction left}) deletedSwipeActions;
-
   // Accessibility
   late double textScaling;
-  late bool biggerTitles;
   late bool useWhiteTextDarkMode;
-  late bool disableSubduedNoteContentPreview;
 
   // Notes
   late Layout layout;
@@ -48,22 +28,8 @@ class WatchedPreferences {
     bool? dynamicTheming,
     bool? blackTheming,
     Font? appFont,
-    List<NoteType>? availableNotesTypes,
-    bool? showTitlesOnly,
-    bool? showTilesBackground,
-    bool? showSeparators,
-    int? maximumContentPreviewLines,
-    bool? showNoteTypeIcon,
-    String? availableSwipeRightAction,
-    String? availableSwipeLeftAction,
-    ArchivedSwipeAction? archivedSwipeRightAction,
-    ArchivedSwipeAction? archivedSwipeLeftAction,
-    DeletedSwipeAction? deletedSwipeRightAction,
-    DeletedSwipeAction? deletedSwipeLeftAction,
     double? textScaling,
-    bool? biggerTitles,
     bool? useWhiteTextDarkMode,
-    bool? disableSubduedNoteContentPreview,
     Layout? layout,
   }) {
     this.themeMode = themeMode ?? ThemeUtils().themeMode;
@@ -71,33 +37,8 @@ class WatchedPreferences {
     this.blackTheming = blackTheming ?? PreferenceKey.blackTheming.preferenceOrDefault;
     this.appFont = appFont ?? Font.appFromPreference();
 
-    this.availableNotesTypes = availableNotesTypes ?? NoteType.availableTypes;
-
-    this.showTitlesOnly = showTitlesOnly ?? PreferenceKey.showTitlesOnly.preferenceOrDefault;
-    this.showTilesBackground = showTilesBackground ?? PreferenceKey.showTilesBackground.preferenceOrDefault;
-    this.showSeparators = showSeparators ?? PreferenceKey.showSeparators.preferenceOrDefault;
-    this.maximumContentPreviewLines =
-        maximumContentPreviewLines ?? PreferenceKey.maximumContentPreviewLines.preferenceOrDefault;
-    this.showNoteTypeIcon = showNoteTypeIcon ?? PreferenceKey.showNoteTypeIcon.preferenceOrDefault;
-
-    availableSwipeActions = (
-      right: availableSwipeRightAction ?? PreferenceKey.swipeRightAction.preferenceOrDefault,
-      left: availableSwipeLeftAction ?? PreferenceKey.swipeLeftAction.preferenceOrDefault,
-    );
-    archivedSwipeActions = (
-      right: archivedSwipeRightAction ?? ArchivedSwipeAction.rightFromPreference(),
-      left: archivedSwipeLeftAction ?? ArchivedSwipeAction.leftFromPreference(),
-    );
-    deletedSwipeActions = (
-      right: deletedSwipeRightAction ?? DeletedSwipeAction.rightFromPreference(),
-      left: deletedSwipeLeftAction ?? DeletedSwipeAction.leftFromPreference(),
-    );
-
     this.textScaling = textScaling ?? PreferenceKey.textScaling.preferenceOrDefault;
-    this.biggerTitles = biggerTitles ?? PreferenceKey.biggerTitles.preferenceOrDefault;
     this.useWhiteTextDarkMode = useWhiteTextDarkMode ?? PreferenceKey.useWhiteTextDarkMode.preferenceOrDefault;
-    this.disableSubduedNoteContentPreview =
-        disableSubduedNoteContentPreview ?? PreferenceKey.disableSubduedNoteContentPreview.preferenceOrDefault;
 
     this.layout = layout ?? Layout.fromPreference();
   }

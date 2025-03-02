@@ -11,6 +11,7 @@ import '../../constants/paddings.dart';
 import '../../constants/separators.dart';
 import '../../constants/sizes.dart';
 import '../../preferences/enums/layout.dart';
+import '../../preferences/preference_key.dart';
 import '../placeholders/empty_placeholder.dart';
 import '../placeholders/error_placeholder.dart';
 import '../placeholders/loading_placeholder.dart';
@@ -45,9 +46,10 @@ class NotesList extends ConsumerWidget {
       };
     }
 
+    final showTilesBackground = PreferenceKey.showTilesBackground.preferenceOrDefault;
+    final showSeparators = PreferenceKey.showSeparators.preferenceOrDefault;
+
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
-    final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
-    final showSeparators = ref.watch(preferencesProvider.select((preferences) => preferences.showSeparators));
 
     // Use at least 2 columns for the grid view
     final columnsCount = MediaQuery.of(context).size.width ~/ Sizes.gridLayoutColumnWidth.size;

@@ -9,7 +9,7 @@ import '../../../providers/notifiers/notifiers.dart';
 import '../../preferences/preference_key.dart';
 import 'select.dart';
 
-/// Toggles the locked status of the [notes].
+/// Toggles whether the [notes] are locked.
 Future<bool> toggleLockNotes(
   BuildContext context,
   WidgetRef ref, {

@@ -7,10 +7,8 @@ import '../../../common/constants/paddings.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
-import '../../../common/preferences/watched_preferences.dart';
 import '../../../common/system_utils.dart';
 import '../../../models/note/types/note_type.dart';
-import '../../../providers/preferences/preferences_provider.dart';
 
 /// Notes types settings.
 class SettingsNotesTypesPage extends ConsumerStatefulWidget {
@@ -26,9 +24,9 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
   void onSubmittedAvailableNotesTypes(List<NoteType> availableNotesTypes) {
     PreferenceKey.availableNotesTypes.set(NoteType.toPreference(availableNotesTypes));
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(availableNotesTypes: availableNotesTypes));
-
     SystemUtils().setQuickActions(context, ref);
+
+    setState(() {});
   }
 
   /// Sets the setting for the default share note type to [defaultShareNoteType].
@@ -50,15 +48,13 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
     final notesTypes = NoteType.values.map((type) {
       return (value: type, title: type.title, subtitle: null);
     }).toList();
-    final availableNotesTypes = ref.watch(
-      preferencesProvider.select((preferences) => preferences.availableNotesTypes),
-    );
-    final availableNotesTypesString = NoteType.availableTypesAsString;
+    final availableNotesTypes = NoteType.available;
+    final availableNotesTypesString = NoteType.availableAsString;
 
-    final shareNotesTypes = NoteType.shareTypes.map((type) {
+    final shareNotesTypes = NoteType.share.map((type) {
       return (value: type, title: type.title, subtitle: null);
     }).toList();
-    final defaultShareNoteType = NoteType.defaultShareType;
+    final defaultShareNoteType = NoteType.defaultShare;
 
     final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.preferenceOrDefault;
 

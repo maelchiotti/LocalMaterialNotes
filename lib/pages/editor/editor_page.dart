@@ -152,7 +152,7 @@ class _EditorState extends ConsumerState<EditorPage> {
             );
 
             // If the note lock setting is disabled or the note isn't locked, directly return the editor
-            if (!lockNote || (lockNote && !currentNote.locked)) {
+            if (!lockNote || (lockNote && !currentNote.locked && !currentNote.hasLockedLabel)) {
               return editor;
             }
 

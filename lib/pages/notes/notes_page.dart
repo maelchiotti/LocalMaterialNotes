@@ -8,8 +8,8 @@ import '../../common/navigation/top_navigation.dart';
 import '../../common/widgets/notes/notes_list.dart';
 import '../../models/label/label.dart';
 import '../../models/note/note_status.dart';
+import '../../models/note/types/note_type.dart';
 import '../../providers/notifiers/notifiers.dart';
-import '../../providers/preferences/preferences_provider.dart';
 import 'widgets/add_note_fab.dart';
 
 /// List of available notes.
@@ -38,9 +38,7 @@ class _NotesPageState extends ConsumerState<NotesPage> {
 
   @override
   Widget build(BuildContext context) {
-    final availableNotesTypes = ref.watch(
-      preferencesProvider.select((preferences) => preferences.availableNotesTypes),
-    );
+    final availableNotesTypes = NoteType.available;
 
     return Scaffold(
       appBar: TopNavigation(

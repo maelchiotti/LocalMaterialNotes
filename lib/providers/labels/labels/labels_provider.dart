@@ -66,7 +66,7 @@ class Labels extends _$Labels {
     return true;
   }
 
-  /// Toggles the pin status of the [labelsToToggle] in the database.
+  /// Toggles whether the [labelsToToggle] are pinned.
   Future<bool> togglePin(List<Label> labelsToToggle) async {
     for (final label in labelsToToggle) {
       label.pinned = !label.pinned;
@@ -96,13 +96,40 @@ class Labels extends _$Labels {
     return true;
   }
 
-  /// Toggles the visible status of the [labelsToToggle] in the database.
+  /// Toggles whether the [labelsToToggle] are visible.
   Future<bool> toggleVisible(List<Label> labelsToToggle) async {
     for (final label in labelsToToggle) {
       label.visible = !label.visible;
       if (!label.visible) {
         label.pinned = false;
       }
+    }
+
+    try {
+      await _labelsService.putAll(labelsToToggle);
+    } catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
+
+      return false;
+    }
+
+    final labels = (state.value ?? [])
+      ..removeWhere(
+        (label) => labelsToToggle.contains(label),
+      )
+      ..addAll(labelsToToggle);
+
+    state = AsyncData(labels.sorted());
+
+    await _updateProviders();
+
+    return true;
+  }
+
+  /// Toggles whether the [labelsToToggle] are locked.
+  Future<bool> toggleLock(List<Label> labelsToToggle) async {
+    for (final label in labelsToToggle) {
+      label.locked = !label.locked;
     }
 
     try {

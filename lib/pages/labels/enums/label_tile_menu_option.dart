@@ -4,6 +4,24 @@ import '../../../common/constants/constants.dart';
 
 /// Lists the options available in the menu of the labels tiles.
 enum LabelTileMenuOption {
+  /// Make the label visible.
+  show(Icons.visibility),
+
+  /// Hide the label.
+  hide(Icons.visibility_off),
+
+  /// Pin the label.
+  pin(Icons.push_pin),
+
+  /// Unpin the label.
+  unpin(Icons.push_pin_outlined),
+
+  /// Lock the label.
+  lock(Icons.lock),
+
+  /// Unlock the label.
+  unlock(Icons.lock_open),
+
   /// Edit the label.
   edit(Icons.edit),
 
@@ -27,6 +45,18 @@ enum LabelTileMenuOption {
   /// Returns the title of the menu option.
   String get title {
     switch (this) {
+      case show:
+        return l.action_labels_show;
+      case hide:
+        return l.action_labels_hide;
+      case pin:
+        return l.action_labels_pin;
+      case unpin:
+        return l.action_labels_unpin;
+      case lock:
+        return l.action_labels_lock;
+      case unlock:
+        return l.action_labels_unlock;
       case edit:
         return l.action_labels_edit;
       case delete:

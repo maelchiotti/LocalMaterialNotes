@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../providers/preferences/preferences_provider.dart';
 import '../../../constants/paddings.dart';
 import '../../../enums/swipe_direction.dart';
 import '../../../preferences/enums/swipe_actions/archived_swipe_action.dart';
@@ -28,8 +27,9 @@ class _ArchivedDismissibleState extends ConsumerState<ArchivedDismissible> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final swipeActions = ref.watch(
-      preferencesProvider.select((preferences) => preferences.archivedSwipeActions),
+    final swipeActions = (
+      right: ArchivedSwipeAction.rightFromPreference(),
+      left: ArchivedSwipeAction.leftFromPreference(),
     );
     swipeAction = widget.direction == SwipeDirection.right ? swipeActions.right : swipeActions.left;
   }
