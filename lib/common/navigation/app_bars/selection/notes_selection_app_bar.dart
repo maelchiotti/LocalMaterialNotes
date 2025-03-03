@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 
 import '../../../../models/note/note.dart';
 import '../../../../models/note/note_status.dart';
@@ -9,6 +10,7 @@ import '../../../actions/notes/archive.dart';
 import '../../../actions/notes/copy.dart';
 import '../../../actions/notes/delete.dart';
 import '../../../actions/notes/labels.dart';
+import '../../../actions/notes/lock.dart';
 import '../../../actions/notes/pin.dart';
 import '../../../actions/notes/restore.dart';
 import '../../../actions/notes/select.dart';
@@ -17,6 +19,7 @@ import '../../../actions/notes/unarchive.dart';
 import '../../../constants/constants.dart';
 import '../../../constants/paddings.dart';
 import '../../../constants/separators.dart';
+import '../../../constants/sizes.dart';
 import '../../../preferences/preference_key.dart';
 import '../../../widgets/placeholders/error_placeholder.dart';
 import '../../../widgets/placeholders/loading_placeholder.dart';
@@ -49,6 +52,8 @@ class NotesSelectionAppBar extends ConsumerWidget {
         await shareNotes(notes: notes);
       case SelectionAvailableMenuOption.togglePin:
         await togglePinNotes(context, ref, notes: notes);
+      case SelectionAvailableMenuOption.toggleLock:
+        await toggleLockNotes(context, ref, notes: notes);
       case SelectionAvailableMenuOption.addLabels:
         await addLabels(context, ref, notes: notes);
       case SelectionAvailableMenuOption.archive:
@@ -101,6 +106,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
     int totalNotesCount,
   ) {
     final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
+    final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
 
     final allSelected = selectedNotes.length == totalNotesCount;
 
@@ -128,6 +134,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
               SelectionAvailableMenuOption.share.popupMenuItem(context),
               const PopupMenuDivider(),
               SelectionAvailableMenuOption.togglePin.popupMenuItem(context),
+              if (lockNote) SelectionAvailableMenuOption.toggleLock.popupMenuItem(context),
               if (enableLabels) SelectionAvailableMenuOption.addLabels.popupMenuItem(context),
               const PopupMenuDivider(),
               SelectionAvailableMenuOption.archive.popupMenuItem(context),
@@ -153,7 +160,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
             ]),
             onSelected: (menuOption) => onDeletedMenuOptionSelected(context, ref, selectedNotes, menuOption),
           ),
-        Padding(padding: Paddings.appBarActionsEnd),
+        Gap(Sizes.appBarEnd.size),
       ],
     );
   }

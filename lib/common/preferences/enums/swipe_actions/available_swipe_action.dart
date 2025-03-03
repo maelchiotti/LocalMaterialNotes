@@ -23,10 +23,10 @@ enum AvailableSwipeAction {
   /// Share the note.
   share(Icons.share),
 
-  /// Toggle the pin status of the note.
+  /// Toggle whether the note is pinned.
   ///
   /// Only used by the settings, then [pin] or [unpin] is used depending on the note.
-  togglePin(),
+  togglePin,
 
   /// Pin the note.
   pin(Icons.push_pin),
@@ -34,10 +34,10 @@ enum AvailableSwipeAction {
   /// Unpin the note.
   unpin(Icons.push_pin_outlined),
 
-  /// Toggle the lock status of the note.
+  /// Toggle whether the note is locked.
   ///
   /// Only used by the settings, then [lock] or [unlock] is used depending on the note.
-  toggleLock(),
+  toggleLock,
 
   /// Lock the note.
   lock(Icons.lock),

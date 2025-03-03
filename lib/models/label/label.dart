@@ -44,6 +44,9 @@ class Label extends Equatable implements Comparable<Label> {
   @Index()
   bool pinned;
 
+  /// Whether the label is locked.
+  bool locked;
+
   /// The color of the label.
   @ignore
   Color get color => Color(colorHex);
@@ -64,7 +67,8 @@ class Label extends Equatable implements Comparable<Label> {
     required this.name,
     required this.colorHex,
   })  : visible = true,
-        pinned = false;
+        pinned = false,
+        locked = true;
 
   /// Label from [json] data.
   factory Label.fromJson(Map<String, dynamic> json) => _$LabelFromJson(json);

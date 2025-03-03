@@ -445,6 +445,26 @@
   "@settings_show_labels_editor_description": {
     "description": "Description of the setting tile to show the labels in the editor."
   },
+  "settings_labels_section_behavior": "Behavior",
+  "@settings_labels_section_behavior": {
+    "description": "Title of the settings section regarding the behavior of the labels."
+  },
+  "settings_labels_swipe_action_right": "Right swipe action",
+  "@settings_labels_swipe_action_right": {
+    "description": "Title of the setting tile to choose which action to trigger when a right swapping a label tile."
+  },
+  "settings_labels_swipe_action_right_description": "Action to trigger when a right swipe is performed on a label tile",
+  "@settings_labels_swipe_action_right_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a label tile."
+  },
+  "settings_labels_swipe_action_left": "Left swipe action",
+  "@settings_labels_swipe_action_left": {
+    "description": "Title of the setting tile to choose which action to trigger when a left swapping a label tile."
+  },
+  "settings_labels_swipe_action_left_description": "Action to trigger when a left swipe is performed on a label tile",
+  "@settings_labels_swipe_action_left_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a label tile."
+  },
   "settings_backup": "Backup",
   "@settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
@@ -585,13 +605,21 @@
       }
     }
   },
-  "settings_note_lock_title": "Lock",
+  "settings_note_lock_title": "Note lock",
   "@settings_note_lock_title": {
-    "description": "Title of the setting tile to toggle whether the note is locked."
+    "description": "Title of the setting tile to toggle whether the notes can be locked."
   },
   "settings_note_lock_description": "Lock the note and require to authenticate with the device to view and edit it",
   "@settings_note_lock_description": {
-    "description": "Description of the setting tile to toggle whether the note is locked."
+    "description": "Description of the setting tile to toggle whether the notes can be locked."
+  },
+  "settings_label_lock_title": "Label lock",
+  "@settings_label_lock_title": {
+    "description": "Title of the setting tile to toggle whether the labels can be locked."
+  },
+  "settings_label_lock_description": "Lock the label and require to authenticate with the device to view and edit any note that contains it",
+  "@settings_label_lock_description": {
+    "description": "Description of the setting tile to toggle whether the labels can be locked."
   },
   "settings_note_lock_delay_title": "Lock delay",
   "@settings_note_lock_delay_title": {
@@ -805,9 +833,9 @@
   "@tooltip_toggle_checkbox": {
     "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
   },
-  "tooltip_toggle_pins": "Toggle pins",
-  "@tooltip_toggle_pins": {
-    "description": "Tooltip for the button to toggle the pining state of the selected notes in selection mode (the pinned notes will be unpinned, and the not pinned ones will be pinned)."
+  "tooltip_toggle_pin": "Toggle pin",
+  "@tooltip_toggle_pin": {
+    "description": "Tooltip for the button to toggle whether the selected notes are pinned."
   },
   "tooltip_fab_add_note": "Add a note",
   "@tooltip_fab_add_note": {
@@ -868,14 +896,6 @@
   "tooltip_reset": "Reset",
   "@tooltip_reset": {
     "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
-  },
-  "action_labels_toggle_pins": "Toggle pins",
-  "@action_labels_toggle_pins": {
-    "description": "Tooltip for the button to toggle the pin status of the selected labels."
-  },
-  "action_labels_toggle_visibility": "Toggle visibility",
-  "@action_labels_toggle_visibility": {
-    "description": "Tooltip for the button to toggle the visibility of the selected labels."
   },
   "dialog_add_link": "Add a link",
   "@dialog_add_link": {
@@ -1045,9 +1065,9 @@
   "@action_disabled": {
     "description": "Swipe action that is disabled in the settings."
   },
-  "action_toggle_pins": "Toggles pins",
-  "@action_toggle_pins": {
-    "description": "Menu action to toggles the pins of multiple notes."
+  "action_toggle_pin": "Toggle pins",
+  "@action_toggle_pin": {
+    "description": "Menu action to toggle whether the notes are pinned."
   },
   "action_pin_unpin": "Pin / Unpin",
   "@action_pin_unpin": {
@@ -1060,6 +1080,10 @@
   "action_unpin": "Unpin",
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
+  },
+  "action_toggle_lock": "Toggle lock",
+  "@action_toggle_lock": {
+    "description": "Menu action to toggle whether the notes are locked."
   },
   "action_lock_unlock": "Lock / Unlock",
   "@action_lock_unlock": {
@@ -1146,6 +1170,54 @@
   "menu_action_add_labels": "Add labels",
   "@menu_action_add_labels": {
     "description": "Menu action to add labels to multiple notes."
+  },
+  "action_labels_toggle_visibile": "Toggle visibility",
+  "@action_labels_toggle_visibile": {
+    "description": "Tooltip for the button to toggle whether the selected labels are visible."
+  },
+  "action_labels_show_hide": "Show / Hide",
+  "@action_labels_show_hide": {
+    "description": "Swipe action to show or hide a label."
+  },
+  "action_labels_show": "Show",
+  "@action_labels_show": {
+    "description": "Menu or swipe action to make label visible."
+  },
+  "action_labels_hide": "Hide",
+  "@action_labels_hide": {
+    "description": "Menu or swipe action to hide a label."
+  },
+  "action_labels_toggle_pins": "Toggle pins",
+  "@action_labels_toggle_pins": {
+    "description": "Menu action to toggle whether the selected labels are pinned."
+  },
+  "action_labels_pin_unpin": "Pin / Unpin",
+  "@action_labels_pin_unpin": {
+    "description": "Swipe action to pin or unpin a label."
+  },
+  "action_labels_pin": "Pin",
+  "@action_labels_pin": {
+    "description": "Menu or swipe action to pin a label."
+  },
+  "action_labels_unpin": "Unpin",
+  "@action_labels_unpin": {
+    "description": "Menu or swipe action to unpin a label."
+  },
+  "action_labels_toggle_lock": "Toggle lock",
+  "@action_labels_toggle_lock": {
+    "description": "Tooltip for the button to toggle whether the selected labels are locked."
+  },
+  "action_labels_lock_unlock": "Lock / Unlock",
+  "@action_labels_lock_unlock": {
+    "description": "Swipe action to lock or unlock a label."
+  },
+  "action_labels_lock": "Lock",
+  "@action_labels_lock": {
+    "description": "Menu or swipe action to lock a label."
+  },
+  "action_labels_unlock": "Unlock",
+  "@action_labels_unlock": {
+    "description": "Menu or swipe action to unlock a label."
   },
   "action_labels_edit": "Edit",
   "@action_labels_edit": {

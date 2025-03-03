@@ -27,7 +27,7 @@ class SnackBarUtils {
 
     context ??= rootNavigatorKey.currentContext!;
 
-    final availableNotesTypes = NoteType.availableTypes;
+    final availableNotesTypes = NoteType.available;
     final behavior = availableNotesTypes.length == 1 ? SnackBarBehavior.floating : SnackBarBehavior.fixed;
 
     ScaffoldMessenger.of(context).hideCurrentSnackBar();

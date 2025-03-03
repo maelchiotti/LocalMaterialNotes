@@ -4,16 +4,7 @@ import '../../../models/label/label.dart';
 import '../../../providers/labels/labels/labels_provider.dart';
 import 'select.dart';
 
-/// Toggles the visible status of the [label].
-///
-/// Returns `true` if the visible status of the [label] was toggled, `false` otherwise.
-Future<bool> toggleVisibleLabel(WidgetRef ref, {required Label label}) async {
-  await ref.read(labelsProvider.notifier).toggleVisible([label]);
-
-  return false;
-}
-
-/// Toggles the visible status of the [labels].
+/// Toggles whether the [labels] are visible.
 Future<void> toggleVisibleLabels(WidgetRef ref, {required List<Label> labels}) async {
   await ref.read(labelsProvider.notifier).toggleVisible(labels);
 

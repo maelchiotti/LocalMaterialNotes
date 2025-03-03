@@ -9,7 +9,7 @@ import '../../../providers/notifiers/notifiers.dart';
 import '../../preferences/preference_key.dart';
 import 'select.dart';
 
-/// Toggles the locked status of the [notes].
+/// Toggles whether the [notes] are locked.
 Future<bool> toggleLockNotes(
   BuildContext context,
   WidgetRef ref, {
@@ -18,10 +18,10 @@ Future<bool> toggleLockNotes(
 }) async {
   if (requireAuthentication) {
     final lockNotePreference = PreferenceKey.lockNote.preferenceOrDefault;
-    final wasLocked = notes.first.locked;
+    final anyLocked = notes.any((note) => note.locked);
 
     // If the lock note setting is enabled and the note was locked, then ask to authenticate before unlocking the note
-    if (lockNotePreference && wasLocked) {
+    if (lockNotePreference && anyLocked) {
       final bool authenticated = await LocalAuthentication().authenticate(localizedReason: 'toggle');
 
       if (!authenticated) {

@@ -1,28 +1,31 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:restart_app/restart_app.dart';
 
-import '../../common/constants/constants.dart';
 import '../../common/constants/sizes.dart';
 import '../../common/preferences/preference_key.dart';
 import '../../common/ui/snack_bar_utils.dart';
 import '../../common/widgets/asset.dart';
 import '../../l10n/app_localizations/app_localizations.g.dart';
+import '../../providers/notifiers/lock_notifier.dart';
 
 /// Lock page.
 class LockPage extends ConsumerStatefulWidget {
   /// Lock page shown when the application starts if the application lock is enabled in the settings.
   const LockPage({
     super.key,
+    required this.lockNotifier,
     required this.back,
     required this.description,
     required this.reason,
   });
+
+  /// The lock notifier to update when unlocking the page.
+  final LockNotifier lockNotifier;
 
   /// Whether to show an [AppBar] with a [BackButton].
   final bool back;
@@ -89,7 +92,7 @@ class _LockPageState extends ConsumerState<LockPage> with AfterLayoutMixin<LockP
       return;
     }
 
-    AppLock.of(context)?.didUnlock();
+    widget.lockNotifier.unlock();
   }
 
   @override
@@ -99,9 +102,7 @@ class _LockPageState extends ConsumerState<LockPage> with AfterLayoutMixin<LockP
     return Scaffold(
       appBar: widget.back
           ? AppBar(
-              leading: BackButton(
-                onPressed: () => Navigator.of(rootNavigatorKey.currentContext!).pop(),
-              ),
+              leading: BackButton(),
             )
           : null,
       body: SafeArea(

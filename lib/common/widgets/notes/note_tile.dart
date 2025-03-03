@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:substring_highlight/substring_highlight.dart';
 
 import '../../../models/note/note.dart';
 import '../../../models/note/note_status.dart';
-import '../../../navigation/navigator_utils.dart';
+import '../../../navigation/navigation_routes.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 import '../../actions/notes/select.dart';
@@ -18,6 +19,7 @@ import '../../preferences/enums/swipe_actions/archived_swipe_action.dart';
 import '../../preferences/enums/swipe_actions/available_swipe_action.dart';
 import '../../preferences/enums/swipe_actions/deleted_swipe_action.dart';
 import '../../preferences/preference_key.dart';
+import '../../types.dart';
 import 'dismissible/archived_dismissible.dart';
 import 'dismissible/available_dismissible.dart';
 import 'dismissible/deleted_dismissible.dart';
@@ -174,7 +176,13 @@ class _NoteTileState extends ConsumerState<NoteTile> {
         Navigator.pop(context);
       }
 
-      NavigatorUtils.pushNotesEditor(context, widget.note.deleted, false);
+      final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
+      if (lockNote) {
+        lockNoteNotifier.value = widget.note.locked || widget.note.hasLockedLabel;
+      }
+
+      final EditorPageExtra extra = (readOnly: widget.note.deleted, isNewNote: false);
+      context.pushNamed(NavigationRoute.editor.name, extra: extra);
     }
   }
 
@@ -187,18 +195,19 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
   @override
   Widget build(BuildContext context) {
-    final showTitlesOnly = ref.watch(preferencesProvider.select((preferences) => preferences.showTitlesOnly));
-    final showTilesBackground = ref.watch(preferencesProvider.select((preferences) => preferences.showTilesBackground));
-    final showNoteTypeIcon = ref.watch(preferencesProvider.select((preferences) => preferences.showNoteTypeIcon));
+    final showTitlesOnly = PreferenceKey.showTitlesOnly.preferenceOrDefault;
+    final showTilesBackground = PreferenceKey.showTilesBackground.preferenceOrDefault;
+    final showNoteTypeIcon = PreferenceKey.showNoteTypeIcon.preferenceOrDefault;
     final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.preferenceOrDefault;
-    final disableSubduedNoteContentPreview =
-        ref.watch(preferencesProvider.select((preferences) => preferences.disableSubduedNoteContentPreview));
+    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.preferenceOrDefault;
+    final maximumContentPreviewLines = PreferenceKey.maximumContentPreviewLines.preferenceOrDefault;
+
     final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
     final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.preferenceOrDefault;
-    final maximumContentPreviewLines =
-        ref.watch(preferencesProvider.select((preferences) => preferences.maximumContentPreviewLines));
 
-    final biggerTitles = ref.watch(preferencesProvider.select((preferences) => preferences.biggerTitles));
+    final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
+
+    final biggerTitles = PreferenceKey.biggerTitles.preferenceOrDefault;
 
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
 
@@ -306,7 +315,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                             size: Sizes.iconSmall.size,
                           ),
                         ],
-                        if (widget.note.locked) ...[
+                        if (lockNote && widget.note.locked) ...[
                           Gap(2),
                           Icon(
                             Icons.lock,
@@ -339,8 +348,9 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     switch (widget.note.status) {
       // Build the available dismissible widgets
       case NoteStatus.available:
-        final availableSwipeActionsPreferences = ref.watch(
-          preferencesProvider.select((preferences) => preferences.availableSwipeActions),
+        final availableSwipeActionsPreferences = (
+          right: PreferenceKey.swipeRightAction.preferenceOrDefault,
+          left: PreferenceKey.swipeLeftAction.preferenceOrDefault,
         );
         final availableSwipeActions = (
           right: AvailableSwipeAction.rightFromPreference(
@@ -392,8 +402,9 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
       // Build the archived dismissible widgets
       case NoteStatus.archived:
-        final archivedSwipeActions = ref.watch(
-          preferencesProvider.select((preferences) => preferences.archivedSwipeActions),
+        final archivedSwipeActions = (
+          right: ArchivedSwipeAction.rightFromPreference(),
+          left: ArchivedSwipeAction.leftFromPreference(),
         );
 
         dismissDirection = getArchivedDismissDirection(archivedSwipeActions.right, archivedSwipeActions.left);
@@ -421,8 +432,9 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
       // Build the deleted dismissible widgets
       case NoteStatus.deleted:
-        final deletedSwipeActions = ref.watch(
-          preferencesProvider.select((preferences) => preferences.deletedSwipeActions),
+        final deletedSwipeActions = (
+          right: DeletedSwipeAction.rightFromPreference(),
+          left: DeletedSwipeAction.leftFromPreference(),
         );
 
         dismissDirection = getDeletedDismissDirection(deletedSwipeActions.right, deletedSwipeActions.left);

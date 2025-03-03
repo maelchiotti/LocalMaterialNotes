@@ -8,6 +8,7 @@ import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
+import '../../../common/preferences/enums/swipe_actions/label_swipe_action.dart';
 import '../../../common/preferences/preference_key.dart';
 
 /// Settings related to the labels.
@@ -21,7 +22,7 @@ class SettingsLabelsPage extends StatefulWidget {
 
 class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
   /// Toggles whether to enable the labels.
-  Future<void> _toggleEnableLabels(bool toggled) async {
+  Future<void> toggleEnableLabels(bool toggled) async {
     await PreferenceKey.enableLabels.set(toggled);
 
     setState(() {});
@@ -33,15 +34,29 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
   }
 
   /// Toggles whether to show the labels list in the editor.
-  Future<void> _toggleShowLabelsListOnNoteTile(bool toggled) async {
+  Future<void> toggleShowLabelsListOnNoteTile(bool toggled) async {
     await PreferenceKey.showLabelsListOnNoteTile.set(toggled);
 
     setState(() {});
   }
 
   /// Toggles whether to show the labels list in the editor.
-  Future<void> _toggleShowLabelsListInEditor(bool toggled) async {
+  Future<void> toggleShowLabelsListInEditor(bool toggled) async {
     await PreferenceKey.showLabelsListInEditorPage.set(toggled);
+
+    setState(() {});
+  }
+
+  /// Sets the new label right [swipeAction].
+  Future<void> submittedLabelSwipeRightAction(LabelSwipeAction swipeAction) async {
+    await PreferenceKey.labelSwipeRightAction.set(swipeAction.name);
+
+    setState(() {});
+  }
+
+  /// Sets the new label left [swipeAction].
+  Future<void> submittedLabelSwipeLeftAction(LabelSwipeAction swipeAction) async {
+    await PreferenceKey.labelSwipeLeftAction.set(swipeAction.name);
 
     setState(() {});
   }
@@ -51,6 +66,15 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
     final isLabelsEnabled = PreferenceKey.enableLabels.preferenceOrDefault;
     final showLabelsListOnNoteTile = PreferenceKey.showLabelsListOnNoteTile.preferenceOrDefault;
     final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.preferenceOrDefault;
+
+    final labelSwipeActionsPreferences = (
+      right: PreferenceKey.labelSwipeRightAction.preferenceOrDefault,
+      left: PreferenceKey.labelSwipeLeftAction.preferenceOrDefault,
+    );
+    final labelSwipeActions = (
+      right: LabelSwipeAction.rightFromPreference(preference: labelSwipeActionsPreferences.right),
+      left: LabelSwipeAction.leftFromPreference(preference: labelSwipeActionsPreferences.left),
+    );
 
     return Scaffold(
       appBar: TopNavigation(
@@ -69,7 +93,7 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
                     title: l.settings_enable_labels,
                     description: l.settings_enable_labels_description,
                     toggled: isLabelsEnabled,
-                    onChanged: _toggleEnableLabels,
+                    onChanged: toggleEnableLabels,
                   ),
                 ],
               ),
@@ -83,7 +107,7 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
                     title: l.settings_show_labels_note_tile,
                     description: l.settings_show_labels_note_tile_description,
                     toggled: showLabelsListOnNoteTile,
-                    onChanged: _toggleShowLabelsListOnNoteTile,
+                    onChanged: toggleShowLabelsListOnNoteTile,
                   ),
                   SettingSwitchTile(
                     enabled: isLabelsEnabled,
@@ -91,7 +115,49 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
                     title: l.settings_show_labels_editor,
                     description: l.settings_show_labels_editor_description,
                     toggled: showLabelsListInEditorPage,
-                    onChanged: _toggleShowLabelsListInEditor,
+                    onChanged: toggleShowLabelsListInEditor,
+                  ),
+                ],
+              ),
+              SettingSection(
+                divider: null,
+                title: l.settings_labels_section_behavior,
+                tiles: [
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.swipe_right,
+                    title: l.settings_swipe_action_right,
+                    value: labelSwipeActions.right.title,
+                    description: l.settings_swipe_action_right_description,
+                    dialogTitle: l.settings_swipe_action_right,
+                    options: LabelSwipeAction.settings
+                        .map(
+                          (swipeAction) => (
+                            value: swipeAction,
+                            title: swipeAction.title,
+                            subtitle: null,
+                          ),
+                        )
+                        .toList(),
+                    initialOption: labelSwipeActions.right,
+                    onSubmitted: submittedLabelSwipeRightAction,
+                  ),
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.swipe_left,
+                    title: l.settings_swipe_action_left,
+                    value: labelSwipeActions.left.title,
+                    description: l.settings_swipe_action_left_description,
+                    dialogTitle: l.settings_swipe_action_left,
+                    options: LabelSwipeAction.settings
+                        .map(
+                          (swipeAction) => (
+                            value: swipeAction,
+                            title: swipeAction.title,
+                            subtitle: null,
+                          ),
+                        )
+                        .toList(),
+                    initialOption: labelSwipeActions.left,
+                    onSubmitted: submittedLabelSwipeLeftAction,
                   ),
                 ],
               ),

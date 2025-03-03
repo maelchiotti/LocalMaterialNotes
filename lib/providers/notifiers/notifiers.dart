@@ -4,6 +4,13 @@ import 'package:flutter/material.dart';
 import '../../common/preferences/preference_key.dart';
 import '../../models/label/label.dart';
 import 'current_note_notifier.dart';
+import 'lock_notifier.dart';
+
+/// Lock notifier for the application.
+final lockAppNotifier = LockNotifier(PreferenceKey.lockApp.preferenceOrDefault);
+
+/// Lock notifier for the note.
+final lockNoteNotifier = LockNotifier(false);
 
 /// Value of the current label filter on the notes.
 Label? currentLabelFilter;

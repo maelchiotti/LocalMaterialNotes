@@ -4,8 +4,8 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_checklist/checklist.dart';
+import 'package:flutter_fgbg/flutter_fgbg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'common/actions/labels/select.dart';
@@ -16,11 +16,9 @@ import 'common/extensions/locale_extension.dart';
 import 'common/preferences/preference_key.dart';
 import 'common/system_utils.dart';
 import 'common/ui/theme_utils.dart';
-import 'common/widgets/placeholders/error_placeholder.dart';
 import 'l10n/app_localizations/app_localizations.g.dart';
 import 'models/note/note_status.dart';
-import 'pages/lock/lock_page.dart';
-import 'pages/notes/notes_page.dart';
+import 'navigation/router.dart';
 import 'providers/labels/labels_list/labels_list_provider.dart';
 import 'providers/labels/labels_navigation/labels_navigation_provider.dart';
 import 'providers/notifiers/notifiers.dart';
@@ -88,6 +86,34 @@ class _AppState extends ConsumerState<App> {
     return intercept;
   }
 
+  /// Called when the application goes to the background or the foreground.
+  void onFGBGEvent(FGBGType value) {
+    switch (value) {
+      case FGBGType.background:
+        lastForegroundTimestamp = DateTime.timestamp();
+      case FGBGType.foreground:
+        final now = DateTime.timestamp();
+
+        final lockApp = PreferenceKey.lockApp.preferenceOrDefault;
+        if (lockApp) {
+          final lockAppDelay = Duration(seconds: PreferenceKey.lockAppDelay.preferenceOrDefault);
+          final timeSinceBackground = now.difference(lastForegroundTimestamp);
+          if (timeSinceBackground > lockAppDelay) {
+            lockAppNotifier.lock();
+          }
+        }
+
+        final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
+        if (lockNote) {
+          final lockNoteDelay = Duration(seconds: PreferenceKey.lockNoteDelay.preferenceOrDefault);
+          final timeSinceBackground = now.difference(lastForegroundTimestamp);
+          if (timeSinceBackground > lockNoteDelay) {
+            lockNoteNotifier.lock();
+          }
+        }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeMode = ref.watch(preferencesProvider.select((preferences) => preferences.themeMode));
@@ -98,8 +124,6 @@ class _AppState extends ConsumerState<App> {
     final useWhiteTextDarkMode = ref.watch(
       preferencesProvider.select((preferences) => preferences.useWhiteTextDarkMode),
     );
-    final lock = PreferenceKey.lockApp.preferenceOrDefault;
-    final lockDelay = PreferenceKey.lockAppDelay.preferenceOrDefault;
 
     return DynamicColorBuilder(
       builder: (lightDynamicColorScheme, darkDynamicColorScheme) {
@@ -120,51 +144,26 @@ class _AppState extends ConsumerState<App> {
           data: MediaQuery.of(context).copyWith(
             textScaler: TextScaler.linear(textScaling),
           ),
-          child: MaterialApp(
-            title: 'Material Notes',
-            home: NotesPage(label: null),
-            navigatorKey: rootNavigatorKey,
-            builder: (context, child) {
-              // Change the widget shown when a widget building fails
-              ErrorWidget.builder = (errorDetails) => ErrorPlaceholder.errorDetails(errorDetails);
-
-              if (child == null) {
-                throw Exception('MaterialApp child is null');
-              }
-
-              return Directionality(
-                textDirection: SystemUtils().deviceLocale.textDirection,
-                child: AppLock(
-                  initiallyEnabled: lock,
-                  initialBackgroundLockLatency: Duration(seconds: lockDelay),
-                  builder: (BuildContext context, Object? launchArg) {
-                    SystemUtils().setQuickActions(context, ref);
-
-                    return child;
-                  },
-                  lockScreenBuilder: (BuildContext context) {
-                    final l = AppLocalizations.of(context);
-
-                    return LockPage(
-                      back: false,
-                      description: l.lock_page_description_app,
-                      reason: l.lock_page_reason_app,
-                    );
-                  },
-                ),
-              );
-            },
-            theme: lightTheme,
-            darkTheme: darkTheme,
-            themeMode: themeMode,
-            localizationsDelegates: [
-              ...AppLocalizations.localizationsDelegates,
-              ChecklistLocalizations.delegate,
-              FleatherLocalizations.delegate,
-            ],
-            supportedLocales: SupportedLanguage.locales,
-            locale: SystemUtils().appLocale,
-            debugShowCheckedModeBanner: false,
+          child: Directionality(
+            textDirection: SystemUtils().deviceLocale.textDirection,
+            child: FGBGNotifier(
+              onEvent: onFGBGEvent,
+              child: MaterialApp.router(
+                title: 'Material Notes',
+                routerConfig: router,
+                theme: lightTheme,
+                darkTheme: darkTheme,
+                themeMode: themeMode,
+                localizationsDelegates: [
+                  ...AppLocalizations.localizationsDelegates,
+                  ChecklistLocalizations.delegate,
+                  FleatherLocalizations.delegate,
+                ],
+                supportedLocales: SupportedLanguage.locales,
+                locale: SystemUtils().appLocale,
+                debugShowCheckedModeBanner: false,
+              ),
+            ),
           ),
         );
       },

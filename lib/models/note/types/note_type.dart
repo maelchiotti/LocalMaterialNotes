@@ -36,10 +36,10 @@ enum NoteType {
   }
 
   /// The types that can be used when creating a new note from a shortcut.
-  static List<NoteType> get shareTypes => [plainText, markdown, richText];
+  static List<NoteType> get share => [plainText, markdown, richText];
 
   /// The list of types available when creating a new note from the notes list.
-  static List<NoteType> get availableTypes {
+  static List<NoteType> get available {
     final availableTypesPreference = PreferenceKey.availableNotesTypes.preferenceOrDefault;
 
     return availableTypesPreference.map((type) {
@@ -48,12 +48,12 @@ enum NoteType {
   }
 
   /// The list of types available when creating a new note from the notes list as a comma-separated [String].
-  static String get availableTypesAsString {
-    return availableTypes.map((type) => type.title).join(', ').capitalizeFirstLowerRest;
+  static String get availableAsString {
+    return available.map((type) => type.title).join(', ').capitalizeFirstLowerRest;
   }
 
   /// The default note type to used when creating a new note via a share action.
-  static NoteType get defaultShareType {
+  static NoteType get defaultShare {
     final defaultShortcutType = PreferenceKey.defaultShareNoteType.preferenceOrDefault;
 
     return values.byName(defaultShortcutType);

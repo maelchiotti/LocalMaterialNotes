@@ -4,11 +4,14 @@ import '../../../constants/constants.dart';
 
 /// Lists the options available for the selection menu on the labels.
 enum SelectionLabelsMenuOption {
-  /// Toggle whether the note is pinned.
+  /// Toggle whether the label is pinned.
   togglePin(Icons.push_pin),
 
-  /// Toggle whether the note is visible.
-  toggleVisibility(Icons.label),
+  /// Toggle whether the label is visible.
+  toggleVisible(Icons.label),
+
+  /// Toggle whether the label is locked.
+  toggleLock(Icons.label),
 
   /// Delete the note.
   ///
@@ -36,8 +39,10 @@ enum SelectionLabelsMenuOption {
     switch (this) {
       case togglePin:
         return l.action_labels_toggle_pins;
-      case toggleVisibility:
-        return l.action_labels_toggle_visibility;
+      case toggleVisible:
+        return l.action_labels_toggle_visibile;
+      case toggleLock:
+        return l.action_labels_toggle_lock;
       case delete:
         return l.action_delete;
     }

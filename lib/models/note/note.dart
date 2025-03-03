@@ -161,6 +161,10 @@ sealed class Note implements Comparable<Note> {
   @ignore
   int get labelsCount => labels.toList().length;
 
+  /// Whether at least one label is locked.
+  @ignore
+  bool get hasLockedLabel => labels.any((label) => label.locked);
+
   /// Notes are sorted according to:
   ///   1. Their pin state.
   ///   2. The sort method chosen by the user.

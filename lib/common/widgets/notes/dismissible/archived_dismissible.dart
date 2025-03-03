@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 
-import '../../../../providers/preferences/preferences_provider.dart';
 import '../../../constants/paddings.dart';
 import '../../../enums/swipe_direction.dart';
 import '../../../preferences/enums/swipe_actions/archived_swipe_action.dart';
 
 /// Archived note tile dismissible widget.
 class ArchivedDismissible extends ConsumerStatefulWidget {
-  /// Dismissible widget shown of the note tile of an archived note.
+  /// Dismissible widget shown on the note tile of an archived note.
   const ArchivedDismissible({
     super.key,
     required this.direction,
@@ -28,8 +28,9 @@ class _ArchivedDismissibleState extends ConsumerState<ArchivedDismissible> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final swipeActions = ref.watch(
-      preferencesProvider.select((preferences) => preferences.archivedSwipeActions),
+    final swipeActions = (
+      right: ArchivedSwipeAction.rightFromPreference(),
+      left: ArchivedSwipeAction.leftFromPreference(),
     );
     swipeAction = widget.direction == SwipeDirection.right ? swipeActions.right : swipeActions.left;
   }
@@ -47,7 +48,7 @@ class _ArchivedDismissibleState extends ConsumerState<ArchivedDismissible> {
           mainAxisAlignment: widget.direction == SwipeDirection.right ? MainAxisAlignment.start : MainAxisAlignment.end,
           children: [
             if (widget.direction == SwipeDirection.right) iconWidget else titleWidget,
-            Padding(padding: Paddings.horizontal(4)),
+            Gap(8),
             if (widget.direction == SwipeDirection.right) titleWidget else iconWidget,
           ],
         ),

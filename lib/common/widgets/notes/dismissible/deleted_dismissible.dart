@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 
-import '../../../../providers/preferences/preferences_provider.dart';
 import '../../../constants/paddings.dart';
 import '../../../enums/swipe_direction.dart';
 import '../../../preferences/enums/swipe_actions/deleted_swipe_action.dart';
 
 /// Deleted note tile dismissible widget.
 class DeletedDismissible extends ConsumerStatefulWidget {
-  /// Dismissible widget shown of the note tile of a deleted note.
+  /// Dismissible widget shown on the note tile of a deleted note.
   const DeletedDismissible({
     super.key,
     required this.direction,
@@ -28,8 +28,9 @@ class _DeletedDismissibleState extends ConsumerState<DeletedDismissible> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final swipeActions = ref.watch(
-      preferencesProvider.select((preferences) => preferences.deletedSwipeActions),
+    final swipeActions = (
+      right: DeletedSwipeAction.rightFromPreference(),
+      left: DeletedSwipeAction.leftFromPreference(),
     );
     swipeAction = widget.direction == SwipeDirection.right ? swipeActions.right : swipeActions.left;
   }
@@ -47,7 +48,7 @@ class _DeletedDismissibleState extends ConsumerState<DeletedDismissible> {
           mainAxisAlignment: widget.direction == SwipeDirection.right ? MainAxisAlignment.start : MainAxisAlignment.end,
           children: [
             if (widget.direction == SwipeDirection.right) iconWidget else titleWidget,
-            Padding(padding: Paddings.horizontal(4)),
+            Gap(8),
             if (widget.direction == SwipeDirection.right) titleWidget else iconWidget,
           ],
         ),

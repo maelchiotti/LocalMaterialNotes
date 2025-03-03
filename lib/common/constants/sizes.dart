@@ -14,8 +14,11 @@ enum Sizes {
   /// The size of the icon in a settings page when displaying the value of a setting.
   settingValueIconSize(16),
 
-  /// The size of the pin icon in a note tile.
+  /// The size of small icons.
   iconSmall(16),
+
+  /// The size of extra small icons.
+  iconExtraSmall(12),
 
   /// The size of the empty placeholder icon.
   placeholderIcon(64),
@@ -40,6 +43,9 @@ enum Sizes {
 
   /// Size of the color indicators.
   colorIndicator(40),
+
+  /// Padding at the end of the app bars.
+  appBarEnd(8),
   ;
 
   /// The size to apply.

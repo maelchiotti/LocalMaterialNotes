@@ -1,6 +1,7 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 
 import '../../../../models/note/note_status.dart';
 import '../../../../models/note/types/note_type.dart';
@@ -16,7 +17,7 @@ import '../../../actions/notes/restore.dart';
 import '../../../actions/notes/share.dart';
 import '../../../actions/notes/unarchive.dart';
 import '../../../constants/constants.dart';
-import '../../../constants/paddings.dart';
+import '../../../constants/sizes.dart';
 import '../../../preferences/preference_key.dart';
 import '../../../system_utils.dart';
 import '../../../widgets/placeholders/empty_placeholder.dart';
@@ -150,6 +151,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     final editorController = fleatherControllerNotifier.value;
     final showEditorModeButton = PreferenceKey.editorModeButton.preferenceOrDefault;
     final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
+    final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
 
     return ValueListenableBuilder(
       valueListenable: editorHasFocusNotifier,
@@ -158,9 +160,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
           valueListenable: isEditorInEditModeNotifier,
           builder: (context, isEditMode, child) {
             return AppBar(
-              leading: BackButton(
-                onPressed: () => Navigator.of(rootNavigatorKey.currentContext!).pop(),
-              ),
+              leading: BackButton(),
               actions: [
                 if (note.status == NoteStatus.available) ...[
                   if (note.type == NoteType.richText) ...[
@@ -210,8 +210,8 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                       const PopupMenuDivider(),
                       if (note.pinned) EditorAvailableMenuOption.unpin.popupMenuItem(context),
                       if (!note.pinned) EditorAvailableMenuOption.pin.popupMenuItem(context),
-                      if (note.locked) EditorAvailableMenuOption.unlock.popupMenuItem(context),
-                      if (!note.locked) EditorAvailableMenuOption.lock.popupMenuItem(context),
+                      if (lockNote && note.locked) EditorAvailableMenuOption.unlock.popupMenuItem(context),
+                      if (lockNote && !note.locked) EditorAvailableMenuOption.lock.popupMenuItem(context),
                       if (enableLabels) EditorAvailableMenuOption.selectLabels.popupMenuItem(context),
                       const PopupMenuDivider(),
                       EditorAvailableMenuOption.archive.popupMenuItem(context),
@@ -244,7 +244,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                     ]),
                     onSelected: onDeletedMenuOptionSelected,
                   ),
-                Padding(padding: Paddings.appBarActionsEnd),
+                Gap(Sizes.appBarEnd.size),
               ],
             );
           },

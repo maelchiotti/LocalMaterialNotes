@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../../models/label/label.dart';
@@ -11,7 +12,6 @@ import '../../../../providers/notifiers/notifiers.dart';
 import '../../../../providers/preferences/preferences_provider.dart';
 import '../../../../services/notes/notes_service.dart';
 import '../../../constants/constants.dart';
-import '../../../constants/paddings.dart';
 import '../../../preferences/enums/layout.dart';
 import '../../../preferences/enums/sort_method.dart';
 import '../../../preferences/preference_key.dart';
@@ -199,7 +199,7 @@ class NotesAppBar extends ConsumerWidget {
               error: (error, stackTrace) => const EmptyPlaceholder(),
               loading: () => searchButtonPlaceholder,
             ),
-        Padding(padding: Paddings.appBarActionsEnd),
+        Gap(8),
       ],
     );
   }

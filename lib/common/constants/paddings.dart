@@ -50,9 +50,6 @@ class Paddings {
   /// Padding for the separator of the app bar.
   static EdgeInsetsDirectional get appBarSeparator => const EdgeInsetsDirectional.symmetric(horizontal: 8);
 
-  /// Padding for the end of the app bar.
-  static EdgeInsetsDirectional get appBarActionsEnd => const EdgeInsetsDirectional.only(end: 8);
-
   /// Padding for the notes list when the notes tiles have a background.
   static EdgeInsetsDirectional get notesWithBackground => fab + const EdgeInsetsDirectional.symmetric(horizontal: 8);
 

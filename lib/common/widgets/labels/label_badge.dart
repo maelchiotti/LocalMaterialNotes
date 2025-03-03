@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 import '../../../models/label/label.dart';
+import '../../constants/sizes.dart';
 
 /// Badge of a label.
 class LabelBadge extends StatelessWidget {
@@ -16,10 +18,23 @@ class LabelBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Badge(
-      label: Text(
-        label.name,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
+      label: Row(
+        children: [
+          if (label.locked)
+            Icon(
+              Icons.lock_outline,
+              size: Sizes.iconExtraSmall.size,
+              color: label.getTextColor(context),
+            ),
+          Gap(4),
+          Expanded(
+            child: Text(
+              label.name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
       ),
       backgroundColor: label.color,
       textColor: label.getTextColor(context),

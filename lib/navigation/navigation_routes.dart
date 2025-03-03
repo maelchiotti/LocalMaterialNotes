@@ -1,56 +1,52 @@
-import 'package:flutter/cupertino.dart';
-
-import 'navigator_utils.dart';
+import '../models/label/label.dart';
 
 // ignore_for_file: public_member_api_docs
 
 /// Navigation routes of the application.
 enum NavigationRoute {
+  // Lock
+  lock('/lock'),
+
   // Notes
-  notes,
-  notesEditor,
+  notes('/notes'),
+  label('label'),
+  editor('/editor'),
 
   // Labels
-  manageLabels,
-  label,
+  labels('labels'),
 
   // Archives
-  archives,
+  archives('archives'),
 
   // Bin
-  bin,
+  bin('bin'),
 
   // Settings
-  settings,
-  settingsAppearance,
-  settingsNotesTiles,
-  settingsBehavior,
-  settingsNotesTypes,
-  settingsEditor,
-  settingsLabels,
-  settingsBackup,
-  settingsSecurity,
-  settingsAccessibility,
-  settingsHelp,
-  settingsAbout,
+  settings('/settings'),
+  settingsAppearance('appearance'),
+  settingsNotesTiles('notes-tiles'),
+  settingsBehavior('behavior'),
+  settingsNotesTypes('notes-types'),
+  settingsEditor('editor'),
+  settingsLabels('labels'),
+  settingsBackup('backup'),
+  settingsSecurity('security'),
+  settingsAccessibility('accessibility'),
+  settingsHelp('help'),
+  settingsAbout('about'),
   ;
 
-  /// Goes to this route.
-  void go(BuildContext context, Widget page) {
-    NavigatorUtils.go(context, name, page);
+  final String path;
+
+  const NavigationRoute(this.path);
+
+  static String getLabelRouteName(Label label) {
+    final uri = Uri.encodeComponent(label.name);
+
+    return 'label_$uri';
   }
 
-  /// Pushes this route.
-  void push(BuildContext context, Widget page) {
-    NavigatorUtils.push(context, name, page);
-  }
-
-  /// Pushes this route or goes to it depending on [shouldPush].
-  void pushOrGo(BuildContext context, bool shouldPush, Widget page) {
-    if (shouldPush) {
-      push(context, page);
-    } else {
-      go(context, page);
-    }
+  static String getLabelRoutePath(Label label) {
+    return '${notes.path}/${getLabelRouteName(label)}';
   }
 }

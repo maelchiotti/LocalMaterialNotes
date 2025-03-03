@@ -46,7 +46,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
   void _toggleBiggerTitles(bool toggled) {
     PreferenceKey.biggerTitles.set(toggled);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(biggerTitles: toggled));
+    setState(() {});
   }
 
   /// Toggles whether to use white text in dark mode.
@@ -60,19 +60,17 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
   Future<void> _toggleDisableSubduedNoteContentPreview(bool toggled) async {
     await PreferenceKey.disableSubduedNoteContentPreview.set(toggled);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(disableSubduedNoteContentPreview: toggled));
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     final textScaling = ref.watch(preferencesProvider.select((preferences) => preferences.textScaling));
-    final biggerTitles = ref.watch(preferencesProvider.select((preferences) => preferences.biggerTitles));
+    final biggerTitles = PreferenceKey.biggerTitles.preferenceOrDefault;
     final useWhiteTextDarkMode = ref.watch(
       preferencesProvider.select((preferences) => preferences.useWhiteTextDarkMode),
     );
-    final disableSubduedNoteContentPreview = ref.watch(
-      preferencesProvider.select((preferences) => preferences.disableSubduedNoteContentPreview),
-    );
+    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.preferenceOrDefault;
 
     final darkTheme = Theme.of(context).brightness == Brightness.dark;
 
