@@ -2,12 +2,12 @@ name: localmaterialnotes
 description: Simple, local, material design notes
 repository: https://github.com/maelchiotti/LocalMaterialNotes
 
-version: 1.12.1+26
+version: 2.0.0-dev2+27
 publish_to: none
 
 environment:
-  sdk: ">=3.6.1 <4.0.0"
-  flutter: 3.27.3
+  sdk: ">=3.7.0 <4.0.0"
+  flutter: 3.29.0
 
 dependencies:
   after_layout: ^1.2.0

@@ -76,7 +76,7 @@ enum PreferenceKey<T extends Object> {
   layout<String>('list', backup: false),
 
   // Database
-  databaseVersion<int>(1, backup: false),
+  databaseVersion<int>(3, backup: false),
   ;
 
   /// Default value of this preference.

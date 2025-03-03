@@ -46,17 +46,21 @@ sealed class Note implements Comparable<Note> {
 
   /// Whether the note is archived.
   @Index()
+  @JsonKey(defaultValue: false)
   bool archived;
 
   /// Whether the note is deleted.
   @Index()
+  @JsonKey(defaultValue: false)
   bool deleted;
 
   /// Whether the note is pinned.
   @Index()
+  @JsonKey(defaultValue: false)
   bool pinned;
 
   /// Whether the note is locked.
+  @JsonKey(defaultValue: false)
   bool locked;
 
   /// The date of creation of the note.
@@ -66,6 +70,7 @@ sealed class Note implements Comparable<Note> {
   DateTime editedTime;
 
   /// The title of the note.
+  @JsonKey(defaultValue: '')
   String title;
 
   /// The labels used to categorize the note.

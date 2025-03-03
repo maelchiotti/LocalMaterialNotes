@@ -5,9 +5,11 @@ part of '../note.dart';
 @Collection()
 class ChecklistNote extends Note {
   /// The list of checkboxes of this checklist.
+  @JsonKey(defaultValue: [])
   List<bool> checkboxes;
 
   /// The list of texts of this checklist.
+  @JsonKey(defaultValue: [])
   List<String> texts;
 
   /// A note with checklist content.
