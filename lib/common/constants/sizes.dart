@@ -43,6 +43,9 @@ enum Sizes {
 
   /// Size of the color indicators.
   colorIndicator(40),
+
+  /// Padding at the end of the app bars.
+  appBarEnd(8),
   ;
 
   /// The size to apply.

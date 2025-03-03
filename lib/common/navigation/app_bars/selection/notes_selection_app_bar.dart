@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 
 import '../../../../models/note/note.dart';
 import '../../../../models/note/note_status.dart';
@@ -18,6 +19,7 @@ import '../../../actions/notes/unarchive.dart';
 import '../../../constants/constants.dart';
 import '../../../constants/paddings.dart';
 import '../../../constants/separators.dart';
+import '../../../constants/sizes.dart';
 import '../../../preferences/preference_key.dart';
 import '../../../widgets/placeholders/error_placeholder.dart';
 import '../../../widgets/placeholders/loading_placeholder.dart';
@@ -158,7 +160,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
             ]),
             onSelected: (menuOption) => onDeletedMenuOptionSelected(context, ref, selectedNotes, menuOption),
           ),
-        Padding(padding: Paddings.appBarActionsEnd),
+        Gap(Sizes.appBarEnd.size),
       ],
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 
 import '../../../../models/label/label.dart';
 import '../../../../providers/labels/labels/labels_provider.dart';
@@ -11,6 +12,7 @@ import '../../../actions/labels/visible.dart';
 import '../../../constants/constants.dart';
 import '../../../constants/paddings.dart';
 import '../../../constants/separators.dart';
+import '../../../constants/sizes.dart';
 import '../../../preferences/preference_key.dart';
 import '../../../widgets/placeholders/error_placeholder.dart';
 import '../../../widgets/placeholders/loading_placeholder.dart';
@@ -87,7 +89,7 @@ class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
           },
           onSelected: (menuOption) => onLabelsMenuOptionSelected(context, ref, selectedLabels, menuOption),
         ),
-        Padding(padding: Paddings.appBarActionsEnd),
+        Gap(Sizes.appBarEnd.size),
       ],
     );
   }

@@ -1,6 +1,7 @@
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 
 import '../../../../models/note/note_status.dart';
 import '../../../../models/note/types/note_type.dart';
@@ -16,7 +17,7 @@ import '../../../actions/notes/restore.dart';
 import '../../../actions/notes/share.dart';
 import '../../../actions/notes/unarchive.dart';
 import '../../../constants/constants.dart';
-import '../../../constants/paddings.dart';
+import '../../../constants/sizes.dart';
 import '../../../preferences/preference_key.dart';
 import '../../../system_utils.dart';
 import '../../../widgets/placeholders/empty_placeholder.dart';
@@ -243,7 +244,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                     ]),
                     onSelected: onDeletedMenuOptionSelected,
                   ),
-                Padding(padding: Paddings.appBarActionsEnd),
+                Gap(Sizes.appBarEnd.size),
               ],
             );
           },
