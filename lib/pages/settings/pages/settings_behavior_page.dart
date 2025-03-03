@@ -23,49 +23,49 @@ class SettingsBehaviorPage extends ConsumerStatefulWidget {
 
 class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
   /// Asks the user to choose which confirmations should be shown.
-  Future<void> _submittedConfirmations(Confirmations confirmations) async {
+  Future<void> submittedConfirmations(Confirmations confirmations) async {
     await PreferenceKey.confirmations.set(confirmations.name);
 
     setState(() {});
   }
 
   /// Sets the new available right [swipeAction].
-  Future<void> _submittedAvailableSwipeRightAction(AvailableSwipeAction swipeAction) async {
+  Future<void> submittedAvailableSwipeRightAction(AvailableSwipeAction swipeAction) async {
     await PreferenceKey.swipeRightAction.set(swipeAction.name);
 
     setState(() {});
   }
 
   /// Sets the new available left [swipeAction].
-  Future<void> _submittedAvailableSwipeLeftAction(AvailableSwipeAction swipeAction) async {
+  Future<void> submittedAvailableSwipeLeftAction(AvailableSwipeAction swipeAction) async {
     await PreferenceKey.swipeLeftAction.set(swipeAction.name);
 
     setState(() {});
   }
 
   /// Sets the new archived right [swipeAction].
-  Future<void> _submittedArchivedSwipeRightAction(ArchivedSwipeAction swipeAction) async {
+  Future<void> submittedArchivedSwipeRightAction(ArchivedSwipeAction swipeAction) async {
     await PreferenceKey.archivedSwipeRightAction.set(swipeAction.name);
 
     setState(() {});
   }
 
   /// Sets the new archived left [swipeAction].
-  Future<void> _submittedArchivedSwipeLeftAction(ArchivedSwipeAction swipeAction) async {
+  Future<void> submittedArchivedSwipeLeftAction(ArchivedSwipeAction swipeAction) async {
     await PreferenceKey.archivedSwipeLeftAction.set(swipeAction.name);
 
     setState(() {});
   }
 
   /// Sets the new deleted right [swipeAction].
-  Future<void> _submittedDeletedSwipeRightAction(DeletedSwipeAction swipeAction) async {
+  Future<void> submittedDeletedSwipeRightAction(DeletedSwipeAction swipeAction) async {
     await PreferenceKey.binSwipeRightAction.set(swipeAction.name);
 
     setState(() {});
   }
 
   /// Sets the new deleted left [swipeAction].
-  Future<void> _submittedDeletedSwipeLeftAction(DeletedSwipeAction swipeAction) async {
+  Future<void> submittedDeletedSwipeLeftAction(DeletedSwipeAction swipeAction) async {
     await PreferenceKey.binSwipeLeftAction.set(swipeAction.name);
 
     setState(() {});
@@ -123,7 +123,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                         )
                         .toList(),
                     initialOption: confirmations,
-                    onSubmitted: _submittedConfirmations,
+                    onSubmitted: submittedConfirmations,
                   ),
                 ],
               ),
@@ -147,7 +147,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                         )
                         .toList(),
                     initialOption: availableSwipeActions.right,
-                    onSubmitted: _submittedAvailableSwipeRightAction,
+                    onSubmitted: submittedAvailableSwipeRightAction,
                   ),
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_left,
@@ -165,7 +165,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                         )
                         .toList(),
                     initialOption: availableSwipeActions.left,
-                    onSubmitted: _submittedAvailableSwipeLeftAction,
+                    onSubmitted: submittedAvailableSwipeLeftAction,
                   ),
                 ],
               ),
@@ -189,7 +189,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                         )
                         .toList(),
                     initialOption: archivedSwipeActions.right,
-                    onSubmitted: _submittedArchivedSwipeRightAction,
+                    onSubmitted: submittedArchivedSwipeRightAction,
                   ),
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_left,
@@ -207,7 +207,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                         )
                         .toList(),
                     initialOption: archivedSwipeActions.left,
-                    onSubmitted: _submittedArchivedSwipeLeftAction,
+                    onSubmitted: submittedArchivedSwipeLeftAction,
                   ),
                 ],
               ),
@@ -231,7 +231,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                         )
                         .toList(),
                     initialOption: deletedSwipeActions.right,
-                    onSubmitted: _submittedDeletedSwipeRightAction,
+                    onSubmitted: submittedDeletedSwipeRightAction,
                   ),
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_left,
@@ -249,7 +249,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                         )
                         .toList(),
                     initialOption: deletedSwipeActions.left,
-                    onSubmitted: _submittedDeletedSwipeLeftAction,
+                    onSubmitted: submittedDeletedSwipeLeftAction,
                   ),
                 ],
               ),

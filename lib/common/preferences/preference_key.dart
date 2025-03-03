@@ -45,6 +45,8 @@ enum PreferenceKey<T extends Object> {
   enableLabels<bool>(true),
   showLabelsListOnNoteTile<bool>(true),
   showLabelsListInEditorPage<bool>(true),
+  labelSwipeRightAction<String>('delete'),
+  labelSwipeLeftAction<String>('edit'),
 
   // Backup
   enableAutoExport<bool>(true),
