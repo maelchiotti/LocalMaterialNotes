@@ -9,11 +9,12 @@ import '../../../common/actions/labels/lock.dart';
 import '../../../common/actions/labels/pin.dart';
 import '../../../common/actions/labels/select.dart';
 import '../../../common/actions/labels/visible.dart';
-import '../../../common/constants/constants.dart';
-import '../../../common/constants/paddings.dart';
 import '../../../common/constants/sizes.dart';
+import '../../../common/enums/swipe_direction.dart';
 import '../../../common/extensions/color_extension.dart';
+import '../../../common/preferences/enums/swipe_actions/label_swipe_action.dart';
 import '../../../common/preferences/preference_key.dart';
+import '../../../common/widgets/labels/label_dismissible.dart';
 import '../../../models/label/label.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../enums/label_tile_menu_option.dart';
@@ -36,54 +37,20 @@ class LabelTile extends ConsumerStatefulWidget {
 class _LabelTileState extends ConsumerState<LabelTile> {
   Color? get getBackgroundColor => widget.label.selected ? Theme.of(context).colorScheme.secondaryContainer : null;
 
-  Widget get getDismissibleBackground {
-    return ColoredBox(
-      color: Theme.of(context).colorScheme.errorContainer,
-      child: Padding(
-        padding: Paddings.horizontal(16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Icon(
-              Icons.delete,
-              color: Theme.of(context).colorScheme.onErrorContainer,
-            ),
-            Padding(padding: Paddings.horizontal(4)),
-            Text(
-              l.action_labels_delete,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onErrorContainer,
-                  ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget get getDismissibleSecondaryBackground {
-    return ColoredBox(
-      color: Theme.of(context).colorScheme.secondaryContainer,
-      child: Padding(
-        padding: Paddings.horizontal(16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              l.action_labels_edit,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onSecondaryContainer,
-                  ),
-            ),
-            Padding(padding: Paddings.horizontal(4)),
-            Icon(
-              Icons.edit,
-              color: Theme.of(context).colorScheme.onSecondaryContainer,
-            ),
-          ],
-        ),
-      ),
-    );
+  /// Returns the dismiss direction of the label tile depending on the [rightSwipeAction] and the [leftSwipeAction].
+  DismissDirection getDismissDirection(
+    LabelSwipeAction rightSwipeAction,
+    LabelSwipeAction leftSwipeAction,
+  ) {
+    if (rightSwipeAction.isEnabled && leftSwipeAction.isEnabled) {
+      return DismissDirection.horizontal;
+    } else if (rightSwipeAction.isEnabled && leftSwipeAction.isDisabled) {
+      return DismissDirection.startToEnd;
+    } else if (leftSwipeAction.isEnabled && rightSwipeAction.isDisabled) {
+      return DismissDirection.endToStart;
+    } else {
+      return DismissDirection.none;
+    }
   }
 
   Future<void> onMenuOptionSelected(LabelTileMenuOption labelMenuOption) async {
@@ -104,18 +71,15 @@ class _LabelTileState extends ConsumerState<LabelTile> {
     }
   }
 
-  /// Executes the swipe action depending on the [direction] that was swiped.
-  Future<bool> onDismissed(DismissDirection direction) async {
-    switch (direction) {
-      case DismissDirection.startToEnd:
-        await deleteLabel(context, ref, label: widget.label);
-      case DismissDirection.endToStart:
-        await editLabel(context, ref, label: widget.label);
-      default:
-        throw Exception('Unexpected dismiss direction after swiping on label tile: $direction');
-    }
-
-    return false;
+  /// Returns the result of the [rightSwipeAction] or the [leftSwipeAction] on the label depending on the [direction].
+  Future<bool> onDismissed(
+    DismissDirection direction,
+    LabelSwipeAction rightSwipeAction,
+    LabelSwipeAction leftSwipeAction,
+  ) async {
+    return direction == DismissDirection.startToEnd
+        ? await rightSwipeAction.execute(context, ref, widget.label)
+        : await leftSwipeAction.execute(context, ref, widget.label);
   }
 
   /// Selects the label.
@@ -143,13 +107,72 @@ class _LabelTileState extends ConsumerState<LabelTile> {
       icon = Icons.label_outline;
     }
 
+    final labelSwipeActionsPreferences = (
+      right: PreferenceKey.labelSwipeRightAction.preferenceOrDefault,
+      left: PreferenceKey.labelSwipeLeftAction.preferenceOrDefault,
+    );
+    final labelSwipeActions = (
+      right: LabelSwipeAction.rightFromPreference(
+        preference: labelSwipeActionsPreferences.right,
+        label: widget.label,
+      ),
+      left: LabelSwipeAction.leftFromPreference(
+        preference: labelSwipeActionsPreferences.left,
+        label: widget.label,
+      ),
+    );
+
+    final dismissDirection = getDismissDirection(
+      labelSwipeActions.right,
+      labelSwipeActions.left,
+    );
+
+    Widget? mainDismissibleWidget;
+    Widget? secondaryDismissibleWidget;
+    switch (dismissDirection) {
+      case DismissDirection.horizontal:
+        mainDismissibleWidget = LabelDismissible(
+          key: UniqueKey(),
+          swipeAction: labelSwipeActions.right,
+          direction: SwipeDirection.right,
+        );
+        secondaryDismissibleWidget = LabelDismissible(
+          key: UniqueKey(),
+          swipeAction: labelSwipeActions.left,
+          direction: SwipeDirection.left,
+        );
+      case DismissDirection.startToEnd:
+        mainDismissibleWidget = LabelDismissible(
+          swipeAction: labelSwipeActions.right,
+          direction: SwipeDirection.right,
+        );
+      case DismissDirection.endToStart:
+        mainDismissibleWidget = LabelDismissible(
+          swipeAction: labelSwipeActions.left,
+          direction: SwipeDirection.left,
+        );
+      case DismissDirection.none:
+        break;
+      default:
+        throw Exception(
+          'Unexpected dismiss direction when building the label dismissible widgets: $dismissDirection',
+        );
+    }
+
+    confirmDismiss(DismissDirection direction) => onDismissed(
+          direction,
+          labelSwipeActions.right,
+          labelSwipeActions.left,
+        );
+
     // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
     // See https://github.com/flutter/flutter/issues/86584
     return Dismissible(
       key: Key(widget.label.name),
-      background: getDismissibleBackground,
-      secondaryBackground: getDismissibleSecondaryBackground,
-      confirmDismiss: onDismissed,
+      direction: dismissDirection,
+      background: mainDismissibleWidget,
+      secondaryBackground: secondaryDismissibleWidget,
+      confirmDismiss: confirmDismiss,
       child: Material(
         child: Ink(
           color: getBackgroundColor,

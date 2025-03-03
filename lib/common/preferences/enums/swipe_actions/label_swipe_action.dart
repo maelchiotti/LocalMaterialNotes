@@ -6,6 +6,7 @@ import '../../../actions/labels/delete.dart';
 import '../../../actions/labels/edit.dart';
 import '../../../actions/labels/lock.dart';
 import '../../../actions/labels/pin.dart';
+import '../../../actions/labels/visible.dart';
 import '../../../constants/constants.dart';
 import '../../../extensions/iterable_extension.dart';
 import '../../preference_key.dart';
@@ -74,6 +75,11 @@ enum LabelSwipeAction {
       swipeRightAction = LabelSwipeAction.values.byName(PreferenceKey.labelSwipeRightAction.defaultValue);
     }
 
+    // If the setting is to toggle the visibility, return the correct action
+    if (label != null && swipeRightAction == toggleVisible) {
+      return label.visible ? hide : show;
+    }
+
     // If the setting is to toggle the pin, return the correct action
     if (label != null && swipeRightAction == togglePin) {
       return label.pinned ? unpin : pin;
@@ -105,6 +111,11 @@ enum LabelSwipeAction {
       swipeLeftAction = LabelSwipeAction.values.byName(PreferenceKey.labelSwipeLeftAction.defaultValue);
     }
 
+    // If the setting is to toggle the visibility, return the correct action
+    if (label != null && swipeLeftAction == toggleVisible) {
+      return label.visible ? hide : show;
+    }
+
     // If the setting is to toggle the pin, return the correct action
     if (label != null && swipeLeftAction == togglePin) {
       return label.pinned ? unpin : pin;
@@ -127,6 +138,7 @@ enum LabelSwipeAction {
 
     return [
       disabled,
+      toggleVisible,
       togglePin,
       if (lockLabel) toggleLock,
       edit,
@@ -191,6 +203,10 @@ enum LabelSwipeAction {
   /// Executes the action corresponding to this swipe action on the [label].
   Future<bool> execute(BuildContext context, WidgetRef ref, Label label) async {
     switch (this) {
+      case show:
+      case hide:
+        await toggleVisibleLabels(ref, labels: [label]);
+        return false;
       case pin:
       case unpin:
         await togglePinLabels(ref, labels: [label]);
