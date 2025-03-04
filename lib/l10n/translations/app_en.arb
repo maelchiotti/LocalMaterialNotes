@@ -829,14 +829,6 @@
   "@tooltip_redo": {
     "description": "Tooltip for the button to redo the last action in the editor."
   },
-  "tooltip_toggle_checkbox": "Toggle checkbox",
-  "@tooltip_toggle_checkbox": {
-    "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
-  },
-  "tooltip_toggle_pin": "Toggle pin",
-  "@tooltip_toggle_pin": {
-    "description": "Tooltip for the button to toggle whether the selected notes are pinned."
-  },
   "tooltip_fab_add_note": "Add a note",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
