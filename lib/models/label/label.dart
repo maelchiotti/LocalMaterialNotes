@@ -22,30 +22,36 @@ class Label extends Equatable implements Comparable<Label> {
   @JsonKey(includeFromJson: false, includeToJson: false)
   Id id = Isar.autoIncrement;
 
+  /// The name of the label.
+  @Index(unique: true)
+  String name;
+
+  /// The hexadecimal value of the [color] of the label.
+  ///
+  /// The default value corresponds to the color `#2278e9`.
+  @JsonKey(defaultValue: 4280449257)
+  int colorHex;
+
+  /// Whether the label is visible.
+  @Index()
+  @JsonKey(defaultValue: true)
+  bool visible;
+
+  /// Whether the label is pinned.
+  @Index()
+  @JsonKey(defaultValue: false)
+  bool pinned;
+
+  /// Whether the label is locked.
+  @JsonKey(defaultValue: false)
+  bool locked;
+
   /// Whether the note is selected.
   ///
   /// Excluded from JSON because it's only needed temporarily during multi-selection.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @ignore
   bool selected = false;
-
-  /// The name of the label.
-  @Index(unique: true)
-  String name;
-
-  /// The hexadecimal value of the [color] of the label.
-  int colorHex;
-
-  /// Whether the label is visible.
-  @Index()
-  bool visible;
-
-  /// Whether the label is pinned.
-  @Index()
-  bool pinned;
-
-  /// Whether the label is locked.
-  bool locked;
 
   /// The color of the label.
   @ignore

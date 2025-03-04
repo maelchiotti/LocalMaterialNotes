@@ -34,10 +34,13 @@ test_all:
 
 
 # Build
-.PHONY: release
+.PHONY: release release_abi
 
 release:
 	flutter build apk --release
+
+release_abi:
+	flutter build apk --release --split-per-abi
 
 
 # Update

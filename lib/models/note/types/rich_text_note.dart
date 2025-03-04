@@ -5,9 +5,10 @@ part of '../note.dart';
 @Collection()
 class RichTextNote extends Note {
   /// Empty content in fleather data representation.
-  static const String _emptyContent = '[{"insert":"\\n"}]';
+  static const _emptyContent = '[{"insert":"\\n"}]';
 
   /// The content of the note, as rich text in the fleather representation.
+  @JsonKey(defaultValue: _emptyContent)
   String content;
 
   /// A note with rich text content.

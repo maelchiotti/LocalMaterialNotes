@@ -5,6 +5,7 @@ part of '../note.dart';
 @Collection()
 class MarkdownNote extends Note {
   /// The content of the note.
+  @JsonKey(defaultValue: '')
   String content;
 
   /// A note with plain text content.
