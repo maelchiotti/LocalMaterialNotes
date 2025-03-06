@@ -93,7 +93,7 @@ class ChecklistNote extends Note {
 
   @ignore
   @override
-  String get markdown {
+  String get contentAsMarkdown {
     StringBuffer plainText = StringBuffer();
 
     for (int index = 0; index < checkboxes.length; index++) {

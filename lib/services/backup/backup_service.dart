@@ -291,11 +291,15 @@ class ManualBackupService {
     final archive = Archive();
 
     for (final note in notes) {
-      final bytes = utf8.encode(note.markdown);
+      final markdown = '${note.labelsAsMarkdown}\n\n${note.contentAsMarkdown}';
+      final bytes = utf8.encode(markdown);
 
-      final filenameWithoutExtension = '${note.title} (${note.createdTime.filename})';
+      final filenameWithoutExtension = '${note.title} (${note.createdTime.filename})'.trim();
       final filenameWithoutExtensionSanitized = sanitizeFilename(filenameWithoutExtension);
-      final filename = 'test/$filenameWithoutExtensionSanitized.${MimeType.markdown.extension}';
+
+      final folder = note.status.title;
+
+      final filename = '$folder/$filenameWithoutExtensionSanitized.${MimeType.markdown.extension}';
 
       archive.addFile(ArchiveFile(filename, bytes.length, bytes));
     }

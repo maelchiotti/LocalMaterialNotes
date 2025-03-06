@@ -74,7 +74,7 @@ class RichTextNote extends Note {
 
   @ignore
   @override
-  String get markdown => parchmentMarkdownCodec.encode(document);
+  String get contentAsMarkdown => parchmentMarkdownCodec.encode(document);
 
   @ignore
   @override

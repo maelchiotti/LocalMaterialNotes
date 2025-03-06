@@ -117,7 +117,7 @@ sealed class Note implements Comparable<Note> {
 
   /// The content as markdown.
   @ignore
-  String get markdown;
+  String get contentAsMarkdown;
 
   /// The content for the preview of the notes tiles.
   @ignore
@@ -155,7 +155,7 @@ sealed class Note implements Comparable<Note> {
   @ignore
   List<Label> get labelsVisibleSorted => labels.toList().where((label) => label.visible).sorted();
 
-  /// Returns the names of the visible [labels] of the note as a sorted list.
+  /// The names of the visible [labels] of the note as a sorted list.
   @ignore
   List<String> get labelsNamesVisibleSorted => labelsVisibleSorted.map((label) => label.name).toList();
 
@@ -166,6 +166,10 @@ sealed class Note implements Comparable<Note> {
   /// Whether at least one label is locked.
   @ignore
   bool get hasLockedLabel => labels.any((label) => label.locked);
+
+  /// The [labels] as markdown.
+  @ignore
+  String get labelsAsMarkdown => '> ${labelsNamesVisibleSorted.join(', ')}';
 
   /// Notes are sorted according to:
   ///   1. Their pin state.

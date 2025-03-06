@@ -67,7 +67,7 @@ class MarkdownNote extends Note {
 
   @ignore
   @override
-  String get markdown => content;
+  String get contentAsMarkdown => content;
 
   @ignore
   @override
