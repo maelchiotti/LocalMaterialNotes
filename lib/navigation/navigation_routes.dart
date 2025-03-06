@@ -33,8 +33,7 @@ enum NavigationRoute {
   settingsSecurity('security'),
   settingsAccessibility('accessibility'),
   settingsHelp('help'),
-  settingsAbout('about'),
-  ;
+  settingsAbout('about');
 
   final String path;
 

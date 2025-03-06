@@ -16,24 +16,12 @@ class SettingsHelpPage extends StatelessWidget {
 
   /// Opens the application's GitHub issues.
   void openGitHubIssues() {
-    launchUrl(
-      Uri(
-        scheme: 'https',
-        host: 'github.com',
-        path: 'maelchiotti/LocalMaterialNotes/issues',
-      ),
-    );
+    launchUrl(Uri(scheme: 'https', host: 'github.com', path: 'maelchiotti/LocalMaterialNotes/issues'));
   }
 
   /// Opens the application's GitHub discussions.
   void openGitHubDiscussions() {
-    launchUrl(
-      Uri(
-        scheme: 'https',
-        host: 'github.com',
-        path: 'maelchiotti/LocalMaterialNotes/discussions',
-      ),
-    );
+    launchUrl(Uri(scheme: 'https', host: 'github.com', path: 'maelchiotti/LocalMaterialNotes/discussions'));
   }
 
   /// Sends an email to the contact email with some basic information.
@@ -71,9 +59,7 @@ class SettingsHelpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TopNavigation(
-        appbar: BasicAppBar(title: l.navigation_settings_help),
-      ),
+      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_help)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,

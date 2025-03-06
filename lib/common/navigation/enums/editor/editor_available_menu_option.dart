@@ -32,8 +32,7 @@ enum EditorAvailableMenuOption {
   delete(Icons.delete),
 
   /// Show information about the note.
-  about(Icons.info),
-  ;
+  about(Icons.info);
 
   /// Icon of the menu option.
   final IconData icon;
@@ -69,12 +68,6 @@ enum EditorAvailableMenuOption {
 
   /// Returns the [PopupMenuItem] widget of the menu option.
   PopupMenuItem<EditorAvailableMenuOption> popupMenuItem(BuildContext context) {
-    return PopupMenuItem(
-      value: this,
-      child: ListTile(
-        leading: Icon(icon),
-        title: Text(title),
-      ),
-    );
+    return PopupMenuItem(value: this, child: ListTile(leading: Icon(icon), title: Text(title)));
   }
 }

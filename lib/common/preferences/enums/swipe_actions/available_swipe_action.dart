@@ -49,8 +49,7 @@ enum AvailableSwipeAction {
   archive(Icons.archive),
 
   /// Delete the note.
-  delete(Icons.delete),
-  ;
+  delete(Icons.delete);
 
   /// Icon of the swipe action.
   final IconData? icon;
@@ -91,9 +90,7 @@ enum AvailableSwipeAction {
   ///
   /// If [note] is not `null`, it is used to determine which action to return if applicable.
   factory AvailableSwipeAction.leftFromPreference({required String? preference, Note? note}) {
-    var swipeLeftAction = AvailableSwipeAction.values.byNameOrNull(
-      PreferenceKey.swipeLeftAction.preference,
-    );
+    var swipeLeftAction = AvailableSwipeAction.values.byNameOrNull(PreferenceKey.swipeLeftAction.preference);
 
     // Reset the malformed preference to its default value
     if (swipeLeftAction == null) {
@@ -122,15 +119,7 @@ enum AvailableSwipeAction {
   static List<AvailableSwipeAction> get settings {
     final bool lockNote = PreferenceKey.lockNote.preferenceOrDefault;
 
-    return [
-      disabled,
-      copy,
-      share,
-      togglePin,
-      if (lockNote) toggleLock,
-      archive,
-      delete,
-    ];
+    return [disabled, copy, share, togglePin, if (lockNote) toggleLock, archive, delete];
   }
 
   /// Returns whether the swipe action is enabled.
@@ -169,19 +158,16 @@ enum AvailableSwipeAction {
 
   /// Icon of the swipe action to display.
   Widget iconWidget(BuildContext context) {
-    return Icon(
-      icon,
-      color: Theme.of(context).colorScheme.onTertiaryContainer,
-    );
+    return Icon(icon, color: Theme.of(context).colorScheme.onTertiaryContainer);
   }
 
   /// Text of the swipe action to display.
   Widget titleWidget(BuildContext context) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onTertiaryContainer,
-          ),
+      style: Theme.of(
+        context,
+      ).textTheme.titleMedium?.copyWith(color: Theme.of(context).colorScheme.onTertiaryContainer),
     );
   }
 

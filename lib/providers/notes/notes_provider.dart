@@ -25,9 +25,10 @@ class Notes extends _$Notes {
     try {
       switch (status) {
         case NoteStatus.available:
-          notes = label != null
-              ? await _notesService.getAllAvailableFilteredByLabel(label: label!)
-              : await _notesService.getAllAvailable();
+          notes =
+              label != null
+                  ? await _notesService.getAllAvailableFilteredByLabel(label: label!)
+                  : await _notesService.getAllAvailable();
         case NoteStatus.archived:
           notes = await _notesService.getAllArchived();
         case NoteStatus.deleted:
@@ -120,9 +121,10 @@ class Notes extends _$Notes {
       return false;
     }
 
-    final notes = (state.value ?? [])
-      ..removeWhere((note) => notesWhereToAdd.contains(note))
-      ..addAll(notesWhereToAdd);
+    final notes =
+        (state.value ?? [])
+          ..removeWhere((note) => notesWhereToAdd.contains(note))
+          ..addAll(notesWhereToAdd);
 
     state = AsyncData(notes.sorted());
     _updateUnlabeledProvider();
@@ -146,9 +148,10 @@ class Notes extends _$Notes {
       return false;
     }
 
-    final notes = (state.value ?? [])
-      ..removeWhere((note) => notesToToggle.contains(note))
-      ..addAll(notesToToggle);
+    final notes =
+        (state.value ?? [])
+          ..removeWhere((note) => notesToToggle.contains(note))
+          ..addAll(notesToToggle);
 
     state = AsyncData(notes.sorted());
     _updateUnlabeledProvider();
@@ -175,9 +178,10 @@ class Notes extends _$Notes {
       return false;
     }
 
-    final notes = (state.value ?? [])
-      ..removeWhere((note) => notesToToggle.contains(note))
-      ..addAll(notesToToggle);
+    final notes =
+        (state.value ?? [])
+          ..removeWhere((note) => notesToToggle.contains(note))
+          ..addAll(notesToToggle);
 
     state = AsyncData(notes.sorted());
     _updateUnlabeledProvider();
@@ -262,12 +266,7 @@ class Notes extends _$Notes {
       return false;
     }
 
-    state = AsyncData(
-      (state.value ?? [])
-        ..removeWhere(
-          (note) => notesToPermanentlyDelete.contains(note),
-        ),
-    );
+    state = AsyncData((state.value ?? [])..removeWhere((note) => notesToPermanentlyDelete.contains(note)));
 
     return true;
   }
@@ -299,9 +298,7 @@ class Notes extends _$Notes {
       logger.e(exception.toString(), exception, stackTrace);
     }
 
-    state = AsyncData(
-      (state.value ?? [])..removeWhere((note) => emptyNotes.contains(note)),
-    );
+    state = AsyncData((state.value ?? [])..removeWhere((note) => emptyNotes.contains(note)));
   }
 
   /// Toggles whether the [noteToToggle] is selected.
@@ -315,10 +312,9 @@ class Notes extends _$Notes {
   /// Sets whether all the notes are selected to [selected].
   void setSelectAll(bool selected) {
     state = AsyncData([
-      ...?state.value
-        ?..forEach((note) {
-          note.selected = selected;
-        }),
+      ...?state.value?..forEach((note) {
+        note.selected = selected;
+      }),
     ]);
   }
 

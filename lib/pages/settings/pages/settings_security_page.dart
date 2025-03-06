@@ -115,9 +115,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
     final isSystemAuthenticationAvailable = SystemUtils().isSystemAuthenticationAvailable;
 
     return Scaffold(
-      appBar: TopNavigation(
-        appbar: BasicAppBar(title: l.navigation_settings_security),
-      ),
+      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_security)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,

@@ -34,12 +34,12 @@ class NoteIndex {
 
   /// Creates a [NoteIndex] from a [Note].
   factory NoteIndex.fromNote(Note note) => NoteIndex(
-        id: note.isarId,
-        deleted: note.deleted,
-        title: note.title,
-        content: note.plainText,
-        labels: note.labelsNamesVisibleSorted,
-      );
+    id: note.isarId,
+    deleted: note.deleted,
+    title: note.title,
+    content: note.plainText,
+    labels: note.labelsNamesVisibleSorted,
+  );
 
   /// Returns this [NoteIndex] as JSON.
   Map<String, dynamic> toJson() => _$NoteIndexToJson(this);

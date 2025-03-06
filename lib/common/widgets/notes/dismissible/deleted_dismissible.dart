@@ -9,10 +9,7 @@ import '../../../preferences/enums/swipe_actions/deleted_swipe_action.dart';
 /// Deleted note tile dismissible widget.
 class DeletedDismissible extends ConsumerStatefulWidget {
   /// Dismissible widget shown on the note tile of a deleted note.
-  const DeletedDismissible({
-    super.key,
-    required this.direction,
-  });
+  const DeletedDismissible({super.key, required this.direction});
 
   /// Direction in which the widget can be swiped.
   final SwipeDirection direction;

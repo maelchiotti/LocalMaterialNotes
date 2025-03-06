@@ -30,10 +30,7 @@ import '../../enums/notes/selection_deleted_menu_option.dart';
 /// Selection mode app bar.
 class NotesSelectionAppBar extends ConsumerWidget {
   /// App bar shown when the notes are being selected, in the notes list or in the bin.
-  const NotesSelectionAppBar({
-    super.key,
-    required this.notesStatus,
-  });
+  const NotesSelectionAppBar({super.key, required this.notesStatus});
 
   /// The status of the notes in the page.
   final NoteStatus notesStatus;
@@ -99,65 +96,60 @@ class NotesSelectionAppBar extends ConsumerWidget {
   ///
   /// The title and the behavior of the buttons can change depending on the difference between
   /// the length of the [selectedNotes] and the [totalNotesCount].
-  AppBar buildAppBar(
-    BuildContext context,
-    WidgetRef ref,
-    List<Note> selectedNotes,
-    int totalNotesCount,
-  ) {
+  AppBar buildAppBar(BuildContext context, WidgetRef ref, List<Note> selectedNotes, int totalNotesCount) {
     final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
     final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
 
     final allSelected = selectedNotes.length == totalNotesCount;
 
     return AppBar(
-      leading: BackButton(
-        onPressed: () => exitNotesSelectionMode(context, ref, notesStatus: notesStatus),
-      ),
+      leading: BackButton(onPressed: () => exitNotesSelectionMode(context, ref, notesStatus: notesStatus)),
       title: Text('${selectedNotes.length}'),
       actions: [
         IconButton(
           icon: Icon(allSelected ? Icons.deselect : Icons.select_all),
           tooltip: allSelected ? l.tooltip_unselect_all : fl?.selectAllButtonLabel ?? 'Select all',
-          onPressed: () => allSelected
-              ? unselectAllNotes(context, ref, notesStatus: notesStatus)
-              : selectAllNotes(context, ref, notesStatus: notesStatus),
+          onPressed:
+              () =>
+                  allSelected
+                      ? unselectAllNotes(context, ref, notesStatus: notesStatus)
+                      : selectAllNotes(context, ref, notesStatus: notesStatus),
         ),
-        Padding(
-          padding: Paddings.appBarSeparator,
-          child: Separator.divider1indent16.vertical,
-        ),
+        Padding(padding: Paddings.appBarSeparator, child: Separator.divider1indent16.vertical),
         if (notesStatus == NoteStatus.available)
           PopupMenuButton<SelectionAvailableMenuOption>(
-            itemBuilder: (context) => ([
-              SelectionAvailableMenuOption.copy.popupMenuItem(context),
-              SelectionAvailableMenuOption.share.popupMenuItem(context),
-              const PopupMenuDivider(),
-              SelectionAvailableMenuOption.togglePin.popupMenuItem(context),
-              if (lockNote) SelectionAvailableMenuOption.toggleLock.popupMenuItem(context),
-              if (enableLabels) SelectionAvailableMenuOption.addLabels.popupMenuItem(context),
-              const PopupMenuDivider(),
-              SelectionAvailableMenuOption.archive.popupMenuItem(context),
-              SelectionAvailableMenuOption.delete.popupMenuItem(context),
-            ]),
+            itemBuilder:
+                (context) => ([
+                  SelectionAvailableMenuOption.copy.popupMenuItem(context),
+                  SelectionAvailableMenuOption.share.popupMenuItem(context),
+                  const PopupMenuDivider(),
+                  SelectionAvailableMenuOption.togglePin.popupMenuItem(context),
+                  if (lockNote) SelectionAvailableMenuOption.toggleLock.popupMenuItem(context),
+                  if (enableLabels) SelectionAvailableMenuOption.addLabels.popupMenuItem(context),
+                  const PopupMenuDivider(),
+                  SelectionAvailableMenuOption.archive.popupMenuItem(context),
+                  SelectionAvailableMenuOption.delete.popupMenuItem(context),
+                ]),
             onSelected: (menuOption) => onAvailableMenuOptionSelected(context, ref, selectedNotes, menuOption),
           ),
         if (notesStatus == NoteStatus.archived)
           PopupMenuButton<SelectionArchivedMenuOption>(
-            itemBuilder: (context) => ([
-              SelectionArchivedMenuOption.copy.popupMenuItem(context),
-              SelectionArchivedMenuOption.share.popupMenuItem(context),
-              const PopupMenuDivider(),
-              SelectionArchivedMenuOption.unarchive.popupMenuItem(context),
-            ]),
+            itemBuilder:
+                (context) => ([
+                  SelectionArchivedMenuOption.copy.popupMenuItem(context),
+                  SelectionArchivedMenuOption.share.popupMenuItem(context),
+                  const PopupMenuDivider(),
+                  SelectionArchivedMenuOption.unarchive.popupMenuItem(context),
+                ]),
             onSelected: (menuOption) => onArchivedMenuOptionSelected(context, ref, selectedNotes, menuOption),
           ),
         if (notesStatus == NoteStatus.deleted)
           PopupMenuButton<SelectionDeletedMenuOption>(
-            itemBuilder: (context) => ([
-              SelectionDeletedMenuOption.restore.popupMenuItem(context),
-              SelectionDeletedMenuOption.deletePermanently.popupMenuItem(context),
-            ]),
+            itemBuilder:
+                (context) => ([
+                  SelectionDeletedMenuOption.restore.popupMenuItem(context),
+                  SelectionDeletedMenuOption.deletePermanently.popupMenuItem(context),
+                ]),
             onSelected: (menuOption) => onDeletedMenuOptionSelected(context, ref, selectedNotes, menuOption),
           ),
         Gap(Sizes.appBarEnd.size),
@@ -167,14 +159,11 @@ class NotesSelectionAppBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(notesProvider(status: notesStatus, label: currentLabelFilter)).when(
+    return ref
+        .watch(notesProvider(status: notesStatus, label: currentLabelFilter))
+        .when(
           data: (notes) {
-            return buildAppBar(
-              context,
-              ref,
-              notes.where((note) => note.selected).toList(),
-              notes.length,
-            );
+            return buildAppBar(context, ref, notes.where((note) => note.selected).toList(), notes.length);
           },
           error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
           loading: () => const LoadingPlaceholder(),

@@ -22,12 +22,7 @@ Future<bool> deleteNote(
   bool pop = false,
   bool cancel = true,
 }) async {
-  if (!await askForConfirmation(
-    context,
-    l.dialog_delete,
-    l.dialog_delete_body(1),
-    l.dialog_delete,
-  )) {
+  if (!await askForConfirmation(context, l.dialog_delete, l.dialog_delete_body(1), l.dialog_delete)) {
     return false;
   }
 
@@ -47,9 +42,11 @@ Future<bool> deleteNote(
   if (succeeded && cancel) {
     SnackBarUtils().show(
       text: l.snack_bar_deleted(1),
-      onCancel: (globalRef) async => wasArchived
-          ? await archiveNote(context, globalRef, note: note, cancel: false)
-          : await restoreNote(context, globalRef, note: note, cancel: false),
+      onCancel:
+          (globalRef) async =>
+              wasArchived
+                  ? await archiveNote(context, globalRef, note: note, cancel: false)
+                  : await restoreNote(context, globalRef, note: note, cancel: false),
     );
   }
 
@@ -59,18 +56,8 @@ Future<bool> deleteNote(
 /// Deletes the [notes].
 ///
 /// Returns `true` if the [notes] were deleted, `false` otherwise.
-Future<bool> deleteNotes(
-  BuildContext context,
-  WidgetRef ref, {
-  required List<Note> notes,
-  bool cancel = true,
-}) async {
-  if (!await askForConfirmation(
-    context,
-    l.dialog_delete,
-    l.dialog_delete_body(notes.length),
-    l.dialog_delete,
-  )) {
+Future<bool> deleteNotes(BuildContext context, WidgetRef ref, {required List<Note> notes, bool cancel = true}) async {
+  if (!await askForConfirmation(context, l.dialog_delete, l.dialog_delete_body(notes.length), l.dialog_delete)) {
     return false;
   }
 
@@ -87,9 +74,11 @@ Future<bool> deleteNotes(
   if (succeeded && cancel) {
     SnackBarUtils().show(
       text: l.snack_bar_deleted(notes.length),
-      onCancel: (globalRef) async => wereArchived
-          ? await archiveNotes(context, ref, notes: notes)
-          : await restoreNotes(context, globalRef, notes: notes, cancel: false),
+      onCancel:
+          (globalRef) async =>
+              wereArchived
+                  ? await archiveNotes(context, ref, notes: notes)
+                  : await restoreNotes(context, globalRef, notes: notes, cancel: false),
     );
   }
 

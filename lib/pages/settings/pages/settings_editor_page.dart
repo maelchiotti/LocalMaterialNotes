@@ -45,9 +45,7 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
     final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.preferenceOrDefault;
 
     return Scaffold(
-      appBar: TopNavigation(
-        appbar: BasicAppBar(title: l.navigation_settings_editor),
-      ),
+      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_editor)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,

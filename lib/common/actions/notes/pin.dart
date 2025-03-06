@@ -9,8 +9,9 @@ import 'select.dart';
 
 /// Toggles whether the [notes] are pinned.
 Future<bool> togglePinNotes(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
-  final toggled =
-      await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).togglePin(notes);
+  final toggled = await ref
+      .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
+      .togglePin(notes);
 
   if (context.mounted && notes.length > 1) {
     exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.available);

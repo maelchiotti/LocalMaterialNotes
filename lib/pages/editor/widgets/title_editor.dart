@@ -12,12 +12,7 @@ import '../../../providers/notifiers/notifiers.dart';
 /// Title editor.
 class TitleEditor extends ConsumerStatefulWidget {
   /// Text field allowing to edit the title of a note.
-  const TitleEditor({
-    super.key,
-    required this.readOnly,
-    required this.isNewNote,
-    required this.onSubmitted,
-  });
+  const TitleEditor({super.key, required this.readOnly, required this.isNewNote, required this.onSubmitted});
 
   /// Whether the page is read only.
   final bool readOnly;
@@ -67,9 +62,7 @@ class _TitleEditorState extends ConsumerState<TitleEditor> {
             textCapitalization: TextCapitalization.sentences,
             textInputAction: TextInputAction.next,
             style: titleStyle,
-            decoration: InputDecoration.collapsed(
-              hintText: l.hint_title,
-            ),
+            decoration: InputDecoration.collapsed(hintText: l.hint_title),
             controller: titleController,
             onChanged: (text) => onChanged(currentNote, text),
             onSubmitted: (_) => widget.onSubmitted,

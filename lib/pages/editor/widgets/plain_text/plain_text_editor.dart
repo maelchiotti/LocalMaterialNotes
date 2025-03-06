@@ -70,9 +70,7 @@ class _PlainTextEditorState extends ConsumerState<PlainTextEditor> {
           maxLines: null,
           expands: true,
           decoration: InputDecoration.collapsed(hintText: l.hint_content),
-          spellCheckConfiguration: SpellCheckConfiguration(
-            spellCheckService: DefaultSpellCheckService(),
-          ),
+          spellCheckConfiguration: SpellCheckConfiguration(spellCheckService: DefaultSpellCheckService()),
           onChanged: onChanged,
         ),
       ),

@@ -30,11 +30,7 @@ import 'note_tile_labels_list.dart';
 /// A custom `ListTile` widget is created because the default one doesn't allow not displaying a title.
 class NoteTile extends ConsumerStatefulWidget {
   /// Note tile shown in the notes list or the bin.
-  const NoteTile({
-    super.key,
-    required this.note,
-    this.search,
-  });
+  const NoteTile({super.key, required this.note, this.search});
 
   /// Note to display.
   final Note note;
@@ -113,10 +109,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
   /// Returns the dismiss direction of the note tile for a deleted note
   /// depending on the [rightSwipeAction] and the [leftSwipeAction].
-  DismissDirection getDeletedDismissDirection(
-    DeletedSwipeAction rightSwipeAction,
-    DeletedSwipeAction leftSwipeAction,
-  ) {
+  DismissDirection getDeletedDismissDirection(DeletedSwipeAction rightSwipeAction, DeletedSwipeAction leftSwipeAction) {
     if (rightSwipeAction.isEnabled && leftSwipeAction.isEnabled) {
       return DismissDirection.horizontal;
     } else if (rightSwipeAction.isEnabled && leftSwipeAction.isDisabled) {
@@ -214,10 +207,10 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     final showContent =
         // Do not show only the title and the preview content is not empty
         (!showTitlesOnly && !widget.note.isContentPreviewEmpty) ||
-            // Show only the title and the title is not empty
-            (showTitlesOnly && widget.note.isTitleEmpty) ||
-            // In search view, do not show only the title and the preview content is not empty
-            (widget.search != null && showTitlesOnlyDisableInSearchView && !widget.note.isContentPreviewEmpty);
+        // Show only the title and the title is not empty
+        (showTitlesOnly && widget.note.isTitleEmpty) ||
+        // In search view, do not show only the title and the preview content is not empty
+        (widget.search != null && showTitlesOnlyDisableInSearchView && !widget.note.isContentPreviewEmpty);
 
     var titleStyle = biggerTitles ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium;
     titleStyle ??= TextStyle();
@@ -258,38 +251,39 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                           if (!widget.note.isTitleEmpty)
                             widget.search != null
                                 ? SubstringHighlight(
-                                    text: widget.note.title,
-                                    terms: widget.search?.split(' '),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    textStyle: titleStyle,
-                                    textStyleHighlight: titleStyleHighlighted,
-                                  )
+                                  text: widget.note.title,
+                                  terms: widget.search?.split(' '),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  textStyle: titleStyle,
+                                  textStyleHighlight: titleStyleHighlighted,
+                                )
                                 : Text(
-                                    widget.note.title,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: biggerTitles
-                                        ? Theme.of(context).textTheme.titleLarge
-                                        : Theme.of(context).textTheme.titleMedium,
-                                  ),
+                                  widget.note.title,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style:
+                                      biggerTitles
+                                          ? Theme.of(context).textTheme.titleLarge
+                                          : Theme.of(context).textTheme.titleMedium,
+                                ),
                           // Subtitle
                           if (showContent)
                             widget.search != null
                                 ? SubstringHighlight(
-                                    text: widget.note.contentPreview,
-                                    terms: widget.search?.split(' '),
-                                    maxLines: maximumContentPreviewLines,
-                                    overflow: TextOverflow.ellipsis,
-                                    textStyle: contentStyle,
-                                    textStyleHighlight: contentStyleHighlighted,
-                                  )
+                                  text: widget.note.contentPreview,
+                                  terms: widget.search?.split(' '),
+                                  maxLines: maximumContentPreviewLines,
+                                  overflow: TextOverflow.ellipsis,
+                                  textStyle: contentStyle,
+                                  textStyleHighlight: contentStyleHighlighted,
+                                )
                                 : Text(
-                                    widget.note.contentPreview,
-                                    maxLines: maximumContentPreviewLines,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: contentStyle,
-                                  ),
+                                  widget.note.contentPreview,
+                                  maxLines: maximumContentPreviewLines,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: contentStyle,
+                                ),
 
                           if (enableLabels && showLabelsListOnNoteTile) ...[
                             Gap(4),
@@ -301,27 +295,12 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                     Gap(8),
                     Column(
                       children: [
-                        if (showNoteTypeIcon) ...[
-                          Gap(2),
-                          Icon(
-                            widget.note.type.icon,
-                            size: Sizes.iconSmall.size,
-                          ),
-                        ],
+                        if (showNoteTypeIcon) ...[Gap(2), Icon(widget.note.type.icon, size: Sizes.iconSmall.size)],
                         if (widget.note.pinned && !widget.note.deleted) ...[
                           Gap(2),
-                          Icon(
-                            Icons.push_pin,
-                            size: Sizes.iconSmall.size,
-                          ),
+                          Icon(Icons.push_pin, size: Sizes.iconSmall.size),
                         ],
-                        if (lockNote && widget.note.locked) ...[
-                          Gap(2),
-                          Icon(
-                            Icons.lock,
-                            size: Sizes.iconSmall.size,
-                          ),
-                        ],
+                        if (lockNote && widget.note.locked) ...[Gap(2), Icon(Icons.lock, size: Sizes.iconSmall.size)],
                       ],
                     ),
                     // Trailing
@@ -394,11 +373,9 @@ class _NoteTileState extends ConsumerState<NoteTile> {
             );
         }
 
-        confirmDismiss = (DismissDirection direction) => onAvailableDismissed(
-              direction,
-              availableSwipeActions.right,
-              availableSwipeActions.left,
-            );
+        confirmDismiss =
+            (DismissDirection direction) =>
+                onAvailableDismissed(direction, availableSwipeActions.right, availableSwipeActions.left);
 
       // Build the archived dismissible widgets
       case NoteStatus.archived:
@@ -424,11 +401,9 @@ class _NoteTileState extends ConsumerState<NoteTile> {
             );
         }
 
-        confirmDismiss = (DismissDirection direction) => onArchivedDismissed(
-              direction,
-              archivedSwipeActions.right,
-              archivedSwipeActions.left,
-            );
+        confirmDismiss =
+            (DismissDirection direction) =>
+                onArchivedDismissed(direction, archivedSwipeActions.right, archivedSwipeActions.left);
 
       // Build the deleted dismissible widgets
       case NoteStatus.deleted:
@@ -454,11 +429,9 @@ class _NoteTileState extends ConsumerState<NoteTile> {
             );
         }
 
-        confirmDismiss = (DismissDirection direction) => onDeletedDismissed(
-              direction,
-              deletedSwipeActions.right,
-              deletedSwipeActions.left,
-            );
+        confirmDismiss = (DismissDirection direction) {
+          return onDeletedDismissed(direction, deletedSwipeActions.right, deletedSwipeActions.left);
+        };
     }
 
     return ClipRRect(

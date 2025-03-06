@@ -8,9 +8,7 @@ import '../widgets/encrypt_password_form.dart';
 /// Dialog to configure the manual export.
 class ManualExportDialog extends StatefulWidget {
   /// Default constructor.
-  const ManualExportDialog({
-    super.key,
-  });
+  const ManualExportDialog({super.key});
 
   @override
   State<ManualExportDialog> createState() => _ManualExportDialogState();
@@ -70,14 +68,8 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
         ),
       ),
       actions: [
-        TextButton(
-          onPressed: () => _pop(canceled: true),
-          child: Text(fl?.cancelButtonLabel ?? 'Cancel'),
-        ),
-        TextButton(
-          onPressed: ok ? _pop : null,
-          child: Text(fl?.okButtonLabel ?? 'OK'),
-        ),
+        TextButton(onPressed: () => _pop(canceled: true), child: Text(fl?.cancelButtonLabel ?? 'Cancel')),
+        TextButton(onPressed: ok ? _pop : null, child: Text(fl?.okButtonLabel ?? 'OK')),
       ],
     );
   }

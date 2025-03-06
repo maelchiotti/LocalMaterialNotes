@@ -6,12 +6,7 @@ import '../../../../common/constants/sizes.dart';
 /// Rich text editor custom toolbar button.
 class RichTextEditorButton extends StatelessWidget {
   /// Custom button for the toolbar of the rich text editor.
-  const RichTextEditorButton({
-    super.key,
-    required this.icon,
-    required this.onPressed,
-    this.iconColor,
-  });
+  const RichTextEditorButton({super.key, required this.icon, required this.onPressed, this.iconColor});
 
   /// Icon of the button.
   final IconData icon;
@@ -38,10 +33,7 @@ class RichTextEditorButton extends StatelessWidget {
           visualDensity: VisualDensity.compact,
           elevation: 0,
           onPressed: onPressed,
-          child: Icon(
-            icon,
-            color: iconColor,
-          ),
+          child: Icon(icon, color: iconColor),
         ),
       ),
     );

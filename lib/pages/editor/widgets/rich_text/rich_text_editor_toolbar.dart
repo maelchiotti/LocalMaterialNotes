@@ -11,10 +11,7 @@ import 'rich_text_editor_link_button.dart';
 /// Rich text editor toolbar.
 class RichTextEditorToolbar extends StatelessWidget {
   /// Toolbar of the rich text editor.
-  const RichTextEditorToolbar({
-    super.key,
-    required this.fleatherController,
-  });
+  const RichTextEditorToolbar({super.key, required this.fleatherController});
 
   /// The controller of the Fleather text field.
   final FleatherController fleatherController;
@@ -52,10 +49,7 @@ class RichTextEditorToolbar extends StatelessWidget {
   void insertRule(FleatherController fleatherController) {
     final index = fleatherController.selection.baseOffset;
     final length = fleatherController.selection.extentOffset - index;
-    final newSelection = fleatherController.selection.copyWith(
-      baseOffset: index + 2,
-      extentOffset: index + 2,
-    );
+    final newSelection = fleatherController.selection.copyWith(baseOffset: index + 2, extentOffset: index + 2);
 
     fleatherController.replaceText(index, length, BlockEmbed.horizontalRule, selection: newSelection);
   }
@@ -140,14 +134,9 @@ class RichTextEditorToolbar extends StatelessWidget {
               childBuilder: buttonBuilder,
             ),
             Gap(4),
-            RichTextEditorLinkButton(
-              controller: fleatherController,
-            ),
+            RichTextEditorLinkButton(controller: fleatherController),
             Gap(4),
-            RichTextEditorButton(
-              icon: Icons.horizontal_rule,
-              onPressed: () => insertRule(fleatherController),
-            ),
+            RichTextEditorButton(icon: Icons.horizontal_rule, onPressed: () => insertRule(fleatherController)),
             Gap(4),
           ],
         ),

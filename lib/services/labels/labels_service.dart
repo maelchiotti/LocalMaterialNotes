@@ -1,4 +1,5 @@
 import 'package:isar/isar.dart';
+
 import '../../common/constants/environment.dart';
 import '../../common/constants/labels.dart';
 import '../../models/label/label.dart';
@@ -27,7 +28,6 @@ class LabelsService {
       await clear();
       await putAll(integrationTestLabels);
     }
-
     // If the app runs with the 'SCREENSHOTS' environment parameter,
     // clear all the labels and add the labels for the screenshots
     else if (Environment.screenshots) {

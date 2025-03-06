@@ -25,11 +25,7 @@ Future<void> main() async {
   // See https://github.com/flutter/flutter/issues/40974
   // See https://github.com/flutter/flutter/issues/34678
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.transparent,
-    ),
-  );
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(systemNavigationBarColor: Colors.transparent));
 
   // Initialize the utilities
   await AppLogger().ensureInitialized();
@@ -55,9 +51,5 @@ Future<void> main() async {
   // Remove the splash screen
   FlutterNativeSplash.remove();
 
-  runApp(
-    ProviderScope(
-      child: App(),
-    ),
-  );
+  runApp(ProviderScope(child: App()));
 }

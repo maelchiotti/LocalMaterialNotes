@@ -49,20 +49,12 @@ class _RichTextEditorLinkDialogState extends State<RichTextEditorLinkDialog> {
       content: TextField(
         controller: _linkController,
         autofocus: true,
-        decoration: InputDecoration(
-          labelText: l.hint_link,
-        ),
+        decoration: InputDecoration(labelText: l.hint_link),
         onChanged: _onChanged,
       ),
       actions: [
-        TextButton(
-          onPressed: () => _pop(canceled: true),
-          child: Text(fl?.cancelButtonLabel ?? 'Cancel'),
-        ),
-        TextButton(
-          onPressed: _isLinkValid ? _pop : null,
-          child: Text(fl?.okButtonLabel ?? 'OK'),
-        ),
+        TextButton(onPressed: () => _pop(canceled: true), child: Text(fl?.cancelButtonLabel ?? 'Cancel')),
+        TextButton(onPressed: _isLinkValid ? _pop : null, child: Text(fl?.okButtonLabel ?? 'OK')),
       ],
     );
   }

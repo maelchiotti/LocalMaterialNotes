@@ -35,35 +35,45 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
 
   /// Sets the index of the navigation drawer.
   void setIndex() {
-    final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
-    List<Label> labels = [];
-    if (enableLabels) {
-      labels = ref.read(labelsNavigationProvider).value ?? [];
-    }
-
     final route = ModalRoute.of(context)?.settings.name;
 
     assert(route != null, 'Missing current route while navigating');
     route!;
 
-    if (route == NavigationRoute.notes.name) {
-      index = 0;
-    } else if (route == NavigationRoute.labels.name) {
-      index = labels.length + 1;
-    } else if (route == NavigationRoute.archives.name) {
-      index = labels.length + 2;
-    } else if (route == NavigationRoute.bin.name) {
-      index = labels.length + 3;
-    } else if (route == NavigationRoute.settings.name) {
-      index = labels.length + 4;
-    } else if (labels.isNotEmpty) {
-      labels.forEachIndexed((label, labelIndex) {
-        if (route == NavigationRoute.getLabelRouteName(label)) {
-          index = labelIndex + 1;
-        }
-      });
+    final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
+
+    if (enableLabels) {
+      final labels = ref.read(labelsNavigationProvider).value ?? [];
+
+      if (route == NavigationRoute.notes.name) {
+        index = 0;
+      } else if (route == NavigationRoute.labels.name) {
+        index = labels.length + 1;
+      } else if (route == NavigationRoute.archives.name) {
+        index = labels.length + 2;
+      } else if (route == NavigationRoute.bin.name) {
+        index = labels.length + 3;
+      } else if (route == NavigationRoute.settings.name) {
+        index = labels.length + 4;
+      } else if (labels.isNotEmpty) {
+        labels.forEachIndexed((label, labelIndex) {
+          if (route == NavigationRoute.getLabelRouteName(label)) {
+            index = labelIndex + 1;
+          }
+        });
+      } else {
+        throw Exception('Unknown route when setting the side navigation index: $route');
+      }
     } else {
-      throw Exception('Unknown route when setting the side navigation index: $route');
+      if (route == NavigationRoute.notes.name) {
+        index = 0;
+      } else if (route == NavigationRoute.archives.name) {
+        index = 1;
+      } else if (route == NavigationRoute.bin.name) {
+        index = 2;
+      } else if (route == NavigationRoute.settings.name) {
+        index = 3;
+      }
     }
   }
 
@@ -80,29 +90,42 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
     Navigator.pop(context);
 
     final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
-    List<Label> labels = [];
-    if (enableLabels) {
-      labels = ref.read(labelsNavigationProvider).value ?? [];
-    }
 
-    if (newIndex == 0) {
-      context.goNamed(NavigationRoute.notes.name);
-    } else if (newIndex == labels.length + 1) {
-      context.goNamed(NavigationRoute.labels.name);
-    } else if (newIndex == labels.length + 2) {
-      context.goNamed(NavigationRoute.archives.name);
-    } else if (newIndex == labels.length + 3) {
-      context.goNamed(NavigationRoute.bin.name);
-    } else if (newIndex == labels.length + 4) {
-      context.goNamed(NavigationRoute.settings.name);
-    } else if (labels.isNotEmpty) {
-      labels.forEachIndexed((label, index) {
-        if (newIndex == index + 1) {
-          context.goNamed(NavigationRoute.getLabelRouteName(label));
-        }
-      });
+    if (enableLabels) {
+      final labels = ref.read(labelsNavigationProvider).value ?? [];
+
+      if (newIndex == 0) {
+        context.goNamed(NavigationRoute.notes.name);
+      } else if (newIndex == labels.length + 1) {
+        context.goNamed(NavigationRoute.labels.name);
+      } else if (newIndex == labels.length + 2) {
+        context.goNamed(NavigationRoute.archives.name);
+      } else if (newIndex == labels.length + 3) {
+        context.goNamed(NavigationRoute.bin.name);
+      } else if (newIndex == labels.length + 4) {
+        context.goNamed(NavigationRoute.settings.name);
+      } else if (labels.isNotEmpty) {
+        labels.forEachIndexed((label, index) {
+          if (newIndex == index + 1) {
+            context.goNamed(NavigationRoute.getLabelRouteName(label));
+          }
+        });
+      } else {
+        throw Exception('Unknown new side navigation index: $newIndex');
+      }
     } else {
-      throw Exception('Unknown new side navigation index: $newIndex');
+      switch (newIndex) {
+        case 0:
+          context.goNamed(NavigationRoute.notes.name);
+        case 1:
+          context.goNamed(NavigationRoute.archives.name);
+        case 2:
+          context.goNamed(NavigationRoute.bin.name);
+        case 3:
+          context.goNamed(NavigationRoute.settings.name);
+        default:
+          throw Exception('Unknown new side navigation index: $newIndex');
+      }
     }
 
     setState(() {
@@ -126,16 +149,9 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                Asset.icon.path,
-                fit: BoxFit.fitWidth,
-                width: Sizes.appIcon.size,
-              ),
+              Image.asset(Asset.icon.path, fit: BoxFit.fitWidth, width: Sizes.appIcon.size),
               Padding(padding: Paddings.vertical(8)),
-              Text(
-                l.app_name,
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
+              Text(l.app_name, style: Theme.of(context).textTheme.headlineSmall),
             ],
           ),
         ),
@@ -148,17 +164,9 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
         if (enableLabels) ...[
           for (final label in labels)
             NavigationDrawerDestination(
-              icon: Icon(
-                label.pinned ? Icons.label_important_outline : Icons.label_outline,
-                color: label.color,
-              ),
-              selectedIcon: Icon(
-                label.pinned ? Icons.label_important : Icons.label,
-                color: label.color,
-              ),
-              label: Expanded(
-                child: Text(label.name, maxLines: 2, overflow: TextOverflow.ellipsis),
-              ),
+              icon: Icon(label.pinned ? Icons.label_important_outline : Icons.label_outline, color: label.color),
+              selectedIcon: Icon(label.pinned ? Icons.label_important : Icons.label, color: label.color),
+              label: Expanded(child: Text(label.name, maxLines: 2, overflow: TextOverflow.ellipsis)),
             ),
           NavigationDrawerDestination(
             icon: const Icon(Symbols.auto_label),

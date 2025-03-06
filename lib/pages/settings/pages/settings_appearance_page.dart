@@ -31,13 +31,7 @@ class SettingsAppearancePage extends ConsumerStatefulWidget {
 class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage> {
   /// Opens the Crowdin project.
   void _openCrowdin() {
-    launchUrl(
-      Uri(
-        scheme: 'https',
-        host: 'crowdin.com',
-        path: 'project/localmaterialnotes',
-      ),
-    );
+    launchUrl(Uri(scheme: 'https', host: 'crowdin.com', path: 'project/localmaterialnotes'));
   }
 
   /// Sets the language to the new [locale].
@@ -99,9 +93,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      appBar: TopNavigation(
-        appbar: BasicAppBar(title: l.navigation_settings_appearance),
-      ),
+      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_appearance)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,
@@ -110,21 +102,19 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
               SettingSingleOptionTile.detailed(
                 icon: Icons.language,
                 title: l.settings_language,
-                trailing: TextButton.icon(
-                  onPressed: _openCrowdin,
-                  label: Text(l.settings_language_contribute),
-                ),
+                trailing: TextButton.icon(onPressed: _openCrowdin, label: Text(l.settings_language_contribute)),
                 value: locale.nativeDisplayLanguage.capitalizeFirstLetter,
                 dialogTitle: l.settings_language,
-                options: SupportedLanguage.values
-                    .map(
-                      (language) => (
-                        value: language.locale,
-                        title: language.nativeName,
-                        subtitle: language.completionFormatted,
-                      ),
-                    )
-                    .toList(),
+                options:
+                    SupportedLanguage.values
+                        .map(
+                          (language) => (
+                            value: language.locale,
+                            title: language.nativeName,
+                            subtitle: language.completionFormatted,
+                          ),
+                        )
+                        .toList(),
                 initialOption: locale,
                 onSubmitted: _submittedLanguage,
               ),
@@ -173,15 +163,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                     description: l.settings_app_font_description,
                     value: appFont.displayName,
                     dialogTitle: l.settings_app_font,
-                    options: Font.values
-                        .map(
-                          (font) => (
-                            value: font,
-                            title: font.displayName,
-                            subtitle: null,
-                          ),
-                        )
-                        .toList(),
+                    options: Font.values.map((font) => (value: font, title: font.displayName, subtitle: null)).toList(),
                     initialOption: appFont,
                     onSubmitted: _submittedAppFont,
                   ),
@@ -191,15 +173,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                     description: l.settings_editor_font_description,
                     value: editorFont.displayName,
                     dialogTitle: l.settings_editor_font,
-                    options: Font.values
-                        .map(
-                          (font) => (
-                            value: font,
-                            title: font.displayName,
-                            subtitle: null,
-                          ),
-                        )
-                        .toList(),
+                    options: Font.values.map((font) => (value: font, title: font.displayName, subtitle: null)).toList(),
                     initialOption: editorFont,
                     onSubmitted: _submittedEditorFont,
                   ),

@@ -127,11 +127,7 @@ class _AppState extends ConsumerState<App> {
 
     return DynamicColorBuilder(
       builder: (lightDynamicColorScheme, darkDynamicColorScheme) {
-        final lightTheme = ThemeUtils().getLightTheme(
-          lightDynamicColorScheme,
-          dynamicTheming,
-          appFont,
-        );
+        final lightTheme = ThemeUtils().getLightTheme(lightDynamicColorScheme, dynamicTheming, appFont);
         final darkTheme = ThemeUtils().getDarkTheme(
           darkDynamicColorScheme,
           dynamicTheming,
@@ -141,9 +137,7 @@ class _AppState extends ConsumerState<App> {
         );
 
         return MediaQuery(
-          data: MediaQuery.of(context).copyWith(
-            textScaler: TextScaler.linear(textScaling),
-          ),
+          data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(textScaling)),
           child: Directionality(
             textDirection: SystemUtils().deviceLocale.textDirection,
             child: FGBGNotifier(

@@ -26,8 +26,7 @@ enum LabelTileMenuOption {
   edit(Icons.edit),
 
   /// Delete the label.
-  delete(Icons.delete, dangerous: true),
-  ;
+  delete(Icons.delete, dangerous: true);
 
   /// Icon of the menu option.
   final IconData icon;
@@ -69,17 +68,13 @@ enum LabelTileMenuOption {
     return PopupMenuItem(
       value: this,
       child: ListTile(
-        leading: Icon(
-          icon,
-          color: dangerous ? Theme.of(context).colorScheme.error : null,
-        ),
+        leading: Icon(icon, color: dangerous ? Theme.of(context).colorScheme.error : null),
         title: Text(
           title,
-          style: dangerous
-              ? Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: Theme.of(context).colorScheme.error,
-                  )
-              : null,
+          style:
+              dangerous
+                  ? Theme.of(context).textTheme.titleSmall?.copyWith(color: Theme.of(context).colorScheme.error)
+                  : null,
         ),
       ),
     );

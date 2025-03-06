@@ -71,9 +71,7 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
     final showNoteTypeIcon = PreferenceKey.showNoteTypeIcon.preferenceOrDefault;
 
     return Scaffold(
-      appBar: TopNavigation(
-        appbar: BasicAppBar(title: l.navigation_settings_notes_tiles),
-      ),
+      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_notes_tiles)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,

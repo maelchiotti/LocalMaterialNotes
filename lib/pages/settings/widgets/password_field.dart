@@ -89,10 +89,7 @@ class _PasswordFieldState extends State<PasswordField> {
       key: _formKey,
       child: Column(
         children: [
-          if (widget.description != null) ...[
-            Text(widget.description!),
-            Padding(padding: Paddings.vertical(8)),
-          ],
+          if (widget.description != null) ...[Text(widget.description!), Padding(padding: Paddings.vertical(8))],
           if (widget.secondaryDescription != null) ...[
             Text(widget.secondaryDescription!),
             Padding(padding: Paddings.vertical(8)),

@@ -60,7 +60,7 @@ sealed class Note implements Comparable<Note> {
   bool pinned;
 
   /// Whether the note is locked.
-  @JsonKey(defaultValue: false)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   bool locked;
 
   /// The date of creation of the note.
@@ -89,15 +89,12 @@ sealed class Note implements Comparable<Note> {
     required this.archived,
     required this.deleted,
     required this.pinned,
-    required this.locked,
+    this.locked = false,
     required this.createdTime,
     required this.editedTime,
     required this.title,
     required this.type,
-  }) : assert(
-          !(archived && deleted),
-          'A note cannot be archived and deleted at the same time',
-        );
+  }) : assert(!(archived && deleted), 'A note cannot be archived and deleted at the same time');
 
   /// Returns this note with the [title] and the content encrypted using the [password].
   Note encrypted(String password);

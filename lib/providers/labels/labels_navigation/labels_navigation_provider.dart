@@ -63,11 +63,7 @@ class LabelsNavigation extends _$LabelsNavigation {
 
     final newRoutingConfig = RoutingConfig(
       redirect: goRouterRedirect,
-      routes: [
-        lockRoute,
-        dynamicNotesRoute,
-        editorRoute,
-      ],
+      routes: [lockRoute, dynamicNotesRoute, editorRoute],
     );
 
     routingConfig.value = newRoutingConfig;

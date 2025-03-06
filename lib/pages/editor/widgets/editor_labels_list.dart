@@ -11,10 +11,7 @@ import '../../../providers/notifiers/notifiers.dart';
 /// Editor labels list.
 class EditorLabelsList extends ConsumerWidget {
   /// The list of labels of the current note displayed at the bottom of the notes editor.
-  const EditorLabelsList({
-    super.key,
-    required this.readOnly,
-  });
+  const EditorLabelsList({super.key, required this.readOnly});
 
   /// Whether the page is read only.
   final bool readOnly;

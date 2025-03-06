@@ -21,10 +21,7 @@ class _BinPageState extends ConsumerState<BinPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TopNavigation(
-        appbar: NotesAppBar(notesStatus: NoteStatus.deleted),
-        notesStatus: NoteStatus.deleted,
-      ),
+      appBar: TopNavigation(appbar: NotesAppBar(notesStatus: NoteStatus.deleted), notesStatus: NoteStatus.deleted),
       drawer: SideNavigation(),
       floatingActionButton: EmptyBinFab(),
       body: NotesList(notesStatus: NoteStatus.deleted),

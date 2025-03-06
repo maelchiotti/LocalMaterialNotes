@@ -22,9 +22,7 @@ class PreferencesWrapper {
   /// Ensures the utility is initialized.
   Future<void> ensureInitialized() async {
     _preferences = await SharedPreferences.getInstance();
-    _secureStorage = const FlutterSecureStorage(
-      aOptions: AndroidOptions(encryptedSharedPreferences: true),
-    );
+    _secureStorage = const FlutterSecureStorage(aOptions: AndroidOptions(encryptedSharedPreferences: true));
   }
 
   /// Sets the [preferenceKey] to the [value].
@@ -67,12 +65,13 @@ class PreferencesWrapper {
       }
 
       return switch (T) {
-        == bool => _preferences.getBool(preferenceKey.name),
-        == int => _preferences.getInt(preferenceKey.name),
-        == double => _preferences.getDouble(preferenceKey.name),
-        == String => _preferences.getString(preferenceKey.name),
-        _ => throw ArgumentError('Invalid preference type: $T'),
-      } as T?;
+            == bool => _preferences.getBool(preferenceKey.name),
+            == int => _preferences.getInt(preferenceKey.name),
+            == double => _preferences.getDouble(preferenceKey.name),
+            == String => _preferences.getString(preferenceKey.name),
+            _ => throw ArgumentError('Invalid preference type: $T'),
+          }
+          as T?;
     }
     // On type conversion error, reset the preference to its default value
     on TypeError catch (error) {

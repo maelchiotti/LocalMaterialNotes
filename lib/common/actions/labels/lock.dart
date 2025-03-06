@@ -7,11 +7,7 @@ import '../../preferences/preference_key.dart';
 import 'select.dart';
 
 /// Toggles whether the [labels] are locked.
-Future<bool> toggleLockLabels(
-  WidgetRef ref, {
-  required List<Label> labels,
-  bool requireAuthentication = false,
-}) async {
+Future<bool> toggleLockLabels(WidgetRef ref, {required List<Label> labels, bool requireAuthentication = false}) async {
   if (requireAuthentication) {
     final lockLabelPreference = PreferenceKey.lockLabel.preferenceOrDefault;
     final anyLocked = labels.any((label) => label.locked);

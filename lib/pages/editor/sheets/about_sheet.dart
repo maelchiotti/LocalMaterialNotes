@@ -32,36 +32,17 @@ class AboutSheet extends StatelessWidget {
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    currentNote.type.icon,
-                    size: Sizes.iconSmall.size,
-                  ),
+                  Icon(currentNote.type.icon, size: Sizes.iconSmall.size),
                   Gap(8.0),
                   Text(currentNote.type.title),
                 ],
               ),
             ),
-            ListTile(
-              title: Text(l.about_created),
-              trailing: Text(currentNote.createdTime.yMMMMd_at_Hm),
-            ),
-            ListTile(
-              title: Text(l.about_last_edited),
-              trailing: Text(currentNote.editedTime.yMMMMd_at_Hm),
-            ),
-            if (areLabelsEnabled)
-              ListTile(
-                title: Text(l.about_labels),
-                trailing: Text('${currentNote.labelsCount}'),
-              ),
-            ListTile(
-              title: Text(l.about_words),
-              trailing: Text('${currentNote.wordsCount}'),
-            ),
-            ListTile(
-              title: Text(l.about_characters),
-              trailing: Text('${currentNote.charactersCount}'),
-            ),
+            ListTile(title: Text(l.about_created), trailing: Text(currentNote.createdTime.yMMMMd_at_Hm)),
+            ListTile(title: Text(l.about_last_edited), trailing: Text(currentNote.editedTime.yMMMMd_at_Hm)),
+            if (areLabelsEnabled) ListTile(title: Text(l.about_labels), trailing: Text('${currentNote.labelsCount}')),
+            ListTile(title: Text(l.about_words), trailing: Text('${currentNote.wordsCount}')),
+            ListTile(title: Text(l.about_characters), trailing: Text('${currentNote.charactersCount}')),
           ],
         );
       },

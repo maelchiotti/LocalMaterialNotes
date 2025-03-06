@@ -60,10 +60,7 @@ class AppLogger {
         printEmojis: false,
         dateTimeFormat: DateTimeFormat.dateAndTime,
       ),
-      output: AdvancedFileOutput(
-        path: _logFilesDirectory,
-        maxRotatedFilesCount: 100,
-      ),
+      output: AdvancedFileOutput(path: _logFilesDirectory, maxRotatedFilesCount: 100),
     );
 
     // Intercept all exceptions raised by Flutter and by the platform to write them to the log file in release mode

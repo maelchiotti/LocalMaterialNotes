@@ -23,8 +23,7 @@ enum SelectionAvailableMenuOption {
   archive(Icons.archive),
 
   /// Delete the notes.
-  delete(Icons.delete),
-  ;
+  delete(Icons.delete);
 
   /// Icon of the menu option.
   final IconData icon;
@@ -56,12 +55,6 @@ enum SelectionAvailableMenuOption {
 
   /// Returns the [PopupMenuItem] widget of the menu option.
   PopupMenuItem<SelectionAvailableMenuOption> popupMenuItem(BuildContext context) {
-    return PopupMenuItem(
-      value: this,
-      child: ListTile(
-        leading: Icon(icon),
-        title: Text(title),
-      ),
-    );
+    return PopupMenuItem(value: this, child: ListTile(leading: Icon(icon), title: Text(title)));
   }
 }

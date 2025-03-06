@@ -96,12 +96,7 @@ class ManualBackupService {
     return true;
   }
 
-  Future<bool> _importNotes(
-    BuildContext context,
-    List<dynamic> notesAsJson,
-    bool encrypted,
-    bool importLabels,
-  ) async {
+  Future<bool> _importNotes(BuildContext context, List<dynamic> notesAsJson, bool encrypted, bool importLabels) async {
     List<Note> notes = [];
     List<List<Label>> notesLabels = [];
 
@@ -109,10 +104,11 @@ class ManualBackupService {
       final password = await showAdaptiveDialog<String>(
         context: context,
         useRootNavigator: false,
-        builder: (context) => AutoExportPasswordDialog(
-          title: l.settings_import,
-          description: l.dialog_import_encryption_password_description,
-        ),
+        builder:
+            (context) => AutoExportPasswordDialog(
+              title: l.settings_import,
+              description: l.dialog_import_encryption_password_description,
+            ),
       );
 
       if (password == null) {
@@ -222,7 +218,7 @@ class ManualBackupService {
     final version = SystemUtils().appVersion;
     final buildNumber = SystemUtils().buildNumber;
 
-    var notes = await _notesService.getAllAvailable();
+    var notes = await _notesService.getAll();
     if (encrypt && password != null && password.isNotEmpty) {
       notes = notes.map((note) => note.encrypted(password)).toList();
     }
@@ -252,12 +248,14 @@ class ManualBackupService {
   /// Automatically exports all the notes in a JSON file.
   ///
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
-  Future<bool> autoExportAsJson(bool encrypt, String password) async => await _exportAsJson(
-        encrypt: encrypt,
-        password: password,
-        directory: AutoExportUtils().autoExportDirectory,
-        fileName: _exportFileName(MimeType.json.extension),
-      );
+  Future<bool> autoExportAsJson(bool encrypt, String password) async {
+    return await _exportAsJson(
+      encrypt: encrypt,
+      password: password,
+      directory: AutoExportUtils().autoExportDirectory,
+      fileName: _exportFileName(MimeType.json.extension),
+    );
+  }
 
   /// Manually exports all the notes in a JSON file.
   ///
@@ -289,14 +287,15 @@ class ManualBackupService {
       return false;
     }
 
-    final notes = await _notesService.getAllAvailable();
+    final notes = await _notesService.getAll();
     final archive = Archive();
 
     for (final note in notes) {
       final bytes = utf8.encode(note.markdown);
+
       final filenameWithoutExtension = '${note.title} (${note.createdTime.filename})';
       final filenameWithoutExtensionSanitized = sanitizeFilename(filenameWithoutExtension);
-      final filename = '$filenameWithoutExtensionSanitized.${MimeType.markdown.extension}';
+      final filename = 'test/$filenameWithoutExtensionSanitized.${MimeType.markdown.extension}';
 
       archive.addFile(ArchiveFile(filename, bytes.length, bytes));
     }

@@ -11,8 +11,7 @@ enum SelectionArchivedMenuOption {
   share(Icons.share),
 
   /// Unarchive the note.
-  unarchive(Icons.unarchive),
-  ;
+  unarchive(Icons.unarchive);
 
   /// Icon of the menu option.
   final IconData icon;
@@ -38,16 +37,6 @@ enum SelectionArchivedMenuOption {
   ///
   /// Uses the alternative icon if [alternative] is set to `true`.
   PopupMenuItem<SelectionArchivedMenuOption> popupMenuItem(BuildContext context) {
-    return PopupMenuItem(
-      value: this,
-      child: ListTile(
-        leading: Icon(
-          icon,
-        ),
-        title: Text(
-          title,
-        ),
-      ),
-    );
+    return PopupMenuItem(value: this, child: ListTile(leading: Icon(icon), title: Text(title)));
   }
 }

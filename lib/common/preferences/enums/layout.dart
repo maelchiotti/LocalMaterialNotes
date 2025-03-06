@@ -7,14 +7,11 @@ enum Layout {
   list,
 
   /// Grid view.
-  grid,
-  ;
+  grid;
 
   /// Returns the value of the preference if set, or its default value otherwise.
   factory Layout.fromPreference() {
-    final layout = Layout.values.byNameOrNull(
-      PreferenceKey.layout.preference,
-    );
+    final layout = Layout.values.byNameOrNull(PreferenceKey.layout.preference);
 
     // Reset the malformed preference to its default value
     if (layout == null) {

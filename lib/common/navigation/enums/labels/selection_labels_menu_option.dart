@@ -16,8 +16,7 @@ enum SelectionLabelsMenuOption {
   /// Delete the note.
   ///
   /// This action is [dangerous].
-  delete(Icons.delete, dangerous: true),
-  ;
+  delete(Icons.delete, dangerous: true);
 
   /// Icon of the menu option.
   final IconData icon;
@@ -53,15 +52,12 @@ enum SelectionLabelsMenuOption {
     return PopupMenuItem(
       value: this,
       child: ListTile(
-        leading: Icon(
-          icon,
-          color: dangerous ? Theme.of(context).colorScheme.error : null,
-        ),
+        leading: Icon(icon, color: dangerous ? Theme.of(context).colorScheme.error : null),
         title: Text(
           title,
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                color: dangerous ? Theme.of(context).colorScheme.error : null,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleSmall?.copyWith(color: dangerous ? Theme.of(context).colorScheme.error : null),
         ),
       ),
     );

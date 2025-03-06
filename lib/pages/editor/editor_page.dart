@@ -24,11 +24,7 @@ import 'widgets/title_editor.dart';
 /// Editor page.
 class EditorPage extends ConsumerStatefulWidget {
   /// Page allowing to edit a note.
-  const EditorPage({
-    super.key,
-    required this.readOnly,
-    required this.isNewNote,
-  });
+  const EditorPage({super.key, required this.readOnly, required this.isNewNote});
 
   /// Whether the page is read only.
   final bool readOnly;
@@ -99,9 +95,7 @@ class _EditorState extends ConsumerState<EditorPage> {
                   readOnly: readOnly,
                   autofocus: autofocus,
                 );
-                toolbar = RichTextEditorToolbar(
-                  fleatherController: fleatherController,
-                );
+                toolbar = RichTextEditorToolbar(fleatherController: fleatherController);
               case MarkdownNote note:
                 contentEditor = MarkdownEditor(
                   note: note,
@@ -110,18 +104,11 @@ class _EditorState extends ConsumerState<EditorPage> {
                   autofocus: autofocus,
                 );
               case ChecklistNote note:
-                contentEditor = ChecklistEditor(
-                  note: note,
-                  isNewNote: widget.isNewNote,
-                  readOnly: readOnly,
-                );
+                contentEditor = ChecklistEditor(note: note, isNewNote: widget.isNewNote, readOnly: readOnly);
             }
 
             final editor = Scaffold(
-              appBar: const TopNavigation(
-                appbar: EditorAppBar(),
-                notesStatus: NoteStatus.available,
-              ),
+              appBar: const TopNavigation(appbar: EditorAppBar(), notesStatus: NoteStatus.available),
               body: Column(
                 children: [
                   Expanded(
@@ -133,9 +120,7 @@ class _EditorState extends ConsumerState<EditorPage> {
                           onSubmitted: requestEditorFocus,
                         ),
                         Gap(8.0),
-                        Expanded(
-                          child: contentEditor,
-                        ),
+                        Expanded(child: contentEditor),
                       ],
                     ),
                   ),
@@ -161,11 +146,11 @@ class _EditorState extends ConsumerState<EditorPage> {
               builder: (context, locked, child) {
                 return locked
                     ? LockPage(
-                        back: false,
-                        lockNotifier: lockNoteNotifier,
-                        description: l.lock_page_description_note,
-                        reason: l.lock_page_reason_note,
-                      )
+                      back: false,
+                      lockNotifier: lockNoteNotifier,
+                      description: l.lock_page_description_note,
+                      reason: l.lock_page_reason_note,
+                    )
                     : editor;
               },
             );

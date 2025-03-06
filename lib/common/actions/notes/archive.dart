@@ -21,12 +21,7 @@ Future<bool> archiveNote(
   bool pop = false,
   bool cancel = true,
 }) async {
-  if (!await askForConfirmation(
-    context,
-    l.dialog_archive,
-    l.dialog_archive_body(1),
-    l.dialog_archive,
-  )) {
+  if (!await askForConfirmation(context, l.dialog_archive, l.dialog_archive_body(1), l.dialog_archive)) {
     return false;
   }
 
@@ -54,18 +49,8 @@ Future<bool> archiveNote(
 /// Archives the [notes].
 ///
 /// Returns `true` if the [notes] were archived, `false` otherwise.
-Future<bool> archiveNotes(
-  BuildContext context,
-  WidgetRef ref, {
-  required List<Note> notes,
-  bool cancel = true,
-}) async {
-  if (!await askForConfirmation(
-    context,
-    l.dialog_archive,
-    l.dialog_archive_body(notes.length),
-    l.dialog_archive,
-  )) {
+Future<bool> archiveNotes(BuildContext context, WidgetRef ref, {required List<Note> notes, bool cancel = true}) async {
+  if (!await askForConfirmation(context, l.dialog_archive, l.dialog_archive_body(notes.length), l.dialog_archive)) {
     return false;
   }
 

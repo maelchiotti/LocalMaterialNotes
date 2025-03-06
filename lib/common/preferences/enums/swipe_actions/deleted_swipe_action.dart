@@ -19,8 +19,7 @@ enum DeletedSwipeAction {
   /// Permanently delete the note.
   ///
   /// This action is [dangerous].
-  permanentlyDelete(Icons.delete_forever, dangerous: true),
-  ;
+  permanentlyDelete(Icons.delete_forever, dangerous: true);
 
   /// Icon of the swipe action.
   final IconData icon;
@@ -39,9 +38,7 @@ enum DeletedSwipeAction {
 
   /// Returns the value of the right swipe action preference if set, or its default value otherwise.
   factory DeletedSwipeAction.rightFromPreference() {
-    final swipeRightAction = DeletedSwipeAction.values.byNameOrNull(
-      PreferenceKey.binSwipeRightAction.preference,
-    );
+    final swipeRightAction = DeletedSwipeAction.values.byNameOrNull(PreferenceKey.binSwipeRightAction.preference);
 
     // Reset the malformed preference to its default value
     if (swipeRightAction == null) {
@@ -55,9 +52,7 @@ enum DeletedSwipeAction {
 
   /// Returns the value of the left swipe action preference if set, or its default value otherwise.
   factory DeletedSwipeAction.leftFromPreference() {
-    final swipeRightAction = DeletedSwipeAction.values.byNameOrNull(
-      PreferenceKey.binSwipeLeftAction.preference,
-    );
+    final swipeRightAction = DeletedSwipeAction.values.byNameOrNull(PreferenceKey.binSwipeLeftAction.preference);
 
     // Reset the malformed preference to its default value
     if (swipeRightAction == null) {
@@ -91,9 +86,10 @@ enum DeletedSwipeAction {
   Widget iconWidget(BuildContext context) {
     return Icon(
       icon,
-      color: dangerous
-          ? Theme.of(context).colorScheme.onErrorContainer
-          : Theme.of(context).colorScheme.onTertiaryContainer,
+      color:
+          dangerous
+              ? Theme.of(context).colorScheme.onErrorContainer
+              : Theme.of(context).colorScheme.onTertiaryContainer,
     );
   }
 
@@ -102,10 +98,11 @@ enum DeletedSwipeAction {
     return Text(
       title,
       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            color: dangerous
+        color:
+            dangerous
                 ? Theme.of(context).colorScheme.onErrorContainer
                 : Theme.of(context).colorScheme.onTertiaryContainer,
-          ),
+      ),
     );
   }
 

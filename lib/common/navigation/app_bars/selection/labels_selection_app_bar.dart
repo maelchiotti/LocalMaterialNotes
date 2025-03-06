@@ -63,9 +63,7 @@ class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
     final allSelected = selectedLabels.length == totalNotesCount;
 
     return AppBar(
-      leading: BackButton(
-        onPressed: () => exitLabelsSelectionMode(ref),
-      ),
+      leading: BackButton(onPressed: () => exitLabelsSelectionMode(ref)),
       title: Text('${selectedLabels.length}'),
       actions: [
         IconButton(
@@ -73,10 +71,7 @@ class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
           tooltip: allSelected ? l.tooltip_unselect_all : fl?.selectAllButtonLabel ?? 'Select all',
           onPressed: () => allSelected ? unselectAllLabels(ref) : selectAllLabels(ref),
         ),
-        Padding(
-          padding: Paddings.appBarSeparator,
-          child: Separator.divider1indent16.vertical,
-        ),
+        Padding(padding: Paddings.appBarSeparator, child: Separator.divider1indent16.vertical),
         PopupMenuButton<SelectionLabelsMenuOption>(
           itemBuilder: (context) {
             return [
@@ -96,7 +91,9 @@ class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return ref.watch(labelsProvider).when(
+    return ref
+        .watch(labelsProvider)
+        .when(
           data: (labels) => buildAppBar(labels.where((label) => label.selected).toList(), labels.length),
           error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
           loading: () => const LoadingPlaceholder(),

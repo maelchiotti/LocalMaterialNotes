@@ -12,24 +12,16 @@ class EmptyPlaceholder extends StatelessWidget {
   const EmptyPlaceholder({super.key, this.icon, this.text});
 
   /// Empty available notes list.
-  EmptyPlaceholder.available({super.key})
-      : icon = Icons.notes,
-        text = l.placeholder_notes;
+  EmptyPlaceholder.available({super.key}) : icon = Icons.notes, text = l.placeholder_notes;
 
   /// Empty archived notes list.
-  EmptyPlaceholder.archived({super.key})
-      : icon = Icons.archive_outlined,
-        text = l.placeholder_archives;
+  EmptyPlaceholder.archived({super.key}) : icon = Icons.archive_outlined, text = l.placeholder_archives;
 
   /// Empty deleted notes list.
-  EmptyPlaceholder.deleted({super.key})
-      : icon = Icons.delete_outline,
-        text = l.placeholder_bin;
+  EmptyPlaceholder.deleted({super.key}) : icon = Icons.delete_outline, text = l.placeholder_bin;
 
   /// Empty labels.
-  EmptyPlaceholder.labels({super.key})
-      : icon = Icons.label_outline,
-        text = l.placeholder_labels;
+  EmptyPlaceholder.labels({super.key}) : icon = Icons.label_outline, text = l.placeholder_labels;
 
   /// Icon to display.
   final IconData? icon;
@@ -50,17 +42,13 @@ class EmptyPlaceholder extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                icon,
-                size: Sizes.placeholderIcon.size,
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
+              Icon(icon, size: Sizes.placeholderIcon.size, color: Theme.of(context).colorScheme.onSurfaceVariant),
               Padding(padding: Paddings.vertical(16)),
               Text(
                 text!,
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.headlineSmall?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
               ),
             ],
           ),

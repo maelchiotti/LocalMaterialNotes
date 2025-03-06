@@ -17,9 +17,7 @@ class SettingsMainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TopNavigation(
-        appbar: BasicAppBar(title: l.navigation_settings),
-      ),
+      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings)),
       drawer: const SideNavigation(),
       body: SingleChildScrollView(
         child: Padding(

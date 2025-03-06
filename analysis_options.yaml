@@ -10,7 +10,6 @@ analyzer:
 
 linter:
   rules:
-    - require_trailing_commas
     - public_member_api_docs
     - prefer_relative_imports
     - always_put_control_body_on_new_line

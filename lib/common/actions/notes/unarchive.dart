@@ -21,12 +21,7 @@ Future<bool> unarchiveNote(
   bool pop = false,
   bool cancel = true,
 }) async {
-  if (!await askForConfirmation(
-    context,
-    l.dialog_unarchive,
-    l.dialog_unarchive_body(1),
-    l.dialog_unarchive,
-  )) {
+  if (!await askForConfirmation(context, l.dialog_unarchive, l.dialog_unarchive_body(1), l.dialog_unarchive)) {
     return false;
   }
 

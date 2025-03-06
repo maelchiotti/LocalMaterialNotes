@@ -15,14 +15,11 @@ enum SortMethod {
   /// Sort in ascending order.
   ///
   /// This is only used to create the [PopupMenuItem] in the sort menu.
-  ascending,
-  ;
+  ascending;
 
   /// Returns the value of the preference if set, or its default value otherwise.
   factory SortMethod.fromPreference() {
-    final sortMethod = SortMethod.values.byNameOrNull(
-      PreferenceKey.sortMethod.preference,
-    );
+    final sortMethod = SortMethod.values.byNameOrNull(PreferenceKey.sortMethod.preference);
 
     // Reset the malformed preference to its default value
     if (sortMethod == null) {

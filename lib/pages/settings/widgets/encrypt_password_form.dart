@@ -61,13 +61,8 @@ class _EncryptPasswordFormState extends State<EncryptPasswordForm> {
       children: [
         Row(
           children: [
-            Expanded(
-              child: Text(l.dialog_export_encryption_switch),
-            ),
-            Switch(
-              value: _encrypt,
-              onChanged: _toggleEncrypt,
-            ),
+            Expanded(child: Text(l.dialog_export_encryption_switch)),
+            Switch(value: _encrypt, onChanged: _toggleEncrypt),
           ],
         ),
         if (_encrypt) ...[

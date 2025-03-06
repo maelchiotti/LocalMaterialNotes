@@ -91,11 +91,7 @@ final defaultNotesRoute = GoRoute(
       path: NavigationRoute.archives.path,
       builder: (context, state) => ArchivesPage(),
     ),
-    GoRoute(
-      name: NavigationRoute.bin.name,
-      path: NavigationRoute.bin.path,
-      builder: (context, state) => BinPage(),
-    ),
+    GoRoute(name: NavigationRoute.bin.name, path: NavigationRoute.bin.path, builder: (context, state) => BinPage()),
     GoRoute(
       name: NavigationRoute.settings.name,
       path: NavigationRoute.settings.path,
@@ -174,12 +170,5 @@ final editorRoute = GoRoute(
 
 /// The router routing configuration.
 final routingConfig = ValueNotifier(
-  RoutingConfig(
-    redirect: goRouterRedirect,
-    routes: [
-      lockRoute,
-      defaultNotesRoute,
-      editorRoute,
-    ],
-  ),
+  RoutingConfig(redirect: goRouterRedirect, routes: [lockRoute, defaultNotesRoute, editorRoute]),
 );

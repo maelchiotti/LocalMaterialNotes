@@ -95,9 +95,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
     );
 
     return Scaffold(
-      appBar: TopNavigation(
-        appbar: BasicAppBar(title: l.navigation_settings_behavior),
-      ),
+      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_behavior)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,
@@ -113,15 +111,10 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                     value: confirmations.title,
                     description: l.settings_confirmations_description,
                     dialogTitle: l.settings_confirmations,
-                    options: Confirmations.values
-                        .map(
-                          (confirmation) => (
-                            value: confirmation,
-                            title: confirmation.title,
-                            subtitle: null,
-                          ),
-                        )
-                        .toList(),
+                    options:
+                        Confirmations.values
+                            .map((confirmation) => (value: confirmation, title: confirmation.title, subtitle: null))
+                            .toList(),
                     initialOption: confirmations,
                     onSubmitted: submittedConfirmations,
                   ),
@@ -137,15 +130,10 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                     value: availableSwipeActions.right.title,
                     description: l.settings_swipe_action_right_description,
                     dialogTitle: l.settings_swipe_action_right,
-                    options: AvailableSwipeAction.settings
-                        .map(
-                          (swipeAction) => (
-                            value: swipeAction,
-                            title: swipeAction.title,
-                            subtitle: null,
-                          ),
-                        )
-                        .toList(),
+                    options:
+                        AvailableSwipeAction.settings
+                            .map((swipeAction) => (value: swipeAction, title: swipeAction.title, subtitle: null))
+                            .toList(),
                     initialOption: availableSwipeActions.right,
                     onSubmitted: submittedAvailableSwipeRightAction,
                   ),
@@ -155,15 +143,10 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                     value: availableSwipeActions.left.title,
                     description: l.settings_swipe_action_left_description,
                     dialogTitle: l.settings_swipe_action_left,
-                    options: AvailableSwipeAction.settings
-                        .map(
-                          (swipeAction) => (
-                            value: swipeAction,
-                            title: swipeAction.title,
-                            subtitle: null,
-                          ),
-                        )
-                        .toList(),
+                    options:
+                        AvailableSwipeAction.settings
+                            .map((swipeAction) => (value: swipeAction, title: swipeAction.title, subtitle: null))
+                            .toList(),
                     initialOption: availableSwipeActions.left,
                     onSubmitted: submittedAvailableSwipeLeftAction,
                   ),
@@ -179,15 +162,10 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                     value: archivedSwipeActions.right.title,
                     description: l.settings_swipe_action_right_description,
                     dialogTitle: l.settings_swipe_action_right,
-                    options: ArchivedSwipeAction.values
-                        .map(
-                          (swipeAction) => (
-                            value: swipeAction,
-                            title: swipeAction.title,
-                            subtitle: null,
-                          ),
-                        )
-                        .toList(),
+                    options:
+                        ArchivedSwipeAction.values
+                            .map((swipeAction) => (value: swipeAction, title: swipeAction.title, subtitle: null))
+                            .toList(),
                     initialOption: archivedSwipeActions.right,
                     onSubmitted: submittedArchivedSwipeRightAction,
                   ),
@@ -197,15 +175,10 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                     value: archivedSwipeActions.left.title,
                     description: l.settings_swipe_action_left_description,
                     dialogTitle: l.settings_swipe_action_left,
-                    options: ArchivedSwipeAction.values
-                        .map(
-                          (swipeAction) => (
-                            value: swipeAction,
-                            title: swipeAction.title,
-                            subtitle: null,
-                          ),
-                        )
-                        .toList(),
+                    options:
+                        ArchivedSwipeAction.values
+                            .map((swipeAction) => (value: swipeAction, title: swipeAction.title, subtitle: null))
+                            .toList(),
                     initialOption: archivedSwipeActions.left,
                     onSubmitted: submittedArchivedSwipeLeftAction,
                   ),
@@ -221,15 +194,10 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                     value: deletedSwipeActions.right.title,
                     description: l.settings_bin_swipe_action_right_description,
                     dialogTitle: l.settings_swipe_action_right,
-                    options: DeletedSwipeAction.values
-                        .map(
-                          (swipeAction) => (
-                            value: swipeAction,
-                            title: swipeAction.title,
-                            subtitle: null,
-                          ),
-                        )
-                        .toList(),
+                    options:
+                        DeletedSwipeAction.values
+                            .map((swipeAction) => (value: swipeAction, title: swipeAction.title, subtitle: null))
+                            .toList(),
                     initialOption: deletedSwipeActions.right,
                     onSubmitted: submittedDeletedSwipeRightAction,
                   ),
@@ -239,15 +207,10 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                     value: deletedSwipeActions.left.title,
                     description: l.settings_bin_swipe_action_left_description,
                     dialogTitle: l.settings_swipe_action_left,
-                    options: DeletedSwipeAction.values
-                        .map(
-                          (swipeAction) => (
-                            value: swipeAction,
-                            title: swipeAction.title,
-                            subtitle: null,
-                          ),
-                        )
-                        .toList(),
+                    options:
+                        DeletedSwipeAction.values
+                            .map((swipeAction) => (value: swipeAction, title: swipeAction.title, subtitle: null))
+                            .toList(),
                     initialOption: deletedSwipeActions.left,
                     onSubmitted: submittedDeletedSwipeLeftAction,
                   ),

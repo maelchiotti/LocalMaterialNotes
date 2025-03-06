@@ -21,12 +21,7 @@ Future<bool> restoreNote(
   bool pop = false,
   bool cancel = true,
 }) async {
-  if (!await askForConfirmation(
-    context,
-    l.dialog_restore,
-    l.dialog_restore_body(1),
-    l.dialog_restore,
-  )) {
+  if (!await askForConfirmation(context, l.dialog_restore, l.dialog_restore_body(1), l.dialog_restore)) {
     return false;
   }
 
@@ -52,18 +47,8 @@ Future<bool> restoreNote(
 /// Restores the [notes].
 ///
 /// Returns `true` if the [notes] were restored, `false` otherwise.
-Future<bool> restoreNotes(
-  BuildContext context,
-  WidgetRef ref, {
-  required List<Note> notes,
-  bool cancel = true,
-}) async {
-  if (!await askForConfirmation(
-    context,
-    l.dialog_restore,
-    l.dialog_restore_body(notes.length),
-    l.dialog_restore,
-  )) {
+Future<bool> restoreNotes(BuildContext context, WidgetRef ref, {required List<Note> notes, bool cancel = true}) async {
+  if (!await askForConfirmation(context, l.dialog_restore, l.dialog_restore_body(notes.length), l.dialog_restore)) {
     return false;
   }
 

@@ -17,8 +17,7 @@ enum NoteType {
   richText(Icons.format_paint),
 
   /// Checklist note.
-  checklist(Icons.checklist),
-  ;
+  checklist(Icons.checklist);
 
   /// Icon representing this note type.
   final IconData icon;

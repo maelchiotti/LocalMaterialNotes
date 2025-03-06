@@ -45,23 +45,23 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
 
   @override
   Widget build(BuildContext context) {
-    final notesTypes = NoteType.values.map((type) {
-      return (value: type, title: type.title, subtitle: null);
-    }).toList();
+    final notesTypes =
+        NoteType.values.map((type) {
+          return (value: type, title: type.title, subtitle: null);
+        }).toList();
     final availableNotesTypes = NoteType.available;
     final availableNotesTypesString = NoteType.availableAsString;
 
-    final shareNotesTypes = NoteType.share.map((type) {
-      return (value: type, title: type.title, subtitle: null);
-    }).toList();
+    final shareNotesTypes =
+        NoteType.share.map((type) {
+          return (value: type, title: type.title, subtitle: null);
+        }).toList();
     final defaultShareNoteType = NoteType.defaultShare;
 
     final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.preferenceOrDefault;
 
     return Scaffold(
-      appBar: TopNavigation(
-        appbar: BasicAppBar(title: l.navigation_settings_notes_types),
-      ),
+      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_notes_types)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,

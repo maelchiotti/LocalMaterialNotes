@@ -9,11 +9,7 @@ import '../../preferences/enums/swipe_actions/label_swipe_action.dart';
 /// Label tile dismissible widget.
 class LabelDismissible extends ConsumerStatefulWidget {
   /// Dismissible widget of the label tiles.
-  const LabelDismissible({
-    super.key,
-    required this.swipeAction,
-    required this.direction,
-  });
+  const LabelDismissible({super.key, required this.swipeAction, required this.direction});
 
   /// The swipe action to display.
   final LabelSwipeAction swipeAction;

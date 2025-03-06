@@ -10,12 +10,7 @@ import '../../../../providers/notifiers/notifiers.dart';
 /// Checklist editor.
 class ChecklistEditor extends ConsumerWidget {
   /// Editor allowing to edit the checklist content of a [ChecklistNote].
-  const ChecklistEditor({
-    super.key,
-    required this.note,
-    required this.isNewNote,
-    required this.readOnly,
-  });
+  const ChecklistEditor({super.key, required this.note, required this.isNewNote, required this.readOnly});
 
   /// The note to display.
   final ChecklistNote note;
@@ -28,9 +23,10 @@ class ChecklistEditor extends ConsumerWidget {
 
   /// Called when an item of the checklist changes with the new [checklistLines].
   void onChecklistChanged(WidgetRef ref, List<ChecklistLine> checklistLines) {
-    ChecklistNote newNote = note
-      ..checkboxes = checklistLines.map((checklistLine) => checklistLine.toggled).toList()
-      ..texts = checklistLines.map((checklistLine) => checklistLine.text).toList();
+    ChecklistNote newNote =
+        note
+          ..checkboxes = checklistLines.map((checklistLine) => checklistLine.toggled).toList()
+          ..texts = checklistLines.map((checklistLine) => checklistLine.text).toList();
 
     ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(newNote);
   }

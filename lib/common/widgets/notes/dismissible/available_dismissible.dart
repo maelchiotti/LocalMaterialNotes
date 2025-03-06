@@ -9,11 +9,7 @@ import '../../../preferences/enums/swipe_actions/available_swipe_action.dart';
 /// Available note tile dismissible widget.
 class AvailableDismissible extends ConsumerStatefulWidget {
   /// Dismissible widget shown on the note tile of an available note.
-  const AvailableDismissible({
-    super.key,
-    required this.swipeAction,
-    required this.direction,
-  });
+  const AvailableDismissible({super.key, required this.swipeAction, required this.direction});
 
   /// The swipe action to display.
   final AvailableSwipeAction swipeAction;

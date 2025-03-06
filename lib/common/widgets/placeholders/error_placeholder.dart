@@ -15,16 +15,12 @@ import '../../ui/snack_bar_utils.dart';
 /// Placeholder widget for an error.
 class ErrorPlaceholder extends StatelessWidget {
   /// Default constructor.
-  const ErrorPlaceholder({
-    super.key,
-    required this.exception,
-    this.stackTrace,
-  });
+  const ErrorPlaceholder({super.key, required this.exception, this.stackTrace});
 
   /// Constructor from [errorDetails].
   ErrorPlaceholder.errorDetails(FlutterErrorDetails errorDetails, {super.key})
-      : exception = errorDetails.exception,
-        stackTrace = errorDetails.stack;
+    : exception = errorDetails.exception,
+      stackTrace = errorDetails.stack;
 
   /// The exception that was raised.
   final Object exception;
@@ -41,13 +37,7 @@ class ErrorPlaceholder extends StatelessWidget {
 
   /// Opens a new GitHub issue.
   void _createGitHubIssue() {
-    launchUrl(
-      Uri(
-        scheme: 'https',
-        host: 'github.com',
-        path: 'maelchiotti/LocalMaterialNotes/issues/new',
-      ),
-    );
+    launchUrl(Uri(scheme: 'https', host: 'github.com', path: 'maelchiotti/LocalMaterialNotes/issues/new'));
   }
 
   /// Sends a bug report mail.
@@ -84,9 +74,7 @@ class ErrorPlaceholder extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(l.error_widget_title),
-      ),
+      appBar: AppBar(title: Text(l.error_widget_title)),
       drawer: const SideNavigation(),
       body: Center(
         child: Padding(
@@ -94,23 +82,12 @@ class ErrorPlaceholder extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text(
-                  l.error_widget_title,
-                  textAlign: TextAlign.center,
-                  style: textTheme.titleMedium,
-                ),
+                Text(l.error_widget_title, textAlign: TextAlign.center, style: textTheme.titleMedium),
                 Padding(padding: Paddings.vertical(4.0)),
-                Text(
-                  l.error_widget_description,
-                  textAlign: TextAlign.center,
-                ),
+                Text(l.error_widget_description, textAlign: TextAlign.center),
                 if (isFlagSecureSettingEnabled) ...[
                   Padding(padding: Paddings.vertical(4.0)),
-                  Text(
-                    l.error_widget_disabled_secure_flag,
-                    textAlign: TextAlign.center,
-                    style: textTheme.labelMedium,
-                  ),
+                  Text(l.error_widget_disabled_secure_flag, textAlign: TextAlign.center, style: textTheme.labelMedium),
                 ],
                 Padding(padding: Paddings.vertical(16.0)),
                 ElevatedButton.icon(
