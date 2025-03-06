@@ -7,10 +7,7 @@ import 'rich_text_editor_button.dart';
 /// Rich text editor link toolbar button.
 class RichTextEditorLinkButton extends StatefulWidget {
   /// Custom link button for the toolbar of the rich text editor.
-  const RichTextEditorLinkButton({
-    super.key,
-    required this.controller,
-  });
+  const RichTextEditorLinkButton({super.key, required this.controller});
 
   /// The controller of the Fleather text field.
   final FleatherController controller;

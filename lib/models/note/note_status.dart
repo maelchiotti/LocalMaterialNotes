@@ -8,5 +8,4 @@ enum NoteStatus {
 
   /// The note is deleted.
   deleted,
-  ;
 }

@@ -140,11 +140,12 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     await showAdaptiveDialog<String>(
       context: context,
       useRootNavigator: false,
-      builder: (context) => AutoExportPasswordDialog(
-        title: l.settings_auto_export_encryption,
-        description: l.dialog_export_encryption_description,
-        secondaryDescription: l.dialog_export_encryption_secondary_description_auto,
-      ),
+      builder:
+          (context) => AutoExportPasswordDialog(
+            title: l.settings_auto_export_encryption,
+            description: l.dialog_export_encryption_description,
+            secondaryDescription: l.dialog_export_encryption_secondary_description_auto,
+          ),
     ).then((autoExportPassword) async {
       if (autoExportPassword == null) {
         return;
@@ -195,9 +196,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     final autoExportDirectory = AutoExportUtils().autoExportDirectory.decoded;
 
     return Scaffold(
-      appBar: TopNavigation(
-        appbar: BasicAppBar(title: l.navigation_settings_backup),
-      ),
+      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_backup)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,

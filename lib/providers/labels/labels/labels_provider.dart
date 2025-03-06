@@ -83,11 +83,10 @@ class Labels extends _$Labels {
       return false;
     }
 
-    final labels = (state.value ?? [])
-      ..removeWhere(
-        (label) => labelsToToggle.contains(label),
-      )
-      ..addAll(labelsToToggle);
+    final labels =
+        (state.value ?? [])
+          ..removeWhere((label) => labelsToToggle.contains(label))
+          ..addAll(labelsToToggle);
 
     state = AsyncData(labels.sorted());
 
@@ -113,11 +112,10 @@ class Labels extends _$Labels {
       return false;
     }
 
-    final labels = (state.value ?? [])
-      ..removeWhere(
-        (label) => labelsToToggle.contains(label),
-      )
-      ..addAll(labelsToToggle);
+    final labels =
+        (state.value ?? [])
+          ..removeWhere((label) => labelsToToggle.contains(label))
+          ..addAll(labelsToToggle);
 
     state = AsyncData(labels.sorted());
 
@@ -140,11 +138,10 @@ class Labels extends _$Labels {
       return false;
     }
 
-    final labels = (state.value ?? [])
-      ..removeWhere(
-        (label) => labelsToToggle.contains(label),
-      )
-      ..addAll(labelsToToggle);
+    final labels =
+        (state.value ?? [])
+          ..removeWhere((label) => labelsToToggle.contains(label))
+          ..addAll(labelsToToggle);
 
     state = AsyncData(labels.sorted());
 
@@ -163,10 +160,7 @@ class Labels extends _$Labels {
       return false;
     }
 
-    final label = (state.value ?? [])
-      ..removeWhere(
-        (label) => labelsToDelete.contains(label),
-      );
+    final label = (state.value ?? [])..removeWhere((label) => labelsToDelete.contains(label));
 
     state = AsyncData(label);
 
@@ -192,20 +186,18 @@ class Labels extends _$Labels {
   /// Selects all the labels.
   void selectAll() {
     state = AsyncData([
-      ...?state.value
-        ?..forEach((label) {
-          label.selected = true;
-        }),
+      ...?state.value?..forEach((label) {
+        label.selected = true;
+      }),
     ]);
   }
 
   /// Unselects all the labels.
   void unselectAll() {
     state = AsyncData([
-      ...?state.value
-        ?..forEach((label) {
-          label.selected = false;
-        }),
+      ...?state.value?..forEach((label) {
+        label.selected = false;
+      }),
     ]);
   }
 

@@ -95,22 +95,19 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
     return Padding(
       padding: Paddings.pageHorizontal,
       child: DefaultTextStyle.merge(
-        style: TextStyle(
-          fontFamily: editorFont.familyName,
-        ),
+        style: TextStyle(fontFamily: editorFont.familyName),
         child: Builder(
           builder: (context) {
             final fleatherThemeFallback = FleatherThemeData.fallback(context);
             final fleatherTheme = fleatherThemeFallback.copyWith(
-              paragraph: useParagraphsSpacing
-                  ? TextBlockTheme(
-                      style: fleatherThemeFallback.paragraph.style,
-                      spacing: const VerticalSpacing.zero(),
-                    )
-                  : null,
-              link: fleatherThemeFallback.link.copyWith(
-                color: Theme.of(context).colorScheme.primary,
-              ),
+              paragraph:
+                  useParagraphsSpacing
+                      ? TextBlockTheme(
+                        style: fleatherThemeFallback.paragraph.style,
+                        spacing: const VerticalSpacing.zero(),
+                      )
+                      : null,
+              link: fleatherThemeFallback.link.copyWith(color: Theme.of(context).colorScheme.primary),
             );
 
             return FleatherTheme(
@@ -123,9 +120,7 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
                 expands: true,
                 onLaunchUrl: onLaunchUrl,
                 decoration: InputDecoration.collapsed(hintText: l.hint_content),
-                spellCheckConfiguration: SpellCheckConfiguration(
-                  spellCheckService: DefaultSpellCheckService(),
-                ),
+                spellCheckConfiguration: SpellCheckConfiguration(spellCheckService: DefaultSpellCheckService()),
                 padding: Paddings.bottomSystemUi,
               ),
             );

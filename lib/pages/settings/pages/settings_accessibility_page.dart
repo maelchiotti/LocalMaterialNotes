@@ -75,9 +75,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
     final darkTheme = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      appBar: TopNavigation(
-        appbar: BasicAppBar(title: l.navigation_settings_accessibility),
-      ),
+      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_accessibility)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,
@@ -90,13 +88,11 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
                   SettingSliderTile(
                     icon: Icons.format_size,
                     title: l.settings_text_scaling,
-                    value: (textScaling as num).formatAsPercentage(
-                      locale: SystemUtils().appLocaleLanguageCode,
-                    ),
+                    value: (textScaling as num).formatAsPercentage(locale: SystemUtils().appLocaleLanguageCode),
                     dialogTitle: l.settings_text_scaling,
-                    label: (textScaling) => (textScaling as num).formatAsPercentage(
-                      locale: SystemUtils().appLocaleLanguageCode,
-                    ),
+                    label:
+                        (textScaling) =>
+                            (textScaling as num).formatAsPercentage(locale: SystemUtils().appLocaleLanguageCode),
                     min: 0.5,
                     max: 2.0,
                     divisions: 15,

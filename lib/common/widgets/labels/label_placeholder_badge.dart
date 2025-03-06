@@ -5,10 +5,7 @@ import 'label_badge.dart';
 /// Placeholder badge for the labels.
 class LabelPlaceholderBadge extends StatelessWidget {
   /// A badge similar to the [LabelBadge], but with a neutral color and a [text].
-  const LabelPlaceholderBadge({
-    super.key,
-    required this.text,
-  });
+  const LabelPlaceholderBadge({super.key, required this.text});
 
   /// The text to display in the badge.
   final String text;

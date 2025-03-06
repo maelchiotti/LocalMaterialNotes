@@ -20,11 +20,7 @@ import 'note_tile.dart';
 /// List of notes.
 class NotesList extends ConsumerWidget {
   /// Default constructor.
-  const NotesList({
-    super.key,
-    required this.notesStatus,
-    this.label,
-  });
+  const NotesList({super.key, required this.notesStatus, this.label});
 
   /// The status of the notes in the page.
   final NoteStatus notesStatus;
@@ -57,31 +53,33 @@ class NotesList extends ConsumerWidget {
 
     return layout == Layout.list
         ? ListView.separated(
-            padding: showTilesBackground ? Paddings.notesWithBackground : Paddings.fab,
-            itemCount: notes.length,
-            itemBuilder: (context, index) {
-              return NoteTile(note: notes[index]);
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: showTilesBackground ? Paddings.notesListWithBackgroundSeparation : EdgeInsetsDirectional.zero,
-                child: showSeparators ? Separator.divider1indent8.horizontal : null,
-              );
-            },
-          )
+          padding: showTilesBackground ? Paddings.notesWithBackground : Paddings.fab,
+          itemCount: notes.length,
+          itemBuilder: (context, index) {
+            return NoteTile(note: notes[index]);
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return Padding(
+              padding: showTilesBackground ? Paddings.notesListWithBackgroundSeparation : EdgeInsetsDirectional.zero,
+              child: showSeparators ? Separator.divider1indent8.horizontal : null,
+            );
+          },
+        )
         : AlignedGridView.count(
-            padding: Paddings.notesWithBackground,
-            mainAxisSpacing: Sizes.notesGridLayoutSpacing.size,
-            crossAxisSpacing: Sizes.notesGridLayoutSpacing.size,
-            crossAxisCount: crossAxisCount,
-            itemCount: notes.length,
-            itemBuilder: (context, index) => NoteTile(note: notes[index]),
-          );
+          padding: Paddings.notesWithBackground,
+          mainAxisSpacing: Sizes.notesGridLayoutSpacing.size,
+          crossAxisSpacing: Sizes.notesGridLayoutSpacing.size,
+          crossAxisCount: crossAxisCount,
+          itemCount: notes.length,
+          itemBuilder: (context, index) => NoteTile(note: notes[index]),
+        );
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(notesProvider(status: notesStatus, label: label)).when(
+    return ref
+        .watch(notesProvider(status: notesStatus, label: label))
+        .when(
           data: (notes) => child(context, ref, notes),
           error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
           loading: () => const LoadingPlaceholder(),

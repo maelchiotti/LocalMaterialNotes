@@ -8,35 +8,22 @@ import '../preferences/enums/confirmations.dart';
 /// Returns `true` if the user confirms the action, `false` otherwise.
 ///
 /// The [title], [body] and [confirmText] depend on the action for which the confirmation must be obtained.
-Future<bool> _showConfirmationDialog(
-  BuildContext context,
-  String title,
-  String body,
-  String confirmText,
-) async =>
+Future<bool> _showConfirmationDialog(BuildContext context, String title, String body, String confirmText) async =>
     await showAdaptiveDialog<bool>(
       context: context,
       useRootNavigator: false,
-      builder: (context) => AlertDialog.adaptive(
-        title: Text(title),
-        content: SingleChildScrollView(
-          child: Column(
-            children: [
-              Text(body),
+      builder:
+          (context) => AlertDialog.adaptive(
+            title: Text(title),
+            content: SingleChildScrollView(child: Column(children: [Text(body)])),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: Text(fl?.cancelButtonLabel ?? 'Cancel'),
+              ),
+              TextButton(onPressed: () => Navigator.pop(context, true), child: Text(confirmText)),
             ],
           ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: Text(fl?.cancelButtonLabel ?? 'Cancel'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: Text(confirmText),
-          ),
-        ],
-      ),
     ) ??
     false;
 

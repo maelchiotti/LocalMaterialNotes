@@ -11,10 +11,7 @@ Future<void> editLabel(BuildContext context, WidgetRef ref, {required Label labe
   final editedLabel = await showAdaptiveDialog<Label>(
     context: context,
     useRootNavigator: false,
-    builder: (context) => LabelDialog(
-      title: l.dialog_label_edit,
-      label: label,
-    ),
+    builder: (context) => LabelDialog(title: l.dialog_label_edit, label: label),
   );
 
   if (editedLabel == null) {

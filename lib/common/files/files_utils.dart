@@ -11,11 +11,7 @@ import '../constants/constants.dart';
 ///
 /// Uses the native APIs to write the file without needing any permissions,
 /// so it will only work in the application's own data directory.
-Future<bool> _writeFileNative({
-  required String directory,
-  required String fileName,
-  required Uint8List data,
-}) async {
+Future<bool> _writeFileNative({required String directory, required String fileName, required Uint8List data}) async {
   try {
     final path = join(directory, fileName);
     final file = File(path);

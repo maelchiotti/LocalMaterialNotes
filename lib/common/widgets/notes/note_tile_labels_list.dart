@@ -8,10 +8,7 @@ import '../labels/label_placeholder_badge.dart';
 /// List of labels on note tiles.
 class NoteTileLabelsList extends ConsumerStatefulWidget {
   /// The list of labels of the [note] on the note tiles.
-  const NoteTileLabelsList({
-    super.key,
-    required this.note,
-  });
+  const NoteTileLabelsList({super.key, required this.note});
 
   /// The note for which the labels are displayed.
   final Note note;

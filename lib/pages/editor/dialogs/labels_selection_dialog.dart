@@ -13,10 +13,7 @@ import '../../../providers/labels/labels_list/labels_list_provider.dart';
 /// Dialog to select the labels.
 class LabelsSelectionDialog extends ConsumerStatefulWidget {
   /// A dialog allowing the user to select the labels of a note.
-  const LabelsSelectionDialog({
-    super.key,
-    this.note,
-  });
+  const LabelsSelectionDialog({super.key, this.note});
 
   /// The note for which to select the labels.
   final Note? note;
@@ -72,49 +69,36 @@ class _LabelsSelectionDialogState extends ConsumerState<LabelsSelectionDialog> {
       title: Text(widget.note == null ? l.dialog_select_labels_to_add : l.dialog_select_labels),
       content: SingleChildScrollView(
         child: ListBody(
-          children: labels.mapIndexed(
-            (index, label) {
-              return CheckboxListTile(
-                value: label.selected,
-                secondary: VariedIcon.varied(
-                  label.pinned ? Icons.label_important : Icons.label,
-                  fill: 1.0,
-                  color: label.color,
-                ),
-                title: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        label.name,
-                        style: bodyLarge?.copyWith(
-                          color: !label.visible ? bodyLarge.color?.subdued : null,
+          children:
+              labels.mapIndexed((index, label) {
+                return CheckboxListTile(
+                  value: label.selected,
+                  secondary: VariedIcon.varied(
+                    label.pinned ? Icons.label_important : Icons.label,
+                    fill: 1.0,
+                    color: label.color,
+                  ),
+                  title: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          label.name,
+                          style: bodyLarge?.copyWith(color: !label.visible ? bodyLarge.color?.subdued : null),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
                       ),
-                    ),
-                    if (label.locked)
-                      Icon(
-                        Icons.lock,
-                        size: Sizes.iconSmall.size,
-                      ),
-                  ],
-                ),
-                onChanged: (value) => onChanged(index, value),
-              );
-            },
-          ).toList(),
+                      if (label.locked) Icon(Icons.lock, size: Sizes.iconSmall.size),
+                    ],
+                  ),
+                  onChanged: (value) => onChanged(index, value),
+                );
+              }).toList(),
         ),
       ),
       actions: [
-        TextButton(
-          onPressed: () => pop(canceled: true),
-          child: Text(fl?.cancelButtonLabel ?? 'Cancel'),
-        ),
-        TextButton(
-          onPressed: pop,
-          child: Text(fl?.okButtonLabel ?? 'OK'),
-        ),
+        TextButton(onPressed: () => pop(canceled: true), child: Text(fl?.cancelButtonLabel ?? 'Cancel')),
+        TextButton(onPressed: pop, child: Text(fl?.okButtonLabel ?? 'OK')),
       ],
     );
   }

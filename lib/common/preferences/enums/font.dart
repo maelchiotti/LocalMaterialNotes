@@ -18,8 +18,7 @@ enum Font {
   playfairDisplay('Playfair Display', 'Playfair Display'),
   raleway('Raleway', 'Raleway'),
   robotoMono('Roboto Mono', 'Roboto Mono'),
-  ubuntu('Ubuntu', 'Ubuntu'),
-  ;
+  ubuntu('Ubuntu', 'Ubuntu');
 
   /// The name of the font family.
   final String familyName;
@@ -32,9 +31,7 @@ enum Font {
 
   /// Returns the value of the preference if set, or its default value otherwise.
   factory Font.appFromPreference() {
-    final font = Font.values.byNameOrNull(
-      PreferenceKey.appFont.preference,
-    );
+    final font = Font.values.byNameOrNull(PreferenceKey.appFont.preference);
 
     // Reset the malformed preference to its default value
     if (font == null) {
@@ -48,9 +45,7 @@ enum Font {
 
   /// Returns the value of the preference if set, or its default value otherwise.
   factory Font.editorFromPreference() {
-    final font = Font.values.byNameOrNull(
-      PreferenceKey.editorFont.preference,
-    );
+    final font = Font.values.byNameOrNull(PreferenceKey.editorFont.preference);
 
     // Reset the malformed preference to its default value
     if (font == null) {

@@ -41,11 +41,7 @@ class NotesService {
     _richTextNotes = DatabaseService().database.richTextNotes;
     _checklistNotes = DatabaseService().database.checklistNotes;
 
-    _index = await DatabaseService().mimir.openIndex(
-      'notes',
-      primaryKey: 'id',
-      searchableFields: ['title', 'content'],
-    );
+    _index = await DatabaseService().mimir.openIndex('notes', primaryKey: 'id', searchableFields: ['title', 'content']);
 
     // If the number of indexed notes is different from the total number of notes, re-index them all
     // (this should only be needed on the first launch after updating from a version that didn't have the index feature)
@@ -57,7 +53,6 @@ class NotesService {
       await _clearIndexes();
       await _updateIndexes(await getAll());
     }
-
     // If the app runs with the 'SCREENSHOTS' environment parameter,
     // clear all the notes and add the notes for the screenshots
     else if (Environment.screenshots) {
@@ -65,7 +60,6 @@ class NotesService {
       await putAll(screenshotNotes);
       await putLabels(screenshotNotes[4], screenshotLabels);
     }
-
     // If the app runs for the first time ever, add the welcome note
     else if (await IsFirstRun.isFirstCall()) {
       await put(welcomeNote);
@@ -184,23 +178,16 @@ class NotesService {
     final searchFilter = Mimir.and([
       ...switch (notesStatus) {
         NoteStatus.available => [
-            Mimir.where('deleted', isEqualTo: false.toString()),
-            Mimir.where('archived', isEqualTo: false.toString()),
-          ],
-        NoteStatus.archived => [
-            Mimir.where('archived', isEqualTo: (true).toString()),
-          ],
-        NoteStatus.deleted => [
-            Mimir.where('deleted', isEqualTo: (true).toString()),
-          ],
+          Mimir.where('deleted', isEqualTo: false.toString()),
+          Mimir.where('archived', isEqualTo: false.toString()),
+        ],
+        NoteStatus.archived => [Mimir.where('archived', isEqualTo: (true).toString())],
+        NoteStatus.deleted => [Mimir.where('deleted', isEqualTo: (true).toString())],
       },
       if (label != null) Mimir.where('labels', containsAtLeastOneOf: [label]),
     ]);
 
-    final searchResults = await _index.search(
-      query: search,
-      filter: searchFilter,
-    );
+    final searchResults = await _index.search(query: search, filter: searchFilter);
 
     final notesIds = searchResults.map((Map<String, dynamic> noteIndex) => noteIndex['id'] as int).toList();
     final notes = (await getAllByIds(notesIds));

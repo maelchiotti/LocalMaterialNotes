@@ -10,8 +10,7 @@ enum SelectionDeletedMenuOption {
   /// Permanently delete the note.
   ///
   /// This action is [dangerous].
-  deletePermanently(Icons.delete_forever, dangerous: true),
-  ;
+  deletePermanently(Icons.delete_forever, dangerous: true);
 
   /// Icon of the menu option.
   final IconData icon;
@@ -43,15 +42,12 @@ enum SelectionDeletedMenuOption {
     return PopupMenuItem(
       value: this,
       child: ListTile(
-        leading: Icon(
-          icon,
-          color: dangerous ? Theme.of(context).colorScheme.error : null,
-        ),
+        leading: Icon(icon, color: dangerous ? Theme.of(context).colorScheme.error : null),
         title: Text(
           title,
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                color: dangerous ? Theme.of(context).colorScheme.error : null,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleSmall?.copyWith(color: dangerous ? Theme.of(context).colorScheme.error : null),
         ),
       ),
     );

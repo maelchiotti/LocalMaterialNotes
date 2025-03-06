@@ -10,12 +10,7 @@ class LoadingPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Padding(
-        padding: Paddings.page,
-        child: const SingleChildScrollView(
-          child: CircularProgressIndicator(),
-        ),
-      ),
+      child: Padding(padding: Paddings.page, child: const SingleChildScrollView(child: CircularProgressIndicator())),
     );
   }
 }

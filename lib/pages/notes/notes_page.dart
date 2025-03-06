@@ -42,19 +42,13 @@ class _NotesPageState extends ConsumerState<NotesPage> {
 
     return Scaffold(
       appBar: TopNavigation(
-        appbar: NotesAppBar(
-          label: widget.label,
-          notesStatus: NoteStatus.available,
-        ),
+        appbar: NotesAppBar(label: widget.label, notesStatus: NoteStatus.available),
         notesStatus: NoteStatus.available,
       ),
       drawer: SideNavigation(),
       floatingActionButtonLocation: availableNotesTypes.length > 1 ? ExpandableFab.location : null,
       floatingActionButton: AddNoteFab(),
-      body: NotesList(
-        notesStatus: NoteStatus.available,
-        label: widget.label,
-      ),
+      body: NotesList(notesStatus: NoteStatus.available, label: widget.label),
     );
   }
 }

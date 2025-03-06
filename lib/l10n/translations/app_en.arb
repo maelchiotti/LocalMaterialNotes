@@ -493,7 +493,7 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "Immediately export the notes, labels and settings to a JSON file (bin included) that can be imported back",
+  "settings_export_json_description": "Immediately export all the notes, labels and settings to a JSON file that can be imported back",
   "@settings_export_json_description": {
     "description": "Description of the setting tile to manually export the notes as JSON."
   },
@@ -501,7 +501,7 @@
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
   },
-  "settings_export_markdown_description": "Immediately export the notes to a Markdown file (bin included)",
+  "settings_export_markdown_description": "Immediately export all the notes to a Markdown file",
   "@settings_export_markdown_description": {
     "description": "Description of the setting tile to manually export the notes as Markdown."
   },
@@ -513,7 +513,7 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "Automatically export the notes, labels and settings to a JSON file (bin included) that can be imported back",
+  "settings_auto_export_description": "Automatically export all the notes, labels and settings to a JSON file that can be imported back",
   "@settings_auto_export_description": {
     "description": "Description of the settings tile to enable the automatic export."
   },

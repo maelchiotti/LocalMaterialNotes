@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 enum Separator {
   divider1indent8(1, 1, 8, 8),
   divider1indent16(1, 1, 16, 16),
-  divider1indent28(1, 1, 28, 28),
-  ;
+  divider1indent28(1, 1, 28, 28);
 
   /// Size of the separator.
   final double _size;
@@ -21,26 +20,12 @@ enum Separator {
   /// Padding on the end of the separator.
   final double _endIndent;
 
-  const Separator(
-    this._size,
-    this._thickness,
-    this._indent,
-    this._endIndent,
-  );
+  const Separator(this._size, this._thickness, this._indent, this._endIndent);
 
   /// Horizontal separator.
-  Divider get horizontal => Divider(
-        height: _size,
-        thickness: _thickness,
-        indent: _indent,
-        endIndent: _endIndent,
-      );
+  Divider get horizontal => Divider(height: _size, thickness: _thickness, indent: _indent, endIndent: _endIndent);
 
   /// Vertical separator.
-  VerticalDivider get vertical => VerticalDivider(
-        width: _size,
-        thickness: _thickness,
-        indent: _indent,
-        endIndent: _endIndent,
-      );
+  VerticalDivider get vertical =>
+      VerticalDivider(width: _size, thickness: _thickness, indent: _indent, endIndent: _endIndent);
 }

@@ -41,8 +41,7 @@ enum SupportedLanguage {
   zh(Locale('zh'), 1),
 
   /// Chinese Traditional.
-  zhTW(Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'), 0),
-  ;
+  zhTW(Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'), 0);
 
   /// The locale completion of this language.
   final Locale locale;

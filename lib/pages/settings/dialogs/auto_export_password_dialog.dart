@@ -78,14 +78,8 @@ class _AutoExportPasswordDialogState extends State<AutoExportPasswordDialog> {
         ),
       ),
       actions: [
-        TextButton(
-          onPressed: () => _pop(canceled: true),
-          child: Text(fl?.cancelButtonLabel ?? 'Cancel'),
-        ),
-        TextButton(
-          onPressed: ok ? _pop : null,
-          child: Text(fl?.okButtonLabel ?? 'OK'),
-        ),
+        TextButton(onPressed: () => _pop(canceled: true), child: Text(fl?.cancelButtonLabel ?? 'Cancel')),
+        TextButton(onPressed: ok ? _pop : null, child: Text(fl?.okButtonLabel ?? 'OK')),
       ],
     );
   }

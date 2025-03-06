@@ -13,7 +13,7 @@ class PlainTextNote extends Note {
     required super.archived,
     required super.deleted,
     required super.pinned,
-    required super.locked,
+    super.locked,
     required super.createdTime,
     required super.editedTime,
     required super.title,
@@ -23,43 +23,43 @@ class PlainTextNote extends Note {
 
   /// Plain text note with empty title and content.
   factory PlainTextNote.empty() => PlainTextNote(
-        archived: false,
-        deleted: false,
-        pinned: false,
-        locked: false,
-        createdTime: DateTime.now(),
-        editedTime: DateTime.now(),
-        title: '',
-        content: '',
-      );
+    archived: false,
+    deleted: false,
+    pinned: false,
+    createdTime: DateTime.now(),
+    editedTime: DateTime.now(),
+    title: '',
+    content: '',
+  );
 
   /// Plain text note with the provided [content].
   factory PlainTextNote.content(String content) => PlainTextNote(
-        archived: false,
-        deleted: false,
-        pinned: false,
-        locked: false,
-        createdTime: DateTime.now(),
-        editedTime: DateTime.now(),
-        title: '',
-        content: content,
-      );
+    archived: false,
+    deleted: false,
+    pinned: false,
+    createdTime: DateTime.now(),
+    editedTime: DateTime.now(),
+    title: '',
+    content: content,
+  );
 
   /// Plain text note from [json] data.
   factory PlainTextNote.fromJson(Map<String, dynamic> json) => _$PlainTextNoteFromJson(json);
 
   /// Plain text note from [json] data, encrypted with [password].
-  factory PlainTextNote.fromJsonEncrypted(Map<String, dynamic> json, String password) => _$PlainTextNoteFromJson(json)
-    ..title = (json['title'] as String).isEmpty ? '' : EncryptionUtils().decrypt(password, json['title'] as String)
-    ..content = EncryptionUtils().decrypt(password, json['content'] as String);
+  factory PlainTextNote.fromJsonEncrypted(Map<String, dynamic> json, String password) =>
+      _$PlainTextNoteFromJson(json)
+        ..title = (json['title'] as String).isEmpty ? '' : EncryptionUtils().decrypt(password, json['title'] as String)
+        ..content = EncryptionUtils().decrypt(password, json['content'] as String);
 
   /// Plain text note to JSON.
   Map<String, dynamic> toJson() => _$PlainTextNoteToJson(this);
 
   @override
-  Note encrypted(String password) => this
-    ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
-    ..content = EncryptionUtils().encrypt(password, content);
+  Note encrypted(String password) =>
+      this
+        ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
+        ..content = EncryptionUtils().encrypt(password, content);
 
   @ignore
   @override

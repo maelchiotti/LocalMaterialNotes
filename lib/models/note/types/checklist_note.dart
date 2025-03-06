@@ -17,7 +17,7 @@ class ChecklistNote extends Note {
     required super.archived,
     required super.deleted,
     required super.pinned,
-    required super.locked,
+    super.locked,
     required super.createdTime,
     required super.editedTime,
     required super.title,
@@ -25,35 +25,33 @@ class ChecklistNote extends Note {
     required this.checkboxes,
     required this.texts,
   }) : assert(
-          checkboxes.length == texts.length,
-          'The lists of checkboxes and texts of a checklist note are different: ${checkboxes.length} and ${texts.length}',
-        );
+         checkboxes.length == texts.length,
+         'The lists of checkboxes and texts of a checklist note are different: ${checkboxes.length} and ${texts.length}',
+       );
 
   /// Checklist note with empty title and 1 empty checklist item.
   factory ChecklistNote.empty() => ChecklistNote(
-        archived: false,
-        deleted: false,
-        pinned: false,
-        locked: false,
-        createdTime: DateTime.now(),
-        editedTime: DateTime.now(),
-        title: '',
-        checkboxes: [false],
-        texts: [''],
-      );
+    archived: false,
+    deleted: false,
+    pinned: false,
+    createdTime: DateTime.now(),
+    editedTime: DateTime.now(),
+    title: '',
+    checkboxes: [false],
+    texts: [''],
+  );
 
   /// Checklist note with the provided [content].
   factory ChecklistNote.content(List<ChecklistLine> content) => ChecklistNote(
-        archived: false,
-        deleted: false,
-        pinned: false,
-        locked: false,
-        createdTime: DateTime.now(),
-        editedTime: DateTime.now(),
-        title: '',
-        checkboxes: content.map((checklistLine) => checklistLine.toggled).toList(),
-        texts: content.map((checklistLine) => checklistLine.text).toList(),
-      );
+    archived: false,
+    deleted: false,
+    pinned: false,
+    createdTime: DateTime.now(),
+    editedTime: DateTime.now(),
+    title: '',
+    checkboxes: content.map((checklistLine) => checklistLine.toggled).toList(),
+    texts: content.map((checklistLine) => checklistLine.text).toList(),
+  );
 
   /// Checklist note from [json] data.
   factory ChecklistNote.fromJson(Map<String, dynamic> json) => _$ChecklistNoteFromJson(json);

@@ -25,8 +25,7 @@ enum ArchivedSwipeAction {
   unarchive(Icons.unarchive),
 
   /// Delete the note.
-  delete(Icons.delete),
-  ;
+  delete(Icons.delete);
 
   /// Icon of the swipe action.
   final IconData icon;
@@ -38,9 +37,7 @@ enum ArchivedSwipeAction {
 
   /// Returns the value of the right swipe action preference if set, or its default value otherwise.
   factory ArchivedSwipeAction.rightFromPreference() {
-    final swipeRightAction = ArchivedSwipeAction.values.byNameOrNull(
-      PreferenceKey.archivedSwipeRightAction.preference,
-    );
+    final swipeRightAction = ArchivedSwipeAction.values.byNameOrNull(PreferenceKey.archivedSwipeRightAction.preference);
 
     // Reset the malformed preference to its default value
     if (swipeRightAction == null) {
@@ -54,9 +51,7 @@ enum ArchivedSwipeAction {
 
   /// Returns the value of the left swipe action preference if set, or its default value otherwise.
   factory ArchivedSwipeAction.leftFromPreference() {
-    final swipeRightAction = ArchivedSwipeAction.values.byNameOrNull(
-      PreferenceKey.archivedSwipeLeftAction.preference,
-    );
+    final swipeRightAction = ArchivedSwipeAction.values.byNameOrNull(PreferenceKey.archivedSwipeLeftAction.preference);
 
     // Reset the malformed preference to its default value
     if (swipeRightAction == null) {
@@ -92,19 +87,16 @@ enum ArchivedSwipeAction {
 
   /// Icon of the swipe action to display.
   Widget iconWidget(BuildContext context) {
-    return Icon(
-      icon,
-      color: Theme.of(context).colorScheme.onTertiaryContainer,
-    );
+    return Icon(icon, color: Theme.of(context).colorScheme.onTertiaryContainer);
   }
 
   /// Text of the swipe action to display.
   Widget titleWidget(BuildContext context) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onTertiaryContainer,
-          ),
+      style: Theme.of(
+        context,
+      ).textTheme.titleMedium?.copyWith(color: Theme.of(context).colorScheme.onTertiaryContainer),
     );
   }
 

@@ -34,9 +34,8 @@ class Paddings {
   static EdgeInsetsDirectional get bottomSystemUi => EdgeInsetsDirectional.only(bottom: _bottomSystemUiPadding);
 
   /// Padding for the floating action buttons.
-  static EdgeInsetsDirectional get fab => EdgeInsetsDirectional.only(
-        bottom: _bottomSystemUiPadding + kFloatingActionButtonMargin + 64,
-      );
+  static EdgeInsetsDirectional get fab =>
+      EdgeInsetsDirectional.only(bottom: _bottomSystemUiPadding + kFloatingActionButtonMargin + 64);
 
   /// Padding for a page.
   static EdgeInsetsDirectional get page => const EdgeInsetsDirectional.all(16);

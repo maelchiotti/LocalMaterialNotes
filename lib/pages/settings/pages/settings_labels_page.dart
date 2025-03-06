@@ -1,7 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
-import 'package:restart_app/restart_app.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
 import '../../../common/constants/constants.dart';
@@ -26,11 +24,6 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
     await PreferenceKey.enableLabels.set(toggled);
 
     setState(() {});
-
-    // The Restart package crashes the app if used in debug mode
-    if (kReleaseMode) {
-      await Restart.restartApp();
-    }
   }
 
   /// Toggles whether to show the labels list in the editor.
@@ -77,9 +70,7 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
     );
 
     return Scaffold(
-      appBar: TopNavigation(
-        appbar: BasicAppBar(title: l.navigation_settings_labels),
-      ),
+      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_labels)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,
@@ -129,15 +120,10 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
                     value: labelSwipeActions.right.title,
                     description: l.settings_swipe_action_right_description,
                     dialogTitle: l.settings_swipe_action_right,
-                    options: LabelSwipeAction.settings
-                        .map(
-                          (swipeAction) => (
-                            value: swipeAction,
-                            title: swipeAction.title,
-                            subtitle: null,
-                          ),
-                        )
-                        .toList(),
+                    options:
+                        LabelSwipeAction.settings
+                            .map((swipeAction) => (value: swipeAction, title: swipeAction.title, subtitle: null))
+                            .toList(),
                     initialOption: labelSwipeActions.right,
                     onSubmitted: submittedLabelSwipeRightAction,
                   ),
@@ -147,15 +133,10 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
                     value: labelSwipeActions.left.title,
                     description: l.settings_swipe_action_left_description,
                     dialogTitle: l.settings_swipe_action_left,
-                    options: LabelSwipeAction.settings
-                        .map(
-                          (swipeAction) => (
-                            value: swipeAction,
-                            title: swipeAction.title,
-                            subtitle: null,
-                          ),
-                        )
-                        .toList(),
+                    options:
+                        LabelSwipeAction.settings
+                            .map((swipeAction) => (value: swipeAction, title: swipeAction.title, subtitle: null))
+                            .toList(),
                     initialOption: labelSwipeActions.left,
                     onSubmitted: submittedLabelSwipeLeftAction,
                   ),

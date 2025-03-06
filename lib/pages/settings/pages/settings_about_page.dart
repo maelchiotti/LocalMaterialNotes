@@ -18,57 +18,27 @@ class SettingsAboutPage extends StatelessWidget {
 
   /// Opens the Crowdin project.
   void openCrowdin() {
-    launchUrl(
-      Uri(
-        scheme: 'https',
-        host: 'crowdin.com',
-        path: 'project/localmaterialnotes',
-      ),
-    );
+    launchUrl(Uri(scheme: 'https', host: 'crowdin.com', path: 'project/localmaterialnotes'));
   }
 
   /// Opens the application's GitHub repository.
   void openGitHub() {
-    launchUrl(
-      Uri(
-        scheme: 'https',
-        host: 'github.com',
-        path: 'maelchiotti/LocalMaterialNotes',
-      ),
-    );
+    launchUrl(Uri(scheme: 'https', host: 'github.com', path: 'maelchiotti/LocalMaterialNotes'));
   }
 
   /// Opens the application's license file.
   void openLicense() {
-    launchUrl(
-      Uri(
-        scheme: 'https',
-        host: 'github.com',
-        path: 'maelchiotti/LocalMaterialNotes/blob/main/LICENSE',
-      ),
-    );
+    launchUrl(Uri(scheme: 'https', host: 'github.com', path: 'maelchiotti/LocalMaterialNotes/blob/main/LICENSE'));
   }
 
   /// Opens the PayPal donation page.
   Future<void> donatePayPal() async {
-    await launchUrl(
-      Uri(
-        scheme: 'https',
-        host: 'paypal.me',
-        path: 'maelchiotti',
-      ),
-    );
+    await launchUrl(Uri(scheme: 'https', host: 'paypal.me', path: 'maelchiotti'));
   }
 
   /// Opens the Ko-fi donation page.
   Future<void> donateKoFi() async {
-    await launchUrl(
-      Uri(
-        scheme: 'https',
-        host: 'ko-fi.com',
-        path: 'maelchiotti',
-      ),
-    );
+    await launchUrl(Uri(scheme: 'https', host: 'ko-fi.com', path: 'maelchiotti'));
   }
 
   @override
@@ -77,9 +47,7 @@ class SettingsAboutPage extends StatelessWidget {
     final appBuildNumber = SystemUtils().buildNumber;
 
     return Scaffold(
-      appBar: TopNavigation(
-        appbar: BasicAppBar(title: l.navigation_settings_about),
-      ),
+      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_about)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,
@@ -92,18 +60,11 @@ class SettingsAboutPage extends StatelessWidget {
                   SettingAboutTile(
                     title: l.app_name,
                     description: 'v$appVersion ($appBuildNumber)',
-                    applicationIcon: Image.asset(
-                      Asset.icon.path,
-                      fit: BoxFit.fitWidth,
-                      width: Sizes.appIcon.size,
-                    ),
+                    applicationIcon: Image.asset(Asset.icon.path, fit: BoxFit.fitWidth, width: Sizes.appIcon.size),
                     applicationLegalese: l.settings_licence_description,
                     dialogChildren: [
                       Padding(padding: Paddings.vertical(16)),
-                      Text(
-                        l.app_tagline,
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
+                      Text(l.app_tagline, style: Theme.of(context).textTheme.titleSmall),
                       Padding(padding: Paddings.vertical(8)),
                       Text(l.app_about(l.app_name)),
                     ],
@@ -143,16 +104,8 @@ class SettingsAboutPage extends StatelessWidget {
                 divider: null,
                 title: l.settings_about_section_donate,
                 tiles: [
-                  SettingActionTile(
-                    icon: SimpleIcons.kofi,
-                    title: l.settings_donate_kofi,
-                    onTap: donateKoFi,
-                  ),
-                  SettingActionTile(
-                    icon: SimpleIcons.paypal,
-                    title: l.settings_donate_paypal,
-                    onTap: donatePayPal,
-                  ),
+                  SettingActionTile(icon: SimpleIcons.kofi, title: l.settings_donate_kofi, onTap: donateKoFi),
+                  SettingActionTile(icon: SimpleIcons.paypal, title: l.settings_donate_paypal, onTap: donatePayPal),
                 ],
               ),
             ],

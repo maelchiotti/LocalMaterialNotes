@@ -28,11 +28,7 @@ import '../../../widgets/placeholders/empty_placeholder.dart';
 ///   - The button to search through the notes.
 class NotesAppBar extends ConsumerWidget {
   /// Default constructor.
-  const NotesAppBar({
-    super.key,
-    required this.notesStatus,
-    this.label,
-  });
+  const NotesAppBar({super.key, required this.notesStatus, this.label});
 
   /// Whether the current page is the notes list.
   final NoteStatus notesStatus;
@@ -54,11 +50,7 @@ class NotesAppBar extends ConsumerWidget {
 
   /// Returns the placeholder for the search button used when the search isn't available.
   Widget get searchButtonPlaceholder {
-    return IconButton(
-      onPressed: null,
-      icon: const Icon(Icons.search),
-      tooltip: l.tooltip_search,
-    );
+    return IconButton(onPressed: null, icon: const Icon(Icons.search), tooltip: l.tooltip_search);
   }
 
   /// Toggles the notes layout.
@@ -78,7 +70,6 @@ class NotesAppBar extends ConsumerWidget {
 
       PreferenceKey.sortAscending.set(!oldAscendingPreference);
     }
-
     // The 'Creation date', 'Edited date' or 'Title' menu items were taped
     else if (sortMethod != null) {
       final oldSortMethod = SortMethod.fromPreference();
@@ -94,7 +85,6 @@ class NotesAppBar extends ConsumerWidget {
         PreferenceKey.sortAscending.set(false);
       }
     }
-
     // The checkbox of the 'Ascending' menu item was toggled
     else if (ascending != null) {
       PreferenceKey.sortAscending.set(ascending);
@@ -129,11 +119,12 @@ class NotesAppBar extends ConsumerWidget {
       viewHintText: l.tooltip_search,
       searchController: SearchController(),
       viewBackgroundColor: Theme.of(context).colorScheme.surface,
-      builder: (context, controller) => IconButton(
-        onPressed: () => controller.openView(),
-        icon: const Icon(Icons.search),
-        tooltip: l.tooltip_search,
-      ),
+      builder:
+          (context, controller) => IconButton(
+            onPressed: () => controller.openView(),
+            icon: const Icon(Icons.search),
+            tooltip: l.tooltip_search,
+          ),
       suggestionsBuilder: (context, controller) => searchNotes(controller.text),
     );
   }
@@ -155,46 +146,49 @@ class NotesAppBar extends ConsumerWidget {
         PopupMenuButton<SortMethod>(
           icon: const Icon(Icons.sort),
           tooltip: l.tooltip_sort,
-          itemBuilder: (context) => [
-            PopupMenuItem(
-              value: SortMethod.createdDate,
-              child: ListTile(
-                selected: sortMethod == SortMethod.createdDate,
-                leading: const Icon(Symbols.calendar_add_on),
-                title: Text(l.button_sort_creation_date),
-              ),
-            ),
-            PopupMenuItem(
-              value: SortMethod.editedDate,
-              child: ListTile(
-                selected: sortMethod == SortMethod.editedDate,
-                leading: const Icon(Icons.edit_calendar),
-                title: Text(l.button_sort_edition_date),
-              ),
-            ),
-            PopupMenuItem(
-              value: SortMethod.title,
-              child: ListTile(
-                selected: sortMethod == SortMethod.title,
-                leading: const Icon(Icons.sort_by_alpha),
-                title: Text(l.button_sort_title),
-              ),
-            ),
-            const PopupMenuDivider(),
-            PopupMenuItem(
-              value: SortMethod.ascending,
-              child: ListTile(
-                title: Text(l.button_sort_ascending),
-                trailing: Checkbox(
-                  value: sortAscending,
-                  onChanged: (ascending) => sort(context, ref, ascending: ascending),
+          itemBuilder:
+              (context) => [
+                PopupMenuItem(
+                  value: SortMethod.createdDate,
+                  child: ListTile(
+                    selected: sortMethod == SortMethod.createdDate,
+                    leading: const Icon(Symbols.calendar_add_on),
+                    title: Text(l.button_sort_creation_date),
+                  ),
                 ),
-              ),
-            ),
-          ],
+                PopupMenuItem(
+                  value: SortMethod.editedDate,
+                  child: ListTile(
+                    selected: sortMethod == SortMethod.editedDate,
+                    leading: const Icon(Icons.edit_calendar),
+                    title: Text(l.button_sort_edition_date),
+                  ),
+                ),
+                PopupMenuItem(
+                  value: SortMethod.title,
+                  child: ListTile(
+                    selected: sortMethod == SortMethod.title,
+                    leading: const Icon(Icons.sort_by_alpha),
+                    title: Text(l.button_sort_title),
+                  ),
+                ),
+                const PopupMenuDivider(),
+                PopupMenuItem(
+                  value: SortMethod.ascending,
+                  child: ListTile(
+                    title: Text(l.button_sort_ascending),
+                    trailing: Checkbox(
+                      value: sortAscending,
+                      onChanged: (ascending) => sort(context, ref, ascending: ascending),
+                    ),
+                  ),
+                ),
+              ],
           onSelected: (sortMethod) => sort(context, ref, sortMethod: sortMethod),
         ),
-        ref.watch(notesProvider(status: notesStatus, label: currentLabelFilter)).when(
+        ref
+            .watch(notesProvider(status: notesStatus, label: currentLabelFilter))
+            .when(
               data: (notes) => child(context, notes),
               error: (error, stackTrace) => const EmptyPlaceholder(),
               loading: () => searchButtonPlaceholder,

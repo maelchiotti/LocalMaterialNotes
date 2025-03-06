@@ -13,8 +13,7 @@ enum EditorDeletedMenuOption {
   deletePermanently(Icons.delete_forever, dangerous: true),
 
   /// Show information about the note.
-  about(Icons.info),
-  ;
+  about(Icons.info);
 
   /// Icon of the menu option.
   final IconData icon;
@@ -46,15 +45,12 @@ enum EditorDeletedMenuOption {
     return PopupMenuItem(
       value: this,
       child: ListTile(
-        leading: Icon(
-          icon,
-          color: dangerous ? Theme.of(context).colorScheme.error : null,
-        ),
+        leading: Icon(icon, color: dangerous ? Theme.of(context).colorScheme.error : null),
         title: Text(
           title,
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                color: dangerous ? Theme.of(context).colorScheme.error : null,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleSmall?.copyWith(color: dangerous ? Theme.of(context).colorScheme.error : null),
         ),
       ),
     );

@@ -37,20 +37,21 @@ class MigrationService {
     final oldLabels = oldNotes.map((note) => note.labels.toList()).toList();
 
     // Convert the old notes to rich text notes
-    final richTextNotes = oldNotes
-        .map(
-          (oldNote) => RichTextNote(
-            archived: false,
-            deleted: oldNote.deleted,
-            pinned: oldNote.pinned,
-            locked: false,
-            createdTime: oldNote.createdTime,
-            editedTime: oldNote.editedTime,
-            title: oldNote.title,
-            content: oldNote.content,
-          ),
-        )
-        .toList();
+    final richTextNotes =
+        oldNotes
+            .map(
+              (oldNote) => RichTextNote(
+                archived: false,
+                deleted: oldNote.deleted,
+                pinned: oldNote.pinned,
+                locked: false,
+                createdTime: oldNote.createdTime,
+                editedTime: oldNote.editedTime,
+                title: oldNote.title,
+                content: oldNote.content,
+              ),
+            )
+            .toList();
 
     // Add the new notes to the new collection with their labels
     await _notesService.putAll(richTextNotes);

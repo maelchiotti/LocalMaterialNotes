@@ -17,8 +17,7 @@ enum EditorArchivedMenuOption {
   unarchive(Icons.unarchive),
 
   /// Show information about the note.
-  about(Icons.info),
-  ;
+  about(Icons.info);
 
   /// Icon of the menu option.
   final IconData icon;
@@ -46,16 +45,6 @@ enum EditorArchivedMenuOption {
   ///
   /// Uses the alternative icon if [alternative] is set to `true`.
   PopupMenuItem<EditorArchivedMenuOption> popupMenuItem(BuildContext context) {
-    return PopupMenuItem(
-      value: this,
-      child: ListTile(
-        leading: Icon(
-          icon,
-        ),
-        title: Text(
-          title,
-        ),
-      ),
-    );
+    return PopupMenuItem(value: this, child: ListTile(leading: Icon(icon), title: Text(title)));
   }
 }

@@ -31,12 +31,7 @@ Future<bool> toggleLockNotes(
   }
 
   final toggled = await ref
-      .read(
-        notesProvider(
-          status: NoteStatus.available,
-          label: currentLabelFilter,
-        ).notifier,
-      )
+      .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
       .toggleLock(notes);
 
   if (context.mounted && notes.length > 1) {

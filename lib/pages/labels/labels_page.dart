@@ -25,32 +25,29 @@ class LabelsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(labelsProvider).when(
-          data: (labels) => Scaffold(
-            appBar: TopNavigation(
-              appbar: BasicAppBar(title: l.navigation_manage_labels_page),
-            ),
-            drawer: const SideNavigation(),
-            floatingActionButton: const AddLabelFab(),
-            body: Column(
-              children: [
-                SizedBox(
-                  height: 48,
-                  child: LabelsFilters(),
+    return ref
+        .watch(labelsProvider)
+        .when(
+          data:
+              (labels) => Scaffold(
+                appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_manage_labels_page)),
+                drawer: const SideNavigation(),
+                floatingActionButton: const AddLabelFab(),
+                body: Column(
+                  children: [
+                    SizedBox(height: 48, child: LabelsFilters()),
+                    Expanded(
+                      child:
+                          labels.isEmpty
+                              ? EmptyPlaceholder.labels()
+                              : ListView(
+                                padding: Paddings.fab,
+                                children: [for (final label in labels) LabelTile(label: label)],
+                              ),
+                    ),
+                  ],
                 ),
-                Expanded(
-                  child: labels.isEmpty
-                      ? EmptyPlaceholder.labels()
-                      : ListView(
-                          padding: Paddings.fab,
-                          children: [
-                            for (final label in labels) LabelTile(label: label),
-                          ],
-                        ),
-                ),
-              ],
-            ),
-          ),
+              ),
           error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
           loading: () => const LoadingPlaceholder(),
         );

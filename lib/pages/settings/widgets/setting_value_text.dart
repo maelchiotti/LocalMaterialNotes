@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../common/constants/paddings.dart';
 import '../../../common/constants/sizes.dart';
 
@@ -12,13 +13,7 @@ import '../../../common/constants/sizes.dart';
 /// If the setting tile is not [enabled], the text is shown with a subdued color.
 class SettingNavigationTileBody extends StatelessWidget {
   /// Default constructor.
-  const SettingNavigationTileBody({
-    super.key,
-    this.enabled = true,
-    required this.value,
-    this.description,
-    this.icon,
-  });
+  const SettingNavigationTileBody({super.key, this.enabled = true, required this.value, this.description, this.icon});
 
   /// Whether the setting tile is disabled.
   final bool enabled;
@@ -43,11 +38,7 @@ class SettingNavigationTileBody extends StatelessWidget {
         Row(
           children: [
             if (icon != null) ...[
-              Icon(
-                icon,
-                size: Sizes.settingValueIconSize.size,
-                color: Theme.of(context).colorScheme.tertiary,
-              ),
+              Icon(icon, size: Sizes.settingValueIconSize.size, color: Theme.of(context).colorScheme.tertiary),
               Padding(padding: Paddings.horizontal(2)),
             ],
             Expanded(

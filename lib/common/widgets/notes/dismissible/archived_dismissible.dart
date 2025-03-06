@@ -9,10 +9,7 @@ import '../../../preferences/enums/swipe_actions/archived_swipe_action.dart';
 /// Archived note tile dismissible widget.
 class ArchivedDismissible extends ConsumerStatefulWidget {
   /// Dismissible widget shown on the note tile of an archived note.
-  const ArchivedDismissible({
-    super.key,
-    required this.direction,
-  });
+  const ArchivedDismissible({super.key, required this.direction});
 
   /// Direction in which the widget can be swiped.
   final SwipeDirection direction;

@@ -100,27 +100,16 @@ class _LockPageState extends ConsumerState<LockPage> with AfterLayoutMixin<LockP
     final l = AppLocalizations.of(context);
 
     return Scaffold(
-      appBar: widget.back
-          ? AppBar(
-              leading: BackButton(),
-            )
-          : null,
+      appBar: widget.back ? AppBar(leading: BackButton()) : null,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  Asset.icon.path,
-                  fit: BoxFit.fitWidth,
-                  width: Sizes.appIconLarge.size,
-                ),
+                Image.asset(Asset.icon.path, fit: BoxFit.fitWidth, width: Sizes.appIconLarge.size),
                 Gap(32),
-                Text(
-                  l.app_name,
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
+                Text(l.app_name, style: Theme.of(context).textTheme.headlineMedium),
                 Gap(128),
                 Text(widget.description),
                 Gap(16),

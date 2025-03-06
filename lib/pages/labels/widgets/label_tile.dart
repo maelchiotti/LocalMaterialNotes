@@ -22,10 +22,7 @@ import '../enums/label_tile_menu_option.dart';
 /// Tile of a label.
 class LabelTile extends ConsumerStatefulWidget {
   /// A tile displaying all the information about the [label].
-  const LabelTile({
-    super.key,
-    required this.label,
-  });
+  const LabelTile({super.key, required this.label});
 
   /// The label to display.
   final Label label;
@@ -38,10 +35,7 @@ class _LabelTileState extends ConsumerState<LabelTile> {
   Color? get getBackgroundColor => widget.label.selected ? Theme.of(context).colorScheme.secondaryContainer : null;
 
   /// Returns the dismiss direction of the label tile depending on the [rightSwipeAction] and the [leftSwipeAction].
-  DismissDirection getDismissDirection(
-    LabelSwipeAction rightSwipeAction,
-    LabelSwipeAction leftSwipeAction,
-  ) {
+  DismissDirection getDismissDirection(LabelSwipeAction rightSwipeAction, LabelSwipeAction leftSwipeAction) {
     if (rightSwipeAction.isEnabled && leftSwipeAction.isEnabled) {
       return DismissDirection.horizontal;
     } else if (rightSwipeAction.isEnabled && leftSwipeAction.isDisabled) {
@@ -112,20 +106,11 @@ class _LabelTileState extends ConsumerState<LabelTile> {
       left: PreferenceKey.labelSwipeLeftAction.preferenceOrDefault,
     );
     final labelSwipeActions = (
-      right: LabelSwipeAction.rightFromPreference(
-        preference: labelSwipeActionsPreferences.right,
-        label: widget.label,
-      ),
-      left: LabelSwipeAction.leftFromPreference(
-        preference: labelSwipeActionsPreferences.left,
-        label: widget.label,
-      ),
+      right: LabelSwipeAction.rightFromPreference(preference: labelSwipeActionsPreferences.right, label: widget.label),
+      left: LabelSwipeAction.leftFromPreference(preference: labelSwipeActionsPreferences.left, label: widget.label),
     );
 
-    final dismissDirection = getDismissDirection(
-      labelSwipeActions.right,
-      labelSwipeActions.left,
-    );
+    final dismissDirection = getDismissDirection(labelSwipeActions.right, labelSwipeActions.left);
 
     Widget? mainDismissibleWidget;
     Widget? secondaryDismissibleWidget;
@@ -142,28 +127,17 @@ class _LabelTileState extends ConsumerState<LabelTile> {
           direction: SwipeDirection.left,
         );
       case DismissDirection.startToEnd:
-        mainDismissibleWidget = LabelDismissible(
-          swipeAction: labelSwipeActions.right,
-          direction: SwipeDirection.right,
-        );
+        mainDismissibleWidget = LabelDismissible(swipeAction: labelSwipeActions.right, direction: SwipeDirection.right);
       case DismissDirection.endToStart:
-        mainDismissibleWidget = LabelDismissible(
-          swipeAction: labelSwipeActions.left,
-          direction: SwipeDirection.left,
-        );
+        mainDismissibleWidget = LabelDismissible(swipeAction: labelSwipeActions.left, direction: SwipeDirection.left);
       case DismissDirection.none:
         break;
       default:
-        throw Exception(
-          'Unexpected dismiss direction when building the label dismissible widgets: $dismissDirection',
-        );
+        throw Exception('Unexpected dismiss direction when building the label dismissible widgets: $dismissDirection');
     }
 
-    confirmDismiss(DismissDirection direction) => onDismissed(
-          direction,
-          labelSwipeActions.right,
-          labelSwipeActions.left,
-        );
+    confirmDismiss(DismissDirection direction) =>
+        onDismissed(direction, labelSwipeActions.right, labelSwipeActions.left);
 
     // Wrap the custom tile with Material to fix the tile background color not updating in real time when the tile is selected and the view is scrolled
     // See https://github.com/flutter/flutter/issues/86584
@@ -184,24 +158,14 @@ class _LabelTileState extends ConsumerState<LabelTile> {
               leading: VariedIcon.varied(icon, fill: 1.0, color: widget.label.color),
               title: Text(
                 widget.label.name,
-                style: widget.label.visible
-                    ? null
-                    : bodyLarge?.copyWith(
-                        color: bodyLarge.color?.subdued,
-                      ),
+                style: widget.label.visible ? null : bodyLarge?.copyWith(color: bodyLarge.color?.subdued),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (widget.label.locked) ...[
-                    Icon(
-                      Icons.lock,
-                      size: Sizes.iconSmall.size,
-                    ),
-                    Gap(2),
-                  ],
+                  if (widget.label.locked) ...[Icon(Icons.lock, size: Sizes.iconSmall.size), Gap(2)],
                   PopupMenuButton<LabelTileMenuOption>(
                     itemBuilder: (context) {
                       return [

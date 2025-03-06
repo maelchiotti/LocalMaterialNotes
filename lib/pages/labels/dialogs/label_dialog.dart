@@ -11,11 +11,7 @@ import '../../../providers/labels/labels_list/labels_list_provider.dart';
 /// Dialog to add or edit a label.
 class LabelDialog extends ConsumerStatefulWidget {
   /// A dialog allowing the user to add a label providing its name and color, or to edit an existing one.
-  const LabelDialog({
-    super.key,
-    required this.title,
-    this.label,
-  });
+  const LabelDialog({super.key, required this.title, this.label});
 
   /// The title of the dialog.
   final String title;
@@ -117,11 +113,12 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
       return;
     }
 
-    final label = widget.label != null
-        ? (widget.label!
-          ..name = nameController.text
-          ..colorHex = color.toARGB32())
-        : Label(name: nameController.text, colorHex: color.toARGB32());
+    final label =
+        widget.label != null
+            ? (widget.label!
+              ..name = nameController.text
+              ..colorHex = color.toARGB32())
+            : Label(name: nameController.text, colorHex: color.toARGB32());
 
     Navigator.pop(context, label);
   }
@@ -146,9 +143,7 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
               Expanded(
                 child: TextFormField(
                   controller: nameController,
-                  decoration: InputDecoration(
-                    hintText: l.hint_label_name,
-                  ),
+                  decoration: InputDecoration(hintText: l.hint_label_name),
                   autofocus: true,
                   validator: nameValidator,
                   onChanged: onNameChanged,
@@ -159,14 +154,8 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
         ),
       ),
       actions: [
-        TextButton(
-          onPressed: () => pop(canceled: true),
-          child: Text(fl?.cancelButtonLabel ?? 'Cancel'),
-        ),
-        TextButton(
-          onPressed: ok ? pop : null,
-          child: Text(fl?.okButtonLabel ?? 'OK'),
-        ),
+        TextButton(onPressed: () => pop(canceled: true), child: Text(fl?.cancelButtonLabel ?? 'Cancel')),
+        TextButton(onPressed: ok ? pop : null, child: Text(fl?.okButtonLabel ?? 'OK')),
       ],
     );
   }
