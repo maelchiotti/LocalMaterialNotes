@@ -17,7 +17,7 @@ enum SelectionAvailableMenuOption {
   toggleLock(Icons.lock),
 
   /// Add labels to the notes.
-  addLabels(Icons.label),
+  addLabels(Icons.new_label),
 
   /// Archive the notes.
   archive(Icons.archive),
