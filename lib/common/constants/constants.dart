@@ -44,11 +44,14 @@ final safStream = SafStream();
 /// The value to apply to the alpha channel to get a subdued color.
 const subduedAlpha = 150;
 
+/// Frequency of the automatic bin emptying.
+const automaticEmptyBinValues = [1.0, 3.0, 7.0, 14.0, 30.0, -1.0];
+
 /// Frequencies of the automatic export feature.
 const automaticExportFrequenciesValues = [1.0, 3.0, 7.0, 14.0, 30.0];
 
 /// Delays for the lock feature.
-const lockDelayValues = [0.0, 3.0, 5.0, 10.0, 30.0, 60.0, 120.0, 300.0, 99999.0];
+const lockDelayValues = [0.0, 3.0, 5.0, 10.0, 30.0, 60.0, 120.0, 300.0, -1.0];
 
 /// The last time the application was in the foreground.
 var lastForegroundTimestamp = DateTime.timestamp();

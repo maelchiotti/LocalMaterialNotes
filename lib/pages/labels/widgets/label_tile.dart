@@ -165,7 +165,7 @@ class _LabelTileState extends ConsumerState<LabelTile> {
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (widget.label.locked) ...[Icon(Icons.lock, size: Sizes.iconSmall.size), Gap(2)],
+                  if (lockLabel && widget.label.locked) ...[Icon(Icons.lock, size: Sizes.iconSmall.size), Gap(2)],
                   PopupMenuButton<LabelTileMenuOption>(
                     itemBuilder: (context) {
                       return [

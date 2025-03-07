@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 
 import '../../../models/label/label.dart';
 import '../../constants/sizes.dart';
+import '../../preferences/preference_key.dart';
 
 /// Badge of a label.
 class LabelBadge extends StatelessWidget {
@@ -14,12 +15,15 @@ class LabelBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lockLabel = PreferenceKey.lockLabel.preferenceOrDefault;
+
     return Badge(
       label: Row(
         children: [
-          if (label.locked)
+          if (lockLabel && label.locked) ...[
             Icon(Icons.lock_outline, size: Sizes.iconExtraSmall.size, color: label.getTextColor(context)),
-          Gap(4),
+            Gap(4),
+          ],
           Expanded(child: Text(label.name, maxLines: 1, overflow: TextOverflow.ellipsis)),
         ],
       ),

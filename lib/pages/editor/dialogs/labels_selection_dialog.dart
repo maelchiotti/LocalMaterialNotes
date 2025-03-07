@@ -6,6 +6,7 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/sizes.dart';
 import '../../../common/extensions/color_extension.dart';
+import '../../../common/preferences/preference_key.dart';
 import '../../../models/label/label.dart';
 import '../../../models/note/note.dart';
 import '../../../providers/labels/labels_list/labels_list_provider.dart';
@@ -62,6 +63,8 @@ class _LabelsSelectionDialogState extends ConsumerState<LabelsSelectionDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final lockLabel = PreferenceKey.lockLabel.preferenceOrDefault;
+
     final bodyLarge = Theme.of(context).textTheme.bodyLarge;
 
     return AlertDialog(
@@ -88,7 +91,7 @@ class _LabelsSelectionDialogState extends ConsumerState<LabelsSelectionDialog> {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      if (label.locked) Icon(Icons.lock, size: Sizes.iconSmall.size),
+                      if (lockLabel && label.locked) Icon(Icons.lock, size: Sizes.iconSmall.size),
                     ],
                   ),
                   onChanged: (value) => onChanged(index, value),

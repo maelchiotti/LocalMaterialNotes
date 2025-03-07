@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 /// Page lock notifier.
-class LockNotifier extends ValueNotifier {
+class LockNotifier extends ValueNotifier<bool> {
   /// Notifier to lock a page.
-  LockNotifier(bool super.value);
+  LockNotifier(super.value);
 
   /// Locks the page.
   void lock() {

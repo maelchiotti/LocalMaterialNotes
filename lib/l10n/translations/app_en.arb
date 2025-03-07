@@ -595,7 +595,7 @@
   "@settings_application_lock_delay_description": {
     "description": "Description of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
   },
-  "settings_lock_delay_value": "{delay, select, 0{Immediately} 3{3 seconds} 5{5 seconds} 10{10 seconds} 30{30 seconds} 60{1 minute} 120{2 minutes} 300{5 minutes} 99999{Never} other{}}",
+  "settings_lock_delay_value": "{delay, select, 0{Immediately} 3{3 seconds} 5{5 seconds} 10{10 seconds} 30{30 seconds} 60{1 minute} 120{2 minutes} 300{5 minutes} -1{Never} other{}}",
   "@settings_lock_delay_value": {
     "description": "Value of the setting tile to choose after which amount of time the application/note/label locks itself after the application was moved to the background.",
     "placeholders": {
