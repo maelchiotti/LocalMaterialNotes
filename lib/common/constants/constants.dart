@@ -45,13 +45,13 @@ final safStream = SafStream();
 const subduedAlpha = 150;
 
 /// Frequency of the automatic bin emptying.
-const automaticEmptyBinValues = [1.0, 3.0, 7.0, 14.0, 30.0, -1.0];
+const autoRemoveFromBinValues = [7.0, 14.0, 30.0, 90.0, 180.0, 365.0, 999.0];
 
 /// Frequencies of the automatic export feature.
 const automaticExportFrequenciesValues = [1.0, 3.0, 7.0, 14.0, 30.0];
 
 /// Delays for the lock feature.
-const lockDelayValues = [0.0, 3.0, 5.0, 10.0, 30.0, 60.0, 120.0, 300.0, -1.0];
+const lockDelayValues = [0.0, 3.0, 5.0, 10.0, 30.0, 60.0, 120.0, 300.0, 999.0];
 
 /// The last time the application was in the foreground.
 var lastForegroundTimestamp = DateTime.timestamp();

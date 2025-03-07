@@ -63,11 +63,14 @@ sealed class Note implements Comparable<Note> {
   @JsonKey(includeFromJson: false, includeToJson: false)
   bool locked;
 
-  /// The date of creation of the note.
+  /// The time when the note was created.
   DateTime createdTime;
 
-  /// The last date of edition of the note, including events such as toggling the pinned state.
+  /// The last time when the note was edited (title or content).
   DateTime editedTime;
+
+  /// The time when the note was deleted (if applicable).
+  DateTime? deletedTime;
 
   /// The title of the note.
   @JsonKey(defaultValue: '')
@@ -92,6 +95,7 @@ sealed class Note implements Comparable<Note> {
     this.locked = false,
     required this.createdTime,
     required this.editedTime,
+    this.deletedTime,
     required this.title,
     required this.type,
   }) : assert(!(archived && deleted), 'A note cannot be archived and deleted at the same time');

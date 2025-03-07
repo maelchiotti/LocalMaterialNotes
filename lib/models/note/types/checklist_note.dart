@@ -20,6 +20,7 @@ class ChecklistNote extends Note {
     super.locked,
     required super.createdTime,
     required super.editedTime,
+    super.deletedTime,
     required super.title,
     super.type = NoteType.checklist,
     required this.checkboxes,

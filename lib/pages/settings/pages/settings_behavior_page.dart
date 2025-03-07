@@ -29,6 +29,12 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
     setState(() {});
   }
 
+  Future<void> submittedAutoRemoveFromBin(double value) async {
+    await PreferenceKey.autoRemoveFromBin.set(value.toInt());
+
+    setState(() {});
+  }
+
   /// Sets the new available right [swipeAction].
   Future<void> submittedAvailableSwipeRightAction(AvailableSwipeAction swipeAction) async {
     await PreferenceKey.swipeRightAction.set(swipeAction.name);
@@ -74,6 +80,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
   @override
   Widget build(BuildContext context) {
     final confirmations = Confirmations.fromPreference();
+    final autoRemoveFromBin = PreferenceKey.autoRemoveFromBin.preferenceOrDefault;
 
     final availableSwipeActionsPreferences = (
       right: PreferenceKey.swipeRightAction.preferenceOrDefault,
@@ -117,6 +124,17 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                             .toList(),
                     initialOption: confirmations,
                     onSubmitted: submittedConfirmations,
+                  ),
+                  SettingCustomSliderTile(
+                    icon: Icons.auto_delete,
+                    title: l.settings_auto_remove_from_bin_title,
+                    value: l.settings_auto_remove_from_bin_value(autoRemoveFromBin.toString()),
+                    description: l.settings_auto_remove_from_bin_description,
+                    dialogTitle: l.settings_auto_remove_from_bin_title,
+                    label: (delay) => l.settings_auto_remove_from_bin_value(delay.toInt().toString()),
+                    values: autoRemoveFromBinValues,
+                    initialValue: autoRemoveFromBin.toDouble(),
+                    onSubmitted: submittedAutoRemoveFromBin,
                   ),
                 ],
               ),

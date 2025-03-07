@@ -29,7 +29,7 @@ enum PreferenceKey<T extends Object> {
 
   // Behavior
   confirmations<String>('irreversible'),
-  autoEmptyBin<int>(99999),
+  autoRemoveFromBin<int>(999),
   swipeRightAction<String>('delete'),
   swipeLeftAction<String>('archive'),
   archivedSwipeRightAction<String>('delete'),

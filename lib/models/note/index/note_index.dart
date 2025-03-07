@@ -8,7 +8,7 @@ part 'note_index.g.dart';
 @JsonSerializable()
 class NoteIndex {
   /// The ID of the note.
-  final int id;
+  final String id;
 
   /// Whether the note is deleted.
   final bool deleted;
@@ -34,7 +34,7 @@ class NoteIndex {
 
   /// Creates a [NoteIndex] from a [Note].
   factory NoteIndex.fromNote(Note note) => NoteIndex(
-    id: note.isarId,
+    id: note.id,
     deleted: note.deleted,
     title: note.title,
     content: note.plainText,

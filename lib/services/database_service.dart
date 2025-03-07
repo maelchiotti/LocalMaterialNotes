@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import '../models/deprecated/note.dart';
 import '../models/label/label.dart';
 import '../models/note/note.dart';
+import 'bin/bin_service.dart';
 import 'labels/labels_service.dart';
 import 'migration/migration_service.dart';
 import 'notes/notes_service.dart';
@@ -47,5 +48,8 @@ class DatabaseService {
 
     // Perform migrations if needed
     await MigrationService().migrateIfNeeded();
+
+    // Remove old notes from the bin if needed
+    await BinService().removeNotesFromBinIfNeeded();
   }
 }
