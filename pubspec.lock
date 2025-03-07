@@ -483,14 +483,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.1"
-  flutter_helper_utils:
-    dependency: "direct main"
-    description:
-      name: flutter_helper_utils
-      sha256: "0e2160d395d42750dbc2d24fd586025a23084b6905033234034e099b746c1a3c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.10.0"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:

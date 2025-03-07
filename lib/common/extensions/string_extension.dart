@@ -1,5 +1,14 @@
 /// Extends the [String] class with some utilities functions.
 extension StringExtension on String {
+  /// Returns this string with the first letter capitalized and the rest to lower case.
+  String get capitalizeFirstLowerRest {
+    if (trim().length < 2) {
+      return this;
+    }
+
+    return '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
+  }
+
   /// Returns whether the password is a strong one.
   ///
   /// A strong password must contain at least:

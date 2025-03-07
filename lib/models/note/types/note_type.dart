@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_helper_utils/flutter_helper_utils.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 import '../../../common/constants/constants.dart';
+import '../../../common/extensions/string_extension.dart';
 import '../../../common/preferences/preference_key.dart';
 
 /// The types of notes.

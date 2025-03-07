@@ -2,7 +2,7 @@ name: localmaterialnotes
 description: Simple, local, material design notes
 repository: https://github.com/maelchiotti/LocalMaterialNotes
 
-version: 2.0.0-dev2+27
+version: 2.0.0-dev3+27
 publish_to: none
 
 environment:
@@ -28,7 +28,6 @@ dependencies:
   flutter_displaymode: ^0.6.0
   flutter_expandable_fab: ^2.3.0
   flutter_fgbg: ^0.7.1
-  flutter_helper_utils: ^6.10.0
   flutter_localizations:
     sdk: flutter
   flutter_markdown_plus: ^1.0.0+1
