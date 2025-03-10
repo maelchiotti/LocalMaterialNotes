@@ -162,6 +162,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     if (isNotesSelectionModeNotifier.value) {
       toggleSelectNote(ref, note: widget.note);
     } else {
+      isEditModeNotifier.value = !PreferenceKey.openEditorReadingMode.preferenceOrDefault;
       currentNoteNotifier.value = widget.note;
 
       // If the note was opened from the search view, it needs to be closed

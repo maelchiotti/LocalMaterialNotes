@@ -3,16 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
 import '../../../common/constants/constants.dart';
+import '../../../common/preferences/preference_key.dart';
 import '../../../providers/labels/labels/labels_provider.dart';
 import '../enums/labels_filter.dart';
 
-/// Filters for the labels.
+/// Labels filters.
 class LabelsFilters extends ConsumerStatefulWidget {
-  /// A list of filters for the labels list.
-  ///
-  /// Allows to filter the labels to show only:
-  ///   - pinned labels
-  ///   - hidden labels
+  /// Filters for the labels page.
   const LabelsFilters({super.key});
 
   @override
@@ -20,50 +17,59 @@ class LabelsFilters extends ConsumerStatefulWidget {
 }
 
 class _LabelsFiltersState extends ConsumerState<LabelsFilters> {
-  LabelsFilter labelsFilter = LabelsFilter.all;
+  var filter = LabelsFilter.all;
 
-  Future<void> filter() async {
-    await ref.read(labelsProvider.notifier).filter(labelsFilter);
-  }
+  /// Called when a filter is selected, with its [value] and whether it is [selected].
+  Future<void> onFilterSelected(LabelsFilter value, bool selected) async {
+    value = selected ? value : LabelsFilter.all;
 
-  void _changeFilter(LabelsFilter value, bool selected) {
+    await ref.read(labelsProvider.notifier).filter(value);
+
     setState(() {
-      labelsFilter = selected ? value : LabelsFilter.all;
+      filter = value;
     });
-
-    filter();
   }
 
   @override
   Widget build(BuildContext context) {
+    final labelLock = PreferenceKey.lockLabel.preferenceOrDefault;
+
     return ListView(
       scrollDirection: Axis.horizontal,
       children: [
         Gap(8.0),
         ChoiceChip(
           label: Text(l.filter_labels_all),
-          selected: labelsFilter == LabelsFilter.all,
-          onSelected: (selected) => _changeFilter(LabelsFilter.all, selected),
+          selected: filter == LabelsFilter.all,
+          onSelected: (selected) => onFilterSelected(LabelsFilter.all, selected),
         ),
         Gap(8.0),
         ChoiceChip(
           label: Text(l.filter_labels_visible),
-          selected: labelsFilter == LabelsFilter.visible,
-          onSelected: (selected) => _changeFilter(LabelsFilter.visible, selected),
-        ),
-        Gap(8.0),
-        ChoiceChip(
-          label: Text(l.filter_labels_pinned),
-          selected: labelsFilter == LabelsFilter.pinned,
-          onSelected: (selected) => _changeFilter(LabelsFilter.pinned, selected),
+          selected: filter == LabelsFilter.visible,
+          onSelected: (selected) => onFilterSelected(LabelsFilter.visible, selected),
         ),
         Gap(8.0),
         ChoiceChip(
           label: Text(l.filter_labels_hidden),
-          selected: labelsFilter == LabelsFilter.hidden,
-          onSelected: (selected) => _changeFilter(LabelsFilter.hidden, selected),
+          selected: filter == LabelsFilter.hidden,
+          onSelected: (selected) => onFilterSelected(LabelsFilter.hidden, selected),
         ),
         Gap(8.0),
+        ChoiceChip(
+          label: Text(l.filter_labels_pinned),
+          selected: filter == LabelsFilter.pinned,
+          onSelected: (selected) => onFilterSelected(LabelsFilter.pinned, selected),
+        ),
+        Gap(8.0),
+        if (labelLock) ...[
+          ChoiceChip(
+            label: Text(l.filter_labels_locked),
+            selected: filter == LabelsFilter.locked,
+            onSelected: (selected) => onFilterSelected(LabelsFilter.locked, selected),
+          ),
+          Gap(8.0),
+        ],
       ],
     );
   }

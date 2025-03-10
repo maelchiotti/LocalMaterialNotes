@@ -36,7 +36,7 @@ class EditorAppBar extends ConsumerStatefulWidget {
 
 class _BackAppBarState extends ConsumerState<EditorAppBar> {
   void switchMode() {
-    isEditorInEditModeNotifier.value = !isEditorInEditModeNotifier.value;
+    isEditModeNotifier.value = !isEditModeNotifier.value;
   }
 
   /// Action to perform on the available [notes] depending on the selected [menuOption].
@@ -155,7 +155,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
       valueListenable: editorHasFocusNotifier,
       builder: (context, editorHasFocus, child) {
         return ValueListenableBuilder(
-          valueListenable: isEditorInEditModeNotifier,
+          valueListenable: isEditModeNotifier,
           builder: (context, isEditMode, child) {
             return AppBar(
               leading: BackButton(),
@@ -194,7 +194,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                   ],
                   if (showEditorModeButton)
                     ValueListenableBuilder(
-                      valueListenable: isEditorInEditModeNotifier,
+                      valueListenable: isEditModeNotifier,
                       builder:
                           (context, isEditMode, child) => IconButton(
                             icon: Icon(isEditMode ? Icons.visibility : Icons.edit),

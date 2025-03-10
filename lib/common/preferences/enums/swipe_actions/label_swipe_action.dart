@@ -200,7 +200,7 @@ enum LabelSwipeAction {
         return false;
       case lock:
       case unlock:
-        await toggleLockLabels(ref, labels: [label], requireAuthentication: true);
+        await toggleLockLabels(ref, labels: [label]);
         return false;
       case edit:
         await editLabel(context, ref, label: label);
