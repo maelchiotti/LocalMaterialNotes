@@ -50,8 +50,8 @@ class NotesService {
     if (indexNotesCount != notesCount) {
       logger.i('Re-indexing all notes ($indexNotesCount notes were indexed out of $notesCount)');
 
-      await _clearIndexes();
-      await _updateIndexes(await getAll());
+      await clearIndexes();
+      await updateIndexes(await getAll());
     }
     // If the app runs with the 'SCREENSHOTS' environment parameter,
     // clear all the notes and add the notes for the screenshots
@@ -67,7 +67,7 @@ class NotesService {
   }
 
   /// Updates the indexes of the [notes].
-  Future<void> _updateIndexes(List<Note> notes) async {
+  Future<void> updateIndexes(List<Note> notes) async {
     final documents = notes.map((note) => NoteIndex.fromNote(note).toJson()).toList();
     await _index.addDocuments(documents);
   }
@@ -79,7 +79,7 @@ class NotesService {
   }
 
   /// Deletes all the indexes.
-  Future<void> _clearIndexes() async {
+  Future<void> clearIndexes() async {
     await _index.deleteAllDocuments();
   }
 
@@ -216,7 +216,7 @@ class NotesService {
       }
     });
 
-    await _updateIndexes([note]);
+    await updateIndexes([note]);
   }
 
   /// Puts the [notes] in the database.
@@ -233,7 +233,7 @@ class NotesService {
       await _checklistNotes.putAll(checklistNotes);
     });
 
-    await _updateIndexes(notes);
+    await updateIndexes(notes);
   }
 
   /// Updates the [note] with the [labels] in the database.
@@ -244,7 +244,7 @@ class NotesService {
       await note.labels.save();
     });
 
-    await _updateIndexes([note]);
+    await updateIndexes([note]);
   }
 
   /// Updates the [note] with the added [labels] in the database.
@@ -256,7 +256,7 @@ class NotesService {
       }
     });
 
-    await _updateIndexes(notes);
+    await updateIndexes(notes);
   }
 
   /// Updates the [notes] with their corresponding [notesLabels] in the database.
@@ -277,7 +277,7 @@ class NotesService {
       }
     });
 
-    await _updateIndexes(notes);
+    await updateIndexes(notes);
   }
 
   /// Deletes the [note] from the database.
@@ -339,5 +339,26 @@ class NotesService {
     });
 
     await _index.deleteAllDocuments();
+  }
+
+  /// Deletes all the notes from the bin that have been deleted for longer than [delay].
+  Future<void> removeFromBin(Duration delay) async {
+    final deletedNotes = await getAllDeleted();
+
+    final notesToRemove =
+        deletedNotes.where((note) {
+          final now = DateTime.timestamp();
+          final durationSinceDeleted = now.difference(note.deletedTime!);
+
+          return durationSinceDeleted > delay;
+        }).toList();
+
+    if (notesToRemove.isEmpty) {
+      return;
+    }
+
+    logger.i('Automatically removing ${notesToRemove.length} notes from the bin');
+
+    await deleteAll(notesToRemove);
   }
 }

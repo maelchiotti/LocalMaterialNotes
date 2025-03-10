@@ -43,9 +43,7 @@ Future<List<Label>?> selectLabels(BuildContext context, WidgetRef ref, {required
       .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
       .editLabels(note, selectedLabels);
 
-  // Forcefully notify the listeners because only the labels of the note have changed
   currentNoteNotifier.value = note;
-  currentNoteNotifier.forceNotify();
 
   return selectedLabels;
 }

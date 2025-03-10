@@ -16,6 +16,7 @@ class PlainTextNote extends Note {
     super.locked,
     required super.createdTime,
     required super.editedTime,
+    super.deletedTime,
     required super.title,
     super.type = NoteType.plainText,
     required this.content,

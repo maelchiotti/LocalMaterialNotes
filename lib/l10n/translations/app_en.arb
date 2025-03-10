@@ -297,6 +297,24 @@
   "@settings_confirmations_title_all": {
     "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
   },
+  "settings_auto_remove_from_bin_title": "Auto remove from bin",
+  "@settings_auto_remove_from_bin_title": {
+    "description": "Title of the setting tile to automatically remove notes from the bin after a certain delay."
+  },
+  "settings_auto_remove_from_bin_description": "Automatically remove notes from the bin",
+  "@settings_auto_remove_from_bin_description": {
+    "description": "Description of the setting tile to automatically remove notes from the bin after a certain delay."
+  },
+  "settings_auto_remove_from_bin_value": "{delay, select, 7{After 1 week} 14{After 2 weeks} 30{After 1 month} 90{After 3 months} 180{After 6 month} 365{After 1 year} other{Never}}",
+  "@settings_auto_remove_from_bin_value": {
+    "description": "Value of the setting tile to choose after which amount of time the application/note/label locks itself after the application was moved to the background.",
+    "placeholders": {
+      "delay": {
+        "type": "String",
+        "description": "Delay in days."
+      }
+    }
+  },
   "settings_behavior_swipe_actions": "Swipe actions",
   "@settings_behavior_swipe_actions": {
     "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
@@ -521,12 +539,12 @@
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{{frequency} days}}",
+  "settings_auto_export_frequency_value": "Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{}}",
   "@settings_auto_export_frequency_value": {
     "description": "Frequency of the automatic exports.",
     "placeholders": {
       "frequency": {
-        "description": "Value of the frequency (as a String to enable the select, but it's an int).",
+        "description": "Frequency in days.",
         "type": "String"
       }
     }
@@ -595,13 +613,13 @@
   "@settings_application_lock_delay_description": {
     "description": "Description of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
   },
-  "settings_lock_delay_value": "{delay, select, 0{Immediately} 3{3 seconds} 5{5 seconds} 10{10 seconds} 30{30 seconds} 60{1 minute} 120{2 minutes} 300{5 minutes} 99999{Never} other{}}",
+  "settings_lock_delay_value": "{delay, select, 0{Immediately} 3{After 3 seconds} 5{After 5 seconds} 10{After 10 seconds} 30{After 30 seconds} 60{After 1 minute} 120{After 2 minutes} 300{After 5 minutes} other{Never}}",
   "@settings_lock_delay_value": {
     "description": "Value of the setting tile to choose after which amount of time the application/note/label locks itself after the application was moved to the background.",
     "placeholders": {
       "delay": {
         "type": "String",
-        "description": "Delay in seconds"
+        "description": "Delay in seconds."
       }
     }
   },

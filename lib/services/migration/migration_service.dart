@@ -75,13 +75,18 @@ class MigrationService {
   Future<void> _migrateToV3() async {
     logger.i('Migrating the database from version 2 to version 3');
 
+    // Delete the indexes because the ID went from an int to a String
+    await _notesService.clearIndexes();
+
     // Get the rich text notes
     final richTextNotes = await _databaseService.database.richTextNotes.where().findAll();
 
-    // Set the rich text notes 'id' and 'archived' fields
+    // Set the rich text notes 'id', 'archived' and 'deletedTime' fields
     for (final note in richTextNotes) {
       note.id = uuid.v4();
       note.archived = false;
+      note.deletedTime = note.deleted ? DateTime.timestamp() : null;
+
       await _notesService.put(note);
     }
 

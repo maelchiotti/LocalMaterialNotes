@@ -94,21 +94,32 @@ class _AppState extends ConsumerState<App> {
       case FGBGType.foreground:
         final now = DateTime.timestamp();
 
+        // Application lock
         final lockApp = PreferenceKey.lockApp.preferenceOrDefault;
         if (lockApp) {
-          final lockAppDelay = Duration(seconds: PreferenceKey.lockAppDelay.preferenceOrDefault);
-          final timeSinceBackground = now.difference(lastForegroundTimestamp);
-          if (timeSinceBackground > lockAppDelay) {
-            lockAppNotifier.lock();
+          final lockAppDelayPreference = PreferenceKey.lockAppDelay.preferenceOrDefault;
+
+          if (lockAppDelayPreference != -1) {
+            final lockAppDelay = Duration(seconds: lockAppDelayPreference);
+            final timeSinceBackground = now.difference(lastForegroundTimestamp);
+            if (timeSinceBackground > lockAppDelay) {
+              lockAppNotifier.lock();
+            }
           }
         }
 
+        // Note lock (it doesn't matter if the note itself should not be locked, it just triggers a rebuild)
         final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
-        if (lockNote) {
-          final lockNoteDelay = Duration(seconds: PreferenceKey.lockNoteDelay.preferenceOrDefault);
-          final timeSinceBackground = now.difference(lastForegroundTimestamp);
-          if (timeSinceBackground > lockNoteDelay) {
-            lockNoteNotifier.lock();
+        final lockLabel = PreferenceKey.lockLabel.preferenceOrDefault;
+        if (lockNote || lockLabel) {
+          final lockNoteDelayPreference = PreferenceKey.lockNoteDelay.preferenceOrDefault;
+
+          if (lockNoteDelayPreference != -1) {
+            final lockNoteDelay = Duration(seconds: PreferenceKey.lockNoteDelay.preferenceOrDefault);
+            final timeSinceBackground = now.difference(lastForegroundTimestamp);
+            if (timeSinceBackground > lockNoteDelay) {
+              lockNoteNotifier.lock();
+            }
           }
         }
     }

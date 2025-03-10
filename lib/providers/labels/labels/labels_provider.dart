@@ -201,6 +201,7 @@ class Labels extends _$Labels {
     ]);
   }
 
+  /// Updates all the providers that use labels.
   Future<void> _updateProviders() async {
     await ref.read(labelsNavigationProvider.notifier).get();
     await ref.read(labelsListProvider.notifier).get();

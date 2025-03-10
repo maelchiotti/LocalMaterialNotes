@@ -230,6 +230,7 @@ class Notes extends _$Notes {
       note.pinned = false;
       note.archived = false;
       note.deleted = !note.deleted;
+      note.deletedTime = deleted ? DateTime.timestamp() : null;
     }
 
     try {
