@@ -1245,13 +1245,17 @@
   "@filter_labels_visible": {
     "description": "Filter chip in the labels page to show only the visible labels."
   },
+  "filter_labels_hidden": "Hidden",
+  "@filter_labels_hidden": {
+    "description": "Filter chip in the labels page to show only the hidden labels."
+  },
   "filter_labels_pinned": "Pinned",
   "@filter_labels_pinned": {
     "description": "Filter chip in the labels page to show only the pinned labels."
   },
-  "filter_labels_hidden": "Hidden",
-  "@filter_labels_hidden": {
-    "description": "Filter chip in the labels page to show only the hidden labels."
+  "filter_labels_locked": "Locked",
+  "@filter_labels_locked": {
+    "description": "Filter chip in the labels page to show only the locked labels."
   },
   "snack_bar_authentication_failed": "The authentication failed, please try again.",
   "@snack_bar_authentication_failed": {
@@ -1378,6 +1382,10 @@
   "lock_page_reason_note": "Unlock this note",
   "@lock_page_reason_note": {
     "description": "Reason for the lock screen of a locked note to request a system authentication."
+  },
+  "lock_page_reason_action": "Authorize this action",
+  "@lock_page_reason_action": {
+    "description": "Reason for the lock screen for a secure action to request a system authentication."
   },
   "lock_page_description_app": "The application is locked.",
   "@lock_page_description_app": {

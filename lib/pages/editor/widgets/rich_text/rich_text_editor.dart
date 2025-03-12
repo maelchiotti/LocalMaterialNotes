@@ -53,7 +53,7 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
 
     // If this is a new note, force the editing mode
     if (widget.isNewNote) {
-      isEditorInEditModeNotifier.value = true;
+      isEditModeNotifier.value = true;
     }
   }
 
@@ -101,7 +101,7 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
             final fleatherThemeFallback = FleatherThemeData.fallback(context);
             final fleatherTheme = fleatherThemeFallback.copyWith(
               paragraph:
-                  useParagraphsSpacing
+                  !useParagraphsSpacing
                       ? TextBlockTheme(
                         style: fleatherThemeFallback.paragraph.style,
                         spacing: const VerticalSpacing.zero(),

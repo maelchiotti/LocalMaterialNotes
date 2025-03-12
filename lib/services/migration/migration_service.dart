@@ -75,7 +75,7 @@ class MigrationService {
   Future<void> _migrateToV3() async {
     logger.i('Migrating the database from version 2 to version 3');
 
-    // Delete the indexes because the ID went from an int to a String
+    // Clear the indexes to ensure their are rebuilt correctly
     await _notesService.clearIndexes();
 
     // Get the rich text notes

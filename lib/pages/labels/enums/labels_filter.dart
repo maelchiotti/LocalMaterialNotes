@@ -6,9 +6,12 @@ enum LabelsFilter {
   /// Show only visible labels.
   visible,
 
+  /// Show only hidden labels.
+  hidden,
+
   /// Show only pinned labels.
   pinned,
 
-  /// Show only hidden labels.
-  hidden,
+  /// Show only locked labels.
+  locked,
 }

@@ -57,7 +57,7 @@ class _EditorState extends ConsumerState<EditorPage> {
       valueListenable: currentNoteNotifier,
       builder: (context, currentNote, child) {
         return ValueListenableBuilder(
-          valueListenable: isEditorInEditModeNotifier,
+          valueListenable: isEditModeNotifier,
           builder: (context, isEditorInEditMode, child) {
             if (currentNote == null) {
               return const LoadingPlaceholder();

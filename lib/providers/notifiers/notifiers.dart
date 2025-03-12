@@ -6,13 +6,13 @@ import '../../models/label/label.dart';
 import 'current_note_notifier.dart';
 import 'lock_notifier.dart';
 
-/// Lock notifier for the application.
+/// Notifier for whether the application is locked.
 final lockAppNotifier = LockNotifier(PreferenceKey.lockApp.preferenceOrDefault);
 
-/// Lock notifier for the note.
+/// Notifier for whether the current note is locked.
 final lockNoteNotifier = LockNotifier(false);
 
-/// Value of the current label filter on the notes.
+/// Notifier for the value of the current label filter on the notes.
 Label? currentLabelFilter;
 
 /// Notifier for whether the notes selection mode is active.
@@ -33,8 +33,11 @@ final fleatherControllerCanUndoNotifier = ValueNotifier(false);
 /// Notifier for whether the redo action can be used on the currently displayed note.
 final fleatherControllerCanRedoNotifier = ValueNotifier(false);
 
-/// Notifier for whether the fleather editor has focus.
+/// Notifier for whether the editor has focus.
 final editorHasFocusNotifier = ValueNotifier(false);
 
-/// Notifier for whether the fleather editor is in edit mode.
-final isEditorInEditModeNotifier = ValueNotifier(!PreferenceKey.openEditorReadingMode.preferenceOrDefault);
+/// Notifier for whether the editor is in edit mode.
+final isEditModeNotifier = ValueNotifier(!PreferenceKey.openEditorReadingMode.preferenceOrDefault);
+
+/// Notifier for whether the labels filters are shown.
+final labelsFiltersNotifier = ValueNotifier(false);
