@@ -24,7 +24,7 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
   void onSubmittedAvailableNotesTypes(List<NoteType> availableNotesTypes) {
     PreferenceKey.availableNotesTypes.set(NoteType.toPreference(availableNotesTypes));
 
-    SystemUtils().setQuickActions(context, ref);
+    SystemUtils().setQuickActions();
 
     setState(() {});
   }

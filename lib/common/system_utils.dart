@@ -5,7 +5,6 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:quick_actions/quick_actions.dart';
@@ -124,8 +123,7 @@ class SystemUtils {
   }
 
   /// Sets the quick actions.
-  void setQuickActions(BuildContext context, WidgetRef ref) {
-    final l = AppLocalizations.of(context);
+  void setQuickActions() {
     final availableNotesTypes = NoteType.available;
 
     final addPlainTextNoteAction = ShortcutItem(
@@ -149,15 +147,17 @@ class SystemUtils {
       icon: 'ic_checklist',
     );
 
+    final context = rootNavigatorKey.currentContext!;
+
     quickActions.initialize((action) {
       if (action == addPlainTextNoteAction.type) {
-        addNote(context, ref, noteType: NoteType.plainText);
+        addNote(context, globalRef, noteType: NoteType.plainText);
       } else if (action == addMarkdownNoteAction.type) {
-        addNote(context, ref, noteType: NoteType.markdown);
+        addNote(context, globalRef, noteType: NoteType.markdown);
       } else if (action == addRichTextNoteAction.type) {
-        addNote(context, ref, noteType: NoteType.richText);
+        addNote(context, globalRef, noteType: NoteType.richText);
       } else if (action == addChecklistNoteAction.type) {
-        addNote(context, ref, noteType: NoteType.checklist);
+        addNote(context, globalRef, noteType: NoteType.checklist);
       }
     });
 
@@ -170,16 +170,16 @@ class SystemUtils {
   }
 
   /// Listens to any data shared from other applications.
-  StreamSubscription listenSharedData(WidgetRef ref) {
+  StreamSubscription listenSharedData() {
     return ReceiveSharingIntent.instance.getMediaStream().listen((data) {
-      _processSharedData(ref, data);
+      _processSharedData(data);
     });
   }
 
   /// Reads the data shared from other applications.
-  void readSharedData(WidgetRef ref) {
+  void readSharedData() {
     ReceiveSharingIntent.instance.getInitialMedia().then((data) {
-      _processSharedData(ref, data);
+      _processSharedData(data);
 
       ReceiveSharingIntent.instance.reset();
     });
@@ -188,7 +188,7 @@ class SystemUtils {
   /// Processes the [data] shared from other applications.
   ///
   /// If the [data] is text, it's added to a new note that is then opened.
-  void _processSharedData(WidgetRef ref, List<SharedMediaFile> data) {
+  void _processSharedData(List<SharedMediaFile> data) {
     if (rootNavigatorKey.currentContext == null ||
         data.isEmpty ||
         data.first.type != SharedMediaType.text ||
@@ -200,7 +200,7 @@ class SystemUtils {
     final context = rootNavigatorKey.currentContext!;
     final content = data.first.path;
 
-    addNote(context, ref, noteType: defaultShortcutNoteType, content: content);
+    addNote(context, globalRef, noteType: defaultShortcutNoteType, content: content);
   }
 
   /// Encodes the query [parameters] to be used in an URI.

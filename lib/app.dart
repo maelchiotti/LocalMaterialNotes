@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:after_layout/after_layout.dart';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:fleather/fleather.dart';
@@ -33,7 +34,7 @@ class App extends ConsumerStatefulWidget {
   ConsumerState<App> createState() => _AppState();
 }
 
-class _AppState extends ConsumerState<App> {
+class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
   /// Stream of data shared from other applications.
   late StreamSubscription _stream;
 
@@ -46,12 +47,17 @@ class _AppState extends ConsumerState<App> {
     globalRef = ref;
 
     // Read the potential data shared from other applications
-    SystemUtils().readSharedData(ref);
-    _stream = SystemUtils().listenSharedData(ref);
+    SystemUtils().readSharedData();
+    _stream = SystemUtils().listenSharedData();
 
     // Eagerly get the labels for the full list and the navigation
     ref.read(labelsListProvider.notifier).get();
     ref.read(labelsNavigationProvider.notifier).get();
+  }
+
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context) {
+    SystemUtils().setQuickActions();
   }
 
   @override
