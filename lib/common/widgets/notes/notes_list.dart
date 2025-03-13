@@ -61,7 +61,7 @@ class NotesList extends ConsumerWidget {
           separatorBuilder: (BuildContext context, int index) {
             return Padding(
               padding: showTilesBackground ? Paddings.notesListWithBackgroundSeparation : EdgeInsetsDirectional.zero,
-              child: showSeparators ? Separator.divider1indent8.horizontal : null,
+              child: showSeparators ? Separator.horizontal(indent: 8) : null,
             );
           },
         )

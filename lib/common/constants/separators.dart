@@ -1,31 +1,23 @@
 import 'package:flutter/material.dart';
 
-// ignore_for_file: public_member_api_docs
+/// Widgets separator.
+class Separator extends StatelessWidget {
+  /// Horizontal separator between two widgets.
+  const Separator.horizontal({super.key, required this.indent}) : _horizontal = true;
 
-/// Lists separators between widgets.
-enum Separator {
-  divider1indent8(1, 1, 8, 8),
-  divider1indent16(1, 1, 16, 16),
-  divider1indent28(1, 1, 28, 28);
+  /// Vertical separator between two widgets.
+  const Separator.vertical({super.key, required this.indent}) : _horizontal = false;
 
-  /// Size of the separator.
-  final double _size;
+  /// The start and end indent.
+  final double indent;
 
-  /// Thickness of the separator.
-  final double _thickness;
+  /// Whether this separator is horizontal.
+  final bool _horizontal;
 
-  /// Padding on the start of the separator.
-  final double _indent;
-
-  /// Padding on the end of the separator.
-  final double _endIndent;
-
-  const Separator(this._size, this._thickness, this._indent, this._endIndent);
-
-  /// Horizontal separator.
-  Divider get horizontal => Divider(height: _size, thickness: _thickness, indent: _indent, endIndent: _endIndent);
-
-  /// Vertical separator.
-  VerticalDivider get vertical =>
-      VerticalDivider(width: _size, thickness: _thickness, indent: _indent, endIndent: _endIndent);
+  @override
+  Widget build(BuildContext context) {
+    return _horizontal
+        ? Divider(height: 1, thickness: 1, indent: indent, endIndent: indent)
+        : VerticalDivider(width: 1, thickness: 1, indent: indent, endIndent: indent);
+  }
 }

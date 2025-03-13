@@ -7,10 +7,10 @@ import '../../common/constants/environment.dart';
 import '../../common/constants/labels.dart';
 import '../../common/constants/notes.dart';
 import '../../models/label/label.dart';
-import '../../models/note/index/note_index.dart';
 import '../../models/note/note.dart';
 import '../../models/note/note_status.dart';
 import '../database_service.dart';
+import 'notes_index_service.dart';
 
 /// Service for the notes database.
 ///
@@ -30,7 +30,7 @@ class NotesService {
   late final IsarCollection<RichTextNote> _richTextNotes;
   late final IsarCollection<ChecklistNote> _checklistNotes;
 
-  late final MimirIndex _index;
+  late final NotesIndexService _indexesService;
 
   /// Ensures the notes service is initialized.
   Future<void> ensureInitialized() async {
@@ -41,46 +41,20 @@ class NotesService {
     _richTextNotes = DatabaseService().database.richTextNotes;
     _checklistNotes = DatabaseService().database.checklistNotes;
 
-    _index = await DatabaseService().mimir.openIndex('notes', primaryKey: 'id', searchableFields: ['title', 'content']);
+    _indexesService = NotesIndexService();
 
-    // If the number of indexed notes is different from the total number of notes, re-index them all
-    // (this should only be needed on the first launch after updating from a version that didn't have the index feature)
-    final indexNotesCount = (await _index.numberOfDocuments).toInt();
-    final notesCount = await count;
-    if (indexNotesCount != notesCount) {
-      logger.i('Re-indexing all notes ($indexNotesCount notes were indexed out of $notesCount)');
-
-      await clearIndexes();
-      await updateIndexes(await getAll());
-    }
     // If the app runs with the 'SCREENSHOTS' environment parameter,
     // clear all the notes and add the notes for the screenshots
-    else if (Environment.screenshots) {
+    if (Environment.screenshots) {
       await clear();
       await putAll(screenshotNotes);
       await putLabels(screenshotNotes[4], screenshotLabels);
     }
+
     // If the app runs for the first time ever, add the welcome note
-    else if (await IsFirstRun.isFirstCall()) {
+    if (await IsFirstRun.isFirstCall()) {
       await put(welcomeNote);
     }
-  }
-
-  /// Updates the indexes of the [notes].
-  Future<void> updateIndexes(List<Note> notes) async {
-    final documents = notes.map((note) => NoteIndex.fromNote(note).toJson()).toList();
-    await _index.addDocuments(documents);
-  }
-
-  /// Deletes the indexes of the [notes].
-  Future<void> _deleteIndexes(List<Note> notes) async {
-    final notesIds = notes.map((note) => note.id).toList();
-    await _index.deleteDocuments(notesIds);
-  }
-
-  /// Deletes all the indexes.
-  Future<void> clearIndexes() async {
-    await _index.deleteAllDocuments();
   }
 
   /// Returns the total number of notes.
@@ -187,7 +161,7 @@ class NotesService {
       if (label != null) Mimir.where('labels', containsAtLeastOneOf: [label]),
     ]);
 
-    final searchResults = await _index.search(query: search, filter: searchFilter);
+    final searchResults = await _indexesService.index.search(query: search, filter: searchFilter);
 
     final notesIds = searchResults.map((Map<String, dynamic> noteIndex) => noteIndex['id'] as int).toList();
     final notes = (await getAllByIds(notesIds));
@@ -216,7 +190,7 @@ class NotesService {
       }
     });
 
-    await updateIndexes([note]);
+    await _indexesService.updateIndexes([note]);
   }
 
   /// Puts the [notes] in the database.
@@ -233,7 +207,7 @@ class NotesService {
       await _checklistNotes.putAll(checklistNotes);
     });
 
-    await updateIndexes(notes);
+    await _indexesService.updateIndexes(notes);
   }
 
   /// Updates the [note] with the [labels] in the database.
@@ -244,7 +218,7 @@ class NotesService {
       await note.labels.save();
     });
 
-    await updateIndexes([note]);
+    await _indexesService.updateIndexes([note]);
   }
 
   /// Updates the [note] with the added [labels] in the database.
@@ -256,7 +230,7 @@ class NotesService {
       }
     });
 
-    await updateIndexes(notes);
+    await _indexesService.updateIndexes(notes);
   }
 
   /// Updates the [notes] with their corresponding [notesLabels] in the database.
@@ -277,7 +251,7 @@ class NotesService {
       }
     });
 
-    await updateIndexes(notes);
+    await _indexesService.updateIndexes(notes);
   }
 
   /// Deletes the [note] from the database.
@@ -295,7 +269,7 @@ class NotesService {
       }
     });
 
-    await _deleteIndexes([note]);
+    await _indexesService.deleteIndexes([note]);
   }
 
   /// Deletes the [notes] from the database.
@@ -312,7 +286,7 @@ class NotesService {
       await _checklistNotes.deleteAll(checklistNotesIds);
     });
 
-    await _deleteIndexes(notes);
+    await _indexesService.deleteIndexes(notes);
   }
 
   /// Deletes all the deleted notes from the database.
@@ -326,7 +300,7 @@ class NotesService {
       await _checklistNotes.where().deletedEqualTo(true).deleteAll();
     });
 
-    await _deleteIndexes(notes);
+    await _indexesService.deleteIndexes(notes);
   }
 
   /// Deletes all the notes from the database.
@@ -338,7 +312,7 @@ class NotesService {
       await _checklistNotes.clear();
     });
 
-    await _index.deleteAllDocuments();
+    await _indexesService.index.deleteAllDocuments();
   }
 
   /// Deletes all the notes from the bin that have been deleted for longer than [delay].

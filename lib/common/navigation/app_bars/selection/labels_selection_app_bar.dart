@@ -71,7 +71,7 @@ class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
           tooltip: allSelected ? l.tooltip_unselect_all : fl?.selectAllButtonLabel ?? 'Select all',
           onPressed: () => allSelected ? unselectAllLabels(ref) : selectAllLabels(ref),
         ),
-        Padding(padding: Paddings.appBarSeparator, child: Separator.divider1indent16.vertical),
+        Padding(padding: Paddings.appBarSeparator, child: Separator.vertical(indent: 16)),
         PopupMenuButton<SelectionLabelsMenuOption>(
           itemBuilder: (context) {
             return [

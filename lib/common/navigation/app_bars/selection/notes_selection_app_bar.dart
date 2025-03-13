@@ -115,7 +115,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
                       ? unselectAllNotes(context, ref, notesStatus: notesStatus)
                       : selectAllNotes(context, ref, notesStatus: notesStatus),
         ),
-        Padding(padding: Paddings.appBarSeparator, child: Separator.divider1indent16.vertical),
+        Padding(padding: Paddings.appBarSeparator, child: Separator.vertical(indent: 16)),
         if (notesStatus == NoteStatus.available)
           PopupMenuButton<SelectionAvailableMenuOption>(
             itemBuilder:

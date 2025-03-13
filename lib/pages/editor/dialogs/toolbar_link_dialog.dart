@@ -4,15 +4,15 @@ import 'package:string_validator/string_validator.dart';
 import '../../../common/constants/constants.dart';
 
 /// Dialog to add a link in the editor.
-class RichTextEditorLinkDialog extends StatefulWidget {
+class ToolbarLinkDialog extends StatefulWidget {
   /// Default constructor.
-  const RichTextEditorLinkDialog({super.key});
+  const ToolbarLinkDialog({super.key});
 
   @override
-  State<RichTextEditorLinkDialog> createState() => _RichTextEditorLinkDialogState();
+  State<ToolbarLinkDialog> createState() => _ToolbarLinkDialogState();
 }
 
-class _RichTextEditorLinkDialogState extends State<RichTextEditorLinkDialog> {
+class _ToolbarLinkDialogState extends State<ToolbarLinkDialog> {
   /// Controller for the link text field.
   final _linkController = TextEditingController();
 

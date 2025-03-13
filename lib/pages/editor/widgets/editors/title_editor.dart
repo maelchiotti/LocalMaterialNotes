@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../common/constants/constants.dart';
-import '../../../common/constants/paddings.dart';
-import '../../../common/preferences/preference_key.dart';
-import '../../../models/note/note.dart';
-import '../../../models/note/note_status.dart';
-import '../../../providers/notes/notes_provider.dart';
-import '../../../providers/notifiers/notifiers.dart';
+import '../../../../common/constants/constants.dart';
+import '../../../../common/constants/paddings.dart';
+import '../../../../common/preferences/preference_key.dart';
+import '../../../../models/note/note.dart';
+import '../../../../models/note/note_status.dart';
+import '../../../../providers/notes/notes_provider.dart';
+import '../../../../providers/notifiers/notifiers.dart';
 
 /// Title editor.
 class TitleEditor extends ConsumerStatefulWidget {

@@ -6,6 +6,7 @@ import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
+import '../../../common/preferences/enums/toolbar_style.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/system_utils.dart';
 import '../../../models/note/types/note_type.dart';
@@ -36,6 +37,13 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
     setState(() {});
   }
 
+  /// Sets the setting for the toolbar style to [toolbarStyle].
+  Future<void> onSubmittedToolbarStyle(ToolbarStyle toolbarStyle) async {
+    await PreferenceKey.toolbarStyle.set(toolbarStyle.name);
+
+    setState(() {});
+  }
+
   /// Toggles the setting to use spacing between the paragraphs.
   Future<void> _toggleUseParagraphSpacing(bool toggled) async {
     await PreferenceKey.useParagraphsSpacing.set(toggled);
@@ -58,6 +66,11 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
         }).toList();
     final defaultShareNoteType = NoteType.defaultShare;
 
+    final toolbarStyle = ToolbarStyle.fromPreference();
+    final toolbarStyleOptions =
+        ToolbarStyle.values.map((toolbarStyle) {
+          return (value: toolbarStyle, title: toolbarStyle.title, subtitle: toolbarStyle.description);
+        }).toList();
     final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.preferenceOrDefault;
 
     return Scaffold(
@@ -95,8 +108,19 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
                 ],
               ),
               SettingSection(
+                divider: null,
                 title: NoteType.richText.title,
                 tiles: [
+                  SettingSingleOptionTile.detailed(
+                    icon: Icons.format_paint,
+                    title: l.settings_toolbar_style_title,
+                    value: toolbarStyle.title,
+                    description: l.settings_toolbar_style_description,
+                    dialogTitle: l.settings_toolbar_style_title,
+                    options: toolbarStyleOptions,
+                    initialOption: toolbarStyle,
+                    onSubmitted: onSubmittedToolbarStyle,
+                  ),
                   SettingSwitchTile(
                     icon: Icons.format_line_spacing,
                     title: l.settings_use_paragraph_spacing,

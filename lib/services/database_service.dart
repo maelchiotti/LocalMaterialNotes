@@ -8,6 +8,7 @@ import '../models/note/note.dart';
 import 'bin/bin_service.dart';
 import 'labels/labels_service.dart';
 import 'migration/migration_service.dart';
+import 'notes/notes_index_service.dart';
 import 'notes/notes_service.dart';
 
 /// Abstract service for the database.
@@ -45,6 +46,9 @@ class DatabaseService {
     // Initialize the models services
     await LabelsService().ensureInitialized();
     await NotesService().ensureInitialized();
+
+    // Initialize the indexes service
+    await NotesIndexService().ensureInitialized();
 
     // Perform migrations if needed
     await MigrationService().migrateIfNeeded();

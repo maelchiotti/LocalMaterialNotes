@@ -27,15 +27,12 @@ enum Confirmations {
     return confirmations;
   }
 
-  /// Returns the title of the preference for the settings page.
+  /// The title of the preference for the settings page.
   String get title {
-    switch (this) {
-      case none:
-        return l.settings_confirmations_title_none;
-      case irreversible:
-        return l.settings_confirmations_title_irreversible;
-      case all:
-        return l.settings_confirmations_title_all;
-    }
+    return switch (this) {
+      none => l.settings_confirmations_title_none,
+      irreversible => l.settings_confirmations_title_irreversible,
+      all => l.settings_confirmations_title_all,
+    };
   }
 }
