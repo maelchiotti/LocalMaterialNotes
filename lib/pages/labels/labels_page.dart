@@ -36,8 +36,8 @@ class LabelsPage extends ConsumerWidget {
                     builder: (context, labelsFilters, child) {
                       return AnimatedSwitcher(
                         duration: Duration(milliseconds: 250),
-                        switchInCurve: Curves.easeOut,
-                        switchOutCurve: Curves.easeOut,
+                        switchInCurve: Curves.easeInOut,
+                        switchOutCurve: Curves.easeInOut,
                         transitionBuilder: (child, animation) {
                           return SizeTransition(axisAlignment: 1, sizeFactor: animation, child: child);
                         },

@@ -13,13 +13,13 @@ import '../../models/note/note_status.dart';
 import '../../providers/notes/notes_provider.dart';
 import '../../providers/notifiers/notifiers.dart';
 import '../lock/lock_page.dart';
-import 'widgets/checklist/checklist_editor.dart';
 import 'widgets/editor_labels_list.dart';
-import 'widgets/markdown/markdown_editor.dart';
-import 'widgets/plain_text/plain_text_editor.dart';
-import 'widgets/rich_text/rich_text_editor.dart';
-import 'widgets/rich_text/rich_text_editor_toolbar.dart';
-import 'widgets/title_editor.dart';
+import 'widgets/editors/checklist_editor.dart';
+import 'widgets/editors/markdown_editor.dart';
+import 'widgets/editors/plain_text_editor.dart';
+import 'widgets/editors/rich_text_editor.dart';
+import 'widgets/editors/title_editor.dart';
+import 'widgets/toolbar/toolbar.dart';
 
 /// Editor page.
 class EditorPage extends ConsumerStatefulWidget {
@@ -39,12 +39,12 @@ class EditorPage extends ConsumerStatefulWidget {
 class _EditorState extends ConsumerState<EditorPage> {
   @override
   void dispose() {
-    super.dispose();
-
     // ignore: avoid_ref_inside_state_dispose
     globalRef.read(notesProvider(status: NoteStatus.available).notifier).removeEmpty();
     // ignore: avoid_ref_inside_state_dispose
     globalRef.read(notesProvider(status: NoteStatus.archived).notifier).removeEmpty();
+
+    super.dispose();
   }
 
   void requestEditorFocus() {
@@ -96,7 +96,7 @@ class _EditorState extends ConsumerState<EditorPage> {
                   readOnly: readOnly,
                   autofocus: autofocus,
                 );
-                toolbar = RichTextEditorToolbar(fleatherController: fleatherController);
+                toolbar = Toolbar(fleatherController: fleatherController);
               case MarkdownNote note:
                 contentEditor = MarkdownEditor(
                   note: note,

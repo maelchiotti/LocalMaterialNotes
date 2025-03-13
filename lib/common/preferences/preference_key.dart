@@ -18,6 +18,7 @@ enum PreferenceKey<T extends Object> {
 
   // Rich text notes
   useParagraphsSpacing<bool>(true),
+  toolbarStyle<String>('twoRowsToggleable'),
 
   // Notes tiles
   showTilesBackground<bool>(false),

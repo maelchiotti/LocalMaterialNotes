@@ -5,11 +5,13 @@ import '../../common/preferences/preference_key.dart';
 import '../../models/deprecated/note.dart';
 import '../../models/note/note.dart';
 import '../database_service.dart';
+import '../notes/notes_index_service.dart';
 import '../notes/notes_service.dart';
 
 /// Database migration service.
 class MigrationService {
   final _databaseService = DatabaseService();
+  final _indexesService = NotesIndexService();
   final _notesService = NotesService();
 
   /// Migrates the database to the latest version if needed.
@@ -76,7 +78,7 @@ class MigrationService {
     logger.i('Migrating the database from version 2 to version 3');
 
     // Clear the indexes to ensure their are rebuilt correctly
-    await _notesService.clearIndexes();
+    await _indexesService.clearIndexes();
 
     // Get the rich text notes
     final richTextNotes = await _databaseService.database.richTextNotes.where().findAll();

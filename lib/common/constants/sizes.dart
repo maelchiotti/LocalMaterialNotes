@@ -26,9 +26,6 @@ enum Sizes {
   /// The width of a column in grid layout.
   gridLayoutColumnWidth(384),
 
-  /// The height of the editor's toolbar
-  editorToolbarHeight(54),
-
   /// Height of the labels list in the editor.
   editorLabelsListHeight(38),
 
