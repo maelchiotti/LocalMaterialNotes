@@ -70,6 +70,9 @@ class SystemUtils {
   /// Build mode of the application (either `release` or `debug`).
   String get buildMode => kReleaseMode ? l.settings_build_mode_release : l.settings_build_mode_debug;
 
+  /// The name of the application.
+  String get appName => _appLocalizations.app_name;
+
   /// Title of the welcome note.
   String get welcomeNoteTitle => _appLocalizations.welcome_note_title;
 

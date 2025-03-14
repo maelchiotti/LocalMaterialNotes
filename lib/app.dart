@@ -160,7 +160,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
             child: FGBGNotifier(
               onEvent: onFGBGEvent,
               child: MaterialApp.router(
-                title: 'Material Notes',
+                title: SystemUtils().appName,
                 routerConfig: router,
                 theme: lightTheme,
                 darkTheme: darkTheme,
