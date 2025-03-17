@@ -1450,5 +1450,17 @@
   "toolbar_style_two_rows_toggleable_description": "All formatting formatting options on two toggleable rows",
   "@toolbar_style_two_rows_toggleable_description": {
     "description": "Description for the style of the rich text editor toolbar with two toggleable rows."
+  },
+  "settings_confirm_before_exiting_title": "Confirm before exiting",
+  "@settings_confirm_before_exiting_title": {
+    "description": "Title of the setting tile for whether a confirmation is required before exiting the application."
+  },
+  "settings_confirm_before_exiting_description": "Ask for a confirmation before exiting the application",
+  "@settings_confirm_before_exiting_description": {
+    "description": "Description of the setting tile for whether a confirmation is required before exiting the application."
+  },
+  "snack_bar_confirm_exiting": "Press back again to exit the application.",
+  "@snack_bar_confirm_exiting": {
+    "description": "Snack bar asking the user to confirm exiting the application by pressing back again."
   }
 }

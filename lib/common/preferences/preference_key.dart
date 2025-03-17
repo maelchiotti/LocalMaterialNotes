@@ -29,8 +29,9 @@ enum PreferenceKey<T extends Object> {
   showNoteTypeIcon<bool>(true),
 
   // Behavior
+  confirmBeforeExiting<bool>(false),
   confirmations<String>('irreversible'),
-  autoRemoveFromBin<int>(999),
+  autoRemoveFromBinDelay<int>(999),
   swipeRightAction<String>('delete'),
   swipeLeftAction<String>('archive'),
   archivedSwipeRightAction<String>('delete'),

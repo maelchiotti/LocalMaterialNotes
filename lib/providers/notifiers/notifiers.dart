@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../common/preferences/preference_key.dart';
 import '../../models/label/label.dart';
+import 'confirm_exit_notifier.dart';
 import 'current_note_notifier.dart';
 import 'lock_notifier.dart';
 import 'selection_mode_notifier.dart';
@@ -42,6 +43,11 @@ final isEditModeNotifier = ValueNotifier(!PreferenceKey.openEditorReadingMode.pr
 
 /// Notifier for whether the labels filters are shown.
 final labelsFiltersNotifier = ValueNotifier(false);
+
+/// Whether the user must confirm to exit the application.
+///
+/// Used if [PreferenceKey.confirmBeforeExiting] is set to `true`.
+final mustConfirmToExitNotifier = ConfirmExitNotifier(false);
 
 /// Whether the routes can be popped.
 ///

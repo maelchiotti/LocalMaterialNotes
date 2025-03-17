@@ -11,6 +11,7 @@ import '../../../common/preferences/enums/swipe_actions/archived_swipe_action.da
 import '../../../common/preferences/enums/swipe_actions/available_swipe_action.dart';
 import '../../../common/preferences/enums/swipe_actions/deleted_swipe_action.dart';
 import '../../../common/preferences/preference_key.dart';
+import '../../../providers/notifiers/notifiers.dart';
 
 /// Settings related to the behavior of the application.
 class SettingsBehaviorPage extends ConsumerStatefulWidget {
@@ -22,15 +23,25 @@ class SettingsBehaviorPage extends ConsumerStatefulWidget {
 }
 
 class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
-  /// Asks the user to choose which confirmations should be shown.
+  /// Sets whether a confirmation is needed before exiting to [confirmBeforeExiting].
+  Future<void> submittedConfirmBeforeExiting(bool confirmBeforeExiting) async {
+    await PreferenceKey.confirmBeforeExiting.set(confirmBeforeExiting);
+
+    canPopNotifier.update();
+
+    setState(() {});
+  }
+
+  /// Sets which confirmations should be shown to [confirmations].
   Future<void> submittedConfirmations(Confirmations confirmations) async {
     await PreferenceKey.confirmations.set(confirmations.name);
 
     setState(() {});
   }
 
-  Future<void> submittedAutoRemoveFromBin(double value) async {
-    await PreferenceKey.autoRemoveFromBin.set(value.toInt());
+  /// Sets how often the bin should be automatically cleaned to [delay].
+  Future<void> submittedAutoRemoveFromBin(double delay) async {
+    await PreferenceKey.autoRemoveFromBinDelay.set(delay.toInt());
 
     setState(() {});
   }
@@ -79,8 +90,9 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
 
   @override
   Widget build(BuildContext context) {
+    final confirmBeforeExiting = PreferenceKey.confirmBeforeExiting.preferenceOrDefault;
     final confirmations = Confirmations.fromPreference();
-    final autoRemoveFromBin = PreferenceKey.autoRemoveFromBin.preferenceOrDefault;
+    final autoRemoveFromBinDelay = PreferenceKey.autoRemoveFromBinDelay.preferenceOrDefault;
 
     final availableSwipeActionsPreferences = (
       right: PreferenceKey.swipeRightAction.preferenceOrDefault,
@@ -112,6 +124,13 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                 divider: null,
                 title: l.settings_behavior_application,
                 tiles: [
+                  SettingSwitchTile(
+                    icon: Icons.exit_to_app,
+                    title: l.settings_confirm_before_exiting_title,
+                    description: l.settings_confirm_before_exiting_description,
+                    toggled: confirmBeforeExiting,
+                    onChanged: submittedConfirmBeforeExiting,
+                  ),
                   SettingSingleOptionTile.detailed(
                     icon: Icons.warning,
                     title: l.settings_confirmations,
@@ -128,12 +147,12 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                   SettingCustomSliderTile(
                     icon: Icons.auto_delete,
                     title: l.settings_auto_remove_from_bin_title,
-                    value: l.settings_auto_remove_from_bin_value(autoRemoveFromBin.toString()),
+                    value: l.settings_auto_remove_from_bin_value(autoRemoveFromBinDelay.toString()),
                     description: l.settings_auto_remove_from_bin_description,
                     dialogTitle: l.settings_auto_remove_from_bin_title,
                     label: (delay) => l.settings_auto_remove_from_bin_value(delay.toInt().toString()),
                     values: autoRemoveFromBinValues,
-                    initialValue: autoRemoveFromBin.toDouble(),
+                    initialValue: autoRemoveFromBinDelay.toDouble(),
                     onSubmitted: submittedAutoRemoveFromBin,
                   ),
                 ],
