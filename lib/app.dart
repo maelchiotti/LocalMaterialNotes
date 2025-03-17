@@ -47,6 +47,8 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
     // Eagerly get the labels for the full list and the navigation
     ref.read(labelsListProvider.notifier).get();
     ref.read(labelsNavigationProvider.notifier).get();
+
+    canPopNotifier.update();
   }
 
   @override

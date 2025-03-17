@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../common/constants/constants.dart';
+import '../../common/preferences/preference_key.dart';
 import 'notifiers.dart';
 
 /// Can pop notifier.
@@ -16,7 +17,10 @@ class CanPopNotifier extends ValueNotifier<bool> {
     final isAddNoteFabOpen = addNoteFabKey.currentState?.isOpen ?? false;
     final bool isDrawerOpen = notesPageScaffoldKey.currentState?.isDrawerOpen ?? false;
 
-    value = !(isNotesSelectionMode || isLabelsSelectionMode || isDrawerOpen || isAddNoteFabOpen);
+    final confirmBeforeExiting = PreferenceKey.confirmBeforeExiting.preferenceOrDefault;
+    final mustConfirmToExit = confirmBeforeExiting ? mustConfirmToExitNotifier.value : true;
+
+    value = !(isNotesSelectionMode || isLabelsSelectionMode || isDrawerOpen || isAddNoteFabOpen || !mustConfirmToExit);
 
     notifyListeners();
   }

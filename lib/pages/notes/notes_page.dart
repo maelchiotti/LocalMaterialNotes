@@ -8,6 +8,8 @@ import '../../common/constants/constants.dart';
 import '../../common/navigation/app_bars/notes/notes_app_bar.dart';
 import '../../common/navigation/side_navigation.dart';
 import '../../common/navigation/top_navigation.dart';
+import '../../common/preferences/preference_key.dart';
+import '../../common/ui/snack_bar_utils.dart';
 import '../../common/widgets/notes/notes_list.dart';
 import '../../models/label/label.dart';
 import '../../models/note/note_status.dart';
@@ -48,26 +50,34 @@ class _NotesPageState extends ConsumerState<NotesPage> {
       return;
     }
 
-    // Closes the expandable FAB to add a note
+    final confirmBeforeExiting = PreferenceKey.confirmBeforeExiting.preferenceOrDefault;
+
+    // Closes the navigation drawer
     if (notesPageScaffoldKey.currentState != null && notesPageScaffoldKey.currentState!.isDrawerOpen) {
       notesPageScaffoldKey.currentState!.closeDrawer();
-    } else if (addNoteFabKey.currentState != null && addNoteFabKey.currentState!.isOpen) {
+    }
+    // Closes the expandable FAB to add a note
+    else if (addNoteFabKey.currentState != null && addNoteFabKey.currentState!.isOpen) {
       addNoteFabKey.currentState!.toggle();
-    } else {
-      // Unselects all notes
-      if (isNotesSelectionModeNotifier.value) {
-        unselectAllNotes(context, ref, notesStatus: NoteStatus.available);
-        unselectAllNotes(context, ref, notesStatus: NoteStatus.archived);
-        unselectAllNotes(context, ref, notesStatus: NoteStatus.deleted);
+    }
+    // Unselects all notes
+    else if (isNotesSelectionModeNotifier.value) {
+      unselectAllNotes(context, ref, notesStatus: NoteStatus.available);
+      unselectAllNotes(context, ref, notesStatus: NoteStatus.archived);
+      unselectAllNotes(context, ref, notesStatus: NoteStatus.deleted);
 
-        isNotesSelectionModeNotifier.value = false;
-      }
+      isNotesSelectionModeNotifier.value = false;
+    }
+    // Unselects all labels
+    else if (isLabelsSelectionModeNotifier.value) {
+      unselectAllLabels(ref);
 
-      // Unselects all labels
-      if (isLabelsSelectionModeNotifier.value) {
-        unselectAllLabels(ref);
+      isLabelsSelectionModeNotifier.value = false;
+    } else if (confirmBeforeExiting) {
+      if (!mustConfirmToExitNotifier.value) {
+        SnackBarUtils().show(text: l.snack_bar_confirm_exiting);
 
-        isLabelsSelectionModeNotifier.value = false;
+        mustConfirmToExitNotifier.confirm();
       }
     }
 
