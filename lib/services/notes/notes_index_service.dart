@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_mimir/flutter_mimir.dart';
 
 import '../../common/constants/constants.dart';
@@ -28,13 +29,18 @@ class NotesIndexService {
     index = await DatabaseService().mimir.openIndex('notes', primaryKey: 'id', searchableFields: ['title', 'content']);
 
     _notesService = NotesService();
+  }
 
-    // If the number of indexed notes is different from the total number of notes, re-index them all
-    // (this should only be needed on the first launch after updating from a version that didn't have the index feature)
-    final indexNotesCount = (await index.numberOfDocuments).toInt();
-    final notesCount = await _notesService.count;
-    if (indexNotesCount != notesCount) {
-      logger.i('Re-indexing all notes ($indexNotesCount notes were indexed out of $notesCount)');
+  /// Checks that each note has an index. If not, rebuilds the indexes.
+  Future<void> checkIndexes() async {
+    final notes = await _notesService.getAll();
+    final indexes = await index.getAllDocuments();
+
+    final notesIds = notes.map((note) => note.isarId).toList();
+    final indexesIds = indexes.map((index) => index['id'] as int).toList();
+
+    if (!notesIds.equals(indexesIds)) {
+      logger.i('Re-indexing all notes');
 
       await clearIndexes();
       await updateIndexes(await _notesService.getAll());

@@ -43,12 +43,12 @@ class DatabaseService {
     // Initialize mimir
     mimir = await Mimir.defaultInstance;
 
+    // Initialize the indexes service
+    await NotesIndexService().ensureInitialized();
+
     // Initialize the models services
     await LabelsService().ensureInitialized();
     await NotesService().ensureInitialized();
-
-    // Initialize the indexes service
-    await NotesIndexService().ensureInitialized();
 
     // Perform migrations if needed
     await MigrationService().migrateIfNeeded();

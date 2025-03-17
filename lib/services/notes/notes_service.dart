@@ -43,6 +43,9 @@ class NotesService {
 
     _indexesService = NotesIndexService();
 
+    // Check that the notes are correctly indexed
+    await _indexesService.checkIndexes();
+
     // If the app runs with the 'SCREENSHOTS' environment parameter,
     // clear all the notes and add the notes for the screenshots
     if (Environment.screenshots) {
@@ -163,7 +166,7 @@ class NotesService {
 
     final searchResults = await _indexesService.index.search(query: search, filter: searchFilter);
 
-    final notesIds = searchResults.map((Map<String, dynamic> noteIndex) => noteIndex['id'] as int).toList();
+    final notesIds = searchResults.map((noteIndex) => noteIndex['id'] as int).toList();
     final notes = (await getAllByIds(notesIds));
 
     // Check that all search results correspond to an existing note
