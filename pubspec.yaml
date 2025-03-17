@@ -12,7 +12,6 @@ environment:
 dependencies:
   after_layout: ^1.2.0
   archive: ^4.0.2
-  back_button_interceptor: ^8.0.3
   collection: ^1.18.0
   dart_helper_utils: ^3.3.0
   device_info_plus: ^11.2.2

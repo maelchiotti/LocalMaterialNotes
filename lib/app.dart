@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:after_layout/after_layout.dart';
-import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +8,6 @@ import 'package:flutter_checklist/checklist.dart';
 import 'package:flutter_fgbg/flutter_fgbg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'common/actions/labels/select.dart';
-import 'common/actions/notes/select.dart';
 import 'common/constants/constants.dart';
 import 'common/enums/supported_language.dart';
 import 'common/extensions/locale_extension.dart';
@@ -18,7 +15,6 @@ import 'common/preferences/preference_key.dart';
 import 'common/system_utils.dart';
 import 'common/ui/theme_utils.dart';
 import 'l10n/app_localizations/app_localizations.g.dart';
-import 'models/note/note_status.dart';
 import 'navigation/router.dart';
 import 'providers/labels/labels_list/labels_list_provider.dart';
 import 'providers/labels/labels_navigation/labels_navigation_provider.dart';
@@ -42,8 +38,6 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
   void initState() {
     super.initState();
 
-    BackButtonInterceptor.add(backButtonInterceptor);
-
     globalRef = ref;
 
     // Read the potential data shared from other applications
@@ -62,34 +56,9 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
 
   @override
   void dispose() {
-    BackButtonInterceptor.remove(backButtonInterceptor);
-
     _stream.cancel();
 
     super.dispose();
-  }
-
-  /// Intercepts the back button.
-  bool backButtonInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
-    var intercept = false;
-
-    // Unselects all notes
-    if (isNotesSelectionModeNotifier.value) {
-      unselectAllNotes(context, ref, notesStatus: NoteStatus.available);
-      unselectAllNotes(context, ref, notesStatus: NoteStatus.archived);
-      unselectAllNotes(context, ref, notesStatus: NoteStatus.deleted);
-      isNotesSelectionModeNotifier.value = false;
-      intercept = true;
-    }
-
-    // Unselects all labels
-    if (isLabelsSelectionModeNotifier.value) {
-      unselectAllLabels(ref);
-      isLabelsSelectionModeNotifier.value = false;
-      intercept = true;
-    }
-
-    return intercept;
   }
 
   /// Called when the application goes to the background or the foreground.

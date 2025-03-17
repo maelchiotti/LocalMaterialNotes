@@ -9,6 +9,7 @@ import '../../../models/note/note_status.dart';
 import '../../../navigation/navigation_routes.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../../providers/preferences/preferences_provider.dart';
+import '../../actions/notes/pop.dart';
 import '../../actions/notes/select.dart';
 import '../../constants/paddings.dart';
 import '../../constants/sizes.dart';
@@ -165,10 +166,13 @@ class _NoteTileState extends ConsumerState<NoteTile> {
       isEditModeNotifier.value = !PreferenceKey.openEditorReadingMode.preferenceOrDefault;
       currentNoteNotifier.value = widget.note;
 
-      // If the note was opened from the search view, it needs to be closed
+      // Close the search view if the note was opened from it
       if (widget.search != null) {
         Navigator.pop(context);
       }
+
+      // Close the expandable FAB to add a note if it is open
+      closeAddNoteFabIfOpen();
 
       final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
       if (lockNote) {
@@ -183,6 +187,8 @@ class _NoteTileState extends ConsumerState<NoteTile> {
   /// Enters the selection mode and selects this note.
   void onLongPress() {
     isNotesSelectionModeNotifier.value = true;
+
+    canPopNotifier.update();
 
     toggleSelectNote(ref, note: widget.note);
   }

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../common/actions/labels/select.dart';
+import '../../common/actions/notes/select.dart';
+import '../../common/constants/constants.dart';
 import '../../common/navigation/app_bars/notes/notes_app_bar.dart';
 import '../../common/navigation/side_navigation.dart';
 import '../../common/navigation/top_navigation.dart';
@@ -36,11 +39,47 @@ class _NotesPageState extends ConsumerState<NotesPage> {
     super.dispose();
   }
 
+  void onDrawerChanged(bool open) {
+    canPopNotifier.update();
+  }
+
+  void onPopInvoked(bool didPop) {
+    if (didPop) {
+      return;
+    }
+
+    // Closes the expandable FAB to add a note
+    if (notesPageScaffoldKey.currentState != null && notesPageScaffoldKey.currentState!.isDrawerOpen) {
+      notesPageScaffoldKey.currentState!.closeDrawer();
+    } else if (addNoteFabKey.currentState != null && addNoteFabKey.currentState!.isOpen) {
+      addNoteFabKey.currentState!.toggle();
+    } else {
+      // Unselects all notes
+      if (isNotesSelectionModeNotifier.value) {
+        unselectAllNotes(context, ref, notesStatus: NoteStatus.available);
+        unselectAllNotes(context, ref, notesStatus: NoteStatus.archived);
+        unselectAllNotes(context, ref, notesStatus: NoteStatus.deleted);
+
+        isNotesSelectionModeNotifier.value = false;
+      }
+
+      // Unselects all labels
+      if (isLabelsSelectionModeNotifier.value) {
+        unselectAllLabels(ref);
+
+        isLabelsSelectionModeNotifier.value = false;
+      }
+    }
+
+    canPopNotifier.update();
+  }
+
   @override
   Widget build(BuildContext context) {
     final availableNotesTypes = NoteType.available;
 
     return Scaffold(
+      key: notesPageScaffoldKey,
       appBar: TopNavigation(
         appbar: NotesAppBar(label: widget.label, notesStatus: NoteStatus.available),
         notesStatus: NoteStatus.available,
@@ -48,7 +87,17 @@ class _NotesPageState extends ConsumerState<NotesPage> {
       drawer: SideNavigation(),
       floatingActionButtonLocation: availableNotesTypes.length > 1 ? ExpandableFab.location : null,
       floatingActionButton: AddNoteFab(),
-      body: NotesList(notesStatus: NoteStatus.available, label: widget.label),
+      onDrawerChanged: onDrawerChanged,
+      body: ValueListenableBuilder(
+        valueListenable: canPopNotifier,
+        builder: (context, canPop, child) {
+          return PopScope(
+            canPop: canPop,
+            onPopInvokedWithResult: (didPop, result) => onPopInvoked(didPop),
+            child: NotesList(notesStatus: NoteStatus.available, label: widget.label),
+          );
+        },
+      ),
     );
   }
 }

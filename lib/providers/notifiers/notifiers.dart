@@ -5,6 +5,7 @@ import '../../common/preferences/preference_key.dart';
 import '../../models/label/label.dart';
 import 'current_note_notifier.dart';
 import 'lock_notifier.dart';
+import 'selection_mode_notifier.dart';
 
 /// Notifier for whether the application is locked.
 final lockAppNotifier = LockNotifier(PreferenceKey.lockApp.preferenceOrDefault);
@@ -41,3 +42,11 @@ final isEditModeNotifier = ValueNotifier(!PreferenceKey.openEditorReadingMode.pr
 
 /// Notifier for whether the labels filters are shown.
 final labelsFiltersNotifier = ValueNotifier(false);
+
+/// Whether the routes can be popped.
+///
+/// This is `false` in the following cases:
+///   - during multi-selection
+///   - when the navigation drawer is opened
+///   - when the expandable FAB to add a note is opened
+final canPopNotifier = CanPopNotifier(true);
