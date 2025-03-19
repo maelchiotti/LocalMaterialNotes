@@ -113,7 +113,7 @@ class ChecklistNote extends Note {
 
   @ignore
   @override
-  bool get isContentEmpty => checkboxes.isEmpty;
+  bool get isContentEmpty => checkboxes.isEmpty || !texts.any((text) => text.isNotEmpty);
 
   /// The list of [ChecklistLine] of this checklist.
   @ignore
