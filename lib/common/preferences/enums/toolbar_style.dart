@@ -1,4 +1,6 @@
-import '../../constants/constants.dart';
+import 'package:flutter/material.dart';
+
+import '../../extensions/build_context_extension.dart';
 import '../../extensions/iterable_extension.dart';
 import '../preference_key.dart';
 
@@ -31,22 +33,22 @@ enum ToolbarStyle {
   }
 
   /// The title of the preference for the settings page.
-  String get title {
+  String title(BuildContext context) {
     return switch (this) {
-      oneRowSimple => l.toolbar_style_one_row_simple_title,
-      oneRowAll => l.toolbar_style_one_row_all_title,
-      twoRowsStacked => l.toolbar_style_two_rows_stacked_title,
-      twoRowsToggleable => l.toolbar_style_two_rows_toggleable_title,
+      oneRowSimple => context.l.toolbar_style_one_row_simple_title,
+      oneRowAll => context.l.toolbar_style_one_row_all_title,
+      twoRowsStacked => context.l.toolbar_style_two_rows_stacked_title,
+      twoRowsToggleable => context.l.toolbar_style_two_rows_toggleable_title,
     };
   }
 
   /// The description of the preference for the settings page.
-  String get description {
+  String description(BuildContext context) {
     return switch (this) {
-      oneRowSimple => l.toolbar_style_one_row_simple_description,
-      oneRowAll => l.toolbar_style_one_row_all_description,
-      twoRowsStacked => l.toolbar_style_two_rows_stacked_description,
-      twoRowsToggleable => l.toolbar_style_two_rows_toggleable_description,
+      oneRowSimple => context.l.toolbar_style_one_row_simple_description,
+      oneRowAll => context.l.toolbar_style_one_row_all_description,
+      twoRowsStacked => context.l.toolbar_style_two_rows_stacked_description,
+      twoRowsToggleable => context.l.toolbar_style_two_rows_toggleable_description,
     };
   }
 }

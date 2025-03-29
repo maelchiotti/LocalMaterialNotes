@@ -1,7 +1,9 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../constants/constants.dart';
+
+import 'build_context_extension.dart';
 
 /// Extends the [DateTime] class with some utilities functions.
 extension DateTimeExtensions on DateTime {
@@ -18,12 +20,12 @@ extension DateTimeExtensions on DateTime {
   /// Returns the date and time formatted in a readable manner, according to the current locale.
   ///
   /// Pattern: `{date} at {time}`.
-  String get yMMMMd_at_Hm {
-    final localeName = l.localeName;
+  String yMMMMd_at_Hm(BuildContext context) {
+    final localeName = context.l.localeName;
 
     final date = DateFormat.yMMMMd(localeName).format(this);
     final time = DateFormat.Hm(localeName).format(this);
 
-    return '$date ${l.about_time_at} $time';
+    return '$date ${context.l.about_time_at} $time';
   }
 }

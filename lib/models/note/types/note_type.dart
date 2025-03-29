@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
-import '../../../common/constants/constants.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/extensions/string_extension.dart';
 import '../../../common/preferences/preference_key.dart';
 
@@ -25,12 +25,12 @@ enum NoteType {
   const NoteType(this.icon);
 
   /// The title of this type.
-  String get title {
+  String title(BuildContext context) {
     return switch (this) {
-      plainText => l.note_type_plain_text,
-      markdown => l.note_type_markdown,
-      richText => l.note_type_rich_text,
-      checklist => l.note_type_checklist,
+      plainText => context.l.note_type_plain_text,
+      markdown => context.l.note_type_markdown,
+      richText => context.l.note_type_rich_text,
+      checklist => context.l.note_type_checklist,
     };
   }
 

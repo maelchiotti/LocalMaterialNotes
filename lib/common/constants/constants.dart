@@ -6,7 +6,6 @@ import 'package:saf_stream/saf_stream.dart';
 import 'package:saf_util/saf_util.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../l10n/app_localizations/app_localizations.g.dart';
 import '../logs/app_logger.dart';
 
 /// An UUID generator.
@@ -20,12 +19,6 @@ late WidgetRef globalRef;
 
 /// Key of the application's root navigator.
 final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Root navigator key');
-
-/// Application's localizations.
-final l = AppLocalizations.of(rootNavigatorKey.currentContext!);
-
-/// Flutter's localizations.
-final fl = Localizations.of<MaterialLocalizations>(rootNavigatorKey.currentContext!, MaterialLocalizations);
 
 /// Console and file logger.
 final logger = AppLogger();

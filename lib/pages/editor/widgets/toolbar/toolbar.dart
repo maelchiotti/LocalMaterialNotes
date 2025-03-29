@@ -6,7 +6,7 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 import '../../../../../common/constants/paddings.dart';
 import '../../../../../common/constants/separators.dart';
 import '../../../../../common/constants/sizes.dart';
-import '../../../../common/constants/constants.dart';
+import '../../../../common/extensions/build_context_extension.dart';
 import '../../../../common/preferences/enums/toolbar_style.dart';
 import 'color_toolbar_button.dart';
 import 'heading_toolbar_button.dart';
@@ -132,13 +132,13 @@ class _ToolbarState extends State<Toolbar> with SingleTickerProviderStateMixin {
       fleatherController: widget.fleatherController,
       attributeKey: ParchmentAttribute.foregroundColor,
       icon: Icons.text_fields,
-      dialogTitle: l.rich_text_editor_toolbar_dialog_color_title_foreground,
+      dialogTitle: context.l.rich_text_editor_toolbar_dialog_color_title_foreground,
     );
     final backgroundColor = ColorToolbarButton(
       fleatherController: widget.fleatherController,
       attributeKey: ParchmentAttribute.backgroundColor,
       icon: Symbols.colors,
-      dialogTitle: l.rich_text_editor_toolbar_dialog_color_title_background,
+      dialogTitle: context.l.rich_text_editor_toolbar_dialog_color_title_background,
     );
 
     final bulletList = ToggleStyleButton(

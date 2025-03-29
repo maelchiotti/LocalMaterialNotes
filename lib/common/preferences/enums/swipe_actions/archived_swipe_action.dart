@@ -6,7 +6,7 @@ import '../../../actions/notes/copy.dart';
 import '../../../actions/notes/delete.dart';
 import '../../../actions/notes/share.dart';
 import '../../../actions/notes/unarchive.dart';
-import '../../../constants/constants.dart';
+import '../../../extensions/build_context_extension.dart';
 import '../../../extensions/iterable_extension.dart';
 import '../../preference_key.dart';
 
@@ -70,18 +70,18 @@ enum ArchivedSwipeAction {
   bool get isDisabled => this == disabled;
 
   /// Returns the title of the swipe action.
-  String get title {
+  String title(BuildContext context) {
     switch (this) {
       case disabled:
-        return l.action_disabled;
+        return context.l.action_disabled;
       case copy:
-        return fl?.copyButtonLabel ?? 'Copy';
+        return context.fl.copyButtonLabel;
       case share:
-        return l.action_share;
+        return context.l.action_share;
       case unarchive:
-        return l.action_unarchive;
+        return context.l.action_unarchive;
       case delete:
-        return l.action_delete;
+        return context.l.action_delete;
     }
   }
 
@@ -93,7 +93,7 @@ enum ArchivedSwipeAction {
   /// Text of the swipe action to display.
   Widget titleWidget(BuildContext context) {
     return Text(
-      title,
+      title(context),
       style: Theme.of(
         context,
       ).textTheme.titleMedium?.copyWith(color: Theme.of(context).colorScheme.onTertiaryContainer),
@@ -104,7 +104,7 @@ enum ArchivedSwipeAction {
   Future<bool> execute(BuildContext context, WidgetRef ref, Note note) async {
     switch (this) {
       case copy:
-        await copyNote(note: note);
+        await copyNote(context, note: note);
         return false;
       case share:
         await shareNote(note: note);

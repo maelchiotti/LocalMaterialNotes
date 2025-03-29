@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/constants.dart';
+import '../extensions/build_context_extension.dart';
 import '../preferences/enums/confirmations.dart';
 
 /// Shows the confirmation dialog to ask the user for a confirmation on an action.
@@ -17,10 +17,7 @@ Future<bool> _showConfirmationDialog(BuildContext context, String title, String 
             title: Text(title),
             content: SingleChildScrollView(child: Column(children: [Text(body)])),
             actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context, false),
-                child: Text(fl?.cancelButtonLabel ?? 'Cancel'),
-              ),
+              TextButton(onPressed: () => Navigator.pop(context, false), child: Text(context.fl.cancelButtonLabel)),
               TextButton(onPressed: () => Navigator.pop(context, true), child: Text(confirmText)),
             ],
           ),

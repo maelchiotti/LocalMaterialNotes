@@ -48,7 +48,7 @@ class LabelsPage extends ConsumerWidget {
                   Expanded(
                     child:
                         labels.isEmpty
-                            ? EmptyPlaceholder.labels()
+                            ? EmptyPlaceholder.labels(context)
                             : ListView.builder(
                               padding: Paddings.fab,
                               itemCount: labels.length,

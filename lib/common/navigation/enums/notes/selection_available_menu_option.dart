@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/constants.dart';
+import '../../../extensions/build_context_extension.dart';
 
 /// Lists the options available in the selection menu for the available notes.
 enum SelectionAvailableMenuOption {
@@ -34,27 +34,27 @@ enum SelectionAvailableMenuOption {
   const SelectionAvailableMenuOption(this.icon);
 
   /// Returns the title of the menu option.
-  String get title {
+  String title(BuildContext context) {
     switch (this) {
       case copy:
-        return fl?.copyButtonLabel ?? 'Copy';
+        return context.fl.copyButtonLabel;
       case share:
-        return fl?.shareButtonLabel ?? 'Share';
+        return context.fl.shareButtonLabel;
       case togglePin:
-        return l.action_toggle_pin;
+        return context.l.action_toggle_pin;
       case toggleLock:
-        return l.action_toggle_lock;
+        return context.l.action_toggle_lock;
       case addLabels:
-        return l.menu_action_add_labels;
+        return context.l.menu_action_add_labels;
       case archive:
-        return l.action_archive;
+        return context.l.action_archive;
       case delete:
-        return l.action_delete;
+        return context.l.action_delete;
     }
   }
 
   /// Returns the [PopupMenuItem] widget of the menu option.
   PopupMenuItem<SelectionAvailableMenuOption> popupMenuItem(BuildContext context) {
-    return PopupMenuItem(value: this, child: ListTile(leading: Icon(icon), title: Text(title)));
+    return PopupMenuItem(value: this, child: ListTile(leading: Icon(icon), title: Text(title(context))));
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../models/note/types/note_type.dart';
 import '../constants/constants.dart';
+import '../extensions/build_context_extension.dart';
 
 /// Utilities for the snack bars.
 ///
@@ -10,22 +11,18 @@ import '../constants/constants.dart';
 class SnackBarUtils {
   /// Shows a snack bar with the [text].
   ///
-  /// If [context] is `null`, the current context of [rootNavigatorKey] is used instead.
-  ///
   /// if [error] is `true`, the [text] is prefixed with `Error:`.
   ///
   /// If [onCancel] is set, an action that calls it when tapped is shown.
-  void show({
-    BuildContext? context,
+  void show(
+    BuildContext context, {
     required String text,
     bool error = false,
     void Function(WidgetRef globalRef)? onCancel,
   }) {
     if (error) {
-      text = '${l.error_snack_bar} $text';
+      text = '${context.l.error_snack_bar} $text';
     }
-
-    context ??= rootNavigatorKey.currentContext!;
 
     final availableNotesTypes = NoteType.available;
     final behavior = availableNotesTypes.length == 1 ? SnackBarBehavior.floating : SnackBarBehavior.fixed;
@@ -37,7 +34,7 @@ class SnackBarUtils {
         content: Text(text),
         action:
             onCancel != null
-                ? SnackBarAction(label: fl?.cancelButtonLabel ?? 'Cancel', onPressed: () => onCancel(globalRef))
+                ? SnackBarAction(label: context.fl.cancelButtonLabel, onPressed: () => onCancel(globalRef))
                 : null,
       ),
     );

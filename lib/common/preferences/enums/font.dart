@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs
 
-import '../../constants/constants.dart';
+import 'package:flutter/material.dart';
+
+import '../../extensions/build_context_extension.dart';
 import '../../extensions/iterable_extension.dart';
 import '../preference_key.dart';
 
@@ -58,10 +60,10 @@ enum Font {
   }
 
   /// Returns the display name of this font.
-  String get displayName {
+  String displayName(BuildContext context) {
     // Return the localized display name for the system default font
     if (this == systemDefault) {
-      return l.font_system_default;
+      return context.l.font_system_default;
     }
 
     return _displayName!;

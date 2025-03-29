@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
-import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/enums/swipe_actions/label_swipe_action.dart';
@@ -70,7 +70,7 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
     );
 
     return Scaffold(
-      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_labels)),
+      appBar: TopNavigation(appbar: BasicAppBar(title: context.l.navigation_settings_labels)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,
@@ -81,8 +81,8 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
                 tiles: [
                   SettingSwitchTile(
                     icon: Icons.label,
-                    title: l.settings_enable_labels,
-                    description: l.settings_enable_labels_description,
+                    title: context.l.settings_enable_labels,
+                    description: context.l.settings_enable_labels_description,
                     toggled: isLabelsEnabled,
                     onChanged: toggleEnableLabels,
                   ),
@@ -90,21 +90,21 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
               ),
               SettingSection(
                 divider: null,
-                title: l.settings_labels_appearance,
+                title: context.l.settings_labels_appearance,
                 tiles: [
                   SettingSwitchTile(
                     enabled: isLabelsEnabled,
                     icon: Symbols.tile_small,
-                    title: l.settings_show_labels_note_tile,
-                    description: l.settings_show_labels_note_tile_description,
+                    title: context.l.settings_show_labels_note_tile,
+                    description: context.l.settings_show_labels_note_tile_description,
                     toggled: showLabelsListOnNoteTile,
                     onChanged: toggleShowLabelsListOnNoteTile,
                   ),
                   SettingSwitchTile(
                     enabled: isLabelsEnabled,
                     icon: Icons.edit,
-                    title: l.settings_show_labels_editor,
-                    description: l.settings_show_labels_editor_description,
+                    title: context.l.settings_show_labels_editor,
+                    description: context.l.settings_show_labels_editor_description,
                     toggled: showLabelsListInEditorPage,
                     onChanged: toggleShowLabelsListInEditor,
                   ),
@@ -112,30 +112,34 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
               ),
               SettingSection(
                 divider: null,
-                title: l.settings_labels_section_behavior,
+                title: context.l.settings_labels_section_behavior,
                 tiles: [
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_right,
-                    title: l.settings_swipe_action_right,
-                    value: labelSwipeActions.right.title,
-                    description: l.settings_swipe_action_right_description,
-                    dialogTitle: l.settings_swipe_action_right,
+                    title: context.l.settings_swipe_action_right,
+                    value: labelSwipeActions.right.title(context),
+                    description: context.l.settings_swipe_action_right_description,
+                    dialogTitle: context.l.settings_swipe_action_right,
                     options:
                         LabelSwipeAction.settings
-                            .map((swipeAction) => (value: swipeAction, title: swipeAction.title, subtitle: null))
+                            .map(
+                              (swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null),
+                            )
                             .toList(),
                     initialOption: labelSwipeActions.right,
                     onSubmitted: submittedLabelSwipeRightAction,
                   ),
                   SettingSingleOptionTile.detailed(
                     icon: Icons.swipe_left,
-                    title: l.settings_swipe_action_left,
-                    value: labelSwipeActions.left.title,
-                    description: l.settings_swipe_action_left_description,
-                    dialogTitle: l.settings_swipe_action_left,
+                    title: context.l.settings_swipe_action_left,
+                    value: labelSwipeActions.left.title(context),
+                    description: context.l.settings_swipe_action_left_description,
+                    dialogTitle: context.l.settings_swipe_action_left,
                     options:
                         LabelSwipeAction.settings
-                            .map((swipeAction) => (value: swipeAction, title: swipeAction.title, subtitle: null))
+                            .map(
+                              (swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null),
+                            )
                             .toList(),
                     initialOption: labelSwipeActions.left,
                     onSubmitted: submittedLabelSwipeLeftAction,

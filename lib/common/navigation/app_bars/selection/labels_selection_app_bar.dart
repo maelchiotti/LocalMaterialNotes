@@ -9,10 +9,10 @@ import '../../../actions/labels/lock.dart';
 import '../../../actions/labels/pin.dart';
 import '../../../actions/labels/select.dart';
 import '../../../actions/labels/visible.dart';
-import '../../../constants/constants.dart';
 import '../../../constants/paddings.dart';
 import '../../../constants/separators.dart';
 import '../../../constants/sizes.dart';
+import '../../../extensions/build_context_extension.dart';
 import '../../../preferences/preference_key.dart';
 import '../../../widgets/placeholders/error_placeholder.dart';
 import '../../../widgets/placeholders/loading_placeholder.dart';
@@ -47,7 +47,7 @@ class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
       case SelectionLabelsMenuOption.toggleVisible:
         await toggleVisibleLabels(ref, labels: labels);
       case SelectionLabelsMenuOption.toggleLock:
-        await toggleLockLabels(ref, labels: labels);
+        await toggleLockLabels(context, ref, labels: labels);
       case SelectionLabelsMenuOption.delete:
         await deleteLabels(context, ref, labels: labels);
     }
@@ -68,7 +68,7 @@ class _SelectionAppBarState extends ConsumerState<LabelsSelectionAppBar> {
       actions: [
         IconButton(
           icon: Icon(allSelected ? Icons.deselect : Icons.select_all),
-          tooltip: allSelected ? l.tooltip_unselect_all : fl?.selectAllButtonLabel ?? 'Select all',
+          tooltip: allSelected ? context.l.tooltip_unselect_all : context.fl.selectAllButtonLabel,
           onPressed: () => allSelected ? unselectAllLabels(ref) : selectAllLabels(ref),
         ),
         Padding(padding: Paddings.appBarSeparator, child: Separator.vertical(indent: 16)),

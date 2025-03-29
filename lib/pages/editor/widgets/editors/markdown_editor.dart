@@ -6,6 +6,7 @@ import 'package:markdown/markdown.dart';
 
 import '../../../../common/constants/constants.dart';
 import '../../../../common/constants/paddings.dart';
+import '../../../../common/extensions/build_context_extension.dart';
 import '../../../../models/note/note.dart';
 import '../../../../models/note/note_status.dart';
 import '../../../../providers/notes/notes_provider.dart';
@@ -91,7 +92,7 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
                   autofocus: widget.autofocus,
                   maxLines: null,
                   expands: true,
-                  decoration: InputDecoration.collapsed(hintText: l.hint_content),
+                  decoration: InputDecoration.collapsed(hintText: context.l.hint_content),
                   spellCheckConfiguration: SpellCheckConfiguration(spellCheckService: DefaultSpellCheckService()),
                   onChanged: onChanged,
                 ),

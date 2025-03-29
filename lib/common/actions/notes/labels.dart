@@ -8,14 +8,14 @@ import '../../../pages/editor/dialogs/labels_selection_dialog.dart';
 import '../../../providers/labels/labels_list/labels_list_provider.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
-import '../../constants/constants.dart';
+import '../../extensions/build_context_extension.dart';
 import '../../ui/snack_bar_utils.dart';
 import 'select.dart';
 
 /// Asks the user to select the labels for the [note].
 Future<List<Label>?> selectLabels(BuildContext context, WidgetRef ref, {required Note note}) async {
   if (ref.read(labelsListProvider).value == null || ref.read(labelsListProvider).value!.isEmpty) {
-    SnackBarUtils().show(text: l.snack_bar_no_labels);
+    SnackBarUtils().show(context, text: context.l.snack_bar_no_labels);
 
     return null;
   }
@@ -51,7 +51,7 @@ Future<List<Label>?> selectLabels(BuildContext context, WidgetRef ref, {required
 /// Asks the user to select the labels to add to the [notes].
 Future<List<Label>?> addLabels(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
   if (ref.read(labelsListProvider).value == null || ref.read(labelsListProvider).value!.isEmpty) {
-    SnackBarUtils().show(text: l.snack_bar_no_labels);
+    SnackBarUtils().show(context, text: context.l.snack_bar_no_labels);
 
     return null;
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/constants.dart';
+import '../../../extensions/build_context_extension.dart';
 
 /// Lists the options available in the editor's menu for the deleted notes.
 enum EditorDeletedMenuOption {
@@ -29,14 +29,14 @@ enum EditorDeletedMenuOption {
   const EditorDeletedMenuOption(this.icon, {this.dangerous = false});
 
   /// Returns the title of the menu option.
-  String get title {
+  String title(BuildContext context) {
     switch (this) {
       case restore:
-        return l.action_restore;
+        return context.l.action_restore;
       case deletePermanently:
-        return l.action_delete_permanently;
+        return context.l.action_delete_permanently;
       case about:
-        return l.action_about;
+        return context.l.action_about;
     }
   }
 
@@ -47,7 +47,7 @@ enum EditorDeletedMenuOption {
       child: ListTile(
         leading: Icon(icon, color: dangerous ? Theme.of(context).colorScheme.error : null),
         title: Text(
-          title,
+          title(context),
           style: Theme.of(
             context,
           ).textTheme.titleSmall?.copyWith(color: dangerous ? Theme.of(context).colorScheme.error : null),

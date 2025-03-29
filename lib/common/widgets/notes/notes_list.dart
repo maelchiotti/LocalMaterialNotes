@@ -36,9 +36,9 @@ class NotesList extends ConsumerWidget {
   Widget child(BuildContext context, WidgetRef ref, List<Note> notes) {
     if (notes.isEmpty) {
       return switch (notesStatus) {
-        NoteStatus.available => EmptyPlaceholder.available(),
-        NoteStatus.archived => EmptyPlaceholder.archived(),
-        NoteStatus.deleted => EmptyPlaceholder.deleted(),
+        NoteStatus.available => EmptyPlaceholder.available(context),
+        NoteStatus.archived => EmptyPlaceholder.archived(context),
+        NoteStatus.deleted => EmptyPlaceholder.deleted(context),
       };
     }
 

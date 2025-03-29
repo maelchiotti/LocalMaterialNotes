@@ -3,7 +3,7 @@ import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../../common/constants/constants.dart';
+import '../../../../common/extensions/build_context_extension.dart';
 import 'toolbar_button.dart';
 
 /// Color toolbar button.
@@ -75,7 +75,10 @@ class _ColorToolbarButtonState extends State<ColorToolbarButton> {
         children: [
           Text(widget.dialogTitle, style: Theme.of(context).textTheme.headlineMedium),
           Gap(8),
-          Text(l.rich_text_editor_toolbar_dialog_color_description, style: Theme.of(context).textTheme.labelMedium),
+          Text(
+            context.l.rich_text_editor_toolbar_dialog_color_description,
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
           Gap(16),
         ],
       ),

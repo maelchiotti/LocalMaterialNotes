@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/system_utils.dart';
@@ -47,19 +48,19 @@ class SettingsHelpPage extends StatelessWidget {
   }
 
   /// Copies the logs to the clipboard.
-  Future<void> copyLogs() async {
-    await logger.copyLogs();
+  Future<void> copyLogs(BuildContext context) async {
+    await logger.copyLogs(context);
   }
 
   /// Exports the logs to a file.
-  Future<void> exportLogs() async {
-    await logger.exportLogs();
+  Future<void> exportLogs(BuildContext context) async {
+    await logger.exportLogs(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_help)),
+      appBar: TopNavigation(appbar: BasicAppBar(title: context.l.navigation_settings_help)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,
@@ -67,43 +68,43 @@ class SettingsHelpPage extends StatelessWidget {
             children: [
               SettingSection(
                 divider: null,
-                title: l.settings_help_section_contact,
+                title: context.l.settings_help_section_contact,
                 tiles: [
                   SettingActionTile(
                     icon: Icons.bug_report,
-                    title: l.settings_github_issues,
-                    description: l.settings_github_issues_description,
+                    title: context.l.settings_github_issues,
+                    description: context.l.settings_github_issues_description,
                     onTap: openGitHubIssues,
                   ),
                   SettingActionTile(
                     icon: Icons.forum,
-                    title: l.settings_github_discussions,
-                    description: l.settings_github_discussions_description,
+                    title: context.l.settings_github_discussions,
+                    description: context.l.settings_github_discussions_description,
                     onTap: openGitHubDiscussions,
                   ),
                   SettingActionTile(
                     icon: Icons.mail,
-                    title: l.settings_contact_developer,
-                    description: l.settings_get_in_touch_description(contactEmail),
+                    title: context.l.settings_contact_developer,
+                    description: context.l.settings_get_in_touch_description(contactEmail),
                     onTap: sendMail,
                   ),
                 ],
               ),
               SettingSection(
                 divider: null,
-                title: l.settings_help_section_logs,
+                title: context.l.settings_help_section_logs,
                 tiles: [
                   SettingActionTile(
                     icon: Icons.copy_all,
-                    title: l.settings_copy_logs,
-                    description: l.settings_copy_logs_description,
-                    onTap: copyLogs,
+                    title: context.l.settings_copy_logs,
+                    description: context.l.settings_copy_logs_description,
+                    onTap: () => copyLogs(context),
                   ),
                   SettingActionTile(
                     icon: Symbols.file_save,
-                    title: l.settings_export_logs,
-                    description: l.settings_export_logs_description,
-                    onTap: exportLogs,
+                    title: context.l.settings_export_logs,
+                    description: context.l.settings_export_logs_description,
+                    onTap: () => exportLogs(context),
                   ),
                 ],
               ),

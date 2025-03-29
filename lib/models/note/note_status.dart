@@ -1,4 +1,6 @@
-import '../../common/constants/constants.dart';
+import 'package:flutter/material.dart';
+
+import '../../common/extensions/build_context_extension.dart';
 
 /// The status of a note.
 enum NoteStatus {
@@ -12,11 +14,11 @@ enum NoteStatus {
   deleted;
 
   /// Returns the title of this status.
-  String get title {
+  String title(BuildContext context) {
     return switch (this) {
-      available => l.navigation_notes,
-      archived => l.navigation_archives,
-      deleted => l.navigation_bin,
+      available => context.l.navigation_notes,
+      archived => context.l.navigation_archives,
+      deleted => context.l.navigation_bin,
     };
   }
 }

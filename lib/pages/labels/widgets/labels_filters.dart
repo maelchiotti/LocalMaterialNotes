@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
-import '../../../common/constants/constants.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../providers/labels/labels/labels_provider.dart';
 import '../enums/labels_filter.dart';
@@ -39,32 +39,32 @@ class _LabelsFiltersState extends ConsumerState<LabelsFilters> {
       children: [
         Gap(8.0),
         ChoiceChip(
-          label: Text(l.filter_labels_all),
+          label: Text(context.l.filter_labels_all),
           selected: filter == LabelsFilter.all,
           onSelected: (selected) => onFilterSelected(LabelsFilter.all, selected),
         ),
         Gap(8.0),
         ChoiceChip(
-          label: Text(l.filter_labels_visible),
+          label: Text(context.l.filter_labels_visible),
           selected: filter == LabelsFilter.visible,
           onSelected: (selected) => onFilterSelected(LabelsFilter.visible, selected),
         ),
         Gap(8.0),
         ChoiceChip(
-          label: Text(l.filter_labels_hidden),
+          label: Text(context.l.filter_labels_hidden),
           selected: filter == LabelsFilter.hidden,
           onSelected: (selected) => onFilterSelected(LabelsFilter.hidden, selected),
         ),
         Gap(8.0),
         ChoiceChip(
-          label: Text(l.filter_labels_pinned),
+          label: Text(context.l.filter_labels_pinned),
           selected: filter == LabelsFilter.pinned,
           onSelected: (selected) => onFilterSelected(LabelsFilter.pinned, selected),
         ),
         Gap(8.0),
         if (labelLock) ...[
           ChoiceChip(
-            label: Text(l.filter_labels_locked),
+            label: Text(context.l.filter_labels_locked),
             selected: filter == LabelsFilter.locked,
             onSelected: (selected) => onFilterSelected(LabelsFilter.locked, selected),
           ),

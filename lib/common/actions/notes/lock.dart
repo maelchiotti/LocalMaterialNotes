@@ -6,7 +6,7 @@ import '../../../models/note/note.dart';
 import '../../../models/note/note_status.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
-import '../../constants/constants.dart';
+import '../../extensions/build_context_extension.dart';
 import '../../preferences/preference_key.dart';
 import 'select.dart';
 
@@ -23,7 +23,9 @@ Future<bool> toggleLockNotes(
 
     // If the lock note setting is enabled and a note was locked, then ask to authenticate
     if (lockNotePreference && anyLocked) {
-      final bool authenticated = await LocalAuthentication().authenticate(localizedReason: l.lock_page_reason_action);
+      final bool authenticated = await LocalAuthentication().authenticate(
+        localizedReason: context.l.lock_page_reason_action,
+      );
 
       if (!authenticated) {
         return false;

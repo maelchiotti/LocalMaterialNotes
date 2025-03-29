@@ -6,6 +6,7 @@ import 'package:settings_tiles/settings_tiles.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/enums/swipe_actions/available_swipe_action.dart';
@@ -115,7 +116,7 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
     final isSystemAuthenticationAvailable = SystemUtils().isSystemAuthenticationAvailable;
 
     return Scaffold(
-      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_security)),
+      appBar: TopNavigation(appbar: BasicAppBar(title: context.l.navigation_settings_security)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,
@@ -123,12 +124,12 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
             children: [
               SettingSection(
                 divider: null,
-                title: l.settings_security_application,
+                title: context.l.settings_security_application,
                 tiles: [
                   SettingSwitchTile(
                     icon: Icons.screenshot,
-                    title: l.settings_flag_secure,
-                    description: l.settings_flag_secure_description,
+                    title: context.l.settings_flag_secure,
+                    description: context.l.settings_flag_secure_description,
                     toggled: flagSecure,
                     onChanged: toggledFlagSecure,
                   ),
@@ -136,24 +137,24 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
               ),
               SettingSection(
                 divider: null,
-                title: l.settings_security_application_lock,
+                title: context.l.settings_security_application_lock,
                 tiles: [
                   SettingSwitchTile(
                     enabled: isSystemAuthenticationAvailable,
                     icon: Icons.lock,
-                    title: l.settings_application_lock_title,
-                    description: l.settings_application_lock_description,
+                    title: context.l.settings_application_lock_title,
+                    description: context.l.settings_application_lock_description,
                     toggled: lockApp,
                     onChanged: toggledLockApp,
                   ),
                   SettingCustomSliderTile(
                     enabled: isSystemAuthenticationAvailable && lockApp,
                     icon: Icons.timelapse,
-                    title: l.settings_application_lock_delay_title,
-                    value: l.settings_lock_delay_value(lockAppDelay.toString()),
-                    description: l.settings_application_lock_delay_description,
-                    dialogTitle: l.settings_application_lock_delay_title,
-                    label: (delay) => l.settings_lock_delay_value(delay.toInt().toString()),
+                    title: context.l.settings_application_lock_delay_title,
+                    value: context.l.settings_lock_delay_value(lockAppDelay.toString()),
+                    description: context.l.settings_application_lock_delay_description,
+                    dialogTitle: context.l.settings_application_lock_delay_title,
+                    label: (delay) => context.l.settings_lock_delay_value(delay.toInt().toString()),
                     values: lockDelayValues,
                     initialValue: lockAppDelay.toDouble(),
                     onSubmitted: submittedLockAppDelay,
@@ -162,32 +163,32 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
               ),
               SettingSection(
                 divider: null,
-                title: l.settings_security_note_lock,
+                title: context.l.settings_security_note_lock,
                 tiles: [
                   SettingSwitchTile(
                     enabled: isSystemAuthenticationAvailable,
                     icon: Icons.notes,
-                    title: l.settings_note_lock_title,
-                    description: l.settings_note_lock_description,
+                    title: context.l.settings_note_lock_title,
+                    description: context.l.settings_note_lock_description,
                     toggled: lockNote,
                     onChanged: toggledLockNote,
                   ),
                   SettingSwitchTile(
                     enabled: isSystemAuthenticationAvailable,
                     icon: Icons.label,
-                    title: l.settings_label_lock_title,
-                    description: l.settings_label_lock_description,
+                    title: context.l.settings_label_lock_title,
+                    description: context.l.settings_label_lock_description,
                     toggled: lockLabel,
                     onChanged: toggledLockLabel,
                   ),
                   SettingCustomSliderTile(
                     enabled: isSystemAuthenticationAvailable && lockNote,
                     icon: Icons.timelapse,
-                    title: l.settings_note_lock_delay_title,
-                    value: l.settings_lock_delay_value(lockNoteDelay.toString()),
-                    description: l.settings_note_lock_delay_description,
-                    dialogTitle: l.settings_note_lock_delay_title,
-                    label: (delay) => l.settings_lock_delay_value(delay.toInt().toString()),
+                    title: context.l.settings_note_lock_delay_title,
+                    value: context.l.settings_lock_delay_value(lockNoteDelay.toString()),
+                    description: context.l.settings_note_lock_delay_description,
+                    dialogTitle: context.l.settings_note_lock_delay_title,
+                    label: (delay) => context.l.settings_lock_delay_value(delay.toInt().toString()),
                     values: lockDelayValues,
                     initialValue: lockNoteDelay.toDouble(),
                     onSubmitted: submittedLockNoteDelay,

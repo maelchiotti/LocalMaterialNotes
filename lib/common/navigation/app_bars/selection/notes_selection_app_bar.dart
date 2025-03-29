@@ -16,10 +16,10 @@ import '../../../actions/notes/restore.dart';
 import '../../../actions/notes/select.dart';
 import '../../../actions/notes/share.dart';
 import '../../../actions/notes/unarchive.dart';
-import '../../../constants/constants.dart';
 import '../../../constants/paddings.dart';
 import '../../../constants/separators.dart';
 import '../../../constants/sizes.dart';
+import '../../../extensions/build_context_extension.dart';
 import '../../../preferences/preference_key.dart';
 import '../../../widgets/placeholders/error_placeholder.dart';
 import '../../../widgets/placeholders/loading_placeholder.dart';
@@ -44,9 +44,9 @@ class NotesSelectionAppBar extends ConsumerWidget {
   ) async {
     switch (menuOption) {
       case SelectionAvailableMenuOption.copy:
-        await copyNotes(notes: notes);
+        await copyNotes(context, notes: notes);
       case SelectionAvailableMenuOption.share:
-        await shareNotes(notes: notes);
+        await shareNotes(context, notes: notes);
       case SelectionAvailableMenuOption.togglePin:
         await togglePinNotes(context, ref, notes: notes);
       case SelectionAvailableMenuOption.toggleLock:
@@ -69,9 +69,9 @@ class NotesSelectionAppBar extends ConsumerWidget {
   ) async {
     switch (menuOption) {
       case SelectionArchivedMenuOption.copy:
-        await copyNotes(notes: notes);
+        await copyNotes(context, notes: notes);
       case SelectionArchivedMenuOption.share:
-        await shareNotes(notes: notes);
+        await shareNotes(context, notes: notes);
       case SelectionArchivedMenuOption.unarchive:
         await unarchiveNotes(context, ref, notes: notes);
     }
@@ -108,7 +108,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
       actions: [
         IconButton(
           icon: Icon(allSelected ? Icons.deselect : Icons.select_all),
-          tooltip: allSelected ? l.tooltip_unselect_all : fl?.selectAllButtonLabel ?? 'Select all',
+          tooltip: allSelected ? context.l.tooltip_unselect_all : context.fl.selectAllButtonLabel,
           onPressed:
               () =>
                   allSelected

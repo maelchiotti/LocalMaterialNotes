@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/constants.dart';
+import '../../../extensions/build_context_extension.dart';
 
 /// Lists the options available in the selection menu for the archived notes.
 enum SelectionArchivedMenuOption {
@@ -22,14 +22,14 @@ enum SelectionArchivedMenuOption {
   const SelectionArchivedMenuOption(this.icon);
 
   /// Returns the title of the menu option.
-  String get title {
+  String title(BuildContext context) {
     switch (this) {
       case copy:
-        return fl?.copyButtonLabel ?? 'Copy';
+        return context.fl.copyButtonLabel;
       case share:
-        return fl?.shareButtonLabel ?? 'Share';
+        return context.fl.shareButtonLabel;
       case unarchive:
-        return l.action_unarchive;
+        return context.l.action_unarchive;
     }
   }
 
@@ -37,6 +37,6 @@ enum SelectionArchivedMenuOption {
   ///
   /// Uses the alternative icon if [alternative] is set to `true`.
   PopupMenuItem<SelectionArchivedMenuOption> popupMenuItem(BuildContext context) {
-    return PopupMenuItem(value: this, child: ListTile(leading: Icon(icon), title: Text(title)));
+    return PopupMenuItem(value: this, child: ListTile(leading: Icon(icon), title: Text(title(context))));
   }
 }

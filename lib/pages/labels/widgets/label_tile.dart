@@ -57,7 +57,7 @@ class _LabelTileState extends ConsumerState<LabelTile> {
         await togglePinLabels(ref, labels: [widget.label]);
       case LabelTileMenuOption.lock:
       case LabelTileMenuOption.unlock:
-        await toggleLockLabels(ref, labels: [widget.label]);
+        await toggleLockLabels(context, ref, labels: [widget.label]);
       case LabelTileMenuOption.edit:
         await editLabel(context, ref, label: widget.label);
       case LabelTileMenuOption.delete:

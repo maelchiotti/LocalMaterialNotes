@@ -7,6 +7,7 @@ import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../constants/constants.dart';
 import '../../dialogs/confirmation_dialog.dart';
+import '../../extensions/build_context_extension.dart';
 import '../../ui/snack_bar_utils.dart';
 import 'archive.dart';
 import 'select.dart';
@@ -21,7 +22,12 @@ Future<bool> unarchiveNote(
   bool pop = false,
   bool cancel = true,
 }) async {
-  if (!await askForConfirmation(context, l.dialog_unarchive, l.dialog_unarchive_body(1), l.dialog_unarchive)) {
+  if (!await askForConfirmation(
+    context,
+    context.l.dialog_unarchive,
+    context.l.dialog_unarchive_body(1),
+    context.l.dialog_unarchive,
+  )) {
     return false;
   }
 
@@ -36,9 +42,10 @@ Future<bool> unarchiveNote(
       .read(notesProvider(status: NoteStatus.archived, label: currentLabelFilter).notifier)
       .setArchived([note], false);
 
-  if (succeeded && cancel) {
+  if (succeeded && cancel && context.mounted) {
     SnackBarUtils().show(
-      text: l.snack_bar_unarchived(1),
+      context,
+      text: context.l.snack_bar_unarchived(1),
       onCancel: (globalRef) async => await archiveNote(context, globalRef, note: note, cancel: false),
     );
   }
@@ -57,9 +64,9 @@ Future<bool> unarchiveNotes(
 }) async {
   if (!await askForConfirmation(
     context,
-    l.dialog_unarchive,
-    l.dialog_unarchive_body(notes.length),
-    l.dialog_unarchive,
+    context.l.dialog_unarchive,
+    context.l.dialog_unarchive_body(notes.length),
+    context.l.dialog_unarchive,
   )) {
     return false;
   }
@@ -72,9 +79,10 @@ Future<bool> unarchiveNotes(
     exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.archived);
   }
 
-  if (succeeded && cancel) {
+  if (succeeded && cancel && context.mounted) {
     SnackBarUtils().show(
-      text: l.snack_bar_unarchived(notes.length),
+      context,
+      text: context.l.snack_bar_unarchived(notes.length),
       onCancel: (globalRef) async => await archiveNotes(context, globalRef, notes: notes, cancel: false),
     );
   }

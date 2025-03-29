@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../common/actions/labels/select.dart';
 import '../../common/actions/notes/select.dart';
 import '../../common/constants/constants.dart';
+import '../../common/extensions/build_context_extension.dart';
 import '../../common/navigation/app_bars/notes/notes_app_bar.dart';
 import '../../common/navigation/side_navigation.dart';
 import '../../common/navigation/top_navigation.dart';
@@ -75,7 +76,7 @@ class _NotesPageState extends ConsumerState<NotesPage> {
       isLabelsSelectionModeNotifier.value = false;
     } else if (confirmBeforeExiting) {
       if (!mustConfirmToExitNotifier.value) {
-        SnackBarUtils().show(text: l.snack_bar_confirm_exiting);
+        SnackBarUtils().show(context, text: context.l.snack_bar_confirm_exiting);
 
         mustConfirmToExitNotifier.confirm();
       }
