@@ -6,8 +6,6 @@ import '../constants/constants.dart';
 import '../extensions/build_context_extension.dart';
 
 /// Utilities for the snack bars.
-///
-/// This class is a singleton.
 class SnackBarUtils {
   /// Shows a snack bar with the [text].
   ///

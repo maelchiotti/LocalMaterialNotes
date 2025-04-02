@@ -79,15 +79,13 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
 
   /// Navigates to the route corresponding to the [newIndex].
   void navigate(int newIndex) {
-    // If the new route is the same as the current one, just close the drawer
-    if (index == newIndex) {
-      Navigator.pop(context);
-
-      return;
-    }
-
     // Close the navigation drawer
     Navigator.pop(context);
+
+    // If the new index is the same as the current one, no need to navigate
+    if (index == newIndex) {
+      return;
+    }
 
     final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
 

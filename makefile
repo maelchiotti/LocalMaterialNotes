@@ -26,13 +26,6 @@ gen_desc:
 	py scripts/generate_full_description.py
 
 
-# Tests
-.PHONY: test_all
-
-test_all:
-	patrol test -t integration_test --dart-define=INTEGRATION_TEST=true
-
-
 # Build
 .PHONY: release release_abi
 
