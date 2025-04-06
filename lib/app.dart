@@ -53,7 +53,8 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
 
   @override
   FutureOr<void> afterFirstLayout(BuildContext context) {
-    SystemUtils().setQuickActions(context);
+    // Using the context provided by afterFirstLayout doesn't work
+    SystemUtils().setQuickActions(rootNavigatorKey.currentContext!);
   }
 
   @override
