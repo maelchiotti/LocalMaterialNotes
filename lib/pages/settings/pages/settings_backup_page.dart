@@ -8,6 +8,7 @@ import 'package:simple_icons/simple_icons.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/extensions/string_extension.dart';
 import '../../../common/files/files_utils.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
@@ -51,14 +52,18 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         await ref.read(notesProvider(status: NoteStatus.deleted).notifier).get();
         ref.read(preferencesProvider.notifier).reset();
 
-        SnackBarUtils().show(text: l.snack_bar_import_success);
+        if (mounted) {
+          SnackBarUtils().show(context, text: context.l.snack_bar_import_success);
+        }
 
         setState(() {});
       }
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
 
-      SnackBarUtils().show(text: exception.toString());
+      if (mounted) {
+        SnackBarUtils().show(context, text: exception.toString());
+      }
     }
   }
 
@@ -79,14 +84,17 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
 
       try {
         final password = shouldEncrypt.$2;
+        final exported = await ManualBackupService().manuallyExportAsJson(encrypt: encrypt, password: password);
 
-        if (await ManualBackupService().manuallyExportAsJson(encrypt: encrypt, password: password)) {
-          SnackBarUtils().show(text: l.snack_bar_export_success);
+        if (exported && mounted) {
+          SnackBarUtils().show(context, text: context.l.snack_bar_export_success);
         }
       } catch (exception, stackTrace) {
         logger.e(exception.toString(), exception, stackTrace);
 
-        SnackBarUtils().show(text: exception.toString());
+        if (mounted) {
+          SnackBarUtils().show(context, text: exception.toString());
+        }
       }
     });
   }
@@ -96,13 +104,17 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   /// Asks where to store the export file.
   Future<void> _exportAsMarkdown() async {
     try {
-      if (await ManualBackupService().exportAsMarkdown()) {
-        SnackBarUtils().show(text: l.snack_bar_export_success);
+      final exported = await ManualBackupService().exportAsMarkdown();
+
+      if (exported && mounted) {
+        SnackBarUtils().show(context, text: context.l.snack_bar_export_success);
       }
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
 
-      SnackBarUtils().show(text: exception.toString());
+      if (mounted) {
+        SnackBarUtils().show(context, text: exception.toString());
+      }
     }
   }
 
@@ -142,9 +154,9 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       useRootNavigator: false,
       builder:
           (context) => AutoExportPasswordDialog(
-            title: l.settings_auto_export_encryption,
-            description: l.dialog_export_encryption_description,
-            secondaryDescription: l.dialog_export_encryption_secondary_description_auto,
+            title: context.l.settings_auto_export_encryption,
+            description: context.l.dialog_export_encryption_description,
+            secondaryDescription: context.l.dialog_export_encryption_secondary_description_auto,
           ),
     ).then((autoExportPassword) async {
       if (autoExportPassword == null) {
@@ -196,7 +208,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     final autoExportDirectory = AutoExportUtils().autoExportDirectory.decoded;
 
     return Scaffold(
-      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_backup)),
+      appBar: TopNavigation(appbar: BasicAppBar(title: context.l.navigation_settings_backup)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,
@@ -204,61 +216,61 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
             children: [
               SettingSection(
                 divider: null,
-                title: l.settings_backup_import,
+                title: context.l.settings_backup_import,
                 tiles: [
                   SettingActionTile(
                     icon: Icons.file_upload,
-                    title: l.settings_import,
-                    description: l.settings_import_description,
+                    title: context.l.settings_import,
+                    description: context.l.settings_import_description,
                     onTap: _import,
                   ),
                 ],
               ),
               SettingSection(
                 divider: null,
-                title: l.settings_backup_manual_export,
+                title: context.l.settings_backup_manual_export,
                 tiles: [
                   SettingActionTile(
                     icon: SimpleIcons.json,
-                    title: l.settings_export_json,
-                    description: l.settings_export_json_description,
+                    title: context.l.settings_export_json,
+                    description: context.l.settings_export_json_description,
                     onTap: _exportAsJson,
                   ),
                   SettingActionTile(
                     icon: SimpleIcons.markdown,
-                    title: l.settings_export_markdown,
-                    description: l.settings_export_markdown_description,
+                    title: context.l.settings_export_markdown,
+                    description: context.l.settings_export_markdown_description,
                     onTap: _exportAsMarkdown,
                   ),
                 ],
               ),
               SettingSection(
                 divider: null,
-                title: l.settings_backup_auto_export,
+                title: context.l.settings_backup_auto_export,
                 tiles: [
                   SettingSwitchTile(
                     icon: Icons.settings_backup_restore,
-                    title: l.settings_auto_export,
-                    description: l.settings_auto_export_description,
+                    title: context.l.settings_auto_export,
+                    description: context.l.settings_auto_export_description,
                     toggled: enableAutoExport,
                     onChanged: _toggleEnableAutoExport,
                   ),
                   SettingSwitchTile(
                     enabled: enableAutoExport,
                     icon: Icons.enhanced_encryption,
-                    title: l.settings_auto_export_encryption,
-                    description: l.settings_auto_export_encryption_description,
+                    title: context.l.settings_auto_export_encryption,
+                    description: context.l.settings_auto_export_encryption_description,
                     toggled: autoExportEncryption,
                     onChanged: _toggleAutoExportEncryption,
                   ),
                   SettingCustomSliderTile(
                     enabled: enableAutoExport,
                     icon: Symbols.calendar_clock,
-                    title: l.settings_auto_export_frequency,
-                    value: l.settings_auto_export_frequency_value(autoExportFrequency.toString()),
-                    description: l.settings_auto_export_frequency_description,
-                    dialogTitle: l.settings_auto_export_frequency,
-                    label: (frequency) => l.settings_auto_export_frequency_value(frequency.toInt().toString()),
+                    title: context.l.settings_auto_export_frequency,
+                    value: context.l.settings_auto_export_frequency_value(autoExportFrequency.toString()),
+                    description: context.l.settings_auto_export_frequency_description,
+                    dialogTitle: context.l.settings_auto_export_frequency,
+                    label: (frequency) => context.l.settings_auto_export_frequency_value(frequency.toInt().toString()),
                     values: automaticExportFrequenciesValues,
                     initialValue: autoExportFrequency.toDouble(),
                     onSubmitted: _submittedAutoExportFrequency,
@@ -266,12 +278,12 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                   SettingActionTile(
                     enabled: enableAutoExport,
                     icon: Icons.folder,
-                    title: l.settings_auto_export_directory,
+                    title: context.l.settings_auto_export_directory,
                     value: autoExportDirectory,
-                    description: l.settings_auto_export_directory_description,
+                    description: context.l.settings_auto_export_directory_description,
                     trailing: IconButton(
                       icon: const Icon(Symbols.reset_settings),
-                      tooltip: l.tooltip_reset,
+                      tooltip: context.l.tooltip_reset,
                       onPressed: enableAutoExport ? _resetAutoExportDirectory : null,
                     ),
                     onTap: _setAutoExportDirectory,

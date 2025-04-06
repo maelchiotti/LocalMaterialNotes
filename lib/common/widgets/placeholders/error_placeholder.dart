@@ -5,8 +5,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../l10n/app_localizations/app_localizations.g.dart';
 import '../../../services/backup/backup_service.dart';
-import '../../constants/constants.dart' hide l;
+import '../../constants/constants.dart';
 import '../../constants/paddings.dart';
+import '../../extensions/build_context_extension.dart';
 import '../../navigation/side_navigation.dart';
 import '../../preferences/preference_key.dart';
 import '../../system_utils.dart';
@@ -29,9 +30,11 @@ class ErrorPlaceholder extends StatelessWidget {
   final StackTrace? stackTrace;
 
   /// Exports the notes as JSON.
-  Future<void> _exportNotes(AppLocalizations localizations) async {
-    if (await ManualBackupService().manuallyExportAsJson(encrypt: false)) {
-      SnackBarUtils().show(text: localizations.snack_bar_export_success);
+  Future<void> _exportNotes(BuildContext context) async {
+    final exported = await ManualBackupService().manuallyExportAsJson(encrypt: false);
+
+    if (exported && context.mounted) {
+      SnackBarUtils().show(context, text: context.l.snack_bar_export_success);
     }
   }
 
@@ -93,7 +96,7 @@ class ErrorPlaceholder extends StatelessWidget {
                 ElevatedButton.icon(
                   icon: const Icon(Icons.settings_backup_restore),
                   label: Text(l.error_widget_button_export_notes),
-                  onPressed: () => _exportNotes(l),
+                  onPressed: () => _exportNotes(context),
                 ),
                 Padding(padding: Paddings.vertical(16.0)),
                 Column(
@@ -102,13 +105,13 @@ class ErrorPlaceholder extends StatelessWidget {
                     ElevatedButton.icon(
                       icon: const Icon(Icons.copy),
                       label: Text(l.error_widget_button_copy_logs),
-                      onPressed: () => logger.copyLogs(overrideLocalizations: l),
+                      onPressed: () => logger.copyLogs(context),
                     ),
                     Padding(padding: Paddings.horizontal(8.0)),
                     ElevatedButton.icon(
                       icon: const Icon(Icons.file_download),
                       label: Text(l.error_widget_button_export_logs),
-                      onPressed: () => logger.exportLogs(overrideLocalizations: l),
+                      onPressed: () => logger.exportLogs(context),
                     ),
                   ],
                 ),

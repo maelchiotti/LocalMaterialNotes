@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
-import '../../../common/constants/constants.dart';
 import '../../../common/constants/sizes.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/extensions/color_extension.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../models/label/label.dart';
@@ -69,7 +69,7 @@ class _LabelsSelectionDialogState extends ConsumerState<LabelsSelectionDialog> {
 
     return AlertDialog(
       contentPadding: EdgeInsets.symmetric(vertical: 16.0),
-      title: Text(widget.note == null ? l.dialog_select_labels_to_add : l.dialog_select_labels),
+      title: Text(widget.note == null ? context.l.dialog_select_labels_to_add : context.l.dialog_select_labels),
       content: SingleChildScrollView(
         child: ListBody(
           children:
@@ -100,8 +100,8 @@ class _LabelsSelectionDialogState extends ConsumerState<LabelsSelectionDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: () => pop(canceled: true), child: Text(fl?.cancelButtonLabel ?? 'Cancel')),
-        TextButton(onPressed: pop, child: Text(fl?.okButtonLabel ?? 'OK')),
+        TextButton(onPressed: () => pop(canceled: true), child: Text(context.fl.cancelButtonLabel)),
+        TextButton(onPressed: pop, child: Text(context.fl.okButtonLabel)),
       ],
     );
   }

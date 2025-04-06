@@ -7,6 +7,7 @@ import 'package:local_auth/local_auth.dart';
 import 'package:restart_app/restart_app.dart';
 
 import '../../common/constants/sizes.dart';
+import '../../common/extensions/build_context_extension.dart';
 import '../../common/preferences/preference_key.dart';
 import '../../common/ui/snack_bar_utils.dart';
 import '../../common/widgets/asset.dart';
@@ -83,7 +84,7 @@ class _LockPageState extends ConsumerState<LockPage> with AfterLayoutMixin<LockP
         return;
       }
 
-      SnackBarUtils().show(text: l.snack_bar_authentication_failed, context: context);
+      SnackBarUtils().show(context, text: context.l.snack_bar_authentication_failed);
 
       return;
     }

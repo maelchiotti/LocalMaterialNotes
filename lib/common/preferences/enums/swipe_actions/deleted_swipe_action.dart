@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../models/note/note.dart';
 import '../../../actions/notes/delete.dart';
 import '../../../actions/notes/restore.dart';
-import '../../../constants/constants.dart';
+import '../../../extensions/build_context_extension.dart';
 import '../../../extensions/iterable_extension.dart';
 import '../../preference_key.dart';
 
@@ -71,14 +71,14 @@ enum DeletedSwipeAction {
   bool get isDisabled => this == disabled;
 
   /// Returns the title of the swipe action.
-  String get title {
+  String title(BuildContext context) {
     switch (this) {
       case disabled:
-        return l.action_disabled;
+        return context.l.action_disabled;
       case restore:
-        return l.action_restore;
+        return context.l.action_restore;
       case permanentlyDelete:
-        return l.action_delete_permanently;
+        return context.l.action_delete_permanently;
     }
   }
 
@@ -96,7 +96,7 @@ enum DeletedSwipeAction {
   /// Text of the swipe action to display.
   Widget titleWidget(BuildContext context) {
     return Text(
-      title,
+      title(context),
       style: Theme.of(context).textTheme.titleMedium?.copyWith(
         color:
             dangerous

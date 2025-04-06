@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
 import '../../constants/paddings.dart';
 import '../../constants/sizes.dart';
+import '../../extensions/build_context_extension.dart';
 
 /// Placeholder.
 class EmptyPlaceholder extends StatelessWidget {
@@ -12,16 +12,24 @@ class EmptyPlaceholder extends StatelessWidget {
   const EmptyPlaceholder({super.key, this.icon, this.text});
 
   /// Empty available notes list.
-  EmptyPlaceholder.available({super.key}) : icon = Icons.notes, text = l.placeholder_notes;
+  EmptyPlaceholder.available(BuildContext context, {super.key})
+    : icon = Icons.notes,
+      text = context.l.placeholder_notes;
 
   /// Empty archived notes list.
-  EmptyPlaceholder.archived({super.key}) : icon = Icons.archive_outlined, text = l.placeholder_archives;
+  EmptyPlaceholder.archived(BuildContext context, {super.key})
+    : icon = Icons.archive_outlined,
+      text = context.l.placeholder_archives;
 
   /// Empty deleted notes list.
-  EmptyPlaceholder.deleted({super.key}) : icon = Icons.delete_outline, text = l.placeholder_bin;
+  EmptyPlaceholder.deleted(BuildContext context, {super.key})
+    : icon = Icons.delete_outline,
+      text = context.l.placeholder_bin;
 
   /// Empty labels.
-  EmptyPlaceholder.labels({super.key}) : icon = Icons.label_outline, text = l.placeholder_labels;
+  EmptyPlaceholder.labels(BuildContext context, {super.key})
+    : icon = Icons.label_outline,
+      text = context.l.placeholder_labels;
 
   /// Icon to display.
   final IconData? icon;

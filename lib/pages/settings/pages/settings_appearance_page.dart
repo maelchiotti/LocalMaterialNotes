@@ -7,9 +7,9 @@ import 'package:restart_app/restart_app.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/enums/supported_language.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/enums/font.dart';
@@ -93,7 +93,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_appearance)),
+      appBar: TopNavigation(appbar: BasicAppBar(title: context.l.navigation_settings_appearance)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,
@@ -101,10 +101,10 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
             children: [
               SettingSingleOptionTile.detailed(
                 icon: Icons.language,
-                title: l.settings_language,
-                trailing: TextButton.icon(onPressed: _openCrowdin, label: Text(l.settings_language_contribute)),
+                title: context.l.settings_language,
+                trailing: TextButton.icon(onPressed: _openCrowdin, label: Text(context.l.settings_language_contribute)),
                 value: locale.nativeDisplayLanguage.capitalizeFirstLetter,
-                dialogTitle: l.settings_language,
+                dialogTitle: context.l.settings_language,
                 options:
                     SupportedLanguage.values
                         .map(
@@ -120,17 +120,17 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
               ),
               SettingSection(
                 divider: null,
-                title: l.settings_appearance_section_theming,
+                title: context.l.settings_appearance_section_theming,
                 tiles: [
                   SettingSingleOptionTile.detailed(
                     icon: Icons.palette,
-                    title: l.settings_theme,
-                    value: ThemeUtils().themeModeTitle,
-                    dialogTitle: l.settings_theme,
+                    title: context.l.settings_theme,
+                    value: ThemeUtils().themeModeTitle(context),
+                    dialogTitle: context.l.settings_theme,
                     options: [
-                      (value: ThemeMode.light, title: l.settings_theme_light, subtitle: null),
-                      (value: ThemeMode.dark, title: l.settings_theme_dark, subtitle: null),
-                      (value: ThemeMode.system, title: l.settings_theme_system, subtitle: null),
+                      (value: ThemeMode.light, title: context.l.settings_theme_light, subtitle: null),
+                      (value: ThemeMode.dark, title: context.l.settings_theme_dark, subtitle: null),
+                      (value: ThemeMode.system, title: context.l.settings_theme_system, subtitle: null),
                     ],
                     initialOption: themeMode,
                     onSubmitted: _submittedTheme,
@@ -138,16 +138,16 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                   SettingSwitchTile(
                     enabled: ThemeUtils().isDynamicThemingAvailable,
                     icon: Icons.bolt,
-                    title: l.settings_dynamic_theming,
-                    description: l.settings_dynamic_theming_description,
+                    title: context.l.settings_dynamic_theming,
+                    description: context.l.settings_dynamic_theming_description,
                     toggled: dynamicTheming,
                     onChanged: _toggleDynamicTheming,
                   ),
                   SettingSwitchTile(
                     enabled: isDarkMode,
                     icon: Icons.nightlight,
-                    title: l.settings_black_theming,
-                    description: l.settings_black_theming_description,
+                    title: context.l.settings_black_theming,
+                    description: context.l.settings_black_theming_description,
                     toggled: blackTheming,
                     onChanged: _toggleBlackTheming,
                   ),
@@ -155,25 +155,31 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
               ),
               SettingSection(
                 divider: null,
-                title: l.settings_appearance_section_fonts,
+                title: context.l.settings_appearance_section_fonts,
                 tiles: [
                   SettingSingleOptionTile.detailed(
                     icon: Icons.font_download,
-                    title: l.settings_app_font,
-                    description: l.settings_app_font_description,
-                    value: appFont.displayName,
-                    dialogTitle: l.settings_app_font,
-                    options: Font.values.map((font) => (value: font, title: font.displayName, subtitle: null)).toList(),
+                    title: context.l.settings_app_font,
+                    description: context.l.settings_app_font_description,
+                    value: appFont.displayName(context),
+                    dialogTitle: context.l.settings_app_font,
+                    options:
+                        Font.values
+                            .map((font) => (value: font, title: font.displayName(context), subtitle: null))
+                            .toList(),
                     initialOption: appFont,
                     onSubmitted: _submittedAppFont,
                   ),
                   SettingSingleOptionTile.detailed(
                     icon: Icons.font_download,
-                    title: l.settings_editor_font,
-                    description: l.settings_editor_font_description,
-                    value: editorFont.displayName,
-                    dialogTitle: l.settings_editor_font,
-                    options: Font.values.map((font) => (value: font, title: font.displayName, subtitle: null)).toList(),
+                    title: context.l.settings_editor_font,
+                    description: context.l.settings_editor_font_description,
+                    value: editorFont.displayName(context),
+                    dialogTitle: context.l.settings_editor_font,
+                    options:
+                        Font.values
+                            .map((font) => (value: font, title: font.displayName(context), subtitle: null))
+                            .toList(),
                     initialOption: editorFont,
                     onSubmitted: _submittedEditorFont,
                   ),

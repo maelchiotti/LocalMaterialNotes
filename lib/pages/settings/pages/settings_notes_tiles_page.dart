@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
-import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
@@ -71,7 +71,7 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
     final showNoteTypeIcon = PreferenceKey.showNoteTypeIcon.preferenceOrDefault;
 
     return Scaffold(
-      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_notes_tiles)),
+      appBar: TopNavigation(appbar: BasicAppBar(title: context.l.navigation_settings_notes_tiles)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,
@@ -79,19 +79,19 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
             children: [
               SettingSection(
                 divider: null,
-                title: l.settings_page_notes_tiles_appearance_section,
+                title: context.l.settings_page_notes_tiles_appearance_section,
                 tiles: [
                   SettingSwitchTile(
                     icon: Icons.gradient,
-                    title: l.settings_show_tiles_background,
-                    description: l.settings_show_tiles_background_description,
+                    title: context.l.settings_show_tiles_background,
+                    description: context.l.settings_show_tiles_background_description,
                     toggled: showTilesBackground,
                     onChanged: _toggleShowTilesBackground,
                   ),
                   SettingSwitchTile(
                     icon: Icons.safety_divider,
-                    title: l.settings_show_separators,
-                    description: l.settings_show_separators_description,
+                    title: context.l.settings_show_separators,
+                    description: context.l.settings_show_separators_description,
                     toggled: showSeparators,
                     onChanged: _toggleShowSeparators,
                   ),
@@ -99,29 +99,29 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
               ),
               SettingSection(
                 divider: null,
-                title: l.settings_page_notes_tiles_content_section,
+                title: context.l.settings_page_notes_tiles_content_section,
                 tiles: [
                   SettingSwitchTile(
                     icon: Icons.title,
-                    title: l.settings_show_titles_only,
-                    description: l.settings_show_titles_only_description,
+                    title: context.l.settings_show_titles_only,
+                    description: context.l.settings_show_titles_only_description,
                     toggled: showTitlesOnly,
                     onChanged: _toggleShowTitlesOnly,
                   ),
                   SettingSwitchTile(
                     enabled: showTitlesOnly,
                     icon: Symbols.feature_search,
-                    title: l.settings_show_titles_only_disable_in_search_view,
-                    description: l.settings_show_titles_only_disable_in_search_view_description,
+                    title: context.l.settings_show_titles_only_disable_in_search_view,
+                    description: context.l.settings_show_titles_only_disable_in_search_view_description,
                     toggled: showTitlesOnlyDisableInSearchView,
                     onChanged: _toggleShowTitlesOnlyDisableInSearchView,
                   ),
                   SettingSliderTile(
                     icon: Icons.short_text,
-                    title: l.settings_content_preview_max_lines,
-                    description: l.settings_content_preview_max_lines_description,
+                    title: context.l.settings_content_preview_max_lines,
+                    description: context.l.settings_content_preview_max_lines_description,
                     value: '$maximumContentPreviewLines',
-                    dialogTitle: l.settings_content_preview_max_lines,
+                    dialogTitle: context.l.settings_content_preview_max_lines,
                     label: (maximumContentPreviewLines) => '${maximumContentPreviewLines.toInt()}',
                     min: 1.0,
                     max: 10.0,
@@ -131,8 +131,8 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
                   ),
                   SettingSwitchTile(
                     icon: Icons.edit_note,
-                    title: l.settings_show_note_type_icon,
-                    description: l.settings_show_note_type_icon_description,
+                    title: context.l.settings_show_note_type_icon,
+                    description: context.l.settings_show_note_type_icon_description,
                     toggled: showNoteTypeIcon,
                     onChanged: _toggleShowNoteTypeIcon,
                   ),

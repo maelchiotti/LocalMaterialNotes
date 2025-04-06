@@ -7,9 +7,9 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 import '../../models/label/label.dart';
 import '../../navigation/navigation_routes.dart';
 import '../../providers/labels/labels_navigation/labels_navigation_provider.dart';
-import '../constants/constants.dart';
 import '../constants/paddings.dart';
 import '../constants/sizes.dart';
+import '../extensions/build_context_extension.dart';
 import '../preferences/preference_key.dart';
 import '../widgets/asset.dart';
 
@@ -79,15 +79,13 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
 
   /// Navigates to the route corresponding to the [newIndex].
   void navigate(int newIndex) {
-    // If the new route is the same as the current one, just close the drawer
-    if (index == newIndex) {
-      Navigator.pop(context);
-
-      return;
-    }
-
     // Close the navigation drawer
     Navigator.pop(context);
+
+    // If the new index is the same as the current one, no need to navigate
+    if (index == newIndex) {
+      return;
+    }
 
     final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
 
@@ -151,14 +149,14 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
             children: [
               Image.asset(Asset.icon.path, fit: BoxFit.fitWidth, width: Sizes.appIcon.size),
               Padding(padding: Paddings.vertical(8)),
-              Text(l.app_name, style: Theme.of(context).textTheme.headlineSmall),
+              Text(context.l.app_name, style: Theme.of(context).textTheme.headlineSmall),
             ],
           ),
         ),
         NavigationDrawerDestination(
           icon: const Icon(Icons.notes_outlined),
           selectedIcon: const Icon(Icons.notes),
-          label: Text(l.navigation_notes),
+          label: Text(context.l.navigation_notes),
         ),
         Divider(indent: 24, endIndent: 24),
         if (enableLabels) ...[
@@ -171,25 +169,25 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
           NavigationDrawerDestination(
             icon: const Icon(Symbols.auto_label),
             selectedIcon: VariedIcon.varied(Symbols.auto_label, fill: 1.0),
-            label: Text(l.navigation_manage_labels_destination),
+            label: Text(context.l.navigation_manage_labels_destination),
           ),
           Divider(indent: 24, endIndent: 24),
         ],
         NavigationDrawerDestination(
           icon: const Icon(Icons.archive_outlined),
           selectedIcon: const Icon(Icons.archive),
-          label: Text(l.navigation_archives),
+          label: Text(context.l.navigation_archives),
         ),
         NavigationDrawerDestination(
           icon: const Icon(Icons.delete_outline),
           selectedIcon: const Icon(Icons.delete),
-          label: Text(l.navigation_bin),
+          label: Text(context.l.navigation_bin),
         ),
         Divider(indent: 24, endIndent: 24),
         NavigationDrawerDestination(
           icon: const Icon(Icons.settings_outlined),
           selectedIcon: const Icon(Icons.settings),
-          label: Text(l.navigation_settings),
+          label: Text(context.l.navigation_settings),
         ),
       ],
     );

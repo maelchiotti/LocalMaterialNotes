@@ -81,7 +81,7 @@ enum PreferenceKey<T extends Object> {
   // Database
   databaseVersion<int>(3, backup: false);
 
-  /// Default value of this preference.
+  /// The default value of this preference.
   final T defaultValue;
 
   /// Whether this preference should be securely stored.

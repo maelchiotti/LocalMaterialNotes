@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../common/constants/constants.dart';
 import '../../../common/constants/sizes.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/extensions/date_time_extensions.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/widgets/placeholders/loading_placeholder.dart';
@@ -28,21 +28,28 @@ class AboutSheet extends StatelessWidget {
           shrinkWrap: true,
           children: [
             ListTile(
-              title: Text(l.about_type),
+              title: Text(context.l.about_type),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(currentNote.type.icon, size: Sizes.iconSmall.size),
                   Gap(8.0),
-                  Text(currentNote.type.title),
+                  Text(currentNote.type.title(context)),
                 ],
               ),
             ),
-            ListTile(title: Text(l.about_created), trailing: Text(currentNote.createdTime.yMMMMd_at_Hm)),
-            ListTile(title: Text(l.about_last_edited), trailing: Text(currentNote.editedTime.yMMMMd_at_Hm)),
-            if (areLabelsEnabled) ListTile(title: Text(l.about_labels), trailing: Text('${currentNote.labelsCount}')),
-            ListTile(title: Text(l.about_words), trailing: Text('${currentNote.wordsCount}')),
-            ListTile(title: Text(l.about_characters), trailing: Text('${currentNote.charactersCount}')),
+            ListTile(
+              title: Text(context.l.about_created),
+              trailing: Text(currentNote.createdTime.yMMMMd_at_Hm(context)),
+            ),
+            ListTile(
+              title: Text(context.l.about_last_edited),
+              trailing: Text(currentNote.editedTime.yMMMMd_at_Hm(context)),
+            ),
+            if (areLabelsEnabled)
+              ListTile(title: Text(context.l.about_labels), trailing: Text('${currentNote.labelsCount}')),
+            ListTile(title: Text(context.l.about_words), trailing: Text('${currentNote.wordsCount}')),
+            ListTile(title: Text(context.l.about_characters), trailing: Text('${currentNote.charactersCount}')),
           ],
         );
       },

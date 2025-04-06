@@ -7,7 +7,7 @@ import '../../../actions/labels/edit.dart';
 import '../../../actions/labels/lock.dart';
 import '../../../actions/labels/pin.dart';
 import '../../../actions/labels/visible.dart';
-import '../../../constants/constants.dart';
+import '../../../extensions/build_context_extension.dart';
 import '../../../extensions/iterable_extension.dart';
 import '../../preference_key.dart';
 
@@ -143,32 +143,32 @@ enum LabelSwipeAction {
   bool get isDisabled => this == disabled;
 
   /// Returns the title of the swipe action.
-  String get title {
+  String title(BuildContext context) {
     switch (this) {
       case disabled:
-        return l.action_disabled;
+        return context.l.action_disabled;
       case toggleVisible:
-        return l.action_labels_show_hide;
+        return context.l.action_labels_show_hide;
       case show:
-        return l.action_labels_show;
+        return context.l.action_labels_show;
       case hide:
-        return l.action_labels_hide;
+        return context.l.action_labels_hide;
       case togglePin:
-        return l.action_labels_pin_unpin;
+        return context.l.action_labels_pin_unpin;
       case pin:
-        return l.action_labels_pin;
+        return context.l.action_labels_pin;
       case unpin:
-        return l.action_labels_unpin;
+        return context.l.action_labels_unpin;
       case toggleLock:
-        return l.action_labels_lock_unlock;
+        return context.l.action_labels_lock_unlock;
       case lock:
-        return l.action_labels_lock;
+        return context.l.action_labels_lock;
       case unlock:
-        return l.action_labels_unlock;
+        return context.l.action_labels_unlock;
       case edit:
-        return l.action_labels_edit;
+        return context.l.action_labels_edit;
       case delete:
-        return l.action_labels_delete;
+        return context.l.action_labels_delete;
     }
   }
 
@@ -180,7 +180,7 @@ enum LabelSwipeAction {
   /// Text of the swipe action to display.
   Widget titleWidget(BuildContext context) {
     return Text(
-      title,
+      title(context),
       style: Theme.of(
         context,
       ).textTheme.titleMedium?.copyWith(color: Theme.of(context).colorScheme.onTertiaryContainer),
@@ -200,7 +200,7 @@ enum LabelSwipeAction {
         return false;
       case lock:
       case unlock:
-        await toggleLockLabels(ref, labels: [label]);
+        await toggleLockLabels(context, ref, labels: [label]);
         return false;
       case edit:
         await editLabel(context, ref, label: label);

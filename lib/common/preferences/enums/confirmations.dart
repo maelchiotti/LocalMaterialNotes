@@ -1,4 +1,6 @@
-import '../../constants/constants.dart';
+import 'package:flutter/material.dart';
+
+import '../../extensions/build_context_extension.dart';
 import '../../extensions/iterable_extension.dart';
 import '../preference_key.dart';
 
@@ -28,11 +30,11 @@ enum Confirmations {
   }
 
   /// The title of the preference for the settings page.
-  String get title {
+  String title(BuildContext context) {
     return switch (this) {
-      none => l.settings_confirmations_title_none,
-      irreversible => l.settings_confirmations_title_irreversible,
-      all => l.settings_confirmations_title_all,
+      none => context.l.settings_confirmations_title_none,
+      irreversible => context.l.settings_confirmations_title_irreversible,
+      all => context.l.settings_confirmations_title_all,
     };
   }
 }

@@ -5,8 +5,8 @@ import 'package:gap/gap.dart';
 import '../../../../pages/labels/enums/labels_filter.dart';
 import '../../../../providers/labels/labels/labels_provider.dart';
 import '../../../../providers/notifiers/notifiers.dart';
-import '../../../constants/constants.dart';
 import '../../../constants/sizes.dart';
+import '../../../extensions/build_context_extension.dart';
 
 /// Labels app bar.
 class LabelsAppBar extends ConsumerStatefulWidget {
@@ -28,7 +28,7 @@ class _LabelsAppBarState extends ConsumerState<LabelsAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(l.navigation_manage_labels_page),
+      title: Text(context.l.navigation_manage_labels_page),
       actions: [
         IconButton(
           onPressed: onFilterPressed,

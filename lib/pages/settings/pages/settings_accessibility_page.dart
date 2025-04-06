@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
-import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
@@ -75,21 +75,21 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
     final darkTheme = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      appBar: TopNavigation(appbar: BasicAppBar(title: l.navigation_settings_accessibility)),
+      appBar: TopNavigation(appbar: BasicAppBar(title: context.l.navigation_settings_accessibility)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,
           child: Column(
             children: [
               SettingSection(
-                title: l.settings_accessibility_text_size,
+                title: context.l.settings_accessibility_text_size,
                 divider: null,
                 tiles: [
                   SettingSliderTile(
                     icon: Icons.format_size,
-                    title: l.settings_text_scaling,
+                    title: context.l.settings_text_scaling,
                     value: (textScaling as num).formatAsPercentage(locale: SystemUtils().appLocaleLanguageCode),
-                    dialogTitle: l.settings_text_scaling,
+                    dialogTitle: context.l.settings_text_scaling,
                     label:
                         (textScaling) =>
                             (textScaling as num).formatAsPercentage(locale: SystemUtils().appLocaleLanguageCode),
@@ -103,29 +103,29 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
                   ),
                   SettingSwitchTile(
                     icon: Icons.title,
-                    title: l.settings_bigger_titles,
-                    description: l.settings_bigger_titles_description,
+                    title: context.l.settings_bigger_titles,
+                    description: context.l.settings_bigger_titles_description,
                     toggled: biggerTitles,
                     onChanged: _toggleBiggerTitles,
                   ),
                 ],
               ),
               SettingSection(
-                title: l.settings_accessibility_text_color,
+                title: context.l.settings_accessibility_text_color,
                 divider: null,
                 tiles: [
                   SettingSwitchTile(
                     enabled: darkTheme,
                     icon: Icons.format_color_text,
-                    title: l.settings_white_text_dark_mode,
-                    description: l.settings_white_text_dark_mode_description,
+                    title: context.l.settings_white_text_dark_mode,
+                    description: context.l.settings_white_text_dark_mode_description,
                     toggled: useWhiteTextDarkMode,
                     onChanged: _toggleUseWhiteTextDarkMode,
                   ),
                   SettingSwitchTile(
                     icon: Icons.opacity,
-                    title: l.settings_disable_subdued_note_content_preview,
-                    description: l.settings_disable_subdued_note_content_preview_description,
+                    title: context.l.settings_disable_subdued_note_content_preview,
+                    description: context.l.settings_disable_subdued_note_content_preview_description,
                     toggled: disableSubduedNoteContentPreview,
                     onChanged: _toggleDisableSubduedNoteContentPreview,
                   ),

@@ -7,6 +7,7 @@ import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../constants/constants.dart';
 import '../../dialogs/confirmation_dialog.dart';
+import '../../extensions/build_context_extension.dart';
 import '../../ui/snack_bar_utils.dart';
 import 'select.dart';
 import 'unarchive.dart';
@@ -21,7 +22,12 @@ Future<bool> archiveNote(
   bool pop = false,
   bool cancel = true,
 }) async {
-  if (!await askForConfirmation(context, l.dialog_archive, l.dialog_archive_body(1), l.dialog_archive)) {
+  if (!await askForConfirmation(
+    context,
+    context.l.dialog_archive,
+    context.l.dialog_archive_body(1),
+    context.l.dialog_archive,
+  )) {
     return false;
   }
 
@@ -36,9 +42,10 @@ Future<bool> archiveNote(
       .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
       .setArchived([note], true);
 
-  if (succeeded && cancel) {
+  if (succeeded && cancel && context.mounted) {
     SnackBarUtils().show(
-      text: l.snack_bar_archived(1),
+      context,
+      text: context.l.snack_bar_archived(1),
       onCancel: (globalRef) async => await unarchiveNote(context, globalRef, note: note, cancel: false),
     );
   }
@@ -50,7 +57,12 @@ Future<bool> archiveNote(
 ///
 /// Returns `true` if the [notes] were archived, `false` otherwise.
 Future<bool> archiveNotes(BuildContext context, WidgetRef ref, {required List<Note> notes, bool cancel = true}) async {
-  if (!await askForConfirmation(context, l.dialog_archive, l.dialog_archive_body(notes.length), l.dialog_archive)) {
+  if (!await askForConfirmation(
+    context,
+    context.l.dialog_archive,
+    context.l.dialog_archive_body(notes.length),
+    context.l.dialog_archive,
+  )) {
     return false;
   }
 
@@ -62,9 +74,10 @@ Future<bool> archiveNotes(BuildContext context, WidgetRef ref, {required List<No
     exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.available);
   }
 
-  if (succeeded && cancel) {
+  if (succeeded && cancel && context.mounted) {
     SnackBarUtils().show(
-      text: l.snack_bar_archived(notes.length),
+      context,
+      text: context.l.snack_bar_archived(notes.length),
       onCancel: (globalRef) async => await unarchiveNotes(context, globalRef, notes: notes, cancel: false),
     );
   }

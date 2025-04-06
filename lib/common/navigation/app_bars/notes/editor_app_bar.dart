@@ -16,8 +16,8 @@ import '../../../actions/notes/pin.dart';
 import '../../../actions/notes/restore.dart';
 import '../../../actions/notes/share.dart';
 import '../../../actions/notes/unarchive.dart';
-import '../../../constants/constants.dart';
 import '../../../constants/sizes.dart';
+import '../../../extensions/build_context_extension.dart';
 import '../../../preferences/preference_key.dart';
 import '../../../system_utils.dart';
 import '../../../widgets/placeholders/empty_placeholder.dart';
@@ -51,7 +51,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
     switch (menuOption) {
       case EditorAvailableMenuOption.copy:
-        await copyNote(note: note);
+        await copyNote(context, note: note);
       case EditorAvailableMenuOption.share:
         await shareNote(note: note);
       case EditorAvailableMenuOption.pin:
@@ -84,7 +84,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
     switch (menuOption) {
       case EditorArchivedMenuOption.copy:
-        await copyNote(note: note);
+        await copyNote(context, note: note);
       case EditorArchivedMenuOption.share:
         await shareNote(note: note);
       case EditorArchivedMenuOption.selectLabels:
@@ -174,7 +174,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
                         return IconButton(
                           icon: const Icon(Icons.undo),
-                          tooltip: l.tooltip_undo,
+                          tooltip: context.l.tooltip_undo,
                           onPressed: enableUndo ? undo : null,
                         );
                       },
@@ -186,7 +186,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
                         return IconButton(
                           icon: const Icon(Icons.redo),
-                          tooltip: l.tooltip_redo,
+                          tooltip: context.l.tooltip_redo,
                           onPressed: enableRedo ? redo : null,
                         );
                       },
@@ -200,8 +200,8 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                             icon: Icon(isEditMode ? Icons.visibility : Icons.edit),
                             tooltip:
                                 isEditMode
-                                    ? l.tooltip_fab_toggle_editor_mode_read
-                                    : l.tooltip_fab_toggle_editor_mode_edit,
+                                    ? context.l.tooltip_fab_toggle_editor_mode_read
+                                    : context.l.tooltip_fab_toggle_editor_mode_edit,
                             onPressed: switchMode,
                           ),
                     ),

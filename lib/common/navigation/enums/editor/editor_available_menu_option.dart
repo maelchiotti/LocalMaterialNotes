@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/constants.dart';
+import '../../../extensions/build_context_extension.dart';
 
 /// Lists the options available in the editor's menu for the available notes.
 enum EditorAvailableMenuOption {
@@ -41,33 +41,33 @@ enum EditorAvailableMenuOption {
   const EditorAvailableMenuOption(this.icon);
 
   /// Returns the title of the menu option.
-  String get title {
+  String title(BuildContext context) {
     switch (this) {
       case copy:
-        return fl?.copyButtonLabel ?? 'Copy';
+        return context.fl.copyButtonLabel;
       case share:
-        return fl?.shareButtonLabel ?? 'Share';
+        return context.fl.shareButtonLabel;
       case pin:
-        return l.action_pin;
+        return context.l.action_pin;
       case unpin:
-        return l.action_unpin;
+        return context.l.action_unpin;
       case lock:
-        return l.action_lock;
+        return context.l.action_lock;
       case unlock:
-        return l.action_unlock;
+        return context.l.action_unlock;
       case selectLabels:
-        return l.menu_action_select_labels;
+        return context.l.menu_action_select_labels;
       case archive:
-        return l.action_archive;
+        return context.l.action_archive;
       case delete:
-        return l.action_delete;
+        return context.l.action_delete;
       case about:
-        return l.action_about;
+        return context.l.action_about;
     }
   }
 
   /// Returns the [PopupMenuItem] widget of the menu option.
   PopupMenuItem<EditorAvailableMenuOption> popupMenuItem(BuildContext context) {
-    return PopupMenuItem(value: this, child: ListTile(leading: Icon(icon), title: Text(title)));
+    return PopupMenuItem(value: this, child: ListTile(leading: Icon(icon), title: Text(title(context))));
   }
 }

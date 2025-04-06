@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../common/constants/constants.dart';
+import '../common/extensions/build_context_extension.dart';
 import '../common/preferences/preference_key.dart';
 import '../common/types.dart';
-import '../l10n/app_localizations/app_localizations.g.dart';
 import '../models/label/label.dart';
 import '../pages/archives/archives_page.dart';
 import '../pages/bin/bin_page.dart';
@@ -60,13 +60,11 @@ final lockRoute = GoRoute(
   name: NavigationRoute.lock.name,
   path: NavigationRoute.lock.path,
   builder: (context, state) {
-    final l = AppLocalizations.of(context);
-
     return LockPage(
       back: false,
       lockNotifier: lockAppNotifier,
-      description: l.lock_page_description_app,
-      reason: l.lock_page_reason_app,
+      description: context.l.lock_page_description_app,
+      reason: context.l.lock_page_reason_app,
     );
   },
 );

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
 import '../../common/constants/constants.dart';
+import '../../common/extensions/build_context_extension.dart';
 import '../../common/navigation/app_bars/notes/editor_app_bar.dart';
 import '../../common/navigation/top_navigation.dart';
 import '../../common/preferences/preference_key.dart';
@@ -152,8 +153,8 @@ class _EditorState extends ConsumerState<EditorPage> {
                     ? LockPage(
                       back: false,
                       lockNotifier: lockNoteNotifier,
-                      description: l.lock_page_description_note,
-                      reason: l.lock_page_reason_note,
+                      description: context.l.lock_page_description_note,
+                      reason: context.l.lock_page_reason_note,
                     )
                     : editor;
               },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:string_validator/string_validator.dart';
 
-import '../../../common/constants/constants.dart';
+import '../../../common/extensions/build_context_extension.dart';
 
 /// Dialog to add a link in the editor.
 class ToolbarLinkDialog extends StatefulWidget {
@@ -45,16 +45,16 @@ class _ToolbarLinkDialogState extends State<ToolbarLinkDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog.adaptive(
-      title: Text(l.dialog_add_link),
+      title: Text(context.l.dialog_add_link),
       content: TextField(
         controller: _linkController,
         autofocus: true,
-        decoration: InputDecoration(labelText: l.hint_link),
+        decoration: InputDecoration(labelText: context.l.hint_link),
         onChanged: _onChanged,
       ),
       actions: [
-        TextButton(onPressed: () => _pop(canceled: true), child: Text(fl?.cancelButtonLabel ?? 'Cancel')),
-        TextButton(onPressed: _isLinkValid ? _pop : null, child: Text(fl?.okButtonLabel ?? 'OK')),
+        TextButton(onPressed: () => _pop(canceled: true), child: Text(context.fl.cancelButtonLabel)),
+        TextButton(onPressed: _isLinkValid ? _pop : null, child: Text(context.fl.okButtonLabel)),
       ],
     );
   }

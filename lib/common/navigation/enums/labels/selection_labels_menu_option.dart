@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/constants.dart';
+import '../../../extensions/build_context_extension.dart';
 
 /// Lists the options available for the selection menu on the labels.
 enum SelectionLabelsMenuOption {
@@ -34,16 +34,16 @@ enum SelectionLabelsMenuOption {
   const SelectionLabelsMenuOption(this.icon, {this.dangerous = false});
 
   /// Returns the title of the menu option.
-  String get title {
+  String title(BuildContext context) {
     switch (this) {
       case togglePin:
-        return l.action_labels_toggle_pins;
+        return context.l.action_labels_toggle_pins;
       case toggleVisible:
-        return l.action_labels_toggle_visibile;
+        return context.l.action_labels_toggle_visibile;
       case toggleLock:
-        return l.action_labels_toggle_lock;
+        return context.l.action_labels_toggle_lock;
       case delete:
-        return l.action_delete;
+        return context.l.action_delete;
     }
   }
 
@@ -54,7 +54,7 @@ enum SelectionLabelsMenuOption {
       child: ListTile(
         leading: Icon(icon, color: dangerous ? Theme.of(context).colorScheme.error : null),
         title: Text(
-          title,
+          title(context),
           style: Theme.of(
             context,
           ).textTheme.titleSmall?.copyWith(color: dangerous ? Theme.of(context).colorScheme.error : null),

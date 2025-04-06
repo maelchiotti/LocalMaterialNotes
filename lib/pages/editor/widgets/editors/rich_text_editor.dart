@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../common/constants/constants.dart';
 import '../../../../common/constants/paddings.dart';
+import '../../../../common/extensions/build_context_extension.dart';
 import '../../../../common/preferences/enums/font.dart';
 import '../../../../common/preferences/preference_key.dart';
 import '../../../../models/note/note.dart';
@@ -119,7 +120,7 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
                 readOnly: widget.readOnly,
                 expands: true,
                 onLaunchUrl: onLaunchUrl,
-                decoration: InputDecoration.collapsed(hintText: l.hint_content),
+                decoration: InputDecoration.collapsed(hintText: context.l.hint_content),
                 spellCheckConfiguration: SpellCheckConfiguration(spellCheckService: DefaultSpellCheckService()),
                 padding: Paddings.bottomSystemUi,
               ),

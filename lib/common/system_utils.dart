@@ -14,6 +14,7 @@ import '../l10n/app_localizations/app_localizations.g.dart';
 import '../models/note/types/note_type.dart';
 import 'actions/notes/add.dart';
 import 'constants/constants.dart';
+import 'extensions/build_context_extension.dart';
 import 'preferences/preference_key.dart';
 
 /// System utilities.
@@ -68,7 +69,8 @@ class SystemUtils {
   String get model => _androidDeviceInfo.model;
 
   /// Build mode of the application (either `release` or `debug`).
-  String get buildMode => kReleaseMode ? l.settings_build_mode_release : l.settings_build_mode_debug;
+  String buildMode(BuildContext context) =>
+      kReleaseMode ? context.l.settings_build_mode_release : context.l.settings_build_mode_debug;
 
   /// The name of the application.
   String get appName => _appLocalizations.app_name;
@@ -126,31 +128,29 @@ class SystemUtils {
   }
 
   /// Sets the quick actions.
-  void setQuickActions() {
+  void setQuickActions(BuildContext context) {
     final availableNotesTypes = NoteType.available;
 
     final addPlainTextNoteAction = ShortcutItem(
       type: 'add_plain_text_note',
-      localizedTitle: l.quick_action_add_plain_text_note_title,
+      localizedTitle: context.l.quick_action_add_plain_text_note_title,
       icon: 'ic_text_fields',
     );
     final addMarkdownNoteAction = ShortcutItem(
       type: 'add_markdown_note',
-      localizedTitle: l.quick_action_add_markdown_note_title,
+      localizedTitle: context.l.quick_action_add_markdown_note_title,
       icon: 'ic_markdown',
     );
     final addRichTextNoteAction = ShortcutItem(
       type: 'add_rich_text_note',
-      localizedTitle: l.quick_action_add_rich_text_note_title,
+      localizedTitle: context.l.quick_action_add_rich_text_note_title,
       icon: 'ic_format_paint',
     );
     final addChecklistNoteAction = ShortcutItem(
       type: 'add_checklist_note',
-      localizedTitle: l.quick_action_add_checklist_note_title,
+      localizedTitle: context.l.quick_action_add_checklist_note_title,
       icon: 'ic_checklist',
     );
-
-    final context = rootNavigatorKey.currentContext!;
 
     quickActions.initialize((action) {
       if (action == addPlainTextNoteAction.type) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/constants/constants.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/extensions/string_extension.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../widgets/encrypt_password_form.dart';
@@ -59,17 +59,17 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog.adaptive(
-      title: Text(l.settings_export_json),
+      title: Text(context.l.settings_export_json),
       content: SingleChildScrollView(
         child: EncryptPasswordForm(
-          secondaryDescription: l.dialog_export_encryption_secondary_description_manual,
+          secondaryDescription: context.l.dialog_export_encryption_secondary_description_manual,
           onChanged: _onChanged,
           onEditingComplete: _pop,
         ),
       ),
       actions: [
-        TextButton(onPressed: () => _pop(canceled: true), child: Text(fl?.cancelButtonLabel ?? 'Cancel')),
-        TextButton(onPressed: ok ? _pop : null, child: Text(fl?.okButtonLabel ?? 'OK')),
+        TextButton(onPressed: () => _pop(canceled: true), child: Text(context.fl.cancelButtonLabel)),
+        TextButton(onPressed: ok ? _pop : null, child: Text(context.fl.okButtonLabel)),
       ],
     );
   }

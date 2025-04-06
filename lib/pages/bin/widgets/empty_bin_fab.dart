@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common/actions/notes/delete.dart';
-import '../../../common/constants/constants.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/widgets/placeholders/empty_placeholder.dart';
 import '../../../models/note/note_status.dart';
 import '../../../providers/notes/notes_provider.dart';
@@ -18,7 +18,7 @@ class EmptyBinFab extends ConsumerWidget {
 
     return deletedNotesCount != null && deletedNotesCount != 0
         ? FloatingActionButton(
-          tooltip: l.tooltip_fab_empty_bin,
+          tooltip: context.l.tooltip_fab_empty_bin,
           onPressed: () => emptyBin(context, ref),
           child: const Icon(Icons.delete_forever),
         )

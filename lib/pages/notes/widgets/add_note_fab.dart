@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../common/actions/notes/add.dart';
 import '../../../common/actions/notes/pop.dart';
 import '../../../common/constants/constants.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../models/note/types/note_type.dart';
 import '../../../providers/notifiers/notifiers.dart';
 
@@ -38,7 +39,7 @@ class _AddNoteFabState extends ConsumerState<AddNoteFab> {
 
     return availableNotesTypes.length == 1
         ? FloatingActionButton(
-          tooltip: l.tooltip_fab_add_note,
+          tooltip: context.l.tooltip_fab_add_note,
           onPressed: () => onPressed(availableNotesTypes.first),
           child: const Icon(Icons.add),
         )
@@ -61,34 +62,34 @@ class _AddNoteFabState extends ConsumerState<AddNoteFab> {
             if (availableNotesTypes.contains(NoteType.plainText))
               FloatingActionButton.extended(
                 heroTag: '<add plain text note hero tag>',
-                tooltip: l.tooltip_fab_add_plain_text_note,
+                tooltip: context.l.tooltip_fab_add_plain_text_note,
                 onPressed: () => onPressed(NoteType.plainText),
                 icon: Icon(NoteType.plainText.icon),
-                label: Text(NoteType.plainText.title),
+                label: Text(NoteType.plainText.title(context)),
               ),
             if (availableNotesTypes.contains(NoteType.markdown))
               FloatingActionButton.extended(
                 heroTag: '<add markdown note hero tag>',
-                tooltip: l.tooltip_fab_add_markdown_note,
+                tooltip: context.l.tooltip_fab_add_markdown_note,
                 onPressed: () => onPressed(NoteType.markdown),
                 icon: Icon(NoteType.markdown.icon),
-                label: Text(NoteType.markdown.title),
+                label: Text(NoteType.markdown.title(context)),
               ),
             if (availableNotesTypes.contains(NoteType.richText))
               FloatingActionButton.extended(
                 heroTag: '<add rich text note hero tag>',
-                tooltip: l.tooltip_fab_add_rich_text_note,
+                tooltip: context.l.tooltip_fab_add_rich_text_note,
                 onPressed: () => onPressed(NoteType.richText),
                 icon: Icon(NoteType.richText.icon),
-                label: Text(NoteType.richText.title),
+                label: Text(NoteType.richText.title(context)),
               ),
             if (availableNotesTypes.contains(NoteType.checklist))
               FloatingActionButton.extended(
                 heroTag: '<add checklist note hero tag>',
-                tooltip: l.tooltip_fab_add_checklist_note,
+                tooltip: context.l.tooltip_fab_add_checklist_note,
                 onPressed: () => onPressed(NoteType.checklist),
                 icon: Icon(NoteType.checklist.icon),
-                label: Text(NoteType.checklist.title),
+                label: Text(NoteType.checklist.title(context)),
               ),
           ],
         );

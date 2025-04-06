@@ -1,7 +1,7 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 
-import '../constants/constants.dart';
+import '../extensions/build_context_extension.dart';
 import '../extensions/iterable_extension.dart';
 import '../preferences/enums/font.dart';
 import '../preferences/preference_key.dart';
@@ -43,14 +43,14 @@ class ThemeUtils {
   }
 
   /// Returns the title of the current theme mode.
-  String get themeModeTitle {
+  String themeModeTitle(BuildContext context) {
     switch (themeMode) {
       case ThemeMode.system:
-        return l.settings_theme_system;
+        return context.l.settings_theme_system;
       case ThemeMode.light:
-        return l.settings_theme_light;
+        return context.l.settings_theme_light;
       case ThemeMode.dark:
-        return l.settings_theme_dark;
+        return context.l.settings_theme_dark;
     }
   }
 

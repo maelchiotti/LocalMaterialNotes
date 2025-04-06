@@ -7,6 +7,7 @@ import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../constants/constants.dart';
 import '../../dialogs/confirmation_dialog.dart';
+import '../../extensions/build_context_extension.dart';
 import '../../ui/snack_bar_utils.dart';
 import 'archive.dart';
 import 'restore.dart';
@@ -22,7 +23,12 @@ Future<bool> deleteNote(
   bool pop = false,
   bool cancel = true,
 }) async {
-  if (!await askForConfirmation(context, l.dialog_delete, l.dialog_delete_body(1), l.dialog_delete)) {
+  if (!await askForConfirmation(
+    context,
+    context.l.dialog_delete,
+    context.l.dialog_delete_body(1),
+    context.l.dialog_delete,
+  )) {
     return false;
   }
 
@@ -39,9 +45,10 @@ Future<bool> deleteNote(
       .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
       .setDeleted([note], true);
 
-  if (succeeded && cancel) {
+  if (succeeded && cancel && context.mounted) {
     SnackBarUtils().show(
-      text: l.snack_bar_deleted(1),
+      context,
+      text: context.l.snack_bar_deleted(1),
       onCancel:
           (globalRef) async =>
               wasArchived
@@ -57,7 +64,12 @@ Future<bool> deleteNote(
 ///
 /// Returns `true` if the [notes] were deleted, `false` otherwise.
 Future<bool> deleteNotes(BuildContext context, WidgetRef ref, {required List<Note> notes, bool cancel = true}) async {
-  if (!await askForConfirmation(context, l.dialog_delete, l.dialog_delete_body(notes.length), l.dialog_delete)) {
+  if (!await askForConfirmation(
+    context,
+    context.l.dialog_delete,
+    context.l.dialog_delete_body(notes.length),
+    context.l.dialog_delete,
+  )) {
     return false;
   }
 
@@ -71,9 +83,10 @@ Future<bool> deleteNotes(BuildContext context, WidgetRef ref, {required List<Not
     exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.available);
   }
 
-  if (succeeded && cancel) {
+  if (succeeded && cancel && context.mounted) {
     SnackBarUtils().show(
-      text: l.snack_bar_deleted(notes.length),
+      context,
+      text: context.l.snack_bar_deleted(notes.length),
       onCancel:
           (globalRef) async =>
               wereArchived
@@ -91,9 +104,9 @@ Future<bool> deleteNotes(BuildContext context, WidgetRef ref, {required List<Not
 Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, {required Note note, bool pop = false}) async {
   if (!await askForConfirmation(
     context,
-    l.dialog_permanently_delete,
-    l.dialog_permanently_delete_body(1),
-    l.dialog_permanently_delete,
+    context.l.dialog_permanently_delete,
+    context.l.dialog_permanently_delete_body(1),
+    context.l.dialog_permanently_delete,
     irreversible: true,
   )) {
     return false;
@@ -121,9 +134,9 @@ Future<bool> permanentlyDeleteNote(BuildContext context, WidgetRef ref, {require
 Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
   if (!await askForConfirmation(
     context,
-    l.dialog_permanently_delete,
-    l.dialog_permanently_delete_body(notes.length),
-    l.dialog_permanently_delete,
+    context.l.dialog_permanently_delete,
+    context.l.dialog_permanently_delete_body(notes.length),
+    context.l.dialog_permanently_delete,
     irreversible: true,
   )) {
     return false;
@@ -142,9 +155,9 @@ Future<bool> permanentlyDeleteNotes(BuildContext context, WidgetRef ref, {requir
 Future<bool> emptyBin(BuildContext context, WidgetRef ref) async {
   if (!await askForConfirmation(
     context,
-    l.dialog_empty_bin,
-    l.dialog_empty_bin_body,
-    l.dialog_empty_bin,
+    context.l.dialog_empty_bin,
+    context.l.dialog_empty_bin_body,
+    context.l.dialog_empty_bin,
     irreversible: true,
   )) {
     return false;

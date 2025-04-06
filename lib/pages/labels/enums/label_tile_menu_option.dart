@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/constants/constants.dart';
+import '../../../common/extensions/build_context_extension.dart';
 
 /// Lists the options available in the menu of the labels tiles.
 enum LabelTileMenuOption {
@@ -42,24 +42,24 @@ enum LabelTileMenuOption {
   const LabelTileMenuOption(this.icon, {this.dangerous = false});
 
   /// Returns the title of the menu option.
-  String get title {
+  String title(BuildContext context) {
     switch (this) {
       case show:
-        return l.action_labels_show;
+        return context.l.action_labels_show;
       case hide:
-        return l.action_labels_hide;
+        return context.l.action_labels_hide;
       case pin:
-        return l.action_labels_pin;
+        return context.l.action_labels_pin;
       case unpin:
-        return l.action_labels_unpin;
+        return context.l.action_labels_unpin;
       case lock:
-        return l.action_labels_lock;
+        return context.l.action_labels_lock;
       case unlock:
-        return l.action_labels_unlock;
+        return context.l.action_labels_unlock;
       case edit:
-        return l.action_labels_edit;
+        return context.l.action_labels_edit;
       case delete:
-        return l.action_labels_delete;
+        return context.l.action_labels_delete;
     }
   }
 
@@ -70,7 +70,7 @@ enum LabelTileMenuOption {
       child: ListTile(
         leading: Icon(icon, color: dangerous ? Theme.of(context).colorScheme.error : null),
         title: Text(
-          title,
+          title(context),
           style:
               dangerous
                   ? Theme.of(context).textTheme.titleSmall?.copyWith(color: Theme.of(context).colorScheme.error)

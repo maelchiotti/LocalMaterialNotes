@@ -8,6 +8,7 @@ import 'package:sanitize_filename/sanitize_filename.dart';
 
 import '../../common/constants/constants.dart';
 import '../../common/enums/mime_type.dart';
+import '../../common/extensions/build_context_extension.dart';
 import '../../common/extensions/date_time_extensions.dart';
 import '../../common/extensions/iterable_extension.dart';
 import '../../common/files/files_utils.dart';
@@ -106,8 +107,8 @@ class ManualBackupService {
         useRootNavigator: false,
         builder:
             (context) => AutoExportPasswordDialog(
-              title: l.settings_import,
-              description: l.dialog_import_encryption_password_description,
+              title: context.l.settings_import,
+              description: context.l.dialog_import_encryption_password_description,
             ),
       );
 
@@ -138,7 +139,9 @@ class ManualBackupService {
       } catch (exception, stackTrace) {
         logger.e(exception.toString(), exception, stackTrace);
 
-        SnackBarUtils().show(text: l.dialog_import_encryption_password_error);
+        if (context.mounted) {
+          SnackBarUtils().show(context, text: context.l.dialog_import_encryption_password_error);
+        }
 
         return false;
       }
@@ -192,14 +195,17 @@ class ManualBackupService {
       final preferenceKey = PreferenceKey.values.byNameOrNull(preference);
 
       if (preferenceKey == null) {
-        throw Exception("While restoring the preferences from JSON, the preference '$preference' doesn't exist");
-      }
-
-      // If the preference value is a list, the it's a list of String (the only type of list that can be stored in the preferences)
-      if (value is List) {
-        preferenceKey.set(value.cast<String>());
+        logger.w("While restoring the preferences from JSON, the preference '$preference' doesn't exist");
       } else {
-        preferenceKey.set(value);
+        if (preferenceKey.backup) {
+          // If the preference value is a list, then it's a list of String
+          // (the only type of list that can be stored in the preferences)
+          if (value is List) {
+            preferenceKey.set(value.cast<String>());
+          } else {
+            preferenceKey.set(value);
+          }
+        }
       }
     });
 

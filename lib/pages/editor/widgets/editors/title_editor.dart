@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../common/constants/constants.dart';
 import '../../../../common/constants/paddings.dart';
+import '../../../../common/extensions/build_context_extension.dart';
 import '../../../../common/preferences/preference_key.dart';
 import '../../../../models/note/note.dart';
 import '../../../../models/note/note_status.dart';
@@ -62,7 +62,7 @@ class _TitleEditorState extends ConsumerState<TitleEditor> {
             textCapitalization: TextCapitalization.sentences,
             textInputAction: TextInputAction.next,
             style: titleStyle,
-            decoration: InputDecoration.collapsed(hintText: l.hint_title),
+            decoration: InputDecoration.collapsed(hintText: context.l.hint_title),
             controller: titleController,
             onChanged: (text) => onChanged(currentNote, text),
             onSubmitted: (_) => widget.onSubmitted,
