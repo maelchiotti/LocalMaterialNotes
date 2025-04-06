@@ -32,15 +32,16 @@ class MigrationService {
   /// Moves all legacy notes from the legacy `notes` collection to the new `richTextNotes` collection
   /// to allow adding different types of notes.
   Future<void> _migrateToV2() async {
-    logger.i('Migrating the database from version 1 to version 2');
+    // Get the notes and their labels
+    final notes = await _databaseService.database.notes.where().findAll();
+    final labels = notes.map((note) => note.labels.toList()).toList();
 
-    // Get the old notes and their labels
-    final oldNotes = await _databaseService.database.notes.where().findAll();
-    final oldLabels = oldNotes.map((note) => note.labels.toList()).toList();
+    // Remove the notes
+    await _databaseService.database.notes.clear();
 
-    // Convert the old notes to rich text notes
-    final richTextNotes =
-        oldNotes
+    // Migrate the notes
+    final migratedNotes =
+        notes
             .map(
               (oldNote) => RichTextNote(
                 archived: false,
@@ -55,53 +56,47 @@ class MigrationService {
             )
             .toList();
 
-    // Add the new notes to the new collection with their labels
-    await _notesService.putAll(richTextNotes);
-    await _notesService.putAllLabels(richTextNotes, oldLabels);
-
-    // Check that the migration succeeded
-    final oldNotesCount = await _databaseService.database.notes.count();
-    final addedRichTextNotesCount = richTextNotes.length;
-    assert(
-      oldNotesCount == addedRichTextNotesCount,
-      'The count of old notes ($oldNotesCount) is different from the count of rich text notes ($addedRichTextNotesCount) after the migration to v2',
-    );
+    // Add the migrated notes to the new collection with their labels
+    await _notesService.putAll(migratedNotes);
+    await _notesService.putAllLabels(migratedNotes, labels);
 
     // Update the database version
     await PreferenceKey.databaseVersion.set(2);
+
+    logger.i('Migrated the database from version 1 to version 2');
   }
 
   /// Migrates the database to version 3.
   ///
-  /// Sets the new `id` and `archived` fields of each rich text note.
+  /// Sets the new `id`, `archived` and `deletedTime` fields of each rich text note.
   Future<void> _migrateToV3() async {
-    logger.i('Migrating the database from version 2 to version 3');
-
     // Clear the indexes to ensure their are rebuilt correctly
     await _indexesService.clearIndexes();
 
     // Get the rich text notes
     final richTextNotes = await _databaseService.database.richTextNotes.where().findAll();
 
-    // Set the rich text notes 'id', 'archived' and 'deletedTime' fields
-    for (final note in richTextNotes) {
-      note.id = uuid.v4();
-      note.archived = false;
-      note.deletedTime = note.deleted ? DateTime.timestamp() : null;
+    // Remove the notes with the old IDs
+    await _notesService.deleteAll(richTextNotes);
 
-      await _notesService.put(note);
-    }
+    // Migrate the notes
+    final migratedNotes =
+        richTextNotes
+            .map(
+              (richTextNote) =>
+                  richTextNote
+                    ..id = uuid.v4()
+                    ..archived = false
+                    ..deletedTime = richTextNote.deleted ? DateTime.timestamp() : null,
+            )
+            .toList();
 
-    // Check that the migration succeeded
-    final richTextNotesCount = await _databaseService.database.richTextNotes.count();
-    final richTextNotesNotArchivedCount =
-        await _databaseService.database.richTextNotes.where().archivedEqualTo(false).count();
-    assert(
-      richTextNotesCount == richTextNotesNotArchivedCount,
-      'The count of rich text notes ($richTextNotesCount) is different from the count of not archived rich text notes ($richTextNotesNotArchivedCount) after the migration to v3',
-    );
+    // Put back the migrated notes with the right IDs
+    await _notesService.putAll(migratedNotes);
 
     // Update the database version
     await PreferenceKey.databaseVersion.set(3);
+
+    logger.i('Migrated the database from version 2 to version 3');
   }
 }

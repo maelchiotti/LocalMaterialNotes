@@ -13,6 +13,7 @@ dependencies:
   after_layout: ^1.2.0
   archive: ^4.0.2
   collection: ^1.18.0
+  const_date_time: ^1.2.1
   dart_helper_utils: ^3.3.0
   device_info_plus: ^11.2.2
   dynamic_color: ^1.7.0

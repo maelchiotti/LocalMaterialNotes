@@ -16,13 +16,9 @@ import 'note_status.dart';
 import 'types/note_type.dart';
 
 part 'note.g.dart';
-
 part 'types/checklist_note.dart';
-
 part 'types/markdown_note.dart';
-
 part 'types/plain_text_note.dart';
-
 part 'types/rich_text_note.dart';
 
 /// Converts the [labels] to a JSON-compatible list of strings.
@@ -33,15 +29,16 @@ sealed class Note implements Comparable<Note> {
   /// The regex expression used to count the number of words in the content of the note.
   final RegExp _wordsCountRegex = RegExp(r'[\w-]+');
 
+  /// The ID of the note as an [int] used by isar.
+  Id get isarId => _idHash;
+
   /// The ID of the note as a [String] used by the application.
   @JsonKey(includeFromJson: false, includeToJson: false)
   String id = uuid.v4();
 
-  /// The ID of the note as an [int] used by isar.
-  Id get isarId => _idHash;
-
   /// The type of the note.
   @ignore
+  @JsonKey(includeFromJson: false)
   NoteType type;
 
   /// Whether the note is archived.

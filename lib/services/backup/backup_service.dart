@@ -195,14 +195,17 @@ class ManualBackupService {
       final preferenceKey = PreferenceKey.values.byNameOrNull(preference);
 
       if (preferenceKey == null) {
-        throw Exception("While restoring the preferences from JSON, the preference '$preference' doesn't exist");
-      }
-
-      // If the preference value is a list, the it's a list of String (the only type of list that can be stored in the preferences)
-      if (value is List) {
-        preferenceKey.set(value.cast<String>());
+        logger.w("While restoring the preferences from JSON, the preference '$preference' doesn't exist");
       } else {
-        preferenceKey.set(value);
+        if (preferenceKey.backup) {
+          // If the preference value is a list, then it's a list of String
+          // (the only type of list that can be stored in the preferences)
+          if (value is List) {
+            preferenceKey.set(value.cast<String>());
+          } else {
+            preferenceKey.set(value);
+          }
+        }
       }
     });
 

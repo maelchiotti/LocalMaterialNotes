@@ -230,6 +230,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.19.1"
+  const_date_time:
+    dependency: "direct main"
+    description:
+      name: const_date_time
+      sha256: a2c0a8e5980ead8c96f28c93a542a1486356adb8b0b14c27fed8f901d0ac789f
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.1"
   convert:
     dependency: transitive
     description:
