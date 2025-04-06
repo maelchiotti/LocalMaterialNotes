@@ -2,7 +2,7 @@ name: localmaterialnotes
 description: Simple, local, material design notes
 repository: https://github.com/maelchiotti/LocalMaterialNotes
 
-version: 2.0.0-dev4+27
+version: 2.0.0-dev5+27
 publish_to: none
 
 environment:
