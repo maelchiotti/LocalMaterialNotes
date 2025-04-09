@@ -324,6 +324,10 @@ class NotesService {
 
     final notesToRemove =
         deletedNotes.where((note) {
+          if (note.deletedTime == null) {
+            return false;
+          }
+
           final now = DateTime.timestamp();
           final durationSinceDeleted = now.difference(note.deletedTime!);
 
