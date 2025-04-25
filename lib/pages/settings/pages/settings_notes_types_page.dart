@@ -58,7 +58,7 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
           return (value: type, title: type.title(context), subtitle: null);
         }).toList();
     final availableNotesTypes = NoteType.available;
-    final availableNotesTypesString = NoteType.availableAsString;
+    final availableNotesTypesString = NoteType.availableAsString(context);
 
     final shareNotesTypes =
         NoteType.share.map((type) {

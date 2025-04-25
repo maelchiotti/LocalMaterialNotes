@@ -47,8 +47,8 @@ enum NoteType {
   }
 
   /// The list of types available when creating a new note from the notes list as a comma-separated [String].
-  static String get availableAsString {
-    return available.map((type) => type.title).join(', ').capitalizeFirstLowerRest;
+  static String availableAsString(BuildContext context) {
+    return available.map((type) => type.title(context)).join(', ').capitalizeFirstLowerRest;
   }
 
   /// The default note type to used when creating a new note via a share action.
