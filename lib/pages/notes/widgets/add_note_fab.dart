@@ -6,13 +6,17 @@ import '../../../common/actions/notes/add.dart';
 import '../../../common/actions/notes/pop.dart';
 import '../../../common/constants/constants.dart';
 import '../../../common/extensions/build_context_extension.dart';
+import '../../../models/label/label.dart';
 import '../../../models/note/types/note_type.dart';
 import '../../../providers/notifiers/notifiers.dart';
 
 /// Floating action button to add a note.
 class AddNoteFab extends ConsumerStatefulWidget {
   /// Default constructor.
-  const AddNoteFab({super.key});
+  const AddNoteFab({super.key, required this.label});
+
+  /// The current label.
+  final Label? label;
 
   @override
   ConsumerState<AddNoteFab> createState() => _AddNoteFabState();
@@ -44,7 +48,7 @@ class _AddNoteFabState extends ConsumerState<AddNoteFab> {
           child: const Icon(Icons.add),
         )
         : ExpandableFab(
-          key: addNoteFabKey,
+          key: widget.label == null ? addNoteFabKey : labeledAddNoteFabKey,
           type: ExpandableFabType.up,
           childrenAnimation: ExpandableFabAnimation.none,
           distance: 64,

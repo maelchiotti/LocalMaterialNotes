@@ -57,9 +57,18 @@ class _NotesPageState extends ConsumerState<NotesPage> {
     if (notesPageScaffoldKey.currentState != null && notesPageScaffoldKey.currentState!.isDrawerOpen) {
       notesPageScaffoldKey.currentState!.closeDrawer();
     }
+    // Closes the navigation drawer (labeled page)
+    else if (labeledNotesPageScaffoldKey.currentState != null &&
+        labeledNotesPageScaffoldKey.currentState!.isDrawerOpen) {
+      labeledNotesPageScaffoldKey.currentState!.closeDrawer();
+    }
     // Closes the expandable FAB to add a note
     else if (addNoteFabKey.currentState != null && addNoteFabKey.currentState!.isOpen) {
       addNoteFabKey.currentState!.toggle();
+    }
+    // Closes the expandable FAB to add a note (labeled page)
+    else if (labeledAddNoteFabKey.currentState != null && labeledAddNoteFabKey.currentState!.isOpen) {
+      labeledAddNoteFabKey.currentState!.toggle();
     }
     // Unselects all notes
     else if (isNotesSelectionModeNotifier.value) {
@@ -90,14 +99,14 @@ class _NotesPageState extends ConsumerState<NotesPage> {
     final availableNotesTypes = NoteType.available;
 
     return Scaffold(
-      key: notesPageScaffoldKey,
+      key: widget.label == null ? notesPageScaffoldKey : labeledNotesPageScaffoldKey,
       appBar: TopNavigation(
         appbar: NotesAppBar(label: widget.label, notesStatus: NoteStatus.available),
         notesStatus: NoteStatus.available,
       ),
       drawer: SideNavigation(),
       floatingActionButtonLocation: availableNotesTypes.length > 1 ? ExpandableFab.location : null,
-      floatingActionButton: AddNoteFab(),
+      floatingActionButton: AddNoteFab(label: widget.label),
       onDrawerChanged: onDrawerChanged,
       body: ValueListenableBuilder(
         valueListenable: canPopNotifier,

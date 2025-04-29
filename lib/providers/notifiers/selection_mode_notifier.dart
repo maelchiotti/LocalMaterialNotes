@@ -14,8 +14,11 @@ class CanPopNotifier extends ValueNotifier<bool> {
     final isNotesSelectionMode = isNotesSelectionModeNotifier.value;
     final isLabelsSelectionMode = isLabelsSelectionModeNotifier.value;
 
-    final isAddNoteFabOpen = addNoteFabKey.currentState?.isOpen ?? false;
-    final bool isDrawerOpen = notesPageScaffoldKey.currentState?.isDrawerOpen ?? false;
+    final bool isDrawerOpen =
+        (notesPageScaffoldKey.currentState?.isDrawerOpen ?? false) ||
+        (labeledNotesPageScaffoldKey.currentState?.isDrawerOpen ?? false);
+    final isAddNoteFabOpen =
+        (addNoteFabKey.currentState?.isOpen ?? false) || (labeledAddNoteFabKey.currentState?.isOpen ?? false);
 
     final confirmBeforeExiting = PreferenceKey.confirmBeforeExiting.preferenceOrDefault;
     final mustConfirmToExit = confirmBeforeExiting ? mustConfirmToExitNotifier.value : true;

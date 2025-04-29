@@ -53,5 +53,11 @@ var lastForegroundTimestamp = DateTime.timestamp();
 /// The key of the notes page `Scaffold`.
 final notesPageScaffoldKey = GlobalKey<ScaffoldState>();
 
+/// The key of the labeled notes page `Scaffold`.
+final labeledNotesPageScaffoldKey = GlobalKey<ScaffoldState>();
+
 /// The key of the expandable FAB to add a note.
 final addNoteFabKey = GlobalKey<ExpandableFabState>();
+
+/// The key of the expandable FAB in a labeled notes page to add a note.
+final labeledAddNoteFabKey = GlobalKey<ExpandableFabState>();
