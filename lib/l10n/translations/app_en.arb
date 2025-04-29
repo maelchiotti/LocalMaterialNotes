@@ -31,7 +31,7 @@
   },
   "error_widget_disabled_secure_flag": "The setting to flag the app as secure is disabled until the next restart to enable screenshots.",
   "@error_widget_disabled_secure_flag": {
-    "description": "Label shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
+    "description": "Tag shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
   },
   "error_widget_button_export_notes": "Export notes",
   "@error_widget_button_export_notes": {
@@ -57,13 +57,13 @@
   "@navigation_notes": {
     "description": "Title of the notes page."
   },
-  "navigation_manage_labels_destination": "Manage labels",
+  "navigation_manage_labels_destination": "Manage tags",
   "@navigation_manage_labels_destination": {
-    "description": "Title of the button in the side navigation drawer to got to the page to manage the labels."
+    "description": "Title of the button in the side navigation drawer to got to the page to manage the tags."
   },
-  "navigation_manage_labels_page": "Labels",
+  "navigation_manage_labels_page": "Tags",
   "@navigation_manage_labels_page": {
-    "description": "Title of the page to manage the labels."
+    "description": "Title of the page to manage the tags."
   },
   "navigation_archives": "Archives",
   "@navigation_archives": {
@@ -97,9 +97,9 @@
   "@navigation_settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
-  "navigation_settings_labels": "Labels",
+  "navigation_settings_labels": "Tags",
   "@navigation_settings_labels": {
-    "description": "Title of the settings page regarding the labels."
+    "description": "Title of the settings page regarding the tags."
   },
   "navigation_settings_backup": "Backup",
   "@navigation_settings_backup": {
@@ -435,45 +435,45 @@
   "@settings_use_paragraph_spacing_description": {
     "description": "Description of the setting tile to enable the spacing between paragraphs in the notes content."
   },
-  "settings_labels": "Labels",
+  "settings_labels": "Tags",
   "@settings_labels": {
-    "description": "Title of the settings page regarding the labels functionality."
+    "description": "Title of the settings page regarding the tags functionality."
   },
   "settings_labels_description": "Enable, appearance",
   "@settings_labels_description": {
-    "description": "Description of the labels settings page."
+    "description": "Description of the tags settings page."
   },
   "settings_enable_labels": "Enable",
   "@settings_enable_labels": {
-    "description": "Title of the setting tile to enable the labels."
+    "description": "Title of the setting tile to enable the tags."
   },
-  "settings_enable_labels_description": "Allow to categorize the notes with labels (disabling it doesn''t delete labels nor remove them from the notes, it only hides them)",
+  "settings_enable_labels_description": "Allow to categorize the notes with tags (disabling it doesn''t delete tags nor remove them from the notes, it only hides them)",
   "@settings_enable_labels_description": {
-    "description": "Description of the setting tile to enable the labels."
+    "description": "Description of the setting tile to enable the tags."
   },
   "settings_labels_appearance": "Appearance",
   "@settings_labels_appearance": {
-    "description": "Title of the settings section regarding the appearance of the labels."
+    "description": "Title of the settings section regarding the appearance of the tags."
   },
-  "settings_show_labels_note_tile": "Show labels on note tile",
+  "settings_show_labels_note_tile": "Show tags on note tile",
   "@settings_show_labels_note_tile": {
-    "description": "Title of the setting tile to show the labels on the notes tiles."
+    "description": "Title of the setting tile to show the tags on the notes tiles."
   },
-  "settings_show_labels_note_tile_description": "Show the list of labels of the note tiles",
+  "settings_show_labels_note_tile_description": "Show the list of tags of the note tiles",
   "@settings_show_labels_note_tile_description": {
-    "description": "Description of the setting tile to show the labels on the notes tiles."
+    "description": "Description of the setting tile to show the tags on the notes tiles."
   },
-  "settings_show_labels_editor": "Show labels in editor",
+  "settings_show_labels_editor": "Show tags in editor",
   "@settings_show_labels_editor": {
-    "description": "Title of the setting tile to show the labels in the editor."
+    "description": "Title of the setting tile to show the tags in the editor."
   },
-  "settings_show_labels_editor_description": "Show the list of labels at the bottom of the editor",
+  "settings_show_labels_editor_description": "Show the list of tags at the bottom of the editor",
   "@settings_show_labels_editor_description": {
-    "description": "Description of the setting tile to show the labels in the editor."
+    "description": "Description of the setting tile to show the tags in the editor."
   },
   "settings_labels_section_behavior": "Behavior",
   "@settings_labels_section_behavior": {
-    "description": "Title of the settings section regarding the behavior of the labels."
+    "description": "Title of the settings section regarding the behavior of the tags."
   },
   "settings_labels_swipe_action_right": "Right swipe action",
   "@settings_labels_swipe_action_right": {
@@ -507,7 +507,7 @@
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
-  "settings_import_description": "Import notes, labels and settings from a JSON file",
+  "settings_import_description": "Import notes, tags and settings from a JSON file",
   "@settings_import_description": {
     "description": "Description of the setting tile to import a backup."
   },
@@ -519,7 +519,7 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "Immediately export all the notes, labels and settings to a JSON file that can be imported back",
+  "settings_export_json_description": "Immediately export all the notes, tags and settings to a JSON file that can be imported back",
   "@settings_export_json_description": {
     "description": "Description of the setting tile to manually export the notes as JSON."
   },
@@ -539,7 +539,7 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "Automatically export all the notes, labels and settings to a JSON file that can be imported back",
+  "settings_auto_export_description": "Automatically export all the notes, tags and settings to a JSON file that can be imported back",
   "@settings_auto_export_description": {
     "description": "Description of the settings tile to enable the automatic export."
   },
@@ -639,13 +639,13 @@
   "@settings_note_lock_description": {
     "description": "Description of the setting tile to toggle whether the notes can be locked."
   },
-  "settings_label_lock_title": "Label lock",
+  "settings_label_lock_title": "Tag lock",
   "@settings_label_lock_title": {
-    "description": "Title of the setting tile to toggle whether the labels can be locked."
+    "description": "Title of the setting tile to toggle whether the tags can be locked."
   },
-  "settings_label_lock_description": "Lock the label and require to authenticate with the device to view and edit any note that contains it",
+  "settings_label_lock_description": "Lock the tag and require to authenticate with the device to view and edit any note that contains it",
   "@settings_label_lock_description": {
-    "description": "Description of the setting tile to toggle whether the labels can be locked."
+    "description": "Description of the setting tile to toggle whether the tags can be locked."
   },
   "settings_note_lock_delay_title": "Lock delay",
   "@settings_note_lock_delay_title": {
@@ -833,19 +833,19 @@
   },
   "hint_label_name": "Name",
   "@hint_label_name": {
-    "description": "Hint for the text field of the name of a label."
+    "description": "Hint for the text field of the name of a tag."
   },
   "dialog_export_encryption_password": "Password",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
   },
-  "dialog_select_labels": "Select labels",
+  "dialog_select_labels": "Select tags",
   "@dialog_select_labels": {
-    "description": "Title of the dialog to select the labels of a note."
+    "description": "Title of the dialog to select the tags of a note."
   },
-  "dialog_select_labels_to_add": "Select labels to add",
+  "dialog_select_labels_to_add": "Select tags to add",
   "@dialog_select_labels_to_add": {
-    "description": "Title of the dialog to select the labels to add to the currently selected notes."
+    "description": "Title of the dialog to select the tags to add to the currently selected notes."
   },
   "tooltip_undo": "Undo the last action",
   "@tooltip_undo": {
@@ -875,9 +875,9 @@
   "@tooltip_fab_add_checklist_note": {
     "description": "Floating action button in the notes page to add a new checklist note."
   },
-  "tooltip_fab_add_label": "Add a label",
+  "tooltip_fab_add_label": "Add a tag",
   "@tooltip_fab_add_label": {
-    "description": "Floating action button in the labels page to add a new label."
+    "description": "Floating action button in the tags page to add a new tag."
   },
   "tooltip_fab_empty_bin": "Empty the bin",
   "@tooltip_fab_empty_bin": {
@@ -999,9 +999,9 @@
   },
   "dialog_delete_label": "Delete",
   "@dialog_delete_label": {
-    "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
+    "description": "Title of the the dialog to delete one or multiple tags, and text for the confirmation button."
   },
-  "dialog_delete_label_body": "Do you really want to delete {count} {count, plural, one{label} other{labels}}? {count, plural, one{It} other{They}} will be removed from the notes where you added {count, plural, one{it} other{them}}.",
+  "dialog_delete_label_body": "Do you really want to delete {count} {count, plural, one{tag} other{tags}}? {count, plural, one{It} other{They}} will be removed from the notes where you added {count, plural, one{it} other{them}}.",
   "@dialog_delete_label_body": {
     "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
     "placeholders": {
@@ -1039,21 +1039,21 @@
   "@dialog_import_encryption_password_error": {
     "description": "Error when the decryption of an encrypted import failed."
   },
-  "dialog_label_add": "Add label",
+  "dialog_label_add": "Add tag",
   "@dialog_label_add": {
-    "description": "Title of the dialog to add a label."
+    "description": "Title of the dialog to add a tag."
   },
-  "dialog_label_edit": "Edit label",
+  "dialog_label_edit": "Edit tag",
   "@dialog_label_edit": {
-    "description": "Title of the dialog to edit a label."
+    "description": "Title of the dialog to edit a tag."
   },
   "dialog_label_name_cannot_be_empty": "The name cannot be empty.",
   "@dialog_label_name_cannot_be_empty": {
-    "description": "Error message shown when relevant on the text field of the name of the label."
+    "description": "Error message shown when relevant on the text field of the name of the tag."
   },
   "dialog_label_name_already_used": "This name is already used.",
   "@dialog_label_name_already_used": {
-    "description": "Error message shown when relevant on the text field of the name of the label."
+    "description": "Error message shown when relevant on the text field of the name of the tag."
   },
   "button_sort_creation_date": "Creation date",
   "@button_sort_creation_date": {
@@ -1067,9 +1067,9 @@
   "@placeholder_notes": {
     "description": "Placeholder on the notes page when there are no notes."
   },
-  "placeholder_labels": "No labels",
+  "placeholder_labels": "No tags",
   "@placeholder_labels": {
-    "description": "Placeholder on the labels page when there are no labels."
+    "description": "Placeholder on the tags page when there are no tags."
   },
   "placeholder_archives": "No archived notes",
   "@placeholder_archives": {
@@ -1165,9 +1165,9 @@
   "@about_created": {
     "description": "Date when the note was created."
   },
-  "about_labels": "Labels",
+  "about_labels": "Tags",
   "@about_labels": {
-    "description": "Number of labels of the note."
+    "description": "Number of tags of the note."
   },
   "about_words": "Words",
   "@about_words": {
@@ -1181,89 +1181,89 @@
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
-  "menu_action_select_labels": "Labels",
+  "menu_action_select_labels": "Tags",
   "@menu_action_select_labels": {
-    "description": "Menu action to select the labels of a note."
+    "description": "Menu action to select the tags of a note."
   },
-  "menu_action_add_labels": "Add labels",
+  "menu_action_add_labels": "Add tags",
   "@menu_action_add_labels": {
-    "description": "Menu action to add labels to multiple notes."
+    "description": "Menu action to add tags to multiple notes."
   },
   "action_labels_toggle_visibile": "Toggle visibility",
   "@action_labels_toggle_visibile": {
-    "description": "Tooltip for the button to toggle whether the selected labels are visible."
+    "description": "Tooltip for the button to toggle whether the selected tags are visible."
   },
   "action_labels_show_hide": "Show / Hide",
   "@action_labels_show_hide": {
-    "description": "Swipe action to show or hide a label."
+    "description": "Swipe action to show or hide a tag."
   },
   "action_labels_show": "Show",
   "@action_labels_show": {
-    "description": "Menu or swipe action to make label visible."
+    "description": "Menu or swipe action to make tag visible."
   },
   "action_labels_hide": "Hide",
   "@action_labels_hide": {
-    "description": "Menu or swipe action to hide a label."
+    "description": "Menu or swipe action to hide a tag."
   },
   "action_labels_toggle_pins": "Toggle pins",
   "@action_labels_toggle_pins": {
-    "description": "Menu action to toggle whether the selected labels are pinned."
+    "description": "Menu action to toggle whether the selected tags are pinned."
   },
   "action_labels_pin_unpin": "Pin / Unpin",
   "@action_labels_pin_unpin": {
-    "description": "Swipe action to pin or unpin a label."
+    "description": "Swipe action to pin or unpin a tag."
   },
   "action_labels_pin": "Pin",
   "@action_labels_pin": {
-    "description": "Menu or swipe action to pin a label."
+    "description": "Menu or swipe action to pin a tag."
   },
   "action_labels_unpin": "Unpin",
   "@action_labels_unpin": {
-    "description": "Menu or swipe action to unpin a label."
+    "description": "Menu or swipe action to unpin a tag."
   },
   "action_labels_toggle_lock": "Toggle lock",
   "@action_labels_toggle_lock": {
-    "description": "Tooltip for the button to toggle whether the selected labels are locked."
+    "description": "Tooltip for the button to toggle whether the selected tags are locked."
   },
   "action_labels_lock_unlock": "Lock / Unlock",
   "@action_labels_lock_unlock": {
-    "description": "Swipe action to lock or unlock a label."
+    "description": "Swipe action to lock or unlock a tag."
   },
   "action_labels_lock": "Lock",
   "@action_labels_lock": {
-    "description": "Menu or swipe action to lock a label."
+    "description": "Menu or swipe action to lock a tag."
   },
   "action_labels_unlock": "Unlock",
   "@action_labels_unlock": {
-    "description": "Menu or swipe action to unlock a label."
+    "description": "Menu or swipe action to unlock a tag."
   },
   "action_labels_edit": "Edit",
   "@action_labels_edit": {
-    "description": "Menu or swipe action to edit a label."
+    "description": "Menu or swipe action to edit a tag."
   },
   "action_labels_delete": "Delete",
   "@action_labels_delete": {
-    "description": "Menu or swipe action to delete a label."
+    "description": "Menu or swipe action to delete a tag."
   },
   "filter_labels_all": "All",
   "@filter_labels_all": {
-    "description": "Filter chip in the labels page to all labels."
+    "description": "Filter chip in the tags page to all tags."
   },
   "filter_labels_visible": "Visible",
   "@filter_labels_visible": {
-    "description": "Filter chip in the labels page to show only the visible labels."
+    "description": "Filter chip in the tags page to show only the visible tags."
   },
   "filter_labels_hidden": "Hidden",
   "@filter_labels_hidden": {
-    "description": "Filter chip in the labels page to show only the hidden labels."
+    "description": "Filter chip in the tags page to show only the hidden tags."
   },
   "filter_labels_pinned": "Pinned",
   "@filter_labels_pinned": {
-    "description": "Filter chip in the labels page to show only the pinned labels."
+    "description": "Filter chip in the tags page to show only the pinned tags."
   },
   "filter_labels_locked": "Locked",
   "@filter_labels_locked": {
-    "description": "Filter chip in the labels page to show only the locked labels."
+    "description": "Filter chip in the tags page to show only the locked tags."
   },
   "snack_bar_authentication_failed": "The authentication failed, please try again.",
   "@snack_bar_authentication_failed": {
@@ -1335,9 +1335,9 @@
   "@snack_bar_logs_exported": {
     "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
   },
-  "snack_bar_no_labels": "There are no labels.",
+  "snack_bar_no_labels": "There are no tags.",
   "@snack_bar_no_labels": {
-    "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
+    "description": "Snack bar message shown when the user tries to select the tags for a note, but there are no tags available."
   },
   "quick_action_add_plain_text_note_title": "Add a plain text note",
   "@quick_action_add_plain_text_note_title": {
