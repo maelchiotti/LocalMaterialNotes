@@ -20,7 +20,7 @@ class ThemeUtils {
   /// Custom primary color.
   final customPrimaryColor = const Color(0xFF2278e9);
 
-  /// Whether the dynamic theming is available on the device?
+  /// Whether the dynamic theming is available on the device.
   late final bool isDynamicThemingAvailable;
 
   /// Ensures the utility is initialized.
@@ -67,6 +67,7 @@ class ThemeUtils {
       colorScheme = lightDynamicColorScheme.copyWith(
         surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
         surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
+        surfaceContainer: temporaryColorScheme.surfaceContainer,
         surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
         surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
       );
@@ -107,12 +108,14 @@ class ThemeUtils {
                 surface: Colors.black,
                 surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
                 surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
+                surfaceContainer: temporaryColorScheme.surfaceContainer,
                 surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
                 surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
               )
               : darkDynamicColorScheme.copyWith(
                 surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
                 surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
+                surfaceContainer: temporaryColorScheme.surfaceContainer,
                 surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
                 surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
               );
