@@ -32,7 +32,7 @@ final screenshotNotes = [
     editedTime: DateTime(2000, 01, 01, 11, 55),
     title: "Take notes",
     content:
-        '[{"insert":"Write text notes"},{"insert":"\\n","attributes":{"block":"cl","checked":true}},{"insert":"Use formatting options and undo/redo"},{"insert":"\\n","attributes":{"block":"cl","checked":true}},{"insert":"Use quick action to add from your homescreen"},{"insert":"\\n","attributes":{"block":"cl","checked":true}}]',
+        '[{"insert":"Write text notes"},{"insert":"\\n","attributes":{"block":"cl","checked":true}},{"insert":"Use plain text, markdown, rich text or checklist notes"},{"insert":"\\n","attributes":{"block":"cl","checked":true}},{"insert":"Use quick action to add from your home screen"},{"insert":"\\n","attributes":{"block":"cl","checked":true}}]',
   ),
   RichTextNote(
     archived: false,
@@ -41,7 +41,7 @@ final screenshotNotes = [
     createdTime: DateTime(2000, 01, 01, 11, 50),
     editedTime: DateTime(2000, 01, 01, 11, 50),
     title: "Organize",
-    content: '[{"insert":"Search, sort and display in a list or a grid\\nPin and recover from the bin\\n"}]',
+    content: '[{"insert":"Search, sort and display in a list or a grid\\nPin, archive and recover from the bin\\n"}]',
   ),
   RichTextNote(
     archived: false,
@@ -66,20 +66,21 @@ final screenshotNotes = [
     archived: false,
     deleted: false,
     pinned: false,
-    createdTime: DateTime(2000, 01, 01, 11, 40),
-    editedTime: DateTime(2000, 01, 01, 11, 40),
-    title: "Customize",
+    createdTime: DateTime(2000, 01, 01, 11, 35),
+    editedTime: DateTime(2000, 01, 01, 11, 35),
+    title: "Protect",
     content:
-        "[{\"insert\":\"Choose your language\\nChoose your theme (including black and dynamic)\\nHide features you don't need\\n\"}]",
+        '[{"insert":"Your data never leaves your device\\nLock the app, a note or a label\\nEncrypt your exports\\n"}]',
   ),
   RichTextNote(
     archived: false,
     deleted: false,
     pinned: false,
-    createdTime: DateTime(2000, 01, 01, 11, 35),
-    editedTime: DateTime(2000, 01, 01, 11, 35),
-    title: "Protect",
-    content: '[{"insert":"Your data never leaves your device\\nEncrypt your exports\\n"}]',
+    createdTime: DateTime(2000, 01, 01, 11, 40),
+    editedTime: DateTime(2000, 01, 01, 11, 40),
+    title: "Customize",
+    content:
+        "[{\"insert\":\"Choose your language\\nChoose your theme (including black and dynamic)\\nHide features you don't need\\n\"}]",
   ),
   RichTextNote(
     archived: false,

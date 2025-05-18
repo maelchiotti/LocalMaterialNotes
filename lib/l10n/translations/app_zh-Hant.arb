@@ -31,7 +31,7 @@
   },
   "error_widget_disabled_secure_flag": "標記應用程式為安全的設定已停用，直至下一次重新啟動，以便截圖。",
   "@error_widget_disabled_secure_flag": {
-    "description": "Label shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
+    "description": "Tag shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
   },
   "error_widget_button_export_notes": "匯出筆記",
   "@error_widget_button_export_notes": {
@@ -59,11 +59,15 @@
   },
   "navigation_manage_labels_destination": "管理標籤",
   "@navigation_manage_labels_destination": {
-    "description": "Title of the button in the side navigation drawer to got to the page to manage the labels."
+    "description": "Title of the button in the side navigation drawer to got to the page to manage the tags."
   },
   "navigation_manage_labels_page": "標籤",
   "@navigation_manage_labels_page": {
-    "description": "Title of the page to manage the labels."
+    "description": "Title of the page to manage the tags."
+  },
+  "navigation_archives": "封存",
+  "@navigation_archives": {
+    "description": "Title of the archives page."
   },
   "navigation_bin": "垃圾桶",
   "@navigation_bin": {
@@ -76,6 +80,10 @@
   "navigation_settings_appearance": "外觀",
   "@navigation_settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
+  },
+  "navigation_settings_notes_types": "筆記類型",
+  "@navigation_settings_notes_types": {
+    "description": "Title of the settings page regarding the notes types."
   },
   "navigation_settings_notes_tiles": "筆記方塊",
   "@navigation_settings_notes_tiles": {
@@ -91,15 +99,23 @@
   },
   "navigation_settings_labels": "標籤",
   "@navigation_settings_labels": {
-    "description": "Title of the settings page regarding the labels."
+    "description": "Title of the settings page regarding the tags."
   },
   "navigation_settings_backup": "備份",
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
   },
+  "navigation_settings_security": "安全性",
+  "@navigation_settings_security": {
+    "description": "Title of the settings page regarding the security."
+  },
   "navigation_settings_accessibility": "輔助",
   "@navigation_settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
+  },
+  "navigation_settings_help": "說明",
+  "@navigation_settings_help": {
+    "description": "Title of the settings page to receive help."
   },
   "navigation_settings_about": "關於",
   "@navigation_settings_about": {
@@ -217,6 +233,14 @@
   "@settings_show_separators_description": {
     "description": "Description of the setting tile to show the separators between the notes tiles."
   },
+  "settings_show_note_type_icon": "顯示類型圖示",
+  "@settings_show_note_type_icon": {
+    "description": "Title of the setting tile to show the icon of the type of the note."
+  },
+  "settings_show_note_type_icon_description": "顯示筆記類型圖示",
+  "@settings_show_note_type_icon_description": {
+    "description": "Description of the setting tile to show the icon of the type of the note."
+  },
   "settings_show_titles_only": "僅顯示標題",
   "@settings_show_titles_only": {
     "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
@@ -245,7 +269,7 @@
   "@settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
-  "settings_behavior_description": "確認、安全旗標、滑動動作",
+  "settings_behavior_description": "確認、滑動動作",
   "@settings_behavior_description": {
     "description": "Description of the behavior settings page."
   },
@@ -273,17 +297,31 @@
   "@settings_confirmations_title_all": {
     "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
   },
-  "settings_flag_secure": "標記應用程式為安全",
-  "@settings_flag_secure": {
-    "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  "settings_auto_remove_from_bin_title": "垃圾桶自動移除",
+  "@settings_auto_remove_from_bin_title": {
+    "description": "Title of the setting tile to automatically remove notes from the bin after a certain delay."
   },
-  "settings_flag_secure_description": "從最近使用應用程式中隱藏並阻止截圖",
-  "@settings_flag_secure_description": {
-    "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  "settings_auto_remove_from_bin_description": "自動移除垃圾桶中的筆記",
+  "@settings_auto_remove_from_bin_description": {
+    "description": "Description of the setting tile to automatically remove notes from the bin after a certain delay."
+  },
+  "settings_auto_remove_from_bin_value": "{delay, select, 7{1 週後} 14{2 週後} 30{1 個月後} 90{3 個月後} 180{6 個月後} 365{1 年後} other{永不}}",
+  "@settings_auto_remove_from_bin_value": {
+    "description": "Value of the setting tile to choose after which amount of time the application/note/label locks itself after the application was moved to the background.",
+    "placeholders": {
+      "delay": {
+        "type": "String",
+        "description": "Delay in days."
+      }
+    }
   },
   "settings_behavior_swipe_actions": "滑動動作",
   "@settings_behavior_swipe_actions": {
     "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
+  },
+  "settings_behavior_swipe_actions_archives": "滑動動作 (封存)",
+  "@settings_behavior_swipe_actions_archives": {
+    "description": "Title of the section regarding the swipe actions on the notes tiles in the archives under the behavior settings."
   },
   "settings_behavior_swipe_actions_bin": "滑動動作 (垃圾桶)",
   "@settings_behavior_swipe_actions_bin": {
@@ -313,41 +351,41 @@
   "@settings_bin_swipe_action_left_description": {
     "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile in the bin."
   },
+  "settings_page_notes_types": "筆記類型",
+  "@settings_page_notes_types": {
+    "description": "Title of the settings page regarding the notes types."
+  },
+  "settings_page_notes_types_description": "使用的類型、格式化文字",
+  "@settings_page_notes_types_description": {
+    "description": "Description of the settings page regarding the notes types."
+  },
+  "settings_section_types_to_use": "使用的類型",
+  "@settings_section_types_to_use": {
+    "description": "Title of the settings section regarding the notes types to use."
+  },
+  "settings_available_notes_types": "可用的筆記類型",
+  "@settings_available_notes_types": {
+    "description": "Title of the setting tile to choose the available notes types."
+  },
+  "settings_available_notes_types_description": "在筆記頁面中使用「新增」按鈕可建立的筆記類型清單。即使移除類型，現有的筆記並不會刪除，且可如常使用",
+  "@settings_available_notes_types_description": {
+    "description": "Description of the setting tile to choose the available notes types."
+  },
+  "settings_available_default_share_type": "預設分享類型",
+  "@settings_available_default_share_type": {
+    "description": "Title of the setting tile to choose the default note type to use when creating a note from a share action."
+  },
+  "settings_available_default_share_type_description": "藉由分享動作建立筆記時預設使用的筆記類型。可以是「新增」按鈕不使用的類型",
+  "@settings_available_default_share_type_description": {
+    "description": "Description of the setting tile to choose the default note type to use when creating a note from a share action."
+  },
   "settings_editor": "編輯器",
   "@settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
-  "settings_editor_description": "按鈕、工具列、閱讀模式、留白",
+  "settings_editor_description": "行為",
   "@settings_editor_description": {
     "description": "Description of the editor settings page."
-  },
-  "settings_editor_formatting": "格式設定",
-  "@settings_editor_formatting": {
-    "description": "Title of the settings section regarding the notes content formatting in the editor."
-  },
-  "settings_show_undo_redo_buttons": "復原/重做按鈕",
-  "@settings_show_undo_redo_buttons": {
-    "description": "Title of the setting tile to enable the the undo and redo buttons in the editor."
-  },
-  "settings_show_undo_redo_buttons_description": "在編輯器的應用程式列中顯示復原及重做變更的按鈕",
-  "@settings_show_undo_redo_buttons_description": {
-    "description": "Description of the setting tile to enable the the undo and redo buttons in the editor."
-  },
-  "settings_show_checklist_button": "核選清單按鈕",
-  "@settings_show_checklist_button": {
-    "description": "Title of the setting tile to enable the checklist button in the editor."
-  },
-  "settings_show_checklist_button_description": "在編輯器的應用程式列中顯示切換核選清單的按鈕，啟用時則從編輯器的工具列中隱藏相關按鈕",
-  "@settings_show_checklist_button_description": {
-    "description": "Description of the setting tile to enable the checklist button in the editor."
-  },
-  "settings_show_toolbar": "工具列",
-  "@settings_show_toolbar": {
-    "description": "Title of the setting tile to enable the toolbar for advanced formatting options in the editor."
-  },
-  "settings_show_toolbar_description": "顯示編輯器的工具列，以便啟用進階文字格式設定",
-  "@settings_show_toolbar_description": {
-    "description": "Description of the setting tile to enable the toolbar for advanced formatting options in the editor."
   },
   "settings_editor_behavior": "行為",
   "@settings_editor_behavior": {
@@ -381,6 +419,14 @@
   "@settings_editor_appearance": {
     "description": "Title of the settings section regarding the appearance of the editor"
   },
+  "settings_toolbar_style_title": "工具列樣式",
+  "@settings_toolbar_style_title": {
+    "description": "Title of the setting tile to choose the toolbar style."
+  },
+  "settings_toolbar_style_description": "格式化文字編輯器中的工具列樣式",
+  "@settings_toolbar_style_description": {
+    "description": "Description of the setting tile to choose the toolbar style."
+  },
   "settings_use_paragraph_spacing": "分段留白",
   "@settings_use_paragraph_spacing": {
     "description": "Title of the setting tile to enable the spacing between paragraphs in the notes content."
@@ -391,39 +437,59 @@
   },
   "settings_labels": "標籤",
   "@settings_labels": {
-    "description": "Title of the settings page regarding the labels functionality."
+    "description": "Title of the settings page regarding the tags functionality."
   },
   "settings_labels_description": "啟用、外觀",
   "@settings_labels_description": {
-    "description": "Description of the labels settings page."
+    "description": "Description of the tags settings page."
   },
   "settings_enable_labels": "啟用",
   "@settings_enable_labels": {
-    "description": "Title of the setting tile to enable the labels."
+    "description": "Title of the setting tile to enable the tags."
   },
   "settings_enable_labels_description": "允許以標籤分類筆記 (停用僅隱藏標籤，不會刪除或從筆記移除標籤)",
   "@settings_enable_labels_description": {
-    "description": "Description of the setting tile to enable the labels."
+    "description": "Description of the setting tile to enable the tags."
   },
   "settings_labels_appearance": "外觀",
   "@settings_labels_appearance": {
-    "description": "Title of the settings section regarding the appearance of the labels."
+    "description": "Title of the settings section regarding the appearance of the tags."
   },
   "settings_show_labels_note_tile": "筆記方塊上顯示標籤",
   "@settings_show_labels_note_tile": {
-    "description": "Title of the setting tile to show the labels on the notes tiles."
+    "description": "Title of the setting tile to show the tags on the notes tiles."
   },
   "settings_show_labels_note_tile_description": "顯示筆記方塊的標籤清單",
   "@settings_show_labels_note_tile_description": {
-    "description": "Description of the setting tile to show the labels on the notes tiles."
+    "description": "Description of the setting tile to show the tags on the notes tiles."
   },
   "settings_show_labels_editor": "編輯器中顯示標籤",
   "@settings_show_labels_editor": {
-    "description": "Title of the setting tile to show the labels in the editor."
+    "description": "Title of the setting tile to show the tags in the editor."
   },
   "settings_show_labels_editor_description": "編輯器底部顯示標籤清單",
   "@settings_show_labels_editor_description": {
-    "description": "Description of the setting tile to show the labels in the editor."
+    "description": "Description of the setting tile to show the tags in the editor."
+  },
+  "settings_labels_section_behavior": "行為",
+  "@settings_labels_section_behavior": {
+    "description": "Title of the settings section regarding the behavior of the tags."
+  },
+  "settings_labels_swipe_action_right": "向右滑動動作",
+  "@settings_labels_swipe_action_right": {
+    "description": "Title of the setting tile to choose which action to trigger when a right swapping a label tile."
+  },
+  "settings_labels_swipe_action_right_description": "向右滑動標籤方塊時要觸發的動作",
+  "@settings_labels_swipe_action_right_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a label tile."
+  },
+  "settings_labels_swipe_action_left": "向左滑動動作",
+  "@settings_labels_swipe_action_left": {
+    "description": "Title of the setting tile to choose which action to trigger when a left swapping a label tile."
+  },
+  "settings_labels_swipe_action_left_description": "向左滑動標籤方塊時要觸發的動作",
+  "@settings_labels_swipe_action_left_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a label tile."
   },
   "settings_backup": "備份",
   "@settings_backup": {
@@ -453,7 +519,7 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "立即將筆記、標籤和設定匯出成 JSON 檔案 (連同垃圾桶)，以便日後可重新匯入",
+  "settings_export_json_description": "立即將所有筆記、標籤和設定匯出成 JSON 檔案，以便日後可重新匯入",
   "@settings_export_json_description": {
     "description": "Description of the setting tile to manually export the notes as JSON."
   },
@@ -461,7 +527,7 @@
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
   },
-  "settings_export_markdown_description": "立即將筆記匯出成 Markdown 檔案 (連同垃圾桶)",
+  "settings_export_markdown_description": "立即將所有筆記匯出成 Markdown 檔案",
   "@settings_export_markdown_description": {
     "description": "Description of the setting tile to manually export the notes as Markdown."
   },
@@ -473,7 +539,7 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "自動將筆記、標籤和設定匯出成 JSON 檔案 (連同垃圾桶)，以便日後可重新匯入",
+  "settings_auto_export_description": "自動將所有筆記、標籤和設定匯出成 JSON 檔案，以便日後可重新匯入",
   "@settings_auto_export_description": {
     "description": "Description of the settings tile to enable the automatic export."
   },
@@ -481,12 +547,12 @@
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "每{frequency, select, 1{天} 7{週} 14{兩星期} 30{月} other{ {frequency} 天}}",
+  "settings_auto_export_frequency_value": "每{frequency, select, 1{天} 7{週} 14{兩星期} 30{月} other{}}",
   "@settings_auto_export_frequency_value": {
     "description": "Frequency of the automatic exports.",
     "placeholders": {
       "frequency": {
-        "description": "Value of the frequency (as a String to enable the select, but it's an int).",
+        "description": "Frequency in days.",
         "type": "String"
       }
     }
@@ -511,9 +577,87 @@
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_security": "安全性",
+  "@settings_security": {
+    "description": "Title of the settings page regarding the security."
+  },
+  "settings_security_description": "安全旗標、應用程式鎖定、筆記鎖定",
+  "@settings_security_description": {
+    "description": "Description of the settings page regarding the security."
+  },
+  "settings_security_application": "應用程式",
+  "@settings_security_application": {
+    "description": "Title of the sub-section regarding the application under the security settings."
+  },
+  "settings_security_application_lock": "應用程式鎖定",
+  "@settings_security_application_lock": {
+    "description": "Title of the sub-section regarding the application lock under the security settings."
+  },
+  "settings_security_note_lock": "筆記鎖定",
+  "@settings_security_note_lock": {
+    "description": "Title of the sub-section regarding the note lock under the security settings."
+  },
+  "settings_flag_secure": "標記應用程式為安全",
+  "@settings_flag_secure": {
+    "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  },
+  "settings_flag_secure_description": "從最近使用應用程式中隱藏並阻止截圖",
+  "@settings_flag_secure_description": {
+    "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  },
+  "settings_application_lock_title": "鎖定",
+  "@settings_application_lock_title": {
+    "description": "Title of the setting tile to toggle whether the application is locked."
+  },
+  "settings_application_lock_description": "鎖定應用程式並要求以裝置的認證方式解除鎖定",
+  "@settings_application_lock_description": {
+    "description": "Description of the setting tile to toggle whether the application is locked."
+  },
+  "settings_application_lock_delay_title": "鎖定延遲",
+  "@settings_application_lock_delay_title": {
+    "description": "Title of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
+  },
+  "settings_application_lock_delay_description": "當應用程式移至背景時，相隔多久才鎖定應用程式",
+  "@settings_application_lock_delay_description": {
+    "description": "Description of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
+  },
+  "settings_lock_delay_value": "{delay, select, 0{立即} 3{3 秒後} 5{5 秒後} 10{10 秒後} 30{30 秒後} 60{1 分鐘後} 120{2 分鐘後} 300{5 分鐘後} other{永不}}",
+  "@settings_lock_delay_value": {
+    "description": "Value of the setting tile to choose after which amount of time the application/note/label locks itself after the application was moved to the background.",
+    "placeholders": {
+      "delay": {
+        "type": "String",
+        "description": "Delay in seconds."
+      }
+    }
+  },
+  "settings_note_lock_title": "筆記鎖定",
+  "@settings_note_lock_title": {
+    "description": "Title of the setting tile to toggle whether the notes can be locked."
+  },
+  "settings_note_lock_description": "鎖定筆記並要求以裝置的認證方式解除鎖定，方可檢視與編輯",
+  "@settings_note_lock_description": {
+    "description": "Description of the setting tile to toggle whether the notes can be locked."
+  },
+  "settings_label_lock_title": "標籤鎖定",
+  "@settings_label_lock_title": {
+    "description": "Title of the setting tile to toggle whether the tags can be locked."
+  },
+  "settings_label_lock_description": "鎖定標籤並要求以裝置的認證方式解除鎖定，方可檢視與編輯任何已加上此標籤的筆記",
+  "@settings_label_lock_description": {
+    "description": "Description of the setting tile to toggle whether the tags can be locked."
+  },
+  "settings_note_lock_delay_title": "鎖定延遲",
+  "@settings_note_lock_delay_title": {
+    "description": "Title of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
+  },
+  "settings_note_lock_delay_description": "當應用程式移至背景時，相隔多久才鎖定筆記",
+  "@settings_note_lock_delay_description": {
+    "description": "Description of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
+  },
   "settings_accessibility": "輔助",
   "@settings_accessibility": {
-    "description": "Title of the settings page regarding the accessibility."
+    "description": "Title of the settings page regarding the accessibility"
   },
   "settings_accessibility_text_size": "文字大小",
   "@settings_accessibility_text_size": {
@@ -533,11 +677,11 @@
   },
   "settings_bigger_titles": "標題放大",
   "@settings_bigger_titles": {
-    "description": "Title of the setting tile to use bigger titles on the notes tiles."
+    "description": "Title of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
-  "settings_bigger_titles_description": "放大筆記方塊的標題",
+  "settings_bigger_titles_description": "放大筆記方塊與編輯器中的標題",
   "@settings_bigger_titles_description": {
-    "description": "Description of the setting tile to use bigger titles on the notes tiles."
+    "description": "Description of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
   "settings_white_text_dark_mode": "深色模式白字顯示",
   "@settings_white_text_dark_mode": {
@@ -555,33 +699,9 @@
   "@settings_disable_subdued_note_content_preview_description": {
     "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
-  "settings_about": "關於",
-  "@settings_about": {
-    "description": "Title of the settings page regarding the information about the application."
-  },
-  "settings_about_description": "資訊、說明、連結",
-  "@settings_about_description": {
-    "description": "Description of the about settings section."
-  },
-  "settings_about_application": "應用程式",
-  "@settings_about_application": {
-    "description": "Title of the settings section regarding the information about the application."
-  },
-  "settings_build_mode": "組建模式",
-  "@settings_build_mode": {
-    "description": "Title of the settings tile displaying the build mode of the application."
-  },
-  "settings_build_mode_release": "發行版",
-  "@settings_build_mode_release": {
-    "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
-  },
-  "settings_build_mode_debug": "除錯版",
-  "@settings_build_mode_debug": {
-    "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
-  },
-  "settings_about_help": "說明",
-  "@settings_about_help": {
-    "description": "Title of the settings section regarding how to get help for the application."
+  "settings_help_section_contact": "聯絡",
+  "@settings_help_section_contact": {
+    "description": "Title of the settings section regarding how to get in contact."
   },
   "settings_github_issues": "報告問題或功能請求",
   "@settings_github_issues": {
@@ -599,13 +719,65 @@
   "@settings_github_discussions_description": {
     "description": "Description of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_get_in_touch": "聯絡開發者",
-  "@settings_get_in_touch": {
+  "settings_contact_developer": "聯絡開發者",
+  "@settings_contact_developer": {
     "description": "Title of the settings tile to contact the developer via mail."
   },
   "settings_get_in_touch_description": "寄送郵件聯絡開發者：{email}",
   "@settings_get_in_touch_description": {
     "description": "Description of the settings tile to contact the developer via mail."
+  },
+  "settings_help": "說明",
+  "@settings_help": {
+    "description": "Title of the settings page to receive help."
+  },
+  "settings_help_description": "聯絡、記錄檔",
+  "@settings_help_description": {
+    "description": "Description of the settings page to receive help."
+  },
+  "settings_help_section_logs": "記錄檔",
+  "@settings_help_section_logs": {
+    "description": "Title of the settings section regarding the logs of the application."
+  },
+  "settings_copy_logs": "複製記錄檔",
+  "@settings_copy_logs": {
+    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_copy_logs_description": "將應用程式的記錄檔複製至剪貼簿",
+  "@settings_copy_logs_description": {
+    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_export_logs": "匯出記錄檔",
+  "@settings_export_logs": {
+    "description": "Title of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_export_logs_description": "將應用程式的記錄檔匯出至文字檔",
+  "@settings_export_logs_description": {
+    "description": "Description of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_about": "關於",
+  "@settings_about": {
+    "description": "Title of the settings page regarding the information about the application."
+  },
+  "settings_about_description": "資訊、連結、捐款",
+  "@settings_about_description": {
+    "description": "Description of the settings page regarding the information about the application."
+  },
+  "settings_about_application": "應用程式",
+  "@settings_about_application": {
+    "description": "Title of the settings section regarding the information about the application."
+  },
+  "settings_build_mode": "組建模式",
+  "@settings_build_mode": {
+    "description": "Title of the settings tile displaying the build mode of the application."
+  },
+  "settings_build_mode_release": "發行版",
+  "@settings_build_mode_release": {
+    "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
+  },
+  "settings_build_mode_debug": "除錯版",
+  "@settings_build_mode_debug": {
+    "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
   },
   "settings_about_links": "連結",
   "@settings_about_links": {
@@ -635,29 +807,25 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
-  "settings_about_logs": "記錄檔",
-  "@settings_about_logs": {
-    "description": "Title of the settings section regarding the logs of the application."
+  "settings_about_section_donate": "捐款",
+  "@settings_about_section_donate": {
+    "description": "Title of the settings section to donate."
   },
-  "settings_copy_logs": "複製記錄檔",
-  "@settings_copy_logs": {
-    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
+  "settings_donate_kofi": "Ko-fi",
+  "@settings_donate_kofi": {
+    "description": "Title of the settings tile to donate via Ko-fi."
   },
-  "settings_copy_logs_description": "將應用程式的記錄檔複製至剪貼簿",
-  "@settings_copy_logs_description": {
-    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
-  },
-  "settings_export_logs": "匯出記錄檔",
-  "@settings_export_logs": {
-    "description": "Title of the settings tile to export the logs of the application to a text file."
-  },
-  "settings_export_logs_description": "將應用程式的記錄檔匯出至文字檔",
-  "@settings_export_logs_description": {
-    "description": "Description of the settings tile to export the logs of the application to a text file."
+  "settings_donate_paypal": "PayPal",
+  "@settings_donate_paypal": {
+    "description": "Title of the settings tile to donate via PayPal."
   },
   "hint_title": "標題",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
+  },
+  "hint_content": "筆記",
+  "@hint_content": {
+    "description": "Hint for the text field of the content of the notes."
   },
   "hint_link": "連結",
   "@hint_link": {
@@ -665,7 +833,7 @@
   },
   "hint_label_name": "名稱",
   "@hint_label_name": {
-    "description": "Hint for the text field of the name of a label."
+    "description": "Hint for the text field of the name of a tag."
   },
   "dialog_export_encryption_password": "密碼",
   "@dialog_export_encryption_password": {
@@ -673,11 +841,11 @@
   },
   "dialog_select_labels": "選取標籤",
   "@dialog_select_labels": {
-    "description": "Title of the dialog to select the labels of a note."
+    "description": "Title of the dialog to select the tags of a note."
   },
   "dialog_select_labels_to_add": "選取要新增的標籤",
   "@dialog_select_labels_to_add": {
-    "description": "Title of the dialog to select the labels to add to the currently selected notes."
+    "description": "Title of the dialog to select the tags to add to the currently selected notes."
   },
   "tooltip_undo": "復原最後一個動作",
   "@tooltip_undo": {
@@ -687,21 +855,29 @@
   "@tooltip_redo": {
     "description": "Tooltip for the button to redo the last action in the editor."
   },
-  "tooltip_toggle_checkbox": "切換核選方塊",
-  "@tooltip_toggle_checkbox": {
-    "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
-  },
-  "tooltip_toggle_pins": "切換釘選",
-  "@tooltip_toggle_pins": {
-    "description": "Tooltip for the button to toggle the pining state of the selected notes in selection mode (the pinned notes will be unpinned, and the not pinned ones will be pinned)."
-  },
   "tooltip_fab_add_note": "新增筆記",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
   },
+  "tooltip_fab_add_plain_text_note": "新增純文字筆記",
+  "@tooltip_fab_add_plain_text_note": {
+    "description": "Floating action button in the notes page to add a new plain text note."
+  },
+  "tooltip_fab_add_markdown_note": "新增 Markdown 筆記",
+  "@tooltip_fab_add_markdown_note": {
+    "description": "Floating action button in the notes page to add a new markdown note."
+  },
+  "tooltip_fab_add_rich_text_note": "新增格式化文字筆記",
+  "@tooltip_fab_add_rich_text_note": {
+    "description": "Floating action button in the notes page to add a new rich text note."
+  },
+  "tooltip_fab_add_checklist_note": "新增勾選清單筆記",
+  "@tooltip_fab_add_checklist_note": {
+    "description": "Floating action button in the notes page to add a new checklist note."
+  },
   "tooltip_fab_add_label": "新增標籤",
   "@tooltip_fab_add_label": {
-    "description": "Floating action button in the labels page to add a new label."
+    "description": "Floating action button in the tags page to add a new tag."
   },
   "tooltip_fab_empty_bin": "清空垃圾桶",
   "@tooltip_fab_empty_bin": {
@@ -735,33 +911,41 @@
   "@tooltip_unselect_all": {
     "description": "Tooltip for the button to unselect all the notes while in selection mode in the notes list."
   },
-  "tooltip_delete": "刪除",
-  "@tooltip_delete": {
-    "description": "Tooltip for the button to delete a note (moving it to bin)."
-  },
-  "tooltip_permanently_delete": "永久刪除",
-  "@tooltip_permanently_delete": {
-    "description": "Tooltip for the button to permanently delete a note."
-  },
-  "tooltip_restore": "還原",
-  "@tooltip_restore": {
-    "description": "Tooltip for the button to restore a note from the bin."
-  },
   "tooltip_reset": "重設",
   "@tooltip_reset": {
     "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
   },
-  "action_labels_toggle_pins": "切換釘選",
-  "@action_labels_toggle_pins": {
-    "description": "Tooltip for the button to toggle the pin status of the selected labels."
-  },
-  "action_labels_toggle_visibility": "切換可見",
-  "@action_labels_toggle_visibility": {
-    "description": "Tooltip for the button to toggle the visibility of the selected labels."
-  },
   "dialog_add_link": "新增連結",
   "@dialog_add_link": {
     "description": "Tooltip for the button to validate the dialog to add a link in the note editor."
+  },
+  "dialog_archive": "封存",
+  "@dialog_archive": {
+    "description": "Title of the the dialog to archive one or multiple notes (moving them to the archives), and text for the confirmation button."
+  },
+  "dialog_archive_body": "您確定要封存 {count} {count, plural, other{個筆記}}嗎？",
+  "@dialog_archive_body": {
+    "description": "Text for the dialog to confirm the archival of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to archive.",
+        "type": "int"
+      }
+    }
+  },
+  "dialog_unarchive": "取消封存",
+  "@dialog_unarchive": {
+    "description": "Title of the the dialog to unarchive one or multiple notes, and text for the confirmation button."
+  },
+  "dialog_unarchive_body": "您確定要取消封存 {count} {count, plural, other{個筆記}}嗎？",
+  "@dialog_unarchive_body": {
+    "description": "Text for the dialog to confirm the unarchival of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to unarchive.",
+        "type": "int"
+      }
+    }
   },
   "dialog_delete": "刪除",
   "@dialog_delete": {
@@ -815,7 +999,7 @@
   },
   "dialog_delete_label": "刪除",
   "@dialog_delete_label": {
-    "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
+    "description": "Title of the the dialog to delete one or multiple tags, and text for the confirmation button."
   },
   "dialog_delete_label_body": "您確定要刪除 {count} {count, plural, other{個標籤}}嗎？{count, plural, other{標籤}}將一併從筆記移除{count, plural, other{}}。",
   "@dialog_delete_label_body": {
@@ -857,19 +1041,19 @@
   },
   "dialog_label_add": "新增標籤",
   "@dialog_label_add": {
-    "description": "Title of the dialog to add a label."
+    "description": "Title of the dialog to add a tag."
   },
   "dialog_label_edit": "編輯標籤",
   "@dialog_label_edit": {
-    "description": "Title of the dialog to edit a label."
+    "description": "Title of the dialog to edit a tag."
   },
   "dialog_label_name_cannot_be_empty": "名稱不得留空。",
   "@dialog_label_name_cannot_be_empty": {
-    "description": "Error message shown when relevant on the text field of the name of the label."
+    "description": "Error message shown when relevant on the text field of the name of the tag."
   },
   "dialog_label_name_already_used": "此名稱已在使用。",
   "@dialog_label_name_already_used": {
-    "description": "Error message shown when relevant on the text field of the name of the label."
+    "description": "Error message shown when relevant on the text field of the name of the tag."
   },
   "button_sort_creation_date": "建立日期",
   "@button_sort_creation_date": {
@@ -885,15 +1069,27 @@
   },
   "placeholder_labels": "無標籤",
   "@placeholder_labels": {
-    "description": "Placeholder on the labels page when there are no labels."
+    "description": "Placeholder on the tags page when there are no tags."
+  },
+  "placeholder_archives": "無已封存的筆記",
+  "@placeholder_archives": {
+    "description": "Placeholder on the archives notes page when there are no archived notes."
   },
   "placeholder_bin": "無已刪除的筆記",
   "@placeholder_bin": {
-    "description": "Placeholder on the bin page when there are no notes."
+    "description": "Placeholder on the bin page when there are no deleted notes."
   },
   "action_disabled": "已停用",
   "@action_disabled": {
     "description": "Swipe action that is disabled in the settings."
+  },
+  "action_toggle_pin": "切換釘選",
+  "@action_toggle_pin": {
+    "description": "Menu action to toggle whether the notes are pinned."
+  },
+  "action_pin_unpin": "釘選 / 取消釘選",
+  "@action_pin_unpin": {
+    "description": "Swipe action to pin or unpin a note."
   },
   "action_pin": "釘選",
   "@action_pin": {
@@ -902,6 +1098,22 @@
   "action_unpin": "取消釘選",
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
+  },
+  "action_toggle_lock": "切換鎖定",
+  "@action_toggle_lock": {
+    "description": "Menu action to toggle whether the notes are locked."
+  },
+  "action_lock_unlock": "鎖定 / 解除鎖定",
+  "@action_lock_unlock": {
+    "description": "Swipe action to lock or unlock a note."
+  },
+  "action_lock": "鎖定",
+  "@action_lock": {
+    "description": "Swipe or menu action to lock a note."
+  },
+  "action_unlock": "解除鎖定",
+  "@action_unlock": {
+    "description": "Swipe or menu action to unlock a note."
   },
   "action_share": "分享",
   "@action_share": {
@@ -916,6 +1128,14 @@
         "type": "int"
       }
     }
+  },
+  "action_archive": "封存",
+  "@action_archive": {
+    "description": "Swipe or menu action to archive a note (moving it to the archives)."
+  },
+  "action_unarchive": "取消封存",
+  "@action_unarchive": {
+    "description": "Swipe or menu action to unarchive a note."
   },
   "action_delete": "刪除",
   "@action_delete": {
@@ -947,7 +1167,7 @@
   },
   "about_labels": "標籤數目",
   "@about_labels": {
-    "description": "Number of labels of the note."
+    "description": "Number of tags of the note."
   },
   "about_words": "字詞數目",
   "@about_words": {
@@ -961,37 +1181,143 @@
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
-  "menu_action_labels": "標籤",
-  "@menu_action_labels": {
-    "description": "Menu action to change the labels of a note."
+  "menu_action_select_labels": "標籤",
+  "@menu_action_select_labels": {
+    "description": "Menu action to select the tags of a note."
+  },
+  "menu_action_add_labels": "新增標籤",
+  "@menu_action_add_labels": {
+    "description": "Menu action to add tags to multiple notes."
+  },
+  "action_labels_toggle_visibile": "切換可見",
+  "@action_labels_toggle_visibile": {
+    "description": "Tooltip for the button to toggle whether the selected tags are visible."
+  },
+  "action_labels_show_hide": "顯示 / 隱藏",
+  "@action_labels_show_hide": {
+    "description": "Swipe action to show or hide a tag."
+  },
+  "action_labels_show": "顯示",
+  "@action_labels_show": {
+    "description": "Menu or swipe action to make tag visible."
+  },
+  "action_labels_hide": "隱藏",
+  "@action_labels_hide": {
+    "description": "Menu or swipe action to hide a tag."
+  },
+  "action_labels_toggle_pins": "切換釘選",
+  "@action_labels_toggle_pins": {
+    "description": "Menu action to toggle whether the selected tags are pinned."
+  },
+  "action_labels_pin_unpin": "釘選 / 取消釘選",
+  "@action_labels_pin_unpin": {
+    "description": "Swipe action to pin or unpin a tag."
+  },
+  "action_labels_pin": "釘選",
+  "@action_labels_pin": {
+    "description": "Menu or swipe action to pin a tag."
+  },
+  "action_labels_unpin": "取消釘選",
+  "@action_labels_unpin": {
+    "description": "Menu or swipe action to unpin a tag."
+  },
+  "action_labels_toggle_lock": "切換鎖定",
+  "@action_labels_toggle_lock": {
+    "description": "Tooltip for the button to toggle whether the selected tags are locked."
+  },
+  "action_labels_lock_unlock": "鎖定 / 解除鎖定",
+  "@action_labels_lock_unlock": {
+    "description": "Swipe action to lock or unlock a tag."
+  },
+  "action_labels_lock": "鎖定",
+  "@action_labels_lock": {
+    "description": "Menu or swipe action to lock a tag."
+  },
+  "action_labels_unlock": "解除鎖定",
+  "@action_labels_unlock": {
+    "description": "Menu or swipe action to unlock a tag."
   },
   "action_labels_edit": "編輯",
   "@action_labels_edit": {
-    "description": "Menu or swipe action to edit a label."
+    "description": "Menu or swipe action to edit a tag."
   },
   "action_labels_delete": "刪除",
   "@action_labels_delete": {
-    "description": "Menu or swipe action to delete a label."
+    "description": "Menu or swipe action to delete a tag."
   },
   "filter_labels_all": "全部",
   "@filter_labels_all": {
-    "description": "Filter chip in the labels page to all labels."
+    "description": "Filter chip in the tags page to all tags."
   },
   "filter_labels_visible": "可見",
   "@filter_labels_visible": {
-    "description": "Filter chip in the labels page to show only the visible labels."
-  },
-  "filter_labels_pinned": "已釘選",
-  "@filter_labels_pinned": {
-    "description": "Filter chip in the labels page to show only the pinned labels."
+    "description": "Filter chip in the tags page to show only the visible tags."
   },
   "filter_labels_hidden": "已隱藏",
   "@filter_labels_hidden": {
-    "description": "Filter chip in the labels page to show only the hidden labels."
+    "description": "Filter chip in the tags page to show only the hidden tags."
   },
-  "snack_bar_copied": "筆記內容已複製至剪貼簿。",
+  "filter_labels_pinned": "已釘選",
+  "@filter_labels_pinned": {
+    "description": "Filter chip in the tags page to show only the pinned tags."
+  },
+  "filter_labels_locked": "已鎖定",
+  "@filter_labels_locked": {
+    "description": "Filter chip in the tags page to show only the locked tags."
+  },
+  "snack_bar_authentication_failed": "認證失敗，請再試一次。",
+  "@snack_bar_authentication_failed": {
+    "description": "Snack bar informing that the authentication on the lock screen has failed."
+  },
+  "snack_bar_archived": "{count, plural, other{筆記}}已封存",
+  "@snack_bar_archived": {
+    "description": "Snack bar informing that the note was archived.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were archived.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_unarchived": "{count, plural, other{筆記}}已取消封存",
+  "@snack_bar_unarchived": {
+    "description": "Snack bar informing that the note was unarchived.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were unarchived.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_deleted": "{count, plural, other{筆記}}已刪除",
+  "@snack_bar_deleted": {
+    "description": "Snack bar informing that the note was deleted.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were deleted.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_restored": "{count, plural, other{筆記}}已還原",
+  "@snack_bar_restored": {
+    "description": "Snack bar informing that the note was restored.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were restored.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_copied": "{count, plural, other{筆記}}內容已複製至剪貼簿。",
   "@snack_bar_copied": {
-    "description": "Snack bar informing that the content of the note was copied to clipboard."
+    "description": "Snack bar informing that the content of the note was copied to clipboard.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to copy.",
+        "type": "int"
+      }
+    }
   },
   "snack_bar_import_success": "備份已成功匯入。",
   "@snack_bar_import_success": {
@@ -1011,11 +1337,23 @@
   },
   "snack_bar_no_labels": "未有任何標籤。",
   "@snack_bar_no_labels": {
-    "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
+    "description": "Snack bar message shown when the user tries to select the tags for a note, but there are no tags available."
   },
-  "action_add_note_title": "新增筆記",
-  "@action_add_note_title": {
-    "description": "Title of the home screen action to add a new note."
+  "quick_action_add_plain_text_note_title": "新增純文字筆記",
+  "@quick_action_add_plain_text_note_title": {
+    "description": "Title of the home screen action to add a new plain text note."
+  },
+  "quick_action_add_markdown_note_title": "新增 Markdown 筆記",
+  "@quick_action_add_markdown_note_title": {
+    "description": "Title of the home screen action to add a new markdown note."
+  },
+  "quick_action_add_rich_text_note_title": "新增格式化文字筆記",
+  "@quick_action_add_rich_text_note_title": {
+    "description": "Title of the home screen action to add a new rich text note."
+  },
+  "quick_action_add_checklist_note_title": "新增勾選清單筆記",
+  "@quick_action_add_checklist_note_title": {
+    "description": "Title of the home screen action to add a new checklist note."
   },
   "welcome_note_title": "歡迎使用 Material Notes！",
   "@welcome_note_title": {
@@ -1033,8 +1371,96 @@
   "@note_type_plain_text": {
     "description": "Note with plain text."
   },
+  "note_type_markdown": "Markdown",
+  "@note_type_markdown": {
+    "description": "Note with markdown text."
+  },
   "note_type_rich_text": "格式化文字",
   "@note_type_rich_text": {
     "description": "Note with rich text."
+  },
+  "note_type_checklist": "勾選清單",
+  "@note_type_checklist": {
+    "description": "Note with a checklist."
+  },
+  "lock_page_reason_app": "解除鎖定 Material Notes",
+  "@lock_page_reason_app": {
+    "description": "Reason for the lock screen of the application to request a system authentication."
+  },
+  "lock_page_reason_note": "解除鎖定此筆記",
+  "@lock_page_reason_note": {
+    "description": "Reason for the lock screen of a locked note to request a system authentication."
+  },
+  "lock_page_reason_action": "授權此動作",
+  "@lock_page_reason_action": {
+    "description": "Reason for the lock screen for a secure action to request a system authentication."
+  },
+  "lock_page_description_app": "應用程式已鎖定。",
+  "@lock_page_description_app": {
+    "description": "Description shown in the lock page for the application."
+  },
+  "lock_page_description_note": "此筆記已鎖定。",
+  "@lock_page_description_note": {
+    "description": "Description shown in the lock page for a locked note."
+  },
+  "lock_page_unlock": "解除鎖定",
+  "@lock_page_unlock": {
+    "description": "Button to unlock the lock page by requesting a system authentication."
+  },
+  "rich_text_editor_toolbar_dialog_color_title_foreground": "前景色彩",
+  "@rich_text_editor_toolbar_dialog_color_title_foreground": {
+    "description": "Title of the dialog to choose the foreground color of the text in the rich text editor."
+  },
+  "rich_text_editor_toolbar_dialog_color_title_background": "背景色彩",
+  "@rich_text_editor_toolbar_dialog_color_title_background": {
+    "description": "Title of the dialog to choose the background color of the text in the rich text editor."
+  },
+  "rich_text_editor_toolbar_dialog_color_description": "前景色彩",
+  "@rich_text_editor_toolbar_dialog_color_description": {
+    "description": "Description of the dialog to choose the foreground/background color of the text."
+  },
+  "toolbar_style_one_row_simple_title": "單行 (精簡選項)",
+  "@toolbar_style_one_row_simple_title": {
+    "description": "Title for the style of the rich text editor toolbar with one row and only simple formatting options."
+  },
+  "toolbar_style_one_row_simple_description": "單行僅顯示簡易格式化選項",
+  "@toolbar_style_one_row_simple_description": {
+    "description": "Description for the style of the rich text editor toolbar with one row and only simple formatting options."
+  },
+  "toolbar_style_one_row_all_title": "單行 (所有選項)",
+  "@toolbar_style_one_row_all_title": {
+    "description": "Title for the style of the rich text editor toolbar with one row and all formatting options."
+  },
+  "toolbar_style_one_row_all_description": "單行顯示所有格式化選項",
+  "@toolbar_style_one_row_all_description": {
+    "description": "Description for the style of the rich text editor toolbar with one row and all formatting options."
+  },
+  "toolbar_style_two_rows_stacked_title": "雙行 (並列)",
+  "@toolbar_style_two_rows_stacked_title": {
+    "description": "Title for the style of the rich text editor toolbar with two stacked rows."
+  },
+  "toolbar_style_two_rows_stacked_description": "上下兩行顯示所有格式化選項",
+  "@toolbar_style_two_rows_stacked_description": {
+    "description": "Description for the style of the rich text editor toolbar with two stacked rows."
+  },
+  "toolbar_style_two_rows_toggleable_title": "雙行 (切換)",
+  "@toolbar_style_two_rows_toggleable_title": {
+    "description": "Title for the style of the rich text editor toolbar with two toggleable rows."
+  },
+  "toolbar_style_two_rows_toggleable_description": "雙行切換顯示所有格式化選項",
+  "@toolbar_style_two_rows_toggleable_description": {
+    "description": "Description for the style of the rich text editor toolbar with two toggleable rows."
+  },
+  "settings_confirm_before_exiting_title": "結束前先確認",
+  "@settings_confirm_before_exiting_title": {
+    "description": "Title of the setting tile for whether a confirmation is required before exiting the application."
+  },
+  "settings_confirm_before_exiting_description": "結束應用程式前先詢問確認",
+  "@settings_confirm_before_exiting_description": {
+    "description": "Description of the setting tile for whether a confirmation is required before exiting the application."
+  },
+  "snack_bar_confirm_exiting": "再按一下返回結束應用程式。",
+  "@snack_bar_confirm_exiting": {
+    "description": "Snack bar asking the user to confirm exiting the application by pressing back again."
   }
 }

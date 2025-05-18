@@ -5,43 +5,43 @@ import 'package:locale_names/locale_names.dart';
 /// Languages supported by the application.
 enum SupportedLanguage {
   /// Czech.
-  cs(Locale('cs'), 1),
+  cs(Locale('cs'), 0.89),
 
   /// English.
   en(Locale('en'), 1),
 
   /// Spanish.
-  es(Locale('es'), .97),
+  es(Locale('es'), .62),
 
   /// French.
   fr(Locale('fr'), 1),
 
   /// German.
-  de(Locale('de'), .97),
+  de(Locale('de'), .79),
 
   /// Hindi.
-  hi(Locale('hi'), .80),
+  hi(Locale('hi'), .52),
 
   /// Italian.
-  it(Locale('it'), .99),
+  it(Locale('it'), .61),
 
   /// Polish.
-  pl(Locale('pl'), .61),
+  pl(Locale('pl'), .37),
 
   /// Portuguese.
-  pt(Locale('pt'), .62),
+  pt(Locale('pt'), .54),
 
   /// Russian.
-  ru(Locale('ru'), .88),
+  ru(Locale('ru'), .61),
 
   /// Turkish.
-  tr(Locale('tr'), .80),
+  tr(Locale('tr'), .48),
 
   /// Chinese Simplified.
   zh(Locale('zh'), 1),
 
   /// Chinese Traditional.
-  zhTW(Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'), 0);
+  zhTW(Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'), 1);
 
   /// The locale completion of this language.
   final Locale locale;

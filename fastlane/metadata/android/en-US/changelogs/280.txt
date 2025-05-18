@@ -1,0 +1,19 @@
+ADDED
+- New notes types: plain text, markdown, checklist
+- Archive notes
+- Cancel actions
+- Lock the application, a note or a all notes with a label
+- Highlight searched text
+- Setting to improve titles visibility
+- Automatic bin emptying
+- Donation links
+
+CHANGED
+- 3 rich text editor toolbar appearance options
+- Organize notes in folders in markdown exports
+- Animated labels filters
+- Replaced "label" with "tag"
+
+FIXED
+- Auto delete empty notes
+- Back button not working as expected

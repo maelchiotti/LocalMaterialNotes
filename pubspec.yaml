@@ -2,12 +2,12 @@ name: localmaterialnotes
 description: Simple, local, material design notes
 repository: https://github.com/maelchiotti/LocalMaterialNotes
 
-version: 2.0.0-dev6+27
+version: 2.0.0+28
 publish_to: none
 
 environment:
   sdk: ^3.7.2
-  flutter: 3.29.2
+  flutter: 3.29.3
 
 dependencies:
   after_layout: ^1.2.0
@@ -20,13 +20,13 @@ dependencies:
   encrypt: ^5.0.3
   equatable: ^2.0.7
   flag_secure: ^2.0.2
-  fleather: ^1.21.0
-  flex_color_picker: ^3.7.0
+  fleather: ^1.22.0
+  flex_color_picker: ^3.7.1
   flutter:
     sdk: flutter
   flutter_checklist: ^1.5.1
   flutter_displaymode: ^0.6.0
-  flutter_expandable_fab: ^2.4.1
+  flutter_expandable_fab: 2.4.1
   flutter_fgbg: ^0.7.1
   flutter_localizations:
     sdk: flutter
@@ -37,7 +37,7 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   flutter_staggered_grid_view: ^0.7.0
   gap: ^3.0.1
-  go_router: ^15.1.1
+  go_router: ^15.1.2
   intl: ^0.19.0
   is_first_run: ^1.0.0
   isar:
@@ -66,7 +66,7 @@ dependencies:
   restart_app: ^1.3.2
   riverpod_annotation: ^2.6.1
   saf_stream: ^0.11.2
-  saf_util: ^0.7.0
+  saf_util: ^0.8.0
   sanitize_filename: ^1.0.5
   settings_tiles: ^4.1.0
   share_plus: ^11.0.0
