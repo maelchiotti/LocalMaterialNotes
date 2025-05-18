@@ -2,85 +2,139 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:fleather/fleather.dart';
+import 'package:flutter_checklist/checklist.dart';
 import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:remove_markdown/remove_markdown.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../common/files/encryption_utils.dart';
 import '../../common/preferences/enums/sort_method.dart';
 import '../../common/preferences/preference_key.dart';
 import '../label/label.dart';
+import 'note_status.dart';
+import 'types/note_type.dart';
 
 part 'note.g.dart';
-
-part 'rich_text/rich_text_note.dart';
+part 'types/checklist_note.dart';
+part 'types/markdown_note.dart';
+part 'types/plain_text_note.dart';
+part 'types/rich_text_note.dart';
 
 /// Converts the [labels] to a JSON-compatible list of strings.
 List<String> labelToJson(IsarLinks<Label> labels) => labels.map((label) => label.name).toList();
 
 /// Base class of the notes.
 sealed class Note implements Comparable<Note> {
-  /// The ID of the note.
-  ///
-  /// Excluded from JSON because it's fully managed by Isar.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  Id id = Isar.autoIncrement;
+  /// The regex expression used to count the number of words in the content of the note.
+  final RegExp _wordsCountRegex = RegExp(r'[\w-]+');
 
-  /// Whether the note is selected.
-  ///
-  /// Excluded from JSON because it's only needed temporarily during multi-selection.
+  /// The ID of the note as an [int] used by isar.
+  Id get isarId => _idHash;
+
+  /// The ID of the note as a [String] used by the application.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  String id = uuid.v4();
+
+  /// The type of the note.
   @ignore
-  bool selected = false;
+  @JsonKey(includeFromJson: false)
+  NoteType type;
+
+  /// Whether the note is archived.
+  @Index()
+  @JsonKey(defaultValue: false)
+  bool archived;
 
   /// Whether the note is deleted.
   @Index()
+  @JsonKey(defaultValue: false)
   bool deleted;
 
   /// Whether the note is pinned.
   @Index()
+  @JsonKey(defaultValue: false)
   bool pinned;
 
-  /// The date of creation of the note.
+  /// Whether the note is locked.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  bool locked;
+
+  /// The time when the note was created.
   DateTime createdTime;
 
-  /// The last date of edition of the note, including events such as toggling the pinned state.
+  /// The last time when the note was edited (title or content).
   DateTime editedTime;
 
+  /// The time when the note was deleted (if applicable).
+  DateTime? deletedTime;
+
   /// The title of the note.
+  @JsonKey(defaultValue: '')
   String title;
 
   /// The labels used to categorize the note.
   @JsonKey(includeFromJson: false, includeToJson: true, toJson: labelToJson)
   IsarLinks<Label> labels = IsarLinks<Label>();
 
+  /// Whether the note is selected.
+  ///
+  /// Excluded from JSON and the database because it's only needed temporarily during multi-selection.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @ignore
+  bool selected = false;
+
   /// Default constructor of a note.
   Note({
+    required this.archived,
     required this.deleted,
     required this.pinned,
+    this.locked = false,
     required this.createdTime,
     required this.editedTime,
+    this.deletedTime,
     required this.title,
-  });
+    required this.type,
+  }) : assert(!(archived && deleted), 'A note cannot be archived and deleted at the same time');
 
-  /// Returns this note with title and the content encrypted using the [password].
+  /// Returns this note with the [title] and the content encrypted using the [password].
   Note encrypted(String password);
 
-  /// Note content as plain text.
+  /// The status of the note.
+  @ignore
+  NoteStatus get status {
+    if (archived) {
+      return NoteStatus.archived;
+    } else if (deleted) {
+      return NoteStatus.deleted;
+    }
+
+    return NoteStatus.available;
+  }
+
+  /// The content as plain text.
   @ignore
   String get plainText;
 
-  /// Note content as markdown.
+  /// The content as markdown.
   @ignore
-  String get markdown;
+  String get contentAsMarkdown;
 
-  /// Note content for the preview of the notes tiles.
+  /// The content for the preview of the notes tiles.
   @ignore
   String get contentPreview;
 
-  /// Note title and content to be shared as a single text.
+  /// The title and the content joined together to be shared as a single text.
   @ignore
-  String get shareText;
+  String get shareText => '$title\n\n$contentPreview';
+
+  /// The number of words in the content.
+  @ignore
+  int get wordsCount => _wordsCountRegex.allMatches(plainText).length;
+
+  /// The number of characters in the content.
+  @ignore
+  int get charactersCount => plainText.length;
 
   /// Whether the title is empty.
   @ignore
@@ -102,9 +156,21 @@ sealed class Note implements Comparable<Note> {
   @ignore
   List<Label> get labelsVisibleSorted => labels.toList().where((label) => label.visible).sorted();
 
-  /// Returns the names of the visible [labels] of the note as a sorted list.
+  /// The names of the visible [labels] of the note as a sorted list.
   @ignore
   List<String> get labelsNamesVisibleSorted => labelsVisibleSorted.map((label) => label.name).toList();
+
+  /// The number of labels of the note.
+  @ignore
+  int get labelsCount => labels.toList().length;
+
+  /// Whether at least one label is locked.
+  @ignore
+  bool get hasLockedLabel => labels.any((label) => label.locked);
+
+  /// The [labels] as markdown.
+  @ignore
+  String get labelsAsMarkdown => '> ${labelsNamesVisibleSorted.join(', ')}';
 
   /// Notes are sorted according to:
   ///   1. Their pin state.
@@ -112,7 +178,7 @@ sealed class Note implements Comparable<Note> {
   @override
   int compareTo(Note other) {
     final sortMethod = SortMethod.fromPreference();
-    final sortAscending = PreferenceKey.sortAscending.getPreferenceOrDefault();
+    final sortAscending = PreferenceKey.sortAscending.preferenceOrDefault;
 
     if (pinned && !other.pinned) {
       return -1;
@@ -138,4 +204,20 @@ sealed class Note implements Comparable<Note> {
   @ignore
   @override
   int get hashCode => id.hashCode;
+
+  @ignore
+  int get _idHash {
+    var hash = 0xcbf29ce484222325;
+
+    var i = 0;
+    while (i < id.length) {
+      final codeUnit = id.codeUnitAt(i++);
+      hash ^= codeUnit >> 8;
+      hash *= 0x100000001b3;
+      hash ^= codeUnit & 0xFF;
+      hash *= 0x100000001b3;
+    }
+
+    return hash;
+  }
 }

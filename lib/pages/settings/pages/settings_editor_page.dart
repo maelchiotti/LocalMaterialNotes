@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
-import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
-import '../../../common/widgets/keys.dart';
 
 /// Settings related to the notes editor.
 class SettingsEditorPage extends StatefulWidget {
@@ -18,78 +17,35 @@ class SettingsEditorPage extends StatefulWidget {
 }
 
 class _SettingsEditorPageState extends State<SettingsEditorPage> {
-  /// Toggles the setting to show the undo/redo buttons in the editor's app bar.
-  void _toggleShowUndoRedoButtons(bool toggled) {
-    setState(() {
-      PreferenceKey.showUndoRedoButtons.set(toggled);
-    });
-  }
-
-  /// Toggles the setting to show the checklist button in the editor's app bar or toolbar.
-  ///
-  /// If the editor's toolbar is enabled, the checklist button is shown inside it.
-  /// Otherwise, it's shown in the editor's app bar.
-  void _toggleShowChecklistButton(bool toggled) {
-    setState(() {
-      PreferenceKey.showChecklistButton.set(toggled);
-    });
-  }
-
-  /// Toggles the setting to show the editor's toolbar.
-  void _toggleShowToolbar(bool toggled) {
-    setState(() {
-      PreferenceKey.showToolbar.set(toggled);
-    });
-  }
-
   /// Toggles the setting to use the editor mode button.
-  void _toggleShowEditorModeButton(bool toggled) {
-    setState(() {
-      PreferenceKey.editorModeButton.set(toggled);
-    });
+  Future<void> _toggleShowEditorModeButton(bool toggled) async {
+    await PreferenceKey.editorModeButton.set(toggled);
+
+    setState(() {});
   }
 
   /// Toggles the setting to open the editor in reading mode by default.
-  void _toggleOpenEditorInReadMode(bool toggled) {
-    setState(() {
-      PreferenceKey.openEditorReadingMode.set(toggled);
-    });
+  Future<void> _toggleOpenEditorInReadMode(bool toggled) async {
+    await PreferenceKey.openEditorReadingMode.set(toggled);
+
+    setState(() {});
   }
 
   /// Toggles the setting to use spacing between the paragraphs.
-  void _toggleFocusTitleOnNewNote(bool toggled) {
-    setState(() {
-      PreferenceKey.focusTitleOnNewNote.set(toggled);
-    });
-  }
+  Future<void> _toggleFocusTitleOnNewNote(bool toggled) async {
+    await PreferenceKey.focusTitleOnNewNote.set(toggled);
 
-  /// Toggles the setting to use spacing between the paragraphs.
-  void _toggleUseParagraphSpacing(bool toggled) {
-    setState(() {
-      PreferenceKey.useParagraphsSpacing.set(toggled);
-    });
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final showUndoRedoButtons = PreferenceKey.showUndoRedoButtons.getPreferenceOrDefault();
-    final showChecklistButton = PreferenceKey.showChecklistButton.getPreferenceOrDefault();
-    final showToolbar = PreferenceKey.showToolbar.getPreferenceOrDefault();
-
-    final showEditorModeButton = PreferenceKey.editorModeButton.getPreferenceOrDefault();
-    final openEditorInReadMode = PreferenceKey.openEditorReadingMode.getPreferenceOrDefault();
-    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.getPreferenceOrDefault();
-
-    final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.getPreferenceOrDefault();
+    final showEditorModeButton = PreferenceKey.editorModeButton.preferenceOrDefault;
+    final openEditorInReadMode = PreferenceKey.openEditorReadingMode.preferenceOrDefault;
+    final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.preferenceOrDefault;
 
     return Scaffold(
-      appBar: TopNavigation(
-        key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_editor,
-          back: true,
-        ),
-      ),
+      appBar: TopNavigation(appbar: BasicAppBar(title: context.l.navigation_settings_editor)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,
@@ -97,69 +53,29 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
             children: [
               SettingSection(
                 divider: null,
-                title: l.settings_editor_formatting,
-                tiles: [
-                  SettingSwitchTile(
-                    icon: Icons.undo,
-                    title: l.settings_show_undo_redo_buttons,
-                    description: l.settings_show_undo_redo_buttons_description,
-                    toggled: showUndoRedoButtons,
-                    onChanged: _toggleShowUndoRedoButtons,
-                  ),
-                  SettingSwitchTile(
-                    icon: Icons.checklist,
-                    title: l.settings_show_checklist_button,
-                    description: l.settings_show_checklist_button_description,
-                    toggled: showChecklistButton,
-                    onChanged: _toggleShowChecklistButton,
-                  ),
-                  SettingSwitchTile(
-                    icon: Icons.format_paint,
-                    title: l.settings_show_toolbar,
-                    description: l.settings_show_toolbar_description,
-                    toggled: showToolbar,
-                    onChanged: _toggleShowToolbar,
-                  ),
-                ],
-              ),
-              SettingSection(
-                divider: null,
-                title: l.settings_editor_behavior,
+                title: context.l.settings_editor_behavior,
                 tiles: [
                   SettingSwitchTile(
                     icon: Icons.edit,
-                    title: l.settings_show_editor_mode_button,
-                    description: l.settings_show_editor_mode_button_description,
+                    title: context.l.settings_show_editor_mode_button,
+                    description: context.l.settings_show_editor_mode_button_description,
                     toggled: showEditorModeButton,
                     onChanged: _toggleShowEditorModeButton,
                   ),
                   SettingSwitchTile(
                     enabled: showEditorModeButton,
                     icon: Icons.visibility,
-                    title: l.settings_open_editor_reading_mode,
-                    description: l.settings_open_editor_reading_mode_description,
+                    title: context.l.settings_open_editor_reading_mode,
+                    description: context.l.settings_open_editor_reading_mode_description,
                     toggled: openEditorInReadMode,
                     onChanged: _toggleOpenEditorInReadMode,
                   ),
                   SettingSwitchTile(
                     icon: Icons.filter_center_focus,
-                    title: l.settings_focus_title_on_new_note,
-                    description: l.settings_focus_title_on_new_note_description,
+                    title: context.l.settings_focus_title_on_new_note,
+                    description: context.l.settings_focus_title_on_new_note_description,
                     toggled: focusTitleOnNewNote,
                     onChanged: _toggleFocusTitleOnNewNote,
-                  ),
-                ],
-              ),
-              SettingSection(
-                divider: null,
-                title: l.settings_editor_appearance,
-                tiles: [
-                  SettingSwitchTile(
-                    icon: Icons.format_line_spacing,
-                    title: l.settings_use_paragraph_spacing,
-                    description: l.settings_use_paragraph_spacing_description,
-                    toggled: useParagraphsSpacing,
-                    onChanged: _toggleUseParagraphSpacing,
                   ),
                 ],
               ),

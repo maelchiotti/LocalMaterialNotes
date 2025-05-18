@@ -3,8 +3,7 @@ import 'package:path/path.dart';
 /// Lists the application's assets.
 enum Asset {
   /// Application's icon.
-  icon('icons/icon.png'),
-  ;
+  icon('icons/icon.png');
 
   /// Base path of the assets.
   final _basePath = 'assets';

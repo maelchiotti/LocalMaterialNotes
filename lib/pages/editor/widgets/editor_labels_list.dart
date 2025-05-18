@@ -8,13 +8,10 @@ import '../../../common/widgets/labels/label_badge.dart';
 import '../../../common/widgets/placeholders/loading_placeholder.dart';
 import '../../../providers/notifiers/notifiers.dart';
 
-/// List of labels in the editor.
+/// Editor labels list.
 class EditorLabelsList extends ConsumerWidget {
-  /// The list of labels of the current note at the bottom of the notes editor.
-  const EditorLabelsList({
-    super.key,
-    required this.readOnly,
-  });
+  /// The list of labels of the current note displayed at the bottom of the notes editor.
+  const EditorLabelsList({super.key, required this.readOnly});
 
   /// Whether the page is read only.
   final bool readOnly;

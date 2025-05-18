@@ -7,9 +7,8 @@ import 'package:logger/logger.dart' hide FileOutput;
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../../l10n/app_localizations/app_localizations.g.dart';
-import '../constants/constants.dart';
 import '../enums/mime_type.dart';
+import '../extensions/build_context_extension.dart';
 import '../extensions/date_time_extensions.dart';
 import '../extensions/string_extension.dart';
 import '../files/files_utils.dart';
@@ -60,10 +59,7 @@ class AppLogger {
         printEmojis: false,
         dateTimeFormat: DateTimeFormat.dateAndTime,
       ),
-      output: AdvancedFileOutput(
-        path: _logFilesDirectory,
-        maxRotatedFilesCount: 100,
-      ),
+      output: AdvancedFileOutput(path: _logFilesDirectory, maxRotatedFilesCount: 100),
     );
 
     // Intercept all exceptions raised by Flutter and by the platform to write them to the log file in release mode
@@ -104,28 +100,20 @@ class AppLogger {
   }
 
   /// Copies the logs to the clipboard.
-  ///
-  /// The localizations can be overridden with [overrideLocalizations] to avoid depending on `rootNavigatorKey.context`
-  /// to get them in case the error prevented it from being instantiated.
-  Future<void> copyLogs({AppLocalizations? overrideLocalizations}) async {
-    final localizations = overrideLocalizations ?? l;
-
+  Future<void> copyLogs(BuildContext context) async {
     final file = File(join(_logFilesDirectory, _latestLogFileName));
     final logs = await file.exists() ? await file.readAsString() : 'The logs are empty.';
 
     final clipboardData = ClipboardData(text: logs);
     await Clipboard.setData(clipboardData);
 
-    SnackBarUtils.info(localizations.snack_bar_logs_copied).show();
+    if (context.mounted) {
+      SnackBarUtils().show(context, text: context.l.snack_bar_logs_copied);
+    }
   }
 
   /// Exports the logs to a text file into a directory chosen by the user.
-  ///
-  /// The localizations can be overridden with [overrideLocalizations] to avoid depending on `rootNavigatorKey.context`
-  /// to get them in case the error prevented it from being instantiated.
-  Future<bool> exportLogs({AppLocalizations? overrideLocalizations}) async {
-    final localizations = overrideLocalizations ?? l;
-
+  Future<bool> exportLogs(BuildContext context) async {
     final exportDirectory = await selectDirectory();
 
     if (exportDirectory == null) {
@@ -142,8 +130,8 @@ class AppLogger {
       content: logs,
     );
 
-    if (exported) {
-      SnackBarUtils.info(localizations.snack_bar_logs_exported).show();
+    if (exported && context.mounted) {
+      SnackBarUtils().show(context, text: context.l.snack_bar_logs_exported);
     }
 
     return exported;

@@ -9,8 +9,7 @@ full_description: |
   </p>
   <ul>
       <li>Write text notes (title and content)</li>
-      <li>Take advantage of the advanced formatting options, including checklists</li>
-      <li>Undo and redo your changes while editing</li>
+      <li>Choose between plain text, markdown, rich text or checklist notes</li>
       <li>Use the quick action from your home screen to quickly add a note</li>
   </ul>
 
@@ -21,8 +20,17 @@ full_description: |
       <li>Search though your notes</li>
       <li>Sort your notes by date or title, in ascending or descending order</li>
       <li>Display your notes in a list or a grid view</li>
-      <li>Pin your notes</li>
+      <li>Pin and archive your notes</li>
       <li>Recover your deleted notes from the bin</li>
+  </ul>
+
+  <p>
+      <b>Categorize</b>
+  </p>
+  <ul>
+      <li>Categorize your notes with tags</li>
+      <li>Distinguish your tags with their color</li>
+      <li>Pin and hide your tags</li>
   </ul>
 
   <p>
@@ -41,6 +49,7 @@ full_description: |
   <ul>
       <li>Never worry about how your data is handled: it cannot leave your device
       as the application doesn't have any internet permissions</li>
+      <li>Lock the application, a specific notes, or all notes with a specific tag</li>
       <li>Encrypt your JSON exports</li>
   </ul>
 
@@ -51,5 +60,5 @@ full_description: |
       <li>Choose your language</li>
       <li>Choose your theme (light, dark or black)</li>
       <li>Choose if you want your theme to be dynamic (use colors from your background)</li>
-      <li>Choose if you want to enable the advanced formatting, only the checklists or keep your notes basic</li>
+      <li>Choose which notes types you want enabled</li>
   </ul>

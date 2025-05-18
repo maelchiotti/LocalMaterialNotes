@@ -10,8 +10,7 @@ enum MimeType {
   zip('application/zip', 'ZIP files', 'zip'),
 
   /// Log files.
-  log('text/plain', 'Log files', 'log'),
-  ;
+  log('text/plain', 'Log files', 'log');
 
   /// Value of the mime type.
   final String value;
@@ -23,9 +22,5 @@ enum MimeType {
   final String extension;
 
   /// A mime type with its [value], a [label] and the corresponding file [extension].
-  const MimeType(
-    this.value,
-    this.label,
-    this.extension,
-  );
+  const MimeType(this.value, this.label, this.extension);
 }

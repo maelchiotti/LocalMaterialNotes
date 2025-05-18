@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/preferences/preference_key.dart';
 import 'password_field.dart';
 
@@ -32,7 +32,7 @@ class EncryptPasswordForm extends StatefulWidget {
 
 class _EncryptPasswordFormState extends State<EncryptPasswordForm> {
   /// Whether the JSON export should be encrypted.
-  bool _encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault();
+  bool _encrypt = PreferenceKey.autoExportEncryption.preferenceOrDefault;
 
   /// Toggles whether to [_encrypt] the JSON export.
   void _toggleEncrypt(_) {
@@ -61,19 +61,14 @@ class _EncryptPasswordFormState extends State<EncryptPasswordForm> {
       children: [
         Row(
           children: [
-            Expanded(
-              child: Text(l.dialog_export_encryption_switch),
-            ),
-            Switch(
-              value: _encrypt,
-              onChanged: _toggleEncrypt,
-            ),
+            Expanded(child: Text(context.l.dialog_export_encryption_switch)),
+            Switch(value: _encrypt, onChanged: _toggleEncrypt),
           ],
         ),
         if (_encrypt) ...[
           Padding(padding: Paddings.vertical(8)),
           PasswordField(
-            description: l.dialog_export_encryption_description,
+            description: context.l.dialog_export_encryption_description,
             secondaryDescription: widget.secondaryDescription,
             onChanged: _onChanged,
             onEditingComplete: _onEditingComplete,

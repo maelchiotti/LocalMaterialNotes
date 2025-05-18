@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
-import '../../../common/constants/constants.dart';
+import '../../../common/constants/sizes.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/extensions/color_extension.dart';
+import '../../../common/preferences/preference_key.dart';
 import '../../../models/label/label.dart';
 import '../../../models/note/note.dart';
 import '../../../providers/labels/labels_list/labels_list_provider.dart';
@@ -12,10 +14,7 @@ import '../../../providers/labels/labels_list/labels_list_provider.dart';
 /// Dialog to select the labels.
 class LabelsSelectionDialog extends ConsumerStatefulWidget {
   /// A dialog allowing the user to select the labels of a note.
-  const LabelsSelectionDialog({
-    super.key,
-    this.note,
-  });
+  const LabelsSelectionDialog({super.key, this.note});
 
   /// The note for which to select the labels.
   final Note? note;
@@ -64,45 +63,45 @@ class _LabelsSelectionDialogState extends ConsumerState<LabelsSelectionDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final lockLabel = PreferenceKey.lockLabel.preferenceOrDefault;
+
     final bodyLarge = Theme.of(context).textTheme.bodyLarge;
 
     return AlertDialog(
       contentPadding: EdgeInsets.symmetric(vertical: 16.0),
-      title: Text(widget.note == null ? l.dialog_select_labels_to_add : l.dialog_select_labels),
+      title: Text(widget.note == null ? context.l.dialog_select_labels_to_add : context.l.dialog_select_labels),
       content: SingleChildScrollView(
         child: ListBody(
-          children: labels
-              .mapIndexed(
-                (index, label) => CheckboxListTile(
+          children:
+              labels.mapIndexed((index, label) {
+                return CheckboxListTile(
                   value: label.selected,
                   secondary: VariedIcon.varied(
                     label.pinned ? Icons.label_important : Icons.label,
                     fill: 1.0,
                     color: label.color,
                   ),
-                  title: Text(
-                    label.name,
-                    style: bodyLarge?.copyWith(
-                      color: !label.visible ? bodyLarge.color?.subdued : null,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                  title: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          label.name,
+                          style: bodyLarge?.copyWith(color: !label.visible ? bodyLarge.color?.subdued : null),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      if (lockLabel && label.locked) Icon(Icons.lock, size: Sizes.iconSmall.size),
+                    ],
                   ),
                   onChanged: (value) => onChanged(index, value),
-                ),
-              )
-              .toList(),
+                );
+              }).toList(),
         ),
       ),
       actions: [
-        TextButton(
-          onPressed: () => pop(canceled: true),
-          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
-        ),
-        TextButton(
-          onPressed: pop,
-          child: Text(flutterL?.okButtonLabel ?? 'OK'),
-        ),
+        TextButton(onPressed: () => pop(canceled: true), child: Text(context.fl.cancelButtonLabel)),
+        TextButton(onPressed: pop, child: Text(context.fl.okButtonLabel)),
       ],
     );
   }

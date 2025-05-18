@@ -1,9 +1,9 @@
-import 'preferences_utils.dart';
+import 'preferences_wrapper.dart';
 
 // ignore_for_file: public_member_api_docs
 
 /// Keys of preferences.
-enum PreferenceKey<T> {
+enum PreferenceKey<T extends Object> {
   // Appearance
   locale<String>('en', backup: false),
   theme<String>('system'),
@@ -11,33 +11,45 @@ enum PreferenceKey<T> {
   blackTheming<bool>(false),
   appFont<String>('systemDefault'),
   editorFont<String>('systemDefault'),
+
+  // Notes types
+  availableNotesTypes<List<String>>(['plainText', 'richText', 'markdown', 'checklist']),
+  defaultShareNoteType<String>('plainText'),
+
+  // Rich text notes
+  useParagraphsSpacing<bool>(true),
+  toolbarStyle<String>('twoRowsToggleable'),
+
+  // Notes tiles
   showTilesBackground<bool>(false),
   showSeparators<bool>(false),
   showTitlesOnly<bool>(false),
   showTitlesOnlyDisableInSearchView<bool>(true),
   maximumContentPreviewLines<int>(3),
+  showNoteTypeIcon<bool>(true),
 
   // Behavior
-  flagSecure<bool>(false),
+  confirmBeforeExiting<bool>(false),
   confirmations<String>('irreversible'),
+  autoRemoveFromBinDelay<int>(999),
   swipeRightAction<String>('delete'),
-  swipeLeftAction<String>('togglePin'),
+  swipeLeftAction<String>('archive'),
+  archivedSwipeRightAction<String>('delete'),
+  archivedSwipeLeftAction<String>('unarchive'),
   binSwipeRightAction<String>('permanentlyDelete'),
   binSwipeLeftAction<String>('restore'),
 
   // Editor
-  showUndoRedoButtons<bool>(true),
-  showChecklistButton<bool>(true),
-  showToolbar<bool>(true),
   editorModeButton<bool>(true),
   openEditorReadingMode<bool>(false),
   focusTitleOnNewNote<bool>(false),
-  useParagraphsSpacing<bool>(true),
 
   // Labels
   enableLabels<bool>(true),
   showLabelsListOnNoteTile<bool>(true),
   showLabelsListInEditorPage<bool>(true),
+  labelSwipeRightAction<String>('delete'),
+  labelSwipeLeftAction<String>('edit'),
 
   // Backup
   enableAutoExport<bool>(true),
@@ -46,6 +58,14 @@ enum PreferenceKey<T> {
   autoExportPassword<String>('', secure: true, backup: false),
   autoExportDirectory<String>('', backup: false),
   lastAutoExportDate<String>('', backup: false),
+
+  // Security
+  flagSecure<bool>(false),
+  lockApp<bool>(false, backup: false),
+  lockAppDelay<int>(10),
+  lockNote<bool>(false, backup: false),
+  lockLabel<bool>(false, backup: false),
+  lockNoteDelay<int>(10),
 
   // Accessibility
   textScaling<double>(1.0),
@@ -59,10 +79,9 @@ enum PreferenceKey<T> {
   layout<String>('list', backup: false),
 
   // Database
-  databaseVersion(1),
-  ;
+  databaseVersion<int>(3, backup: false);
 
-  /// Default value of this preference.
+  /// The default value of this preference.
   final T defaultValue;
 
   /// Whether this preference should be securely stored.
@@ -84,29 +103,29 @@ enum PreferenceKey<T> {
 
   /// Sets this preference to the [value] with the type [T].
   Future<void> set(T value) async {
-    await PreferencesUtils().set<T>(this, value);
+    await PreferencesWrapper().set<T>(this, value);
   }
 
   /// Resets this preference to its [defaultValue].
   Future<void> reset() async {
-    await PreferencesUtils().set<T>(this, defaultValue);
+    await PreferencesWrapper().set<T>(this, defaultValue);
   }
 
   /// Returns the value of this preference if set, or [null] otherwise.
-  T? getPreference() => PreferencesUtils().get<T>(this);
+  T? get preference => PreferencesWrapper().get<T>(this);
 
   /// Returns the value of this preference if set, or its default value otherwise.
-  T getPreferenceOrDefault() => PreferencesUtils().get<T>(this) ?? defaultValue;
+  T get preferenceOrDefault => PreferencesWrapper().get<T>(this) ?? defaultValue;
 
   /// Returns the value of this securely stored preference if set, or [null] otherwise.
-  T? getPreferenceSecure() => PreferencesUtils().get<T>(this);
+  T? get preferenceSecure => PreferencesWrapper().get<T>(this);
 
   /// Returns the value of this securely stored preference if set, or its default value otherwise.
-  Future<String> getPreferenceOrDefaultSecure() async =>
-      await PreferencesUtils().getSecure(this) ?? defaultValue as String;
+  Future<String> get preferenceOrDefaultSecure async =>
+      await PreferencesWrapper().getSecure(this) ?? defaultValue as String;
 
   /// Removes the value of this preference.
   Future<void> remove() async {
-    await PreferencesUtils().remove(this);
+    await PreferencesWrapper().remove(this);
   }
 }

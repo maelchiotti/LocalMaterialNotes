@@ -1,17 +1,20 @@
 include: package:flutter_lints/flutter.yaml
 
+formatter:
+  page_width: 120
+
 analyzer:
   exclude:
     - '**.g.dart'
   plugins:
     - custom_lint
   language:
-    strict-inference: true # Force to specify generic types
+    strict-inference: true
 
 linter:
   rules:
-    - require_trailing_commas
     - public_member_api_docs
     - prefer_relative_imports
     - always_put_control_body_on_new_line
     - curly_braces_in_flow_control_structures
+    - unawaited_futures

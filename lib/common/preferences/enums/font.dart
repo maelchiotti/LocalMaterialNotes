@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs
 
-import '../../constants/constants.dart';
+import 'package:flutter/material.dart';
+
+import '../../extensions/build_context_extension.dart';
 import '../../extensions/iterable_extension.dart';
 import '../preference_key.dart';
 
@@ -18,8 +20,7 @@ enum Font {
   playfairDisplay('Playfair Display', 'Playfair Display'),
   raleway('Raleway', 'Raleway'),
   robotoMono('Roboto Mono', 'Roboto Mono'),
-  ubuntu('Ubuntu', 'Ubuntu'),
-  ;
+  ubuntu('Ubuntu', 'Ubuntu');
 
   /// The name of the font family.
   final String familyName;
@@ -32,9 +33,7 @@ enum Font {
 
   /// Returns the value of the preference if set, or its default value otherwise.
   factory Font.appFromPreference() {
-    final font = Font.values.byNameOrNull(
-      PreferenceKey.appFont.getPreference(),
-    );
+    final font = Font.values.byNameOrNull(PreferenceKey.appFont.preference);
 
     // Reset the malformed preference to its default value
     if (font == null) {
@@ -48,9 +47,7 @@ enum Font {
 
   /// Returns the value of the preference if set, or its default value otherwise.
   factory Font.editorFromPreference() {
-    final font = Font.values.byNameOrNull(
-      PreferenceKey.editorFont.getPreference(),
-    );
+    final font = Font.values.byNameOrNull(PreferenceKey.editorFont.preference);
 
     // Reset the malformed preference to its default value
     if (font == null) {
@@ -63,10 +60,10 @@ enum Font {
   }
 
   /// Returns the display name of this font.
-  String get displayName {
+  String displayName(BuildContext context) {
     // Return the localized display name for the system default font
     if (this == systemDefault) {
-      return l.font_system_default;
+      return context.l.font_system_default;
     }
 
     return _displayName!;

@@ -1,36 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../models/note/types/note_type.dart';
 import '../constants/constants.dart';
+import '../extensions/build_context_extension.dart';
 
 /// Utilities for the snack bars.
 class SnackBarUtils {
-  /// A snack bar that holds an informative [message].
-  SnackBarUtils.info(
-    String message, {
-    this.duration = const Duration(milliseconds: 4000),
-  }) : text = message;
-
-  /// A snack bar that holds an [error] message.
+  /// Shows a snack bar with the [text].
   ///
-  /// The message is prefixed with the string `Error: `. Thus, the message should start with a lowercase.
-  SnackBarUtils.error(
-    String error, {
-    this.duration = const Duration(milliseconds: 4000),
-  }) : text = '${l.error_snack_bar} $error';
+  /// if [error] is `true`, the [text] is prefixed with `Error:`.
+  ///
+  /// If [onCancel] is set, an action that calls it when tapped is shown.
+  void show(
+    BuildContext context, {
+    required String text,
+    bool error = false,
+    void Function(WidgetRef globalRef)? onCancel,
+  }) {
+    if (error) {
+      text = '${context.l.error_snack_bar} $text';
+    }
 
-  /// Text to display in the snack bar;
-  final String text;
+    final availableNotesTypes = NoteType.available;
+    final behavior = availableNotesTypes.length == 1 ? SnackBarBehavior.floating : SnackBarBehavior.fixed;
 
-  /// Duration of the snack bar.
-  final Duration duration;
-
-  /// Shows the snack bar.
-  void show({BuildContext? context}) {
-    ScaffoldMessenger.of(context ?? rootNavigatorKey.currentContext!).showSnackBar(
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        behavior: SnackBarBehavior.floating,
-        duration: duration,
+        behavior: behavior,
         content: Text(text),
+        action:
+            onCancel != null
+                ? SnackBarAction(label: context.fl.cancelButtonLabel, onPressed: () => onCancel(globalRef))
+                : null,
       ),
     );
   }

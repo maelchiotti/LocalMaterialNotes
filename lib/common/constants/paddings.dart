@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'constants.dart';
 
 // ignore_for_file: avoid_classes_with_only_static_members
@@ -33,18 +34,20 @@ class Paddings {
   static EdgeInsetsDirectional get bottomSystemUi => EdgeInsetsDirectional.only(bottom: _bottomSystemUiPadding);
 
   /// Padding for the floating action buttons.
-  static EdgeInsetsDirectional get fab => EdgeInsetsDirectional.only(
-        bottom: _bottomSystemUiPadding + kFloatingActionButtonMargin + 64,
-      );
+  static EdgeInsetsDirectional get fab =>
+      EdgeInsetsDirectional.only(bottom: _bottomSystemUiPadding + kFloatingActionButtonMargin + 64);
 
   /// Padding for a page.
   static EdgeInsetsDirectional get page => const EdgeInsetsDirectional.all(16);
 
-  /// Padding for a page except the bottom.
+  /// Padding for a page (horizontal).
+  static EdgeInsetsDirectional get pageHorizontal => const EdgeInsetsDirectional.symmetric(horizontal: 16);
+
+  /// Padding for a page (except the bottom).
   static EdgeInsetsDirectional get pageButBottom => const EdgeInsetsDirectional.only(top: 16, start: 16, end: 16);
 
-  /// Padding for the end of the app bar.
-  static EdgeInsetsDirectional get appBarActionsEnd => const EdgeInsetsDirectional.only(end: 8);
+  /// Padding for the separator of the app bar.
+  static EdgeInsetsDirectional get appBarSeparator => const EdgeInsetsDirectional.symmetric(horizontal: 8);
 
   /// Padding for the notes list when the notes tiles have a background.
   static EdgeInsetsDirectional get notesWithBackground => fab + const EdgeInsetsDirectional.symmetric(horizontal: 8);

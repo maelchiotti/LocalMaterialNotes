@@ -1,7 +1,7 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 
-import '../constants/constants.dart';
+import '../extensions/build_context_extension.dart';
 import '../extensions/iterable_extension.dart';
 import '../preferences/enums/font.dart';
 import '../preferences/preference_key.dart';
@@ -20,7 +20,7 @@ class ThemeUtils {
   /// Custom primary color.
   final customPrimaryColor = const Color(0xFF2278e9);
 
-  /// Whether the dynamic theming is available on the device?
+  /// Whether the dynamic theming is available on the device.
   late final bool isDynamicThemingAvailable;
 
   /// Ensures the utility is initialized.
@@ -30,9 +30,7 @@ class ThemeUtils {
 
   /// Returns the [ThemeMode] of the application.
   ThemeMode get themeMode {
-    final themeMode = ThemeMode.values.byNameOrNull(
-      PreferenceKey.theme.getPreferenceOrDefault(),
-    );
+    final themeMode = ThemeMode.values.byNameOrNull(PreferenceKey.theme.preferenceOrDefault);
 
     // Reset the malformed preference to its default value
     if (themeMode == null) {
@@ -45,50 +43,39 @@ class ThemeUtils {
   }
 
   /// Returns the title of the current theme mode.
-  String get themeModeTitle {
+  String themeModeTitle(BuildContext context) {
     switch (themeMode) {
       case ThemeMode.system:
-        return l.settings_theme_system;
+        return context.l.settings_theme_system;
       case ThemeMode.light:
-        return l.settings_theme_light;
+        return context.l.settings_theme_light;
       case ThemeMode.dark:
-        return l.settings_theme_dark;
+        return context.l.settings_theme_dark;
     }
   }
 
   /// Returns the light theme.
   ///
   /// Returns a dynamic light theme if [lightDynamicColorScheme] is not null, or the custom one otherwise.
-  ThemeData getLightTheme(
-    ColorScheme? lightDynamicColorScheme,
-    bool dynamicTheming,
-    Font appFont,
-  ) {
+  ThemeData getLightTheme(ColorScheme? lightDynamicColorScheme, bool dynamicTheming, Font appFont) {
     final ColorScheme colorScheme;
     if (dynamicTheming && lightDynamicColorScheme != null) {
       // TODO: remove when dynamic_colors is updated to support new roles
       // See https://github.com/material-foundation/flutter-packages/issues/582
-      final temporaryColorScheme = ColorScheme.fromSeed(
-        seedColor: lightDynamicColorScheme.primary,
-      );
+      final temporaryColorScheme = ColorScheme.fromSeed(seedColor: lightDynamicColorScheme.primary);
 
       colorScheme = lightDynamicColorScheme.copyWith(
         surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
         surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
+        surfaceContainer: temporaryColorScheme.surfaceContainer,
         surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
         surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
       );
     } else {
-      colorScheme = ColorScheme.fromSeed(
-        seedColor: customPrimaryColor,
-      );
+      colorScheme = ColorScheme.fromSeed(seedColor: customPrimaryColor);
     }
 
-    return ThemeData(
-      useMaterial3: true,
-      colorScheme: colorScheme,
-      fontFamily: appFont.familyName,
-    );
+    return ThemeData(useMaterial3: true, colorScheme: colorScheme, fontFamily: appFont.familyName);
   }
 
   /// Returns the dark theme.
@@ -111,43 +98,36 @@ class ThemeUtils {
         seedColor: darkDynamicColorScheme.primary,
       );
 
-      colorScheme = blackTheming
-          ? darkDynamicColorScheme.copyWith(
-              // TODO: remove when dynamic_colors is updated to support new roles
-              // See https://github.com/material-foundation/flutter-packages/issues/582
-              // ignore: deprecated_member_use
-              background: Colors.black,
-              surface: Colors.black,
-              surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
-              surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
-              surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
-              surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
-            )
-          : darkDynamicColorScheme.copyWith(
-              surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
-              surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
-              surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
-              surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
-            );
+      colorScheme =
+          blackTheming
+              ? darkDynamicColorScheme.copyWith(
+                // TODO: remove when dynamic_colors is updated to support new roles
+                // See https://github.com/material-foundation/flutter-packages/issues/582
+                // ignore: deprecated_member_use
+                background: Colors.black,
+                surface: Colors.black,
+                surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
+                surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
+                surfaceContainer: temporaryColorScheme.surfaceContainer,
+                surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
+                surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
+              )
+              : darkDynamicColorScheme.copyWith(
+                surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
+                surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
+                surfaceContainer: temporaryColorScheme.surfaceContainer,
+                surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
+                surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
+              );
     } else {
-      colorScheme = blackTheming
-          ? ColorScheme.fromSeed(
-              brightness: Brightness.dark,
-              seedColor: customPrimaryColor,
-              surface: Colors.black,
-            )
-          : ColorScheme.fromSeed(
-              brightness: Brightness.dark,
-              seedColor: customPrimaryColor,
-            );
+      colorScheme =
+          blackTheming
+              ? ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: customPrimaryColor, surface: Colors.black)
+              : ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: customPrimaryColor);
     }
 
-    final textTheme = whiteTextDarkMode
-        ? Typography().white.apply(
-              bodyColor: Colors.white,
-              displayColor: Colors.white,
-            )
-        : null;
+    final textTheme =
+        whiteTextDarkMode ? Typography().white.apply(bodyColor: Colors.white, displayColor: Colors.white) : null;
 
     return ThemeData(
       useMaterial3: true,

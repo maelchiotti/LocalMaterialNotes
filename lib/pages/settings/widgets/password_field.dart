@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/extensions/string_extension.dart';
 
 /// Text field to enter the password to use to encrypt the JSON exports.
@@ -57,7 +57,7 @@ class _PasswordFieldState extends State<PasswordField> {
     }
 
     if (!(password.length == 32) || !password.isStrongPassword) {
-      return l.dialog_export_encryption_password_invalid;
+      return context.l.dialog_export_encryption_password_invalid;
     }
 
     return null;
@@ -89,10 +89,7 @@ class _PasswordFieldState extends State<PasswordField> {
       key: _formKey,
       child: Column(
         children: [
-          if (widget.description != null) ...[
-            Text(widget.description!),
-            Padding(padding: Paddings.vertical(8)),
-          ],
+          if (widget.description != null) ...[Text(widget.description!), Padding(padding: Paddings.vertical(8))],
           if (widget.secondaryDescription != null) ...[
             Text(widget.secondaryDescription!),
             Padding(padding: Paddings.vertical(8)),
@@ -108,7 +105,7 @@ class _PasswordFieldState extends State<PasswordField> {
                   icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
                   onPressed: _toggleObscurePassword,
                 ),
-                hintText: l.dialog_export_encryption_password,
+                hintText: context.l.dialog_export_encryption_password,
               ),
               obscureText: _obscurePassword,
               autocorrect: false,

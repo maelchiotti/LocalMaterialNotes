@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
-import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
-import '../../../common/localization/locale_utils.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/preferences/watched_preferences.dart';
-import '../../../common/widgets/keys.dart';
+import '../../../common/system_utils.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 
 /// Accessibility settings.
@@ -47,9 +46,7 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
   void _toggleBiggerTitles(bool toggled) {
     PreferenceKey.biggerTitles.set(toggled);
 
-    setState(() {
-      ref.read(preferencesProvider.notifier).update(WatchedPreferences(biggerTitles: toggled));
-    });
+    setState(() {});
   }
 
   /// Toggles whether to use white text in dark mode.
@@ -60,47 +57,42 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
   }
 
   /// Toggles the setting to show background of the notes tiles.
-  void _toggleDisableSubduedNoteContentPreview(bool toggled) {
-    setState(() {
-      PreferenceKey.disableSubduedNoteContentPreview.set(toggled);
-    });
+  Future<void> _toggleDisableSubduedNoteContentPreview(bool toggled) async {
+    await PreferenceKey.disableSubduedNoteContentPreview.set(toggled);
 
-    ref.read(preferencesProvider.notifier).update(WatchedPreferences(disableSubduedNoteContentPreview: toggled));
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final textScaling = PreferenceKey.textScaling.getPreferenceOrDefault();
-    final biggerTitles = PreferenceKey.biggerTitles.getPreferenceOrDefault();
-    final useWhiteTextDarkMode = PreferenceKey.useWhiteTextDarkMode.getPreferenceOrDefault();
-    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.getPreferenceOrDefault();
+    final textScaling = ref.watch(preferencesProvider.select((preferences) => preferences.textScaling));
+    final biggerTitles = PreferenceKey.biggerTitles.preferenceOrDefault;
+    final useWhiteTextDarkMode = ref.watch(
+      preferencesProvider.select((preferences) => preferences.useWhiteTextDarkMode),
+    );
+    final disableSubduedNoteContentPreview = PreferenceKey.disableSubduedNoteContentPreview.preferenceOrDefault;
 
     final darkTheme = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      appBar: TopNavigation(
-        key: Keys.appBarSettingsMainSubpage,
-        appbar: BasicAppBar(
-          title: l.navigation_settings_accessibility,
-          back: true,
-        ),
-      ),
+      appBar: TopNavigation(appbar: BasicAppBar(title: context.l.navigation_settings_accessibility)),
       body: SingleChildScrollView(
         child: Padding(
           padding: Paddings.bottomSystemUi,
           child: Column(
             children: [
               SettingSection(
-                title: l.settings_accessibility_text_size,
+                title: context.l.settings_accessibility_text_size,
                 divider: null,
                 tiles: [
                   SettingSliderTile(
                     icon: Icons.format_size,
-                    title: l.settings_text_scaling,
-                    value: (textScaling as num).formatAsPercentage(locale: LocaleUtils().appLocaleLanguageCode),
-                    dialogTitle: l.settings_text_scaling,
-                    label: (textScaling) =>
-                        (textScaling as num).formatAsPercentage(locale: LocaleUtils().appLocaleLanguageCode),
+                    title: context.l.settings_text_scaling,
+                    value: (textScaling as num).formatAsPercentage(locale: SystemUtils().appLocaleLanguageCode),
+                    dialogTitle: context.l.settings_text_scaling,
+                    label:
+                        (textScaling) =>
+                            (textScaling as num).formatAsPercentage(locale: SystemUtils().appLocaleLanguageCode),
                     min: 0.5,
                     max: 2.0,
                     divisions: 15,
@@ -111,29 +103,29 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
                   ),
                   SettingSwitchTile(
                     icon: Icons.title,
-                    title: l.settings_bigger_titles,
-                    description: l.settings_bigger_titles_description,
+                    title: context.l.settings_bigger_titles,
+                    description: context.l.settings_bigger_titles_description,
                     toggled: biggerTitles,
                     onChanged: _toggleBiggerTitles,
                   ),
                 ],
               ),
               SettingSection(
-                title: l.settings_accessibility_text_color,
+                title: context.l.settings_accessibility_text_color,
                 divider: null,
                 tiles: [
                   SettingSwitchTile(
                     enabled: darkTheme,
                     icon: Icons.format_color_text,
-                    title: l.settings_white_text_dark_mode,
-                    description: l.settings_white_text_dark_mode_description,
+                    title: context.l.settings_white_text_dark_mode,
+                    description: context.l.settings_white_text_dark_mode_description,
                     toggled: useWhiteTextDarkMode,
                     onChanged: _toggleUseWhiteTextDarkMode,
                   ),
                   SettingSwitchTile(
                     icon: Icons.opacity,
-                    title: l.settings_disable_subdued_note_content_preview,
-                    description: l.settings_disable_subdued_note_content_preview_description,
+                    title: context.l.settings_disable_subdued_note_content_preview,
+                    description: context.l.settings_disable_subdued_note_content_preview_description,
                     toggled: disableSubduedNoteContentPreview,
                     onChanged: _toggleDisableSubduedNoteContentPreview,
                   ),

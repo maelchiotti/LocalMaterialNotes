@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/constants/constants.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/extensions/string_extension.dart';
 import '../widgets/password_field.dart';
 
@@ -78,14 +78,8 @@ class _AutoExportPasswordDialogState extends State<AutoExportPasswordDialog> {
         ),
       ),
       actions: [
-        TextButton(
-          onPressed: () => _pop(canceled: true),
-          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
-        ),
-        TextButton(
-          onPressed: ok ? _pop : null,
-          child: Text(flutterL?.okButtonLabel ?? 'OK'),
-        ),
+        TextButton(onPressed: () => _pop(canceled: true), child: Text(context.fl.cancelButtonLabel)),
+        TextButton(onPressed: ok ? _pop : null, child: Text(context.fl.okButtonLabel)),
       ],
     );
   }

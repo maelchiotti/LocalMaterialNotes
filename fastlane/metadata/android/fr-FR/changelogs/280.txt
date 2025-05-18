@@ -1,0 +1,18 @@
+AJOUTÉ
+- Types de notes : texte brut, markdown, liste de contrôle
+- Archivage des notes
+- Annuler des actions
+- Verrouillage de l'app, d'une note ou d'une étiquette
+- Mise en évidence du texte recherché
+- Paramètre pour améliorer la visibilité des titres
+- Vidage automatique corbeille
+- Liens donation
+
+MODIFIÉ
+- 3 apparences de la barre d'outils
+- Organiser les notes dans des dossiers dans les exports Markdown
+- Animation filtres étiquettes
+
+CORRIGÉ
+- Suppression auto notes vides
+- Bouton retour

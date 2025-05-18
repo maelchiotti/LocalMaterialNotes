@@ -1,23 +1,17 @@
+import 'package:dart_helper_utils/dart_helper_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 import '../../models/label/label.dart';
 import '../../navigation/navigation_routes.dart';
-import '../../navigation/navigator_utils.dart';
-import '../../pages/bin/bin_page.dart';
-import '../../pages/labels/labels_page.dart';
-import '../../pages/notes/notes_page.dart';
-import '../../pages/settings/settings_main_page.dart';
 import '../../providers/labels/labels_navigation/labels_navigation_provider.dart';
-import '../../providers/notifiers/notifiers.dart';
-import '../constants/constants.dart';
 import '../constants/paddings.dart';
 import '../constants/sizes.dart';
+import '../extensions/build_context_extension.dart';
 import '../preferences/preference_key.dart';
 import '../widgets/asset.dart';
-import '../widgets/keys.dart';
-import '../widgets/placeholders/error_placeholder.dart';
 
 /// Side navigation with the drawer.
 class SideNavigation extends ConsumerStatefulWidget {
@@ -30,228 +24,172 @@ class SideNavigation extends ConsumerStatefulWidget {
 
 class _SideNavigationState extends ConsumerState<SideNavigation> {
   /// Index of the currently selected drawer destination.
-  late int _index;
+  late int index;
 
-  /// Returns whether the [route] is the home page.
-  bool isHomeRoute(String route) => route == '/';
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
 
-  /// Returns whether the [route] is the home page.
-  bool isLabelRoute(String route) => route.startsWith('label-');
-
-  /// Sets the index of the navigation drawer.
-  void setIndex([List<Label>? labels]) {
-    // Get the name of the current route
-    final route = ModalRoute.of(context)?.settings.name;
-    assert(route != null, 'Missing current route while navigating');
-    route!;
-
-    final int index;
-
-    // The labels are enabled
-    if (labels != null) {
-      if (isHomeRoute(route)) {
-        index = 0;
-      } else if (isLabelRoute(route)) {
-        final labelName = route.substring(6);
-        final label = labels.firstWhere(
-          (label) => label.name == labelName,
-          orElse: () {
-            throw Exception('Unknown label name while setting the index of the navigation drawer: $labelName');
-          },
-        );
-
-        index = labels.indexOf(label) + 1;
-      } else if (route == NavigationRoute.manageLabels.name) {
-        index = labels.length + 1;
-      } else if (route == NavigationRoute.bin.name) {
-        index = labels.length + 2;
-      } else if (route == NavigationRoute.settings.name) {
-        index = labels.length + 3;
-      } else {
-        throw Exception('Unknown route while setting the index of the navigation drawer: $route');
-      }
-    }
-
-    // The labels are disabled
-    else {
-      if (route == '/' || route == NavigationRoute.notes.name) {
-        index = 0;
-      } else if (route == NavigationRoute.bin.name) {
-        index = 1;
-      } else if (route == NavigationRoute.settings.name) {
-        index = 2;
-      } else {
-        throw Exception('Unknown route while setting the index of the navigation drawer: $route');
-      }
-    }
-
-    _index = index;
+    setIndex();
   }
 
-  /// Navigates to the route corresponding to the [index].
-  void navigate(int index, List<Label>? labels) {
-    // If the new route is the same as the current one, just close the drawer
-    if (_index == index) {
-      Navigator.pop(context);
-
-      return;
-    }
-
-    // Get the name of the current route
+  /// Sets the index of the navigation drawer.
+  void setIndex() {
     final route = ModalRoute.of(context)?.settings.name;
+
     assert(route != null, 'Missing current route while navigating');
     route!;
 
+    final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
+
+    if (enableLabels) {
+      final labels = ref.read(labelsNavigationProvider).value ?? [];
+
+      if (route == NavigationRoute.notes.name) {
+        index = 0;
+      } else if (route == NavigationRoute.labels.name) {
+        index = labels.length + 1;
+      } else if (route == NavigationRoute.archives.name) {
+        index = labels.length + 2;
+      } else if (route == NavigationRoute.bin.name) {
+        index = labels.length + 3;
+      } else if (route == NavigationRoute.settings.name) {
+        index = labels.length + 4;
+      } else if (labels.isNotEmpty) {
+        labels.forEachIndexed((label, labelIndex) {
+          if (route == NavigationRoute.getLabelRouteName(label)) {
+            index = labelIndex + 1;
+          }
+        });
+      } else {
+        throw Exception('Unknown route when setting the side navigation index: $route');
+      }
+    } else {
+      if (route == NavigationRoute.notes.name) {
+        index = 0;
+      } else if (route == NavigationRoute.archives.name) {
+        index = 1;
+      } else if (route == NavigationRoute.bin.name) {
+        index = 2;
+      } else if (route == NavigationRoute.settings.name) {
+        index = 3;
+      }
+    }
+  }
+
+  /// Navigates to the route corresponding to the [newIndex].
+  void navigate(int newIndex) {
     // Close the navigation drawer
     Navigator.pop(context);
 
-    // The labels are enabled
-    if (labels != null) {
-      final isNewRouteLabelRoute = index > 0 && index <= labels.length;
-
-      // Clear the current note if the new route is not the notes list or the labels list
-      if (index != 0 && !isNewRouteLabelRoute) {
-        currentNoteNotifier.value = null;
-      }
-
-      if (index == 0) {
-        Navigator.popUntil(context, ModalRoute.withName('/'));
-      } else if (isNewRouteLabelRoute) {
-        final label = labels[index - 1];
-        currentLabelFilter = label;
-
-        isHomeRoute(route)
-            ? NavigatorUtils.push(
-                context,
-                '${NavigationRoute.label.name}-${label.name}',
-                NotesPage(),
-              )
-            : NavigatorUtils.go(
-                context,
-                '${NavigationRoute.label.name}-${label.name}',
-                NotesPage(),
-              );
-      } else if (index == labels.length + 1) {
-        NavigationRoute.manageLabels.pushOrGo(context, isHomeRoute(route), LabelsPage());
-      } else if (index == labels.length + 2) {
-        NavigationRoute.bin.pushOrGo(context, isHomeRoute(route), BinPage());
-      } else if (index == labels.length + 3) {
-        NavigationRoute.settings.pushOrGo(context, isHomeRoute(route), SettingsMainPage());
-      } else {
-        throw Exception('Invalid drawer index while navigating to a new route: $index');
-      }
+    // If the new index is the same as the current one, no need to navigate
+    if (index == newIndex) {
+      return;
     }
 
-    // The labels are disabled
-    else {
-      switch (index) {
+    final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
+
+    if (enableLabels) {
+      final labels = ref.read(labelsNavigationProvider).value ?? [];
+
+      if (newIndex == 0) {
+        context.goNamed(NavigationRoute.notes.name);
+      } else if (newIndex == labels.length + 1) {
+        context.goNamed(NavigationRoute.labels.name);
+      } else if (newIndex == labels.length + 2) {
+        context.goNamed(NavigationRoute.archives.name);
+      } else if (newIndex == labels.length + 3) {
+        context.goNamed(NavigationRoute.bin.name);
+      } else if (newIndex == labels.length + 4) {
+        context.goNamed(NavigationRoute.settings.name);
+      } else if (labels.isNotEmpty) {
+        labels.forEachIndexed((label, index) {
+          if (newIndex == index + 1) {
+            context.goNamed(NavigationRoute.getLabelRouteName(label));
+          }
+        });
+      } else {
+        throw Exception('Unknown new side navigation index: $newIndex');
+      }
+    } else {
+      switch (newIndex) {
         case 0:
-          Navigator.pop(context);
+          context.goNamed(NavigationRoute.notes.name);
         case 1:
-          NavigationRoute.bin.pushOrGo(context, isHomeRoute(route), BinPage());
+          context.goNamed(NavigationRoute.archives.name);
         case 2:
-          NavigationRoute.settings.pushOrGo(context, isHomeRoute(route), SettingsMainPage());
+          context.goNamed(NavigationRoute.bin.name);
+        case 3:
+          context.goNamed(NavigationRoute.settings.name);
         default:
-          throw Exception('Invalid drawer index while navigating to a new route: $index');
+          throw Exception('Unknown new side navigation index: $newIndex');
       }
     }
 
     setState(() {
-      _index = index;
+      index = newIndex;
     });
   }
 
-  /// Returns the navigation drawer.
-  Widget drawer(BuildContext context, [List<Label>? labels]) => NavigationDrawer(
-        onDestinationSelected: (index) => navigate(index, labels),
-        selectedIndex: _index,
-        children: <Widget>[
-          DrawerHeader(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  Asset.icon.path,
-                  fit: BoxFit.fitWidth,
-                  width: Sizes.iconSize.size,
-                ),
-                Padding(padding: Paddings.vertical(8)),
-                Text(
-                  l.app_name,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-              ],
-            ),
-          ),
-          NavigationDrawerDestination(
-            key: Keys.drawerNotesTab,
-            icon: const Icon(Icons.notes_outlined),
-            selectedIcon: const Icon(Icons.notes),
-            label: Text(l.navigation_notes),
-          ),
-          if (labels != null) ...[
-            Divider(indent: 24, endIndent: 24),
-            for (final label in labels)
-              NavigationDrawerDestination(
-                icon: Icon(
-                  label.pinned ? Icons.label_important_outline : Icons.label_outline,
-                  color: label.color,
-                ),
-                selectedIcon: Icon(
-                  label.pinned ? Icons.label_important : Icons.label,
-                  color: label.color,
-                ),
-                label: Expanded(
-                  child: Text(
-                    label.name,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ),
-          ],
-          if (labels != null) ...[
-            NavigationDrawerDestination(
-              icon: const Icon(Symbols.auto_label),
-              selectedIcon: VariedIcon.varied(Symbols.auto_label, fill: 1.0),
-              label: Text(l.navigation_manage_labels_destination),
-            ),
-            Divider(indent: 24, endIndent: 24),
-          ],
-          NavigationDrawerDestination(
-            key: Keys.drawerNotesTab,
-            icon: const Icon(Icons.delete_outline),
-            selectedIcon: const Icon(Icons.delete),
-            label: Text(l.navigation_bin),
-          ),
-          // Divider(indent: 24, endIndent: 24),
-          NavigationDrawerDestination(
-            key: Keys.drawerSettingsTab,
-            icon: const Icon(Icons.settings_outlined),
-            selectedIcon: const Icon(Icons.settings),
-            label: Text(l.navigation_settings),
-          ),
-        ],
-      );
-
   @override
   Widget build(BuildContext context) {
-    final enableLabels = PreferenceKey.enableLabels.getPreferenceOrDefault();
-
+    final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
+    List<Label> labels = [];
     if (enableLabels) {
-      return ref.watch(labelsNavigationProvider).when(
-            data: (labels) {
-              setIndex(labels);
-
-              return drawer(context, labels);
-            },
-            error: (exception, stackTrace) => ErrorPlaceholder(exception: exception, stackTrace: stackTrace),
-            loading: () => drawer(context),
-          );
-    } else {
-      setIndex();
-
-      return drawer(context);
+      labels = ref.read(labelsNavigationProvider).value ?? [];
     }
+
+    return NavigationDrawer(
+      onDestinationSelected: navigate,
+      selectedIndex: index,
+      children: <Widget>[
+        DrawerHeader(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(Asset.icon.path, fit: BoxFit.fitWidth, width: Sizes.appIcon.size),
+              Padding(padding: Paddings.vertical(8)),
+              Text(context.l.app_name, style: Theme.of(context).textTheme.headlineSmall),
+            ],
+          ),
+        ),
+        NavigationDrawerDestination(
+          icon: const Icon(Icons.notes_outlined),
+          selectedIcon: const Icon(Icons.notes),
+          label: Text(context.l.navigation_notes),
+        ),
+        Divider(indent: 24, endIndent: 24),
+        if (enableLabels) ...[
+          for (final label in labels)
+            NavigationDrawerDestination(
+              icon: Icon(label.pinned ? Icons.label_important_outline : Icons.label_outline, color: label.color),
+              selectedIcon: Icon(label.pinned ? Icons.label_important : Icons.label, color: label.color),
+              label: Expanded(child: Text(label.name, maxLines: 2, overflow: TextOverflow.ellipsis)),
+            ),
+          NavigationDrawerDestination(
+            icon: const Icon(Symbols.auto_label),
+            selectedIcon: VariedIcon.varied(Symbols.auto_label, fill: 1.0),
+            label: Text(context.l.navigation_manage_labels_destination),
+          ),
+          Divider(indent: 24, endIndent: 24),
+        ],
+        NavigationDrawerDestination(
+          icon: const Icon(Icons.archive_outlined),
+          selectedIcon: const Icon(Icons.archive),
+          label: Text(context.l.navigation_archives),
+        ),
+        NavigationDrawerDestination(
+          icon: const Icon(Icons.delete_outline),
+          selectedIcon: const Icon(Icons.delete),
+          label: Text(context.l.navigation_bin),
+        ),
+        Divider(indent: 24, endIndent: 24),
+        NavigationDrawerDestination(
+          icon: const Icon(Icons.settings_outlined),
+          selectedIcon: const Icon(Icons.settings),
+          label: Text(context.l.navigation_settings),
+        ),
+      ],
+    );
   }
 }

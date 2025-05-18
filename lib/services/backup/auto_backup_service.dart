@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:path/path.dart';
@@ -34,7 +35,7 @@ class AutoExportUtils {
   /// Sets the directory where automatic exports are located depending on the user preference and the available
   /// permissions.
   Future<void> setAutoExportDirectory() async {
-    final autoExportDirectoryPreference = PreferenceKey.autoExportDirectory.getPreferenceOrDefault();
+    final autoExportDirectoryPreference = PreferenceKey.autoExportDirectory.preferenceOrDefault;
 
     // Set to default if the user didn't choose a directory
     if (autoExportDirectoryPreference.isEmpty) {
@@ -84,14 +85,14 @@ class AutoExportUtils {
   /// or the time difference between now and the last automatic export is greater than the automatic export frequency
   /// chosen by the user
   bool _shouldPerformAutoExport() {
-    final enableAutoExport = PreferenceKey.enableAutoExport.getPreferenceOrDefault();
-    final autoExportFrequency = PreferenceKey.autoExportFrequency.getPreferenceOrDefault();
+    final enableAutoExport = PreferenceKey.enableAutoExport.preferenceOrDefault;
+    final autoExportFrequency = PreferenceKey.autoExportFrequency.preferenceOrDefault;
 
     if (!enableAutoExport) {
       return false;
     }
 
-    final lastAutoExportDatePreference = PreferenceKey.lastAutoExportDate.getPreferenceOrDefault();
+    final lastAutoExportDatePreference = PreferenceKey.lastAutoExportDate.preferenceOrDefault;
     final lastAutoExportDate = DateTime.tryParse(lastAutoExportDatePreference);
 
     // If the last automatic export date is null, perform the auto first automatic export now
@@ -113,11 +114,11 @@ class AutoExportUtils {
       return;
     }
 
-    final encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault();
-    final password = await PreferenceKey.autoExportPassword.getPreferenceOrDefaultSecure();
+    final encrypt = PreferenceKey.autoExportEncryption.preferenceOrDefault;
+    final password = await PreferenceKey.autoExportPassword.preferenceOrDefaultSecure;
 
-    ManualBackupService().autoExportAsJson(encrypt, password);
+    unawaited(ManualBackupService().autoExportAsJson(encrypt, password));
 
-    PreferenceKey.lastAutoExportDate.set(DateTime.now().toIso8601String());
+    unawaited(PreferenceKey.lastAutoExportDate.set(DateTime.now().toIso8601String()));
   }
 }

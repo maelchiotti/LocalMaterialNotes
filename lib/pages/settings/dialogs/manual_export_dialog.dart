@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/constants/constants.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/extensions/string_extension.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../widgets/encrypt_password_form.dart';
@@ -8,9 +8,7 @@ import '../widgets/encrypt_password_form.dart';
 /// Dialog to configure the manual export.
 class ManualExportDialog extends StatefulWidget {
   /// Default constructor.
-  const ManualExportDialog({
-    super.key,
-  });
+  const ManualExportDialog({super.key});
 
   @override
   State<ManualExportDialog> createState() => _ManualExportDialogState();
@@ -18,7 +16,7 @@ class ManualExportDialog extends StatefulWidget {
 
 class _ManualExportDialogState extends State<ManualExportDialog> {
   /// Whether to encrypt the export.
-  bool _encrypt = PreferenceKey.autoExportEncryption.getPreferenceOrDefault();
+  bool _encrypt = PreferenceKey.autoExportEncryption.preferenceOrDefault;
 
   /// Password to encrypt the export.
   String? _password;
@@ -61,23 +59,17 @@ class _ManualExportDialogState extends State<ManualExportDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog.adaptive(
-      title: Text(l.settings_export_json),
+      title: Text(context.l.settings_export_json),
       content: SingleChildScrollView(
         child: EncryptPasswordForm(
-          secondaryDescription: l.dialog_export_encryption_secondary_description_manual,
+          secondaryDescription: context.l.dialog_export_encryption_secondary_description_manual,
           onChanged: _onChanged,
           onEditingComplete: _pop,
         ),
       ),
       actions: [
-        TextButton(
-          onPressed: () => _pop(canceled: true),
-          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
-        ),
-        TextButton(
-          onPressed: ok ? _pop : null,
-          child: Text(flutterL?.okButtonLabel ?? 'OK'),
-        ),
+        TextButton(onPressed: () => _pop(canceled: true), child: Text(context.fl.cancelButtonLabel)),
+        TextButton(onPressed: ok ? _pop : null, child: Text(context.fl.okButtonLabel)),
       ],
     );
   }

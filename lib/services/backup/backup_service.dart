@@ -8,15 +8,17 @@ import 'package:sanitize_filename/sanitize_filename.dart';
 
 import '../../common/constants/constants.dart';
 import '../../common/enums/mime_type.dart';
+import '../../common/extensions/build_context_extension.dart';
 import '../../common/extensions/date_time_extensions.dart';
 import '../../common/extensions/iterable_extension.dart';
 import '../../common/files/files_utils.dart';
 import '../../common/preferences/preference_key.dart';
-import '../../common/preferences/preferences_utils.dart';
-import '../../common/system/info_utils.dart';
+import '../../common/preferences/preferences_wrapper.dart';
+import '../../common/system_utils.dart';
 import '../../common/ui/snack_bar_utils.dart';
 import '../../models/label/label.dart';
 import '../../models/note/note.dart';
+import '../../models/note/types/note_type.dart';
 import '../../pages/settings/dialogs/auto_export_password_dialog.dart';
 import '../labels/labels_service.dart';
 import '../notes/notes_service.dart';
@@ -44,7 +46,7 @@ class ManualBackupService {
 
     var importedJson = jsonDecode(utf8.decode(importedFile));
 
-    // If the imported JSON is just a list, then it's the old export format that just contains the notes list
+    // If the imported JSON is just a list, it's an export from before v1. that just contains the notes list
     if (importedJson is List) {
       logger.w('The imported JSON file uses the old discontinued format with just the list of notes');
 
@@ -95,12 +97,7 @@ class ManualBackupService {
     return true;
   }
 
-  Future<bool> _importNotes(
-    BuildContext context,
-    List<dynamic> notesAsJson,
-    bool encrypted,
-    bool importLabels,
-  ) async {
+  Future<bool> _importNotes(BuildContext context, List<dynamic> notesAsJson, bool encrypted, bool importLabels) async {
     List<Note> notes = [];
     List<List<Label>> notesLabels = [];
 
@@ -108,10 +105,11 @@ class ManualBackupService {
       final password = await showAdaptiveDialog<String>(
         context: context,
         useRootNavigator: false,
-        builder: (context) => AutoExportPasswordDialog(
-          title: l.settings_import,
-          description: l.dialog_import_encryption_password_description,
-        ),
+        builder:
+            (context) => AutoExportPasswordDialog(
+              title: context.l.settings_import,
+              description: context.l.dialog_import_encryption_password_description,
+            ),
       );
 
       if (password == null) {
@@ -120,21 +118,52 @@ class ManualBackupService {
 
       try {
         for (final noteAsJsonEncrypted in notesAsJson) {
-          notes.add(RichTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+          final noteType = NoteType.values.byNameOrNull(noteAsJsonEncrypted['type']);
+
+          // If the note type is null, it's an export from before v2.0.0 when only rich text notes were available
+          if (noteType == null) {
+            notes.add(RichTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+          } else {
+            switch (noteType) {
+              case NoteType.plainText:
+                notes.add(PlainTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+              case NoteType.markdown:
+                notes.add(MarkdownNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+              case NoteType.richText:
+                notes.add(RichTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+              case NoteType.checklist:
+                notes.add(ChecklistNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+            }
+          }
         }
       } catch (exception, stackTrace) {
         logger.e(exception.toString(), exception, stackTrace);
 
-        SnackBarUtils.error(
-          l.dialog_import_encryption_password_error,
-          duration: const Duration(seconds: 8),
-        ).show();
+        if (context.mounted) {
+          SnackBarUtils().show(context, text: context.l.dialog_import_encryption_password_error);
+        }
 
         return false;
       }
     } else {
       for (final noteAsJson in notesAsJson) {
-        notes.add(RichTextNote.fromJson(noteAsJson));
+        final noteType = NoteType.values.byNameOrNull(noteAsJson['type']);
+
+        // If the note type is null, it's an export from before v2.0.0 when only rich text notes were available
+        if (noteType == null) {
+          notes.add(RichTextNote.fromJson(noteAsJson));
+        } else {
+          switch (noteType) {
+            case NoteType.plainText:
+              notes.add(PlainTextNote.fromJson(noteAsJson));
+            case NoteType.markdown:
+              notes.add(MarkdownNote.fromJson(noteAsJson));
+            case NoteType.richText:
+              notes.add(RichTextNote.fromJson(noteAsJson));
+            case NoteType.checklist:
+              notes.add(ChecklistNote.fromJson(noteAsJson));
+          }
+        }
       }
     }
 
@@ -166,10 +195,18 @@ class ManualBackupService {
       final preferenceKey = PreferenceKey.values.byNameOrNull(preference);
 
       if (preferenceKey == null) {
-        throw Exception("While restoring the preferences from JSON, the preference '$preference' doesn't exist");
+        logger.w("While restoring the preferences from JSON, the preference '$preference' doesn't exist");
+      } else {
+        if (preferenceKey.backup) {
+          // If the preference value is a list, then it's a list of String
+          // (the only type of list that can be stored in the preferences)
+          if (value is List) {
+            preferenceKey.set(value.cast<String>());
+          } else {
+            preferenceKey.set(value);
+          }
+        }
       }
-
-      preferenceKey.set(value);
     });
 
     return true;
@@ -184,17 +221,17 @@ class ManualBackupService {
     required String directory,
     required String fileName,
   }) async {
-    final version = InfoUtils().appVersion;
-    final buildNumber = InfoUtils().buildNumber;
+    final version = SystemUtils().appVersion;
+    final buildNumber = SystemUtils().buildNumber;
 
-    var notes = await _notesService.getAllNotDeleted();
+    var notes = await _notesService.getAll();
     if (encrypt && password != null && password.isNotEmpty) {
       notes = notes.map((note) => note.encrypted(password)).toList();
     }
 
     final labels = await _labelsService.getAll();
 
-    final preferences = PreferencesUtils().toJson();
+    final preferences = PreferencesWrapper().toJson();
 
     final exportData = {
       'version': version,
@@ -217,12 +254,14 @@ class ManualBackupService {
   /// Automatically exports all the notes in a JSON file.
   ///
   /// If [encrypt] is enabled, the title and the content of the notes is encrypted with the [password].
-  Future<bool> autoExportAsJson(bool encrypt, String password) async => await _exportAsJson(
-        encrypt: encrypt,
-        password: password,
-        directory: AutoExportUtils().autoExportDirectory,
-        fileName: _exportFileName(MimeType.json.extension),
-      );
+  Future<bool> autoExportAsJson(bool encrypt, String password) async {
+    return await _exportAsJson(
+      encrypt: encrypt,
+      password: password,
+      directory: AutoExportUtils().autoExportDirectory,
+      fileName: _exportFileName(MimeType.json.extension),
+    );
+  }
 
   /// Manually exports all the notes in a JSON file.
   ///
@@ -254,14 +293,19 @@ class ManualBackupService {
       return false;
     }
 
-    final notes = await _notesService.getAllNotDeleted();
+    final notes = await _notesService.getAll();
     final archive = Archive();
 
     for (final note in notes) {
-      final bytes = utf8.encode(note.markdown);
-      final filenameWithoutExtension = '${note.title} (${note.createdTime.filename})';
+      final markdown = '${note.labelsAsMarkdown}\n\n${note.contentAsMarkdown}';
+      final bytes = utf8.encode(markdown);
+
+      final filenameWithoutExtension = '${note.title} (${note.createdTime.filename})'.trim();
       final filenameWithoutExtensionSanitized = sanitizeFilename(filenameWithoutExtension);
-      final filename = '$filenameWithoutExtensionSanitized.${MimeType.markdown.extension}';
+
+      final folder = note.status.title;
+
+      final filename = '$folder/$filenameWithoutExtensionSanitized.${MimeType.markdown.extension}';
 
       archive.addFile(ArchiveFile(filename, bytes.length, bytes));
     }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../constants/constants.dart';
+
 import '../../constants/paddings.dart';
 import '../../constants/sizes.dart';
+import '../../extensions/build_context_extension.dart';
 
 /// Placeholder.
 class EmptyPlaceholder extends StatelessWidget {
@@ -10,20 +11,25 @@ class EmptyPlaceholder extends StatelessWidget {
   /// Displays a big icon and a short text indicating that the page is empty.
   const EmptyPlaceholder({super.key, this.icon, this.text});
 
-  /// Empty notes lists.
-  EmptyPlaceholder.notes({super.key})
-      : icon = Icons.notes,
-        text = l.placeholder_notes;
+  /// Empty available notes list.
+  EmptyPlaceholder.available(BuildContext context, {super.key})
+    : icon = Icons.notes,
+      text = context.l.placeholder_notes;
+
+  /// Empty archived notes list.
+  EmptyPlaceholder.archived(BuildContext context, {super.key})
+    : icon = Icons.archive_outlined,
+      text = context.l.placeholder_archives;
+
+  /// Empty deleted notes list.
+  EmptyPlaceholder.deleted(BuildContext context, {super.key})
+    : icon = Icons.delete_outline,
+      text = context.l.placeholder_bin;
 
   /// Empty labels.
-  EmptyPlaceholder.labels({super.key})
-      : icon = Icons.label_outline,
-        text = l.placeholder_labels;
-
-  /// Empty bin.
-  EmptyPlaceholder.bin({super.key})
-      : icon = Icons.delete_outline,
-        text = l.placeholder_bin;
+  EmptyPlaceholder.labels(BuildContext context, {super.key})
+    : icon = Icons.label_outline,
+      text = context.l.placeholder_labels;
 
   /// Icon to display.
   final IconData? icon;
@@ -44,17 +50,13 @@ class EmptyPlaceholder extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                icon,
-                size: Sizes.placeholderIcon.size,
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
+              Icon(icon, size: Sizes.placeholderIcon.size, color: Theme.of(context).colorScheme.onSurfaceVariant),
               Padding(padding: Paddings.vertical(16)),
               Text(
                 text!,
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.headlineSmall?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
               ),
             ],
           ),

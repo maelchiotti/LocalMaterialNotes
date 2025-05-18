@@ -1,4 +1,6 @@
-import '../../constants/constants.dart';
+import 'package:flutter/material.dart';
+
+import '../../extensions/build_context_extension.dart';
 import '../../extensions/iterable_extension.dart';
 import '../preference_key.dart';
 
@@ -11,14 +13,11 @@ enum Confirmations {
   irreversible,
 
   /// Always ask for a confirmation.
-  all,
-  ;
+  all;
 
   /// The value of the preference if set, or its default value otherwise.
   factory Confirmations.fromPreference() {
-    final confirmations = Confirmations.values.byNameOrNull(
-      PreferenceKey.confirmations.getPreference(),
-    );
+    final confirmations = Confirmations.values.byNameOrNull(PreferenceKey.confirmations.preference);
 
     // Reset the malformed preference to its default value
     if (confirmations == null) {
@@ -30,15 +29,12 @@ enum Confirmations {
     return confirmations;
   }
 
-  /// Returns the title of the preference for the settings page.
-  String get title {
-    switch (this) {
-      case none:
-        return l.settings_confirmations_title_none;
-      case irreversible:
-        return l.settings_confirmations_title_irreversible;
-      case all:
-        return l.settings_confirmations_title_all;
-    }
+  /// The title of the preference for the settings page.
+  String title(BuildContext context) {
+    return switch (this) {
+      none => context.l.settings_confirmations_title_none,
+      irreversible => context.l.settings_confirmations_title_irreversible,
+      all => context.l.settings_confirmations_title_all,
+    };
   }
 }

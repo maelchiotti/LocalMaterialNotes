@@ -26,18 +26,14 @@ gen_desc:
 	py scripts/generate_full_description.py
 
 
-# Tests
-.PHONY: test_all
-
-test_all:
-	patrol test -t integration_test --dart-define=INTEGRATION_TEST=true
-
-
 # Build
-.PHONY: release
+.PHONY: release release_abi
 
 release:
 	flutter build apk --release
+
+release_abi:
+	flutter build apk --release --split-per-abi
 
 
 # Update
@@ -51,7 +47,10 @@ update_fastlane:
 
 
 # Miscellaneous
-.PHONY: clean
+.PHONY: format clean
+
+format:
+	dart format .
 
 clean:
 	flutter clean

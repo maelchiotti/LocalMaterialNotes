@@ -4,7 +4,34 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-# 1.12.1 - 2025-01-31
+# 2.0.0 - 2025-05-18
+
+### Added
+
+- New types of notes: plain text, markdown and checklist
+- Archive notes
+- Cancel action from the snack bar
+- Lock the application, a specific note or a all notes with a specific label
+- Highlight searched text
+- Accessibility setting to improve titles visibility
+- Automatic emptying of the bin
+- Donation links
+
+### Changed
+
+- Toolbar appearance in the rich text editor, with 3 options to choose from
+- Organize notes in folders in markdown exports
+- Animated labels filters
+- Replaced "label" with "tag"
+
+### Fixed
+
+- Automatically deleting empty notes not working in some cases
+- Back button not working as expected
+
+### Removed
+
+## 1.12.1 - 2025-01-31
 
 ### Added
 

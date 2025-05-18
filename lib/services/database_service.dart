@@ -5,8 +5,10 @@ import 'package:path_provider/path_provider.dart';
 import '../models/deprecated/note.dart';
 import '../models/label/label.dart';
 import '../models/note/note.dart';
+import 'bin/bin_service.dart';
 import 'labels/labels_service.dart';
 import 'migration/migration_service.dart';
+import 'notes/notes_index_service.dart';
 import 'notes/notes_service.dart';
 
 /// Abstract service for the database.
@@ -33,7 +35,7 @@ class DatabaseService {
 
     // Initialize the database
     database = await Isar.open(
-      [NoteSchema, RichTextNoteSchema, LabelSchema],
+      [NoteSchema, PlainTextNoteSchema, RichTextNoteSchema, MarkdownNoteSchema, ChecklistNoteSchema, LabelSchema],
       name: databaseName,
       directory: databaseDirectory,
     );
@@ -41,11 +43,17 @@ class DatabaseService {
     // Initialize mimir
     mimir = await Mimir.defaultInstance;
 
+    // Initialize the indexes service
+    await NotesIndexService().ensureInitialized();
+
     // Initialize the models services
     await LabelsService().ensureInitialized();
     await NotesService().ensureInitialized();
 
     // Perform migrations if needed
     await MigrationService().migrateIfNeeded();
+
+    // Remove old notes from the bin if needed
+    await BinService().removeNotesFromBinIfNeeded();
   }
 }

@@ -2,23 +2,16 @@ import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/constants/sizes.dart';
+import '../../../common/extensions/build_context_extension.dart';
 import '../../../models/label/label.dart';
 import '../../../providers/labels/labels_list/labels_list_provider.dart';
-
-// TODO: remove on next Flutter release
-// ignore_for_file: deprecated_member_use
 
 /// Dialog to add or edit a label.
 class LabelDialog extends ConsumerStatefulWidget {
   /// A dialog allowing the user to add a label providing its name and color, or to edit an existing one.
-  const LabelDialog({
-    super.key,
-    required this.title,
-    this.label,
-  });
+  const LabelDialog({super.key, required this.title, this.label});
 
   /// The title of the dialog.
   final String title;
@@ -68,9 +61,9 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
 
   String? nameValidator(String? name) {
     if (name == null || name.isEmpty) {
-      return l.dialog_label_name_cannot_be_empty;
+      return context.l.dialog_label_name_cannot_be_empty;
     } else if (labels.map((label) => label.name).toList().contains(name) && name != widget.label?.name) {
-      return l.dialog_label_name_already_used;
+      return context.l.dialog_label_name_already_used;
     }
 
     return null;
@@ -120,11 +113,12 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
       return;
     }
 
-    final label = widget.label != null
-        ? (widget.label!
-          ..name = nameController.text
-          ..colorHex = color.value)
-        : Label(name: nameController.text, colorHex: color.value);
+    final label =
+        widget.label != null
+            ? (widget.label!
+              ..name = nameController.text
+              ..colorHex = color.toARGB32())
+            : Label(name: nameController.text, colorHex: color.toARGB32());
 
     Navigator.pop(context, label);
   }
@@ -149,9 +143,7 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
               Expanded(
                 child: TextFormField(
                   controller: nameController,
-                  decoration: InputDecoration(
-                    hintText: l.hint_label_name,
-                  ),
+                  decoration: InputDecoration(hintText: context.l.hint_label_name),
                   autofocus: true,
                   validator: nameValidator,
                   onChanged: onNameChanged,
@@ -162,14 +154,8 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
         ),
       ),
       actions: [
-        TextButton(
-          onPressed: () => pop(canceled: true),
-          child: Text(flutterL?.cancelButtonLabel ?? 'Cancel'),
-        ),
-        TextButton(
-          onPressed: ok ? pop : null,
-          child: Text(flutterL?.okButtonLabel ?? 'OK'),
-        ),
+        TextButton(onPressed: () => pop(canceled: true), child: Text(context.fl.cancelButtonLabel)),
+        TextButton(onPressed: ok ? pop : null, child: Text(context.fl.okButtonLabel)),
       ],
     );
   }

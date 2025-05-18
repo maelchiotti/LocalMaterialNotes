@@ -1,4 +1,5 @@
 import 'package:isar/isar.dart';
+
 import '../../common/constants/environment.dart';
 import '../../common/constants/labels.dart';
 import '../../models/label/label.dart';
@@ -27,7 +28,6 @@ class LabelsService {
       await clear();
       await putAll(integrationTestLabels);
     }
-
     // If the app runs with the 'SCREENSHOTS' environment parameter,
     // clear all the labels and add the labels for the screenshots
     else if (Environment.screenshots) {
@@ -44,16 +44,13 @@ class LabelsService {
 
   /// Returns all the labels.
   Future<List<Label>> getAllFiltered(LabelsFilter labelsFilter) async {
-    switch (labelsFilter) {
-      case LabelsFilter.all:
-        return getAll();
-      case LabelsFilter.visible:
-        return _labels.filter().visibleEqualTo(true).findAll();
-      case LabelsFilter.pinned:
-        return _labels.filter().pinnedEqualTo(true).findAll();
-      case LabelsFilter.hidden:
-        return _labels.filter().visibleEqualTo(false).findAll();
-    }
+    return switch (labelsFilter) {
+      LabelsFilter.all => getAll(),
+      LabelsFilter.visible => _labels.filter().visibleEqualTo(true).findAll(),
+      LabelsFilter.hidden => _labels.filter().visibleEqualTo(false).findAll(),
+      LabelsFilter.pinned => _labels.filter().pinnedEqualTo(true).findAll(),
+      LabelsFilter.locked => _labels.filter().lockedEqualTo(true).findAll(),
+    };
   }
 
   /// Puts the [label] in the database.

@@ -31,7 +31,7 @@
   },
   "error_widget_disabled_secure_flag": "La configuración para marcar la aplicación como segura está desactivada hasta el próximo reinicio para habilitar las capturas de pantalla.",
   "@error_widget_disabled_secure_flag": {
-    "description": "Label shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
+    "description": "Tag shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
   },
   "error_widget_button_export_notes": "Exportar notas",
   "@error_widget_button_export_notes": {
@@ -59,11 +59,15 @@
   },
   "navigation_manage_labels_destination": "Administrar etiquetas",
   "@navigation_manage_labels_destination": {
-    "description": "Title of the button in the side navigation drawer to got to the page to manage the labels."
+    "description": "Title of the button in the side navigation drawer to got to the page to manage the tags."
   },
   "navigation_manage_labels_page": "Etiquetas",
   "@navigation_manage_labels_page": {
-    "description": "Title of the page to manage the labels."
+    "description": "Title of the page to manage the tags."
+  },
+  "navigation_archives": "Archivos",
+  "@navigation_archives": {
+    "description": "Title of the archives page."
   },
   "navigation_bin": "Papelera",
   "@navigation_bin": {
@@ -91,7 +95,7 @@
   },
   "navigation_settings_labels": "Etiquetas",
   "@navigation_settings_labels": {
-    "description": "Title of the settings page regarding the labels."
+    "description": "Title of the settings page regarding the tags."
   },
   "navigation_settings_backup": "Copia de seguridad",
   "@navigation_settings_backup": {
@@ -245,10 +249,6 @@
   "@settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
-  "settings_behavior_description": "Confirmaciones, marcar cómo segura, acciones de deslizamiento",
-  "@settings_behavior_description": {
-    "description": "Description of the behavior settings page."
-  },
   "settings_behavior_application": "Aplicación",
   "@settings_behavior_application": {
     "description": "Title of the sub-section regarding the application under the behavior settings."
@@ -272,14 +272,6 @@
   "settings_confirmations_title_all": "Siempre",
   "@settings_confirmations_title_all": {
     "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
-  },
-  "settings_flag_secure": "Marcar la aplicación cómo segura",
-  "@settings_flag_secure": {
-    "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
-  },
-  "settings_flag_secure_description": "Oculta la aplicación de las aplicaciones recientes y previene que se realicen capturas de pantalla",
-  "@settings_flag_secure_description": {
-    "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
   },
   "settings_behavior_swipe_actions": "Acciones de deslizamiento",
   "@settings_behavior_swipe_actions": {
@@ -316,38 +308,6 @@
   "settings_editor": "Editor",
   "@settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
-  },
-  "settings_editor_description": "Botones, barra de herramientas, modo lectura, espaciado",
-  "@settings_editor_description": {
-    "description": "Description of the editor settings page."
-  },
-  "settings_editor_formatting": "Formato",
-  "@settings_editor_formatting": {
-    "description": "Title of the settings section regarding the notes content formatting in the editor."
-  },
-  "settings_show_undo_redo_buttons": "Botones deshacer/rehacer",
-  "@settings_show_undo_redo_buttons": {
-    "description": "Title of the setting tile to enable the the undo and redo buttons in the editor."
-  },
-  "settings_show_undo_redo_buttons_description": "Mostrar los botones para deshacer y rehacer cambios en la barra de aplicaciones del editor",
-  "@settings_show_undo_redo_buttons_description": {
-    "description": "Description of the setting tile to enable the the undo and redo buttons in the editor."
-  },
-  "settings_show_checklist_button": "Botón de casilla de verificación",
-  "@settings_show_checklist_button": {
-    "description": "Title of the setting tile to enable the checklist button in the editor."
-  },
-  "settings_show_checklist_button_description": "Mostrar el botón para alternar listas en la barra de aplicaciones del editor, ocultándolo de la barra de herramientas del editor si está habilitado",
-  "@settings_show_checklist_button_description": {
-    "description": "Description of the setting tile to enable the checklist button in the editor."
-  },
-  "settings_show_toolbar": "Barra de herramientas",
-  "@settings_show_toolbar": {
-    "description": "Title of the setting tile to enable the toolbar for advanced formatting options in the editor."
-  },
-  "settings_show_toolbar_description": "Mostrar la barra de herramientas del editor para habilitar el formato avanzado de texto",
-  "@settings_show_toolbar_description": {
-    "description": "Description of the setting tile to enable the toolbar for advanced formatting options in the editor."
   },
   "settings_editor_behavior": "Comportamiento",
   "@settings_editor_behavior": {
@@ -391,39 +351,39 @@
   },
   "settings_labels": "Etiquetas",
   "@settings_labels": {
-    "description": "Title of the settings page regarding the labels functionality."
+    "description": "Title of the settings page regarding the tags functionality."
   },
   "settings_labels_description": "Habilitar, apariencia",
   "@settings_labels_description": {
-    "description": "Description of the labels settings page."
+    "description": "Description of the tags settings page."
   },
   "settings_enable_labels": "Habilitar",
   "@settings_enable_labels": {
-    "description": "Title of the setting tile to enable the labels."
+    "description": "Title of the setting tile to enable the tags."
   },
   "settings_enable_labels_description": "Permitir categorizar las notas con etiquetas (deshabilitarlo no elimina etiquetas ni las elimina de las notas, solo las oculta)",
   "@settings_enable_labels_description": {
-    "description": "Description of the setting tile to enable the labels."
+    "description": "Description of the setting tile to enable the tags."
   },
   "settings_labels_appearance": "Apariencia",
   "@settings_labels_appearance": {
-    "description": "Title of the settings section regarding the appearance of the labels."
+    "description": "Title of the settings section regarding the appearance of the tags."
   },
   "settings_show_labels_note_tile": "Mostrar etiquetas en el título de las notas",
   "@settings_show_labels_note_tile": {
-    "description": "Title of the setting tile to show the labels on the notes tiles."
+    "description": "Title of the setting tile to show the tags on the notes tiles."
   },
   "settings_show_labels_note_tile_description": "Mostrar la lista de etiquetas en los títulos de las notas",
   "@settings_show_labels_note_tile_description": {
-    "description": "Description of the setting tile to show the labels on the notes tiles."
+    "description": "Description of the setting tile to show the tags on the notes tiles."
   },
   "settings_show_labels_editor": "Mostrar las etiquetas en el editor",
   "@settings_show_labels_editor": {
-    "description": "Title of the setting tile to show the labels in the editor."
+    "description": "Title of the setting tile to show the tags in the editor."
   },
   "settings_show_labels_editor_description": "Muestra la lista de etiquetas en la parte inferior del editor",
   "@settings_show_labels_editor_description": {
-    "description": "Description of the setting tile to show the labels in the editor."
+    "description": "Description of the setting tile to show the tags in the editor."
   },
   "settings_backup": "Respaldo",
   "@settings_backup": {
@@ -453,17 +413,9 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "Exporte inmediatamente las notas, etiquetas y configuraciones a un archivo JSON (bin incluido) que se pueda importar de vuelta",
-  "@settings_export_json_description": {
-    "description": "Description of the setting tile to manually export the notes as JSON."
-  },
   "settings_export_markdown": "Exportar a Markdown",
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
-  },
-  "settings_export_markdown_description": "Exportar inmediatamente las notas a un archivo Markdown (bin incluido)",
-  "@settings_export_markdown_description": {
-    "description": "Description of the setting tile to manually export the notes as Markdown."
   },
   "settings_backup_auto_export": "Exportación automática",
   "@settings_backup_auto_export": {
@@ -473,23 +425,9 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "Exporta automáticamente las notas, etiquetas y configuraciones a un archivo JSON (bin incluido) que se puede importar de vuelta",
-  "@settings_auto_export_description": {
-    "description": "Description of the settings tile to enable the automatic export."
-  },
   "settings_auto_export_frequency": "Frecuencia",
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
-  },
-  "settings_auto_export_frequency_value": "¡Cada {frequency, select, 1{día} 7{semana} 14{¡2 semanas} 30{mes} other{{frequency} días}}",
-  "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports.",
-    "placeholders": {
-      "frequency": {
-        "description": "Value of the frequency (as a String to enable the select, but it's an int).",
-        "type": "String"
-      }
-    }
   },
   "settings_auto_export_frequency_description": "Frecuencia de la exportación automática",
   "@settings_auto_export_frequency_description": {
@@ -511,9 +449,21 @@
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_flag_secure": "Marcar la aplicación cómo segura",
+  "@settings_flag_secure": {
+    "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  },
+  "settings_flag_secure_description": "Oculta la aplicación de las aplicaciones recientes y previene que se realicen capturas de pantalla",
+  "@settings_flag_secure_description": {
+    "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  },
+  "settings_application_lock_description": "Bloquea la aplicación y requiere autentificarse con el dispositivo para desbloquearla",
+  "@settings_application_lock_description": {
+    "description": "Description of the setting tile to toggle whether the application is locked."
+  },
   "settings_accessibility": "Accesibilidad",
   "@settings_accessibility": {
-    "description": "Title of the settings page regarding the accessibility."
+    "description": "Title of the settings page regarding the accessibility"
   },
   "settings_accessibility_text_size": "Tamaño del texto",
   "@settings_accessibility_text_size": {
@@ -533,11 +483,7 @@
   },
   "settings_bigger_titles": "Títulos grandes",
   "@settings_bigger_titles": {
-    "description": "Title of the setting tile to use bigger titles on the notes tiles."
-  },
-  "settings_bigger_titles_description": "Mostrar títulos más grandes en las tarjetas de notas",
-  "@settings_bigger_titles_description": {
-    "description": "Description of the setting tile to use bigger titles on the notes tiles."
+    "description": "Title of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
   "settings_white_text_dark_mode": "Texto blanco en el modo oscuro",
   "@settings_white_text_dark_mode": {
@@ -555,34 +501,6 @@
   "@settings_disable_subdued_note_content_preview_description": {
     "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
-  "settings_about": "Acerca de",
-  "@settings_about": {
-    "description": "Title of the settings page regarding the information about the application."
-  },
-  "settings_about_description": "Información, ayuda, enlaces",
-  "@settings_about_description": {
-    "description": "Description of the about settings section."
-  },
-  "settings_about_application": "Aplicación",
-  "@settings_about_application": {
-    "description": "Title of the settings section regarding the information about the application."
-  },
-  "settings_build_mode": "Modo de compilación",
-  "@settings_build_mode": {
-    "description": "Title of the settings tile displaying the build mode of the application."
-  },
-  "settings_build_mode_release": "Versión",
-  "@settings_build_mode_release": {
-    "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
-  },
-  "settings_build_mode_debug": "Depuración",
-  "@settings_build_mode_debug": {
-    "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
-  },
-  "settings_about_help": "Ayuda",
-  "@settings_about_help": {
-    "description": "Title of the settings section regarding how to get help for the application."
-  },
   "settings_github_issues": "Reporta errores o solicita nuevas características",
   "@settings_github_issues": {
     "description": "Title of the settings tile to open the GitHub issues and report a bug or request a feature."
@@ -599,13 +517,45 @@
   "@settings_github_discussions_description": {
     "description": "Description of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_get_in_touch": "Contactar con el desarrollador",
-  "@settings_get_in_touch": {
-    "description": "Title of the settings tile to contact the developer via mail."
-  },
   "settings_get_in_touch_description": "Póngase en contacto con el desarrollador por correo electrónico en {email}",
   "@settings_get_in_touch_description": {
     "description": "Description of the settings tile to contact the developer via mail."
+  },
+  "settings_copy_logs": "Copiar registros",
+  "@settings_copy_logs": {
+    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_copy_logs_description": "Copia los registros de la aplicación al portapapeles",
+  "@settings_copy_logs_description": {
+    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_export_logs": "Exportar los registros",
+  "@settings_export_logs": {
+    "description": "Title of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_export_logs_description": "Exporta los registros de la aplicación a un archivo de texto",
+  "@settings_export_logs_description": {
+    "description": "Description of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_about": "Acerca de",
+  "@settings_about": {
+    "description": "Title of the settings page regarding the information about the application."
+  },
+  "settings_about_application": "Aplicación",
+  "@settings_about_application": {
+    "description": "Title of the settings section regarding the information about the application."
+  },
+  "settings_build_mode": "Modo de compilación",
+  "@settings_build_mode": {
+    "description": "Title of the settings tile displaying the build mode of the application."
+  },
+  "settings_build_mode_release": "Versión",
+  "@settings_build_mode_release": {
+    "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
+  },
+  "settings_build_mode_debug": "Depuración",
+  "@settings_build_mode_debug": {
+    "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
   },
   "settings_about_links": "Enlaces",
   "@settings_about_links": {
@@ -635,25 +585,9 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
-  "settings_about_logs": "Registros",
-  "@settings_about_logs": {
-    "description": "Title of the settings section regarding the logs of the application."
-  },
-  "settings_copy_logs": "Copiar registros",
-  "@settings_copy_logs": {
-    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
-  },
-  "settings_copy_logs_description": "Copia los registros de la aplicación al portapapeles",
-  "@settings_copy_logs_description": {
-    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
-  },
-  "settings_export_logs": "Exportar los registros",
-  "@settings_export_logs": {
-    "description": "Title of the settings tile to export the logs of the application to a text file."
-  },
-  "settings_export_logs_description": "Exporta los registros de la aplicación a un archivo de texto",
-  "@settings_export_logs_description": {
-    "description": "Description of the settings tile to export the logs of the application to a text file."
+  "settings_donate_kofi": "Ko-fi",
+  "@settings_donate_kofi": {
+    "description": "Title of the settings tile to donate via Ko-fi."
   },
   "hint_title": "Título",
   "@hint_title": {
@@ -665,7 +599,7 @@
   },
   "hint_label_name": "Nombre",
   "@hint_label_name": {
-    "description": "Hint for the text field of the name of a label."
+    "description": "Hint for the text field of the name of a tag."
   },
   "dialog_export_encryption_password": "Contraseña",
   "@dialog_export_encryption_password": {
@@ -673,11 +607,11 @@
   },
   "dialog_select_labels": "Seleccionar etiquetas",
   "@dialog_select_labels": {
-    "description": "Title of the dialog to select the labels of a note."
+    "description": "Title of the dialog to select the tags of a note."
   },
   "dialog_select_labels_to_add": "Seleccionar etiquetas a añadir",
   "@dialog_select_labels_to_add": {
-    "description": "Title of the dialog to select the labels to add to the currently selected notes."
+    "description": "Title of the dialog to select the tags to add to the currently selected notes."
   },
   "tooltip_undo": "Deshacer la última acción",
   "@tooltip_undo": {
@@ -687,21 +621,13 @@
   "@tooltip_redo": {
     "description": "Tooltip for the button to redo the last action in the editor."
   },
-  "tooltip_toggle_checkbox": "Alternar casilla",
-  "@tooltip_toggle_checkbox": {
-    "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
-  },
-  "tooltip_toggle_pins": "Alternar fijado",
-  "@tooltip_toggle_pins": {
-    "description": "Tooltip for the button to toggle the pining state of the selected notes in selection mode (the pinned notes will be unpinned, and the not pinned ones will be pinned)."
-  },
   "tooltip_fab_add_note": "Agregar una nota",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
   },
   "tooltip_fab_add_label": "Añadir etiqueta",
   "@tooltip_fab_add_label": {
-    "description": "Floating action button in the labels page to add a new label."
+    "description": "Floating action button in the tags page to add a new tag."
   },
   "tooltip_fab_empty_bin": "Vaciar la papelera",
   "@tooltip_fab_empty_bin": {
@@ -735,29 +661,9 @@
   "@tooltip_unselect_all": {
     "description": "Tooltip for the button to unselect all the notes while in selection mode in the notes list."
   },
-  "tooltip_delete": "Eliminar",
-  "@tooltip_delete": {
-    "description": "Tooltip for the button to delete a note (moving it to bin)."
-  },
-  "tooltip_permanently_delete": "Eliminar permanentemente",
-  "@tooltip_permanently_delete": {
-    "description": "Tooltip for the button to permanently delete a note."
-  },
-  "tooltip_restore": "Restaurar",
-  "@tooltip_restore": {
-    "description": "Tooltip for the button to restore a note from the bin."
-  },
   "tooltip_reset": "Restablecer",
   "@tooltip_reset": {
     "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
-  },
-  "action_labels_toggle_pins": "Alternar fijado",
-  "@action_labels_toggle_pins": {
-    "description": "Tooltip for the button to toggle the pin status of the selected labels."
-  },
-  "action_labels_toggle_visibility": "Alternar visibilidad",
-  "@action_labels_toggle_visibility": {
-    "description": "Tooltip for the button to toggle the visibility of the selected labels."
   },
   "dialog_add_link": "Agregar un vínculo",
   "@dialog_add_link": {
@@ -815,7 +721,7 @@
   },
   "dialog_delete_label": "Eliminar",
   "@dialog_delete_label": {
-    "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
+    "description": "Title of the the dialog to delete one or multiple tags, and text for the confirmation button."
   },
   "dialog_delete_label_body": "¿Estás seguro de que quieres eliminar {count} {count, plural, one{etiqueta} other{etiquetas}}? {count, plural, one{Esta} other{Estas}} serán removidas de las notas donde las agregaste{count, plural, other{}}.",
   "@dialog_delete_label_body": {
@@ -857,19 +763,19 @@
   },
   "dialog_label_add": "Añadir etiqueta",
   "@dialog_label_add": {
-    "description": "Title of the dialog to add a label."
+    "description": "Title of the dialog to add a tag."
   },
   "dialog_label_edit": "Editar etiqueta",
   "@dialog_label_edit": {
-    "description": "Title of the dialog to edit a label."
+    "description": "Title of the dialog to edit a tag."
   },
   "dialog_label_name_cannot_be_empty": "El nombre no puede estar vacío.",
   "@dialog_label_name_cannot_be_empty": {
-    "description": "Error message shown when relevant on the text field of the name of the label."
+    "description": "Error message shown when relevant on the text field of the name of the tag."
   },
   "dialog_label_name_already_used": "Este nombre ya está en uso.",
   "@dialog_label_name_already_used": {
-    "description": "Error message shown when relevant on the text field of the name of the label."
+    "description": "Error message shown when relevant on the text field of the name of the tag."
   },
   "button_sort_creation_date": "Fecha de creación",
   "@button_sort_creation_date": {
@@ -885,11 +791,11 @@
   },
   "placeholder_labels": "Sin etiquetas",
   "@placeholder_labels": {
-    "description": "Placeholder on the labels page when there are no labels."
+    "description": "Placeholder on the tags page when there are no tags."
   },
   "placeholder_bin": "No hay notas eliminadas",
   "@placeholder_bin": {
-    "description": "Placeholder on the bin page when there are no notes."
+    "description": "Placeholder on the bin page when there are no deleted notes."
   },
   "action_disabled": "Desactivado",
   "@action_disabled": {
@@ -947,7 +853,7 @@
   },
   "about_labels": "Etiquetas",
   "@about_labels": {
-    "description": "Number of labels of the note."
+    "description": "Number of tags of the note."
   },
   "about_words": "Palabras",
   "@about_words": {
@@ -961,37 +867,33 @@
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
-  "menu_action_labels": "Etiquetas",
-  "@menu_action_labels": {
-    "description": "Menu action to change the labels of a note."
+  "action_labels_toggle_pins": "Alternar fijado",
+  "@action_labels_toggle_pins": {
+    "description": "Menu action to toggle whether the selected tags are pinned."
   },
   "action_labels_edit": "Editar",
   "@action_labels_edit": {
-    "description": "Menu or swipe action to edit a label."
+    "description": "Menu or swipe action to edit a tag."
   },
   "action_labels_delete": "Eliminar",
   "@action_labels_delete": {
-    "description": "Menu or swipe action to delete a label."
+    "description": "Menu or swipe action to delete a tag."
   },
   "filter_labels_all": "Todas",
   "@filter_labels_all": {
-    "description": "Filter chip in the labels page to all labels."
+    "description": "Filter chip in the tags page to all tags."
   },
   "filter_labels_visible": "Visible",
   "@filter_labels_visible": {
-    "description": "Filter chip in the labels page to show only the visible labels."
-  },
-  "filter_labels_pinned": "Fijadas",
-  "@filter_labels_pinned": {
-    "description": "Filter chip in the labels page to show only the pinned labels."
+    "description": "Filter chip in the tags page to show only the visible tags."
   },
   "filter_labels_hidden": "Ocultas",
   "@filter_labels_hidden": {
-    "description": "Filter chip in the labels page to show only the hidden labels."
+    "description": "Filter chip in the tags page to show only the hidden tags."
   },
-  "snack_bar_copied": "Contenido de la nota copiada al portapapeles.",
-  "@snack_bar_copied": {
-    "description": "Snack bar informing that the content of the note was copied to clipboard."
+  "filter_labels_pinned": "Fijadas",
+  "@filter_labels_pinned": {
+    "description": "Filter chip in the tags page to show only the pinned tags."
   },
   "snack_bar_import_success": "La copia de seguridad se ha importado correctamente.",
   "@snack_bar_import_success": {
@@ -1011,11 +913,7 @@
   },
   "snack_bar_no_labels": "No hay etiquetas.",
   "@snack_bar_no_labels": {
-    "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
-  },
-  "action_add_note_title": "Agregar una nota",
-  "@action_add_note_title": {
-    "description": "Title of the home screen action to add a new note."
+    "description": "Snack bar message shown when the user tries to select the tags for a note, but there are no tags available."
   },
   "welcome_note_title": "Bienvenido a Material Notes !",
   "@welcome_note_title": {
