@@ -434,18 +434,18 @@ packages:
     dependency: "direct main"
     description:
       name: fleather
-      sha256: d67e3d5e55c10074c3706e04cac688ae246e6d7f9758f0404518eac282ebb596
+      sha256: "67d5825c58915d10c89d51d6b7a610cb97c654316ef12517e09c228531d9c836"
       url: "https://pub.dev"
     source: hosted
-    version: "1.21.0"
+    version: "1.22.0"
   flex_color_picker:
     dependency: "direct main"
     description:
       name: flex_color_picker
-      sha256: c083b79f1c57eaeed9f464368be376951230b3cb1876323b784626152a86e480
+      sha256: "8f753a1a026a13ea5cc5eddbae3ceb886f2537569ab2e5208efb1e3bb5af72ff"
       url: "https://pub.dev"
     source: hosted
-    version: "3.7.0"
+    version: "3.7.1"
   flex_seed_scheme:
     dependency: transitive
     description:
@@ -662,10 +662,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "2b9ba6d4c247457c35a6622f1dee6aab6694a4e15237ff7c32320345044112b6"
+      sha256: "0b1e06223bee260dee31a171fb1153e306907563a0b0225e8c1733211911429a"
       url: "https://pub.dev"
     source: hosted
-    version: "15.1.1"
+    version: "15.1.2"
   graphs:
     dependency: transitive
     description:
@@ -990,10 +990,10 @@ packages:
     dependency: "direct main"
     description:
       name: parchment
-      sha256: "4150d7571c7998646e7f76b7ce9ef8b8ed176b9914524de408d48afb4f1bc05a"
+      sha256: "5b957b973f83ae4207edbcb52665d1fdc18a55a76829bc7d50ecdf12838dfeed"
       url: "https://pub.dev"
     source: hosted
-    version: "1.21.0"
+    version: "1.22.0"
   parchment_delta:
     dependency: "direct main"
     description:
@@ -1247,10 +1247,10 @@ packages:
     dependency: "direct main"
     description:
       name: saf_util
-      sha256: "0f85e65770c0906fc38181deef93da375dabd957abaa5e8569b6984f6298cd84"
+      sha256: c2b5f0642059a11f4c41b056e2d5eabc7350f7bc3b1cadb6db187d2f84108330
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.0"
+    version: "0.8.0"
   sanitize_filename:
     dependency: "direct main"
     description:
@@ -1730,4 +1730,4 @@ packages:
     version: "3.1.3"
 sdks:
   dart: ">=3.7.2 <4.0.0"
-  flutter: ">=3.29.2"
+  flutter: ">=3.29.3"

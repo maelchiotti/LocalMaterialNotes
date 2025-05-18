@@ -40,8 +40,7 @@ Simple, local, material design notes.
 ### Take notes
 
 - Write text notes (title and content)
-- Take advantage of the advanced formatting options, including checklists
-- Undo and redo your changes while editing
+- Choose between plain text, markdown, rich text or checklist notes
 - Use the quick action from your home screen to quickly add a note
 
 ### Organize
@@ -49,14 +48,14 @@ Simple, local, material design notes.
 - Search though your notes
 - Sort your notes by date or title, in ascending or descending order
 - Display your notes in a list or a grid view
-- Pin your notes
+- Pin and archive your notes
 - Recover your deleted notes from the bin
 
 ### Categorize
 
-- Categorize your notes with labels
-- Distinguish your labels with their color
-- Pin and hide your labels
+- Categorize your notes with tags
+- Distinguish your tags with their color
+- Pin and hide your tags
 
 ### Share & backup
 
@@ -68,6 +67,7 @@ Simple, local, material design notes.
 ### Protect
 
 - Never worry about how your data is handled: it cannot leave your device as the application doesn't have any internet permissions
+- Lock the application, a specific notes, or all notes with a specific tag
 - Encrypt your JSON exports
 
 ### Customize
@@ -75,7 +75,7 @@ Simple, local, material design notes.
 - Choose your language (see the [supported ones](#supported-languages))
 - Choose your theme (light, dark or black)
 - Choose if you want your theme to be dynamic (use colors from your background)
-- Choose if you want to enable the advanced formatting, only the checklists or keep your notes basic
+- Choose which notes types you want enabled
 
 ## Supported languages
 
@@ -128,7 +128,7 @@ You can support the project by making a donation using these platforms:
 
 - [Material Files](https://github.com/zhanghai/MaterialFiles) for the general design inspiration, and especially the logo and its color.
 - [Simplenote](https://simplenote.com) for the general layout of the app and its basic features.
-- [Another notes app](https://github.com/maltaisn/another-notes-app/) for how to handle labels.
+- [Another notes app](https://github.com/maltaisn/another-notes-app/) for how to handle tags.
 
 ### Localization
 

@@ -165,10 +165,6 @@
   "@settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
-  "settings_behavior_description": "Potwierdzenia, oflagowanie aplikacji jako bezpiecznej, akcje przesuwania palcem",
-  "@settings_behavior_description": {
-    "description": "Description of the behavior settings page."
-  },
   "settings_behavior_application": "Aplikacja",
   "@settings_behavior_application": {
     "description": "Title of the sub-section regarding the application under the behavior settings."
@@ -193,14 +189,6 @@
   "@settings_confirmations_title_all": {
     "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
   },
-  "settings_flag_secure": "Oflaguj aplikację jako bezpieczną",
-  "@settings_flag_secure": {
-    "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
-  },
-  "settings_flag_secure_description": "Ukryj treść aplikacji w ostatnich aplikacjach oraz zapobiegaj zrzutom ekranu",
-  "@settings_flag_secure_description": {
-    "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
-  },
   "settings_behavior_swipe_actions": "Gesty przesunięcia palcem",
   "@settings_behavior_swipe_actions": {
     "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
@@ -224,38 +212,6 @@
   "settings_editor": "Edytor",
   "@settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
-  },
-  "settings_editor_description": "Przyciski, pasek narzędzi, tryb czytania, odstępy",
-  "@settings_editor_description": {
-    "description": "Description of the editor settings page."
-  },
-  "settings_editor_formatting": "Formatowanie",
-  "@settings_editor_formatting": {
-    "description": "Title of the settings section regarding the notes content formatting in the editor."
-  },
-  "settings_show_undo_redo_buttons": "Przyciski cofnij/ponów",
-  "@settings_show_undo_redo_buttons": {
-    "description": "Title of the setting tile to enable the the undo and redo buttons in the editor."
-  },
-  "settings_show_undo_redo_buttons_description": "Pokaż przyciski do cofnięcia i ponowienia zmiany w edytorze",
-  "@settings_show_undo_redo_buttons_description": {
-    "description": "Description of the setting tile to enable the the undo and redo buttons in the editor."
-  },
-  "settings_show_checklist_button": "Przycisk listy kontrolnej",
-  "@settings_show_checklist_button": {
-    "description": "Title of the setting tile to enable the checklist button in the editor."
-  },
-  "settings_show_checklist_button_description": "Przenieś przycisk tworzący listę kontrolną z paska narzędzi na górny pasek edytora",
-  "@settings_show_checklist_button_description": {
-    "description": "Description of the setting tile to enable the checklist button in the editor."
-  },
-  "settings_show_toolbar": "Pasek narzędzi",
-  "@settings_show_toolbar": {
-    "description": "Title of the setting tile to enable the toolbar for advanced formatting options in the editor."
-  },
-  "settings_show_toolbar_description": "Pokaż pasek narzędzi edytora, aby używać zaawansowanego formatowania tekstu",
-  "@settings_show_toolbar_description": {
-    "description": "Description of the setting tile to enable the toolbar for advanced formatting options in the editor."
   },
   "settings_editor_behavior": "Zachowanie",
   "@settings_editor_behavior": {
@@ -317,10 +273,6 @@
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
   },
-  "settings_export_markdown_description": "Natychmiast wyeksportuj notatki do pliku Markdown (razem z koszem)",
-  "@settings_export_markdown_description": {
-    "description": "Description of the setting tile to manually export the notes as Markdown."
-  },
   "settings_backup_auto_export": "Automatyczny eksport",
   "@settings_backup_auto_export": {
     "description": "Title of the settings section regarding the automatic export of the notes."
@@ -332,16 +284,6 @@
   "settings_auto_export_frequency": "Częstotliwość",
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
-  },
-  "settings_auto_export_frequency_value": "{frequency, select, 1{Codziennie} 7{Co tydzień} 14{Co 2 tygodnie} 30{Co miesiąc} other{Co {frequency} dni}}",
-  "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports.",
-    "placeholders": {
-      "frequency": {
-        "description": "Value of the frequency (as a String to enable the select, but it's an int).",
-        "type": "String"
-      }
-    }
   },
   "settings_auto_export_encryption": "Szyfrowanie",
   "@settings_auto_export_encryption": {
@@ -355,6 +297,14 @@
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_flag_secure": "Oflaguj aplikację jako bezpieczną",
+  "@settings_flag_secure": {
+    "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  },
+  "settings_flag_secure_description": "Ukryj treść aplikacji w ostatnich aplikacjach oraz zapobiegaj zrzutom ekranu",
+  "@settings_flag_secure_description": {
+    "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  },
   "settings_text_scaling": "Wielkość tekstu",
   "@settings_text_scaling": {
     "description": "Title of the text scale setting tile."
@@ -366,34 +316,6 @@
   "settings_disable_subdued_note_content_preview_description": "Kolor podglądu notatki będzie taki sam jak kolor tytułu, co skutkuje lepszym kontrastem",
   "@settings_disable_subdued_note_content_preview_description": {
     "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
-  },
-  "settings_about": "O aplikacji",
-  "@settings_about": {
-    "description": "Title of the settings page regarding the information about the application."
-  },
-  "settings_about_description": "Informacje, pomoc, linki",
-  "@settings_about_description": {
-    "description": "Description of the about settings section."
-  },
-  "settings_about_application": "Aplikacja",
-  "@settings_about_application": {
-    "description": "Title of the settings section regarding the information about the application."
-  },
-  "settings_build_mode": "Typ kompilacji",
-  "@settings_build_mode": {
-    "description": "Title of the settings tile displaying the build mode of the application."
-  },
-  "settings_build_mode_release": "Produkcyjna",
-  "@settings_build_mode_release": {
-    "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
-  },
-  "settings_build_mode_debug": "Debug",
-  "@settings_build_mode_debug": {
-    "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
-  },
-  "settings_about_help": "Pomoc",
-  "@settings_about_help": {
-    "description": "Title of the settings section regarding how to get help for the application."
   },
   "settings_github_issues": "Zgłoś błąd lub zaproponuj nową funkcję",
   "@settings_github_issues": {
@@ -411,13 +333,45 @@
   "@settings_github_discussions_description": {
     "description": "Description of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_get_in_touch": "Kontakt z twórcą aplikacji",
-  "@settings_get_in_touch": {
-    "description": "Title of the settings tile to contact the developer via mail."
-  },
   "settings_get_in_touch_description": "Skontaktuj się z twórcą aplikacji - {email}",
   "@settings_get_in_touch_description": {
     "description": "Description of the settings tile to contact the developer via mail."
+  },
+  "settings_copy_logs": "Skopiuj logi",
+  "@settings_copy_logs": {
+    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_copy_logs_description": "Skopiuj logi aplikacji do schowka",
+  "@settings_copy_logs_description": {
+    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_export_logs": "Wyeksportuj logi",
+  "@settings_export_logs": {
+    "description": "Title of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_export_logs_description": "Eksportuj logi aplikacji do pliku tekstowego",
+  "@settings_export_logs_description": {
+    "description": "Description of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_about": "O aplikacji",
+  "@settings_about": {
+    "description": "Title of the settings page regarding the information about the application."
+  },
+  "settings_about_application": "Aplikacja",
+  "@settings_about_application": {
+    "description": "Title of the settings section regarding the information about the application."
+  },
+  "settings_build_mode": "Typ kompilacji",
+  "@settings_build_mode": {
+    "description": "Title of the settings tile displaying the build mode of the application."
+  },
+  "settings_build_mode_release": "Produkcyjna",
+  "@settings_build_mode_release": {
+    "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
+  },
+  "settings_build_mode_debug": "Debug",
+  "@settings_build_mode_debug": {
+    "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
   },
   "settings_about_links": "Linki",
   "@settings_about_links": {
@@ -447,26 +401,6 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
-  "settings_about_logs": "Logi",
-  "@settings_about_logs": {
-    "description": "Title of the settings section regarding the logs of the application."
-  },
-  "settings_copy_logs": "Skopiuj logi",
-  "@settings_copy_logs": {
-    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
-  },
-  "settings_copy_logs_description": "Skopiuj logi aplikacji do schowka",
-  "@settings_copy_logs_description": {
-    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
-  },
-  "settings_export_logs": "Wyeksportuj logi",
-  "@settings_export_logs": {
-    "description": "Title of the settings tile to export the logs of the application to a text file."
-  },
-  "settings_export_logs_description": "Eksportuj logi aplikacji do pliku tekstowego",
-  "@settings_export_logs_description": {
-    "description": "Description of the settings tile to export the logs of the application to a text file."
-  },
   "hint_title": "Tytuł",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
@@ -478,14 +412,6 @@
   "dialog_export_encryption_password": "Hasło",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
-  },
-  "tooltip_toggle_checkbox": "Lista kontrolna",
-  "@tooltip_toggle_checkbox": {
-    "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
-  },
-  "tooltip_toggle_pins": "Przypnij/Odepnij",
-  "@tooltip_toggle_pins": {
-    "description": "Tooltip for the button to toggle the pining state of the selected notes in selection mode (the pinned notes will be unpinned, and the not pinned ones will be pinned)."
   },
   "tooltip_fab_add_note": "Dodaj notatkę",
   "@tooltip_fab_add_note": {
@@ -522,18 +448,6 @@
   "tooltip_unselect_all": "Odznacz wszystko",
   "@tooltip_unselect_all": {
     "description": "Tooltip for the button to unselect all the notes while in selection mode in the notes list."
-  },
-  "tooltip_delete": "Usuń",
-  "@tooltip_delete": {
-    "description": "Tooltip for the button to delete a note (moving it to bin)."
-  },
-  "tooltip_permanently_delete": "Usuń trwale",
-  "@tooltip_permanently_delete": {
-    "description": "Tooltip for the button to permanently delete a note."
-  },
-  "tooltip_restore": "Przywróć",
-  "@tooltip_restore": {
-    "description": "Tooltip for the button to restore a note from the bin."
   },
   "tooltip_reset": "Zresetuj",
   "@tooltip_reset": {
@@ -597,7 +511,7 @@
   },
   "placeholder_bin": "Brak usuniętych notatek",
   "@placeholder_bin": {
-    "description": "Placeholder on the bin page when there are no notes."
+    "description": "Placeholder on the bin page when there are no deleted notes."
   },
   "action_disabled": "Wyłączone",
   "@action_disabled": {
@@ -651,10 +565,6 @@
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
-  "snack_bar_copied": "Skopiowano treść notatki do schowka.",
-  "@snack_bar_copied": {
-    "description": "Snack bar informing that the content of the note was copied to clipboard."
-  },
   "snack_bar_logs_copied": "Skopiowano logi do schowka.",
   "@snack_bar_logs_copied": {
     "description": "Snack bar message shown when the logs where copied to the clipboard from the error widget."
@@ -662,10 +572,6 @@
   "snack_bar_logs_exported": "Logi zostały wyeksportowane.",
   "@snack_bar_logs_exported": {
     "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
-  },
-  "action_add_note_title": "Dodaj notatkę",
-  "@action_add_note_title": {
-    "description": "Title of the home screen action to add a new note."
   },
   "welcome_note_title": "Witaj w Material Notes!",
   "@welcome_note_title": {

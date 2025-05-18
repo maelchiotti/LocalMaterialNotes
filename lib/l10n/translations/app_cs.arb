@@ -31,7 +31,7 @@
   },
   "error_widget_disabled_secure_flag": "Nastavení označující aplikaci jako bezpečnou je zakázáno, dokud nedojde k dalšímu restartu pro povolení snímků obrazovky.",
   "@error_widget_disabled_secure_flag": {
-    "description": "Label shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
+    "description": "Tag shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
   },
   "error_widget_button_export_notes": "Exportovat poznámky",
   "@error_widget_button_export_notes": {
@@ -59,11 +59,15 @@
   },
   "navigation_manage_labels_destination": "Spravovat štítky",
   "@navigation_manage_labels_destination": {
-    "description": "Title of the button in the side navigation drawer to got to the page to manage the labels."
+    "description": "Title of the button in the side navigation drawer to got to the page to manage the tags."
   },
   "navigation_manage_labels_page": "Štítky",
   "@navigation_manage_labels_page": {
-    "description": "Title of the page to manage the labels."
+    "description": "Title of the page to manage the tags."
+  },
+  "navigation_archives": "Archivy",
+  "@navigation_archives": {
+    "description": "Title of the archives page."
   },
   "navigation_bin": "Koš",
   "@navigation_bin": {
@@ -76,6 +80,10 @@
   "navigation_settings_appearance": "Vzhled",
   "@navigation_settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
+  },
+  "navigation_settings_notes_types": "Typy poznámek",
+  "@navigation_settings_notes_types": {
+    "description": "Title of the settings page regarding the notes types."
   },
   "navigation_settings_notes_tiles": "Dlaždice poznámek",
   "@navigation_settings_notes_tiles": {
@@ -91,15 +99,23 @@
   },
   "navigation_settings_labels": "Štítky",
   "@navigation_settings_labels": {
-    "description": "Title of the settings page regarding the labels."
+    "description": "Title of the settings page regarding the tags."
   },
   "navigation_settings_backup": "Záloha",
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
   },
+  "navigation_settings_security": "Zabezpečení",
+  "@navigation_settings_security": {
+    "description": "Title of the settings page regarding the security."
+  },
   "navigation_settings_accessibility": "Přístupnost",
   "@navigation_settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
+  },
+  "navigation_settings_help": "Nápověda",
+  "@navigation_settings_help": {
+    "description": "Title of the settings page to receive help."
   },
   "navigation_settings_about": "O aplikaci",
   "@navigation_settings_about": {
@@ -217,6 +233,14 @@
   "@settings_show_separators_description": {
     "description": "Description of the setting tile to show the separators between the notes tiles."
   },
+  "settings_show_note_type_icon": "Zobrazit ikonku typu",
+  "@settings_show_note_type_icon": {
+    "description": "Title of the setting tile to show the icon of the type of the note."
+  },
+  "settings_show_note_type_icon_description": "Zobrazit ikonku typu poznámky",
+  "@settings_show_note_type_icon_description": {
+    "description": "Description of the setting tile to show the icon of the type of the note."
+  },
   "settings_show_titles_only": "Pouze názvy",
   "@settings_show_titles_only": {
     "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
@@ -245,7 +269,7 @@
   "@settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
-  "settings_behavior_description": "Potvrzení, označit zabezpečeně, akce přejetím",
+  "settings_behavior_description": "Potvrzování, akce přejetím",
   "@settings_behavior_description": {
     "description": "Description of the behavior settings page."
   },
@@ -273,17 +297,13 @@
   "@settings_confirmations_title_all": {
     "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
   },
-  "settings_flag_secure": "Označit aplikaci jako zabezpečenou",
-  "@settings_flag_secure": {
-    "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
-  },
-  "settings_flag_secure_description": "Skryje aplikaci z nedávných aplikací a zabrání snímkům obrazovky",
-  "@settings_flag_secure_description": {
-    "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
-  },
   "settings_behavior_swipe_actions": "Akce přejetím",
   "@settings_behavior_swipe_actions": {
     "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
+  },
+  "settings_behavior_swipe_actions_archives": "Akce přejetím (archivy)",
+  "@settings_behavior_swipe_actions_archives": {
+    "description": "Title of the section regarding the swipe actions on the notes tiles in the archives under the behavior settings."
   },
   "settings_behavior_swipe_actions_bin": "Akce přejetím (koš)",
   "@settings_behavior_swipe_actions_bin": {
@@ -313,41 +333,41 @@
   "@settings_bin_swipe_action_left_description": {
     "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile in the bin."
   },
+  "settings_page_notes_types": "Typy poznámek",
+  "@settings_page_notes_types": {
+    "description": "Title of the settings page regarding the notes types."
+  },
+  "settings_page_notes_types_description": "Používané typy, bohatý text",
+  "@settings_page_notes_types_description": {
+    "description": "Description of the settings page regarding the notes types."
+  },
+  "settings_section_types_to_use": "Používané typy",
+  "@settings_section_types_to_use": {
+    "description": "Title of the settings section regarding the notes types to use."
+  },
+  "settings_available_notes_types": "Dostupné typy poznámek",
+  "@settings_available_notes_types": {
+    "description": "Title of the setting tile to choose the available notes types."
+  },
+  "settings_available_notes_types_description": "Seznam typů poznámek, které lze vytvořit pomocí tlačítka \"Přidat\" ze stránky s poznámkami. Při odebrání typu nejsou již existující poznámky s tímto typem smazány a mohou být stále normálně používány",
+  "@settings_available_notes_types_description": {
+    "description": "Description of the setting tile to choose the available notes types."
+  },
+  "settings_available_default_share_type": "Výchozí typ ze sdílení",
+  "@settings_available_default_share_type": {
+    "description": "Title of the setting tile to choose the default note type to use when creating a note from a share action."
+  },
+  "settings_available_default_share_type_description": "Výchozí typ poznámky, který se použije při vytváření poznámky ze sdílení. Může to být typ, který není k dispozici z tlačítka \"Přidat\"",
+  "@settings_available_default_share_type_description": {
+    "description": "Description of the setting tile to choose the default note type to use when creating a note from a share action."
+  },
   "settings_editor": "Editor",
   "@settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
-  "settings_editor_description": "Tlačítka, panel nástrojů, režim čtení, mezery",
+  "settings_editor_description": "Chování",
   "@settings_editor_description": {
     "description": "Description of the editor settings page."
-  },
-  "settings_editor_formatting": "Formátování",
-  "@settings_editor_formatting": {
-    "description": "Title of the settings section regarding the notes content formatting in the editor."
-  },
-  "settings_show_undo_redo_buttons": "Tlačítka zpět/vpřed",
-  "@settings_show_undo_redo_buttons": {
-    "description": "Title of the setting tile to enable the the undo and redo buttons in the editor."
-  },
-  "settings_show_undo_redo_buttons_description": "Zobrazit tlačítka pro vrácení a opětovné provedení změn v horním panelu editoru",
-  "@settings_show_undo_redo_buttons_description": {
-    "description": "Description of the setting tile to enable the the undo and redo buttons in the editor."
-  },
-  "settings_show_checklist_button": "Tlačítko seznamu",
-  "@settings_show_checklist_button": {
-    "description": "Title of the setting tile to enable the checklist button in the editor."
-  },
-  "settings_show_checklist_button_description": "Zobrazit tlačítko pro přepnutí odškrtávacího seznamu v horním panelu editoru. Skryje ho z panelu nástrojů pokud povoleno",
-  "@settings_show_checklist_button_description": {
-    "description": "Description of the setting tile to enable the checklist button in the editor."
-  },
-  "settings_show_toolbar": "Panel nástrojů",
-  "@settings_show_toolbar": {
-    "description": "Title of the setting tile to enable the toolbar for advanced formatting options in the editor."
-  },
-  "settings_show_toolbar_description": "Zobrazit v editoru panel nástrojů pro pokročilé formátování textu",
-  "@settings_show_toolbar_description": {
-    "description": "Description of the setting tile to enable the toolbar for advanced formatting options in the editor."
   },
   "settings_editor_behavior": "Chování",
   "@settings_editor_behavior": {
@@ -391,39 +411,59 @@
   },
   "settings_labels": "Štítky",
   "@settings_labels": {
-    "description": "Title of the settings page regarding the labels functionality."
+    "description": "Title of the settings page regarding the tags functionality."
   },
   "settings_labels_description": "Povolit, vzhled",
   "@settings_labels_description": {
-    "description": "Description of the labels settings page."
+    "description": "Description of the tags settings page."
   },
   "settings_enable_labels": "Povolit",
   "@settings_enable_labels": {
-    "description": "Title of the setting tile to enable the labels."
+    "description": "Title of the setting tile to enable the tags."
   },
   "settings_enable_labels_description": "Povolit kategorizaci poznámek pomocí štítků (vypnutí neodstraní štítky ani je neodstraní z poznámek, pouze je skryje)",
   "@settings_enable_labels_description": {
-    "description": "Description of the setting tile to enable the labels."
+    "description": "Description of the setting tile to enable the tags."
   },
   "settings_labels_appearance": "Vzhled",
   "@settings_labels_appearance": {
-    "description": "Title of the settings section regarding the appearance of the labels."
+    "description": "Title of the settings section regarding the appearance of the tags."
   },
   "settings_show_labels_note_tile": "Zobrazit štítky na dlaždici poznámky",
   "@settings_show_labels_note_tile": {
-    "description": "Title of the setting tile to show the labels on the notes tiles."
+    "description": "Title of the setting tile to show the tags on the notes tiles."
   },
   "settings_show_labels_note_tile_description": "Zobrazit seznam štítků na dlaždicích poznámek",
   "@settings_show_labels_note_tile_description": {
-    "description": "Description of the setting tile to show the labels on the notes tiles."
+    "description": "Description of the setting tile to show the tags on the notes tiles."
   },
   "settings_show_labels_editor": "Zobrazit štítky v editoru",
   "@settings_show_labels_editor": {
-    "description": "Title of the setting tile to show the labels in the editor."
+    "description": "Title of the setting tile to show the tags in the editor."
   },
   "settings_show_labels_editor_description": "Zobrazit seznam štítků na spodní části editoru",
   "@settings_show_labels_editor_description": {
-    "description": "Description of the setting tile to show the labels in the editor."
+    "description": "Description of the setting tile to show the tags in the editor."
+  },
+  "settings_labels_section_behavior": "Chování",
+  "@settings_labels_section_behavior": {
+    "description": "Title of the settings section regarding the behavior of the tags."
+  },
+  "settings_labels_swipe_action_right": "Akce přejetím doprava",
+  "@settings_labels_swipe_action_right": {
+    "description": "Title of the setting tile to choose which action to trigger when a right swapping a label tile."
+  },
+  "settings_labels_swipe_action_right_description": "Akce spuštěná po přejetí po dlaždici štítku prstem doprava",
+  "@settings_labels_swipe_action_right_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a label tile."
+  },
+  "settings_labels_swipe_action_left": "Akce přejetím doleva",
+  "@settings_labels_swipe_action_left": {
+    "description": "Title of the setting tile to choose which action to trigger when a left swapping a label tile."
+  },
+  "settings_labels_swipe_action_left_description": "Akce spuštěná po přejetí po dlaždici štítku prstem doleva",
+  "@settings_labels_swipe_action_left_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a label tile."
   },
   "settings_backup": "Zálohování",
   "@settings_backup": {
@@ -453,7 +493,7 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "Okamžitě exportovat poznámky, štítky a nastavení (včetně koše) do JSON souboru, který lze importovat zpět",
+  "settings_export_json_description": "Okamžitě exportovat všechny poznámky, štítky a nastavení do JSON souboru, který lze importovat zpět",
   "@settings_export_json_description": {
     "description": "Description of the setting tile to manually export the notes as JSON."
   },
@@ -461,7 +501,7 @@
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
   },
-  "settings_export_markdown_description": "Okamžitě exportovat poznámky (i ty v koši) do Markdown souboru",
+  "settings_export_markdown_description": "Okamžitě exportovat všechny poznámky do Markdown souboru",
   "@settings_export_markdown_description": {
     "description": "Description of the setting tile to manually export the notes as Markdown."
   },
@@ -473,23 +513,13 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "Automaticky exportovat poznámky, štítky a nastavení (včetně koše) do JSON souboru, který lze importovat zpět",
+  "settings_auto_export_description": "Automaticky exportovat všechny poznámky, štítky a nastavení do JSON souboru, který lze importovat zpět",
   "@settings_auto_export_description": {
     "description": "Description of the settings tile to enable the automatic export."
   },
   "settings_auto_export_frequency": "Frekvence",
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
-  },
-  "settings_auto_export_frequency_value": "Jednou za {frequency, select, 1{den} 7{týden} 14{2 týdny} 30{měsíc} other{{frequency} dny}}",
-  "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports.",
-    "placeholders": {
-      "frequency": {
-        "description": "Value of the frequency (as a String to enable the select, but it's an int).",
-        "type": "String"
-      }
-    }
   },
   "settings_auto_export_frequency_description": "Frekvence automatického exportu",
   "@settings_auto_export_frequency_description": {
@@ -511,9 +541,77 @@
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_security": "Zabezpečení",
+  "@settings_security": {
+    "description": "Title of the settings page regarding the security."
+  },
+  "settings_security_description": "Označit zabezpečeně, zámek aplikace, zámek poznámky",
+  "@settings_security_description": {
+    "description": "Description of the settings page regarding the security."
+  },
+  "settings_security_application": "Aplikace",
+  "@settings_security_application": {
+    "description": "Title of the sub-section regarding the application under the security settings."
+  },
+  "settings_security_application_lock": "Zámek aplikace",
+  "@settings_security_application_lock": {
+    "description": "Title of the sub-section regarding the application lock under the security settings."
+  },
+  "settings_security_note_lock": "Zámek poznámky",
+  "@settings_security_note_lock": {
+    "description": "Title of the sub-section regarding the note lock under the security settings."
+  },
+  "settings_flag_secure": "Označit aplikaci jako zabezpečenou",
+  "@settings_flag_secure": {
+    "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  },
+  "settings_flag_secure_description": "Skryje aplikaci z nedávných aplikací a zabrání snímkům obrazovky",
+  "@settings_flag_secure_description": {
+    "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  },
+  "settings_application_lock_title": "Zamykat",
+  "@settings_application_lock_title": {
+    "description": "Title of the setting tile to toggle whether the application is locked."
+  },
+  "settings_application_lock_description": "Zamykat aplikaci a požadovat ověření zařízení pro odemčení",
+  "@settings_application_lock_description": {
+    "description": "Description of the setting tile to toggle whether the application is locked."
+  },
+  "settings_application_lock_delay_title": "Zpoždění uzamknutí",
+  "@settings_application_lock_delay_title": {
+    "description": "Title of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
+  },
+  "settings_application_lock_delay_description": "Zpoždění, po kterém se aplikace uzamkne když je přesunuta na pozadí",
+  "@settings_application_lock_delay_description": {
+    "description": "Description of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
+  },
+  "settings_note_lock_title": "Zámek poznámky",
+  "@settings_note_lock_title": {
+    "description": "Title of the setting tile to toggle whether the notes can be locked."
+  },
+  "settings_note_lock_description": "Zamykat poznámku a požadovat ověření zařízení pro její zobrazení a úpravu",
+  "@settings_note_lock_description": {
+    "description": "Description of the setting tile to toggle whether the notes can be locked."
+  },
+  "settings_label_lock_title": "Zámek štítku",
+  "@settings_label_lock_title": {
+    "description": "Title of the setting tile to toggle whether the tags can be locked."
+  },
+  "settings_label_lock_description": "Zamykat štítek a požadovat ověření zařízení pro zobrazení a úpravu jakékoli poznámky s tímto štítkem",
+  "@settings_label_lock_description": {
+    "description": "Description of the setting tile to toggle whether the tags can be locked."
+  },
+  "settings_note_lock_delay_title": "Zpoždění uzamknutí",
+  "@settings_note_lock_delay_title": {
+    "description": "Title of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
+  },
+  "settings_note_lock_delay_description": "Zpoždění, po kterém se poznámka zamkne, když je aplikace přesunuta na pozadí",
+  "@settings_note_lock_delay_description": {
+    "description": "Description of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
+  },
   "settings_accessibility": "Přístupnost",
   "@settings_accessibility": {
-    "description": "Title of the settings page regarding the accessibility."
+    "description": "Title of the settings page regarding the accessibility"
   },
   "settings_accessibility_text_size": "Velikost písma",
   "@settings_accessibility_text_size": {
@@ -533,11 +631,11 @@
   },
   "settings_bigger_titles": "Větší názvy",
   "@settings_bigger_titles": {
-    "description": "Title of the setting tile to use bigger titles on the notes tiles."
+    "description": "Title of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
-  "settings_bigger_titles_description": "Zobrazit větší názvy na dlaždicích poznámek",
+  "settings_bigger_titles_description": "Zobrazit větší názvy na dlaždicích poznámek a v editoru",
   "@settings_bigger_titles_description": {
-    "description": "Description of the setting tile to use bigger titles on the notes tiles."
+    "description": "Description of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
   "settings_white_text_dark_mode": "Bílý text v tmavém režimu",
   "@settings_white_text_dark_mode": {
@@ -555,33 +653,9 @@
   "@settings_disable_subdued_note_content_preview_description": {
     "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
-  "settings_about": "O aplikaci",
-  "@settings_about": {
-    "description": "Title of the settings page regarding the information about the application."
-  },
-  "settings_about_description": "Informace, pomoc, odkazy",
-  "@settings_about_description": {
-    "description": "Description of the about settings section."
-  },
-  "settings_about_application": "Aplikace",
-  "@settings_about_application": {
-    "description": "Title of the settings section regarding the information about the application."
-  },
-  "settings_build_mode": "Režim sestavení",
-  "@settings_build_mode": {
-    "description": "Title of the settings tile displaying the build mode of the application."
-  },
-  "settings_build_mode_release": "Vydání",
-  "@settings_build_mode_release": {
-    "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
-  },
-  "settings_build_mode_debug": "Ladění",
-  "@settings_build_mode_debug": {
-    "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
-  },
-  "settings_about_help": "Pomoc",
-  "@settings_about_help": {
-    "description": "Title of the settings section regarding how to get help for the application."
+  "settings_help_section_contact": "Kontakt",
+  "@settings_help_section_contact": {
+    "description": "Title of the settings section regarding how to get in contact."
   },
   "settings_github_issues": "Nahlásit chybu nebo požádat o funkci",
   "@settings_github_issues": {
@@ -599,13 +673,65 @@
   "@settings_github_discussions_description": {
     "description": "Description of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_get_in_touch": "Kontaktovat vývojáře",
-  "@settings_get_in_touch": {
+  "settings_contact_developer": "Kontaktovat vývojáře",
+  "@settings_contact_developer": {
     "description": "Title of the settings tile to contact the developer via mail."
   },
   "settings_get_in_touch_description": "Kontaktujte vývojáře e-mailem na {email}",
   "@settings_get_in_touch_description": {
     "description": "Description of the settings tile to contact the developer via mail."
+  },
+  "settings_help": "Nápověda",
+  "@settings_help": {
+    "description": "Title of the settings page to receive help."
+  },
+  "settings_help_description": "Kontakt, logy",
+  "@settings_help_description": {
+    "description": "Description of the settings page to receive help."
+  },
+  "settings_help_section_logs": "Logy",
+  "@settings_help_section_logs": {
+    "description": "Title of the settings section regarding the logs of the application."
+  },
+  "settings_copy_logs": "Zkopírovat logy",
+  "@settings_copy_logs": {
+    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_copy_logs_description": "Zkopírovat logy aplikace do schránky",
+  "@settings_copy_logs_description": {
+    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_export_logs": "Exportovat logy",
+  "@settings_export_logs": {
+    "description": "Title of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_export_logs_description": "Exportovat logy aplikace do textového souboru",
+  "@settings_export_logs_description": {
+    "description": "Description of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_about": "O aplikaci",
+  "@settings_about": {
+    "description": "Title of the settings page regarding the information about the application."
+  },
+  "settings_about_description": "Informace, odkazy, přispět",
+  "@settings_about_description": {
+    "description": "Description of the settings page regarding the information about the application."
+  },
+  "settings_about_application": "Aplikace",
+  "@settings_about_application": {
+    "description": "Title of the settings section regarding the information about the application."
+  },
+  "settings_build_mode": "Režim sestavení",
+  "@settings_build_mode": {
+    "description": "Title of the settings tile displaying the build mode of the application."
+  },
+  "settings_build_mode_release": "Vydání",
+  "@settings_build_mode_release": {
+    "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
+  },
+  "settings_build_mode_debug": "Ladění",
+  "@settings_build_mode_debug": {
+    "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
   },
   "settings_about_links": "Odkazy",
   "@settings_about_links": {
@@ -635,29 +761,25 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
-  "settings_about_logs": "Logy",
-  "@settings_about_logs": {
-    "description": "Title of the settings section regarding the logs of the application."
+  "settings_about_section_donate": "Přispět",
+  "@settings_about_section_donate": {
+    "description": "Title of the settings section to donate."
   },
-  "settings_copy_logs": "Zkopírovat logy",
-  "@settings_copy_logs": {
-    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
+  "settings_donate_kofi": "Ko-fi",
+  "@settings_donate_kofi": {
+    "description": "Title of the settings tile to donate via Ko-fi."
   },
-  "settings_copy_logs_description": "Zkopírovat logy aplikace do schránky",
-  "@settings_copy_logs_description": {
-    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
-  },
-  "settings_export_logs": "Exportovat logy",
-  "@settings_export_logs": {
-    "description": "Title of the settings tile to export the logs of the application to a text file."
-  },
-  "settings_export_logs_description": "Exportovat logy aplikace do textového souboru",
-  "@settings_export_logs_description": {
-    "description": "Description of the settings tile to export the logs of the application to a text file."
+  "settings_donate_paypal": "PayPal",
+  "@settings_donate_paypal": {
+    "description": "Title of the settings tile to donate via PayPal."
   },
   "hint_title": "Nadpis",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
+  },
+  "hint_content": "Poznámka",
+  "@hint_content": {
+    "description": "Hint for the text field of the content of the notes."
   },
   "hint_link": "Odkaz",
   "@hint_link": {
@@ -665,7 +787,7 @@
   },
   "hint_label_name": "Název",
   "@hint_label_name": {
-    "description": "Hint for the text field of the name of a label."
+    "description": "Hint for the text field of the name of a tag."
   },
   "dialog_export_encryption_password": "Heslo",
   "@dialog_export_encryption_password": {
@@ -673,11 +795,11 @@
   },
   "dialog_select_labels": "Vybrat štítky",
   "@dialog_select_labels": {
-    "description": "Title of the dialog to select the labels of a note."
+    "description": "Title of the dialog to select the tags of a note."
   },
   "dialog_select_labels_to_add": "Vyberte štítky k přidání",
   "@dialog_select_labels_to_add": {
-    "description": "Title of the dialog to select the labels to add to the currently selected notes."
+    "description": "Title of the dialog to select the tags to add to the currently selected notes."
   },
   "tooltip_undo": "Vrátit poslední akci",
   "@tooltip_undo": {
@@ -687,21 +809,29 @@
   "@tooltip_redo": {
     "description": "Tooltip for the button to redo the last action in the editor."
   },
-  "tooltip_toggle_checkbox": "Přepnout zaškrtávací políčko",
-  "@tooltip_toggle_checkbox": {
-    "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
-  },
-  "tooltip_toggle_pins": "Přepnout připnutí",
-  "@tooltip_toggle_pins": {
-    "description": "Tooltip for the button to toggle the pining state of the selected notes in selection mode (the pinned notes will be unpinned, and the not pinned ones will be pinned)."
-  },
   "tooltip_fab_add_note": "Přidat poznámku",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
   },
+  "tooltip_fab_add_plain_text_note": "Přidat poznámku s prostým textem",
+  "@tooltip_fab_add_plain_text_note": {
+    "description": "Floating action button in the notes page to add a new plain text note."
+  },
+  "tooltip_fab_add_markdown_note": "Přidat markdown poznámku",
+  "@tooltip_fab_add_markdown_note": {
+    "description": "Floating action button in the notes page to add a new markdown note."
+  },
+  "tooltip_fab_add_rich_text_note": "Přidat poznámku s bohatým textem",
+  "@tooltip_fab_add_rich_text_note": {
+    "description": "Floating action button in the notes page to add a new rich text note."
+  },
+  "tooltip_fab_add_checklist_note": "Přidat poznámku se zaškrtávacím seznamem",
+  "@tooltip_fab_add_checklist_note": {
+    "description": "Floating action button in the notes page to add a new checklist note."
+  },
   "tooltip_fab_add_label": "Přidat štítek",
   "@tooltip_fab_add_label": {
-    "description": "Floating action button in the labels page to add a new label."
+    "description": "Floating action button in the tags page to add a new tag."
   },
   "tooltip_fab_empty_bin": "Vysypat koš",
   "@tooltip_fab_empty_bin": {
@@ -735,33 +865,41 @@
   "@tooltip_unselect_all": {
     "description": "Tooltip for the button to unselect all the notes while in selection mode in the notes list."
   },
-  "tooltip_delete": "Odstranit",
-  "@tooltip_delete": {
-    "description": "Tooltip for the button to delete a note (moving it to bin)."
-  },
-  "tooltip_permanently_delete": "Odstranit natrvalo",
-  "@tooltip_permanently_delete": {
-    "description": "Tooltip for the button to permanently delete a note."
-  },
-  "tooltip_restore": "Obnovit",
-  "@tooltip_restore": {
-    "description": "Tooltip for the button to restore a note from the bin."
-  },
   "tooltip_reset": "Výchozí",
   "@tooltip_reset": {
     "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
   },
-  "action_labels_toggle_pins": "Přepnout připnutí",
-  "@action_labels_toggle_pins": {
-    "description": "Tooltip for the button to toggle the pin status of the selected labels."
-  },
-  "action_labels_toggle_visibility": "Přepnout viditelnost",
-  "@action_labels_toggle_visibility": {
-    "description": "Tooltip for the button to toggle the visibility of the selected labels."
-  },
   "dialog_add_link": "Přidat odkaz",
   "@dialog_add_link": {
     "description": "Tooltip for the button to validate the dialog to add a link in the note editor."
+  },
+  "dialog_archive": "Archivovat",
+  "@dialog_archive": {
+    "description": "Title of the the dialog to archive one or multiple notes (moving them to the archives), and text for the confirmation button."
+  },
+  "dialog_archive_body": "Opravdu chcete archivovat {count} {count, plural, one{poznámku} few{poznámky} many{poznámek} other{poznámek}}?",
+  "@dialog_archive_body": {
+    "description": "Text for the dialog to confirm the archival of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to archive.",
+        "type": "int"
+      }
+    }
+  },
+  "dialog_unarchive": "Obnovit z archivu",
+  "@dialog_unarchive": {
+    "description": "Title of the the dialog to unarchive one or multiple notes, and text for the confirmation button."
+  },
+  "dialog_unarchive_body": "Opravdu chcete obnovit {count} {count, plural, one{poznámku} few{poznámky} many{poznámek} other{poznámek}}?",
+  "@dialog_unarchive_body": {
+    "description": "Text for the dialog to confirm the unarchival of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to unarchive.",
+        "type": "int"
+      }
+    }
   },
   "dialog_delete": "Odstranit",
   "@dialog_delete": {
@@ -815,7 +953,7 @@
   },
   "dialog_delete_label": "Odstranit",
   "@dialog_delete_label": {
-    "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
+    "description": "Title of the the dialog to delete one or multiple tags, and text for the confirmation button."
   },
   "dialog_delete_label_body": "Opravdu chcete odstranit {count} {count, plural, one{štítek} few{štítky} many{štítků} other{štítků}}? {count, plural, one{Bude odstraněn} other{Budou odstraněny}} ze všech poznámek na které jste {count, plural, one{ho} other{je}} přidali.",
   "@dialog_delete_label_body": {
@@ -857,19 +995,19 @@
   },
   "dialog_label_add": "Přidat štítek",
   "@dialog_label_add": {
-    "description": "Title of the dialog to add a label."
+    "description": "Title of the dialog to add a tag."
   },
   "dialog_label_edit": "Upravit štítek",
   "@dialog_label_edit": {
-    "description": "Title of the dialog to edit a label."
+    "description": "Title of the dialog to edit a tag."
   },
   "dialog_label_name_cannot_be_empty": "Název nemůže být prázdný.",
   "@dialog_label_name_cannot_be_empty": {
-    "description": "Error message shown when relevant on the text field of the name of the label."
+    "description": "Error message shown when relevant on the text field of the name of the tag."
   },
   "dialog_label_name_already_used": "Tento název se již používá.",
   "@dialog_label_name_already_used": {
-    "description": "Error message shown when relevant on the text field of the name of the label."
+    "description": "Error message shown when relevant on the text field of the name of the tag."
   },
   "button_sort_creation_date": "Datum vytvoření",
   "@button_sort_creation_date": {
@@ -885,15 +1023,27 @@
   },
   "placeholder_labels": "Žádné štítky",
   "@placeholder_labels": {
-    "description": "Placeholder on the labels page when there are no labels."
+    "description": "Placeholder on the tags page when there are no tags."
+  },
+  "placeholder_archives": "Žádné archivované poznámky",
+  "@placeholder_archives": {
+    "description": "Placeholder on the archives notes page when there are no archived notes."
   },
   "placeholder_bin": "Žádné odstraněné poznámky",
   "@placeholder_bin": {
-    "description": "Placeholder on the bin page when there are no notes."
+    "description": "Placeholder on the bin page when there are no deleted notes."
   },
   "action_disabled": "Vypnuto",
   "@action_disabled": {
     "description": "Swipe action that is disabled in the settings."
+  },
+  "action_toggle_pin": "Přepnout připnutí",
+  "@action_toggle_pin": {
+    "description": "Menu action to toggle whether the notes are pinned."
+  },
+  "action_pin_unpin": "Připnout / Odepnout",
+  "@action_pin_unpin": {
+    "description": "Swipe action to pin or unpin a note."
   },
   "action_pin": "Připnout",
   "@action_pin": {
@@ -902,6 +1052,22 @@
   "action_unpin": "Odepnout",
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
+  },
+  "action_toggle_lock": "Přepnout zámek",
+  "@action_toggle_lock": {
+    "description": "Menu action to toggle whether the notes are locked."
+  },
+  "action_lock_unlock": "Zamknout / Odemknout",
+  "@action_lock_unlock": {
+    "description": "Swipe action to lock or unlock a note."
+  },
+  "action_lock": "Zamknout",
+  "@action_lock": {
+    "description": "Swipe or menu action to lock a note."
+  },
+  "action_unlock": "Odemknout",
+  "@action_unlock": {
+    "description": "Swipe or menu action to unlock a note."
   },
   "action_share": "Sdílet",
   "@action_share": {
@@ -916,6 +1082,14 @@
         "type": "int"
       }
     }
+  },
+  "action_archive": "Archivovat",
+  "@action_archive": {
+    "description": "Swipe or menu action to archive a note (moving it to the archives)."
+  },
+  "action_unarchive": "Obnovit z archivu",
+  "@action_unarchive": {
+    "description": "Swipe or menu action to unarchive a note."
   },
   "action_delete": "Odstranit",
   "@action_delete": {
@@ -947,7 +1121,7 @@
   },
   "about_labels": "Štítky",
   "@about_labels": {
-    "description": "Number of labels of the note."
+    "description": "Number of tags of the note."
   },
   "about_words": "Počet slov",
   "@about_words": {
@@ -961,37 +1135,139 @@
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
-  "menu_action_labels": "Štítky",
-  "@menu_action_labels": {
-    "description": "Menu action to change the labels of a note."
+  "menu_action_select_labels": "Štítky",
+  "@menu_action_select_labels": {
+    "description": "Menu action to select the tags of a note."
+  },
+  "menu_action_add_labels": "Přidat štítky",
+  "@menu_action_add_labels": {
+    "description": "Menu action to add tags to multiple notes."
+  },
+  "action_labels_toggle_visibile": "Přepnout viditelnost",
+  "@action_labels_toggle_visibile": {
+    "description": "Tooltip for the button to toggle whether the selected tags are visible."
+  },
+  "action_labels_show_hide": "Zobrazit / Skrýt",
+  "@action_labels_show_hide": {
+    "description": "Swipe action to show or hide a tag."
+  },
+  "action_labels_show": "Zobrazit",
+  "@action_labels_show": {
+    "description": "Menu or swipe action to make tag visible."
+  },
+  "action_labels_hide": "Skrýt",
+  "@action_labels_hide": {
+    "description": "Menu or swipe action to hide a tag."
+  },
+  "action_labels_toggle_pins": "Přepnout připnutí",
+  "@action_labels_toggle_pins": {
+    "description": "Menu action to toggle whether the selected tags are pinned."
+  },
+  "action_labels_pin_unpin": "Připnout / Odepnout",
+  "@action_labels_pin_unpin": {
+    "description": "Swipe action to pin or unpin a tag."
+  },
+  "action_labels_pin": "Připnout",
+  "@action_labels_pin": {
+    "description": "Menu or swipe action to pin a tag."
+  },
+  "action_labels_unpin": "Odepnout",
+  "@action_labels_unpin": {
+    "description": "Menu or swipe action to unpin a tag."
+  },
+  "action_labels_toggle_lock": "Přepnout zámek",
+  "@action_labels_toggle_lock": {
+    "description": "Tooltip for the button to toggle whether the selected tags are locked."
+  },
+  "action_labels_lock_unlock": "Zamknout / Odemknout",
+  "@action_labels_lock_unlock": {
+    "description": "Swipe action to lock or unlock a tag."
+  },
+  "action_labels_lock": "Zamknout",
+  "@action_labels_lock": {
+    "description": "Menu or swipe action to lock a tag."
+  },
+  "action_labels_unlock": "Odemknout",
+  "@action_labels_unlock": {
+    "description": "Menu or swipe action to unlock a tag."
   },
   "action_labels_edit": "Upravit",
   "@action_labels_edit": {
-    "description": "Menu or swipe action to edit a label."
+    "description": "Menu or swipe action to edit a tag."
   },
   "action_labels_delete": "Odstranit",
   "@action_labels_delete": {
-    "description": "Menu or swipe action to delete a label."
+    "description": "Menu or swipe action to delete a tag."
   },
   "filter_labels_all": "Vše",
   "@filter_labels_all": {
-    "description": "Filter chip in the labels page to all labels."
+    "description": "Filter chip in the tags page to all tags."
   },
   "filter_labels_visible": "Viditelné",
   "@filter_labels_visible": {
-    "description": "Filter chip in the labels page to show only the visible labels."
-  },
-  "filter_labels_pinned": "Připnuté",
-  "@filter_labels_pinned": {
-    "description": "Filter chip in the labels page to show only the pinned labels."
+    "description": "Filter chip in the tags page to show only the visible tags."
   },
   "filter_labels_hidden": "Skryté",
   "@filter_labels_hidden": {
-    "description": "Filter chip in the labels page to show only the hidden labels."
+    "description": "Filter chip in the tags page to show only the hidden tags."
   },
-  "snack_bar_copied": "Obsah poznámky zkopírován do schránky.",
+  "filter_labels_pinned": "Připnuté",
+  "@filter_labels_pinned": {
+    "description": "Filter chip in the tags page to show only the pinned tags."
+  },
+  "snack_bar_authentication_failed": "Ověření se nezdařilo, zkuste to prosím znovu.",
+  "@snack_bar_authentication_failed": {
+    "description": "Snack bar informing that the authentication on the lock screen has failed."
+  },
+  "snack_bar_archived": "{count, plural, one{Poznámka byla archivována} other {Poznámky byly archivovány}}",
+  "@snack_bar_archived": {
+    "description": "Snack bar informing that the note was archived.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were archived.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_unarchived": "{count, plural, one{Poznámka byla obnovena} other {Poznámky byly obnoveny}}",
+  "@snack_bar_unarchived": {
+    "description": "Snack bar informing that the note was unarchived.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were unarchived.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_deleted": "{count, plural, one{Poznámka byla odstraněna} other {Poznámky byly odstraněny}}",
+  "@snack_bar_deleted": {
+    "description": "Snack bar informing that the note was deleted.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were deleted.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_restored": "{count, plural, one{Poznámka byla obnovena} other {Poznámky byly obnoveny}}",
+  "@snack_bar_restored": {
+    "description": "Snack bar informing that the note was restored.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were restored.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_copied": "Obsah {count, plural, one{poznámky} other{poznámek}} zkopírovan do schránky.",
   "@snack_bar_copied": {
-    "description": "Snack bar informing that the content of the note was copied to clipboard."
+    "description": "Snack bar informing that the content of the note was copied to clipboard.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to copy.",
+        "type": "int"
+      }
+    }
   },
   "snack_bar_import_success": "Záloha byla úspěšně importována.",
   "@snack_bar_import_success": {
@@ -1011,11 +1287,23 @@
   },
   "snack_bar_no_labels": "Nemáte žádné štítky.",
   "@snack_bar_no_labels": {
-    "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
+    "description": "Snack bar message shown when the user tries to select the tags for a note, but there are no tags available."
   },
-  "action_add_note_title": "Přidat poznámku",
-  "@action_add_note_title": {
-    "description": "Title of the home screen action to add a new note."
+  "quick_action_add_plain_text_note_title": "Přidat poznámku s prostým textem",
+  "@quick_action_add_plain_text_note_title": {
+    "description": "Title of the home screen action to add a new plain text note."
+  },
+  "quick_action_add_markdown_note_title": "Přidat markdown poznámku",
+  "@quick_action_add_markdown_note_title": {
+    "description": "Title of the home screen action to add a new markdown note."
+  },
+  "quick_action_add_rich_text_note_title": "Přidat poznámku s bohatým textem",
+  "@quick_action_add_rich_text_note_title": {
+    "description": "Title of the home screen action to add a new rich text note."
+  },
+  "quick_action_add_checklist_note_title": "Přidat poznámku se zaškrtávacím seznamem",
+  "@quick_action_add_checklist_note_title": {
+    "description": "Title of the home screen action to add a new checklist note."
   },
   "welcome_note_title": "Vítejte v Material Notes!",
   "@welcome_note_title": {
@@ -1033,8 +1321,36 @@
   "@note_type_plain_text": {
     "description": "Note with plain text."
   },
+  "note_type_markdown": "Markdown",
+  "@note_type_markdown": {
+    "description": "Note with markdown text."
+  },
   "note_type_rich_text": "Formátovaný text",
   "@note_type_rich_text": {
     "description": "Note with rich text."
+  },
+  "note_type_checklist": "Zaškrtávací seznam",
+  "@note_type_checklist": {
+    "description": "Note with a checklist."
+  },
+  "lock_page_reason_app": "Odemknout Material Notes",
+  "@lock_page_reason_app": {
+    "description": "Reason for the lock screen of the application to request a system authentication."
+  },
+  "lock_page_reason_note": "Odemknout tuto poznámku",
+  "@lock_page_reason_note": {
+    "description": "Reason for the lock screen of a locked note to request a system authentication."
+  },
+  "lock_page_description_app": "Aplikace je uzamčena.",
+  "@lock_page_description_app": {
+    "description": "Description shown in the lock page for the application."
+  },
+  "lock_page_description_note": "Tato poznámka je uzamčena.",
+  "@lock_page_description_note": {
+    "description": "Description shown in the lock page for a locked note."
+  },
+  "lock_page_unlock": "Odemknout",
+  "@lock_page_unlock": {
+    "description": "Button to unlock the lock page by requesting a system authentication."
   }
 }

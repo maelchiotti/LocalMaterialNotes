@@ -31,7 +31,7 @@
   },
   "error_widget_disabled_secure_flag": "Uygulamayı güvenli olarak işaretleme ayarı, ekran görüntülerini etkinleştirmek için bir sonraki yeniden başlatmaya kadar devre dışı bırakılır.",
   "@error_widget_disabled_secure_flag": {
-    "description": "Label shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
+    "description": "Tag shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
   },
   "error_widget_button_export_notes": "Notları dışarı aktar",
   "@error_widget_button_export_notes": {
@@ -59,11 +59,11 @@
   },
   "navigation_manage_labels_destination": "Etiketleri yönetin",
   "@navigation_manage_labels_destination": {
-    "description": "Title of the button in the side navigation drawer to got to the page to manage the labels."
+    "description": "Title of the button in the side navigation drawer to got to the page to manage the tags."
   },
   "navigation_manage_labels_page": "Etiketler",
   "@navigation_manage_labels_page": {
-    "description": "Title of the page to manage the labels."
+    "description": "Title of the page to manage the tags."
   },
   "navigation_bin": "Çöp Kutusu",
   "@navigation_bin": {
@@ -87,7 +87,7 @@
   },
   "navigation_settings_labels": "Etiketler",
   "@navigation_settings_labels": {
-    "description": "Title of the settings page regarding the labels."
+    "description": "Title of the settings page regarding the tags."
   },
   "navigation_settings_backup": "Yedekle",
   "@navigation_settings_backup": {
@@ -185,10 +185,6 @@
   "@settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
-  "settings_behavior_description": "Onaylar, güvenli bayrak, kaydırma eylemleri",
-  "@settings_behavior_description": {
-    "description": "Description of the behavior settings page."
-  },
   "settings_behavior_application": "Uygulama",
   "@settings_behavior_application": {
     "description": "Title of the sub-section regarding the application under the behavior settings."
@@ -213,14 +209,6 @@
   "@settings_confirmations_title_all": {
     "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
   },
-  "settings_flag_secure": "Uygulamayı güvenli olarak işaretleyin",
-  "@settings_flag_secure": {
-    "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
-  },
-  "settings_flag_secure_description": "Uygulamayı son uygulamalardan gizleyin ve ekran görüntüsü alınmasını engelleyin",
-  "@settings_flag_secure_description": {
-    "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
-  },
   "settings_behavior_swipe_actions": "Kaydırma işlemleri",
   "@settings_behavior_swipe_actions": {
     "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
@@ -244,38 +232,6 @@
   "settings_editor": "Düzenleyen",
   "@settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
-  },
-  "settings_editor_description": "Düğmeler, araç çubuğu, okuma modu, aralık",
-  "@settings_editor_description": {
-    "description": "Description of the editor settings page."
-  },
-  "settings_editor_formatting": "Biçimlendirme",
-  "@settings_editor_formatting": {
-    "description": "Title of the settings section regarding the notes content formatting in the editor."
-  },
-  "settings_show_undo_redo_buttons": "Geri al/yinele düğmeleri",
-  "@settings_show_undo_redo_buttons": {
-    "description": "Title of the setting tile to enable the the undo and redo buttons in the editor."
-  },
-  "settings_show_undo_redo_buttons_description": "Düzenleyicinin uygulama çubuğunda değişiklikleri geri almak ve yinelemek için düğmeleri gösterin",
-  "@settings_show_undo_redo_buttons_description": {
-    "description": "Description of the setting tile to enable the the undo and redo buttons in the editor."
-  },
-  "settings_show_checklist_button": "Kontrol listesi tuşları",
-  "@settings_show_checklist_button": {
-    "description": "Title of the setting tile to enable the checklist button in the editor."
-  },
-  "settings_show_checklist_button_description": "Kontrol listelerini düzenleyicinin uygulama çubuğunda değiştirmek için düğmeyi gösterin, etkinleştirilmişse düzenleyicinin araç çubuğundan gizleyin",
-  "@settings_show_checklist_button_description": {
-    "description": "Description of the setting tile to enable the checklist button in the editor."
-  },
-  "settings_show_toolbar": "Araç çubuğu",
-  "@settings_show_toolbar": {
-    "description": "Title of the setting tile to enable the toolbar for advanced formatting options in the editor."
-  },
-  "settings_show_toolbar_description": "Gelişmiş metin biçimlendirmesini etkinleştirmek için düzenleyicinin araç çubuğunu gösterin",
-  "@settings_show_toolbar_description": {
-    "description": "Description of the setting tile to enable the toolbar for advanced formatting options in the editor."
   },
   "settings_editor_behavior": "Davranış",
   "@settings_editor_behavior": {
@@ -319,39 +275,39 @@
   },
   "settings_labels": "Etiketler",
   "@settings_labels": {
-    "description": "Title of the settings page regarding the labels functionality."
+    "description": "Title of the settings page regarding the tags functionality."
   },
   "settings_labels_description": "Görünümü etkinleştir",
   "@settings_labels_description": {
-    "description": "Description of the labels settings page."
+    "description": "Description of the tags settings page."
   },
   "settings_enable_labels": "Etkinleştir",
   "@settings_enable_labels": {
-    "description": "Title of the setting tile to enable the labels."
+    "description": "Title of the setting tile to enable the tags."
   },
   "settings_enable_labels_description": "Notları etiketlerle kategorize etmeye izin ver (devre dışı bırakmak etiketleri silmez veya notlardan kaldırmaz, sadece gizler)",
   "@settings_enable_labels_description": {
-    "description": "Description of the setting tile to enable the labels."
+    "description": "Description of the setting tile to enable the tags."
   },
   "settings_labels_appearance": "Görünüm",
   "@settings_labels_appearance": {
-    "description": "Title of the settings section regarding the appearance of the labels."
+    "description": "Title of the settings section regarding the appearance of the tags."
   },
   "settings_show_labels_note_tile": "Not kutucuğunda etiketleri göster",
   "@settings_show_labels_note_tile": {
-    "description": "Title of the setting tile to show the labels on the notes tiles."
+    "description": "Title of the setting tile to show the tags on the notes tiles."
   },
   "settings_show_labels_note_tile_description": "Not kutucuklarının etiket listesini göster",
   "@settings_show_labels_note_tile_description": {
-    "description": "Description of the setting tile to show the labels on the notes tiles."
+    "description": "Description of the setting tile to show the tags on the notes tiles."
   },
   "settings_show_labels_editor": "Düzenleyicide etiketleri göster",
   "@settings_show_labels_editor": {
-    "description": "Title of the setting tile to show the labels in the editor."
+    "description": "Title of the setting tile to show the tags in the editor."
   },
   "settings_show_labels_editor_description": "Düzenleyicinin alt kısmında etiket listesini göster",
   "@settings_show_labels_editor_description": {
-    "description": "Description of the setting tile to show the labels in the editor."
+    "description": "Description of the setting tile to show the tags in the editor."
   },
   "settings_backup": "Yedekleme",
   "@settings_backup": {
@@ -381,17 +337,9 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "Notları, etiketleri ve ayarları hemen geri alınabilecek bir JSON dosyasına (binary dahil) aktarın",
-  "@settings_export_json_description": {
-    "description": "Description of the setting tile to manually export the notes as JSON."
-  },
   "settings_export_markdown": "Markdown olarak dışa aktar",
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
-  },
-  "settings_export_markdown_description": "Notları hemen bir Markdown dosyasına aktarın (bin dahil)",
-  "@settings_export_markdown_description": {
-    "description": "Description of the setting tile to manually export the notes as Markdown."
   },
   "settings_backup_auto_export": "Otomatik dışa aktarma",
   "@settings_backup_auto_export": {
@@ -401,23 +349,9 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "Notları, etiketleri ve ayarları otomatik olarak geri alınabilecek bir JSON dosyasına (binary dahil) aktarın",
-  "@settings_auto_export_description": {
-    "description": "Description of the settings tile to enable the automatic export."
-  },
   "settings_auto_export_frequency": "Sıklık",
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
-  },
-  "settings_auto_export_frequency_value": "Her {frequency, select, 1{gün} 7{hafta} 14{2 haftalar} 30{ay} other{{frequency} aylar}}",
-  "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports.",
-    "placeholders": {
-      "frequency": {
-        "description": "Value of the frequency (as a String to enable the select, but it's an int).",
-        "type": "String"
-      }
-    }
   },
   "settings_auto_export_frequency_description": "Otomatik dışa aktarma sıklığı",
   "@settings_auto_export_frequency_description": {
@@ -439,9 +373,17 @@
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_flag_secure": "Uygulamayı güvenli olarak işaretleyin",
+  "@settings_flag_secure": {
+    "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  },
+  "settings_flag_secure_description": "Uygulamayı son uygulamalardan gizleyin ve ekran görüntüsü alınmasını engelleyin",
+  "@settings_flag_secure_description": {
+    "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  },
   "settings_accessibility": "Erişilebilirlik",
   "@settings_accessibility": {
-    "description": "Title of the settings page regarding the accessibility."
+    "description": "Title of the settings page regarding the accessibility"
   },
   "settings_accessibility_description": "Metin rengi, metin ölçeklendirme",
   "@settings_accessibility_description": {
@@ -467,34 +409,6 @@
   "@settings_disable_subdued_note_content_preview_description": {
     "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
-  "settings_about": "Hakkında",
-  "@settings_about": {
-    "description": "Title of the settings page regarding the information about the application."
-  },
-  "settings_about_description": "Bilgi, yardım, bağlantılar",
-  "@settings_about_description": {
-    "description": "Description of the about settings section."
-  },
-  "settings_about_application": "Uygulama",
-  "@settings_about_application": {
-    "description": "Title of the settings section regarding the information about the application."
-  },
-  "settings_build_mode": "Yapı Modu",
-  "@settings_build_mode": {
-    "description": "Title of the settings tile displaying the build mode of the application."
-  },
-  "settings_build_mode_release": "Kararlı",
-  "@settings_build_mode_release": {
-    "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
-  },
-  "settings_build_mode_debug": "Hata ayıklama",
-  "@settings_build_mode_debug": {
-    "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
-  },
-  "settings_about_help": "Yardım",
-  "@settings_about_help": {
-    "description": "Title of the settings section regarding how to get help for the application."
-  },
   "settings_github_issues": "Bir hata bildirin veya bir özellik talep edin",
   "@settings_github_issues": {
     "description": "Title of the settings tile to open the GitHub issues and report a bug or request a feature."
@@ -511,13 +425,45 @@
   "@settings_github_discussions_description": {
     "description": "Description of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_get_in_touch": "Geliştirici ile iletişime geç",
-  "@settings_get_in_touch": {
-    "description": "Title of the settings tile to contact the developer via mail."
-  },
   "settings_get_in_touch_description": "Geliştiriciye {email} adresinden posta yoluyla ulaşın",
   "@settings_get_in_touch_description": {
     "description": "Description of the settings tile to contact the developer via mail."
+  },
+  "settings_copy_logs": "Günlükleri kopyalayın",
+  "@settings_copy_logs": {
+    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_copy_logs_description": "Uygulamanın günlüklerini panoya kopyalayın",
+  "@settings_copy_logs_description": {
+    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
+  },
+  "settings_export_logs": "Günlüğü indir",
+  "@settings_export_logs": {
+    "description": "Title of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_export_logs_description": "Uygulamanın günlüklerini bir metin dosyasına aktarın",
+  "@settings_export_logs_description": {
+    "description": "Description of the settings tile to export the logs of the application to a text file."
+  },
+  "settings_about": "Hakkında",
+  "@settings_about": {
+    "description": "Title of the settings page regarding the information about the application."
+  },
+  "settings_about_application": "Uygulama",
+  "@settings_about_application": {
+    "description": "Title of the settings section regarding the information about the application."
+  },
+  "settings_build_mode": "Yapı Modu",
+  "@settings_build_mode": {
+    "description": "Title of the settings tile displaying the build mode of the application."
+  },
+  "settings_build_mode_release": "Kararlı",
+  "@settings_build_mode_release": {
+    "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
+  },
+  "settings_build_mode_debug": "Hata ayıklama",
+  "@settings_build_mode_debug": {
+    "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
   },
   "settings_about_links": "Bağlantılar",
   "@settings_about_links": {
@@ -547,26 +493,6 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
-  "settings_about_logs": "Günlükler",
-  "@settings_about_logs": {
-    "description": "Title of the settings section regarding the logs of the application."
-  },
-  "settings_copy_logs": "Günlükleri kopyalayın",
-  "@settings_copy_logs": {
-    "description": "Title of the settings tile to copy the logs of the application to the clipboard."
-  },
-  "settings_copy_logs_description": "Uygulamanın günlüklerini panoya kopyalayın",
-  "@settings_copy_logs_description": {
-    "description": "Description of the settings tile to copy the logs of the application to the clipboard."
-  },
-  "settings_export_logs": "Günlüğü indir",
-  "@settings_export_logs": {
-    "description": "Title of the settings tile to export the logs of the application to a text file."
-  },
-  "settings_export_logs_description": "Uygulamanın günlüklerini bir metin dosyasına aktarın",
-  "@settings_export_logs_description": {
-    "description": "Description of the settings tile to export the logs of the application to a text file."
-  },
   "hint_title": "Başlık",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
@@ -577,7 +503,7 @@
   },
   "hint_label_name": "İsim",
   "@hint_label_name": {
-    "description": "Hint for the text field of the name of a label."
+    "description": "Hint for the text field of the name of a tag."
   },
   "dialog_export_encryption_password": "Parola",
   "@dialog_export_encryption_password": {
@@ -591,21 +517,13 @@
   "@tooltip_redo": {
     "description": "Tooltip for the button to redo the last action in the editor."
   },
-  "tooltip_toggle_checkbox": "Onay kutusunu aç/kapat",
-  "@tooltip_toggle_checkbox": {
-    "description": "Tooltip for the button to toggle the presence of a checkbox in the editor (on a line or multiple lines depending on the current selection)."
-  },
-  "tooltip_toggle_pins": "Sabitlemeyi aç/kapat",
-  "@tooltip_toggle_pins": {
-    "description": "Tooltip for the button to toggle the pining state of the selected notes in selection mode (the pinned notes will be unpinned, and the not pinned ones will be pinned)."
-  },
   "tooltip_fab_add_note": "Bir not ekle",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
   },
   "tooltip_fab_add_label": "Etiket ekle",
   "@tooltip_fab_add_label": {
-    "description": "Floating action button in the labels page to add a new label."
+    "description": "Floating action button in the tags page to add a new tag."
   },
   "tooltip_fab_empty_bin": "Çöp kutusunu boşalt",
   "@tooltip_fab_empty_bin": {
@@ -639,29 +557,9 @@
   "@tooltip_unselect_all": {
     "description": "Tooltip for the button to unselect all the notes while in selection mode in the notes list."
   },
-  "tooltip_delete": "Sil",
-  "@tooltip_delete": {
-    "description": "Tooltip for the button to delete a note (moving it to bin)."
-  },
-  "tooltip_permanently_delete": "Kalıcı sil",
-  "@tooltip_permanently_delete": {
-    "description": "Tooltip for the button to permanently delete a note."
-  },
-  "tooltip_restore": "Kurtar",
-  "@tooltip_restore": {
-    "description": "Tooltip for the button to restore a note from the bin."
-  },
   "tooltip_reset": "Sıfırla",
   "@tooltip_reset": {
     "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
-  },
-  "action_labels_toggle_pins": "Sabitleri aç / kapat",
-  "@action_labels_toggle_pins": {
-    "description": "Tooltip for the button to toggle the pin status of the selected labels."
-  },
-  "action_labels_toggle_visibility": "Görünürlüğü aç / kapat",
-  "@action_labels_toggle_visibility": {
-    "description": "Tooltip for the button to toggle the visibility of the selected labels."
   },
   "dialog_add_link": "Bağlantı ekle",
   "@dialog_add_link": {
@@ -689,7 +587,7 @@
   },
   "dialog_delete_label": "Sil",
   "@dialog_delete_label": {
-    "description": "Title of the the dialog to delete one or multiple labels, and text for the confirmation button."
+    "description": "Title of the the dialog to delete one or multiple tags, and text for the confirmation button."
   },
   "dialog_export_encryption_switch": "JSON dışa aktarımını şifreleyin",
   "@dialog_export_encryption_switch": {
@@ -721,19 +619,19 @@
   },
   "dialog_label_add": "Etiket ekle",
   "@dialog_label_add": {
-    "description": "Title of the dialog to add a label."
+    "description": "Title of the dialog to add a tag."
   },
   "dialog_label_edit": "Etiketi düzenle",
   "@dialog_label_edit": {
-    "description": "Title of the dialog to edit a label."
+    "description": "Title of the dialog to edit a tag."
   },
   "dialog_label_name_cannot_be_empty": "İsim boş olamaz.",
   "@dialog_label_name_cannot_be_empty": {
-    "description": "Error message shown when relevant on the text field of the name of the label."
+    "description": "Error message shown when relevant on the text field of the name of the tag."
   },
   "dialog_label_name_already_used": "Bu isim zaten kullanılıyor.",
   "@dialog_label_name_already_used": {
-    "description": "Error message shown when relevant on the text field of the name of the label."
+    "description": "Error message shown when relevant on the text field of the name of the tag."
   },
   "button_sort_creation_date": "Oluşturma tarihi",
   "@button_sort_creation_date": {
@@ -749,7 +647,7 @@
   },
   "placeholder_bin": "Silinen not yok",
   "@placeholder_bin": {
-    "description": "Placeholder on the bin page when there are no notes."
+    "description": "Placeholder on the bin page when there are no deleted notes."
   },
   "action_disabled": "Kapalı",
   "@action_disabled": {
@@ -793,7 +691,7 @@
   },
   "about_labels": "Etiketler",
   "@about_labels": {
-    "description": "Number of labels of the note."
+    "description": "Number of tags of the note."
   },
   "about_words": "Kelime",
   "@about_words": {
@@ -807,37 +705,33 @@
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
-  "menu_action_labels": "Etiketler",
-  "@menu_action_labels": {
-    "description": "Menu action to change the labels of a note."
+  "action_labels_toggle_pins": "Sabitleri aç / kapat",
+  "@action_labels_toggle_pins": {
+    "description": "Menu action to toggle whether the selected tags are pinned."
   },
   "action_labels_edit": "Düzenle",
   "@action_labels_edit": {
-    "description": "Menu or swipe action to edit a label."
+    "description": "Menu or swipe action to edit a tag."
   },
   "action_labels_delete": "Sil",
   "@action_labels_delete": {
-    "description": "Menu or swipe action to delete a label."
+    "description": "Menu or swipe action to delete a tag."
   },
   "filter_labels_all": "Tümü",
   "@filter_labels_all": {
-    "description": "Filter chip in the labels page to all labels."
+    "description": "Filter chip in the tags page to all tags."
   },
   "filter_labels_visible": "Görünür",
   "@filter_labels_visible": {
-    "description": "Filter chip in the labels page to show only the visible labels."
-  },
-  "filter_labels_pinned": "Sabitlendi",
-  "@filter_labels_pinned": {
-    "description": "Filter chip in the labels page to show only the pinned labels."
+    "description": "Filter chip in the tags page to show only the visible tags."
   },
   "filter_labels_hidden": "Gizlenmiş",
   "@filter_labels_hidden": {
-    "description": "Filter chip in the labels page to show only the hidden labels."
+    "description": "Filter chip in the tags page to show only the hidden tags."
   },
-  "snack_bar_copied": "Panoya kopyalanan notun içeriği.",
-  "@snack_bar_copied": {
-    "description": "Snack bar informing that the content of the note was copied to clipboard."
+  "filter_labels_pinned": "Sabitlendi",
+  "@filter_labels_pinned": {
+    "description": "Filter chip in the tags page to show only the pinned tags."
   },
   "snack_bar_import_success": "Yedekleme başarıyla içe aktarıldı.",
   "@snack_bar_import_success": {
@@ -857,11 +751,7 @@
   },
   "snack_bar_no_labels": "Etiket yok.",
   "@snack_bar_no_labels": {
-    "description": "Snack bar message shown when the user tries to select the labels for a note, but there are no labels available."
-  },
-  "action_add_note_title": "Not ekle",
-  "@action_add_note_title": {
-    "description": "Title of the home screen action to add a new note."
+    "description": "Snack bar message shown when the user tries to select the tags for a note, but there are no tags available."
   },
   "welcome_note_title": "Materyal Notlara hoşgeldin!",
   "@welcome_note_title": {
