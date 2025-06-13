@@ -6,8 +6,8 @@ version: 2.0.0+28
 publish_to: none
 
 environment:
-  sdk: ^3.7.2
-  flutter: 3.29.3
+  sdk: ^3.8.0
+  flutter: 3.32.0
 
 dependencies:
   after_layout: ^1.2.0
