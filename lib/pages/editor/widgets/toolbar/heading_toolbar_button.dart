@@ -1,4 +1,5 @@
 import 'package:fleather/fleather.dart';
+import 'package:fleather/l10n/fleather_localizations_en.g.dart';
 import 'package:flutter/material.dart';
 
 /// Heading toolbar button.
@@ -53,7 +54,8 @@ class _HeadingToolbarButtonState extends State<HeadingToolbarButton> {
 
   /// Returns the title of the [attribute].
   String getAttributeTitle(ParchmentAttribute attribute) {
-    final localizations = FleatherLocalizations.of(context)!;
+    final localizations = FleatherLocalizations.of(context) ?? FleatherLocalizationsEn();
+
     return switch (attribute.value) {
       null => localizations.headingNormal,
       1 => localizations.headingLevel1,
