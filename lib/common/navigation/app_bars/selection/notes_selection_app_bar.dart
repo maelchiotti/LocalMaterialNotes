@@ -109,47 +109,42 @@ class NotesSelectionAppBar extends ConsumerWidget {
         IconButton(
           icon: Icon(allSelected ? Icons.deselect : Icons.select_all),
           tooltip: allSelected ? context.l.tooltip_unselect_all : context.fl.selectAllButtonLabel,
-          onPressed:
-              () =>
-                  allSelected
-                      ? unselectAllNotes(context, ref, notesStatus: notesStatus)
-                      : selectAllNotes(context, ref, notesStatus: notesStatus),
+          onPressed: () => allSelected
+              ? unselectAllNotes(context, ref, notesStatus: notesStatus)
+              : selectAllNotes(context, ref, notesStatus: notesStatus),
         ),
         Padding(padding: Paddings.appBarSeparator, child: Separator.vertical(indent: 16)),
         if (notesStatus == NoteStatus.available)
           PopupMenuButton<SelectionAvailableMenuOption>(
-            itemBuilder:
-                (context) => ([
-                  SelectionAvailableMenuOption.copy.popupMenuItem(context),
-                  SelectionAvailableMenuOption.share.popupMenuItem(context),
-                  const PopupMenuDivider(),
-                  SelectionAvailableMenuOption.togglePin.popupMenuItem(context),
-                  if (lockNote) SelectionAvailableMenuOption.toggleLock.popupMenuItem(context),
-                  if (enableLabels) SelectionAvailableMenuOption.addLabels.popupMenuItem(context),
-                  const PopupMenuDivider(),
-                  SelectionAvailableMenuOption.archive.popupMenuItem(context),
-                  SelectionAvailableMenuOption.delete.popupMenuItem(context),
-                ]),
+            itemBuilder: (context) => ([
+              SelectionAvailableMenuOption.copy.popupMenuItem(context),
+              SelectionAvailableMenuOption.share.popupMenuItem(context),
+              const PopupMenuDivider(),
+              SelectionAvailableMenuOption.togglePin.popupMenuItem(context),
+              if (lockNote) SelectionAvailableMenuOption.toggleLock.popupMenuItem(context),
+              if (enableLabels) SelectionAvailableMenuOption.addLabels.popupMenuItem(context),
+              const PopupMenuDivider(),
+              SelectionAvailableMenuOption.archive.popupMenuItem(context),
+              SelectionAvailableMenuOption.delete.popupMenuItem(context),
+            ]),
             onSelected: (menuOption) => onAvailableMenuOptionSelected(context, ref, selectedNotes, menuOption),
           ),
         if (notesStatus == NoteStatus.archived)
           PopupMenuButton<SelectionArchivedMenuOption>(
-            itemBuilder:
-                (context) => ([
-                  SelectionArchivedMenuOption.copy.popupMenuItem(context),
-                  SelectionArchivedMenuOption.share.popupMenuItem(context),
-                  const PopupMenuDivider(),
-                  SelectionArchivedMenuOption.unarchive.popupMenuItem(context),
-                ]),
+            itemBuilder: (context) => ([
+              SelectionArchivedMenuOption.copy.popupMenuItem(context),
+              SelectionArchivedMenuOption.share.popupMenuItem(context),
+              const PopupMenuDivider(),
+              SelectionArchivedMenuOption.unarchive.popupMenuItem(context),
+            ]),
             onSelected: (menuOption) => onArchivedMenuOptionSelected(context, ref, selectedNotes, menuOption),
           ),
         if (notesStatus == NoteStatus.deleted)
           PopupMenuButton<SelectionDeletedMenuOption>(
-            itemBuilder:
-                (context) => ([
-                  SelectionDeletedMenuOption.restore.popupMenuItem(context),
-                  SelectionDeletedMenuOption.deletePermanently.popupMenuItem(context),
-                ]),
+            itemBuilder: (context) => ([
+              SelectionDeletedMenuOption.restore.popupMenuItem(context),
+              SelectionDeletedMenuOption.deletePermanently.popupMenuItem(context),
+            ]),
             onSelected: (menuOption) => onDeletedMenuOptionSelected(context, ref, selectedNotes, menuOption),
           ),
         Gap(Sizes.appBarEnd.size),

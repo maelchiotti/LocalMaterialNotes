@@ -97,13 +97,9 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
           builder: (context) {
             final fleatherThemeFallback = FleatherThemeData.fallback(context);
             final fleatherTheme = fleatherThemeFallback.copyWith(
-              paragraph:
-                  !useParagraphsSpacing
-                      ? TextBlockTheme(
-                        style: fleatherThemeFallback.paragraph.style,
-                        spacing: const VerticalSpacing.zero(),
-                      )
-                      : null,
+              paragraph: !useParagraphsSpacing
+                  ? TextBlockTheme(style: fleatherThemeFallback.paragraph.style, spacing: const VerticalSpacing.zero())
+                  : null,
               link: fleatherThemeFallback.link.copyWith(color: Theme.of(context).colorScheme.primary),
             );
 

@@ -23,10 +23,9 @@ class ChecklistEditor extends ConsumerWidget {
 
   /// Called when an item of the checklist changes with the new [checklistLines].
   void onChecklistChanged(WidgetRef ref, List<ChecklistLine> checklistLines) {
-    ChecklistNote newNote =
-        note
-          ..checkboxes = checklistLines.map((checklistLine) => checklistLine.toggled).toList()
-          ..texts = checklistLines.map((checklistLine) => checklistLine.text).toList();
+    ChecklistNote newNote = note
+      ..checkboxes = checklistLines.map((checklistLine) => checklistLine.toggled).toList()
+      ..texts = checklistLines.map((checklistLine) => checklistLine.text).toList();
 
     ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(newNote);
   }

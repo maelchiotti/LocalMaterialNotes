@@ -40,21 +40,20 @@ class MigrationService {
     await _databaseService.database.notes.clear();
 
     // Migrate the notes
-    final migratedNotes =
-        notes
-            .map(
-              (oldNote) => RichTextNote(
-                archived: false,
-                deleted: oldNote.deleted,
-                pinned: oldNote.pinned,
-                locked: false,
-                createdTime: oldNote.createdTime,
-                editedTime: oldNote.editedTime,
-                title: oldNote.title,
-                content: oldNote.content,
-              ),
-            )
-            .toList();
+    final migratedNotes = notes
+        .map(
+          (oldNote) => RichTextNote(
+            archived: false,
+            deleted: oldNote.deleted,
+            pinned: oldNote.pinned,
+            locked: false,
+            createdTime: oldNote.createdTime,
+            editedTime: oldNote.editedTime,
+            title: oldNote.title,
+            content: oldNote.content,
+          ),
+        )
+        .toList();
 
     // Add the migrated notes to the new collection with their labels
     await _notesService.putAll(migratedNotes);
@@ -80,16 +79,14 @@ class MigrationService {
     await _notesService.deleteAll(richTextNotes);
 
     // Migrate the notes
-    final migratedNotes =
-        richTextNotes
-            .map(
-              (richTextNote) =>
-                  richTextNote
-                    ..id = uuid.v4()
-                    ..archived = false
-                    ..deletedTime = richTextNote.deleted ? DateTime.timestamp() : null,
-            )
-            .toList();
+    final migratedNotes = richTextNotes
+        .map(
+          (richTextNote) => richTextNote
+            ..id = uuid.v4()
+            ..archived = false
+            ..deletedTime = richTextNote.deleted ? DateTime.timestamp() : null,
+        )
+        .toList();
 
     // Put back the migrated notes with the right IDs
     await _notesService.putAll(migratedNotes);

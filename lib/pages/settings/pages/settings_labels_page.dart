@@ -120,12 +120,9 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
                     value: labelSwipeActions.right.title(context),
                     description: context.l.settings_swipe_action_right_description,
                     dialogTitle: context.l.settings_swipe_action_right,
-                    options:
-                        LabelSwipeAction.settings
-                            .map(
-                              (swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null),
-                            )
-                            .toList(),
+                    options: LabelSwipeAction.settings
+                        .map((swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null))
+                        .toList(),
                     initialOption: labelSwipeActions.right,
                     onSubmitted: submittedLabelSwipeRightAction,
                   ),
@@ -135,12 +132,9 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
                     value: labelSwipeActions.left.title(context),
                     description: context.l.settings_swipe_action_left_description,
                     dialogTitle: context.l.settings_swipe_action_left,
-                    options:
-                        LabelSwipeAction.settings
-                            .map(
-                              (swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null),
-                            )
-                            .toList(),
+                    options: LabelSwipeAction.settings
+                        .map((swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null))
+                        .toList(),
                     initialOption: labelSwipeActions.left,
                     onSubmitted: submittedLabelSwipeLeftAction,
                   ),

@@ -61,35 +61,34 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
 
     return Padding(
       padding: Paddings.pageHorizontal,
-      child:
-          widget.readOnly && !widget.note.isContentEmpty
-              ? Markdown(
-                data: widget.note.content,
-                padding: EdgeInsets.zero,
-                selectable: true,
-                extensionSet: ExtensionSet.gitHubFlavored,
-                styleSheet: MarkdownStyleSheet.fromTheme(theme).copyWith(
-                  blockquoteDecoration: BoxDecoration(
-                    color: theme.colorScheme.surfaceContainerHighest,
-                    borderRadius: BorderRadius.circular(2.0),
-                  ),
-                  codeblockDecoration: BoxDecoration(
-                    color: theme.colorScheme.surfaceContainerHighest,
-                    borderRadius: BorderRadius.circular(2.0),
-                  ),
+      child: widget.readOnly && !widget.note.isContentEmpty
+          ? Markdown(
+              data: widget.note.content,
+              padding: EdgeInsets.zero,
+              selectable: true,
+              extensionSet: ExtensionSet.gitHubFlavored,
+              styleSheet: MarkdownStyleSheet.fromTheme(theme).copyWith(
+                blockquoteDecoration: BoxDecoration(
+                  color: theme.colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(2.0),
                 ),
-              )
-              : TextField(
-                controller: contentTextController,
-                focusNode: editorFocusNode,
-                readOnly: widget.readOnly && widget.note.isContentEmpty,
-                autofocus: widget.autofocus,
-                maxLines: null,
-                expands: true,
-                decoration: InputDecoration.collapsed(hintText: context.l.hint_content),
-                spellCheckConfiguration: SpellCheckConfiguration(spellCheckService: DefaultSpellCheckService()),
-                onChanged: onChanged,
+                codeblockDecoration: BoxDecoration(
+                  color: theme.colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(2.0),
+                ),
               ),
+            )
+          : TextField(
+              controller: contentTextController,
+              focusNode: editorFocusNode,
+              readOnly: widget.readOnly && widget.note.isContentEmpty,
+              autofocus: widget.autofocus,
+              maxLines: null,
+              expands: true,
+              decoration: InputDecoration.collapsed(hintText: context.l.hint_content),
+              spellCheckConfiguration: SpellCheckConfiguration(spellCheckService: DefaultSpellCheckService()),
+              onChanged: onChanged,
+            ),
     );
   }
 }

@@ -68,6 +68,9 @@ enum EditorAvailableMenuOption {
 
   /// Returns the [PopupMenuItem] widget of the menu option.
   PopupMenuItem<EditorAvailableMenuOption> popupMenuItem(BuildContext context) {
-    return PopupMenuItem(value: this, child: ListTile(leading: Icon(icon), title: Text(title(context))));
+    return PopupMenuItem(
+      value: this,
+      child: ListTile(leading: Icon(icon), title: Text(title(context))),
+    );
   }
 }

@@ -41,10 +41,9 @@ class _ToolbarState extends State<Toolbar> with SingleTickerProviderStateMixin {
     super.initState();
 
     isFirstRow = true;
-    controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 2))
-          ..forward()
-          ..repeat(reverse: true);
+    controller = AnimationController(vsync: this, duration: const Duration(seconds: 2))
+      ..forward()
+      ..repeat(reverse: true);
     animation = Tween<double>(begin: 0.0, end: 1.0).animate(controller);
   }
 
@@ -89,7 +88,10 @@ class _ToolbarState extends State<Toolbar> with SingleTickerProviderStateMixin {
     return Material(
       key: UniqueKey(),
       color: Theme.of(context).colorScheme.secondaryContainer,
-      child: InkWell(onTap: toggleToolbarRows, child: SizedBox(height: 48, width: 48, child: Icon(icon))),
+      child: InkWell(
+        onTap: toggleToolbarRows,
+        child: SizedBox(height: 48, width: 48, child: Icon(icon)),
+      ),
     );
   }
 
@@ -334,8 +336,9 @@ class _ToolbarState extends State<Toolbar> with SingleTickerProviderStateMixin {
     };
 
     Widget toolbar = switch (toolbarStyle) {
-      ToolbarStyle.oneRowSimple ||
-      ToolbarStyle.oneRowAll => Center(child: FleatherToolbar(padding: EdgeInsets.zero, children: firstRow)),
+      ToolbarStyle.oneRowSimple || ToolbarStyle.oneRowAll => Center(
+        child: FleatherToolbar(padding: EdgeInsets.zero, children: firstRow),
+      ),
       ToolbarStyle.twoRowsStacked => FleatherToolbar(
         padding: EdgeInsets.zero,
         children: [
@@ -373,10 +376,9 @@ class _ToolbarState extends State<Toolbar> with SingleTickerProviderStateMixin {
             duration: const Duration(milliseconds: 250),
             switchInCurve: Curves.easeInOut,
             switchOutCurve: Curves.easeInOut,
-            child:
-                isFirstRow
-                    ? getToolbarRowsToggleButton(Icons.arrow_downward)
-                    : getToolbarRowsToggleButton(Icons.arrow_upward),
+            child: isFirstRow
+                ? getToolbarRowsToggleButton(Icons.arrow_downward)
+                : getToolbarRowsToggleButton(Icons.arrow_upward),
           ),
         ],
       ),

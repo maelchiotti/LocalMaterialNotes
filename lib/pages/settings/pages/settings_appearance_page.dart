@@ -105,16 +105,12 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                 trailing: TextButton.icon(onPressed: _openCrowdin, label: Text(context.l.settings_language_contribute)),
                 value: locale.nativeDisplayLanguage.capitalizeFirstLetter,
                 dialogTitle: context.l.settings_language,
-                options:
-                    SupportedLanguage.values
-                        .map(
-                          (language) => (
-                            value: language.locale,
-                            title: language.nativeName,
-                            subtitle: language.completionFormatted,
-                          ),
-                        )
-                        .toList(),
+                options: SupportedLanguage.values
+                    .map(
+                      (language) =>
+                          (value: language.locale, title: language.nativeName, subtitle: language.completionFormatted),
+                    )
+                    .toList(),
                 initialOption: locale,
                 onSubmitted: _submittedLanguage,
               ),
@@ -163,10 +159,9 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                     description: context.l.settings_app_font_description,
                     value: appFont.displayName(context),
                     dialogTitle: context.l.settings_app_font,
-                    options:
-                        Font.values
-                            .map((font) => (value: font, title: font.displayName(context), subtitle: null))
-                            .toList(),
+                    options: Font.values
+                        .map((font) => (value: font, title: font.displayName(context), subtitle: null))
+                        .toList(),
                     initialOption: appFont,
                     onSubmitted: _submittedAppFont,
                   ),
@@ -176,10 +171,9 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                     description: context.l.settings_editor_font_description,
                     value: editorFont.displayName(context),
                     dialogTitle: context.l.settings_editor_font,
-                    options:
-                        Font.values
-                            .map((font) => (value: font, title: font.displayName(context), subtitle: null))
-                            .toList(),
+                    options: Font.values
+                        .map((font) => (value: font, title: font.displayName(context), subtitle: null))
+                        .toList(),
                     initialOption: editorFont,
                     onSubmitted: _submittedEditorFont,
                   ),
