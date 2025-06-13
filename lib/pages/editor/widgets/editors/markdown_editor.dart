@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:markdown/markdown.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../common/constants/constants.dart';
 import '../../../../common/constants/paddings.dart';
@@ -55,6 +56,16 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
     ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
   }
 
+  void onOpenLink(String text, String? href, String title) {
+    if (href == null) {
+      return;
+    }
+
+    Uri uri = Uri.parse(href);
+
+    launchUrl(uri);
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -77,6 +88,7 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
                   borderRadius: BorderRadius.circular(2.0),
                 ),
               ),
+              onTapLink: onOpenLink,
             )
           : TextField(
               controller: contentTextController,
