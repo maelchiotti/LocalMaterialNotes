@@ -152,107 +152,97 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
     final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
 
     return ValueListenableBuilder(
-      valueListenable: editorHasFocusNotifier,
-      builder: (context, editorHasFocus, child) {
-        return ValueListenableBuilder(
-          valueListenable: isEditModeNotifier,
-          builder: (context, isEditMode, child) {
-            return AppBar(
-              leading: BackButton(),
-              actions: [
-                if (note.status == NoteStatus.available) ...[
-                  if (note.type == NoteType.richText) ...[
-                    ValueListenableBuilder(
-                      valueListenable: fleatherControllerCanUndoNotifier,
-                      builder: (context, canUndo, child) {
-                        final enableUndo =
-                            editorHasFocus &&
-                            canUndo &&
-                            editorController != null &&
-                            editorController.canUndo &&
-                            isEditMode;
+      valueListenable: isEditModeNotifier,
+      builder: (context, isEditMode, child) {
+        return AppBar(
+          leading: BackButton(),
+          actions: [
+            if (note.status == NoteStatus.available) ...[
+              if (note.type == NoteType.richText) ...[
+                ValueListenableBuilder(
+                  valueListenable: fleatherControllerCanUndoNotifier,
+                  builder: (context, canUndo, child) {
+                    final enableUndo = canUndo && editorController != null && isEditMode;
 
-                        return IconButton(
-                          icon: const Icon(Icons.undo),
-                          tooltip: context.l.tooltip_undo,
-                          onPressed: enableUndo ? undo : null,
-                        );
-                      },
-                    ),
-                    ValueListenableBuilder(
-                      valueListenable: fleatherControllerCanRedoNotifier,
-                      builder: (context, canRedo, child) {
-                        final enableRedo = editorHasFocus && canRedo && isEditMode;
+                    return IconButton(
+                      icon: const Icon(Icons.undo),
+                      tooltip: context.l.tooltip_undo,
+                      onPressed: enableUndo ? undo : null,
+                    );
+                  },
+                ),
+                ValueListenableBuilder(
+                  valueListenable: fleatherControllerCanRedoNotifier,
+                  builder: (context, canRedo, child) {
+                    final enableRedo = canRedo && editorController != null && isEditMode;
 
-                        return IconButton(
-                          icon: const Icon(Icons.redo),
-                          tooltip: context.l.tooltip_redo,
-                          onPressed: enableRedo ? redo : null,
-                        );
-                      },
-                    ),
-                  ],
-                  if (showEditorModeButton)
-                    ValueListenableBuilder(
-                      valueListenable: isEditModeNotifier,
-                      builder:
-                          (context, isEditMode, child) => IconButton(
-                            icon: Icon(isEditMode ? Icons.visibility : Icons.edit),
-                            tooltip:
-                                isEditMode
-                                    ? context.l.tooltip_fab_toggle_editor_mode_read
-                                    : context.l.tooltip_fab_toggle_editor_mode_edit,
-                            onPressed: switchMode,
-                          ),
-                    ),
-                  PopupMenuButton<EditorAvailableMenuOption>(
-                    itemBuilder:
-                        (context) => ([
-                          EditorAvailableMenuOption.copy.popupMenuItem(context),
-                          EditorAvailableMenuOption.share.popupMenuItem(context),
-                          const PopupMenuDivider(),
-                          if (note.pinned) EditorAvailableMenuOption.unpin.popupMenuItem(context),
-                          if (!note.pinned) EditorAvailableMenuOption.pin.popupMenuItem(context),
-                          if (lockNote && note.locked) EditorAvailableMenuOption.unlock.popupMenuItem(context),
-                          if (lockNote && !note.locked) EditorAvailableMenuOption.lock.popupMenuItem(context),
-                          if (enableLabels) EditorAvailableMenuOption.selectLabels.popupMenuItem(context),
-                          const PopupMenuDivider(),
-                          EditorAvailableMenuOption.archive.popupMenuItem(context),
-                          EditorAvailableMenuOption.delete.popupMenuItem(context),
-                          const PopupMenuDivider(),
-                          EditorAvailableMenuOption.about.popupMenuItem(context),
-                        ]),
-                    onSelected: onAvailableMenuOptionSelected,
-                  ),
-                ],
-                if (note.status == NoteStatus.archived)
-                  PopupMenuButton<EditorArchivedMenuOption>(
-                    itemBuilder:
-                        (context) => ([
-                          EditorArchivedMenuOption.copy.popupMenuItem(context),
-                          EditorArchivedMenuOption.share.popupMenuItem(context),
-                          const PopupMenuDivider(),
-                          EditorArchivedMenuOption.unarchive.popupMenuItem(context),
-                          const PopupMenuDivider(),
-                          EditorArchivedMenuOption.about.popupMenuItem(context),
-                        ]),
-                    onSelected: onArchivedMenuOptionSelected,
-                  ),
-                if (note.status == NoteStatus.deleted)
-                  PopupMenuButton<EditorDeletedMenuOption>(
-                    itemBuilder:
-                        (context) => ([
-                          EditorDeletedMenuOption.restore.popupMenuItem(context),
-                          EditorDeletedMenuOption.deletePermanently.popupMenuItem(context),
-                          const PopupMenuDivider(),
-                          EditorDeletedMenuOption.about.popupMenuItem(context),
-                        ]),
-                    onSelected: onDeletedMenuOptionSelected,
-                  ),
-                Gap(Sizes.appBarEnd.size),
+                    return IconButton(
+                      icon: const Icon(Icons.redo),
+                      tooltip: context.l.tooltip_redo,
+                      onPressed: enableRedo ? redo : null,
+                    );
+                  },
+                ),
               ],
-            );
-          },
+              if (showEditorModeButton)
+                ValueListenableBuilder(
+                  valueListenable: isEditModeNotifier,
+                  builder:
+                      (context, isEditMode, child) => IconButton(
+                        icon: Icon(isEditMode ? Icons.visibility : Icons.edit),
+                        tooltip:
+                            isEditMode
+                                ? context.l.tooltip_fab_toggle_editor_mode_read
+                                : context.l.tooltip_fab_toggle_editor_mode_edit,
+                        onPressed: switchMode,
+                      ),
+                ),
+              PopupMenuButton<EditorAvailableMenuOption>(
+                itemBuilder:
+                    (context) => ([
+                      EditorAvailableMenuOption.copy.popupMenuItem(context),
+                      EditorAvailableMenuOption.share.popupMenuItem(context),
+                      const PopupMenuDivider(),
+                      if (note.pinned) EditorAvailableMenuOption.unpin.popupMenuItem(context),
+                      if (!note.pinned) EditorAvailableMenuOption.pin.popupMenuItem(context),
+                      if (lockNote && note.locked) EditorAvailableMenuOption.unlock.popupMenuItem(context),
+                      if (lockNote && !note.locked) EditorAvailableMenuOption.lock.popupMenuItem(context),
+                      if (enableLabels) EditorAvailableMenuOption.selectLabels.popupMenuItem(context),
+                      const PopupMenuDivider(),
+                      EditorAvailableMenuOption.archive.popupMenuItem(context),
+                      EditorAvailableMenuOption.delete.popupMenuItem(context),
+                      const PopupMenuDivider(),
+                      EditorAvailableMenuOption.about.popupMenuItem(context),
+                    ]),
+                onSelected: onAvailableMenuOptionSelected,
+              ),
+            ],
+            if (note.status == NoteStatus.archived)
+              PopupMenuButton<EditorArchivedMenuOption>(
+                itemBuilder:
+                    (context) => ([
+                      EditorArchivedMenuOption.copy.popupMenuItem(context),
+                      EditorArchivedMenuOption.share.popupMenuItem(context),
+                      const PopupMenuDivider(),
+                      EditorArchivedMenuOption.unarchive.popupMenuItem(context),
+                      const PopupMenuDivider(),
+                      EditorArchivedMenuOption.about.popupMenuItem(context),
+                    ]),
+                onSelected: onArchivedMenuOptionSelected,
+              ),
+            if (note.status == NoteStatus.deleted)
+              PopupMenuButton<EditorDeletedMenuOption>(
+                itemBuilder:
+                    (context) => ([
+                      EditorDeletedMenuOption.restore.popupMenuItem(context),
+                      EditorDeletedMenuOption.deletePermanently.popupMenuItem(context),
+                      const PopupMenuDivider(),
+                      EditorDeletedMenuOption.about.popupMenuItem(context),
+                    ]),
+                onSelected: onDeletedMenuOptionSelected,
+              ),
+            Gap(Sizes.appBarEnd.size),
+          ],
         );
       },
     );

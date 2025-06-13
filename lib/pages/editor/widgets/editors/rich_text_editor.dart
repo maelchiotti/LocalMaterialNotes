@@ -58,10 +58,6 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
     }
   }
 
-  void onFocusChange(bool hasFocus) {
-    editorHasFocusNotifier.value = hasFocus;
-  }
-
   void onLaunchUrl(String? url) {
     if (url == null) {
       return;

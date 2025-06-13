@@ -35,9 +35,6 @@ final fleatherControllerCanUndoNotifier = ValueNotifier(false);
 /// Notifier for whether the redo action can be used on the currently displayed note.
 final fleatherControllerCanRedoNotifier = ValueNotifier(false);
 
-/// Notifier for whether the editor has focus.
-final editorHasFocusNotifier = ValueNotifier(false);
-
 /// Notifier for whether the editor is in edit mode.
 final isEditModeNotifier = ValueNotifier(!PreferenceKey.openEditorReadingMode.preferenceOrDefault);
 

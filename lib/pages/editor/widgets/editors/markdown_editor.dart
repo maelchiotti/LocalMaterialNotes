@@ -49,10 +49,6 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
     contentTextController = TextEditingController(text: widget.note.content);
   }
 
-  void onFocusChange(bool hasFocus) {
-    editorHasFocusNotifier.value = hasFocus;
-  }
-
   void onChanged(String content) {
     MarkdownNote note = widget.note..content = content;
 
@@ -83,19 +79,16 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
                   ),
                 ),
               )
-              : Focus(
-                onFocusChange: onFocusChange,
-                child: TextField(
-                  controller: contentTextController,
-                  focusNode: editorFocusNode,
-                  readOnly: widget.readOnly && widget.note.isContentEmpty,
-                  autofocus: widget.autofocus,
-                  maxLines: null,
-                  expands: true,
-                  decoration: InputDecoration.collapsed(hintText: context.l.hint_content),
-                  spellCheckConfiguration: SpellCheckConfiguration(spellCheckService: DefaultSpellCheckService()),
-                  onChanged: onChanged,
-                ),
+              : TextField(
+                controller: contentTextController,
+                focusNode: editorFocusNode,
+                readOnly: widget.readOnly && widget.note.isContentEmpty,
+                autofocus: widget.autofocus,
+                maxLines: null,
+                expands: true,
+                decoration: InputDecoration.collapsed(hintText: context.l.hint_content),
+                spellCheckConfiguration: SpellCheckConfiguration(spellCheckService: DefaultSpellCheckService()),
+                onChanged: onChanged,
               ),
     );
   }
