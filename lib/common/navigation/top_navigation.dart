@@ -23,19 +23,18 @@ class TopNavigation extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: isNotesSelectionModeNotifier,
-      builder:
-          (context, isNotesSelectionMode, child) => ValueListenableBuilder(
-            valueListenable: isLabelsSelectionModeNotifier,
-            builder: (context, isLabelsSelectionMode, child) {
-              if (isNotesSelectionMode && notesStatus != null) {
-                return NotesSelectionAppBar(notesStatus: notesStatus!);
-              } else if (isLabelsSelectionMode) {
-                return const LabelsSelectionAppBar();
-              }
+      builder: (context, isNotesSelectionMode, child) => ValueListenableBuilder(
+        valueListenable: isLabelsSelectionModeNotifier,
+        builder: (context, isLabelsSelectionMode, child) {
+          if (isNotesSelectionMode && notesStatus != null) {
+            return NotesSelectionAppBar(notesStatus: notesStatus!);
+          } else if (isLabelsSelectionMode) {
+            return const LabelsSelectionAppBar();
+          }
 
-              return appbar;
-            },
-          ),
+          return appbar;
+        },
+      ),
     );
   }
 }

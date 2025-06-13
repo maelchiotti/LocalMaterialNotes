@@ -83,10 +83,9 @@ class Labels extends _$Labels {
       return false;
     }
 
-    final labels =
-        (state.value ?? [])
-          ..removeWhere((label) => labelsToToggle.contains(label))
-          ..addAll(labelsToToggle);
+    final labels = (state.value ?? [])
+      ..removeWhere((label) => labelsToToggle.contains(label))
+      ..addAll(labelsToToggle);
 
     state = AsyncData(labels.sorted());
 
@@ -112,10 +111,9 @@ class Labels extends _$Labels {
       return false;
     }
 
-    final labels =
-        (state.value ?? [])
-          ..removeWhere((label) => labelsToToggle.contains(label))
-          ..addAll(labelsToToggle);
+    final labels = (state.value ?? [])
+      ..removeWhere((label) => labelsToToggle.contains(label))
+      ..addAll(labelsToToggle);
 
     state = AsyncData(labels.sorted());
 
@@ -138,10 +136,9 @@ class Labels extends _$Labels {
       return false;
     }
 
-    final labels =
-        (state.value ?? [])
-          ..removeWhere((label) => labelsToToggle.contains(label))
-          ..addAll(labelsToToggle);
+    final labels = (state.value ?? [])
+      ..removeWhere((label) => labelsToToggle.contains(label))
+      ..addAll(labelsToToggle);
 
     state = AsyncData(labels.sorted());
 

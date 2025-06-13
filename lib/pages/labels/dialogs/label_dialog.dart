@@ -113,12 +113,11 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
       return;
     }
 
-    final label =
-        widget.label != null
-            ? (widget.label!
-              ..name = nameController.text
-              ..colorHex = color.toARGB32())
-            : Label(name: nameController.text, colorHex: color.toARGB32());
+    final label = widget.label != null
+        ? (widget.label!
+            ..name = nameController.text
+            ..colorHex = color.toARGB32())
+        : Label(name: nameController.text, colorHex: color.toARGB32());
 
     Navigator.pop(context, label);
   }

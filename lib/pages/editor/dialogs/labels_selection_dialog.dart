@@ -72,31 +72,30 @@ class _LabelsSelectionDialogState extends ConsumerState<LabelsSelectionDialog> {
       title: Text(widget.note == null ? context.l.dialog_select_labels_to_add : context.l.dialog_select_labels),
       content: SingleChildScrollView(
         child: ListBody(
-          children:
-              labels.mapIndexed((index, label) {
-                return CheckboxListTile(
-                  value: label.selected,
-                  secondary: VariedIcon.varied(
-                    label.pinned ? Icons.label_important : Icons.label,
-                    fill: 1.0,
-                    color: label.color,
+          children: labels.mapIndexed((index, label) {
+            return CheckboxListTile(
+              value: label.selected,
+              secondary: VariedIcon.varied(
+                label.pinned ? Icons.label_important : Icons.label,
+                fill: 1.0,
+                color: label.color,
+              ),
+              title: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      label.name,
+                      style: bodyLarge?.copyWith(color: !label.visible ? bodyLarge.color?.subdued : null),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  title: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          label.name,
-                          style: bodyLarge?.copyWith(color: !label.visible ? bodyLarge.color?.subdued : null),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      if (lockLabel && label.locked) Icon(Icons.lock, size: Sizes.iconSmall.size),
-                    ],
-                  ),
-                  onChanged: (value) => onChanged(index, value),
-                );
-              }).toList(),
+                  if (lockLabel && label.locked) Icon(Icons.lock, size: Sizes.iconSmall.size),
+                ],
+              ),
+              onChanged: (value) => onChanged(index, value),
+            );
+          }).toList(),
         ),
       ),
       actions: [

@@ -12,15 +12,14 @@ Future<bool> _showConfirmationDialog(BuildContext context, String title, String 
     await showAdaptiveDialog<bool>(
       context: context,
       useRootNavigator: false,
-      builder:
-          (context) => AlertDialog.adaptive(
-            title: Text(title),
-            content: SingleChildScrollView(child: Column(children: [Text(body)])),
-            actions: [
-              TextButton(onPressed: () => Navigator.pop(context, false), child: Text(context.fl.cancelButtonLabel)),
-              TextButton(onPressed: () => Navigator.pop(context, true), child: Text(confirmText)),
-            ],
-          ),
+      builder: (context) => AlertDialog.adaptive(
+        title: Text(title),
+        content: SingleChildScrollView(child: Column(children: [Text(body)])),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context, false), child: Text(context.fl.cancelButtonLabel)),
+          TextButton(onPressed: () => Navigator.pop(context, true), child: Text(confirmText)),
+        ],
+      ),
     ) ??
     false;
 

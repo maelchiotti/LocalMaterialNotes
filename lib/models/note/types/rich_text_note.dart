@@ -51,19 +51,17 @@ class RichTextNote extends Note {
   factory RichTextNote.fromJson(Map<String, dynamic> json) => _$RichTextNoteFromJson(json);
 
   /// Rich text note from [json] data, encrypted with [password].
-  factory RichTextNote.fromJsonEncrypted(Map<String, dynamic> json, String password) =>
-      _$RichTextNoteFromJson(json)
-        ..title = (json['title'] as String).isEmpty ? '' : EncryptionUtils().decrypt(password, json['title'] as String)
-        ..content = EncryptionUtils().decrypt(password, json['content'] as String);
+  factory RichTextNote.fromJsonEncrypted(Map<String, dynamic> json, String password) => _$RichTextNoteFromJson(json)
+    ..title = (json['title'] as String).isEmpty ? '' : EncryptionUtils().decrypt(password, json['title'] as String)
+    ..content = EncryptionUtils().decrypt(password, json['content'] as String);
 
   /// Rich text note to JSON.
   Map<String, dynamic> toJson() => _$RichTextNoteToJson(this);
 
   @override
-  Note encrypted(String password) =>
-      this
-        ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
-        ..content = EncryptionUtils().encrypt(password, content);
+  Note encrypted(String password) => this
+    ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
+    ..content = EncryptionUtils().encrypt(password, content);
 
   /// Document containing the fleather content representation.
   @ignore

@@ -53,24 +53,21 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
 
   @override
   Widget build(BuildContext context) {
-    final notesTypes =
-        NoteType.values.map((type) {
-          return (value: type, title: type.title(context), subtitle: null);
-        }).toList();
+    final notesTypes = NoteType.values.map((type) {
+      return (value: type, title: type.title(context), subtitle: null);
+    }).toList();
     final availableNotesTypes = NoteType.available;
     final availableNotesTypesString = NoteType.availableAsString(context);
 
-    final shareNotesTypes =
-        NoteType.share.map((type) {
-          return (value: type, title: type.title(context), subtitle: null);
-        }).toList();
+    final shareNotesTypes = NoteType.share.map((type) {
+      return (value: type, title: type.title(context), subtitle: null);
+    }).toList();
     final defaultShareNoteType = NoteType.defaultShare;
 
     final toolbarStyle = ToolbarStyle.fromPreference();
-    final toolbarStyleOptions =
-        ToolbarStyle.values.map((toolbarStyle) {
-          return (value: toolbarStyle, title: toolbarStyle.title(context), subtitle: toolbarStyle.description(context));
-        }).toList();
+    final toolbarStyleOptions = ToolbarStyle.values.map((toolbarStyle) {
+      return (value: toolbarStyle, title: toolbarStyle.title(context), subtitle: toolbarStyle.description(context));
+    }).toList();
     final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.preferenceOrDefault;
 
     return Scaffold(

@@ -151,11 +151,11 @@ class _EditorState extends ConsumerState<EditorPage> {
               builder: (context, locked, child) {
                 return locked
                     ? LockPage(
-                      back: false,
-                      lockNotifier: lockNoteNotifier,
-                      description: context.l.lock_page_description_note,
-                      reason: context.l.lock_page_reason_note,
-                    )
+                        back: false,
+                        lockNotifier: lockNoteNotifier,
+                        description: context.l.lock_page_description_note,
+                        reason: context.l.lock_page_reason_note,
+                      )
                     : editor;
               },
             );

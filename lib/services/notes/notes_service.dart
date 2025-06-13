@@ -322,17 +322,16 @@ class NotesService {
   Future<void> removeFromBin(Duration delay) async {
     final deletedNotes = await getAllDeleted();
 
-    final notesToRemove =
-        deletedNotes.where((note) {
-          if (note.deletedTime == null) {
-            return false;
-          }
+    final notesToRemove = deletedNotes.where((note) {
+      if (note.deletedTime == null) {
+        return false;
+      }
 
-          final now = DateTime.timestamp();
-          final durationSinceDeleted = now.difference(note.deletedTime!);
+      final now = DateTime.timestamp();
+      final durationSinceDeleted = now.difference(note.deletedTime!);
 
-          return durationSinceDeleted > delay;
-        }).toList();
+      return durationSinceDeleted > delay;
+    }).toList();
 
     if (notesToRemove.isEmpty) {
       return;

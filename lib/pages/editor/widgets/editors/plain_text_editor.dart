@@ -47,10 +47,6 @@ class _PlainTextEditorState extends ConsumerState<PlainTextEditor> {
     contentTextController = TextEditingController(text: widget.note.content);
   }
 
-  void onFocusChange(bool hasFocus) {
-    editorHasFocusNotifier.value = hasFocus;
-  }
-
   void onChanged(String content) {
     PlainTextNote note = widget.note..content = content;
 
@@ -61,19 +57,16 @@ class _PlainTextEditorState extends ConsumerState<PlainTextEditor> {
   Widget build(BuildContext context) {
     return Padding(
       padding: Paddings.pageHorizontal,
-      child: Focus(
-        onFocusChange: onFocusChange,
-        child: TextField(
-          controller: contentTextController,
-          focusNode: editorFocusNode,
-          readOnly: widget.readOnly,
-          autofocus: widget.autofocus,
-          maxLines: null,
-          expands: true,
-          decoration: InputDecoration.collapsed(hintText: context.l.hint_content),
-          spellCheckConfiguration: SpellCheckConfiguration(spellCheckService: DefaultSpellCheckService()),
-          onChanged: onChanged,
-        ),
+      child: TextField(
+        controller: contentTextController,
+        focusNode: editorFocusNode,
+        readOnly: widget.readOnly,
+        autofocus: widget.autofocus,
+        maxLines: null,
+        expands: true,
+        decoration: InputDecoration.collapsed(hintText: context.l.hint_content),
+        spellCheckConfiguration: SpellCheckConfiguration(spellCheckService: DefaultSpellCheckService()),
+        onChanged: onChanged,
       ),
     );
   }

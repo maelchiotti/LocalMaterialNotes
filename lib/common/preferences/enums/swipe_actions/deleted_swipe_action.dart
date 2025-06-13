@@ -86,10 +86,9 @@ enum DeletedSwipeAction {
   Widget iconWidget(BuildContext context) {
     return Icon(
       icon,
-      color:
-          dangerous
-              ? Theme.of(context).colorScheme.onErrorContainer
-              : Theme.of(context).colorScheme.onTertiaryContainer,
+      color: dangerous
+          ? Theme.of(context).colorScheme.onErrorContainer
+          : Theme.of(context).colorScheme.onTertiaryContainer,
     );
   }
 
@@ -98,10 +97,9 @@ enum DeletedSwipeAction {
     return Text(
       title(context),
       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-        color:
-            dangerous
-                ? Theme.of(context).colorScheme.onErrorContainer
-                : Theme.of(context).colorScheme.onTertiaryContainer,
+        color: dangerous
+            ? Theme.of(context).colorScheme.onErrorContainer
+            : Theme.of(context).colorScheme.onTertiaryContainer,
       ),
     );
   }

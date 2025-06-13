@@ -119,12 +119,11 @@ class NotesAppBar extends ConsumerWidget {
       viewHintText: context.l.tooltip_search,
       searchController: SearchController(),
       viewBackgroundColor: Theme.of(context).colorScheme.surface,
-      builder:
-          (context, controller) => IconButton(
-            onPressed: () => controller.openView(),
-            icon: const Icon(Icons.search),
-            tooltip: context.l.tooltip_search,
-          ),
+      builder: (context, controller) => IconButton(
+        onPressed: () => controller.openView(),
+        icon: const Icon(Icons.search),
+        tooltip: context.l.tooltip_search,
+      ),
       suggestionsBuilder: (context, controller) => searchNotes(controller.text),
     );
   }
@@ -146,44 +145,43 @@ class NotesAppBar extends ConsumerWidget {
         PopupMenuButton<SortMethod>(
           icon: const Icon(Icons.sort),
           tooltip: context.l.tooltip_sort,
-          itemBuilder:
-              (context) => [
-                PopupMenuItem(
-                  value: SortMethod.createdDate,
-                  child: ListTile(
-                    selected: sortMethod == SortMethod.createdDate,
-                    leading: const Icon(Symbols.calendar_add_on),
-                    title: Text(context.l.button_sort_creation_date),
-                  ),
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              value: SortMethod.createdDate,
+              child: ListTile(
+                selected: sortMethod == SortMethod.createdDate,
+                leading: const Icon(Symbols.calendar_add_on),
+                title: Text(context.l.button_sort_creation_date),
+              ),
+            ),
+            PopupMenuItem(
+              value: SortMethod.editedDate,
+              child: ListTile(
+                selected: sortMethod == SortMethod.editedDate,
+                leading: const Icon(Icons.edit_calendar),
+                title: Text(context.l.button_sort_edition_date),
+              ),
+            ),
+            PopupMenuItem(
+              value: SortMethod.title,
+              child: ListTile(
+                selected: sortMethod == SortMethod.title,
+                leading: const Icon(Icons.sort_by_alpha),
+                title: Text(context.l.button_sort_title),
+              ),
+            ),
+            const PopupMenuDivider(),
+            PopupMenuItem(
+              value: SortMethod.ascending,
+              child: ListTile(
+                title: Text(context.l.button_sort_ascending),
+                trailing: Checkbox(
+                  value: sortAscending,
+                  onChanged: (ascending) => sort(context, ref, ascending: ascending),
                 ),
-                PopupMenuItem(
-                  value: SortMethod.editedDate,
-                  child: ListTile(
-                    selected: sortMethod == SortMethod.editedDate,
-                    leading: const Icon(Icons.edit_calendar),
-                    title: Text(context.l.button_sort_edition_date),
-                  ),
-                ),
-                PopupMenuItem(
-                  value: SortMethod.title,
-                  child: ListTile(
-                    selected: sortMethod == SortMethod.title,
-                    leading: const Icon(Icons.sort_by_alpha),
-                    title: Text(context.l.button_sort_title),
-                  ),
-                ),
-                const PopupMenuDivider(),
-                PopupMenuItem(
-                  value: SortMethod.ascending,
-                  child: ListTile(
-                    title: Text(context.l.button_sort_ascending),
-                    trailing: Checkbox(
-                      value: sortAscending,
-                      onChanged: (ascending) => sort(context, ref, ascending: ascending),
-                    ),
-                  ),
-                ),
-              ],
+              ),
+            ),
+          ],
           onSelected: (sortMethod) => sort(context, ref, sortMethod: sortMethod),
         ),
         ref

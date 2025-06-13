@@ -105,11 +105,10 @@ class ManualBackupService {
       final password = await showAdaptiveDialog<String>(
         context: context,
         useRootNavigator: false,
-        builder:
-            (context) => AutoExportPasswordDialog(
-              title: context.l.settings_import,
-              description: context.l.dialog_import_encryption_password_description,
-            ),
+        builder: (context) => AutoExportPasswordDialog(
+          title: context.l.settings_import,
+          description: context.l.dialog_import_encryption_password_description,
+        ),
       );
 
       if (password == null) {

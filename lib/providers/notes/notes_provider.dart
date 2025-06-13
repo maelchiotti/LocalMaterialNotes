@@ -25,10 +25,9 @@ class Notes extends _$Notes {
     try {
       switch (status) {
         case NoteStatus.available:
-          notes =
-              label != null
-                  ? await _notesService.getAllAvailableFilteredByLabel(label: label!)
-                  : await _notesService.getAllAvailable();
+          notes = label != null
+              ? await _notesService.getAllAvailableFilteredByLabel(label: label!)
+              : await _notesService.getAllAvailable();
         case NoteStatus.archived:
           notes = await _notesService.getAllArchived();
         case NoteStatus.deleted:
@@ -121,10 +120,9 @@ class Notes extends _$Notes {
       return false;
     }
 
-    final notes =
-        (state.value ?? [])
-          ..removeWhere((note) => notesWhereToAdd.contains(note))
-          ..addAll(notesWhereToAdd);
+    final notes = (state.value ?? [])
+      ..removeWhere((note) => notesWhereToAdd.contains(note))
+      ..addAll(notesWhereToAdd);
 
     state = AsyncData(notes.sorted());
     _updateUnlabeledProvider();
@@ -148,10 +146,9 @@ class Notes extends _$Notes {
       return false;
     }
 
-    final notes =
-        (state.value ?? [])
-          ..removeWhere((note) => notesToToggle.contains(note))
-          ..addAll(notesToToggle);
+    final notes = (state.value ?? [])
+      ..removeWhere((note) => notesToToggle.contains(note))
+      ..addAll(notesToToggle);
 
     state = AsyncData(notes.sorted());
     _updateUnlabeledProvider();
@@ -178,10 +175,9 @@ class Notes extends _$Notes {
       return false;
     }
 
-    final notes =
-        (state.value ?? [])
-          ..removeWhere((note) => notesToToggle.contains(note))
-          ..addAll(notesToToggle);
+    final notes = (state.value ?? [])
+      ..removeWhere((note) => notesToToggle.contains(note))
+      ..addAll(notesToToggle);
 
     state = AsyncData(notes.sorted());
     _updateUnlabeledProvider();
