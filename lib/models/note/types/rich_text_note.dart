@@ -63,6 +63,22 @@ class RichTextNote extends Note {
     ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
     ..content = EncryptionUtils().encrypt(password, content);
 
+  /// Returns whether the [contentAsJson] is fleather data.
+  ///
+  /// If the content is encrypted the [encryptionPassword] should be provided.
+  static bool isFleatherData(dynamic contentAsJson, [String? encryptionPassword]) {
+    try {
+      final content = jsonDecode(
+        encryptionPassword != null ? EncryptionUtils().decrypt(encryptionPassword, contentAsJson) : contentAsJson,
+      );
+      ParchmentDocument.fromJson(content);
+    } on Exception {
+      return false;
+    }
+
+    return true;
+  }
+
   /// Document containing the fleather content representation.
   @ignore
   ParchmentDocument get document => ParchmentDocument.fromJson(jsonDecode(content) as List);
