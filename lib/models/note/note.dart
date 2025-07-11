@@ -38,7 +38,7 @@ sealed class Note implements Comparable<Note> {
 
   /// The type of the note.
   @ignore
-  @JsonKey(includeFromJson: false)
+  @JsonKey(includeToJson: true, includeFromJson: false)
   NoteType type;
 
   /// Whether the note is archived.
