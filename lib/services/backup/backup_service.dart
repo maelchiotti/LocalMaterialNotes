@@ -121,7 +121,14 @@ class ManualBackupService {
 
           // If the note type is null, it's an export from before v2.0.0 when only rich text notes were available
           if (noteType == null) {
-            notes.add(RichTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+            if (RichTextNote.isFleatherData(noteAsJsonEncrypted['content'] as String, password)) {
+              notes.add(RichTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+            } else {
+              logger.w(
+                'Imported an encrypted note without a type as a plain text note because its content is not fleather data',
+              );
+              notes.add(PlainTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+            }
           } else {
             switch (noteType) {
               case NoteType.plainText:
@@ -150,7 +157,12 @@ class ManualBackupService {
 
         // If the note type is null, it's an export from before v2.0.0 when only rich text notes were available
         if (noteType == null) {
-          notes.add(RichTextNote.fromJson(noteAsJson));
+          if (RichTextNote.isFleatherData(noteAsJson['content'] as String)) {
+            notes.add(RichTextNote.fromJson(noteAsJson));
+          } else {
+            logger.w('Imported a note without a type as a plain text note because its content is not fleather data');
+            notes.add(PlainTextNote.fromJson(noteAsJson));
+          }
         } else {
           switch (noteType) {
             case NoteType.plainText:
