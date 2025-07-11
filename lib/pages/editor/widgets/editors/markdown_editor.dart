@@ -16,19 +16,10 @@ import '../../../../providers/notifiers/notifiers.dart';
 /// Markdown editor.
 class MarkdownEditor extends ConsumerStatefulWidget {
   /// Markdown allowing to edit the markdown text content of a [MarkdownNote].
-  const MarkdownEditor({
-    super.key,
-    required this.note,
-    required this.isNewNote,
-    required this.readOnly,
-    required this.autofocus,
-  });
+  const MarkdownEditor({super.key, required this.note, required this.readOnly, required this.autofocus});
 
   /// The note to display.
   final MarkdownNote note;
-
-  /// Whether the note was just created.
-  final bool isNewNote;
 
   /// Whether the text fields are read only.
   final bool readOnly;
