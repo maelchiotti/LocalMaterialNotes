@@ -72,39 +72,32 @@ class _EditorState extends ConsumerState<EditorPage> {
             final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
             final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.preferenceOrDefault;
 
-            final readOnly = widget.readOnly || (showEditorModeButton && !isEditorInEditMode);
+            final readOnly = (widget.readOnly && !widget.isNewNote) || (showEditorModeButton && !isEditorInEditMode);
             final autofocus = widget.isNewNote && !focusTitleOnNewNote;
             final showLabelsList =
                 enableLabels && showLabelsListInEditorPage && currentNote.labelsVisibleSorted.isNotEmpty;
+
+            if (widget.isNewNote) {
+              isEditModeNotifier.value = true;
+            }
 
             Widget contentEditor;
             Widget? toolbar;
             switch (currentNote) {
               case PlainTextNote note:
-                contentEditor = PlainTextEditor(
-                  note: note,
-                  isNewNote: widget.isNewNote,
-                  readOnly: readOnly,
-                  autofocus: autofocus,
-                );
+                contentEditor = PlainTextEditor(note: note, readOnly: readOnly, autofocus: autofocus);
               case RichTextNote note:
                 final fleatherController = FleatherController(document: note.document);
                 fleatherControllerNotifier.value = fleatherController;
                 contentEditor = RichTextEditor(
                   note: note,
                   fleatherController: fleatherController,
-                  isNewNote: widget.isNewNote,
                   readOnly: readOnly,
                   autofocus: autofocus,
                 );
                 toolbar = Toolbar(fleatherController: fleatherController);
               case MarkdownNote note:
-                contentEditor = MarkdownEditor(
-                  note: note,
-                  isNewNote: widget.isNewNote,
-                  readOnly: readOnly,
-                  autofocus: autofocus,
-                );
+                contentEditor = MarkdownEditor(note: note, readOnly: readOnly, autofocus: autofocus);
               case ChecklistNote note:
                 contentEditor = ChecklistEditor(note: note, isNewNote: widget.isNewNote, readOnly: readOnly);
             }

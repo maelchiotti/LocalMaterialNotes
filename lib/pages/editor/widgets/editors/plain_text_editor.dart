@@ -13,19 +13,10 @@ import '../../../../providers/notifiers/notifiers.dart';
 /// Plain text editor.
 class PlainTextEditor extends ConsumerStatefulWidget {
   /// Text editor allowing to edit the plain text content of a [PlainTextNote].
-  const PlainTextEditor({
-    super.key,
-    required this.note,
-    required this.isNewNote,
-    required this.readOnly,
-    required this.autofocus,
-  });
+  const PlainTextEditor({super.key, required this.note, required this.readOnly, required this.autofocus});
 
   /// The note to display.
   final PlainTextNote note;
-
-  /// Whether the note was just created.
-  final bool isNewNote;
 
   /// Whether the text fields are read only.
   final bool readOnly;
