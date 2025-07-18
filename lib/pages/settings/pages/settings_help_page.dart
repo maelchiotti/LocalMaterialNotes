@@ -67,43 +67,41 @@ class SettingsHelpPage extends StatelessWidget {
           child: Column(
             children: [
               SettingSection(
-                divider: null,
-                title: context.l.settings_help_section_contact,
+                title: SettingSectionTitle(context.l.settings_help_section_contact),
                 tiles: [
                   SettingActionTile(
-                    icon: Icons.bug_report,
-                    title: context.l.settings_github_issues,
-                    description: context.l.settings_github_issues_description,
+                    icon: SettingTileIcon(Icons.bug_report),
+                    title: Text(context.l.settings_github_issues),
+                    description: Text(context.l.settings_github_issues_description),
                     onTap: openGitHubIssues,
                   ),
                   SettingActionTile(
-                    icon: Icons.forum,
-                    title: context.l.settings_github_discussions,
-                    description: context.l.settings_github_discussions_description,
+                    icon: SettingTileIcon(Icons.forum),
+                    title: Text(context.l.settings_github_discussions),
+                    description: Text(context.l.settings_github_discussions_description),
                     onTap: openGitHubDiscussions,
                   ),
                   SettingActionTile(
-                    icon: Icons.mail,
-                    title: context.l.settings_contact_developer,
-                    description: context.l.settings_get_in_touch_description(contactEmail),
+                    icon: SettingTileIcon(Icons.mail),
+                    title: Text(context.l.settings_contact_developer),
+                    description: Text(context.l.settings_get_in_touch_description(contactEmail)),
                     onTap: sendMail,
                   ),
                 ],
               ),
               SettingSection(
-                divider: null,
-                title: context.l.settings_help_section_logs,
+                title: SettingSectionTitle(context.l.settings_help_section_logs),
                 tiles: [
                   SettingActionTile(
-                    icon: Icons.copy_all,
-                    title: context.l.settings_copy_logs,
-                    description: context.l.settings_copy_logs_description,
+                    icon: SettingTileIcon(Icons.copy_all),
+                    title: Text(context.l.settings_copy_logs),
+                    description: Text(context.l.settings_copy_logs_description),
                     onTap: () => copyLogs(context),
                   ),
                   SettingActionTile(
-                    icon: Symbols.file_save,
-                    title: context.l.settings_export_logs,
-                    description: context.l.settings_export_logs_description,
+                    icon: SettingTileIcon(Symbols.file_save),
+                    title: Text(context.l.settings_export_logs),
+                    description: Text(context.l.settings_export_logs_description),
                     onTap: () => exportLogs(context),
                   ),
                 ],

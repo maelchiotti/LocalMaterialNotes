@@ -65,6 +65,10 @@
   "@navigation_manage_labels_page": {
     "description": "Title of the page to manage the tags."
   },
+  "navigation_archives": "Archivio",
+  "@navigation_archives": {
+    "description": "Title of the archives page."
+  },
   "navigation_bin": "Cestino",
   "@navigation_bin": {
     "description": "Title of the bin page."
@@ -76,6 +80,10 @@
   "navigation_settings_appearance": "Aspetto",
   "@navigation_settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
+  },
+  "navigation_settings_notes_types": "Tipi di note",
+  "@navigation_settings_notes_types": {
+    "description": "Title of the settings page regarding the notes types."
   },
   "navigation_settings_notes_tiles": "Riquadri delle note",
   "@navigation_settings_notes_tiles": {
@@ -97,9 +105,17 @@
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
   },
+  "navigation_settings_security": "Sicurezza",
+  "@navigation_settings_security": {
+    "description": "Title of the settings page regarding the security."
+  },
   "navigation_settings_accessibility": "Accessibilità",
   "@navigation_settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
+  },
+  "navigation_settings_help": "Aiuto",
+  "@navigation_settings_help": {
+    "description": "Title of the settings page to receive help."
   },
   "navigation_settings_about": "Info su",
   "@navigation_settings_about": {
@@ -217,6 +233,14 @@
   "@settings_show_separators_description": {
     "description": "Description of the setting tile to show the separators between the notes tiles."
   },
+  "settings_show_note_type_icon": "Mostra icona del tipo",
+  "@settings_show_note_type_icon": {
+    "description": "Title of the setting tile to show the icon of the type of the note."
+  },
+  "settings_show_note_type_icon_description": "Mostra l''icona del tipo della nota",
+  "@settings_show_note_type_icon_description": {
+    "description": "Description of the setting tile to show the icon of the type of the note."
+  },
   "settings_show_titles_only": "Solo titoli",
   "@settings_show_titles_only": {
     "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
@@ -245,6 +269,10 @@
   "@settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
+  "settings_behavior_description": "Conferme, azioni di scorrimento",
+  "@settings_behavior_description": {
+    "description": "Description of the behavior settings page."
+  },
   "settings_behavior_application": "Applicazione",
   "@settings_behavior_application": {
     "description": "Title of the sub-section regarding the application under the behavior settings."
@@ -269,9 +297,31 @@
   "@settings_confirmations_title_all": {
     "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
   },
+  "settings_auto_remove_from_bin_title": "Rimozione automatica",
+  "@settings_auto_remove_from_bin_title": {
+    "description": "Title of the setting tile to automatically remove notes from the bin after a certain delay."
+  },
+  "settings_auto_remove_from_bin_description": "Rimuove automaticamente le note dal cestino",
+  "@settings_auto_remove_from_bin_description": {
+    "description": "Description of the setting tile to automatically remove notes from the bin after a certain delay."
+  },
+  "settings_auto_remove_from_bin_value": "{delay, select, 7{Dopo 1 settimana} 14{Dopo 2 settimane} 30{Dopo 1 mese} 90{Dopo 3 mesi} 180{Dopo 6 mesi} 365{Dopo 1 anno} other{Mai}}",
+  "@settings_auto_remove_from_bin_value": {
+    "description": "Value of the setting tile to choose after which amount of time the application/note/label locks itself after the application was moved to the background.",
+    "placeholders": {
+      "delay": {
+        "type": "String",
+        "description": "Delay in days."
+      }
+    }
+  },
   "settings_behavior_swipe_actions": "Azioni di scorrimento",
   "@settings_behavior_swipe_actions": {
     "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
+  },
+  "settings_behavior_swipe_actions_archives": "Azioni di scorrimento (Archivio)",
+  "@settings_behavior_swipe_actions_archives": {
+    "description": "Title of the section regarding the swipe actions on the notes tiles in the archives under the behavior settings."
   },
   "settings_behavior_swipe_actions_bin": "Azioni di scorrimento (nel cestino)",
   "@settings_behavior_swipe_actions_bin": {
@@ -301,9 +351,41 @@
   "@settings_bin_swipe_action_left_description": {
     "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile in the bin."
   },
+  "settings_page_notes_types": "Tipi di note",
+  "@settings_page_notes_types": {
+    "description": "Title of the settings page regarding the notes types."
+  },
+  "settings_page_notes_types_description": "Tipi da utilizzare, testo avanzato",
+  "@settings_page_notes_types_description": {
+    "description": "Description of the settings page regarding the notes types."
+  },
+  "settings_section_types_to_use": "Tipi da utilizzare",
+  "@settings_section_types_to_use": {
+    "description": "Title of the settings section regarding the notes types to use."
+  },
+  "settings_available_notes_types": "Tipi di note disponibili",
+  "@settings_available_notes_types": {
+    "description": "Title of the setting tile to choose the available notes types."
+  },
+  "settings_available_notes_types_description": "La lista di tipi di note che posso essere creati con il pulsante \"+\" dalla pagina delle note. Quando rimuovi un tipo, le note esistenti di quel tipo non saranno rimosse e rimarranno utilizzabili",
+  "@settings_available_notes_types_description": {
+    "description": "Description of the setting tile to choose the available notes types."
+  },
+  "settings_available_default_share_type": "Tipo da condivisione",
+  "@settings_available_default_share_type": {
+    "description": "Title of the setting tile to choose the default note type to use when creating a note from a share action."
+  },
+  "settings_available_default_share_type_description": "Il tipo predefinito di nota da utilizzare quando si crea una nota da una condivisione. Può essere un tipo non disponibile dal tasto \"+\"",
+  "@settings_available_default_share_type_description": {
+    "description": "Description of the setting tile to choose the default note type to use when creating a note from a share action."
+  },
   "settings_editor": "Editor",
   "@settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
+  },
+  "settings_editor_description": "Comportamenti",
+  "@settings_editor_description": {
+    "description": "Description of the editor settings page."
   },
   "settings_editor_behavior": "Comportamenti",
   "@settings_editor_behavior": {
@@ -336,6 +418,14 @@
   "settings_editor_appearance": "Aspetto",
   "@settings_editor_appearance": {
     "description": "Title of the settings section regarding the appearance of the editor"
+  },
+  "settings_toolbar_style_title": "Stile barra degli strumenti",
+  "@settings_toolbar_style_title": {
+    "description": "Title of the setting tile to choose the toolbar style."
+  },
+  "settings_toolbar_style_description": "Stile della barra degli strumenti dell''editor di testo avanzato",
+  "@settings_toolbar_style_description": {
+    "description": "Description of the setting tile to choose the toolbar style."
   },
   "settings_use_paragraph_spacing": "Spaziatura dei paragrafi",
   "@settings_use_paragraph_spacing": {
@@ -381,6 +471,26 @@
   "@settings_show_labels_editor_description": {
     "description": "Description of the setting tile to show the tags in the editor."
   },
+  "settings_labels_section_behavior": "Comportamento",
+  "@settings_labels_section_behavior": {
+    "description": "Title of the settings section regarding the behavior of the tags."
+  },
+  "settings_labels_swipe_action_right": "Azione di scorrimento a destra",
+  "@settings_labels_swipe_action_right": {
+    "description": "Title of the setting tile to choose which action to trigger when a right swapping a label tile."
+  },
+  "settings_labels_swipe_action_right_description": "Azione che viene eseguita dopo uno scorrimento verso destra su una nota",
+  "@settings_labels_swipe_action_right_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a label tile."
+  },
+  "settings_labels_swipe_action_left": "Azione di scorrimento a sinistra",
+  "@settings_labels_swipe_action_left": {
+    "description": "Title of the setting tile to choose which action to trigger when a left swapping a label tile."
+  },
+  "settings_labels_swipe_action_left_description": "Azione che viene eseguita dopo uno scorrimento verso sinistra su una nota",
+  "@settings_labels_swipe_action_left_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a label tile."
+  },
   "settings_backup": "Backup",
   "@settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
@@ -409,9 +519,17 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
+  "settings_export_json_description": "Esposta immediatamente tutte le note, le etichette e le impostazioni in un file JSON che può essere importato nuovamente",
+  "@settings_export_json_description": {
+    "description": "Description of the setting tile to manually export the notes as JSON."
+  },
   "settings_export_markdown": "Esporta come Markdown",
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
+  },
+  "settings_export_markdown_description": "Esporta immediatamente tutte le note in un file Markdown",
+  "@settings_export_markdown_description": {
+    "description": "Description of the setting tile to manually export the notes as Markdown."
   },
   "settings_backup_auto_export": "Esportazione automatica",
   "@settings_backup_auto_export": {
@@ -421,9 +539,23 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
+  "settings_auto_export_description": "Esposta automaticamente tutte le note, le etichette e le impostazioni in un file JSON che può essere importato nuovamente",
+  "@settings_auto_export_description": {
+    "description": "Description of the settings tile to enable the automatic export."
+  },
   "settings_auto_export_frequency": "Frequenza",
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
+  },
+  "settings_auto_export_frequency_value": "Ogni {frequency, select, 1{giorno} 7{settimana} 14{2 settimane} 30{mese} other{}}",
+  "@settings_auto_export_frequency_value": {
+    "description": "Frequency of the automatic exports.",
+    "placeholders": {
+      "frequency": {
+        "description": "Frequency in days.",
+        "type": "String"
+      }
+    }
   },
   "settings_auto_export_frequency_description": "Frequenza delle esportazioni automatiche",
   "@settings_auto_export_frequency_description": {
@@ -445,6 +577,26 @@
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_security": "Sicurezza",
+  "@settings_security": {
+    "description": "Title of the settings page regarding the security."
+  },
+  "settings_security_description": "Contrassegno sicurezza, blocco applicazione, blocco note",
+  "@settings_security_description": {
+    "description": "Description of the settings page regarding the security."
+  },
+  "settings_security_application": "Applicazione",
+  "@settings_security_application": {
+    "description": "Title of the sub-section regarding the application under the security settings."
+  },
+  "settings_security_application_lock": "Blocca applicazione",
+  "@settings_security_application_lock": {
+    "description": "Title of the sub-section regarding the application lock under the security settings."
+  },
+  "settings_security_note_lock": "Blocca note",
+  "@settings_security_note_lock": {
+    "description": "Title of the sub-section regarding the note lock under the security settings."
+  },
   "settings_flag_secure": "Contrassegna l''applicazione come sicura",
   "@settings_flag_secure": {
     "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
@@ -452,6 +604,44 @@
   "settings_flag_secure_description": "Nasconde l''applicazione dalle app recenti e impedisce che vengano eseguiti screenshot",
   "@settings_flag_secure_description": {
     "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
+  },
+  "settings_application_lock_title": "Blocca",
+  "@settings_application_lock_title": {
+    "description": "Title of the setting tile to toggle whether the application is locked."
+  },
+  "settings_application_lock_description": "Blocca l'applicazione e richiedi l'autenticazione sul dispositivo per lo sblocco",
+  "@settings_application_lock_description": {
+    "description": "Description of the setting tile to toggle whether the application is locked."
+  },
+  "settings_application_lock_delay_title": "Ritardo di blocco",
+  "@settings_application_lock_delay_title": {
+    "description": "Title of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
+  },
+  "settings_application_lock_delay_description": "Tempo dopo il quale l''applicazione si blocca una volta messa in secondo piano",
+  "@settings_application_lock_delay_description": {
+    "description": "Description of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
+  },
+  "settings_lock_delay_value": "{delay, select, 0{Immediatamente} 3{Dopo 3 secondi} 5{Dopo 5 secondi} 10{Dopo 10 secondi} 30{Dopo 30 secondi} 60{Dopo 1 minuto} 120{Dopo 2 minuti} 300{Dopo 5 minuti} other{Mai}}",
+  "@settings_lock_delay_value": {
+    "description": "Value of the setting tile to choose after which amount of time the application/note/label locks itself after the application was moved to the background.",
+    "placeholders": {
+      "delay": {
+        "type": "String",
+        "description": "Delay in seconds."
+      }
+    }
+  },
+  "settings_note_lock_title": "Blocca le note",
+  "@settings_note_lock_title": {
+    "description": "Title of the setting tile to toggle whether the notes can be locked."
+  },
+  "settings_note_lock_description": "Blocca le note e richiedi l''autenticazione sul dispositivo per visualizzarle e modificarle",
+  "@settings_note_lock_description": {
+    "description": "Description of the setting tile to toggle whether the notes can be locked."
+  },
+  "settings_label_lock_title": "Blocca le etichette",
+  "@settings_label_lock_title": {
+    "description": "Title of the setting tile to toggle whether the tags can be locked."
   },
   "settings_accessibility": "Accessibilità",
   "@settings_accessibility": {
@@ -613,6 +803,18 @@
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
   },
+  "tooltip_fab_add_plain_text_note": "Aggiungi una nota in testo semplice",
+  "@tooltip_fab_add_plain_text_note": {
+    "description": "Floating action button in the notes page to add a new plain text note."
+  },
+  "tooltip_fab_add_markdown_note": "Aggiungi una nota in Markdown",
+  "@tooltip_fab_add_markdown_note": {
+    "description": "Floating action button in the notes page to add a new markdown note."
+  },
+  "tooltip_fab_add_rich_text_note": "Aggiungi una nota in testo avanzato",
+  "@tooltip_fab_add_rich_text_note": {
+    "description": "Floating action button in the notes page to add a new rich text note."
+  },
   "tooltip_fab_add_label": "Aggiungi un''etichetta",
   "@tooltip_fab_add_label": {
     "description": "Floating action button in the tags page to add a new tag."
@@ -656,6 +858,34 @@
   "dialog_add_link": "Aggiungi un link",
   "@dialog_add_link": {
     "description": "Tooltip for the button to validate the dialog to add a link in the note editor."
+  },
+  "dialog_archive": "Archivio",
+  "@dialog_archive": {
+    "description": "Title of the the dialog to archive one or multiple notes (moving them to the archives), and text for the confirmation button."
+  },
+  "dialog_archive_body": "Vuoi davvero archiviare {count} {count, plural, one{nota} other{note}}?",
+  "@dialog_archive_body": {
+    "description": "Text for the dialog to confirm the archival of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to archive.",
+        "type": "int"
+      }
+    }
+  },
+  "dialog_unarchive": "Ripristina",
+  "@dialog_unarchive": {
+    "description": "Title of the the dialog to unarchive one or multiple notes, and text for the confirmation button."
+  },
+  "dialog_unarchive_body": "Vuoi davvero ripristinare {count} {count, plural, one{nota} other{note}}?",
+  "@dialog_unarchive_body": {
+    "description": "Text for the dialog to confirm the unarchival of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to unarchive.",
+        "type": "int"
+      }
+    }
   },
   "dialog_delete": "Elimina",
   "@dialog_delete": {
@@ -781,6 +1011,10 @@
   "@placeholder_labels": {
     "description": "Placeholder on the tags page when there are no tags."
   },
+  "placeholder_archives": "Nessuna nota archiviata",
+  "@placeholder_archives": {
+    "description": "Placeholder on the archives notes page when there are no archived notes."
+  },
   "placeholder_bin": "Nessuna nota eliminata",
   "@placeholder_bin": {
     "description": "Placeholder on the bin page when there are no deleted notes."
@@ -882,6 +1116,46 @@
   "filter_labels_pinned": "Fissate",
   "@filter_labels_pinned": {
     "description": "Filter chip in the tags page to show only the pinned tags."
+  },
+  "snack_bar_archived": "{count, plural, one{La nota è stata archiviata} other{Le note sono state archiviate}}",
+  "@snack_bar_archived": {
+    "description": "Snack bar informing that the note was archived.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were archived.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_unarchived": "{count, plural, one{La nota è stata ripristinata} other{Le note sono state ripristinate}}",
+  "@snack_bar_unarchived": {
+    "description": "Snack bar informing that the note was unarchived.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were unarchived.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_deleted": "{count, plural, one{La nota è stata cancellate} other{Le note sono state cancellate}}",
+  "@snack_bar_deleted": {
+    "description": "Snack bar informing that the note was deleted.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were deleted.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_restored": "{count, plural, one{La nota è stata ripristinata} other{Le note sono state ripristinate}}",
+  "@snack_bar_restored": {
+    "description": "Snack bar informing that the note was restored.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were restored.",
+        "type": "int"
+      }
+    }
   },
   "snack_bar_import_success": "Il backup è stato importato con successo.",
   "@snack_bar_import_success": {

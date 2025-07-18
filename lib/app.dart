@@ -15,6 +15,7 @@ import 'common/preferences/preference_key.dart';
 import 'common/system_utils.dart';
 import 'common/ui/theme_utils.dart';
 import 'l10n/app_localizations/app_localizations.g.dart';
+import 'l10n/fallback_localization_delegate.dart';
 import 'navigation/router.dart';
 import 'providers/labels/labels_list/labels_list_provider.dart';
 import 'providers/labels/labels_navigation/labels_navigation_provider.dart';
@@ -139,8 +140,8 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
                 themeMode: themeMode,
                 localizationsDelegates: [
                   ...AppLocalizations.localizationsDelegates,
-                  ChecklistLocalizations.delegate,
-                  FleatherLocalizations.delegate,
+                  FallbackLocalizationDelegate<ChecklistLocalizations>(target: ChecklistLocalizations.delegate),
+                  FallbackLocalizationDelegate<FleatherLocalizations>(target: FleatherLocalizations.delegate),
                 ],
                 supportedLocales: SupportedLanguage.locales,
                 locale: SystemUtils().appLocale,

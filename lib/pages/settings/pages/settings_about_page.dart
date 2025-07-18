@@ -54,12 +54,11 @@ class SettingsAboutPage extends StatelessWidget {
           child: Column(
             children: [
               SettingSection(
-                divider: null,
-                title: context.l.settings_about_application,
+                title: SettingSectionTitle(context.l.settings_about_application),
                 tiles: [
                   SettingAboutTile(
-                    title: context.l.app_name,
-                    description: 'v$appVersion ($appBuildNumber)',
+                    applicationName: context.l.app_name,
+                    applicationVersion: 'v$appVersion ($appBuildNumber)',
                     applicationIcon: Image.asset(Asset.icon.path, fit: BoxFit.fitWidth, width: Sizes.appIcon.size),
                     applicationLegalese: context.l.settings_licence_description,
                     dialogChildren: [
@@ -70,44 +69,46 @@ class SettingsAboutPage extends StatelessWidget {
                     ],
                   ),
                   SettingTextTile(
-                    icon: Icons.build,
-                    title: context.l.settings_build_mode,
-                    description: SystemUtils().buildMode(context),
+                    icon: SettingTileIcon(Icons.build),
+                    title: Text(context.l.settings_build_mode),
+                    description: Text(SystemUtils().buildMode(context)),
                   ),
                 ],
               ),
               SettingSection(
-                divider: null,
-                title: context.l.settings_about_links,
+                title: SettingSectionTitle(context.l.settings_about_links),
                 tiles: [
                   SettingActionTile(
-                    icon: SimpleIcons.github,
-                    title: context.l.settings_github,
-                    description: context.l.settings_github_description,
+                    icon: SettingTileIcon(SimpleIcons.github),
+                    title: Text(context.l.settings_github),
+                    description: Text(context.l.settings_github_description),
                     onTap: openGitHub,
                   ),
                   SettingActionTile(
-                    icon: SimpleIcons.crowdin,
-                    title: context.l.settings_localizations,
-                    description: context.l.settings_localizations_description,
+                    icon: SettingTileIcon(SimpleIcons.crowdin),
+                    title: Text(context.l.settings_localizations),
+                    description: Text(context.l.settings_localizations_description),
                     onTap: openCrowdin,
                   ),
                   SettingActionTile(
-                    icon: Icons.balance,
-                    title: context.l.settings_licence,
-                    description: context.l.settings_licence_description,
+                    icon: SettingTileIcon(Icons.balance),
+                    title: Text(context.l.settings_licence),
+                    description: Text(context.l.settings_licence_description),
                     onTap: openLicense,
                   ),
                 ],
               ),
               SettingSection(
-                divider: null,
-                title: context.l.settings_about_section_donate,
+                title: SettingSectionTitle(context.l.settings_about_section_donate),
                 tiles: [
-                  SettingActionTile(icon: SimpleIcons.kofi, title: context.l.settings_donate_kofi, onTap: donateKoFi),
                   SettingActionTile(
-                    icon: SimpleIcons.paypal,
-                    title: context.l.settings_donate_paypal,
+                    icon: SettingTileIcon(SimpleIcons.kofi),
+                    title: Text(context.l.settings_donate_kofi),
+                    onTap: donateKoFi,
+                  ),
+                  SettingActionTile(
+                    icon: SettingTileIcon(SimpleIcons.paypal),
+                    title: Text(context.l.settings_donate_paypal),
                     onTap: donatePayPal,
                   ),
                 ],

@@ -288,7 +288,7 @@ class Notes extends _$Notes {
   /// Removes the empty notes.
   Future<void> removeEmpty() async {
     final emptyNotes = state.value?.where((note) => note.isEmpty).toList() ?? [];
-
+    print(emptyNotes);
     try {
       await _notesService.deleteAll(emptyNotes);
     } catch (exception, stackTrace) {

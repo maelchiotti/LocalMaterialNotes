@@ -284,8 +284,8 @@ class NotesService {
 
     await _database.writeTxn(() async {
       await _plainTextNotes.deleteAll(plainTextNotesIds);
-      await _markdownNotes.deleteAll(richTextNotesIds);
-      await _richTextNotes.deleteAll(markdownNotesIds);
+      await _markdownNotes.deleteAll(markdownNotesIds);
+      await _richTextNotes.deleteAll(richTextNotesIds);
       await _checklistNotes.deleteAll(checklistNotesIds);
     });
 

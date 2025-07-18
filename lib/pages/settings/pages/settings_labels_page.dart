@@ -77,48 +77,45 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
           child: Column(
             children: [
               SettingSection(
-                divider: null,
                 tiles: [
                   SettingSwitchTile(
-                    icon: Icons.label,
-                    title: context.l.settings_enable_labels,
-                    description: context.l.settings_enable_labels_description,
+                    icon: SettingTileIcon(Icons.label),
+                    title: Text(context.l.settings_enable_labels),
+                    description: Text(context.l.settings_enable_labels_description),
                     toggled: isLabelsEnabled,
                     onChanged: toggleEnableLabels,
                   ),
                 ],
               ),
               SettingSection(
-                divider: null,
-                title: context.l.settings_labels_appearance,
+                title: SettingSectionTitle(context.l.settings_labels_appearance),
                 tiles: [
                   SettingSwitchTile(
                     enabled: isLabelsEnabled,
-                    icon: Symbols.tile_small,
-                    title: context.l.settings_show_labels_note_tile,
-                    description: context.l.settings_show_labels_note_tile_description,
+                    icon: SettingTileIcon(Symbols.tile_small),
+                    title: Text(context.l.settings_show_labels_note_tile),
+                    description: Text(context.l.settings_show_labels_note_tile_description),
                     toggled: showLabelsListOnNoteTile,
                     onChanged: toggleShowLabelsListOnNoteTile,
                   ),
                   SettingSwitchTile(
                     enabled: isLabelsEnabled,
-                    icon: Icons.edit,
-                    title: context.l.settings_show_labels_editor,
-                    description: context.l.settings_show_labels_editor_description,
+                    icon: SettingTileIcon(Icons.edit),
+                    title: Text(context.l.settings_show_labels_editor),
+                    description: Text(context.l.settings_show_labels_editor_description),
                     toggled: showLabelsListInEditorPage,
                     onChanged: toggleShowLabelsListInEditor,
                   ),
                 ],
               ),
               SettingSection(
-                divider: null,
-                title: context.l.settings_labels_section_behavior,
+                title: SettingSectionTitle(context.l.settings_labels_section_behavior),
                 tiles: [
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.swipe_right,
-                    title: context.l.settings_swipe_action_right,
-                    value: labelSwipeActions.right.title(context),
-                    description: context.l.settings_swipe_action_right_description,
+                    icon: SettingTileIcon(Icons.swipe_right),
+                    title: Text(context.l.settings_swipe_action_right),
+                    value: SettingTileValue(labelSwipeActions.right.title(context)),
+                    description: Text(context.l.settings_swipe_action_right_description),
                     dialogTitle: context.l.settings_swipe_action_right,
                     options: LabelSwipeAction.settings
                         .map((swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null))
@@ -127,10 +124,10 @@ class _SettingsLabelsPageState extends State<SettingsLabelsPage> {
                     onSubmitted: submittedLabelSwipeRightAction,
                   ),
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.swipe_left,
-                    title: context.l.settings_swipe_action_left,
-                    value: labelSwipeActions.left.title(context),
-                    description: context.l.settings_swipe_action_left_description,
+                    icon: SettingTileIcon(Icons.swipe_left),
+                    title: Text(context.l.settings_swipe_action_left),
+                    value: SettingTileValue(labelSwipeActions.left.title(context)),
+                    description: Text(context.l.settings_swipe_action_left_description),
                     dialogTitle: context.l.settings_swipe_action_left,
                     options: LabelSwipeAction.settings
                         .map((swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null))
