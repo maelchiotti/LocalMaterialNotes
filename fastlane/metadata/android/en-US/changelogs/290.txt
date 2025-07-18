@@ -1,0 +1,11 @@
+ADDED
+- Open links in the markdown editor in read-only mode
+
+FIXED
+- JSON exports missing the note type
+- JSON imports failing or creating corrupted notes
+- Missing localizations causing crashes
+- Force the editor to be writable when adding a new note
+- Undo/Redo in the rich text editor
+- Links color in the rich text editor
+- Empty notes not being removed

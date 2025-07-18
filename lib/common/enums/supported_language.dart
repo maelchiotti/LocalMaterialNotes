@@ -17,13 +17,13 @@ enum SupportedLanguage {
   fr(Locale('fr'), 1),
 
   /// German.
-  de(Locale('de'), .79),
+  de(Locale('de'), .85),
 
   /// Hindi.
   hi(Locale('hi'), .52),
 
   /// Italian.
-  it(Locale('it'), .61),
+  it(Locale('it'), .86),
 
   /// Polish.
   pl(Locale('pl'), .37),
@@ -32,7 +32,7 @@ enum SupportedLanguage {
   pt(Locale('pt'), .54),
 
   /// Russian.
-  ru(Locale('ru'), .61),
+  ru(Locale('ru'), .78),
 
   /// Turkish.
   tr(Locale('tr'), .48),

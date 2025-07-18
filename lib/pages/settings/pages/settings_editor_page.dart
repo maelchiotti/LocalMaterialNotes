@@ -52,28 +52,27 @@ class _SettingsEditorPageState extends State<SettingsEditorPage> {
           child: Column(
             children: [
               SettingSection(
-                divider: null,
-                title: context.l.settings_editor_behavior,
+                title: SettingSectionTitle(context.l.settings_editor_behavior),
                 tiles: [
                   SettingSwitchTile(
-                    icon: Icons.edit,
-                    title: context.l.settings_show_editor_mode_button,
-                    description: context.l.settings_show_editor_mode_button_description,
+                    icon: SettingTileIcon(Icons.edit),
+                    title: Text(context.l.settings_show_editor_mode_button),
+                    description: Text(context.l.settings_show_editor_mode_button_description),
                     toggled: showEditorModeButton,
                     onChanged: _toggleShowEditorModeButton,
                   ),
                   SettingSwitchTile(
                     enabled: showEditorModeButton,
-                    icon: Icons.visibility,
-                    title: context.l.settings_open_editor_reading_mode,
-                    description: context.l.settings_open_editor_reading_mode_description,
+                    icon: SettingTileIcon(Icons.visibility),
+                    title: Text(context.l.settings_open_editor_reading_mode),
+                    description: Text(context.l.settings_open_editor_reading_mode_description),
                     toggled: openEditorInReadMode,
                     onChanged: _toggleOpenEditorInReadMode,
                   ),
                   SettingSwitchTile(
-                    icon: Icons.filter_center_focus,
-                    title: context.l.settings_focus_title_on_new_note,
-                    description: context.l.settings_focus_title_on_new_note_description,
+                    icon: SettingTileIcon(Icons.filter_center_focus),
+                    title: Text(context.l.settings_focus_title_on_new_note),
+                    description: Text(context.l.settings_focus_title_on_new_note_description),
                     toggled: focusTitleOnNewNote,
                     onChanged: _toggleFocusTitleOnNewNote,
                   ),

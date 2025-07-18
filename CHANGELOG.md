@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+# 2.1.0 - 2025-07-18
+
+### Added
+
+- Open links in the markdown editor in read-only mode
+
+### Fixed
+
+- JSON exports missing the note type
+- JSON imports failing or creating corrupted notes
+- Missing localizations causing crashes
+- Force the editor to be writable when adding a new note
+- Undo/Redo in the rich text editor
+- Links color in the rich text editor
+- Empty notes not being removed
+
 # 2.0.0 - 2025-05-18
 
 ### Added

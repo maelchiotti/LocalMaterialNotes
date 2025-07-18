@@ -78,14 +78,13 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
           child: Column(
             children: [
               SettingSection(
-                divider: null,
-                title: context.l.settings_section_types_to_use,
+                title: SettingSectionTitle(context.l.settings_section_types_to_use),
                 tiles: [
                   SettingMultipleOptionsTile.detailed(
-                    icon: Icons.edit_note,
-                    title: context.l.settings_available_notes_types,
-                    value: availableNotesTypesString,
-                    description: context.l.settings_available_notes_types_description,
+                    icon: SettingTileIcon(Icons.edit_note),
+                    title: Text(context.l.settings_available_notes_types),
+                    value: SettingTileValue(availableNotesTypesString),
+                    description: Text(context.l.settings_available_notes_types_description),
                     dialogTitle: context.l.settings_available_notes_types,
                     options: notesTypes,
                     initialOptions: availableNotesTypes,
@@ -93,10 +92,10 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
                     onSubmitted: onSubmittedAvailableNotesTypes,
                   ),
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.share,
-                    title: context.l.settings_available_default_share_type,
-                    value: defaultShareNoteType.title(context),
-                    description: context.l.settings_available_default_share_type_description,
+                    icon: SettingTileIcon(Icons.share),
+                    title: Text(context.l.settings_available_default_share_type),
+                    value: SettingTileValue(defaultShareNoteType.title(context)),
+                    description: Text(context.l.settings_available_default_share_type_description),
                     dialogTitle: context.l.settings_available_default_share_type,
                     options: shareNotesTypes,
                     initialOption: defaultShareNoteType,
@@ -105,23 +104,22 @@ class _SettingsNotesTypesPageState extends ConsumerState<SettingsNotesTypesPage>
                 ],
               ),
               SettingSection(
-                divider: null,
-                title: NoteType.richText.title(context),
+                title: SettingSectionTitle(NoteType.richText.title(context)),
                 tiles: [
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.format_paint,
-                    title: context.l.settings_toolbar_style_title,
-                    value: toolbarStyle.title(context),
-                    description: context.l.settings_toolbar_style_description,
+                    icon: SettingTileIcon(Icons.format_paint),
+                    title: Text(context.l.settings_toolbar_style_title),
+                    value: SettingTileValue(toolbarStyle.title(context)),
+                    description: Text(context.l.settings_toolbar_style_description),
                     dialogTitle: context.l.settings_toolbar_style_title,
                     options: toolbarStyleOptions,
                     initialOption: toolbarStyle,
                     onSubmitted: onSubmittedToolbarStyle,
                   ),
                   SettingSwitchTile(
-                    icon: Icons.format_line_spacing,
-                    title: context.l.settings_use_paragraph_spacing,
-                    description: context.l.settings_use_paragraph_spacing_description,
+                    icon: SettingTileIcon(Icons.format_line_spacing),
+                    title: Text(context.l.settings_use_paragraph_spacing),
+                    description: Text(context.l.settings_use_paragraph_spacing_description),
                     toggled: useParagraphsSpacing,
                     onChanged: _toggleUseParagraphSpacing,
                   ),

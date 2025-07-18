@@ -547,7 +547,7 @@
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "Alle {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{}}",
+  "settings_auto_export_frequency_value": "{frequency, select, 1{Jeden Tag} 7{Jede Woche} 14{Jede 2 Wochen} 30{Jeden Monat} other{}}",
   "@settings_auto_export_frequency_value": {
     "description": "Frequency of the automatic exports.",
     "placeholders": {
@@ -565,7 +565,7 @@
   "@settings_auto_export_encryption": {
     "description": "Title of the settings tile to enable the encryption of the automatic exports."
   },
-  "settings_auto_export_encryption_description": "Verschlüssele den Titel und den Inhalt er Notizen mit einem Passwort",
+  "settings_auto_export_encryption_description": "Verschlüssele den Titel und den Inhalt der Notizen mit einem Passwort",
   "@settings_auto_export_encryption_description": {
     "description": "Description of the settings tile to enable the encryption of the automatic exports."
   },
@@ -609,13 +609,35 @@
   "@settings_application_lock_title": {
     "description": "Title of the setting tile to toggle whether the application is locked."
   },
+  "settings_application_lock_description": "Sperre die App und Authentifizierung des Gerätes zum Entsperren anfordern",
+  "@settings_application_lock_description": {
+    "description": "Description of the setting tile to toggle whether the application is locked."
+  },
   "settings_application_lock_delay_title": "Sperrverzögerung",
   "@settings_application_lock_delay_title": {
     "description": "Title of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
   },
+  "settings_application_lock_delay_description": "Zeit, nach der die App gesperrt wird, nachdem sie minimiert wurde",
+  "@settings_application_lock_delay_description": {
+    "description": "Description of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
+  },
+  "settings_lock_delay_value": "{delay, select, 0{Sofort} 3{Nach 3 Sekunden} 5{Nach 5 Sekunden} 10{Nach 10 Sekunden} 30{Nach 30 Sekunden} 60{Nach einer Minute} 120{Nach 2 Minuten} 300{} other{Nie}}",
+  "@settings_lock_delay_value": {
+    "description": "Value of the setting tile to choose after which amount of time the application/note/label locks itself after the application was moved to the background.",
+    "placeholders": {
+      "delay": {
+        "type": "String",
+        "description": "Delay in seconds."
+      }
+    }
+  },
   "settings_note_lock_title": "Notizen Sperre",
   "@settings_note_lock_title": {
     "description": "Title of the setting tile to toggle whether the notes can be locked."
+  },
+  "settings_note_lock_description": "Sperre die Notiz und fordere eine Authentifizierung des Gerätes an, um sie zu sehen und zu bearbeiten",
+  "@settings_note_lock_description": {
+    "description": "Description of the setting tile to toggle whether the notes can be locked."
   },
   "settings_accessibility": "Barrierefreiheit",
   "@settings_accessibility": {
@@ -768,6 +790,14 @@
   "settings_about_section_donate": "Spenden",
   "@settings_about_section_donate": {
     "description": "Title of the settings section to donate."
+  },
+  "settings_donate_kofi": "Ko-fi",
+  "@settings_donate_kofi": {
+    "description": "Title of the settings tile to donate via Ko-fi."
+  },
+  "settings_donate_paypal": "PayPal",
+  "@settings_donate_paypal": {
+    "description": "Title of the settings tile to donate via PayPal."
   },
   "hint_title": "Titel",
   "@hint_title": {
@@ -981,6 +1011,10 @@
   "@placeholder_labels": {
     "description": "Placeholder on the tags page when there are no tags."
   },
+  "placeholder_archives": "Keine archivierten Notizen",
+  "@placeholder_archives": {
+    "description": "Placeholder on the archives notes page when there are no archived notes."
+  },
   "placeholder_bin": "Keine gelöschten Notizen",
   "@placeholder_bin": {
     "description": "Placeholder on the bin page when there are no deleted notes."
@@ -988,6 +1022,10 @@
   "action_disabled": "Aus",
   "@action_disabled": {
     "description": "Swipe action that is disabled in the settings."
+  },
+  "action_pin_unpin": "Anpinnen / Pin entfernen",
+  "@action_pin_unpin": {
+    "description": "Swipe action to pin or unpin a note."
   },
   "action_pin": "Anheften",
   "@action_pin": {
@@ -1010,6 +1048,10 @@
         "type": "int"
       }
     }
+  },
+  "action_archive": "Archivieren",
+  "@action_archive": {
+    "description": "Swipe or menu action to archive a note (moving it to the archives)."
   },
   "action_delete": "Löschen",
   "@action_delete": {
@@ -1055,6 +1097,10 @@
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
+  "action_labels_show_hide": "Zeigen / Verstecken",
+  "@action_labels_show_hide": {
+    "description": "Swipe action to show or hide a tag."
+  },
   "action_labels_toggle_pins": "Fixierung umschalten",
   "@action_labels_toggle_pins": {
     "description": "Menu action to toggle whether the selected tags are pinned."
@@ -1083,6 +1129,10 @@
   "@filter_labels_pinned": {
     "description": "Filter chip in the tags page to show only the pinned tags."
   },
+  "snack_bar_authentication_failed": "Die Authentifizierung ist fehlgeschlagen, bitte versuche es noch einmal.",
+  "@snack_bar_authentication_failed": {
+    "description": "Snack bar informing that the authentication on the lock screen has failed."
+  },
   "snack_bar_archived": "Die {count, plural, one{Notiz wurde} other{Notizen wurden}} archiviert",
   "@snack_bar_archived": {
     "description": "Snack bar informing that the note was archived.",
@@ -1099,6 +1149,16 @@
     "placeholders": {
       "count": {
         "description": "Number of notes that were unarchived.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_deleted": "Die {count, plural, one{Notiz wurde} other{Notizen wurden}} entfernt",
+  "@snack_bar_deleted": {
+    "description": "Snack bar informing that the note was deleted.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were deleted.",
         "type": "int"
       }
     }
@@ -1142,5 +1202,21 @@
   "note_type_rich_text": "Formatierter Text",
   "@note_type_rich_text": {
     "description": "Note with rich text."
+  },
+  "rich_text_editor_toolbar_dialog_color_title_background": "Hintergrundfarbe",
+  "@rich_text_editor_toolbar_dialog_color_title_background": {
+    "description": "Title of the dialog to choose the background color of the text in the rich text editor."
+  },
+  "rich_text_editor_toolbar_dialog_color_description": "Vordergrundfarbe",
+  "@rich_text_editor_toolbar_dialog_color_description": {
+    "description": "Description of the dialog to choose the foreground/background color of the text."
+  },
+  "toolbar_style_one_row_simple_title": "Eine Zeile (einfache Optionen)",
+  "@toolbar_style_one_row_simple_title": {
+    "description": "Title for the style of the rich text editor toolbar with one row and only simple formatting options."
+  },
+  "toolbar_style_one_row_simple_description": "Nur einfache Optionen in einer Zeile",
+  "@toolbar_style_one_row_simple_description": {
+    "description": "Description for the style of the rich text editor toolbar with one row and only simple formatting options."
   }
 }
