@@ -18,10 +18,10 @@ class EmptyBinFab extends ConsumerWidget {
 
     return deletedNotesCount != null && deletedNotesCount != 0
         ? FloatingActionButton(
-          tooltip: context.l.tooltip_fab_empty_bin,
-          onPressed: () => emptyBin(context, ref),
-          child: const Icon(Icons.delete_forever),
-        )
+            tooltip: context.l.tooltip_fab_empty_bin,
+            onPressed: () => emptyBin(context, ref),
+            child: const Icon(Icons.delete_forever),
+          )
         : EmptyPlaceholder();
   }
 }

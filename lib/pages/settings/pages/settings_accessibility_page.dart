@@ -82,17 +82,17 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
           child: Column(
             children: [
               SettingSection(
-                title: context.l.settings_accessibility_text_size,
-                divider: null,
+                title: SettingSectionTitle(context.l.settings_accessibility_text_size),
                 tiles: [
                   SettingSliderTile(
-                    icon: Icons.format_size,
-                    title: context.l.settings_text_scaling,
-                    value: (textScaling as num).formatAsPercentage(locale: SystemUtils().appLocaleLanguageCode),
+                    icon: SettingTileIcon(Icons.format_size),
+                    title: Text(context.l.settings_text_scaling),
+                    value: SettingTileValue(
+                      (textScaling as num).formatAsPercentage(locale: SystemUtils().appLocaleLanguageCode),
+                    ),
                     dialogTitle: context.l.settings_text_scaling,
-                    label:
-                        (textScaling) =>
-                            (textScaling as num).formatAsPercentage(locale: SystemUtils().appLocaleLanguageCode),
+                    label: (textScaling) =>
+                        (textScaling as num).formatAsPercentage(locale: SystemUtils().appLocaleLanguageCode),
                     min: 0.5,
                     max: 2.0,
                     divisions: 15,
@@ -102,30 +102,30 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAccessibilityPa
                     onCanceled: _canceledTextScaling,
                   ),
                   SettingSwitchTile(
-                    icon: Icons.title,
-                    title: context.l.settings_bigger_titles,
-                    description: context.l.settings_bigger_titles_description,
+                    icon: SettingTileIcon(Icons.title),
+                    title: Text(context.l.settings_bigger_titles),
+                    description: Text(context.l.settings_bigger_titles_description),
                     toggled: biggerTitles,
                     onChanged: _toggleBiggerTitles,
                   ),
                 ],
               ),
               SettingSection(
-                title: context.l.settings_accessibility_text_color,
+                title: SettingSectionTitle(context.l.settings_accessibility_text_color),
                 divider: null,
                 tiles: [
                   SettingSwitchTile(
                     enabled: darkTheme,
-                    icon: Icons.format_color_text,
-                    title: context.l.settings_white_text_dark_mode,
-                    description: context.l.settings_white_text_dark_mode_description,
+                    icon: SettingTileIcon(Icons.format_color_text),
+                    title: Text(context.l.settings_white_text_dark_mode),
+                    description: Text(context.l.settings_white_text_dark_mode_description),
                     toggled: useWhiteTextDarkMode,
                     onChanged: _toggleUseWhiteTextDarkMode,
                   ),
                   SettingSwitchTile(
-                    icon: Icons.opacity,
-                    title: context.l.settings_disable_subdued_note_content_preview,
-                    description: context.l.settings_disable_subdued_note_content_preview_description,
+                    icon: SettingTileIcon(Icons.opacity),
+                    title: Text(context.l.settings_disable_subdued_note_content_preview),
+                    description: Text(context.l.settings_disable_subdued_note_content_preview_description),
                     toggled: disableSubduedNoteContentPreview,
                     onChanged: _toggleDisableSubduedNoteContentPreview,
                   ),

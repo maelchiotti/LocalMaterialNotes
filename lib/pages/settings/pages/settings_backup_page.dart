@@ -152,12 +152,11 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     await showAdaptiveDialog<String>(
       context: context,
       useRootNavigator: false,
-      builder:
-          (context) => AutoExportPasswordDialog(
-            title: context.l.settings_auto_export_encryption,
-            description: context.l.dialog_export_encryption_description,
-            secondaryDescription: context.l.dialog_export_encryption_secondary_description_auto,
-          ),
+      builder: (context) => AutoExportPasswordDialog(
+        title: context.l.settings_auto_export_encryption,
+        description: context.l.dialog_export_encryption_description,
+        secondaryDescription: context.l.dialog_export_encryption_secondary_description_auto,
+      ),
     ).then((autoExportPassword) async {
       if (autoExportPassword == null) {
         return;
@@ -215,60 +214,59 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
           child: Column(
             children: [
               SettingSection(
-                divider: null,
-                title: context.l.settings_backup_import,
+                title: SettingSectionTitle(context.l.settings_backup_import),
                 tiles: [
                   SettingActionTile(
-                    icon: Icons.file_upload,
-                    title: context.l.settings_import,
-                    description: context.l.settings_import_description,
+                    icon: SettingTileIcon(Icons.file_upload),
+                    title: Text(context.l.settings_import),
+                    description: Text(context.l.settings_import_description),
                     onTap: _import,
                   ),
                 ],
               ),
               SettingSection(
-                divider: null,
-                title: context.l.settings_backup_manual_export,
+                title: SettingSectionTitle(context.l.settings_backup_manual_export),
                 tiles: [
                   SettingActionTile(
-                    icon: SimpleIcons.json,
-                    title: context.l.settings_export_json,
-                    description: context.l.settings_export_json_description,
+                    icon: SettingTileIcon(SimpleIcons.json),
+                    title: Text(context.l.settings_export_json),
+                    description: Text(context.l.settings_export_json_description),
                     onTap: _exportAsJson,
                   ),
                   SettingActionTile(
-                    icon: SimpleIcons.markdown,
-                    title: context.l.settings_export_markdown,
-                    description: context.l.settings_export_markdown_description,
+                    icon: SettingTileIcon(SimpleIcons.markdown),
+                    title: Text(context.l.settings_export_markdown),
+                    description: Text(context.l.settings_export_markdown_description),
                     onTap: _exportAsMarkdown,
                   ),
                 ],
               ),
               SettingSection(
-                divider: null,
-                title: context.l.settings_backup_auto_export,
+                title: SettingSectionTitle(context.l.settings_backup_auto_export),
                 tiles: [
                   SettingSwitchTile(
-                    icon: Icons.settings_backup_restore,
-                    title: context.l.settings_auto_export,
-                    description: context.l.settings_auto_export_description,
+                    icon: SettingTileIcon(Icons.settings_backup_restore),
+                    title: Text(context.l.settings_auto_export),
+                    description: Text(context.l.settings_auto_export_description),
                     toggled: enableAutoExport,
                     onChanged: _toggleEnableAutoExport,
                   ),
                   SettingSwitchTile(
                     enabled: enableAutoExport,
-                    icon: Icons.enhanced_encryption,
-                    title: context.l.settings_auto_export_encryption,
-                    description: context.l.settings_auto_export_encryption_description,
+                    icon: SettingTileIcon(Icons.enhanced_encryption),
+                    title: Text(context.l.settings_auto_export_encryption),
+                    description: Text(context.l.settings_auto_export_encryption_description),
                     toggled: autoExportEncryption,
                     onChanged: _toggleAutoExportEncryption,
                   ),
                   SettingCustomSliderTile(
                     enabled: enableAutoExport,
-                    icon: Symbols.calendar_clock,
-                    title: context.l.settings_auto_export_frequency,
-                    value: context.l.settings_auto_export_frequency_value(autoExportFrequency.toString()),
-                    description: context.l.settings_auto_export_frequency_description,
+                    icon: SettingTileIcon(Symbols.calendar_clock),
+                    title: Text(context.l.settings_auto_export_frequency),
+                    value: SettingTileValue(
+                      context.l.settings_auto_export_frequency_value(autoExportFrequency.toString()),
+                    ),
+                    description: Text(context.l.settings_auto_export_frequency_description),
                     dialogTitle: context.l.settings_auto_export_frequency,
                     label: (frequency) => context.l.settings_auto_export_frequency_value(frequency.toInt().toString()),
                     values: automaticExportFrequenciesValues,
@@ -277,10 +275,10 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                   ),
                   SettingActionTile(
                     enabled: enableAutoExport,
-                    icon: Icons.folder,
-                    title: context.l.settings_auto_export_directory,
-                    value: autoExportDirectory,
-                    description: context.l.settings_auto_export_directory_description,
+                    icon: SettingTileIcon(Icons.folder),
+                    title: Text(context.l.settings_auto_export_directory),
+                    value: SettingTileValue(autoExportDirectory),
+                    description: Text(context.l.settings_auto_export_directory_description),
                     trailing: IconButton(
                       icon: const Icon(Symbols.reset_settings),
                       tooltip: context.l.tooltip_reset,

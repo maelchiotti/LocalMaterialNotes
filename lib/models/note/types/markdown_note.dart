@@ -48,19 +48,17 @@ class MarkdownNote extends Note {
   factory MarkdownNote.fromJson(Map<String, dynamic> json) => _$MarkdownNoteFromJson(json);
 
   /// Plain text note from [json] data, encrypted with [password].
-  factory MarkdownNote.fromJsonEncrypted(Map<String, dynamic> json, String password) =>
-      _$MarkdownNoteFromJson(json)
-        ..title = (json['title'] as String).isEmpty ? '' : EncryptionUtils().decrypt(password, json['title'] as String)
-        ..content = EncryptionUtils().decrypt(password, json['content'] as String);
+  factory MarkdownNote.fromJsonEncrypted(Map<String, dynamic> json, String password) => _$MarkdownNoteFromJson(json)
+    ..title = (json['title'] as String).isEmpty ? '' : EncryptionUtils().decrypt(password, json['title'] as String)
+    ..content = EncryptionUtils().decrypt(password, json['content'] as String);
 
   /// Plain text note to JSON.
   Map<String, dynamic> toJson() => _$MarkdownNoteToJson(this);
 
   @override
-  Note encrypted(String password) =>
-      this
-        ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
-        ..content = EncryptionUtils().encrypt(password, content);
+  Note encrypted(String password) => this
+    ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
+    ..content = EncryptionUtils().encrypt(password, content);
 
   @ignore
   @override

@@ -19,6 +19,11 @@ for language in os.listdir(path):
         try:
             # Read and minimize the description inside the YAML file
             yaml_file = yaml.safe_load(yaml_stream)
+
+            if yaml_file is None:
+                print("Skipped empty file for language " + language)
+                continue
+
             full_description = yaml_file["full_description"]
             full_description_minified = minify_html.minify(
                 full_description, keep_closing_tags=True

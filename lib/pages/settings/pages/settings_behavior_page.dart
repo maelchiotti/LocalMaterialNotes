@@ -122,40 +122,36 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
           child: Column(
             children: [
               SettingSection(
-                divider: null,
-                title: context.l.settings_behavior_application,
+                title: SettingSectionTitle(context.l.settings_behavior_application),
                 tiles: [
                   SettingSwitchTile(
-                    icon: Icons.exit_to_app,
-                    title: context.l.settings_confirm_before_exiting_title,
-                    description: context.l.settings_confirm_before_exiting_description,
+                    icon: SettingTileIcon(Icons.exit_to_app),
+                    title: Text(context.l.settings_confirm_before_exiting_title),
+                    description: Text(context.l.settings_confirm_before_exiting_description),
                     toggled: confirmBeforeExiting,
                     onChanged: submittedConfirmBeforeExiting,
                   ),
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.warning,
-                    title: context.l.settings_confirmations,
-                    value: confirmations.title(context),
-                    description: context.l.settings_confirmations_description,
+                    icon: SettingTileIcon(Icons.warning),
+                    title: Text(context.l.settings_confirmations),
+                    value: SettingTileValue(confirmations.title(context)),
+                    description: Text(context.l.settings_confirmations_description),
                     dialogTitle: context.l.settings_confirmations,
-                    options:
-                        Confirmations.values
-                            .map(
-                              (confirmation) => (
-                                value: confirmation,
-                                title: confirmation.title(context),
-                                subtitle: null,
-                              ),
-                            )
-                            .toList(),
+                    options: Confirmations.values
+                        .map(
+                          (confirmation) => (value: confirmation, title: confirmation.title(context), subtitle: null),
+                        )
+                        .toList(),
                     initialOption: confirmations,
                     onSubmitted: submittedConfirmations,
                   ),
                   SettingCustomSliderTile(
-                    icon: Icons.auto_delete,
-                    title: context.l.settings_auto_remove_from_bin_title,
-                    value: context.l.settings_auto_remove_from_bin_value(autoRemoveFromBinDelay.toString()),
-                    description: context.l.settings_auto_remove_from_bin_description,
+                    icon: SettingTileIcon(Icons.auto_delete),
+                    title: Text(context.l.settings_auto_remove_from_bin_title),
+                    value: SettingTileValue(
+                      context.l.settings_auto_remove_from_bin_value(autoRemoveFromBinDelay.toString()),
+                    ),
+                    description: Text(context.l.settings_auto_remove_from_bin_description),
                     dialogTitle: context.l.settings_auto_remove_from_bin_title,
                     label: (delay) => context.l.settings_auto_remove_from_bin_value(delay.toInt().toString()),
                     values: autoRemoveFromBinValues,
@@ -165,108 +161,87 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsBehaviorPage> {
                 ],
               ),
               SettingSection(
-                divider: null,
-                title: context.l.settings_behavior_swipe_actions,
+                title: SettingSectionTitle(context.l.settings_behavior_swipe_actions),
                 tiles: [
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.swipe_right,
-                    title: context.l.settings_swipe_action_right,
-                    value: availableSwipeActions.right.title(context),
-                    description: context.l.settings_swipe_action_right_description,
+                    icon: SettingTileIcon(Icons.swipe_right),
+                    title: Text(context.l.settings_swipe_action_right),
+                    value: SettingTileValue(availableSwipeActions.right.title(context)),
+                    description: Text(context.l.settings_swipe_action_right_description),
                     dialogTitle: context.l.settings_swipe_action_right,
-                    options:
-                        AvailableSwipeAction.settings
-                            .map(
-                              (swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null),
-                            )
-                            .toList(),
+                    options: AvailableSwipeAction.settings
+                        .map((swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null))
+                        .toList(),
                     initialOption: availableSwipeActions.right,
                     onSubmitted: submittedAvailableSwipeRightAction,
                   ),
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.swipe_left,
-                    title: context.l.settings_swipe_action_left,
-                    value: availableSwipeActions.left.title(context),
-                    description: context.l.settings_swipe_action_left_description,
+                    icon: SettingTileIcon(Icons.swipe_left),
+                    title: Text(context.l.settings_swipe_action_left),
+                    value: SettingTileValue(availableSwipeActions.left.title(context)),
+                    description: Text(context.l.settings_swipe_action_left_description),
                     dialogTitle: context.l.settings_swipe_action_left,
-                    options:
-                        AvailableSwipeAction.settings
-                            .map(
-                              (swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null),
-                            )
-                            .toList(),
+                    options: AvailableSwipeAction.settings
+                        .map((swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null))
+                        .toList(),
                     initialOption: availableSwipeActions.left,
                     onSubmitted: submittedAvailableSwipeLeftAction,
                   ),
                 ],
               ),
               SettingSection(
-                divider: null,
-                title: context.l.settings_behavior_swipe_actions_archives,
+                title: SettingSectionTitle(context.l.settings_behavior_swipe_actions_archives),
                 tiles: [
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.swipe_right,
-                    title: context.l.settings_swipe_action_right,
-                    value: archivedSwipeActions.right.title(context),
-                    description: context.l.settings_swipe_action_right_description,
+                    icon: SettingTileIcon(Icons.swipe_right),
+                    title: Text(context.l.settings_swipe_action_right),
+                    value: SettingTileValue(archivedSwipeActions.right.title(context)),
+                    description: Text(context.l.settings_swipe_action_right_description),
                     dialogTitle: context.l.settings_swipe_action_right,
-                    options:
-                        ArchivedSwipeAction.values
-                            .map(
-                              (swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null),
-                            )
-                            .toList(),
+                    options: ArchivedSwipeAction.values
+                        .map((swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null))
+                        .toList(),
                     initialOption: archivedSwipeActions.right,
                     onSubmitted: submittedArchivedSwipeRightAction,
                   ),
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.swipe_left,
-                    title: context.l.settings_swipe_action_left,
-                    value: archivedSwipeActions.left.title(context),
-                    description: context.l.settings_swipe_action_left_description,
+                    icon: SettingTileIcon(Icons.swipe_left),
+                    title: Text(context.l.settings_swipe_action_left),
+                    value: SettingTileValue(archivedSwipeActions.left.title(context)),
+                    description: Text(context.l.settings_swipe_action_left_description),
                     dialogTitle: context.l.settings_swipe_action_left,
-                    options:
-                        ArchivedSwipeAction.values
-                            .map(
-                              (swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null),
-                            )
-                            .toList(),
+                    options: ArchivedSwipeAction.values
+                        .map((swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null))
+                        .toList(),
                     initialOption: archivedSwipeActions.left,
                     onSubmitted: submittedArchivedSwipeLeftAction,
                   ),
                 ],
               ),
               SettingSection(
-                divider: null,
-                title: context.l.settings_behavior_swipe_actions_bin,
+                title: SettingSectionTitle(context.l.settings_behavior_swipe_actions_bin),
                 tiles: [
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.swipe_right,
-                    title: context.l.settings_swipe_action_right,
-                    value: deletedSwipeActions.right.title(context),
-                    description: context.l.settings_bin_swipe_action_right_description,
+                    icon: SettingTileIcon(Icons.swipe_right),
+                    title: Text(context.l.settings_swipe_action_right),
+                    value: SettingTileValue(deletedSwipeActions.right.title(context)),
+                    description: Text(context.l.settings_bin_swipe_action_right_description),
                     dialogTitle: context.l.settings_swipe_action_right,
-                    options:
-                        DeletedSwipeAction.values
-                            .map(
-                              (swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null),
-                            )
-                            .toList(),
+                    options: DeletedSwipeAction.values
+                        .map((swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null))
+                        .toList(),
                     initialOption: deletedSwipeActions.right,
                     onSubmitted: submittedDeletedSwipeRightAction,
                   ),
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.swipe_left,
-                    title: context.l.settings_swipe_action_left,
-                    value: deletedSwipeActions.left.title(context),
-                    description: context.l.settings_bin_swipe_action_left_description,
+                    icon: SettingTileIcon(Icons.swipe_left),
+                    title: Text(context.l.settings_swipe_action_left),
+                    value: SettingTileValue(deletedSwipeActions.left.title(context)),
+                    description: Text(context.l.settings_bin_swipe_action_left_description),
                     dialogTitle: context.l.settings_swipe_action_left,
-                    options:
-                        DeletedSwipeAction.values
-                            .map(
-                              (swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null),
-                            )
-                            .toList(),
+                    options: DeletedSwipeAction.values
+                        .map((swipeAction) => (value: swipeAction, title: swipeAction.title(context), subtitle: null))
+                        .toList(),
                     initialOption: deletedSwipeActions.left,
                     onSubmitted: submittedDeletedSwipeLeftAction,
                   ),

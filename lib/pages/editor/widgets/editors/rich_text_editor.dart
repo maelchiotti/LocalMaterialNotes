@@ -23,7 +23,6 @@ class RichTextEditor extends ConsumerStatefulWidget {
     super.key,
     required this.fleatherController,
     required this.note,
-    required this.isNewNote,
     required this.readOnly,
     required this.autofocus,
   });
@@ -33,9 +32,6 @@ class RichTextEditor extends ConsumerStatefulWidget {
 
   /// The controller of the Fleather text field.
   final FleatherController fleatherController;
-
-  /// Whether the note was just created.
-  final bool isNewNote;
 
   /// Whether the text fields are read only.
   final bool readOnly;
@@ -48,20 +44,6 @@ class RichTextEditor extends ConsumerStatefulWidget {
 }
 
 class _RichTextEditorState extends ConsumerState<RichTextEditor> {
-  @override
-  void initState() {
-    super.initState();
-
-    // If this is a new note, force the editing mode
-    if (widget.isNewNote) {
-      isEditModeNotifier.value = true;
-    }
-  }
-
-  void onFocusChange(bool hasFocus) {
-    editorHasFocusNotifier.value = hasFocus;
-  }
-
   void onLaunchUrl(String? url) {
     if (url == null) {
       return;
@@ -93,6 +75,8 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
 
     widget.fleatherController.addListener(() => onChanged());
 
+    final linkColor = Theme.brightnessOf(context) == Brightness.light ? Colors.blue[800] : Colors.blue[200];
+
     return Padding(
       padding: Paddings.pageHorizontal,
       child: DefaultTextStyle.merge(
@@ -101,14 +85,10 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
           builder: (context) {
             final fleatherThemeFallback = FleatherThemeData.fallback(context);
             final fleatherTheme = fleatherThemeFallback.copyWith(
-              paragraph:
-                  !useParagraphsSpacing
-                      ? TextBlockTheme(
-                        style: fleatherThemeFallback.paragraph.style,
-                        spacing: const VerticalSpacing.zero(),
-                      )
-                      : null,
-              link: fleatherThemeFallback.link.copyWith(color: Theme.of(context).colorScheme.primary),
+              paragraph: !useParagraphsSpacing
+                  ? TextBlockTheme(style: fleatherThemeFallback.paragraph.style, spacing: const VerticalSpacing.zero())
+                  : null,
+              link: fleatherThemeFallback.link.copyWith(color: linkColor, decorationColor: linkColor),
             );
 
             return FleatherTheme(

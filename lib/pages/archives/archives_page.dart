@@ -20,7 +20,10 @@ class _ArchivesPageState extends ConsumerState<ArchivesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TopNavigation(appbar: NotesAppBar(notesStatus: NoteStatus.archived), notesStatus: NoteStatus.archived),
+      appBar: TopNavigation(
+        appbar: NotesAppBar(notesStatus: NoteStatus.archived),
+        notesStatus: NoteStatus.archived,
+      ),
       drawer: SideNavigation(),
       body: NotesList(notesStatus: NoteStatus.archived),
     );

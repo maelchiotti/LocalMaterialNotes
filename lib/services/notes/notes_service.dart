@@ -284,8 +284,8 @@ class NotesService {
 
     await _database.writeTxn(() async {
       await _plainTextNotes.deleteAll(plainTextNotesIds);
-      await _markdownNotes.deleteAll(richTextNotesIds);
-      await _richTextNotes.deleteAll(markdownNotesIds);
+      await _markdownNotes.deleteAll(markdownNotesIds);
+      await _richTextNotes.deleteAll(richTextNotesIds);
       await _checklistNotes.deleteAll(checklistNotesIds);
     });
 
@@ -322,17 +322,16 @@ class NotesService {
   Future<void> removeFromBin(Duration delay) async {
     final deletedNotes = await getAllDeleted();
 
-    final notesToRemove =
-        deletedNotes.where((note) {
-          if (note.deletedTime == null) {
-            return false;
-          }
+    final notesToRemove = deletedNotes.where((note) {
+      if (note.deletedTime == null) {
+        return false;
+      }
 
-          final now = DateTime.timestamp();
-          final durationSinceDeleted = now.difference(note.deletedTime!);
+      final now = DateTime.timestamp();
+      final durationSinceDeleted = now.difference(note.deletedTime!);
 
-          return durationSinceDeleted > delay;
-        }).toList();
+      return durationSinceDeleted > delay;
+    }).toList();
 
     if (notesToRemove.isEmpty) {
       return;

@@ -1,0 +1,11 @@
+AJOUTÉ
+- Ouverture des liens dans l'éditeur markdown en mode lecture seule
+
+CORRIGÉ
+- Type de note manquant dans les exports JSON
+- Imports JSON échouant ou créant des notes corrompues
+- Localisations manquantes provoquant des plantages
+- Forcer l'éditeur à être en écriture lors de l'ajout d'une nouvelle note
+- Annuler/Rétablir dans l'éditeur de texte riche
+- Couleur des liens dans l'éditeur de texte riche
+- Notes vides non supprimées

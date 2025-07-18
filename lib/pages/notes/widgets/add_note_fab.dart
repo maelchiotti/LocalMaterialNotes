@@ -43,59 +43,59 @@ class _AddNoteFabState extends ConsumerState<AddNoteFab> {
 
     return availableNotesTypes.length == 1
         ? FloatingActionButton(
-          tooltip: context.l.tooltip_fab_add_note,
-          onPressed: () => onPressed(availableNotesTypes.first),
-          child: const Icon(Icons.add),
-        )
-        : ExpandableFab(
-          key: widget.label == null ? addNoteFabKey : labeledAddNoteFabKey,
-          type: ExpandableFabType.up,
-          childrenAnimation: ExpandableFabAnimation.none,
-          distance: 64,
-          openButtonBuilder: RotateFloatingActionButtonBuilder(
-            heroTag: '<open add note FAB hero tag>',
+            tooltip: context.l.tooltip_fab_add_note,
+            onPressed: () => onPressed(availableNotesTypes.first),
             child: const Icon(Icons.add),
-          ),
-          closeButtonBuilder: RotateFloatingActionButtonBuilder(
-            heroTag: '<close add note FAB hero tag>',
-            child: const Icon(Icons.close),
-          ),
-          afterOpen: onOpen,
-          afterClose: onClose,
-          children: [
-            if (availableNotesTypes.contains(NoteType.plainText))
-              FloatingActionButton.extended(
-                heroTag: '<add plain text note hero tag>',
-                tooltip: context.l.tooltip_fab_add_plain_text_note,
-                onPressed: () => onPressed(NoteType.plainText),
-                icon: Icon(NoteType.plainText.icon),
-                label: Text(NoteType.plainText.title(context)),
-              ),
-            if (availableNotesTypes.contains(NoteType.markdown))
-              FloatingActionButton.extended(
-                heroTag: '<add markdown note hero tag>',
-                tooltip: context.l.tooltip_fab_add_markdown_note,
-                onPressed: () => onPressed(NoteType.markdown),
-                icon: Icon(NoteType.markdown.icon),
-                label: Text(NoteType.markdown.title(context)),
-              ),
-            if (availableNotesTypes.contains(NoteType.richText))
-              FloatingActionButton.extended(
-                heroTag: '<add rich text note hero tag>',
-                tooltip: context.l.tooltip_fab_add_rich_text_note,
-                onPressed: () => onPressed(NoteType.richText),
-                icon: Icon(NoteType.richText.icon),
-                label: Text(NoteType.richText.title(context)),
-              ),
-            if (availableNotesTypes.contains(NoteType.checklist))
-              FloatingActionButton.extended(
-                heroTag: '<add checklist note hero tag>',
-                tooltip: context.l.tooltip_fab_add_checklist_note,
-                onPressed: () => onPressed(NoteType.checklist),
-                icon: Icon(NoteType.checklist.icon),
-                label: Text(NoteType.checklist.title(context)),
-              ),
-          ],
-        );
+          )
+        : ExpandableFab(
+            key: widget.label == null ? addNoteFabKey : labeledAddNoteFabKey,
+            type: ExpandableFabType.up,
+            childrenAnimation: ExpandableFabAnimation.none,
+            distance: 64,
+            openButtonBuilder: RotateFloatingActionButtonBuilder(
+              heroTag: '<open add note FAB hero tag>',
+              child: const Icon(Icons.add),
+            ),
+            closeButtonBuilder: RotateFloatingActionButtonBuilder(
+              heroTag: '<close add note FAB hero tag>',
+              child: const Icon(Icons.close),
+            ),
+            afterOpen: onOpen,
+            afterClose: onClose,
+            children: [
+              if (availableNotesTypes.contains(NoteType.plainText))
+                FloatingActionButton.extended(
+                  heroTag: '<add plain text note hero tag>',
+                  tooltip: context.l.tooltip_fab_add_plain_text_note,
+                  onPressed: () => onPressed(NoteType.plainText),
+                  icon: Icon(NoteType.plainText.icon),
+                  label: Text(NoteType.plainText.title(context)),
+                ),
+              if (availableNotesTypes.contains(NoteType.markdown))
+                FloatingActionButton.extended(
+                  heroTag: '<add markdown note hero tag>',
+                  tooltip: context.l.tooltip_fab_add_markdown_note,
+                  onPressed: () => onPressed(NoteType.markdown),
+                  icon: Icon(NoteType.markdown.icon),
+                  label: Text(NoteType.markdown.title(context)),
+                ),
+              if (availableNotesTypes.contains(NoteType.richText))
+                FloatingActionButton.extended(
+                  heroTag: '<add rich text note hero tag>',
+                  tooltip: context.l.tooltip_fab_add_rich_text_note,
+                  onPressed: () => onPressed(NoteType.richText),
+                  icon: Icon(NoteType.richText.icon),
+                  label: Text(NoteType.richText.title(context)),
+                ),
+              if (availableNotesTypes.contains(NoteType.checklist))
+                FloatingActionButton.extended(
+                  heroTag: '<add checklist note hero tag>',
+                  tooltip: context.l.tooltip_fab_add_checklist_note,
+                  onPressed: () => onPressed(NoteType.checklist),
+                  icon: Icon(NoteType.checklist.icon),
+                  label: Text(NoteType.checklist.title(context)),
+                ),
+            ],
+          );
   }
 }

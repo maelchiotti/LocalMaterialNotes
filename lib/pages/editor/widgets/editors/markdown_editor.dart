@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:markdown/markdown.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../common/constants/constants.dart';
 import '../../../../common/constants/paddings.dart';
@@ -15,19 +16,10 @@ import '../../../../providers/notifiers/notifiers.dart';
 /// Markdown editor.
 class MarkdownEditor extends ConsumerStatefulWidget {
   /// Markdown allowing to edit the markdown text content of a [MarkdownNote].
-  const MarkdownEditor({
-    super.key,
-    required this.note,
-    required this.isNewNote,
-    required this.readOnly,
-    required this.autofocus,
-  });
+  const MarkdownEditor({super.key, required this.note, required this.readOnly, required this.autofocus});
 
   /// The note to display.
   final MarkdownNote note;
-
-  /// Whether the note was just created.
-  final bool isNewNote;
 
   /// Whether the text fields are read only.
   final bool readOnly;
@@ -49,14 +41,20 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
     contentTextController = TextEditingController(text: widget.note.content);
   }
 
-  void onFocusChange(bool hasFocus) {
-    editorHasFocusNotifier.value = hasFocus;
-  }
-
   void onChanged(String content) {
     MarkdownNote note = widget.note..content = content;
 
     ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
+  }
+
+  void onOpenLink(String text, String? href, String title) {
+    if (href == null) {
+      return;
+    }
+
+    Uri uri = Uri.parse(href);
+
+    launchUrl(uri);
   }
 
   @override
@@ -65,38 +63,35 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
 
     return Padding(
       padding: Paddings.pageHorizontal,
-      child:
-          widget.readOnly && !widget.note.isContentEmpty
-              ? Markdown(
-                data: widget.note.content,
-                padding: EdgeInsets.zero,
-                selectable: true,
-                extensionSet: ExtensionSet.gitHubFlavored,
-                styleSheet: MarkdownStyleSheet.fromTheme(theme).copyWith(
-                  blockquoteDecoration: BoxDecoration(
-                    color: theme.colorScheme.surfaceContainerHighest,
-                    borderRadius: BorderRadius.circular(2.0),
-                  ),
-                  codeblockDecoration: BoxDecoration(
-                    color: theme.colorScheme.surfaceContainerHighest,
-                    borderRadius: BorderRadius.circular(2.0),
-                  ),
+      child: widget.readOnly && !widget.note.isContentEmpty
+          ? Markdown(
+              data: widget.note.content,
+              padding: EdgeInsets.zero,
+              selectable: true,
+              extensionSet: ExtensionSet.gitHubFlavored,
+              styleSheet: MarkdownStyleSheet.fromTheme(theme).copyWith(
+                blockquoteDecoration: BoxDecoration(
+                  color: theme.colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(2.0),
                 ),
-              )
-              : Focus(
-                onFocusChange: onFocusChange,
-                child: TextField(
-                  controller: contentTextController,
-                  focusNode: editorFocusNode,
-                  readOnly: widget.readOnly && widget.note.isContentEmpty,
-                  autofocus: widget.autofocus,
-                  maxLines: null,
-                  expands: true,
-                  decoration: InputDecoration.collapsed(hintText: context.l.hint_content),
-                  spellCheckConfiguration: SpellCheckConfiguration(spellCheckService: DefaultSpellCheckService()),
-                  onChanged: onChanged,
+                codeblockDecoration: BoxDecoration(
+                  color: theme.colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(2.0),
                 ),
               ),
+              onTapLink: onOpenLink,
+            )
+          : TextField(
+              controller: contentTextController,
+              focusNode: editorFocusNode,
+              readOnly: widget.readOnly && widget.note.isContentEmpty,
+              autofocus: widget.autofocus,
+              maxLines: null,
+              expands: true,
+              decoration: InputDecoration.collapsed(hintText: context.l.hint_content),
+              spellCheckConfiguration: SpellCheckConfiguration(spellCheckService: DefaultSpellCheckService()),
+              onChanged: onChanged,
+            ),
     );
   }
 }

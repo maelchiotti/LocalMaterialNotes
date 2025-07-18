@@ -96,8 +96,9 @@ class _ColorToolbarButtonState extends State<ColorToolbarButton> {
 
   /// Sets the new color.
   void setColor() {
-    final attribute =
-        pickedColor != null ? widget.attributeKey.withColor(pickedColor!.toARGB32()) : widget.attributeKey.unset;
+    final attribute = pickedColor != null
+        ? widget.attributeKey.withColor(pickedColor!.toARGB32())
+        : widget.attributeKey.unset;
     widget.fleatherController.formatSelection(attribute);
   }
 

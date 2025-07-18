@@ -46,16 +46,15 @@ class LabelsPage extends ConsumerWidget {
                     },
                   ),
                   Expanded(
-                    child:
-                        labels.isEmpty
-                            ? EmptyPlaceholder.labels(context)
-                            : ListView.builder(
-                              padding: Paddings.fab,
-                              itemCount: labels.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return LabelTile(label: labels[index]);
-                              },
-                            ),
+                    child: labels.isEmpty
+                        ? EmptyPlaceholder.labels(context)
+                        : ListView.builder(
+                            padding: Paddings.fab,
+                            itemCount: labels.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return LabelTile(label: labels[index]);
+                            },
+                          ),
                   ),
                 ],
               ),

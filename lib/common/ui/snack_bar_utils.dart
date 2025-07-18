@@ -30,10 +30,9 @@ class SnackBarUtils {
       SnackBar(
         behavior: behavior,
         content: Text(text),
-        action:
-            onCancel != null
-                ? SnackBarAction(label: context.fl.cancelButtonLabel, onPressed: () => onCancel(globalRef))
-                : null,
+        action: onCancel != null
+            ? SnackBarAction(label: context.fl.cancelButtonLabel, onPressed: () => onCancel(globalRef))
+            : null,
       ),
     );
   }

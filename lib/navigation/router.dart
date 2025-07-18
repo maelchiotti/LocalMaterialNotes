@@ -36,24 +36,24 @@ final router = GoRouter.routingConfig(
 );
 
 /// The router redirection function.
-// ignore: prefer_function_declarations_over_variables
-final goRouterRedirect = (BuildContext context, GoRouterState state) {
+String? goRouterRedirect(BuildContext context, GoRouterState state) {
   final lockApp = PreferenceKey.lockApp.preferenceOrDefault;
+  final isLocked = lockAppNotifier.value;
 
   if (!lockApp) {
     return null;
   }
 
-  if (lockAppNotifier.value) {
+  if (isLocked && state.matchedLocation != NavigationRoute.lock.path) {
     return NavigationRoute.lock.path;
-  } else {
-    if (state.matchedLocation == NavigationRoute.lock.path) {
-      return NavigationRoute.notes.path;
-    }
+  }
+
+  if (!isLocked && state.matchedLocation == NavigationRoute.lock.path) {
+    return NavigationRoute.notes.path;
   }
 
   return null;
-};
+}
 
 /// The lock route.
 final lockRoute = GoRoute(

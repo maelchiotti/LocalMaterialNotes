@@ -71,10 +71,9 @@ enum LabelTileMenuOption {
         leading: Icon(icon, color: dangerous ? Theme.of(context).colorScheme.error : null),
         title: Text(
           title(context),
-          style:
-              dangerous
-                  ? Theme.of(context).textTheme.titleSmall?.copyWith(color: Theme.of(context).colorScheme.error)
-                  : null,
+          style: dangerous
+              ? Theme.of(context).textTheme.titleSmall?.copyWith(color: Theme.of(context).colorScheme.error)
+              : null,
         ),
       ),
     );

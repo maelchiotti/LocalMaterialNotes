@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 import '../../../common/extensions/build_context_extension.dart';
@@ -6,6 +7,7 @@ import '../../../common/extensions/string_extension.dart';
 import '../../../common/preferences/preference_key.dart';
 
 /// The types of notes.
+@JsonEnum()
 enum NoteType {
   /// Plain text note.
   plainText(Icons.text_fields),

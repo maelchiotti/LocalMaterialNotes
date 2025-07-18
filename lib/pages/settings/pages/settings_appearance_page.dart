@@ -100,32 +100,27 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
           child: Column(
             children: [
               SettingSingleOptionTile.detailed(
-                icon: Icons.language,
-                title: context.l.settings_language,
+                icon: SettingTileIcon(Icons.language),
+                title: Text(context.l.settings_language),
                 trailing: TextButton.icon(onPressed: _openCrowdin, label: Text(context.l.settings_language_contribute)),
-                value: locale.nativeDisplayLanguage.capitalizeFirstLetter,
+                value: SettingTileValue(locale.nativeDisplayLanguage.capitalizeFirstLetter),
                 dialogTitle: context.l.settings_language,
-                options:
-                    SupportedLanguage.values
-                        .map(
-                          (language) => (
-                            value: language.locale,
-                            title: language.nativeName,
-                            subtitle: language.completionFormatted,
-                          ),
-                        )
-                        .toList(),
+                options: SupportedLanguage.values
+                    .map(
+                      (language) =>
+                          (value: language.locale, title: language.nativeName, subtitle: language.completionFormatted),
+                    )
+                    .toList(),
                 initialOption: locale,
                 onSubmitted: _submittedLanguage,
               ),
               SettingSection(
-                divider: null,
-                title: context.l.settings_appearance_section_theming,
+                title: SettingSectionTitle(context.l.settings_appearance_section_theming),
                 tiles: [
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.palette,
-                    title: context.l.settings_theme,
-                    value: ThemeUtils().themeModeTitle(context),
+                    icon: SettingTileIcon(Icons.palette),
+                    title: Text(context.l.settings_theme),
+                    value: SettingTileValue(ThemeUtils().themeModeTitle(context)),
                     dialogTitle: context.l.settings_theme,
                     options: [
                       (value: ThemeMode.light, title: context.l.settings_theme_light, subtitle: null),
@@ -137,49 +132,46 @@ class _SettingsAppearancePageState extends ConsumerState<SettingsAppearancePage>
                   ),
                   SettingSwitchTile(
                     enabled: ThemeUtils().isDynamicThemingAvailable,
-                    icon: Icons.bolt,
-                    title: context.l.settings_dynamic_theming,
-                    description: context.l.settings_dynamic_theming_description,
+                    icon: SettingTileIcon(Icons.bolt),
+                    title: Text(context.l.settings_dynamic_theming),
+                    description: Text(context.l.settings_dynamic_theming_description),
                     toggled: dynamicTheming,
                     onChanged: _toggleDynamicTheming,
                   ),
                   SettingSwitchTile(
                     enabled: isDarkMode,
-                    icon: Icons.nightlight,
-                    title: context.l.settings_black_theming,
-                    description: context.l.settings_black_theming_description,
+                    icon: SettingTileIcon(Icons.nightlight),
+                    title: Text(context.l.settings_black_theming),
+                    description: Text(context.l.settings_black_theming_description),
                     toggled: blackTheming,
                     onChanged: _toggleBlackTheming,
                   ),
                 ],
               ),
               SettingSection(
-                divider: null,
-                title: context.l.settings_appearance_section_fonts,
+                title: SettingSectionTitle(context.l.settings_appearance_section_fonts),
                 tiles: [
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.font_download,
-                    title: context.l.settings_app_font,
-                    description: context.l.settings_app_font_description,
-                    value: appFont.displayName(context),
+                    icon: SettingTileIcon(Icons.font_download),
+                    title: Text(context.l.settings_app_font),
+                    description: Text(context.l.settings_app_font_description),
+                    value: SettingTileValue(appFont.displayName(context)),
                     dialogTitle: context.l.settings_app_font,
-                    options:
-                        Font.values
-                            .map((font) => (value: font, title: font.displayName(context), subtitle: null))
-                            .toList(),
+                    options: Font.values
+                        .map((font) => (value: font, title: font.displayName(context), subtitle: null))
+                        .toList(),
                     initialOption: appFont,
                     onSubmitted: _submittedAppFont,
                   ),
                   SettingSingleOptionTile.detailed(
-                    icon: Icons.font_download,
-                    title: context.l.settings_editor_font,
-                    description: context.l.settings_editor_font_description,
-                    value: editorFont.displayName(context),
+                    icon: SettingTileIcon(Icons.font_download),
+                    title: Text(context.l.settings_editor_font),
+                    description: Text(context.l.settings_editor_font_description),
+                    value: SettingTileValue(editorFont.displayName(context)),
                     dialogTitle: context.l.settings_editor_font,
-                    options:
-                        Font.values
-                            .map((font) => (value: font, title: font.displayName(context), subtitle: null))
-                            .toList(),
+                    options: Font.values
+                        .map((font) => (value: font, title: font.displayName(context), subtitle: null))
+                        .toList(),
                     initialOption: editorFont,
                     onSubmitted: _submittedEditorFont,
                   ),
