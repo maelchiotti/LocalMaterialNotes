@@ -41,14 +41,14 @@ String? goRouterRedirect(BuildContext context, GoRouterState state) {
   final isLocked = lockAppNotifier.value;
 
   if (!lockApp) {
+    if (state.matchedLocation == '/') {
+      return NavigationRoute.notes.path;
+    }
+
     return null;
-  }
-
-  if (isLocked && state.matchedLocation != NavigationRoute.lock.path) {
+  } else if (isLocked && state.matchedLocation != NavigationRoute.lock.path) {
     return NavigationRoute.lock.path;
-  }
-
-  if (!isLocked && state.matchedLocation == NavigationRoute.lock.path) {
+  } else if (!isLocked && state.matchedLocation == NavigationRoute.lock.path) {
     return NavigationRoute.notes.path;
   }
 
