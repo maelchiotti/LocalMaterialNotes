@@ -30,7 +30,7 @@ class SettingsHelpPage extends StatelessWidget {
     final systemUtils = SystemUtils();
 
     final appVersion = systemUtils.appVersion;
-    final buildMode = systemUtils.buildMode;
+    final buildMode = systemUtils.buildMode();
     final androidVersion = systemUtils.androidVersion;
     final brand = systemUtils.brand;
     final model = systemUtils.model;
