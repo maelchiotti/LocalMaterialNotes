@@ -162,7 +162,7 @@ final editorRoute = GoRoute(
   builder: (context, state) {
     final extras = state.extra as EditorPageExtra;
 
-    return EditorPage(readOnly: extras.readOnly, isNewNote: extras.isNewNote);
+    return EditorPage(isNewNote: extras.isNewNote);
   },
 );
 
