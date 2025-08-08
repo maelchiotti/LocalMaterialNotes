@@ -11,10 +11,15 @@ import '../../../common/navigation/top_navigation.dart';
 import '../../../common/system_utils.dart';
 
 /// Settings providing help.
-class SettingsHelpPage extends StatelessWidget {
+class SettingsHelpPage extends StatefulWidget {
   /// Default constructor.
   const SettingsHelpPage({super.key});
 
+  @override
+  State<SettingsHelpPage> createState() => _SettingsHelpPageState();
+}
+
+class _SettingsHelpPageState extends State<SettingsHelpPage> {
   /// Opens the application's GitHub issues.
   void openGitHubIssues() {
     launchUrl(Uri(scheme: 'https', host: 'github.com', path: 'maelchiotti/LocalMaterialNotes/issues'));
@@ -30,7 +35,7 @@ class SettingsHelpPage extends StatelessWidget {
     final systemUtils = SystemUtils();
 
     final appVersion = systemUtils.appVersion;
-    final buildMode = systemUtils.buildMode();
+    final buildMode = systemUtils.buildMode(context);
     final androidVersion = systemUtils.androidVersion;
     final brand = systemUtils.brand;
     final model = systemUtils.model;
