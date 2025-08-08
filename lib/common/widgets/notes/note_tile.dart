@@ -212,8 +212,10 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
 
     final showContent =
-        // Do not show only the title and the preview content is not empty
-        (!showTitlesOnly && !widget.note.isContentPreviewEmpty) ||
+        // The note is locked
+        !lockNote &&
+            // Do not show only the title and the preview content is not empty
+            (!showTitlesOnly && !widget.note.isContentPreviewEmpty) ||
         // Show only the title and the title is not empty
         (showTitlesOnly && widget.note.isTitleEmpty) ||
         // In search view, do not show only the title and the preview content is not empty
