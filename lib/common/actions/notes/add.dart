@@ -56,6 +56,6 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {required NoteType not
     return;
   }
 
-  final EditorPageExtra extra = (readOnly: false, isNewNote: true);
+  final EditorPageExtra extra = (isNewNote: true);
   await context.pushNamed(NavigationRoute.editor.name, extra: extra);
 }

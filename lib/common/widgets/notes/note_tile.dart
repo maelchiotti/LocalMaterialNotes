@@ -179,7 +179,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
         lockNoteNotifier.value = widget.note.locked || widget.note.hasLockedLabel;
       }
 
-      final EditorPageExtra extra = (readOnly: widget.note.deleted, isNewNote: false);
+      final EditorPageExtra extra = (isNewNote: false);
       context.pushNamed(NavigationRoute.editor.name, extra: extra);
     }
   }
