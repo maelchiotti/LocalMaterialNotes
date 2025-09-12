@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:flutter_mimir/flutter_mimir.dart';
+import 'package:mimir/mimir.dart';
 
 import '../../common/constants/constants.dart';
 import '../../models/note/index/note_index.dart';

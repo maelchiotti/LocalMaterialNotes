@@ -1,5 +1,6 @@
 import 'package:flutter_mimir/flutter_mimir.dart';
 import 'package:isar_community/isar.dart';
+import 'package:mimir/mimir.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../models/deprecated/note.dart';
