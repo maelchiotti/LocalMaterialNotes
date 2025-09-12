@@ -40,12 +40,8 @@ dependencies:
   go_router: ^16.0.0
   intl: ^0.20.2
   is_first_run: ^1.0.0
-  isar:
-    version: ^3.1.8
-    hosted: https://pub.isar-community.dev/
-  isar_flutter_libs:
-    version: ^3.1.8
-    hosted: https://pub.isar-community.dev/
+  isar_community: ^3.2.0-dev.1
+  isar_community_flutter_libs: ^3.2.0-dev.1
   json_annotation: ^4.9.0
   local_auth: ^2.3.0
   locale_names: ^1.1.1
@@ -83,12 +79,13 @@ dev_dependencies:
   custom_lint: ^0.7.0
   flutter_launcher_icons: ^0.14.4
   flutter_lints: ^6.0.0
-  isar_generator:
-    version: ^3.1.8
-    hosted: https://pub.isar-community.dev/
+  isar_community_generator: ^3.2.0-dev.1
   json_serializable: ^6.9.0
   riverpod_generator: ^2.6.3
   riverpod_lint: ^2.6.3
+
+dependency_overrides:
+  analyzer_plugin: ^0.13.1
 
 flutter:
   uses-material-design: true
