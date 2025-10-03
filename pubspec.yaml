@@ -5,6 +5,8 @@ repository: https://github.com/maelchiotti/LocalMaterialNotes
 version: 2.1.1+30
 publish_to: none
 
+# TODO(maelchiotti): move back to the stable branch when native assets are released
+# https://github.com/dart-lang/sdk/issues/50565
 environment:
   sdk: ^3.10.0-162.1.beta
   flutter: 3.37.0-0.1.pre
