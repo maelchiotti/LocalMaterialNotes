@@ -33,7 +33,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_markdown_plus: ^1.0.3
-  flutter_mimir: ^0.2.0+1
+  flutter_mimir: ^0.2.0+2
   flutter_native_splash: ^2.4.6
   flutter_riverpod: ^3.0.1
   flutter_secure_storage: ^9.2.4
@@ -50,7 +50,7 @@ dependencies:
   logger: ^2.6.0
   markdown: ^7.3.0
   material_symbols_icons: ^4.2874.0
-  mimir: ^0.2.0+1
+  mimir: ^0.2.0+2
   package_info_plus: ^9.0.0
   parchment: any
   parchment_delta: any
@@ -89,11 +89,6 @@ dev_dependencies:
 
 dependency_overrides:
   build: ^4.0.0
-  native_toolchain_rs:
-    git:
-      url: https://github.com/GregoryConrad/native_toolchain_rs.git
-      ref: 28d204d840b7f5e5799fe9c2cd635d3d0346dde5
-      path: native_toolchain_rs
 
 flutter:
   uses-material-design: true
