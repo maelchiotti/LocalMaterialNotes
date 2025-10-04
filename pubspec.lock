@@ -519,10 +519,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_mimir
-      sha256: "55e5604afd3047857f49b3a7045f21406c9a8de773dc7ea8f2570faf68b9e647"
+      sha256: c075ed9971749195cb970fe977183f2e3246ce4c40dab05e05d5a1f8155ae818
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0+1"
+    version: "0.2.0+2"
   flutter_native_splash:
     dependency: "direct main"
     description:
@@ -937,10 +937,10 @@ packages:
     dependency: "direct main"
     description:
       name: mimir
-      sha256: b380a91df5960f2d4b3b8a092416e9375a4e14a78026901b2c5f5f198a039ddc
+      sha256: "6b7d5d1845417d5966a5fbb4ebe17c9753beea7085c2c3f3e6b09986dbf4189d"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0+1"
+    version: "0.2.1"
   mockito:
     dependency: transitive
     description:
@@ -949,6 +949,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.5.0"
+  native_toolchain_rs:
+    dependency: "direct overridden"
+    description:
+      path: native_toolchain_rs
+      ref: "28d204d840b7f5e5799fe9c2cd635d3d0346dde5"
+      resolved-ref: "28d204d840b7f5e5799fe9c2cd635d3d0346dde5"
+      url: "https://github.com/GregoryConrad/native_toolchain_rs.git"
+    source: git
+    version: "0.1.2"
   node_preamble:
     dependency: transitive
     description:
@@ -1057,10 +1066,10 @@ packages:
     dependency: transitive
     description:
       name: petitparser
-      sha256: "1a97266a94f7350d30ae522c0af07890c70b8e62c71e8e3920d1db4d23c057d1"
+      sha256: "07c8f0b1913bcde1ff0d26e57ace2f3012ccbf2b204e070290dad3bb22797646"
       url: "https://pub.dev"
     source: hosted
-    version: "7.0.1"
+    version: "6.1.0"
   platform:
     dependency: transitive
     description:
@@ -1531,6 +1540,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.5"
+  toml:
+    dependency: transitive
+    description:
+      name: toml
+      sha256: d968d149c8bd06dc14e09ea3a140f90a3f2ba71949e7a91df4a46f3107400e71
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.16.0"
   typed_data:
     dependency: transitive
     description:
@@ -1703,10 +1720,10 @@ packages:
     dependency: transitive
     description:
       name: xml
-      sha256: "971043b3a0d3da28727e40ed3e0b5d18b742fa5a68665cca88e74b7876d5e025"
+      sha256: b015a8ad1c488f66851d762d3090a21c600e479dc75e68328c52774040cf9226
       url: "https://pub.dev"
     source: hosted
-    version: "6.6.1"
+    version: "6.5.0"
   xxh3:
     dependency: transitive
     description:
