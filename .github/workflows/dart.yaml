@@ -18,9 +18,9 @@ jobs:
           flutter-version-file: pubspec.yaml
       - name: Analyze
         run: |
+          flutter pub get
           dart run build_runner build
           flutter gen-l10n
-          flutter pub get
           dart analyze --fatal-infos
 
   format:
