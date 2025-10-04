@@ -157,12 +157,11 @@ class ManualBackupService {
 
         // If the note type is null, it's an export from before v2.0.0 when only rich text notes were available
         if (noteType == null) {
-          if (RichTextNote.isFleatherData(noteAsJson['content'] as String)) {
-            notes.add(RichTextNote.fromJson(noteAsJson));
-          } else {
-            logger.w('Imported a note without a type as a plain text note because its content is not fleather data');
-            notes.add(PlainTextNote.fromJson(noteAsJson));
-          }
+          _addRichTextNote(
+            noteAsJson,
+            notes,
+            'Imported a note without a type as a plain text note because its content is not fleather data',
+          );
         } else {
           switch (noteType) {
             case NoteType.plainText:
@@ -170,7 +169,11 @@ class ManualBackupService {
             case NoteType.markdown:
               notes.add(MarkdownNote.fromJson(noteAsJson));
             case NoteType.richText:
-              notes.add(RichTextNote.fromJson(noteAsJson));
+              _addRichTextNote(
+                noteAsJson,
+                notes,
+                'Imported a rich text note as a plain text note because its content is not fleather data',
+              );
             case NoteType.checklist:
               notes.add(ChecklistNote.fromJson(noteAsJson));
           }
@@ -197,6 +200,16 @@ class ManualBackupService {
     }
 
     return true;
+  }
+
+  void _addRichTextNote(dynamic noteAsJson, List<Note> notes, String warningMessage) {
+    if (RichTextNote.isFleatherData(noteAsJson['content'] as String)) {
+      notes.add(RichTextNote.fromJson(noteAsJson));
+    } else {
+      logger.w(warningMessage);
+
+      notes.add(PlainTextNote.fromJson(noteAsJson));
+    }
   }
 
   Future<bool> _importPreferences(dynamic importedJson) async {
