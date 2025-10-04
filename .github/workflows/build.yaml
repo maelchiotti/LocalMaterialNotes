@@ -27,6 +27,7 @@ jobs:
         run: echo "${{ secrets.ANDROID_KEYSTORE }}" | base64 -d > android/localmaterialnotes_keystore.jks
       - name: Add key properties
         run: echo "${{ secrets.ANDROID_KEY_PROPERTIES }}" > android/key.properties
+      - run: ls /usr/local/lib/android/sdk/ndk/27.3.13750724/toolchains/llvm/prebuilt/linux-x86_64/bin/
       - name: Build app
         run: |
           dart run build_runner build
