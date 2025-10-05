@@ -50,7 +50,7 @@ dependencies:
   logger: ^2.6.0
   markdown: ^7.3.0
   material_symbols_icons: ^4.2874.0
-  mimir: ^0.2.0+2
+  mimir: ^0.2.1
   package_info_plus: ^9.0.0
   parchment: any
   parchment_delta: any

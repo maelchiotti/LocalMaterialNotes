@@ -953,10 +953,10 @@ packages:
     dependency: transitive
     description:
       name: native_toolchain_rs
-      sha256: f6eef10bcd0f8d6dbafb27eee146067a532ea763e81e9050ec98c802ae6f04e3
+      sha256: ed424d796dc2deb0e22dfcb4625612c58a72e9e9aa9c101a7a7cde2cb8d78c50
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.2+1"
+    version: "0.1.2+2"
   node_preamble:
     dependency: transitive
     description:
