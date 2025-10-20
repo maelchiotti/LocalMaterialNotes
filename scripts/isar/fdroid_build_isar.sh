@@ -9,7 +9,7 @@ x86() {
   bash tool/build_android.sh x86
 
   mv libisar_android_x86.so libisar.so
-  mv libisar.so "$PUB_CACHE"/hosted/pub.isar-community.dev/isar_flutter_libs-*/android/src/main/jniLibs/x86/
+  mv libisar.so "$PUB_CACHE"/hosted/pub.dev/isar_flutter_libs-*/android/src/main/jniLibs/x86/
 }
 
 x64() {
@@ -18,7 +18,7 @@ x64() {
   bash tool/build_android.sh x64
 
   mv libisar_android_x64.so libisar.so
-  mv libisar.so "$PUB_CACHE"/hosted/pub.isar-community.dev/isar_flutter_libs-*/android/src/main/jniLibs/x86_64/
+  mv libisar.so "$PUB_CACHE"/hosted/pub.dev/isar_flutter_libs-*/android/src/main/jniLibs/x86_64/
 }
 
 armv7() {
@@ -27,7 +27,7 @@ armv7() {
   bash tool/build_android.sh armv7
 
   mv libisar_android_armv7.so libisar.so
-  mv libisar.so "$PUB_CACHE"/hosted/pub.isar-community.dev/isar_flutter_libs-*/android/src/main/jniLibs/armeabi-v7a/
+  mv libisar.so "$PUB_CACHE"/hosted/pub.dev/isar_flutter_libs-*/android/src/main/jniLibs/armeabi-v7a/
 }
 
 arm64() {
@@ -36,7 +36,7 @@ arm64() {
   bash tool/build_android.sh arm64
 
   mv libisar_android_arm64.so libisar.so
-  mv libisar.so "$PUB_CACHE"/hosted/pub.isar-community.dev/isar_flutter_libs-*/android/src/main/jniLibs/arm64-v8a/
+  mv libisar.so "$PUB_CACHE"/hosted/pub.dev/isar_flutter_libs-*/android/src/main/jniLibs/arm64-v8a/
 }
 
 test -d .isar || exit

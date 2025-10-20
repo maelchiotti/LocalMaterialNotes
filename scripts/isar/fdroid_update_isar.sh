@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-isar_version="$(yq -r '.dependencies.isar.version' pubspec.yaml | cut -d '^' -f 2)"
+isar_version="$(yq -r '.dependencies.isar_community' pubspec.yaml | cut -d '^' -f 2)"
 checked_out_version="$(git -C .isar describe --tags)"
 
 if [ "$isar_version" = "$checked_out_version" ]; then
