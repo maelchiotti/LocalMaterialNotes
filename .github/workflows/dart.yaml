@@ -16,12 +16,10 @@ jobs:
         with:
           channel: 'beta'
           flutter-version-file: pubspec.yaml
+      - run: dart run build_runner build
+      - run: flutter gen-l10
       - name: Analyze
-        run: |
-          flutter pub get
-          dart run build_runner build
-          flutter gen-l10n
-          dart analyze --fatal-infos
+        run: dart analyze --fatal-infos
 
   format:
     name: Format
