@@ -17,7 +17,7 @@ jobs:
           channel: 'beta'
           flutter-version-file: pubspec.yaml
       - run: dart run build_runner build
-      - run: flutter gen-l10
+      - run: flutter gen-l10n
       - name: Analyze
         run: dart analyze --fatal-infos
 
