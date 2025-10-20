@@ -11,6 +11,7 @@ import '../../../common/constants/constants.dart';
 import '../../common/files/encryption_utils.dart';
 import '../../common/preferences/enums/sort_method.dart';
 import '../../common/preferences/preference_key.dart';
+import '../../services/notes/notes_service.dart';
 import '../label/label.dart';
 import 'note_status.dart';
 import 'types/note_type.dart';

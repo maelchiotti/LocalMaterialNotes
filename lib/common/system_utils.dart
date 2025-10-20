@@ -5,10 +5,10 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:listen_sharing_intent/listen_sharing_intent.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:quick_actions/quick_actions.dart';
-import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 import '../l10n/app_localizations/app_localizations.g.dart';
 import '../models/note/types/note_type.dart';

@@ -72,7 +72,7 @@ class RichTextNote extends Note {
         encryptionPassword != null ? EncryptionUtils().decrypt(encryptionPassword, contentAsJson) : contentAsJson,
       );
       ParchmentDocument.fromJson(content);
-    } on Exception {
+    } catch (_) {
       return false;
     }
 
@@ -81,7 +81,17 @@ class RichTextNote extends Note {
 
   /// Document containing the fleather content representation.
   @ignore
-  ParchmentDocument get document => ParchmentDocument.fromJson(jsonDecode(content) as List);
+  ParchmentDocument get document {
+    try {
+      return ParchmentDocument.fromJson(jsonDecode(content) as List);
+    } catch (exception, stackTrace) {
+      logger.e('Failed to decode the content of a rich text note, deleting it.', exception, stackTrace);
+
+      NotesService().delete(this);
+
+      return ParchmentDocument();
+    }
+  }
 
   @ignore
   @override

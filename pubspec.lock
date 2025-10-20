@@ -821,6 +821,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.0"
+  listen_sharing_intent:
+    dependency: "direct main"
+    description:
+      name: listen_sharing_intent
+      sha256: df12e6c78666018985c39df494fc12412ece6510c38c79fe1230f2abef0965fa
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.9.2"
   local_auth:
     dependency: "direct main"
     description:
@@ -1173,15 +1181,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.2"
-  receive_sharing_intent:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: "2cea396843cd3ab1b5ec4334be4233864637874e"
-      resolved-ref: "2cea396843cd3ab1b5ec4334be4233864637874e"
-      url: "https://github.com/KasemJaffer/receive_sharing_intent"
-    source: git
-    version: "1.8.1"
   remove_markdown:
     dependency: "direct main"
     description:
