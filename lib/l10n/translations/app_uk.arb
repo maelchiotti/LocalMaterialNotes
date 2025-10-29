@@ -3,11 +3,11 @@
   "@app_name": {
     "description": "Name of the application."
   },
-  "app_tagline": "Einfache, lokale Notizen-App im Material-Design",
+  "app_tagline": "Прості, локальні, нотатки в стилі Material Design",
   "@app_tagline": {
     "description": "Tagline of the application, shown in the about popup."
   },
-  "app_about": "{appName} ist eine auf Einfachheit abzielende, auf getipptem Text basierende Notizen Anwendung im Material-Design. Sie speichert die Notizen lokal und benötigt keine Berechtigung zum Internetzugriff, so dass nur Sie als einziges Zugriff auf die Notizen haben.",
+  "app_about": "{appName} — це текстовий додаток для створення нотаток, орієнтований на простоту. Він використовує Material Design. Нотатки зберігаються локально та не мають дозволів на доступ до Інтернету, тому доступ до них маєте лише ви.",
   "@app_about": {
     "description": "Description of the application, shown in the about popup.",
     "placeholders": {
@@ -17,295 +17,295 @@
       }
     }
   },
-  "error_snack_bar": "Fehler:",
+  "error_snack_bar": "Помилка:",
   "@error_snack_bar": {
     "description": "Prefix for the error message shown in the error snack bar, before the actual error message."
   },
-  "error_widget_title": "Es ist ein Fehler aufgetreten.",
+  "error_widget_title": "Виникла помилка.",
   "@error_widget_title": {
     "description": "Message shown in the error widget shown when a widget fails to build."
   },
-  "error_widget_description": "Bitte melde dieses Problem auf GitHub oder per E-Mail. Füge einen Screenshot dieser Seite und die Logs hinzu, die du unten kopieren oder exportieren kannst. Als Vorsichtsmaßnahme solltest Du Deine Notizen auch exportieren.",
+  "error_widget_description": "Будь ласка, повідомте про цю проблему на GitHub або поштою. Додайте нижче скриншот цієї сторінки та лог-файли, які можна скопіювати або експортувати. Як запобіжний захід, також слід експортувати свої нотатки.",
   "@error_widget_description": {
     "description": "Message shown in the error widget shown when a widget fails to build."
   },
-  "error_widget_disabled_secure_flag": "Die Einstellung, die App als sicher zu kennzeichnen, ist bis zum nächsten Neustart deaktiviert, um Screenshots zu ermöglichen.",
+  "error_widget_disabled_secure_flag": "Налаштування позначення програми як безпечної вимкнено до наступного перезавантаження, щоб увімкнути знімки екрана.",
   "@error_widget_disabled_secure_flag": {
     "description": "Tag shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
   },
-  "error_widget_button_export_notes": "Notizen exportieren",
+  "error_widget_button_export_notes": "Експорт нотаток",
   "@error_widget_button_export_notes": {
     "description": "Title of the button to export the notes as JSON on the error widget."
   },
-  "error_widget_button_copy_logs": "Logdateien kopieren",
+  "error_widget_button_copy_logs": "Копіювання лог-файлів",
   "@error_widget_button_copy_logs": {
     "description": "Title of the button to copy the logs to the clipboard on the error widget."
   },
-  "error_widget_button_export_logs": "Logdateien exportieren",
+  "error_widget_button_export_logs": "Експорт лог-файлів",
   "@error_widget_button_export_logs": {
     "description": "Title of the button to export the logs in a text file on the error widget."
   },
-  "error_widget_button_create_github_issue": "Erstelle ein Issue auf GitHub",
+  "error_widget_button_create_github_issue": "Створити запис у GitHub",
   "@error_widget_button_create_github_issue": {
     "description": "Title of the button to create a new GitHub issue on the error widget."
   },
-  "error_widget_button_send_mail": "E-Mail senden",
+  "error_widget_button_send_mail": "Надіслати пошту",
   "@error_widget_button_send_mail": {
     "description": "Title of the button to end a bug report mail on the error widget."
   },
-  "navigation_notes": "Notizen",
+  "navigation_notes": "Нотатки",
   "@navigation_notes": {
     "description": "Title of the notes page."
   },
-  "navigation_manage_labels_destination": "Labels verwalten",
+  "navigation_manage_labels_destination": "Керування тегами",
   "@navigation_manage_labels_destination": {
     "description": "Title of the button in the side navigation drawer to got to the page to manage the tags."
   },
-  "navigation_manage_labels_page": "Labels",
+  "navigation_manage_labels_page": "Теги",
   "@navigation_manage_labels_page": {
     "description": "Title of the page to manage the tags."
   },
-  "navigation_archives": "Archive",
+  "navigation_archives": "Архів",
   "@navigation_archives": {
     "description": "Title of the archives page."
   },
-  "navigation_bin": "Papierkorb",
+  "navigation_bin": "Кошик",
   "@navigation_bin": {
     "description": "Title of the bin page."
   },
-  "navigation_settings": "Einstellungen",
+  "navigation_settings": "Налаштування",
   "@navigation_settings": {
     "description": "Title of the settings page."
   },
-  "navigation_settings_appearance": "Aussehen",
+  "navigation_settings_appearance": "Вигляд",
   "@navigation_settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
-  "navigation_settings_notes_types": "Notizarten",
+  "navigation_settings_notes_types": "Типи нотаток",
   "@navigation_settings_notes_types": {
     "description": "Title of the settings page regarding the notes types."
   },
-  "navigation_settings_notes_tiles": "Notizkacheln",
+  "navigation_settings_notes_tiles": "Плити нотаток",
   "@navigation_settings_notes_tiles": {
     "description": "Title of the settings page regarding the notes tiles appearance."
   },
-  "navigation_settings_behavior": "Verhalten",
+  "navigation_settings_behavior": "Поведінка",
   "@navigation_settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
-  "navigation_settings_editor": "Editor",
+  "navigation_settings_editor": "Редактор",
   "@navigation_settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
-  "navigation_settings_labels": "Labels",
+  "navigation_settings_labels": "Теги",
   "@navigation_settings_labels": {
     "description": "Title of the settings page regarding the tags."
   },
-  "navigation_settings_backup": "Sicherheitskopie",
+  "navigation_settings_backup": "Резервні копії",
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
   },
-  "navigation_settings_security": "Sicherheit",
+  "navigation_settings_security": "Безпека",
   "@navigation_settings_security": {
     "description": "Title of the settings page regarding the security."
   },
-  "navigation_settings_accessibility": "Barrierefreiheit",
+  "navigation_settings_accessibility": "Доступність",
   "@navigation_settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
   },
-  "navigation_settings_help": "Hilfe",
+  "navigation_settings_help": "Допомога",
   "@navigation_settings_help": {
     "description": "Title of the settings page to receive help."
   },
-  "navigation_settings_about": "Über",
+  "navigation_settings_about": "Про додаток",
   "@navigation_settings_about": {
     "description": "Title of the settings page regarding the information about the application."
   },
-  "button_sort_title": "Titel",
+  "button_sort_title": "Заголовок",
   "@button_sort_title": {
     "description": "Text of the button to sort the notes list by title."
   },
-  "button_sort_ascending": "Aufsteigend",
+  "button_sort_ascending": "Наростальний",
   "@button_sort_ascending": {
     "description": "Text of the button to sort the notes list in ascending order."
   },
-  "settings_page_appearance": "Aussehen",
+  "settings_page_appearance": "Вигляд",
   "@settings_page_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
-  "settings_page_appearance_description": "Sprache, Aussehen, Schrift",
+  "settings_page_appearance_description": "Мова, теми, шрифти",
   "@settings_page_appearance_description": {
     "description": "Description of the appearance settings page."
   },
-  "settings_language": "Sprache",
+  "settings_language": "Мова",
   "@settings_language": {
     "description": "Title of the language setting tile."
   },
-  "settings_language_contribute": "Mitwirken",
+  "settings_language_contribute": "Підтримати",
   "@settings_language_contribute": {
     "description": "Button to contribute to the localizations, shown on the language setting tile."
   },
-  "settings_appearance_section_theming": "Design",
+  "settings_appearance_section_theming": "Оформити",
   "@settings_appearance_section_theming": {
     "description": "Title of the section regarding the theming under the appearance settings."
   },
-  "settings_theme": "Gestaltung",
+  "settings_theme": "Тема",
   "@settings_theme": {
     "description": "Title of the theming setting tile."
   },
-  "settings_theme_system": "System",
+  "settings_theme_system": "Системна",
   "@settings_theme_system": {
     "description": "Theming setting to use the theme of the system."
   },
-  "settings_theme_light": "Hell",
+  "settings_theme_light": "Світла",
   "@settings_theme_light": {
     "description": "Theming setting to use the light theme."
   },
-  "settings_theme_dark": "Dunkel",
+  "settings_theme_dark": "Темна",
   "@settings_theme_dark": {
     "description": "Theming setting to use the dark theme."
   },
-  "settings_dynamic_theming": "Dynamisches Design",
+  "settings_dynamic_theming": "Динамічне оформлення",
   "@settings_dynamic_theming": {
     "description": "Title of the dynamic theming setting tile (to use colors generated from the system)."
   },
-  "settings_dynamic_theming_description": "Übernehme die Farben vom System",
+  "settings_dynamic_theming_description": "Генерувати кольори з системи",
   "@settings_dynamic_theming_description": {
     "description": "Description of the dynamic theming setting tile."
   },
-  "settings_black_theming": "Schwarze Gestaltung",
+  "settings_black_theming": "Amoled оформлення",
   "@settings_black_theming": {
     "description": "Title of the black theming setting tile (to use a black background in dark mode)."
   },
-  "settings_black_theming_description": "Nutze einen schwarzen Hintergrund im dunklen Modus",
+  "settings_black_theming_description": "Використовувати чорний фон у темному режимі",
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
   },
-  "settings_appearance_section_fonts": "Schriftart",
+  "settings_appearance_section_fonts": "Шрифти",
   "@settings_appearance_section_fonts": {
     "description": "Title of the section regarding the theming under the appearance settings."
   },
-  "settings_app_font": "App Schriftart",
+  "settings_app_font": "Шрифт додатка",
   "@settings_app_font": {
     "description": "Title of the setting tile to choose the font of the app."
   },
-  "settings_app_font_description": "Schriftart, die für alles in der App außer für den Notizen Editor benutzt wird",
+  "settings_app_font_description": "Шрифт використовується для всіх текстів у додатку, окрім редактора нотаток",
   "@settings_app_font_description": {
     "description": "Description of the setting tile to choose the font of the app."
   },
-  "settings_editor_font": "Editor Schriftart",
+  "settings_editor_font": "Шрифт редактора",
   "@settings_editor_font": {
     "description": "Title of the setting tile to choose the font of the notes."
   },
-  "settings_editor_font_description": "Schriftart die nur für den Text im Notizen Editor benutzt wird",
+  "settings_editor_font_description": "Шрифт використовується лише для тексту в редакторі нотаток",
   "@settings_editor_font_description": {
     "description": "Description of the setting tile to choose the font of the app."
   },
-  "settings_page_notes_tiles": "Notizkacheln",
+  "settings_page_notes_tiles": "Плити нотаток",
   "@settings_page_notes_tiles": {
     "description": "Title of the settings page regarding the notes tiles."
   },
-  "settings_page_notes_tiles_description": "Aussehen, Inhalt",
+  "settings_page_notes_tiles_description": "Вигляд, вміст",
   "@settings_page_notes_tiles_description": {
     "description": "Description of the notes tiles settings page."
   },
-  "settings_page_notes_tiles_appearance_section": "Aussehen",
+  "settings_page_notes_tiles_appearance_section": "Вигляд",
   "@settings_page_notes_tiles_appearance_section": {
     "description": "Title of the section regarding the appearance under the notes tiles settings."
   },
-  "settings_page_notes_tiles_content_section": "Inhalt",
+  "settings_page_notes_tiles_content_section": "Вміст",
   "@settings_page_notes_tiles_content_section": {
     "description": "Title of the section regarding the content under the notes tiles settings."
   },
-  "settings_show_tiles_background": "Hintergrund",
+  "settings_show_tiles_background": "Фон",
   "@settings_show_tiles_background": {
     "description": "Title of the setting tile to show the background of the notes tiles."
   },
-  "settings_show_tiles_background_description": "Hintergrund der Notizkacheln anzeigen",
+  "settings_show_tiles_background_description": "Показати фон плиток нотаток",
   "@settings_show_tiles_background_description": {
     "description": "Description of the setting tile to show the background of the notes tiles."
   },
-  "settings_show_separators": "Trennlinien",
+  "settings_show_separators": "Роздільники",
   "@settings_show_separators": {
     "description": "Title of the setting tile to show the separators between the notes tiles."
   },
-  "settings_show_separators_description": "Trennlinie zwischen den Notizkacheln anzeigen",
+  "settings_show_separators_description": "Показати роздільник між плитками нотаток",
   "@settings_show_separators_description": {
     "description": "Description of the setting tile to show the separators between the notes tiles."
   },
-  "settings_show_note_type_icon": "Typ-Icon anzeigen",
+  "settings_show_note_type_icon": "Показати значок типу",
   "@settings_show_note_type_icon": {
     "description": "Title of the setting tile to show the icon of the type of the note."
   },
-  "settings_show_note_type_icon_description": "Icon des Notiztyps zeigen",
+  "settings_show_note_type_icon_description": "Показати значок типу нотатки",
   "@settings_show_note_type_icon_description": {
     "description": "Description of the setting tile to show the icon of the type of the note."
   },
-  "settings_show_titles_only": "Nur Titel",
+  "settings_show_titles_only": "Лише заголовки",
   "@settings_show_titles_only": {
     "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
   },
-  "settings_show_titles_only_description": "Nur Notiztitel anzeigen",
+  "settings_show_titles_only_description": "Показувати лише заголовки нотаток",
   "@settings_show_titles_only_description": {
     "description": "Description of the setting tile to only show the titles of the notes in the notes tiles."
   },
-  "settings_show_titles_only_disable_in_search_view": "Nur Titel in Suche deaktivieren",
+  "settings_show_titles_only_disable_in_search_view": "Вимкнути заголовки лише в режимі пошуку",
   "@settings_show_titles_only_disable_in_search_view": {
     "description": "Title of the setting tile to disable only showing the titles of the notes in the search view."
   },
-  "settings_show_titles_only_disable_in_search_view_description": "\"Nur Titel anzeigen\" deaktivieren, wenn Du Dich in der Suchansicht befindest",
+  "settings_show_titles_only_disable_in_search_view_description": "Вимкнути опцію показу лише назв у режимі пошуку",
   "@settings_show_titles_only_disable_in_search_view_description": {
     "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
   },
-  "settings_content_preview_max_lines": "Maximale Vorschauzeilen",
+  "settings_content_preview_max_lines": "Максимальна кількість рядків попереднього перегляду",
   "@settings_content_preview_max_lines": {
     "description": "Title of the setting tile to choose the maximum number of content preview lines to show."
   },
-  "settings_content_preview_max_lines_description": "Maximale Anzahl an Zeilen der Inhaltsvorschau",
+  "settings_content_preview_max_lines_description": "Максимальна кількість рядків попереднього перегляду вмісту для показу",
   "@settings_content_preview_max_lines_description": {
     "description": "Description of the setting tile to choose the maximum number of content preview lines to show."
   },
-  "settings_behavior": "Verhalten",
+  "settings_behavior": "Поведінка",
   "@settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
-  "settings_behavior_description": "Bestätigungen, Wischgesten",
+  "settings_behavior_description": "Підтвердження, дії зі гортанням",
   "@settings_behavior_description": {
     "description": "Description of the behavior settings page."
   },
-  "settings_behavior_application": "Anwendung",
+  "settings_behavior_application": "Застосунок",
   "@settings_behavior_application": {
     "description": "Title of the sub-section regarding the application under the behavior settings."
   },
-  "settings_confirmations": "Bestätigungsdialog",
+  "settings_confirmations": "Діалогове вікно підтвердження",
   "@settings_confirmations": {
     "description": "Title of the setting tile to choose when to show the confirmation dialog when performing an action on a note."
   },
-  "settings_confirmations_description": "Bestätigungsdialog bei Aktion",
+  "settings_confirmations_description": "Коли показувати діалогове вікно підтвердження під час виконання дії з нотаткою",
   "@settings_confirmations_description": {
     "description": "Description of the setting tile to choose when to show the confirmation dialog when performing an action on a note."
   },
-  "settings_confirmations_title_none": "Niemals",
+  "settings_confirmations_title_none": "Ніколи",
   "@settings_confirmations_title_none": {
     "description": "Value of the setting to never show a confirmation dialog when performing an action on a note."
   },
-  "settings_confirmations_title_irreversible": "Nur unwiderrufliche Aktionen",
+  "settings_confirmations_title_irreversible": "Тільки незворотні дії",
   "@settings_confirmations_title_irreversible": {
     "description": "Value of the setting to only show a confirmation dialog when performing an action on a note if it is irreversible."
   },
-  "settings_confirmations_title_all": "Immer",
+  "settings_confirmations_title_all": "Завжди",
   "@settings_confirmations_title_all": {
     "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
   },
-  "settings_auto_remove_from_bin_title": "Automatisch aus dem Papierkorb entfernen",
+  "settings_auto_remove_from_bin_title": "Автоматичне видалення з кошика",
   "@settings_auto_remove_from_bin_title": {
     "description": "Title of the setting tile to automatically remove notes from the bin after a certain delay."
   },
-  "settings_auto_remove_from_bin_description": "Notizen automatisch aus dem Papierkorb entfernen",
+  "settings_auto_remove_from_bin_description": "Автоматично видаляти нотатки з кошика",
   "@settings_auto_remove_from_bin_description": {
     "description": "Description of the setting tile to automatically remove notes from the bin after a certain delay."
   },
-  "settings_auto_remove_from_bin_value": "{delay, select, 7{Nach 1 Woche} 14{Nach 2 Wochen} 30{Nach 1 Monat} 90{Nach 3 Monaten} 180{Nach 6 Monaten} 365{Nach 1 Jahr} other{Nie}}",
+  "settings_auto_remove_from_bin_value": "{delay, select, 7{Після тижня} 14{Після 2 тижнів} 30{Після місяця} 90{Після 3 місяців} 180{Після 6 місяців} 365{Після року} other{Ніколи}}",
   "@settings_auto_remove_from_bin_value": {
     "description": "Value of the setting tile to choose after which amount of time the application/note/label locks itself after the application was moved to the background.",
     "placeholders": {
@@ -315,239 +315,239 @@
       }
     }
   },
-  "settings_behavior_swipe_actions": "Wischgesten",
+  "settings_behavior_swipe_actions": "Дії з гортанням",
   "@settings_behavior_swipe_actions": {
     "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
   },
-  "settings_behavior_swipe_actions_archives": "Wischgesten (Archive)",
+  "settings_behavior_swipe_actions_archives": "Дії з гортанням (архів)",
   "@settings_behavior_swipe_actions_archives": {
     "description": "Title of the section regarding the swipe actions on the notes tiles in the archives under the behavior settings."
   },
-  "settings_behavior_swipe_actions_bin": "Wischgesten (Papierkorb)",
+  "settings_behavior_swipe_actions_bin": "Дії з гортанням (кошик)",
   "@settings_behavior_swipe_actions_bin": {
     "description": "Title of the section regarding the swipe actions on the notes tiles in the bin under the behavior settings."
   },
-  "settings_swipe_action_right": "Aktion für Rechtswischen",
+  "settings_swipe_action_right": "Дія гортання праворуч",
   "@settings_swipe_action_right": {
     "description": "Title of the setting tile to choose which action to trigger when a right swapping a note tile."
   },
-  "settings_swipe_action_right_description": "Aktion bei Nach-Rechts-Wischen",
+  "settings_swipe_action_right_description": "Дія, яка спрацьовує, коли на плитці нотатки виконується гортання праворуч",
   "@settings_swipe_action_right_description": {
     "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile."
   },
-  "settings_bin_swipe_action_right_description": "Aktion, die ausgelöst wird, wenn man auf einer Notizkachel im Papierkorb nach rechts wischt",
+  "settings_bin_swipe_action_right_description": "Дія, яка спрацьовує, коли на плитці нотатки в кошику виконується гортання праворуч",
   "@settings_bin_swipe_action_right_description": {
     "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a note tile in the bin."
   },
-  "settings_swipe_action_left": "Aktion für Linkswischen",
+  "settings_swipe_action_left": "Дія гортання ліворуч",
   "@settings_swipe_action_left": {
     "description": "Title of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
   },
-  "settings_swipe_action_left_description": "Aktion bei Nach-Links-Wischen",
+  "settings_swipe_action_left_description": "Дія, яка спрацьовує, коли на плитці нотатки виконується гортання ліворуч",
   "@settings_swipe_action_left_description": {
     "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile."
   },
-  "settings_bin_swipe_action_left_description": "Aktion, die ausgelöst wird, wenn man auf einer Notizkachel im Papierkorb nach links wischt",
+  "settings_bin_swipe_action_left_description": "Дія, яка спрацьовує, коли на плитці нотатки в кошику виконується гортання ліворуч",
   "@settings_bin_swipe_action_left_description": {
     "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile in the bin."
   },
-  "settings_page_notes_types": "Notiztypen",
+  "settings_page_notes_types": "Типи нотаток",
   "@settings_page_notes_types": {
     "description": "Title of the settings page regarding the notes types."
   },
-  "settings_page_notes_types_description": "Zu verwendende Typen, Rich-Text",
+  "settings_page_notes_types_description": "Типи до використання, форматований текст",
   "@settings_page_notes_types_description": {
     "description": "Description of the settings page regarding the notes types."
   },
-  "settings_section_types_to_use": "Zu verwendende Typen",
+  "settings_section_types_to_use": "Типи до використання",
   "@settings_section_types_to_use": {
     "description": "Title of the settings section regarding the notes types to use."
   },
-  "settings_available_notes_types": "Verfügbare Notiztypen",
+  "settings_available_notes_types": "Доступні типи до використання",
   "@settings_available_notes_types": {
     "description": "Title of the setting tile to choose the available notes types."
   },
-  "settings_available_notes_types_description": "Die Liste der Notiztypen, die mit dem Button \"Hinzufügen\" von der Notizseite erstellt werden können. Beim Entfernen eines Typs werden bereits bestehende Notizen mit diesem Typ nicht gelöscht und können weiterhin normal verwendet werden",
+  "settings_available_notes_types_description": "Список типів нотаток, які можна створити за допомогою кнопки «Додати» на сторінці нотаток. Під час видалення типу наявні нотатки цього типу не видаляються та їх можна використовувати як завжди",
   "@settings_available_notes_types_description": {
     "description": "Description of the setting tile to choose the available notes types."
   },
-  "settings_available_default_share_type": "Standardtyp fürs Teilen",
+  "settings_available_default_share_type": "Тип поширення за замовчуванням",
   "@settings_available_default_share_type": {
     "description": "Title of the setting tile to choose the default note type to use when creating a note from a share action."
   },
-  "settings_available_default_share_type_description": "Der Standard-Notiztyp, der beim Erstellen einer Notiz aus einer Teilen-Aktion verwendet werden soll. Es kann auch ein Typ sein, der nicht über den \"Hinzufügen\"-Button verfügbar ist",
+  "settings_available_default_share_type_description": "Тип нотатки за замовчуванням, який використовується під час створення нотатки з дії поширення. Це може бути тип, недоступний за допомогою кнопки «Додати»",
   "@settings_available_default_share_type_description": {
     "description": "Description of the setting tile to choose the default note type to use when creating a note from a share action."
   },
-  "settings_editor": "Editor",
+  "settings_editor": "Редактор",
   "@settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
   },
-  "settings_editor_description": "Verhalten",
+  "settings_editor_description": "Поведінка",
   "@settings_editor_description": {
     "description": "Description of the editor settings page."
   },
-  "settings_editor_behavior": "Verhalten",
+  "settings_editor_behavior": "Поведінка",
   "@settings_editor_behavior": {
     "description": "Title of the settings section regarding the behavior of the editor"
   },
-  "settings_show_editor_mode_button": "Bearbeitungsmodus-Schaltfläche",
+  "settings_show_editor_mode_button": "Кнопка режиму редактора",
   "@settings_show_editor_mode_button": {
     "description": "Title of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
   },
-  "settings_show_editor_mode_button_description": "Schaltfläche zum Umschalten zwischen Bearbeitungs- und Lesemodus anzeigen",
+  "settings_show_editor_mode_button_description": "Увімкніть кнопку для перемикання редактора між режимом редагування та режимом читання",
   "@settings_show_editor_mode_button_description": {
     "description": "Description of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
   },
-  "settings_open_editor_reading_mode": "Im Lesemodus öffnen",
+  "settings_open_editor_reading_mode": "Відкрити в режимі читання",
   "@settings_open_editor_reading_mode": {
     "description": "Title of the setting tile to enable opening the editor in reading mode by default."
   },
-  "settings_open_editor_reading_mode_description": "Editor standardmäßig im Lesemodus öffnen",
+  "settings_open_editor_reading_mode_description": "Відкривати редактор у режимі читання за замовчуванням",
   "@settings_open_editor_reading_mode_description": {
     "description": "Description of the setting tile to enable opening the editor in reading mode by default."
   },
-  "settings_focus_title_on_new_note": "Cursor ins Titelfeld setzen",
+  "settings_focus_title_on_new_note": "Зосередитись на заголовку",
   "@settings_focus_title_on_new_note": {
     "description": "Title of the setting tile to enable focusing the title when creating a new note by default."
   },
-  "settings_focus_title_on_new_note_description": "Den Cursor beim Erstellen einer neuen Notiz ins Titelfeld setzen anstelle des Inhaltsfeldes",
+  "settings_focus_title_on_new_note_description": "Зосередитись на заголовку, а не на змісті під час створення нової нотатки",
   "@settings_focus_title_on_new_note_description": {
     "description": "Description of the setting tile to enable focusing the title when creating a new note by default."
   },
-  "settings_editor_appearance": "Aussehen",
+  "settings_editor_appearance": "Вигляд",
   "@settings_editor_appearance": {
     "description": "Title of the settings section regarding the appearance of the editor"
   },
-  "settings_toolbar_style_title": "Symbolleisten-Stil",
+  "settings_toolbar_style_title": "Стиль панелі інструментів",
   "@settings_toolbar_style_title": {
     "description": "Title of the setting tile to choose the toolbar style."
   },
-  "settings_toolbar_style_description": "Der Stil der Symbolleiste des Rich-Text-Editors",
+  "settings_toolbar_style_description": "Стиль панелі інструментів редактора форматованого тексту",
   "@settings_toolbar_style_description": {
     "description": "Description of the setting tile to choose the toolbar style."
   },
-  "settings_use_paragraph_spacing": "Absatzabstand",
+  "settings_use_paragraph_spacing": "Інтервал між абзацами",
   "@settings_use_paragraph_spacing": {
     "description": "Title of the setting tile to enable the spacing between paragraphs in the notes content."
   },
-  "settings_use_paragraph_spacing_description": "Verwende Abstand zwischen Absätzen",
+  "settings_use_paragraph_spacing_description": "Використовувати інтервали між абзацами",
   "@settings_use_paragraph_spacing_description": {
     "description": "Description of the setting tile to enable the spacing between paragraphs in the notes content."
   },
-  "settings_labels": "Labels",
+  "settings_labels": "Теги",
   "@settings_labels": {
     "description": "Title of the settings page regarding the tags functionality."
   },
-  "settings_labels_description": "Aktivierung, Aussehen",
+  "settings_labels_description": "Увімкнути, вигляд",
   "@settings_labels_description": {
     "description": "Description of the tags settings page."
   },
-  "settings_enable_labels": "Aktivieren",
+  "settings_enable_labels": "Увімкнути",
   "@settings_enable_labels": {
     "description": "Title of the setting tile to enable the tags."
   },
-  "settings_enable_labels_description": "Erlaubt das Kategorisieren der Notizen mit Beschriftungen (das Deaktivieren dieser Funktion löscht die Beschriftungen weder, noch entfernt sie sie aus den Notizen, es verbirgt sie nur)",
+  "settings_enable_labels_description": "Дозволити категоризацію нотаток за допомогою тегів (вимкнення цієї функції не видаляє теги та не видаляє їх з нотаток, а лише приховує їх)",
   "@settings_enable_labels_description": {
     "description": "Description of the setting tile to enable the tags."
   },
-  "settings_labels_appearance": "Aussehen",
+  "settings_labels_appearance": "Вигляд",
   "@settings_labels_appearance": {
     "description": "Title of the settings section regarding the appearance of the tags."
   },
-  "settings_show_labels_note_tile": "Labels auf Notizkacheln anzeigen",
+  "settings_show_labels_note_tile": "Показувати теги на плитці нотаток",
   "@settings_show_labels_note_tile": {
     "description": "Title of the setting tile to show the tags on the notes tiles."
   },
-  "settings_show_labels_note_tile_description": "Auf der Startseite Notizen mit ihren Labels anzeigen",
+  "settings_show_labels_note_tile_description": "Показати список тегів плиток нотаток",
   "@settings_show_labels_note_tile_description": {
     "description": "Description of the setting tile to show the tags on the notes tiles."
   },
-  "settings_show_labels_editor": "Labels im Editor anzeigen",
+  "settings_show_labels_editor": "Показати теги в редакторі",
   "@settings_show_labels_editor": {
     "description": "Title of the setting tile to show the tags in the editor."
   },
-  "settings_show_labels_editor_description": "Liste der Labels am unteren Rand des Editors anzeigen",
+  "settings_show_labels_editor_description": "Показати список тегів унизу редактора",
   "@settings_show_labels_editor_description": {
     "description": "Description of the setting tile to show the tags in the editor."
   },
-  "settings_labels_section_behavior": "Verhalten",
+  "settings_labels_section_behavior": "Поведінка",
   "@settings_labels_section_behavior": {
     "description": "Title of the settings section regarding the behavior of the tags."
   },
-  "settings_labels_swipe_action_right": "Aktion bei nach rechts wischen",
+  "settings_labels_swipe_action_right": "Дія гортання праворуч",
   "@settings_labels_swipe_action_right": {
     "description": "Title of the setting tile to choose which action to trigger when a right swapping a label tile."
   },
-  "settings_labels_swipe_action_right_description": "Aktion die ausgeführt wird, wenn auf den Notizkacheln nach rechts gewischt wird",
+  "settings_labels_swipe_action_right_description": "Дія, яка спрацьовує, коли на плитці з міткою виконується гортання праворуч",
   "@settings_labels_swipe_action_right_description": {
     "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a label tile."
   },
-  "settings_labels_swipe_action_left": "Aktion bei nach links wischen",
+  "settings_labels_swipe_action_left": "Дія гортання ліворуч",
   "@settings_labels_swipe_action_left": {
     "description": "Title of the setting tile to choose which action to trigger when a left swapping a label tile."
   },
-  "settings_labels_swipe_action_left_description": "Aktion die ausgeführt wird, wenn auf den Notizkacheln nach links gewischt wird",
+  "settings_labels_swipe_action_left_description": "Дія, яка спрацьовує, коли на плитці з міткою виконується гортання ліворуч",
   "@settings_labels_swipe_action_left_description": {
     "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a label tile."
   },
-  "settings_backup": "Sicherung",
+  "settings_backup": "Резервна копія",
   "@settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
   },
-  "settings_backup_description": "Manueller und automatischer Export, Verschlüsselung, Import",
+  "settings_backup_description": "Ручний та автоматичний експорт, шифрування, імпорт",
   "@settings_backup_description": {
     "description": "Description of the backup settings page."
   },
-  "settings_backup_import": "Import",
+  "settings_backup_import": "Імпорт",
   "@settings_backup_import": {
     "description": "Title of the settings section regarding the import of a backup."
   },
-  "settings_import": "Import",
+  "settings_import": "Імпорт",
   "@settings_import": {
     "description": "Title of the setting tile to import a backup."
   },
-  "settings_import_description": "Importieren Sie Notizen, Beschriftungen und Einstellungen aus einer JSON-Datei",
+  "settings_import_description": "Імпорт нотаток, тегів та налаштувань з JSON-файлу",
   "@settings_import_description": {
     "description": "Description of the setting tile to import a backup."
   },
-  "settings_backup_manual_export": "Manueller Export",
+  "settings_backup_manual_export": "Ручний експорт",
   "@settings_backup_manual_export": {
     "description": "Title of the settings section regarding the manual export of the notes."
   },
-  "settings_export_json": "Exportiere als JSON",
+  "settings_export_json": "Експортувати як JSON-файл",
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_json_description": "Exportieren Sie alle Notizen, Beschriftungen und Einstellungen sofort in eine JSON-Datei, die wieder importiert werden kann",
+  "settings_export_json_description": "Миттєво експортувати всі нотатки, теги та налаштування у файл JSON, який можна імпортувати назад",
   "@settings_export_json_description": {
     "description": "Description of the setting tile to manually export the notes as JSON."
   },
-  "settings_export_markdown": "Exportiere als Markdown",
+  "settings_export_markdown": "Експортувати як Markdown",
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
   },
-  "settings_export_markdown_description": "Exportieren Sie alle Notizen sofort in eine Markdown-Datei",
+  "settings_export_markdown_description": "Миттєво експортувати всі нотатки до файлу Markdown",
   "@settings_export_markdown_description": {
     "description": "Description of the setting tile to manually export the notes as Markdown."
   },
-  "settings_backup_auto_export": "Automatischer Export",
+  "settings_backup_auto_export": "Автоматичний експорт",
   "@settings_backup_auto_export": {
     "description": "Title of the settings section regarding the automatic export of the notes."
   },
-  "settings_auto_export": "Automatischer Export",
+  "settings_auto_export": "Автоматичний експорт",
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
-  "settings_auto_export_description": "Exportieren Sie automatisch alle Notizen, Beschriftungen und Einstellungen in eine JSON-Datei, die wieder importiert werden kann",
+  "settings_auto_export_description": "Автоматично експортувати всі нотатки, теги та налаштування у файл JSON, який можна імпортувати назад",
   "@settings_auto_export_description": {
     "description": "Description of the settings tile to enable the automatic export."
   },
-  "settings_auto_export_frequency": "Häufigkeit",
+  "settings_auto_export_frequency": "Частота",
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "{frequency, select, 1{Jeden Tag} 7{Jede Woche} 14{Jede 2 Wochen} 30{Jeden Monat} other{}}",
+  "settings_auto_export_frequency_value": "Кожен {frequency, select, 1{день} 7{тиждень} 14{2 тижні} 30{місяць} other{}}",
   "@settings_auto_export_frequency_value": {
     "description": "Frequency of the automatic exports.",
     "placeholders": {
@@ -557,71 +557,71 @@
       }
     }
   },
-  "settings_auto_export_frequency_description": "Häufigkeit des automatischen Exports",
+  "settings_auto_export_frequency_description": "Частота автоматичного експорту",
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
   },
-  "settings_auto_export_encryption": "Verschlüsselung",
+  "settings_auto_export_encryption": "Шифрування",
   "@settings_auto_export_encryption": {
     "description": "Title of the settings tile to enable the encryption of the automatic exports."
   },
-  "settings_auto_export_encryption_description": "Verschlüssele den Titel und den Inhalt der Notizen mit einem Passwort",
+  "settings_auto_export_encryption_description": "Зашифрувати назву та вміст нотаток паролем",
   "@settings_auto_export_encryption_description": {
     "description": "Description of the settings tile to enable the encryption of the automatic exports."
   },
-  "settings_auto_export_directory": "Pfad",
+  "settings_auto_export_directory": "Тека",
   "@settings_auto_export_directory": {
     "description": "Title of the settings tile to choose the directory where to save the automatic exports."
   },
-  "settings_auto_export_directory_description": "Verzeichnis für automatische Exports",
+  "settings_auto_export_directory_description": "Тека для зберігання автоматичних експортів",
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
-  "settings_security": "Sicherheit",
+  "settings_security": "Безпека",
   "@settings_security": {
     "description": "Title of the settings page regarding the security."
   },
-  "settings_security_description": "Sichere Flagge, Sperre der Anwendung, Notiz",
+  "settings_security_description": "Позначення безпеки, блокування додатка, блокування нотатки",
   "@settings_security_description": {
     "description": "Description of the settings page regarding the security."
   },
-  "settings_security_application": "App",
+  "settings_security_application": "Додаток",
   "@settings_security_application": {
     "description": "Title of the sub-section regarding the application under the security settings."
   },
-  "settings_security_application_lock": "App Sperre",
+  "settings_security_application_lock": "Блокування додатка",
   "@settings_security_application_lock": {
     "description": "Title of the sub-section regarding the application lock under the security settings."
   },
-  "settings_security_note_lock": "Notizen Sperre",
+  "settings_security_note_lock": "Блокування нотатки",
   "@settings_security_note_lock": {
     "description": "Title of the sub-section regarding the note lock under the security settings."
   },
-  "settings_flag_secure": "App als sicher markieren",
+  "settings_flag_secure": "Позначити додаток як безпечний",
   "@settings_flag_secure": {
     "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
   },
-  "settings_flag_secure_description": "Die App im App-Umschalter nicht anzeigen und verhindern, dass Screenshots gemacht werden",
+  "settings_flag_secure_description": "Приховати додаток від нещодавніх програм і запобігти створенню скриншотів",
   "@settings_flag_secure_description": {
     "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
   },
-  "settings_application_lock_title": "Sperre",
+  "settings_application_lock_title": "Блокування",
   "@settings_application_lock_title": {
     "description": "Title of the setting tile to toggle whether the application is locked."
   },
-  "settings_application_lock_description": "Sperre die App und Authentifizierung des Gerätes zum Entsperren anfordern",
+  "settings_application_lock_description": "Заблокувати додаток та вимагати автентифікацію за допомогою пристрою, щоб розблокувати її",
   "@settings_application_lock_description": {
     "description": "Description of the setting tile to toggle whether the application is locked."
   },
-  "settings_application_lock_delay_title": "Sperrverzögerung",
+  "settings_application_lock_delay_title": "Затримка блокування",
   "@settings_application_lock_delay_title": {
     "description": "Title of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
   },
-  "settings_application_lock_delay_description": "Zeit, nach der die App gesperrt wird, nachdem sie minimiert wurde",
+  "settings_application_lock_delay_description": "Затримка, після якої додаток блокується при переміщенні у фоновий режим",
   "@settings_application_lock_delay_description": {
     "description": "Description of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
   },
-  "settings_lock_delay_value": "{delay, select, 0{Sofort} 3{Nach 3 Sekunden} 5{Nach 5 Sekunden} 10{Nach 10 Sekunden} 30{Nach 30 Sekunden} 60{Nach einer Minute} 120{Nach 2 Minuten} 300{} other{Nie}}",
+  "settings_lock_delay_value": "{delay, select, 0{Негайно} 3{Після 3 секунд} 5{Після 5 секунд} 10{Після 10 секунд} 30{Після 30 секунд} 60{Після хвилини} 120{Після 2 хвилин} 300{Після 5 хвилин} other{Ніколи}}",
   "@settings_lock_delay_value": {
     "description": "Value of the setting tile to choose after which amount of time the application/note/label locks itself after the application was moved to the background.",
     "placeholders": {
@@ -631,139 +631,155 @@
       }
     }
   },
-  "settings_note_lock_title": "Notizen Sperre",
+  "settings_note_lock_title": "Блокування нотатки",
   "@settings_note_lock_title": {
     "description": "Title of the setting tile to toggle whether the notes can be locked."
   },
-  "settings_note_lock_description": "Sperre die Notiz und fordere eine Authentifizierung des Gerätes an, um sie zu sehen und zu bearbeiten",
+  "settings_note_lock_description": "Блокування нотатки та вимога автентифікації за допомогою пристрою для її перегляду та редагування",
   "@settings_note_lock_description": {
     "description": "Description of the setting tile to toggle whether the notes can be locked."
   },
-  "settings_accessibility": "Barrierefreiheit",
+  "settings_label_lock_title": "Блокування тега",
+  "@settings_label_lock_title": {
+    "description": "Title of the setting tile to toggle whether the tags can be locked."
+  },
+  "settings_label_lock_description": "Блокування тега і вимога автентифікації за допомогою пристрої для перегляду та редагування будь-якої нотатки, яка його містить",
+  "@settings_label_lock_description": {
+    "description": "Description of the setting tile to toggle whether the tags can be locked."
+  },
+  "settings_note_lock_delay_title": "Затримка блокування",
+  "@settings_note_lock_delay_title": {
+    "description": "Title of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
+  },
+  "settings_note_lock_delay_description": "Затримка, після якої нотатка блокується, коли додаток переміщується у фоновий режим",
+  "@settings_note_lock_delay_description": {
+    "description": "Description of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
+  },
+  "settings_accessibility": "Доступність",
   "@settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility"
   },
-  "settings_accessibility_text_size": "Textgröße",
+  "settings_accessibility_text_size": "Розмір тексту",
   "@settings_accessibility_text_size": {
     "description": "Title of the accessibility settings section regarding the text size."
   },
-  "settings_accessibility_text_color": "Textfarbe",
+  "settings_accessibility_text_color": "Колір тексту",
   "@settings_accessibility_text_color": {
     "description": "Title of the accessibility settings section regarding the text color."
   },
-  "settings_accessibility_description": "Textfarbe, Textgröße",
+  "settings_accessibility_description": "Колір тексту, масштабування тексту",
   "@settings_accessibility_description": {
     "description": "Description of the accessibility settings page."
   },
-  "settings_text_scaling": "Textskalierung",
+  "settings_text_scaling": "Масштабування тексту",
   "@settings_text_scaling": {
     "description": "Title of the text scale setting tile."
   },
-  "settings_bigger_titles": "Größere Titel",
+  "settings_bigger_titles": "Збільшені заголовки",
   "@settings_bigger_titles": {
     "description": "Title of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
-  "settings_bigger_titles_description": "Größere Titel auf Notizen und im Editor anzeigen",
+  "settings_bigger_titles_description": "Показувати більші заголовки на плитках нотаток та в редакторі",
   "@settings_bigger_titles_description": {
     "description": "Description of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
-  "settings_white_text_dark_mode": "Weißer Text im dunklen Modus",
+  "settings_white_text_dark_mode": "Білий текст у темному режимі",
   "@settings_white_text_dark_mode": {
     "description": "Title of the text scale setting tile."
   },
-  "settings_white_text_dark_mode_description": "Verwende Weiß für den Text im dunklen Modus",
+  "settings_white_text_dark_mode_description": "Використовувати білий колір для тексту в темному режимі",
   "@settings_white_text_dark_mode_description": {
     "description": "Description of the text scale setting tile."
   },
-  "settings_disable_subdued_note_content_preview": "Ungedämpfte Notiz Vorschau",
+  "settings_disable_subdued_note_content_preview": "Не приглушений попередній перегляд",
   "@settings_disable_subdued_note_content_preview": {
     "description": "Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
-  "settings_disable_subdued_note_content_preview_description": "Blassere Textfarbe der Notizvorschau deaktivieren",
+  "settings_disable_subdued_note_content_preview_description": "Вимкнути приглушений колір тексту попереднього перегляду вмісту нотаток",
   "@settings_disable_subdued_note_content_preview_description": {
     "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
-  "settings_help_section_contact": "Kontakt",
+  "settings_help_section_contact": "Контакти",
   "@settings_help_section_contact": {
     "description": "Title of the settings section regarding how to get in contact."
   },
-  "settings_github_issues": "Melde einen Fehler oder frage eine Funktion an",
+  "settings_github_issues": "Повідомити про помилку або пропонувати функцію",
   "@settings_github_issues": {
     "description": "Title of the settings tile to open the GitHub issues and report a bug or request a feature."
   },
-  "settings_github_issues_description": "Melde einen Fehler oder frage eine Funktion über ein GitHub Issue an",
+  "settings_github_issues_description": "Повідомити про помилку або пропонувати функцію, створивши запит на GitHub",
   "@settings_github_issues_description": {
     "description": "Description of the settings tile to open the GitHub issues and report a bug or request a feature."
   },
-  "settings_github_discussions": "Stelle eine Frage",
+  "settings_github_discussions": "Поставити питання",
   "@settings_github_discussions": {
     "description": "Title of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_github_discussions_description": "Stelle eine Frage in GitHub Diskussionen",
+  "settings_github_discussions_description": "Ставити питання на GitHub дискусії",
   "@settings_github_discussions_description": {
     "description": "Description of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_contact_developer": "Kontaktiere den Entwickler",
+  "settings_contact_developer": "Зв''язатись з розробником",
   "@settings_contact_developer": {
     "description": "Title of the settings tile to contact the developer via mail."
   },
-  "settings_get_in_touch_description": "Kontaktiere den Entwickler über Mail an {email}",
+  "settings_get_in_touch_description": "Зв''язатись з розробником через пошту {email}",
   "@settings_get_in_touch_description": {
     "description": "Description of the settings tile to contact the developer via mail."
   },
-  "settings_help": "Hilfe",
+  "settings_help": "Допомога",
   "@settings_help": {
     "description": "Title of the settings page to receive help."
   },
-  "settings_help_description": "Kontakt, Logs",
+  "settings_help_description": "Контакти, лог-файли",
   "@settings_help_description": {
     "description": "Description of the settings page to receive help."
   },
-  "settings_help_section_logs": "Logs",
+  "settings_help_section_logs": "Лог-файли",
   "@settings_help_section_logs": {
     "description": "Title of the settings section regarding the logs of the application."
   },
-  "settings_copy_logs": "Kopiere die Logs",
+  "settings_copy_logs": "Копіювати лог-файли",
   "@settings_copy_logs": {
     "description": "Title of the settings tile to copy the logs of the application to the clipboard."
   },
-  "settings_copy_logs_description": "Kopiere die Logs der App in die Zwischenablage",
+  "settings_copy_logs_description": "Копіювати лог-файли додатка в буфер обміну",
   "@settings_copy_logs_description": {
     "description": "Description of the settings tile to copy the logs of the application to the clipboard."
   },
-  "settings_export_logs": "Exportiere die Logs",
+  "settings_export_logs": "Експортувати лог-файли",
   "@settings_export_logs": {
     "description": "Title of the settings tile to export the logs of the application to a text file."
   },
-  "settings_export_logs_description": "Exportiere die Logs der App in eine Textdatei",
+  "settings_export_logs_description": "Експортувати лог-файли додатка в текстовий файл",
   "@settings_export_logs_description": {
     "description": "Description of the settings tile to export the logs of the application to a text file."
   },
-  "settings_about": "Über",
+  "settings_about": "Про додаток",
   "@settings_about": {
     "description": "Title of the settings page regarding the information about the application."
   },
-  "settings_about_description": "Informationen, Links, Spenden",
+  "settings_about_description": "Інформація, посилання, пожертвування",
   "@settings_about_description": {
     "description": "Description of the settings page regarding the information about the application."
   },
-  "settings_about_application": "Anwendung",
+  "settings_about_application": "Додаток",
   "@settings_about_application": {
     "description": "Title of the settings section regarding the information about the application."
   },
-  "settings_build_mode": "Build Modus",
+  "settings_build_mode": "Режим збірки",
   "@settings_build_mode": {
     "description": "Title of the settings tile displaying the build mode of the application."
   },
-  "settings_build_mode_release": "Veröffentlichung",
+  "settings_build_mode_release": "Реліз",
   "@settings_build_mode_release": {
     "description": "Value of the settings tile displaying the build mode if the application is built in release mode (the mode used in the stores)."
   },
-  "settings_build_mode_debug": "Fehlerbehebung",
+  "settings_build_mode_debug": "Налагодження",
   "@settings_build_mode_debug": {
     "description": "Value of the settings tile displaying the build mode if the application is built in debug mode (the mode used for development and )."
   },
-  "settings_about_links": "Links",
+  "settings_about_links": "Посилання",
   "@settings_about_links": {
     "description": "Title of the settings section regarding the outside links related to the application."
   },
@@ -771,7 +787,7 @@
   "@settings_github": {
     "description": "Title of the settings tile to open the GitHub repository of the application."
   },
-  "settings_github_description": "Den Quellcode einsehen",
+  "settings_github_description": "Переглянути вихідний код",
   "@settings_github_description": {
     "description": "Description of the settings tile to open the GitHub repository of the application."
   },
@@ -779,11 +795,11 @@
   "@settings_localizations": {
     "description": "Title of the settings tile to open the Crowdin project managing the localization of the application."
   },
-  "settings_localizations_description": "Lokalisierungen im Crowdin-Projekt hinzufügen oder verbessern",
+  "settings_localizations_description": "Додати або покращити локалізації в проєкті Crowdin",
   "@settings_localizations_description": {
     "description": "Description of the settings tile to open the Crowdin project managing the localization of the application."
   },
-  "settings_licence": "Lizenz",
+  "settings_licence": "Ліцензія",
   "@settings_licence": {
     "description": "Title of the settings tile to open the license of the application."
   },
@@ -791,7 +807,7 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
-  "settings_about_section_donate": "Spenden",
+  "settings_about_section_donate": "Пожертвування",
   "@settings_about_section_donate": {
     "description": "Title of the settings section to donate."
   },
@@ -803,103 +819,139 @@
   "@settings_donate_paypal": {
     "description": "Title of the settings tile to donate via PayPal."
   },
-  "hint_title": "Titel",
+  "hint_title": "Заголовок",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
   },
-  "hint_content": "Notiz",
+  "hint_content": "Нотатка",
   "@hint_content": {
     "description": "Hint for the text field of the content of the notes."
   },
-  "hint_link": "Verknüpfung",
+  "hint_link": "Посилання",
   "@hint_link": {
     "description": "Hint for the link text field in the dialog to add a link in the editor."
   },
-  "hint_label_name": "Name",
+  "hint_label_name": "Назва",
   "@hint_label_name": {
     "description": "Hint for the text field of the name of a tag."
   },
-  "dialog_export_encryption_password": "Passwort",
+  "dialog_export_encryption_password": "Пароль",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
   },
-  "dialog_select_labels": "Labels auswählen",
+  "dialog_select_labels": "Обрати теги",
   "@dialog_select_labels": {
     "description": "Title of the dialog to select the tags of a note."
   },
-  "dialog_select_labels_to_add": "Labels zum hinzufügen auswählen",
+  "dialog_select_labels_to_add": "Обрати теги, щоб додати",
   "@dialog_select_labels_to_add": {
     "description": "Title of the dialog to select the tags to add to the currently selected notes."
   },
-  "tooltip_undo": "Letzte Aktion rückgängig machen",
+  "tooltip_undo": "Скасувати останню дію",
   "@tooltip_undo": {
     "description": "Tooltip for the button to undo the last action in the editor."
   },
-  "tooltip_redo": "Letzte Aktion wiederholen",
+  "tooltip_redo": "Повторити останню дію",
   "@tooltip_redo": {
     "description": "Tooltip for the button to redo the last action in the editor."
   },
-  "tooltip_fab_add_note": "Notiz hinzufügen",
+  "tooltip_fab_add_note": "Додати нотатку",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
   },
-  "tooltip_fab_add_plain_text_note": "Klartext Notiz hinzufügen",
+  "tooltip_fab_add_plain_text_note": "Додати нотатку у вигляді звичайного тексту",
   "@tooltip_fab_add_plain_text_note": {
     "description": "Floating action button in the notes page to add a new plain text note."
   },
-  "tooltip_fab_add_label": "Label hinzufügen",
+  "tooltip_fab_add_markdown_note": "Додати нотатку у вигляді markdown",
+  "@tooltip_fab_add_markdown_note": {
+    "description": "Floating action button in the notes page to add a new markdown note."
+  },
+  "tooltip_fab_add_rich_text_note": "Додати нотатку у вигляді форматованого тексту",
+  "@tooltip_fab_add_rich_text_note": {
+    "description": "Floating action button in the notes page to add a new rich text note."
+  },
+  "tooltip_fab_add_checklist_note": "Додати нотатку у вигляді контрольованого тексту",
+  "@tooltip_fab_add_checklist_note": {
+    "description": "Floating action button in the notes page to add a new checklist note."
+  },
+  "tooltip_fab_add_label": "Додати тег",
   "@tooltip_fab_add_label": {
     "description": "Floating action button in the tags page to add a new tag."
   },
-  "tooltip_fab_empty_bin": "Papierkorb leeren",
+  "tooltip_fab_empty_bin": "Очистити кошик",
   "@tooltip_fab_empty_bin": {
     "description": "Floating action button in the bin to empty it."
   },
-  "tooltip_fab_toggle_editor_mode_edit": "In Bearbeitungsmodus wechseln",
+  "tooltip_fab_toggle_editor_mode_edit": "Перейти у режим редактора",
   "@tooltip_fab_toggle_editor_mode_edit": {
     "description": "Floating action button in the notes editor to switch to editing mode."
   },
-  "tooltip_fab_toggle_editor_mode_read": "In Lesemodus wechseln",
+  "tooltip_fab_toggle_editor_mode_read": "Перейти у режим читання",
   "@tooltip_fab_toggle_editor_mode_read": {
     "description": "Floating action button in the notes editor to switch to reading mode."
   },
-  "tooltip_layout_list": "Listenansicht",
+  "tooltip_layout_list": "Огляд списку",
   "@tooltip_layout_list": {
     "description": "Tooltip for the button to use the list layout in the notes list."
   },
-  "tooltip_layout_grid": "Tabellenansicht",
+  "tooltip_layout_grid": "Огляд сітки",
   "@tooltip_layout_grid": {
     "description": "Tooltip for the button to use the grid layout in the notes list."
   },
-  "tooltip_sort": "Notizen sortieren",
+  "tooltip_sort": "Сортувати нотатки",
   "@tooltip_sort": {
     "description": "Tooltip for the button to open the menu to choose the sorting method of the notes list."
   },
-  "tooltip_search": "Notizen suchen",
+  "tooltip_search": "Пошук нотаток",
   "@tooltip_search": {
     "description": "Tooltip for the button to open the search view to search through the notes."
   },
-  "tooltip_unselect_all": "Alle abwählen",
+  "tooltip_unselect_all": "Зняти вибір усіх",
   "@tooltip_unselect_all": {
     "description": "Tooltip for the button to unselect all the notes while in selection mode in the notes list."
   },
-  "tooltip_reset": "Zurücksetzen",
+  "tooltip_reset": "Скинути",
   "@tooltip_reset": {
     "description": "Tooltip for the button to reset the value of a setting to its default value in a settings page."
   },
-  "dialog_add_link": "Verknüpfung hinzufügen",
+  "dialog_add_link": "Додати посилання",
   "@dialog_add_link": {
     "description": "Tooltip for the button to validate the dialog to add a link in the note editor."
   },
-  "dialog_archive": "Archivieren",
+  "dialog_archive": "Архів",
   "@dialog_archive": {
     "description": "Title of the the dialog to archive one or multiple notes (moving them to the archives), and text for the confirmation button."
   },
-  "dialog_delete": "Löschen",
+  "dialog_archive_body": "Ви справді хочете архівувати {count} {count, plural, one{нотатку} other{нотатки}}?",
+  "@dialog_archive_body": {
+    "description": "Text for the dialog to confirm the archival of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to archive.",
+        "type": "int"
+      }
+    }
+  },
+  "dialog_unarchive": "Розархівувати",
+  "@dialog_unarchive": {
+    "description": "Title of the the dialog to unarchive one or multiple notes, and text for the confirmation button."
+  },
+  "dialog_unarchive_body": "Ви справді хочете розархівувати {count} {count, plural, one{нотатку} other{нотатки}}?",
+  "@dialog_unarchive_body": {
+    "description": "Text for the dialog to confirm the unarchival of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to unarchive.",
+        "type": "int"
+      }
+    }
+  },
+  "dialog_delete": "Видалити",
   "@dialog_delete": {
     "description": "Title of the the dialog to delete one or multiple notes (moving them to the bin), and text for the confirmation button."
   },
-  "dialog_delete_body": "Willst du wirklich {count} {count, plural, one{Notiz} other{Notizen}} löschen? Du kannst {count, plural, one{diese} other{diese}} aus dem Papierkorb wiederherstellen.",
+  "dialog_delete_body": "Ви справді хочете видалити {count} {count, plural, one{нотатку} other{нотатки}}? Ви зможете відновити {count, plural, one{її} other{їх}} з кошика.",
   "@dialog_delete_body": {
     "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
     "placeholders": {
@@ -909,11 +961,11 @@
       }
     }
   },
-  "dialog_permanently_delete": "Dauerhaft löschen",
+  "dialog_permanently_delete": "Остаточне видалення",
   "@dialog_permanently_delete": {
     "description": "Title of the the dialog to permanently delete one or multiple notes, and text for the confirmation button."
   },
-  "dialog_permanently_delete_body": "Willst du wirklich {count} {count, plural, one{Notiz} other{Notizen}} dauerhaft löschen? Du kannst {count, plural, one{diese} other{diese}} nicht mehr wiederherstellen.",
+  "dialog_permanently_delete_body": "Ви справді хочете остаточно видалити {count} {count, plural, one{нотатку} other{нотатки}}? Ви не матимете змоги відновити {count, plural, one{її} other{їх}}.",
   "@dialog_permanently_delete_body": {
     "description": "Text for the dialog to confirm the permanent deletion of one or multiple notes.",
     "placeholders": {
@@ -923,11 +975,11 @@
       }
     }
   },
-  "dialog_restore": "Wiederherstellen",
+  "dialog_restore": "Відновити",
   "@dialog_restore": {
     "description": "Title of the the dialog to restore one or multiple notes from the bin, and text for the confirmation button."
   },
-  "dialog_restore_body": "Willst du wirklich {count} {count, plural, one{Notiz} other{Notizen}} wiederherstellen?",
+  "dialog_restore_body": "Ви справді хочете відновити {count} {count, plural, one{нотатку} other{нотатки}}?",
   "@dialog_restore_body": {
     "description": "Text for the dialog to confirm restoring one or multiple notes from the bin.",
     "placeholders": {
@@ -937,19 +989,19 @@
       }
     }
   },
-  "dialog_empty_bin": "Papierkorb leeren",
+  "dialog_empty_bin": "Очистити кошик",
   "@dialog_empty_bin": {
     "description": "Title of the the dialog to empty the bin, and text for the confirmation button."
   },
-  "dialog_empty_bin_body": "Willst du den Papierkorb wirklich dauerhaft leeren? Du kannst die enthaltenen Notizen nicht wiederherstellen.",
+  "dialog_empty_bin_body": "Ви справді хочете остаточно очистити кошик? Ви не зможете відновити нотатки, які в ньому містяться.",
   "@dialog_empty_bin_body": {
     "description": "Text for the dialog to confirm emptying the bin."
   },
-  "dialog_delete_label": "Löschen",
+  "dialog_delete_label": "Видалити",
   "@dialog_delete_label": {
     "description": "Title of the the dialog to delete one or multiple tags, and text for the confirmation button."
   },
-  "dialog_delete_label_body": "Willst du wirklich {count} {count, plural, one{Label} other{Labels}} löschen? {count, plural, one{Es wird} other{Sie werden}} von den Notizen entfernt, denen du {count, plural, one{es} other{diese}} hinzugefügt hast.",
+  "dialog_delete_label_body": "Ви справді хочете видалити {count} {count, plural, one{тег} other{теги}}? {count, plural, one{Його} other{Їх}} буде видаленого з нотаток, де ви додали {count, plural, one{його} other{їх}}.",
   "@dialog_delete_label_body": {
     "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
     "placeholders": {
@@ -959,99 +1011,115 @@
       }
     }
   },
-  "dialog_export_encryption_switch": "Verschlüssele den JSON Export",
+  "dialog_export_encryption_switch": "Шифрування експорту JSON",
   "@dialog_export_encryption_switch": {
     "description": "Text for the switch to toggle the encryption of the export in the dialog to manually or automatically exporting the notes as JSON."
   },
-  "dialog_export_encryption_description": "Der Titel und der Inhalt der Notiz werden mit deinem Passwort verschlüsselt. Es sollte zufällig generiert, 32 Zeichen lang, stark (mindestens 1 Kleinbuchstabe, 1 Großbuchstabe, 1 Ziffer, 1 Sonderzeichen) und sicher gespeichert sein.",
+  "dialog_export_encryption_description": "Назва та вміст нотаток будуть зашифровані за допомогою вашого пароля. Він має бути згенерований випадковим чином, складатися рівно з 32 символів, бути надійним (принаймні 1 мала літера, 1 велика літера, 1 цифра та 1 спеціальний символ) та надійно зберігатися.",
   "@dialog_export_encryption_description": {
     "description": "Description for the encryption feature when the switch to toggle the encryption of the export is enabled."
   },
-  "dialog_export_encryption_secondary_description_auto": "Passwort, das für alle zukünftigen automatischen Exporte genutzt wird.",
+  "dialog_export_encryption_secondary_description_auto": "Цей пароль буде використано для всіх майбутніх автоматичних експортів.",
   "@dialog_export_encryption_secondary_description_auto": {
     "description": "Secondary description for the encryption feature in the case of an automatic export."
   },
-  "dialog_export_encryption_secondary_description_manual": "Dieses Passwort wird nur für diesen Export verwendet.",
+  "dialog_export_encryption_secondary_description_manual": "Цей пароль буде використано лише для цього експорту.",
   "@dialog_export_encryption_secondary_description_manual": {
     "description": "Secondary description for the encryption feature in the case of a manual export."
   },
-  "dialog_export_encryption_password_invalid": "Ungültig",
+  "dialog_export_encryption_password_invalid": "Недійсний",
   "@dialog_export_encryption_password_invalid": {
     "description": "Error message displayed under the text field for the encryption password if it does not meet the strength requirements."
   },
-  "dialog_import_encryption_password_description": "Dieser Export ist verschlüsselt. Um ihn zu importieren, musst du das Passwort eingeben, das du zum Verschlüsseln verwendet hast.",
+  "dialog_import_encryption_password_description": "Цей експорт зашифровано. Щоб імпортувати його, потрібно вказати пароль, який використовувався для шифрування.",
   "@dialog_import_encryption_password_description": {
     "description": "Description in the import dialog when an import is encrypted and the password is needed."
   },
-  "dialog_import_encryption_password_error": "Die Entschlüsselung des Exportes ist fehlgeschlagen. Bitte überprüfe, dass du das Passwort eingegeben hast, das du zum Verschlüsseln verwendet hast.",
+  "dialog_import_encryption_password_error": "Розшифрування експорту не вдалося. Переконайтеся, що ви вказали той самий пароль, який використовували для шифрування експорту.",
   "@dialog_import_encryption_password_error": {
     "description": "Error when the decryption of an encrypted import failed."
   },
-  "dialog_label_add": "Label hinzufügen",
+  "dialog_label_add": "Додати тег",
   "@dialog_label_add": {
     "description": "Title of the dialog to add a tag."
   },
-  "dialog_label_edit": "Label bearbeiten",
+  "dialog_label_edit": "Редагувати тег",
   "@dialog_label_edit": {
     "description": "Title of the dialog to edit a tag."
   },
-  "dialog_label_name_cannot_be_empty": "Der Name darf nicht leer sein.",
+  "dialog_label_name_cannot_be_empty": "Назва не може бути порожньою.",
   "@dialog_label_name_cannot_be_empty": {
     "description": "Error message shown when relevant on the text field of the name of the tag."
   },
-  "dialog_label_name_already_used": "Dieser Name wird bereits verwendet.",
+  "dialog_label_name_already_used": "Ця назва вже використовується.",
   "@dialog_label_name_already_used": {
     "description": "Error message shown when relevant on the text field of the name of the tag."
   },
-  "button_sort_creation_date": "Erstellungsdatum",
+  "button_sort_creation_date": "Дата створення",
   "@button_sort_creation_date": {
     "description": "Text of the button to sort the notes list by their creation date."
   },
-  "button_sort_edition_date": "Datum der Bearbeitung",
+  "button_sort_edition_date": "Дата редагування",
   "@button_sort_edition_date": {
     "description": "Text of the button to sort the notes list by their last edition date."
   },
-  "placeholder_notes": "Keine Notizen",
+  "placeholder_notes": "Без нотаток",
   "@placeholder_notes": {
     "description": "Placeholder on the notes page when there are no notes."
   },
-  "placeholder_labels": "Keine Labels",
+  "placeholder_labels": "Без тегів",
   "@placeholder_labels": {
     "description": "Placeholder on the tags page when there are no tags."
   },
-  "placeholder_archives": "Keine archivierten Notizen",
+  "placeholder_archives": "Відсутні архівовані нотатки",
   "@placeholder_archives": {
     "description": "Placeholder on the archives notes page when there are no archived notes."
   },
-  "placeholder_bin": "Keine gelöschten Notizen",
+  "placeholder_bin": "Відсутні видалені нотатки",
   "@placeholder_bin": {
     "description": "Placeholder on the bin page when there are no deleted notes."
   },
-  "action_disabled": "Aus",
+  "action_disabled": "Вимкнено",
   "@action_disabled": {
     "description": "Swipe action that is disabled in the settings."
   },
-  "action_pin_unpin": "Anpinnen / Pin entfernen",
+  "action_toggle_pin": "Перемикання закріплень",
+  "@action_toggle_pin": {
+    "description": "Menu action to toggle whether the notes are pinned."
+  },
+  "action_pin_unpin": "Закріпити / Відкріпити",
   "@action_pin_unpin": {
     "description": "Swipe action to pin or unpin a note."
   },
-  "action_pin": "Anheften",
+  "action_pin": "Закріпити",
   "@action_pin": {
     "description": "Swipe or menu action to pin a note."
   },
-  "action_unpin": "Loslösen",
+  "action_unpin": "Відкріпити",
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
   },
-  "action_toggle_lock": "Sperre umschalten",
+  "action_toggle_lock": "Перемикач блокування",
   "@action_toggle_lock": {
     "description": "Menu action to toggle whether the notes are locked."
   },
-  "action_share": "Teilen",
+  "action_lock_unlock": "Блокувати / Розблокувати",
+  "@action_lock_unlock": {
+    "description": "Swipe action to lock or unlock a note."
+  },
+  "action_lock": "Блокувати",
+  "@action_lock": {
+    "description": "Swipe or menu action to lock a note."
+  },
+  "action_unlock": "Розблокувати",
+  "@action_unlock": {
+    "description": "Swipe or menu action to unlock a note."
+  },
+  "action_share": "Поширити",
   "@action_share": {
     "description": "Swipe or menu action to share a note."
   },
-  "action_share_subject": "{count} {count, plural, one{Notiz} other{Notizen}} von Material Notes geteilt",
+  "action_share_subject": "{count} {count, plural, one{нотатку} other{нотатки}} опубліковано з Material Notes",
   "@action_share_subject": {
     "description": "Subject of the text that is shared when multiple notes are shared at the same time.",
     "placeholders": {
@@ -1061,91 +1129,147 @@
       }
     }
   },
-  "action_archive": "Archivieren",
+  "action_archive": "Архівувати",
   "@action_archive": {
     "description": "Swipe or menu action to archive a note (moving it to the archives)."
   },
-  "action_delete": "Löschen",
+  "action_unarchive": "Розархівувати",
+  "@action_unarchive": {
+    "description": "Swipe or menu action to unarchive a note."
+  },
+  "action_delete": "Видалити",
   "@action_delete": {
     "description": "Swipe or menu action to delete a note (moving it to the bin)."
   },
-  "action_restore": "Wiederherstellen",
+  "action_restore": "Відновити",
   "@action_restore": {
     "description": "Swipe or menu action to restore a note from the bin."
   },
-  "action_delete_permanently": "Endgültig löschen",
+  "action_delete_permanently": "Остаточно видалити",
   "@action_delete_permanently": {
     "description": "Swipe or menu action to permanently delete a note."
   },
-  "action_about": "Über",
+  "action_about": "Про додаток",
   "@action_about": {
     "description": "Swipe or menu action to show information about a note."
   },
-  "about_last_edited": "Zuletzt bearbeitet",
+  "about_last_edited": "Останнє редагування",
   "@about_last_edited": {
     "description": "Date when the note was edited for the last time."
   },
-  "about_type": "Typ",
+  "about_type": "Тип",
   "@about_type": {
     "description": "Type of the note."
   },
-  "about_created": "Erstellt",
+  "about_created": "Створено",
   "@about_created": {
     "description": "Date when the note was created."
   },
-  "about_labels": "Labels",
+  "about_labels": "Теги",
   "@about_labels": {
     "description": "Number of tags of the note."
   },
-  "about_words": "Wörter",
+  "about_words": "Слова",
   "@about_words": {
     "description": "Number of words in the content of the note."
   },
-  "about_characters": "Zeichen",
+  "about_characters": "Властивість",
   "@about_characters": {
     "description": "Number of characters in the content of the note."
   },
-  "about_time_at": "um",
+  "about_time_at": "в",
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
-  "action_labels_show_hide": "Zeigen / Verstecken",
+  "menu_action_select_labels": "Теги",
+  "@menu_action_select_labels": {
+    "description": "Menu action to select the tags of a note."
+  },
+  "menu_action_add_labels": "Додати теги",
+  "@menu_action_add_labels": {
+    "description": "Menu action to add tags to multiple notes."
+  },
+  "action_labels_toggle_visibile": "Перемикач видимості",
+  "@action_labels_toggle_visibile": {
+    "description": "Tooltip for the button to toggle whether the selected tags are visible."
+  },
+  "action_labels_show_hide": "Показати / Приховати",
   "@action_labels_show_hide": {
     "description": "Swipe action to show or hide a tag."
   },
-  "action_labels_toggle_pins": "Fixierung umschalten",
+  "action_labels_show": "Показати",
+  "@action_labels_show": {
+    "description": "Menu or swipe action to make tag visible."
+  },
+  "action_labels_hide": "Приховати",
+  "@action_labels_hide": {
+    "description": "Menu or swipe action to hide a tag."
+  },
+  "action_labels_toggle_pins": "Перемикач закріплень",
   "@action_labels_toggle_pins": {
     "description": "Menu action to toggle whether the selected tags are pinned."
   },
-  "action_labels_edit": "Bearbeiten",
+  "action_labels_pin_unpin": "Закріпити / Відкріпити",
+  "@action_labels_pin_unpin": {
+    "description": "Swipe action to pin or unpin a tag."
+  },
+  "action_labels_pin": "Закріпити",
+  "@action_labels_pin": {
+    "description": "Menu or swipe action to pin a tag."
+  },
+  "action_labels_unpin": "Відкріпити",
+  "@action_labels_unpin": {
+    "description": "Menu or swipe action to unpin a tag."
+  },
+  "action_labels_toggle_lock": "Перемикач блокування",
+  "@action_labels_toggle_lock": {
+    "description": "Tooltip for the button to toggle whether the selected tags are locked."
+  },
+  "action_labels_lock_unlock": "Блокувати / Розблокувати",
+  "@action_labels_lock_unlock": {
+    "description": "Swipe action to lock or unlock a tag."
+  },
+  "action_labels_lock": "Блокувати",
+  "@action_labels_lock": {
+    "description": "Menu or swipe action to lock a tag."
+  },
+  "action_labels_unlock": "Розблокувати",
+  "@action_labels_unlock": {
+    "description": "Menu or swipe action to unlock a tag."
+  },
+  "action_labels_edit": "Редагувати",
   "@action_labels_edit": {
     "description": "Menu or swipe action to edit a tag."
   },
-  "action_labels_delete": "Löschen",
+  "action_labels_delete": "Видалити",
   "@action_labels_delete": {
     "description": "Menu or swipe action to delete a tag."
   },
-  "filter_labels_all": "Alle",
+  "filter_labels_all": "Всі",
   "@filter_labels_all": {
     "description": "Filter chip in the tags page to all tags."
   },
-  "filter_labels_visible": "Sichtbar",
+  "filter_labels_visible": "Видимі",
   "@filter_labels_visible": {
     "description": "Filter chip in the tags page to show only the visible tags."
   },
-  "filter_labels_hidden": "Verborgen",
+  "filter_labels_hidden": "Приховані",
   "@filter_labels_hidden": {
     "description": "Filter chip in the tags page to show only the hidden tags."
   },
-  "filter_labels_pinned": "Fixiert",
+  "filter_labels_pinned": "Закріплені",
   "@filter_labels_pinned": {
     "description": "Filter chip in the tags page to show only the pinned tags."
   },
-  "snack_bar_authentication_failed": "Die Authentifizierung ist fehlgeschlagen, bitte versuche es noch einmal.",
+  "filter_labels_locked": "Заблоковані",
+  "@filter_labels_locked": {
+    "description": "Filter chip in the tags page to show only the locked tags."
+  },
+  "snack_bar_authentication_failed": "Невдала автентифікація, будь ласка, спробуйте ще раз.",
   "@snack_bar_authentication_failed": {
     "description": "Snack bar informing that the authentication on the lock screen has failed."
   },
-  "snack_bar_archived": "Die {count, plural, one{Notiz wurde} other{Notizen wurden}} archiviert",
+  "snack_bar_archived": "{count, plural, one{нотаток} other{нотатки}} заархівовано",
   "@snack_bar_archived": {
     "description": "Snack bar informing that the note was archived.",
     "placeholders": {
@@ -1155,7 +1279,7 @@
       }
     }
   },
-  "snack_bar_unarchived": "Die {count, plural, one{Notiz wurde} other{Notizen wurden}} aus dem Archiv geholt",
+  "snack_bar_unarchived": "{count, plural, one{нотаток} other{нотатки}} розархівовано",
   "@snack_bar_unarchived": {
     "description": "Snack bar informing that the note was unarchived.",
     "placeholders": {
@@ -1165,7 +1289,7 @@
       }
     }
   },
-  "snack_bar_deleted": "Die {count, plural, one{Notiz wurde} other{Notizen wurden}} entfernt",
+  "snack_bar_deleted": "{count, plural, one{нотаток} other{нотатки}} видалено",
   "@snack_bar_deleted": {
     "description": "Snack bar informing that the note was deleted.",
     "placeholders": {
@@ -1175,64 +1299,168 @@
       }
     }
   },
-  "snack_bar_import_success": "Das Backup wurde erfolgreich importiert.",
+  "snack_bar_restored": "{count, plural, one{нотаток} other{нотатки}} відновлено",
+  "@snack_bar_restored": {
+    "description": "Snack bar informing that the note was restored.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were restored.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_copied": "Вміст {count, plural, one{нотатка} other{нотатків}} скопійовано до буфера обміну.",
+  "@snack_bar_copied": {
+    "description": "Snack bar informing that the content of the note was copied to clipboard.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to copy.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_import_success": "Резервну копію успішно імпортовано.",
   "@snack_bar_import_success": {
     "description": "Snack bar informing that the backup was successfully imported."
   },
-  "snack_bar_export_success": "Das Backup wurde erfolgreich exportiert.",
+  "snack_bar_export_success": "Резервні копії успішно експортовано.",
   "@snack_bar_export_success": {
     "description": "Snack bar informing that the backup was successfully manually exported."
   },
-  "snack_bar_logs_copied": "Die Logs wurden in deine Zwischenablage kopiert.",
+  "snack_bar_logs_copied": "Лог-файли скопійовано до буфера обміну.",
   "@snack_bar_logs_copied": {
     "description": "Snack bar message shown when the logs where copied to the clipboard from the error widget."
   },
-  "snack_bar_logs_exported": "Die Logs wurden erfolgreich exportiert.",
+  "snack_bar_logs_exported": "Лог-файли успішно експортовано.",
   "@snack_bar_logs_exported": {
     "description": "Snack bar message shown when the logs where successfully exported in a text file from the error widget."
   },
-  "snack_bar_no_labels": "Es gibt keine Labels.",
+  "snack_bar_no_labels": "Теги відсутні.",
   "@snack_bar_no_labels": {
     "description": "Snack bar message shown when the user tries to select the tags for a note, but there are no tags available."
   },
-  "welcome_note_title": "Willkommen bei Material Notes!",
+  "quick_action_add_plain_text_note_title": "Додати нотатку у вигляді звичайного тексту",
+  "@quick_action_add_plain_text_note_title": {
+    "description": "Title of the home screen action to add a new plain text note."
+  },
+  "quick_action_add_markdown_note_title": "Додати нотатку у вигляді markdown",
+  "@quick_action_add_markdown_note_title": {
+    "description": "Title of the home screen action to add a new markdown note."
+  },
+  "quick_action_add_rich_text_note_title": "Додати нотатку у вигляді форматованого тексту",
+  "@quick_action_add_rich_text_note_title": {
+    "description": "Title of the home screen action to add a new rich text note."
+  },
+  "quick_action_add_checklist_note_title": "Додати нотатку у вигляді контрольованого листа",
+  "@quick_action_add_checklist_note_title": {
+    "description": "Title of the home screen action to add a new checklist note."
+  },
+  "welcome_note_title": "Вітаю у Material Notes!",
   "@welcome_note_title": {
     "description": "Title of the welcome note automatically created on the first run of the application."
   },
-  "welcome_note_content": "Einfache, lokale, materiell designte Notizen",
+  "welcome_note_content": "Прості, локальні, нотатки в стилі Material Design",
   "@welcome_note_content": {
     "description": "Content of the welcome note automatically created on the first run of the application."
   },
-  "font_system_default": "System Standard",
+  "font_system_default": "Системні за замовчуванням",
   "@font_system_default": {
     "description": "Name of the font settings that uses the default font of the system."
   },
-  "note_type_plain_text": "Unformatierter Text",
+  "note_type_plain_text": "Звичайний текст",
   "@note_type_plain_text": {
     "description": "Note with plain text."
   },
-  "note_type_markdown": "Markdown",
+  "note_type_markdown": "Текст з розміткою",
   "@note_type_markdown": {
     "description": "Note with markdown text."
   },
-  "note_type_rich_text": "Formatierter Text",
+  "note_type_rich_text": "Форматований текст",
   "@note_type_rich_text": {
     "description": "Note with rich text."
   },
-  "rich_text_editor_toolbar_dialog_color_title_background": "Hintergrundfarbe",
+  "note_type_checklist": "Контрольований список",
+  "@note_type_checklist": {
+    "description": "Note with a checklist."
+  },
+  "lock_page_reason_app": "Розблокувати Material Notes",
+  "@lock_page_reason_app": {
+    "description": "Reason for the lock screen of the application to request a system authentication."
+  },
+  "lock_page_reason_note": "Розблокувати цю нотатку",
+  "@lock_page_reason_note": {
+    "description": "Reason for the lock screen of a locked note to request a system authentication."
+  },
+  "lock_page_reason_action": "Авторизувати цю дію",
+  "@lock_page_reason_action": {
+    "description": "Reason for the lock screen for a secure action to request a system authentication."
+  },
+  "lock_page_description_app": "Додаток заблоковано.",
+  "@lock_page_description_app": {
+    "description": "Description shown in the lock page for the application."
+  },
+  "lock_page_description_note": "Ця нотатка заблокована.",
+  "@lock_page_description_note": {
+    "description": "Description shown in the lock page for a locked note."
+  },
+  "lock_page_unlock": "Розблокувати",
+  "@lock_page_unlock": {
+    "description": "Button to unlock the lock page by requesting a system authentication."
+  },
+  "rich_text_editor_toolbar_dialog_color_title_foreground": "Колір переднього плану",
+  "@rich_text_editor_toolbar_dialog_color_title_foreground": {
+    "description": "Title of the dialog to choose the foreground color of the text in the rich text editor."
+  },
+  "rich_text_editor_toolbar_dialog_color_title_background": "Колір фону",
   "@rich_text_editor_toolbar_dialog_color_title_background": {
     "description": "Title of the dialog to choose the background color of the text in the rich text editor."
   },
-  "rich_text_editor_toolbar_dialog_color_description": "Vordergrundfarbe",
+  "rich_text_editor_toolbar_dialog_color_description": "Колір переднього плану",
   "@rich_text_editor_toolbar_dialog_color_description": {
     "description": "Description of the dialog to choose the foreground/background color of the text."
   },
-  "toolbar_style_one_row_simple_title": "Eine Zeile (einfache Optionen)",
+  "toolbar_style_one_row_simple_title": "Один ряд (прості параметри)",
   "@toolbar_style_one_row_simple_title": {
     "description": "Title for the style of the rich text editor toolbar with one row and only simple formatting options."
   },
-  "toolbar_style_one_row_simple_description": "Nur einfache Optionen in einer Zeile",
+  "toolbar_style_one_row_simple_description": "Тільки прості параметри форматування в одному рядку",
   "@toolbar_style_one_row_simple_description": {
     "description": "Description for the style of the rich text editor toolbar with one row and only simple formatting options."
+  },
+  "toolbar_style_one_row_all_title": "Один рядок (усі параметри)",
+  "@toolbar_style_one_row_all_title": {
+    "description": "Title for the style of the rich text editor toolbar with one row and all formatting options."
+  },
+  "toolbar_style_one_row_all_description": "Усі параметри форматування в одному рядку",
+  "@toolbar_style_one_row_all_description": {
+    "description": "Description for the style of the rich text editor toolbar with one row and all formatting options."
+  },
+  "toolbar_style_two_rows_stacked_title": "Два рядки (складені)",
+  "@toolbar_style_two_rows_stacked_title": {
+    "description": "Title for the style of the rich text editor toolbar with two stacked rows."
+  },
+  "toolbar_style_two_rows_stacked_description": "Усі параметри форматування для двох складених рядків",
+  "@toolbar_style_two_rows_stacked_description": {
+    "description": "Description for the style of the rich text editor toolbar with two stacked rows."
+  },
+  "toolbar_style_two_rows_toggleable_title": "Два рядки (з перемиканням)",
+  "@toolbar_style_two_rows_toggleable_title": {
+    "description": "Title for the style of the rich text editor toolbar with two toggleable rows."
+  },
+  "toolbar_style_two_rows_toggleable_description": "Усі параметри форматування у двох рядках, що перемикаються",
+  "@toolbar_style_two_rows_toggleable_description": {
+    "description": "Description for the style of the rich text editor toolbar with two toggleable rows."
+  },
+  "settings_confirm_before_exiting_title": "Підтвердити вихід",
+  "@settings_confirm_before_exiting_title": {
+    "description": "Title of the setting tile for whether a confirmation is required before exiting the application."
+  },
+  "settings_confirm_before_exiting_description": "Запитувати підтвердження перед виходом із додатка",
+  "@settings_confirm_before_exiting_description": {
+    "description": "Description of the setting tile for whether a confirmation is required before exiting the application."
+  },
+  "snack_bar_confirm_exiting": "Натисніть кнопку «Назад» ще раз, щоб вийти з додатка.",
+  "@snack_bar_confirm_exiting": {
+    "description": "Snack bar asking the user to confirm exiting the application by pressing back again."
   }
 }

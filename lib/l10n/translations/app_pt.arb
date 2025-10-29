@@ -105,9 +105,17 @@
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
   },
+  "navigation_settings_security": "Segurança",
+  "@navigation_settings_security": {
+    "description": "Title of the settings page regarding the security."
+  },
   "navigation_settings_accessibility": "Acessibilidade",
   "@navigation_settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
+  },
+  "navigation_settings_help": "Ajuda",
+  "@navigation_settings_help": {
+    "description": "Title of the settings page to receive help."
   },
   "navigation_settings_about": "Sobre",
   "@navigation_settings_about": {
@@ -261,6 +269,10 @@
   "@settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
+  "settings_behavior_description": "Confirmações, ações de deslizar fazem",
+  "@settings_behavior_description": {
+    "description": "Description of the behavior settings page."
+  },
   "settings_behavior_application": "Aplicativo",
   "@settings_behavior_application": {
     "description": "Title of the sub-section regarding the application under the behavior settings."
@@ -284,6 +296,14 @@
   "settings_confirmations_title_all": "Sempre",
   "@settings_confirmations_title_all": {
     "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
+  },
+  "settings_auto_remove_from_bin_title": "Remover automaticamente da lixeira",
+  "@settings_auto_remove_from_bin_title": {
+    "description": "Title of the setting tile to automatically remove notes from the bin after a certain delay."
+  },
+  "settings_auto_remove_from_bin_description": "Remova automaticamente as notas da lixeira",
+  "@settings_auto_remove_from_bin_description": {
+    "description": "Description of the setting tile to automatically remove notes from the bin after a certain delay."
   },
   "settings_behavior_swipe_actions": "Ações de deslizar",
   "@settings_behavior_swipe_actions": {
@@ -389,6 +409,14 @@
   "@settings_editor_appearance": {
     "description": "Title of the settings section regarding the appearance of the editor"
   },
+  "settings_toolbar_style_title": "Estilo da barra de ferramentas",
+  "@settings_toolbar_style_title": {
+    "description": "Title of the setting tile to choose the toolbar style."
+  },
+  "settings_toolbar_style_description": "O estilo da barra de ferramentas do editor de texto rico",
+  "@settings_toolbar_style_description": {
+    "description": "Description of the setting tile to choose the toolbar style."
+  },
   "settings_use_paragraph_spacing": "Espaçamento dos parágrafos",
   "@settings_use_paragraph_spacing": {
     "description": "Title of the setting tile to enable the spacing between paragraphs in the notes content."
@@ -433,6 +461,26 @@
   "@settings_show_labels_editor_description": {
     "description": "Description of the setting tile to show the tags in the editor."
   },
+  "settings_labels_section_behavior": "Comportamento",
+  "@settings_labels_section_behavior": {
+    "description": "Title of the settings section regarding the behavior of the tags."
+  },
+  "settings_labels_swipe_action_right": "Ação do deslizamento direito",
+  "@settings_labels_swipe_action_right": {
+    "description": "Title of the setting tile to choose which action to trigger when a right swapping a label tile."
+  },
+  "settings_labels_swipe_action_right_description": "Ação para acionar quando um deslizamento direito é executado na etiqueta",
+  "@settings_labels_swipe_action_right_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a label tile."
+  },
+  "settings_labels_swipe_action_left": "Ação do deslizamento esquerdo",
+  "@settings_labels_swipe_action_left": {
+    "description": "Title of the setting tile to choose which action to trigger when a left swapping a label tile."
+  },
+  "settings_labels_swipe_action_left_description": "Ação para acionar quando um toque esquerdo é executado na etiqueta",
+  "@settings_labels_swipe_action_left_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a label tile."
+  },
   "settings_backup": "Backup",
   "@settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
@@ -461,9 +509,17 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
+  "settings_export_json_description": "Exportar imediatamente todas as notas, etiquetas e configurações para um arquivo JSON que pode ser importado de volta",
+  "@settings_export_json_description": {
+    "description": "Description of the setting tile to manually export the notes as JSON."
+  },
   "settings_export_markdown": "Exportar como Markdown",
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
+  },
+  "settings_export_markdown_description": "Exportar imediatamente todas as notas para um arquivo em Markdown",
+  "@settings_export_markdown_description": {
+    "description": "Description of the setting tile to manually export the notes as Markdown."
   },
   "settings_backup_auto_export": "Exportação automática",
   "@settings_backup_auto_export": {
@@ -472,6 +528,10 @@
   "settings_auto_export": "Exportação automática",
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
+  },
+  "settings_auto_export_description": "Exportar automaticamente todas as notas, etiquetas e configurações para um arquivo JSON que pode ser importado de volta",
+  "@settings_auto_export_description": {
+    "description": "Description of the settings tile to enable the automatic export."
   },
   "settings_auto_export_frequency": "Frequência",
   "@settings_auto_export_frequency": {
@@ -496,6 +556,26 @@
   "settings_auto_export_directory_description": "Diretório onde armazenar as exportações automáticas",
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
+  },
+  "settings_security": "Segurança",
+  "@settings_security": {
+    "description": "Title of the settings page regarding the security."
+  },
+  "settings_security_description": "Flag segura, bloqueio de aplicação, bloqueio de nota",
+  "@settings_security_description": {
+    "description": "Description of the settings page regarding the security."
+  },
+  "settings_security_application": "Aplicativo",
+  "@settings_security_application": {
+    "description": "Title of the sub-section regarding the application under the security settings."
+  },
+  "settings_security_application_lock": "Bloqueio do aplicativo",
+  "@settings_security_application_lock": {
+    "description": "Title of the sub-section regarding the application lock under the security settings."
+  },
+  "settings_security_note_lock": "Bloqueio de nota",
+  "@settings_security_note_lock": {
+    "description": "Title of the sub-section regarding the note lock under the security settings."
   },
   "settings_flag_secure": "Sinalizar o aplicativo como seguro",
   "@settings_flag_secure": {
@@ -672,6 +752,10 @@
   "dialog_empty_bin_body": "Você realmente deseja esvaziar permanentemente a lixeira? Você não poderá restaurar as notas que ele contém.",
   "@dialog_empty_bin_body": {
     "description": "Text for the dialog to confirm emptying the bin."
+  },
+  "dialog_delete_label": "Excluir",
+  "@dialog_delete_label": {
+    "description": "Title of the the dialog to delete one or multiple tags, and text for the confirmation button."
   },
   "dialog_export_encryption_switch": "Criptografar a exportação JSON",
   "@dialog_export_encryption_switch": {
