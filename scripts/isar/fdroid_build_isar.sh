@@ -3,11 +3,19 @@
 # Pass no parameters to build libisar for all architectures,
 # or pass the desired architectures (x86, x64, armv7, arm64)
 
+mkdirJniLibs() {
+  for dir in "$PUB_CACHE"/hosted/pub.dev/isar_flutter_libs-*/; do
+    echo "Creating directory $dir/android/src/main/jniLibs/$1"
+    mkdir -p "${dir}android/src/main/jniLibs/$1"
+  done
+}
+
 x86() {
   echo "Building libisar for x86"
 
   bash tool/build_android.sh x86
 
+  mkdirJniLibs x86
   mv libisar_android_x86.so libisar.so
   mv libisar.so "$PUB_CACHE"/hosted/pub.dev/isar_flutter_libs-*/android/src/main/jniLibs/x86/
 }
@@ -17,6 +25,7 @@ x64() {
 
   bash tool/build_android.sh x64
 
+  mkdirJniLibs x86_64
   mv libisar_android_x64.so libisar.so
   mv libisar.so "$PUB_CACHE"/hosted/pub.dev/isar_flutter_libs-*/android/src/main/jniLibs/x86_64/
 }
@@ -26,6 +35,7 @@ armv7() {
 
   bash tool/build_android.sh armv7
 
+  mkdirJniLibs armeabi-v7a
   mv libisar_android_armv7.so libisar.so
   mv libisar.so "$PUB_CACHE"/hosted/pub.dev/isar_flutter_libs-*/android/src/main/jniLibs/armeabi-v7a/
 }
@@ -35,6 +45,7 @@ arm64() {
 
   bash tool/build_android.sh arm64
 
+  mkdirJniLibs arm64-v8a
   mv libisar_android_arm64.so libisar.so
   mv libisar.so "$PUB_CACHE"/hosted/pub.dev/isar_flutter_libs-*/android/src/main/jniLibs/arm64-v8a/
 }
