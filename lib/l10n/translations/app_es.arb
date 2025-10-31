@@ -81,6 +81,10 @@
   "@navigation_settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
   },
+  "navigation_settings_notes_types": "Tipos de notas",
+  "@navigation_settings_notes_types": {
+    "description": "Title of the settings page regarding the notes types."
+  },
   "navigation_settings_notes_tiles": "Tarjetas de las notas",
   "@navigation_settings_notes_tiles": {
     "description": "Title of the settings page regarding the notes tiles appearance."
@@ -101,9 +105,17 @@
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
   },
+  "navigation_settings_security": "Seguridad",
+  "@navigation_settings_security": {
+    "description": "Title of the settings page regarding the security."
+  },
   "navigation_settings_accessibility": "Accesibilidad",
   "@navigation_settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
+  },
+  "navigation_settings_help": "Ayuda",
+  "@navigation_settings_help": {
+    "description": "Title of the settings page to receive help."
   },
   "navigation_settings_about": "Acerca de",
   "@navigation_settings_about": {
@@ -221,6 +233,14 @@
   "@settings_show_separators_description": {
     "description": "Description of the setting tile to show the separators between the notes tiles."
   },
+  "settings_show_note_type_icon": "Mostrar icono de tipo",
+  "@settings_show_note_type_icon": {
+    "description": "Title of the setting tile to show the icon of the type of the note."
+  },
+  "settings_show_note_type_icon_description": "Mostrar el icono del tipo de nota",
+  "@settings_show_note_type_icon_description": {
+    "description": "Description of the setting tile to show the icon of the type of the note."
+  },
   "settings_show_titles_only": "Sólo títulos",
   "@settings_show_titles_only": {
     "description": "Title of the setting tile to only show the titles of the notes in the notes tiles."
@@ -249,6 +269,10 @@
   "@settings_behavior": {
     "description": "Title of the settings page regarding the application's behavior."
   },
+  "settings_behavior_description": "Confirmaciones, deslizar acciones",
+  "@settings_behavior_description": {
+    "description": "Description of the behavior settings page."
+  },
   "settings_behavior_application": "Aplicación",
   "@settings_behavior_application": {
     "description": "Title of the sub-section regarding the application under the behavior settings."
@@ -273,9 +297,31 @@
   "@settings_confirmations_title_all": {
     "description": "Value of the setting to always show a confirmation dialog when performing an action on a note."
   },
+  "settings_auto_remove_from_bin_title": "Autoeliminar de la papelera",
+  "@settings_auto_remove_from_bin_title": {
+    "description": "Title of the setting tile to automatically remove notes from the bin after a certain delay."
+  },
+  "settings_auto_remove_from_bin_description": "Quitar automáticamente las notas de la papelera",
+  "@settings_auto_remove_from_bin_description": {
+    "description": "Description of the setting tile to automatically remove notes from the bin after a certain delay."
+  },
+  "settings_auto_remove_from_bin_value": "{delay, select, 7{Después de 1 semana} 14{Después de 2 semanas} 30{Después de 1 mes} 90{Después de 3 meses} 180{Después de 6 meses} 365{Después de 1 año} other{Nunca}}",
+  "@settings_auto_remove_from_bin_value": {
+    "description": "Value of the setting tile to choose after which amount of time the application/note/label locks itself after the application was moved to the background.",
+    "placeholders": {
+      "delay": {
+        "type": "String",
+        "description": "Delay in days."
+      }
+    }
+  },
   "settings_behavior_swipe_actions": "Acciones de deslizamiento",
   "@settings_behavior_swipe_actions": {
     "description": "Title of the section regarding the swipe actions on the notes tiles under the behavior settings."
+  },
+  "settings_behavior_swipe_actions_archives": "Deslizar acciones (archivos)",
+  "@settings_behavior_swipe_actions_archives": {
+    "description": "Title of the section regarding the swipe actions on the notes tiles in the archives under the behavior settings."
   },
   "settings_behavior_swipe_actions_bin": "Acciones de deslizamiento (papelera)",
   "@settings_behavior_swipe_actions_bin": {
@@ -305,9 +351,41 @@
   "@settings_bin_swipe_action_left_description": {
     "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a note tile in the bin."
   },
+  "settings_page_notes_types": "Tipos de notas",
+  "@settings_page_notes_types": {
+    "description": "Title of the settings page regarding the notes types."
+  },
+  "settings_page_notes_types_description": "Tipos a utilizar, texto enriquecido",
+  "@settings_page_notes_types_description": {
+    "description": "Description of the settings page regarding the notes types."
+  },
+  "settings_section_types_to_use": "Tipos a utilizar",
+  "@settings_section_types_to_use": {
+    "description": "Title of the settings section regarding the notes types to use."
+  },
+  "settings_available_notes_types": "Tipos de notas disponibles",
+  "@settings_available_notes_types": {
+    "description": "Title of the setting tile to choose the available notes types."
+  },
+  "settings_available_notes_types_description": "La lista de tipos de notas que se pueden crear con el botón \"Añadir\" de la página de notas. Al eliminar un tipo, las notas ya existentes con ese tipo no se borran y se pueden seguir utilizando con normalidad",
+  "@settings_available_notes_types_description": {
+    "description": "Description of the setting tile to choose the available notes types."
+  },
+  "settings_available_default_share_type": "Tipo de acción predeterminado",
+  "@settings_available_default_share_type": {
+    "description": "Title of the setting tile to choose the default note type to use when creating a note from a share action."
+  },
+  "settings_available_default_share_type_description": "El tipo de nota por defecto a usar al crear una nota desde una acción compartida. Puede ser un tipo que no esté disponible desde el botón \"Añadir\"",
+  "@settings_available_default_share_type_description": {
+    "description": "Description of the setting tile to choose the default note type to use when creating a note from a share action."
+  },
   "settings_editor": "Editor",
   "@settings_editor": {
     "description": "Title of the settings page regarding the notes content editor."
+  },
+  "settings_editor_description": "Conducta",
+  "@settings_editor_description": {
+    "description": "Description of the editor settings page."
   },
   "settings_editor_behavior": "Comportamiento",
   "@settings_editor_behavior": {
@@ -340,6 +418,14 @@
   "settings_editor_appearance": "Apariencia",
   "@settings_editor_appearance": {
     "description": "Title of the settings section regarding the appearance of the editor"
+  },
+  "settings_toolbar_style_title": "Estilo de barra de herramientas",
+  "@settings_toolbar_style_title": {
+    "description": "Title of the setting tile to choose the toolbar style."
+  },
+  "settings_toolbar_style_description": "El estilo de la barra de herramientas del editor de texto enriquecido",
+  "@settings_toolbar_style_description": {
+    "description": "Description of the setting tile to choose the toolbar style."
   },
   "settings_use_paragraph_spacing": "Espacio entre párrafos",
   "@settings_use_paragraph_spacing": {
@@ -385,6 +471,26 @@
   "@settings_show_labels_editor_description": {
     "description": "Description of the setting tile to show the tags in the editor."
   },
+  "settings_labels_section_behavior": "Comportamiento",
+  "@settings_labels_section_behavior": {
+    "description": "Title of the settings section regarding the behavior of the tags."
+  },
+  "settings_labels_swipe_action_right": "Deslizar a la derecha",
+  "@settings_labels_swipe_action_right": {
+    "description": "Title of the setting tile to choose which action to trigger when a right swapping a label tile."
+  },
+  "settings_labels_swipe_action_right_description": "Acción que se activa al deslizar hacia la derecha sobre un mosaico de etiqueta",
+  "@settings_labels_swipe_action_right_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a label tile."
+  },
+  "settings_labels_swipe_action_left": "Deslizar a la izquierda",
+  "@settings_labels_swipe_action_left": {
+    "description": "Title of the setting tile to choose which action to trigger when a left swapping a label tile."
+  },
+  "settings_labels_swipe_action_left_description": "Acción que se activa cuando se desliza el dedo hacia la izquierda sobre un mosaico de etiqueta",
+  "@settings_labels_swipe_action_left_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a label tile."
+  },
   "settings_backup": "Respaldo",
   "@settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
@@ -413,9 +519,17 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
+  "settings_export_json_description": "Exporta inmediatamente todas las notas, etiquetas y ajustes a un archivo JSON que puede ser importado de vuelta",
+  "@settings_export_json_description": {
+    "description": "Description of the setting tile to manually export the notes as JSON."
+  },
   "settings_export_markdown": "Exportar a Markdown",
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
+  },
+  "settings_export_markdown_description": "Exportar inmediatamente todas las notas a un archivo Markdown",
+  "@settings_export_markdown_description": {
+    "description": "Description of the setting tile to manually export the notes as Markdown."
   },
   "settings_backup_auto_export": "Exportación automática",
   "@settings_backup_auto_export": {
@@ -425,9 +539,23 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
+  "settings_auto_export_description": "Exportar automáticamente todas las notas, etiquetas y ajustes a un archivo JSON que se puede importar de vuelta",
+  "@settings_auto_export_description": {
+    "description": "Description of the settings tile to enable the automatic export."
+  },
   "settings_auto_export_frequency": "Frecuencia",
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
+  },
+  "settings_auto_export_frequency_value": "Cada {frequency, select, 1{día} 7{semana} 14{2 semanas} 30{mes} other{}}",
+  "@settings_auto_export_frequency_value": {
+    "description": "Frequency of the automatic exports.",
+    "placeholders": {
+      "frequency": {
+        "description": "Frequency in days.",
+        "type": "String"
+      }
+    }
   },
   "settings_auto_export_frequency_description": "Frecuencia de la exportación automática",
   "@settings_auto_export_frequency_description": {
@@ -449,6 +577,26 @@
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_security": "Seguridad",
+  "@settings_security": {
+    "description": "Title of the settings page regarding the security."
+  },
+  "settings_security_description": "Bandera segura, bloqueo de la aplicación, bloqueo de notas",
+  "@settings_security_description": {
+    "description": "Description of the settings page regarding the security."
+  },
+  "settings_security_application": "Aplicación",
+  "@settings_security_application": {
+    "description": "Title of the sub-section regarding the application under the security settings."
+  },
+  "settings_security_application_lock": "Bloqueo de la aplicación",
+  "@settings_security_application_lock": {
+    "description": "Title of the sub-section regarding the application lock under the security settings."
+  },
+  "settings_security_note_lock": "Bloqueo de nota",
+  "@settings_security_note_lock": {
+    "description": "Title of the sub-section regarding the note lock under the security settings."
+  },
   "settings_flag_secure": "Marcar la aplicación cómo segura",
   "@settings_flag_secure": {
     "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
@@ -457,9 +605,55 @@
   "@settings_flag_secure_description": {
     "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
   },
+  "settings_application_lock_title": "Bloquear",
+  "@settings_application_lock_title": {
+    "description": "Title of the setting tile to toggle whether the application is locked."
+  },
   "settings_application_lock_description": "Bloquea la aplicación y requiere autentificarse con el dispositivo para desbloquearla",
   "@settings_application_lock_description": {
     "description": "Description of the setting tile to toggle whether the application is locked."
+  },
+  "settings_application_lock_delay_title": "Retardo de bloqueo",
+  "@settings_application_lock_delay_title": {
+    "description": "Title of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
+  },
+  "settings_application_lock_delay_description": "Retraso tras el cual la aplicación se bloquea automáticamente cuando se mueve al segundo plano",
+  "@settings_application_lock_delay_description": {
+    "description": "Description of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
+  },
+  "settings_lock_delay_value": "{delay, select, 0{Inmediatamente} 3{Después de 3 segundos} 5{Después de 5 segundos} 10{Después de 10 segundos} 30{Después de 30 segundos} 60{Después de 1 minuto} 120{Después de 2 minutos} 300{Después de 5 minutos} other{Nunca}}",
+  "@settings_lock_delay_value": {
+    "description": "Value of the setting tile to choose after which amount of time the application/note/label locks itself after the application was moved to the background.",
+    "placeholders": {
+      "delay": {
+        "type": "String",
+        "description": "Delay in seconds."
+      }
+    }
+  },
+  "settings_note_lock_title": "Bloqueo de nota",
+  "@settings_note_lock_title": {
+    "description": "Title of the setting tile to toggle whether the notes can be locked."
+  },
+  "settings_note_lock_description": "Bloquea la nota y requiere autenticarse con el dispositivo para verla y editarla",
+  "@settings_note_lock_description": {
+    "description": "Description of the setting tile to toggle whether the notes can be locked."
+  },
+  "settings_label_lock_title": "Bloqueo de etiqueta",
+  "@settings_label_lock_title": {
+    "description": "Title of the setting tile to toggle whether the tags can be locked."
+  },
+  "settings_label_lock_description": "Bloquea la etiqueta y requiere autenticarse con el dispositivo para ver y editar cualquier nota que la contenga",
+  "@settings_label_lock_description": {
+    "description": "Description of the setting tile to toggle whether the tags can be locked."
+  },
+  "settings_note_lock_delay_title": "Retardo de bloqueo",
+  "@settings_note_lock_delay_title": {
+    "description": "Title of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
+  },
+  "settings_note_lock_delay_description": "Retraso tras el cual la nota se bloquea automáticamente cuando la aplicación pasa a segundo plano",
+  "@settings_note_lock_delay_description": {
+    "description": "Description of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
   },
   "settings_accessibility": "Accesibilidad",
   "@settings_accessibility": {
@@ -485,6 +679,10 @@
   "@settings_bigger_titles": {
     "description": "Title of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
+  "settings_bigger_titles_description": "Mostrar títulos más grandes en los azulejos de notas y en el editor",
+  "@settings_bigger_titles_description": {
+    "description": "Description of the setting tile to use bigger titles on the notes tiles and in the editor."
+  },
   "settings_white_text_dark_mode": "Texto blanco en el modo oscuro",
   "@settings_white_text_dark_mode": {
     "description": "Title of the text scale setting tile."
@@ -500,6 +698,10 @@
   "settings_disable_subdued_note_content_preview_description": "Desactiva el color de texto subrayado de la vista previa del contenido de las notas",
   "@settings_disable_subdued_note_content_preview_description": {
     "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
+  },
+  "settings_help_section_contact": "Contacto",
+  "@settings_help_section_contact": {
+    "description": "Title of the settings section regarding how to get in contact."
   },
   "settings_github_issues": "Reporta errores o solicita nuevas características",
   "@settings_github_issues": {
@@ -517,9 +719,25 @@
   "@settings_github_discussions_description": {
     "description": "Description of the settings tile to open the GitHub discussions and ask a question."
   },
+  "settings_contact_developer": "Contactar con el desarrollador",
+  "@settings_contact_developer": {
+    "description": "Title of the settings tile to contact the developer via mail."
+  },
   "settings_get_in_touch_description": "Póngase en contacto con el desarrollador por correo electrónico en {email}",
   "@settings_get_in_touch_description": {
     "description": "Description of the settings tile to contact the developer via mail."
+  },
+  "settings_help": "Ayuda",
+  "@settings_help": {
+    "description": "Title of the settings page to receive help."
+  },
+  "settings_help_description": "Contacto, registros",
+  "@settings_help_description": {
+    "description": "Description of the settings page to receive help."
+  },
+  "settings_help_section_logs": "Registros",
+  "@settings_help_section_logs": {
+    "description": "Title of the settings section regarding the logs of the application."
   },
   "settings_copy_logs": "Copiar registros",
   "@settings_copy_logs": {
@@ -540,6 +758,10 @@
   "settings_about": "Acerca de",
   "@settings_about": {
     "description": "Title of the settings page regarding the information about the application."
+  },
+  "settings_about_description": "Información, enlaces, donar",
+  "@settings_about_description": {
+    "description": "Description of the settings page regarding the information about the application."
   },
   "settings_about_application": "Aplicación",
   "@settings_about_application": {
@@ -585,13 +807,25 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
+  "settings_about_section_donate": "Donar",
+  "@settings_about_section_donate": {
+    "description": "Title of the settings section to donate."
+  },
   "settings_donate_kofi": "Ko-fi",
   "@settings_donate_kofi": {
     "description": "Title of the settings tile to donate via Ko-fi."
   },
+  "settings_donate_paypal": "PayPal",
+  "@settings_donate_paypal": {
+    "description": "Title of the settings tile to donate via PayPal."
+  },
   "hint_title": "Título",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
+  },
+  "hint_content": "Nota",
+  "@hint_content": {
+    "description": "Hint for the text field of the content of the notes."
   },
   "hint_link": "Enlace",
   "@hint_link": {
@@ -624,6 +858,22 @@
   "tooltip_fab_add_note": "Agregar una nota",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
+  },
+  "tooltip_fab_add_plain_text_note": "Añadir una nota de texto plano",
+  "@tooltip_fab_add_plain_text_note": {
+    "description": "Floating action button in the notes page to add a new plain text note."
+  },
+  "tooltip_fab_add_markdown_note": "Añadir una nota de Markdown",
+  "@tooltip_fab_add_markdown_note": {
+    "description": "Floating action button in the notes page to add a new markdown note."
+  },
+  "tooltip_fab_add_rich_text_note": "Añadir una nota de texto enriquecido",
+  "@tooltip_fab_add_rich_text_note": {
+    "description": "Floating action button in the notes page to add a new rich text note."
+  },
+  "tooltip_fab_add_checklist_note": "Añadir una nota de lista de verificación",
+  "@tooltip_fab_add_checklist_note": {
+    "description": "Floating action button in the notes page to add a new checklist note."
   },
   "tooltip_fab_add_label": "Añadir etiqueta",
   "@tooltip_fab_add_label": {
@@ -668,6 +918,34 @@
   "dialog_add_link": "Agregar un vínculo",
   "@dialog_add_link": {
     "description": "Tooltip for the button to validate the dialog to add a link in the note editor."
+  },
+  "dialog_archive": "Archivar",
+  "@dialog_archive": {
+    "description": "Title of the the dialog to archive one or multiple notes (moving them to the archives), and text for the confirmation button."
+  },
+  "dialog_archive_body": "¿Realmente quieres restaurar {count} {count, plural, one{nota} other{notas}}?",
+  "@dialog_archive_body": {
+    "description": "Text for the dialog to confirm the archival of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to archive.",
+        "type": "int"
+      }
+    }
+  },
+  "dialog_unarchive": "Des archivar",
+  "@dialog_unarchive": {
+    "description": "Title of the the dialog to unarchive one or multiple notes, and text for the confirmation button."
+  },
+  "dialog_unarchive_body": "¿Realmente quieres restaurar {count} {count, plural, one{nota} other{notas}}?",
+  "@dialog_unarchive_body": {
+    "description": "Text for the dialog to confirm the unarchival of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to unarchive.",
+        "type": "int"
+      }
+    }
   },
   "dialog_delete": "Eliminar",
   "@dialog_delete": {
@@ -793,6 +1071,10 @@
   "@placeholder_labels": {
     "description": "Placeholder on the tags page when there are no tags."
   },
+  "placeholder_archives": "No hay notas archivadas",
+  "@placeholder_archives": {
+    "description": "Placeholder on the archives notes page when there are no archived notes."
+  },
   "placeholder_bin": "No hay notas eliminadas",
   "@placeholder_bin": {
     "description": "Placeholder on the bin page when there are no deleted notes."
@@ -801,6 +1083,14 @@
   "@action_disabled": {
     "description": "Swipe action that is disabled in the settings."
   },
+  "action_toggle_pin": "Alternar fijado",
+  "@action_toggle_pin": {
+    "description": "Menu action to toggle whether the notes are pinned."
+  },
+  "action_pin_unpin": "Fijar / Desfijar",
+  "@action_pin_unpin": {
+    "description": "Swipe action to pin or unpin a note."
+  },
   "action_pin": "Fijar",
   "@action_pin": {
     "description": "Swipe or menu action to pin a note."
@@ -808,6 +1098,22 @@
   "action_unpin": "Desfijar",
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
+  },
+  "action_toggle_lock": "Alternar bloqueo",
+  "@action_toggle_lock": {
+    "description": "Menu action to toggle whether the notes are locked."
+  },
+  "action_lock_unlock": "Bloquear / Desbloquear",
+  "@action_lock_unlock": {
+    "description": "Swipe action to lock or unlock a note."
+  },
+  "action_lock": "Bloquear",
+  "@action_lock": {
+    "description": "Swipe or menu action to lock a note."
+  },
+  "action_unlock": "Desbloquear",
+  "@action_unlock": {
+    "description": "Swipe or menu action to unlock a note."
   },
   "action_share": "Compartir",
   "@action_share": {
@@ -822,6 +1128,14 @@
         "type": "int"
       }
     }
+  },
+  "action_archive": "Archivar",
+  "@action_archive": {
+    "description": "Swipe or menu action to archive a note (moving it to the archives)."
+  },
+  "action_unarchive": "Des archivar",
+  "@action_unarchive": {
+    "description": "Swipe or menu action to unarchive a note."
   },
   "action_delete": "Eliminar",
   "@action_delete": {
@@ -867,9 +1181,61 @@
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
+  "menu_action_select_labels": "Etiquetas",
+  "@menu_action_select_labels": {
+    "description": "Menu action to select the tags of a note."
+  },
+  "menu_action_add_labels": "Añadir etiquetas",
+  "@menu_action_add_labels": {
+    "description": "Menu action to add tags to multiple notes."
+  },
+  "action_labels_toggle_visibile": "Alternar visibilidad",
+  "@action_labels_toggle_visibile": {
+    "description": "Tooltip for the button to toggle whether the selected tags are visible."
+  },
+  "action_labels_show_hide": "Mostrar / Ocultar",
+  "@action_labels_show_hide": {
+    "description": "Swipe action to show or hide a tag."
+  },
+  "action_labels_show": "Mostrar",
+  "@action_labels_show": {
+    "description": "Menu or swipe action to make tag visible."
+  },
+  "action_labels_hide": "Ocultar",
+  "@action_labels_hide": {
+    "description": "Menu or swipe action to hide a tag."
+  },
   "action_labels_toggle_pins": "Alternar fijado",
   "@action_labels_toggle_pins": {
     "description": "Menu action to toggle whether the selected tags are pinned."
+  },
+  "action_labels_pin_unpin": "Fijar / Desfijar",
+  "@action_labels_pin_unpin": {
+    "description": "Swipe action to pin or unpin a tag."
+  },
+  "action_labels_pin": "Fijar",
+  "@action_labels_pin": {
+    "description": "Menu or swipe action to pin a tag."
+  },
+  "action_labels_unpin": "Desfijar",
+  "@action_labels_unpin": {
+    "description": "Menu or swipe action to unpin a tag."
+  },
+  "action_labels_toggle_lock": "Alternar bloqueo",
+  "@action_labels_toggle_lock": {
+    "description": "Tooltip for the button to toggle whether the selected tags are locked."
+  },
+  "action_labels_lock_unlock": "Bloquear / Desbloquear",
+  "@action_labels_lock_unlock": {
+    "description": "Swipe action to lock or unlock a tag."
+  },
+  "action_labels_lock": "Bloquear",
+  "@action_labels_lock": {
+    "description": "Menu or swipe action to lock a tag."
+  },
+  "action_labels_unlock": "Desbloquear",
+  "@action_labels_unlock": {
+    "description": "Menu or swipe action to unlock a tag."
   },
   "action_labels_edit": "Editar",
   "@action_labels_edit": {
@@ -895,6 +1261,64 @@
   "@filter_labels_pinned": {
     "description": "Filter chip in the tags page to show only the pinned tags."
   },
+  "filter_labels_locked": "Bloqueado",
+  "@filter_labels_locked": {
+    "description": "Filter chip in the tags page to show only the locked tags."
+  },
+  "snack_bar_authentication_failed": "La autenticación ha fallado por favor inténtelo de nuevo.",
+  "@snack_bar_authentication_failed": {
+    "description": "Snack bar informing that the authentication on the lock screen has failed."
+  },
+  "snack_bar_archived": "La/las notas {count, plural, one{han sido} other{han sido}} archivadas",
+  "@snack_bar_archived": {
+    "description": "Snack bar informing that the note was archived.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were archived.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_unarchived": "La/las notas {count, plural, one{han sido} other{han sido}} des archivadas",
+  "@snack_bar_unarchived": {
+    "description": "Snack bar informing that the note was unarchived.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were unarchived.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_deleted": "La/las notas {count, plural, one{han sido} other{han sido}} eliminadas",
+  "@snack_bar_deleted": {
+    "description": "Snack bar informing that the note was deleted.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were deleted.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_restored": "La/las notas {count, plural, one{han sido} other{han sido}} restauradas",
+  "@snack_bar_restored": {
+    "description": "Snack bar informing that the note was restored.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were restored.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_copied": "Contenido de {count, plural, one{nota} other{notas}} copiado al portapapeles.",
+  "@snack_bar_copied": {
+    "description": "Snack bar informing that the content of the note was copied to clipboard.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to copy.",
+        "type": "int"
+      }
+    }
+  },
   "snack_bar_import_success": "La copia de seguridad se ha importado correctamente.",
   "@snack_bar_import_success": {
     "description": "Snack bar informing that the backup was successfully imported."
@@ -915,6 +1339,22 @@
   "@snack_bar_no_labels": {
     "description": "Snack bar message shown when the user tries to select the tags for a note, but there are no tags available."
   },
+  "quick_action_add_plain_text_note_title": "Añadir una nota de texto plano",
+  "@quick_action_add_plain_text_note_title": {
+    "description": "Title of the home screen action to add a new plain text note."
+  },
+  "quick_action_add_markdown_note_title": "Añadir una nota de Markdown",
+  "@quick_action_add_markdown_note_title": {
+    "description": "Title of the home screen action to add a new markdown note."
+  },
+  "quick_action_add_rich_text_note_title": "Añadir una nota de texto enriquecido",
+  "@quick_action_add_rich_text_note_title": {
+    "description": "Title of the home screen action to add a new rich text note."
+  },
+  "quick_action_add_checklist_note_title": "Añadir una nota de lista de verificación",
+  "@quick_action_add_checklist_note_title": {
+    "description": "Title of the home screen action to add a new checklist note."
+  },
   "welcome_note_title": "Bienvenido a Material Notes !",
   "@welcome_note_title": {
     "description": "Title of the welcome note automatically created on the first run of the application."
@@ -931,8 +1371,96 @@
   "@note_type_plain_text": {
     "description": "Note with plain text."
   },
+  "note_type_markdown": "Markdown",
+  "@note_type_markdown": {
+    "description": "Note with markdown text."
+  },
   "note_type_rich_text": "Texto enriquecido",
   "@note_type_rich_text": {
     "description": "Note with rich text."
+  },
+  "note_type_checklist": "Lista de verificación",
+  "@note_type_checklist": {
+    "description": "Note with a checklist."
+  },
+  "lock_page_reason_app": "Desbloquear Notas Material",
+  "@lock_page_reason_app": {
+    "description": "Reason for the lock screen of the application to request a system authentication."
+  },
+  "lock_page_reason_note": "Desbloquear esta nota",
+  "@lock_page_reason_note": {
+    "description": "Reason for the lock screen of a locked note to request a system authentication."
+  },
+  "lock_page_reason_action": "Autorizar esta acción",
+  "@lock_page_reason_action": {
+    "description": "Reason for the lock screen for a secure action to request a system authentication."
+  },
+  "lock_page_description_app": "La aplicación está bloqueada.",
+  "@lock_page_description_app": {
+    "description": "Description shown in the lock page for the application."
+  },
+  "lock_page_description_note": "Esta nota está bloqueada.",
+  "@lock_page_description_note": {
+    "description": "Description shown in the lock page for a locked note."
+  },
+  "lock_page_unlock": "Desbloquear",
+  "@lock_page_unlock": {
+    "description": "Button to unlock the lock page by requesting a system authentication."
+  },
+  "rich_text_editor_toolbar_dialog_color_title_foreground": "Color de primer plano",
+  "@rich_text_editor_toolbar_dialog_color_title_foreground": {
+    "description": "Title of the dialog to choose the foreground color of the text in the rich text editor."
+  },
+  "rich_text_editor_toolbar_dialog_color_title_background": "Color de fondo",
+  "@rich_text_editor_toolbar_dialog_color_title_background": {
+    "description": "Title of the dialog to choose the background color of the text in the rich text editor."
+  },
+  "rich_text_editor_toolbar_dialog_color_description": "Color de primer plano",
+  "@rich_text_editor_toolbar_dialog_color_description": {
+    "description": "Description of the dialog to choose the foreground/background color of the text."
+  },
+  "toolbar_style_one_row_simple_title": "Una fila (opciones simples)",
+  "@toolbar_style_one_row_simple_title": {
+    "description": "Title for the style of the rich text editor toolbar with one row and only simple formatting options."
+  },
+  "toolbar_style_one_row_simple_description": "Sólo opciones de formato simples en una fila",
+  "@toolbar_style_one_row_simple_description": {
+    "description": "Description for the style of the rich text editor toolbar with one row and only simple formatting options."
+  },
+  "toolbar_style_one_row_all_title": "Una fila (todas las opciones)",
+  "@toolbar_style_one_row_all_title": {
+    "description": "Title for the style of the rich text editor toolbar with one row and all formatting options."
+  },
+  "toolbar_style_one_row_all_description": "Todas las opciones de formato en una fila",
+  "@toolbar_style_one_row_all_description": {
+    "description": "Description for the style of the rich text editor toolbar with one row and all formatting options."
+  },
+  "toolbar_style_two_rows_stacked_title": "Dos filas (apilado)",
+  "@toolbar_style_two_rows_stacked_title": {
+    "description": "Title for the style of the rich text editor toolbar with two stacked rows."
+  },
+  "toolbar_style_two_rows_stacked_description": "Todas las opciones de formato en dos filas apiladas",
+  "@toolbar_style_two_rows_stacked_description": {
+    "description": "Description for the style of the rich text editor toolbar with two stacked rows."
+  },
+  "toolbar_style_two_rows_toggleable_title": "Dos filas (activable)",
+  "@toolbar_style_two_rows_toggleable_title": {
+    "description": "Title for the style of the rich text editor toolbar with two toggleable rows."
+  },
+  "toolbar_style_two_rows_toggleable_description": "Todas las opciones de formato en dos filas conmutables",
+  "@toolbar_style_two_rows_toggleable_description": {
+    "description": "Description for the style of the rich text editor toolbar with two toggleable rows."
+  },
+  "settings_confirm_before_exiting_title": "Confirmar antes de salir",
+  "@settings_confirm_before_exiting_title": {
+    "description": "Title of the setting tile for whether a confirmation is required before exiting the application."
+  },
+  "settings_confirm_before_exiting_description": "Solicitar confirmación antes de salir de la aplicación",
+  "@settings_confirm_before_exiting_description": {
+    "description": "Description of the setting tile for whether a confirmation is required before exiting the application."
+  },
+  "snack_bar_confirm_exiting": "Presione atrás otra vez para salir de la aplicación.",
+  "@snack_bar_confirm_exiting": {
+    "description": "Snack bar asking the user to confirm exiting the application by pressing back again."
   }
 }

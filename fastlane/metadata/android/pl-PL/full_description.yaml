@@ -1,0 +1,64 @@
+full_description: |
+  <p>
+      <b>Material Notes</b> to prosta aplikacja do robienia notatek w formie tekstowej. Zgodna z Material Design.
+      Przechowuje notatki lokalnie i nie wymaga żadnych uprawnień do internetu, więc tylko Ty masz dostęp do swoich notatek.
+  </p>
+
+  <p>
+      <b>Rób notatki</b>
+  </p>
+  <ul>
+      <li>Pisz notatki tekstowe (tytuł i treść)</li>
+      <li>Wybieraj między zwykłym tekstem, tekstem sformatowanym, wzbogaconym tekstem, lub notatkami w formie listy kontrolnej</li>
+      <li>Użyj szybkiej akcji z ekranu głównego, aby szybko dodać notatkę</li>
+  </ul>
+
+  <p>
+      <b>Organizuj</b>
+  </p>
+  <ul>
+      <li>Przeszukuj swoje notatki</li>
+      <li>Sortuj notatki według daty lub tytułu, w kolejności rosnącej lub malejącej</li>
+      <li>Wyświetlaj notatki w widoku listy lub siatki</li>
+      <li>Przypinaj i archiwizuj swoje notatki</li>
+      <li>Odzyskuj usunięte notatki z kosza</li>
+  </ul>
+
+  <p>
+      <b>Kategoryzuj</b>
+  </p>
+  <ul>
+      <li>Kategoryzuj swoje notatki za pomocą tagów</li>
+      <li>Rozróżniaj swoje tagi za pomocą ich koloru</li>
+      <li>Przypinaj i ukrywaj swoje tagi</li>
+  </ul>
+
+  <p>
+      <b>Udostępniaj i twórz kopie zapasowe</b>
+  </p>
+  <ul>
+      <li>Udostępniaj tekst z innych aplikacji, aby dodać go bezpośrednio do notatki</li>
+      <li>Udostępniaj swoje notatki jako tekst</li>
+      <li>Eksportuj swoje notatki jako JSON, ręcznie lub automatycznie, i importuj je z powrotem</li>
+      <li>Eksportuj swoje notatki jako tekst sformatowany</li>
+  </ul>
+
+  <p>
+      <b>Chroń</b>
+  </p>
+  <ul>
+      <li>Nigdy nie martw się o sposób przetwarzania Twoich danych: nie mogą one opuścić Twojego urządzenia,
+      ponieważ aplikacja nie posiada żadnych uprawnień do internetu</li>
+      <li>Zablokuj aplikację, konkretną notatkę lub wszystkie notatki z określonym tagiem</li>
+      <li>Szyfruj swoje eksporty JSON</li>
+  </ul>
+
+  <p>
+      <b>Dostosuj</b>
+  </p>
+  <ul>
+      <li>Wybierz swój język</li>
+      <li>Wybierz swój motyw (jasny, ciemny lub czarny)</li>
+      <li>Wybierz, czy chcesz, aby Twój motyw był dynamiczny (używaj kolorów z tła)</li>
+      <li>Wybierz, które typy notatek chcesz włączyć</li>
+  </ul>

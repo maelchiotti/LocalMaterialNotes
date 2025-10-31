@@ -1,0 +1,6 @@
+CORRIGÉ
+- Garder le clavier ouvert lors de l'ajout d'un élément à une liste de contrôle
+- Masquer le contenu des notes verrouillées dans la liste des notes
+- Note non modifiable lors de la création d'une nouvelle note
+- Build mode dans le pied de page de l'email
+- Supprimer automatiquement les notes de texte riche corrompues

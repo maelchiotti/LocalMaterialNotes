@@ -11,13 +11,13 @@ enum SupportedLanguage {
   en(Locale('en'), 1),
 
   /// Spanish.
-  es(Locale('es'), .62),
+  es(Locale('es'), .1),
 
   /// French.
   fr(Locale('fr'), 1),
 
   /// German.
-  de(Locale('de'), .85),
+  de(Locale('de'), .87),
 
   /// Hindi.
   hi(Locale('hi'), .52),
@@ -26,16 +26,19 @@ enum SupportedLanguage {
   it(Locale('it'), .86),
 
   /// Polish.
-  pl(Locale('pl'), .37),
+  pl(Locale('pl'), .1),
 
   /// Portuguese.
-  pt(Locale('pt'), .54),
+  pt(Locale('pt'), .61),
 
   /// Russian.
   ru(Locale('ru'), .78),
 
   /// Turkish.
-  tr(Locale('tr'), .48),
+  tr(Locale('tr'), .5),
+
+  /// Ukrainian.
+  uk(Locale('uk'), .1),
 
   /// Chinese Simplified.
   zh(Locale('zh'), 1),
