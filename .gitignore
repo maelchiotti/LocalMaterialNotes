@@ -31,6 +31,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+.fvm
 
 # Symbolication related
 app.*.symbols
@@ -60,6 +61,3 @@ fastlane/report.xml
 
 # External imports
 docs/external_imports/outputs/*.json
-
-# FVM
-.fvm
