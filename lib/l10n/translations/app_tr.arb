@@ -65,6 +65,10 @@
   "@navigation_manage_labels_page": {
     "description": "Title of the page to manage the tags."
   },
+  "navigation_archives": "Arşivler",
+  "@navigation_archives": {
+    "description": "Title of the archives page."
+  },
   "navigation_bin": "Çöp Kutusu",
   "@navigation_bin": {
     "description": "Title of the bin page."
@@ -76,6 +80,14 @@
   "navigation_settings_appearance": "Görünüm",
   "@navigation_settings_appearance": {
     "description": "Title of the settings page regarding the application's appearance."
+  },
+  "navigation_settings_notes_types": "Not türleri",
+  "@navigation_settings_notes_types": {
+    "description": "Title of the settings page regarding the notes types."
+  },
+  "navigation_settings_notes_tiles": "Not başlıkları",
+  "@navigation_settings_notes_tiles": {
+    "description": "Title of the settings page regarding the notes tiles appearance."
   },
   "navigation_settings_behavior": "Davranış",
   "@navigation_settings_behavior": {
@@ -93,9 +105,17 @@
   "@navigation_settings_backup": {
     "description": "Title of the settings page regarding the backup functionality."
   },
+  "navigation_settings_security": "Güvenlik",
+  "@navigation_settings_security": {
+    "description": "Title of the settings page regarding the security."
+  },
   "navigation_settings_accessibility": "Erişilebilirlik",
   "@navigation_settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility."
+  },
+  "navigation_settings_help": "Yardım alın",
+  "@navigation_settings_help": {
+    "description": "Title of the settings page to receive help."
   },
   "navigation_settings_about": "Hakkında",
   "@navigation_settings_about": {
@@ -109,6 +129,14 @@
   "@button_sort_ascending": {
     "description": "Text of the button to sort the notes list in ascending order."
   },
+  "settings_page_appearance": "Görünüm",
+  "@settings_page_appearance": {
+    "description": "Title of the settings page regarding the application's appearance."
+  },
+  "settings_page_appearance_description": "Diller, temalaştırma ve yazı tipleri",
+  "@settings_page_appearance_description": {
+    "description": "Description of the appearance settings page."
+  },
   "settings_language": "Dil",
   "@settings_language": {
     "description": "Title of the language setting tile."
@@ -116,6 +144,10 @@
   "settings_language_contribute": "Bağış yap",
   "@settings_language_contribute": {
     "description": "Button to contribute to the localizations, shown on the language setting tile."
+  },
+  "settings_appearance_section_theming": "Temalaştırma",
+  "@settings_appearance_section_theming": {
+    "description": "Title of the section regarding the theming under the appearance settings."
   },
   "settings_theme": "Tema",
   "@settings_theme": {
@@ -148,6 +180,34 @@
   "settings_black_theming_description": "Koyu modda siyah arkaplan kullanın",
   "@settings_black_theming_description": {
     "description": "Description of the black theming setting tile."
+  },
+  "settings_appearance_section_fonts": "Yazı tipleri",
+  "@settings_appearance_section_fonts": {
+    "description": "Title of the section regarding the theming under the appearance settings."
+  },
+  "settings_app_font": "Uygulama yazı tipi",
+  "@settings_app_font": {
+    "description": "Title of the setting tile to choose the font of the app."
+  },
+  "settings_app_font_description": "Not düzenleyici dışında uygulamadaki diğer tüm metinlerde kullanılan yazı tipi",
+  "@settings_app_font_description": {
+    "description": "Description of the setting tile to choose the font of the app."
+  },
+  "settings_editor_font": "Düzenleyici yazı tipi",
+  "@settings_editor_font": {
+    "description": "Title of the setting tile to choose the font of the notes."
+  },
+  "settings_editor_font_description": "Yalnızca not düzenleyicisindeki metinde kullanılan yazı tipi",
+  "@settings_editor_font_description": {
+    "description": "Description of the setting tile to choose the font of the app."
+  },
+  "settings_page_notes_tiles": "Not başlıkları",
+  "@settings_page_notes_tiles": {
+    "description": "Title of the settings page regarding the notes tiles."
+  },
+  "settings_page_notes_tiles_description": "Görünüm, içerik",
+  "@settings_page_notes_tiles_description": {
+    "description": "Description of the notes tiles settings page."
   },
   "settings_show_tiles_background": "Arkaplan",
   "@settings_show_tiles_background": {

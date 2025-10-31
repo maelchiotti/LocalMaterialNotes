@@ -1,7 +1,6 @@
 format: true
 use-escaping: true
 nullable-getter: false
-synthetic-package: false
 required-resource-attributes: true
 
 arb-dir: lib/l10n/translations

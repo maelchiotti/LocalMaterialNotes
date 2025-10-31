@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:fleather/fleather.dart';
 import 'package:flutter_checklist/checklist.dart';
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remove_markdown/remove_markdown.dart';
 
@@ -11,6 +11,7 @@ import '../../../common/constants/constants.dart';
 import '../../common/files/encryption_utils.dart';
 import '../../common/preferences/enums/sort_method.dart';
 import '../../common/preferences/preference_key.dart';
+import '../../services/notes/notes_service.dart';
 import '../label/label.dart';
 import 'note_status.dart';
 import 'types/note_type.dart';

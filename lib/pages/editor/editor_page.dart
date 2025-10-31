@@ -25,10 +25,7 @@ import 'widgets/toolbar/toolbar.dart';
 /// Editor page.
 class EditorPage extends ConsumerStatefulWidget {
   /// Page allowing to edit a note.
-  const EditorPage({super.key, required this.readOnly, required this.isNewNote});
-
-  /// Whether the page is read only.
-  final bool readOnly;
+  const EditorPage({super.key, required this.isNewNote});
 
   /// Whether the note was just created.
   final bool isNewNote;
@@ -38,6 +35,16 @@ class EditorPage extends ConsumerStatefulWidget {
 }
 
 class _EditorState extends ConsumerState<EditorPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    // If this is a new note, force the editor to be in edit mode on first build
+    if (widget.isNewNote) {
+      isEditModeNotifier.value = true;
+    }
+  }
+
   @override
   void dispose() {
     // ignore: avoid_ref_inside_state_dispose
@@ -72,14 +79,10 @@ class _EditorState extends ConsumerState<EditorPage> {
             final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
             final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.preferenceOrDefault;
 
-            final readOnly = (widget.readOnly && !widget.isNewNote) || (showEditorModeButton && !isEditorInEditMode);
+            final readOnly = !currentNote.deleted && showEditorModeButton && !isEditorInEditMode;
             final autofocus = widget.isNewNote && !focusTitleOnNewNote;
             final showLabelsList =
                 enableLabels && showLabelsListInEditorPage && currentNote.labelsVisibleSorted.isNotEmpty;
-
-            if (widget.isNewNote) {
-              isEditModeNotifier.value = true;
-            }
 
             Widget contentEditor;
             Widget? toolbar;
@@ -109,11 +112,7 @@ class _EditorState extends ConsumerState<EditorPage> {
                   Expanded(
                     child: Column(
                       children: [
-                        TitleEditor(
-                          readOnly: widget.readOnly,
-                          isNewNote: widget.isNewNote,
-                          onSubmitted: requestEditorFocus,
-                        ),
+                        TitleEditor(readOnly: readOnly, isNewNote: widget.isNewNote, onSubmitted: requestEditorFocus),
                         Gap(8.0),
                         Expanded(child: contentEditor),
                       ],
@@ -122,7 +121,7 @@ class _EditorState extends ConsumerState<EditorPage> {
                   SafeArea(
                     child: Column(
                       children: [
-                        if (showLabelsList) EditorLabelsList(readOnly: widget.readOnly),
+                        if (showLabelsList) EditorLabelsList(readOnly: readOnly),
                         if (toolbar != null && isEditorInEditMode && !currentNote.deleted) toolbar,
                       ],
                     ),

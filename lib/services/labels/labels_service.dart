@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 import '../../common/constants/environment.dart';
 import '../../common/constants/labels.dart';

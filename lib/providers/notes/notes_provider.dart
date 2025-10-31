@@ -11,7 +11,7 @@ import '../../services/notes/notes_service.dart';
 part 'notes_provider.g.dart';
 
 /// Provider for the notes.
-@riverpod
+@Riverpod(keepAlive: true)
 class Notes extends _$Notes {
   final _notesService = NotesService();
 
@@ -41,7 +41,7 @@ class Notes extends _$Notes {
 
     state = AsyncData(sortedNotes);
 
-    return notes.sorted();
+    return sortedNotes;
   }
 
   /// Sorts the notes.
@@ -295,7 +295,10 @@ class Notes extends _$Notes {
       logger.e(exception.toString(), exception, stackTrace);
     }
 
-    state = AsyncData((state.value ?? [])..removeWhere((note) => emptyNotes.contains(note)));
+    var notes = state.value ?? [];
+    notes = notes..removeWhere((note) => emptyNotes.contains(note));
+
+    state = AsyncData([...notes]);
   }
 
   /// Toggles whether the [noteToToggle] is selected.

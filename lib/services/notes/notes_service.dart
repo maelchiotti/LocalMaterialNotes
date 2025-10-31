@@ -1,6 +1,6 @@
-import 'package:flutter_mimir/flutter_mimir.dart';
 import 'package:is_first_run/is_first_run.dart';
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
+import 'package:mimir/mimir.dart';
 
 import '../../common/constants/constants.dart';
 import '../../common/constants/environment.dart';

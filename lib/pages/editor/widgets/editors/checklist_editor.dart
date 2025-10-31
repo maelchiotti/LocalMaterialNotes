@@ -39,6 +39,8 @@ class ChecklistEditor extends ConsumerWidget {
             lines: note.checklistLines,
             enabled: !readOnly,
             autofocusFirstLine: isNewNote,
+            textInputAction: TextInputAction.newline,
+            textCapitalization: TextCapitalization.sentences,
             onChanged: (checklistLines) => onChecklistChanged(ref, checklistLines),
           ),
         ),

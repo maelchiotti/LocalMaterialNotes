@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
-    <configuration name="screenshots" default="false" factoryName="Flutter"
+    <configuration name="Release" default="false" factoryName="Flutter"
         type="FlutterRunConfigurationType">
-        <option name="additionalArgs" value="--dart-define=SCREENSHOTS=true" />
+        <option name="additionalArgs" value="--release" />
         <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
         <method v="2" />
     </configuration>

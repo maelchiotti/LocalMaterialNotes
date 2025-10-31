@@ -663,6 +663,10 @@
   "@settings_bigger_titles": {
     "description": "Title of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
+  "settings_bigger_titles_description": "Größere Titel auf Notizen und im Editor anzeigen",
+  "@settings_bigger_titles_description": {
+    "description": "Description of the setting tile to use bigger titles on the notes tiles and in the editor."
+  },
   "settings_white_text_dark_mode": "Weißer Text im dunklen Modus",
   "@settings_white_text_dark_mode": {
     "description": "Title of the text scale setting tile."
@@ -838,6 +842,10 @@
   "tooltip_fab_add_note": "Notiz hinzufügen",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
+  },
+  "tooltip_fab_add_plain_text_note": "Klartext Notiz hinzufügen",
+  "@tooltip_fab_add_plain_text_note": {
+    "description": "Floating action button in the notes page to add a new plain text note."
   },
   "tooltip_fab_add_label": "Label hinzufügen",
   "@tooltip_fab_add_label": {
@@ -1035,6 +1043,10 @@
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
   },
+  "action_toggle_lock": "Sperre umschalten",
+  "@action_toggle_lock": {
+    "description": "Menu action to toggle whether the notes are locked."
+  },
   "action_share": "Teilen",
   "@action_share": {
     "description": "Swipe or menu action to share a note."
@@ -1198,6 +1210,10 @@
   "note_type_plain_text": "Unformatierter Text",
   "@note_type_plain_text": {
     "description": "Note with plain text."
+  },
+  "note_type_markdown": "Markdown",
+  "@note_type_markdown": {
+    "description": "Note with markdown text."
   },
   "note_type_rich_text": "Formatierter Text",
   "@note_type_rich_text": {

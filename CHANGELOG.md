@@ -4,13 +4,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-# 2.1.1 - 2025-07-19
+## 2.1.2 - 2025-10-31
+
+### Fixed
+
+- Keep the keyboard opened when adding a checklist item
+- Hide the content of locked notes in the notes list
+- Note not editable when creating a new one
+- Build mode in the email footer
+- Automatically delete corrupted rich text notes
+
+## 2.1.1 - 2025-07-19
 
 ### Fixed
 
 - Routing error on startup
 
-# 2.1.0 - 2025-07-18
+## 2.1.0 - 2025-07-18
 
 ### Added
 
@@ -26,7 +36,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Links color in the rich text editor
 - Empty notes not being removed
 
-# 2.0.0 - 2025-05-18
+## 2.0.0 - 2025-05-18
 
 ### Added
 

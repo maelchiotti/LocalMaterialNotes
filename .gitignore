@@ -60,3 +60,6 @@ fastlane/report.xml
 
 # External imports
 docs/external_imports/outputs/*.json
+
+# FVM
+.fvm
