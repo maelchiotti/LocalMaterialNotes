@@ -36,6 +36,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - run: rm -rf /opt/hostedtoolcache # Free up some disk space
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -73,6 +74,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: 'true'
+      - run: rm -rf /opt/hostedtoolcache # Free up some disk space
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
