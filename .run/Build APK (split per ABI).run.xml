@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
     <configuration name="Build APK (split per ABI)" default="false" type="ShConfigurationType">
-        <option name="SCRIPT_TEXT" value="flutter build apk --release --split-pre-abi" />
+        <option name="SCRIPT_TEXT" value="flutter build apk --release --split-per-abi" />
         <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
         <option name="SCRIPT_PATH" value="" />
         <option name="SCRIPT_OPTIONS" value="" />
