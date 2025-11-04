@@ -5,11 +5,9 @@ repository: https://github.com/maelchiotti/LocalMaterialNotes
 version: 2.1.2+32
 publish_to: none
 
-# TODO(maelchiotti): move back to the stable branch when native assets are released
-# https://github.com/dart-lang/sdk/issues/50565
 environment:
-  sdk: ^3.10.0-290.1.beta
-  flutter: 3.38.0-0.2.pre
+  sdk: ^3.9.2
+  flutter: 3.35.7
 
 dependencies:
   after_layout: ^1.2.0
@@ -33,7 +31,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_markdown_plus: ^1.0.3
-  flutter_mimir: ^0.2.0+2
+  flutter_mimir: ^0.1.6
   flutter_native_splash: ^2.4.6
   flutter_riverpod: ^3.0.3
   flutter_secure_storage: ^9.2.4
@@ -51,7 +49,7 @@ dependencies:
   logger: ^2.6.2
   markdown: ^7.3.0
   material_symbols_icons: ^4.2874.0
-  mimir: ^0.2.1
+  mimir: ^0.1.6
   package_info_plus: ^9.0.0
   parchment: any
   parchment_delta: any
@@ -84,7 +82,9 @@ dev_dependencies:
   riverpod_generator: ^3.0.3
   riverpod_lint: ^3.0.3
 
+# TODO(maelchiotti): remove when mimir can be updated to the latest version
 dependency_overrides:
+  freezed_annotation: ^3.0.0
   build: ^4.0.0
 
 flutter:
