@@ -942,7 +942,7 @@ packages:
     source: hosted
     version: "2.0.0"
   mimir:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: mimir
       sha256: "81766c7db42c973e414cd2a374a9e8dae6936a3d7394e6926e8123a7407bf36a"
