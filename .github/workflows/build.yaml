@@ -1,12 +1,61 @@
 name: Build
 
-on: pull_request
+on:
+  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  build_android:
+  native_libraries:
+    name: Native libraries
+    environment: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Read Android NDK version
+        run: |
+          VERSION=$(cat .ndk-version)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      - name: Setup Android NDK
+        id: setup-ndk
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: ${{ env.VERSION }}
+          add-to-path: false
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          rustflags: ""
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          flutter-version-file: pubspec.yaml
+      - name: Get dependencies
+        run: |
+          export PUB_CACHE=$HOME/.pub-cache
+          flutter pub get
+      - name: Build Isar
+        run: |
+          sudo apt-get install -y tofrodos
+          fromdos .isar/tool/build_android.sh
+          bash scripts/isar/fdroid_build_isar.sh x64 armv7 arm64
+        env:
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+      - name: Build mimir
+        run: bash scripts/mimir/fdroid_build_mimir.sh x64 armv7 arm64
+
+  android:
     name: Android
     environment: build
     runs-on: ubuntu-latest
@@ -21,7 +70,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'beta'
+          channel: 'stable'
           flutter-version-file: pubspec.yaml
       - name: Add keystore
         run: echo "${{ secrets.ANDROID_KEYSTORE }}" | base64 -d > android/localmaterialnotes_keystore.jks

@@ -105,6 +105,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.1"
+  build_cli_annotations:
+    dependency: transitive
+    description:
+      name: build_cli_annotations
+      sha256: e563c2e01de8974566a1998410d3f6f03521788160a02503b0b1f1a46c7b3d95
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
   build_config:
     dependency: transitive
     description:
@@ -209,14 +217,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.2"
-  code_assets:
-    dependency: transitive
-    description:
-      name: code_assets
-      sha256: ae0db647e668cbb295a3527f0938e4039e004c80099dce2f964102373f5ce0b5
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.19.10"
   code_builder:
     dependency: transitive
     description:
@@ -519,10 +519,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_mimir
-      sha256: c075ed9971749195cb970fe977183f2e3246ce4c40dab05e05d5a1f8155ae818
+      sha256: dc002bfcb682a640aca77562b7a7b12a710d0408f0dc09cc8cd2d62612b93392
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0+2"
+    version: "0.1.6"
   flutter_native_splash:
     dependency: "direct main"
     description:
@@ -547,6 +547,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  flutter_rust_bridge:
+    dependency: transitive
+    description:
+      name: flutter_rust_bridge
+      sha256: "35c257fc7f98e34c1314d6c145e5ed54e7c94e8a9f469947e31c9298177d546f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.7.0"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -614,7 +622,7 @@ packages:
     source: sdk
     version: "0.0.0"
   freezed_annotation:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: freezed_annotation
       sha256: "7294967ff0a6d98638e7acb774aac3af2550777accd8149c90af5b014e6d44d8"
@@ -661,14 +669,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
-  hooks:
-    dependency: transitive
-    description:
-      name: hooks
-      sha256: "5410b9f4f6c9f01e8ff0eb81c9801ea13a3c3d39f8f0b1613cda08e27eab3c18"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.20.5"
   hotreloader:
     dependency: transitive
     description:
@@ -929,10 +929,10 @@ packages:
     dependency: transitive
     description:
       name: meta
-      sha256: "23f08335362185a5ea2ad3a4e597f1375e78bce8a040df5c600c8d3552ef2394"
+      sha256: e3641ec5d63ebf0d9b41bd43201a66e3fc79a65db5f61fc181f04cd27aab950c
       url: "https://pub.dev"
     source: hosted
-    version: "1.17.0"
+    version: "1.16.0"
   mime:
     dependency: transitive
     description:
@@ -942,13 +942,13 @@ packages:
     source: hosted
     version: "2.0.0"
   mimir:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: mimir
-      sha256: "6b7d5d1845417d5966a5fbb4ebe17c9753beea7085c2c3f3e6b09986dbf4189d"
+      sha256: "81766c7db42c973e414cd2a374a9e8dae6936a3d7394e6926e8123a7407bf36a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.1"
+    version: "0.1.6"
   mockito:
     dependency: transitive
     description:
@@ -957,14 +957,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.5.0"
-  native_toolchain_rs:
-    dependency: transitive
-    description:
-      name: native_toolchain_rs
-      sha256: "6236dfceedd9a7dded4654efa80bf4f544789c3d969815a70fc269740914e0a4"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.2+3"
   node_preamble:
     dependency: transitive
     description:
@@ -1117,14 +1109,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.3"
-  protobuf:
-    dependency: transitive
-    description:
-      name: protobuf
-      sha256: de9c9eb2c33f8e933a42932fe1dc504800ca45ebc3d673e6ed7f39754ee4053e
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.2.0"
   pub_semver:
     dependency: transitive
     description:
@@ -1510,26 +1494,26 @@ packages:
     dependency: transitive
     description:
       name: test
-      sha256: "75906bf273541b676716d1ca7627a17e4c4070a3a16272b7a3dc7da3b9f3f6b7"
+      sha256: "65e29d831719be0591f7b3b1a32a3cda258ec98c58c7b25f7b84241bc31215bb"
       url: "https://pub.dev"
     source: hosted
-    version: "1.26.3"
+    version: "1.26.2"
   test_api:
     dependency: transitive
     description:
       name: test_api
-      sha256: ab2726c1a94d3176a45960b6234466ec367179b87dd74f1611adb1f3b5fb9d55
+      sha256: "522f00f556e73044315fa4585ec3270f1808a4b186c936e612cab0b565ff1e00"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.7"
+    version: "0.7.6"
   test_core:
     dependency: transitive
     description:
       name: test_core
-      sha256: "0cc24b5ff94b38d2ae73e1eb43cc302b77964fbf67abad1e296025b78deb53d0"
+      sha256: "80bf5a02b60af04b09e14f6fe68b921aad119493e26e490deaca5993fef1b05a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.12"
+    version: "0.6.11"
   time:
     dependency: transitive
     description:
@@ -1538,14 +1522,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.5"
-  toml:
-    dependency: transitive
-    description:
-      name: toml
-      sha256: d968d149c8bd06dc14e09ea3a140f90a3f2ba71949e7a91df4a46f3107400e71
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.16.0"
   typed_data:
     dependency: transitive
     description:
@@ -1739,5 +1715,5 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-  dart: ">=3.10.0-290.1.beta <4.0.0"
-  flutter: "3.38.0-0.2.pre"
+  dart: ">=3.9.2 <4.0.0"
+  flutter: "3.35.7"

@@ -1,0 +1,2 @@
+DIVERS
+- Corrections de problèmes internes

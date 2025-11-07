@@ -1,6 +1,8 @@
 name: Dart
 
-on: push
+on:
+  push:
+  workflow_dispatch:
 
 permissions: read-all
 
@@ -14,7 +16,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'beta'
+          channel: 'stable'
           flutter-version-file: pubspec.yaml
       - run: dart run build_runner build
       - run: flutter gen-l10n
@@ -30,7 +32,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'beta'
+          channel: 'stable'
           flutter-version-file: pubspec.yaml
       - name: Format
         run: dart format -l 120 --set-exit-if-changed .

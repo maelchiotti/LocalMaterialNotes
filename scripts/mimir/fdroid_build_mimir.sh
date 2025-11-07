@@ -5,7 +5,7 @@
 
 mkdirJniLibs() {
   for dir in "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*/; do
-    echo "Creating directory $dir/android/src/main/jniLibs/$1"
+    echo "Creating directory ${dir}android/src/main/jniLibs/$1"
     mkdir -p "${dir}android/src/main/jniLibs/$1"
   done
 }
@@ -23,7 +23,6 @@ x64() {
   echo "Building mimir for x64"
 
   bash scripts/build-android.sh x64
-  ls -l -R
 
   mkdirJniLibs x86_64
   mv platform-build/jniLibs/x86_64/libembedded_milli.so "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*/android/src/main/jniLibs/x86_64/
