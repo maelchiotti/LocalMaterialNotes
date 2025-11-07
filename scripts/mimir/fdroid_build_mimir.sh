@@ -14,9 +14,9 @@ x86() {
   echo "Building mimir for x86"
 
   bash scripts/build-android.sh x86
-
+  ls -l
   mkdirJniLibs x86
-  mv .mimir/platform-build/jniLibs/x86/libembedded_milli.so "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*/android/src/main/jniLibs/x86/
+  mv platform-build/jniLibs/x86/libembedded_milli.so "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*/android/src/main/jniLibs/x86/
 }
 
 x64() {
@@ -25,7 +25,7 @@ x64() {
   bash scripts/build-android.sh x64
 
   mkdirJniLibs x86_64
-  mv .mimir/platform-build/jniLibs/x86_64/libembedded_milli.so "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*/android/src/main/jniLibs/x86_64/
+  mv platform-build/jniLibs/x86_64/libembedded_milli.so "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*/android/src/main/jniLibs/x86_64/
 }
 
 armv7() {
@@ -34,7 +34,7 @@ armv7() {
   bash scripts/build-android.sh armv7
 
   mkdirJniLibs armeabi-v7a
-  mv .mimir/platform-build/jniLibs/armeabi-v7a/libembedded_milli.so "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*/android/src/main/jniLibs/armeabi-v7a/
+  mv platform-build/jniLibs/armeabi-v7a/libembedded_milli.so "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*/android/src/main/jniLibs/armeabi-v7a/
 }
 
 arm64() {
@@ -43,7 +43,7 @@ arm64() {
   bash scripts/build-android.sh arm64
 
   mkdirJniLibs arm64-v8a
-  mv .mimir/platform-build/jniLibs/arm64-v8a/libembedded_milli.so "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*/android/src/main/jniLibs/arm64-v8a/
+  mv platform-build/jniLibs/arm64-v8a/libembedded_milli.so "$PUB_CACHE"/hosted/pub.dev/flutter_mimir-*/android/src/main/jniLibs/arm64-v8a/
 }
 
 test -d .mimir || exit
