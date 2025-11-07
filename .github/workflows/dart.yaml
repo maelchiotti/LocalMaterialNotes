@@ -1,6 +1,8 @@
 name: Dart
 
-on: push
+on:
+  push:
+  workflow_dispatch:
 
 permissions: read-all
 
