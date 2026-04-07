@@ -1,0 +1,2 @@
+MISCELLANEOUS
+- Reduce the APK size

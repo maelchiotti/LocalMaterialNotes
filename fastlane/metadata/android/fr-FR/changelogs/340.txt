@@ -1,0 +1,2 @@
+MISCELLANEOUS
+- Réduction de la taille de l'APK
