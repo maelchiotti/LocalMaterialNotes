@@ -113,14 +113,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.5"
-  build_cli_annotations:
-    dependency: transitive
-    description:
-      name: build_cli_annotations
-      sha256: e563c2e01de8974566a1998410d3f6f03521788160a02503b0b1f1a46c7b3d95
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.1"
   build_config:
     dependency: transitive
     description:
@@ -209,6 +201,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.2"
+  code_assets:
+    dependency: transitive
+    description:
+      name: code_assets
+      sha256: "83ccdaa064c980b5596c35dd64a8d3ecc68620174ab9b90b6343b753aa721687"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   code_builder:
     dependency: transitive
     description:
@@ -365,10 +365,10 @@ packages:
     dependency: transitive
     description:
       name: ffi
-      sha256: "289279317b4b16eb2bb7e271abccd4bf84ec9bdcbe999e278a94b804f5630418"
+      sha256: "6d7fd89431262d8f3125e81b50d3847a091d846eafcd4fdb88dd06f36d705a45"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.4"
+    version: "2.2.0"
   file:
     dependency: transitive
     description:
@@ -487,10 +487,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_mimir
-      sha256: dc002bfcb682a640aca77562b7a7b12a710d0408f0dc09cc8cd2d62612b93392
+      sha256: e33eb20d666a15a3db74cd70496fc19877136345744f520714da3718b282673a
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.6"
+    version: "0.2.0+5"
   flutter_native_splash:
     dependency: "direct main"
     description:
@@ -515,14 +515,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.1"
-  flutter_rust_bridge:
-    dependency: transitive
-    description:
-      name: flutter_rust_bridge
-      sha256: "35c257fc7f98e34c1314d6c145e5ed54e7c94e8a9f469947e31c9298177d546f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.7.0"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -637,6 +629,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
+  hooks:
+    dependency: transitive
+    description:
+      name: hooks
+      sha256: e79ed1e8e1929bc6ecb6ec85f0cb519c887aa5b423705ded0d0f2d9226def388
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   html:
     dependency: transitive
     description:
@@ -902,13 +902,13 @@ packages:
     source: hosted
     version: "2.0.0"
   mimir:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: mimir
-      sha256: "81766c7db42c973e414cd2a374a9e8dae6936a3d7394e6926e8123a7407bf36a"
+      sha256: "1568c5cac672212d0ebb839331306b46b2d8f366af898b123fde1a6c9aef2877"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.6"
+    version: "0.2.1+2"
   mockito:
     dependency: transitive
     description:
@@ -917,6 +917,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.6.4"
+  native_toolchain_rust:
+    dependency: transitive
+    description:
+      name: native_toolchain_rust
+      sha256: e53ef1025e2c190333ec61f638513c890c1becf11222e27b115b03bac369c6be
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
   node_preamble:
     dependency: transitive
     description:
@@ -1069,6 +1077,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.3"
+  protobuf:
+    dependency: transitive
+    description:
+      name: protobuf
+      sha256: "75ec242d22e950bdcc79ee38dd520ce4ee0bc491d7fadc4ea47694604d22bf06"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.0"
   pub_semver:
     dependency: transitive
     description:
@@ -1466,6 +1482,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.5"
+  toml:
+    dependency: transitive
+    description:
+      name: toml
+      sha256: "35a35f782228656a2af31e8c73d1353cc4ef3d683fd68af1111b44631879c05e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.18.0"
   typed_data:
     dependency: transitive
     description:

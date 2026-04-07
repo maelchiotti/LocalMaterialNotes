@@ -32,7 +32,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_markdown_plus: ^1.0.7
-  flutter_mimir: ^0.1.6
+  flutter_mimir: ^0.2.0+5
   flutter_native_splash: ^2.4.7
   flutter_riverpod: ^3.3.1
   flutter_secure_storage: ^9.2.4
@@ -50,6 +50,7 @@ dependencies:
   logger: ^2.7.0
   markdown: ^7.3.1
   material_symbols_icons: ^4.2928.1
+  mimir: ^0.2.1+2
   package_info_plus: ^9.0.1
   parchment: any
   parchment_delta: any
