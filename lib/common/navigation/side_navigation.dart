@@ -1,4 +1,4 @@
-import 'package:dart_helper_utils/dart_helper_utils.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -56,9 +56,9 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
       } else if (route == NavigationRoute.settings.name) {
         index = labels.length + 4;
       } else if (labels.isNotEmpty) {
-        labels.forEachIndexed((label, labelIndex) {
+        labels.forEachIndexed((index, label) {
           if (route == NavigationRoute.getLabelRouteName(label)) {
-            index = labelIndex + 1;
+            index = index + 1;
           }
         });
       } else {
@@ -103,7 +103,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
       } else if (newIndex == labels.length + 4) {
         context.goNamed(NavigationRoute.settings.name);
       } else if (labels.isNotEmpty) {
-        labels.forEachIndexed((label, index) {
+        labels.forEachIndexed((index, label) {
           if (newIndex == index + 1) {
             context.goNamed(NavigationRoute.getLabelRouteName(label));
           }
