@@ -32,10 +32,6 @@ jobs:
         with:
           ndk-version: ${{ env.VERSION }}
           add-to-path: false
-      - name: Setup Rust
-        uses: actions-rust-lang/setup-rust-toolchain@v1
-        with:
-          rustflags: ""
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -52,8 +48,6 @@ jobs:
           bash scripts/isar/fdroid_build_isar.sh x64 armv7 arm64
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
-      - name: Build mimir
-        run: bash scripts/mimir/fdroid_build_mimir.sh x64 armv7 arm64
 
   android:
     name: Android
