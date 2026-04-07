@@ -82,11 +82,6 @@ dev_dependencies:
   riverpod_generator: ^4.0.3
   riverpod_lint: ^3.1.3
 
-dependency_overrides:
-  # TODO(maelchiotti): remove when mimir can be updated to the latest version
-  freezed_annotation: ^3.1.0
-  build: ^4.0.5
-
 flutter:
   uses-material-design: true
   generate: true

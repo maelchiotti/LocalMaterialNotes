@@ -106,7 +106,7 @@ packages:
     source: hosted
     version: "2.1.2"
   build:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: build
       sha256: aadd943f4f8cc946882c954c187e6115a84c98c81ad1d9c6cbf0895a8c85da9c
@@ -582,7 +582,7 @@ packages:
     source: sdk
     version: "0.0.0"
   freezed_annotation:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: freezed_annotation
       sha256: "7294967ff0a6d98638e7acb774aac3af2550777accd8149c90af5b014e6d44d8"
