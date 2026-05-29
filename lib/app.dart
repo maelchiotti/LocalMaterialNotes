@@ -8,6 +8,7 @@ import 'package:flutter_checklist/checklist.dart';
 import 'package:flutter_fgbg/flutter_fgbg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'common/actions/backup.dart';
 import 'common/constants/constants.dart';
 import 'common/enums/supported_language.dart';
 import 'common/extensions/locale_extension.dart';
@@ -21,6 +22,7 @@ import 'providers/labels/labels_list/labels_list_provider.dart';
 import 'providers/labels/labels_navigation/labels_navigation_provider.dart';
 import 'providers/notifiers/notifiers.dart';
 import 'providers/preferences/preferences_provider.dart';
+import 'services/backup/auto_backup_service.dart';
 
 /// MaterialNotes application.
 class App extends ConsumerStatefulWidget {
@@ -53,9 +55,14 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
   }
 
   @override
-  FutureOr<void> afterFirstLayout(BuildContext context) {
+  Future<void> afterFirstLayout(BuildContext context) async {
     // Using the context provided by afterFirstLayout doesn't work
     SystemUtils().setQuickActions(rootNavigatorKey.currentContext!);
+
+    // If the backup directory is still the default, ask to select it
+    if (await AutoExportUtils().isAutoExportDirectoryDefault) {
+      await requireBackupDirectory(rootNavigatorKey.currentContext!);
+    }
   }
 
   @override
