@@ -1,15 +1,10 @@
 import 'package:after_layout/after_layout.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:local_auth/local_auth.dart';
-import 'package:restart_app/restart_app.dart';
 
+import '../../common/actions/authentication.dart';
 import '../../common/constants/sizes.dart';
-import '../../common/extensions/build_context_extension.dart';
-import '../../common/preferences/preference_key.dart';
-import '../../common/ui/snack_bar_utils.dart';
 import '../../common/widgets/asset.dart';
 import '../../l10n/app_localizations/app_localizations.g.dart';
 import '../../providers/notifiers/lock_notifier.dart';
@@ -42,15 +37,6 @@ class LockPage extends ConsumerStatefulWidget {
 }
 
 class _LockPageState extends ConsumerState<LockPage> with AfterLayoutMixin<LockPage> {
-  late final LocalAuthentication localAuthentication;
-
-  @override
-  void initState() {
-    super.initState();
-
-    localAuthentication = LocalAuthentication();
-  }
-
   @override
   Future<void> afterFirstLayout(BuildContext context) async {
     final l = AppLocalizations.of(context);
@@ -61,35 +47,9 @@ class _LockPageState extends ConsumerState<LockPage> with AfterLayoutMixin<LockP
 
   /// Asks the user to authenticate to unlock the application.
   Future<void> unlock(AppLocalizations l) async {
-    final canAuthenticate = await localAuthentication.isDeviceSupported();
+    final bool authenticated = await authenticate(context, reason: widget.reason);
 
-    // If the device has no authentication methods available,
-    // then disable the app lock and restart it to remove the lock screen
-    if (!canAuthenticate) {
-      await PreferenceKey.lockApp.set(false);
-
-      // The Restart package crashes the app if used in debug mode
-      if (kReleaseMode) {
-        await Restart.restartApp();
-      }
-
-      return;
-    }
-
-    final bool authenticated = await localAuthentication.authenticate(localizedReason: widget.reason);
-
-    // The authentication failed
     if (!authenticated) {
-      if (!mounted) {
-        return;
-      }
-
-      SnackBarUtils().show(context, text: context.l.snack_bar_authentication_failed);
-
-      return;
-    }
-
-    if (!mounted) {
       return;
     }
 

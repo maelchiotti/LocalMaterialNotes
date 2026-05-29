@@ -186,7 +186,7 @@ enum AvailableSwipeAction {
         return false;
       case lock:
       case unlock:
-        await toggleLockNotes(context, ref, notes: [note], requireAuthentication: true);
+        await toggleLockNotes(context, ref, notes: [note]);
         return false;
       case archive:
         return await archiveNote(context, ref, note: note);

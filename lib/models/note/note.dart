@@ -169,6 +169,18 @@ sealed class Note implements Comparable<Note> {
   @ignore
   bool get hasLockedLabel => labels.any((label) => label.locked);
 
+  /// Whether the note requires authentication to be accessed.
+  @ignore
+  bool get requiresAuthentication {
+    final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
+    final lockLabel = PreferenceKey.lockLabel.preferenceOrDefault;
+
+    final shouldLockNote = lockNote && locked;
+    final shouldLockLabel = lockLabel && hasLockedLabel;
+
+    return shouldLockNote || shouldLockLabel;
+  }
+
   /// The [labels] as markdown.
   @ignore
   String get labelsAsMarkdown => '> ${labelsNamesVisibleSorted.join(', ')}';

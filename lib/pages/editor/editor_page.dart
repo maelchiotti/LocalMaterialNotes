@@ -71,9 +71,6 @@ class _EditorState extends ConsumerState<EditorPage> {
               return const LoadingPlaceholder();
             }
 
-            final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
-            final lockLabel = PreferenceKey.lockLabel.preferenceOrDefault;
-
             final showEditorModeButton = PreferenceKey.editorModeButton.preferenceOrDefault;
             final focusTitleOnNewNote = PreferenceKey.focusTitleOnNewNote.preferenceOrDefault;
             final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
@@ -141,10 +138,7 @@ class _EditorState extends ConsumerState<EditorPage> {
             );
 
             // If the note should not be locked, directly return the editor
-            final shouldLockNote = lockNote && currentNote.locked;
-            final shouldLockLabel = lockLabel && currentNote.hasLockedLabel;
-            final shouldLock = shouldLockNote || shouldLockLabel;
-            if (!shouldLock) {
+            if (!currentNote.requiresAuthentication) {
               return editor;
             }
 
