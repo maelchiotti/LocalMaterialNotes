@@ -149,7 +149,10 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
                     enabled: isSystemAuthenticationAvailable && lockApp,
                     icon: SettingTileIcon(Icons.timelapse),
                     title: Text(context.l.settings_application_lock_delay_title),
-                    value: SettingTileValue(context.l.settings_lock_delay_value(lockAppDelay.toString())),
+                    value: SettingTileValue(
+                      context.l.settings_lock_delay_value(lockAppDelay.toString()),
+                      enabled: isSystemAuthenticationAvailable && lockApp,
+                    ),
                     description: Text(context.l.settings_application_lock_delay_description),
                     dialogTitle: context.l.settings_application_lock_delay_title,
                     label: (delay) => context.l.settings_lock_delay_value(delay.toInt().toString()),
@@ -182,7 +185,10 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
                     enabled: isSystemAuthenticationAvailable && lockNote,
                     icon: SettingTileIcon(Icons.timelapse),
                     title: Text(context.l.settings_note_lock_delay_title),
-                    value: SettingTileValue(context.l.settings_lock_delay_value(lockNoteDelay.toString())),
+                    value: SettingTileValue(
+                      context.l.settings_lock_delay_value(lockNoteDelay.toString()),
+                      enabled: isSystemAuthenticationAvailable && lockNote,
+                    ),
                     description: Text(context.l.settings_note_lock_delay_description),
                     dialogTitle: context.l.settings_note_lock_delay_title,
                     label: (delay) => context.l.settings_lock_delay_value(delay.toInt().toString()),

@@ -265,6 +265,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                     title: Text(context.l.settings_auto_export_frequency),
                     value: SettingTileValue(
                       context.l.settings_auto_export_frequency_value(autoExportFrequency.toString()),
+                      enabled: enableAutoExport,
                     ),
                     description: Text(context.l.settings_auto_export_frequency_description),
                     dialogTitle: context.l.settings_auto_export_frequency,
@@ -277,7 +278,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                     enabled: enableAutoExport,
                     icon: SettingTileIcon(Icons.folder),
                     title: Text(context.l.settings_auto_export_directory),
-                    value: SettingTileValue(autoExportDirectory),
+                    value: SettingTileValue(autoExportDirectory, enabled: enableAutoExport),
                     description: Text(context.l.settings_auto_export_directory_description),
                     trailing: IconButton(
                       icon: const Icon(Symbols.reset_settings),
