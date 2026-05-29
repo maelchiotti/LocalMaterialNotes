@@ -14,7 +14,7 @@ final lockAppNotifier = LockNotifier(PreferenceKey.lockApp.preferenceOrDefault);
 /// Notifier for whether the current note is locked.
 final lockNoteNotifier = LockNotifier(false);
 
-/// Notifier for the value of the current label filter on the notes.
+/// The value of the current label filter on the notes.
 Label? currentLabelFilter;
 
 /// Notifier for whether the notes selection mode is active.

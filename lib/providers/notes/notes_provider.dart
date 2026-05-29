@@ -82,6 +82,8 @@ class Notes extends _$Notes {
   Future<bool> editLabels(Note note, Iterable<Label> selectedLabels) async {
     _checkStatus([NoteStatus.available, NoteStatus.archived]);
 
+    final removedLabels = note.labels.toList().where((label) => !selectedLabels.contains(label));
+
     try {
       await _notesService.putLabels(note, selectedLabels);
     } catch (exception, stackTrace) {
@@ -104,6 +106,7 @@ class Notes extends _$Notes {
 
     state = AsyncData(notes.sorted());
     _updateUnlabeledProvider();
+    _updateLabeledProviders([...removedLabels, ...selectedLabels]);
 
     return true;
   }
@@ -126,6 +129,7 @@ class Notes extends _$Notes {
 
     state = AsyncData(notes.sorted());
     _updateUnlabeledProvider();
+    _updateLabeledProviders(selectedLabels);
 
     return true;
   }
@@ -330,6 +334,17 @@ class Notes extends _$Notes {
   void _updateUnlabeledProvider() {
     if (label != null) {
       ref.read(notesProvider(status: status).notifier).get();
+    }
+  }
+
+  /// Updates the labeled notes providers except this one it is a provider filtered by a label.
+  void _updateLabeledProviders(Iterable<Label> labels) {
+    for (final label in labels) {
+      if (label == this.label) {
+        continue;
+      }
+
+      ref.read(notesProvider(status: status, label: label).notifier).get();
     }
   }
 

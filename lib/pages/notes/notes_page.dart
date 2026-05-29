@@ -36,6 +36,13 @@ class NotesPage extends ConsumerStatefulWidget {
 
 class _NotesPageState extends ConsumerState<NotesPage> {
   @override
+  void initState() {
+    super.initState();
+
+    currentLabelFilter = widget.label;
+  }
+
+  @override
   void dispose() {
     currentLabelFilter = null;
 
