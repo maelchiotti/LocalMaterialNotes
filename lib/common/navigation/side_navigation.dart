@@ -56,9 +56,9 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
       } else if (route == NavigationRoute.settings.name) {
         index = labels.length + 4;
       } else if (labels.isNotEmpty) {
-        labels.forEachIndexed((index, label) {
+        labels.forEachIndexed((i, label) {
           if (route == NavigationRoute.getLabelRouteName(label)) {
-            index = index + 1;
+            index = i + 1;
           }
         });
       } else {
