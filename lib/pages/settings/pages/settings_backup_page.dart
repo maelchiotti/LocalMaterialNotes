@@ -6,11 +6,11 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 import 'package:simple_icons/simple_icons.dart';
 
+import '../../../common/actions/backup.dart';
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/extensions/string_extension.dart';
-import '../../../common/files/files_utils.dart';
 import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
@@ -40,7 +40,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   /// Asks the user to choose a JSON file to import.
   ///
   /// If the file is encrypted, asks for the password used to encrypt it.
-  Future<void> _import() async {
+  Future<void> import() async {
     try {
       final imported = await ManualBackupService().import(context);
 
@@ -70,7 +70,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   /// Asks the user to configure the immediate export as JSON.
   ///
   /// Asks whether to encrypt and where to store the export file.
-  Future<void> _exportAsJson() async {
+  Future<void> exportAsJson() async {
     await showAdaptiveDialog<(bool, String?)?>(
       context: context,
       useRootNavigator: false,
@@ -102,7 +102,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   /// Asks the user to configure the immediate export as Markdown.
   ///
   /// Asks where to store the export file.
-  Future<void> _exportAsMarkdown() async {
+  Future<void> exportAsMarkdown() async {
     try {
       final exported = await ManualBackupService().exportAsMarkdown();
 
@@ -119,7 +119,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   }
 
   /// Toggles the setting to enable the automatic export.
-  Future<void> _toggleEnableAutoExport(bool toggled) async {
+  Future<void> toggleEnableAutoExport(bool toggled) async {
     await PreferenceKey.enableAutoExport.set(toggled);
 
     setState(() {});
@@ -139,7 +139,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   /// Toggles the setting to enable the automatic export encryption.
   ///
   /// If enabled, asks the user for the password used for the encryption.
-  Future<void> _toggleAutoExportEncryption(bool toggled) async {
+  Future<void> toggleAutoExportEncryption(bool toggled) async {
     if (!toggled) {
       await PreferenceKey.autoExportPassword.remove();
       await PreferenceKey.autoExportEncryption.set(false);
@@ -170,28 +170,21 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
   }
 
   /// Sets automatic export frequency to [frequency].
-  Future<void> _submittedAutoExportFrequency(double frequency) async {
+  Future<void> submittedAutoExportFrequency(double frequency) async {
     setState(() {
       PreferenceKey.autoExportFrequency.set(frequency.toInt());
     });
   }
 
   /// Asks the user to choose a directory for the automatic export.
-  Future<void> _setAutoExportDirectory() async {
-    final autoExportDirectory = await selectDirectory();
-
-    if (autoExportDirectory == null) {
-      return;
-    }
-
-    await PreferenceKey.autoExportDirectory.set(autoExportDirectory);
-    await AutoExportUtils().setAutoExportDirectory();
+  Future<void> setAutoExportDirectory() async {
+    await selectBackupDirectory();
 
     setState(() {});
   }
 
   /// Resets the directory of the automatic export to its default value.
-  Future<void> _resetAutoExportDirectory() async {
+  Future<void> resetAutoExportDirectory() async {
     await PreferenceKey.autoExportDirectory.remove();
 
     await AutoExportUtils().setAutoExportDirectory();
@@ -220,7 +213,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                     icon: SettingTileIcon(Icons.file_upload),
                     title: Text(context.l.settings_import),
                     description: Text(context.l.settings_import_description),
-                    onTap: _import,
+                    onTap: import,
                   ),
                 ],
               ),
@@ -231,13 +224,13 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                     icon: SettingTileIcon(SimpleIcons.json),
                     title: Text(context.l.settings_export_json),
                     description: Text(context.l.settings_export_json_description),
-                    onTap: _exportAsJson,
+                    onTap: exportAsJson,
                   ),
                   SettingActionTile(
                     icon: SettingTileIcon(SimpleIcons.markdown),
                     title: Text(context.l.settings_export_markdown),
                     description: Text(context.l.settings_export_markdown_description),
-                    onTap: _exportAsMarkdown,
+                    onTap: exportAsMarkdown,
                   ),
                 ],
               ),
@@ -249,7 +242,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                     title: Text(context.l.settings_auto_export),
                     description: Text(context.l.settings_auto_export_description),
                     toggled: enableAutoExport,
-                    onChanged: _toggleEnableAutoExport,
+                    onChanged: toggleEnableAutoExport,
                   ),
                   SettingSwitchTile(
                     enabled: enableAutoExport,
@@ -257,7 +250,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                     title: Text(context.l.settings_auto_export_encryption),
                     description: Text(context.l.settings_auto_export_encryption_description),
                     toggled: autoExportEncryption,
-                    onChanged: _toggleAutoExportEncryption,
+                    onChanged: toggleAutoExportEncryption,
                   ),
                   SettingCustomSliderTile(
                     enabled: enableAutoExport,
@@ -272,7 +265,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                     label: (frequency) => context.l.settings_auto_export_frequency_value(frequency.toInt().toString()),
                     values: automaticExportFrequenciesValues,
                     initialValue: autoExportFrequency.toDouble(),
-                    onSubmitted: _submittedAutoExportFrequency,
+                    onSubmitted: submittedAutoExportFrequency,
                   ),
                   SettingActionTile(
                     enabled: enableAutoExport,
@@ -283,9 +276,9 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                     trailing: IconButton(
                       icon: const Icon(Symbols.reset_settings),
                       tooltip: context.l.tooltip_reset,
-                      onPressed: enableAutoExport ? _resetAutoExportDirectory : null,
+                      onPressed: enableAutoExport ? resetAutoExportDirectory : null,
                     ),
-                    onTap: _setAutoExportDirectory,
+                    onTap: setAutoExportDirectory,
                   ),
                 ],
               ),

@@ -72,11 +72,16 @@ class AutoExportUtils {
     await createDirectory(autoExportDirectory);
   }
 
-  /// Returns the default automatic export directory.
+  /// The default automatic export directory.
   Future<String> get autoExportDirectoryDefault async {
     final baseDirectory = (await getApplicationDocumentsDirectory()).path;
 
     return join(baseDirectory, 'backups');
+  }
+
+  /// Whether the auto export directory is the default one.
+  Future<bool> get isAutoExportDirectoryDefault async {
+    return PreferenceKey.autoExportDirectory.preferenceOrDefault.isEmpty;
   }
 
   /// Checks if an automatic export should be performed.

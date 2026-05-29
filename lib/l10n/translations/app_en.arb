@@ -835,6 +835,22 @@
   "@hint_label_name": {
     "description": "Hint for the text field of the name of a tag."
   },
+  "dialog_require_backup_title": "Select a backup location",
+  "@dialog_require_backup_title": {
+    "description": "Title of the dialog to select a backup location."
+  },
+  "dialog_require_backup_description": "As your notes are only stored locally on your device, any issue could lead to losing them all. Uninstalling the application would also delete all your notes.\n\nSelecting a backup location will ensure you can always retrieve your notes. For example, you could create a folder named \"Material Notes backups\" under your existing \"Documents\" folder.",
+  "@dialog_require_backup_description": {
+    "description": "Description of the dialog to select a backup location."
+  },
+  "dialog_require_backup_ignore": "Ignore",
+  "@dialog_require_backup_ignore": {
+    "description": "Button to ignore the dialog to select a backup location."
+  },
+  "dialog_require_backup_select": "Select",
+  "@dialog_require_backup_select": {
+    "description": "Button to select a backup location in the related dialog."
+  },
   "dialog_export_encryption_password": "Password",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
