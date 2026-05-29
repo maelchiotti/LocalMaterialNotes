@@ -5,6 +5,7 @@ import '../../../models/label/label.dart';
 import '../../../providers/labels/labels/labels_provider.dart';
 import '../../dialogs/confirmation_dialog.dart';
 import '../../extensions/build_context_extension.dart';
+import '../authentication.dart';
 import 'select.dart';
 
 /// Deletes the [label].
@@ -21,6 +22,19 @@ Future<bool> deleteLabel(BuildContext context, WidgetRef ref, {required Label la
     irreversible: true,
   )) {
     return false;
+  }
+
+  if (!context.mounted) {
+    return false;
+  }
+
+  // If required, ask for authentication
+  if (label.requiresAuthentication) {
+    final authenticated = await authenticate(context, reason: context.l.lock_page_reason_action);
+
+    if (!authenticated) {
+      return false;
+    }
   }
 
   return await ref.read(labelsProvider.notifier).delete([label]);
@@ -40,6 +54,20 @@ Future<bool> deleteLabels(BuildContext context, WidgetRef ref, {required List<La
     irreversible: true,
   )) {
     return false;
+  }
+
+  if (!context.mounted) {
+    return false;
+  }
+
+  // If required, ask for authentication
+  final requiresAuthentication = labels.any((label) => label.requiresAuthentication);
+  if (requiresAuthentication) {
+    final authenticated = await authenticate(context, reason: context.l.lock_page_reason_action);
+
+    if (!authenticated) {
+      return false;
+    }
   }
 
   final succeeded = await ref.read(labelsProvider.notifier).delete(labels);
