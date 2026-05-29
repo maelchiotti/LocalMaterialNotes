@@ -90,7 +90,17 @@ class _EditorState extends ConsumerState<EditorPage> {
               case PlainTextNote note:
                 contentEditor = PlainTextEditor(note: note, readOnly: readOnly, autofocus: autofocus);
               case RichTextNote note:
-                final fleatherController = FleatherController(document: note.document);
+                final fleatherController = FleatherController(
+                  document: note.document,
+                  autoFormats: AutoFormats(
+                    autoFormats: [
+                      const AutoFormatLinks(),
+                      const MarkdownInlineShortcuts(),
+                      const MarkdownLineShortcuts(),
+                      const AutoTextDirection(),
+                    ],
+                  ),
+                );
                 fleatherControllerNotifier.value = fleatherController;
                 contentEditor = RichTextEditor(
                   note: note,
