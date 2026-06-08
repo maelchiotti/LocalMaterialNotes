@@ -68,7 +68,10 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
               data: widget.note.content,
               padding: EdgeInsets.zero,
               selectable: true,
-              extensionSet: ExtensionSet.gitHubFlavored,
+              extensionSet: ExtensionSet(ExtensionSet.gitHubFlavored.blockSyntaxes, <InlineSyntax>[
+                EmojiSyntax(),
+                ...ExtensionSet.gitHubFlavored.inlineSyntaxes,
+              ]),
               styleSheet: MarkdownStyleSheet.fromTheme(theme).copyWith(
                 blockquoteDecoration: BoxDecoration(
                   color: theme.colorScheme.surfaceContainerHighest,
