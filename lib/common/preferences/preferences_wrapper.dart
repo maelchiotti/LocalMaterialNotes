@@ -22,7 +22,7 @@ class PreferencesWrapper {
   /// Ensures the utility is initialized.
   Future<void> ensureInitialized() async {
     _preferences = await SharedPreferences.getInstance();
-    _secureStorage = const FlutterSecureStorage(aOptions: AndroidOptions(encryptedSharedPreferences: true));
+    _secureStorage = const FlutterSecureStorage(aOptions: AndroidOptions());
   }
 
   /// Sets the [preferenceKey] to the [value].

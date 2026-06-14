@@ -479,9 +479,17 @@
   "@settings_labels_swipe_action_right": {
     "description": "Title of the setting tile to choose which action to trigger when a right swapping a label tile."
   },
+  "settings_labels_swipe_action_right_description": "Действие, запускаемое при взмахе плитки с надписью вправо",
+  "@settings_labels_swipe_action_right_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a right swipe is performed on a label tile."
+  },
   "settings_labels_swipe_action_left": "Действие при смахивании влево",
   "@settings_labels_swipe_action_left": {
     "description": "Title of the setting tile to choose which action to trigger when a left swapping a label tile."
+  },
+  "settings_labels_swipe_action_left_description": "Действие, запускаемое при взмахе плитки с надписью влево",
+  "@settings_labels_swipe_action_left_description": {
+    "description": "Description of the setting tile to choose which action to trigger when a left swipe is performed on a label tile."
   },
   "settings_backup": "Резервное копирование",
   "@settings_backup": {
@@ -511,9 +519,17 @@
   "@settings_export_json": {
     "description": "Title of the setting tile to manually export the notes as JSON."
   },
+  "settings_export_json_description": "Экспортировать все заметки, теги и настройки в файл JSON, потом их можно импортировать обратно",
+  "@settings_export_json_description": {
+    "description": "Description of the setting tile to manually export the notes as JSON."
+  },
   "settings_export_markdown": "Экспортировать в формате Markdown",
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."
+  },
+  "settings_export_markdown_description": "Экспортировать все заметки в файл Markdown",
+  "@settings_export_markdown_description": {
+    "description": "Description of the setting tile to manually export the notes as Markdown."
   },
   "settings_backup_auto_export": "Автоматический экспорт",
   "@settings_backup_auto_export": {
@@ -523,9 +539,23 @@
   "@settings_auto_export": {
     "description": "Title of the settings tile to enable the automatic export of the notes."
   },
+  "settings_auto_export_description": "Автоматический экспорт всех заметок, тегов и настроек в файл JSON, которые можно импортировать обратно",
+  "@settings_auto_export_description": {
+    "description": "Description of the settings tile to enable the automatic export."
+  },
   "settings_auto_export_frequency": "Периодичность",
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
+  },
+  "settings_auto_export_frequency_value": "Раз в{frequency, select, 1{день} 7{неделю} 14{2 недели} 30{месяц} other{}}",
+  "@settings_auto_export_frequency_value": {
+    "description": "Frequency of the automatic exports.",
+    "placeholders": {
+      "frequency": {
+        "description": "Frequency in days.",
+        "type": "String"
+      }
+    }
   },
   "settings_auto_export_frequency_description": "Частота автоматического экспорта",
   "@settings_auto_export_frequency_description": {
@@ -551,6 +581,10 @@
   "@settings_security": {
     "description": "Title of the settings page regarding the security."
   },
+  "settings_security_description": "Флаг безопасности, блокировка приложения, блокировка заметки",
+  "@settings_security_description": {
+    "description": "Description of the settings page regarding the security."
+  },
   "settings_security_application": "Приложение",
   "@settings_security_application": {
     "description": "Title of the sub-section regarding the application under the security settings."
@@ -575,9 +609,51 @@
   "@settings_application_lock_title": {
     "description": "Title of the setting tile to toggle whether the application is locked."
   },
+  "settings_application_lock_description": "Блокировка приложения и требование аутентификации устройства для разблокировки",
+  "@settings_application_lock_description": {
+    "description": "Description of the setting tile to toggle whether the application is locked."
+  },
   "settings_application_lock_delay_title": "Задержка блокировки",
   "@settings_application_lock_delay_title": {
     "description": "Title of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
+  },
+  "settings_application_lock_delay_description": "Время задержки, после которого приложение блокируется при переходе в фоновый режим",
+  "@settings_application_lock_delay_description": {
+    "description": "Description of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
+  },
+  "settings_lock_delay_value": "{delay, select, 0{Моментально} 3{Через 3 секунды} 5{Через 5 секунд} 10{Через 10 секунд} 30{Через 30 секунд} 60{Через 1 минуту} 120{Через 2 минуты} 300{Через 5 минут} other{Никогда}}",
+  "@settings_lock_delay_value": {
+    "description": "Value of the setting tile to choose after which amount of time the application/note/label locks itself after the application was moved to the background.",
+    "placeholders": {
+      "delay": {
+        "type": "String",
+        "description": "Delay in seconds."
+      }
+    }
+  },
+  "settings_note_lock_title": "Блокировка заметки",
+  "@settings_note_lock_title": {
+    "description": "Title of the setting tile to toggle whether the notes can be locked."
+  },
+  "settings_note_lock_description": "Заблокировать заметку и потребовать авторизацию на устройстве для ее просмотра и редактирования",
+  "@settings_note_lock_description": {
+    "description": "Description of the setting tile to toggle whether the notes can be locked."
+  },
+  "settings_label_lock_title": "Блокировка тега",
+  "@settings_label_lock_title": {
+    "description": "Title of the setting tile to toggle whether the tags can be locked."
+  },
+  "settings_label_lock_description": "Заблокировать тег и потребовать авторизацию на устройстве для просмотра и редактирования любой заметки, содержащей его",
+  "@settings_label_lock_description": {
+    "description": "Description of the setting tile to toggle whether the tags can be locked."
+  },
+  "settings_note_lock_delay_title": "Задержка блокировки",
+  "@settings_note_lock_delay_title": {
+    "description": "Title of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
+  },
+  "settings_note_lock_delay_description": "Задержка, после которой заметка блокируется сама, когда приложение перейдет в фоновый режим",
+  "@settings_note_lock_delay_description": {
+    "description": "Description of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
   },
   "settings_accessibility": "Специальные возможности",
   "@settings_accessibility": {
@@ -602,6 +678,10 @@
   "settings_bigger_titles": "Увеличенный заголовок",
   "@settings_bigger_titles": {
     "description": "Title of the setting tile to use bigger titles on the notes tiles and in the editor."
+  },
+  "settings_bigger_titles_description": "Показывать увеличенные заголовки в карточке и в редакторе заметки",
+  "@settings_bigger_titles_description": {
+    "description": "Description of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
   "settings_white_text_dark_mode": "Белый текст в тёмном режиме",
   "@settings_white_text_dark_mode": {
@@ -651,6 +731,10 @@
   "@settings_help": {
     "description": "Title of the settings page to receive help."
   },
+  "settings_help_description": "Связь, журналы",
+  "@settings_help_description": {
+    "description": "Description of the settings page to receive help."
+  },
   "settings_help_section_logs": "Журналы",
   "@settings_help_section_logs": {
     "description": "Title of the settings section regarding the logs of the application."
@@ -674,6 +758,10 @@
   "settings_about": "О приложении",
   "@settings_about": {
     "description": "Title of the settings page regarding the information about the application."
+  },
+  "settings_about_description": "Информация, ссылки, пожертвование",
+  "@settings_about_description": {
+    "description": "Description of the settings page regarding the information about the application."
   },
   "settings_about_application": "Приложение",
   "@settings_about_application": {
@@ -747,6 +835,22 @@
   "@hint_label_name": {
     "description": "Hint for the text field of the name of a tag."
   },
+  "dialog_require_backup_title": "Выберете папку резервной копии",
+  "@dialog_require_backup_title": {
+    "description": "Title of the dialog to select a backup location."
+  },
+  "dialog_require_backup_description": "Так как ваши заметки сохранены локально на вашем устройстве, любая проблема приведёт к их потере. Удаление приложения удаляет все ваши заметки.\n\nВыбор папки для резервной копии поможет сохранить их. Например, вы можете создать папку с названием \"Material Notes резервная копия\" в уже существующей папке \"Documents\".",
+  "@dialog_require_backup_description": {
+    "description": "Description of the dialog to select a backup location."
+  },
+  "dialog_require_backup_ignore": "Игнорировать",
+  "@dialog_require_backup_ignore": {
+    "description": "Button to ignore the dialog to select a backup location."
+  },
+  "dialog_require_backup_select": "Выбрать",
+  "@dialog_require_backup_select": {
+    "description": "Button to select a backup location in the related dialog."
+  },
   "dialog_export_encryption_password": "Пароль",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."
@@ -770,6 +874,10 @@
   "tooltip_fab_add_note": "Добавить заметку",
   "@tooltip_fab_add_note": {
     "description": "Floating action button in the notes page to add a new note."
+  },
+  "tooltip_fab_add_plain_text_note": "Добавьте простую текстовую заметку",
+  "@tooltip_fab_add_plain_text_note": {
+    "description": "Floating action button in the notes page to add a new plain text note."
   },
   "tooltip_fab_add_markdown_note": "Добавить Markdown заметку",
   "@tooltip_fab_add_markdown_note": {
@@ -831,9 +939,29 @@
   "@dialog_archive": {
     "description": "Title of the the dialog to archive one or multiple notes (moving them to the archives), and text for the confirmation button."
   },
+  "dialog_archive_body": "Вы действительно хотите восстановить {count} {count, plural, one{заметку} few{заметки} other{заметок}}?",
+  "@dialog_archive_body": {
+    "description": "Text for the dialog to confirm the archival of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to archive.",
+        "type": "int"
+      }
+    }
+  },
   "dialog_unarchive": "Разархивировать",
   "@dialog_unarchive": {
     "description": "Title of the the dialog to unarchive one or multiple notes, and text for the confirmation button."
+  },
+  "dialog_unarchive_body": "Вы действительно хотите разархивировать  {count} {count, plural, one{заметку} other{заметки}}?",
+  "@dialog_unarchive_body": {
+    "description": "Text for the dialog to confirm the unarchival of one or multiple notes.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to unarchive.",
+        "type": "int"
+      }
+    }
   },
   "dialog_delete": "Удалить",
   "@dialog_delete": {
@@ -959,6 +1087,10 @@
   "@placeholder_labels": {
     "description": "Placeholder on the tags page when there are no tags."
   },
+  "placeholder_archives": "Нет архивных заметок",
+  "@placeholder_archives": {
+    "description": "Placeholder on the archives notes page when there are no archived notes."
+  },
   "placeholder_bin": "Нет удаленных заметок",
   "@placeholder_bin": {
     "description": "Placeholder on the bin page when there are no deleted notes."
@@ -966,6 +1098,10 @@
   "action_disabled": "Отключено",
   "@action_disabled": {
     "description": "Swipe action that is disabled in the settings."
+  },
+  "action_toggle_pin": "Закрепить/Открепить",
+  "@action_toggle_pin": {
+    "description": "Menu action to toggle whether the notes are pinned."
   },
   "action_pin_unpin": "Закрепить / Открепить",
   "@action_pin_unpin": {
@@ -1149,6 +1285,56 @@
   "@snack_bar_authentication_failed": {
     "description": "Snack bar informing that the authentication on the lock screen has failed."
   },
+  "snack_bar_archived": "Поздравляю, {count, plural, one{одна заметка} other{ несколько заметок}} становится архивом",
+  "@snack_bar_archived": {
+    "description": "Snack bar informing that the note was archived.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were archived.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_unarchived": "Поздравляю, {count, plural, one{одна заметка} other{несколько заметок}} разархивируется",
+  "@snack_bar_unarchived": {
+    "description": "Snack bar informing that the note was unarchived.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were unarchived.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_deleted": "Поздравляю, {count, plural, one{заметки} other{ заметки}}  удалены",
+  "@snack_bar_deleted": {
+    "description": "Snack bar informing that the note was deleted.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were deleted.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_restored": "Поздравляю, {count, plural, one{заметки} other{ заметки}}  востановленны",
+  "@snack_bar_restored": {
+    "description": "Snack bar informing that the note was restored.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes that were restored.",
+        "type": "int"
+      }
+    }
+  },
+  "snack_bar_copied": "Содержимое {count, plural, one{заметки} other{заметок}} скопировалось в буфер обмена.",
+  "@snack_bar_copied": {
+    "description": "Snack bar informing that the content of the note was copied to clipboard.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to copy.",
+        "type": "int"
+      }
+    }
+  },
   "snack_bar_import_success": "Резервная копия была успешно импортирована.",
   "@snack_bar_import_success": {
     "description": "Snack bar informing that the backup was successfully imported."
@@ -1176,6 +1362,10 @@
   "quick_action_add_markdown_note_title": "Добавить Markdown заметку",
   "@quick_action_add_markdown_note_title": {
     "description": "Title of the home screen action to add a new markdown note."
+  },
+  "quick_action_add_rich_text_note_title": "Добавьте заметку с расширенными редактированием",
+  "@quick_action_add_rich_text_note_title": {
+    "description": "Title of the home screen action to add a new rich text note."
   },
   "quick_action_add_checklist_note_title": "Добавить контрольный список",
   "@quick_action_add_checklist_note_title": {
@@ -1244,6 +1434,38 @@
   "rich_text_editor_toolbar_dialog_color_description": "Основной цвет",
   "@rich_text_editor_toolbar_dialog_color_description": {
     "description": "Description of the dialog to choose the foreground/background color of the text."
+  },
+  "toolbar_style_one_row_simple_title": "Один ряд (упрощенный)",
+  "@toolbar_style_one_row_simple_title": {
+    "description": "Title for the style of the rich text editor toolbar with one row and only simple formatting options."
+  },
+  "toolbar_style_one_row_simple_description": "Только простые параметры редактирования в одном ряду",
+  "@toolbar_style_one_row_simple_description": {
+    "description": "Description for the style of the rich text editor toolbar with one row and only simple formatting options."
+  },
+  "toolbar_style_one_row_all_title": "Одна ряд (весь функционал)",
+  "@toolbar_style_one_row_all_title": {
+    "description": "Title for the style of the rich text editor toolbar with one row and all formatting options."
+  },
+  "toolbar_style_one_row_all_description": "Все параметры редактирования в одной ряду",
+  "@toolbar_style_one_row_all_description": {
+    "description": "Description for the style of the rich text editor toolbar with one row and all formatting options."
+  },
+  "toolbar_style_two_rows_stacked_title": "Два ряда (оба ряда видны сразу)",
+  "@toolbar_style_two_rows_stacked_title": {
+    "description": "Title for the style of the rich text editor toolbar with two stacked rows."
+  },
+  "toolbar_style_two_rows_stacked_description": "Все параметры редактирования для двух расположенных друг над другом рядах",
+  "@toolbar_style_two_rows_stacked_description": {
+    "description": "Description for the style of the rich text editor toolbar with two stacked rows."
+  },
+  "toolbar_style_two_rows_toggleable_title": "Два ряда (с возможностью переключения на другой ряд)",
+  "@toolbar_style_two_rows_toggleable_title": {
+    "description": "Title for the style of the rich text editor toolbar with two toggleable rows."
+  },
+  "toolbar_style_two_rows_toggleable_description": "Все параметры редактирования в двух переключаемых рядах",
+  "@toolbar_style_two_rows_toggleable_description": {
+    "description": "Description for the style of the rich text editor toolbar with two toggleable rows."
   },
   "settings_confirm_before_exiting_title": "Подтвердить перед выходом",
   "@settings_confirm_before_exiting_title": {

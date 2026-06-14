@@ -17,15 +17,13 @@ class CurrentNoteNotifier extends ValueNotifier<Note?> {
   /// Sets the current note to [newNote].
   @override
   set value(Note? newNote) {
-    if (newNote == null) {
-      return;
-    }
-
-    if (_value == newNote && _value?.labels == newNote.labels) {
-      return;
-    }
-
     _value = newNote;
+
+    notifyListeners();
+  }
+
+  /// Notifies the listeners.
+  void notify() {
     notifyListeners();
   }
 }

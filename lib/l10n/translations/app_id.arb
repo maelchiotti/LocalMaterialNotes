@@ -1,0 +1,204 @@
+{
+  "app_name": "Material Notes",
+  "@app_name": {
+    "description": "Name of the application."
+  },
+  "app_tagline": "Catatan desain yang sederhana, lokal, dan material",
+  "@app_tagline": {
+    "description": "Tagline of the application, shown in the about popup."
+  },
+  "app_about": "{appName} adalah aplikasi pencatatan berbasis teks, yang ditujukan untuk kesederhanaan. Aplikasi ini menggunakan Desain Material. Aplikasi ini menyimpan catatan secara lokal dan tidak memiliki izin internet, jadi hanya Anda yang bisa mengakses catatan tersebut.",
+  "@app_about": {
+    "description": "Description of the application, shown in the about popup.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "description": "Name of the application."
+      }
+    }
+  },
+  "error_widget_title": "Telah terjadi kesalahan.",
+  "@error_widget_title": {
+    "description": "Message shown in the error widget shown when a widget fails to build."
+  },
+  "error_widget_description": "Harap laporkan masalah ini di GitHub atau melalui email. Lampirkan tangkapan layar halaman ini dan log yang dapat Anda salin atau ekspor di bawah ini. Sebagai tindakan pencegahan, Anda juga harus mengekspor catatan Anda.",
+  "@error_widget_description": {
+    "description": "Message shown in the error widget shown when a widget fails to build."
+  },
+  "error_widget_disabled_secure_flag": "Pengaturan untuk menandai aplikasi sebagai aman dinonaktifkan hingga berikutnya mulai ulang untuk mengaktifkan tangkapan layar.",
+  "@error_widget_disabled_secure_flag": {
+    "description": "Tag shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
+  },
+  "error_widget_button_export_notes": "Ekspor catatan",
+  "@error_widget_button_export_notes": {
+    "description": "Title of the button to export the notes as JSON on the error widget."
+  },
+  "error_widget_button_copy_logs": "Salin log",
+  "@error_widget_button_copy_logs": {
+    "description": "Title of the button to copy the logs to the clipboard on the error widget."
+  },
+  "error_widget_button_export_logs": "Ekspor log",
+  "@error_widget_button_export_logs": {
+    "description": "Title of the button to export the logs in a text file on the error widget."
+  },
+  "error_widget_button_create_github_issue": "Buat issue di github",
+  "@error_widget_button_create_github_issue": {
+    "description": "Title of the button to create a new GitHub issue on the error widget."
+  },
+  "error_widget_button_send_mail": "Kirim email",
+  "@error_widget_button_send_mail": {
+    "description": "Title of the button to end a bug report mail on the error widget."
+  },
+  "navigation_notes": "Catatan",
+  "@navigation_notes": {
+    "description": "Title of the notes page."
+  },
+  "navigation_manage_labels_destination": "Kelola label",
+  "@navigation_manage_labels_destination": {
+    "description": "Title of the button in the side navigation drawer to got to the page to manage the tags."
+  },
+  "navigation_manage_labels_page": "Label",
+  "@navigation_manage_labels_page": {
+    "description": "Title of the page to manage the tags."
+  },
+  "navigation_archives": "Arsip",
+  "@navigation_archives": {
+    "description": "Title of the archives page."
+  },
+  "navigation_bin": "Sampah",
+  "@navigation_bin": {
+    "description": "Title of the bin page."
+  },
+  "navigation_settings": "Pengaturan",
+  "@navigation_settings": {
+    "description": "Title of the settings page."
+  },
+  "navigation_settings_appearance": "Penampilan",
+  "@navigation_settings_appearance": {
+    "description": "Title of the settings page regarding the application's appearance."
+  },
+  "navigation_settings_notes_types": "Jenis catatan",
+  "@navigation_settings_notes_types": {
+    "description": "Title of the settings page regarding the notes types."
+  },
+  "navigation_settings_notes_tiles": "Ubin catatan",
+  "@navigation_settings_notes_tiles": {
+    "description": "Title of the settings page regarding the notes tiles appearance."
+  },
+  "navigation_settings_behavior": "Perilaku",
+  "@navigation_settings_behavior": {
+    "description": "Title of the settings page regarding the application's behavior."
+  },
+  "navigation_settings_editor": "Editor",
+  "@navigation_settings_editor": {
+    "description": "Title of the settings page regarding the notes content editor."
+  },
+  "navigation_settings_labels": "Label",
+  "@navigation_settings_labels": {
+    "description": "Title of the settings page regarding the tags."
+  },
+  "navigation_settings_backup": "Cadangkan",
+  "@navigation_settings_backup": {
+    "description": "Title of the settings page regarding the backup functionality."
+  },
+  "navigation_settings_security": "Keamanan",
+  "@navigation_settings_security": {
+    "description": "Title of the settings page regarding the security."
+  },
+  "navigation_settings_accessibility": "Aksesibilitas",
+  "@navigation_settings_accessibility": {
+    "description": "Title of the settings page regarding the accessibility."
+  },
+  "navigation_settings_help": "Bantuan",
+  "@navigation_settings_help": {
+    "description": "Title of the settings page to receive help."
+  },
+  "navigation_settings_about": "Tentang",
+  "@navigation_settings_about": {
+    "description": "Title of the settings page regarding the information about the application."
+  },
+  "button_sort_title": "Judul",
+  "@button_sort_title": {
+    "description": "Text of the button to sort the notes list by title."
+  },
+  "button_sort_ascending": "Naik",
+  "@button_sort_ascending": {
+    "description": "Text of the button to sort the notes list in ascending order."
+  },
+  "settings_page_appearance": "Tampilan",
+  "@settings_page_appearance": {
+    "description": "Title of the settings page regarding the application's appearance."
+  },
+  "settings_page_appearance_description": "Bahasa, tema, font",
+  "@settings_page_appearance_description": {
+    "description": "Description of the appearance settings page."
+  },
+  "settings_language": "Bahasa",
+  "@settings_language": {
+    "description": "Title of the language setting tile."
+  },
+  "settings_language_contribute": "Berkontribusi",
+  "@settings_language_contribute": {
+    "description": "Button to contribute to the localizations, shown on the language setting tile."
+  },
+  "settings_appearance_section_theming": "Tema",
+  "@settings_appearance_section_theming": {
+    "description": "Title of the section regarding the theming under the appearance settings."
+  },
+  "settings_theme": "Tema",
+  "@settings_theme": {
+    "description": "Title of the theming setting tile."
+  },
+  "settings_theme_system": "Sistem",
+  "@settings_theme_system": {
+    "description": "Theming setting to use the theme of the system."
+  },
+  "settings_theme_light": "Terang",
+  "@settings_theme_light": {
+    "description": "Theming setting to use the light theme."
+  },
+  "settings_theme_dark": "Gelap",
+  "@settings_theme_dark": {
+    "description": "Theming setting to use the dark theme."
+  },
+  "settings_dynamic_theming": "Tema dinamis",
+  "@settings_dynamic_theming": {
+    "description": "Title of the dynamic theming setting tile (to use colors generated from the system)."
+  },
+  "settings_dynamic_theming_description": "Gunakan warna dari sistem",
+  "@settings_dynamic_theming_description": {
+    "description": "Description of the dynamic theming setting tile."
+  },
+  "settings_black_theming": "Tema gelap",
+  "@settings_black_theming": {
+    "description": "Title of the black theming setting tile (to use a black background in dark mode)."
+  },
+  "settings_black_theming_description": "Menggunakan latar belakang hitam dalam mode gelap",
+  "@settings_black_theming_description": {
+    "description": "Description of the black theming setting tile."
+  },
+  "settings_appearance_section_fonts": "Font",
+  "@settings_appearance_section_fonts": {
+    "description": "Title of the section regarding the theming under the appearance settings."
+  },
+  "settings_app_font": "Font aplikasi",
+  "@settings_app_font": {
+    "description": "Title of the setting tile to choose the font of the app."
+  },
+  "settings_app_font_description": "Font digunakan untuk semua teks di aplikasi, kecuali di editor catatan",
+  "@settings_app_font_description": {
+    "description": "Description of the setting tile to choose the font of the app."
+  },
+  "settings_editor_font": "Editor font",
+  "@settings_editor_font": {
+    "description": "Title of the setting tile to choose the font of the notes."
+  },
+  "settings_editor_font_description": "Font hanya digunakan untuk editor catatan",
+  "@settings_editor_font_description": {
+    "description": "Description of the setting tile to choose the font of the app."
+  },
+  "settings_page_notes_tiles": "Ubin catatan",
+  "@settings_page_notes_tiles": {
+    "description": "Title of the settings page regarding the notes tiles."
+  }
+}

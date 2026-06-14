@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:settings_tiles/settings_tiles.dart';
 
+import '../../../common/actions/authentication.dart';
 import '../../../common/constants/constants.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/extensions/build_context_extension.dart';
@@ -44,6 +45,15 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
 
   /// Toggles whether the application is locked to [toggled].
   Future<void> toggledLockApp(bool toggled) async {
+    // If the lock is being disabled, ask for authentication
+    if (!toggled) {
+      final authenticated = await authenticate(context, reason: context.l.lock_page_reason_action);
+
+      if (!authenticated) {
+        return;
+      }
+    }
+
     await PreferenceKey.lockApp.set(toggled);
 
     lockAppNotifier.value = toggled;
@@ -55,8 +65,31 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
     setState(() {});
   }
 
+  /// Sets the application lock delay to [delay].
+  Future<void> submittedLockAppDelay(double delay) async {
+    // Ask for authentication
+    final authenticated = await authenticate(context, reason: context.l.lock_page_reason_action);
+
+    if (!authenticated) {
+      return;
+    }
+
+    setState(() {
+      PreferenceKey.lockAppDelay.set(delay.toInt());
+    });
+  }
+
   /// Toggles whether the notes can be locked to [toggled].
   Future<void> toggledLockNote(bool toggled) async {
+    // If the lock is being disabled, ask for authentication
+    if (!toggled) {
+      final authenticated = await authenticate(context, reason: context.l.lock_page_reason_action);
+
+      if (!authenticated) {
+        return;
+      }
+    }
+
     await PreferenceKey.lockNote.set(toggled);
 
     // If the note lock is disabled and the available swipe actions are 'Lock / Unlock', set them to disabled
@@ -83,20 +116,29 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
 
   /// Toggles whether the labels can be locked to [toggled].
   Future<void> toggledLockLabel(bool toggled) async {
+    // If the lock is being disabled, ask for authentication
+    if (!toggled) {
+      final authenticated = await authenticate(context, reason: context.l.lock_page_reason_action);
+
+      if (!authenticated) {
+        return;
+      }
+    }
+
     await PreferenceKey.lockLabel.set(toggled);
 
     setState(() {});
   }
 
-  /// Sets the application lock delay to [delay].
-  Future<void> submittedLockAppDelay(double delay) async {
-    setState(() {
-      PreferenceKey.lockAppDelay.set(delay.toInt());
-    });
-  }
-
   /// Sets the note lock delay to [delay].
   Future<void> submittedLockNoteDelay(double delay) async {
+    // Ask for authentication
+    final authenticated = await authenticate(context, reason: context.l.lock_page_reason_action);
+
+    if (!authenticated) {
+      return;
+    }
+
     setState(() {
       PreferenceKey.lockNoteDelay.set(delay.toInt());
     });
@@ -149,7 +191,10 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
                     enabled: isSystemAuthenticationAvailable && lockApp,
                     icon: SettingTileIcon(Icons.timelapse),
                     title: Text(context.l.settings_application_lock_delay_title),
-                    value: SettingTileValue(context.l.settings_lock_delay_value(lockAppDelay.toString())),
+                    value: SettingTileValue(
+                      context.l.settings_lock_delay_value(lockAppDelay.toString()),
+                      enabled: isSystemAuthenticationAvailable && lockApp,
+                    ),
                     description: Text(context.l.settings_application_lock_delay_description),
                     dialogTitle: context.l.settings_application_lock_delay_title,
                     label: (delay) => context.l.settings_lock_delay_value(delay.toInt().toString()),
@@ -182,7 +227,10 @@ class _SettingsBehaviorPageState extends ConsumerState<SettingsSecurityPage> {
                     enabled: isSystemAuthenticationAvailable && lockNote,
                     icon: SettingTileIcon(Icons.timelapse),
                     title: Text(context.l.settings_note_lock_delay_title),
-                    value: SettingTileValue(context.l.settings_lock_delay_value(lockNoteDelay.toString())),
+                    value: SettingTileValue(
+                      context.l.settings_lock_delay_value(lockNoteDelay.toString()),
+                      enabled: isSystemAuthenticationAvailable && lockNote,
+                    ),
                     description: Text(context.l.settings_note_lock_delay_description),
                     dialogTitle: context.l.settings_note_lock_delay_title,
                     label: (delay) => context.l.settings_lock_delay_value(delay.toInt().toString()),

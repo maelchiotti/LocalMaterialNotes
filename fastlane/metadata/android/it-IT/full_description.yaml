@@ -1,0 +1,63 @@
+full_description: |
+  <p>
+      <b>Material Notes</b> è un'applicazione per prendere appunti basata su testo, pensata per essere semplice. Adotta il Material Design.
+      Memorizza gli appunti localmente e non richiede alcuna autorizzazione Internet, quindi sei l'unico a poter accedere agli appunti.
+  </p>
+
+  <p>
+      <b>Prendi appunti</b>
+  </p>
+  <ul>
+      <li>Scrivi note di testo (titolo e contenuto)</li>
+      <li>Scegli tra note di testo semplice, markdown, testo avanzato o liste di controllo</li>
+      <li>Usa l'azione rapida dalla schermata iniziale per aggiungere rapidamente una nota</li>
+  </ul>
+
+  <p>
+      <b>Organizza</b>
+  </p>
+  <ul>
+      <li>Cerca tra le tue note</li>
+      <li>Ordina le note per data o titolo, in ordine crescente o decrescente</li>
+      <li>Visualizza le note in un elenco o in una griglia</li>
+      <li>Appunta e archivia le tue note</li>
+      <li>Recupera le note eliminate dal cestino</li>
+  </ul>
+
+  <p>
+      <b>Categorizza</b>
+  </p>
+  <ul>
+      <li>Categorizza le tue note con le etichette</li>
+      <li>Distingui le etichette con il loro colore</li>
+      <li>Appunta e nascondi le tue etichette</li>
+  </ul>
+
+  <p>
+      <b>Condivisione e backup</b>
+  </p>
+  <ul>
+      <li>Condividi il testo da altre applicazioni per aggiungerlo direttamente a una nota</li>
+      <li>Condividi le tue note come testo</li>
+      <li>Esporta le tue note come JSON, manualmente o automaticamente, e reimportale</li>
+      <li>Esporta le tue note come Markdown</li>
+  </ul>
+
+  <p>
+      <b>Proteggi</b>
+  </p>
+  <ul>
+      <li>Non preoccuparti mai di come vengono gestiti i tuoi dati: non possono lasciare il tuo dispositivo poiché l'applicazione non ha alcuna autorizzazione Internet</li>
+      <li>Blocca l'applicazione, note specifiche o tutte le note con una specifica etichetta</li>
+      <li>Crittografa le tue esportazioni JSON</li>
+  </ul>
+
+  <p>
+      <b>Personalizza</b>
+  </p>
+  <ul>
+      <li>Scegli la tua lingua</li>
+      <li>Scegli il tuo tema (chiaro, scuro o nero)</li>
+      <li>Scegli se desideri che il tuo tema sia dinamico (utilizza i colori dello sfondo)</li>
+      <li>Scegli quali tipi di note desideri abilitare</li>
+  </ul>

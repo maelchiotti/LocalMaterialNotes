@@ -39,7 +39,11 @@ class LabelsPage extends ConsumerWidget {
                         switchInCurve: Curves.easeInOut,
                         switchOutCurve: Curves.easeInOut,
                         transitionBuilder: (child, animation) {
-                          return SizeTransition(axisAlignment: 1, sizeFactor: animation, child: child);
+                          return SizeTransition(
+                            alignment: AlignmentGeometry.topCenter,
+                            sizeFactor: animation,
+                            child: child,
+                          );
                         },
                         child: labelsFilters ? SizedBox(height: 38, child: LabelsFilters()) : null,
                       );

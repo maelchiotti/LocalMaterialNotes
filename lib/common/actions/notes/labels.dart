@@ -44,6 +44,9 @@ Future<List<Label>?> selectLabels(BuildContext context, WidgetRef ref, {required
       .editLabels(note, selectedLabels);
 
   currentNoteNotifier.value = note;
+  // Forcefully notify the listeners
+  // because the note object as been modified in memory
+  currentNoteNotifier.notify();
 
   return selectedLabels;
 }

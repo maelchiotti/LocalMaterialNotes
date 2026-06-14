@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:isar_community/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../common/preferences/preference_key.dart';
 import '../note/note.dart';
 
 part 'label.g.dart';
@@ -46,6 +47,14 @@ class Label extends Equatable implements Comparable<Label> {
   @JsonKey(defaultValue: false)
   bool locked;
 
+  /// Whether the label requires authentication to be accessed.
+  @ignore
+  bool get requiresAuthentication {
+    final lockLabel = PreferenceKey.lockLabel.preferenceOrDefault;
+
+    return lockLabel && locked;
+  }
+
   /// Whether the note is selected.
   ///
   /// Excluded from JSON because it's only needed temporarily during multi-selection.
@@ -70,7 +79,7 @@ class Label extends Equatable implements Comparable<Label> {
   }
 
   /// Default constructor of a label.
-  Label({required this.name, required this.colorHex}) : visible = true, pinned = false, locked = true;
+  Label({required this.name, required this.colorHex}) : visible = true, pinned = false, locked = false;
 
   /// Label from [json] data.
   factory Label.fromJson(Map<String, dynamic> json) => _$LabelFromJson(json);
