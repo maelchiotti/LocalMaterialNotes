@@ -835,6 +835,22 @@
   "@hint_label_name": {
     "description": "Hint for the text field of the name of a tag."
   },
+  "dialog_require_backup_title": "Sélectionnez un emplacement de sauvegarde",
+  "@dialog_require_backup_title": {
+    "description": "Title of the dialog to select a backup location."
+  },
+  "dialog_require_backup_description": "Puisque vos notes sont uniquement stockées localement sur votre appareil, tout problème pourrait entraîner leur perte totale. La désinstallation de l''application entraînerait également la suppression de toutes vos notes.\n\nEn choisissant un emplacement de sauvegarde, vous vous assurez de pouvoir toujours récupérer vos notes. Vous pouvez par exemple créer un dossier intitulé « Sauvegardes Material Notes » dans votre dossier « Documents » existant.",
+  "@dialog_require_backup_description": {
+    "description": "Description of the dialog to select a backup location."
+  },
+  "dialog_require_backup_ignore": "Ignorer",
+  "@dialog_require_backup_ignore": {
+    "description": "Button to ignore the dialog to select a backup location."
+  },
+  "dialog_require_backup_select": "Sélectionner",
+  "@dialog_require_backup_select": {
+    "description": "Button to select a backup location in the related dialog."
+  },
   "dialog_export_encryption_password": "Mot de passe",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."

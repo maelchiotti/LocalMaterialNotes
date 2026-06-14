@@ -835,6 +835,22 @@
   "@hint_label_name": {
     "description": "Hint for the text field of the name of a tag."
   },
+  "dialog_require_backup_title": "选择备份位置",
+  "@dialog_require_backup_title": {
+    "description": "Title of the dialog to select a backup location."
+  },
+  "dialog_require_backup_description": "由于您的笔记仅存储在设备本地，任何问题都可能导致笔记全部丢失。卸载应用程序也会删除您的所有笔记。\n\n选择一个备份位置将确保您始终可以检索笔记。例如，您可以在现有的“Documents”文件夹下创建一个名为“Material Notes backups”的文件夹。",
+  "@dialog_require_backup_description": {
+    "description": "Description of the dialog to select a backup location."
+  },
+  "dialog_require_backup_ignore": "忽略",
+  "@dialog_require_backup_ignore": {
+    "description": "Button to ignore the dialog to select a backup location."
+  },
+  "dialog_require_backup_select": "选择",
+  "@dialog_require_backup_select": {
+    "description": "Button to select a backup location in the related dialog."
+  },
   "dialog_export_encryption_password": "密码",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."

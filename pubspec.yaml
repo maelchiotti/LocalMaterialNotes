@@ -4,7 +4,7 @@ repository: https://github.com/maelchiotti/LocalMaterialNotes
 
 publish_to: none
 
-version: 2.1.4+34
+version: 2.1.5+35
 
 environment:
   sdk: ^3.12.0

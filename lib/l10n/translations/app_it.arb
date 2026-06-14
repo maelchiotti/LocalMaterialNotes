@@ -609,7 +609,7 @@
   "@settings_application_lock_title": {
     "description": "Title of the setting tile to toggle whether the application is locked."
   },
-  "settings_application_lock_description": "Blocca l'applicazione e richiedi l'autenticazione sul dispositivo per lo sblocco",
+  "settings_application_lock_description": "Blocca l''applicazione e richiedi l''autenticazione sul dispositivo per lo sblocco",
   "@settings_application_lock_description": {
     "description": "Description of the setting tile to toggle whether the application is locked."
   },
@@ -643,6 +643,18 @@
   "@settings_label_lock_title": {
     "description": "Title of the setting tile to toggle whether the tags can be locked."
   },
+  "settings_label_lock_description": "Blocca il tag e richiedi l''autenticazione con il dispositivo per visualizzare e modificare qualsiasi nota che lo contiene",
+  "@settings_label_lock_description": {
+    "description": "Description of the setting tile to toggle whether the tags can be locked."
+  },
+  "settings_note_lock_delay_title": "Ritardo di blocco",
+  "@settings_note_lock_delay_title": {
+    "description": "Title of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
+  },
+  "settings_note_lock_delay_description": "Ritardo dopo il quale la nota si blocca automaticamente quando l''applicazione viene spostata in background",
+  "@settings_note_lock_delay_description": {
+    "description": "Description of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
+  },
   "settings_accessibility": "Accessibilità",
   "@settings_accessibility": {
     "description": "Title of the settings page regarding the accessibility"
@@ -667,6 +679,10 @@
   "@settings_bigger_titles": {
     "description": "Title of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
+  "settings_bigger_titles_description": "Mostra titoli più grandi sulle schede delle note e nell''editor",
+  "@settings_bigger_titles_description": {
+    "description": "Description of the setting tile to use bigger titles on the notes tiles and in the editor."
+  },
   "settings_white_text_dark_mode": "Testo bianco in modalità scura",
   "@settings_white_text_dark_mode": {
     "description": "Title of the text scale setting tile."
@@ -682,6 +698,10 @@
   "settings_disable_subdued_note_content_preview_description": "Disabilita il colore del testo \"sbiadito\" nell''anteprima del contenuto delle note",
   "@settings_disable_subdued_note_content_preview_description": {
     "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
+  },
+  "settings_help_section_contact": "Contatta",
+  "@settings_help_section_contact": {
+    "description": "Title of the settings section regarding how to get in contact."
   },
   "settings_github_issues": "Segnala un bug o suggerisci nuove funzioni",
   "@settings_github_issues": {
@@ -699,9 +719,25 @@
   "@settings_github_discussions_description": {
     "description": "Description of the settings tile to open the GitHub discussions and ask a question."
   },
+  "settings_contact_developer": "Contatta lo sviluppatore",
+  "@settings_contact_developer": {
+    "description": "Title of the settings tile to contact the developer via mail."
+  },
   "settings_get_in_touch_description": "Contatta lo sviluppatore inviando una mail a {email}",
   "@settings_get_in_touch_description": {
     "description": "Description of the settings tile to contact the developer via mail."
+  },
+  "settings_help": "Aiuto",
+  "@settings_help": {
+    "description": "Title of the settings page to receive help."
+  },
+  "settings_help_description": "Contatti, registri",
+  "@settings_help_description": {
+    "description": "Description of the settings page to receive help."
+  },
+  "settings_help_section_logs": "Registri",
+  "@settings_help_section_logs": {
+    "description": "Title of the settings section regarding the logs of the application."
   },
   "settings_copy_logs": "Copia i log",
   "@settings_copy_logs": {
@@ -722,6 +758,10 @@
   "settings_about": "Informazioni",
   "@settings_about": {
     "description": "Title of the settings page regarding the information about the application."
+  },
+  "settings_about_description": "Informazioni, collegamenti, dona",
+  "@settings_about_description": {
+    "description": "Description of the settings page regarding the information about the application."
   },
   "settings_about_application": "Applicazione",
   "@settings_about_application": {
@@ -767,9 +807,25 @@
   "@settings_licence_description": {
     "description": "Description of the settings tile to open the license of the application."
   },
+  "settings_about_section_donate": "Dona",
+  "@settings_about_section_donate": {
+    "description": "Title of the settings section to donate."
+  },
+  "settings_donate_kofi": "Ko-fi",
+  "@settings_donate_kofi": {
+    "description": "Title of the settings tile to donate via Ko-fi."
+  },
+  "settings_donate_paypal": "PayPal",
+  "@settings_donate_paypal": {
+    "description": "Title of the settings tile to donate via PayPal."
+  },
   "hint_title": "Titolo",
   "@hint_title": {
     "description": "Hint for the text field of the title of the notes."
+  },
+  "hint_content": "Nota",
+  "@hint_content": {
+    "description": "Hint for the text field of the content of the notes."
   },
   "hint_link": "Link",
   "@hint_link": {
@@ -814,6 +870,10 @@
   "tooltip_fab_add_rich_text_note": "Aggiungi una nota in testo avanzato",
   "@tooltip_fab_add_rich_text_note": {
     "description": "Floating action button in the notes page to add a new rich text note."
+  },
+  "tooltip_fab_add_checklist_note": "Aggiungi una nota alla lista di controllo",
+  "@tooltip_fab_add_checklist_note": {
+    "description": "Floating action button in the notes page to add a new checklist note."
   },
   "tooltip_fab_add_label": "Aggiungi un''etichetta",
   "@tooltip_fab_add_label": {
@@ -1023,6 +1083,14 @@
   "@action_disabled": {
     "description": "Swipe action that is disabled in the settings."
   },
+  "action_toggle_pin": "Selettore appunti",
+  "@action_toggle_pin": {
+    "description": "Menu action to toggle whether the notes are pinned."
+  },
+  "action_pin_unpin": "Fissa / Sgancia",
+  "@action_pin_unpin": {
+    "description": "Swipe action to pin or unpin a note."
+  },
   "action_pin": "Fissa",
   "@action_pin": {
     "description": "Swipe or menu action to pin a note."
@@ -1030,6 +1098,22 @@
   "action_unpin": "Rimuovi dai fissati",
   "@action_unpin": {
     "description": "Swipe or menu action to unpin a note."
+  },
+  "action_toggle_lock": "Selettore blocco",
+  "@action_toggle_lock": {
+    "description": "Menu action to toggle whether the notes are locked."
+  },
+  "action_lock_unlock": "Blocca / Sblocca",
+  "@action_lock_unlock": {
+    "description": "Swipe action to lock or unlock a note."
+  },
+  "action_lock": "Blocca",
+  "@action_lock": {
+    "description": "Swipe or menu action to lock a note."
+  },
+  "action_unlock": "Sblocca",
+  "@action_unlock": {
+    "description": "Swipe or menu action to unlock a note."
   },
   "action_share": "Condividi",
   "@action_share": {
@@ -1044,6 +1128,14 @@
         "type": "int"
       }
     }
+  },
+  "action_archive": "Archivia",
+  "@action_archive": {
+    "description": "Swipe or menu action to archive a note (moving it to the archives)."
+  },
+  "action_unarchive": "Rimuovi dall''archivio",
+  "@action_unarchive": {
+    "description": "Swipe or menu action to unarchive a note."
   },
   "action_delete": "Elimina",
   "@action_delete": {
@@ -1089,9 +1181,61 @@
   "@about_time_at": {
     "description": "Preposition shown between the date and the time in the about dialog (example: 'January 5, 2024 at 5:15 PM')."
   },
+  "menu_action_select_labels": "Etichette",
+  "@menu_action_select_labels": {
+    "description": "Menu action to select the tags of a note."
+  },
+  "menu_action_add_labels": "Aggiungi etichette",
+  "@menu_action_add_labels": {
+    "description": "Menu action to add tags to multiple notes."
+  },
+  "action_labels_toggle_visibile": "Selettore visibilità",
+  "@action_labels_toggle_visibile": {
+    "description": "Tooltip for the button to toggle whether the selected tags are visible."
+  },
+  "action_labels_show_hide": "Mostra / Nascondi",
+  "@action_labels_show_hide": {
+    "description": "Swipe action to show or hide a tag."
+  },
+  "action_labels_show": "Mostra",
+  "@action_labels_show": {
+    "description": "Menu or swipe action to make tag visible."
+  },
+  "action_labels_hide": "Nascondi",
+  "@action_labels_hide": {
+    "description": "Menu or swipe action to hide a tag."
+  },
   "action_labels_toggle_pins": "Attiva/Disattiva i pin",
   "@action_labels_toggle_pins": {
     "description": "Menu action to toggle whether the selected tags are pinned."
+  },
+  "action_labels_pin_unpin": "Fissa / Sgancia",
+  "@action_labels_pin_unpin": {
+    "description": "Swipe action to pin or unpin a tag."
+  },
+  "action_labels_pin": "Fissa",
+  "@action_labels_pin": {
+    "description": "Menu or swipe action to pin a tag."
+  },
+  "action_labels_unpin": "Sgancia",
+  "@action_labels_unpin": {
+    "description": "Menu or swipe action to unpin a tag."
+  },
+  "action_labels_toggle_lock": "Selettore blocco",
+  "@action_labels_toggle_lock": {
+    "description": "Tooltip for the button to toggle whether the selected tags are locked."
+  },
+  "action_labels_lock_unlock": "Blocca / Sblocca",
+  "@action_labels_lock_unlock": {
+    "description": "Swipe action to lock or unlock a tag."
+  },
+  "action_labels_lock": "Blocca",
+  "@action_labels_lock": {
+    "description": "Menu or swipe action to lock a tag."
+  },
+  "action_labels_unlock": "Sblocca",
+  "@action_labels_unlock": {
+    "description": "Menu or swipe action to unlock a tag."
   },
   "action_labels_edit": "Modifica",
   "@action_labels_edit": {
@@ -1116,6 +1260,14 @@
   "filter_labels_pinned": "Fissate",
   "@filter_labels_pinned": {
     "description": "Filter chip in the tags page to show only the pinned tags."
+  },
+  "filter_labels_locked": "Bloccato",
+  "@filter_labels_locked": {
+    "description": "Filter chip in the tags page to show only the locked tags."
+  },
+  "snack_bar_authentication_failed": "L''autenticazione non è riuscita, riprova.",
+  "@snack_bar_authentication_failed": {
+    "description": "Snack bar informing that the authentication on the lock screen has failed."
   },
   "snack_bar_archived": "{count, plural, one{La nota è stata archiviata} other{Le note sono state archiviate}}",
   "@snack_bar_archived": {
@@ -1157,6 +1309,16 @@
       }
     }
   },
+  "snack_bar_copied": "Contenuto del {count, plural, one{nota} other{note}} copiato negli appunti.",
+  "@snack_bar_copied": {
+    "description": "Snack bar informing that the content of the note was copied to clipboard.",
+    "placeholders": {
+      "count": {
+        "description": "Number of notes to copy.",
+        "type": "int"
+      }
+    }
+  },
   "snack_bar_import_success": "Il backup è stato importato con successo.",
   "@snack_bar_import_success": {
     "description": "Snack bar informing that the backup was successfully imported."
@@ -1177,6 +1339,22 @@
   "@snack_bar_no_labels": {
     "description": "Snack bar message shown when the user tries to select the tags for a note, but there are no tags available."
   },
+  "quick_action_add_plain_text_note_title": "Aggiungi una nota di testo semplice",
+  "@quick_action_add_plain_text_note_title": {
+    "description": "Title of the home screen action to add a new plain text note."
+  },
+  "quick_action_add_markdown_note_title": "Aggiungi una nota Markdown",
+  "@quick_action_add_markdown_note_title": {
+    "description": "Title of the home screen action to add a new markdown note."
+  },
+  "quick_action_add_rich_text_note_title": "Aggiungi una nota in testo avanzato",
+  "@quick_action_add_rich_text_note_title": {
+    "description": "Title of the home screen action to add a new rich text note."
+  },
+  "quick_action_add_checklist_note_title": "Aggiungi una nota lista di controllo",
+  "@quick_action_add_checklist_note_title": {
+    "description": "Title of the home screen action to add a new checklist note."
+  },
   "welcome_note_title": "Benvenuto su Material Notes!",
   "@welcome_note_title": {
     "description": "Title of the welcome note automatically created on the first run of the application."
@@ -1193,8 +1371,96 @@
   "@note_type_plain_text": {
     "description": "Note with plain text."
   },
+  "note_type_markdown": "Markdown",
+  "@note_type_markdown": {
+    "description": "Note with markdown text."
+  },
   "note_type_rich_text": "Rich text",
   "@note_type_rich_text": {
     "description": "Note with rich text."
+  },
+  "note_type_checklist": "Lista di controllo",
+  "@note_type_checklist": {
+    "description": "Note with a checklist."
+  },
+  "lock_page_reason_app": "Sblocca Material Notes",
+  "@lock_page_reason_app": {
+    "description": "Reason for the lock screen of the application to request a system authentication."
+  },
+  "lock_page_reason_note": "Sblocca questa nota",
+  "@lock_page_reason_note": {
+    "description": "Reason for the lock screen of a locked note to request a system authentication."
+  },
+  "lock_page_reason_action": "Autorizza questa azione",
+  "@lock_page_reason_action": {
+    "description": "Reason for the lock screen for a secure action to request a system authentication."
+  },
+  "lock_page_description_app": "Questa applicazione è bloccata.",
+  "@lock_page_description_app": {
+    "description": "Description shown in the lock page for the application."
+  },
+  "lock_page_description_note": "Questa nota è bloccata.",
+  "@lock_page_description_note": {
+    "description": "Description shown in the lock page for a locked note."
+  },
+  "lock_page_unlock": "Sblocca",
+  "@lock_page_unlock": {
+    "description": "Button to unlock the lock page by requesting a system authentication."
+  },
+  "rich_text_editor_toolbar_dialog_color_title_foreground": "Colore primo piano",
+  "@rich_text_editor_toolbar_dialog_color_title_foreground": {
+    "description": "Title of the dialog to choose the foreground color of the text in the rich text editor."
+  },
+  "rich_text_editor_toolbar_dialog_color_title_background": "Colore di sfondo",
+  "@rich_text_editor_toolbar_dialog_color_title_background": {
+    "description": "Title of the dialog to choose the background color of the text in the rich text editor."
+  },
+  "rich_text_editor_toolbar_dialog_color_description": "Colore primo piano",
+  "@rich_text_editor_toolbar_dialog_color_description": {
+    "description": "Description of the dialog to choose the foreground/background color of the text."
+  },
+  "toolbar_style_one_row_simple_title": "Una riga (opzioni semplici)",
+  "@toolbar_style_one_row_simple_title": {
+    "description": "Title for the style of the rich text editor toolbar with one row and only simple formatting options."
+  },
+  "toolbar_style_one_row_simple_description": "Solo semplici opzioni di formattazione su una riga",
+  "@toolbar_style_one_row_simple_description": {
+    "description": "Description for the style of the rich text editor toolbar with one row and only simple formatting options."
+  },
+  "toolbar_style_one_row_all_title": "Una riga (tutte le opzioni)",
+  "@toolbar_style_one_row_all_title": {
+    "description": "Title for the style of the rich text editor toolbar with one row and all formatting options."
+  },
+  "toolbar_style_one_row_all_description": "Tutte le opzioni di formattazione su una riga",
+  "@toolbar_style_one_row_all_description": {
+    "description": "Description for the style of the rich text editor toolbar with one row and all formatting options."
+  },
+  "toolbar_style_two_rows_stacked_title": "Due righe (sovrapposte)",
+  "@toolbar_style_two_rows_stacked_title": {
+    "description": "Title for the style of the rich text editor toolbar with two stacked rows."
+  },
+  "toolbar_style_two_rows_stacked_description": "Tutte le opzioni di formattazione su due righe sovrapposte",
+  "@toolbar_style_two_rows_stacked_description": {
+    "description": "Description for the style of the rich text editor toolbar with two stacked rows."
+  },
+  "toolbar_style_two_rows_toggleable_title": "Due righe (attivabili)",
+  "@toolbar_style_two_rows_toggleable_title": {
+    "description": "Title for the style of the rich text editor toolbar with two toggleable rows."
+  },
+  "toolbar_style_two_rows_toggleable_description": "Tutte le opzioni di formattazione su due righe attivabili",
+  "@toolbar_style_two_rows_toggleable_description": {
+    "description": "Description for the style of the rich text editor toolbar with two toggleable rows."
+  },
+  "settings_confirm_before_exiting_title": "Conferma prima di uscire",
+  "@settings_confirm_before_exiting_title": {
+    "description": "Title of the setting tile for whether a confirmation is required before exiting the application."
+  },
+  "settings_confirm_before_exiting_description": "Chiedi una conferma prima di uscire dall''applicazione",
+  "@settings_confirm_before_exiting_description": {
+    "description": "Description of the setting tile for whether a confirmation is required before exiting the application."
+  },
+  "snack_bar_confirm_exiting": "Premi di nuovo indietro per uscire dall''applicazione.",
+  "@snack_bar_confirm_exiting": {
+    "description": "Snack bar asking the user to confirm exiting the application by pressing back again."
   }
 }
