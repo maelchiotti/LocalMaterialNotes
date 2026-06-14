@@ -1,0 +1,12 @@
+ADDED
+- Prompt to select a save location
+- Display emojis in Markdown notes when viewing
+
+CHANGED
+- Disabled automatic emoji replacement in rich text notes
+
+FIXED
+- Prompt for authentication when necessary
+- Crash when opening the tags menu
+- Update tags after editing/deleting
+- Show the parameter value as disabled when the tile is disabled

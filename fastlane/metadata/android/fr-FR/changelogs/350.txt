@@ -1,0 +1,12 @@
+AJOUTÉ
+- Suggérer de choisir un emplacement de sauvegarde
+- Afficher les emojis dans les notes Markdown en visualisation
+
+MODIFIÉ
+- Remplacement automatique des emojis désactivé dans les notes riches
+
+CORRIGÉ
+- Demander l'authentification quand nécessaire
+- Crash lors de l'ouverture du menu des étiquettes
+- Mise à jour des étiquettes après modification/supression
+- Montrer la valeur des paramètres comme désactivée quand la tuile l'est
