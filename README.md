@@ -35,6 +35,16 @@ Simple, local, material design notes.
   <img alt="Screenshot of the notes list in the light mode with dynamic theming" src="fastlane/metadata/android/en-US/images/phoneScreenshots/8_en-US.png" width="24%">
 </div>
 
+## Status
+
+> [!IMPORTANT]
+> This project is now in **maintenance mode**.
+>
+> It is considered feature complete. Only 1 to 2 updates a year should be expected, containing bug
+> fixes and maybe very small improvements.
+>
+> Thank you very much to anyone who used my first ever app!
+
 ## Features
 
 ### Take notes
@@ -66,7 +76,8 @@ Simple, local, material design notes.
 
 ### Protect
 
-- Never worry about how your data is handled: it cannot leave your device as the application doesn't have any internet permissions
+- Never worry about how your data is handled: it cannot leave your device as the application doesn't
+  have any internet permissions
 - Lock the application, a specific notes, or all notes with a specific tag
 - Encrypt your JSON exports
 
@@ -79,7 +90,9 @@ Simple, local, material design notes.
 
 ## Supported languages
 
-All the supported languages are listed here alphabetically. You can see more details on the [Crowdin project](https://crowdin.com/project/localmaterialnotes). To improve a language or add support for a new one, please see [CONTRIBUTING.md](CONTRIBUTING.md#localization).
+All the supported languages are listed here alphabetically. You can see more details on
+the [Crowdin project](https://crowdin.com/project/localmaterialnotes). To improve a language or add
+support for a new one, please see [CONTRIBUTING.md](CONTRIBUTING.md#localization).
 
 - Chinese Simplified
 - Chinese Traditional
@@ -98,18 +111,26 @@ All the supported languages are listed here alphabetically. You can see more det
 ## External imports
 
 > [!NOTE]
-> The conversion scripts are not part of the application at the moment, they must be run on a computer.
+> The conversion scripts are not part of the application at the moment, they must be run on a
+> computer.
 
-The JSON import feature only supports JSON files created by the application. Scripts to convert exports from other applications to the format used by Material Notes are available in the [external_imports](docs/external_imports) directory. Please read [EXTERNAL_IMPORTS.md](docs/external_imports/EXTERNAL_IMPORTS.md) for more details.
+The JSON import feature only supports JSON files created by the application. Scripts to convert
+exports from other applications to the format used by Material Notes are available in
+the [external_imports](docs/external_imports) directory. Please
+read [EXTERNAL_IMPORTS.md](docs/external_imports/EXTERNAL_IMPORTS.md) for more details.
 
 ## Pre-releases
 
 > [!CAUTION]
-> Pre-release versions can be buggy. Some features may not work. You might even loose all your data. That's why they are only meant to be installed manually, after making a backup from the settings.
+> Pre-release versions can be buggy. Some features may not work. You might even loose all your data.
+> That's why they are only meant to be installed manually, after making a backup from the settings.
 
-Pre-release versions of the application are available on [GitHub releases](https://github.com/maelchiotti/LocalMaterialNotes/releases?q=prerelease:true). You can filter by pre-releases only by typing `prerelease:true` in the search box.
+Pre-release versions of the application are available
+on [GitHub releases](https://github.com/maelchiotti/LocalMaterialNotes/releases?q=prerelease:true).
+You can filter by pre-releases only by typing `prerelease:true` in the search box.
 
-When using a pre-release version, please report any issue you encounter in the discussion linked to that pre-release.
+When using a pre-release version, please report any issue you encounter in the discussion linked to
+that pre-release.
 
 ## Contributing
 
@@ -126,13 +147,15 @@ You can support the project by making a donation using these platforms:
 
 ### Inspiration
 
-- [Material Files](https://github.com/zhanghai/MaterialFiles) for the general design inspiration, and especially the logo and its color.
+- [Material Files](https://github.com/zhanghai/MaterialFiles) for the general design inspiration,
+  and especially the logo and its color.
 - [Simplenote](https://simplenote.com) for the general layout of the app and its basic features.
 - [Another notes app](https://github.com/maltaisn/another-notes-app/) for how to handle tags.
 
 ### Localization
 
-- All of the [Crowdin project members](https://crowdin.com/project/localmaterialnotes/reports/top-members).
+- All of
+  the [Crowdin project members](https://crowdin.com/project/localmaterialnotes/reports/top-members).
 - [newmanls](https://github.com/newmanls) for the spanish localization.
 - [xe1st](https://github.com/xe1st) for the turkish localization.
 
@@ -142,4 +165,6 @@ You can support the project by making a donation using these platforms:
 
 ### Assets
 
-- [Material Design Icons](https://github.com/google/material-design-icons) for the [notes](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:notes) icon used for the logo.
+- [Material Design Icons](https://github.com/google/material-design-icons) for
+  the [notes](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:notes) icon used for
+  the logo.
