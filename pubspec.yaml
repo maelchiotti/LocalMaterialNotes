@@ -21,7 +21,7 @@ dependencies:
   encrypt: ^5.0.3
   equatable: ^2.0.8
   flag_secure: ^2.0.2
-  fleather: ^1.26.0
+  fleather: ^1.27.0
   flex_color_picker: ^3.8.0
   flutter:
     sdk: flutter
@@ -33,7 +33,7 @@ dependencies:
     sdk: flutter
   flutter_markdown_plus: ^1.0.7
   flutter_mimir: ^0.2.0+5
-  flutter_native_splash: ^2.4.7
+  flutter_native_splash: ^2.4.8
   flutter_riverpod: ^3.3.1
   flutter_secure_storage: ^10.3.1
   flutter_staggered_grid_view: ^0.7.0
