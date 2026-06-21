@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/backup/auto_backup_service.dart';
@@ -7,6 +8,10 @@ import '../preferences/preference_key.dart';
 
 /// Requires the user to select a backup directory.
 Future<void> requireBackupDirectory(BuildContext context) async {
+  if (!kReleaseMode) {
+    return;
+  }
+
   final select = await showAdaptiveDialog<bool>(
     context: context,
     useRootNavigator: false,

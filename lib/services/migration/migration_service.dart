@@ -5,13 +5,11 @@ import '../../common/preferences/preference_key.dart';
 import '../../models/deprecated/note.dart';
 import '../../models/note/note.dart';
 import '../database_service.dart';
-import '../notes/notes_index_service.dart';
 import '../notes/notes_service.dart';
 
 /// Database migration service.
 class MigrationService {
   final _databaseService = DatabaseService();
-  final _indexesService = NotesIndexService();
   final _notesService = NotesService();
 
   /// Migrates the database to the latest version if needed.
@@ -69,9 +67,6 @@ class MigrationService {
   ///
   /// Sets the new `id`, `archived` and `deletedTime` fields of each rich text note.
   Future<void> _migrateToV3() async {
-    // Clear the indexes to ensure their are rebuilt correctly
-    await _indexesService.clearIndexes();
-
     // Get the rich text notes
     final richTextNotes = await _databaseService.database.richTextNotes.where().findAll();
 

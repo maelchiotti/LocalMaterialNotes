@@ -1,6 +1,5 @@
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar_community/isar.dart';
-import 'package:mimir/mimir.dart';
 
 import '../../common/constants/constants.dart';
 import '../../common/constants/environment.dart';
@@ -10,7 +9,6 @@ import '../../models/label/label.dart';
 import '../../models/note/note.dart';
 import '../../models/note/note_status.dart';
 import '../database_service.dart';
-import 'notes_index_service.dart';
 
 /// Service for the notes database.
 ///
@@ -30,8 +28,6 @@ class NotesService {
   late final IsarCollection<RichTextNote> _richTextNotes;
   late final IsarCollection<ChecklistNote> _checklistNotes;
 
-  late final NotesIndexService _indexesService;
-
   /// Ensures the notes service is initialized.
   Future<void> ensureInitialized() async {
     _database = DatabaseService().database;
@@ -40,11 +36,6 @@ class NotesService {
     _markdownNotes = DatabaseService().database.markdownNotes;
     _richTextNotes = DatabaseService().database.richTextNotes;
     _checklistNotes = DatabaseService().database.checklistNotes;
-
-    _indexesService = NotesIndexService();
-
-    // Check that the notes are correctly indexed
-    await _indexesService.checkIndexes();
 
     // If the app runs with the 'SCREENSHOTS' environment parameter,
     // clear all the notes and add the notes for the screenshots
@@ -152,30 +143,57 @@ class NotesService {
   ///
   /// If [label] is set, the search should be performed on the notes that have that label.
   Future<List<Note>> search(String search, NoteStatus notesStatus, String? label) async {
-    final searchFilter = Mimir.and([
-      ...switch (notesStatus) {
-        NoteStatus.available => [
-          Mimir.where('deleted', isEqualTo: false.toString()),
-          Mimir.where('archived', isEqualTo: false.toString()),
-        ],
-        NoteStatus.archived => [Mimir.where('archived', isEqualTo: (true).toString())],
-        NoteStatus.deleted => [Mimir.where('deleted', isEqualTo: (true).toString())],
-      },
-      if (label != null) Mimir.where('labels', containsAtLeastOneOf: [label]),
-    ]);
+    final searchWords = Isar.splitWords(search.toLowerCase());
 
-    final searchResults = await _indexesService.index.search(query: search, filter: searchFilter);
+    final statusArchivedFilter = notesStatus == NoteStatus.archived;
+    final statusDeletedFilter = notesStatus == NoteStatus.deleted;
 
-    final notesIds = searchResults.map((noteIndex) => noteIndex['id'] as int).toList();
-    final notes = (await getAllByIds(notesIds));
-
-    // Check that all search results correspond to an existing note
-    if (notesIds.length != notes.length) {
-      final cases = notesIds.length - notes.length;
-      logger.w('Some notes search results have an ID that does not correspond to an existing note ($cases cases)');
-    }
-
-    return notes;
+    return [
+      ...await (_plainTextNotes
+          .filter()
+          .archivedEqualTo(statusArchivedFilter)
+          .deletedEqualTo(statusDeletedFilter)
+          .optional(label != null, (q) => q.labels((q2) => q2.nameEqualTo(label!)))
+          .allOf<String, PlainTextNote>(
+            searchWords,
+            (q, word) =>
+                q.group((q2) => q2.titleIndexedElementStartsWith(word).or().contentIndexedElementStartsWith(word)),
+          )
+          .findAll()),
+      ...await (_markdownNotes
+          .filter()
+          .archivedEqualTo(statusArchivedFilter)
+          .deletedEqualTo(statusDeletedFilter)
+          .optional(label != null, (q) => q.labels((q2) => q2.nameEqualTo(label!)))
+          .allOf<String, MarkdownNote>(
+            searchWords,
+            (q, word) =>
+                q.group((q2) => q2.titleIndexedElementStartsWith(word).or().contentIndexedElementStartsWith(word)),
+          )
+          .findAll()),
+      ...await (_richTextNotes
+          .filter()
+          .archivedEqualTo(statusArchivedFilter)
+          .deletedEqualTo(statusDeletedFilter)
+          .optional(label != null, (q) => q.labels((q2) => q2.nameEqualTo(label!)))
+          .allOf<String, RichTextNote>(
+            searchWords,
+            (q, word) =>
+                q.group((q2) => q2.titleIndexedElementStartsWith(word).or().contentIndexedElementStartsWith(word)),
+          )
+          .findAll()),
+      ...await (_checklistNotes
+          .filter()
+          .archivedEqualTo(statusArchivedFilter)
+          .deletedEqualTo(statusDeletedFilter)
+          .optional(label != null, (q) => q.labels((q2) => q2.nameEqualTo(label!)))
+          .allOf<String, ChecklistNote>(
+            searchWords,
+            (q, word) =>
+                q.group((q2) => q2.titleIndexedElementStartsWith(word).or().contentIndexedElementStartsWith(word)),
+          )
+          .findAll()),
+    ];
   }
 
   /// Puts the [note] in the database.
@@ -192,8 +210,6 @@ class NotesService {
           await _checklistNotes.put(note);
       }
     });
-
-    await _indexesService.updateIndexes([note]);
   }
 
   /// Puts the [notes] in the database.
@@ -209,8 +225,6 @@ class NotesService {
       await _richTextNotes.putAll(richTextNotes);
       await _checklistNotes.putAll(checklistNotes);
     });
-
-    await _indexesService.updateIndexes(notes);
   }
 
   /// Updates the [note] with the [labels] in the database.
@@ -220,8 +234,6 @@ class NotesService {
       note.labels.addAll(labels);
       await note.labels.save();
     });
-
-    await _indexesService.updateIndexes([note]);
   }
 
   /// Updates the [note] with the added [labels] in the database.
@@ -232,8 +244,6 @@ class NotesService {
         await note.labels.save();
       }
     });
-
-    await _indexesService.updateIndexes(notes);
   }
 
   /// Updates the [notes] with their corresponding [notesLabels] in the database.
@@ -253,8 +263,6 @@ class NotesService {
         await note.labels.save();
       }
     });
-
-    await _indexesService.updateIndexes(notes);
   }
 
   /// Deletes the [note] from the database.
@@ -271,8 +279,6 @@ class NotesService {
           await _checklistNotes.delete(note.isarId);
       }
     });
-
-    await _indexesService.deleteIndexes([note]);
   }
 
   /// Deletes the [notes] from the database.
@@ -288,22 +294,16 @@ class NotesService {
       await _richTextNotes.deleteAll(richTextNotesIds);
       await _checklistNotes.deleteAll(checklistNotesIds);
     });
-
-    await _indexesService.deleteIndexes(notes);
   }
 
   /// Deletes all the deleted notes from the database.
   Future<void> emptyBin() async {
-    final notes = await getAllDeleted();
-
     await _database.writeTxn(() async {
       await _plainTextNotes.where().deletedEqualTo(true).deleteAll();
       await _markdownNotes.where().deletedEqualTo(true).deleteAll();
       await _richTextNotes.where().deletedEqualTo(true).deleteAll();
       await _checklistNotes.where().deletedEqualTo(true).deleteAll();
     });
-
-    await _indexesService.deleteIndexes(notes);
   }
 
   /// Deletes all the notes from the database.
@@ -314,8 +314,6 @@ class NotesService {
       await _richTextNotes.clear();
       await _checklistNotes.clear();
     });
-
-    await _indexesService.index.deleteAllDocuments();
   }
 
   /// Deletes all the notes from the bin that have been deleted for longer than [delay].
