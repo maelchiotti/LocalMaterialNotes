@@ -79,7 +79,7 @@ class ChecklistNote extends Note {
 
   @ignore
   @override
-  String get plainText {
+  String get contentAsText {
     StringBuffer plainText = StringBuffer();
 
     for (int index = 0; index < checkboxes.length; index++) {
@@ -109,7 +109,7 @@ class ChecklistNote extends Note {
 
   @ignore
   @override
-  String get contentPreview => plainText.trim();
+  String get contentPreview => contentAsText.trim();
 
   @ignore
   @override
