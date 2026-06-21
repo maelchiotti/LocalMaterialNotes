@@ -210,21 +210,19 @@ class Notes extends _$Notes {
       return false;
     }
 
-    final notes = (state.value ?? [])..removeWhere((note) => notesToSet.contains(note));
-
-    state = AsyncData(notes);
+    state = AsyncData(await get());
 
     _updateUnlabeledProvider();
-    _updateStatusProvider(archived ? NoteStatus.archived : NoteStatus.available);
+    _updateStatusProvider(NoteStatus.available);
+    _updateStatusProvider(NoteStatus.archived);
+    _updateStatusProvider(NoteStatus.deleted);
 
     return true;
   }
 
   /// Sets whether the [notesToSet] are deleted to [deleted] in the database.
   Future<bool> setDeleted(List<Note> notesToSet, bool deleted) async {
-    _checkStatus([NoteStatus.available, NoteStatus.deleted]);
-
-    final wereArchived = notesToSet.first.archived;
+    _checkStatus([NoteStatus.available, NoteStatus.archived, NoteStatus.deleted]);
 
     for (final note in notesToSet) {
       note.pinned = false;
@@ -241,16 +239,12 @@ class Notes extends _$Notes {
       return false;
     }
 
-    final notes = (state.value ?? [])..removeWhere((note) => notesToSet.contains(note));
-
-    state = AsyncData(notes);
+    state = AsyncData(await get());
 
     _updateUnlabeledProvider();
-    if (deleted) {
-      _updateStatusProvider(NoteStatus.deleted);
-    } else {
-      _updateStatusProvider(wereArchived ? NoteStatus.archived : NoteStatus.available);
-    }
+    _updateStatusProvider(NoteStatus.available);
+    _updateStatusProvider(NoteStatus.archived);
+    _updateStatusProvider(NoteStatus.deleted);
 
     return true;
   }
@@ -350,6 +344,10 @@ class Notes extends _$Notes {
 
   /// Updates the notes provider with the [status].
   void _updateStatusProvider(NoteStatus status) {
+    if (this.status == status) {
+      return;
+    }
+
     ref.read(notesProvider(status: status).notifier).get();
   }
 }

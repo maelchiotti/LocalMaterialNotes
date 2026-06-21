@@ -46,7 +46,8 @@ Future<bool> unarchiveNote(
     SnackBarUtils().show(
       context,
       text: context.l.snack_bar_unarchived(1),
-      onCancel: (globalRef) async => await archiveNote(context, globalRef, note: note, cancel: false),
+      onCancel: (globalRef) async =>
+          await archiveNote(rootNavigatorKey.currentContext!, globalRef, note: note, cancel: false),
     );
   }
 
@@ -83,7 +84,8 @@ Future<bool> unarchiveNotes(
     SnackBarUtils().show(
       context,
       text: context.l.snack_bar_unarchived(notes.length),
-      onCancel: (globalRef) async => await archiveNotes(context, globalRef, notes: notes, cancel: false),
+      onCancel: (globalRef) async =>
+          await archiveNotes(rootNavigatorKey.currentContext!, globalRef, notes: notes, cancel: false),
     );
   }
 

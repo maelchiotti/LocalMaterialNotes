@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../models/note/note.dart';
-import '../../../models/note/note_status.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
 import '../../constants/constants.dart';
@@ -38,15 +37,16 @@ Future<bool> archiveNote(
 
   currentNoteNotifier.value = null;
 
-  final succeeded = await ref
-      .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
-      .setArchived([note], true);
+  final succeeded = await ref.read(notesProvider(status: note.status, label: currentLabelFilter).notifier).setArchived([
+    note,
+  ], true);
 
   if (succeeded && cancel && context.mounted) {
     SnackBarUtils().show(
       context,
       text: context.l.snack_bar_archived(1),
-      onCancel: (globalRef) async => await unarchiveNote(context, globalRef, note: note, cancel: false),
+      onCancel: (globalRef) async =>
+          await unarchiveNote(rootNavigatorKey.currentContext!, globalRef, note: note, cancel: false),
     );
   }
 
@@ -67,18 +67,19 @@ Future<bool> archiveNotes(BuildContext context, WidgetRef ref, {required List<No
   }
 
   final succeeded = await ref
-      .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
+      .read(notesProvider(status: notes.first.status, label: currentLabelFilter).notifier)
       .setArchived(notes, true);
 
   if (context.mounted) {
-    exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.available);
+    exitNotesSelectionMode(context, ref, notesStatus: notes.first.status);
   }
 
   if (succeeded && cancel && context.mounted) {
     SnackBarUtils().show(
       context,
       text: context.l.snack_bar_archived(notes.length),
-      onCancel: (globalRef) async => await unarchiveNotes(context, globalRef, notes: notes, cancel: false),
+      onCancel: (globalRef) async =>
+          await unarchiveNotes(rootNavigatorKey.currentContext!, globalRef, notes: notes, cancel: false),
     );
   }
 

@@ -41,17 +41,17 @@ Future<bool> deleteNote(
 
   final wasArchived = note.archived;
 
-  final succeeded = await ref
-      .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
-      .setDeleted([note], true);
+  final succeeded = await ref.read(notesProvider(status: note.status, label: currentLabelFilter).notifier).setDeleted([
+    note,
+  ], true);
 
   if (succeeded && cancel && context.mounted) {
     SnackBarUtils().show(
       context,
       text: context.l.snack_bar_deleted(1),
       onCancel: (globalRef) async => wasArchived
-          ? await archiveNote(context, globalRef, note: note, cancel: false)
-          : await restoreNote(context, globalRef, note: note, cancel: false),
+          ? await archiveNote(rootNavigatorKey.currentContext!, globalRef, note: note, cancel: false)
+          : await restoreNote(rootNavigatorKey.currentContext!, globalRef, note: note, cancel: false),
     );
   }
 
@@ -74,11 +74,11 @@ Future<bool> deleteNotes(BuildContext context, WidgetRef ref, {required List<Not
   final wereArchived = notes.first.archived;
 
   final succeeded = await ref
-      .read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier)
+      .read(notesProvider(status: notes.first.status, label: currentLabelFilter).notifier)
       .setDeleted(notes, true);
 
   if (context.mounted) {
-    exitNotesSelectionMode(context, ref, notesStatus: NoteStatus.available);
+    exitNotesSelectionMode(context, ref, notesStatus: notes.first.status);
   }
 
   if (succeeded && cancel && context.mounted) {
@@ -86,8 +86,8 @@ Future<bool> deleteNotes(BuildContext context, WidgetRef ref, {required List<Not
       context,
       text: context.l.snack_bar_deleted(notes.length),
       onCancel: (globalRef) async => wereArchived
-          ? await archiveNotes(context, ref, notes: notes)
-          : await restoreNotes(context, globalRef, notes: notes, cancel: false),
+          ? await archiveNotes(rootNavigatorKey.currentContext!, ref, notes: notes)
+          : await restoreNotes(rootNavigatorKey.currentContext!, globalRef, notes: notes, cancel: false),
     );
   }
 
