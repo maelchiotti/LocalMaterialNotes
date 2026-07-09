@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:fleather/fleather.dart';
@@ -44,6 +45,15 @@ class RichTextEditor extends ConsumerStatefulWidget {
 }
 
 class _RichTextEditorState extends ConsumerState<RichTextEditor> {
+  late StreamSubscription<ParchmentChange> changes;
+
+  @override
+  void initState() {
+    super.initState();
+
+    changes = widget.fleatherController.document.changes.listen((_) => this.onChanged());
+  }
+
   void onLaunchUrl(String? url) {
     if (url == null) {
       return;
@@ -69,11 +79,16 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
   }
 
   @override
+  void dispose() {
+    changes.cancel();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final useParagraphsSpacing = PreferenceKey.useParagraphsSpacing.preferenceOrDefault;
     final editorFont = Font.editorFromPreference();
-
-    widget.fleatherController.addListener(() => onChanged());
 
     final linkColor = Theme.brightnessOf(context) == Brightness.light ? Colors.blue[800] : Colors.blue[200];
 
