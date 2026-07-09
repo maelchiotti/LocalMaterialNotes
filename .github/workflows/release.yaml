@@ -139,7 +139,7 @@ jobs:
           custom_tag: ${{ needs.get_version.outputs.version }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish to GitHub releases
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           make_latest: true
           name: v${{ needs.get_version.outputs.version }}
