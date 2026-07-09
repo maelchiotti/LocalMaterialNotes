@@ -95,7 +95,7 @@ class RichTextNote extends Note {
 
   @ignore
   @override
-  String get plainText => document.toPlainText();
+  String get contentAsText => document.toPlainText();
 
   @ignore
   @override

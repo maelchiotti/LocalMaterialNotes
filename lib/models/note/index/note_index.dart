@@ -42,7 +42,7 @@ class NoteIndex {
     deleted: note.deleted,
     archived: note.archived,
     title: note.title,
-    content: note.plainText,
+    content: note.contentAsText,
     labels: note.labelsNamesVisibleSorted,
   );
 

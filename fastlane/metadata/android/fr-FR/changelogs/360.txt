@@ -1,0 +1,6 @@
+CORRIGÉ
+- Les listes des notes ne se mettent pas correctement à jour lors de la suppression/restauration et l'archivage/désarchivage des notes
+- Les notes de textes riches ne s'enregistrent pas lorsque qu'une case à cocher est modifiée puis la note fermée
+
+DIVERS
+- Réduction de la taille de l'APK

@@ -62,7 +62,7 @@ class MarkdownNote extends Note {
 
   @ignore
   @override
-  String get plainText => content.removeMarkdown();
+  String get contentAsText => content.removeMarkdown();
 
   @ignore
   @override
@@ -70,7 +70,7 @@ class MarkdownNote extends Note {
 
   @ignore
   @override
-  String get contentPreview => plainText.trim();
+  String get contentPreview => contentAsText.trim();
 
   @ignore
   @override

@@ -115,7 +115,7 @@ sealed class Note implements Comparable<Note> {
 
   /// The content as plain text.
   @ignore
-  String get plainText;
+  String get contentAsText;
 
   /// The content as markdown.
   @ignore
@@ -131,11 +131,11 @@ sealed class Note implements Comparable<Note> {
 
   /// The number of words in the content.
   @ignore
-  int get wordsCount => _wordsCountRegex.allMatches(plainText).length;
+  int get wordsCount => _wordsCountRegex.allMatches(contentAsText).length;
 
   /// The number of characters in the content.
   @ignore
-  int get charactersCount => plainText.length;
+  int get charactersCount => contentAsText.length;
 
   /// Whether the title is empty.
   @ignore
@@ -184,6 +184,14 @@ sealed class Note implements Comparable<Note> {
   /// The [labels] as markdown.
   @ignore
   String get labelsAsMarkdown => '> ${labelsNamesVisibleSorted.join(', ')}';
+
+  /// The [title] indexed for full-text search.
+  @Index(type: IndexType.value, caseSensitive: false)
+  List<String> get titleIndexed => Isar.splitWords(title.toLowerCase());
+
+  /// The [contentAsText] indexed for full-text search.
+  @Index(type: IndexType.value, caseSensitive: false)
+  List<String> get contentIndexed => Isar.splitWords(contentAsText.toLowerCase());
 
   /// Notes are sorted according to:
   ///   1. Their pin state.

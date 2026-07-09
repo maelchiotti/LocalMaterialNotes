@@ -44,7 +44,8 @@ Future<bool> restoreNote(
     SnackBarUtils().show(
       context,
       text: context.l.snack_bar_restored(1),
-      onCancel: (globalRef) async => await deleteNote(context, globalRef, note: note, cancel: false),
+      onCancel: (globalRef) async =>
+          await deleteNote(rootNavigatorKey.currentContext!, globalRef, note: note, cancel: false),
     );
   }
 
@@ -74,7 +75,8 @@ Future<bool> restoreNotes(BuildContext context, WidgetRef ref, {required List<No
     SnackBarUtils().show(
       context,
       text: context.l.snack_bar_restored(notes.length),
-      onCancel: (globalRef) async => await deleteNotes(context, globalRef, notes: notes, cancel: false),
+      onCancel: (globalRef) async =>
+          await deleteNotes(rootNavigatorKey.currentContext!, globalRef, notes: notes, cancel: false),
     );
   }
 

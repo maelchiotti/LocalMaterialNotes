@@ -62,7 +62,7 @@ class PlainTextNote extends Note {
 
   @ignore
   @override
-  String get plainText => content;
+  String get contentAsText => content;
 
   @ignore
   @override
@@ -70,7 +70,7 @@ class PlainTextNote extends Note {
 
   @ignore
   @override
-  String get contentPreview => plainText.trim();
+  String get contentPreview => contentAsText.trim();
 
   @ignore
   @override

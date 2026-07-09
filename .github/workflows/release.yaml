@@ -98,6 +98,7 @@ jobs:
         run: |
           export PUB_CACHE=$HOME/.pub-cache
           flutter pub get
+          sed -i -e 's/-Wl,/-Wl,--build-id=none,/' ${PUB_CACHE}/hosted/*/jni-*/src/CMakeLists.txt
       - name: Setup Isar
         run: |
           sudo apt-get install -y tofrodos
@@ -138,7 +139,7 @@ jobs:
           custom_tag: ${{ needs.get_version.outputs.version }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish to GitHub releases
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           make_latest: true
           name: v${{ needs.get_version.outputs.version }}

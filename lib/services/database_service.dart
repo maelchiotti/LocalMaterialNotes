@@ -1,6 +1,4 @@
-import 'package:flutter_mimir/flutter_mimir.dart';
 import 'package:isar_community/isar.dart';
-import 'package:mimir/mimir.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../models/deprecated/note.dart';
@@ -9,7 +7,6 @@ import '../models/note/note.dart';
 import 'bin/bin_service.dart';
 import 'labels/labels_service.dart';
 import 'migration/migration_service.dart';
-import 'notes/notes_index_service.dart';
 import 'notes/notes_service.dart';
 
 /// Abstract service for the database.
@@ -26,9 +23,6 @@ class DatabaseService {
   /// Isar database instance.
   late final Isar database;
 
-  /// Mimir index instance.
-  late final MimirInstance mimir;
-
   /// Ensures the service is initialized.
   Future<void> ensureInitialized() async {
     final databaseName = 'materialnotes';
@@ -40,12 +34,6 @@ class DatabaseService {
       name: databaseName,
       directory: databaseDirectory,
     );
-
-    // Initialize mimir
-    mimir = await Mimir.defaultInstance;
-
-    // Initialize the indexes service
-    await NotesIndexService().ensureInitialized();
 
     // Initialize the models services
     await LabelsService().ensureInitialized();

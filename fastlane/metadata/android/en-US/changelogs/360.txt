@@ -1,0 +1,6 @@
+FIXED
+- List of notes not updating when (un)deleting and (un)archiving notes
+- Rich text note not saving when toggling a checkbox and closing it
+
+MISCELLANEOUS
+- Reduce the APK size
