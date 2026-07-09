@@ -51,7 +51,7 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
   void initState() {
     super.initState();
 
-    changes = widget.fleatherController.document.changes.listen((_) => this.onChanged());
+    changes = widget.fleatherController.document.changes.listen((_) => onChanged());
   }
 
   void onLaunchUrl(String? url) {
