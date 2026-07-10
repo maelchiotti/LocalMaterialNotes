@@ -156,8 +156,7 @@ class NotesService {
           .optional(label != null, (q) => q.labels((q2) => q2.nameEqualTo(label!)))
           .allOf<String, PlainTextNote>(
             searchWords,
-            (q, word) =>
-                q.group((q2) => q2.titleIndexedElementStartsWith(word).or().contentIndexedElementStartsWith(word)),
+            (q, word) => q.group((q2) => q2.titleIndexedElementStartsWith(word)),
           )
           .findAll()),
       ...await (_markdownNotes
@@ -167,8 +166,7 @@ class NotesService {
           .optional(label != null, (q) => q.labels((q2) => q2.nameEqualTo(label!)))
           .allOf<String, MarkdownNote>(
             searchWords,
-            (q, word) =>
-                q.group((q2) => q2.titleIndexedElementStartsWith(word).or().contentIndexedElementStartsWith(word)),
+            (q, word) => q.group((q2) => q2.titleIndexedElementStartsWith(word)),
           )
           .findAll()),
       ...await (_richTextNotes
@@ -178,8 +176,7 @@ class NotesService {
           .optional(label != null, (q) => q.labels((q2) => q2.nameEqualTo(label!)))
           .allOf<String, RichTextNote>(
             searchWords,
-            (q, word) =>
-                q.group((q2) => q2.titleIndexedElementStartsWith(word).or().contentIndexedElementStartsWith(word)),
+            (q, word) => q.group((q2) => q2.titleIndexedElementStartsWith(word)),
           )
           .findAll()),
       ...await (_checklistNotes
@@ -189,8 +186,7 @@ class NotesService {
           .optional(label != null, (q) => q.labels((q2) => q2.nameEqualTo(label!)))
           .allOf<String, ChecklistNote>(
             searchWords,
-            (q, word) =>
-                q.group((q2) => q2.titleIndexedElementStartsWith(word).or().contentIndexedElementStartsWith(word)),
+            (q, word) => q.group((q2) => q2.titleIndexedElementStartsWith(word)),
           )
           .findAll()),
     ];

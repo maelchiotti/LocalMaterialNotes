@@ -53,6 +53,7 @@ class PlainTextNote extends Note {
     ..content = EncryptionUtils().decrypt(password, json['content'] as String);
 
   /// Plain text note to JSON.
+  @override
   Map<String, dynamic> toJson() => _$PlainTextNoteToJson(this);
 
   @override

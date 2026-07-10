@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,6 +32,7 @@ class PlainTextEditor extends ConsumerStatefulWidget {
 
 class _PlainTextEditorState extends ConsumerState<PlainTextEditor> {
   late final TextEditingController contentTextController;
+  Timer? saveDebounce;
 
   @override
   void initState() {
@@ -38,10 +41,27 @@ class _PlainTextEditorState extends ConsumerState<PlainTextEditor> {
     contentTextController = TextEditingController(text: widget.note.content);
   }
 
-  void onChanged(String content) {
-    PlainTextNote note = widget.note..content = content;
+  void onChanged() {
+    // Reset the saving debounce timer on each change
+    saveDebounce?.cancel();
+    saveDebounce = Timer(const Duration(milliseconds: 1000), save);
+  }
 
-    ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
+  void save([WidgetRef? widgetRef]) {
+    final note = widget.note..content = contentTextController.text;
+
+    (widgetRef ?? ref).read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
+  }
+
+  @override
+  void dispose() {
+    // If a save was waiting to happen, save immediately
+    if (saveDebounce?.isActive ?? false) {
+      saveDebounce!.cancel();
+      save(globalRef);
+    }
+
+    super.dispose();
   }
 
   @override
@@ -57,7 +77,7 @@ class _PlainTextEditorState extends ConsumerState<PlainTextEditor> {
         expands: true,
         decoration: InputDecoration.collapsed(hintText: context.l.hint_content),
         spellCheckConfiguration: SpellCheckConfiguration(spellCheckService: DefaultSpellCheckService()),
-        onChanged: onChanged,
+        onChanged: (_) => onChanged(),
       ),
     );
   }
