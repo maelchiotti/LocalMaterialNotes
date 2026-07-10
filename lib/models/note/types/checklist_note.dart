@@ -68,6 +68,7 @@ class ChecklistNote extends Note {
   }
 
   /// Checklist note to JSON.
+  @override
   Map<String, dynamic> toJson() => _$ChecklistNoteToJson(this);
 
   @override

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
@@ -33,6 +35,7 @@ class MarkdownEditor extends ConsumerStatefulWidget {
 
 class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
   late final TextEditingController contentTextController;
+  Timer? saveDebounce;
 
   @override
   void initState() {
@@ -41,10 +44,16 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
     contentTextController = TextEditingController(text: widget.note.content);
   }
 
-  void onChanged(String content) {
-    MarkdownNote note = widget.note..content = content;
+  void onChanged() {
+    // Reset the saving debounce timer on each change
+    saveDebounce?.cancel();
+    saveDebounce = Timer(const Duration(milliseconds: 1000), save);
+  }
 
-    ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
+  void save([WidgetRef? widgetRef]) {
+    final note = widget.note..content = contentTextController.text;
+
+    (widgetRef ?? ref).read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
   }
 
   void onOpenLink(String text, String? href, String title) {
@@ -55,6 +64,17 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
     Uri uri = Uri.parse(href);
 
     launchUrl(uri);
+  }
+
+  @override
+  void dispose() {
+    // If a save was waiting to happen, save immediately
+    if (saveDebounce?.isActive ?? false) {
+      saveDebounce!.cancel();
+      save(globalRef);
+    }
+
+    super.dispose();
   }
 
   @override
@@ -93,7 +113,7 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
               expands: true,
               decoration: InputDecoration.collapsed(hintText: context.l.hint_content),
               spellCheckConfiguration: SpellCheckConfiguration(spellCheckService: DefaultSpellCheckService()),
-              onChanged: onChanged,
+              onChanged: (_) => onChanged(),
             ),
     );
   }
