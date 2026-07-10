@@ -46,6 +46,7 @@ class RichTextEditor extends ConsumerStatefulWidget {
 
 class _RichTextEditorState extends ConsumerState<RichTextEditor> {
   late StreamSubscription<ParchmentChange> changes;
+  Timer? saveDebounce;
 
   @override
   void initState() {
@@ -73,14 +74,27 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
     fleatherControllerCanUndoNotifier.value = widget.fleatherController.canUndo;
     fleatherControllerCanRedoNotifier.value = widget.fleatherController.canRedo;
 
-    RichTextNote note = widget.note..content = jsonEncode(widget.fleatherController.document.toJson());
+    // Reset the saving debounce timer on each change
+    saveDebounce?.cancel();
+    saveDebounce = Timer(const Duration(milliseconds: 1000), save);
+  }
 
-    ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
+  void save([WidgetRef? widgetRef]) {
+    final content = jsonEncode(widget.fleatherController.document.toJson());
+    final note = widget.note..content = content;
+
+    (widgetRef ?? ref).read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
   }
 
   @override
   void dispose() {
     changes.cancel();
+
+    // If a save was waiting to happen, save immediately
+    if (saveDebounce?.isActive ?? false) {
+      saveDebounce!.cancel();
+      save(globalRef);
+    }
 
     super.dispose();
   }
