@@ -1,0 +1,2 @@
+FIXED
+- Performance drop with long notes
