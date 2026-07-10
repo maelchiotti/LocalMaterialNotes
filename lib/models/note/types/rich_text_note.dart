@@ -56,6 +56,7 @@ class RichTextNote extends Note {
     ..content = EncryptionUtils().decrypt(password, json['content'] as String);
 
   /// Rich text note to JSON.
+  @override
   Map<String, dynamic> toJson() => _$RichTextNoteToJson(this);
 
   @override

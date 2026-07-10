@@ -113,6 +113,9 @@ sealed class Note implements Comparable<Note> {
     return NoteStatus.available;
   }
 
+  /// Note to JSON.
+  Map<String, dynamic> toJson();
+
   /// The content as plain text.
   @ignore
   String get contentAsText;
@@ -188,10 +191,6 @@ sealed class Note implements Comparable<Note> {
   /// The [title] indexed for full-text search.
   @Index(type: IndexType.value, caseSensitive: false)
   List<String> get titleIndexed => Isar.splitWords(title.toLowerCase());
-
-  /// The [contentAsText] indexed for full-text search.
-  @Index(type: IndexType.value, caseSensitive: false)
-  List<String> get contentIndexed => Isar.splitWords(contentAsText.toLowerCase());
 
   /// Notes are sorted according to:
   ///   1. Their pin state.
