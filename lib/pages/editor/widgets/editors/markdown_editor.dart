@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
@@ -11,14 +9,17 @@ import '../../../../common/constants/constants.dart';
 import '../../../../common/constants/paddings.dart';
 import '../../../../common/extensions/build_context_extension.dart';
 import '../../../../models/note/note.dart';
-import '../../../../models/note/note_status.dart';
-import '../../../../providers/notes/notes_provider.dart';
-import '../../../../providers/notifiers/notifiers.dart';
 
 /// Markdown editor.
 class MarkdownEditor extends ConsumerStatefulWidget {
   /// Markdown allowing to edit the markdown text content of a [MarkdownNote].
-  const MarkdownEditor({super.key, required this.note, required this.readOnly, required this.autofocus});
+  const MarkdownEditor({
+    super.key,
+    required this.note,
+    required this.readOnly,
+    required this.autofocus,
+    required this.onChanged,
+  });
 
   /// The note to display.
   final MarkdownNote note;
@@ -29,13 +30,15 @@ class MarkdownEditor extends ConsumerStatefulWidget {
   /// Whether the text field should request focus.
   final bool autofocus;
 
+  /// Called when the note has changed.
+  final ValueChanged<Note> onChanged;
+
   @override
   ConsumerState<MarkdownEditor> createState() => _MarkdownEditorState();
 }
 
 class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
   late final TextEditingController contentTextController;
-  Timer? saveDebounce;
 
   @override
   void initState() {
@@ -45,15 +48,9 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
   }
 
   void onChanged() {
-    // Reset the saving debounce timer on each change
-    saveDebounce?.cancel();
-    saveDebounce = Timer(const Duration(milliseconds: 1000), save);
-  }
-
-  void save([WidgetRef? widgetRef]) {
     final note = widget.note..content = contentTextController.text;
 
-    (widgetRef ?? ref).read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
+    widget.onChanged(note);
   }
 
   void onOpenLink(String text, String? href, String title) {
@@ -64,17 +61,6 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
     Uri uri = Uri.parse(href);
 
     launchUrl(uri);
-  }
-
-  @override
-  void dispose() {
-    // If a save was waiting to happen, save immediately
-    if (saveDebounce?.isActive ?? false) {
-      saveDebounce!.cancel();
-      save(globalRef);
-    }
-
-    super.dispose();
   }
 
   @override
