@@ -1,0 +1,2 @@
+FIXED
+- Rich text note not saving when switching to read-only mode
