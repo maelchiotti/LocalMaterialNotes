@@ -1,2 +1,2 @@
 CORRIGÉ
-- Note de texte riche ne s'enregistrait pas lors du passage en mode lecture seule
+- Note de texte riche ne s'enregistre pas lors du passage en mode lecture seule
