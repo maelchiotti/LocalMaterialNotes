@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,6 +37,12 @@ class EditorPage extends ConsumerStatefulWidget {
 }
 
 class _EditorState extends ConsumerState<EditorPage> {
+  Timer? saveDebounce;
+  Note? pendingNote;
+
+  FleatherController? _fleatherController;
+  RichTextNote? _fleatherControllerNote;
+
   @override
   void initState() {
     super.initState();
@@ -47,6 +55,15 @@ class _EditorState extends ConsumerState<EditorPage> {
 
   @override
   void dispose() {
+    // If a save was waiting to happen, save immediately
+    if (saveDebounce?.isActive ?? false) {
+      saveDebounce!.cancel();
+
+      if (pendingNote != null) {
+        save(pendingNote!, globalRef);
+      }
+    }
+
     // ignore: avoid_ref_inside_state_dispose
     globalRef.read(notesProvider(status: NoteStatus.available).notifier).removeEmpty();
     // ignore: avoid_ref_inside_state_dispose
@@ -57,6 +74,42 @@ class _EditorState extends ConsumerState<EditorPage> {
 
   void requestEditorFocus() {
     editorFocusNode.requestFocus();
+  }
+
+  void scheduleSave(Note note) {
+    pendingNote = note;
+
+    saveDebounce?.cancel();
+    saveDebounce = Timer(const Duration(milliseconds: 1000), () => save(note));
+  }
+
+  void save(Note note, [WidgetRef? widgetRef]) {
+    (widgetRef ?? ref).read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
+
+    pendingNote = null;
+  }
+
+  FleatherController getFleatherController(RichTextNote note) {
+    // Do not reset the controller if the note hasn't changed (happens when the editing mode switches)
+    if (_fleatherController != null && _fleatherControllerNote == note) {
+      return _fleatherController!;
+    }
+
+    _fleatherController?.dispose();
+    _fleatherController = FleatherController(
+      document: note.document,
+      autoFormats: AutoFormats(
+        autoFormats: [
+          const AutoFormatLinks(),
+          const MarkdownInlineShortcuts(),
+          const MarkdownLineShortcuts(),
+          const AutoTextDirection(),
+        ],
+      ),
+    );
+    _fleatherControllerNote = note;
+
+    return _fleatherController!;
   }
 
   @override
@@ -85,31 +138,37 @@ class _EditorState extends ConsumerState<EditorPage> {
             Widget? toolbar;
             switch (currentNote) {
               case PlainTextNote note:
-                contentEditor = PlainTextEditor(note: note, readOnly: readOnly, autofocus: autofocus);
-              case RichTextNote note:
-                final fleatherController = FleatherController(
-                  document: note.document,
-                  autoFormats: AutoFormats(
-                    autoFormats: [
-                      const AutoFormatLinks(),
-                      const MarkdownInlineShortcuts(),
-                      const MarkdownLineShortcuts(),
-                      const AutoTextDirection(),
-                    ],
-                  ),
+                contentEditor = PlainTextEditor(
+                  note: note,
+                  readOnly: readOnly,
+                  autofocus: autofocus,
+                  onChanged: scheduleSave,
                 );
+              case RichTextNote note:
+                final fleatherController = getFleatherController(note);
                 fleatherControllerNotifier.value = fleatherController;
                 contentEditor = RichTextEditor(
                   note: note,
                   fleatherController: fleatherController,
                   readOnly: readOnly,
                   autofocus: autofocus,
+                  onChanged: scheduleSave,
                 );
                 toolbar = Toolbar(fleatherController: fleatherController);
               case MarkdownNote note:
-                contentEditor = MarkdownEditor(note: note, readOnly: readOnly, autofocus: autofocus);
+                contentEditor = MarkdownEditor(
+                  note: note,
+                  readOnly: readOnly,
+                  autofocus: autofocus,
+                  onChanged: scheduleSave,
+                );
               case ChecklistNote note:
-                contentEditor = ChecklistEditor(note: note, isNewNote: widget.isNewNote, readOnly: readOnly);
+                contentEditor = ChecklistEditor(
+                  note: note,
+                  isNewNote: widget.isNewNote,
+                  readOnly: readOnly,
+                  onChanged: scheduleSave,
+                );
             }
 
             final editor = Scaffold(
