@@ -13,8 +13,6 @@ import '../../../../common/extensions/build_context_extension.dart';
 import '../../../../common/preferences/enums/font.dart';
 import '../../../../common/preferences/preference_key.dart';
 import '../../../../models/note/note.dart';
-import '../../../../models/note/note_status.dart';
-import '../../../../providers/notes/notes_provider.dart';
 import '../../../../providers/notifiers/notifiers.dart';
 
 /// Rich text editor.
@@ -26,6 +24,7 @@ class RichTextEditor extends ConsumerStatefulWidget {
     required this.note,
     required this.readOnly,
     required this.autofocus,
+    required this.onChanged,
   });
 
   /// The note to display.
@@ -39,6 +38,9 @@ class RichTextEditor extends ConsumerStatefulWidget {
 
   /// Whether the text field should request focus.
   final bool autofocus;
+
+  /// Called when the note has changed.
+  final ValueChanged<Note> onChanged;
 
   @override
   ConsumerState<RichTextEditor> createState() => _RichTextEditorState();
@@ -74,27 +76,15 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
     fleatherControllerCanUndoNotifier.value = widget.fleatherController.canUndo;
     fleatherControllerCanRedoNotifier.value = widget.fleatherController.canRedo;
 
-    // Reset the saving debounce timer on each change
-    saveDebounce?.cancel();
-    saveDebounce = Timer(const Duration(milliseconds: 1000), save);
-  }
-
-  void save([WidgetRef? widgetRef]) {
     final content = jsonEncode(widget.fleatherController.document.toJson());
     final note = widget.note..content = content;
 
-    (widgetRef ?? ref).read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
+    widget.onChanged(note);
   }
 
   @override
   void dispose() {
     changes.cancel();
-
-    // If a save was waiting to happen, save immediately
-    if (saveDebounce?.isActive ?? false) {
-      saveDebounce!.cancel();
-      save(globalRef);
-    }
 
     super.dispose();
   }
