@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(flutter pub get*)",
+      "Bash(flutter pub deps*)",
+      "Bash(flutter pub outdated*)",
+      "Bash(flutter gen-l10n*)",
+      "Bash(flutter analyze*)",
+      "Bash(flutter test*)",
+      "Bash(flutter --version)",
+      "Bash(fvm flutter pub get*)",
+      "Bash(fvm flutter gen-l10n*)",
+      "Bash(fvm flutter analyze*)",
+      "Bash(fvm dart run build_runner*)",
+      "Bash(fvm dart analyze*)",
+      "Bash(fvm dart format*)",
+      "Bash(dart run build_runner*)",
+      "Bash(dart analyze*)",
+      "Bash(dart format*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show*)",
+      "Bash(git fetch*)",
+      "Bash(git branch*)",
+      "Bash(git ls-files*)"
+    ],
+    "ask": ["Bash(git commit*)", "Bash(git push*)", "Bash(git reset*)", "Bash(git checkout*)", "Bash(bundle exec fastlane*)"],
+    "deny": [
+      "Read(./android/key.properties)",
+      "Read(./android/*.jks)",
+      "Read(./fastlane/*supply_key.json)",
+      "Read(./build/**)",
+      "Read(./docs/data/export_1000_notes.json)",
+      "Edit(./lib/**/*.g.dart)",
+      "Edit(./lib/l10n/app_localizations/**)",
+      "Edit(./.isar/**)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "dart \"$CLAUDE_PROJECT_DIR/.claude/hooks/format.dart\""
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/session-start.sh\"",
+            "timeout": 600
+          }
+        ]
+      }
+    ]
+  }
+}
