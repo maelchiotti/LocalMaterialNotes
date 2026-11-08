@@ -4,14 +4,17 @@ import 'dart:io';
 
 Future<void> main() async {
   final input = jsonDecode(await stdin.transform(utf8.decoder).join());
-  final filePath = (input is Map ? input['tool_input'] : null)?['file_path'];
+  final toolInput = input is Map ? input['tool_input'] : null;
+  final filePath = toolInput is Map ? toolInput['file_path'] : null;
 
   if (filePath is! String || !filePath.endsWith('.dart') || filePath.endsWith('.g.dart')) {
     return;
   }
 
-  final root = Platform.environment['CLAUDE_PROJECT_DIR'] ?? Directory.current.path;
-  if (!File(filePath).absolute.path.startsWith(Directory(root).absolute.path)) {
+  final environment = Platform.environment;
+  final root = environment['CLAUDE_PROJECT_DIR'] ?? Directory.current.path;
+  final absoluteRoot = Directory(root).absolute.path;
+  if (!File(filePath).absolute.path.startsWith(absoluteRoot)) {
     return;
   }
 
