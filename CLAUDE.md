@@ -54,9 +54,10 @@ There are no automated tests. The `check` skill runs every check.
 
 ## Git and releases
 
-- Each change has a GitHub issue, a branch `fix/<issue>_<slug>` or `feat/<issue>_<slug>` from `dev`, and a pull request into `dev` titled `[<issue>] <Title>`.
-- A version is a pull request from `dev` into `main` titled `vX.Y.Z`, squash-merged. Every push to `main` runs the release workflow (Play Store and GitHub release), so never merge anything else into `main`. The `release` skill prepares a version.
-- Maintenance commits outside a version use `fix:` or `chore:` prefixes.
+- `main` only receives releases. Never push to `main`, and never merge into it a pull request other than a release.
+- Work goes into a version branch named `vX.Y.Z`. By default it is the next minor version (`2.2.2` → `v2.3.0`); create it from `main` if it doesn't exist yet. When the changes grow (a breaking change, a major feature), rename the branch to bump `Y` or `X`, and keep `pubspec.yaml`, the CHANGELOG and the open pull requests in line with it.
+- Each change has a GitHub issue, a branch `fix/<issue>_<slug>` or `feat/<issue>_<slug>` from the version branch, and a pull request into the version branch titled `[<issue>] <Title>`.
+- The release is a pull request from the version branch into `main`, titled `vX.Y.Z` and squash-merged. Every push to `main` runs the release workflow (Play Store and GitHub release). The `release` skill prepares it.
 - CI on each push: analyze and format (`.github/workflows/dart.yaml`). On each pull request: build the Isar libraries and the APK (`build.yaml`).
 
 ## Skills

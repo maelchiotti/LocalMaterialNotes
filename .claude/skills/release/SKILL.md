@@ -5,7 +5,9 @@ description: Prepare a new version of Material Notes (version bump, CHANGELOG, f
 
 # Prepare a version
 
-Follow `RELEASING.md`. Work on `dev`; the version is published when the `vX.Y.Z` pull request from `dev` is merged into `main`. Never merge into `main` yourself, and never push to `main`.
+Follow `RELEASING.md`. Work on the version branch `vX.Y.Z` (by default the next minor version, created from `main`); the version is published when its `vX.Y.Z` pull request is merged into `main`. Never merge into `main` yourself, and never push to `main`.
+
+If the changes on the branch call for another version (a breaking change → `X`, a new feature after only fixes → `Y`), rename the branch and the pull request, and use the new number everywhere below.
 
 1. **Version**: in `pubspec.yaml`, bump `version: X.Y.Z+N` with semantic versioning and `N` the previous build number plus one. Bump the Flutter version in `.fvmrc` and `environment.flutter` together when asked.
 2. **Dependencies**, when asked: `flutter pub upgrade --major-versions`, then fix the breaking changes and run the `check` skill.
@@ -14,6 +16,6 @@ Follow `RELEASING.md`. Work on `dev`; the version is published when the `vX.Y.Z`
 5. **Descriptions**, when a feature changes them: `README.md` and `fastlane/metadata/android/*/full_description.yaml`, then `python scripts/generate_full_description.py` to regenerate the `full_description.txt` files.
 6. **Languages**: after a Crowdin sync, update the completions in `lib/common/enums/supported_language.dart` and the README list of languages.
 7. **Screenshots**: when the UI changed, update `common/constants/notes.dart` and `labels.dart`; the maintainer takes the screenshots with `--dart-define=SCREENSHOTS=true`.
-8. Run the `check` skill, then open or update the `vX.Y.Z` pull request from `dev` into `main` with the CHANGELOG section as its description.
+8. Run the `check` skill, then open or update the `vX.Y.Z` pull request from the version branch into `main` with the CHANGELOG section as its description.
 
 The release workflow takes the version from `pubspec.yaml` and the GitHub release notes from the CHANGELOG section of that version: their versions must match.
