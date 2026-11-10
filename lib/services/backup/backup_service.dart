@@ -245,12 +245,19 @@ class ManualBackupService {
     required String directory,
     required String fileName,
   }) async {
+    // Never write the notes in plain text when the encryption was requested
+    if (encrypt && (password == null || password.isEmpty)) {
+      logger.w('The export was not performed because the encryption was enabled without a password');
+
+      return false;
+    }
+
     final version = SystemUtils().appVersion;
     final buildNumber = SystemUtils().buildNumber;
 
     var notes = await _notesService.getAll();
-    if (encrypt && password != null && password.isNotEmpty) {
-      notes = notes.map((note) => note.encrypted(password)).toList();
+    if (encrypt) {
+      notes = notes.map((note) => note.encrypted(password!)).toList();
     }
 
     final labels = await _labelsService.getAll();
