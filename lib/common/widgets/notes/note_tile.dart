@@ -174,10 +174,8 @@ class _NoteTileState extends ConsumerState<NoteTile> {
       // Close the expandable FAB to add a note if it is open
       closeAddNoteFabIfOpen();
 
-      final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
-      if (lockNote) {
-        lockNoteNotifier.value = widget.note.locked || widget.note.hasLockedLabel;
-      }
+      // Lock the editor if the note is locked or has a locked label, depending on the settings
+      lockNoteNotifier.value = widget.note.requiresAuthentication;
 
       final EditorPageExtra extra = (isNewNote: false);
       context.pushNamed(NavigationRoute.editor.name, extra: extra);
