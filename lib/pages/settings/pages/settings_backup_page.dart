@@ -49,6 +49,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         await ref.read(labelsListProvider.notifier).get();
         await ref.read(labelsNavigationProvider.notifier).get();
         await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).get();
+        await ref.read(notesProvider(status: NoteStatus.archived).notifier).get();
         await ref.read(notesProvider(status: NoteStatus.deleted).notifier).get();
         ref.read(preferencesProvider.notifier).reset();
 
