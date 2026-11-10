@@ -843,6 +843,10 @@
   "@dialog_require_backup_description": {
     "description": "Description of the dialog to select a backup location."
   },
+  "dialog_require_backup_lost": "The backup location you selected is no longer accessible. Until you select a new one, the automatic exports are saved in the application folder, which is deleted when the application is uninstalled.",
+  "@dialog_require_backup_lost": {
+    "description": "Text shown first in the dialog to select a backup location when the location selected by the user is no longer accessible."
+  },
   "dialog_require_backup_ignore": "Ignore",
   "@dialog_require_backup_ignore": {
     "description": "Button to ignore the dialog to select a backup location."
