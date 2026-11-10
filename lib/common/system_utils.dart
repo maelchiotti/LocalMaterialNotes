@@ -188,24 +188,32 @@ class SystemUtils {
     });
   }
 
-  /// Reads the data shared from other applications.
-  void readSharedData() {
-    ReceiveSharingIntent.instance.getInitialMedia().then((data) {
-      _processSharedData(data);
+  /// Reads the data shared from other applications when they launched this one, and returns whether a note was added
+  /// with it.
+  Future<bool> readSharedData() async {
+    try {
+      final data = await ReceiveSharingIntent.instance.getInitialMedia();
+      final added = _processSharedData(data);
 
-      ReceiveSharingIntent.instance.reset();
-    });
+      await ReceiveSharingIntent.instance.reset();
+
+      return added;
+    } catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
+
+      return false;
+    }
   }
 
-  /// Processes the [data] shared from other applications.
+  /// Processes the [data] shared from other applications, and returns whether a note was added with it.
   ///
   /// If the [data] is text, it's added to a new note that is then opened.
-  void _processSharedData(List<SharedMediaFile> data) {
+  bool _processSharedData(List<SharedMediaFile> data) {
     if (rootNavigatorKey.currentContext == null ||
         data.isEmpty ||
         data.first.type != SharedMediaType.text ||
         data.first.path.isEmpty) {
-      return;
+      return false;
     }
 
     final defaultShortcutNoteType = NoteType.defaultShare;
@@ -213,6 +221,8 @@ class SystemUtils {
     final content = data.first.path;
 
     addNote(context, globalRef, noteType: defaultShortcutNoteType, content: content);
+
+    return true;
   }
 
   /// Encodes the query [parameters] to be used in an URI.
