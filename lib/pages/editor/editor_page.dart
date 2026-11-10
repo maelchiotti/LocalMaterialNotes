@@ -84,7 +84,9 @@ class _EditorState extends ConsumerState<EditorPage> {
   }
 
   void save(Note note, [WidgetRef? widgetRef]) {
-    (widgetRef ?? ref).read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
+    // Archived notes are not filtered by label
+    final label = note.archived ? null : currentLabelFilter;
+    (widgetRef ?? ref).read(notesProvider(status: note.status, label: label).notifier).edit(note);
 
     pendingNote = null;
   }
@@ -129,7 +131,7 @@ class _EditorState extends ConsumerState<EditorPage> {
             final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
             final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.preferenceOrDefault;
 
-            final readOnly = !currentNote.deleted && showEditorModeButton && !isEditorInEditMode;
+            final readOnly = currentNote.deleted || (showEditorModeButton && !isEditorInEditMode);
             final autofocus = widget.isNewNote && !focusTitleOnNewNote;
             final showLabelsList =
                 enableLabels && showLabelsListInEditorPage && currentNote.labelsVisibleSorted.isNotEmpty;
