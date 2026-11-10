@@ -57,7 +57,7 @@ sealed class Note implements Comparable<Note> {
   bool pinned;
 
   /// Whether the note is locked.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(defaultValue: false)
   bool locked;
 
   /// The time when the note was created.
