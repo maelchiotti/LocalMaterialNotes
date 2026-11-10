@@ -242,25 +242,6 @@ class NotesService {
     });
   }
 
-  /// Updates the [notes] with their corresponding [notesLabels] in the database.
-  Future<void> putAllLabels(List<Note> notes, List<List<Label>> notesLabels) async {
-    assert(
-      notes.length == notesLabels.length,
-      'The list of labels (${notesLabels.length} items) should be the same length as the list of notes (${notes.length} notes)',
-    );
-
-    await _database.writeTxn(() async {
-      for (var i = 0; i < notes.length; i++) {
-        final note = notes[i];
-        final labels = notesLabels[i];
-
-        await note.labels.reset();
-        note.labels.addAll(labels);
-        await note.labels.save();
-      }
-    });
-  }
-
   /// Imports the [labels] and the [notes] in a single transaction, so that a failure leaves the database untouched.
   ///
   /// Only the labels whose name is not in the database yet are added. Each note is linked to the labels

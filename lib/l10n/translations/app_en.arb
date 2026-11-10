@@ -547,7 +547,7 @@
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{}}",
+  "settings_auto_export_frequency_value": "Every {frequency, select, 1{day} 3{3 days} 7{week} 14{2 weeks} 30{month} other{}}",
   "@settings_auto_export_frequency_value": {
     "description": "Frequency of the automatic exports.",
     "placeholders": {

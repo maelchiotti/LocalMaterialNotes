@@ -210,7 +210,9 @@ sealed class Note implements Comparable<Note> {
         case SortMethod.editedDate:
           return sortAscending ? editedTime.compareTo(other.editedTime) : other.editedTime.compareTo(editedTime);
         case SortMethod.title:
-          return sortAscending ? title.compareTo(other.title) : other.title.compareTo(title);
+          final titleComparison = title.toLowerCase().compareTo(other.title.toLowerCase());
+
+          return sortAscending ? titleComparison : -titleComparison;
         default:
           throw Exception('The sort method is not valid: $sortMethod');
       }
