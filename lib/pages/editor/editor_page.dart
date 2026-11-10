@@ -73,6 +73,9 @@ class _EditorState extends ConsumerState<EditorPage> {
       globalRef.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).removeEmpty();
     }
 
+    fleatherControllerNotifier.value = null;
+    _fleatherController?.dispose();
+
     super.dispose();
   }
 
