@@ -50,6 +50,9 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
   late StreamSubscription<ParchmentChange> changes;
   Timer? saveDebounce;
 
+  /// Timer to update the undo and redo actions once fleather has updated its history.
+  Timer? undoRedoTimer;
+
   @override
   void initState() {
     super.initState();
@@ -72,9 +75,19 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
     launchUrl(uri);
   }
 
-  void onChanged() {
+  /// Updates whether the undo and redo actions are available.
+  void updateUndoRedo() {
     fleatherControllerCanUndoNotifier.value = widget.fleatherController.canUndo;
     fleatherControllerCanRedoNotifier.value = widget.fleatherController.canRedo;
+  }
+
+  void onChanged() {
+    updateUndoRedo();
+
+    // Fleather adds the changes to its history after a delay (its `throttleDuration` of 500 milliseconds),
+    // so the undo and redo actions must be updated again after that delay
+    undoRedoTimer?.cancel();
+    undoRedoTimer = Timer(const Duration(milliseconds: 600), updateUndoRedo);
 
     final content = jsonEncode(widget.fleatherController.document.toJson());
     final note = widget.note..content = content;
@@ -85,6 +98,7 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
   @override
   void dispose() {
     changes.cancel();
+    undoRedoTimer?.cancel();
 
     super.dispose();
   }
