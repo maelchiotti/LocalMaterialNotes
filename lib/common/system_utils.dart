@@ -5,6 +5,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:listen_sharing_intent/listen_sharing_intent.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -121,9 +122,17 @@ class SystemUtils {
   }
 
   /// Sets `FLAG_SECURE` to `true` if the corresponding preference was enabled by the user.
+  ///
+  /// A failure is only logged, because this is called before the application starts.
   Future<void> setFlagSecureIfNeeded() async {
-    if (PreferenceKey.flagSecure.preferenceOrDefault) {
+    if (!PreferenceKey.flagSecure.preferenceOrDefault) {
+      return;
+    }
+
+    try {
       await FlagSecure.set();
+    } on PlatformException catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
     }
   }
 

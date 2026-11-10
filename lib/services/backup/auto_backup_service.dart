@@ -122,8 +122,11 @@ class AutoExportUtils {
     final encrypt = PreferenceKey.autoExportEncryption.preferenceOrDefault;
     final password = await PreferenceKey.autoExportPassword.preferenceOrDefaultSecure;
 
-    unawaited(ManualBackupService().autoExportAsJson(encrypt, password));
+    final exported = await ManualBackupService().autoExportAsJson(encrypt, password);
 
-    unawaited(PreferenceKey.lastAutoExportDate.set(DateTime.now().toIso8601String()));
+    // Only save the date of a successful export, so that a failed one is tried again at the next startup
+    if (exported) {
+      await PreferenceKey.lastAutoExportDate.set(DateTime.now().toIso8601String());
+    }
   }
 }
