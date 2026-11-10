@@ -32,9 +32,11 @@ class _AddNoteFabState extends ConsumerState<AddNoteFab> {
   }
 
   void onPressed(NoteType noteType) {
-    addNote(context, ref, noteType: noteType);
-
+    // Close the FAB before opening the editor, otherwise closing it during the transition removes the focus
+    // from the editor and closes the keyboard
     closeAddNoteFabIfOpen();
+
+    addNote(context, ref, noteType: noteType);
   }
 
   @override

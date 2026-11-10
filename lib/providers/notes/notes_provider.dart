@@ -164,8 +164,8 @@ class Notes extends _$Notes {
   Future<bool> toggleLock(List<Note> notesToToggle) async {
     _checkStatus([NoteStatus.available, NoteStatus.archived, NoteStatus.deleted]);
 
-    // Ignore empty notes
-    notesToToggle.removeWhere((note) => note.isEmpty);
+    // Ignore empty notes (in a copy, to leave the list of the caller unchanged)
+    notesToToggle = notesToToggle.where((note) => !note.isEmpty).toList();
 
     for (final note in notesToToggle) {
       note.locked = !note.locked;
@@ -193,8 +193,8 @@ class Notes extends _$Notes {
   Future<bool> setArchived(List<Note> notesToSet, bool archived) async {
     _checkStatus([NoteStatus.available, NoteStatus.archived]);
 
-    // Ignore empty notes
-    notesToSet.removeWhere((note) => note.isEmpty);
+    // Ignore empty notes (in a copy, to leave the list of the caller unchanged)
+    notesToSet = notesToSet.where((note) => !note.isEmpty).toList();
 
     for (final note in notesToSet) {
       note.pinned = false;
@@ -227,7 +227,7 @@ class Notes extends _$Notes {
     for (final note in notesToSet) {
       note.pinned = false;
       note.archived = false;
-      note.deleted = !note.deleted;
+      note.deleted = deleted;
       note.deletedTime = deleted ? DateTime.timestamp() : null;
     }
 
