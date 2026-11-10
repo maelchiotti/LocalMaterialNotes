@@ -37,6 +37,9 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
   /// Stream of data shared from other applications.
   late StreamSubscription _stream;
 
+  /// Whether the application was launched by another one sharing data, which opened a new note with it.
+  late final Future<bool> _launchedByShare;
+
   @override
   void initState() {
     super.initState();
@@ -44,7 +47,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
     globalRef = ref;
 
     // Read the potential data shared from other applications
-    SystemUtils().readSharedData();
+    _launchedByShare = SystemUtils().readSharedData();
     _stream = SystemUtils().listenSharedData();
 
     // Eagerly get the labels for the full list and the navigation
@@ -59,9 +62,15 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
     // Using the context provided by afterFirstLayout doesn't work
     SystemUtils().setQuickActions(rootNavigatorKey.currentContext!);
 
-    // If the backup directory is still the default, ask to select it
-    if (await AutoExportUtils().isAutoExportDirectoryDefault) {
-      await requireBackupDirectory(rootNavigatorKey.currentContext!);
+    // Don't ask for the backup directory over the note opened with the shared data, it will be asked at the next launch
+    if (await _launchedByShare) {
+      return;
+    }
+
+    // If the backup directory is still the default or is no longer accessible, ask to select it
+    final directoryLost = AutoExportUtils().isAutoExportDirectoryLost;
+    if (await AutoExportUtils().isAutoExportDirectoryDefault || directoryLost) {
+      await requireBackupDirectory(rootNavigatorKey.currentContext!, directoryLost: directoryLost);
     }
   }
 
