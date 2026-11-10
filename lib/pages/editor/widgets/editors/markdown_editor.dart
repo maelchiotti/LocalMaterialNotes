@@ -65,7 +65,12 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
       return;
     }
 
-    Uri uri = Uri.parse(href);
+    final uri = Uri.tryParse(href);
+    if (uri == null) {
+      logger.w('The URL opened in the Markdown editor could not be parsed: $href');
+
+      return;
+    }
 
     launchUrl(uri);
   }
