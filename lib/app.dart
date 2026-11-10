@@ -85,7 +85,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
         if (lockApp) {
           final lockAppDelayPreference = PreferenceKey.lockAppDelay.preferenceOrDefault;
 
-          if (lockAppDelayPreference != -1) {
+          if (lockAppDelayPreference != neverDelay && lockAppDelayPreference != -1) {
             final lockAppDelay = Duration(seconds: lockAppDelayPreference);
             final timeSinceBackground = now.difference(lastForegroundTimestamp);
             if (timeSinceBackground > lockAppDelay) {
@@ -100,8 +100,8 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
         if (lockNote || lockLabel) {
           final lockNoteDelayPreference = PreferenceKey.lockNoteDelay.preferenceOrDefault;
 
-          if (lockNoteDelayPreference != -1) {
-            final lockNoteDelay = Duration(seconds: PreferenceKey.lockNoteDelay.preferenceOrDefault);
+          if (lockNoteDelayPreference != neverDelay && lockNoteDelayPreference != -1) {
+            final lockNoteDelay = Duration(seconds: lockNoteDelayPreference);
             final timeSinceBackground = now.difference(lastForegroundTimestamp);
             if (timeSinceBackground > lockNoteDelay) {
               lockNoteNotifier.lock();
