@@ -55,24 +55,16 @@ class ManualBackupService {
 
     importedJson = importedJson as Map<String, dynamic>;
 
-    // Import the labels
-    final importLabels = importedJson.containsKey("labels") && importedJson.getList<dynamic>("labels").isNotEmpty;
-    if (importLabels) {
-      final labelsAsJson = importedJson.getList<dynamic>("labels");
-      final importedLabels = await _importLabels(labelsAsJson);
-      if (!importedLabels) {
-        return false;
-      }
-    }
-
     if (!context.mounted) {
       return false;
     }
 
-    // Import the notes
+    // Import the labels and the notes
+    final labelsAsJson = (importedJson['labels'] as List?) ?? [];
+    final labels = labelsAsJson.map((labelAsJson) => Label.fromJson(labelAsJson)).toList();
     final notesAsJson = importedJson.getList<dynamic>("notes");
     final encrypted = importedJson.tryGetBool("encrypted") ?? false;
-    final importedNotes = await _importNotes(context, notesAsJson, encrypted, importLabels);
+    final importedNotes = await _importNotes(context, notesAsJson, encrypted, labels);
     if (!importedNotes) {
       return false;
     }
@@ -89,17 +81,12 @@ class ManualBackupService {
     return true;
   }
 
-  Future<bool> _importLabels(List<dynamic> labelsAsJson) async {
-    final labels = labelsAsJson.map((labelAsJson) => Label.fromJson(labelAsJson)).toList();
-
-    await _labelsService.putAllNew(labels);
-
-    return true;
-  }
-
-  Future<bool> _importNotes(BuildContext context, List<dynamic> notesAsJson, bool encrypted, bool importLabels) async {
+  Future<bool> _importNotes(BuildContext context, List<dynamic> notesAsJson, bool encrypted, List<Label> labels) async {
     List<Note> notes = [];
-    List<List<Label>> notesLabels = [];
+
+    for (final noteAsJson in notesAsJson) {
+      _fixStatus(noteAsJson);
+    }
 
     if (encrypted && context.mounted) {
       final password = await showAdaptiveDialog<String>(
@@ -181,25 +168,28 @@ class ManualBackupService {
       }
     }
 
-    // Handle notes labels
-    if (importLabels) {
-      List<Label> databaseLabels = await _labelsService.getAll();
-
-      for (final noteAsJson in notesAsJson) {
-        final labelsString = noteAsJson['labels'] as List;
-        final labels = databaseLabels.where((label) => labelsString.contains(label.name)).toList();
-
-        notesLabels.add(labels);
+    // Link the notes to their labels only if the file contains labels
+    final notesLabelsNames = notesAsJson.map((noteAsJson) {
+      if (labels.isEmpty) {
+        return <String>[];
       }
-    }
 
-    // Add notes and labels to the database
-    await _notesService.putAll(notes);
-    if (importLabels) {
-      await _notesService.putAllLabels(notes, notesLabels);
-    }
+      return ((noteAsJson['labels'] as List?) ?? []).cast<String>();
+    }).toList();
+
+    // Add the labels, the notes and their links to the database at once
+    await _notesService.import(labels, notes, notesLabelsNames);
 
     return true;
+  }
+
+  /// Unarchives the note of [noteAsJson] if it is also deleted, which can only happen if the file was edited by hand.
+  void _fixStatus(dynamic noteAsJson) {
+    if (noteAsJson['archived'] == true && noteAsJson['deleted'] == true) {
+      logger.w('Imported a note that was both archived and deleted as only deleted');
+
+      noteAsJson['archived'] = false;
+    }
   }
 
   void _addRichTextNote(dynamic noteAsJson, List<Note> notes, String warningMessage) {
@@ -215,23 +205,21 @@ class ManualBackupService {
   Future<bool> _importPreferences(dynamic importedJson) async {
     final preferencesAndValues = importedJson['preferences'] as Map<String, dynamic>;
 
-    preferencesAndValues.forEach((preference, value) {
+    for (final MapEntry(key: preference, :value) in preferencesAndValues.entries) {
       final preferenceKey = PreferenceKey.values.byNameOrNull(preference);
 
       if (preferenceKey == null) {
         logger.w("While restoring the preferences from JSON, the preference '$preference' doesn't exist");
-      } else {
-        if (preferenceKey.backup) {
-          // If the preference value is a list, then it's a list of String
-          // (the only type of list that can be stored in the preferences)
-          if (value is List) {
-            preferenceKey.set(value.cast<String>());
-          } else {
-            preferenceKey.set(value);
-          }
+      } else if (preferenceKey.backup) {
+        // If the preference value is a list, then it's a list of String
+        // (the only type of list that can be stored in the preferences)
+        if (value is List) {
+          await preferenceKey.set(value.cast<String>());
+        } else {
+          await preferenceKey.set(value);
         }
       }
-    });
+    }
 
     return true;
   }
