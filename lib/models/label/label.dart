@@ -81,6 +81,13 @@ class Label extends Equatable implements Comparable<Label> {
   /// Default constructor of a label.
   Label({required this.name, required this.colorHex}) : visible = true, pinned = false, locked = false;
 
+  /// Returns a copy of this label, with the same [id], and the [name] and the [colorHex] if they are given.
+  Label copyWith({String? name, int? colorHex}) => Label(name: name ?? this.name, colorHex: colorHex ?? this.colorHex)
+    ..id = id
+    ..visible = visible
+    ..pinned = pinned
+    ..locked = locked;
+
   /// Label from [json] data.
   factory Label.fromJson(Map<String, dynamic> json) => _$LabelFromJson(json);
 
