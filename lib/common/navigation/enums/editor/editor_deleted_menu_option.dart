@@ -48,9 +48,8 @@ enum EditorDeletedMenuOption {
         leading: Icon(icon, color: dangerous ? Theme.of(context).colorScheme.error : null),
         title: Text(
           title(context),
-          style: Theme.of(
-            context,
-          ).textTheme.titleSmall?.copyWith(color: dangerous ? Theme.of(context).colorScheme.error : null),
+          style: Theme.of(context).textTheme.titleSmall
+              ?.copyWith(color: dangerous ? Theme.of(context).colorScheme.error : null),
         ),
       ),
     );
