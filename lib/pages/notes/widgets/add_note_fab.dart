@@ -39,9 +39,10 @@ class _AddNoteFabState extends ConsumerState<AddNoteFab> {
   /// `autofocus: true`: when the FAB finishes closing, its button is built again and takes the focus,
   /// which removes it from the editor that was opened in the meantime and closes the keyboard.
   FloatingActionButtonBuilder buildToggleButton({required String heroTag, required IconData icon}) {
+    final themeSize = Theme.of(context).floatingActionButtonTheme.sizeConstraints?.maxWidth;
+
     return FloatingActionButtonBuilder(
-      // Size of a regular floating action button
-      size: 56,
+      size: themeSize ?? DefaultFloatingActionButtonBuilder().size,
       builder: (context, onPressed, progress) {
         return AnimatedBuilder(
           animation: progress,
