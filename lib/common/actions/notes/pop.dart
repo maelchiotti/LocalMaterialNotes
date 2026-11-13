@@ -3,10 +3,17 @@ import '../../constants/constants.dart';
 /// Closes the expandable FAB to add a note if it is open.
 ///
 /// Handles both the FAB of the notes page and the one of the label pages.
-void closeAddNoteFabIfOpen() {
+///
+/// Returns whether the FAB was open and has started to close.
+bool closeAddNoteFabIfOpen() {
+  var closing = false;
+
   for (final fabKey in [addNoteFabKey, labeledAddNoteFabKey]) {
     if (fabKey.currentState != null && fabKey.currentState!.isOpen) {
       fabKey.currentState!.toggle();
+      closing = true;
     }
   }
+
+  return closing;
 }

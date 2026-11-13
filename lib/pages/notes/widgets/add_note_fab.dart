@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,20 +25,36 @@ class AddNoteFab extends ConsumerStatefulWidget {
 }
 
 class _AddNoteFabState extends ConsumerState<AddNoteFab> {
+  /// Completed when the FAB has finished closing.
+  Completer<void>? closedCompleter;
+
   void onOpen() {
     canPopNotifier.update();
   }
 
   void onClose() {
     canPopNotifier.update();
+
+    closedCompleter?.complete();
+    closedCompleter = null;
   }
 
-  void onPressed(NoteType noteType) {
-    // Close the FAB before opening the editor, otherwise closing it during the transition removes the focus
-    // from the editor and closes the keyboard
-    closeAddNoteFabIfOpen();
+  Future<void> onPressed(NoteType noteType) async {
+    // Wait for the FAB to be fully closed before opening the editor.
+    // When the closing animation ends, the FAB removes its focus scope, which unfocuses the editor
+    // if it was focused in the meantime, and closes the keyboard.
+    final completer = closedCompleter = Completer<void>();
+    if (closeAddNoteFabIfOpen()) {
+      // The timeout makes sure that the note is still added if the animation could not be completed
+      await completer.future.timeout(const Duration(milliseconds: 500), onTimeout: () {});
+    }
+    closedCompleter = null;
 
-    addNote(context, ref, noteType: noteType);
+    if (!mounted) {
+      return;
+    }
+
+    await addNote(context, ref, noteType: noteType);
   }
 
   @override
