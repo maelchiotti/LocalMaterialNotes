@@ -1,4 +1,4 @@
-import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
@@ -25,36 +25,41 @@ class AddNoteFab extends ConsumerStatefulWidget {
 }
 
 class _AddNoteFabState extends ConsumerState<AddNoteFab> {
-  /// Completed when the FAB has finished closing.
-  Completer<void>? closedCompleter;
-
   void onOpen() {
     canPopNotifier.update();
   }
 
   void onClose() {
     canPopNotifier.update();
-
-    closedCompleter?.complete();
-    closedCompleter = null;
   }
 
-  Future<void> onPressed(NoteType noteType) async {
-    // Wait for the FAB to be fully closed before opening the editor.
-    // When the closing animation ends, the FAB removes its focus scope, which unfocuses the editor
-    // if it was focused in the meantime, and closes the keyboard.
-    final completer = closedCompleter = Completer<void>();
-    if (closeAddNoteFabIfOpen()) {
-      // The timeout makes sure that the note is still added if the animation could not be completed
-      await completer.future.timeout(const Duration(milliseconds: 500), onTimeout: () {});
-    }
-    closedCompleter = null;
+  /// Builds the button that opens or closes the FAB, rotated according to the [progress] of the animation.
+  ///
+  /// It replaces the `RotateFloatingActionButtonBuilder` of the package, whose buttons are built with
+  /// `autofocus: true`: when the FAB finishes closing, its button is built again and takes the focus,
+  /// which removes it from the editor that was opened in the meantime and closes the keyboard.
+  FloatingActionButtonBuilder buildToggleButton({required String heroTag, required IconData icon}) {
+    return FloatingActionButtonBuilder(
+      // Size of a regular floating action button
+      size: 56,
+      builder: (context, onPressed, progress) {
+        return AnimatedBuilder(
+          animation: progress,
+          builder: (context, _) {
+            return Transform.rotate(
+              angle: progress.value * math.pi / 2,
+              child: FloatingActionButton(heroTag: heroTag, onPressed: onPressed, child: Icon(icon)),
+            );
+          },
+        );
+      },
+    );
+  }
 
-    if (!mounted) {
-      return;
-    }
+  void onPressed(NoteType noteType) {
+    closeAddNoteFabIfOpen();
 
-    await addNote(context, ref, noteType: noteType);
+    addNote(context, ref, noteType: noteType);
   }
 
   @override
@@ -72,14 +77,8 @@ class _AddNoteFabState extends ConsumerState<AddNoteFab> {
             type: ExpandableFabType.up,
             childrenAnimation: ExpandableFabAnimation.none,
             distance: 64,
-            openButtonBuilder: RotateFloatingActionButtonBuilder(
-              heroTag: '<open add note FAB hero tag>',
-              child: const Icon(Icons.add),
-            ),
-            closeButtonBuilder: RotateFloatingActionButtonBuilder(
-              heroTag: '<close add note FAB hero tag>',
-              child: const Icon(Icons.close),
-            ),
+            openButtonBuilder: buildToggleButton(heroTag: '<open add note FAB hero tag>', icon: Icons.add),
+            closeButtonBuilder: buildToggleButton(heroTag: '<close add note FAB hero tag>', icon: Icons.close),
             afterOpen: onOpen,
             afterClose: onClose,
             children: [
