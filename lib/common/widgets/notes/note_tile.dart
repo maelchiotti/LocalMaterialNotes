@@ -174,10 +174,8 @@ class _NoteTileState extends ConsumerState<NoteTile> {
       // Close the expandable FAB to add a note if it is open
       closeAddNoteFabIfOpen();
 
-      final lockNote = PreferenceKey.lockNote.preferenceOrDefault;
-      if (lockNote) {
-        lockNoteNotifier.value = widget.note.locked || widget.note.hasLockedLabel;
-      }
+      // Lock the editor if the note is locked or has a locked label, depending on the settings
+      lockNoteNotifier.value = widget.note.requiresAuthentication;
 
       final EditorPageExtra extra = (isNewNote: false);
       context.pushNamed(NavigationRoute.editor.name, extra: extra);
@@ -211,15 +209,16 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
 
+    // Do not show only the title and the preview content is not empty
+    final showPreview = !showTitlesOnly && !widget.note.isContentPreviewEmpty;
+    // Show only the title but the title is empty
+    final showContentInsteadOfEmptyTitle = showTitlesOnly && widget.note.isTitleEmpty;
+    // In search view, do not show only the title and the preview content is not empty
+    final showInSearchView =
+        widget.search != null && showTitlesOnlyDisableInSearchView && !widget.note.isContentPreviewEmpty;
+    // Never show the content of a note that is locked or has a locked label
     final showContent =
-        // The note is locked
-        !lockNote &&
-            // Do not show only the title and the preview content is not empty
-            (!showTitlesOnly && !widget.note.isContentPreviewEmpty) ||
-        // Show only the title and the title is not empty
-        (showTitlesOnly && widget.note.isTitleEmpty) ||
-        // In search view, do not show only the title and the preview content is not empty
-        (widget.search != null && showTitlesOnlyDisableInSearchView && !widget.note.isContentPreviewEmpty);
+        !widget.note.requiresAuthentication && (showPreview || showContentInsteadOfEmptyTitle || showInSearchView);
 
     var titleStyle = biggerTitles ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium;
     titleStyle ??= TextStyle();

@@ -26,6 +26,10 @@ class AutoExportUtils {
   /// Directory where automatic exports are saved.
   late String autoExportDirectory;
 
+  /// Whether the directory selected by the user for the automatic exports is no longer accessible, in which case
+  /// they are saved in the default directory.
+  bool isAutoExportDirectoryLost = false;
+
   /// Ensures the utility is initialized.
   Future<void> ensureInitialized() async {
     await setAutoExportDirectory();
@@ -35,6 +39,8 @@ class AutoExportUtils {
   /// Sets the directory where automatic exports are located depending on the user preference and the available
   /// permissions.
   Future<void> setAutoExportDirectory() async {
+    isAutoExportDirectoryLost = false;
+
     final autoExportDirectoryPreference = PreferenceKey.autoExportDirectory.preferenceOrDefault;
 
     // Set to default if the user didn't choose a directory
@@ -47,7 +53,12 @@ class AutoExportUtils {
     // Set to default if the directory doesn't exist
     try {
       if (autoExportDirectorySaf == null || !(await doesDirectoryExist(autoExportDirectorySaf.uri))) {
-        return setAutoExportDirectoryToDefault();
+        logger.w('The automatic export directory selected by the user is no longer accessible, using the default one');
+        isAutoExportDirectoryLost = true;
+
+        await setAutoExportDirectoryToDefault();
+
+        return;
       }
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
@@ -122,8 +133,11 @@ class AutoExportUtils {
     final encrypt = PreferenceKey.autoExportEncryption.preferenceOrDefault;
     final password = await PreferenceKey.autoExportPassword.preferenceOrDefaultSecure;
 
-    unawaited(ManualBackupService().autoExportAsJson(encrypt, password));
+    final exported = await ManualBackupService().autoExportAsJson(encrypt, password);
 
-    unawaited(PreferenceKey.lastAutoExportDate.set(DateTime.now().toIso8601String()));
+    // Only save the date of a successful export, so that a failed one is tried again at the next startup
+    if (exported) {
+      await PreferenceKey.lastAutoExportDate.set(DateTime.now().toIso8601String());
+    }
   }
 }

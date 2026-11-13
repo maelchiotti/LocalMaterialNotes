@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../constants/constants.dart';
 
 /// Extensions on the [Color] class.

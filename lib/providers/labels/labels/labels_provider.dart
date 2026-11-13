@@ -2,7 +2,6 @@ import 'package:collection/collection.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../common/constants/constants.dart';
-import '../../../common/extensions/list_extension.dart';
 import '../../../models/label/label.dart';
 import '../../../models/note/note_status.dart';
 import '../../../pages/labels/enums/labels_filter.dart';
@@ -47,8 +46,10 @@ class Labels extends _$Labels {
     return labels.sorted();
   }
 
-  /// Saves the [editedLabel] to the database.
+  /// Saves the [editedLabel] to the database, either a new label or a copy of an existing one with the same `id`.
   Future<bool> edit(Label editedLabel) async {
+    final oldLabel = state.value?.firstWhereOrNull((label) => label.id == editedLabel.id);
+
     try {
       await _labelsService.put(editedLabel);
     } catch (exception, stackTrace) {
@@ -57,9 +58,19 @@ class Labels extends _$Labels {
       return false;
     }
 
-    final labels = (state.value ?? [])..addOrUpdate(editedLabel);
+    // Replace the label by its ID, because the name, used for the equality, may have changed
+    final labels = [...?state.value]
+      ..removeWhere((label) => label.id == editedLabel.id)
+      ..add(editedLabel);
 
     state = AsyncData(labels.sorted());
+
+    // The notes providers filtered by the label use its name as a key, so drop the ones of the old name
+    if (oldLabel != null && oldLabel.name != editedLabel.name) {
+      for (final status in NoteStatus.values) {
+        ref.invalidate(notesProvider(status: status, label: oldLabel));
+      }
+    }
 
     await _updateProviders();
 

@@ -44,7 +44,11 @@ class _NotesPageState extends ConsumerState<NotesPage> {
 
   @override
   void dispose() {
-    currentLabelFilter = null;
+    // When navigating from a label to another, the new page is created before this one is disposed:
+    // only reset the filter if it is still the one of this page
+    if (currentLabelFilter == widget.label) {
+      currentLabelFilter = null;
+    }
 
     super.dispose();
   }

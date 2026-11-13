@@ -117,9 +117,6 @@ enum PreferenceKey<T extends Object> {
   /// Returns the value of this preference if set, or its default value otherwise.
   T get preferenceOrDefault => PreferencesWrapper().get<T>(this) ?? defaultValue;
 
-  /// Returns the value of this securely stored preference if set, or [null] otherwise.
-  T? get preferenceSecure => PreferencesWrapper().get<T>(this);
-
   /// Returns the value of this securely stored preference if set, or its default value otherwise.
   Future<String> get preferenceOrDefaultSecure async =>
       await PreferencesWrapper().getSecure(this) ?? defaultValue as String;

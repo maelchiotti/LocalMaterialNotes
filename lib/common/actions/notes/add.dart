@@ -45,9 +45,19 @@ Future<void> addNote(BuildContext context, WidgetRef ref, {required NoteType not
       note = ChecklistNote.empty();
   }
 
-  // If some content was provided, then immediately save the note without waiting for changes in the editor
-  if (content != null) {
-    await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
+  final label = currentLabelFilter;
+  final notesNotifier = ref.read(notesProvider(status: NoteStatus.available, label: label).notifier);
+
+  // If some content was provided, or if the note is created from the page of a label,
+  // then immediately save the note without waiting for changes in the editor
+  // (the label can only be added to a note that is already saved in the database)
+  if (content != null || label != null) {
+    await notesNotifier.edit(note);
+  }
+
+  // If the note is created from the page of a label, add that label to the note
+  if (label != null) {
+    await notesNotifier.editLabels(note, [label]);
   }
 
   currentNoteNotifier.value = note;

@@ -547,7 +547,7 @@
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{}}",
+  "settings_auto_export_frequency_value": "Every {frequency, select, 1{day} 3{3 days} 7{week} 14{2 weeks} 30{month} other{}}",
   "@settings_auto_export_frequency_value": {
     "description": "Frequency of the automatic exports.",
     "placeholders": {
@@ -842,6 +842,10 @@
   "dialog_require_backup_description": "As your notes are only stored locally on your device, any issue could lead to losing them all. Uninstalling the application would also delete all your notes.\n\nSelecting a backup location will ensure you can always retrieve your notes. For example, you could create a folder named \"Material Notes backups\" under your existing \"Documents\" folder.",
   "@dialog_require_backup_description": {
     "description": "Description of the dialog to select a backup location."
+  },
+  "dialog_require_backup_lost": "The backup location you selected is no longer accessible. Until you select a new one, the automatic exports are saved in the application folder, which is deleted when the application is uninstalled.",
+  "@dialog_require_backup_lost": {
+    "description": "Text shown first in the dialog to select a backup location when the location selected by the user is no longer accessible."
   },
   "dialog_require_backup_ignore": "Ignore",
   "@dialog_require_backup_ignore": {

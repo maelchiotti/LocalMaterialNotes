@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,10 +33,34 @@ class _AddNoteFabState extends ConsumerState<AddNoteFab> {
     canPopNotifier.update();
   }
 
-  void onPressed(NoteType noteType) {
-    addNote(context, ref, noteType: noteType);
+  /// Builds the button that opens or closes the FAB, rotated according to the [progress] of the animation.
+  ///
+  /// It replaces the `RotateFloatingActionButtonBuilder` of the package, whose buttons are built with
+  /// `autofocus: true`: when the FAB finishes closing, its button is built again and takes the focus,
+  /// which removes it from the editor that was opened in the meantime and closes the keyboard.
+  FloatingActionButtonBuilder buildToggleButton({required String heroTag, required IconData icon}) {
+    final themeSize = Theme.of(context).floatingActionButtonTheme.sizeConstraints?.maxWidth;
 
+    return FloatingActionButtonBuilder(
+      size: themeSize ?? DefaultFloatingActionButtonBuilder().size,
+      builder: (context, onPressed, progress) {
+        return AnimatedBuilder(
+          animation: progress,
+          builder: (context, _) {
+            return Transform.rotate(
+              angle: progress.value * math.pi / 2,
+              child: FloatingActionButton(heroTag: heroTag, onPressed: onPressed, child: Icon(icon)),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  void onPressed(NoteType noteType) {
     closeAddNoteFabIfOpen();
+
+    addNote(context, ref, noteType: noteType);
   }
 
   @override
@@ -52,14 +78,8 @@ class _AddNoteFabState extends ConsumerState<AddNoteFab> {
             type: ExpandableFabType.up,
             childrenAnimation: ExpandableFabAnimation.none,
             distance: 64,
-            openButtonBuilder: RotateFloatingActionButtonBuilder(
-              heroTag: '<open add note FAB hero tag>',
-              child: const Icon(Icons.add),
-            ),
-            closeButtonBuilder: RotateFloatingActionButtonBuilder(
-              heroTag: '<close add note FAB hero tag>',
-              child: const Icon(Icons.close),
-            ),
+            openButtonBuilder: buildToggleButton(heroTag: '<open add note FAB hero tag>', icon: Icons.add),
+            closeButtonBuilder: buildToggleButton(heroTag: '<close add note FAB hero tag>', icon: Icons.close),
             afterOpen: onOpen,
             afterClose: onClose,
             children: [
