@@ -54,9 +54,8 @@ class EmptyPlaceholder extends StatelessWidget {
               Padding(padding: Paddings.vertical(16)),
               Text(
                 text!,
-                style: Theme.of(
-                  context,
-                ).textTheme.headlineSmall?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
+                style: Theme.of(context).textTheme.headlineSmall
+                    ?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
               ),
             ],
           ),

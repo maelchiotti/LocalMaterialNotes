@@ -56,7 +56,9 @@ class AutoExportUtils {
         logger.w('The automatic export directory selected by the user is no longer accessible, using the default one');
         isAutoExportDirectoryLost = true;
 
-        return setAutoExportDirectoryToDefault();
+        await setAutoExportDirectoryToDefault();
+
+        return;
       }
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);

@@ -64,12 +64,12 @@ class _EditorState extends ConsumerState<EditorPage> {
 
     savePendingNote(globalRef);
 
-    // ignore: avoid_ref_inside_state_dispose
+    // ignore: riverpod_lint/avoid_ref_inside_state_dispose
     globalRef.read(notesProvider(status: NoteStatus.available).notifier).removeEmpty();
-    // ignore: avoid_ref_inside_state_dispose
+    // ignore: riverpod_lint/avoid_ref_inside_state_dispose
     globalRef.read(notesProvider(status: NoteStatus.archived).notifier).removeEmpty();
     if (currentLabelFilter != null) {
-      // ignore: avoid_ref_inside_state_dispose
+      // ignore: riverpod_lint/avoid_ref_inside_state_dispose
       globalRef.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).removeEmpty();
     }
 

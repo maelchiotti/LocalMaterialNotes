@@ -21,8 +21,7 @@ final screenshotNotes = [
     createdTime: DateTime(2000, 01, 01, 12),
     editedTime: DateTime(2000, 01, 01, 12),
     title: "Welcome to Material Notes",
-    content:
-        '[{"insert":"Simple","attributes":{"b":true}},{"insert":", "},{"insert":"local","attributes":{"i":true}},{"insert":", "},{"insert":"material design","attributes":{"u":true}},{"insert":" notes\\n"}]',
+    content: '[{"insert":"Simple","attributes":{"b":true}},{"insert":", "},{"insert":"local","attributes":{"i":true}},{"insert":", "},{"insert":"material design","attributes":{"u":true}},{"insert":" notes\\n"}]',
   ),
   RichTextNote(
     archived: false,
@@ -31,8 +30,7 @@ final screenshotNotes = [
     createdTime: DateTime(2000, 01, 01, 11, 55),
     editedTime: DateTime(2000, 01, 01, 11, 55),
     title: "Take notes",
-    content:
-        '[{"insert":"Write text notes"},{"insert":"\\n","attributes":{"block":"cl","checked":true}},{"insert":"Use plain text, markdown, rich text or checklist notes"},{"insert":"\\n","attributes":{"block":"cl","checked":true}},{"insert":"Use quick action to add from your home screen"},{"insert":"\\n","attributes":{"block":"cl","checked":true}}]',
+    content: '[{"insert":"Write text notes"},{"insert":"\\n","attributes":{"block":"cl","checked":true}},{"insert":"Use plain text, markdown, rich text or checklist notes"},{"insert":"\\n","attributes":{"block":"cl","checked":true}},{"insert":"Use quick action to add from your home screen"},{"insert":"\\n","attributes":{"block":"cl","checked":true}}]',
   ),
   RichTextNote(
     archived: false,
@@ -59,8 +57,7 @@ final screenshotNotes = [
     createdTime: DateTime(2000, 01, 01, 11, 45),
     editedTime: DateTime(2000, 01, 01, 11, 45),
     title: "Share & backup",
-    content:
-        '[{"insert":"Create a note from shared text\\nShare notes as text and export as Markdown\\nBackup notes as JSON\\n"}]',
+    content: '[{"insert":"Create a note from shared text\\nShare notes as text and export as Markdown\\nBackup notes as JSON\\n"}]',
   ),
   RichTextNote(
     archived: false,
@@ -79,8 +76,7 @@ final screenshotNotes = [
     createdTime: DateTime(2000, 01, 01, 11, 40),
     editedTime: DateTime(2000, 01, 01, 11, 40),
     title: "Customize",
-    content:
-        "[{\"insert\":\"Choose your language\\nChoose your theme (including black and dynamic)\\nHide features you don't need\\n\"}]",
+    content: "[{\"insert\":\"Choose your language\\nChoose your theme (including black and dynamic)\\nHide features you don't need\\n\"}]",
   ),
   RichTextNote(
     archived: false,
