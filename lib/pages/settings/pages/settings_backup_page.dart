@@ -85,10 +85,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         final exported = await ManualBackupService().manuallyExportAsJson(encrypt: encrypt, password: password);
 
         if (mounted) {
-          SnackBarUtils().show(
-            context,
-            text: exported ? context.l.snack_bar_export_success : context.l.snack_bar_export_not_performed,
-          );
+          SnackBarUtils().showExportResult(context, exported: exported);
         }
       } catch (exception, stackTrace) {
         logger.e(exception.toString(), exception, stackTrace);
@@ -108,10 +105,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       final exported = await ManualBackupService().exportAsMarkdown();
 
       if (mounted) {
-        SnackBarUtils().show(
-          context,
-          text: exported ? context.l.snack_bar_export_success : context.l.snack_bar_export_not_performed,
-        );
+        SnackBarUtils().showExportResult(context, exported: exported);
       }
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);

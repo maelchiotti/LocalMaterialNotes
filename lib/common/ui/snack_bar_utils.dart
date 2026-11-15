@@ -7,6 +7,11 @@ import '../extensions/build_context_extension.dart';
 
 /// Utilities for the snack bars.
 class SnackBarUtils {
+  /// Shows a snack bar telling whether the backup was [exported].
+  void showExportResult(BuildContext context, {required bool exported}) {
+    show(context, text: exported ? context.l.snack_bar_export_success : context.l.snack_bar_export_not_performed);
+  }
+
   /// Shows a snack bar with the [text].
   ///
   /// if [error] is `true`, the [text] is prefixed with `Error:`.
