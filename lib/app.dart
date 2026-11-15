@@ -11,9 +11,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'common/actions/backup.dart';
 import 'common/constants/constants.dart';
 import 'common/enums/supported_language.dart';
+import 'common/extensions/build_context_extension.dart';
 import 'common/extensions/locale_extension.dart';
 import 'common/preferences/preference_key.dart';
 import 'common/system_utils.dart';
+import 'common/ui/snack_bar_utils.dart';
 import 'common/ui/theme_utils.dart';
 import 'l10n/app_localizations/app_localizations.g.dart';
 import 'l10n/fallback_localization_delegate.dart';
@@ -72,6 +74,13 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
     final directoryLost = AutoExportUtils().isAutoExportDirectoryLost;
     if (await AutoExportUtils().isAutoExportDirectoryDefault || directoryLost) {
       await requireBackupDirectory(rootNavigatorKey.currentContext!, directoryLost: directoryLost);
+    }
+
+    // Warn if the automatic export was needed but could not be performed
+    await AutoExportUtils().initialized;
+    final context = rootNavigatorKey.currentContext;
+    if (AutoExportUtils().autoExportFailed && context != null && context.mounted) {
+      SnackBarUtils().show(context, text: context.l.snack_bar_auto_export_failed);
     }
   }
 
