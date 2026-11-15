@@ -87,18 +87,7 @@ Future<NoteFormatChoice?> _choice(BuildContext context, bool selectFormat) async
 Future<void> _shareFiles(List<Note> notes, NoteFormat format, {required String subject}) async {
   final mimeType = format.mimeType;
 
-  // Make the file names unique, as several notes can have the same title and creation time
-  final names = <String>[];
-  for (final note in notes) {
-    final baseName = note.fileNameWithoutExtension.isEmpty ? 'note' : note.fileNameWithoutExtension;
-    var name = '$baseName.${mimeType.extension}';
-    var index = 2;
-    while (names.contains(name)) {
-      name = '$baseName ($index).${mimeType.extension}';
-      index++;
-    }
-    names.add(name);
-  }
+  final names = format.fileNames(notes);
 
   final files = [
     for (final (index, note) in notes.indexed)

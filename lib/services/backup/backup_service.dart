@@ -18,6 +18,8 @@ import '../../common/system_utils.dart';
 import '../../common/ui/snack_bar_utils.dart';
 import '../../models/label/label.dart';
 import '../../models/note/note.dart';
+import '../../models/note/note_format.dart';
+import '../../models/note/note_status.dart';
 import '../../models/note/types/note_type.dart';
 import '../../pages/settings/dialogs/auto_export_password_dialog.dart';
 import '../labels/labels_service.dart';
@@ -311,10 +313,16 @@ class ManualBackupService {
     );
   }
 
-  /// Exports all the notes separately in Markdown files, stored in a ZIP archive.
+  /// Exports all the notes separately in files in the [format], stored in a ZIP archive.
+  ///
+  /// The files are sorted in a folder per status of the notes. In Markdown, the visible labels of each note are
+  /// written before its title.
   ///
   /// First asks the user to pick a directory where to save the export file.
-  Future<bool> exportAsMarkdown() async {
+  Future<bool> exportAsZip(BuildContext context, NoteFormat format) async {
+    // Get the titles of the folders before the asynchronous gaps
+    final folders = {for (final status in NoteStatus.values) status: sanitizeFilename(status.title(context))};
+
     final exportDirectory = await selectDirectory();
 
     if (exportDirectory == null) {
@@ -322,18 +330,17 @@ class ManualBackupService {
     }
 
     final notes = await _notesService.getAll();
+    final fileNames = format.fileNames(notes);
     final archive = Archive();
 
-    for (final note in notes) {
-      final markdown = '${note.labelsAsMarkdown}\n\n${note.contentAsMarkdown}';
-      final bytes = utf8.encode(markdown);
+    for (final (index, note) in notes.indexed) {
+      var content = format.format(note);
+      if (format == NoteFormat.markdown && note.labelsNamesVisibleSorted.isNotEmpty) {
+        content = '${note.labelsAsMarkdown}\n\n$content';
+      }
+      final bytes = utf8.encode(content);
 
-      final filenameWithoutExtension = '${note.title} (${note.createdTime.filename})'.trim();
-      final filenameWithoutExtensionSanitized = sanitizeFilename(filenameWithoutExtension);
-
-      final folder = note.status.title;
-
-      final filename = '$folder/$filenameWithoutExtensionSanitized.${MimeType.markdown.extension}';
+      final filename = '${folders[note.status]}/${fileNames[index]}';
 
       archive.addFile(ArchiveFile(filename, bytes.length, bytes));
     }

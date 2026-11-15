@@ -55,4 +55,23 @@ enum NoteFormat {
 
     return notes.map(format).join(separator).trim();
   }
+
+  /// Returns a file name in this format for each of the [notes], made unique by adding a number when needed.
+  List<String> fileNames(List<Note> notes) {
+    final extension = mimeType.extension;
+    final names = <String>[];
+
+    for (final note in notes) {
+      final baseName = note.fileNameWithoutExtension;
+      var name = '$baseName.$extension';
+
+      for (var index = 2; names.contains(name); index++) {
+        name = '$baseName ($index).$extension';
+      }
+
+      names.add(name);
+    }
+
+    return names;
+  }
 }
