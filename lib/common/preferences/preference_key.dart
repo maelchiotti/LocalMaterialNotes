@@ -107,6 +107,20 @@ enum PreferenceKey<T extends Object> {
     await PreferencesWrapper().set<T>(this, value);
   }
 
+  /// Returns the [value] read from a backup as a [T], or `null` if it cannot be restored as one.
+  T? parse(Object? value) {
+    if (T == List<String>) {
+      return value is List && value.every((item) => item is String) ? value.cast<String>() as T : null;
+    }
+
+    // A double can be written without decimals in JSON
+    if (T == double) {
+      return value is num ? value.toDouble() as T : null;
+    }
+
+    return value is T ? value : null;
+  }
+
   /// Resets this preference to its [defaultValue].
   Future<void> reset() async {
     await PreferencesWrapper().set<T>(this, defaultValue);
