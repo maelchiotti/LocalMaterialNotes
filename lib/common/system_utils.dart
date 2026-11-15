@@ -244,7 +244,7 @@ class SystemUtils {
 
     final uri = Uri.tryParse(url);
     if (uri == null) {
-      logger.w('The URL of the link could not be parsed: $url');
+      logger.w('The URL of a link in a note could not be parsed');
 
       return;
     }

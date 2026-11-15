@@ -89,7 +89,12 @@ class RichTextNote extends Note {
     try {
       return ParchmentDocument.fromJson(jsonDecode(content) as List);
     } catch (exception, stackTrace) {
-      logger.e('Failed to decode the content of a rich text note, showing it as plain text', exception, stackTrace);
+      // The exception itself is not logged, since it can contain a part of the content of the note
+      logger.e(
+        'Failed to decode the content of a rich text note (${exception.runtimeType}), showing it as plain text',
+        null,
+        stackTrace,
+      );
 
       return ParchmentDocument.fromJson([
         {'insert': '$content\n'},
