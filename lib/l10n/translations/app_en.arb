@@ -523,6 +523,14 @@
   "@settings_export_json_description": {
     "description": "Description of the setting tile to manually export the notes as JSON."
   },
+  "settings_export_text": "Export as plain text",
+  "@settings_export_text": {
+    "description": "Title of the setting tile to manually export the notes as plain text."
+  },
+  "settings_export_text_description": "Immediately export all the notes to plain text files, in a ZIP archive",
+  "@settings_export_text_description": {
+    "description": "Description of the setting tile to manually export the notes as plain text."
+  },
   "settings_export_markdown": "Export as Markdown",
   "@settings_export_markdown": {
     "description": "Title of the setting tile to manually export the notes as Markdown."

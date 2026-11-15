@@ -231,6 +231,12 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                     description: Text(context.l.settings_export_markdown_description),
                     onTap: () => exportAsZip(NoteFormat.markdown),
                   ),
+                  SettingActionTile(
+                    icon: SettingTileIcon(NoteFormat.text.icon),
+                    title: Text(context.l.settings_export_text),
+                    description: Text(context.l.settings_export_text_description),
+                    onTap: () => exportAsZip(NoteFormat.text),
+                  ),
                 ],
               ),
               SettingSection(
