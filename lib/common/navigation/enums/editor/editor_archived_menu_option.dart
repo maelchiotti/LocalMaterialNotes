@@ -16,6 +16,9 @@ enum EditorArchivedMenuOption {
   /// Unarchive the note.
   unarchive(Icons.unarchive),
 
+  /// Delete the note.
+  delete(Icons.delete),
+
   /// Show information about the note.
   about(Icons.info);
 
@@ -36,6 +39,8 @@ enum EditorArchivedMenuOption {
         return context.l.menu_action_select_labels;
       case unarchive:
         return context.l.action_unarchive;
+      case delete:
+        return context.l.action_delete;
       case about:
         return context.l.action_about;
     }

@@ -11,7 +11,10 @@ enum SelectionArchivedMenuOption {
   share(Icons.share),
 
   /// Unarchive the note.
-  unarchive(Icons.unarchive);
+  unarchive(Icons.unarchive),
+
+  /// Delete the notes.
+  delete(Icons.delete);
 
   /// Icon of the menu option.
   final IconData icon;
@@ -30,6 +33,8 @@ enum SelectionArchivedMenuOption {
         return context.fl.shareButtonLabel;
       case unarchive:
         return context.l.action_unarchive;
+      case delete:
+        return context.l.action_delete;
     }
   }
 

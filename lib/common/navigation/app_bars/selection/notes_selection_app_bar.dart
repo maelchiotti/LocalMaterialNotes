@@ -74,6 +74,8 @@ class NotesSelectionAppBar extends ConsumerWidget {
         await shareNotes(context, notes: notes);
       case SelectionArchivedMenuOption.unarchive:
         await unarchiveNotes(context, ref, notes: notes);
+      case SelectionArchivedMenuOption.delete:
+        await deleteNotes(context, ref, notes: notes);
     }
   }
 
@@ -136,6 +138,7 @@ class NotesSelectionAppBar extends ConsumerWidget {
               SelectionArchivedMenuOption.share.popupMenuItem(context),
               const PopupMenuDivider(),
               SelectionArchivedMenuOption.unarchive.popupMenuItem(context),
+              SelectionArchivedMenuOption.delete.popupMenuItem(context),
             ]),
             onSelected: (menuOption) => onArchivedMenuOptionSelected(context, ref, selectedNotes, menuOption),
           ),

@@ -91,6 +91,8 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
         await selectLabels(context, ref, note: note);
       case EditorArchivedMenuOption.unarchive:
         await unarchiveNote(context, ref, note: note, pop: true);
+      case EditorArchivedMenuOption.delete:
+        await deleteNote(context, ref, note: note, pop: true);
       case EditorArchivedMenuOption.about:
         await showAboutNote();
     }
@@ -221,6 +223,7 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
                   EditorArchivedMenuOption.share.popupMenuItem(context),
                   const PopupMenuDivider(),
                   EditorArchivedMenuOption.unarchive.popupMenuItem(context),
+                  EditorArchivedMenuOption.delete.popupMenuItem(context),
                   const PopupMenuDivider(),
                   EditorArchivedMenuOption.about.popupMenuItem(context),
                 ]),
