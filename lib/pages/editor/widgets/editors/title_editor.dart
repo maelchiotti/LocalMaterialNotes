@@ -5,7 +5,7 @@ import '../../../../common/constants/paddings.dart';
 import '../../../../common/extensions/build_context_extension.dart';
 import '../../../../common/preferences/preference_key.dart';
 import '../../../../models/note/note.dart';
-import '../../../../providers/notes/notes_provider.dart';
+import '../../../../common/actions/notes/edit.dart';
 import '../../../../providers/notifiers/notifiers.dart';
 
 /// Title editor.
@@ -52,9 +52,7 @@ class _TitleEditorState extends ConsumerState<TitleEditor> {
 
     note.title = newTitle;
 
-    // Archived notes are not filtered by label
-    final label = note.archived ? null : currentLabelFilter;
-    ref.read(notesProvider(status: note.status, label: label).notifier).edit(note);
+    editNote(ref, note);
   }
 
   @override

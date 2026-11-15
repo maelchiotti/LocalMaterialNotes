@@ -9,8 +9,7 @@ class BinService {
   /// Removes the notes from the bin if they have been deleted longer than the corresponding setting, it enabled.
   Future<void> removeNotesFromBinIfNeeded() async {
     final autoRemoveFromBinDelayPreference = PreferenceKey.autoRemoveFromBinDelay.preferenceOrDefault;
-    // The "Never" value is stored as 999, older versions used -1
-    if (autoRemoveFromBinDelayPreference == neverDelay || autoRemoveFromBinDelayPreference == -1) {
+    if (isNeverDelay(autoRemoveFromBinDelayPreference)) {
       return;
     }
 

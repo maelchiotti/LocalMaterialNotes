@@ -210,17 +210,15 @@ class NotesService {
 
   /// Puts the [notes] in the database.
   Future<void> putAll(List<Note> notes) async {
-    final plainTextNotes = notes.whereType<PlainTextNote>().toList();
-    final markdownNotes = notes.whereType<MarkdownNote>().toList();
-    final richTextNotes = notes.whereType<RichTextNote>().toList();
-    final checklistNotes = notes.whereType<ChecklistNote>().toList();
+    await _database.writeTxn(() => _putAllInTransaction(notes));
+  }
 
-    await _database.writeTxn(() async {
-      await _plainTextNotes.putAll(plainTextNotes);
-      await _markdownNotes.putAll(markdownNotes);
-      await _richTextNotes.putAll(richTextNotes);
-      await _checklistNotes.putAll(checklistNotes);
-    });
+  /// Puts the [notes] in their collections. Must be called inside a write transaction, since Isar cannot nest them.
+  Future<void> _putAllInTransaction(List<Note> notes) async {
+    await _plainTextNotes.putAll(notes.whereType<PlainTextNote>().toList());
+    await _markdownNotes.putAll(notes.whereType<MarkdownNote>().toList());
+    await _richTextNotes.putAll(notes.whereType<RichTextNote>().toList());
+    await _checklistNotes.putAll(notes.whereType<ChecklistNote>().toList());
   }
 
   /// Updates the [note] with the [labels] in the database.
@@ -258,10 +256,7 @@ class NotesService {
       await _database.labels.putAll(newLabels);
       final allLabels = [...databaseLabels, ...newLabels];
 
-      await _plainTextNotes.putAll(notes.whereType<PlainTextNote>().toList());
-      await _markdownNotes.putAll(notes.whereType<MarkdownNote>().toList());
-      await _richTextNotes.putAll(notes.whereType<RichTextNote>().toList());
-      await _checklistNotes.putAll(notes.whereType<ChecklistNote>().toList());
+      await _putAllInTransaction(notes);
 
       for (var i = 0; i < notes.length; i++) {
         final note = notes[i];

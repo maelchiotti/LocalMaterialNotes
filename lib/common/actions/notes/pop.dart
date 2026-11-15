@@ -5,8 +5,9 @@ import '../../constants/constants.dart';
 /// Handles both the FAB of the notes page and the one of the label pages.
 void closeAddNoteFabIfOpen() {
   for (final fabKey in [addNoteFabKey, labeledAddNoteFabKey]) {
-    if (fabKey.currentState != null && fabKey.currentState!.isOpen) {
-      fabKey.currentState!.toggle();
+    final fab = fabKey.currentState;
+    if (fab != null && fab.isOpen) {
+      fab.toggle();
     }
   }
 }

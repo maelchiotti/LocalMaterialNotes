@@ -5,11 +5,11 @@ import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../common/constants/constants.dart';
 import '../../../../common/constants/paddings.dart';
 import '../../../../common/extensions/build_context_extension.dart';
+import '../../../../common/system_utils.dart';
 import '../../../../common/preferences/enums/font.dart';
 import '../../../../common/preferences/preference_key.dart';
 import '../../../../models/note/note.dart';
@@ -60,20 +60,7 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
     changes = widget.fleatherController.document.changes.listen((_) => onChanged());
   }
 
-  void onLaunchUrl(String? url) {
-    if (url == null) {
-      return;
-    }
-
-    final uri = Uri.tryParse(url);
-    if (uri == null) {
-      logger.w('The URL opened in the rich text editor could not be parsed: $url');
-
-      return;
-    }
-
-    launchUrl(uri);
-  }
+  void onLaunchUrl(String? url) => SystemUtils().openLink(url);
 
   /// Updates whether the undo and redo actions are available.
   void updateUndoRedo() {
