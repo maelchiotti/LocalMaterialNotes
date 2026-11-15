@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:restart_app/restart_app.dart';
 
+import '../../models/note/note.dart';
 import '../constants/constants.dart';
 import '../extensions/build_context_extension.dart';
 import '../preferences/preference_key.dart';
@@ -50,4 +51,15 @@ Future<bool> authenticate(BuildContext context, {required String reason}) async 
   }
 
   return true;
+}
+
+/// Asks the user to authenticate if any of the [notes] requires it.
+///
+/// Returns whether the action on the [notes] can go on.
+Future<bool> authenticateIfRequired(BuildContext context, List<Note> notes) async {
+  if (!notes.any((note) => note.requiresAuthentication)) {
+    return true;
+  }
+
+  return authenticate(context, reason: context.l.lock_page_reason_action);
 }
