@@ -7,7 +7,6 @@ import '../../../l10n/app_localizations/app_localizations.g.dart';
 import '../../../services/backup/backup_service.dart';
 import '../../constants/constants.dart';
 import '../../constants/paddings.dart';
-import '../../extensions/build_context_extension.dart';
 import '../../navigation/side_navigation.dart';
 import '../../preferences/preference_key.dart';
 import '../../system_utils.dart';
@@ -33,8 +32,8 @@ class ErrorPlaceholder extends StatelessWidget {
   Future<void> _exportNotes(BuildContext context) async {
     final exported = await ManualBackupService().manuallyExportAsJson(encrypt: false);
 
-    if (exported && context.mounted) {
-      SnackBarUtils().show(context, text: context.l.snack_bar_export_success);
+    if (context.mounted) {
+      SnackBarUtils().showExportResult(context, exported: exported);
     }
   }
 

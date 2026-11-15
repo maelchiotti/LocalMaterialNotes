@@ -1,3 +1,4 @@
+import '../constants/constants.dart';
 import 'preferences_wrapper.dart';
 
 // ignore_for_file: public_member_api_docs
@@ -31,7 +32,7 @@ enum PreferenceKey<T extends Object> {
   // Behavior
   confirmBeforeExiting<bool>(false),
   confirmations<String>('irreversible'),
-  autoRemoveFromBinDelay<int>(999),
+  autoRemoveFromBinDelay<int>(neverDelay, backup: false),
   swipeRightAction<String>('delete'),
   swipeLeftAction<String>('archive'),
   archivedSwipeRightAction<String>('delete'),
@@ -62,10 +63,10 @@ enum PreferenceKey<T extends Object> {
   // Security
   flagSecure<bool>(false),
   lockApp<bool>(false, backup: false),
-  lockAppDelay<int>(10),
+  lockAppDelay<int>(10, backup: false),
   lockNote<bool>(false, backup: false),
   lockLabel<bool>(false, backup: false),
-  lockNoteDelay<int>(10),
+  lockNoteDelay<int>(10, backup: false),
 
   // Accessibility
   textScaling<double>(1.0),
@@ -104,6 +105,20 @@ enum PreferenceKey<T extends Object> {
   /// Sets this preference to the [value] with the type [T].
   Future<void> set(T value) async {
     await PreferencesWrapper().set<T>(this, value);
+  }
+
+  /// Returns the [value] read from a backup as a [T], or `null` if it cannot be restored as one.
+  T? parse(Object? value) {
+    if (T == List<String>) {
+      return value is List && value.every((item) => item is String) ? value.cast<String>() as T : null;
+    }
+
+    // A double can be written without decimals in JSON
+    if (T == double) {
+      return value is num ? value.toDouble() as T : null;
+    }
+
+    return value is T ? value : null;
   }
 
   /// Resets this preference to its [defaultValue].

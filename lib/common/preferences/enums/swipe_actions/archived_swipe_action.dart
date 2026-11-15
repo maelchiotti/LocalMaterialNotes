@@ -106,7 +106,7 @@ enum ArchivedSwipeAction {
         await copyNote(context, note: note);
         return false;
       case share:
-        await shareNote(note: note);
+        await shareNote(context, note: note);
         return false;
       case unarchive:
         return await unarchiveNote(context, ref, note: note);

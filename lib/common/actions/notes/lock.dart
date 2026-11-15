@@ -5,20 +5,13 @@ import '../../../models/note/note.dart';
 import '../../../models/note/note_status.dart';
 import '../../../providers/notes/notes_provider.dart';
 import '../../../providers/notifiers/notifiers.dart';
-import '../../extensions/build_context_extension.dart';
 import '../authentication.dart';
 import 'select.dart';
 
 /// Toggles whether the [notes] are locked.
 Future<bool> toggleLockNotes(BuildContext context, WidgetRef ref, {required List<Note> notes}) async {
-  // If required, ask for authentication
-  final requiresAuthentication = notes.any((note) => note.requiresAuthentication);
-  if (requiresAuthentication) {
-    final authenticated = await authenticate(context, reason: context.l.lock_page_reason_action);
-
-    if (!authenticated) {
-      return false;
-    }
+  if (!await authenticateIfRequired(context, notes)) {
+    return false;
   }
 
   final toggled = await ref

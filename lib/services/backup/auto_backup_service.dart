@@ -30,11 +30,34 @@ class AutoExportUtils {
   /// they are saved in the default directory.
   bool isAutoExportDirectoryLost = false;
 
+  /// Whether the last automatic export was needed but could not be performed.
+  bool autoExportFailed = false;
+
+  Future<void>? _directoryInitialization;
+  Future<void>? _initialization;
+
   /// Ensures the utility is initialized.
-  Future<void> ensureInitialized() async {
-    await setAutoExportDirectory();
-    await performAutoExportIfNeeded();
+  Future<void> ensureInitialized() => _initialization ??= _initialize();
+
+  /// Sets the automatic export directory then performs the automatic export if it is needed.
+  ///
+  /// The errors are logged here, so that waiting for [directoryInitialized] or [initialized] never throws.
+  Future<void> _initialize() async {
+    _directoryInitialization = setAutoExportDirectory().onError(_logError);
+    await _directoryInitialization;
+
+    await performAutoExportIfNeeded().onError(_logError);
   }
+
+  void _logError(Object exception, StackTrace stackTrace) {
+    logger.e(exception.toString(), exception, stackTrace);
+  }
+
+  /// Completes when the automatic export directory is set, which tells whether it is [isAutoExportDirectoryLost].
+  Future<void> get directoryInitialized async => await _directoryInitialization;
+
+  /// Completes when the utility is initialized, including the automatic export if it was needed.
+  Future<void> get initialized async => await _initialization;
 
   /// Sets the directory where automatic exports are located depending on the user preference and the available
   /// permissions.
@@ -133,7 +156,14 @@ class AutoExportUtils {
     final encrypt = PreferenceKey.autoExportEncryption.preferenceOrDefault;
     final password = await PreferenceKey.autoExportPassword.preferenceOrDefaultSecure;
 
-    final exported = await ManualBackupService().autoExportAsJson(encrypt, password);
+    var exported = false;
+    try {
+      exported = await ManualBackupService().autoExportAsJson(encrypt, password);
+    } catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
+    }
+
+    autoExportFailed = !exported;
 
     // Only save the date of a successful export, so that a failed one is tried again at the next startup
     if (exported) {

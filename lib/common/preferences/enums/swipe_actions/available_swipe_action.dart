@@ -177,7 +177,7 @@ enum AvailableSwipeAction {
         await copyNote(context, note: note);
         return false;
       case share:
-        await shareNote(note: note);
+        await shareNote(context, note: note);
         return false;
       case pin:
       case unpin:

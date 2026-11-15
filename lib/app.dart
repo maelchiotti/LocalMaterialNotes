@@ -68,10 +68,13 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
     }
 
     // If the backup directory is still the default or is no longer accessible, ask to select it
+    await AutoExportUtils().directoryInitialized;
     final directoryLost = AutoExportUtils().isAutoExportDirectoryLost;
     if (await AutoExportUtils().isAutoExportDirectoryDefault || directoryLost) {
       await requireBackupDirectory(rootNavigatorKey.currentContext!, directoryLost: directoryLost);
     }
+
+    await warnIfAutoExportFailed(rootNavigatorKey.currentContext!);
   }
 
   @override

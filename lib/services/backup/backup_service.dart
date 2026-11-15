@@ -69,14 +69,7 @@ class ManualBackupService {
       return false;
     }
 
-    // Import the preferences
-    final importPreferences = importedJson.containsKey("preferences");
-    if (importPreferences) {
-      final importedPreferences = await _importPreferences(importedJson);
-      if (!importedPreferences) {
-        return false;
-      }
-    }
+    await _importPreferences(importedJson);
 
     return true;
   }
@@ -199,26 +192,45 @@ class ManualBackupService {
     }
   }
 
-  Future<bool> _importPreferences(dynamic importedJson) async {
-    final preferencesAndValues = importedJson['preferences'] as Map<String, dynamic>;
+  /// Restores the preferences of the [importedJson].
+  ///
+  /// The preferences that don't exist, are not backed up or have a value of the wrong type are skipped.
+  Future<void> _importPreferences(Map<String, dynamic> importedJson) async {
+    final preferencesAndValues = importedJson['preferences'];
+
+    if (preferencesAndValues == null) {
+      return;
+    }
+
+    if (preferencesAndValues is! Map<String, dynamic>) {
+      logger.w('While restoring the preferences from JSON, the preferences are not a map');
+
+      return;
+    }
 
     for (final MapEntry(key: preference, :value) in preferencesAndValues.entries) {
       final preferenceKey = PreferenceKey.values.byNameOrNull(preference);
 
       if (preferenceKey == null) {
         logger.w("While restoring the preferences from JSON, the preference '$preference' doesn't exist");
-      } else if (preferenceKey.backup) {
-        // If the preference value is a list, then it's a list of String
-        // (the only type of list that can be stored in the preferences)
-        if (value is List) {
-          await preferenceKey.set(value.cast<String>());
-        } else {
-          await preferenceKey.set(value);
-        }
-      }
-    }
 
-    return true;
+        continue;
+      }
+
+      if (!preferenceKey.backup) {
+        continue;
+      }
+
+      final restoredValue = preferenceKey.parse(value);
+
+      if (restoredValue == null) {
+        logger.w("While restoring the preferences from JSON, the value of the preference '$preference' is invalid");
+
+        continue;
+      }
+
+      await preferenceKey.set(restoredValue);
+    }
   }
 
   /// Exports all the notes in a JSON file with the [fileName] in the [directory].
