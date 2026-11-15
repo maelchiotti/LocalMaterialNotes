@@ -1351,6 +1351,10 @@
   "@snack_bar_auto_export_failed": {
     "description": "Snack bar shown at startup when the automatic export was needed but could not be performed."
   },
+  "snack_bar_export_not_performed": "The backup was not exported because it was cancelled or could not be performed.",
+  "@snack_bar_export_not_performed": {
+    "description": "Snack bar informing that the backup was not manually exported, because the user cancelled it or it failed."
+  },
   "snack_bar_logs_copied": "The logs were copied to your clipboard.",
   "@snack_bar_logs_copied": {
     "description": "Snack bar message shown when the logs where copied to the clipboard from the error widget."
