@@ -11,7 +11,7 @@ If the changes on the branch call for another version (a breaking change → `X`
 
 1. **Version**: in `pubspec.yaml`, bump `version: X.Y.Z+N` with semantic versioning and `N` the previous build number plus one. Bump the Flutter version in `.fvmrc` and `environment.flutter` together when asked.
 2. **Dependencies**, when asked: `flutter pub upgrade --major-versions`, then fix the breaking changes and run the `check` skill.
-3. **CHANGELOG.md**: a `## X.Y.Z - YYYY-MM-DD` section at the top, Keep a Changelog headings (`### Added`, `### Changed`, `### Fixed`, `### Removed`, `### Miscellaneous`), one short line per user-visible change, written for users.
+3. **CHANGELOG.md**: a `## X.Y.Z - YYYY-MM-DD` section at the top, Keep a Changelog headings (`### BREAKING CHANGES`, `### Added`, `### Changed`, `### Removed`, `### Fixed`), one short line per user-visible change ending with a period and never wrapped, written for users.
 4. **Fastlane changelogs**: `fastlane/metadata/android/en-US/changelogs/<N*10>.txt` and `fr-FR/changelogs/<N*10>.txt` (build 38 → `380.txt`, the fat APK version code of `android/app/build.gradle`). Upper-case headings (`ADDED`, `CHANGED`, `FIXED`, `REMOVED`, `MISCELLANEOUS`; in French `AJOUTÉ`, `MODIFIÉ`, `CORRIGÉ`, `SUPPRIMÉ`, `DIVERS`), `- ` lines, no trailing newline, at most 500 characters (`docs/google_play/changelogs_max_length.txt`).
 5. **Descriptions**, when a feature changes them: `README.md` and `fastlane/metadata/android/*/full_description.yaml`, then `python scripts/generate_full_description.py` to regenerate the `full_description.txt` files.
 6. **Languages**: after a Crowdin sync, update the completions in `lib/common/enums/supported_language.dart` and the README list of languages.
