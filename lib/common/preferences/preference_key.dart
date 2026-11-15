@@ -1,3 +1,4 @@
+import '../constants/constants.dart';
 import 'preferences_wrapper.dart';
 
 // ignore_for_file: public_member_api_docs
@@ -31,7 +32,7 @@ enum PreferenceKey<T extends Object> {
   // Behavior
   confirmBeforeExiting<bool>(false),
   confirmations<String>('irreversible'),
-  autoRemoveFromBinDelay<int>(999),
+  autoRemoveFromBinDelay<int>(neverDelay, backup: false),
   swipeRightAction<String>('delete'),
   swipeLeftAction<String>('archive'),
   archivedSwipeRightAction<String>('delete'),
@@ -62,10 +63,10 @@ enum PreferenceKey<T extends Object> {
   // Security
   flagSecure<bool>(false),
   lockApp<bool>(false, backup: false),
-  lockAppDelay<int>(10),
+  lockAppDelay<int>(10, backup: false),
   lockNote<bool>(false, backup: false),
   lockLabel<bool>(false, backup: false),
-  lockNoteDelay<int>(10),
+  lockNoteDelay<int>(10, backup: false),
 
   // Accessibility
   textScaling<double>(1.0),
