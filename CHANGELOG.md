@@ -2,8 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
-adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## 2.2.2 - 2026-07-14
 
@@ -24,7 +23,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - List of notes not updating when (un)deleting and (un)archiving notes
 - Rich text note not saving when toggling a checkbox and closing it
 
-### Miscellaneous
+### Changed
 
 - Reduce the APK size
 
@@ -48,13 +47,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## 2.1.4 - 2026-04-07
 
-### Miscellaneous
+### Changed
 
 - Reduce the APK size
 
 ## 2.1.3 - 2025-11-07
 
-### Miscellaneous
+### Changed
 
 - Revert to the Flutter stable channel
 
@@ -250,8 +249,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- Python script to convert Samsung Notes exports to a format compatible with Material Notes (see the
-  GitHub repository)
+- Python script to convert Samsung Notes exports to a format compatible with Material Notes (see the GitHub repository)
 - Ability to copy the logs to the clipboard and to export them to a text file
 
 ### Changed
@@ -261,8 +259,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 - Using the system back button or back gesture after opening a dialog, sheet or menu closes the app
-- Auto export directory picker fails when choosing a directory that is not at the root of the
-  storage
+- Auto export directory picker fails when choosing a directory that is not at the root of the storage
 - JSON export file using the .txt extension instead of .json
 - Buttons in the editor app bar not disabled in reading mode
 - Button to toggle between editing and reading mode not hidden for deleted notes
@@ -273,7 +270,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Error page shown when a page fails to load, with the ability to copy and export the error logs
 
-### Improved
+### Changed
 
 - Reliability of the automatic exports
 
@@ -341,8 +338,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
-- Exiting the editor with the device back button or the back gesture (not the app back button)
-  causes the content of the note to be displayed in any other note opened afterwards
+- Exiting the editor with the device back button or the back gesture (not the app back button) causes the content of the note to be displayed in any other note opened afterwards
 - Special characters incorrectly decoded when importing a JSON file
 
 ## 1.5.0 - 2024-08-06
@@ -391,8 +387,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 - Going back from the licences list doesn't close the page
-- Going back from the editor page while the menu is open goes back to the notes list instead of
-  closing the menu
+- Going back from the editor page while the menu is open goes back to the notes list instead of closing the menu
 - Empty note still shown until the notes list is refreshed
 - Devices using a system RTL language not having the app use the RTL layout
 - Slightly wrong icon size on the splash screen for Android 12+ devices
@@ -417,8 +412,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Improve the search precision
 - Improve markdown export (support advanced text formatting and export each note to a separate file)
-- Going back from the settings closes the application instead of going back to the previous page (if
-  any)
+- Going back from the settings closes the application instead of going back to the previous page (if any)
 
 ### Fixed
 
@@ -447,8 +441,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
-- App crashing when using the quick action to add a note if the app was closed, or opened but not on
-  the notes list
+- App crashing when using the quick action to add a note if the app was closed, or opened but not on the notes list
 - Focus being reset in the note content text field
 - Drawer openable on the editor page
 - Selection mode note exited when adding a note
@@ -464,13 +457,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Automatically sort in descending order when sorting by date, and in ascending order when sorting
-  by title (the order can still be manually changed afterwards)
+- Automatically sort in descending order when sorting by date, and in ascending order when sorting by title (the order can still be manually changed afterwards)
 
 ### Removed
 
-- Remove the app lock feature (most recent Android devices have a more stable, built-in identical
-  functionality)
+- Remove the app lock feature (most recent Android devices have a more stable, built-in identical functionality)
 
 ### Fixed
 
@@ -492,8 +483,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 - Welcome note not localized
-- Going back from the editor after adding a note from the quick action when the editor was already
-  opened on an other does not go back to the notes list
+- Going back from the editor after adding a note from the quick action when the editor was already opened on an other does not go back to the notes list
 
 ## 1.0.1 - 2024-02-10
 
