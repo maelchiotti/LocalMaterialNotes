@@ -1139,6 +1139,22 @@
   "@action_share": {
     "description": "Swipe or menu action to share a note."
   },
+  "note_format_text": "Plain text",
+  "@note_format_text": {
+    "description": "Format in which a note is copied, shared or exported: its title and its content without formatting."
+  },
+  "note_format_markdown": "Markdown",
+  "@note_format_markdown": {
+    "description": "Format in which a note is copied, shared or exported: its title and its content with the Markdown formatting."
+  },
+  "note_format_text_file": "Plain text file",
+  "@note_format_text_file": {
+    "description": "Format in which a note is shared: a .txt file with its title and its content without formatting."
+  },
+  "note_format_markdown_file": "Markdown file",
+  "@note_format_markdown_file": {
+    "description": "Format in which a note is shared: a .md file with its title and its content with the Markdown formatting."
+  },
   "action_share_subject": "{count} {count, plural, one{note} other{notes}} shared from Material Notes",
   "@action_share_subject": {
     "description": "Subject of the text that is shared when multiple notes are shared at the same time.",

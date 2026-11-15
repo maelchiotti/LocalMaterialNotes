@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../models/note/note.dart';
+import '../../../models/note/note_format.dart';
 import '../../extensions/build_context_extension.dart';
 import '../authentication.dart';
 
@@ -13,7 +14,7 @@ Future<void> shareNote(BuildContext context, {required Note note, bool alreadyAu
     return;
   }
 
-  await SharePlus.instance.share(ShareParams(text: note.shareText, subject: note.title));
+  await SharePlus.instance.share(ShareParams(text: NoteFormat.text.format(note), subject: note.title));
 }
 
 /// Shares the [notes] as text (title and content), separated by dashes.
@@ -24,7 +25,7 @@ Future<void> shareNotes(BuildContext context, {required List<Note> notes}) async
     return;
   }
 
-  final text = notes.map((note) => note.shareText).join('\n\n----------\n\n').trim();
+  final text = NoteFormat.text.formatAll(notes);
 
   if (!context.mounted) {
     return;

@@ -3,6 +3,9 @@ enum MimeType {
   /// JSON text files.
   json('application/json', 'JSON files', 'json'),
 
+  /// Plain text files.
+  text('text/plain', 'Text files', 'txt'),
+
   /// Markdown text files.
   markdown('text/markdown', 'Markdown files', 'md'),
 

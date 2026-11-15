@@ -6,8 +6,10 @@ import 'package:flutter_checklist/checklist.dart';
 import 'package:isar_community/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remove_markdown/remove_markdown.dart';
+import 'package:sanitize_filename/sanitize_filename.dart';
 
 import '../../../common/constants/constants.dart';
+import '../../common/extensions/date_time_extensions.dart';
 import '../../common/files/encryption_utils.dart';
 import '../../common/preferences/enums/sort_method.dart';
 import '../../common/preferences/preference_key.dart';
@@ -127,9 +129,25 @@ sealed class Note implements Comparable<Note> {
   @ignore
   String get contentPreview;
 
-  /// The title and the content joined together to be shared as a single text.
+  /// The title and the content as plain text, joined together.
   @ignore
-  String get shareText => '$title\n\n$contentPreview';
+  String get asText {
+    final content = contentAsText.trim();
+
+    return isTitleEmpty ? content : '$title\n\n$content'.trim();
+  }
+
+  /// The title as a heading and the content as Markdown, joined together.
+  @ignore
+  String get asMarkdown {
+    final content = contentAsMarkdown.trim();
+
+    return isTitleEmpty ? content : '# $title\n\n$content'.trim();
+  }
+
+  /// The name of a file of this note, without extension: the title and the creation time, sanitized.
+  @ignore
+  String get fileNameWithoutExtension => sanitizeFilename('$title (${createdTime.filename})'.trim());
 
   /// The number of words in the content.
   @ignore
