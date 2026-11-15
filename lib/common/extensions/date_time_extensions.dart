@@ -28,4 +28,9 @@ extension DateTimeExtensions on DateTime {
 
     return '$date ${context.l.about_time_at} $time';
   }
+
+  /// Returns the date formatted in a short and readable manner, according to the current locale.
+  ///
+  /// Pattern: `{abbreviated month} {day}, {year}` in English.
+  String yMMMd(BuildContext context) => DateFormat.yMMMd(context.l.localeName).format(toLocal());
 }

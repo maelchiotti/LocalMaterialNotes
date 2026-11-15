@@ -46,6 +46,16 @@ class AboutSheet extends StatelessWidget {
               title: Text(context.l.about_last_edited),
               trailing: Text(currentNote.editedTime.yMMMMd_at_Hm(context)),
             ),
+            if (currentNote.archived && currentNote.archivedTime != null)
+              ListTile(
+                title: Text(context.l.about_archived),
+                trailing: Text(currentNote.archivedTime!.toLocal().yMMMMd_at_Hm(context)),
+              ),
+            if (currentNote.deleted && currentNote.deletedTime != null)
+              ListTile(
+                title: Text(context.l.about_deleted),
+                trailing: Text(currentNote.deletedTime!.toLocal().yMMMMd_at_Hm(context)),
+              ),
             if (areLabelsEnabled)
               ListTile(title: Text(context.l.about_labels), trailing: Text('${currentNote.labelsCount}')),
             ListTile(title: Text(context.l.about_words), trailing: Text('${currentNote.wordsCount}')),
