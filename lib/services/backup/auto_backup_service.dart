@@ -30,10 +30,24 @@ class AutoExportUtils {
   /// they are saved in the default directory.
   bool isAutoExportDirectoryLost = false;
 
+  Future<void>? _directoryInitialization;
+
   /// Ensures the utility is initialized.
   Future<void> ensureInitialized() async {
-    await setAutoExportDirectory();
+    final directoryInitialization = setAutoExportDirectory();
+    _directoryInitialization = directoryInitialization;
+
+    await directoryInitialization;
     await performAutoExportIfNeeded();
+  }
+
+  /// Completes when the automatic export directory is set, which tells whether it is [isAutoExportDirectoryLost].
+  Future<void> get directoryInitialized async {
+    try {
+      await _directoryInitialization;
+    } catch (_) {
+      // The error is already reported by whoever started the initialization
+    }
   }
 
   /// Sets the directory where automatic exports are located depending on the user preference and the available
