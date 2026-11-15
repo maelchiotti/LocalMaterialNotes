@@ -27,6 +27,10 @@ enum PreferenceKey<T extends Object> {
   showTitlesOnlyDisableInSearchView<bool>(true),
   maximumContentPreviewLines<int>(3),
   showNoteTypeIcon<bool>(true),
+  showCreatedDateOnNoteTile<bool>(false),
+  showEditedDateOnNoteTile<bool>(false),
+  showArchivedDateOnNoteTile<bool>(false),
+  showDeletedDateOnNoteTile<bool>(false),
 
   // Behavior
   confirmBeforeExiting<bool>(false),

@@ -217,6 +217,10 @@
   "@settings_page_notes_tiles_content_section": {
     "description": "Title of the section regarding the content under the notes tiles settings."
   },
+  "settings_page_notes_tiles_dates_section": "Dates",
+  "@settings_page_notes_tiles_dates_section": {
+    "description": "Title of the section regarding the dates shown on the notes tiles under the notes tiles settings."
+  },
   "settings_show_tiles_background": "Background",
   "@settings_show_tiles_background": {
     "description": "Title of the setting tile to show the background of the notes tiles."
@@ -240,6 +244,38 @@
   "settings_show_note_type_icon_description": "Show the icon of the type of the note",
   "@settings_show_note_type_icon_description": {
     "description": "Description of the setting tile to show the icon of the type of the note."
+  },
+  "settings_show_created_date": "Creation date",
+  "@settings_show_created_date": {
+    "description": "Title of the setting tile to show the date when the note was created on the notes tiles."
+  },
+  "settings_show_created_date_description": "Show the date when the note was created",
+  "@settings_show_created_date_description": {
+    "description": "Description of the setting tile to show the date when the note was created on the notes tiles."
+  },
+  "settings_show_edited_date": "Modification date",
+  "@settings_show_edited_date": {
+    "description": "Title of the setting tile to show the date when the note was last edited on the notes tiles."
+  },
+  "settings_show_edited_date_description": "Show the date when the note was last edited",
+  "@settings_show_edited_date_description": {
+    "description": "Description of the setting tile to show the date when the note was last edited on the notes tiles."
+  },
+  "settings_show_archived_date": "Archiving date",
+  "@settings_show_archived_date": {
+    "description": "Title of the setting tile to show the date when the note was archived, in the archives on the notes tiles."
+  },
+  "settings_show_archived_date_description": "Show the date when the note was archived, in the archives",
+  "@settings_show_archived_date_description": {
+    "description": "Description of the setting tile to show the date when the note was archived, in the archives on the notes tiles."
+  },
+  "settings_show_deleted_date": "Deletion date",
+  "@settings_show_deleted_date": {
+    "description": "Title of the setting tile to show the date when the note was deleted, in the bin on the notes tiles."
+  },
+  "settings_show_deleted_date_description": "Show the date when the note was deleted, in the bin",
+  "@settings_show_deleted_date_description": {
+    "description": "Description of the setting tile to show the date when the note was deleted, in the bin on the notes tiles."
   },
   "settings_show_titles_only": "Titles only",
   "@settings_show_titles_only": {
@@ -1176,6 +1212,14 @@
   "about_last_edited": "Last edited",
   "@about_last_edited": {
     "description": "Date when the note was edited for the last time."
+  },
+  "about_archived": "Archived",
+  "@about_archived": {
+    "description": "Date when the note was archived."
+  },
+  "about_deleted": "Deleted",
+  "@about_deleted": {
+    "description": "Date when the note was deleted."
   },
   "about_type": "Type",
   "@about_type": {
