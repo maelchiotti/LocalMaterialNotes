@@ -209,16 +209,16 @@ class _NoteTileState extends ConsumerState<NoteTile> {
 
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
 
+    // Never show the content of a note that is locked or has a locked label (checked first to skip decoding its preview)
+    final requiresAuthentication = widget.note.requiresAuthentication;
+    final contentPreviewEmpty = requiresAuthentication || widget.note.isContentPreviewEmpty;
     // Do not show only the title and the preview content is not empty
-    final showPreview = !showTitlesOnly && !widget.note.isContentPreviewEmpty;
+    final showPreview = !showTitlesOnly && !contentPreviewEmpty;
     // Show only the title but the title is empty
     final showContentInsteadOfEmptyTitle = showTitlesOnly && widget.note.isTitleEmpty;
     // In search view, do not show only the title and the preview content is not empty
-    final showInSearchView =
-        widget.search != null && showTitlesOnlyDisableInSearchView && !widget.note.isContentPreviewEmpty;
-    // Never show the content of a note that is locked or has a locked label
-    final showContent =
-        !widget.note.requiresAuthentication && (showPreview || showContentInsteadOfEmptyTitle || showInSearchView);
+    final showInSearchView = widget.search != null && showTitlesOnlyDisableInSearchView && !contentPreviewEmpty;
+    final showContent = !requiresAuthentication && (showPreview || showContentInsteadOfEmptyTitle || showInSearchView);
 
     var titleStyle = biggerTitles ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium;
     titleStyle ??= TextStyle();

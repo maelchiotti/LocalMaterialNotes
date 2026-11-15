@@ -169,13 +169,10 @@ class ManualBackupService {
     }
 
     // Link the notes to their labels only if the file contains labels
-    final notesLabelsNames = notesAsJson.map((noteAsJson) {
-      if (labels.isEmpty) {
-        return <String>[];
-      }
-
-      return ((noteAsJson['labels'] as List?) ?? []).cast<String>();
-    }).toList();
+    final notesLabelsNames = [
+      for (final noteAsJson in notesAsJson)
+        labels.isEmpty ? <String>[] : ((noteAsJson['labels'] as List?) ?? []).cast<String>(),
+    ];
 
     // Add the labels, the notes and their links to the database at once
     await _notesService.import(labels, notes, notesLabelsNames);

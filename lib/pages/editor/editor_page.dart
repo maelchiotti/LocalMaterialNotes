@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
+import '../../common/actions/notes/edit.dart';
 import '../../common/constants/constants.dart';
 import '../../common/extensions/build_context_extension.dart';
 import '../../common/navigation/app_bars/notes/editor_app_bar.dart';
@@ -68,10 +69,6 @@ class _EditorState extends ConsumerState<EditorPage> {
     globalRef.read(notesProvider(status: NoteStatus.available).notifier).removeEmpty();
     // ignore: riverpod_lint/avoid_ref_inside_state_dispose
     globalRef.read(notesProvider(status: NoteStatus.archived).notifier).removeEmpty();
-    if (currentLabelFilter != null) {
-      // ignore: riverpod_lint/avoid_ref_inside_state_dispose
-      globalRef.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).removeEmpty();
-    }
 
     fleatherControllerNotifier.value = null;
     _fleatherController?.dispose();
@@ -85,15 +82,13 @@ class _EditorState extends ConsumerState<EditorPage> {
 
   /// If a save is waiting to happen, performs it immediately.
   void savePendingNote([WidgetRef? widgetRef]) {
-    if (!(saveDebounce?.isActive ?? false)) {
+    final note = pendingNote;
+    if (note == null) {
       return;
     }
 
-    saveDebounce!.cancel();
-
-    if (pendingNote != null) {
-      save(pendingNote!, widgetRef);
-    }
+    saveDebounce?.cancel();
+    save(note, widgetRef);
   }
 
   void scheduleSave(Note note) {
@@ -104,9 +99,7 @@ class _EditorState extends ConsumerState<EditorPage> {
   }
 
   void save(Note note, [WidgetRef? widgetRef]) {
-    // Archived notes are not filtered by label
-    final label = note.archived ? null : currentLabelFilter;
-    (widgetRef ?? ref).read(notesProvider(status: note.status, label: label).notifier).edit(note);
+    editNote(widgetRef ?? ref, note);
 
     pendingNote = null;
   }

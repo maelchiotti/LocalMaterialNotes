@@ -286,6 +286,9 @@ class Notes extends _$Notes {
   /// Removes the empty notes.
   Future<void> removeEmpty() async {
     final emptyNotes = state.value?.where((note) => note.isEmpty).toList() ?? [];
+    if (emptyNotes.isEmpty) {
+      return;
+    }
 
     try {
       await _notesService.deleteAll(emptyNotes);
@@ -297,6 +300,8 @@ class Notes extends _$Notes {
     notes = notes..removeWhere((note) => emptyNotes.contains(note));
 
     state = AsyncData([...notes]);
+    _updateUnlabeledProvider();
+    _updateLabeledProviders(emptyNotes.expand((note) => note.labels));
   }
 
   /// Toggles whether the [noteToToggle] is selected.

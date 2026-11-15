@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:markdown/markdown.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../common/constants/constants.dart';
 import '../../../../common/constants/paddings.dart';
 import '../../../../common/extensions/build_context_extension.dart';
+import '../../../../common/system_utils.dart';
 import '../../../../models/note/note.dart';
 
 /// Markdown editor.
@@ -60,20 +60,7 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
     widget.onChanged(note);
   }
 
-  void onOpenLink(String text, String? href, String title) {
-    if (href == null) {
-      return;
-    }
-
-    final uri = Uri.tryParse(href);
-    if (uri == null) {
-      logger.w('The URL opened in the Markdown editor could not be parsed: $href');
-
-      return;
-    }
-
-    launchUrl(uri);
-  }
+  void onOpenLink(String text, String? href, String title) => SystemUtils().openLink(href);
 
   @override
   Widget build(BuildContext context) {

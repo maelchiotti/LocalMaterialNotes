@@ -10,6 +10,7 @@ import 'package:listen_sharing_intent/listen_sharing_intent.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:quick_actions/quick_actions.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../l10n/app_localizations/app_localizations.g.dart';
 import '../models/note/types/note_type.dart';
@@ -233,5 +234,21 @@ class SystemUtils {
   /// Closes the keyboard.
   void closeKeyboard() {
     FocusManager.instance.primaryFocus?.unfocus();
+  }
+
+  /// Opens the [url] of a link in a note, if it can be parsed.
+  void openLink(String? url) {
+    if (url == null) {
+      return;
+    }
+
+    final uri = Uri.tryParse(url);
+    if (uri == null) {
+      logger.w('The URL of the link could not be parsed: $url');
+
+      return;
+    }
+
+    launchUrl(uri);
   }
 }

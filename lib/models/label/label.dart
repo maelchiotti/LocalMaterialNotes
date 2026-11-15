@@ -113,6 +113,8 @@ class Label extends Equatable implements Comparable<Label> {
     }
   }
 
+  /// Labels are equal by name, and they are used as keys of the labeled notes providers:
+  /// never rename a label in place, use [copyWith].
   @override
   @ignore
   List<Object?> get props => [name];
