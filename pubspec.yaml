@@ -20,12 +20,12 @@ dependencies:
   dynamic_color: ^1.9.0
   encrypt: ^5.0.3
   equatable: ^3.0.0
-  flag_secure: ^2.0.2
+  flag_secure: ^2.1.0
   fleather: ">=1.27.0 <1.28.0"
   flex_color_picker: ^3.8.0
   flutter:
     sdk: flutter
-  flutter_checklist: ^1.5.5
+  flutter_checklist: ^2.0.0
   flutter_displaymode: ^0.7.0
   flutter_expandable_fab: ^2.5.2
   flutter_fgbg: ^0.8.0
@@ -61,7 +61,7 @@ dependencies:
   saf_stream: ^4.0.3
   saf_util: ^3.1.1
   sanitize_filename: ^1.0.5
-  settings_tiles: ^6.0.1
+  settings_tiles: ^7.0.0
   share_plus: ^13.3.1
   shared_preferences: ^2.5.6
   simple_icons: ^16.23.0

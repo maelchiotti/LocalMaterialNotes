@@ -49,14 +49,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.14.12"
-  animated_reorderable_list:
-    dependency: transitive
-    description:
-      name: animated_reorderable_list
-      sha256: "5de5cca556a8c9c8f7b65234ae4b683593dc6e167db498744a5e389302f24d13"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.3.0"
   ansicolor:
     dependency: transitive
     description:
@@ -397,10 +389,10 @@ packages:
     dependency: "direct main"
     description:
       name: flag_secure
-      sha256: fb72ef841bff1bf895f2c5fb7a38f4e4afd10c8ca84922ecd6bbeb9fbd015ac7
+      sha256: "053387a18c7ddae24286ae2507a277a575e133ccec9e1490c5fc250538d957fe"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.2"
+    version: "2.1.0"
   fleather:
     dependency: "direct main"
     description:
@@ -434,10 +426,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_checklist
-      sha256: "537efdb44b23501bb6381824790b63a1303de9d1f090093463162c193f744c03"
+      sha256: "05535250455c0810db377ee86e34b0065bd039ededf198b726366bf70a8ccee6"
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.5"
+    version: "2.0.0"
   flutter_displaymode:
     dependency: "direct main"
     description:
@@ -1249,10 +1241,10 @@ packages:
     dependency: "direct main"
     description:
       name: settings_tiles
-      sha256: "13cfedde953c6c873b9defa387fe8f038abc2d8436ee45f4f941f336746ee34a"
+      sha256: "07e7177fe4f35ffdee1587ffb629dfca8085b3fa3b0bc3ad2266d05cbed3808c"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.1"
+    version: "7.0.0"
   share_plus:
     dependency: "direct main"
     description:
