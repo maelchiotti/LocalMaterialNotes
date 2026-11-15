@@ -1139,6 +1139,14 @@
   "@action_share": {
     "description": "Swipe or menu action to share a note."
   },
+  "note_format_copy_as": "Copy as",
+  "@note_format_copy_as": {
+    "description": "Title of the sheet to choose the format in which the note is copied."
+  },
+  "note_format_share_as": "Share as",
+  "@note_format_share_as": {
+    "description": "Title of the sheet to choose the format in which the note is shared, as text or as a file."
+  },
   "note_format_text": "Plain text",
   "@note_format_text": {
     "description": "Format in which a note is copied, shared or exported: its title and its content without formatting."

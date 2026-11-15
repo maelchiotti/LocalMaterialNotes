@@ -51,9 +51,9 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
     switch (menuOption) {
       case EditorAvailableMenuOption.copy:
-        await copyNote(context, note: note, alreadyAuthenticated: true);
+        await copyNote(context, note: note, alreadyAuthenticated: true, selectFormat: true);
       case EditorAvailableMenuOption.share:
-        await shareNote(context, note: note, alreadyAuthenticated: true);
+        await shareNote(context, note: note, alreadyAuthenticated: true, selectFormat: true);
       case EditorAvailableMenuOption.pin:
       case EditorAvailableMenuOption.unpin:
         await togglePinNotes(context, ref, notes: [note]);
@@ -84,9 +84,9 @@ class _BackAppBarState extends ConsumerState<EditorAppBar> {
 
     switch (menuOption) {
       case EditorArchivedMenuOption.copy:
-        await copyNote(context, note: note, alreadyAuthenticated: true);
+        await copyNote(context, note: note, alreadyAuthenticated: true, selectFormat: true);
       case EditorArchivedMenuOption.share:
-        await shareNote(context, note: note, alreadyAuthenticated: true);
+        await shareNote(context, note: note, alreadyAuthenticated: true, selectFormat: true);
       case EditorArchivedMenuOption.selectLabels:
         await selectLabels(context, ref, note: note);
       case EditorArchivedMenuOption.unarchive:
