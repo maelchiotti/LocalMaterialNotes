@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 import '../../services/backup/auto_backup_service.dart';
 import '../dialogs/require_backup_dialog.dart';
+import '../extensions/build_context_extension.dart';
 import '../files/files_utils.dart';
 import '../preferences/preference_key.dart';
+import '../ui/snack_bar_utils.dart';
 
 /// Requires the user to select a backup directory.
 ///
@@ -25,6 +27,17 @@ Future<void> requireBackupDirectory(BuildContext context, {bool directoryLost = 
   }
 
   await selectBackupDirectory();
+}
+
+/// Warns the user that the last automatic export was needed but could not be performed.
+///
+/// Waits for the automatic export to be done.
+Future<void> warnIfAutoExportFailed(BuildContext context) async {
+  await AutoExportUtils().initialized;
+
+  if (AutoExportUtils().autoExportFailed && context.mounted) {
+    SnackBarUtils().show(context, text: context.l.snack_bar_auto_export_failed);
+  }
 }
 
 /// Asks the user to select a backup directory.

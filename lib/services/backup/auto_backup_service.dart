@@ -39,26 +39,25 @@ class AutoExportUtils {
   /// Ensures the utility is initialized.
   Future<void> ensureInitialized() => _initialization ??= _initialize();
 
+  /// Sets the automatic export directory then performs the automatic export if it is needed.
+  ///
+  /// The errors are logged here, so that waiting for [directoryInitialized] or [initialized] never throws.
   Future<void> _initialize() async {
-    final directoryInitialization = setAutoExportDirectory();
-    _directoryInitialization = directoryInitialization;
+    _directoryInitialization = setAutoExportDirectory().onError(_logError);
+    await _directoryInitialization;
 
-    await directoryInitialization;
-    await performAutoExportIfNeeded();
+    await performAutoExportIfNeeded().onError(_logError);
+  }
+
+  void _logError(Object exception, StackTrace stackTrace) {
+    logger.e(exception.toString(), exception, stackTrace);
   }
 
   /// Completes when the automatic export directory is set, which tells whether it is [isAutoExportDirectoryLost].
-  Future<void> get directoryInitialized => _settled(_directoryInitialization);
+  Future<void> get directoryInitialized async => await _directoryInitialization;
 
   /// Completes when the utility is initialized, including the automatic export if it was needed.
-  Future<void> get initialized => _settled(_initialization);
-
-  /// Waits for the [future] without rethrowing its error, which is already reported by whoever started it.
-  Future<void> _settled(Future<void>? future) async {
-    try {
-      await future;
-    } catch (_) {}
-  }
+  Future<void> get initialized async => await _initialization;
 
   /// Sets the directory where automatic exports are located depending on the user preference and the available
   /// permissions.
