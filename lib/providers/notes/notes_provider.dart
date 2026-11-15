@@ -200,6 +200,7 @@ class Notes extends _$Notes {
       note.pinned = false;
       note.deleted = false;
       note.archived = archived;
+      note.archivedTime = archived ? DateTime.timestamp() : null;
     }
 
     try {
@@ -227,6 +228,7 @@ class Notes extends _$Notes {
     for (final note in notesToSet) {
       note.pinned = false;
       note.archived = false;
+      note.archivedTime = null;
       note.deleted = deleted;
       note.deletedTime = deleted ? DateTime.timestamp() : null;
     }
