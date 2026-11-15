@@ -59,6 +59,9 @@ class ManualBackupService {
       return false;
     }
 
+    // Read the preferences first, so that an invalid value cannot leave the import half done
+    final preferences = _readPreferences(importedJson);
+
     // Import the labels and the notes
     final labelsAsJson = (importedJson['labels'] as List?) ?? [];
     final labels = labelsAsJson.map((labelAsJson) => Label.fromJson(labelAsJson)).toList();
@@ -70,12 +73,8 @@ class ManualBackupService {
     }
 
     // Import the preferences
-    final importPreferences = importedJson.containsKey("preferences");
-    if (importPreferences) {
-      final importedPreferences = await _importPreferences(importedJson);
-      if (!importedPreferences) {
-        return false;
-      }
+    for (final MapEntry(key: preferenceKey, :value) in preferences.entries) {
+      await preferenceKey.set(value);
     }
 
     return true;
@@ -199,26 +198,58 @@ class ManualBackupService {
     }
   }
 
-  Future<bool> _importPreferences(dynamic importedJson) async {
-    final preferencesAndValues = importedJson['preferences'] as Map<String, dynamic>;
+  /// Reads the preferences of the [importedJson] that can be restored.
+  ///
+  /// The preferences that don't exist, are not included in backups or have a value of the wrong type are skipped.
+  Map<PreferenceKey<Object>, Object> _readPreferences(Map<String, dynamic> importedJson) {
+    final preferencesAndValues = importedJson['preferences'];
+
+    if (preferencesAndValues == null) {
+      return {};
+    }
+
+    if (preferencesAndValues is! Map<String, dynamic>) {
+      logger.w('While restoring the preferences from JSON, the preferences are not a map');
+
+      return {};
+    }
+
+    final preferences = <PreferenceKey<Object>, Object>{};
 
     for (final MapEntry(key: preference, :value) in preferencesAndValues.entries) {
       final preferenceKey = PreferenceKey.values.byNameOrNull(preference);
 
       if (preferenceKey == null) {
         logger.w("While restoring the preferences from JSON, the preference '$preference' doesn't exist");
-      } else if (preferenceKey.backup) {
-        // If the preference value is a list, then it's a list of String
-        // (the only type of list that can be stored in the preferences)
-        if (value is List) {
-          await preferenceKey.set(value.cast<String>());
-        } else {
-          await preferenceKey.set(value);
-        }
+
+        continue;
       }
+
+      if (!preferenceKey.backup) {
+        continue;
+      }
+
+      final defaultValue = preferenceKey.defaultValue;
+      final Object? restoredValue;
+      if (defaultValue is List) {
+        // The only type of list that can be stored in the preferences is a list of String
+        restoredValue = value is List && value.every((item) => item is String) ? value.cast<String>() : null;
+      } else if (defaultValue is double) {
+        restoredValue = value is num ? value.toDouble() : null;
+      } else {
+        restoredValue = value.runtimeType == defaultValue.runtimeType ? value : null;
+      }
+
+      if (restoredValue == null) {
+        logger.w("While restoring the preferences from JSON, the value of the preference '$preference' is invalid");
+
+        continue;
+      }
+
+      preferences[preferenceKey] = restoredValue;
     }
 
-    return true;
+    return preferences;
   }
 
   /// Exports all the notes in a JSON file with the [fileName] in the [directory].
