@@ -29,7 +29,7 @@
   "@error_widget_description": {
     "description": "Message shown in the error widget shown when a widget fails to build."
   },
-  "error_widget_disabled_secure_flag": "Le paramètre pour marquer l''application comme sécurisée est désactivé jusqu’au prochain redémarrage pour permettre les captures d’écran.",
+  "error_widget_disabled_secure_flag": "Le paramètre pour marquer l’application comme sécurisée est désactivé jusqu’au prochain redémarrage pour permettre les captures d’écran.",
   "@error_widget_disabled_secure_flag": {
     "description": "Tag shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
   },
