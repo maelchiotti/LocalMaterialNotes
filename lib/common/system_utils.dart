@@ -237,7 +237,9 @@ class SystemUtils {
   }
 
   /// Opens the [url] of a link in a note, if it can be parsed.
-  void openLink(String? url) {
+  ///
+  /// The failures are logged, without the [url] which can contain private information.
+  Future<void> openLink(String? url) async {
     if (url == null) {
       return;
     }
@@ -249,6 +251,13 @@ class SystemUtils {
       return;
     }
 
-    launchUrl(uri);
+    try {
+      if (!await launchUrl(uri)) {
+        logger.w('The link in a note could not be opened');
+      }
+    } catch (exception, stackTrace) {
+      // The exception itself is not logged, since it can contain the URL
+      logger.e('The link in a note could not be opened (${exception.runtimeType})', null, stackTrace);
+    }
   }
 }
