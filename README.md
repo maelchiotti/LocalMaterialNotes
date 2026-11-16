@@ -104,6 +104,7 @@ All the supported languages are listed here alphabetically. You can see more det
 - Russian
 - Spanish
 - Turkish
+- Ukrainian
 
 ## External imports
 
