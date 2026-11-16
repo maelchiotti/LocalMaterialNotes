@@ -12,6 +12,8 @@ class ChecklistEditor extends ConsumerStatefulWidget {
     required this.note,
     required this.isNewNote,
     required this.readOnly,
+    required this.toggleable,
+    required this.reorderable,
     required this.onChanged,
   });
 
@@ -23,6 +25,12 @@ class ChecklistEditor extends ConsumerStatefulWidget {
 
   /// Whether the text fields are read only.
   final bool readOnly;
+
+  /// Whether the checkboxes can be toggled even when the editor is [readOnly] (in the reading mode).
+  final bool toggleable;
+
+  /// Whether the items can be reordered even when the editor is [readOnly] (in the reading mode).
+  final bool reorderable;
 
   /// Called when the note has changed.
   final ValueChanged<Note> onChanged;
@@ -50,6 +58,8 @@ class _ChecklistEditorState extends ConsumerState<ChecklistEditor> {
           child: Checklist(
             lines: widget.note.checklistLines,
             enabled: !widget.readOnly,
+            toggleable: widget.toggleable,
+            reorderable: widget.reorderable,
             autofocusFirstLine: widget.isNewNote,
             textInputAction: TextInputAction.newline,
             textCapitalization: TextCapitalization.sentences,
