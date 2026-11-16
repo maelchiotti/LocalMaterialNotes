@@ -190,12 +190,39 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     setState(() {});
   }
 
+  /// Returns the automatic export directory as a readable path.
+  ///
+  /// The default directory, in the application storage, is shown as such. A directory chosen by the user is shown as
+  /// its storage volume and its path inside it, or as its full URI if it can't be read.
+  String autoExportDirectoryLabel(BuildContext context) {
+    if (PreferenceKey.autoExportDirectory.preferenceOrDefault.isEmpty) {
+      return context.l.settings_auto_export_directory_default;
+    }
+
+    final directory = AutoExportUtils().autoExportDirectory;
+    final safPath = directory.safPath;
+    if (safPath == null) {
+      return Uri.decodeFull(directory);
+    }
+
+    final volume = safPath.volume;
+    if (volume == null) {
+      return safPath.path;
+    }
+
+    final volumeName = volume == 'primary'
+        ? context.l.settings_auto_export_directory_internal_storage
+        : context.l.settings_auto_export_directory_external_storage;
+
+    return safPath.path.isEmpty ? volumeName : '$volumeName › ${safPath.path}';
+  }
+
   @override
   Widget build(BuildContext context) {
     final enableAutoExport = PreferenceKey.enableAutoExport.preferenceOrDefault;
     final autoExportFrequency = PreferenceKey.autoExportFrequency.preferenceOrDefault;
     final autoExportEncryption = PreferenceKey.autoExportEncryption.preferenceOrDefault;
-    final autoExportDirectory = AutoExportUtils().autoExportDirectory.decoded;
+    final autoExportDirectory = autoExportDirectoryLabel(context);
 
     return Scaffold(
       appBar: TopNavigation(appbar: BasicAppBar(title: context.l.navigation_settings_backup)),
