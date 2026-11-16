@@ -577,6 +577,18 @@
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
   },
+  "settings_auto_export_directory_default": "Application storage (default)",
+  "@settings_auto_export_directory_default": {
+    "description": "Value of the settings tile to choose the directory where to save the automatic exports, when no directory was chosen and the exports are saved in the storage of the application."
+  },
+  "settings_auto_export_directory_internal_storage": "Internal storage",
+  "@settings_auto_export_directory_internal_storage": {
+    "description": "Name of the internal storage of the device, shown before the path of the directory where to save the automatic exports."
+  },
+  "settings_auto_export_directory_external_storage": "External storage",
+  "@settings_auto_export_directory_external_storage": {
+    "description": "Name of an external storage of the device (SD card, USB drive), shown before the path of the directory where to save the automatic exports."
+  },
   "settings_security": "Security",
   "@settings_security": {
     "description": "Title of the settings page regarding the security."
