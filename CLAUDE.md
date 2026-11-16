@@ -92,6 +92,7 @@ Whenever you edit or modify any `.dart` file under `lib/` in this project:
 - Each change has a GitHub issue, a branch `fix/<issue>_<slug>` or `feat/<issue>_<slug>` from the version branch, and a pull request into the version branch titled `[<issue>] <Title>`.
 - Every issue and pull request has a label for its kind: `bug`, `enhancement`, `localization`,
   `documentation`, `tests` or `style`, and `release` for a version pull request. A pull request gets the label of its issue.
+- Every issue and pull request is assigned to `maelchiotti` and added to the GitHub project <https://github.com/users/maelchiotti/projects/2>. The pull request body starts with `Closes #<issue>.`, so that the issue is linked to it and closed by the merge.
 - The release is a pull request from the version branch into `main`, titled `vX.Y.Z` and squash-merged. Every push to `main` runs the release workflow (Play Store and GitHub release). The
   `release` skill prepares it.
 - CI on each push: analyze and format (`.github/workflows/dart.yaml`). On each pull request: build the Isar libraries and the APK (`build.yaml`).
