@@ -29,7 +29,7 @@
   "@error_widget_description": {
     "description": "Message shown in the error widget shown when a widget fails to build."
   },
-  "error_widget_disabled_secure_flag": "Le paramètre pour marquer l''application comme sécurisée est désactivé jusqu'au prochain redémarrage pour permettre les captures d'écran.",
+  "error_widget_disabled_secure_flag": "Le paramètre pour marquer l''application comme sécurisée est désactivé jusqu’au prochain redémarrage pour permettre les captures d’écran.",
   "@error_widget_disabled_secure_flag": {
     "description": "Tag shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
   },
@@ -843,7 +843,7 @@
   "@dialog_require_backup_description": {
     "description": "Description of the dialog to select a backup location."
   },
-  "dialog_require_backup_lost": "L'emplacement de sauvegarde que vous avez sélectionné n'est plus accessible. Jusqu'à ce que vous en sélectionniez un nouveau, les exportations automatiques sont enregistrées dans le dossier de l'application, qui est supprimé lorsque l'application est désinstallée.",
+  "dialog_require_backup_lost": "L’emplacement de sauvegarde que vous avez sélectionné n’est plus accessible. Jusqu’à ce que vous en sélectionniez un nouveau, les exportations automatiques sont enregistrées dans le dossier de l’application, qui est supprimé lorsque l’application est désinstallée.",
   "@dialog_require_backup_lost": {
     "description": "Text shown first in the dialog to select a backup location when the location selected by the user is no longer accessible."
   },
@@ -1035,7 +1035,7 @@
   "@dialog_export_encryption_switch": {
     "description": "Text for the switch to toggle the encryption of the export in the dialog to manually or automatically exporting the notes as JSON."
   },
-  "dialog_export_encryption_description": "Le titre et le contenu des notes seront chiffrés à l'aide de votre mot de passe. Il devrait être généré de façon aléatoire, d'exactement 32 caractères de long, fort (au moins 1 minuscule, 1 majuscule, 1 chiffre et 1 caractère spécial) et stocké de manière sécurisée.",
+  "dialog_export_encryption_description": "Le titre et le contenu des notes seront chiffrés à l’aide de votre mot de passe. Il devrait être généré de façon aléatoire, d’exactement 32 caractères de long, fort (au moins 1 minuscule, 1 majuscule, 1 chiffre et 1 caractère spécial) et stocké de manière sécurisée.",
   "@dialog_export_encryption_description": {
     "description": "Description for the encryption feature when the switch to toggle the encryption of the export is enabled."
   },
@@ -1347,11 +1347,11 @@
   "@snack_bar_export_success": {
     "description": "Snack bar informing that the backup was successfully manually exported."
   },
-  "snack_bar_auto_export_failed": "L'exportation automatique n'a pas pu être effectuée. Vérifiez son répertoire et son mot de passe de chiffrement dans les paramètres de sauvegarde.",
+  "snack_bar_auto_export_failed": "L’exportation automatique n’a pas pu être effectuée. Vérifiez son répertoire et son mot de passe de chiffrement dans les paramètres de sauvegarde.",
   "@snack_bar_auto_export_failed": {
     "description": "Snack bar shown at startup when the automatic export was needed but could not be performed."
   },
-  "snack_bar_export_not_performed": "La sauvegarde n'a pas été exportée car elle a été annulée ou n'a pas pu être effectuée.",
+  "snack_bar_export_not_performed": "La sauvegarde n’a pas été exportée car elle a été annulée ou n’a pas pu être effectuée.",
   "@snack_bar_export_not_performed": {
     "description": "Snack bar informing that the backup was not manually exported, because the user cancelled it or it failed."
   },
