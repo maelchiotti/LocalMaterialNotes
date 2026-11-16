@@ -86,7 +86,7 @@ Future<bool> deleteNotes(BuildContext context, WidgetRef ref, {required List<Not
       context,
       text: context.l.snack_bar_deleted(notes.length),
       onCancel: (globalRef) async => wereArchived
-          ? await archiveNotes(rootNavigatorKey.currentContext!, ref, notes: notes)
+          ? await archiveNotes(rootNavigatorKey.currentContext!, globalRef, notes: notes, cancel: false)
           : await restoreNotes(rootNavigatorKey.currentContext!, globalRef, notes: notes, cancel: false),
     );
   }

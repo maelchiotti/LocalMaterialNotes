@@ -38,6 +38,14 @@ final safStream = SafStream();
 /// The value to apply to the alpha channel to get a subdued color.
 const subduedAlpha = 150;
 
+/// Value of the delay settings (automatic bin emptying, application and note locks) that means "never".
+///
+/// It is the last value of [autoRemoveFromBinValues] and [lockDelayValues], shown as "Never" in the settings.
+const neverDelay = 999;
+
+/// Whether the [delay] setting means "never": [neverDelay], or `-1` that older versions stored.
+bool isNeverDelay(num delay) => delay == neverDelay || delay == -1;
+
 /// Frequency of the automatic bin emptying.
 const autoRemoveFromBinValues = [7.0, 14.0, 30.0, 90.0, 180.0, 365.0, 999.0];
 

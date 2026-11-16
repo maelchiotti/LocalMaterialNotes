@@ -25,7 +25,7 @@
   "@error_widget_title": {
     "description": "Message shown in the error widget shown when a widget fails to build."
   },
-  "error_widget_description": "Lütfen bu sorunu GitHub''da veya posta yoluyla bildirin. Bu sayfanın bir ekran görüntüsünü ve kopyalayabileceğiniz veya dışa aktarabileceğiniz günlükleri aşağıya ekleyin. Önlem olarak, notlarınızı da dışa aktarmalısınız.",
+  "error_widget_description": "Lütfen bu sorunu GitHub’da veya posta yoluyla bildirin. Bu sayfanın bir ekran görüntüsünü ve kopyalayabileceğiniz veya dışa aktarabileceğiniz günlükleri aşağıya ekleyin. Önlem olarak, notlarınızı da dışa aktarmalısınız.",
   "@error_widget_description": {
     "description": "Message shown in the error widget shown when a widget fails to build."
   },

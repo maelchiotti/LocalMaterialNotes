@@ -547,16 +547,6 @@
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "Кожен {frequency, select, 1{день} 7{тиждень} 14{2 тижні} 30{місяць} other{}}",
-  "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports.",
-    "placeholders": {
-      "frequency": {
-        "description": "Frequency in days.",
-        "type": "String"
-      }
-    }
-  },
   "settings_auto_export_frequency_description": "Частота автоматичного експорту",
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
@@ -719,11 +709,11 @@
   "@settings_github_discussions_description": {
     "description": "Description of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_contact_developer": "Зв''язатись з розробником",
+  "settings_contact_developer": "Зв’язатись з розробником",
   "@settings_contact_developer": {
     "description": "Title of the settings tile to contact the developer via mail."
   },
-  "settings_get_in_touch_description": "Зв''язатись з розробником через пошту {email}",
+  "settings_get_in_touch_description": "Зв’язатись з розробником через пошту {email}",
   "@settings_get_in_touch_description": {
     "description": "Description of the settings tile to contact the developer via mail."
   },

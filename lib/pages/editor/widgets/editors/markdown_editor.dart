@@ -1,13 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:markdown/markdown.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../common/constants/constants.dart';
 import '../../../../common/constants/paddings.dart';
 import '../../../../common/extensions/build_context_extension.dart';
+import '../../../../common/system_utils.dart';
 import '../../../../models/note/note.dart';
 
 /// Markdown editor.
@@ -47,21 +49,20 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
     contentTextController = TextEditingController(text: widget.note.content);
   }
 
+  @override
+  void dispose() {
+    contentTextController.dispose();
+
+    super.dispose();
+  }
+
   void onChanged() {
     final note = widget.note..content = contentTextController.text;
 
     widget.onChanged(note);
   }
 
-  void onOpenLink(String text, String? href, String title) {
-    if (href == null) {
-      return;
-    }
-
-    Uri uri = Uri.parse(href);
-
-    launchUrl(uri);
-  }
+  void onOpenLink(String text, String? href, String title) => unawaited(SystemUtils().openLink(href));
 
   @override
   Widget build(BuildContext context) {

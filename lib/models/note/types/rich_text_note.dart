@@ -81,16 +81,24 @@ class RichTextNote extends Note {
   }
 
   /// Document containing the fleather content representation.
+  ///
+  /// If the [content] can't be decoded, returns a document with the raw [content] as plain text,
+  /// so that it is still shown and never lost.
   @ignore
   ParchmentDocument get document {
     try {
       return ParchmentDocument.fromJson(jsonDecode(content) as List);
     } catch (exception, stackTrace) {
-      logger.e('Failed to decode the content of a rich text note, deleting it.', exception, stackTrace);
+      // The exception itself is not logged, since it can contain a part of the content of the note
+      logger.e(
+        'Failed to decode the content of a rich text note (${exception.runtimeType}), showing it as plain text',
+        null,
+        stackTrace,
+      );
 
-      NotesService().delete(this);
-
-      return ParchmentDocument();
+      return ParchmentDocument.fromJson([
+        {'insert': '$content\n'},
+      ]);
     }
   }
 

@@ -55,51 +55,31 @@ class ManualBackupService {
 
     importedJson = importedJson as Map<String, dynamic>;
 
-    // Import the labels
-    final importLabels = importedJson.containsKey("labels") && importedJson.getList<dynamic>("labels").isNotEmpty;
-    if (importLabels) {
-      final labelsAsJson = importedJson.getList<dynamic>("labels");
-      final importedLabels = await _importLabels(labelsAsJson);
-      if (!importedLabels) {
-        return false;
-      }
-    }
-
     if (!context.mounted) {
       return false;
     }
 
-    // Import the notes
+    // Import the labels and the notes
+    final labelsAsJson = (importedJson['labels'] as List?) ?? [];
+    final labels = labelsAsJson.map((labelAsJson) => Label.fromJson(labelAsJson)).toList();
     final notesAsJson = importedJson.getList<dynamic>("notes");
     final encrypted = importedJson.tryGetBool("encrypted") ?? false;
-    final importedNotes = await _importNotes(context, notesAsJson, encrypted, importLabels);
+    final importedNotes = await _importNotes(context, notesAsJson, encrypted, labels);
     if (!importedNotes) {
       return false;
     }
 
-    // Import the preferences
-    final importPreferences = importedJson.containsKey("preferences");
-    if (importPreferences) {
-      final importedPreferences = await _importPreferences(importedJson);
-      if (!importedPreferences) {
-        return false;
-      }
-    }
+    await _importPreferences(importedJson);
 
     return true;
   }
 
-  Future<bool> _importLabels(List<dynamic> labelsAsJson) async {
-    final labels = labelsAsJson.map((labelAsJson) => Label.fromJson(labelAsJson)).toList();
-
-    await _labelsService.putAllNew(labels);
-
-    return true;
-  }
-
-  Future<bool> _importNotes(BuildContext context, List<dynamic> notesAsJson, bool encrypted, bool importLabels) async {
+  Future<bool> _importNotes(BuildContext context, List<dynamic> notesAsJson, bool encrypted, List<Label> labels) async {
     List<Note> notes = [];
-    List<List<Label>> notesLabels = [];
+
+    for (final noteAsJson in notesAsJson) {
+      _fixStatus(noteAsJson);
+    }
 
     if (encrypted && context.mounted) {
       final password = await showAdaptiveDialog<String>(
@@ -181,25 +161,25 @@ class ManualBackupService {
       }
     }
 
-    // Handle notes labels
-    if (importLabels) {
-      List<Label> databaseLabels = await _labelsService.getAll();
+    // Link the notes to their labels only if the file contains labels
+    final notesLabelsNames = [
+      for (final noteAsJson in notesAsJson)
+        labels.isEmpty ? <String>[] : ((noteAsJson['labels'] as List?) ?? []).cast<String>(),
+    ];
 
-      for (final noteAsJson in notesAsJson) {
-        final labelsString = noteAsJson['labels'] as List;
-        final labels = databaseLabels.where((label) => labelsString.contains(label.name)).toList();
-
-        notesLabels.add(labels);
-      }
-    }
-
-    // Add notes and labels to the database
-    await _notesService.putAll(notes);
-    if (importLabels) {
-      await _notesService.putAllLabels(notes, notesLabels);
-    }
+    // Add the labels, the notes and their links to the database at once
+    await _notesService.import(labels, notes, notesLabelsNames);
 
     return true;
+  }
+
+  /// Unarchives the note of [noteAsJson] if it is also deleted, which can only happen if the file was edited by hand.
+  void _fixStatus(dynamic noteAsJson) {
+    if (noteAsJson['archived'] == true && noteAsJson['deleted'] == true) {
+      logger.w('Imported a note that was both archived and deleted as only deleted');
+
+      noteAsJson['archived'] = false;
+    }
   }
 
   void _addRichTextNote(dynamic noteAsJson, List<Note> notes, String warningMessage) {
@@ -212,28 +192,45 @@ class ManualBackupService {
     }
   }
 
-  Future<bool> _importPreferences(dynamic importedJson) async {
-    final preferencesAndValues = importedJson['preferences'] as Map<String, dynamic>;
+  /// Restores the preferences of the [importedJson].
+  ///
+  /// The preferences that don't exist, are not backed up or have a value of the wrong type are skipped.
+  Future<void> _importPreferences(Map<String, dynamic> importedJson) async {
+    final preferencesAndValues = importedJson['preferences'];
 
-    preferencesAndValues.forEach((preference, value) {
+    if (preferencesAndValues == null) {
+      return;
+    }
+
+    if (preferencesAndValues is! Map<String, dynamic>) {
+      logger.w('While restoring the preferences from JSON, the preferences are not a map');
+
+      return;
+    }
+
+    for (final MapEntry(key: preference, :value) in preferencesAndValues.entries) {
       final preferenceKey = PreferenceKey.values.byNameOrNull(preference);
 
       if (preferenceKey == null) {
         logger.w("While restoring the preferences from JSON, the preference '$preference' doesn't exist");
-      } else {
-        if (preferenceKey.backup) {
-          // If the preference value is a list, then it's a list of String
-          // (the only type of list that can be stored in the preferences)
-          if (value is List) {
-            preferenceKey.set(value.cast<String>());
-          } else {
-            preferenceKey.set(value);
-          }
-        }
-      }
-    });
 
-    return true;
+        continue;
+      }
+
+      if (!preferenceKey.backup) {
+        continue;
+      }
+
+      final restoredValue = preferenceKey.parse(value);
+
+      if (restoredValue == null) {
+        logger.w("While restoring the preferences from JSON, the value of the preference '$preference' is invalid");
+
+        continue;
+      }
+
+      await preferenceKey.set(restoredValue);
+    }
   }
 
   /// Exports all the notes in a JSON file with the [fileName] in the [directory].
@@ -245,12 +242,19 @@ class ManualBackupService {
     required String directory,
     required String fileName,
   }) async {
+    // Never write the notes in plain text when the encryption was requested
+    if (encrypt && (password == null || password.isEmpty)) {
+      logger.w('The export was not performed because the encryption was enabled without a password');
+
+      return false;
+    }
+
     final version = SystemUtils().appVersion;
     final buildNumber = SystemUtils().buildNumber;
 
     var notes = await _notesService.getAll();
-    if (encrypt && password != null && password.isNotEmpty) {
-      notes = notes.map((note) => note.encrypted(password)).toList();
+    if (encrypt) {
+      notes = notes.map((note) => note.encrypted(password!)).toList();
     }
 
     final labels = await _labelsService.getAll();

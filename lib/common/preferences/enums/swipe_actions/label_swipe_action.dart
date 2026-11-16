@@ -181,9 +181,8 @@ enum LabelSwipeAction {
   Widget titleWidget(BuildContext context) {
     return Text(
       title(context),
-      style: Theme.of(
-        context,
-      ).textTheme.titleMedium?.copyWith(color: Theme.of(context).colorScheme.onTertiaryContainer),
+      style: Theme.of(context).textTheme.titleMedium
+          ?.copyWith(color: Theme.of(context).colorScheme.onTertiaryContainer),
     );
   }
 

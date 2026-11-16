@@ -547,16 +547,6 @@
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "Раз в{frequency, select, 1{день} 7{неделю} 14{2 недели} 30{месяц} other{}}",
-  "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports.",
-    "placeholders": {
-      "frequency": {
-        "description": "Frequency in days.",
-        "type": "String"
-      }
-    }
-  },
   "settings_auto_export_frequency_description": "Частота автоматического экспорта",
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."

@@ -11,7 +11,6 @@ import '../../../common/constants/constants.dart';
 import '../../common/files/encryption_utils.dart';
 import '../../common/preferences/enums/sort_method.dart';
 import '../../common/preferences/preference_key.dart';
-import '../../services/notes/notes_service.dart';
 import '../label/label.dart';
 import 'note_status.dart';
 import 'types/note_type.dart';
@@ -58,7 +57,7 @@ sealed class Note implements Comparable<Note> {
   bool pinned;
 
   /// Whether the note is locked.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(defaultValue: false)
   bool locked;
 
   /// The time when the note was created.
@@ -211,7 +210,9 @@ sealed class Note implements Comparable<Note> {
         case SortMethod.editedDate:
           return sortAscending ? editedTime.compareTo(other.editedTime) : other.editedTime.compareTo(editedTime);
         case SortMethod.title:
-          return sortAscending ? title.compareTo(other.title) : other.title.compareTo(title);
+          final titleComparison = title.toLowerCase().compareTo(other.title.toLowerCase());
+
+          return sortAscending ? titleComparison : -titleComparison;
         default:
           throw Exception('The sort method is not valid: $sortMethod');
       }

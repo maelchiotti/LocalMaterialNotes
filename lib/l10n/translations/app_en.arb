@@ -547,7 +547,7 @@
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "Every {frequency, select, 1{day} 7{week} 14{2 weeks} 30{month} other{}}",
+  "settings_auto_export_frequency_value": "Every {frequency, select, 1{day} 3{3 days} 7{week} 14{2 weeks} 30{month} other{}}",
   "@settings_auto_export_frequency_value": {
     "description": "Frequency of the automatic exports.",
     "placeholders": {
@@ -576,6 +576,18 @@
   "settings_auto_export_directory_description": "Directory where to store the automatic exports",
   "@settings_auto_export_directory_description": {
     "description": "Description of the settings tile to choose the directory where to save the automatic exports."
+  },
+  "settings_auto_export_directory_default": "Application storage (default)",
+  "@settings_auto_export_directory_default": {
+    "description": "Value of the settings tile to choose the directory where to save the automatic exports, when no directory was chosen and the exports are saved in the storage of the application."
+  },
+  "settings_auto_export_directory_internal_storage": "Internal storage",
+  "@settings_auto_export_directory_internal_storage": {
+    "description": "Name of the internal storage of the device, shown before the path of the directory where to save the automatic exports."
+  },
+  "settings_auto_export_directory_external_storage": "External storage",
+  "@settings_auto_export_directory_external_storage": {
+    "description": "Name of an external storage of the device (SD card, USB drive), shown before the path of the directory where to save the automatic exports."
   },
   "settings_security": "Security",
   "@settings_security": {
@@ -842,6 +854,10 @@
   "dialog_require_backup_description": "As your notes are only stored locally on your device, any issue could lead to losing them all. Uninstalling the application would also delete all your notes.\n\nSelecting a backup location will ensure you can always retrieve your notes. For example, you could create a folder named \"Material Notes backups\" under your existing \"Documents\" folder.",
   "@dialog_require_backup_description": {
     "description": "Description of the dialog to select a backup location."
+  },
+  "dialog_require_backup_lost": "The backup location you selected is no longer accessible. Until you select a new one, the automatic exports are saved in the application folder, which is deleted when the application is uninstalled.",
+  "@dialog_require_backup_lost": {
+    "description": "Text shown first in the dialog to select a backup location when the location selected by the user is no longer accessible."
   },
   "dialog_require_backup_ignore": "Ignore",
   "@dialog_require_backup_ignore": {
@@ -1342,6 +1358,14 @@
   "snack_bar_export_success": "The backup were successfully exported.",
   "@snack_bar_export_success": {
     "description": "Snack bar informing that the backup was successfully manually exported."
+  },
+  "snack_bar_auto_export_failed": "The automatic export could not be performed. Check its directory and its encryption password in the backup settings.",
+  "@snack_bar_auto_export_failed": {
+    "description": "Snack bar shown at startup when the automatic export was needed but could not be performed."
+  },
+  "snack_bar_export_not_performed": "The backup was not exported because it was cancelled or could not be performed.",
+  "@snack_bar_export_not_performed": {
+    "description": "Snack bar informing that the backup was not manually exported, because the user cancelled it or it failed."
   },
   "snack_bar_logs_copied": "The logs were copied to your clipboard.",
   "@snack_bar_logs_copied": {

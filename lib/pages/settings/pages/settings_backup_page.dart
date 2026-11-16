@@ -15,12 +15,10 @@ import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/ui/snack_bar_utils.dart';
-import '../../../models/note/note_status.dart';
 import '../../../providers/labels/labels/labels_provider.dart';
 import '../../../providers/labels/labels_list/labels_list_provider.dart';
 import '../../../providers/labels/labels_navigation/labels_navigation_provider.dart';
 import '../../../providers/notes/notes_provider.dart';
-import '../../../providers/notifiers/notifiers.dart';
 import '../../../providers/preferences/preferences_provider.dart';
 import '../../../services/backup/auto_backup_service.dart';
 import '../../../services/backup/backup_service.dart';
@@ -48,8 +46,8 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         await ref.read(labelsProvider.notifier).get();
         await ref.read(labelsListProvider.notifier).get();
         await ref.read(labelsNavigationProvider.notifier).get();
-        await ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).get();
-        await ref.read(notesProvider(status: NoteStatus.deleted).notifier).get();
+        // Invalidate all the notes providers, including the ones of the labels that are not shown
+        ref.invalidate(notesProvider);
         ref.read(preferencesProvider.notifier).reset();
 
         if (mounted) {
@@ -86,8 +84,8 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
         final password = shouldEncrypt.$2;
         final exported = await ManualBackupService().manuallyExportAsJson(encrypt: encrypt, password: password);
 
-        if (exported && mounted) {
-          SnackBarUtils().show(context, text: context.l.snack_bar_export_success);
+        if (mounted) {
+          SnackBarUtils().showExportResult(context, exported: exported);
         }
       } catch (exception, stackTrace) {
         logger.e(exception.toString(), exception, stackTrace);
@@ -106,8 +104,8 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     try {
       final exported = await ManualBackupService().exportAsMarkdown();
 
-      if (exported && mounted) {
-        SnackBarUtils().show(context, text: context.l.snack_bar_export_success);
+      if (mounted) {
+        SnackBarUtils().showExportResult(context, exported: exported);
       }
     } catch (exception, stackTrace) {
       logger.e(exception.toString(), exception, stackTrace);
@@ -192,12 +190,39 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     setState(() {});
   }
 
+  /// Returns the automatic export directory as a readable path.
+  ///
+  /// The default directory, in the application storage, is shown as such. A directory chosen by the user is shown as
+  /// its storage volume and its path inside it, or as its full URI if it can't be read.
+  String autoExportDirectoryLabel(BuildContext context) {
+    if (PreferenceKey.autoExportDirectory.preferenceOrDefault.isEmpty) {
+      return context.l.settings_auto_export_directory_default;
+    }
+
+    final directory = AutoExportUtils().autoExportDirectory;
+    final safPath = directory.safPath;
+    if (safPath == null) {
+      return Uri.decodeFull(directory);
+    }
+
+    final volume = safPath.volume;
+    if (volume == null) {
+      return safPath.path;
+    }
+
+    final volumeName = volume == 'primary'
+        ? context.l.settings_auto_export_directory_internal_storage
+        : context.l.settings_auto_export_directory_external_storage;
+
+    return safPath.path.isEmpty ? volumeName : '$volumeName › ${safPath.path}';
+  }
+
   @override
   Widget build(BuildContext context) {
     final enableAutoExport = PreferenceKey.enableAutoExport.preferenceOrDefault;
     final autoExportFrequency = PreferenceKey.autoExportFrequency.preferenceOrDefault;
     final autoExportEncryption = PreferenceKey.autoExportEncryption.preferenceOrDefault;
-    final autoExportDirectory = AutoExportUtils().autoExportDirectory.decoded;
+    final autoExportDirectory = autoExportDirectoryLabel(context);
 
     return Scaffold(
       appBar: TopNavigation(appbar: BasicAppBar(title: context.l.navigation_settings_backup)),

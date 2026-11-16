@@ -5,8 +5,7 @@ import '../../../../common/constants/paddings.dart';
 import '../../../../common/extensions/build_context_extension.dart';
 import '../../../../common/preferences/preference_key.dart';
 import '../../../../models/note/note.dart';
-import '../../../../models/note/note_status.dart';
-import '../../../../providers/notes/notes_provider.dart';
+import '../../../../common/actions/notes/edit.dart';
 import '../../../../providers/notifiers/notifiers.dart';
 
 /// Title editor.
@@ -29,7 +28,21 @@ class TitleEditor extends ConsumerStatefulWidget {
 
 class _TitleEditorState extends ConsumerState<TitleEditor> {
   /// Controller of the title of the note.
-  late TextEditingController titleController;
+  late final TextEditingController titleController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    titleController = TextEditingController(text: currentNoteNotifier.value?.title);
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+
+    super.dispose();
+  }
 
   /// Saves the [newTitle] of the [note] in the database.
   void onChanged(Note? note, String? newTitle) {
@@ -39,7 +52,7 @@ class _TitleEditorState extends ConsumerState<TitleEditor> {
 
     note.title = newTitle;
 
-    ref.read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
+    editNote(ref, note);
   }
 
   @override
@@ -54,8 +67,6 @@ class _TitleEditorState extends ConsumerState<TitleEditor> {
       child: ValueListenableBuilder(
         valueListenable: currentNoteNotifier,
         builder: (context, currentNote, child) {
-          titleController = TextEditingController(text: currentNote?.title);
-
           return TextField(
             readOnly: widget.readOnly,
             autofocus: widget.isNewNote && focusTitleOnNewNote,
@@ -65,7 +76,7 @@ class _TitleEditorState extends ConsumerState<TitleEditor> {
             decoration: InputDecoration.collapsed(hintText: context.l.hint_title),
             controller: titleController,
             onChanged: (text) => onChanged(currentNote, text),
-            onSubmitted: (_) => widget.onSubmitted,
+            onSubmitted: (_) => widget.onSubmitted(),
           );
         },
       ),

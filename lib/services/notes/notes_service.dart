@@ -210,17 +210,15 @@ class NotesService {
 
   /// Puts the [notes] in the database.
   Future<void> putAll(List<Note> notes) async {
-    final plainTextNotes = notes.whereType<PlainTextNote>().toList();
-    final markdownNotes = notes.whereType<MarkdownNote>().toList();
-    final richTextNotes = notes.whereType<RichTextNote>().toList();
-    final checklistNotes = notes.whereType<ChecklistNote>().toList();
+    await _database.writeTxn(() => _putAllInTransaction(notes));
+  }
 
-    await _database.writeTxn(() async {
-      await _plainTextNotes.putAll(plainTextNotes);
-      await _markdownNotes.putAll(markdownNotes);
-      await _richTextNotes.putAll(richTextNotes);
-      await _checklistNotes.putAll(checklistNotes);
-    });
+  /// Puts the [notes] in their collections. Must be called inside a write transaction, since Isar cannot nest them.
+  Future<void> _putAllInTransaction(List<Note> notes) async {
+    await _plainTextNotes.putAll(notes.whereType<PlainTextNote>().toList());
+    await _markdownNotes.putAll(notes.whereType<MarkdownNote>().toList());
+    await _richTextNotes.putAll(notes.whereType<RichTextNote>().toList());
+    await _checklistNotes.putAll(notes.whereType<ChecklistNote>().toList());
   }
 
   /// Updates the [note] with the [labels] in the database.
@@ -242,20 +240,29 @@ class NotesService {
     });
   }
 
-  /// Updates the [notes] with their corresponding [notesLabels] in the database.
-  Future<void> putAllLabels(List<Note> notes, List<List<Label>> notesLabels) async {
+  /// Imports the [labels] and the [notes] in a single transaction, so that a failure leaves the database untouched.
+  ///
+  /// Only the labels whose name is not in the database yet are added. Each note is linked to the labels
+  /// whose names are in its [notesLabelsNames] entry.
+  Future<void> import(List<Label> labels, List<Note> notes, List<List<String>> notesLabelsNames) async {
     assert(
-      notes.length == notesLabels.length,
-      'The list of labels (${notesLabels.length} items) should be the same length as the list of notes (${notes.length} notes)',
+      notes.length == notesLabelsNames.length,
+      'The list of labels names (${notesLabelsNames.length} items) should be the same length as the list of notes (${notes.length} notes)',
     );
 
     await _database.writeTxn(() async {
+      final databaseLabels = await _database.labels.where().findAll();
+      final newLabels = labels.where((label) => !databaseLabels.contains(label)).toSet().toList();
+      await _database.labels.putAll(newLabels);
+      final allLabels = [...databaseLabels, ...newLabels];
+
+      await _putAllInTransaction(notes);
+
       for (var i = 0; i < notes.length; i++) {
         final note = notes[i];
-        final labels = notesLabels[i];
+        final labelsNames = notesLabelsNames[i];
 
-        await note.labels.reset();
-        note.labels.addAll(labels);
+        note.labels.addAll(allLabels.where((label) => labelsNames.contains(label.name)));
         await note.labels.save();
       }
     });

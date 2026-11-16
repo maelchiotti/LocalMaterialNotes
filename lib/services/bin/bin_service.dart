@@ -1,3 +1,4 @@
+import '../../common/constants/constants.dart';
 import '../../common/preferences/preference_key.dart';
 import '../notes/notes_service.dart';
 
@@ -8,7 +9,7 @@ class BinService {
   /// Removes the notes from the bin if they have been deleted longer than the corresponding setting, it enabled.
   Future<void> removeNotesFromBinIfNeeded() async {
     final autoRemoveFromBinDelayPreference = PreferenceKey.autoRemoveFromBinDelay.preferenceOrDefault;
-    if (autoRemoveFromBinDelayPreference == -1) {
+    if (isNeverDelay(autoRemoveFromBinDelayPreference)) {
       return;
     }
 

@@ -1,0 +1,13 @@
+ADDED
+- Warning when the backup location is no longer accessible
+- Message when an export fails
+
+CHANGED
+- Authentication to copy or share a locked note
+- Notes sorted by title ignoring the case
+
+FIXED
+- Notes lost, locked notes readable and backups partially restored
+- Bin and lock delays set to never
+- Editor, labels and keyboard issues
+- Screen protection lost after a rotation

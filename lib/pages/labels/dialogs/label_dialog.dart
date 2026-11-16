@@ -59,6 +59,13 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
     color = widget.label?.color ?? Theme.of(context).colorScheme.tertiaryContainer;
   }
 
+  @override
+  void dispose() {
+    nameController.dispose();
+
+    super.dispose();
+  }
+
   String? nameValidator(String? name) {
     if (name == null || name.isEmpty) {
       return context.l.dialog_label_name_cannot_be_empty;
@@ -113,10 +120,9 @@ class _AddLabelDialogState extends ConsumerState<LabelDialog> {
       return;
     }
 
+    // Return a copy of the edited label, because the label is used as a key of the notes providers
     final label = widget.label != null
-        ? (widget.label!
-            ..name = nameController.text
-            ..colorHex = color.toARGB32())
+        ? widget.label!.copyWith(name: nameController.text, colorHex: color.toARGB32())
         : Label(name: nameController.text, colorHex: color.toARGB32());
 
     Navigator.pop(context, label);

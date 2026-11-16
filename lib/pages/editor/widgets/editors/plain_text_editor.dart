@@ -44,6 +44,13 @@ class _PlainTextEditorState extends ConsumerState<PlainTextEditor> {
     contentTextController = TextEditingController(text: widget.note.content);
   }
 
+  @override
+  void dispose() {
+    contentTextController.dispose();
+
+    super.dispose();
+  }
+
   void onChanged() {
     final note = widget.note..content = contentTextController.text;
 

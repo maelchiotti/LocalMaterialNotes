@@ -37,6 +37,9 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
   /// Stream of data shared from other applications.
   late StreamSubscription _stream;
 
+  /// Whether the application was launched by another one sharing data, which opened a new note with it.
+  late final Future<bool> _launchedByShare;
+
   @override
   void initState() {
     super.initState();
@@ -44,7 +47,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
     globalRef = ref;
 
     // Read the potential data shared from other applications
-    SystemUtils().readSharedData();
+    _launchedByShare = SystemUtils().readSharedData();
     _stream = SystemUtils().listenSharedData();
 
     // Eagerly get the labels for the full list and the navigation
@@ -59,10 +62,19 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
     // Using the context provided by afterFirstLayout doesn't work
     SystemUtils().setQuickActions(rootNavigatorKey.currentContext!);
 
-    // If the backup directory is still the default, ask to select it
-    if (await AutoExportUtils().isAutoExportDirectoryDefault) {
-      await requireBackupDirectory(rootNavigatorKey.currentContext!);
+    // Don't ask for the backup directory over the note opened with the shared data, it will be asked at the next launch
+    if (await _launchedByShare) {
+      return;
     }
+
+    // If the backup directory is still the default or is no longer accessible, ask to select it
+    await AutoExportUtils().directoryInitialized;
+    final directoryLost = AutoExportUtils().isAutoExportDirectoryLost;
+    if (await AutoExportUtils().isAutoExportDirectoryDefault || directoryLost) {
+      await requireBackupDirectory(rootNavigatorKey.currentContext!, directoryLost: directoryLost);
+    }
+
+    await warnIfAutoExportFailed(rootNavigatorKey.currentContext!);
   }
 
   @override
@@ -85,7 +97,7 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
         if (lockApp) {
           final lockAppDelayPreference = PreferenceKey.lockAppDelay.preferenceOrDefault;
 
-          if (lockAppDelayPreference != -1) {
+          if (!isNeverDelay(lockAppDelayPreference)) {
             final lockAppDelay = Duration(seconds: lockAppDelayPreference);
             final timeSinceBackground = now.difference(lastForegroundTimestamp);
             if (timeSinceBackground > lockAppDelay) {
@@ -100,8 +112,8 @@ class _AppState extends ConsumerState<App> with AfterLayoutMixin<App> {
         if (lockNote || lockLabel) {
           final lockNoteDelayPreference = PreferenceKey.lockNoteDelay.preferenceOrDefault;
 
-          if (lockNoteDelayPreference != -1) {
-            final lockNoteDelay = Duration(seconds: PreferenceKey.lockNoteDelay.preferenceOrDefault);
+          if (!isNeverDelay(lockNoteDelayPreference)) {
+            final lockNoteDelay = Duration(seconds: lockNoteDelayPreference);
             final timeSinceBackground = now.difference(lastForegroundTimestamp);
             if (timeSinceBackground > lockNoteDelay) {
               lockNoteNotifier.lock();

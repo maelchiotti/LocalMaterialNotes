@@ -1,0 +1,13 @@
+AJOUTÉ
+- Avertissement quand l'emplacement de sauvegarde n'est plus accessible
+- Message quand un export échoue
+
+MODIFIÉ
+- Authentification pour copier ou partager une note verrouillée
+- Notes triées par titre sans tenir compte de la casse
+
+CORRIGÉ
+- Notes perdues, notes verrouillées lisibles et sauvegardes restaurées partiellement
+- Délais de la corbeille et du verrouillage sur jamais
+- Problèmes de l'éditeur, des libellés et du clavier
+- Protection de l'écran perdue après une rotation

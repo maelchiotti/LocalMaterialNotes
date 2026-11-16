@@ -547,16 +547,6 @@
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "Cada {frequency, select, 1{día} 7{semana} 14{2 semanas} 30{mes} other{}}",
-  "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports.",
-    "placeholders": {
-      "frequency": {
-        "description": "Frequency in days.",
-        "type": "String"
-      }
-    }
-  },
   "settings_auto_export_frequency_description": "Frecuencia de la exportación automática",
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
@@ -834,6 +824,22 @@
   "hint_label_name": "Nombre",
   "@hint_label_name": {
     "description": "Hint for the text field of the name of a tag."
+  },
+  "dialog_require_backup_title": "Seleccione un lugar de respaldo",
+  "@dialog_require_backup_title": {
+    "description": "Title of the dialog to select a backup location."
+  },
+  "dialog_require_backup_description": "Debido a que sus notas son guardadas en su dispositivo, cualquier problema puede llevarlo a perder todas sus notas.\nBorrar la aplicación puede también borrar todas sus notas.\n\nSeleccionar manualmente un lugar de almacenamiento puede mantener seguros sus respaldos. Por ejemplo, puede crear una carpeta llamada «Respaldo de mis Notas» en su carpeta de Documentos.",
+  "@dialog_require_backup_description": {
+    "description": "Description of the dialog to select a backup location."
+  },
+  "dialog_require_backup_ignore": "Ignorar",
+  "@dialog_require_backup_ignore": {
+    "description": "Button to ignore the dialog to select a backup location."
+  },
+  "dialog_require_backup_select": "Seleccione",
+  "@dialog_require_backup_select": {
+    "description": "Button to select a backup location in the related dialog."
   },
   "dialog_export_encryption_password": "Contraseña",
   "@dialog_export_encryption_password": {

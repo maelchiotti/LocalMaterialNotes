@@ -5,10 +5,12 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flag_secure/flag_secure.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:listen_sharing_intent/listen_sharing_intent.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:quick_actions/quick_actions.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../l10n/app_localizations/app_localizations.g.dart';
 import '../models/note/types/note_type.dart';
@@ -121,9 +123,17 @@ class SystemUtils {
   }
 
   /// Sets `FLAG_SECURE` to `true` if the corresponding preference was enabled by the user.
+  ///
+  /// A failure is only logged, because this is called before the application starts.
   Future<void> setFlagSecureIfNeeded() async {
-    if (PreferenceKey.flagSecure.preferenceOrDefault) {
+    if (!PreferenceKey.flagSecure.preferenceOrDefault) {
+      return;
+    }
+
+    try {
       await FlagSecure.set();
+    } on PlatformException catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
     }
   }
 
@@ -179,24 +189,32 @@ class SystemUtils {
     });
   }
 
-  /// Reads the data shared from other applications.
-  void readSharedData() {
-    ReceiveSharingIntent.instance.getInitialMedia().then((data) {
-      _processSharedData(data);
+  /// Reads the data shared from other applications when they launched this one, and returns whether a note was added
+  /// with it.
+  Future<bool> readSharedData() async {
+    try {
+      final data = await ReceiveSharingIntent.instance.getInitialMedia();
+      final added = _processSharedData(data);
 
-      ReceiveSharingIntent.instance.reset();
-    });
+      await ReceiveSharingIntent.instance.reset();
+
+      return added;
+    } catch (exception, stackTrace) {
+      logger.e(exception.toString(), exception, stackTrace);
+
+      return false;
+    }
   }
 
-  /// Processes the [data] shared from other applications.
+  /// Processes the [data] shared from other applications, and returns whether a note was added with it.
   ///
   /// If the [data] is text, it's added to a new note that is then opened.
-  void _processSharedData(List<SharedMediaFile> data) {
+  bool _processSharedData(List<SharedMediaFile> data) {
     if (rootNavigatorKey.currentContext == null ||
         data.isEmpty ||
         data.first.type != SharedMediaType.text ||
         data.first.path.isEmpty) {
-      return;
+      return false;
     }
 
     final defaultShortcutNoteType = NoteType.defaultShare;
@@ -204,6 +222,8 @@ class SystemUtils {
     final content = data.first.path;
 
     addNote(context, globalRef, noteType: defaultShortcutNoteType, content: content);
+
+    return true;
   }
 
   /// Encodes the query [parameters] to be used in an URI.
@@ -214,5 +234,30 @@ class SystemUtils {
   /// Closes the keyboard.
   void closeKeyboard() {
     FocusManager.instance.primaryFocus?.unfocus();
+  }
+
+  /// Opens the [url] of a link in a note, if it can be parsed.
+  ///
+  /// The failures are logged, without the [url] which can contain private information.
+  Future<void> openLink(String? url) async {
+    if (url == null) {
+      return;
+    }
+
+    final uri = Uri.tryParse(url);
+    if (uri == null) {
+      logger.w('The URL of a link in a note could not be parsed');
+
+      return;
+    }
+
+    try {
+      if (!await launchUrl(uri)) {
+        logger.w('The link in a note could not be opened');
+      }
+    } catch (exception, stackTrace) {
+      // The exception itself is not logged, since it can contain the URL
+      logger.e('The link in a note could not be opened (${exception.runtimeType})', null, stackTrace);
+    }
   }
 }

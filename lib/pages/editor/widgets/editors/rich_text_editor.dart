@@ -5,11 +5,11 @@ import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../common/constants/constants.dart';
 import '../../../../common/constants/paddings.dart';
 import '../../../../common/extensions/build_context_extension.dart';
+import '../../../../common/system_utils.dart';
 import '../../../../common/preferences/enums/font.dart';
 import '../../../../common/preferences/preference_key.dart';
 import '../../../../models/note/note.dart';
@@ -50,6 +50,9 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
   late StreamSubscription<ParchmentChange> changes;
   Timer? saveDebounce;
 
+  /// Timer to update the undo and redo actions once fleather has updated its history.
+  Timer? undoRedoTimer;
+
   @override
   void initState() {
     super.initState();
@@ -57,24 +60,21 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
     changes = widget.fleatherController.document.changes.listen((_) => onChanged());
   }
 
-  void onLaunchUrl(String? url) {
-    if (url == null) {
-      return;
-    }
+  void onLaunchUrl(String? url) => unawaited(SystemUtils().openLink(url));
 
-    final uri = Uri.tryParse(url);
-    if (uri == null) {
-      logger.w('The URL opened in the rich text editor could not be parsed: $url');
-
-      return;
-    }
-
-    launchUrl(uri);
+  /// Updates whether the undo and redo actions are available.
+  void updateUndoRedo() {
+    fleatherControllerCanUndoNotifier.value = widget.fleatherController.canUndo;
+    fleatherControllerCanRedoNotifier.value = widget.fleatherController.canRedo;
   }
 
   void onChanged() {
-    fleatherControllerCanUndoNotifier.value = widget.fleatherController.canUndo;
-    fleatherControllerCanRedoNotifier.value = widget.fleatherController.canRedo;
+    updateUndoRedo();
+
+    // Fleather adds the changes to its history after a delay (its `throttleDuration` of 500 milliseconds),
+    // so the undo and redo actions must be updated again after that delay
+    undoRedoTimer?.cancel();
+    undoRedoTimer = Timer(const Duration(milliseconds: 600), updateUndoRedo);
 
     final content = jsonEncode(widget.fleatherController.document.toJson());
     final note = widget.note..content = content;
@@ -85,6 +85,7 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
   @override
   void dispose() {
     changes.cancel();
+    undoRedoTimer?.cancel();
 
     super.dispose();
   }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
+import '../../common/actions/notes/edit.dart';
 import '../../common/constants/constants.dart';
 import '../../common/extensions/build_context_extension.dart';
 import '../../common/navigation/app_bars/notes/editor_app_bar.dart';
@@ -43,9 +44,14 @@ class _EditorState extends ConsumerState<EditorPage> {
   FleatherController? _fleatherController;
   RichTextNote? _fleatherControllerNote;
 
+  /// Saves the pending changes when the application goes to the background, where it can be killed.
+  late final AppLifecycleListener appLifecycleListener;
+
   @override
   void initState() {
     super.initState();
+
+    appLifecycleListener = AppLifecycleListener(onPause: savePendingNote);
 
     // If this is a new note, force the editor to be in edit mode on first build
     if (widget.isNewNote) {
@@ -55,25 +61,34 @@ class _EditorState extends ConsumerState<EditorPage> {
 
   @override
   void dispose() {
-    // If a save was waiting to happen, save immediately
-    if (saveDebounce?.isActive ?? false) {
-      saveDebounce!.cancel();
+    appLifecycleListener.dispose();
 
-      if (pendingNote != null) {
-        save(pendingNote!, globalRef);
-      }
-    }
+    savePendingNote(globalRef);
 
-    // ignore: avoid_ref_inside_state_dispose
+    // ignore: riverpod_lint/avoid_ref_inside_state_dispose
     globalRef.read(notesProvider(status: NoteStatus.available).notifier).removeEmpty();
-    // ignore: avoid_ref_inside_state_dispose
+    // ignore: riverpod_lint/avoid_ref_inside_state_dispose
     globalRef.read(notesProvider(status: NoteStatus.archived).notifier).removeEmpty();
+
+    fleatherControllerNotifier.value = null;
+    _fleatherController?.dispose();
 
     super.dispose();
   }
 
   void requestEditorFocus() {
     editorFocusNode.requestFocus();
+  }
+
+  /// If a save is waiting to happen, performs it immediately.
+  void savePendingNote([WidgetRef? widgetRef]) {
+    final note = pendingNote;
+    if (note == null) {
+      return;
+    }
+
+    saveDebounce?.cancel();
+    save(note, widgetRef);
   }
 
   void scheduleSave(Note note) {
@@ -84,7 +99,7 @@ class _EditorState extends ConsumerState<EditorPage> {
   }
 
   void save(Note note, [WidgetRef? widgetRef]) {
-    (widgetRef ?? ref).read(notesProvider(status: NoteStatus.available, label: currentLabelFilter).notifier).edit(note);
+    editNote(widgetRef ?? ref, note);
 
     pendingNote = null;
   }
@@ -129,7 +144,7 @@ class _EditorState extends ConsumerState<EditorPage> {
             final enableLabels = PreferenceKey.enableLabels.preferenceOrDefault;
             final showLabelsListInEditorPage = PreferenceKey.showLabelsListInEditorPage.preferenceOrDefault;
 
-            final readOnly = !currentNote.deleted && showEditorModeButton && !isEditorInEditMode;
+            final readOnly = currentNote.deleted || (showEditorModeButton && !isEditorInEditMode);
             final autofocus = widget.isNewNote && !focusTitleOnNewNote;
             final showLabelsList =
                 enableLabels && showLabelsListInEditorPage && currentNote.labelsVisibleSorted.isNotEmpty;
