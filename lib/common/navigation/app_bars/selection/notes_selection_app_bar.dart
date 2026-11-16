@@ -44,9 +44,9 @@ class NotesSelectionAppBar extends ConsumerWidget {
   ) async {
     switch (menuOption) {
       case SelectionAvailableMenuOption.copy:
-        await copyNotes(context, notes: notes);
+        await copyNotes(context, notes: notes, selectFormat: true);
       case SelectionAvailableMenuOption.share:
-        await shareNotes(context, notes: notes);
+        await shareNotes(context, notes: notes, selectFormat: true);
       case SelectionAvailableMenuOption.togglePin:
         await togglePinNotes(context, ref, notes: notes);
       case SelectionAvailableMenuOption.toggleLock:
@@ -69,9 +69,9 @@ class NotesSelectionAppBar extends ConsumerWidget {
   ) async {
     switch (menuOption) {
       case SelectionArchivedMenuOption.copy:
-        await copyNotes(context, notes: notes);
+        await copyNotes(context, notes: notes, selectFormat: true);
       case SelectionArchivedMenuOption.share:
-        await shareNotes(context, notes: notes);
+        await shareNotes(context, notes: notes, selectFormat: true);
       case SelectionArchivedMenuOption.unarchive:
         await unarchiveNotes(context, ref, notes: notes);
     }

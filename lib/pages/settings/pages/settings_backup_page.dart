@@ -15,6 +15,7 @@ import '../../../common/navigation/app_bars/basic_app_bar.dart';
 import '../../../common/navigation/top_navigation.dart';
 import '../../../common/preferences/preference_key.dart';
 import '../../../common/ui/snack_bar_utils.dart';
+import '../../../models/note/note_format.dart';
 import '../../../providers/labels/labels/labels_provider.dart';
 import '../../../providers/labels/labels_list/labels_list_provider.dart';
 import '../../../providers/labels/labels_navigation/labels_navigation_provider.dart';
@@ -97,12 +98,12 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
     });
   }
 
-  /// Asks the user to configure the immediate export as Markdown.
+  /// Asks the user to configure the immediate export of the notes in files in the [format], in a ZIP archive.
   ///
   /// Asks where to store the export file.
-  Future<void> exportAsMarkdown() async {
+  Future<void> exportAsZip(NoteFormat format) async {
     try {
-      final exported = await ManualBackupService().exportAsMarkdown();
+      final exported = await ManualBackupService().exportAsZip(context, format);
 
       if (mounted) {
         SnackBarUtils().showExportResult(context, exported: exported);
@@ -255,7 +256,13 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
                     icon: SettingTileIcon(SimpleIcons.markdown),
                     title: Text(context.l.settings_export_markdown),
                     description: Text(context.l.settings_export_markdown_description),
-                    onTap: exportAsMarkdown,
+                    onTap: () => exportAsZip(NoteFormat.markdown),
+                  ),
+                  SettingActionTile(
+                    icon: SettingTileIcon(NoteFormat.text.icon),
+                    title: Text(context.l.settings_export_text),
+                    description: Text(context.l.settings_export_text_description),
+                    onTap: () => exportAsZip(NoteFormat.text),
                   ),
                 ],
               ),
