@@ -25,7 +25,7 @@ dependencies:
   flex_color_picker: ^3.8.0
   flutter:
     sdk: flutter
-  flutter_checklist: ^2.0.0
+  flutter_checklist: ^2.1.0
   flutter_displaymode: ^0.7.0
   flutter_expandable_fab: ^2.5.2
   flutter_fgbg: ^0.8.0
