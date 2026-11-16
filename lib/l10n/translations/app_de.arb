@@ -547,16 +547,6 @@
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "{frequency, select, 1{Jeden Tag} 7{Jede Woche} 14{Jede 2 Wochen} 30{Jeden Monat} other{}}",
-  "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports.",
-    "placeholders": {
-      "frequency": {
-        "description": "Frequency in days.",
-        "type": "String"
-      }
-    }
-  },
   "settings_auto_export_frequency_description": "Häufigkeit des automatischen Exports",
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."
@@ -834,6 +824,22 @@
   "hint_label_name": "Name",
   "@hint_label_name": {
     "description": "Hint for the text field of the name of a tag."
+  },
+  "dialog_require_backup_title": "Wähle einen Ort für deine Backups",
+  "@dialog_require_backup_title": {
+    "description": "Title of the dialog to select a backup location."
+  },
+  "dialog_require_backup_description": "Da deine Notizen nur lokal auf deinem Gerät gespeichert sind, könnte jedes Problem dazu führen alle Notizen zu verlieren.\n\nWenn du einen Backup-Ort festlegst, kannst du sicherstellen, dass du deine Notizen immer wiederherstellen kannst. Zum Beispiel könntest du einen Ordner \"Material Notes Backups\" in deinem bestehenden \"Dokumente\" Ordner anlegen.",
+  "@dialog_require_backup_description": {
+    "description": "Description of the dialog to select a backup location."
+  },
+  "dialog_require_backup_ignore": "Ignorieren",
+  "@dialog_require_backup_ignore": {
+    "description": "Button to ignore the dialog to select a backup location."
+  },
+  "dialog_require_backup_select": "Auswählen",
+  "@dialog_require_backup_select": {
+    "description": "Button to select a backup location in the related dialog."
   },
   "dialog_export_encryption_password": "Passwort",
   "@dialog_export_encryption_password": {

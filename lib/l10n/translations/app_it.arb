@@ -547,16 +547,6 @@
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "Ogni {frequency, select, 1{giorno} 7{settimana} 14{2 settimane} 30{mese} other{}}",
-  "@settings_auto_export_frequency_value": {
-    "description": "Frequency of the automatic exports.",
-    "placeholders": {
-      "frequency": {
-        "description": "Frequency in days.",
-        "type": "String"
-      }
-    }
-  },
   "settings_auto_export_frequency_description": "Frequenza delle esportazioni automatiche",
   "@settings_auto_export_frequency_description": {
     "description": "Description of the settings tile to choose the frequency of the automatic exports of the notes."

@@ -547,7 +547,7 @@
   "@settings_auto_export_frequency": {
     "description": "Title of the settings tile to choose the frequency of the automatic exports."
   },
-  "settings_auto_export_frequency_value": "Chaque {frequency, select, 1{jour} 7{semaine} 14{2 semaines} 30{mois} other{}}",
+  "settings_auto_export_frequency_value": "Chaque {frequency, select, 1{jour} 3{3 jours} 7{semaine} 14{2 semaines} 30{mois} other{}}",
   "@settings_auto_export_frequency_value": {
     "description": "Frequency of the automatic exports.",
     "placeholders": {
@@ -842,6 +842,10 @@
   "dialog_require_backup_description": "Puisque vos notes sont uniquement stockées localement sur votre appareil, tout problème pourrait entraîner leur perte totale. La désinstallation de l''application entraînerait également la suppression de toutes vos notes.\n\nEn choisissant un emplacement de sauvegarde, vous vous assurez de pouvoir toujours récupérer vos notes. Vous pouvez par exemple créer un dossier intitulé « Sauvegardes Material Notes » dans votre dossier « Documents » existant.",
   "@dialog_require_backup_description": {
     "description": "Description of the dialog to select a backup location."
+  },
+  "dialog_require_backup_lost": "L'emplacement de sauvegarde que vous avez sélectionné n'est plus accessible. Jusqu'à ce que vous en sélectionniez un nouveau, les exportations automatiques sont enregistrées dans le dossier de l'application, qui est supprimé lorsque l'application est désinstallée.",
+  "@dialog_require_backup_lost": {
+    "description": "Text shown first in the dialog to select a backup location when the location selected by the user is no longer accessible."
   },
   "dialog_require_backup_ignore": "Ignorer",
   "@dialog_require_backup_ignore": {
@@ -1342,6 +1346,14 @@
   "snack_bar_export_success": "La sauvegarde a été exportée avec succès.",
   "@snack_bar_export_success": {
     "description": "Snack bar informing that the backup was successfully manually exported."
+  },
+  "snack_bar_auto_export_failed": "L'exportation automatique n'a pas pu être effectuée. Vérifiez son répertoire et son mot de passe de chiffrement dans les paramètres de sauvegarde.",
+  "@snack_bar_auto_export_failed": {
+    "description": "Snack bar shown at startup when the automatic export was needed but could not be performed."
+  },
+  "snack_bar_export_not_performed": "La sauvegarde n'a pas été exportée car elle a été annulée ou n'a pas pu être effectuée.",
+  "@snack_bar_export_not_performed": {
+    "description": "Snack bar informing that the backup was not manually exported, because the user cancelled it or it failed."
   },
   "snack_bar_logs_copied": "Les logs ont été copiés dans votre presse-papiers.",
   "@snack_bar_logs_copied": {
