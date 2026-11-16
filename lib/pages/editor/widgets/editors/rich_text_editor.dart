@@ -60,7 +60,7 @@ class _RichTextEditorState extends ConsumerState<RichTextEditor> {
     changes = widget.fleatherController.document.changes.listen((_) => onChanged());
   }
 
-  void onLaunchUrl(String? url) => SystemUtils().openLink(url);
+  void onLaunchUrl(String? url) => unawaited(SystemUtils().openLink(url));
 
   /// Updates whether the undo and redo actions are available.
   void updateUndoRedo() {

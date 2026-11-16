@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
@@ -60,7 +62,7 @@ class _MarkdownEditorState extends ConsumerState<MarkdownEditor> {
     widget.onChanged(note);
   }
 
-  void onOpenLink(String text, String? href, String title) => SystemUtils().openLink(href);
+  void onOpenLink(String text, String? href, String title) => unawaited(SystemUtils().openLink(href));
 
   @override
   Widget build(BuildContext context) {
