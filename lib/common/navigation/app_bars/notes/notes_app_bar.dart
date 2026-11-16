@@ -19,6 +19,18 @@ import '../../../preferences/watched_preferences.dart';
 import '../../../widgets/notes/note_tile.dart';
 import '../../../widgets/placeholders/empty_placeholder.dart';
 
+/// How long the search waits for the user to stop typing.
+const _searchDebounce = Duration(milliseconds: 300);
+
+/// The minimum number of characters of a search.
+const _searchMinimumLength = 2;
+
+/// The number of searches started, to skip the outdated ones.
+var _searchGeneration = 0;
+
+/// The latest search started.
+Future<List<NoteTile>>? _latestSearch;
+
 /// Notes list and bin's app bar.
 ///
 /// Contains:
@@ -96,8 +108,34 @@ class NotesAppBar extends ConsumerWidget {
   }
 
   /// Searches for the notes that match the [search].
+  ///
+  /// The search waits for the user to stop typing for [_searchDebounce] and needs at least [_searchMinimumLength]
+  /// characters. If a newer search starts meanwhile, the results of the newer one are returned instead, so that the
+  /// results of an outdated search never replace the ones of the current text.
   Future<List<NoteTile>> searchNotes(String? search) async {
-    if (search == null || search.isEmpty) {
+    final generation = ++_searchGeneration;
+    final searchFuture = _search(search, generation);
+    _latestSearch = searchFuture;
+
+    Future<List<NoteTile>> latestSearch;
+    List<NoteTile> results;
+    do {
+      latestSearch = _latestSearch!;
+      results = await latestSearch;
+    } while (latestSearch != _latestSearch);
+
+    return results;
+  }
+
+  /// Performs the search of the [search] if it's still the latest one (its [generation]) after the debounce.
+  Future<List<NoteTile>> _search(String? search, int generation) async {
+    if (search == null || search.trim().length < _searchMinimumLength) {
+      return [];
+    }
+
+    await Future<void>.delayed(_searchDebounce);
+
+    if (generation != _searchGeneration) {
       return [];
     }
 

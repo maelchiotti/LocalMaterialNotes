@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -25,6 +27,12 @@ import 'dismissible/archived_dismissible.dart';
 import 'dismissible/available_dismissible.dart';
 import 'dismissible/deleted_dismissible.dart';
 import 'note_tile_labels_list.dart';
+
+/// In the search view, the offset of the first match from which the content preview starts near it.
+const _searchPreviewMaximumOffset = 80;
+
+/// In the search view, the number of characters shown before the first match when the preview starts near it.
+const _searchPreviewContext = 30;
 
 /// List tile that displays the main info about a note.
 ///
@@ -191,6 +199,37 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     toggleSelectNote(ref, note: widget.note);
   }
 
+  /// Returns the content preview to show in the search view for the [search].
+  ///
+  /// If the first match of the [search] is too far for the preview, the preview starts a few characters before it,
+  /// so that the match is visible and highlighted.
+  String searchPreview(String search) {
+    final preview = widget.note.contentPreview;
+    final lowerPreview = preview.toLowerCase();
+
+    final indexes = search
+        .toLowerCase()
+        .split(' ')
+        .where((word) => word.isNotEmpty)
+        .map((word) => lowerPreview.indexOf(word))
+        .where((index) => index >= 0);
+
+    if (indexes.isEmpty) {
+      return preview;
+    }
+
+    final firstMatch = indexes.reduce(min);
+
+    if (firstMatch < _searchPreviewMaximumOffset) {
+      return preview;
+    }
+
+    final lineStart = preview.lastIndexOf('\n', firstMatch) + 1;
+    final start = max(lineStart, firstMatch - _searchPreviewContext);
+
+    return '…${preview.substring(start)}';
+  }
+
   @override
   Widget build(BuildContext context) {
     final showTitlesOnly = PreferenceKey.showTitlesOnly.preferenceOrDefault;
@@ -278,7 +317,7 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                           if (showContent)
                             widget.search != null
                                 ? SubstringHighlight(
-                                    text: widget.note.contentPreview,
+                                    text: searchPreview(widget.search!),
                                     terms: widget.search?.split(' '),
                                     maxLines: maximumContentPreviewLines,
                                     overflow: TextOverflow.ellipsis,
