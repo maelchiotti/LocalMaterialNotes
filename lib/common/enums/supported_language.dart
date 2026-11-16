@@ -5,19 +5,19 @@ import 'package:locale_names/locale_names.dart';
 /// Languages supported by the application.
 enum SupportedLanguage {
   /// Czech.
-  cs(Locale('cs'), .71),
+  cs(Locale('cs'), .7),
 
   /// English.
   en(Locale('en'), 1),
 
   /// Spanish.
-  es(Locale('es'), .96),
+  es(Locale('es'), .95),
 
   /// French.
   fr(Locale('fr'), 1),
 
   /// German.
-  de(Locale('de'), .96),
+  de(Locale('de'), .95),
 
   /// Hindi.
   hi(Locale('hi'), .41),
@@ -32,7 +32,7 @@ enum SupportedLanguage {
   pt(Locale('pt'), .48),
 
   /// Russian.
-  ru(Locale('ru'), .96),
+  ru(Locale('ru'), .95),
 
   /// Turkish.
   tr(Locale('tr'), .4),
@@ -41,7 +41,7 @@ enum SupportedLanguage {
   uk(Locale('uk'), .93),
 
   /// Chinese Simplified.
-  zh(Locale('zh'), .96),
+  zh(Locale('zh'), .99),
 
   /// Chinese Traditional.
   zhTW(Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'), .93);
