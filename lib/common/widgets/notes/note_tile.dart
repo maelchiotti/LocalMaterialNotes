@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:substring_highlight/substring_highlight.dart';
 
 import '../../../models/note/note.dart';
@@ -15,6 +16,7 @@ import '../../constants/paddings.dart';
 import '../../constants/sizes.dart';
 import '../../enums/swipe_direction.dart';
 import '../../extensions/color_extension.dart';
+import '../../extensions/date_time_extensions.dart';
 import '../../preferences/enums/layout.dart';
 import '../../preferences/enums/swipe_actions/archived_swipe_action.dart';
 import '../../preferences/enums/swipe_actions/available_swipe_action.dart';
@@ -191,6 +193,49 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     toggleSelectNote(ref, note: widget.note);
   }
 
+  /// Returns the dates to show on the tile, with their icon, depending on the settings and the status of the note.
+  List<({IconData icon, DateTime date})> getDates() {
+    final note = widget.note;
+
+    return [
+      if (PreferenceKey.showCreatedDateOnNoteTile.preferenceOrDefault)
+        (icon: Symbols.calendar_add_on, date: note.createdTime),
+      if (PreferenceKey.showEditedDateOnNoteTile.preferenceOrDefault)
+        (icon: Icons.edit_calendar, date: note.editedTime),
+      if (PreferenceKey.showArchivedDateOnNoteTile.preferenceOrDefault &&
+          note.status == NoteStatus.archived &&
+          note.archivedTime != null)
+        (icon: Icons.archive, date: note.archivedTime!),
+      if (PreferenceKey.showDeletedDateOnNoteTile.preferenceOrDefault &&
+          note.status == NoteStatus.deleted &&
+          note.deletedTime != null)
+        (icon: Icons.delete, date: note.deletedTime!),
+    ];
+  }
+
+  /// Builds the line showing the [dates] of the note with the [style].
+  Widget buildDates(List<({IconData icon, DateTime date})> dates, TextStyle style) {
+    final iconSize = (style.fontSize ?? 12) + 2;
+
+    return Text.rich(
+      TextSpan(
+        children: [
+          for (final (index, date) in dates.indexed) ...[
+            if (index > 0) const TextSpan(text: '   '),
+            WidgetSpan(
+              alignment: PlaceholderAlignment.middle,
+              child: Icon(date.icon, size: iconSize, color: style.color),
+            ),
+            TextSpan(text: ' ${date.date.yMMMd(context)}'),
+          ],
+        ],
+      ),
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: style,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final showTitlesOnly = PreferenceKey.showTitlesOnly.preferenceOrDefault;
@@ -208,6 +253,8 @@ class _NoteTileState extends ConsumerState<NoteTile> {
     final biggerTitles = PreferenceKey.biggerTitles.preferenceOrDefault;
 
     final layout = ref.watch(preferencesProvider.select((preferences) => preferences.layout));
+
+    final dates = getDates();
 
     // Never show the content of a note that is locked or has a locked label (checked first to skip decoding its preview)
     final requiresAuthentication = widget.note.requiresAuthentication;
@@ -232,6 +279,8 @@ class _NoteTileState extends ConsumerState<NoteTile> {
       color: disableSubduedNoteContentPreview ? null : bodyMediumTextTheme.color?.subdued,
     );
     contentStyle ??= TextStyle();
+    final bodySmallTextTheme = Theme.of(context).textTheme.bodySmall;
+    final datesStyle = bodySmallTextTheme?.copyWith(color: bodySmallTextTheme.color?.subdued) ?? TextStyle();
     final contentStyleHighlighted = contentStyle.copyWith(
       color: Theme.of(context).colorScheme.primary,
       fontWeight: FontWeight.bold,
@@ -291,6 +340,9 @@ class _NoteTileState extends ConsumerState<NoteTile> {
                                     overflow: TextOverflow.ellipsis,
                                     style: contentStyle,
                                   ),
+
+                          // Dates
+                          if (dates.isNotEmpty) ...[Gap(4), buildDates(dates, datesStyle)],
 
                           if (enableLabels && showLabelsListOnNoteTile) ...[
                             Gap(4),

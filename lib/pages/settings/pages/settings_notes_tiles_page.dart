@@ -61,6 +61,34 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
     setState(() {});
   }
 
+  /// Toggles the setting to show the created date on the notes tiles.
+  Future<void> _toggleShowCreatedDateOnNoteTile(bool toggled) async {
+    await PreferenceKey.showCreatedDateOnNoteTile.set(toggled);
+
+    setState(() {});
+  }
+
+  /// Toggles the setting to show the edited date on the notes tiles.
+  Future<void> _toggleShowEditedDateOnNoteTile(bool toggled) async {
+    await PreferenceKey.showEditedDateOnNoteTile.set(toggled);
+
+    setState(() {});
+  }
+
+  /// Toggles the setting to show the archived date on the notes tiles.
+  Future<void> _toggleShowArchivedDateOnNoteTile(bool toggled) async {
+    await PreferenceKey.showArchivedDateOnNoteTile.set(toggled);
+
+    setState(() {});
+  }
+
+  /// Toggles the setting to show the deleted date on the notes tiles.
+  Future<void> _toggleShowDeletedDateOnNoteTile(bool toggled) async {
+    await PreferenceKey.showDeletedDateOnNoteTile.set(toggled);
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final showTilesBackground = PreferenceKey.showTilesBackground.preferenceOrDefault;
@@ -69,6 +97,10 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
     final showTitlesOnlyDisableInSearchView = PreferenceKey.showTitlesOnlyDisableInSearchView.preferenceOrDefault;
     final maximumContentPreviewLines = PreferenceKey.maximumContentPreviewLines.preferenceOrDefault;
     final showNoteTypeIcon = PreferenceKey.showNoteTypeIcon.preferenceOrDefault;
+    final showCreatedDateOnNoteTile = PreferenceKey.showCreatedDateOnNoteTile.preferenceOrDefault;
+    final showEditedDateOnNoteTile = PreferenceKey.showEditedDateOnNoteTile.preferenceOrDefault;
+    final showArchivedDateOnNoteTile = PreferenceKey.showArchivedDateOnNoteTile.preferenceOrDefault;
+    final showDeletedDateOnNoteTile = PreferenceKey.showDeletedDateOnNoteTile.preferenceOrDefault;
 
     return Scaffold(
       appBar: TopNavigation(appbar: BasicAppBar(title: context.l.navigation_settings_notes_tiles)),
@@ -133,6 +165,39 @@ class _SettingsNotesTilesPageState extends ConsumerState<SettingsNotesTilesPage>
                     description: Text(context.l.settings_show_note_type_icon_description),
                     toggled: showNoteTypeIcon,
                     onChanged: _toggleShowNoteTypeIcon,
+                  ),
+                ],
+              ),
+              SettingSection(
+                title: SettingSectionTitle(context.l.settings_page_notes_tiles_dates_section),
+                tiles: [
+                  SettingSwitchTile(
+                    icon: SettingTileIcon(Symbols.calendar_add_on),
+                    title: Text(context.l.settings_show_created_date),
+                    description: Text(context.l.settings_show_created_date_description),
+                    toggled: showCreatedDateOnNoteTile,
+                    onChanged: _toggleShowCreatedDateOnNoteTile,
+                  ),
+                  SettingSwitchTile(
+                    icon: SettingTileIcon(Icons.edit_calendar),
+                    title: Text(context.l.settings_show_edited_date),
+                    description: Text(context.l.settings_show_edited_date_description),
+                    toggled: showEditedDateOnNoteTile,
+                    onChanged: _toggleShowEditedDateOnNoteTile,
+                  ),
+                  SettingSwitchTile(
+                    icon: SettingTileIcon(Icons.archive),
+                    title: Text(context.l.settings_show_archived_date),
+                    description: Text(context.l.settings_show_archived_date_description),
+                    toggled: showArchivedDateOnNoteTile,
+                    onChanged: _toggleShowArchivedDateOnNoteTile,
+                  ),
+                  SettingSwitchTile(
+                    icon: SettingTileIcon(Icons.delete),
+                    title: Text(context.l.settings_show_deleted_date),
+                    description: Text(context.l.settings_show_deleted_date_description),
+                    toggled: showDeletedDateOnNoteTile,
+                    onChanged: _toggleShowDeletedDateOnNoteTile,
                   ),
                 ],
               ),

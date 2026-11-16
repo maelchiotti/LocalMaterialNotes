@@ -66,6 +66,9 @@ sealed class Note implements Comparable<Note> {
   /// The last time when the note was edited (title or content).
   DateTime editedTime;
 
+  /// The time when the note was archived (if applicable).
+  DateTime? archivedTime;
+
   /// The time when the note was deleted (if applicable).
   DateTime? deletedTime;
 
@@ -92,6 +95,7 @@ sealed class Note implements Comparable<Note> {
     this.locked = false,
     required this.createdTime,
     required this.editedTime,
+    this.archivedTime,
     this.deletedTime,
     required this.title,
     required this.type,
