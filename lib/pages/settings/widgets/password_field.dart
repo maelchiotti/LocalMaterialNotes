@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../common/constants/paddings.dart';
 import '../../../common/extensions/build_context_extension.dart';
 import '../../../common/extensions/string_extension.dart';
+import '../../../common/files/encryption_utils.dart';
 
 /// Text field to enter the password to use to encrypt the JSON exports.
 class PasswordField extends StatefulWidget {
@@ -50,13 +51,13 @@ class _PasswordFieldState extends State<PasswordField> {
 
   /// Validates the [password].
   ///
-  /// The password must be exactly 32 characters long and be strong.
+  /// The password must be strong, which requires at least [EncryptionUtils.minimumPasswordLength] characters.
   String? _validatePassword(String? password) {
     if (password == null || password.isEmpty) {
       return null;
     }
 
-    if (!(password.length == 32) || !password.isStrongPassword) {
+    if (password.length < EncryptionUtils.minimumPasswordLength || !password.isStrongPassword) {
       return context.l.dialog_export_encryption_password_invalid;
     }
 
@@ -110,7 +111,6 @@ class _PasswordFieldState extends State<PasswordField> {
               obscureText: _obscurePassword,
               autocorrect: false,
               enableSuggestions: false,
-              maxLength: 32,
               validator: _validatePassword,
               onChanged: (_) => _onChanged(),
               onEditingComplete: _onEditingComplete,
