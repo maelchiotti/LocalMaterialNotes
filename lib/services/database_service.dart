@@ -20,20 +20,31 @@ class DatabaseService {
 
   DatabaseService._internal();
 
+  /// The schemas of the collections of the database.
+  static const schemas = [
+    NoteSchema,
+    PlainTextNoteSchema,
+    RichTextNoteSchema,
+    MarkdownNoteSchema,
+    ChecklistNoteSchema,
+    LabelSchema,
+  ];
+
+  /// The name of the database.
+  static const databaseName = 'materialnotes';
+
   /// Isar database instance.
   late final Isar database;
 
+  /// The directory of the database.
+  late final String databaseDirectory;
+
   /// Ensures the service is initialized.
   Future<void> ensureInitialized() async {
-    final databaseName = 'materialnotes';
-    final databaseDirectory = (await getApplicationDocumentsDirectory()).path;
+    databaseDirectory = (await getApplicationDocumentsDirectory()).path;
 
     // Initialize the database
-    database = await Isar.open(
-      [NoteSchema, PlainTextNoteSchema, RichTextNoteSchema, MarkdownNoteSchema, ChecklistNoteSchema, LabelSchema],
-      name: databaseName,
-      directory: databaseDirectory,
-    );
+    database = await Isar.open(schemas, name: databaseName, directory: databaseDirectory);
 
     // Initialize the models services
     await LabelsService().ensureInitialized();

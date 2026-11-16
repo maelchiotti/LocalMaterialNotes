@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:isar_community/isar.dart';
 
@@ -5,10 +6,13 @@ import '../../common/constants/constants.dart';
 import '../../common/constants/environment.dart';
 import '../../common/constants/labels.dart';
 import '../../common/constants/notes.dart';
+import '../../common/preferences/preference_key.dart';
 import '../../models/label/label.dart';
 import '../../models/note/note.dart';
 import '../../models/note/note_status.dart';
+import '../../models/note/types/note_type.dart';
 import '../database_service.dart';
+import 'notes_search.dart';
 
 /// Service for the notes database.
 ///
@@ -139,57 +143,56 @@ class NotesService {
     ];
   }
 
-  /// Returns all the notes with the [notesStatus] that match the [search].
+  /// The maximum number of notes returned by a search.
+  static const searchLimit = 50;
+
+  /// Returns the notes with the [notesStatus] that match the [search], at most [searchLimit].
+  ///
+  /// A note matches when each word of the [search] starts a word of its title, or is contained in its content (except
+  /// for the notes that require an authentication). The notes whose title matches come first.
   ///
   /// If [label] is set, the search should be performed on the notes that have that label.
+  ///
+  /// The search runs in an isolate, so that it doesn't freeze the interface. The notes are loaded here by their IDs.
   Future<List<Note>> search(String search, NoteStatus notesStatus, String? label) async {
-    final searchWords = Isar.splitWords(search.toLowerCase());
+    final words = Isar.splitWords(search.toLowerCase());
 
-    final statusArchivedFilter = notesStatus == NoteStatus.archived;
-    final statusDeletedFilter = notesStatus == NoteStatus.deleted;
+    if (words.isEmpty) {
+      return [];
+    }
+
+    final SearchParameters parameters = (
+      databaseName: DatabaseService.databaseName,
+      databaseDirectory: DatabaseService().databaseDirectory,
+      words: words,
+      archived: notesStatus == NoteStatus.archived,
+      deleted: notesStatus == NoteStatus.deleted,
+      label: label,
+      lockNote: PreferenceKey.lockNote.preferenceOrDefault,
+      lockLabel: PreferenceKey.lockLabel.preferenceOrDefault,
+      limit: searchLimit,
+    );
+
+    final results = await searchNotesInIsolate(parameters);
 
     return [
-      ...await (_plainTextNotes
-          .filter()
-          .archivedEqualTo(statusArchivedFilter)
-          .deletedEqualTo(statusDeletedFilter)
-          .optional(label != null, (q) => q.labels((q2) => q2.nameEqualTo(label!)))
-          .allOf<String, PlainTextNote>(
-            searchWords,
-            (q, word) => q.group((q2) => q2.titleIndexedElementStartsWith(word)),
-          )
-          .findAll()),
-      ...await (_markdownNotes
-          .filter()
-          .archivedEqualTo(statusArchivedFilter)
-          .deletedEqualTo(statusDeletedFilter)
-          .optional(label != null, (q) => q.labels((q2) => q2.nameEqualTo(label!)))
-          .allOf<String, MarkdownNote>(
-            searchWords,
-            (q, word) => q.group((q2) => q2.titleIndexedElementStartsWith(word)),
-          )
-          .findAll()),
-      ...await (_richTextNotes
-          .filter()
-          .archivedEqualTo(statusArchivedFilter)
-          .deletedEqualTo(statusDeletedFilter)
-          .optional(label != null, (q) => q.labels((q2) => q2.nameEqualTo(label!)))
-          .allOf<String, RichTextNote>(
-            searchWords,
-            (q, word) => q.group((q2) => q2.titleIndexedElementStartsWith(word)),
-          )
-          .findAll()),
-      ...await (_checklistNotes
-          .filter()
-          .archivedEqualTo(statusArchivedFilter)
-          .deletedEqualTo(statusDeletedFilter)
-          .optional(label != null, (q) => q.labels((q2) => q2.nameEqualTo(label!)))
-          .allOf<String, ChecklistNote>(
-            searchWords,
-            (q, word) => q.group((q2) => q2.titleIndexedElementStartsWith(word)),
-          )
-          .findAll()),
+      ...(await _getAllByResults(results.titleMatches)).sorted(),
+      ...(await _getAllByResults(results.contentMatches)).sorted(),
     ];
+  }
+
+  /// Returns the notes of the search [results], from their collection.
+  Future<List<Note>> _getAllByResults(List<SearchResult> results) async {
+    List<int> ids(NoteType type) => results.where((result) => result.type == type).map((r) => r.isarId).toList();
+
+    final notes = <Note?>[
+      ...await _plainTextNotes.getAll(ids(NoteType.plainText)),
+      ...await _markdownNotes.getAll(ids(NoteType.markdown)),
+      ...await _richTextNotes.getAll(ids(NoteType.richText)),
+      ...await _checklistNotes.getAll(ids(NoteType.checklist)),
+    ];
+
+    return notes.nonNulls.toList();
   }
 
   /// Puts the [note] in the database.
