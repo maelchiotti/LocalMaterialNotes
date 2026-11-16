@@ -25,7 +25,8 @@ typedef SearchParameters = ({
   int limit,
 });
 
-/// The notes found by a search: first the ones whose title matches every word, then the ones whose content does.
+/// The notes found by a search: all the ones whose title matches every word, then at most a limit of the ones whose
+/// content does.
 typedef SearchResults = ({List<SearchResult> titleMatches, List<SearchResult> contentMatches});
 
 /// Searches the notes matching the [parameters] in a new isolate, so that the search doesn't freeze the interface.
@@ -129,29 +130,24 @@ Future<SearchResults> searchNotesInDatabase(SearchParameters parameters) async {
     final titleMatches = <SearchResult>[];
     final contentMatches = <SearchResult>[];
     final limit = parameters.limit;
-    int count() => titleMatches.length + contentMatches.length;
 
-    // First the notes whose title matches, with the index of the titles
+    // First all the notes whose title matches, with the index of the titles, as before the search in the contents
     for (final fetch in fetchers) {
-      if (count() >= limit) {
-        break;
-      }
-
-      final notes = await fetch(titleOnly: true, offset: 0, limit: limit - count());
+      final notes = await fetch(titleOnly: true, offset: 0, limit: _noLimit);
       titleMatches.addAll(notes.map((note) => (type: note.type, isarId: note.isarId)));
     }
 
-    // Then the notes whose content matches, by batches so that only the needed notes are read. The candidates are
-    // checked in Dart, to skip the content of the locked notes and the JSON syntax of the rich text notes
+    // Then at most [limit] notes whose content matches, by batches so that only the needed notes are read. The
+    // candidates are checked in Dart, to skip the content of the locked notes and the JSON syntax of the rich text notes
     final titleMatchesIds = titleMatches.toSet();
     for (final fetch in fetchers) {
-      for (var offset = 0; count() < limit; offset += _batchSize) {
+      for (var offset = 0; contentMatches.length < limit; offset += _batchSize) {
         final candidates = await fetch(titleOnly: false, offset: offset, limit: _batchSize);
 
         for (final note in candidates) {
           final result = (type: note.type, isarId: note.isarId);
 
-          if (count() >= limit) {
+          if (contentMatches.length >= limit) {
             break;
           }
 
@@ -197,6 +193,9 @@ String _searchableContent(Note note) {
       return note.content;
   }
 }
+
+/// The limit of a query that returns all its results.
+const _noLimit = 1 << 30;
 
 /// The number of candidates read at once when searching the contents.
 const _batchSize = 50;

@@ -143,10 +143,11 @@ class NotesService {
     ];
   }
 
-  /// The maximum number of notes returned by a search.
+  /// The maximum number of notes returned by a search because of their content (all the title matches are returned).
   static const searchLimit = 50;
 
-  /// Returns the notes with the [notesStatus] that match the [search], at most [searchLimit].
+  /// Returns the notes with the [notesStatus] that match the [search]: all the title matches, then at most
+  /// [searchLimit] content matches.
   ///
   /// A note matches when each word of the [search] starts a word of its title, or is contained in its content (except
   /// for the notes that require an authentication). The notes whose title matches come first.
