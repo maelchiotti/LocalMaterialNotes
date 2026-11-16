@@ -4,6 +4,52 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.3.0 - 2026-11-16
+
+### Added
+
+- Warning when the backup location is no longer accessible.
+- Message when the automatic export fails.
+- Message when a manual export is cancelled or fails.
+
+### Changed
+
+- Ask for authentication to copy or share a locked note from the lists.
+- Sort the notes by title ignoring the case.
+- Do not include the lock and bin removal delays in the backups.
+- Skip the invalid preferences when importing a backup.
+- Update Flutter, Android and the dependencies.
+
+### Fixed
+
+- Notes permanently deleted from the bin after 999 days when the automatic removal is set to never.
+- Application and notes locked after 999 seconds in the background when the lock delay is set to never.
+- Rich text note deleted when its content cannot be decoded.
+- Automatic export considered as done when it failed.
+- Automatic export of an encrypted backup with an empty password.
+- Application stuck on the splash screen when the screen protection cannot be set.
+- Last second of typing lost when the application is closed in the background.
+- Locked notes and notes with a locked label opening without authentication.
+- Content of locked notes shown in the search.
+- Previews of all the notes hidden when the notes lock is enabled.
+- Notes in the bin editable.
+- Edited archived notes appearing in the main list.
+- Notes not updating after switching between labels.
+- New notes created from a label not getting the label.
+- Keyboard closing when creating a note from the floating button.
+- Undo and redo unavailable right after a change in a rich text note.
+- Next button of the title not moving to the content.
+- Locked notes restored unlocked from a backup.
+- Backup partially restored when the import fails.
+- Imported archived notes not shown until the application is restarted.
+- Notes not updating after renaming a label.
+- Missing text of the automatic export every 3 days.
+- Backup location dialog shown over a note shared from another application.
+- Error when opening a link that cannot be opened.
+- Screen protection lost after a configuration change such as a rotation.
+- Slider settings dialog crashing when the current value is not one of the choices.
+- Keyboard options not applied to the checklist items, and checklists interfering with each other.
+
 ## 2.2.2 - 2026-07-14
 
 ### Fixed
