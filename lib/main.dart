@@ -21,10 +21,7 @@ Future<void> main() async {
   // Keep the splash screen until all initializations are done
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  // Display the application behind the system's notifications bar and navigation bar
-  // See https://github.com/flutter/flutter/issues/40974
-  // See https://github.com/flutter/flutter/issues/34678
-  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  // The application is already displayed behind the system's notifications bar and navigation bar (edge-to-edge)
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(systemNavigationBarColor: Colors.transparent));
 
   // Initialize the utilities
