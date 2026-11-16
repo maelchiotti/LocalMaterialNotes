@@ -60,17 +60,7 @@ class ThemeUtils {
   ThemeData getLightTheme(ColorScheme? lightDynamicColorScheme, bool dynamicTheming, Font appFont) {
     final ColorScheme colorScheme;
     if (dynamicTheming && lightDynamicColorScheme != null) {
-      // TODO: remove when dynamic_colors is updated to support new roles
-      // See https://github.com/material-foundation/flutter-packages/issues/582
-      final temporaryColorScheme = ColorScheme.fromSeed(seedColor: lightDynamicColorScheme.primary);
-
-      colorScheme = lightDynamicColorScheme.copyWith(
-        surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
-        surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
-        surfaceContainer: temporaryColorScheme.surfaceContainer,
-        surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
-        surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
-      );
+      colorScheme = lightDynamicColorScheme;
     } else {
       colorScheme = ColorScheme.fromSeed(seedColor: customPrimaryColor);
     }
@@ -91,33 +81,7 @@ class ThemeUtils {
     final ColorScheme colorScheme;
 
     if (dynamicTheming && darkDynamicColorScheme != null) {
-      // TODO: remove when dynamic_colors is updated to support new roles
-      // See https://github.com/material-foundation/flutter-packages/issues/582
-      final temporaryColorScheme = ColorScheme.fromSeed(
-        brightness: Brightness.dark,
-        seedColor: darkDynamicColorScheme.primary,
-      );
-
-      colorScheme = blackTheming
-          ? darkDynamicColorScheme.copyWith(
-              // TODO: remove when dynamic_colors is updated to support new roles
-              // See https://github.com/material-foundation/flutter-packages/issues/582
-              // ignore: deprecated_member_use
-              background: Colors.black,
-              surface: Colors.black,
-              surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
-              surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
-              surfaceContainer: temporaryColorScheme.surfaceContainer,
-              surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
-              surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
-            )
-          : darkDynamicColorScheme.copyWith(
-              surfaceContainerLowest: temporaryColorScheme.surfaceContainerLowest,
-              surfaceContainerLow: temporaryColorScheme.surfaceContainerLow,
-              surfaceContainer: temporaryColorScheme.surfaceContainer,
-              surfaceContainerHigh: temporaryColorScheme.surfaceContainerHigh,
-              surfaceContainerHighest: temporaryColorScheme.surfaceContainerHighest,
-            );
+      colorScheme = blackTheming ? darkDynamicColorScheme.copyWith(surface: Colors.black) : darkDynamicColorScheme;
     } else {
       colorScheme = blackTheming
           ? ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: customPrimaryColor, surface: Colors.black)
