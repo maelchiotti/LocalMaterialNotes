@@ -57,14 +57,14 @@ class ChecklistNote extends Note {
   /// Checklist note from [json] data.
   factory ChecklistNote.fromJson(Map<String, dynamic> json) => _$ChecklistNoteFromJson(json);
 
-  /// Checklist note from [json] data, encrypted with [password].
-  factory ChecklistNote.fromJsonEncrypted(Map<String, dynamic> json, String password) {
+  /// Checklist note from [json] data, decrypted with the [encrypter].
+  factory ChecklistNote.fromJsonEncrypted(Map<String, dynamic> json, Encrypter encrypter) {
     String title = json['title'];
     List texts = json['texts'];
 
     return _$ChecklistNoteFromJson(json)
-      ..title = title.isEmpty ? '' : EncryptionUtils().decrypt(password, title)
-      ..texts = texts.isEmpty ? [] : texts.map((text) => EncryptionUtils().decrypt(password, text)).toList();
+      ..title = title.isEmpty ? '' : EncryptionUtils().decrypt(encrypter, title)
+      ..texts = texts.isEmpty ? [] : texts.map((text) => EncryptionUtils().decrypt(encrypter, text)).toList();
   }
 
   /// Checklist note to JSON.
@@ -72,10 +72,10 @@ class ChecklistNote extends Note {
   Map<String, dynamic> toJson() => _$ChecklistNoteToJson(this);
 
   @override
-  Note encrypted(String password) {
+  Note encrypted(Encrypter encrypter) {
     return this
-      ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
-      ..texts = texts.map((text) => EncryptionUtils().encrypt(password, text)).toList();
+      ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(encrypter, title)
+      ..texts = texts.map((text) => EncryptionUtils().encrypt(encrypter, text)).toList();
   }
 
   @ignore

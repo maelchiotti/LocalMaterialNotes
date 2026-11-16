@@ -152,7 +152,7 @@ class _SettingsBackupPageState extends ConsumerState<SettingsBackupPage> {
       useRootNavigator: false,
       builder: (context) => AutoExportPasswordDialog(
         title: context.l.settings_auto_export_encryption,
-        description: context.l.dialog_export_encryption_description,
+        description: context.l.dialog_export_encryption_description_password,
         secondaryDescription: context.l.dialog_export_encryption_secondary_description_auto,
       ),
     ).then((autoExportPassword) async {

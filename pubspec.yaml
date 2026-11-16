@@ -19,6 +19,7 @@ dependencies:
   device_info_plus: ^13.3.0
   dynamic_color: ^1.9.0
   encrypt: ^5.0.3
+  pointycastle: ^3.9.1
   equatable: ^3.0.0
   flag_secure: ^2.1.0
   fleather: ">=1.27.0 <1.28.0"

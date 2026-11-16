@@ -68,7 +68,7 @@ class _EncryptPasswordFormState extends State<EncryptPasswordForm> {
         if (_encrypt) ...[
           Padding(padding: Paddings.vertical(8)),
           PasswordField(
-            description: context.l.dialog_export_encryption_description,
+            description: context.l.dialog_export_encryption_description_password,
             secondaryDescription: widget.secondaryDescription,
             onChanged: _onChanged,
             onEditingComplete: _onEditingComplete,

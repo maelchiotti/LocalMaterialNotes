@@ -1047,9 +1047,9 @@
   "@dialog_export_encryption_switch": {
     "description": "Text for the switch to toggle the encryption of the export in the dialog to manually or automatically exporting the notes as JSON."
   },
-  "dialog_export_encryption_description": "The title and the content of the notes will be encrypted using your password. It should be randomly generated, exactly 32 characters long, strong (at least 1 lowercase, 1 uppercase, 1 number and 1 special character) and securely stored.",
-  "@dialog_export_encryption_description": {
-    "description": "Description for the encryption feature when the switch to toggle the encryption of the export is enabled."
+  "dialog_export_encryption_description_password": "The title and the content of the notes will be encrypted using your password. It should be randomly generated, at least 12 characters long, strong (at least 1 lowercase, 1 uppercase, 1 number and 1 special character) and securely stored.",
+  "@dialog_export_encryption_description_password": {
+    "description": "Description for the encryption feature when the switch to toggle the encryption of the export is enabled, with the rules of the password."
   },
   "dialog_export_encryption_secondary_description_auto": "This password will be used for all future automatic exports.",
   "@dialog_export_encryption_secondary_description_auto": {

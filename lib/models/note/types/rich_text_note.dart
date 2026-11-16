@@ -50,27 +50,27 @@ class RichTextNote extends Note {
   /// Rich text note from [json] data.
   factory RichTextNote.fromJson(Map<String, dynamic> json) => _$RichTextNoteFromJson(json);
 
-  /// Rich text note from [json] data, encrypted with [password].
-  factory RichTextNote.fromJsonEncrypted(Map<String, dynamic> json, String password) => _$RichTextNoteFromJson(json)
-    ..title = (json['title'] as String).isEmpty ? '' : EncryptionUtils().decrypt(password, json['title'] as String)
-    ..content = EncryptionUtils().decrypt(password, json['content'] as String);
+  /// Rich text note from [json] data, decrypted with the [encrypter].
+  factory RichTextNote.fromJsonEncrypted(Map<String, dynamic> json, Encrypter encrypter) => _$RichTextNoteFromJson(json)
+    ..title = (json['title'] as String).isEmpty ? '' : EncryptionUtils().decrypt(encrypter, json['title'] as String)
+    ..content = EncryptionUtils().decrypt(encrypter, json['content'] as String);
 
   /// Rich text note to JSON.
   @override
   Map<String, dynamic> toJson() => _$RichTextNoteToJson(this);
 
   @override
-  Note encrypted(String password) => this
-    ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
-    ..content = EncryptionUtils().encrypt(password, content);
+  Note encrypted(Encrypter encrypter) => this
+    ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(encrypter, title)
+    ..content = EncryptionUtils().encrypt(encrypter, content);
 
   /// Returns whether the [contentAsJson] is fleather data.
   ///
-  /// If the content is encrypted the [encryptionPassword] should be provided.
-  static bool isFleatherData(dynamic contentAsJson, [String? encryptionPassword]) {
+  /// If the content is encrypted the [encrypter] should be provided.
+  static bool isFleatherData(dynamic contentAsJson, [Encrypter? encrypter]) {
     try {
       final content = jsonDecode(
-        encryptionPassword != null ? EncryptionUtils().decrypt(encryptionPassword, contentAsJson) : contentAsJson,
+        encrypter != null ? EncryptionUtils().decrypt(encrypter, contentAsJson) : contentAsJson,
       );
       ParchmentDocument.fromJson(content);
     } catch (_) {
