@@ -182,6 +182,8 @@ class _EditorState extends ConsumerState<EditorPage> {
                   note: note,
                   isNewNote: widget.isNewNote,
                   readOnly: readOnly,
+                  // Checking an item is not editing the note: allow it in the reading mode, but never in the bin
+                  toggleable: !currentNote.deleted,
                   onChanged: scheduleSave,
                 );
             }
