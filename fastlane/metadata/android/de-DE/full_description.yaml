@@ -1,0 +1,64 @@
+full_description: |
+  <p>
+      <b>Material Notes</b> ist eine auf Einfachheit abzielende Anwendung für Text-Notizen im Material-Design.
+      Sie speichert die Notizen lokal und benötigt keinen Internetzugriff, sodass nur du allein Zugriff auf die Notizen hast.
+  </p>
+
+  <p>
+      <b>Notizen Schreiben</b>
+  </p>
+  <ul>
+      <li>Schreib Textnotizen (Titel und Inhalt)</li>
+      <li>Wähle zwischen einfachem Text, Markdown, Rich-Text oder Checklisten</li>
+      <li>Nutze die "quick action" von deinem Homescreen um schnell eine Notiz zu verfassen</li>
+  </ul>
+
+  <p>
+      <b>Organisation</b>
+  </p>
+  <ul>
+      <li>Durchsuche deine Notizen</li>
+      <li>Sortier deine Notizen nach Datum oder Titel in auf- oder absteigender Reihenfolge</li>
+      <li>Lass dir deine Notizen in Listen- oder Kachelansicht anzeigen</li>
+      <li>Fixiere und archiviere deine Notizen</li>
+      <li>Stell gelöschte Notizen aus dem Papierkorb wieder her </li>
+  </ul>
+
+  <p>
+      <b>Kategorisierung</b>
+  </p>
+  <ul>
+      <li>Kategorisiere deine Notizen mit Labeln</li>
+      <li>Gib deinen Labels Farbe für einen schnellen Überblick</li>
+      <li>Fixiere oder versteck Notizen</li>
+  </ul>
+
+  <p>
+      <b>Teilen & Backup</b>
+  </p>
+  <ul>
+      <li>Teile Text aus anderen Apps und füge ihn direkt zu einer Notiz hinzu</li>
+      <li>Teil deine Notizen in Textform</li>
+      <li>Exportiere deine Notizen automatisch oder manuell als JSON-Datei und importiere sie wieder</li>
+      <li>Exportiere deine Notizen als Markdown Text</li>
+  </ul>
+
+  <p>
+      <b>Sicherheit</b>
+  </p>
+  <ul>
+      <li>Mach dir keinen Kopf wie deine Daten verarbeitet werden: sie können  dein Gerät nicht verlassen,
+      da die App keinen Internetzugriff benötigt</li>
+      <li>Sperr die App, eine spezielle Notiz oder alle Notizen mit einem bestimmten Label</li>
+      <li>Verschlüssel deine JSON Exporte</li>
+  </ul>
+
+  <p>
+      <b>Personalisierung</b>
+  </p>
+  <ul>
+      <li>Wähle deine bevorzugte Sprache</li>
+      <li>Such dir ein Design aus (hell, dunkel oder schwarz)</li>
+      <li>Wähle ob du dynamisches Design haben möchtest (dia App-Farbe passt sich deinem Hintergrundbild an)</li>
+      <li>Such dir aus, welche Notizentypen in der App verfügbar sein sollen</li>
+  </ul>
