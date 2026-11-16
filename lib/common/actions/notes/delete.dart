@@ -9,7 +9,6 @@ import '../../constants/constants.dart';
 import '../../dialogs/confirmation_dialog.dart';
 import '../../extensions/build_context_extension.dart';
 import '../../ui/snack_bar_utils.dart';
-import 'archive.dart';
 import 'restore.dart';
 import 'select.dart';
 
@@ -50,7 +49,7 @@ Future<bool> deleteNote(
       context,
       text: context.l.snack_bar_deleted(1),
       onCancel: (globalRef) async => wasArchived
-          ? await archiveNote(rootNavigatorKey.currentContext!, globalRef, note: note, cancel: false)
+          ? await _restoreArchivedNotes(globalRef, [note])
           : await restoreNote(rootNavigatorKey.currentContext!, globalRef, note: note, cancel: false),
     );
   }
@@ -86,12 +85,23 @@ Future<bool> deleteNotes(BuildContext context, WidgetRef ref, {required List<Not
       context,
       text: context.l.snack_bar_deleted(notes.length),
       onCancel: (globalRef) async => wereArchived
-          ? await archiveNotes(rootNavigatorKey.currentContext!, globalRef, notes: notes, cancel: false)
+          ? await _restoreArchivedNotes(globalRef, notes)
           : await restoreNotes(rootNavigatorKey.currentContext!, globalRef, notes: notes, cancel: false),
     );
   }
 
   return succeeded;
+}
+
+/// Moves the deleted [notes] back to the archives, to cancel their deletion.
+///
+/// The notes are deleted, so they are first restored from the bin, then archived again, without confirmation.
+Future<bool> _restoreArchivedNotes(WidgetRef ref, List<Note> notes) async {
+  if (!await ref.read(notesProvider(status: NoteStatus.deleted).notifier).setDeleted(notes, false)) {
+    return false;
+  }
+
+  return ref.read(notesProvider(status: NoteStatus.available).notifier).setArchived(notes, true);
 }
 
 /// Permanently deletes the [note].
