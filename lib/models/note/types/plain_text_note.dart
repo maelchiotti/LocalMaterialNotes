@@ -47,19 +47,20 @@ class PlainTextNote extends Note {
   /// Plain text note from [json] data.
   factory PlainTextNote.fromJson(Map<String, dynamic> json) => _$PlainTextNoteFromJson(json);
 
-  /// Plain text note from [json] data, encrypted with [password].
-  factory PlainTextNote.fromJsonEncrypted(Map<String, dynamic> json, String password) => _$PlainTextNoteFromJson(json)
-    ..title = (json['title'] as String).isEmpty ? '' : EncryptionUtils().decrypt(password, json['title'] as String)
-    ..content = EncryptionUtils().decrypt(password, json['content'] as String);
+  /// Plain text note from [json] data, decrypted with the [encrypter].
+  factory PlainTextNote.fromJsonEncrypted(Map<String, dynamic> json, Encrypter encrypter) =>
+      _$PlainTextNoteFromJson(json)
+        ..title = (json['title'] as String).isEmpty ? '' : EncryptionUtils().decrypt(encrypter, json['title'] as String)
+        ..content = EncryptionUtils().decrypt(encrypter, json['content'] as String);
 
   /// Plain text note to JSON.
   @override
   Map<String, dynamic> toJson() => _$PlainTextNoteToJson(this);
 
   @override
-  Note encrypted(String password) => this
-    ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(password, title)
-    ..content = EncryptionUtils().encrypt(password, content);
+  Note encrypted(Encrypter encrypter) => this
+    ..title = isTitleEmpty ? '' : EncryptionUtils().encrypt(encrypter, title)
+    ..content = EncryptionUtils().encrypt(encrypter, content);
 
   @ignore
   @override

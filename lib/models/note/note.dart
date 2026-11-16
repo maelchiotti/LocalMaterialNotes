@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:encrypt/encrypt.dart' show Encrypter;
 import 'package:fleather/fleather.dart';
 import 'package:flutter_checklist/checklist.dart';
 import 'package:isar_community/isar.dart';
@@ -97,8 +98,8 @@ sealed class Note implements Comparable<Note> {
     required this.type,
   }) : assert(!(archived && deleted), 'A note cannot be archived and deleted at the same time');
 
-  /// Returns this note with the [title] and the content encrypted using the [password].
-  Note encrypted(String password);
+  /// Returns this note with the [title] and the content encrypted with the [encrypter].
+  Note encrypted(Encrypter encrypter);
 
   /// The status of the note.
   @ignore

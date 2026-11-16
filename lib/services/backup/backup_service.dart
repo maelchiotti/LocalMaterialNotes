@@ -11,6 +11,7 @@ import '../../common/enums/mime_type.dart';
 import '../../common/extensions/build_context_extension.dart';
 import '../../common/extensions/date_time_extensions.dart';
 import '../../common/extensions/iterable_extension.dart';
+import '../../common/files/encryption_utils.dart';
 import '../../common/files/files_utils.dart';
 import '../../common/preferences/preference_key.dart';
 import '../../common/preferences/preferences_wrapper.dart';
@@ -64,7 +65,13 @@ class ManualBackupService {
     final labels = labelsAsJson.map((labelAsJson) => Label.fromJson(labelAsJson)).toList();
     final notesAsJson = importedJson.getList<dynamic>("notes");
     final encrypted = importedJson.tryGetBool("encrypted") ?? false;
-    final importedNotes = await _importNotes(context, notesAsJson, encrypted, labels);
+    final importedNotes = await _importNotes(
+      context,
+      notesAsJson,
+      encrypted,
+      importedJson[EncryptionUtils.parametersKey],
+      labels,
+    );
     if (!importedNotes) {
       return false;
     }
@@ -74,7 +81,17 @@ class ManualBackupService {
     return true;
   }
 
-  Future<bool> _importNotes(BuildContext context, List<dynamic> notesAsJson, bool encrypted, List<Label> labels) async {
+  /// Imports the [notesAsJson] with the [labels].
+  ///
+  /// If they are [encrypted], asks for the password and derives the key with the [encryptionParameters] of the export
+  /// (`null` for the exports before 2.4.0, whose key is the password).
+  Future<bool> _importNotes(
+    BuildContext context,
+    List<dynamic> notesAsJson,
+    bool encrypted,
+    Object? encryptionParameters,
+    List<Label> labels,
+  ) async {
     List<Note> notes = [];
 
     for (final noteAsJson in notesAsJson) {
@@ -96,29 +113,31 @@ class ManualBackupService {
       }
 
       try {
+        final encrypter = await EncryptionUtils().forImport(password, encryptionParameters);
+
         for (final noteAsJsonEncrypted in notesAsJson) {
           final noteType = NoteType.values.byNameOrNull(noteAsJsonEncrypted['type']);
 
           // If the note type is null, it's an export from before v2.0.0 when only rich text notes were available
           if (noteType == null) {
-            if (RichTextNote.isFleatherData(noteAsJsonEncrypted['content'] as String, password)) {
-              notes.add(RichTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+            if (RichTextNote.isFleatherData(noteAsJsonEncrypted['content'] as String, encrypter)) {
+              notes.add(RichTextNote.fromJsonEncrypted(noteAsJsonEncrypted, encrypter));
             } else {
               logger.w(
                 'Imported an encrypted note without a type as a plain text note because its content is not fleather data',
               );
-              notes.add(PlainTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+              notes.add(PlainTextNote.fromJsonEncrypted(noteAsJsonEncrypted, encrypter));
             }
           } else {
             switch (noteType) {
               case NoteType.plainText:
-                notes.add(PlainTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+                notes.add(PlainTextNote.fromJsonEncrypted(noteAsJsonEncrypted, encrypter));
               case NoteType.markdown:
-                notes.add(MarkdownNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+                notes.add(MarkdownNote.fromJsonEncrypted(noteAsJsonEncrypted, encrypter));
               case NoteType.richText:
-                notes.add(RichTextNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+                notes.add(RichTextNote.fromJsonEncrypted(noteAsJsonEncrypted, encrypter));
               case NoteType.checklist:
-                notes.add(ChecklistNote.fromJsonEncrypted(noteAsJsonEncrypted, password));
+                notes.add(ChecklistNote.fromJsonEncrypted(noteAsJsonEncrypted, encrypter));
             }
           }
         }
@@ -252,9 +271,13 @@ class ManualBackupService {
     final version = SystemUtils().appVersion;
     final buildNumber = SystemUtils().buildNumber;
 
+    // Derive a new key from the password, with a new salt, for each export
+    final encryption = encrypt ? await EncryptionUtils().forExport(password!) : null;
+
+    // The notes are read from the database for this export only, so encrypting them leaves the app state unchanged
     var notes = await _notesService.getAll();
-    if (encrypt) {
-      notes = notes.map((note) => note.encrypted(password!)).toList();
+    if (encryption != null) {
+      notes = notes.map((note) => note.encrypted(encryption.encrypter)).toList();
     }
 
     final labels = await _labelsService.getAll();
@@ -265,6 +288,7 @@ class ManualBackupService {
       'version': version,
       'build_number': buildNumber,
       'encrypted': encrypt,
+      if (encryption != null) EncryptionUtils.parametersKey: encryption.parameters,
       'notes': notes,
       'labels': labels,
       'preferences': preferences,
