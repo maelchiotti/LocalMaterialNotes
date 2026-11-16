@@ -825,6 +825,22 @@
   "@hint_label_name": {
     "description": "Hint for the text field of the name of a tag."
   },
+  "dialog_require_backup_title": "Seleccione un lugar de respaldo",
+  "@dialog_require_backup_title": {
+    "description": "Title of the dialog to select a backup location."
+  },
+  "dialog_require_backup_description": "Debido a que sus notas son guardadas en su dispositivo, cualquier problema puede llevarlo a perder todas sus notas.\nBorrar la aplicación puede también borrar todas sus notas.\n\nSeleccionar manualmente un lugar de almacenamiento puede mantener seguros sus respaldos. Por ejemplo, puede crear una carpeta llamada «Respaldo de mis Notas» en su carpeta de Documentos.",
+  "@dialog_require_backup_description": {
+    "description": "Description of the dialog to select a backup location."
+  },
+  "dialog_require_backup_ignore": "Ignorar",
+  "@dialog_require_backup_ignore": {
+    "description": "Button to ignore the dialog to select a backup location."
+  },
+  "dialog_require_backup_select": "Seleccione",
+  "@dialog_require_backup_select": {
+    "description": "Button to select a backup location in the related dialog."
+  },
   "dialog_export_encryption_password": "Contraseña",
   "@dialog_export_encryption_password": {
     "description": "Hint for the password text field in the dialog to configure the encryption of an automatic or manual export."

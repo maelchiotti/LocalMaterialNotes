@@ -709,11 +709,11 @@
   "@settings_github_discussions_description": {
     "description": "Description of the settings tile to open the GitHub discussions and ask a question."
   },
-  "settings_contact_developer": "Зв''язатись з розробником",
+  "settings_contact_developer": "Зв’язатись з розробником",
   "@settings_contact_developer": {
     "description": "Title of the settings tile to contact the developer via mail."
   },
-  "settings_get_in_touch_description": "Зв''язатись з розробником через пошту {email}",
+  "settings_get_in_touch_description": "Зв’язатись з розробником через пошту {email}",
   "@settings_get_in_touch_description": {
     "description": "Description of the settings tile to contact the developer via mail."
   },

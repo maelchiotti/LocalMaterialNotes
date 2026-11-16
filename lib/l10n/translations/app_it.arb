@@ -7,7 +7,7 @@
   "@app_tagline": {
     "description": "Tagline of the application, shown in the about popup."
   },
-  "app_about": "{appName} è una applicazione per scrivere note che punta alla semplicità d''uso. Utilizza in tutto e per tutto il Material Design. Salva localmente le tue note e non ha alcun accesso ad internet, per cui solo tu puoi accedere alle tue note.",
+  "app_about": "{appName} è una applicazione per scrivere note che punta alla semplicità d’uso. Utilizza in tutto e per tutto il Material Design. Salva localmente le tue note e non ha alcun accesso ad internet, per cui solo tu puoi accedere alle tue note.",
   "@app_about": {
     "description": "Description of the application, shown in the about popup.",
     "placeholders": {
@@ -29,7 +29,7 @@
   "@error_widget_description": {
     "description": "Message shown in the error widget shown when a widget fails to build."
   },
-  "error_widget_disabled_secure_flag": "L''opzione per contrassegnare l''app come sicura è disabilitata fino al prossimo riavvio per abilitare gli screenshot.",
+  "error_widget_disabled_secure_flag": "L’opzione per contrassegnare l’app come sicura è disabilitata fino al prossimo riavvio per abilitare gli screenshot.",
   "@error_widget_disabled_secure_flag": {
     "description": "Tag shown on the error widget when the setting to flag the app as secure is enabled, but was disabled until the next restart to allow taking screenshots of the screen where the error occurred."
   },
@@ -49,7 +49,7 @@
   "@error_widget_button_create_github_issue": {
     "description": "Title of the button to create a new GitHub issue on the error widget."
   },
-  "error_widget_button_send_mail": "Invia un''email",
+  "error_widget_button_send_mail": "Invia un’email",
   "@error_widget_button_send_mail": {
     "description": "Title of the button to end a bug report mail on the error widget."
   },
@@ -185,19 +185,19 @@
   "@settings_appearance_section_fonts": {
     "description": "Title of the section regarding the theming under the appearance settings."
   },
-  "settings_app_font": "Carattere dell''app",
+  "settings_app_font": "Carattere dell’app",
   "@settings_app_font": {
     "description": "Title of the setting tile to choose the font of the app."
   },
-  "settings_app_font_description": "Carattere utilizzato per tutti i testi dell''applicazione, tranne che nell''editor delle note",
+  "settings_app_font_description": "Carattere utilizzato per tutti i testi dell’applicazione, tranne che nell’editor delle note",
   "@settings_app_font_description": {
     "description": "Description of the setting tile to choose the font of the app."
   },
-  "settings_editor_font": "Carattere dell''editor",
+  "settings_editor_font": "Carattere dell’editor",
   "@settings_editor_font": {
     "description": "Title of the setting tile to choose the font of the notes."
   },
-  "settings_editor_font_description": "Carattere utilizzato solo per il testo nell''editor delle note",
+  "settings_editor_font_description": "Carattere utilizzato solo per il testo nell’editor delle note",
   "@settings_editor_font_description": {
     "description": "Description of the setting tile to choose the font of the app."
   },
@@ -237,7 +237,7 @@
   "@settings_show_note_type_icon": {
     "description": "Title of the setting tile to show the icon of the type of the note."
   },
-  "settings_show_note_type_icon_description": "Mostra l''icona del tipo della nota",
+  "settings_show_note_type_icon_description": "Mostra l’icona del tipo della nota",
   "@settings_show_note_type_icon_description": {
     "description": "Description of the setting tile to show the icon of the type of the note."
   },
@@ -253,7 +253,7 @@
   "@settings_show_titles_only_disable_in_search_view": {
     "description": "Title of the setting tile to disable only showing the titles of the notes in the search view."
   },
-  "settings_show_titles_only_disable_in_search_view_description": "Disabilita l''opzione \"mostra solo i titoli\" nella vista di ricerca",
+  "settings_show_titles_only_disable_in_search_view_description": "Disabilita l’opzione \"mostra solo i titoli\" nella vista di ricerca",
   "@settings_show_titles_only_disable_in_search_view_description": {
     "description": "Description of the setting tile to disable only showing the titles of the notes in the search view."
   },
@@ -261,7 +261,7 @@
   "@settings_content_preview_max_lines": {
     "description": "Title of the setting tile to choose the maximum number of content preview lines to show."
   },
-  "settings_content_preview_max_lines_description": "Numero massimo di righe dell''anteprima del contenuto da mostrare",
+  "settings_content_preview_max_lines_description": "Numero massimo di righe dell’anteprima del contenuto da mostrare",
   "@settings_content_preview_max_lines_description": {
     "description": "Description of the setting tile to choose the maximum number of content preview lines to show."
   },
@@ -391,7 +391,7 @@
   "@settings_editor_behavior": {
     "description": "Title of the settings section regarding the behavior of the editor"
   },
-  "settings_show_editor_mode_button": "Pulsante di cambio modalità nell''editor",
+  "settings_show_editor_mode_button": "Pulsante di cambio modalità nell’editor",
   "@settings_show_editor_mode_button": {
     "description": "Title of the setting tile to enable the button to toggle between editing mode and reading mode in the editor."
   },
@@ -403,7 +403,7 @@
   "@settings_open_editor_reading_mode": {
     "description": "Title of the setting tile to enable opening the editor in reading mode by default."
   },
-  "settings_open_editor_reading_mode_description": "Apri l''editor in modalità lettura di default",
+  "settings_open_editor_reading_mode_description": "Apri l’editor in modalità lettura di default",
   "@settings_open_editor_reading_mode_description": {
     "description": "Description of the setting tile to enable opening the editor in reading mode by default."
   },
@@ -423,7 +423,7 @@
   "@settings_toolbar_style_title": {
     "description": "Title of the setting tile to choose the toolbar style."
   },
-  "settings_toolbar_style_description": "Stile della barra degli strumenti dell''editor di testo avanzato",
+  "settings_toolbar_style_description": "Stile della barra degli strumenti dell’editor di testo avanzato",
   "@settings_toolbar_style_description": {
     "description": "Description of the setting tile to choose the toolbar style."
   },
@@ -459,15 +459,15 @@
   "@settings_show_labels_note_tile": {
     "description": "Title of the setting tile to show the tags on the notes tiles."
   },
-  "settings_show_labels_note_tile_description": "Mostra l''elenco delle etichette sui riquadri delle note",
+  "settings_show_labels_note_tile_description": "Mostra l’elenco delle etichette sui riquadri delle note",
   "@settings_show_labels_note_tile_description": {
     "description": "Description of the setting tile to show the tags on the notes tiles."
   },
-  "settings_show_labels_editor": "Mostra le etichette nell''editor",
+  "settings_show_labels_editor": "Mostra le etichette nell’editor",
   "@settings_show_labels_editor": {
     "description": "Title of the setting tile to show the tags in the editor."
   },
-  "settings_show_labels_editor_description": "Mostra l''elenco delle etichette nella parte inferiore dell''editor",
+  "settings_show_labels_editor_description": "Mostra l’elenco delle etichette nella parte inferiore dell’editor",
   "@settings_show_labels_editor_description": {
     "description": "Description of the setting tile to show the tags in the editor."
   },
@@ -587,11 +587,11 @@
   "@settings_security_note_lock": {
     "description": "Title of the sub-section regarding the note lock under the security settings."
   },
-  "settings_flag_secure": "Contrassegna l''applicazione come sicura",
+  "settings_flag_secure": "Contrassegna l’applicazione come sicura",
   "@settings_flag_secure": {
     "description": "Title of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
   },
-  "settings_flag_secure_description": "Nasconde l''applicazione dalle app recenti e impedisce che vengano eseguiti screenshot",
+  "settings_flag_secure_description": "Nasconde l’applicazione dalle app recenti e impedisce che vengano eseguiti screenshot",
   "@settings_flag_secure_description": {
     "description": "Description of the setting tile to flag the application as secure (hiding it from the recent apps and prevent screenshots from being made)."
   },
@@ -599,7 +599,7 @@
   "@settings_application_lock_title": {
     "description": "Title of the setting tile to toggle whether the application is locked."
   },
-  "settings_application_lock_description": "Blocca l''applicazione e richiedi l''autenticazione sul dispositivo per lo sblocco",
+  "settings_application_lock_description": "Blocca l’applicazione e richiedi l’autenticazione sul dispositivo per lo sblocco",
   "@settings_application_lock_description": {
     "description": "Description of the setting tile to toggle whether the application is locked."
   },
@@ -607,7 +607,7 @@
   "@settings_application_lock_delay_title": {
     "description": "Title of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
   },
-  "settings_application_lock_delay_description": "Tempo dopo il quale l''applicazione si blocca una volta messa in secondo piano",
+  "settings_application_lock_delay_description": "Tempo dopo il quale l’applicazione si blocca una volta messa in secondo piano",
   "@settings_application_lock_delay_description": {
     "description": "Description of the setting tile to choose after which amount of time the application locks itself after it was moved to the background."
   },
@@ -625,7 +625,7 @@
   "@settings_note_lock_title": {
     "description": "Title of the setting tile to toggle whether the notes can be locked."
   },
-  "settings_note_lock_description": "Blocca le note e richiedi l''autenticazione sul dispositivo per visualizzarle e modificarle",
+  "settings_note_lock_description": "Blocca le note e richiedi l’autenticazione sul dispositivo per visualizzarle e modificarle",
   "@settings_note_lock_description": {
     "description": "Description of the setting tile to toggle whether the notes can be locked."
   },
@@ -633,7 +633,7 @@
   "@settings_label_lock_title": {
     "description": "Title of the setting tile to toggle whether the tags can be locked."
   },
-  "settings_label_lock_description": "Blocca il tag e richiedi l''autenticazione con il dispositivo per visualizzare e modificare qualsiasi nota che lo contiene",
+  "settings_label_lock_description": "Blocca il tag e richiedi l’autenticazione con il dispositivo per visualizzare e modificare qualsiasi nota che lo contiene",
   "@settings_label_lock_description": {
     "description": "Description of the setting tile to toggle whether the tags can be locked."
   },
@@ -641,7 +641,7 @@
   "@settings_note_lock_delay_title": {
     "description": "Title of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
   },
-  "settings_note_lock_delay_description": "Ritardo dopo il quale la nota si blocca automaticamente quando l''applicazione viene spostata in background",
+  "settings_note_lock_delay_description": "Ritardo dopo il quale la nota si blocca automaticamente quando l’applicazione viene spostata in background",
   "@settings_note_lock_delay_description": {
     "description": "Description of the setting tile to choose after which amount of time the note locks itself after the application was moved to the background."
   },
@@ -669,7 +669,7 @@
   "@settings_bigger_titles": {
     "description": "Title of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
-  "settings_bigger_titles_description": "Mostra titoli più grandi sulle schede delle note e nell''editor",
+  "settings_bigger_titles_description": "Mostra titoli più grandi sulle schede delle note e nell’editor",
   "@settings_bigger_titles_description": {
     "description": "Description of the setting tile to use bigger titles on the notes tiles and in the editor."
   },
@@ -685,7 +685,7 @@
   "@settings_disable_subdued_note_content_preview": {
     "description": "Title of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
-  "settings_disable_subdued_note_content_preview_description": "Disabilita il colore del testo \"sbiadito\" nell''anteprima del contenuto delle note",
+  "settings_disable_subdued_note_content_preview_description": "Disabilita il colore del testo \"sbiadito\" nell’anteprima del contenuto delle note",
   "@settings_disable_subdued_note_content_preview_description": {
     "description": "Description of the setting tile to disable the subdued color of the notes content preview text in the notes tiles."
   },
@@ -733,7 +733,7 @@
   "@settings_copy_logs": {
     "description": "Title of the settings tile to copy the logs of the application to the clipboard."
   },
-  "settings_copy_logs_description": "Copia i log dell''applicazione negli appunti",
+  "settings_copy_logs_description": "Copia i log dell’applicazione negli appunti",
   "@settings_copy_logs_description": {
     "description": "Description of the settings tile to copy the logs of the application to the clipboard."
   },
@@ -741,7 +741,7 @@
   "@settings_export_logs": {
     "description": "Title of the settings tile to export the logs of the application to a text file."
   },
-  "settings_export_logs_description": "Esporta i log dell''applicazione in un file di testo",
+  "settings_export_logs_description": "Esporta i log dell’applicazione in un file di testo",
   "@settings_export_logs_description": {
     "description": "Description of the settings tile to export the logs of the application to a text file."
   },
@@ -777,7 +777,7 @@
   "@settings_github": {
     "description": "Title of the settings tile to open the GitHub repository of the application."
   },
-  "settings_github_description": "Dai un''occhiata al codice sorgente",
+  "settings_github_description": "Dai un’occhiata al codice sorgente",
   "@settings_github_description": {
     "description": "Description of the settings tile to open the GitHub repository of the application."
   },
@@ -837,11 +837,11 @@
   "@dialog_select_labels_to_add": {
     "description": "Title of the dialog to select the tags to add to the currently selected notes."
   },
-  "tooltip_undo": "Annulla l''ultima azione",
+  "tooltip_undo": "Annulla l’ultima azione",
   "@tooltip_undo": {
     "description": "Tooltip for the button to undo the last action in the editor."
   },
-  "tooltip_redo": "Ripeti l''ultima azione",
+  "tooltip_redo": "Ripeti l’ultima azione",
   "@tooltip_redo": {
     "description": "Tooltip for the button to redo the last action in the editor."
   },
@@ -865,7 +865,7 @@
   "@tooltip_fab_add_checklist_note": {
     "description": "Floating action button in the notes page to add a new checklist note."
   },
-  "tooltip_fab_add_label": "Aggiungi un''etichetta",
+  "tooltip_fab_add_label": "Aggiungi un’etichetta",
   "@tooltip_fab_add_label": {
     "description": "Floating action button in the tags page to add a new tag."
   },
@@ -991,7 +991,7 @@
   "@dialog_delete_label": {
     "description": "Title of the the dialog to delete one or multiple tags, and text for the confirmation button."
   },
-  "dialog_delete_label_body": "Vuoi davvero eliminare {count} {count, plural, one{etichetta} other{etichette}}? {count, plural, one{Sarà rimossa} other{Saranno rimosse}} dalle note a cui {count, plural, one{l''hai assegnata} other{le hai assegnate}}.",
+  "dialog_delete_label_body": "Vuoi davvero eliminare {count} {count, plural, one{etichetta} other{etichette}}? {count, plural, one{Sarà rimossa} other{Saranno rimosse}} dalle note a cui {count, plural, one{l’hai assegnata} other{le hai assegnate}}.",
   "@dialog_delete_label_body": {
     "description": "Text for the dialog to confirm the deletion of one or multiple notes.",
     "placeholders": {
@@ -1005,7 +1005,7 @@
   "@dialog_export_encryption_switch": {
     "description": "Text for the switch to toggle the encryption of the export in the dialog to manually or automatically exporting the notes as JSON."
   },
-  "dialog_export_encryption_description": "Il titolo e il contenuto delle note saranno crittografati usando la tua password. Quest''ultima dovrebbe essere generata in maniera casuale, essere lunga esattamente 32 caratteri, essere forte (deve contenere almeno 1 carattere minuscolo, 1 maiuscolo, 1 numero e 1 carattere speciale) e memorizzata in modo sicuro.",
+  "dialog_export_encryption_description": "Il titolo e il contenuto delle note saranno crittografati usando la tua password. Quest’ultima dovrebbe essere generata in maniera casuale, essere lunga esattamente 32 caratteri, essere forte (deve contenere almeno 1 carattere minuscolo, 1 maiuscolo, 1 numero e 1 carattere speciale) e memorizzata in modo sicuro.",
   "@dialog_export_encryption_description": {
     "description": "Description for the encryption feature when the switch to toggle the encryption of the export is enabled."
   },
@@ -1025,7 +1025,7 @@
   "@dialog_import_encryption_password_description": {
     "description": "Description in the import dialog when an import is encrypted and the password is needed."
   },
-  "dialog_import_encryption_password_error": "la decifratura dell''esportazione non è riuscita. Controlla di aver fornito la stessa password utilizzata per crittografare l''esportazione.",
+  "dialog_import_encryption_password_error": "la decifratura dell’esportazione non è riuscita. Controlla di aver fornito la stessa password utilizzata per crittografare l’esportazione.",
   "@dialog_import_encryption_password_error": {
     "description": "Error when the decryption of an encrypted import failed."
   },
@@ -1123,7 +1123,7 @@
   "@action_archive": {
     "description": "Swipe or menu action to archive a note (moving it to the archives)."
   },
-  "action_unarchive": "Rimuovi dall''archivio",
+  "action_unarchive": "Rimuovi dall’archivio",
   "@action_unarchive": {
     "description": "Swipe or menu action to unarchive a note."
   },
@@ -1255,7 +1255,7 @@
   "@filter_labels_locked": {
     "description": "Filter chip in the tags page to show only the locked tags."
   },
-  "snack_bar_authentication_failed": "L''autenticazione non è riuscita, riprova.",
+  "snack_bar_authentication_failed": "L’autenticazione non è riuscita, riprova.",
   "@snack_bar_authentication_failed": {
     "description": "Snack bar informing that the authentication on the lock screen has failed."
   },
@@ -1445,11 +1445,11 @@
   "@settings_confirm_before_exiting_title": {
     "description": "Title of the setting tile for whether a confirmation is required before exiting the application."
   },
-  "settings_confirm_before_exiting_description": "Chiedi una conferma prima di uscire dall''applicazione",
+  "settings_confirm_before_exiting_description": "Chiedi una conferma prima di uscire dall’applicazione",
   "@settings_confirm_before_exiting_description": {
     "description": "Description of the setting tile for whether a confirmation is required before exiting the application."
   },
-  "snack_bar_confirm_exiting": "Premi di nuovo indietro per uscire dall''applicazione.",
+  "snack_bar_confirm_exiting": "Premi di nuovo indietro per uscire dall’applicazione.",
   "@snack_bar_confirm_exiting": {
     "description": "Snack bar asking the user to confirm exiting the application by pressing back again."
   }
